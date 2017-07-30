@@ -1,7 +1,7 @@
 {
-  "coverage": "92.65%",
-  "expectCount": 871,
-  "actualCount": 807,
+  "coverage": "92.51%",
+  "expectCount": 882,
+  "actualCount": 816,
   "files": {
     "src/errors.js": {
       "expectCount": 7,
@@ -61,12 +61,11 @@
     },
     "src/format/DateTimeFormatter.js": {
       "expectCount": 16,
-      "actualCount": 12,
+      "actualCount": 13,
       "undocumentLines": [
         316,
         312,
-        308,
-        614
+        308
       ]
     },
     "src/format/DateTimeFormatterBuilder.js": {
@@ -77,8 +76,8 @@
       ]
     },
     "src/DayOfWeek.js": {
-      "expectCount": 19,
-      "actualCount": 19,
+      "expectCount": 20,
+      "actualCount": 20,
       "undocumentLines": []
     },
     "src/format/DecimalStyle.js": {
@@ -110,8 +109,8 @@
       ]
     },
     "src/Enum.js": {
-      "expectCount": 4,
-      "actualCount": 1,
+      "expectCount": 5,
+      "actualCount": 2,
       "undocumentLines": [
         9,
         13,
@@ -119,8 +118,8 @@
       ]
     },
     "src/Instant.js": {
-      "expectCount": 38,
-      "actualCount": 38,
+      "expectCount": 39,
+      "actualCount": 39,
       "undocumentLines": []
     },
     "src/chrono/IsoChronology.js": {
@@ -162,13 +161,13 @@
       ]
     },
     "src/Month.js": {
-      "expectCount": 19,
-      "actualCount": 19,
+      "expectCount": 20,
+      "actualCount": 20,
       "undocumentLines": []
     },
     "src/MonthDay.js": {
-      "expectCount": 32,
-      "actualCount": 32,
+      "expectCount": 33,
+      "actualCount": 33,
       "undocumentLines": []
     },
     "src/Period.js": {
@@ -268,8 +267,8 @@
       ]
     },
     "src/Year.js": {
-      "expectCount": 45,
-      "actualCount": 44,
+      "expectCount": 46,
+      "actualCount": 45,
       "undocumentLines": [
         342
       ]
@@ -280,15 +279,15 @@
       "undocumentLines": []
     },
     "src/YearMonth.js": {
-      "expectCount": 52,
-      "actualCount": 51,
+      "expectCount": 53,
+      "actualCount": 52,
       "undocumentLines": [
         323
       ]
     },
     "src/ZoneId.js": {
-      "expectCount": 12,
-      "actualCount": 11,
+      "expectCount": 13,
+      "actualCount": 12,
       "undocumentLines": [
         14
       ]
@@ -309,10 +308,11 @@
       "undocumentLines": []
     },
     "src/zone/ZoneRules.js": {
-      "expectCount": 17,
-      "actualCount": 16,
+      "expectCount": 19,
+      "actualCount": 17,
       "undocumentLines": [
-        12
+        12,
+        351
       ]
     },
     "src/zone/ZoneRulesProvider.js": {
@@ -337,6 +337,13 @@
         17
       ]
     },
+    "src/use.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        2
+      ]
+    },
     "src/convert.js": {
       "expectCount": 1,
       "actualCount": 1,
@@ -349,8 +356,10 @@
     },
     "src/js-joda.js": {
       "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
+      "actualCount": 0,
+      "undocumentLines": [
+        47
+      ]
     }
   }
 }

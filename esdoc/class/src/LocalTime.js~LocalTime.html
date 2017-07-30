@@ -56,7 +56,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bindUse">bindUse</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -66,6 +66,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalStateException">IllegalStateException</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NullPointerException">NullPointerException</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-UnsupportedTemporalTypeException">UnsupportedTemporalTypeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-use">use</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">chrono</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span></span></li>
@@ -233,7 +234,7 @@ This is the time just before midnight at the end of the day.</p>
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/LocalTime.js~LocalTime.html#static-method-now">now</a></span></span><span data-ice="signature">(clockOrZone: <span><a href="class/src/Clock.js~Clock.html">Clock</a></span> | <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span>
+          <span data-ice="name"><span><a href="class/src/LocalTime.js~LocalTime.html#static-method-now">now</a></span></span><span data-ice="signature">(clockOrZone: <span><a href="class/src/Clock.js~Clock.html">Clock</a></span> | <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span></span>
         </p>
       </div>
       <div>
@@ -496,7 +497,7 @@ associated nanos of second.</p>
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/LocalTime.js~LocalTime.html#instance-method-equals">equals</a></span></span><span data-ice="signature">(other: <span>*</span>): <span>*</span></span>
+          <span data-ice="name"><span><a href="class/src/LocalTime.js~LocalTime.html#instance-method-equals">equals</a></span></span><span data-ice="signature">(other: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -664,7 +665,7 @@ associated nanos of second.</p>
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/LocalTime.js~LocalTime.html#instance-method-isAfter">isAfter</a></span></span><span data-ice="signature">(other: <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span>): <span>*</span></span>
+          <span data-ice="name"><span><a href="class/src/LocalTime.js~LocalTime.html#instance-method-isAfter">isAfter</a></span></span><span data-ice="signature">(other: <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -692,7 +693,7 @@ associated nanos of second.</p>
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/LocalTime.js~LocalTime.html#instance-method-isBefore">isBefore</a></span></span><span data-ice="signature">(other: <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span>): <span>*</span></span>
+          <span data-ice="name"><span><a href="class/src/LocalTime.js~LocalTime.html#instance-method-isBefore">isBefore</a></span></span><span data-ice="signature">(other: <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
@@ -1830,7 +1831,7 @@ allowing it to be used in queries via method reference, <span>LocalTime::from</s
     
     
     
-    <span data-ice="name">now</span><span data-ice="signature">(clockOrZone: <span><a href="class/src/Clock.js~Clock.html">Clock</a></span> | <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span>
+    <span data-ice="name">now</span><span data-ice="signature">(clockOrZone: <span><a href="class/src/Clock.js~Clock.html">Clock</a></span> | <span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span></span>
     <span class="right-info">
       
       
@@ -1876,7 +1877,7 @@ The alternate clock may be introduced using dependency injection.</p>
     <table>
       <tbody>
         <tr>
-          <td class="return-type" data-ice="returnType"><span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></td>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span></td>
           <td class="return-desc" data-ice="returnDescription"><p>the current time using the system clock, not null</p>
 </td>
         </tr>
@@ -2658,7 +2659,7 @@ It is &apos;consistent with equals&apos;, as defined by <span>Comparable</span>.
     
     
     
-    <span data-ice="name">equals</span><span data-ice="signature">(other: <span>*</span>): <span>*</span></span>
+    <span data-ice="name">equals</span><span data-ice="signature">(other: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
     <span class="right-info">
       
       
@@ -2703,8 +2704,8 @@ To compare the date of two <span><a href="class/src/temporal/TemporalAccessor.js
     <table>
       <tbody>
         <tr>
-          <td class="return-type" data-ice="returnType"><span>*</span></td>
-          <td class="return-desc" data-ice="returnDescription"><p>{boolean}true if this is equal to the other time</p>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>true if this is equal to the other time</p>
 </td>
         </tr>
       </tbody>
@@ -3142,7 +3143,7 @@ and what the value represents, is determined by the field.</p>
     
     
     
-    <span data-ice="name">isAfter</span><span data-ice="signature">(other: <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span>): <span>*</span></span>
+    <span data-ice="name">isAfter</span><span data-ice="signature">(other: <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
     <span class="right-info">
       
       
@@ -3184,8 +3185,8 @@ and what the value represents, is determined by the field.</p>
     <table>
       <tbody>
         <tr>
-          <td class="return-type" data-ice="returnType"><span>*</span></td>
-          <td class="return-desc" data-ice="returnDescription"><p>{boolean}true if this is after the specified time</p>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>true if this is after the specified time</p>
 </td>
         </tr>
       </tbody>
@@ -3229,7 +3230,7 @@ and what the value represents, is determined by the field.</p>
     
     
     
-    <span data-ice="name">isBefore</span><span data-ice="signature">(other: <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span>): <span>*</span></span>
+    <span data-ice="name">isBefore</span><span data-ice="signature">(other: <span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
     <span class="right-info">
       
       
@@ -3271,8 +3272,8 @@ and what the value represents, is determined by the field.</p>
     <table>
       <tbody>
         <tr>
-          <td class="return-type" data-ice="returnType"><span>*</span></td>
-          <td class="return-desc" data-ice="returnDescription"><p>{boolean}true if this point is before the specified time</p>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>true if this point is before the specified time</p>
 </td>
         </tr>
       </tbody>

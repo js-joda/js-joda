@@ -56,7 +56,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bindUse">bindUse</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -66,6 +66,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalStateException">IllegalStateException</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NullPointerException">NullPointerException</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-UnsupportedTemporalTypeException">UnsupportedTemporalTypeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-use">use</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">chrono</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span></span></li>
@@ -223,7 +224,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * The alternate clock may be introduced using dependency injection.
      *
      * @param {Clock|ZoneId} clockOrZone - the zone ID or clock to use, if null Clock.systemDefaultZone() is used.
-     * @return {LocalDateTime} the current time using the system clock, not null
+     * @return {LocalTime} the current time using the system clock, not null
      */
     static now(clockOrZone) {
         if (clockOrZone == null){
@@ -1297,7 +1298,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @param {OffsetTime} offset - the offset to combine with, not null
      * @return {OffsetTime} the offset time formed from this time and the specified offset, not null
      */
-/*
+    /*
     atOffset(offset) {
         return OffsetTime.of(this, offset);
     }
@@ -1362,7 +1363,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * The comparison is based on the time-line position of the time within a day.
      *
      * @param {LocalTime} other - the other time to compare to, not null
-     * @return {boolean}true if this is after the specified time
+     * @return {boolean} true if this is after the specified time
      * @throws {NullPointerException} if `other` is null
      */
     isAfter(other) {
@@ -1375,7 +1376,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * The comparison is based on the time-line position of the time within a day.
      *
      * @param {LocalTime} other - the other time to compare to, not null
-     * @return {boolean}true if this point is before the specified time
+     * @return {boolean} true if this point is before the specified time
      * @throws {NullPointerException} if `other` is null
      */
     isBefore(other) {
@@ -1393,7 +1394,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * {@link ChronoField#NANO_OF_DAY} as a comparator.
      *
      * @param {*} other - the object to check, null returns false
-     * @return {boolean}true if this is equal to the other time
+     * @return {boolean} true if this is equal to the other time
      */
     equals(other) {
         if (this === other) {

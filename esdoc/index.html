@@ -56,7 +56,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bindUse">bindUse</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -66,6 +66,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalStateException">IllegalStateException</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NullPointerException">NullPointerException</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-UnsupportedTemporalTypeException">UnsupportedTemporalTypeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-use">use</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">chrono</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span></span></li>
@@ -102,7 +103,7 @@
 
 <div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="immutable-date-and-time-library-for-javascript">Immutable date and time library for javascript</h1>
 <p><a href="https://badge.fury.io/js/js-joda"><img src="https://badge.fury.io/js/js-joda.svg" alt="npm version"></a>
-<a href="https://travis-ci.org/js-joda/js-joda"><img src="https://travis-ci.org/js-joda/js-joda.svg" alt="Build Status"></a>
+<a href="https://travis-ci.org/js-joda/js-joda"><img src="https://travis-ci.org/js-joda/js-joda.svg?branch=master" alt="Build Status"></a>
 <a href="https://saucelabs.com/u/js-joda"><img src="https://saucelabs.com/buildstatus/js-joda" alt="Sauce Test Status"></a>
 <a href="https://coveralls.io/github/js-joda/js-joda?branch=master"><img src="https://coveralls.io/repos/js-joda/js-joda/badge.svg?branch=master&amp;service=github" alt="Coverage Status"></a>
 <a href=""><img src="https://img.shields.io/badge/tested_with-current_node_LTS-blue.svg?style=flat" alt="Tested node version"></a>
@@ -174,20 +175,23 @@ with the architecture of frameworks like React and Flux.</p>
 <h2 id="getting-started">Getting started</h2>
 <h3 id="node">Node</h3>
 <p>Install joda using npm</p>
-<pre><code><code class="source-code prettyprint">npm install js-joda</code>
-</code></pre><p>Then require it to any module</p>
-<pre><code><code class="source-code prettyprint">var LocalDate = require(&apos;js-joda&apos;).LocalDate;
+<pre><code class="lang-bash"><code class="source-code prettyprint">    npm install js-joda</code>
+</code></pre>
+<p>Then require it to any module</p>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">    var LocalDate = require(&apos;js-joda&apos;).LocalDate;
 
-var d = LocalDate.parse(&apos;2012-12-24&apos;).atStartOfDay().plusMonths(2); // 2013-02-24T00:00:00</code>
-</code></pre><h3 id="browser">Browser</h3>
+    var d = LocalDate.parse(&apos;2012-12-24&apos;).atStartOfDay().plusMonths(2); // 2013-02-24T00:00:00</code>
+</code></pre>
+<h3 id="browser">Browser</h3>
 <p>To use js-joda from a browser, download either dist/js-joda.min.js or dist/js-joda.js (with sourcemaps for development)</p>
 <p>Then add it as a script tag to your page</p>
-<pre><code><code class="source-code prettyprint">&lt;script src=&quot;js-joda.min.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;
-    var LocalDate = JSJoda.LocalDate;
-    var d = LocalDate.parse(&apos;2012-12-24&apos;).atStartOfDay().plusMonths(2); // 2013-02-24T00:00:00
-&lt;/script&gt;</code>
-</code></pre><h2 id="documentation">Documentation</h2>
+<pre><code class="lang-html"><code class="source-code prettyprint">    &lt;script src=&quot;js-joda.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
+        var LocalDate = JSJoda.LocalDate;
+        var d = LocalDate.parse(&apos;2012-12-24&apos;).atStartOfDay().plusMonths(2); // 2013-02-24T00:00:00
+    &lt;/script&gt;</code>
+</code></pre>
+<h2 id="documentation">Documentation</h2>
 <ul>
 <li><a href="CheatSheet.md">Cheat Sheet</a> Quick start guide</li>
 <li><a href="//js-joda.github.io/js-joda/esdoc/">API</a> ESDoc generated API documentation</li>

@@ -56,7 +56,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-use">use</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bindUse">bindUse</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -66,6 +66,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalStateException">IllegalStateException</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NullPointerException">NullPointerException</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-UnsupportedTemporalTypeException">UnsupportedTemporalTypeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-use">use</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">chrono</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span></span></li>
@@ -106,10 +107,11 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-export { Clock } from &apos;./Clock&apos;;
 export {
     DateTimeException, DateTimeParseException, IllegalArgumentException, IllegalStateException, NullPointerException
 } from &apos;./errors&apos;;
+
+export { Clock } from &apos;./Clock&apos;;
 export { DayOfWeek } from &apos;./DayOfWeek&apos;;
 export { Duration } from &apos;./Duration&apos;;
 export { Instant } from &apos;./Instant&apos;;
@@ -125,41 +127,28 @@ export { ZonedDateTime } from &apos;./ZonedDateTime&apos;;
 export { ZoneOffset } from &apos;./ZoneOffset&apos;;
 export { ZoneId } from &apos;./ZoneId&apos;;
 export { ZoneRegion } from &apos;./ZoneRegion&apos;;
+
 export { ZoneOffsetTransition } from &apos;./zone/ZoneOffsetTransition&apos;;
 export { ZoneRules } from &apos;./zone/ZoneRules&apos;;
 export { ZoneRulesProvider } from &apos;./zone/ZoneRulesProvider&apos;;
 
-export {convert} from &apos;./convert&apos;;
+export { ChronoField } from &apos;./temporal/ChronoField&apos;;
+export { ChronoUnit } from &apos;./temporal/ChronoUnit&apos;;
+export { IsoFields } from &apos;./temporal/IsoFields&apos;;
+export { TemporalAdjusters } from &apos;./temporal/TemporalAdjusters&apos;;
+export { TemporalQueries } from &apos;./temporal/TemporalQueries&apos;;
 
-export {nativeJs} from &apos;./temporal/NativeJsTemporal&apos;;
-export {ChronoField} from &apos;./temporal/ChronoField&apos;;
-export {ChronoUnit} from &apos;./temporal/ChronoUnit&apos;;
-export {IsoFields} from &apos;./temporal/IsoFields&apos;;
-export {TemporalAdjusters} from &apos;./temporal/TemporalAdjusters&apos;;
-export {TemporalQueries} from &apos;./temporal/TemporalQueries&apos;;
-
-export {DateTimeFormatter} from &apos;./format/DateTimeFormatter&apos;;
-export {DateTimeFormatterBuilder} from &apos;./format/DateTimeFormatterBuilder&apos;;
-export {ResolverStyle} from &apos;./format/ResolverStyle&apos;;
+export { DateTimeFormatter } from &apos;./format/DateTimeFormatter&apos;;
+export { DateTimeFormatterBuilder } from &apos;./format/DateTimeFormatterBuilder&apos;;
+export { ResolverStyle } from &apos;./format/ResolverStyle&apos;;
 
 import &apos;./_init&apos;;
 
-const used = [];
-/**
- * use
- *
- * Provides a way to extend the internals of js-joda
- *
- * @param {function} fn - function to extend js-joda public api
- * @returns {this} for chaining
- */
-export function use(fn) {
-    if (!~used.indexOf(fn)) {
-        fn(exports);
-        used.push(fn);
-    }
-    return exports;
-}
+export { convert } from &apos;./convert&apos;;
+export { nativeJs } from &apos;./temporal/NativeJsTemporal&apos;;
+
+import { bindUse } from &apos;./use&apos;;
+export const use = bindUse(exports);
 </code></pre>
 
 </div>

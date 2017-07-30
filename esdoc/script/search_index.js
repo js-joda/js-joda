@@ -348,6 +348,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "js-joda/src/use.js~binduse",
+    "function/index.html#static-function-bindUse",
+    "<span>bindUse</span> <span class=\"search-result-import-path\">js-joda/src/use.js</span>",
+    "function"
+  ],
+  [
     "js-joda/src/convert.js~convert",
     "function/index.html#static-function-convert",
     "<span>convert</span> <span class=\"search-result-import-path\">js-joda/src/convert.js</span>",
@@ -379,9 +385,9 @@ window.esdocSearchIndex = [
   ],
   [
     "js-joda/src/js-joda.js~use",
-    "function/index.html#static-function-use",
+    "variable/index.html#static-variable-use",
     "<span>use</span> <span class=\"search-result-import-path\">js-joda/src/js-joda.js</span>",
-    "function"
+    "variable"
   ],
   [
     "builtinexternal/ecmascriptexternal.js~array",
@@ -840,6 +846,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/dayofweek.js~dayofweek#tojson",
+    "class/src/DayOfWeek.js~DayOfWeek.html#instance-method-toJSON",
+    "src/DayOfWeek.js~DayOfWeek#toJSON",
+    "method"
+  ],
+  [
     "src/dayofweek.js~dayofweek#tostring",
     "class/src/DayOfWeek.js~DayOfWeek.html#instance-method-toString",
     "src/DayOfWeek.js~DayOfWeek#toString",
@@ -1212,6 +1224,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/enum.js~enum#tojson",
+    "class/src/Enum.js~Enum.html#instance-method-toJSON",
+    "src/Enum.js~Enum#toJSON",
+    "method"
+  ],
+  [
     "src/enum.js~enum#tostring",
     "class/src/Enum.js~Enum.html#instance-method-toString",
     "src/Enum.js~Enum#toString",
@@ -1377,6 +1395,12 @@ window.esdocSearchIndex = [
     "src/instant.js~instant#toepochmilli",
     "class/src/Instant.js~Instant.html#instance-method-toEpochMilli",
     "src/Instant.js~Instant#toEpochMilli",
+    "method"
+  ],
+  [
+    "src/instant.js~instant#tojson",
+    "class/src/Instant.js~Instant.html#instance-method-toJSON",
+    "src/Instant.js~Instant#toJSON",
     "method"
   ],
   [
@@ -2742,6 +2766,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/month.js~month#tojson",
+    "class/src/Month.js~Month.html#instance-method-toJSON",
+    "src/Month.js~Month#toJSON",
+    "method"
+  ],
+  [
     "src/month.js~month#tostring",
     "class/src/Month.js~Month.html#instance-method-toString",
     "src/Month.js~Month#toString",
@@ -2871,6 +2901,12 @@ window.esdocSearchIndex = [
     "src/monthday.js~monthday#range",
     "class/src/MonthDay.js~MonthDay.html#instance-method-range",
     "src/MonthDay.js~MonthDay#range",
+    "method"
+  ],
+  [
+    "src/monthday.js~monthday#tojson",
+    "class/src/MonthDay.js~MonthDay.html#instance-method-toJSON",
+    "src/MonthDay.js~MonthDay#toJSON",
     "method"
   ],
   [
@@ -3384,6 +3420,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/year.js~year#tojson",
+    "class/src/Year.js~Year.html#instance-method-toJSON",
+    "src/Year.js~Year#toJSON",
+    "method"
+  ],
+  [
     "src/year.js~year#tostring",
     "class/src/Year.js~Year.html#instance-method-toString",
     "src/Year.js~Year#toString",
@@ -3672,6 +3714,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/yearmonth.js~yearmonth#tojson",
+    "class/src/YearMonth.js~YearMonth.html#instance-method-toJSON",
+    "src/YearMonth.js~YearMonth#toJSON",
+    "method"
+  ],
+  [
     "src/yearmonth.js~yearmonth#tostring",
     "class/src/YearMonth.js~YearMonth.html#instance-method-toString",
     "src/YearMonth.js~YearMonth#toString",
@@ -3825,6 +3873,12 @@ window.esdocSearchIndex = [
     "src/zoneid.js~zoneid#rules",
     "class/src/ZoneId.js~ZoneId.html#instance-method-rules",
     "src/ZoneId.js~ZoneId#rules",
+    "method"
+  ],
+  [
+    "src/zoneid.js~zoneid#tojson",
+    "class/src/ZoneId.js~ZoneId.html#instance-method-toJSON",
+    "src/ZoneId.js~ZoneId#toJSON",
     "method"
   ],
   [
@@ -5628,6 +5682,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/use.js",
+    "file/src/use.js.html",
+    "src/use.js",
+    "file"
+  ],
+  [
     "src/zone/systemdefaultzoneid.js",
     "file/src/zone/SystemDefaultZoneId.js.html",
     "src/zone/SystemDefaultZoneId.js",
@@ -5937,6 +5997,18 @@ window.esdocSearchIndex = [
     "src/zone/zonerules.js~zonerules#standardoffset",
     "class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-standardOffset",
     "src/zone/ZoneRules.js~ZoneRules#standardOffset",
+    "method"
+  ],
+  [
+    "src/zone/zonerules.js~zonerules#tojson",
+    "class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-toJSON",
+    "src/zone/ZoneRules.js~ZoneRules#toJSON",
+    "method"
+  ],
+  [
+    "src/zone/zonerules.js~zonerules#tostring",
+    "class/src/zone/ZoneRules.js~ZoneRules.html#instance-method-toString",
+    "src/zone/ZoneRules.js~ZoneRules#toString",
     "method"
   ],
   [
