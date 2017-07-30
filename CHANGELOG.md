@@ -5,6 +5,7 @@ Changelog
 
 #### public API
 
+ * fail if temporals ar created with float values 
  * fix typescript definition and esdoc 
 
 #### dependency updates
