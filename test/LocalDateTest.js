@@ -27,6 +27,9 @@ describe('Creating a LocalDate instance', () => {
         expect(() => {LocalDate.of(1970, 2, 29);}).to.throw(Error);
         expect(() => {LocalDate.of(1970, 2, 30);}).to.throw(Error);
         expect(() => {LocalDate.of(1970, 4, 31);}).to.throw(Error);
+        expect(() => {LocalDate.of(2017.5, 1, 1);}).to.throw(Error);
+        expect(() => {LocalDate.of(2017, 1.5, 1);}).to.throw(Error);
+        expect(() => {LocalDate.of(2017, 1, 1.5);}).to.throw(Error);
     });
 
     describe('from strings', () => {

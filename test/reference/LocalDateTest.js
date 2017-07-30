@@ -256,12 +256,12 @@ describe('org.threeten.bp.TestLocalDate', () => {
         it('factory_of_intsMonth_nullMonth', () => {
             expect(() => {
                 LocalDate.of(2007, null, 30);
-            }).to.throw(DateTimeException); /* NullPointerException in JDK */
+            }).to.throw(ArithmeticException); /* NullPointerException in JDK */
         });
 
         it('factory_of_intsMonth_yearTooLow', () => {
             expect(() => {
-                LocalDate.of(Number.MIN_SAFE_INTEGER, null, 30);
+                LocalDate.of(Number.MIN_SAFE_INTEGER, 1, 30);
             }).to.throw(DateTimeException);
         });
 

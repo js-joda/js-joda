@@ -42,6 +42,9 @@ describe('js-joda LocalTime', () => {
             expect(() => LocalTime.of(24, 0, 0)).to.throw(Error);
             expect(() => LocalTime.of('23', '60', '0')).to.throw(Error);
             expect(() => LocalTime.of(23, 60, 0)).to.throw(Error);
+            expect(() => LocalTime.of(20.5, 0, 0)).to.throw(Error);
+            expect(() => LocalTime.of(20, 1.5, 0)).to.throw(Error);
+            expect(() => LocalTime.of(20, 1, 0.6)).to.throw(Error);
         });
     });
 

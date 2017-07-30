@@ -174,8 +174,9 @@ describe('MathUtil', () => {
         it('safeToInt', function () {
             expect(MathUtil.safeToInt(-0)).to.eql(0);
             expect(MathUtil.safeToInt(1)).to.eql(1);
-            expect(MathUtil.safeToInt(1.99)).to.eql(1.99);
+            expect(MathUtil.safeToInt('2')).to.eql(2);
 
+            expect(() => MathUtil.safeToInt(1.99)).to.throw(ArithmeticException);
             expect(() => MathUtil.safeToInt('foo')).to.throw(ArithmeticException);
             expect(() => MathUtil.safeToInt(null)).to.throw(ArithmeticException);
             expect(() => MathUtil.safeToInt()).to.throw(ArithmeticException);
@@ -185,6 +186,8 @@ describe('MathUtil', () => {
             MathUtil.verifyInt(0);
             MathUtil.verifyInt('0');
 
+            expect(() => MathUtil.verifyInt(1.5)).to.throw(ArithmeticException);
+            expect(() => MathUtil.verifyInt('1.5')).to.throw(ArithmeticException);
             expect(() => MathUtil.verifyInt('foo')).to.throw(ArithmeticException);
             expect(() => MathUtil.verifyInt(null)).to.throw(ArithmeticException);
             expect(() => MathUtil.verifyInt()).to.throw(ArithmeticException);
@@ -192,6 +195,7 @@ describe('MathUtil', () => {
 
         it('safeZero', function () {
             expect(MathUtil.safeZero(0)).to.eql(0);
+            expect(MathUtil.safeZero('0')).to.eql(0);
             expect(MathUtil.safeZero(-0)).to.eql(0);
             expect(MathUtil.safeZero(1)).to.eql(1);
             expect(MathUtil.safeZero(-1)).to.eql(-1);

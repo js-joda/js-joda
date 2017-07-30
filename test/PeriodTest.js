@@ -134,8 +134,30 @@ describe('js-joda Period', () => {
                 Period.ofWeeks(MathUtil.MIN_SAFE_INTEGER);
             }).to.throw(ArithmeticException);
         });
+        it('should fail for non int values', () => {
+            expect(() => {
+                Period.ofWeeks(30.5);
+            }).to.throw(ArithmeticException);
+        });
     });
     
+    describe('ofDays()', () => {
+        it('should return the correct value', () => {
+            assertPeriod(Period.ofDays(1), 0, 0, 1);
+            assertPeriod(Period.ofDays(40), 0, 0, 40);
+            assertPeriod(Period.ofDays(400), 0, 0, 400);
+        });
+
+        it('should fail for non int values', () => {
+            expect(() => {
+                Period.ofDays(30.5);
+            }).to.throw(ArithmeticException);
+            expect(() => {
+                Period.ofDays('30.5');
+            }).to.throw(ArithmeticException);
+        });
+    });
+
     function assertPeriod(test, y, mo, d) {
         assertEquals(test.years(), y, 'years');
         assertEquals(test.months(), mo, 'months');
