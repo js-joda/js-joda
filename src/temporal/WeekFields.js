@@ -12,6 +12,7 @@ import {
     IllegalArgumentException,
     IllegalStateException,
     IsoFields,
+    LocalDate,
     ResolverStyle,
     ValueRange,
     Year
@@ -30,6 +31,17 @@ const WEEK_OF_YEAR_RANGE = ValueRange.of(0, 1, 52, 54);
 const WEEK_OF_WEEK_BASED_YEAR_RANGE = ValueRange.of(1, 52, 53);
 const WEEK_BASED_YEAR_RANGE = ChronoField.YEAR.range();
 
+/* map from the string from cldr `firstDay()` to DayOfWeek */
+const _weekDayMap = {
+    'mon': DayOfWeek.MONDAY,
+    'tue': DayOfWeek.TUESDAY,
+    'wed': DayOfWeek.WEDNESDAY,
+    'thu': DayOfWeek.THURSDAY,
+    'fri': DayOfWeek.FRIDAY,
+    'sat': DayOfWeek.SATURDAY,
+    'sun': DayOfWeek.SUNDAY,
+};
+
 /**
  * Field type that computes DayOfWeek, WeekOfMonth, and WeekOfYear
  * based on a WeekFields.
@@ -38,7 +50,7 @@ const WEEK_BASED_YEAR_RANGE = ChronoField.YEAR.range();
  * Constructors are provided to create fields for DayOfWeek, WeekOfMonth,
  * and WeekOfYear.
  */
-class ComputedDayOfField {
+export class ComputedDayOfField {
 
     /**
      * Returns a field to access the day of week,
@@ -105,7 +117,7 @@ class ComputedDayOfField {
 
     getFrom(temporal) {
         // Offset the ISO DOW by the start of this week
-        const sow = this._weekDef.getFirstDayOfWeek().getValue();
+        const sow = this._weekDef.firstDayOfWeek().value();
         const isoDow = temporal.get(ChronoField.DAY_OF_WEEK);
         const dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
 
@@ -114,11 +126,11 @@ class ComputedDayOfField {
         } else if (this._rangeUnit === ChronoUnit.MONTHS) {
             const dom = temporal.get(ChronoField.DAY_OF_MONTH);
             const offset = this._startOfWeekOffset(dom, dow);
-            return WeekFields._computeWeek(offset, dom);
+            return ComputedDayOfField._computeWeek(offset, dom);
         } else if (this._rangeUnit === ChronoUnit.YEARS) {
             const doy = temporal.get(ChronoField.DAY_OF_YEAR);
             const offset = this._startOfWeekOffset(doy, dow);
-            return WeekFields._computeWeek(offset, doy);
+            return ComputedDayOfField._computeWeek(offset, doy);
         } else if (this._rangeUnit === IsoFields.WEEK_BASED_YEARS) {
             return this._localizedWOWBY(temporal);
         } else if (this._rangeUnit === ChronoUnit.FOREVER) {
@@ -136,28 +148,28 @@ class ComputedDayOfField {
     _localizedWeekOfMonth(temporal, dow) {
         const dom = temporal.get(ChronoField.DAY_OF_MONTH);
         const offset = this._startOfWeekOffset(dom, dow);
-        return WeekFields._computeWeek(offset, dom);
+        return ComputedDayOfField._computeWeek(offset, dom);
     }
 
     _localizedWeekOfYear(temporal, dow) {
         const doy = temporal.get(ChronoField.DAY_OF_YEAR);
         const offset = this._startOfWeekOffset(doy, dow);
-        return WeekFields._computeWeek(offset, doy);
+        return ComputedDayOfField._computeWeek(offset, doy);
     }
 
     _localizedWOWBY(temporal) {
-        const sow = this._weekDef.getFirstDayOfWeek().getValue();
+        const sow = this._weekDef.firstDayOfWeek().value();
         const isoDow = temporal.get(ChronoField.DAY_OF_WEEK);
         const dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
         const woy = this._localizedWeekOfYear(temporal, dow);
         if (woy === 0) {
-            const previous = Chronology.from(temporal).date(temporal).minus(1, ChronoUnit.WEEKS);
+            const previous = LocalDate.from(temporal).minus(1, ChronoUnit.WEEKS);
             return this._localizedWeekOfYear(previous, dow) + 1;
         } else if (woy >= 53) {
             const offset = this._startOfWeekOffset(temporal.get(ChronoField.DAY_OF_YEAR), dow);
             const year = temporal.get(ChronoField.YEAR);
             const yearLen = Year.isLeap(year) ? 366 : 365;
-            const weekIndexOfFirstWeekNextYear = WeekFields._computeWeek(offset, yearLen + this._weekDef.getMinimalDaysInFirstWeek());
+            const weekIndexOfFirstWeekNextYear = ComputedDayOfField._computeWeek(offset, yearLen + this._weekDef.minimalDaysInFirstWeek());
             if (woy >= weekIndexOfFirstWeekNextYear) {
                 return (woy - (weekIndexOfFirstWeekNextYear - 1));
             }
@@ -166,7 +178,7 @@ class ComputedDayOfField {
     }
 
     _localizedWBY(temporal) {
-        const sow = this._weekDef.getFirstDayOfWeek().getValue();
+        const sow = this._weekDef.firstDayOfWeek().value();
         const isoDow = temporal.get(ChronoField.DAY_OF_WEEK);
         const dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
         const year = temporal.get(ChronoField.YEAR);
@@ -178,7 +190,7 @@ class ComputedDayOfField {
         }
         const offset = this._startOfWeekOffset(temporal.get(ChronoField.DAY_OF_YEAR), dow);
         const yearLen = Year.isLeap(year) ? 366 : 365;
-        const weekIndexOfFirstWeekNextYear = WeekFields._computeWeek(offset, yearLen + this._weekDef.getMinimalDaysInFirstWeek());
+        const weekIndexOfFirstWeekNextYear = ComputedDayOfField._computeWeek(offset, yearLen + this._weekDef.minimalDaysInFirstWeek());
         if (woy >= weekIndexOfFirstWeekNextYear) {
             return year + 1;
         }
@@ -196,7 +208,7 @@ class ComputedDayOfField {
         // offset of first day corresponding to the day of week in first 7 days (zero origin)
         const weekStart = MathUtil.floorMod(day - dow, 7);
         let offset = -weekStart;
-        if (weekStart + 1 > this._weekDef.getMinimalDaysInFirstWeek()) {
+        if (weekStart + 1 > this._weekDef.minimalDaysInFirstWeek()) {
             // The previous week has the minimum days in the current month to be a 'week'
             offset = 7 - weekStart;
         }
@@ -212,7 +224,7 @@ class ComputedDayOfField {
      * @return the week number where zero is used for a partial week and 1 for the first full week
      */
     static _computeWeek(offset, day) {
-        return ((7 + offset + (day - 1)) / 7);
+        return MathUtil.intDiv((7 + offset + (day - 1)), 7);
     }
 
     adjustInto(temporal, newValue) {
@@ -252,7 +264,7 @@ class ComputedDayOfField {
     }
 
     resolve(fieldValues, partialTemporal, resolverStyle) {
-        const sow = this._weekDef.getFirstDayOfWeek().getValue();
+        const sow = this._weekDef.firstDayOfWeek().value();
         if (this._rangeUnit === ChronoUnit.WEEKS) {  // day-of-week
             const value = fieldValues.remove(this);
             const localDow = this._range.checkValidIntValue(value, this);
@@ -276,13 +288,13 @@ class ComputedDayOfField {
             let date;
             let days;
             if (resolverStyle === ResolverStyle.LENIENT) {
-                date = chrono.date(wby, 1, this._weekDef.getMinimalDaysInFirstWeek());
+                date = chrono.date(wby, 1, this._weekDef.minimalDaysInFirstWeek());
                 const wowby = fieldValues.get(this._weekDef.weekOfWeekBasedYear);
                 const dateDow = this._localizedDayOfWeek(date, sow);
                 const weeks = wowby - this._localizedWeekOfYear(date, dateDow);
                 days = weeks * 7 + (dow - dateDow);
             } else {
-                date = chrono.date(wby, 1, this._weekDef.getMinimalDaysInFirstWeek());
+                date = chrono.date(wby, 1, this._weekDef.minimalDaysInFirstWeek());
                 const wowby = this._weekDef.weekOfWeekBasedYear.range().checkValidIntValue(
                     fieldValues.get(this._weekDef.weekOfWeekBasedYear), this._weekDef.weekOfWeekBasedYear);
                 const dateDow = this._localizedDayOfWeek(date, sow);
@@ -371,6 +383,10 @@ class ComputedDayOfField {
     }
 
     //-----------------------------------------------------------------------
+    name() {
+        return this._name
+    }
+
     baseUnit() {
         return this._baseUnit;
     }
@@ -428,18 +444,18 @@ class ComputedDayOfField {
         }
 
         // Offset the ISO DOW by the start of this week
-        const sow = this._weekDef.getFirstDayOfWeek().getValue();
+        const sow = this._weekDef.firstDayOfWeek().value();
         const isoDow = temporal.get(ChronoField.DAY_OF_WEEK);
         const dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
 
         const offset = this._startOfWeekOffset(temporal.get(field), dow);
         const fieldRange = temporal.range(field);
-        return ValueRange.of(WeekFields._computeWeek(offset, fieldRange.getMinimum()),
-            WeekFields._computeWeek(offset, fieldRange.getMaximum()));
+        return ValueRange.of(ComputedDayOfField._computeWeek(offset, fieldRange.getMinimum()),
+            ComputedDayOfField._computeWeek(offset, fieldRange.getMaximum()));
     }
 
     _rangeWOWBY(temporal) {
-        const sow = this._weekDef.getFirstDayOfWeek().getValue();
+        const sow = this._weekDef.firstDayOfWeek().value();
         const isoDow = temporal.get(ChronoField.DAY_OF_WEEK);
         const dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
         const woy = this._localizedWeekOfYear(temporal, dow);
@@ -449,7 +465,7 @@ class ComputedDayOfField {
         const offset = this._startOfWeekOffset(temporal.get(ChronoField.DAY_OF_YEAR), dow);
         const year = temporal.get(ChronoField.YEAR);
         const yearLen = Year.isLeap(year) ? 366 : 365;
-        const weekIndexOfFirstWeekNextYear = WeekFields._computeWeek(offset, yearLen + this._weekDef.getMinimalDaysInFirstWeek());
+        const weekIndexOfFirstWeekNextYear = ComputedDayOfField._computeWeek(offset, yearLen + this._weekDef.minimalDaysInFirstWeek());
         if (woy >= weekIndexOfFirstWeekNextYear) {
             return this._rangeWOWBY(Chronology.from(temporal).date(temporal).plus(2, ChronoUnit.WEEKS));
         }
@@ -564,6 +580,25 @@ export class WeekFields {
     }
 
     /**
+     * function overloading for {@link WeekFields#of}
+     *
+     * if called with 1 arguments then {@link WeekFields.ofLocale} is executed.
+     *
+     * Otherwise {@link WeekFields.ofFirstDayOfWeekMinDays} is executed.
+     *
+     * @param {!DayOfWeek | Locale} firstDayOrLocale
+     * @param {Number} minDays
+     * @returns {WeekFields} this for chaining
+     */
+    static of(firstDayOrLocale, minDays) {
+        if (minDays === undefined) {
+            return WeekFields.ofLocale(firstDayOrLocale);
+        } else {
+            return WeekFields.ofFirstDayOfWeekMinDays(firstDayOrLocale, minDays);
+        }
+    }
+
+    /**
      * Obtains an instance of {@code WeekFields} appropriate for a locale.
      * <p>
      * This will look up appropriate values from the provider of localization data.
@@ -574,13 +609,11 @@ export class WeekFields {
     static ofLocale(locale) {
         requireNonNull(locale, 'locale');
 
-        //TODO: firstDay is in supplemental/weekData stored by *country* :/
         Cldr.load(cldrData('supplemental/weekData'));
         const country = locale.country() ? locale.country() : '001'; // 001 is world region
-        const cldr = new Cldr(locale.toLocaleString());
+        const cldr = new Cldr(locale.localeString());
         const weekData = cldr.supplemental('weekData');
-        const calDow = weekData.first[country];
-        const dow = DayOfWeek.SUNDAY.plus(calDow - 1);
+        const dow = _weekDayMap[weekData.firstDay[country]];
         const minDays = weekData.minDays[country];
         return WeekFields.ofFirstDayOfWeekMinDays(dow, minDays);
     }
@@ -600,7 +633,8 @@ export class WeekFields {
      * the same instance will be returned.
      *
      * @param {!DayOfWeek} firstDayOfWeek  the first day of the week, not null
-     * @param {!Number} minimalDaysInFirstWeek  the minimal number of days in the first week, from 1 to 7
+     * @param {!Number} minimalDaysInFirstWeek  the minimal number of days in the first week, from
+     *     1 to 7
      * @return {WeekFields} the week-definition, not null
      * @throws IllegalArgumentException if the minimal days value is less than one
      *      or greater than 7
@@ -624,7 +658,8 @@ export class WeekFields {
      * Creates an instance of the definition.
      *
      * @param {!DayOfWeek} firstDayOfWeek  the first day of the week, not null
-     * @param {!Number} minimalDaysInFirstWeek  the minimal number of days in the first week, from 1 to 7
+     * @param {!Number} minimalDaysInFirstWeek  the minimal number of days in the first week, from
+     *     1 to 7
      * @throws IllegalArgumentException if the minimal days value is invalid
      *
      * @private
@@ -670,7 +705,7 @@ export class WeekFields {
      *
      * @return {DayOfWeek} the first day-of-week, not null
      */
-    getFirstDayOfWeek() {
+    firstDayOfWeek() {
         return this._firstDayOfWeek;
     }
 
@@ -684,7 +719,7 @@ export class WeekFields {
      *
      * @return {Number} the minimal number of days in the first week of a month or year, from 1 to 7
      */
-    getMinimalDaysInFirstWeek() {
+    minimalDaysInFirstWeek() {
         return this._minimalDays;
     }
 
@@ -705,7 +740,8 @@ export class WeekFields {
      * The day-of-week must be in the valid range 1 to 7.
      * Other fields in this class build dates using the standardized day-of-week.
      *
-     * @return {TemporalField} a field providing access to the day-of-week with localized numbering, not null
+     * @return {TemporalField} a field providing access to the day-of-week with localized
+     *     numbering, not null
      */
     dayOfWeek() {
         return this._dayOfWeek;
@@ -718,16 +754,21 @@ export class WeekFields {
      * start on a fixed day-of-week, such as Monday.
      * This field is typically used with {@link WeekFields#dayOfWeek()}.
      * <p>
-     * Week one (1) is the week starting on the {@link WeekFields#getFirstDayOfWeek}
+     * Week one (1) is the week starting on the {@link WeekFields#firstDayOfWeek}
      * where there are at least {@link WeekFields#getMinimalDaysInFirstWeek()} days in the month.
      * Thus, week one may start up to {@code minDays} days before the start of the month.
-     * If the first week starts after the start of the month then the period before is week zero (0).
+     * If the first week starts after the start of the month then the period before is week zero
+     * (0).
      * <p>
      * For example:<br>
-     * - if the 1st day of the month is a Monday, week one starts on the 1st and there is no week zero<br>
-     * - if the 2nd day of the month is a Monday, week one starts on the 2nd and the 1st is in week zero<br>
-     * - if the 4th day of the month is a Monday, week one starts on the 4th and the 1st to 3rd is in week zero<br>
-     * - if the 5th day of the month is a Monday, week two starts on the 5th and the 1st to 4th is in week one<br>
+     * - if the 1st day of the month is a Monday, week one starts on the 1st and there is no week
+     * zero<br>
+     * - if the 2nd day of the month is a Monday, week one starts on the 2nd and the 1st is in week
+     * zero<br>
+     * - if the 4th day of the month is a Monday, week one starts on the 4th and the 1st to 3rd is
+     * in week zero<br>
+     * - if the 5th day of the month is a Monday, week two starts on the 5th and the 1st to 4th is
+     * in week one<br>
      * <p>
      * This field can be used with any calendar system.
      * <p>
@@ -764,16 +805,21 @@ export class WeekFields {
      * start on a fixed day-of-week, such as Monday.
      * This field is typically used with {@link WeekFields#dayOfWeek()}.
      * <p>
-     * Week one(1) is the week starting on the {@link WeekFields#getFirstDayOfWeek}
+     * Week one(1) is the week starting on the {@link WeekFields#firstDayOfWeek}
      * where there are at least {@link WeekFields#getMinimalDaysInFirstWeek()} days in the year.
      * Thus, week one may start up to {@code minDays} days before the start of the year.
-     * If the first week starts after the start of the year then the period before is week zero (0).
+     * If the first week starts after the start of the year then the period before is week zero
+     * (0).
      * <p>
      * For example:<br>
-     * - if the 1st day of the year is a Monday, week one starts on the 1st and there is no week zero<br>
-     * - if the 2nd day of the year is a Monday, week one starts on the 2nd and the 1st is in week zero<br>
-     * - if the 4th day of the year is a Monday, week one starts on the 4th and the 1st to 3rd is in week zero<br>
-     * - if the 5th day of the year is a Monday, week two starts on the 5th and the 1st to 4th is in week one<br>
+     * - if the 1st day of the year is a Monday, week one starts on the 1st and there is no week
+     * zero<br>
+     * - if the 2nd day of the year is a Monday, week one starts on the 2nd and the 1st is in week
+     * zero<br>
+     * - if the 4th day of the year is a Monday, week one starts on the 4th and the 1st to 3rd is
+     * in week zero<br>
+     * - if the 5th day of the year is a Monday, week two starts on the 5th and the 1st to 4th is
+     * in week one<br>
      * <p>
      * This field can be used with any calendar system.
      * <p>
@@ -810,7 +856,7 @@ export class WeekFields {
      * This field is typically used with {@link WeekFields#dayOfWeek()} and
      * {@link WeekFields#weekBasedYear()}.
      * <p>
-     * Week one(1) is the week starting on the {@link WeekFields#getFirstDayOfWeek}
+     * Week one(1) is the week starting on the {@link WeekFields#firstDayOfWeek}
      * where there are at least {@link WeekFields#getMinimalDaysInFirstWeek()} days in the year.
      * If the first week starts after the start of the year then the period before
      * is in the last week of the previous year.
@@ -860,7 +906,7 @@ export class WeekFields {
      * This field is typically used with {@link WeekFields#dayOfWeek()} and
      * {@link WeekFields#weekOfWeekBasedYear()}.
      * <p>
-     * Week one(1) is the week starting on the {@link WeekFields#getFirstDayOfWeek}
+     * Week one(1) is the week starting on the {@link WeekFields#firstDayOfWeek}
      * where there are at least {@link WeekFields#getMinimalDaysInFirstWeek()} days in the year.
      * Thus, week one may start before the start of the year.
      * If the first week starts after the start of the year then the period before
