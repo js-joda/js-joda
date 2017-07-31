@@ -46,11 +46,11 @@ export default class Locale {
 export function _init() {
     //some samples/consts
     Locale.ENGLISH = new Locale('en');
-    Locale.US = new Locale('en_US');
-    Locale.UK = new Locale('en_GB');
-    Locale.CANADA = new Locale('en_CA');
+    Locale.US = new Locale('en', 'US');
+    Locale.UK = new Locale('en', 'GB');
+    Locale.CANADA = new Locale('en', 'CA');
     Locale.FRENCH = new Locale('fr');
-    Locale.FRANCE = new Locale('fr_FR');
+    Locale.FRANCE = new Locale('fr', 'FR');
     Locale.GERMAN = new Locale('de');
-    Locale.GERMANY = new Locale('de_DE');
+    Locale.GERMANY = new Locale('de', 'DE');
 }
