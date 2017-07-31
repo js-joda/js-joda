@@ -25,7 +25,6 @@ import { requireNonNull, requireInstance } from './assert';
  *
  */
 export class Interval {
-
     //-----------------------------------------------------------------------
     /**
      * function overloading for {@link Interval.of}
@@ -548,7 +547,6 @@ export class Interval {
     toString() {
         return `${this._start.toString()}/${this._end.toString()}`;
     }
-
 }
 
 export function _init() {
