@@ -73,10 +73,11 @@ export class NumberPrinterParser {
     }
 
     print(context, buf) {
-        const value = context.getValue(this._field);
-        if (value == null) {
+        const contextValue = context.getValue(this._field);
+        if (contextValue == null) {
             return false;
         }
+        const value = this._getValue(context, contextValue);
         const symbols = context.symbols();
         let str = '' + Math.abs(value);
         if (str.length > this._maxWidth) {
@@ -202,6 +203,19 @@ export class NumberPrinterParser {
     }
 
     /**
+     * Gets the value to output.
+     * (This is needed to allow e.g. ReducedPrinterParser to override this and change the value!
+     *
+     * @param context  the context
+     * @param value  the value of the field, not null
+     * @return the value
+     * @private
+     */
+    _getValue(context, value) {
+        return value;
+    }
+
+    /**
      * Stores the value.
      *
      * @param context  the context to store into, not null
@@ -269,7 +283,7 @@ export class ReducedPrinterParser extends NumberPrinterParser {
      * @param {DateTimePrintContext} context
      * @param {number} value
      */
-    getValue(context, value) {
+    _getValue(context, value) {
         const absValue = Math.abs(value);
         let baseValue = this._baseValue;
         if (this._baseDate !== null) {
@@ -298,7 +312,8 @@ export class ReducedPrinterParser extends NumberPrinterParser {
         if (this._baseDate != null) {
             const chrono = context.getEffectiveChronology();
             baseValue = chrono.date(this._baseDate).get(this._field);
-            context.addChronologyChangedParser(this, value, errorPos, successPos);
+            // TODO: not implemented??
+            // context.addChronologyChangedParser(this, value, errorPos, successPos);
         }
         const parseLen = successPos - errorPos;
         if (parseLen === this._minWidth && value >= 0) {
