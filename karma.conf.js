@@ -97,7 +97,12 @@ module.exports = function (config) {
                 logfile: 'sauce_connect.log',
             },
         },
-        customLaunchers: saucelabsLaunchers,
+        customLaunchers: Object.assign({}, saucelabsLaunchers, {
+            'PhantomJS_custom': {
+                base: 'PhantomJS',
+                debug: true,
+            },
+        }),
         browserDisconnectTimeout: 10000, // default 2000
         // browserDisconnectTolerance: 1, // default 0
         browserNoActivityTimeout: 4 * 60 * 1000, // default 10000
