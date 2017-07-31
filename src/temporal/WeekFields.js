@@ -384,7 +384,7 @@ export class ComputedDayOfField {
 
     //-----------------------------------------------------------------------
     name() {
-        return this._name
+        return this._name;
     }
 
     baseUnit() {

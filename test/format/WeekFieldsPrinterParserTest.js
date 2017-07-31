@@ -3,9 +3,6 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { expect } from 'chai';
-
 import {
     use as jodaUse,
     DateTimeParseContext,
@@ -14,7 +11,6 @@ import {
     IsoChronology,
     LocalDate,
     StringBuilder,
-    TextStyle,
 } from 'js-joda';
 
 import jodaTZ from 'js-joda-timezone';
@@ -25,7 +21,7 @@ import '../_init';
 
 import WeekFieldsPrinterParser from '../../src/format/parser/WeekFieldsPrinterParser';
 import Locale from '../../src/Locale';
-import { ComputedDayOfField, WeekFields } from '../../src/temporal/WeekFields'
+import { ComputedDayOfField } from '../../src/temporal/WeekFields';
 
 //use js-joda-timezone
 jodaUse(jodaTZ);
