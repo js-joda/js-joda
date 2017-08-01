@@ -612,7 +612,7 @@ export class WeekFields {
         Cldr.load(cldrData('supplemental/weekData'));
         const country = locale.country() ? locale.country() : '001'; // 001 is world region
         const cldr = new Cldr(locale.localeString());
-        const weekData = cldr.supplemental('weekData');
+        const weekData = cldr.get('supplemental/weekData');
         const dow = _weekDayMap[weekData.firstDay[country]];
         const minDays = weekData.minDays[country];
         return WeekFields.ofFirstDayOfWeekMinDays(dow, minDays);
