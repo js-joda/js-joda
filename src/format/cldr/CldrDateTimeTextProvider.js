@@ -26,7 +26,7 @@ export default class CldrDateTimeTextProvider {
 
     //-----------------------------------------------------------------------
     getAvailableLocales() {
-        return cldrData('availableLocales').availableLocles;
+        return cldrData('availableLocales').availableLocales;
     }
 
     //-----------------------------------------------------------------------

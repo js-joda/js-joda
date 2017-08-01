@@ -4,7 +4,7 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import { DateTimeFormatterBuilder, IllegalArgumentException, TextStyle, ChronoField } from 'js-joda';
+import { DateTimeFormatterBuilder, IllegalArgumentException, TextStyle, ChronoField, TemporalField } from 'js-joda';
 
 // TODO: hm... is this a good idea?? copied from joda currently, could we add a js-joda-utils module??
 import { requireNonNull, requireInstance } from '../../assert';
@@ -56,7 +56,7 @@ export default class CldrDateTimeFormatterBuilder extends DateTimeFormatterBuild
      * The value will be printed as per the normal print of an integer value.
      * Only negative numbers will be signed. No padding will be added.
      *
-     * @param {!ChronoField} field  the field to append, not null
+     * @param {!TemporalField} field  the field to append, not null
      * @return {DateTimeFormatterBuilder} this, for chaining, not null
      */
     appendTextField(field) {
@@ -74,13 +74,13 @@ export default class CldrDateTimeFormatterBuilder extends DateTimeFormatterBuild
      * The value will be printed as per the normal print of an integer value.
      * Only negative numbers will be signed. No padding will be added.
      *
-     * @param {!ChronoField} field  the field to append, not null
+     * @param {!TemporalField} field  the field to append, not null
      * @param {!TextStyle} textStyle  the text style to use, not null
      * @return {DateTimeFormatterBuilder} this, for chaining, not null
      */
     appendTextFieldStyle(field, textStyle) {
         requireNonNull(field, 'field');
-        requireInstance(field, ChronoField, 'field');
+        requireInstance(field, TemporalField, 'field');
         requireNonNull(textStyle, 'textStyle');
         requireInstance(textStyle, TextStyle, 'textStyle');
         this._appendInternal(new TextPrinterParser(field, textStyle, new CldrDateTimeTextProvider()));
