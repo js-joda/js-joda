@@ -46,8 +46,11 @@
         // CLDR content, all files that are needed must be required here and can then be dynamically required below
         "json!cldrData/supplemental/likelySubtags.json",
         "json!cldrData/supplemental/metaZones.json",
+        "json!cldrData/supplemental/weekData.json",
         "json!cldrData/main/en/ca-gregorian.json",
         "json!cldrData/main/en/timeZoneNames.json",
+        "json!cldrData/main/en-GB/ca-gregorian.json",
+        "json!cldrData/main/en-GB/timeZoneNames.json",
         "json!cldrData/main/de/ca-gregorian.json",
         "json!cldrData/main/de/timeZoneNames.json",
         "json!cldrData/main/fr/ca-gregorian.json",
@@ -74,9 +77,10 @@
         JSJoda.use(JSJodaTimezone);
         JSJoda.use(JSJodaLocale);
         var zdt = JSJoda.ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, JSJoda.ZoneId.of('Europe/Berlin'));
-        output('formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee yyyy MMMM dd, hh:mm:ss zzzz').withLocale(JSJoda.Locale.ENGLISH)));
-        output('formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee yyyy MMMM dd, hh:mm:ss zzzz').withLocale(JSJoda.Locale.GERMAN)));
-        output('formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee yyyy MMMM dd, hh:mm:ss zzzz').withLocale(JSJoda.Locale.FRENCH)));
+        output('en_US formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, \'Week \' ww, \'Quarter \' QQQ').withLocale(JSJoda.Locale.US)));
+        output('en_GB formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, \'Week \' ww, \'Quarter \' QQQ').withLocale(JSJoda.Locale.UK)));
+        output('de_DE formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, \'Week \' ww, \'Quarter \' QQQ').withLocale(JSJoda.Locale.GERMANY)));
+        output('fr_FR formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, \'Week \' ww, \'Quarter \' QQQ').withLocale(JSJoda.Locale.FRANCE)));
     });
 </script>
 </body>
