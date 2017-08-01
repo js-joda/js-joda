@@ -37,7 +37,7 @@ export class MomentZoneRules extends ZoneRules{
      * @return {ZoneOffset} the offset, not null
      */
     offsetOfInstant(instant){
-        let epochMilli = instant.toEpochMilli();
+        const epochMilli = instant.toEpochMilli();
         return this.offsetOfEpochMilli(epochMilli);
     }
 
@@ -51,7 +51,7 @@ export class MomentZoneRules extends ZoneRules{
      * @return {ZoneOffset} the offset, not null
      */
     offsetOfEpochMilli(epochMilli){
-        let index  = binarySearch(this._tzdbInfo.untils, epochMilli);
+        const index  = binarySearch(this._tzdbInfo.untils, epochMilli);
         return ZoneOffset.ofTotalSeconds(this._offsetByIndexInSeconds(index));
     }
 

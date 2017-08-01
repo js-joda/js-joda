@@ -181,7 +181,7 @@ describe('MomentZoneRules', () => {
             ];
 
             dataProviderTest(testLocalToZoneEquality, (localDateTime, zone, expectedZonedDateAsString) => {
-                let zdt = ZonedDateTime.ofLocal(localDateTime, zone);
+                const zdt = ZonedDateTime.ofLocal(localDateTime, zone);
                 expect(zdt.toString()).to.equal(expectedZonedDateAsString);
             });
 
@@ -203,8 +203,8 @@ describe('MomentZoneRules', () => {
             ];
 
             dataProviderTest(testLocalToZoneEquality, (localDateTimeAsString, zone, expectedZonedDateAsString) => {
-                let ldt = LocalDateTime.parse(localDateTimeAsString);
-                let zdt = ZonedDateTime.ofLocal(ldt, zone);
+                const ldt = LocalDateTime.parse(localDateTimeAsString);
+                const zdt = ZonedDateTime.ofLocal(ldt, zone);
                 expect(zdt.toString()).to.equal(expectedZonedDateAsString);
             });
 
@@ -228,8 +228,8 @@ describe('MomentZoneRules', () => {
             };
 
             dataProviderTest(testLocalToZoneEquality, (localDateTimeAsString, zone, expectedZonedDateAsString) => {
-                let ldt = LocalDateTime.parse(localDateTimeAsString);
-                let zdt = ZonedDateTime.ofLocal(ldt, zone);
+                const ldt = LocalDateTime.parse(localDateTimeAsString);
+                const zdt = ZonedDateTime.ofLocal(ldt, zone);
                 expect(zdt.toString()).to.equal(expectedZonedDateAsString);
             });
 
@@ -247,8 +247,8 @@ describe('MomentZoneRules', () => {
             };
 
             dataProviderTest(testLocalToZoneEquality, (localDateTimeAsString, zone, preferredOffset) => {
-                let ldt = LocalDateTime.parse(localDateTimeAsString);
-                let zdt = ZonedDateTime.ofLocal(ldt, zone, preferredOffset);
+                const ldt = LocalDateTime.parse(localDateTimeAsString);
+                const zdt = ZonedDateTime.ofLocal(ldt, zone, preferredOffset);
                 expect(zdt.offset()).to.equal(preferredOffset);
             });
 

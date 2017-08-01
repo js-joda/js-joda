@@ -1,3 +1,5 @@
+/* eslint-disable no-var */
+
 //! moment-timezone.js
 //! version : 0.5.2
 //! author : Tim Wood
