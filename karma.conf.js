@@ -5,40 +5,53 @@
 
 const path = require('path');
 
-// eslint-disable-next-line func-names
 module.exports = function (config) {
     const saucelabsLaunchers = {
         sl_ie_9: {
             base: 'SauceLabs',
             browserName: 'internet explorer',
             platform: 'Windows 7',
-            version: '9',
+            version: '9'
+        },
+        sl_chrome: {
+            base: 'SauceLabs',
+            browserName: 'chrome',
+            platform: 'Windows 10',
+            version: 'latest'
         },
         sl_firefox: {
             base: 'SauceLabs',
             browserName: 'firefox',
             platform: 'Windows 10',
-            version: 'latest',
+            version: 'latest'
         },
-        // the following launchers are currently unused,
-        // but provided here for manual/local tests if needed
-        sl_chrome: {
+        sl_android_simulator: {
             base: 'SauceLabs',
             browserName: 'chrome',
-            platform: 'Windows 10',
-            version: 'latest',
+            device: 'Android Emulator',
+            platform: 'Android',
+            version: 'latest'
         },
+        sl_ios_simulator: {
+            base: 'SauceLabs',
+            browserName: 'safari',
+            device: 'iPhone Simulator',
+            platform: 'iOS',
+            version: 'latest'
+        },
+        // these don't work yet :(
         sl_safari: {
             base: 'SauceLabs',
             browserName: 'safari',
             platform: 'OS X 10.11',
-            version: 'latest',
+            version: 'latest'
         },
-        sl_edge: {
+        sl_ios: {
             base: 'SauceLabs',
-            browserName: 'MicrosoftEdge',
-            platform: 'Windows 10',
-            version: 'latest',
+            browserName: 'safari',
+            device: 'iPhone 6 Device',
+            platform: 'iOS',
+            version: 'latest'
         },
     };
 
