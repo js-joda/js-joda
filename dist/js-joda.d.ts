@@ -65,13 +65,13 @@ declare namespace JSJoda {
         value(): number
     }
     class TemporalAmount {
-        addTo(temporal: Temporal): Temporal
+        addTo<T extends Temporal>(temporal: T): T
 
         get(unit: TemporalUnit): number
 
         units(): TemporalUnit[]
 
-        subtractFrom(temporal: Temporal): Temporal
+        subtractFrom<T extends Temporal>(temporal: T): T
     }
     class Duration extends TemporalAmount {
         static ZERO: Duration
@@ -98,7 +98,7 @@ declare namespace JSJoda {
 
         abs(): Duration
 
-        addTo(temporal: Temporal): Temporal
+        addTo<T extends Temporal>(temporal: T): T
 
         compareTo(otherDuration: Duration): number
 
@@ -158,7 +158,7 @@ declare namespace JSJoda {
 
         seconds(): number
 
-        subtractFrom(temporal: Temporal): Temporal
+        subtractFrom<T extends Temporal>(temporal: T): T
 
         toDays(): number
 
@@ -646,7 +646,7 @@ declare namespace JSJoda {
         toString(): string
     }
     class TemporalUnit {
-        addTo(temporal: Temporal, amount: number): Temporal
+        addTo<T extends Temporal>(temporal: T, amount: number): T
 
         between(temporal1: Temporal, temporal2: Temporal): number
 
@@ -677,7 +677,7 @@ declare namespace JSJoda {
         static ERAS: ChronoUnit
         static FOREVER: ChronoUnit
 
-        addTo(temporal: Temporal, amount: number): Temporal
+        addTo<T extends Temporal>(temporal: T, amount: number): T
 
         between(temporal1: Temporal, temporal2: Temporal): number
 
@@ -1002,7 +1002,7 @@ declare namespace JSJoda {
 
         static parse(text: string): Period
 
-        addTo(temporal: Temporal): Temporal
+        addTo<T extends Temporal>(temporal: T): T
 
         chronology(): IsoChronology
 
@@ -1042,7 +1042,7 @@ declare namespace JSJoda {
 
         plusYears(yearsToAdd: number): Period
 
-        subtractFrom(temporal: Temporal): Temporal
+        subtractFrom<T extends Temporal>(temporal: T): T
 
         toJSON(): string
 
