@@ -7,6 +7,10 @@ Changelog
 
  * fix Period.ofDays() if called with none number string values
  
+#### public API
+
+ * improve typescript definition
+
 ### 1.5.4
 
 #### public API
