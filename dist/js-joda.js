@@ -1,4 +1,4 @@
-//! @version js-joda - 1.5.4
+//! @version js-joda - 1.5.5
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -6872,18 +6872,21 @@ var Period = exports.Period = function (_TemporalAmount) {
 
         var _this = _possibleConstructorReturn(this, _TemporalAmount.call(this));
 
-        if ((years | months | days) === 0) {
+        var _years = _MathUtil.MathUtil.safeToInt(years);
+        var _months = _MathUtil.MathUtil.safeToInt(months);
+        var _days = _MathUtil.MathUtil.safeToInt(days);
+
+        if ((_years | _months | _days) === 0) {
             var _ret;
 
             return _ret = Period.ZERO, _possibleConstructorReturn(_this, _ret);
         }
-        Period._validate(years, months, days);
 
-        _this._years = _MathUtil.MathUtil.safeToInt(years);
+        _this._years = _years;
 
-        _this._months = _MathUtil.MathUtil.safeToInt(months);
+        _this._months = _months;
 
-        _this._days = _MathUtil.MathUtil.safeToInt(days);
+        _this._days = _days;
         return _this;
     }
 
