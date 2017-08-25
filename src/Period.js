@@ -94,12 +94,6 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
         this._days = _days;
     }
 
-    static _validate(years, month, days){
-        requireNonNull(years, 'years');
-        requireNonNull(month, 'month');
-        requireNonNull(days, 'days');
-    }
-
     //-----------------------------------------------------------------------
     /**
      * Obtains a {@link Period} representing a number of years.
