@@ -71,22 +71,27 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      */
     constructor(years, months, days){
         super();
-        if((years | months | days) === 0){
+        
+        const _years = MathUtil.safeToInt(years);
+        const _months =  MathUtil.safeToInt(months);
+        const _days = MathUtil.safeToInt(days);
+
+        if((_years | _months | _days) === 0){
             return Period.ZERO;
         }
-        Period._validate(years, months, days);
+        
         /**
          * The number of years.
          */
-        this._years = MathUtil.safeToInt(years);
+        this._years = _years;
         /**
          * The number of months.
          */
-        this._months =  MathUtil.safeToInt(months);
+        this._months =  _months;
         /**
          * The number of days.
          */
-        this._days = MathUtil.safeToInt(days);
+        this._days = _days;
     }
 
     static _validate(years, month, days){

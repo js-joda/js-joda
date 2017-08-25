@@ -155,6 +155,15 @@ describe('js-joda Period', () => {
             expect(() => {
                 Period.ofDays('30.5');
             }).to.throw(ArithmeticException);
+            expect(() => {
+                Period.ofDays('foo');
+            }).to.throw(ArithmeticException);
+            expect(() => {
+                Period.ofDays();
+            }).to.throw(ArithmeticException);
+            expect(() => {
+                Period.ofDays(null);
+            }).to.throw(ArithmeticException);
         });
     });
 

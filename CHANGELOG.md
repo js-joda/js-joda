@@ -3,6 +3,10 @@ Changelog
 
 ### 1.5.5 (next)
 
+#### bugs
+
+ * fix Period.ofDays() if called with none number string values
+ 
 ### 1.5.4
 
 #### public API
