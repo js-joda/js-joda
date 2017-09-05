@@ -45,9 +45,6 @@ export { ValueRange } from './temporal/ValueRange';
 
 export { DateTimeFormatter } from './format/DateTimeFormatter';
 export { DateTimeFormatterBuilder } from './format/DateTimeFormatterBuilder';
-export { DateTimeParseContext } from './format/DateTimeParseContext';
-export { DateTimePrintContext } from './format/DateTimePrintContext';
-export { StringBuilder } from './format/StringBuilder';
 export { DecimalStyle } from './format/DecimalStyle';
 export { ResolverStyle } from './format/ResolverStyle';
 export { SignStyle } from './format/SignStyle';
@@ -57,8 +54,21 @@ import './_init';
 
 export { convert } from './convert';
 export { nativeJs } from './temporal/NativeJsTemporal';
-export { MathUtil } from './MathUtil';
 
 import { bindUse } from './use';
-
 export const use = bindUse(exports);
+
+// private/internal exports, e.g. for use in plugins
+import { MathUtil } from './MathUtil';
+import { DateTimeParseContext } from './format/DateTimeParseContext';
+import { DateTimePrintContext } from './format/DateTimePrintContext';
+import { StringBuilder } from './format/StringBuilder';
+import * as assert from './assert';
+
+export const _ = {
+    assert,
+    DateTimeParseContext,
+    DateTimePrintContext,
+    MathUtil,
+    StringBuilder
+};
