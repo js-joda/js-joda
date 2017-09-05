@@ -3,9 +3,11 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-import { DateTimeFormatterBuilder, SignStyle, StringBuilder } from 'js-joda';
+import { _ as jodaInternal, DateTimeFormatterBuilder, SignStyle } from 'js-joda';
 
 import { WeekFields } from '../../temporal/WeekFields';
+
+const { StringBuilder } = jodaInternal;
 
 export default class WeekFieldsPrinterParser {
     constructor(letter, count) {

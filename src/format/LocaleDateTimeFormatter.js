@@ -3,11 +3,11 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-import { DateTimeFormatter } from 'js-joda';
+import { _ as jodaInternal, DateTimeFormatter } from 'js-joda';
 // eslint-disable-next-line no-unused-vars, (needed for esdoc)
 import Locale from '../Locale';
 
-import { requireNonNull } from '../assert';
+const { assert: { requireNonNull } } = jodaInternal;
 
 export default class LocaleDateTimeFormatter extends DateTimeFormatter {
 

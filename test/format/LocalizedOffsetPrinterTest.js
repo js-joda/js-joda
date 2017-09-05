@@ -2,14 +2,11 @@
  * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
-
-// eslint-disable-next-line import/no-extraneous-dependencies
 import {
+    _ as jodaInternal,
     use as jodaUse,
-    DateTimePrintContext,
     DecimalStyle,
     LocalDateTime,
-    StringBuilder,
     TextStyle,
     ZoneId,
 } from 'js-joda';
@@ -25,6 +22,11 @@ import LocalizedOffsetPrinterParser from '../../src/format/parser/LocalizedOffse
 
 //use js-joda-timezone
 jodaUse(jodaTZ);
+
+const {
+    DateTimePrintContext,
+    StringBuilder,
+} = jodaInternal;
 
 /* these tests are not copied from threetenbp, but js-joda tests to increase coverage */
 describe('js-joda-locale LocalizedOffsetPrinter', () => {

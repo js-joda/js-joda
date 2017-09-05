@@ -5,12 +5,13 @@
  */
 
 import {
+    _ as jodaInternal,
     DateTimeFormatterBuilder,
     ChronoField,
     TextStyle
 } from 'js-joda';
 
-import {MathUtil} from 'js-joda';
+const { MathUtil } = jodaInternal;
 //-----------------------------------------------------------------------
 /**
  * Prints or parses field text.

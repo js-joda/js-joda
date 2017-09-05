@@ -4,13 +4,11 @@
  */
 
 import {
+    _ as jodaInternal,
     use as jodaUse,
-    DateTimeParseContext,
-    DateTimePrintContext,
     DecimalStyle,
     IsoChronology,
     LocalDate,
-    StringBuilder,
 } from 'js-joda';
 
 import jodaTZ from 'js-joda-timezone';
@@ -25,6 +23,12 @@ import { ComputedDayOfField } from '../../src/temporal/WeekFields';
 
 //use js-joda-timezone
 jodaUse(jodaTZ);
+
+const {
+    DateTimeParseContext,
+    DateTimePrintContext,
+    StringBuilder,
+} = jodaInternal;
 
 /* these tests are not copied from threetenbp, but js-joda tests to increase coverage */
 describe('js-joda-locale WeekFieldsPrinterParser', () => {

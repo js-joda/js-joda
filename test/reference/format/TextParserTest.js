@@ -4,13 +4,12 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { expect } from 'chai';
 import {
+    _ as jodaInternal,
     use as jodaUse,
     ChronoField,
     DateTimeException,
-    DateTimeParseContext,
     DecimalStyle,
     IllegalArgumentException,
     IsoChronology,
@@ -31,6 +30,10 @@ import TextPrinterParser from '../../../src/format/parser/TextPrinterParser';
 
 //use js-joda-timezone
 jodaUse(jodaTZ);
+
+const {
+    DateTimeParseContext,
+} = jodaInternal;
 
 describe('org.threeten.bp.format.TestTextParser', () => {
     let parseContext;

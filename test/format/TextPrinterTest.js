@@ -3,15 +3,13 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 import {
+    _ as jodaInternal,
     use as jodaUse,
     ChronoField,
-    DateTimePrintContext,
     DecimalStyle,
     IsoFields,
     LocalDateTime,
-    StringBuilder,
     TextStyle,
     ZoneId,
 } from 'js-joda';
@@ -29,6 +27,11 @@ import { MockFieldValue } from '../reference/temporal/MockFieldValue';
 
 //use js-joda-timezone
 jodaUse(jodaTZ);
+
+const {
+    DateTimePrintContext,
+    StringBuilder,
+} = jodaInternal;
 
 /* these tests are not copied from threetenbp, but js-joda tests to increase coverage */
 describe('js-joda-locale TextPrinterTest', () => {

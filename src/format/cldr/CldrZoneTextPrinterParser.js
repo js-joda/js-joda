@@ -6,14 +6,16 @@
 import cldrData from 'cldr-data';
 import Cldr from 'cldrjs';
 
-import { requireNonNull, requireInstance } from '../../assert';
 import {
+    _ as jodaInternal,
     TextStyle,
     TemporalQueries,
     ZoneId,
     ZoneOffset,
     ZoneRulesProvider,
 } from 'js-joda';
+
+const { assert: { requireNonNull, requireInstance } } = jodaInternal;
 
 //-----------------------------------------------------------------------
 const LENGTH_COMPARATOR = (str1, str2) => {

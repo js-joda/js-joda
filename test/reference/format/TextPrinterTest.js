@@ -3,17 +3,15 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { expect } from 'chai';
 import {
+    _ as jodaInternal,
     use as jodaUse,
     ChronoField,
     DateTimeException,
-    DateTimePrintContext,
     DecimalStyle,
     LocalDateTime,
     LocalDate,
-    StringBuilder,
     TextStyle,
     TemporalAccessor,
     ZoneId,
@@ -32,6 +30,11 @@ import { MockFieldValue } from '../temporal/MockFieldValue';
 
 //use js-joda-timezone
 jodaUse(jodaTZ);
+
+const {
+    DateTimePrintContext,
+    StringBuilder,
+} = jodaInternal;
 
 describe('org.threeten.bp.format.TestTextPrinter', () => {
 

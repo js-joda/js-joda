@@ -4,6 +4,7 @@
  */
 
 import {
+    _ as jodaInternal,
     DayOfWeek,
     ChronoField,
     Chronology,
@@ -17,12 +18,12 @@ import {
     ValueRange,
     Year
 } from 'js-joda';
-import { MathUtil } from 'js-joda';
 import cldrData from 'cldr-data';
 import Cldr from 'cldrjs';
 
-import { requireNonNull, requireInstance } from '../assert';
 import Locale from '../Locale';
+
+const { MathUtil, assert: { requireNonNull, requireInstance } } = jodaInternal;
 
 //-----------------------------------------------------------------------
 const DAY_OF_WEEK_RANGE = ValueRange.of(1, 7);

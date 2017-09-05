@@ -3,11 +3,10 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 import {
+    _ as jodaInternal,
     use as jodaUse,
     ChronoField,
-    DateTimeParseContext,
     DecimalStyle,
     IsoFields,
     IsoChronology,
@@ -27,6 +26,10 @@ import TextPrinterParser from '../../src/format/parser/TextPrinterParser';
 
 //use js-joda-timezone
 jodaUse(jodaTZ);
+
+const {
+    DateTimeParseContext,
+} = jodaInternal;
 
 /* these tests are not copied from threetenbp, but js-joda tests to increase coverage */
 describe('js-joda-local TextParserTest', () => {

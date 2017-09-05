@@ -3,17 +3,14 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { expect } from 'chai';
 
 import {
+    _ as jodaInternal,
     use as jodaUse,
-    DateTimeParseContext,
-    DateTimePrintContext,
     DecimalStyle,
     IsoChronology,
     LocalDateTime,
-    StringBuilder,
     TextStyle,
     ZoneId,
     ZoneRulesProvider,
@@ -30,6 +27,12 @@ import Locale from '../../src/Locale';
 
 //use js-joda-timezone
 jodaUse(jodaTZ);
+
+const {
+    DateTimeParseContext,
+    DateTimePrintContext,
+    StringBuilder,
+} = jodaInternal;
 
 /* these tests are not copied from threetenbp, but js-joda tests to increase coverage */
 describe('js-joda-locale CldrZoneTextPrinterParser', () => {

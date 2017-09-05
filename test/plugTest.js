@@ -3,7 +3,6 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { expect } from 'chai';
 import * as joda from 'js-joda';
 

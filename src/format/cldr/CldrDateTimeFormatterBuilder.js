@@ -4,16 +4,23 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import { DateTimeFormatterBuilder, IllegalArgumentException, TextStyle, ChronoField, TemporalField } from 'js-joda';
+import {
+    _ as jodaInternal,
+    DateTimeFormatterBuilder,
+    IllegalArgumentException,
+    TextStyle,
+    ChronoField,
+    TemporalField
+} from 'js-joda';
 
-// TODO: hm... is this a good idea?? copied from joda currently, could we add a js-joda-utils module??
-import { requireNonNull, requireInstance } from '../../assert';
 import TextPrinterParser from '../parser/TextPrinterParser';
 import CldrDateTimeTextProvider from './CldrDateTimeTextProvider';
 import CldrZoneTextPrinterParser from './CldrZoneTextPrinterParser';
 import {LocaleStore} from '../LocaleStore';
 import LocalizedOffsetPrinterParser from '../parser/LocalizedOffsetPrinterParser';
 import WeekFieldsPrinterParser from '../parser/WeekFieldsPrinterParser';
+
+const { assert: { requireNonNull, requireInstance } } = jodaInternal;
 
 /** DateTimeFormatterBuilder extension functions implementing locale handling using cldr data (http://cldr.unicode.org/)
  */
