@@ -5,15 +5,7 @@ Changelog
 
 #### public API
 
- * update API as needed for `js-joda-locale` plugin implementation
-   we now export these additional classes/interfaces:
-   * `IsoChronology`
-   * `TemporalAccessor`
-   * `TemporalField`
-   * `ValueRange`
-   * `DecimalStyle`
-   * `SignStyle`
-   * `TextStyle`
+ * update API: export all public classes/interfaces
  * add `IsoChronology#date(temporal)` function
  * add export of "internal" APIs needed e.g. for plugins, these should *not* be used by users of the `js-joda` library.
    Since we do not consider these a public APIs, they may change without warning!

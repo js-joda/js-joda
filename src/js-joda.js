@@ -4,10 +4,12 @@
  */
 
 export {
+    ArithmeticException,
     DateTimeException,
     DateTimeParseException,
     IllegalArgumentException,
     IllegalStateException,
+    UnsupportedTemporalTypeException,
     NullPointerException
 } from './errors';
 
@@ -22,6 +24,7 @@ export { Month } from './Month';
 export { MonthDay } from './MonthDay';
 export { Period } from './Period';
 export { Year } from './Year';
+export { YearConstants } from './YearConstants';
 export { YearMonth } from './YearMonth';
 export { ZonedDateTime } from './ZonedDateTime';
 export { ZoneOffset } from './ZoneOffset';
@@ -32,15 +35,23 @@ export { ZoneOffsetTransition } from './zone/ZoneOffsetTransition';
 export { ZoneRules } from './zone/ZoneRules';
 export { ZoneRulesProvider } from './zone/ZoneRulesProvider';
 
+export { ChronoLocalDate } from './chrono/ChronoLocalDate';
+export { ChronoLocalDateTime } from './chrono/ChronoLocalDateTime';
+export { ChronoZonedDateTime } from './chrono/ChronoZonedDateTime';
 export { IsoChronology } from './chrono/IsoChronology';
 
 export { ChronoField } from './temporal/ChronoField';
 export { ChronoUnit } from './temporal/ChronoUnit';
 export { IsoFields } from './temporal/IsoFields';
+export { Temporal } from './temporal/Temporal';
 export { TemporalAccessor } from './temporal/TemporalAccessor';
+export { TemporalAdjuster } from './temporal/TemporalAdjuster';
 export { TemporalAdjusters } from './temporal/TemporalAdjusters';
+export { TemporalAmount } from './temporal/TemporalAmount';
 export { TemporalField } from './temporal/TemporalField';
 export { TemporalQueries } from './temporal/TemporalQueries';
+export { TemporalQuery } from './temporal/TemporalQuery';
+export { TemporalUnit } from './temporal/TemporalUnit';
 export { ValueRange } from './temporal/ValueRange';
 
 export { DateTimeFormatter } from './format/DateTimeFormatter';
@@ -60,6 +71,7 @@ export const use = bindUse(exports);
 
 // private/internal exports, e.g. for use in plugins
 import { MathUtil } from './MathUtil';
+import { StringUtil } from './StringUtil';
 import { DateTimeParseContext } from './format/DateTimeParseContext';
 import { DateTimePrintContext } from './format/DateTimePrintContext';
 import { StringBuilder } from './format/StringBuilder';
@@ -70,5 +82,6 @@ export const _ = {
     DateTimeParseContext,
     DateTimePrintContext,
     MathUtil,
-    StringBuilder
+    StringUtil,
+    StringBuilder,
 };
