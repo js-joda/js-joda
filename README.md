@@ -130,8 +130,10 @@ Extend pattern parser/ formatter for text with locale support.
 * Improve static factory API design and make it more javascript style. 
 One idea is to remove static factory methods like parse, from, of and unify it to one factory methods per domain. 
 E.g. localDate(isoDate: string), localDate(year: number, month: number, dayOfMonth: number)
-* merge methods get and getLong, differ between int and long values make no sense with javascript 
-* simplify temporal adjusters (amount, etc) by using functions instead of classes or objects
+* Merge methods get and getLong, differ between int and long values make no sense with javascript 
+* Simplify temporal adjusters (amount, etc) by using functions instead of classes or objects
+* Replace API getters by [native getters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get),
+  like replace `localDate.year()` by `localDate.year`
 * ...
 
 ## Contributing
