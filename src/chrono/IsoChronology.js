@@ -215,6 +215,19 @@ export class IsoChronology extends Enum{
         return null;
     }
 
+    /**
+     * Obtains an ISO local date from another date-time object.
+     * <p>
+     * This is equivalent to {@link LocalDate#from(TemporalAccessor)}.
+     *
+     * @param temporal  the date-time object to convert, not null
+     * @return the ISO local date, not null
+     * @throws DateTimeException if unable to create the date
+     */
+    date(temporal) {
+        return LocalDate.from(temporal);
+    }
+
 }
 
 export function _init() {

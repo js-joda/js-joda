@@ -77,6 +77,13 @@ export class DateTimeParseContext{
         this._strict = strict;
     }
 
+    locale() {
+        return this._locale;
+    }
+
+    setLocale(locale) {
+        this._locale = locale;
+    }
     //-----------------------------------------------------------------------
     /**
      * Starts the parsing of an optional segment of the input.

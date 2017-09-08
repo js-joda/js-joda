@@ -1,7 +1,15 @@
 Changelog
 =========
 
-### 1.5.6 (next)
+### 1.6.0 (next)
+
+#### public API
+
+ * update API: export all public classes/interfaces
+ * add `IsoChronology#date(temporal)` function
+ * add export of "internal" APIs needed e.g. for plugins, these should *not* be used by users of the `js-joda` library.
+   Since we do not consider these a public APIs, they may change without warning!
+   These internal APIs are exported as the `_` object
 
 ### 1.5.5
 
