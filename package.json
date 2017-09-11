@@ -70,13 +70,13 @@
     "karma-sauce-launcher": "^1.2.0",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.4",
-    "mocha": "^3.5.0",
-    "nyc": "^11.2.0",
+    "mocha": "^3.5.2",
+    "nyc": "^11.2.1",
     "phantomjs-prebuilt": "^2.1.15",
     "requirejs": "^2.3.5",
     "requirejs-json": "0.0.3",
     "requirejs-text": "^2.0.15",
-    "webpack": "^3.5.5"
+    "webpack": "^3.5.6"
   },
   "cldr-data-coverage": "core",
   "cldr-data-urls-filter": "(cldr-core|cldr-numbers-modern|cldr-dates-modern)"
