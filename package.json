@@ -4,7 +4,6 @@
   "description": "iana tzdb timezone bindings for js-joda",
   "typings": "dist/js-joda-timezone.d.ts",
   "main": "dist/js-joda-timezone.js",
-  "module": "src/js-joda-timezone.js",
   "files": [
     "dist",
     "src",
