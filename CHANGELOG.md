@@ -3,6 +3,11 @@ Changelog
 
 ### 1.6.1 (next)
 
+#### dependency updates
+
+#### bugs
+
+
 ### 1.6.0
 
 #### public API
