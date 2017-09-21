@@ -21,7 +21,7 @@ import {LocalTime} from '../LocalTime';
 import {LocalDate} from '../LocalDate';
 import {Period} from '../Period';
 
-//import {ZoneOffset} from '../ZoneOffset';
+import {ZoneOffset} from '../ZoneOffset';
 
 /**
  * Builder that can holds date and time fields and related date and time objects.
@@ -160,7 +160,7 @@ export class DateTimeBuilder extends Temporal {
             this.excessDays = Period.ZERO;
         }
         //resolveFractional();
-        //resolveInstant();
+        this._resolveInstant();
         return this;
     }
 
@@ -443,6 +443,20 @@ export class DateTimeBuilder extends Temporal {
             this.date = dateOrTime;
         } else if (dateOrTime instanceof LocalTime){
             this.time = dateOrTime;
+        }
+    }
+
+    _resolveInstant() {
+        if (this.date != null && this.time != null) {
+            const offsetSecs = this.fieldValues.get(ChronoField.OFFSET_SECONDS);
+            if (offsetSecs != null) {
+                const offset = ZoneOffset.ofTotalSeconds(offsetSecs);
+                const instant = this.date.atTime(this.time).atZone(offset).getLong(ChronoField.INSTANT_SECONDS);
+                this.fieldValues.put(ChronoField.INSTANT_SECONDS, instant);
+            } else if (this.zone != null) {
+                const instant = this.date.atTime(this.time).atZone(this.zone).getLong(ChronoField.INSTANT_SECONDS);
+                this.fieldValues.put(ChronoField.INSTANT_SECONDS, instant);
+            }
         }
     }
 

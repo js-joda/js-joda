@@ -687,6 +687,28 @@ describe('ZonedDateTime', () => {
             });
         });
 
+        context('parse overlap with offset and zone', () => {
+            beforeEach(() => {
+                setAmericaBerlinZoneRules();
+            });
+
+            it('should parse a formated zdt during dst overlap consistent', function () {
+                const zdt = ZonedDateTime.parse('2016-11-06T01:00-04:00[America/New_York]');
+                for(let min = 0; min <= 60; min += 15) {
+                    const overlap = zdt.plusMinutes(min);
+                    assertEquals(ZonedDateTime.parse(overlap.toString()), overlap);
+                }
+            });
+
+            it('should parse a formated zdt during dst overlap consistent', function () {
+                const zdt = ZonedDateTime.parse('2016-10-30T02:00+02:00[Europe/Berlin]');
+                for(let min = 0; min <= 60; min += 15) {
+                    const overlap = zdt.plusMinutes(min);
+                    assertEquals(ZonedDateTime.parse(overlap.toString()), overlap);
+                }
+            });
+        });
+
         context('zoneId edge cases', function () {
             function setZoneIdsEdgeCases() {
                 ZoneRulesProvider.getAvailableZoneIds = () => {

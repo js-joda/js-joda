@@ -7,6 +7,7 @@ Changelog
 
 #### bugs
 
+ * fix issue #166, bug from upstream project, parse zoned date time during overlap
 
 ### 1.6.0
 
