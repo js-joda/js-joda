@@ -548,8 +548,8 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
                 ['2012-06-30T12:30:40-01:00[UT-01:00]', 2012, 6, 30, 12, 30, 40, 0, 'UT-01:00'],
                 ['2012-06-30T12:30:40-01:00[UTC-01:00]', 2012, 6, 30, 12, 30, 40, 0, 'UTC-01:00'],
 
-                // special javascript ZoneId
-                ['2012-06-30T12:30:40+01:00[SYSTEM]', 2012, 6, 30, 12, 30, 40, 0, 'SYSTEM'],
+                // special javascript ZoneId, illegal test, depends on SYSTEM timezone
+                // ['2012-06-30T12:30:40+01:00[SYSTEM]', 2012, 6, 30, 12, 30, 40, 0, 'SYSTEM'],
 
                 ['2012-06-30T12:30:40+01:00[Europe/London]', 2012, 6, 30, 12, 30, 40, 0, 'Europe/London'],
             ];
