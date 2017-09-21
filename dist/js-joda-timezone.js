@@ -1,4 +1,4 @@
-//! @version js-joda-timezone - 1.1.4-2017b
+//! @version js-joda-timezone - 1.1.5-2017b
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 (function webpackUniversalModuleDefinition(root, factory) {
