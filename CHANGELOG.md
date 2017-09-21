@@ -1,7 +1,9 @@
 Changelog
 =========
 
-### 1.6.1 (next)
+### 1.6.2 (next)
+
+### 1.6.1
 
 #### dependency updates
 

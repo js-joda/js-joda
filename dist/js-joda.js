@@ -1,4 +1,4 @@
-//! @version js-joda - 1.6.0
+//! @version js-joda - 1.6.1
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -736,7 +736,7 @@ var _ChronoLocalDate2 = __webpack_require__(33);
 
 var _TemporalQueries = __webpack_require__(4);
 
-var _TemporalQuery = __webpack_require__(10);
+var _TemporalQuery = __webpack_require__(11);
 
 var _ValueRange = __webpack_require__(24);
 
@@ -760,7 +760,7 @@ var _Year = __webpack_require__(27);
 
 var _ZoneId = __webpack_require__(7);
 
-var _ZoneOffset = __webpack_require__(11);
+var _ZoneOffset = __webpack_require__(10);
 
 var _ZonedDateTime = __webpack_require__(32);
 
@@ -1811,64 +1811,6 @@ var Temporal = exports.Temporal = function (_TemporalAccessor) {
 
 
 exports.__esModule = true;
-exports.TemporalQuery = undefined;
-exports.createTemporalQuery = createTemporalQuery;
-
-var _assert = __webpack_require__(0);
-
-var _Enum2 = __webpack_require__(20);
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-
-var TemporalQuery = exports.TemporalQuery = function (_Enum) {
-  _inherits(TemporalQuery, _Enum);
-
-  function TemporalQuery() {
-    _classCallCheck(this, TemporalQuery);
-
-    return _possibleConstructorReturn(this, _Enum.apply(this, arguments));
-  }
-
-  TemporalQuery.prototype.queryFrom = function queryFrom(temporal) {
-    (0, _assert.abstractMethodFail)('queryFrom');
-  };
-
-  return TemporalQuery;
-}(_Enum2.Enum);
-
-function createTemporalQuery(name, queryFromFunction) {
-  var ExtendedTemporalQuery = function (_TemporalQuery) {
-    _inherits(ExtendedTemporalQuery, _TemporalQuery);
-
-    function ExtendedTemporalQuery() {
-      _classCallCheck(this, ExtendedTemporalQuery);
-
-      return _possibleConstructorReturn(this, _TemporalQuery.apply(this, arguments));
-    }
-
-    return ExtendedTemporalQuery;
-  }(TemporalQuery);
-
-  ExtendedTemporalQuery.prototype.queryFrom = queryFromFunction;
-  return new ExtendedTemporalQuery(name);
-}
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
 exports.ZoneOffset = undefined;
 exports._init = _init;
 
@@ -2137,6 +2079,64 @@ function _init() {
 }
 
 /***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.TemporalQuery = undefined;
+exports.createTemporalQuery = createTemporalQuery;
+
+var _assert = __webpack_require__(0);
+
+var _Enum2 = __webpack_require__(20);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+var TemporalQuery = exports.TemporalQuery = function (_Enum) {
+  _inherits(TemporalQuery, _Enum);
+
+  function TemporalQuery() {
+    _classCallCheck(this, TemporalQuery);
+
+    return _possibleConstructorReturn(this, _Enum.apply(this, arguments));
+  }
+
+  TemporalQuery.prototype.queryFrom = function queryFrom(temporal) {
+    (0, _assert.abstractMethodFail)('queryFrom');
+  };
+
+  return TemporalQuery;
+}(_Enum2.Enum);
+
+function createTemporalQuery(name, queryFromFunction) {
+  var ExtendedTemporalQuery = function (_TemporalQuery) {
+    _inherits(ExtendedTemporalQuery, _TemporalQuery);
+
+    function ExtendedTemporalQuery() {
+      _classCallCheck(this, ExtendedTemporalQuery);
+
+      return _possibleConstructorReturn(this, _TemporalQuery.apply(this, arguments));
+    }
+
+    return ExtendedTemporalQuery;
+  }(TemporalQuery);
+
+  ExtendedTemporalQuery.prototype.queryFrom = queryFromFunction;
+  return new ExtendedTemporalQuery(name);
+}
+
+/***/ }),
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2173,7 +2173,7 @@ var _IsoChronology = __webpack_require__(8);
 
 var _ChronoField = __webpack_require__(3);
 
-var _TemporalQuery = __webpack_require__(10);
+var _TemporalQuery = __webpack_require__(11);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /**
                                                                                                                                                            * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -2424,7 +2424,7 @@ var _TemporalField = __webpack_require__(23);
 
 var _TemporalQueries = __webpack_require__(4);
 
-var _TemporalQuery = __webpack_require__(10);
+var _TemporalQuery = __webpack_require__(11);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -3102,7 +3102,7 @@ var _TemporalQueries = __webpack_require__(4);
 
 var _TemporalUnit = __webpack_require__(17);
 
-var _TemporalQuery = __webpack_require__(10);
+var _TemporalQuery = __webpack_require__(11);
 
 var _DateTimeFormatter = __webpack_require__(12);
 
@@ -3511,7 +3511,7 @@ var _Instant = __webpack_require__(14);
 
 var _ZoneId = __webpack_require__(7);
 
-var _ZoneOffset = __webpack_require__(11);
+var _ZoneOffset = __webpack_require__(10);
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
@@ -3653,7 +3653,7 @@ var _ZonedDateTime = __webpack_require__(32);
 
 var _ZoneId = __webpack_require__(7);
 
-var _ZoneOffset = __webpack_require__(11);
+var _ZoneOffset = __webpack_require__(10);
 
 var _DateTimeFormatter = __webpack_require__(12);
 
@@ -3663,7 +3663,7 @@ var _ChronoUnit = __webpack_require__(5);
 
 var _TemporalQueries = __webpack_require__(4);
 
-var _TemporalQuery = __webpack_require__(10);
+var _TemporalQuery = __webpack_require__(11);
 
 var _ChronoLocalDateTime2 = __webpack_require__(52);
 
@@ -4594,7 +4594,7 @@ var _LocalDate = __webpack_require__(6);
 
 var _LocalDateTime = __webpack_require__(16);
 
-var _ZoneOffset = __webpack_require__(11);
+var _ZoneOffset = __webpack_require__(10);
 
 var _ChronoLocalDate = __webpack_require__(33);
 
@@ -6276,7 +6276,7 @@ var _TemporalField = __webpack_require__(23);
 
 var _TemporalQueries = __webpack_require__(4);
 
-var _TemporalQuery = __webpack_require__(10);
+var _TemporalQuery = __webpack_require__(11);
 
 var _TemporalUnit = __webpack_require__(17);
 
@@ -6683,7 +6683,7 @@ var _Temporal2 = __webpack_require__(9);
 
 var _TemporalQueries = __webpack_require__(4);
 
-var _TemporalQuery = __webpack_require__(10);
+var _TemporalQuery = __webpack_require__(11);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -7354,7 +7354,7 @@ var _LocalTime = __webpack_require__(13);
 
 var _ZoneId = __webpack_require__(7);
 
-var _ZoneOffset = __webpack_require__(11);
+var _ZoneOffset = __webpack_require__(10);
 
 var _ChronoZonedDateTime2 = __webpack_require__(51);
 
@@ -7364,7 +7364,7 @@ var _ChronoField = __webpack_require__(3);
 
 var _ChronoUnit = __webpack_require__(5);
 
-var _TemporalQuery = __webpack_require__(10);
+var _TemporalQuery = __webpack_require__(11);
 
 var _TemporalQueries = __webpack_require__(4);
 
@@ -8926,7 +8926,7 @@ var _Temporal2 = __webpack_require__(9);
 
 var _TemporalAccessor = __webpack_require__(30);
 
-var _TemporalQuery = __webpack_require__(10);
+var _TemporalQuery = __webpack_require__(11);
 
 var _TemporalQueries = __webpack_require__(4);
 
@@ -9232,7 +9232,7 @@ var _TemporalField = __webpack_require__(23);
 
 var _TemporalQueries = __webpack_require__(4);
 
-var _TemporalQuery = __webpack_require__(10);
+var _TemporalQuery = __webpack_require__(11);
 
 var _TemporalUnit = __webpack_require__(17);
 
@@ -9715,6 +9715,8 @@ var _LocalDate = __webpack_require__(6);
 
 var _Period = __webpack_require__(31);
 
+var _ZoneOffset = __webpack_require__(10);
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -9788,6 +9790,7 @@ var DateTimeBuilder = function (_Temporal) {
             this.excessDays = _Period.Period.ZERO;
         }
 
+        this._resolveInstant();
         return this;
     };
 
@@ -10016,6 +10019,20 @@ var DateTimeBuilder = function (_Temporal) {
             this.date = dateOrTime;
         } else if (dateOrTime instanceof _LocalTime.LocalTime) {
             this.time = dateOrTime;
+        }
+    };
+
+    DateTimeBuilder.prototype._resolveInstant = function _resolveInstant() {
+        if (this.date != null && this.time != null) {
+            var offsetSecs = this.fieldValues.get(_ChronoField.ChronoField.OFFSET_SECONDS);
+            if (offsetSecs != null) {
+                var offset = _ZoneOffset.ZoneOffset.ofTotalSeconds(offsetSecs);
+                var instant = this.date.atTime(this.time).atZone(offset).getLong(_ChronoField.ChronoField.INSTANT_SECONDS);
+                this.fieldValues.put(_ChronoField.ChronoField.INSTANT_SECONDS, instant);
+            } else if (this.zone != null) {
+                var _instant = this.date.atTime(this.time).atZone(this.zone).getLong(_ChronoField.ChronoField.INSTANT_SECONDS);
+                this.fieldValues.put(_ChronoField.ChronoField.INSTANT_SECONDS, _instant);
+            }
         }
     };
 
@@ -11288,7 +11305,7 @@ var _LocalDate = __webpack_require__(6);
 
 var _Instant = __webpack_require__(14);
 
-var _ZoneOffset = __webpack_require__(11);
+var _ZoneOffset = __webpack_require__(10);
 
 var _ChronoUnit = __webpack_require__(5);
 
@@ -11539,7 +11556,7 @@ Object.defineProperty(exports, 'ZonedDateTime', {
     }
 });
 
-var _ZoneOffset = __webpack_require__(11);
+var _ZoneOffset = __webpack_require__(10);
 
 Object.defineProperty(exports, 'ZoneOffset', {
     enumerable: true,
@@ -11719,7 +11736,7 @@ Object.defineProperty(exports, 'TemporalQueries', {
     }
 });
 
-var _TemporalQuery = __webpack_require__(10);
+var _TemporalQuery = __webpack_require__(11);
 
 Object.defineProperty(exports, 'TemporalQuery', {
     enumerable: true,
@@ -12713,7 +12730,7 @@ var StringLiteralPrinterParser = exports.StringLiteralPrinterParser = function (
 exports.__esModule = true;
 exports.ZoneIdPrinterParser = undefined;
 
-var _ZoneOffset = __webpack_require__(11);
+var _ZoneOffset = __webpack_require__(10);
 
 var _ZoneId = __webpack_require__(7);
 
@@ -13200,7 +13217,7 @@ function nativeJs(date, zone) {
 "use strict";
 
 
-var _ZoneOffset = __webpack_require__(11);
+var _ZoneOffset = __webpack_require__(10);
 
 var _DayOfWeek = __webpack_require__(28);
 
@@ -13297,7 +13314,7 @@ exports._init = _init;
 
 var _ChronoField = __webpack_require__(3);
 
-var _TemporalQuery = __webpack_require__(10);
+var _TemporalQuery = __webpack_require__(11);
 
 var _TemporalQueries = __webpack_require__(4);
 
@@ -13305,7 +13322,7 @@ var _LocalDate = __webpack_require__(6);
 
 var _LocalTime = __webpack_require__(13);
 
-var _ZoneOffset = __webpack_require__(11);
+var _ZoneOffset = __webpack_require__(10);
 
 /*
  * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -13370,7 +13387,7 @@ var _errors = __webpack_require__(1);
 
 var _StringUtil = __webpack_require__(35);
 
-var _ZoneOffset = __webpack_require__(11);
+var _ZoneOffset = __webpack_require__(10);
 
 var _ZoneRegion = __webpack_require__(38);
 
@@ -13544,7 +13561,7 @@ exports.SystemDefaultZoneRules = undefined;
 
 var _ZoneRules2 = __webpack_require__(36);
 
-var _ZoneOffset = __webpack_require__(11);
+var _ZoneOffset = __webpack_require__(10);
 
 var _errors = __webpack_require__(1);
 
