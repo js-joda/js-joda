@@ -1,6 +1,8 @@
 import {
     ChronoField,
     ChronoUnit,
+    Clock,
+    DateTimeFormatter,
     DayOfWeek,
     Duration,
     Instant,
@@ -12,6 +14,7 @@ import {
     nativeJs,
     Period,
     TemporalAdjusters,
+    YearMonth,
     ZoneOffset,
     ZonedDateTime,
     ZoneId
@@ -442,4 +445,84 @@ function test_Duration() {
     var dt1 = LocalDateTime.parse('2012-12-24T12:00');
 
     Duration.between(dt1, dt1.plusHours(10)).toString();
+}
+
+function test_YearMonth() {
+    YearMonth.from(YearMonth.now());
+    YearMonth.from(LocalDate.now());
+    
+    YearMonth.now();
+    YearMonth.now(ZoneId.systemDefault());
+    YearMonth.now(Clock.systemUTC());
+    YearMonth.now0();
+    YearMonth.nowZoneId(ZoneId.systemDefault());
+    YearMonth.nowClock(Clock.systemUTC());
+    
+    YearMonth.of(2017, 10);
+    YearMonth.of(2017, Month.of(10));
+    YearMonth.ofNumberMonth(2017, Month.of(10));
+    YearMonth.ofNumberNumber(2017, 10);
+
+    YearMonth.parse("2017-10");
+    YearMonth.parse("2017-10", DateTimeFormatter.ofPattern("yyyy-MM"));
+    YearMonth.parseString("2017-10");
+    YearMonth.parseStringFormatter("2017-10", DateTimeFormatter.ofPattern("yyyy-MM"));
+
+    var duration = Duration.of(10, ChronoUnit.MONTHS);
+    var ym = new YearMonth(2017, 10);
+
+    ym.minus(duration);
+    ym.minus(10, ChronoUnit.DAYS);
+    ym.minusAmount(duration);
+    ym.minusAmountUnit(10, ChronoUnit.MONTHS);
+    ym.minusYears(10);
+    ym.minusMonths(10);
+
+    ym.plus(duration);
+    ym.plus(10, ChronoUnit.DAYS);
+    ym.plusAmount(duration);
+    ym.plusAmountUnit(10, ChronoUnit.MONTHS);
+    ym.plusYears(10);
+    ym.plusMonths(10);
+
+    ym.with(TemporalAdjusters.firstDayOfMonth());
+    ym.with(ChronoField.YEAR, 2018);
+    ym.withYearMonth(2018, 11);
+    ym.withAdjuster(TemporalAdjusters.firstDayOfMonth());
+    ym.withFieldValue(ChronoField.YEAR, 2018);
+    ym.withYear(2018);
+    ym.withMonth(11);
+
+    ym.isSupported(ChronoField.YEAR);
+    ym.isSupported(ChronoUnit.YEARS);
+
+    ym.year();
+
+    ym.monthValue();
+
+    ym.month()
+
+    ym.isLeapYear();
+
+    ym.isValidDay();
+
+    ym.lengthOfMonth();
+
+    ym.lengthOfYear();
+
+    ym.atDay(10);
+
+    ym.atEndOfMonth();
+
+    ym.compareTo(YearMonth.of(2017, 20));
+
+    ym.isAfter(YearMonth.of(2017, 20));
+
+    ym.isBefore(YearMonth.of(2017, 20));
+
+    ym.equals(YearMonth.of(2017, 20));
+
+    ym.toJSON();
+
+    ym.format(DateTimeFormatter.ofPattern("yyyy-MM"));
 }
