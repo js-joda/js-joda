@@ -1163,39 +1163,24 @@ declare namespace JSJoda {
         static from(temporal: TemporalAccessor): YearMonth
 
         static now(zoneIdOrClock?: ZoneId|Clock): YearMonth
-        static now0(): YearMonth
-        static nowZoneId(zone: ZoneId): YearMonth
-        static nowClock(clock: Clock): YearMonth
 
         static of(year: number, monthOrNumber: Month|number): YearMonth
-        static ofNumberMonth(year: number, month: Month): YearMonth
-        static ofNumberNumber(year: number, month: number): YearMonth
 
         static parse(text: string, formatter?: DateTimeFormatter): YearMonth
-        static parseString(text: string): YearMonth
-        static parseStringFormatter(text: string, formatter: DateTimeFormatter): YearMonth
-
-        constructor(year: number, month: number)
 
         minus(amount: TemporalAmount): YearMonth
         minus(amountToSubtract: number, unit: TemporalUnit): YearMonth
-        minusAmount(amount: TemporalAmount): YearMonth
-        minusAmountUnit(amountToSubtract: number, unit: TemporalUnit): YearMonth
         minusYears(yearsToSubtract: number): YearMonth
         minusMonths(monthsToSubtract: number): YearMonth
 
         plus(amount: TemporalAmount): YearMonth
         plus(amountToAdd: number, unit: TemporalUnit): YearMonth
-        plusAmount(amount: TemporalAmount): YearMonth
-        plusAmountUnit(amountToAdd: number, unit: TemporalUnit): YearMonth
         plusYears(yearsToAdd: number): YearMonth
         plusMonths(monthsToAdd: number): YearMonth
 
         with(adjuster: TemporalAdjuster): YearMonth
         with(field: TemporalField, value: number): YearMonth
         withYearMonth(newYear: number, newMonth: number): YearMonth
-        withAdjuster(adjuster: TemporalAdjuster): YearMonth
-        withFieldValue(field: TemporalField, newValue: number): YearMonth
         withYear(year: number): YearMonth
         withMonth(month: number): YearMonth
 
