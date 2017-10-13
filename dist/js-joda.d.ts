@@ -1168,13 +1168,53 @@ declare namespace JSJoda {
 
         static parse(text: string, formatter?: DateTimeFormatter): YearMonth
 
-        minus(amountOrNumber: TemporalAmount|number, unit?: TemporalUnit): YearMonth
+        minus(amount: TemporalAmount): YearMonth
+        minus(amountToSubtract: number, unit: TemporalUnit): YearMonth
+        minusYears(yearsToSubtract: number): YearMonth
+        minusMonths(monthsToSubtract: number): YearMonth
 
-        plus(amountOrNumber: TemporalAmount|number, unit?: TemporalUnit): YearMonth
+        plus(amount: TemporalAmount): YearMonth
+        plus(amountToAdd: number, unit: TemporalUnit): YearMonth
+        plusYears(yearsToAdd: number): YearMonth
+        plusMonths(monthsToAdd: number): YearMonth
 
-        with(adjusterOrField: TemporalAdjuster|TemporalField, value?: number): YearMonth
+        with(adjuster: TemporalAdjuster): YearMonth
+        with(field: TemporalField, value: number): YearMonth
+        withYearMonth(newYear: number, newMonth: number): YearMonth
+        withYear(year: number): YearMonth
+        withMonth(month: number): YearMonth
 
         isSupported(fieldOrUnit: TemporalField|ChronoUnit): boolean
+
+        year(): number
+
+        monthValue(): number
+
+        month(): Month
+
+        isLeapYear(): boolean
+
+        isValidDay(): boolean
+
+        lengthOfMonth(): number
+
+        lengthOfYear(): number
+
+        atDay(dayOfMonth: number): LocalDate
+
+        atEndOfMonth(): LocalDate
+
+        compareTo(other: YearMonth): number
+
+        isAfter(other: YearMonth): boolean
+
+        isBefore(other: YearMonth): boolean
+
+        equals(other: YearMonth): boolean
+
+        toJSON(): string
+
+        format(formatter: DateTimeFormatter): string
     }
     class ZoneId {
         static SYSTEM: ZoneId
