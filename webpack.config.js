@@ -24,7 +24,7 @@ const banner = createBanner();
 
 module.exports = {
     context: __dirname,
-    entry: ['babel-polyfill', './src/js-joda-locale.js'],
+    entry: './src/js-joda-locale.js',
     devtool: sourceMaps ? 'hidden-source-map' : '',
     output: {
         path: `${__dirname}/dist`,
