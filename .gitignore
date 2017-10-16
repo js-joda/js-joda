@@ -3,6 +3,7 @@ node_modules
 
 # npm
 npm-debug.log
+package-lock.json
 
 # build output
 build

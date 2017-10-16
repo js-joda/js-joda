@@ -6,6 +6,7 @@ node_modules
 
 # npm
 npm-debug.log
+package-lock.json
 
 # build config
 esdoc.json
