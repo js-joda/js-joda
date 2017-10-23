@@ -21,8 +21,6 @@ import {
 import cldrData from 'cldr-data';
 import Cldr from 'cldrjs';
 
-import Locale from '../Locale';
-
 const { MathUtil, assert: { requireNonNull, requireInstance } } = jodaInternal;
 
 //-----------------------------------------------------------------------
@@ -660,20 +658,6 @@ export class WeekFields {
         this._weekOfWeekBasedYear = ComputedDayOfField.ofWeekOfWeekBasedYearField(this);
         this._weekBasedYear = ComputedDayOfField.ofWeekBasedYearField(this);
         Cldr.load(cldrData('supplemental/likelySubtags'));
-    }
-
-    /**
-     * Ensure valid singleton.
-     *
-     * @return the valid week fields instance, not null
-     * @throws InvalidObjectException if invalid
-     */
-    _readResolve() {
-        try {
-            return WeekFields.of(this._firstDayOfWeek, this._minimalDays);
-        } catch (ex) {
-            throw new IllegalArgumentException('Invalid WeekFields' + ex.message);
-        }
     }
 
     //-----------------------------------------------------------------------
