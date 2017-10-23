@@ -845,7 +845,7 @@ export class WeekFields {
      *
      * @return {TemporalField} a field providing access to the week-of-year, not null
      */
-    _weekOfYear() {
+    weekOfYear() {
         return this._weekOfYear;
     }
 
