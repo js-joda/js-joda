@@ -563,26 +563,6 @@ export class WeekFields {
     /**
      * function overloading for {@link WeekFields#of}
      *
-     * if called with 1 arguments and first argument is an instance of Locale,
-     * then {@link WeekFields#ofLocale} is executed.
-
-     * Otherwise {@link WeekFields#ofFirstDayOfWeekMinDays} is executed.
-     *
-     * @param {!(Locale|DayOfWeek)} localeOrFirstDayOfWeek
-     * @param {!Number} minDays
-     * @returns {WeekFields} this for chaining
-     */
-    appendText(localeOrFirstDayOfWeek, minDays) {
-        if (localeOrFirstDayOfWeek instanceof Locale) {
-            return WeekFields.ofLocale(localeOrFirstDayOfWeek);
-        } else {
-            return WeekFields.ofFirstDayOfWeekMinDays(localeOrFirstDayOfWeek, minDays);
-        }
-    }
-
-    /**
-     * function overloading for {@link WeekFields#of}
-     *
      * if called with 1 arguments then {@link WeekFields.ofLocale} is executed.
      *
      * Otherwise {@link WeekFields.ofFirstDayOfWeekMinDays} is executed.
