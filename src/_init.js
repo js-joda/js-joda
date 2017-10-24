@@ -4,6 +4,7 @@
  */
 
 import { _init as localeInit } from './Locale';
+import { _init as weekFieldsInit } from './temporal/WeekFields';
 
 let isInit = false;
 
@@ -15,6 +16,7 @@ function init() {
     isInit = true;
 
     localeInit();
+    weekFieldsInit();
 }
 
 init();

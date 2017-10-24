@@ -16,13 +16,13 @@ export default class WeekFieldsPrinterParser {
     }
 
     print(context, buf) {
-        const weekFields = WeekFields.ofLocale(context.locale());
+        const weekFields = WeekFields.of(context.locale());
         const pp = this._evaluate(weekFields);
         return pp.print(context, buf);
     }
 
     parse(context, text, position) {
-        const weekFields = WeekFields.ofLocale(context.locale());
+        const weekFields = WeekFields.of(context.locale());
         const pp = this._evaluate(weekFields);
         return pp.parse(context, text, position);
     }

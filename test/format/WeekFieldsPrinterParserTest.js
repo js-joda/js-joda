@@ -35,10 +35,10 @@ describe('js-joda-locale WeekFieldsPrinterParser', () => {
 
     describe('print / parse week fields', () => {
 
-        const dayOfWeekField = new ComputedDayOfField.ofDayOfWeekField();
-        const weekOfYearField = new ComputedDayOfField.ofWeekOfWeekBasedYearField();
-        const weekOfMonthField = new ComputedDayOfField.ofWeekOfMonthField();
-        const weekYearField = new ComputedDayOfField.ofWeekBasedYearField();
+        const dayOfWeekField = ComputedDayOfField.ofDayOfWeekField();
+        const weekOfWeekBasedYearField = ComputedDayOfField.ofWeekOfWeekBasedYearField();
+        const weekOfMonthField = ComputedDayOfField.ofWeekOfMonthField();
+        const weekYearField = ComputedDayOfField.ofWeekBasedYearField();
 
         const data = [
 
@@ -60,14 +60,14 @@ describe('js-joda-locale WeekFieldsPrinterParser', () => {
             [LocalDate.of(2017, 1, 1), Locale.GERMANY, 'c', 1, '7', dayOfWeekField, 7],
             [LocalDate.of(2017, 1, 1), Locale.GERMANY, 'c', 2, '07', dayOfWeekField, 7],
 
-            [LocalDate.of(2017, 1, 1), Locale.ENGLISH, 'w', 1, '1', weekOfYearField, 1],
-            [LocalDate.of(2017, 1, 1), Locale.ENGLISH, 'w', 2, '01', weekOfYearField, 1],
-            [LocalDate.of(2017, 1, 1), Locale.US, 'w', 1, '1', weekOfYearField, 1],
-            [LocalDate.of(2017, 1, 1), Locale.US, 'w', 2, '01', weekOfYearField, 1],
-            [LocalDate.of(2017, 1, 1), Locale.UK, 'w', 1, '52', weekOfYearField, 52],
-            [LocalDate.of(2017, 1, 1), Locale.UK, 'w', 2, '52', weekOfYearField, 52],
-            [LocalDate.of(2017, 1, 1), Locale.GERMANY, 'w', 1, '52', weekOfYearField, 52],
-            [LocalDate.of(2017, 1, 1), Locale.GERMANY, 'w', 2, '52', weekOfYearField, 52],
+            [LocalDate.of(2017, 1, 1), Locale.ENGLISH, 'w', 1, '1', weekOfWeekBasedYearField, 1],
+            [LocalDate.of(2017, 1, 1), Locale.ENGLISH, 'w', 2, '01', weekOfWeekBasedYearField, 1],
+            [LocalDate.of(2017, 1, 1), Locale.US, 'w', 1, '1', weekOfWeekBasedYearField, 1],
+            [LocalDate.of(2017, 1, 1), Locale.US, 'w', 2, '01', weekOfWeekBasedYearField, 1],
+            [LocalDate.of(2017, 1, 1), Locale.UK, 'w', 1, '52', weekOfWeekBasedYearField, 52],
+            [LocalDate.of(2017, 1, 1), Locale.UK, 'w', 2, '52', weekOfWeekBasedYearField, 52],
+            [LocalDate.of(2017, 1, 1), Locale.GERMANY, 'w', 1, '52', weekOfWeekBasedYearField, 52],
+            [LocalDate.of(2017, 1, 1), Locale.GERMANY, 'w', 2, '52', weekOfWeekBasedYearField, 52],
 
             [LocalDate.of(2017, 1, 1), Locale.ENGLISH, 'W', 1, '1', weekOfMonthField, 1],
             [LocalDate.of(2017, 1, 1), Locale.ENGLISH, 'W', 2, '1', weekOfMonthField, 1],

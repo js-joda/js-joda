@@ -42,16 +42,16 @@ export default class LocalizedOffsetPrinterParser {
         }
         const totalSecs = MathUtil.safeToInt(offsetSecs);
         if (totalSecs !== 0) {
-            const absHours = Math.abs((totalSecs / 3600) % 100);  // anything larger than 99 silently dropped
-            const absMinutes = Math.abs((totalSecs / 60) % 60);
-            const absSeconds = Math.abs(totalSecs % 60);
+            const absHours = Math.abs(MathUtil.intMod(MathUtil.intDiv(totalSecs, 3600), 100));  // anything larger than 99 silently dropped
+            const absMinutes = Math.abs(MathUtil.intMod(MathUtil.intDiv(totalSecs,60), 60));
+            const absSeconds = Math.abs(MathUtil.intMod(totalSecs, 60));
             buf.append(totalSecs < 0 ? '-' : '+').append(absHours);
             if (absMinutes > 0 || absSeconds > 0) {
                 buf.append(':')
-                    .append((absMinutes / 10 + '0')).append((absMinutes % 10 + '0'));
+                    .append(MathUtil.intDiv(absMinutes, 10)).append(MathUtil.intMod(absMinutes,10));
                 if (absSeconds > 0) {
                     buf.append(':')
-                        .append((absSeconds / 10 + '0')).append((absSeconds % 10 + '0'));
+                        .append(MathUtil.intDiv(absSeconds, 10)).append(MathUtil.intMod(absSeconds, 10));
                 }
             }
         }
@@ -66,7 +66,7 @@ export default class LocalizedOffsetPrinterParser {
         if (this._textStyle === TextStyle.FULL) {
             return new DateTimeFormatterBuilder.OffsetIdPrinterParser('', '+HH:MM:ss').parse(context, text, position);
         }
-        const end = text.length();
+        const end = text.length;
         if (position === end) {
             return context.setParsedField(ChronoField.OFFSET_SECONDS, 0, position, position);
         }
@@ -85,11 +85,11 @@ export default class LocalizedOffsetPrinterParser {
             return ~position;
         }
         position++;
-        let hour = ((ch - 48));
+        let hour = MathUtil.parseInt(ch);
         if (position !== end) {
             ch = text.charAt(position);
             if (ch >= '0' && ch <= '9') {
-                hour = hour * 10 + ((ch - 48));
+                hour = hour * 10 + MathUtil.parseInt(ch);
                 if (hour > 23) {
                     return ~position;
                 }
@@ -110,13 +110,13 @@ export default class LocalizedOffsetPrinterParser {
             return ~position;
         }
         position++;
-        let min = ((ch - 48));
+        let min = MathUtil.parseInt(ch);
         ch = text.charAt(position);
         if (ch < '0' || ch > '9') {
             return ~position;
         }
         position++;
-        min = min * 10 + ((ch - 48));
+        min = min * 10 + MathUtil.parseInt(ch);
         if (min > 59) {
             return ~position;
         }
@@ -134,13 +134,13 @@ export default class LocalizedOffsetPrinterParser {
             return ~position;
         }
         position++;
-        let sec = ((ch - 48));
+        let sec = MathUtil.parseInt(ch);
         ch = text.charAt(position);
         if (ch < '0' || ch > '9') {
             return ~position;
         }
         position++;
-        sec = sec * 10 + ((ch - 48));
+        sec = sec * 10 + MathUtil.parseInt(ch);
         if (sec > 59) {
             return ~position;
         }

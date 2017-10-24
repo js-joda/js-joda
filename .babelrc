@@ -1,7 +1,7 @@
 {
   "presets": [
     [
-      "latest"
+      "env"
     ]
   ],
   "plugins": [

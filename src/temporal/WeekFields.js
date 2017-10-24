@@ -7,21 +7,17 @@ import {
     _ as jodaInternal,
     DayOfWeek,
     ChronoField,
-    Chronology,
     ChronoUnit,
-    DateTimeException,
     IllegalArgumentException,
     IllegalStateException,
+    IsoChronology,
     IsoFields,
     LocalDate,
-    ResolverStyle,
     ValueRange,
     Year
 } from 'js-joda';
 import cldrData from 'cldr-data';
 import Cldr from 'cldrjs';
-
-import Locale from '../Locale';
 
 const { MathUtil, assert: { requireNonNull, requireInstance } } = jodaInternal;
 
@@ -119,19 +115,14 @@ export class ComputedDayOfField {
     getFrom(temporal) {
         // Offset the ISO DOW by the start of this week
         const sow = this._weekDef.firstDayOfWeek().value();
-        const isoDow = temporal.get(ChronoField.DAY_OF_WEEK);
-        const dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
+        const dow = this._localizedDayOfWeek(temporal, sow);
 
         if (this._rangeUnit === ChronoUnit.WEEKS) {
             return dow;
         } else if (this._rangeUnit === ChronoUnit.MONTHS) {
-            const dom = temporal.get(ChronoField.DAY_OF_MONTH);
-            const offset = this._startOfWeekOffset(dom, dow);
-            return ComputedDayOfField._computeWeek(offset, dom);
+            return this._localizedWeekOfMonth(temporal, dow);
         } else if (this._rangeUnit === ChronoUnit.YEARS) {
-            const doy = temporal.get(ChronoField.DAY_OF_YEAR);
-            const offset = this._startOfWeekOffset(doy, dow);
-            return ComputedDayOfField._computeWeek(offset, doy);
+            return this._localizedWeekOfYear(temporal, dow);
         } else if (this._rangeUnit === IsoFields.WEEK_BASED_YEARS) {
             return this._localizedWOWBY(temporal);
         } else if (this._rangeUnit === ChronoUnit.FOREVER) {
@@ -237,13 +228,13 @@ export class ComputedDayOfField {
         }
         if (this._rangeUnit === ChronoUnit.FOREVER) {
             // adjust in whole weeks so dow never changes
-            const baseWowby = temporal.get(this._weekDef.weekOfWeekBasedYear);
-            const diffWeeks = ((newValue - currentVal) * 52.1775);
+            const baseWowby = temporal.get(this._weekDef.weekOfWeekBasedYear());
+            const diffWeeks = MathUtil.roundDown((newValue - currentVal) * 52.1775);
             let result = temporal.plus(diffWeeks, ChronoUnit.WEEKS);
             if (result.get(this) > newVal) {
                 // ended up in later week-based-year
                 // move to last week of previous year
-                const newWowby = result.get(this._weekDef.weekOfWeekBasedYear);
+                const newWowby = result.get(this._weekDef.weekOfWeekBasedYear());
                 result = result.minus(newWowby, ChronoUnit.WEEKS);
             } else {
                 if (result.get(this) < newVal) {
@@ -251,7 +242,7 @@ export class ComputedDayOfField {
                     result = result.plus(2, ChronoUnit.WEEKS);
                 }
                 // reset the week-of-week-based-year
-                const newWowby = result.get(this._weekDef.weekOfWeekBasedYear);
+                const newWowby = result.get(this._weekDef.weekOfWeekBasedYear());
                 result = result.plus(baseWowby - newWowby, ChronoUnit.WEEKS);
                 if (result.get(this) > newVal) {
                     result = result.minus(1, ChronoUnit.WEEKS);
@@ -264,6 +255,7 @@ export class ComputedDayOfField {
         return temporal.plus(delta, this._baseUnit);
     }
 
+    /* phueper: currently unused/untested, might be needed by DateTimeBuilder.resolveFields??
     resolve(fieldValues, partialTemporal, resolverStyle) {
         const sow = this._weekDef.firstDayOfWeek().value();
         if (this._rangeUnit === ChronoUnit.WEEKS) {  // day-of-week
@@ -382,6 +374,7 @@ export class ComputedDayOfField {
             throw new IllegalStateException('unreachable');
         }
     }
+*/
 
     //-----------------------------------------------------------------------
     name() {
@@ -451,8 +444,8 @@ export class ComputedDayOfField {
 
         const offset = this._startOfWeekOffset(temporal.get(field), dow);
         const fieldRange = temporal.range(field);
-        return ValueRange.of(ComputedDayOfField._computeWeek(offset, fieldRange.getMinimum()),
-            ComputedDayOfField._computeWeek(offset, fieldRange.getMaximum()));
+        return ValueRange.of(ComputedDayOfField._computeWeek(offset, fieldRange.minimum()),
+            ComputedDayOfField._computeWeek(offset, fieldRange.maximum()));
     }
 
     _rangeWOWBY(temporal) {
@@ -461,14 +454,18 @@ export class ComputedDayOfField {
         const dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
         const woy = this._localizedWeekOfYear(temporal, dow);
         if (woy === 0) {
-            return this._rangeWOWBY(Chronology.from(temporal).date(temporal).minus(2, ChronoUnit.WEEKS));
+            // TODO: we use IsoChronology for now
+            return this._rangeWOWBY(IsoChronology.INSTANCE.date(temporal).minus(2, ChronoUnit.WEEKS));
+            // return this._rangeWOWBY(Chronology.from(temporal).date(temporal).minus(2, ChronoUnit.WEEKS));
         }
         const offset = this._startOfWeekOffset(temporal.get(ChronoField.DAY_OF_YEAR), dow);
         const year = temporal.get(ChronoField.YEAR);
         const yearLen = Year.isLeap(year) ? 366 : 365;
         const weekIndexOfFirstWeekNextYear = ComputedDayOfField._computeWeek(offset, yearLen + this._weekDef.minimalDaysInFirstWeek());
         if (woy >= weekIndexOfFirstWeekNextYear) {
-            return this._rangeWOWBY(Chronology.from(temporal).date(temporal).plus(2, ChronoUnit.WEEKS));
+            // TODO: we use IsoChronology for now
+            return this._rangeWOWBY(IsoChronology.INSTANCE.date(temporal).plus(2, ChronoUnit.WEEKS));
+            // return this._rangeWOWBY(Chronology.from(temporal).date(temporal).plus(2, ChronoUnit.WEEKS));
         }
         return ValueRange.of(1, weekIndexOfFirstWeekNextYear - 1);
     }
@@ -478,7 +475,7 @@ export class ComputedDayOfField {
         if (this._rangeUnit === ChronoUnit.YEARS) {  // week-of-year
             return 'Week';
         }
-        return toString();
+        return this.toString();
     }
 
     //-----------------------------------------------------------------------
@@ -559,26 +556,6 @@ export class WeekFields {
     // allow week-of-month outer range [0 to 5]
     // allow week-of-year outer range [0 to 53]
     // this is because callers shouldn't be expected to know the details of validity
-
-    /**
-     * function overloading for {@link WeekFields#of}
-     *
-     * if called with 1 arguments and first argument is an instance of Locale,
-     * then {@link WeekFields#ofLocale} is executed.
-
-     * Otherwise {@link WeekFields#ofFirstDayOfWeekMinDays} is executed.
-     *
-     * @param {!(Locale|DayOfWeek)} localeOrFirstDayOfWeek
-     * @param {!Number} minDays
-     * @returns {WeekFields} this for chaining
-     */
-    appendText(localeOrFirstDayOfWeek, minDays) {
-        if (localeOrFirstDayOfWeek instanceof Locale) {
-            return WeekFields.ofLocale(localeOrFirstDayOfWeek);
-        } else {
-            return WeekFields.ofFirstDayOfWeekMinDays(localeOrFirstDayOfWeek, minDays);
-        }
-    }
 
     /**
      * function overloading for {@link WeekFields#of}
@@ -680,20 +657,6 @@ export class WeekFields {
         this._weekOfWeekBasedYear = ComputedDayOfField.ofWeekOfWeekBasedYearField(this);
         this._weekBasedYear = ComputedDayOfField.ofWeekBasedYearField(this);
         Cldr.load(cldrData('supplemental/likelySubtags'));
-    }
-
-    /**
-     * Ensure valid singleton.
-     *
-     * @return the valid week fields instance, not null
-     * @throws InvalidObjectException if invalid
-     */
-    _readResolve() {
-        try {
-            return WeekFields.of(this._firstDayOfWeek, this._minimalDays);
-        } catch (ex) {
-            throw new IllegalArgumentException('Invalid WeekFields' + ex.message);
-        }
     }
 
     //-----------------------------------------------------------------------
@@ -845,7 +808,7 @@ export class WeekFields {
      *
      * @return {TemporalField} a field providing access to the week-of-year, not null
      */
-    _weekOfYear() {
+    weekOfYear() {
         return this._weekOfYear;
     }
 
@@ -956,7 +919,7 @@ export class WeekFields {
             return true;
         }
         if (object instanceof WeekFields) {
-            return this._hashCode() === object.hashCode();
+            return this.hashCode() === object.hashCode();
         }
         return false;
     }
@@ -995,7 +958,7 @@ export function _init() {
      * Note also that the first few days of a calendar year may be in the
      * week-based-year corresponding to the previous calendar year.
      */
-    WeekFields.ISO = new WeekFields(DayOfWeek.MONDAY, 4);
+    WeekFields.ISO = WeekFields.of(DayOfWeek.MONDAY, 4);
 
     /**
      * The common definition of a week that starts on Sunday.

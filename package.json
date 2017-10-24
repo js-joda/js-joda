@@ -10,8 +10,8 @@
   "scripts": {
     "prepublish": "npm run build-dist",
     "postversion": "npm run build-dist",
-    "test": "./node_modules/.bin/mocha --timeout 5000 --compilers js:babel-core/register ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js test/pluginTest_mochaOnly.js",
-    "test-coverage": "NODE_ENV=test COVERAGE=1 ./node_modules/.bin/nyc --report-dir=build/coverage --reporter=lcov --reporter html ./node_modules/.bin/mocha --timeout 5000 --compilers js:babel-core/register --reporter progress ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js",
+    "test": "./node_modules/.bin/mocha --timeout 5000 --require babel-core/register ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js test/pluginTest_mochaOnly.js",
+    "test-coverage": "NODE_ENV=test COVERAGE=1 ./node_modules/.bin/nyc --report-dir=build/coverage --reporter=lcov --reporter html ./node_modules/.bin/mocha --timeout 5000 --require babel-core/register --reporter progress ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js",
     "test-browser": "./node_modules/.bin/karma start --reporters=dots --single-run",
     "test-saucelabs": "./node_modules/.bin/karma start --reporters=\"dots,saucelabs\" --browsers=\"sl_chrome,sl_ie_9,sl_firefox,sl_android_simulator,sl_ios_simulator\" --single-run=true",
     "build-esdoc": "./node_modules/.bin/esdoc -c esdoc.json",
@@ -51,13 +51,13 @@
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-istanbul": "^4.1.5",
     "babel-polyfill": "^6.26.0",
-    "babel-preset-latest": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
     "chai": "^4.1.2",
     "cldr-data": "^31.0.2",
     "cldrjs": "^0.5.0",
     "coveralls": "^3.0.0",
     "esdoc": "^1.0.3",
-    "eslint": "^4.8.0",
+    "eslint": "^4.9.0",
     "eslint-config-js-joda": "^1.0.0",
     "js-joda": "^1.6.1",
     "js-joda-timezone": "^1.1.5",
@@ -76,8 +76,9 @@
     "requirejs": "^2.3.5",
     "requirejs-json": "0.0.3",
     "requirejs-text": "^2.0.15",
-    "webpack": "^3.7.1"
+    "webpack": "^3.8.1"
   },
   "cldr-data-coverage": "core",
-  "cldr-data-urls-filter": "(cldr-core|cldr-numbers-modern|cldr-dates-modern)"
+  "cldr-data-urls-filter": "(cldr-core|cldr-numbers-modern|cldr-dates-modern)",
+  "dependencies": {}
 }

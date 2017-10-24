@@ -43,7 +43,7 @@ export default class Locale {
         if (!(other instanceof Locale)) {
             return false;
         }
-        return this.localeString().equals(other.localeString());
+        return this.localeString() === other.localeString();
     }
 }
 
