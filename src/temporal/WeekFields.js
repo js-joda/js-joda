@@ -7,15 +7,12 @@ import {
     _ as jodaInternal,
     DayOfWeek,
     ChronoField,
-    Chronology,
     ChronoUnit,
-    DateTimeException,
     IllegalArgumentException,
     IllegalStateException,
     IsoChronology,
     IsoFields,
     LocalDate,
-    ResolverStyle,
     ValueRange,
     Year
 } from 'js-joda';
