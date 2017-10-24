@@ -258,6 +258,7 @@ export class ComputedDayOfField {
         return temporal.plus(delta, this._baseUnit);
     }
 
+    /* phueper: currently unused/untested, might be needed by DateTimeBuilder.resolveFields??
     resolve(fieldValues, partialTemporal, resolverStyle) {
         const sow = this._weekDef.firstDayOfWeek().value();
         if (this._rangeUnit === ChronoUnit.WEEKS) {  // day-of-week
@@ -376,6 +377,7 @@ export class ComputedDayOfField {
             throw new IllegalStateException('unreachable');
         }
     }
+*/
 
     //-----------------------------------------------------------------------
     name() {

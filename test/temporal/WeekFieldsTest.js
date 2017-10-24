@@ -98,37 +98,55 @@ describe('js-joda-locale WeekFields', () => {
                 assertEquals(field.rangeRefinedBy(date), rangeRefined);
             }, false);
         });
-    });
-    describe('adjustInto', () => {
-        const data = [
-            [LocalDate.of(2017, 1, 1), WeekFields.ISO.dayOfWeek(), 1, LocalDate.of(2016, 12, 26)],
-        ];
 
-        it('adjustInto', () => {
-            dataProviderTest(data, (localDate, field, newValue, expectedValue) => {
-                assertEquals(field.adjustInto(localDate, newValue), expectedValue);
-            }, false);
+        describe('adjustInto', () => {
+            const data = [
+                [LocalDate.of(2017, 1, 1), WeekFields.ISO.dayOfWeek(), 1, LocalDate.of(2016, 12, 26)],
+                [LocalDate.of(2017, 1, 2), WeekFields.ISO.dayOfWeek(), 1, LocalDate.of(2017, 1, 2)],
+                [LocalDate.of(2017, 1, 2), WeekFields.ISO.dayOfWeek(), 7, LocalDate.of(2017, 1, 8)],
+                [LocalDate.of(2017, 1, 1), WeekFields.ISO.weekOfMonth(), 1, LocalDate.of(2017, 1, 8)],
+                [LocalDate.of(2017, 1, 2), WeekFields.ISO.weekOfMonth(), 1, LocalDate.of(2017, 1, 2)],
+                [LocalDate.of(2017, 1, 2), WeekFields.ISO.weekOfMonth(), 4, LocalDate.of(2017, 1, 23)],
+                [LocalDate.of(2017, 1, 1), WeekFields.ISO.weekOfYear(), 1, LocalDate.of(2017, 1, 8)],
+                [LocalDate.of(2017, 1, 2), WeekFields.ISO.weekOfYear(), 1, LocalDate.of(2017, 1, 2)],
+                [LocalDate.of(2017, 1, 2), WeekFields.ISO.weekOfYear(), 2, LocalDate.of(2017, 1, 9)],
+                [LocalDate.of(2017, 1, 1), WeekFields.ISO.weekOfWeekBasedYear(), 1, LocalDate.of(2016, 1, 10)],
+                [LocalDate.of(2017, 1, 2), WeekFields.ISO.weekOfWeekBasedYear(), 1, LocalDate.of(2017, 1, 2)],
+                [LocalDate.of(2017, 1, 2), WeekFields.ISO.weekOfWeekBasedYear(), 2, LocalDate.of(2017, 1, 9)],
+                [LocalDate.of(2017, 1, 1), WeekFields.ISO.weekBasedYear(), 2017, LocalDate.of(2017, 12, 31)],
+                [LocalDate.of(2017, 1, 1), WeekFields.ISO.weekBasedYear(), 2016, LocalDate.of(2017, 1, 1)],
+                [LocalDate.of(2017, 1, 2), WeekFields.ISO.weekBasedYear(), 2016, LocalDate.of(2016, 1, 4)],
+                // corner cases of years (53 week years adjusted to other years)
+                [LocalDate.of(2016, 1, 3), WeekFields.ISO.weekBasedYear(), 2016, LocalDate.of(2017, 1, 1)],
+                [LocalDate.of(2004, 12, 31), WeekFields.ISO.weekBasedYear(), 2009, LocalDate.of(2010, 1, 1)],
+            ];
+
+            it('adjustInto', () => {
+                dataProviderTest(data, (localDate, field, newValue, expectedValue) => {
+                    assertEquals(field.adjustInto(localDate, newValue), expectedValue);
+                }, false);
+            });
         });
+
+        /*describe.skip('resolve', () => {
+                // resolve is currently unused in DateTimeBuilder, so we cannot really test it
+                // we would need DateTimeBuilder exported from js-joda... for now, skip this
+
+                // get fieldValues from DateTimeBuilder
+                const builder = new DateTimeBuilder();
+                builder.chrono = IsoChronology.INSTANCE;
+                builder._addFieldValue(ChronoField.YEAR, 2017);
+                builder._addFieldValue(ChronoField.MONTH_OF_YEAR, 1);
+                builder._addFieldValue(ChronoField.DAY_OF_MONTH, 1);
+                const data = [
+                    // [builder.fieldValues, LocalDate.of(2017, 1, 1), ResolverStyle.STRICT, {}],
+                ];
+
+                it('resolve', () => {
+                    dataProviderTest(data, (fieldValues, temporal, resolverStyle, expectedValue) => {
+                        assertEquals(WeekFields.ISO.resolve(fieldValues, temporal, resolverStyle), expectedValue);
+                    }, false);
+                });
+            });*/
     });
-
-    /*describe.skip('resolve', () => {
-        // resolve is currently unused in DateTimeBuilder, so we cannot really test it
-        // we would need DateTimeBuilder exported from js-joda... for now, skip this
-
-        // get fieldValues from DateTimeBuilder
-        const builder = new DateTimeBuilder();
-        builder.chrono = IsoChronology.INSTANCE;
-        builder._addFieldValue(ChronoField.YEAR, 2017);
-        builder._addFieldValue(ChronoField.MONTH_OF_YEAR, 1);
-        builder._addFieldValue(ChronoField.DAY_OF_MONTH, 1);
-        const data = [
-            // [builder.fieldValues, LocalDate.of(2017, 1, 1), ResolverStyle.STRICT, {}],
-        ];
-
-        it('resolve', () => {
-            dataProviderTest(data, (fieldValues, temporal, resolverStyle, expectedValue) => {
-                assertEquals(WeekFields.ISO.resolve(fieldValues, temporal, resolverStyle), expectedValue);
-            }, false);
-        });
-    });*/
 });
