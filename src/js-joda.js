@@ -54,6 +54,7 @@ export { TemporalQuery } from './temporal/TemporalQuery';
 export { TemporalUnit } from './temporal/TemporalUnit';
 export { ValueRange } from './temporal/ValueRange';
 
+export { DateTimeBuilder } from './format/DateTimeBuilder';
 export { DateTimeFormatter } from './format/DateTimeFormatter';
 export { DateTimeFormatterBuilder } from './format/DateTimeFormatterBuilder';
 export { DecimalStyle } from './format/DecimalStyle';
@@ -79,6 +80,7 @@ import * as assert from './assert';
 
 export const _ = {
     assert,
+    DateTimeBuilder,
     DateTimeParseContext,
     DateTimePrintContext,
     MathUtil,
