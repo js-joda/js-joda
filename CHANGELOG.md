@@ -3,6 +3,16 @@ Changelog
 
 ### 1.6.2 (next)
 
+#### public API
+
+ * improve typescript definition (see PR #188)
+
+#### internal API
+
+ * add `DateTimeBuilder` to internal API
+
+#### dependency updates
+
 ### 1.6.1
 
 #### dependency updates
