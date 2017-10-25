@@ -4,6 +4,7 @@ node_modules
 # npm
 npm-debug.log
 yarn.lock
+package-lock.json
 
 # build output
 build
@@ -14,5 +15,5 @@ tmp
 .idea
 *.iml
 
-
+*~
 

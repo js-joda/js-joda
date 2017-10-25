@@ -12,10 +12,12 @@ esdoc.json
 karma.conf.js
 webpack.config.js
 .*
+*~
 
 # build output
 build
 yarn.lock
+package-lock.json
 
 # Ide
 .idea
