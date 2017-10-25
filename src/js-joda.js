@@ -72,6 +72,7 @@ export const use = bindUse(exports);
 // private/internal exports, e.g. for use in plugins
 import { MathUtil } from './MathUtil';
 import { StringUtil } from './StringUtil';
+import { DateTimeBuilder } from './format/DateTimeBuilder';
 import { DateTimeParseContext } from './format/DateTimeParseContext';
 import { DateTimePrintContext } from './format/DateTimePrintContext';
 import { StringBuilder } from './format/StringBuilder';
@@ -79,6 +80,7 @@ import * as assert from './assert';
 
 export const _ = {
     assert,
+    DateTimeBuilder,
     DateTimeParseContext,
     DateTimePrintContext,
     MathUtil,
