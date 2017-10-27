@@ -6,13 +6,17 @@
 import { expect } from 'chai';
 
 import {
+    _ as jodaInternal,
     ChronoField,
     ChronoUnit,
     DayOfWeek,
+    IllegalArgumentException,
     IllegalStateException,
+    IsoChronology,
     IsoFields,
     LocalDate,
     Month,
+    ResolverStyle,
     ValueRange,
 } from 'js-joda';
 
@@ -21,6 +25,10 @@ import Locale from '../../src/Locale';
 import { ComputedDayOfField, WeekFields } from '../../src/temporal/WeekFields';
 
 import { assertEquals, dataProviderTest } from '../testUtils';
+
+const {
+    DateTimeBuilder,
+} = jodaInternal;
 
 describe('js-joda-locale WeekFields', () => {
     const data = [
@@ -50,6 +58,15 @@ describe('js-joda-locale WeekFields', () => {
         expect(() => {
             LocalDate.of(2017, 1, 1).get(cdf);
         }).to.throw(IllegalStateException);
+    });
+
+    it('throws exception for wrong minimalDaysInFirstWeek', () => {
+        expect(() => {
+            WeekFields.of(DayOfWeek.MONDAY, 0);
+        }).to.throw(IllegalArgumentException);
+        expect(() => {
+            WeekFields.of(DayOfWeek.MONDAY, 8);
+        }).to.throw(IllegalArgumentException);
     });
 
     it('equals', () => {
@@ -99,6 +116,13 @@ describe('js-joda-locale WeekFields', () => {
             }, false);
         });
 
+        it('rangeRefinedBy throws for invalid rangeUnit', () => {
+            const cdf = new ComputedDayOfField('Test', WeekFields.of(DayOfWeek.MONDAY, 7), ChronoUnit.WEEKS, ChronoUnit.HOURS, ChronoField.HOUR_OF_DAY.range());
+            expect(() => {
+                cdf.rangeRefinedBy(LocalDate.of(2017, 1, 1));
+            }).to.throw(IllegalStateException);
+        });
+
         describe('adjustInto', () => {
             const data = [
                 [LocalDate.of(2017, 1, 1), WeekFields.ISO.dayOfWeek(), 1, LocalDate.of(2016, 12, 26)],
@@ -128,25 +152,67 @@ describe('js-joda-locale WeekFields', () => {
             });
         });
 
-        /*describe.skip('resolve', () => {
-                // resolve is currently unused in DateTimeBuilder, so we cannot really test it
-                // we would need DateTimeBuilder exported from js-joda... for now, skip this
-
-                // get fieldValues from DateTimeBuilder
+        describe('resolve', () => {
+            const builder = () => {
+                // create fieldValues from DateTimeBuilder
                 const builder = new DateTimeBuilder();
                 builder.chrono = IsoChronology.INSTANCE;
+                builder._addFieldValue(WeekFields.ISO.weekBasedYear(), 2017);
                 builder._addFieldValue(ChronoField.YEAR, 2017);
                 builder._addFieldValue(ChronoField.MONTH_OF_YEAR, 1);
-                builder._addFieldValue(ChronoField.DAY_OF_MONTH, 1);
-                const data = [
-                    // [builder.fieldValues, LocalDate.of(2017, 1, 1), ResolverStyle.STRICT, {}],
-                ];
+                builder._addFieldValue(ChronoField.DAY_OF_MONTH, 2);
+                builder._addFieldValue(ChronoField.DAY_OF_WEEK, 1);
+                builder._addFieldValue(WeekFields.ISO.dayOfWeek(), 1);
+                builder._addFieldValue(WeekFields.ISO.weekOfMonth(), 1);
+                builder._addFieldValue(WeekFields.ISO.weekOfYear(), 1);
+                builder._addFieldValue(WeekFields.ISO.weekOfWeekBasedYear(), 1);
+                builder._addFieldValue(WeekFields.ISO.weekBasedYear(), 2017);
+                return builder;
+            };
 
-                it('resolve', () => {
-                    dataProviderTest(data, (fieldValues, temporal, resolverStyle, expectedValue) => {
-                        assertEquals(WeekFields.ISO.resolve(fieldValues, temporal, resolverStyle), expectedValue);
-                    }, false);
-                });
-            });*/
+            const emptyBuilder = () => {
+                const emptyBuilder = new DateTimeBuilder();
+                emptyBuilder.chrono = IsoChronology.INSTANCE;
+                return emptyBuilder;
+            };
+
+            const dayOfWeekBuilder = () => {
+                const dayOfWeekBuilder = new DateTimeBuilder();
+                dayOfWeekBuilder.chrono = IsoChronology.INSTANCE;
+                dayOfWeekBuilder._addFieldValue(ChronoField.DAY_OF_WEEK, 1);
+                return dayOfWeekBuilder;
+            };
+
+            const data = [
+                [WeekFields.ISO.weekOfYear(), emptyBuilder().fieldValues, LocalDate.of(2017, 1, 1), ResolverStyle.STRICT, null],
+                [WeekFields.ISO.weekBasedYear(), dayOfWeekBuilder().fieldValues, LocalDate.of(2017, 1, 1), ResolverStyle.STRICT, null],
+                [WeekFields.ISO.dayOfWeek(), builder().fieldValues, LocalDate.of(2017, 1, 1), ResolverStyle.STRICT, 1],
+                [WeekFields.ISO.weekOfMonth(), builder().fieldValues, LocalDate.of(2017, 1, 1), ResolverStyle.STRICT, null],
+                [WeekFields.ISO.weekOfMonth(), builder().fieldValues, LocalDate.of(2017, 1, 1), ResolverStyle.LENIENT, null],
+                [WeekFields.ISO.weekOfYear(), builder().fieldValues, LocalDate.of(2017, 1, 1), ResolverStyle.STRICT, null],
+                [WeekFields.ISO.weekOfYear(), builder().fieldValues, LocalDate.of(2017, 1, 1), ResolverStyle.LENIENT, null],
+                [WeekFields.ISO.weekBasedYear(), builder().fieldValues, LocalDate.of(2017, 1, 1), ResolverStyle.STRICT, null],
+                [WeekFields.ISO.weekBasedYear(), builder().fieldValues, LocalDate.of(2017, 1, 1), ResolverStyle.LENIENT, null],
+            ];
+
+            const dataException = [
+                [WeekFields.ISO.weekOfWeekBasedYear(), builder().fieldValues, LocalDate.of(2017, 1, 1), ResolverStyle.STRICT, 1],
+            ];
+
+            it('resolve', () => {
+                dataProviderTest(data, (field, fieldValues, temporal, resolverStyle, expectedValue) => {
+                    field.resolve(fieldValues, temporal, resolverStyle);
+                    assertEquals(fieldValues.get(field), expectedValue);
+                }, false);
+            });
+
+            it('resolve throws', () => {
+                dataProviderTest(dataException, (field, fieldValues, temporal, resolverStyle) => {
+                    expect(() => {
+                        field.resolve(fieldValues, temporal, resolverStyle);
+                    }).to.throw();
+                }, false);
+            });
+        });
     });
 });

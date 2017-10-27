@@ -5,6 +5,7 @@
 
 import {
     _ as jodaInternal,
+    DateTimeException,
     DayOfWeek,
     ChronoField,
     ChronoUnit,
@@ -13,6 +14,7 @@ import {
     IsoChronology,
     IsoFields,
     LocalDate,
+    ResolverStyle,
     ValueRange,
     Year
 } from 'js-joda';
@@ -255,7 +257,6 @@ export class ComputedDayOfField {
         return temporal.plus(delta, this._baseUnit);
     }
 
-    /* phueper: currently unused/untested, might be needed by DateTimeBuilder.resolveFields??
     resolve(fieldValues, partialTemporal, resolverStyle) {
         const sow = this._weekDef.firstDayOfWeek().value();
         if (this._rangeUnit === ChronoUnit.WEEKS) {  // day-of-week
@@ -271,25 +272,25 @@ export class ComputedDayOfField {
 
         // week-based-year
         if (this._rangeUnit === ChronoUnit.FOREVER) {
-            if (fieldValues.containsKey(this._weekDef.weekOfWeekBasedYear) === false) {
+            if (fieldValues.containsKey(this._weekDef.weekOfWeekBasedYear()) === false) {
                 return null;
             }
-            const chrono = Chronology.from(partialTemporal);  // defaults to ISO
+            // const chrono = IsoChronology.INSTANCE; //TODO: Chronology.from(partialTemporal);  // defaults to ISO
             const isoDow = ChronoField.DAY_OF_WEEK.checkValidIntValue(fieldValues.get(ChronoField.DAY_OF_WEEK));
             const dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
             const wby = this.range().checkValidIntValue(fieldValues.get(this), this);
             let date;
             let days;
             if (resolverStyle === ResolverStyle.LENIENT) {
-                date = chrono.date(wby, 1, this._weekDef.minimalDaysInFirstWeek());
-                const wowby = fieldValues.get(this._weekDef.weekOfWeekBasedYear);
+                date = LocalDate.of(wby, 1, this._weekDef.minimalDaysInFirstWeek()); //TODO: chrono.date(wby, 1, this._weekDef.minimalDaysInFirstWeek());
+                const wowby = fieldValues.get(this._weekDef.weekOfWeekBasedYear());
                 const dateDow = this._localizedDayOfWeek(date, sow);
                 const weeks = wowby - this._localizedWeekOfYear(date, dateDow);
                 days = weeks * 7 + (dow - dateDow);
             } else {
-                date = chrono.date(wby, 1, this._weekDef.minimalDaysInFirstWeek());
-                const wowby = this._weekDef.weekOfWeekBasedYear.range().checkValidIntValue(
-                    fieldValues.get(this._weekDef.weekOfWeekBasedYear), this._weekDef.weekOfWeekBasedYear);
+                date = LocalDate.of(wby, 1, this._weekDef.minimalDaysInFirstWeek()); //TODO: chrono.date(wby, 1, this._weekDef.minimalDaysInFirstWeek());
+                const wowby = this._weekDef.weekOfWeekBasedYear().range().checkValidIntValue(
+                    fieldValues.get(this._weekDef.weekOfWeekBasedYear()), this._weekDef.weekOfWeekBasedYear);
                 const dateDow = this._localizedDayOfWeek(date, sow);
                 const weeks = wowby - this._localizedWeekOfYear(date, dateDow);
                 days = weeks * 7 + (dow - dateDow);
@@ -301,7 +302,7 @@ export class ComputedDayOfField {
                 }
             }
             fieldValues.remove(this);
-            fieldValues.remove(this._weekDef.weekOfWeekBasedYear);
+            fieldValues.remove(this._weekDef.weekOfWeekBasedYear());
             fieldValues.remove(ChronoField.DAY_OF_WEEK);
             return date;
         }
@@ -312,7 +313,7 @@ export class ComputedDayOfField {
         const isoDow = ChronoField.DAY_OF_WEEK.checkValidIntValue(fieldValues.get(ChronoField.DAY_OF_WEEK));
         const dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
         const year = ChronoField.YEAR.checkValidIntValue(fieldValues.get(ChronoField.YEAR));
-        const chrono = Chronology.from(partialTemporal);  // defaults to ISO
+        // const chrono = IsoChronology.INSTANCE; //TODO: Chronology.from(partialTemporal);  // defaults to ISO
         if (this._rangeUnit === ChronoUnit.MONTHS) {  // week-of-month
             if (fieldValues.containsKey(ChronoField.MONTH_OF_YEAR) === false) {
                 return null;
@@ -322,14 +323,14 @@ export class ComputedDayOfField {
             let days;
             if (resolverStyle === ResolverStyle.LENIENT) {
                 const month = fieldValues.get(ChronoField.MONTH_OF_YEAR);
-                date = chrono.date(year, 1, 1);
+                date = LocalDate.of(year, 1, 1); // TODO: chrono.date(year, 1, 1);
                 date = date.plus(month - 1, ChronoUnit.MONTHS);
                 const dateDow = this._localizedDayOfWeek(date, sow);
                 const weeks = value - this._localizedWeekOfMonth(date, dateDow);
                 days = weeks * 7 + (dow - dateDow);
             } else {
                 const month = ChronoField.MONTH_OF_YEAR.checkValidIntValue(fieldValues.get(ChronoField.MONTH_OF_YEAR));
-                date = chrono.date(year, month, 8);
+                date = LocalDate.of(year, month, 8); // TODO: chrono.date(year, month, 8);
                 const dateDow = this._localizedDayOfWeek(date, sow);
                 const wom = this._range.checkValidIntValue(value, this);
                 const weeks = wom - this._localizedWeekOfMonth(date, dateDow);
@@ -348,7 +349,7 @@ export class ComputedDayOfField {
             return date;
         } else if (this._rangeUnit === ChronoUnit.YEARS) {  // week-of-year
             const value = fieldValues.remove(this);
-            let date = chrono.date(year, 1, 1);
+            let date = LocalDate.of(year, 1, 1); // TODO: chrono.date(year, 1, 1);
             let days;
             if (resolverStyle === ResolverStyle.LENIENT) {
                 const dateDow = this._localizedDayOfWeek(date, sow);
@@ -374,7 +375,6 @@ export class ComputedDayOfField {
             throw new IllegalStateException('unreachable');
         }
     }
-*/
 
     //-----------------------------------------------------------------------
     name() {
