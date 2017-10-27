@@ -41,7 +41,7 @@
   "peerDependencies": {
     "cldr-data": "^31.0.2",
     "cldrjs": "^0.5.0",
-    "js-joda": "^1.6.1",
+    "js-joda": "^1.6.2",
     "js-joda-timezone": "^1.1.5"
   },
   "devDependencies": {
@@ -59,7 +59,7 @@
     "esdoc": "^1.0.3",
     "eslint": "^4.9.0",
     "eslint-config-js-joda": "^1.0.0",
-    "js-joda": "^1.6.1",
+    "js-joda": "^1.6.2",
     "js-joda-timezone": "^1.1.5",
     "karma": "^1.7.1",
     "karma-chai-plugins": "^0.9.0",
@@ -71,7 +71,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.5",
     "mocha": "^4.0.1",
-    "nyc": "^11.2.1",
+    "nyc": "^11.3.0",
     "phantomjs-prebuilt": "^2.1.15",
     "requirejs": "^2.3.5",
     "requirejs-json": "0.0.3",
