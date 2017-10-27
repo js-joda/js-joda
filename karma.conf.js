@@ -82,6 +82,7 @@ module.exports = function (config) {
                     path.resolve(__dirname, 'node_modules/cldr-data/main/en'),
                     path.resolve(__dirname, 'node_modules/cldr-data/main/fr'),
                     path.resolve(__dirname, 'node_modules/cldr-data/supplemental'),
+                    path.resolve(__dirname, 'node_modules/cldr-data/availableLocales.json'),
                 ],
             }
         });
