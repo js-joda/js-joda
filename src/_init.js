@@ -9,6 +9,7 @@ import { _init as weekFieldsInit } from './temporal/WeekFields';
 let isInit = false;
 
 function init() {
+    /* istanbul ignore if */
     if (isInit) {
         return;
     }

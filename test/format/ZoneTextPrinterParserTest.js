@@ -93,6 +93,13 @@ describe('js-joda-locale CldrZoneTextPrinterParser', () => {
             });
         }).timeout(20000); // longer timeout, 2 seconds are not enough :/
 
+        it('test_parse_non_zone', () => {
+            const ztpp = new CldrZoneTextPrinterParser(TextStyle.FULL);
+            const parseContext = new DateTimeParseContext(Locale.US, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
+            const position = ztpp.parse(parseContext, 'non zone text', 0);
+            expect(position).to.eql(-1);
+        });
+
         // these take forever (> 1 minute each ... so we skip them by default
         describe.skip('print / parse all available zones', () => {
             // the following tests just make sure that we can print and parse all zones that js-joda-timezone provides

@@ -28,11 +28,12 @@ export default class LocalizedOffsetPrinterParser {
     }
 
     textStyle() {
-        return this.textStyle;
+        return this._textStyle;
     }
 
     print(context, buf) {
         const offsetSecs = context.getValue(ChronoField.OFFSET_SECONDS);
+        /* istanbul ignore if */ // shouldn't happen... getValue throws for unsupported fields?
         if (offsetSecs == null) {
             return false;
         }
@@ -75,6 +76,7 @@ export default class LocalizedOffsetPrinterParser {
             return context.setParsedField(ChronoField.OFFSET_SECONDS, 0, position, position);
         }
         const negative = (sign === '-' ? -1 : 1);
+        /* istanbul ignore if */ // cannot happen, already checked before
         if (position === end) {
             return ~position;
         }

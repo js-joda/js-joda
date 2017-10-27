@@ -11,10 +11,6 @@ import jodaLocale from '../../src/plug';
 const { DateTimeFormatter, Locale } = joda.use(jodaLocale);
 
 describe('LocaleDateTimeFormatter', () => {
-    before('use', () => {
-        joda.use(jodaLocale);
-    });
-
     describe('withLocale', () => {
 
         it('creates a new DateTimeFormatter with the given locale', () => {

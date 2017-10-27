@@ -86,6 +86,7 @@ export default class CldrZoneTextPrinterParser {
         //see http://www.unicode.org/reports/tr35/tr35-dates.html#Time_Zone_Names
 
         const zone = context.getValueQuery(TemporalQueries.zoneId());
+        /* istanbul ignore if */ // shouldn't happen... getValueQuery throws before returning null
         if (zone == null) {
             return false;
         }
