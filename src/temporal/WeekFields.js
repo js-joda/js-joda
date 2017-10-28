@@ -587,7 +587,7 @@ export class WeekFields {
     static ofLocale(locale) {
         requireNonNull(locale, 'locale');
 
-        Cldr.load(cldrData('supplemental/weekData'));
+        Cldr.load(cldrData('supplemental/weekData.json'));
         const country = locale.country() ? locale.country() : '001'; // 001 is world region
         const cldr = new Cldr(locale.localeString());
         const weekData = cldr.get('supplemental/weekData');
@@ -656,7 +656,7 @@ export class WeekFields {
         this._weekOfYear = ComputedDayOfField.ofWeekOfYearField(this);
         this._weekOfWeekBasedYear = ComputedDayOfField.ofWeekOfWeekBasedYearField(this);
         this._weekBasedYear = ComputedDayOfField.ofWeekBasedYearField(this);
-        Cldr.load(cldrData('supplemental/likelySubtags'));
+        Cldr.load(cldrData('supplemental/likelySubtags.json'));
     }
 
     //-----------------------------------------------------------------------

@@ -17,7 +17,7 @@
         paths: {
 
             // Unicode CLDR JSON data.
-            cldrData: "../node_modules/cldr-data",
+            'cldr-data': "../node_modules/cldr-data",
 
             // require.js plugin we'll use to fetch CLDR JSON content.
             json: "../node_modules/requirejs-json/json",
@@ -40,21 +40,21 @@
      */
     define('cldr-data', [
         // CLDR content, all files that are needed must be required here and can then be dynamically required below
-        "json!cldrData/supplemental/likelySubtags.json",
-        "json!cldrData/supplemental/metaZones.json",
-        "json!cldrData/supplemental/weekData.json",
-        "json!cldrData/main/en/ca-gregorian.json",
-        "json!cldrData/main/en/timeZoneNames.json",
-        "json!cldrData/main/en-GB/ca-gregorian.json",
-        "json!cldrData/main/en-GB/timeZoneNames.json",
-        "json!cldrData/main/de/ca-gregorian.json",
-        "json!cldrData/main/de/timeZoneNames.json",
-        "json!cldrData/main/fr/ca-gregorian.json",
-        "json!cldrData/main/fr/timeZoneNames.json",
+        "json!cldr-data/supplemental/likelySubtags.json",
+        "json!cldr-data/supplemental/metaZones.json",
+        "json!cldr-data/supplemental/weekData.json",
+        "json!cldr-data/main/en/ca-gregorian.json",
+        "json!cldr-data/main/en/timeZoneNames.json",
+        "json!cldr-data/main/en-GB/ca-gregorian.json",
+        "json!cldr-data/main/en-GB/timeZoneNames.json",
+        "json!cldr-data/main/de/ca-gregorian.json",
+        "json!cldr-data/main/de/timeZoneNames.json",
+        "json!cldr-data/main/fr/ca-gregorian.json",
+        "json!cldr-data/main/fr/timeZoneNames.json",
     ], function (
     ){
         return function(path) {
-            return (require('json!cldrData/' + path + '.json'));
+            return (require('json!cldr-data/' + path));
         }
     });
     require([

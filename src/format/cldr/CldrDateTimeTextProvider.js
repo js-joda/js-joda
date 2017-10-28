@@ -21,12 +21,12 @@ export default class CldrDateTimeTextProvider {
 
     constructor() {
         this._cache = {};
-        Cldr.load(cldrData('supplemental/likelySubtags'));
+        Cldr.load(cldrData('supplemental/likelySubtags.json'));
     }
 
     //-----------------------------------------------------------------------
     getAvailableLocales() {
-        return cldrData('availableLocales').availableLocales;
+        return cldrData('availableLocales.json').availableLocales;
     }
 
     //-----------------------------------------------------------------------
@@ -58,7 +58,7 @@ export default class CldrDateTimeTextProvider {
     }
 
     _createStore(field, locale) {
-        Cldr.load(cldrData(`main/${locale.localeString()}/ca-gregorian`));
+        Cldr.load(cldrData(`main/${locale.localeString()}/ca-gregorian.json`));
         const cldr = new Cldr(locale.localeString());
         if (field === ChronoField.MONTH_OF_YEAR) {
             const monthsData = cldr.main('dates/calendars/gregorian/months/format');

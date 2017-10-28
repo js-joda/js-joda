@@ -35,8 +35,8 @@ export default class CldrZoneTextPrinterParser {
         requireNonNull(textStyle, 'textStyle');
         requireInstance(textStyle, TextStyle, 'textStyle');
         this._textStyle = textStyle;
-        Cldr.load(cldrData('supplemental/likelySubtags'));
-        Cldr.load(cldrData('supplemental/metaZones'));
+        Cldr.load(cldrData('supplemental/likelySubtags.json'));
+        Cldr.load(cldrData('supplemental/metaZones.json'));
     }
 
     _resolveZoneIdText(cldr, zoneId, style, type, mapZones) {
@@ -105,7 +105,7 @@ export default class CldrZoneTextPrinterParser {
         }*/
         const tzType = hasDaylightSupport ? (daylight ? 'daylight' : 'standard') : 'generic';
         const tzstyle = (this._textStyle.asNormal() === TextStyle.FULL ? 'long' : 'short');
-        Cldr.load(cldrData(`main/${context.locale().localeString()}/timeZoneNames`));
+        Cldr.load(cldrData(`main/${context.locale().localeString()}/timeZoneNames.json`));
         const cldr = new Cldr(context.locale().localeString());
         const mapZones = {};
 
@@ -130,7 +130,7 @@ export default class CldrZoneTextPrinterParser {
 
     parse(context, text, position) {
         const ids = {};
-        Cldr.load(cldrData(`main/${context.locale().localeString()}/timeZoneNames`));
+        Cldr.load(cldrData(`main/${context.locale().localeString()}/timeZoneNames.json`));
         const cldr = new Cldr(context.locale().localeString());
         const mapZones = {};
 
