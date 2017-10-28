@@ -65,7 +65,7 @@ module.exports = function (config) {
     // cldr-data loader that just requires the cldr-data files
     webpackConfig.resolve = {
         alias: {
-            'cldr-data$': path.resolve(__dirname, 'test/utils/karma_cldrData.js')
+            'cldr-data$': path.resolve(__dirname, 'test/utils/karma_cldrData.js'),
         }
     };
     // for cldr-data, we only want to include needed locales from main and supplemental subdirs
@@ -76,7 +76,7 @@ module.exports = function (config) {
             resource: {
                 // don't load everything in cldr-data
                 test: path.resolve(__dirname, 'node_modules/cldr-data'),
-                // except the actual data we need (supplemental and de, en, fr locales from main)
+                // except the actual data we need (supplemental, availableLocales, and de, en, fr locales from main)
                 exclude: [
                     path.resolve(__dirname, 'node_modules/cldr-data/main/de'),
                     path.resolve(__dirname, 'node_modules/cldr-data/main/en'),
