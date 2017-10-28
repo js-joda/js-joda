@@ -71,6 +71,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.5",
     "mocha": "^4.0.1",
+    "null-loader": "^0.1.1",
     "nyc": "^11.3.0",
     "phantomjs-prebuilt": "^2.1.15",
     "requirejs": "^2.3.5",
