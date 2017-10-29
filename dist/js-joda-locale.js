@@ -12,7 +12,7 @@
 		exports["JSJodaLocale"] = factory(require("js-joda"), require("cldr-data"), require("cldrjs"));
 	else
 		root["JSJodaLocale"] = factory(root["JSJoda"], root["cldrData"], root["Cldr"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -75,7 +75,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -86,6 +86,18 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -154,7 +166,7 @@ var Locale = function () {
             if (!(other instanceof Locale)) {
                 return false;
             }
-            return this.localeString().equals(other.localeString());
+            return this.localeString() === other.localeString();
         }
     }]);
 
@@ -172,18 +184,6 @@ function _init() {
     Locale.GERMAN = new Locale('de');
     Locale.GERMANY = new Locale('de', 'DE', 'de');
 }
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
 
 /***/ }),
 /* 4 */
@@ -269,10 +269,591 @@ var LocaleStore = exports.LocaleStore = function () {
 
 
 Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.WeekFields = exports.ComputedDayOfField = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+
+exports._init = _init;
+
+var _jsJoda = __webpack_require__(0);
+
+var _cldrData = __webpack_require__(1);
+
+var _cldrData2 = _interopRequireDefault(_cldrData);
+
+var _cldrjs = __webpack_require__(2);
+
+var _cldrjs2 = _interopRequireDefault(_cldrjs);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var MathUtil = _jsJoda._.MathUtil,
+    _jodaInternal$assert = _jsJoda._.assert,
+    requireNonNull = _jodaInternal$assert.requireNonNull,
+    requireInstance = _jodaInternal$assert.requireInstance;
+
+var DAY_OF_WEEK_RANGE = _jsJoda.ValueRange.of(1, 7);
+var WEEK_OF_MONTH_RANGE = _jsJoda.ValueRange.of(0, 1, 4, 6);
+var WEEK_OF_YEAR_RANGE = _jsJoda.ValueRange.of(0, 1, 52, 54);
+var WEEK_OF_WEEK_BASED_YEAR_RANGE = _jsJoda.ValueRange.of(1, 52, 53);
+var WEEK_BASED_YEAR_RANGE = _jsJoda.ChronoField.YEAR.range();
+
+var _weekDayMap = {
+    'mon': _jsJoda.DayOfWeek.MONDAY,
+    'tue': _jsJoda.DayOfWeek.TUESDAY,
+    'wed': _jsJoda.DayOfWeek.WEDNESDAY,
+    'thu': _jsJoda.DayOfWeek.THURSDAY,
+    'fri': _jsJoda.DayOfWeek.FRIDAY,
+    'sat': _jsJoda.DayOfWeek.SATURDAY,
+    'sun': _jsJoda.DayOfWeek.SUNDAY
+};
+
+var ComputedDayOfField = exports.ComputedDayOfField = function () {
+    _createClass(ComputedDayOfField, null, [{
+        key: 'ofDayOfWeekField',
+        value: function ofDayOfWeekField(weekDef) {
+            return new ComputedDayOfField('DayOfWeek', weekDef, _jsJoda.ChronoUnit.DAYS, _jsJoda.ChronoUnit.WEEKS, DAY_OF_WEEK_RANGE);
+        }
+    }, {
+        key: 'ofWeekOfMonthField',
+        value: function ofWeekOfMonthField(weekDef) {
+            return new ComputedDayOfField('WeekOfMonth', weekDef, _jsJoda.ChronoUnit.WEEKS, _jsJoda.ChronoUnit.MONTHS, WEEK_OF_MONTH_RANGE);
+        }
+    }, {
+        key: 'ofWeekOfYearField',
+        value: function ofWeekOfYearField(weekDef) {
+            return new ComputedDayOfField('WeekOfYear', weekDef, _jsJoda.ChronoUnit.WEEKS, _jsJoda.ChronoUnit.YEARS, WEEK_OF_YEAR_RANGE);
+        }
+    }, {
+        key: 'ofWeekOfWeekBasedYearField',
+        value: function ofWeekOfWeekBasedYearField(weekDef) {
+            return new ComputedDayOfField('WeekOfWeekBasedYear', weekDef, _jsJoda.ChronoUnit.WEEKS, _jsJoda.IsoFields.WEEK_BASED_YEARS, WEEK_OF_WEEK_BASED_YEAR_RANGE);
+        }
+    }, {
+        key: 'ofWeekBasedYearField',
+        value: function ofWeekBasedYearField(weekDef) {
+            return new ComputedDayOfField('WeekBasedYear', weekDef, _jsJoda.IsoFields.WEEK_BASED_YEARS, _jsJoda.ChronoUnit.FOREVER, WEEK_BASED_YEAR_RANGE);
+        }
+    }]);
+
+    function ComputedDayOfField(name, weekDef, baseUnit, rangeUnit, range) {
+        _classCallCheck(this, ComputedDayOfField);
+
+        this._name = name;
+        this._weekDef = weekDef;
+        this._baseUnit = baseUnit;
+        this._rangeUnit = rangeUnit;
+        this._range = range;
+    }
+
+    _createClass(ComputedDayOfField, [{
+        key: 'getFrom',
+        value: function getFrom(temporal) {
+            var sow = this._weekDef.firstDayOfWeek().value();
+            var dow = this._localizedDayOfWeek(temporal, sow);
+
+            if (this._rangeUnit === _jsJoda.ChronoUnit.WEEKS) {
+                return dow;
+            } else if (this._rangeUnit === _jsJoda.ChronoUnit.MONTHS) {
+                return this._localizedWeekOfMonth(temporal, dow);
+            } else if (this._rangeUnit === _jsJoda.ChronoUnit.YEARS) {
+                return this._localizedWeekOfYear(temporal, dow);
+            } else if (this._rangeUnit === _jsJoda.IsoFields.WEEK_BASED_YEARS) {
+                return this._localizedWOWBY(temporal);
+            } else if (this._rangeUnit === _jsJoda.ChronoUnit.FOREVER) {
+                return this._localizedWBY(temporal);
+            } else {
+                throw new _jsJoda.IllegalStateException('unreachable');
+            }
+        }
+    }, {
+        key: '_localizedDayOfWeek',
+        value: function _localizedDayOfWeek(temporal, sow) {
+            var isoDow = temporal.get(_jsJoda.ChronoField.DAY_OF_WEEK);
+            return MathUtil.floorMod(isoDow - sow, 7) + 1;
+        }
+    }, {
+        key: '_localizedWeekOfMonth',
+        value: function _localizedWeekOfMonth(temporal, dow) {
+            var dom = temporal.get(_jsJoda.ChronoField.DAY_OF_MONTH);
+            var offset = this._startOfWeekOffset(dom, dow);
+            return ComputedDayOfField._computeWeek(offset, dom);
+        }
+    }, {
+        key: '_localizedWeekOfYear',
+        value: function _localizedWeekOfYear(temporal, dow) {
+            var doy = temporal.get(_jsJoda.ChronoField.DAY_OF_YEAR);
+            var offset = this._startOfWeekOffset(doy, dow);
+            return ComputedDayOfField._computeWeek(offset, doy);
+        }
+    }, {
+        key: '_localizedWOWBY',
+        value: function _localizedWOWBY(temporal) {
+            var sow = this._weekDef.firstDayOfWeek().value();
+            var isoDow = temporal.get(_jsJoda.ChronoField.DAY_OF_WEEK);
+            var dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
+            var woy = this._localizedWeekOfYear(temporal, dow);
+            if (woy === 0) {
+                var previous = _jsJoda.LocalDate.from(temporal).minus(1, _jsJoda.ChronoUnit.WEEKS);
+                return this._localizedWeekOfYear(previous, dow) + 1;
+            } else if (woy >= 53) {
+                var offset = this._startOfWeekOffset(temporal.get(_jsJoda.ChronoField.DAY_OF_YEAR), dow);
+                var year = temporal.get(_jsJoda.ChronoField.YEAR);
+                var yearLen = _jsJoda.Year.isLeap(year) ? 366 : 365;
+                var weekIndexOfFirstWeekNextYear = ComputedDayOfField._computeWeek(offset, yearLen + this._weekDef.minimalDaysInFirstWeek());
+                if (woy >= weekIndexOfFirstWeekNextYear) {
+                    return woy - (weekIndexOfFirstWeekNextYear - 1);
+                }
+            }
+            return woy;
+        }
+    }, {
+        key: '_localizedWBY',
+        value: function _localizedWBY(temporal) {
+            var sow = this._weekDef.firstDayOfWeek().value();
+            var isoDow = temporal.get(_jsJoda.ChronoField.DAY_OF_WEEK);
+            var dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
+            var year = temporal.get(_jsJoda.ChronoField.YEAR);
+            var woy = this._localizedWeekOfYear(temporal, dow);
+            if (woy === 0) {
+                return year - 1;
+            } else if (woy < 53) {
+                return year;
+            }
+            var offset = this._startOfWeekOffset(temporal.get(_jsJoda.ChronoField.DAY_OF_YEAR), dow);
+            var yearLen = _jsJoda.Year.isLeap(year) ? 366 : 365;
+            var weekIndexOfFirstWeekNextYear = ComputedDayOfField._computeWeek(offset, yearLen + this._weekDef.minimalDaysInFirstWeek());
+            if (woy >= weekIndexOfFirstWeekNextYear) {
+                return year + 1;
+            }
+            return year;
+        }
+    }, {
+        key: '_startOfWeekOffset',
+        value: function _startOfWeekOffset(day, dow) {
+            var weekStart = MathUtil.floorMod(day - dow, 7);
+            var offset = -weekStart;
+            if (weekStart + 1 > this._weekDef.minimalDaysInFirstWeek()) {
+                offset = 7 - weekStart;
+            }
+            return offset;
+        }
+    }, {
+        key: 'adjustInto',
+        value: function adjustInto(temporal, newValue) {
+            var newVal = this._range.checkValidIntValue(newValue, this);
+            var currentVal = temporal.get(this);
+            if (newVal === currentVal) {
+                return temporal;
+            }
+            if (this._rangeUnit === _jsJoda.ChronoUnit.FOREVER) {
+                var baseWowby = temporal.get(this._weekDef.weekOfWeekBasedYear());
+                var diffWeeks = MathUtil.roundDown((newValue - currentVal) * 52.1775);
+                var result = temporal.plus(diffWeeks, _jsJoda.ChronoUnit.WEEKS);
+                if (result.get(this) > newVal) {
+                    var newWowby = result.get(this._weekDef.weekOfWeekBasedYear());
+                    result = result.minus(newWowby, _jsJoda.ChronoUnit.WEEKS);
+                } else {
+                    if (result.get(this) < newVal) {
+                        result = result.plus(2, _jsJoda.ChronoUnit.WEEKS);
+                    }
+
+                    var _newWowby = result.get(this._weekDef.weekOfWeekBasedYear());
+                    result = result.plus(baseWowby - _newWowby, _jsJoda.ChronoUnit.WEEKS);
+                    if (result.get(this) > newVal) {
+                        result = result.minus(1, _jsJoda.ChronoUnit.WEEKS);
+                    }
+                }
+                return result;
+            }
+
+            var delta = newVal - currentVal;
+            return temporal.plus(delta, this._baseUnit);
+        }
+    }, {
+        key: 'resolve',
+        value: function resolve(fieldValues, partialTemporal, resolverStyle) {
+            var sow = this._weekDef.firstDayOfWeek().value();
+            if (this._rangeUnit === _jsJoda.ChronoUnit.WEEKS) {
+                var value = fieldValues.remove(this);
+                var localDow = this._range.checkValidIntValue(value, this);
+                var _isoDow = MathUtil.floorMod(sow - 1 + (localDow - 1), 7) + 1;
+                fieldValues.put(_jsJoda.ChronoField.DAY_OF_WEEK, _isoDow);
+                return null;
+            }
+            if (fieldValues.containsKey(_jsJoda.ChronoField.DAY_OF_WEEK) === false) {
+                return null;
+            }
+
+            if (this._rangeUnit === _jsJoda.ChronoUnit.FOREVER) {
+                if (fieldValues.containsKey(this._weekDef.weekOfWeekBasedYear()) === false) {
+                    return null;
+                }
+
+                var _isoDow2 = _jsJoda.ChronoField.DAY_OF_WEEK.checkValidIntValue(fieldValues.get(_jsJoda.ChronoField.DAY_OF_WEEK));
+                var _dow = MathUtil.floorMod(_isoDow2 - sow, 7) + 1;
+                var wby = this.range().checkValidIntValue(fieldValues.get(this), this);
+                var date = void 0;
+                var days = void 0;
+                if (resolverStyle === _jsJoda.ResolverStyle.LENIENT) {
+                    date = _jsJoda.LocalDate.of(wby, 1, this._weekDef.minimalDaysInFirstWeek());
+                    var wowby = fieldValues.get(this._weekDef.weekOfWeekBasedYear());
+                    var dateDow = this._localizedDayOfWeek(date, sow);
+                    var weeks = wowby - this._localizedWeekOfYear(date, dateDow);
+                    days = weeks * 7 + (_dow - dateDow);
+                } else {
+                    date = _jsJoda.LocalDate.of(wby, 1, this._weekDef.minimalDaysInFirstWeek());
+                    var _wowby = this._weekDef.weekOfWeekBasedYear().range().checkValidIntValue(fieldValues.get(this._weekDef.weekOfWeekBasedYear()), this._weekDef.weekOfWeekBasedYear);
+                    var _dateDow = this._localizedDayOfWeek(date, sow);
+                    var _weeks = _wowby - this._localizedWeekOfYear(date, _dateDow);
+                    days = _weeks * 7 + (_dow - _dateDow);
+                }
+                date = date.plus(days, _jsJoda.ChronoUnit.DAYS);
+                if (resolverStyle === _jsJoda.ResolverStyle.STRICT) {
+                    if (date.getLong(this) !== fieldValues.get(this)) {
+                        throw new _jsJoda.DateTimeException('Strict mode rejected date parsed to a different year');
+                    }
+                }
+                fieldValues.remove(this);
+                fieldValues.remove(this._weekDef.weekOfWeekBasedYear());
+                fieldValues.remove(_jsJoda.ChronoField.DAY_OF_WEEK);
+                return date;
+            }
+
+            if (fieldValues.containsKey(_jsJoda.ChronoField.YEAR) === false) {
+                return null;
+            }
+            var isoDow = _jsJoda.ChronoField.DAY_OF_WEEK.checkValidIntValue(fieldValues.get(_jsJoda.ChronoField.DAY_OF_WEEK));
+            var dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
+            var year = _jsJoda.ChronoField.YEAR.checkValidIntValue(fieldValues.get(_jsJoda.ChronoField.YEAR));
+
+            if (this._rangeUnit === _jsJoda.ChronoUnit.MONTHS) {
+                if (fieldValues.containsKey(_jsJoda.ChronoField.MONTH_OF_YEAR) === false) {
+                    return null;
+                }
+                var _value = fieldValues.remove(this);
+                var _date = void 0;
+                var _days = void 0;
+                if (resolverStyle === _jsJoda.ResolverStyle.LENIENT) {
+                    var month = fieldValues.get(_jsJoda.ChronoField.MONTH_OF_YEAR);
+                    _date = _jsJoda.LocalDate.of(year, 1, 1);
+                    _date = _date.plus(month - 1, _jsJoda.ChronoUnit.MONTHS);
+                    var _dateDow2 = this._localizedDayOfWeek(_date, sow);
+                    var _weeks2 = _value - this._localizedWeekOfMonth(_date, _dateDow2);
+                    _days = _weeks2 * 7 + (dow - _dateDow2);
+                } else {
+                    var _month = _jsJoda.ChronoField.MONTH_OF_YEAR.checkValidIntValue(fieldValues.get(_jsJoda.ChronoField.MONTH_OF_YEAR));
+                    _date = _jsJoda.LocalDate.of(year, _month, 8);
+                    var _dateDow3 = this._localizedDayOfWeek(_date, sow);
+                    var wom = this._range.checkValidIntValue(_value, this);
+                    var _weeks3 = wom - this._localizedWeekOfMonth(_date, _dateDow3);
+                    _days = _weeks3 * 7 + (dow - _dateDow3);
+                }
+                _date = _date.plus(_days, _jsJoda.ChronoUnit.DAYS);
+                if (resolverStyle === _jsJoda.ResolverStyle.STRICT) {
+                    if (_date.getLong(_jsJoda.ChronoField.MONTH_OF_YEAR) !== fieldValues.get(_jsJoda.ChronoField.MONTH_OF_YEAR)) {
+                        throw new _jsJoda.DateTimeException('Strict mode rejected date parsed to a different month');
+                    }
+                }
+                fieldValues.remove(this);
+                fieldValues.remove(_jsJoda.ChronoField.YEAR);
+                fieldValues.remove(_jsJoda.ChronoField.MONTH_OF_YEAR);
+                fieldValues.remove(_jsJoda.ChronoField.DAY_OF_WEEK);
+                return _date;
+            } else if (this._rangeUnit === _jsJoda.ChronoUnit.YEARS) {
+                var _value2 = fieldValues.remove(this);
+                var _date2 = _jsJoda.LocalDate.of(year, 1, 1);
+                var _days2 = void 0;
+                if (resolverStyle === _jsJoda.ResolverStyle.LENIENT) {
+                    var _dateDow4 = this._localizedDayOfWeek(_date2, sow);
+                    var _weeks4 = _value2 - this._localizedWeekOfYear(_date2, _dateDow4);
+                    _days2 = _weeks4 * 7 + (dow - _dateDow4);
+                } else {
+                    var _dateDow5 = this._localizedDayOfWeek(_date2, sow);
+                    var woy = this._range.checkValidIntValue(_value2, this);
+                    var _weeks5 = woy - this._localizedWeekOfYear(_date2, _dateDow5);
+                    _days2 = _weeks5 * 7 + (dow - _dateDow5);
+                }
+                _date2 = _date2.plus(_days2, _jsJoda.ChronoUnit.DAYS);
+                if (resolverStyle === _jsJoda.ResolverStyle.STRICT) {
+                    if (_date2.getLong(_jsJoda.ChronoField.YEAR) !== fieldValues.get(_jsJoda.ChronoField.YEAR)) {
+                        throw new _jsJoda.DateTimeException('Strict mode rejected date parsed to a different year');
+                    }
+                }
+                fieldValues.remove(this);
+                fieldValues.remove(_jsJoda.ChronoField.YEAR);
+                fieldValues.remove(_jsJoda.ChronoField.DAY_OF_WEEK);
+                return _date2;
+            } else {
+                throw new _jsJoda.IllegalStateException('unreachable');
+            }
+        }
+    }, {
+        key: 'name',
+        value: function name() {
+            return this._name;
+        }
+    }, {
+        key: 'baseUnit',
+        value: function baseUnit() {
+            return this._baseUnit;
+        }
+    }, {
+        key: 'rangeUnit',
+        value: function rangeUnit() {
+            return this._rangeUnit;
+        }
+    }, {
+        key: 'range',
+        value: function range() {
+            return this._range;
+        }
+    }, {
+        key: 'isDateBased',
+        value: function isDateBased() {
+            return true;
+        }
+    }, {
+        key: 'isTimeBased',
+        value: function isTimeBased() {
+            return false;
+        }
+    }, {
+        key: 'isSupportedBy',
+        value: function isSupportedBy(temporal) {
+            if (temporal.isSupported(_jsJoda.ChronoField.DAY_OF_WEEK)) {
+                if (this._rangeUnit === _jsJoda.ChronoUnit.WEEKS) {
+                    return true;
+                } else if (this._rangeUnit === _jsJoda.ChronoUnit.MONTHS) {
+                    return temporal.isSupported(_jsJoda.ChronoField.DAY_OF_MONTH);
+                } else if (this._rangeUnit === _jsJoda.ChronoUnit.YEARS) {
+                    return temporal.isSupported(_jsJoda.ChronoField.DAY_OF_YEAR);
+                } else if (this._rangeUnit === _jsJoda.IsoFields.WEEK_BASED_YEARS) {
+                    return temporal.isSupported(_jsJoda.ChronoField.EPOCH_DAY);
+                } else if (this._rangeUnit === _jsJoda.ChronoUnit.FOREVER) {
+                    return temporal.isSupported(_jsJoda.ChronoField.EPOCH_DAY);
+                }
+            }
+            return false;
+        }
+    }, {
+        key: 'rangeRefinedBy',
+        value: function rangeRefinedBy(temporal) {
+            if (this._rangeUnit === _jsJoda.ChronoUnit.WEEKS) {
+                return this._range;
+            }
+
+            var field = null;
+            if (this._rangeUnit === _jsJoda.ChronoUnit.MONTHS) {
+                field = _jsJoda.ChronoField.DAY_OF_MONTH;
+            } else if (this._rangeUnit === _jsJoda.ChronoUnit.YEARS) {
+                field = _jsJoda.ChronoField.DAY_OF_YEAR;
+            } else if (this._rangeUnit === _jsJoda.IsoFields.WEEK_BASED_YEARS) {
+                return this._rangeWOWBY(temporal);
+            } else if (this._rangeUnit === _jsJoda.ChronoUnit.FOREVER) {
+                return temporal.range(_jsJoda.ChronoField.YEAR);
+            } else {
+                throw new _jsJoda.IllegalStateException('unreachable');
+            }
+
+            var sow = this._weekDef.firstDayOfWeek().value();
+            var isoDow = temporal.get(_jsJoda.ChronoField.DAY_OF_WEEK);
+            var dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
+
+            var offset = this._startOfWeekOffset(temporal.get(field), dow);
+            var fieldRange = temporal.range(field);
+            return _jsJoda.ValueRange.of(ComputedDayOfField._computeWeek(offset, fieldRange.minimum()), ComputedDayOfField._computeWeek(offset, fieldRange.maximum()));
+        }
+    }, {
+        key: '_rangeWOWBY',
+        value: function _rangeWOWBY(temporal) {
+            var sow = this._weekDef.firstDayOfWeek().value();
+            var isoDow = temporal.get(_jsJoda.ChronoField.DAY_OF_WEEK);
+            var dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
+            var woy = this._localizedWeekOfYear(temporal, dow);
+            if (woy === 0) {
+                return this._rangeWOWBY(_jsJoda.IsoChronology.INSTANCE.date(temporal).minus(2, _jsJoda.ChronoUnit.WEEKS));
+            }
+            var offset = this._startOfWeekOffset(temporal.get(_jsJoda.ChronoField.DAY_OF_YEAR), dow);
+            var year = temporal.get(_jsJoda.ChronoField.YEAR);
+            var yearLen = _jsJoda.Year.isLeap(year) ? 366 : 365;
+            var weekIndexOfFirstWeekNextYear = ComputedDayOfField._computeWeek(offset, yearLen + this._weekDef.minimalDaysInFirstWeek());
+            if (woy >= weekIndexOfFirstWeekNextYear) {
+                return this._rangeWOWBY(_jsJoda.IsoChronology.INSTANCE.date(temporal).plus(2, _jsJoda.ChronoUnit.WEEKS));
+            }
+            return _jsJoda.ValueRange.of(1, weekIndexOfFirstWeekNextYear - 1);
+        }
+    }, {
+        key: 'getDisplayName',
+        value: function getDisplayName(locale) {
+            requireNonNull(locale, 'locale');
+            if (this._rangeUnit === _jsJoda.ChronoUnit.YEARS) {
+                return 'Week';
+            }
+            return this.toString();
+        }
+    }, {
+        key: 'toString',
+        value: function toString() {
+            return this._name + '[' + this._weekDef.toString() + ']';
+        }
+    }], [{
+        key: '_computeWeek',
+        value: function _computeWeek(offset, day) {
+            return MathUtil.intDiv(7 + offset + (day - 1), 7);
+        }
+    }]);
+
+    return ComputedDayOfField;
+}();
+
+var WeekFieldsCache = new Map();
+
+var WeekFields = exports.WeekFields = function () {
+    _createClass(WeekFields, null, [{
+        key: 'of',
+        value: function of(firstDayOrLocale, minDays) {
+            if (minDays === undefined) {
+                return WeekFields.ofLocale(firstDayOrLocale);
+            } else {
+                return WeekFields.ofFirstDayOfWeekMinDays(firstDayOrLocale, minDays);
+            }
+        }
+    }, {
+        key: 'ofLocale',
+        value: function ofLocale(locale) {
+            requireNonNull(locale, 'locale');
+
+            _cldrjs2.default.load((0, _cldrData2.default)('supplemental/weekData.json'));
+            var country = locale.country() ? locale.country() : '001';
+            var cldr = new _cldrjs2.default(locale.localeString());
+            var weekData = cldr.get('supplemental/weekData');
+            var dow = _weekDayMap[weekData.firstDay[country]];
+            var minDays = weekData.minDays[country];
+            return WeekFields.ofFirstDayOfWeekMinDays(dow, minDays);
+        }
+    }, {
+        key: 'ofFirstDayOfWeekMinDays',
+        value: function ofFirstDayOfWeekMinDays(firstDayOfWeek, minimalDaysInFirstWeek) {
+            requireNonNull(firstDayOfWeek, 'firstDayOfWeek');
+            requireInstance(firstDayOfWeek, _jsJoda.DayOfWeek, 'firstDayOfWeek');
+            requireNonNull(minimalDaysInFirstWeek, 'minimalDaysInFirstWeek');
+            var key = firstDayOfWeek.toString() + minimalDaysInFirstWeek;
+            var rules = WeekFieldsCache.get(key);
+            if (rules == null) {
+                rules = new WeekFields(firstDayOfWeek, minimalDaysInFirstWeek);
+                WeekFieldsCache.set(key, rules);
+                rules = WeekFieldsCache.get(key);
+            }
+            return rules;
+        }
+    }]);
+
+    function WeekFields(firstDayOfWeek, minimalDaysInFirstWeek) {
+        _classCallCheck(this, WeekFields);
+
+        requireNonNull(firstDayOfWeek, 'firstDayOfWeek');
+        requireInstance(firstDayOfWeek, _jsJoda.DayOfWeek, 'firstDayOfWeek');
+        requireNonNull(minimalDaysInFirstWeek, 'minimalDaysInFirstWeek');
+        if (minimalDaysInFirstWeek < 1 || minimalDaysInFirstWeek > 7) {
+            throw new _jsJoda.IllegalArgumentException('Minimal number of days is invalid');
+        }
+        this._firstDayOfWeek = firstDayOfWeek;
+        this._minimalDays = minimalDaysInFirstWeek;
+        this._dayOfWeek = ComputedDayOfField.ofDayOfWeekField(this);
+        this._weekOfMonth = ComputedDayOfField.ofWeekOfMonthField(this);
+        this._weekOfYear = ComputedDayOfField.ofWeekOfYearField(this);
+        this._weekOfWeekBasedYear = ComputedDayOfField.ofWeekOfWeekBasedYearField(this);
+        this._weekBasedYear = ComputedDayOfField.ofWeekBasedYearField(this);
+        _cldrjs2.default.load((0, _cldrData2.default)('supplemental/likelySubtags.json'));
+    }
+
+    _createClass(WeekFields, [{
+        key: 'firstDayOfWeek',
+        value: function firstDayOfWeek() {
+            return this._firstDayOfWeek;
+        }
+    }, {
+        key: 'minimalDaysInFirstWeek',
+        value: function minimalDaysInFirstWeek() {
+            return this._minimalDays;
+        }
+    }, {
+        key: 'dayOfWeek',
+        value: function dayOfWeek() {
+            return this._dayOfWeek;
+        }
+    }, {
+        key: 'weekOfMonth',
+        value: function weekOfMonth() {
+            return this._weekOfMonth;
+        }
+    }, {
+        key: 'weekOfYear',
+        value: function weekOfYear() {
+            return this._weekOfYear;
+        }
+    }, {
+        key: 'weekOfWeekBasedYear',
+        value: function weekOfWeekBasedYear() {
+            return this._weekOfWeekBasedYear;
+        }
+    }, {
+        key: 'weekBasedYear',
+        value: function weekBasedYear() {
+            return this._weekBasedYear;
+        }
+    }, {
+        key: 'equals',
+        value: function equals(object) {
+            if (this === object) {
+                return true;
+            }
+            if (object instanceof WeekFields) {
+                return this.hashCode() === object.hashCode();
+            }
+            return false;
+        }
+    }, {
+        key: 'hashCode',
+        value: function hashCode() {
+            return this._firstDayOfWeek.ordinal() * 7 + this._minimalDays;
+        }
+    }, {
+        key: 'toString',
+        value: function toString() {
+            return 'WeekFields[' + this._firstDayOfWeek + ',' + this._minimalDays + ']';
+        }
+    }]);
+
+    return WeekFields;
+}();
+
+function _init() {
+    WeekFields.ISO = WeekFields.of(_jsJoda.DayOfWeek.MONDAY, 4);
+
+    WeekFields.SUNDAY_START = WeekFields.of(_jsJoda.DayOfWeek.SUNDAY, 1);
+}
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _plug = __webpack_require__(6);
+var _plug = __webpack_require__(7);
 
 var _plug2 = _interopRequireDefault(_plug);
 
@@ -286,7 +867,7 @@ exports.default = _plug2.default; /*
 module.exports = exports['default'];
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -312,7 +893,7 @@ exports.default = function (jsJoda) {
     jsJoda.Locale = _Locale2.default;
 };
 
-var _CldrDateTimeFormatterBuilder = __webpack_require__(7);
+var _CldrDateTimeFormatterBuilder = __webpack_require__(8);
 
 var _CldrDateTimeFormatterBuilder2 = _interopRequireDefault(_CldrDateTimeFormatterBuilder);
 
@@ -320,7 +901,7 @@ var _LocaleDateTimeFormatter = __webpack_require__(14);
 
 var _LocaleDateTimeFormatter2 = _interopRequireDefault(_LocaleDateTimeFormatter);
 
-var _Locale = __webpack_require__(1);
+var _Locale = __webpack_require__(3);
 
 var _Locale2 = _interopRequireDefault(_Locale);
 
@@ -334,7 +915,7 @@ module.exports = exports['default']; /*
                                       */
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -348,25 +929,25 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _jsJoda = __webpack_require__(0);
 
-var _TextPrinterParser = __webpack_require__(8);
+var _TextPrinterParser = __webpack_require__(9);
 
 var _TextPrinterParser2 = _interopRequireDefault(_TextPrinterParser);
 
-var _CldrDateTimeTextProvider = __webpack_require__(9);
+var _CldrDateTimeTextProvider = __webpack_require__(10);
 
 var _CldrDateTimeTextProvider2 = _interopRequireDefault(_CldrDateTimeTextProvider);
 
-var _CldrZoneTextPrinterParser = __webpack_require__(10);
+var _CldrZoneTextPrinterParser = __webpack_require__(11);
 
 var _CldrZoneTextPrinterParser2 = _interopRequireDefault(_CldrZoneTextPrinterParser);
 
 var _LocaleStore = __webpack_require__(4);
 
-var _LocalizedOffsetPrinterParser = __webpack_require__(11);
+var _LocalizedOffsetPrinterParser = __webpack_require__(12);
 
 var _LocalizedOffsetPrinterParser2 = _interopRequireDefault(_LocalizedOffsetPrinterParser);
 
-var _WeekFieldsPrinterParser = __webpack_require__(12);
+var _WeekFieldsPrinterParser = __webpack_require__(13);
 
 var _WeekFieldsPrinterParser2 = _interopRequireDefault(_WeekFieldsPrinterParser);
 
@@ -475,7 +1056,7 @@ exports.default = CldrDateTimeFormatterBuilder;
 module.exports = exports['default'];
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -602,7 +1183,7 @@ exports.default = TextPrinterParser;
 module.exports = exports['default'];
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -619,11 +1200,11 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _jsJoda = __webpack_require__(0);
 
-var _cldrData = __webpack_require__(2);
+var _cldrData = __webpack_require__(1);
 
 var _cldrData2 = _interopRequireDefault(_cldrData);
 
-var _cldrjs = __webpack_require__(3);
+var _cldrjs = __webpack_require__(2);
 
 var _cldrjs2 = _interopRequireDefault(_cldrjs);
 
@@ -638,13 +1219,13 @@ var CldrDateTimeTextProvider = function () {
         _classCallCheck(this, CldrDateTimeTextProvider);
 
         this._cache = {};
-        _cldrjs2.default.load((0, _cldrData2.default)('supplemental/likelySubtags'));
+        _cldrjs2.default.load((0, _cldrData2.default)('supplemental/likelySubtags.json'));
     }
 
     _createClass(CldrDateTimeTextProvider, [{
         key: 'getAvailableLocales',
         value: function getAvailableLocales() {
-            return (0, _cldrData2.default)('availableLocales').availableLocales;
+            return (0, _cldrData2.default)('availableLocales.json').availableLocales;
         }
     }, {
         key: 'getText',
@@ -678,7 +1259,7 @@ var CldrDateTimeTextProvider = function () {
     }, {
         key: '_createStore',
         value: function _createStore(field, locale) {
-            _cldrjs2.default.load((0, _cldrData2.default)('main/' + locale.localeString() + '/ca-gregorian'));
+            _cldrjs2.default.load((0, _cldrData2.default)('main/' + locale.localeString() + '/ca-gregorian.json'));
             var cldr = new _cldrjs2.default(locale.localeString());
             if (field === _jsJoda.ChronoField.MONTH_OF_YEAR) {
                 var monthsData = cldr.main('dates/calendars/gregorian/months/format');
@@ -836,6 +1417,7 @@ var CldrDateTimeTextProvider = function () {
         value: function _createLocaleStore(valueTextMap) {
             valueTextMap[_jsJoda.TextStyle.FULL_STANDALONE] = valueTextMap[_jsJoda.TextStyle.FULL];
             valueTextMap[_jsJoda.TextStyle.SHORT_STANDALONE] = valueTextMap[_jsJoda.TextStyle.SHORT];
+
             if (Object.keys(valueTextMap).includes(_jsJoda.TextStyle.NARROW) && !Object.keys(valueTextMap).includes(_jsJoda.TextStyle.NARROW_STANDALONE)) {
                 valueTextMap[_jsJoda.TextStyle.NARROW_STANDALONE] = valueTextMap[_jsJoda.TextStyle.NARROW];
             }
@@ -850,7 +1432,7 @@ exports.default = CldrDateTimeTextProvider;
 module.exports = exports['default'];
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -865,11 +1447,11 @@ var _createClass = function () { function defineProperties(target, props) { for 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       */
 
-var _cldrData = __webpack_require__(2);
+var _cldrData = __webpack_require__(1);
 
 var _cldrData2 = _interopRequireDefault(_cldrData);
 
-var _cldrjs = __webpack_require__(3);
+var _cldrjs = __webpack_require__(2);
 
 var _cldrjs2 = _interopRequireDefault(_cldrjs);
 
@@ -898,8 +1480,8 @@ var CldrZoneTextPrinterParser = function () {
         requireNonNull(textStyle, 'textStyle');
         requireInstance(textStyle, _jsJoda.TextStyle, 'textStyle');
         this._textStyle = textStyle;
-        _cldrjs2.default.load((0, _cldrData2.default)('supplemental/likelySubtags'));
-        _cldrjs2.default.load((0, _cldrData2.default)('supplemental/metaZones'));
+        _cldrjs2.default.load((0, _cldrData2.default)('supplemental/likelySubtags.json'));
+        _cldrjs2.default.load((0, _cldrData2.default)('supplemental/metaZones.json'));
     }
 
     _createClass(CldrZoneTextPrinterParser, [{
@@ -944,6 +1526,7 @@ var CldrZoneTextPrinterParser = function () {
         value: function print(context, buf) {
 
             var zone = context.getValueQuery(_jsJoda.TemporalQueries.zoneId());
+
             if (zone == null) {
                 return false;
             }
@@ -956,7 +1539,7 @@ var CldrZoneTextPrinterParser = function () {
 
             var tzType = hasDaylightSupport ? daylight ? 'daylight' : 'standard' : 'generic';
             var tzstyle = this._textStyle.asNormal() === _jsJoda.TextStyle.FULL ? 'long' : 'short';
-            _cldrjs2.default.load((0, _cldrData2.default)('main/' + context.locale().localeString() + '/timeZoneNames'));
+            _cldrjs2.default.load((0, _cldrData2.default)('main/' + context.locale().localeString() + '/timeZoneNames.json'));
             var cldr = new _cldrjs2.default(context.locale().localeString());
             var mapZones = {};
 
@@ -981,7 +1564,7 @@ var CldrZoneTextPrinterParser = function () {
         key: 'parse',
         value: function parse(context, text, position) {
             var ids = {};
-            _cldrjs2.default.load((0, _cldrData2.default)('main/' + context.locale().localeString() + '/timeZoneNames'));
+            _cldrjs2.default.load((0, _cldrData2.default)('main/' + context.locale().localeString() + '/timeZoneNames.json'));
             var cldr = new _cldrjs2.default(context.locale().localeString());
             var mapZones = {};
 
@@ -1077,7 +1660,7 @@ exports.default = CldrZoneTextPrinterParser;
 module.exports = exports['default'];
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1109,12 +1692,13 @@ var LocalizedOffsetPrinterParser = function () {
     _createClass(LocalizedOffsetPrinterParser, [{
         key: 'textStyle',
         value: function textStyle() {
-            return this.textStyle;
+            return this._textStyle;
         }
     }, {
         key: 'print',
         value: function print(context, buf) {
             var offsetSecs = context.getValue(_jsJoda.ChronoField.OFFSET_SECONDS);
+
             if (offsetSecs == null) {
                 return false;
             }
@@ -1124,14 +1708,14 @@ var LocalizedOffsetPrinterParser = function () {
             }
             var totalSecs = MathUtil.safeToInt(offsetSecs);
             if (totalSecs !== 0) {
-                var absHours = Math.abs(totalSecs / 3600 % 100);
-                var absMinutes = Math.abs(totalSecs / 60 % 60);
-                var absSeconds = Math.abs(totalSecs % 60);
+                var absHours = Math.abs(MathUtil.intMod(MathUtil.intDiv(totalSecs, 3600), 100));
+                var absMinutes = Math.abs(MathUtil.intMod(MathUtil.intDiv(totalSecs, 60), 60));
+                var absSeconds = Math.abs(MathUtil.intMod(totalSecs, 60));
                 buf.append(totalSecs < 0 ? '-' : '+').append(absHours);
                 if (absMinutes > 0 || absSeconds > 0) {
-                    buf.append(':').append(absMinutes / 10 + '0').append(absMinutes % 10 + '0');
+                    buf.append(':').append(MathUtil.intDiv(absMinutes, 10)).append(MathUtil.intMod(absMinutes, 10));
                     if (absSeconds > 0) {
-                        buf.append(':').append(absSeconds / 10 + '0').append(absSeconds % 10 + '0');
+                        buf.append(':').append(MathUtil.intDiv(absSeconds, 10)).append(MathUtil.intMod(absSeconds, 10));
                     }
                 }
             }
@@ -1147,7 +1731,7 @@ var LocalizedOffsetPrinterParser = function () {
             if (this._textStyle === _jsJoda.TextStyle.FULL) {
                 return new _jsJoda.DateTimeFormatterBuilder.OffsetIdPrinterParser('', '+HH:MM:ss').parse(context, text, position);
             }
-            var end = text.length();
+            var end = text.length;
             if (position === end) {
                 return context.setParsedField(_jsJoda.ChronoField.OFFSET_SECONDS, 0, position, position);
             }
@@ -1156,6 +1740,7 @@ var LocalizedOffsetPrinterParser = function () {
                 return context.setParsedField(_jsJoda.ChronoField.OFFSET_SECONDS, 0, position, position);
             }
             var negative = sign === '-' ? -1 : 1;
+
             if (position === end) {
                 return ~position;
             }
@@ -1166,11 +1751,11 @@ var LocalizedOffsetPrinterParser = function () {
                 return ~position;
             }
             position++;
-            var hour = ch - 48;
+            var hour = MathUtil.parseInt(ch);
             if (position !== end) {
                 ch = text.charAt(position);
                 if (ch >= '0' && ch <= '9') {
-                    hour = hour * 10 + (ch - 48);
+                    hour = hour * 10 + MathUtil.parseInt(ch);
                     if (hour > 23) {
                         return ~position;
                     }
@@ -1191,13 +1776,13 @@ var LocalizedOffsetPrinterParser = function () {
                 return ~position;
             }
             position++;
-            var min = ch - 48;
+            var min = MathUtil.parseInt(ch);
             ch = text.charAt(position);
             if (ch < '0' || ch > '9') {
                 return ~position;
             }
             position++;
-            min = min * 10 + (ch - 48);
+            min = min * 10 + MathUtil.parseInt(ch);
             if (min > 59) {
                 return ~position;
             }
@@ -1215,13 +1800,13 @@ var LocalizedOffsetPrinterParser = function () {
                 return ~position;
             }
             position++;
-            var sec = ch - 48;
+            var sec = MathUtil.parseInt(ch);
             ch = text.charAt(position);
             if (ch < '0' || ch > '9') {
                 return ~position;
             }
             position++;
-            sec = sec * 10 + (ch - 48);
+            sec = sec * 10 + MathUtil.parseInt(ch);
             if (sec > 59) {
                 return ~position;
             }
@@ -1242,7 +1827,7 @@ exports.default = LocalizedOffsetPrinterParser;
 module.exports = exports['default'];
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1259,7 +1844,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _jsJoda = __webpack_require__(0);
 
-var _WeekFields = __webpack_require__(13);
+var _WeekFields = __webpack_require__(5);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1276,14 +1861,14 @@ var WeekFieldsPrinterParser = function () {
     _createClass(WeekFieldsPrinterParser, [{
         key: 'print',
         value: function print(context, buf) {
-            var weekFields = _WeekFields.WeekFields.ofLocale(context.locale());
+            var weekFields = _WeekFields.WeekFields.of(context.locale());
             var pp = this._evaluate(weekFields);
             return pp.print(context, buf);
         }
     }, {
         key: 'parse',
         value: function parse(context, text, position) {
-            var weekFields = _WeekFields.WeekFields.ofLocale(context.locale());
+            var weekFields = _WeekFields.WeekFields.of(context.locale());
             var pp = this._evaluate(weekFields);
             return pp.parse(context, text, position);
         }
@@ -1350,614 +1935,6 @@ exports.default = WeekFieldsPrinterParser;
 module.exports = exports['default'];
 
 /***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.WeekFields = exports.ComputedDayOfField = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /*
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
-
-exports._init = _init;
-
-var _jsJoda = __webpack_require__(0);
-
-var _cldrData = __webpack_require__(2);
-
-var _cldrData2 = _interopRequireDefault(_cldrData);
-
-var _cldrjs = __webpack_require__(3);
-
-var _cldrjs2 = _interopRequireDefault(_cldrjs);
-
-var _Locale = __webpack_require__(1);
-
-var _Locale2 = _interopRequireDefault(_Locale);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var MathUtil = _jsJoda._.MathUtil,
-    _jodaInternal$assert = _jsJoda._.assert,
-    requireNonNull = _jodaInternal$assert.requireNonNull,
-    requireInstance = _jodaInternal$assert.requireInstance;
-
-var DAY_OF_WEEK_RANGE = _jsJoda.ValueRange.of(1, 7);
-var WEEK_OF_MONTH_RANGE = _jsJoda.ValueRange.of(0, 1, 4, 6);
-var WEEK_OF_YEAR_RANGE = _jsJoda.ValueRange.of(0, 1, 52, 54);
-var WEEK_OF_WEEK_BASED_YEAR_RANGE = _jsJoda.ValueRange.of(1, 52, 53);
-var WEEK_BASED_YEAR_RANGE = _jsJoda.ChronoField.YEAR.range();
-
-var _weekDayMap = {
-    'mon': _jsJoda.DayOfWeek.MONDAY,
-    'tue': _jsJoda.DayOfWeek.TUESDAY,
-    'wed': _jsJoda.DayOfWeek.WEDNESDAY,
-    'thu': _jsJoda.DayOfWeek.THURSDAY,
-    'fri': _jsJoda.DayOfWeek.FRIDAY,
-    'sat': _jsJoda.DayOfWeek.SATURDAY,
-    'sun': _jsJoda.DayOfWeek.SUNDAY
-};
-
-var ComputedDayOfField = exports.ComputedDayOfField = function () {
-    _createClass(ComputedDayOfField, null, [{
-        key: 'ofDayOfWeekField',
-        value: function ofDayOfWeekField(weekDef) {
-            return new ComputedDayOfField('DayOfWeek', weekDef, _jsJoda.ChronoUnit.DAYS, _jsJoda.ChronoUnit.WEEKS, DAY_OF_WEEK_RANGE);
-        }
-    }, {
-        key: 'ofWeekOfMonthField',
-        value: function ofWeekOfMonthField(weekDef) {
-            return new ComputedDayOfField('WeekOfMonth', weekDef, _jsJoda.ChronoUnit.WEEKS, _jsJoda.ChronoUnit.MONTHS, WEEK_OF_MONTH_RANGE);
-        }
-    }, {
-        key: 'ofWeekOfYearField',
-        value: function ofWeekOfYearField(weekDef) {
-            return new ComputedDayOfField('WeekOfYear', weekDef, _jsJoda.ChronoUnit.WEEKS, _jsJoda.ChronoUnit.YEARS, WEEK_OF_YEAR_RANGE);
-        }
-    }, {
-        key: 'ofWeekOfWeekBasedYearField',
-        value: function ofWeekOfWeekBasedYearField(weekDef) {
-            return new ComputedDayOfField('WeekOfWeekBasedYear', weekDef, _jsJoda.ChronoUnit.WEEKS, _jsJoda.IsoFields.WEEK_BASED_YEARS, WEEK_OF_WEEK_BASED_YEAR_RANGE);
-        }
-    }, {
-        key: 'ofWeekBasedYearField',
-        value: function ofWeekBasedYearField(weekDef) {
-            return new ComputedDayOfField('WeekBasedYear', weekDef, _jsJoda.IsoFields.WEEK_BASED_YEARS, _jsJoda.ChronoUnit.FOREVER, WEEK_BASED_YEAR_RANGE);
-        }
-    }]);
-
-    function ComputedDayOfField(name, weekDef, baseUnit, rangeUnit, range) {
-        _classCallCheck(this, ComputedDayOfField);
-
-        this._name = name;
-        this._weekDef = weekDef;
-        this._baseUnit = baseUnit;
-        this._rangeUnit = rangeUnit;
-        this._range = range;
-    }
-
-    _createClass(ComputedDayOfField, [{
-        key: 'getFrom',
-        value: function getFrom(temporal) {
-            var sow = this._weekDef.firstDayOfWeek().value();
-            var isoDow = temporal.get(_jsJoda.ChronoField.DAY_OF_WEEK);
-            var dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
-
-            if (this._rangeUnit === _jsJoda.ChronoUnit.WEEKS) {
-                return dow;
-            } else if (this._rangeUnit === _jsJoda.ChronoUnit.MONTHS) {
-                var dom = temporal.get(_jsJoda.ChronoField.DAY_OF_MONTH);
-                var offset = this._startOfWeekOffset(dom, dow);
-                return ComputedDayOfField._computeWeek(offset, dom);
-            } else if (this._rangeUnit === _jsJoda.ChronoUnit.YEARS) {
-                var doy = temporal.get(_jsJoda.ChronoField.DAY_OF_YEAR);
-                var _offset = this._startOfWeekOffset(doy, dow);
-                return ComputedDayOfField._computeWeek(_offset, doy);
-            } else if (this._rangeUnit === _jsJoda.IsoFields.WEEK_BASED_YEARS) {
-                return this._localizedWOWBY(temporal);
-            } else if (this._rangeUnit === _jsJoda.ChronoUnit.FOREVER) {
-                return this._localizedWBY(temporal);
-            } else {
-                throw new _jsJoda.IllegalStateException('unreachable');
-            }
-        }
-    }, {
-        key: '_localizedDayOfWeek',
-        value: function _localizedDayOfWeek(temporal, sow) {
-            var isoDow = temporal.get(_jsJoda.ChronoField.DAY_OF_WEEK);
-            return MathUtil.floorMod(isoDow - sow, 7) + 1;
-        }
-    }, {
-        key: '_localizedWeekOfMonth',
-        value: function _localizedWeekOfMonth(temporal, dow) {
-            var dom = temporal.get(_jsJoda.ChronoField.DAY_OF_MONTH);
-            var offset = this._startOfWeekOffset(dom, dow);
-            return ComputedDayOfField._computeWeek(offset, dom);
-        }
-    }, {
-        key: '_localizedWeekOfYear',
-        value: function _localizedWeekOfYear(temporal, dow) {
-            var doy = temporal.get(_jsJoda.ChronoField.DAY_OF_YEAR);
-            var offset = this._startOfWeekOffset(doy, dow);
-            return ComputedDayOfField._computeWeek(offset, doy);
-        }
-    }, {
-        key: '_localizedWOWBY',
-        value: function _localizedWOWBY(temporal) {
-            var sow = this._weekDef.firstDayOfWeek().value();
-            var isoDow = temporal.get(_jsJoda.ChronoField.DAY_OF_WEEK);
-            var dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
-            var woy = this._localizedWeekOfYear(temporal, dow);
-            if (woy === 0) {
-                var previous = _jsJoda.LocalDate.from(temporal).minus(1, _jsJoda.ChronoUnit.WEEKS);
-                return this._localizedWeekOfYear(previous, dow) + 1;
-            } else if (woy >= 53) {
-                var offset = this._startOfWeekOffset(temporal.get(_jsJoda.ChronoField.DAY_OF_YEAR), dow);
-                var year = temporal.get(_jsJoda.ChronoField.YEAR);
-                var yearLen = _jsJoda.Year.isLeap(year) ? 366 : 365;
-                var weekIndexOfFirstWeekNextYear = ComputedDayOfField._computeWeek(offset, yearLen + this._weekDef.minimalDaysInFirstWeek());
-                if (woy >= weekIndexOfFirstWeekNextYear) {
-                    return woy - (weekIndexOfFirstWeekNextYear - 1);
-                }
-            }
-            return woy;
-        }
-    }, {
-        key: '_localizedWBY',
-        value: function _localizedWBY(temporal) {
-            var sow = this._weekDef.firstDayOfWeek().value();
-            var isoDow = temporal.get(_jsJoda.ChronoField.DAY_OF_WEEK);
-            var dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
-            var year = temporal.get(_jsJoda.ChronoField.YEAR);
-            var woy = this._localizedWeekOfYear(temporal, dow);
-            if (woy === 0) {
-                return year - 1;
-            } else if (woy < 53) {
-                return year;
-            }
-            var offset = this._startOfWeekOffset(temporal.get(_jsJoda.ChronoField.DAY_OF_YEAR), dow);
-            var yearLen = _jsJoda.Year.isLeap(year) ? 366 : 365;
-            var weekIndexOfFirstWeekNextYear = ComputedDayOfField._computeWeek(offset, yearLen + this._weekDef.minimalDaysInFirstWeek());
-            if (woy >= weekIndexOfFirstWeekNextYear) {
-                return year + 1;
-            }
-            return year;
-        }
-    }, {
-        key: '_startOfWeekOffset',
-        value: function _startOfWeekOffset(day, dow) {
-            var weekStart = MathUtil.floorMod(day - dow, 7);
-            var offset = -weekStart;
-            if (weekStart + 1 > this._weekDef.minimalDaysInFirstWeek()) {
-                offset = 7 - weekStart;
-            }
-            return offset;
-        }
-    }, {
-        key: 'adjustInto',
-        value: function adjustInto(temporal, newValue) {
-            var newVal = this._range.checkValidIntValue(newValue, this);
-            var currentVal = temporal.get(this);
-            if (newVal === currentVal) {
-                return temporal;
-            }
-            if (this._rangeUnit === _jsJoda.ChronoUnit.FOREVER) {
-                var baseWowby = temporal.get(this._weekDef.weekOfWeekBasedYear);
-                var diffWeeks = (newValue - currentVal) * 52.1775;
-                var result = temporal.plus(diffWeeks, _jsJoda.ChronoUnit.WEEKS);
-                if (result.get(this) > newVal) {
-                    var newWowby = result.get(this._weekDef.weekOfWeekBasedYear);
-                    result = result.minus(newWowby, _jsJoda.ChronoUnit.WEEKS);
-                } else {
-                    if (result.get(this) < newVal) {
-                        result = result.plus(2, _jsJoda.ChronoUnit.WEEKS);
-                    }
-
-                    var _newWowby = result.get(this._weekDef.weekOfWeekBasedYear);
-                    result = result.plus(baseWowby - _newWowby, _jsJoda.ChronoUnit.WEEKS);
-                    if (result.get(this) > newVal) {
-                        result = result.minus(1, _jsJoda.ChronoUnit.WEEKS);
-                    }
-                }
-                return result;
-            }
-
-            var delta = newVal - currentVal;
-            return temporal.plus(delta, this._baseUnit);
-        }
-    }, {
-        key: 'resolve',
-        value: function resolve(fieldValues, partialTemporal, resolverStyle) {
-            var sow = this._weekDef.firstDayOfWeek().value();
-            if (this._rangeUnit === _jsJoda.ChronoUnit.WEEKS) {
-                var value = fieldValues.remove(this);
-                var localDow = this._range.checkValidIntValue(value, this);
-                var _isoDow = MathUtil.floorMod(sow - 1 + (localDow - 1), 7) + 1;
-                fieldValues.put(_jsJoda.ChronoField.DAY_OF_WEEK, _isoDow);
-                return null;
-            }
-            if (fieldValues.containsKey(_jsJoda.ChronoField.DAY_OF_WEEK) === false) {
-                return null;
-            }
-
-            if (this._rangeUnit === _jsJoda.ChronoUnit.FOREVER) {
-                if (fieldValues.containsKey(this._weekDef.weekOfWeekBasedYear) === false) {
-                    return null;
-                }
-                var _chrono = _jsJoda.Chronology.from(partialTemporal);
-                var _isoDow2 = _jsJoda.ChronoField.DAY_OF_WEEK.checkValidIntValue(fieldValues.get(_jsJoda.ChronoField.DAY_OF_WEEK));
-                var _dow = MathUtil.floorMod(_isoDow2 - sow, 7) + 1;
-                var wby = this.range().checkValidIntValue(fieldValues.get(this), this);
-                var date = void 0;
-                var days = void 0;
-                if (resolverStyle === _jsJoda.ResolverStyle.LENIENT) {
-                    date = _chrono.date(wby, 1, this._weekDef.minimalDaysInFirstWeek());
-                    var wowby = fieldValues.get(this._weekDef.weekOfWeekBasedYear);
-                    var dateDow = this._localizedDayOfWeek(date, sow);
-                    var weeks = wowby - this._localizedWeekOfYear(date, dateDow);
-                    days = weeks * 7 + (_dow - dateDow);
-                } else {
-                    date = _chrono.date(wby, 1, this._weekDef.minimalDaysInFirstWeek());
-                    var _wowby = this._weekDef.weekOfWeekBasedYear.range().checkValidIntValue(fieldValues.get(this._weekDef.weekOfWeekBasedYear), this._weekDef.weekOfWeekBasedYear);
-                    var _dateDow = this._localizedDayOfWeek(date, sow);
-                    var _weeks = _wowby - this._localizedWeekOfYear(date, _dateDow);
-                    days = _weeks * 7 + (_dow - _dateDow);
-                }
-                date = date.plus(days, _jsJoda.ChronoUnit.DAYS);
-                if (resolverStyle === _jsJoda.ResolverStyle.STRICT) {
-                    if (date.getLong(this) !== fieldValues.get(this)) {
-                        throw new _jsJoda.DateTimeException('Strict mode rejected date parsed to a different year');
-                    }
-                }
-                fieldValues.remove(this);
-                fieldValues.remove(this._weekDef.weekOfWeekBasedYear);
-                fieldValues.remove(_jsJoda.ChronoField.DAY_OF_WEEK);
-                return date;
-            }
-
-            if (fieldValues.containsKey(_jsJoda.ChronoField.YEAR) === false) {
-                return null;
-            }
-            var isoDow = _jsJoda.ChronoField.DAY_OF_WEEK.checkValidIntValue(fieldValues.get(_jsJoda.ChronoField.DAY_OF_WEEK));
-            var dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
-            var year = _jsJoda.ChronoField.YEAR.checkValidIntValue(fieldValues.get(_jsJoda.ChronoField.YEAR));
-            var chrono = _jsJoda.Chronology.from(partialTemporal);
-            if (this._rangeUnit === _jsJoda.ChronoUnit.MONTHS) {
-                if (fieldValues.containsKey(_jsJoda.ChronoField.MONTH_OF_YEAR) === false) {
-                    return null;
-                }
-                var _value = fieldValues.remove(this);
-                var _date = void 0;
-                var _days = void 0;
-                if (resolverStyle === _jsJoda.ResolverStyle.LENIENT) {
-                    var month = fieldValues.get(_jsJoda.ChronoField.MONTH_OF_YEAR);
-                    _date = chrono.date(year, 1, 1);
-                    _date = _date.plus(month - 1, _jsJoda.ChronoUnit.MONTHS);
-                    var _dateDow2 = this._localizedDayOfWeek(_date, sow);
-                    var _weeks2 = _value - this._localizedWeekOfMonth(_date, _dateDow2);
-                    _days = _weeks2 * 7 + (dow - _dateDow2);
-                } else {
-                    var _month = _jsJoda.ChronoField.MONTH_OF_YEAR.checkValidIntValue(fieldValues.get(_jsJoda.ChronoField.MONTH_OF_YEAR));
-                    _date = chrono.date(year, _month, 8);
-                    var _dateDow3 = this._localizedDayOfWeek(_date, sow);
-                    var wom = this._range.checkValidIntValue(_value, this);
-                    var _weeks3 = wom - this._localizedWeekOfMonth(_date, _dateDow3);
-                    _days = _weeks3 * 7 + (dow - _dateDow3);
-                }
-                _date = _date.plus(_days, _jsJoda.ChronoUnit.DAYS);
-                if (resolverStyle === _jsJoda.ResolverStyle.STRICT) {
-                    if (_date.getLong(_jsJoda.ChronoField.MONTH_OF_YEAR) !== fieldValues.get(_jsJoda.ChronoField.MONTH_OF_YEAR)) {
-                        throw new _jsJoda.DateTimeException('Strict mode rejected date parsed to a different month');
-                    }
-                }
-                fieldValues.remove(this);
-                fieldValues.remove(_jsJoda.ChronoField.YEAR);
-                fieldValues.remove(_jsJoda.ChronoField.MONTH_OF_YEAR);
-                fieldValues.remove(_jsJoda.ChronoField.DAY_OF_WEEK);
-                return _date;
-            } else if (this._rangeUnit === _jsJoda.ChronoUnit.YEARS) {
-                var _value2 = fieldValues.remove(this);
-                var _date2 = chrono.date(year, 1, 1);
-                var _days2 = void 0;
-                if (resolverStyle === _jsJoda.ResolverStyle.LENIENT) {
-                    var _dateDow4 = this._localizedDayOfWeek(_date2, sow);
-                    var _weeks4 = _value2 - this._localizedWeekOfYear(_date2, _dateDow4);
-                    _days2 = _weeks4 * 7 + (dow - _dateDow4);
-                } else {
-                    var _dateDow5 = this._localizedDayOfWeek(_date2, sow);
-                    var woy = this._range.checkValidIntValue(_value2, this);
-                    var _weeks5 = woy - this._localizedWeekOfYear(_date2, _dateDow5);
-                    _days2 = _weeks5 * 7 + (dow - _dateDow5);
-                }
-                _date2 = _date2.plus(_days2, _jsJoda.ChronoUnit.DAYS);
-                if (resolverStyle === _jsJoda.ResolverStyle.STRICT) {
-                    if (_date2.getLong(_jsJoda.ChronoField.YEAR) !== fieldValues.get(_jsJoda.ChronoField.YEAR)) {
-                        throw new _jsJoda.DateTimeException('Strict mode rejected date parsed to a different year');
-                    }
-                }
-                fieldValues.remove(this);
-                fieldValues.remove(_jsJoda.ChronoField.YEAR);
-                fieldValues.remove(_jsJoda.ChronoField.DAY_OF_WEEK);
-                return _date2;
-            } else {
-                throw new _jsJoda.IllegalStateException('unreachable');
-            }
-        }
-    }, {
-        key: 'name',
-        value: function name() {
-            return this._name;
-        }
-    }, {
-        key: 'baseUnit',
-        value: function baseUnit() {
-            return this._baseUnit;
-        }
-    }, {
-        key: 'rangeUnit',
-        value: function rangeUnit() {
-            return this._rangeUnit;
-        }
-    }, {
-        key: 'range',
-        value: function range() {
-            return this._range;
-        }
-    }, {
-        key: 'isDateBased',
-        value: function isDateBased() {
-            return true;
-        }
-    }, {
-        key: 'isTimeBased',
-        value: function isTimeBased() {
-            return false;
-        }
-    }, {
-        key: 'isSupportedBy',
-        value: function isSupportedBy(temporal) {
-            if (temporal.isSupported(_jsJoda.ChronoField.DAY_OF_WEEK)) {
-                if (this._rangeUnit === _jsJoda.ChronoUnit.WEEKS) {
-                    return true;
-                } else if (this._rangeUnit === _jsJoda.ChronoUnit.MONTHS) {
-                    return temporal.isSupported(_jsJoda.ChronoField.DAY_OF_MONTH);
-                } else if (this._rangeUnit === _jsJoda.ChronoUnit.YEARS) {
-                    return temporal.isSupported(_jsJoda.ChronoField.DAY_OF_YEAR);
-                } else if (this._rangeUnit === _jsJoda.IsoFields.WEEK_BASED_YEARS) {
-                    return temporal.isSupported(_jsJoda.ChronoField.EPOCH_DAY);
-                } else if (this._rangeUnit === _jsJoda.ChronoUnit.FOREVER) {
-                    return temporal.isSupported(_jsJoda.ChronoField.EPOCH_DAY);
-                }
-            }
-            return false;
-        }
-    }, {
-        key: 'rangeRefinedBy',
-        value: function rangeRefinedBy(temporal) {
-            if (this._rangeUnit === _jsJoda.ChronoUnit.WEEKS) {
-                return this._range;
-            }
-
-            var field = null;
-            if (this._rangeUnit === _jsJoda.ChronoUnit.MONTHS) {
-                field = _jsJoda.ChronoField.DAY_OF_MONTH;
-            } else if (this._rangeUnit === _jsJoda.ChronoUnit.YEARS) {
-                field = _jsJoda.ChronoField.DAY_OF_YEAR;
-            } else if (this._rangeUnit === _jsJoda.IsoFields.WEEK_BASED_YEARS) {
-                return this._rangeWOWBY(temporal);
-            } else if (this._rangeUnit === _jsJoda.ChronoUnit.FOREVER) {
-                return temporal.range(_jsJoda.ChronoField.YEAR);
-            } else {
-                throw new _jsJoda.IllegalStateException('unreachable');
-            }
-
-            var sow = this._weekDef.firstDayOfWeek().value();
-            var isoDow = temporal.get(_jsJoda.ChronoField.DAY_OF_WEEK);
-            var dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
-
-            var offset = this._startOfWeekOffset(temporal.get(field), dow);
-            var fieldRange = temporal.range(field);
-            return _jsJoda.ValueRange.of(ComputedDayOfField._computeWeek(offset, fieldRange.getMinimum()), ComputedDayOfField._computeWeek(offset, fieldRange.getMaximum()));
-        }
-    }, {
-        key: '_rangeWOWBY',
-        value: function _rangeWOWBY(temporal) {
-            var sow = this._weekDef.firstDayOfWeek().value();
-            var isoDow = temporal.get(_jsJoda.ChronoField.DAY_OF_WEEK);
-            var dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
-            var woy = this._localizedWeekOfYear(temporal, dow);
-            if (woy === 0) {
-                return this._rangeWOWBY(_jsJoda.Chronology.from(temporal).date(temporal).minus(2, _jsJoda.ChronoUnit.WEEKS));
-            }
-            var offset = this._startOfWeekOffset(temporal.get(_jsJoda.ChronoField.DAY_OF_YEAR), dow);
-            var year = temporal.get(_jsJoda.ChronoField.YEAR);
-            var yearLen = _jsJoda.Year.isLeap(year) ? 366 : 365;
-            var weekIndexOfFirstWeekNextYear = ComputedDayOfField._computeWeek(offset, yearLen + this._weekDef.minimalDaysInFirstWeek());
-            if (woy >= weekIndexOfFirstWeekNextYear) {
-                return this._rangeWOWBY(_jsJoda.Chronology.from(temporal).date(temporal).plus(2, _jsJoda.ChronoUnit.WEEKS));
-            }
-            return _jsJoda.ValueRange.of(1, weekIndexOfFirstWeekNextYear - 1);
-        }
-    }, {
-        key: 'getDisplayName',
-        value: function getDisplayName(locale) {
-            requireNonNull(locale, 'locale');
-            if (this._rangeUnit === _jsJoda.ChronoUnit.YEARS) {
-                return 'Week';
-            }
-            return toString();
-        }
-    }, {
-        key: 'toString',
-        value: function toString() {
-            return this._name + '[' + this._weekDef.toString() + ']';
-        }
-    }], [{
-        key: '_computeWeek',
-        value: function _computeWeek(offset, day) {
-            return MathUtil.intDiv(7 + offset + (day - 1), 7);
-        }
-    }]);
-
-    return ComputedDayOfField;
-}();
-
-var WeekFieldsCache = new Map();
-
-var WeekFields = exports.WeekFields = function () {
-    _createClass(WeekFields, [{
-        key: 'appendText',
-        value: function appendText(localeOrFirstDayOfWeek, minDays) {
-            if (localeOrFirstDayOfWeek instanceof _Locale2.default) {
-                return WeekFields.ofLocale(localeOrFirstDayOfWeek);
-            } else {
-                return WeekFields.ofFirstDayOfWeekMinDays(localeOrFirstDayOfWeek, minDays);
-            }
-        }
-    }], [{
-        key: 'of',
-        value: function of(firstDayOrLocale, minDays) {
-            if (minDays === undefined) {
-                return WeekFields.ofLocale(firstDayOrLocale);
-            } else {
-                return WeekFields.ofFirstDayOfWeekMinDays(firstDayOrLocale, minDays);
-            }
-        }
-    }, {
-        key: 'ofLocale',
-        value: function ofLocale(locale) {
-            requireNonNull(locale, 'locale');
-
-            _cldrjs2.default.load((0, _cldrData2.default)('supplemental/weekData'));
-            var country = locale.country() ? locale.country() : '001';
-            var cldr = new _cldrjs2.default(locale.localeString());
-            var weekData = cldr.get('supplemental/weekData');
-            var dow = _weekDayMap[weekData.firstDay[country]];
-            var minDays = weekData.minDays[country];
-            return WeekFields.ofFirstDayOfWeekMinDays(dow, minDays);
-        }
-    }, {
-        key: 'ofFirstDayOfWeekMinDays',
-        value: function ofFirstDayOfWeekMinDays(firstDayOfWeek, minimalDaysInFirstWeek) {
-            requireNonNull(firstDayOfWeek, 'firstDayOfWeek');
-            requireInstance(firstDayOfWeek, _jsJoda.DayOfWeek, 'firstDayOfWeek');
-            requireNonNull(minimalDaysInFirstWeek, 'minimalDaysInFirstWeek');
-            var key = firstDayOfWeek.toString() + minimalDaysInFirstWeek;
-            var rules = WeekFieldsCache.get(key);
-            if (rules == null) {
-                rules = new WeekFields(firstDayOfWeek, minimalDaysInFirstWeek);
-                WeekFieldsCache.set(key, rules);
-                rules = WeekFieldsCache.get(key);
-            }
-            return rules;
-        }
-    }]);
-
-    function WeekFields(firstDayOfWeek, minimalDaysInFirstWeek) {
-        _classCallCheck(this, WeekFields);
-
-        requireNonNull(firstDayOfWeek, 'firstDayOfWeek');
-        requireInstance(firstDayOfWeek, _jsJoda.DayOfWeek, 'firstDayOfWeek');
-        requireNonNull(minimalDaysInFirstWeek, 'minimalDaysInFirstWeek');
-        if (minimalDaysInFirstWeek < 1 || minimalDaysInFirstWeek > 7) {
-            throw new _jsJoda.IllegalArgumentException('Minimal number of days is invalid');
-        }
-        this._firstDayOfWeek = firstDayOfWeek;
-        this._minimalDays = minimalDaysInFirstWeek;
-        this._dayOfWeek = ComputedDayOfField.ofDayOfWeekField(this);
-        this._weekOfMonth = ComputedDayOfField.ofWeekOfMonthField(this);
-        this._weekOfYear = ComputedDayOfField.ofWeekOfYearField(this);
-        this._weekOfWeekBasedYear = ComputedDayOfField.ofWeekOfWeekBasedYearField(this);
-        this._weekBasedYear = ComputedDayOfField.ofWeekBasedYearField(this);
-        _cldrjs2.default.load((0, _cldrData2.default)('supplemental/likelySubtags'));
-    }
-
-    _createClass(WeekFields, [{
-        key: '_readResolve',
-        value: function _readResolve() {
-            try {
-                return WeekFields.of(this._firstDayOfWeek, this._minimalDays);
-            } catch (ex) {
-                throw new _jsJoda.IllegalArgumentException('Invalid WeekFields' + ex.message);
-            }
-        }
-    }, {
-        key: 'firstDayOfWeek',
-        value: function firstDayOfWeek() {
-            return this._firstDayOfWeek;
-        }
-    }, {
-        key: 'minimalDaysInFirstWeek',
-        value: function minimalDaysInFirstWeek() {
-            return this._minimalDays;
-        }
-    }, {
-        key: 'dayOfWeek',
-        value: function dayOfWeek() {
-            return this._dayOfWeek;
-        }
-    }, {
-        key: 'weekOfMonth',
-        value: function weekOfMonth() {
-            return this._weekOfMonth;
-        }
-    }, {
-        key: '_weekOfYear',
-        value: function _weekOfYear() {
-            return this._weekOfYear;
-        }
-    }, {
-        key: 'weekOfWeekBasedYear',
-        value: function weekOfWeekBasedYear() {
-            return this._weekOfWeekBasedYear;
-        }
-    }, {
-        key: 'weekBasedYear',
-        value: function weekBasedYear() {
-            return this._weekBasedYear;
-        }
-    }, {
-        key: 'equals',
-        value: function equals(object) {
-            if (this === object) {
-                return true;
-            }
-            if (object instanceof WeekFields) {
-                return this._hashCode() === object.hashCode();
-            }
-            return false;
-        }
-    }, {
-        key: 'hashCode',
-        value: function hashCode() {
-            return this._firstDayOfWeek.ordinal() * 7 + this._minimalDays;
-        }
-    }, {
-        key: 'toString',
-        value: function toString() {
-            return 'WeekFields[' + this._firstDayOfWeek + ',' + this._minimalDays + ']';
-        }
-    }]);
-
-    return WeekFields;
-}();
-
-function _init() {
-    WeekFields.ISO = new WeekFields(_jsJoda.DayOfWeek.MONDAY, 4);
-
-    WeekFields.SUNDAY_START = WeekFields.of(_jsJoda.DayOfWeek.SUNDAY, 1);
-}
-
-/***/ }),
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1972,7 +1949,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _jsJoda = __webpack_require__(0);
 
-var _Locale = __webpack_require__(1);
+var _Locale = __webpack_require__(3);
 
 var _Locale2 = _interopRequireDefault(_Locale);
 
@@ -2022,12 +1999,16 @@ module.exports = exports['default'];
 "use strict";
 
 
-var _Locale = __webpack_require__(1);
+var _Locale = __webpack_require__(3);
 
-var isInit = false; /*
-                     * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
-                     * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-                     */
+var _WeekFields = __webpack_require__(5);
+
+/*
+ * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
+
+var isInit = false;
 
 function init() {
     if (isInit) {
@@ -2037,6 +2018,7 @@ function init() {
     isInit = true;
 
     (0, _Locale._init)();
+    (0, _WeekFields._init)();
 }
 
 init();
