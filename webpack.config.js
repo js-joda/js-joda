@@ -9,6 +9,7 @@
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
+const WebpackBuildNotifier = require('webpack-build-notifier');
 
 const minify = JSON.parse(process.env.DIST_MIN || '0');
 const sourceMaps = !minify;
@@ -22,13 +23,15 @@ function createBanner() {
 
 const banner = createBanner();
 
-module.exports = {
+const outputFilename = minify ? 'js-joda-locale.min.js' : 'js-joda-locale.js';
+
+const config = {
     context: __dirname,
     entry: './src/js-joda-locale.js',
     devtool: sourceMaps ? 'hidden-source-map' : '',
     output: {
         path: `${__dirname}/dist`,
-        filename: minify ? 'js-joda-locale.min.js' : 'js-joda-locale.js',
+        filename: outputFilename,
         libraryTarget: 'umd',
         library: 'JSJodaLocale',
     },
@@ -72,15 +75,20 @@ module.exports = {
             },
         ],
     },
-    plugins: minify ? [
+    plugins: [
+        new webpack.BannerPlugin({ banner, raw: true }),
+        new WebpackBuildNotifier(),
+    ],
+};
+
+if (minify) {
+    config.plugins.push(
         new webpack.optimize.UglifyJsPlugin({
             comments: false,
             compress: {
                 warnings: false,
             },
-        }),
-        new webpack.BannerPlugin({ banner, raw: true }),
-    ] : [
-        new webpack.BannerPlugin({ banner, raw: true }),
-    ],
-};
+        }));
+}
+
+module.exports = config;

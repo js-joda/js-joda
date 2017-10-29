@@ -77,7 +77,8 @@
     "requirejs": "^2.3.5",
     "requirejs-json": "0.0.3",
     "requirejs-text": "^2.0.15",
-    "webpack": "^3.8.1"
+    "webpack": "^3.8.1",
+    "webpack-build-notifier": "^0.1.16"
   },
   "cldr-data-coverage": "core",
   "cldr-data-urls-filter": "(cldr-core|cldr-numbers-modern|cldr-dates-modern)",
