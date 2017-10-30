@@ -10,7 +10,7 @@ import CldrDateTimeTextProvider from '../../../src/format/cldr/CldrDateTimeTextP
 /* test some functions not covered by the other (reference) tests */
 
 describe('CldrDateTimeTextProvider', () => {
-    describe('getAvailableLocales', () => {
+    it('getAvailableLocales', () => {
         const dtp = new CldrDateTimeTextProvider();
         const availableLocales = dtp.getAvailableLocales();
         expect(availableLocales).to.contain('de');
