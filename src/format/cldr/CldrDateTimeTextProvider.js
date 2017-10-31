@@ -26,6 +26,12 @@ export default class CldrDateTimeTextProvider {
 
     //-----------------------------------------------------------------------
     getAvailableLocales() {
+        /* eslint-disable no-undef */
+        // JS_JODA_LOCALE_AVAILABLE_LOCALS may be defined using webpack DefinePlugin
+        if (typeof(JS_JODA_LOCALE_AVAILABLE_LOCALES) !== 'undefined') {
+            return JS_JODA_LOCALE_AVAILABLE_LOCALES;
+        }
+        /* eslint-enable no-undef */
         return cldrData('availableLocales.json').availableLocales;
     }
 

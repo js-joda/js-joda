@@ -3,8 +3,13 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
+import CldrDateTimeTextProvider from './format/cldr/CldrDateTimeTextProvider'
 
 export default class Locale {
+    static getAvailableLocales() {
+        return new CldrDateTimeTextProvider().getAvailableLocales();
+    }
+
     // TODO: maybe use new Cldr(<'en'>) constructor instead?
     // see https://github.com/rxaviers/cldrjs#instantiate-a-locale-and-get-it-normalized
     constructor(language, country = '', localeString = '') {
