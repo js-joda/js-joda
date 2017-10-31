@@ -2,6 +2,7 @@
  * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
+import {expect} from 'chai';
 
 import {
     _ as jodaInternal,
@@ -47,6 +48,15 @@ describe('js-joda-locale TextPrinterTest', () => {
 
     const PROVIDER = new CldrDateTimeTextProvider();
 
+    describe('constructor', () => {
+        it('should set the properties', () => {
+            const tpp = new TextPrinterParser(ChronoField.DAY_OF_WEEK, TextStyle.FULL, PROVIDER);
+            expect(tpp.field()).to.eql(ChronoField.DAY_OF_WEEK);
+            expect(tpp.textStyle()).to.eql(TextStyle.FULL);
+            expect(tpp.provider()).to.eql(PROVIDER);
+        });
+    });
+
     describe('print', () => {
         it('test_print EN', () => {
             const provider_data = [
@@ -73,17 +83,18 @@ describe('js-joda-locale TextPrinterTest', () => {
                 [IsoFields.QUARTER_OF_YEAR, TextStyle.FULL, 2, '2nd quarter'],
                 [IsoFields.QUARTER_OF_YEAR, TextStyle.FULL, 3, '3rd quarter'],
                 [IsoFields.QUARTER_OF_YEAR, TextStyle.FULL, 4, '4th quarter'],
-                
+
                 [IsoFields.QUARTER_OF_YEAR, TextStyle.NARROW, 1, '1'],
                 [IsoFields.QUARTER_OF_YEAR, TextStyle.NARROW, 2, '2'],
                 [IsoFields.QUARTER_OF_YEAR, TextStyle.NARROW, 3, '3'],
                 [IsoFields.QUARTER_OF_YEAR, TextStyle.NARROW, 4, '4'],
-                
+
                 [IsoFields.QUARTER_OF_YEAR, TextStyle.SHORT, 1, 'Q1'],
                 [IsoFields.QUARTER_OF_YEAR, TextStyle.SHORT, 2, 'Q2'],
                 [IsoFields.QUARTER_OF_YEAR, TextStyle.SHORT, 3, 'Q3'],
                 [IsoFields.QUARTER_OF_YEAR, TextStyle.SHORT, 4, 'Q4'],
-                
+
+                [ChronoField.DAY_OF_WEEK, TextStyle.SHORT, null, ''],
             ];
 
             dataProviderTest(provider_data, (field, style, value, expected) => {

@@ -31,11 +31,11 @@ export default class TextPrinterParser {
     }
 
     textStyle() {
-        return this.textStyle;
+        return this._textStyle;
     }
 
     provider() {
-        return this.provider;
+        return this._provider;
     }
 
     print(context, buf) {

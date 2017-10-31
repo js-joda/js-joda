@@ -123,6 +123,12 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder', () => {
             ['w', 'Localized(WeekOfWeekBasedYear,1)'],
             ['ww', 'Localized(WeekOfWeekBasedYear,2)'],
 
+            ['W', 'Localized(WeekOfMonth,1)'],
+
+            ['c', 'Localized(DayOfWeek,1)'],
+
+            ['e', 'Localized(DayOfWeek,1)'],
+
             ['E', 'Text(DayOfWeek,SHORT)'],
             ['EE', 'Text(DayOfWeek,SHORT)'],
             ['EEE', 'Text(DayOfWeek,SHORT)'],
