@@ -4,6 +4,7 @@
  */
 
 const path = require('path');
+const { updateWebpackConfigForLocales } = require('./utils/buildWebpackConfig');
 
 module.exports = function (config) {
     const saucelabsLaunchers = {
@@ -56,36 +57,20 @@ module.exports = function (config) {
     };
 
     // eslint-disable-next-line global-require
-    const webpackConfig = require('./webpack.config.js');
+    let webpackConfig = require('./webpack.config.js');
     // for the karma test runs, we don't want to have any externals,
     // especially js-joda and others should be included!
     webpackConfig.externals = undefined;
-    // we can't use the cldr-data module load function from npm module since it uses 'fs' and other
-    // modules not available in the browser... so we resolve the cldr-data module to our own "faked"
-    // cldr-data loader that just requires the cldr-data files
+
+    // add cldr-data load workaround
     webpackConfig.resolve = {
         alias: {
             'cldr-data$': path.resolve(__dirname, 'test/utils/karma_cldrData.js'),
         }
     };
-    // for cldr-data, we only want to include needed locales from main and supplemental subdirs
-    // otherwise the webpack karma bundle is getting too large
-    webpackConfig.module.rules.push(
-        {
-            use: [{ loader: 'null-loader' }],
-            resource: {
-                // don't load everything in cldr-data
-                test: path.resolve(__dirname, 'node_modules/cldr-data'),
-                // except the actual data we need (supplemental, availableLocales, and de, en, fr locales from main)
-                exclude: [
-                    path.resolve(__dirname, 'node_modules/cldr-data/main/de'),
-                    path.resolve(__dirname, 'node_modules/cldr-data/main/en'),
-                    path.resolve(__dirname, 'node_modules/cldr-data/main/fr'),
-                    path.resolve(__dirname, 'node_modules/cldr-data/supplemental'),
-                    path.resolve(__dirname, 'node_modules/cldr-data/availableLocales.json'),
-                ],
-            }
-        });
+
+    const locales = ['en', 'en-GB', 'en-CA', 'de', 'fr']; // these are required for tests
+    webpackConfig = updateWebpackConfigForLocales(webpackConfig, locales, `${__dirname}/node_modules`);
 
     config.set({
         files: [
