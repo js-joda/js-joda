@@ -17,6 +17,7 @@
     "build-esdoc": "./node_modules/.bin/esdoc -c esdoc.json",
     "build-dist-es5": "./node_modules/.bin/babel src -d build/es5",
     "build-dist": "./node_modules/.bin/webpack --progress --colors --bail && DIST_MIN=1 ./node_modules/.bin/webpack --progress --colors --bail",
+    "build-examples": "node ./utils/build_package.js -o examples/build -c test/utils/karma_cldrData.js -l \"en.*\" de fr es zh hi ru",
     "lint": "./node_modules/.bin/eslint ."
   },
   "keywords": [
@@ -43,6 +44,11 @@
     "cldrjs": "^0.5.0",
     "js-joda": "^1.6.2",
     "js-joda-timezone": "^1.1.5"
+  },
+  "dependencies": {
+    "yargs": "^10.0.3",
+    "webpack": "^3.8.1",
+    "webpack-build-notifier": "^0.1.16"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -76,11 +82,8 @@
     "phantomjs-prebuilt": "^2.1.15",
     "requirejs": "^2.3.5",
     "requirejs-json": "0.0.3",
-    "requirejs-text": "^2.0.15",
-    "webpack": "^3.8.1",
-    "webpack-build-notifier": "^0.1.16"
+    "requirejs-text": "^2.0.15"
   },
   "cldr-data-coverage": "core",
-  "cldr-data-urls-filter": "(cldr-core|cldr-numbers-modern|cldr-dates-modern)",
-  "dependencies": {}
+  "cldr-data-urls-filter": "(cldr-core|cldr-numbers-modern|cldr-dates-modern)"
 }
