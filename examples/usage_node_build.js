@@ -3,7 +3,7 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 /* eslint-disable no-console, no-var */
-var joda = require('js-joda').use(require('js-joda-timezone'))
+var joda = require('js-joda').use(require('js-joda-timezone'));
 
 function outputDateInDifferentLocales(zdt) {
     console.log('Times in ' + zdt.zone());
@@ -40,5 +40,5 @@ try {
     console.error('--------------------------------------------------------------------');
     console.error('');
     console.error('');
-    console.error('NOTE: if you see errors about missing modules/locales, you may need to run `npm run build-examples` before using this example.')
+    console.error('NOTE: if you see errors about missing modules/locales, you may need to run `npm run build-examples` before using this example.');
 }

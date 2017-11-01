@@ -68,9 +68,6 @@ const argv = yargs
     .help()
     .argv;
 
-console.log(argv);
-// return;
-
 // change output path
 webpackConfig.output.path = path.resolve(process.cwd(), argv.output);
 

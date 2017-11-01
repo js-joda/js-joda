@@ -3,7 +3,7 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-import CldrDateTimeTextProvider from './format/cldr/CldrDateTimeTextProvider'
+import CldrDateTimeTextProvider from './format/cldr/CldrDateTimeTextProvider';
 
 export default class Locale {
     static getAvailableLocales() {
