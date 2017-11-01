@@ -11,8 +11,8 @@ package-lock.json
 # build config
 esdoc.json
 karma.conf.js
-webpack.config.js
 .*
+!.babelrc
 
 # build output
 build

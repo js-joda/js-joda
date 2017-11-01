@@ -8,8 +8,9 @@
   },
   "main": "dist/js-joda-locale.js",
   "scripts": {
-    "prepublish": "npm run build-dist",
+    "prepublishOnly": "npm run build-dist",
     "postversion": "npm run build-dist",
+    "__disabled__postinstall": "node ./utils/build_package.js --config ./build_package.default.json",
     "test": "./node_modules/.bin/mocha --timeout 5000 --require babel-core/register ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js test/pluginTest_mochaOnly.js",
     "test-coverage": "NODE_ENV=test COVERAGE=1 ./node_modules/.bin/nyc --report-dir=build/coverage --reporter=lcov --reporter html ./node_modules/.bin/mocha --timeout 5000 --require babel-core/register --reporter progress ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js",
     "test-browser": "./node_modules/.bin/karma start --reporters=dots --single-run",
@@ -46,18 +47,19 @@
     "js-joda-timezone": "^1.1.5"
   },
   "dependencies": {
-    "yargs": "^10.0.3",
-    "webpack": "^3.8.1",
-    "webpack-build-notifier": "^0.1.16"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-env": "^1.6.1",
+    "null-loader": "^0.1.1",
+    "webpack": "^3.8.1",
+    "webpack-build-notifier": "^0.1.16",
+    "yargs": "^10.0.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-plugin-istanbul": "^4.1.5",
     "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
     "chai": "^4.1.2",
     "cldr-data": "^32.0.0",
     "cldrjs": "^0.5.0",
@@ -77,7 +79,6 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.5",
     "mocha": "^4.0.1",
-    "null-loader": "^0.1.1",
     "nyc": "^11.3.0",
     "phantomjs-prebuilt": "^2.1.15",
     "requirejs": "^2.3.5",

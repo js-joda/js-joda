@@ -4,11 +4,10 @@
  */
 const path = require('path');
 const webpack = require('webpack');
-const yargs = require('yargs');
+const yargsPkg = require('yargs');
 const { updateWebpackConfigForLocales } = require('./buildWebpackConfig');
-let webpackConfig = require('../webpack.config.js');
 
-const argv = yargs
+const yargs = yargsPkg
     .options({
         output: {
             alias: 'o',
@@ -19,8 +18,7 @@ const argv = yargs
         locales: {
             alias: 'l',
             array: true,
-            default: ['en', 'de', 'es'],
-            description: 'the locale(s) to generate in package, default provides data for en(-US), de(-DE), es(-ES)'
+            description: 'the locale(s) to generate in package'
         },
         stats: {
             alias: 's',
@@ -46,65 +44,75 @@ const argv = yargs
         },
         config: {
             config: true,
-            description: 'path to a JSON file with config options, format is the same as for the config object in package.json'
+            description: 'path to a JSON file with config options, for a format example see build_package.default.json'
+        },
+        packages: {
+            hidden: true,
+            description: 'only from config and pkgConf, define several packages that will be built, for a format example see build_package.default.json'
         },
     })
     .pkgConf('js-joda-locale')
-    // default packages ?
-    .config({
-        packages: {
-            core: ['en', 'de', 'es'],
-            de: ['de'],
-            de_all: ['de.*'],
-            en: ['en'],
-            en_all: ['en.*'],
-            es: ['es'],
-        },
-        statsOptions: {
-            colors: true,
+    .wrap(Math.min(120, yargsPkg.terminalWidth()))
+    .help();
+
+const argv = yargs.parse();
+
+function createWebpackConfig(locales, output) {
+    let webpackConfig = require(path.resolve(__dirname, '../webpack.config.js'))();
+    // change output path
+    webpackConfig.output.path = path.resolve(process.cwd(), output);
+
+    // add cldr-data load workaround
+    webpackConfig.resolve = {
+        alias: {
+            'cldr-data$': path.resolve(process.cwd(), argv.cldrDataLoader),
         }
-    })
-    .wrap(Math.min(120, yargs.terminalWidth()))
-    .help()
-    .argv;
+    };
 
-// change output path
-webpackConfig.output.path = path.resolve(process.cwd(), argv.output);
+    const modulesDir = path.resolve(process.cwd(), argv.modulesDir);
+    webpackConfig = updateWebpackConfigForLocales(webpackConfig, locales, modulesDir);
+    return webpackConfig;
+}
 
-// add cldr-data load workaround
-webpackConfig.resolve = {
-    alias: {
-        'cldr-data$': path.resolve(process.cwd(), argv.cldrDataLoader),
-    }
-};
+let webpackConfig;
 
-const locales = argv.locales;
-const modulesDir = path.resolve(process.cwd(), argv.modulesDir);
-webpackConfig = updateWebpackConfigForLocales(webpackConfig, locales, modulesDir);
+if (argv.locales) {
+    webpackConfig = [createWebpackConfig(argv.locales, argv.output)];
+} else if (argv.packages) {
+    webpackConfig = Object.keys(argv.packages).map((key) => {
+        const locales = argv.packages[key];
+        const output = path.resolve(path.resolve(process.cwd(), argv.output, key));
+        return createWebpackConfig(locales, output);
+    });
+}
 
-
-/* eslint-disable no-console */
-webpack(webpackConfig, (err, stats) => {
-    if (err) {
-        console.error(err.stack || err);
-        if (err.details) {
-            console.error(err.details);
+if (webpackConfig) {
+    RegExp.prototype.toJSON = RegExp.prototype.toString;
+    /* eslint-disable no-console */
+    webpack(webpackConfig, (err, stats) => {
+        if (err) {
+            console.error(err.stack || err);
+            if (err.details) {
+                console.error(err.details);
+            }
+            return;
         }
-        return;
-    }
 
-    const info = stats.toJson();
+        const info = stats.toJson();
 
-    if (stats.hasErrors()) {
-        console.error(info.errors);
-    }
+        if (stats.hasErrors()) {
+            console.error(info.errors);
+        }
 
-    if (stats.hasWarnings()) {
-        console.warn(info.warnings);
-    }
+        if (stats.hasWarnings()) {
+            console.warn(info.warnings);
+        }
 
-    if (argv.stats) {
-        const statsOptions = argv.statsOptions || 'normal';
-        console.log(stats.toString(statsOptions));
-    }
-});
+        if (argv.stats) {
+            const statsOptions = argv.statsOptions || 'normal';
+            console.log(stats.toString(statsOptions));
+        }
+    });
+} else {
+    yargs.showHelp();
+}
