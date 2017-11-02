@@ -40,7 +40,7 @@
   },
   "homepage": "https://github.com/js-joda/js-joda-locale#readme",
   "peerDependencies": {
-    "cldr-data": "^31.0.2",
+    "cldr-data": "^32.0.0",
     "cldrjs": "^0.5.0",
     "js-joda": "^1.6.2",
     "js-joda-timezone": "^1.1.5"
@@ -59,11 +59,11 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "chai": "^4.1.2",
-    "cldr-data": "^31.0.2",
+    "cldr-data": "^32.0.0",
     "cldrjs": "^0.5.0",
     "coveralls": "^3.0.0",
     "esdoc": "^1.0.3",
-    "eslint": "^4.9.0",
+    "eslint": "^4.10.0",
     "eslint-config-js-joda": "^1.0.0",
     "js-joda": "^1.6.2",
     "js-joda-timezone": "^1.1.5",
