@@ -99,14 +99,14 @@ describe('js-joda-locale TextPrinterTest', () => {
         it('test_print DE', () => {
             const provider_data = [
 
-                [ChronoField.AMPM_OF_DAY, TextStyle.FULL, 0, 'vorm.'],
-                [ChronoField.AMPM_OF_DAY, TextStyle.FULL, 1, 'nachm.'],
+                [ChronoField.AMPM_OF_DAY, TextStyle.FULL, 0, 'AM'],
+                [ChronoField.AMPM_OF_DAY, TextStyle.FULL, 1, 'PM'],
 
                 [ChronoField.AMPM_OF_DAY, TextStyle.NARROW, 0, 'vm.'],
                 [ChronoField.AMPM_OF_DAY, TextStyle.NARROW, 1, 'nm.'],
 
-                [ChronoField.AMPM_OF_DAY, TextStyle.SHORT, 0, 'vorm.'],
-                [ChronoField.AMPM_OF_DAY, TextStyle.SHORT, 1, 'nachm.'],
+                [ChronoField.AMPM_OF_DAY, TextStyle.SHORT, 0, 'AM'],
+                [ChronoField.AMPM_OF_DAY, TextStyle.SHORT, 1, 'PM'],
 
                 [ChronoField.ERA, TextStyle.FULL, 0, 'v. Chr.'],
                 [ChronoField.ERA, TextStyle.FULL, 1, 'n. Chr.'],
