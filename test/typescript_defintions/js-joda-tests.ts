@@ -513,3 +513,12 @@ function test_YearMonth() {
 
     ym.format(DateTimeFormatter.ofPattern("yyyy-MM"));
 }
+
+function test_DateTimeFormatter() {
+    ZonedDateTime.parse("2017-01-01T00:00:00+0200[Europe/Amsterdam]", DateTimeFormatter.ISO_ZONED_DATE_TIME)
+
+    ZonedDateTime.parse("2017-01-01T00:00:00+0200", DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+
+    ZonedDateTime.parse("2017-01-01T00:00:00.12345678", DateTimeFormatter.ISO_INSTANT)
+}
+
