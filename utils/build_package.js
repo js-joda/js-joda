@@ -3,6 +3,7 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 const path = require('path');
+const fs = require('fs');
 const webpack = require('webpack');
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 const yargsPkg = require('yargs');
@@ -73,13 +74,6 @@ if (process.env['npm_lifecycle_event'] === 'postinstall') {
         // load default packages from build_package.default.json
         yargs = yargs.config(require(path.resolve(__dirname, '../build_package.default.json')));
     }
-
-    // TODO: doesn't work for main package!, i guess we need to check the module_dir
-    if (!(process.env['npm_package_dependencies_cldr_data']) && !(process.env['npm_package_devDependencies_cldr_data'])) {
-        // eslint-disable-next-line no-console
-        console.warn('cldr-data is not installed as dependency, js-joda-locale package build will very probably fail, so skipping it...!');
-        process.exit(0);
-    }
 }
 
 const argv = yargs.parse();
@@ -110,6 +104,11 @@ function createWebpackConfig(locales, output) {
     };
 
     const modulesDir = path.resolve(process.cwd(), argv.modulesDir);
+    if (!(fs.existsSync(path.resolve(modulesDir, 'cldr-data')))) {
+        // eslint-disable-next-line no-console
+        console.warn('cldr-data module directory does not exist, js-joda-locale package build will very probably fail, so skipping it...!');
+        process.exit(0);
+    }
     webpackConfig = updateWebpackConfigForLocales(webpackConfig, locales, modulesDir);
     return webpackConfig;
 }
