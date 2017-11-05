@@ -32,6 +32,7 @@ script:
       (
       set -evx;
       npm run test;
+      npm run build-examples;
       node examples/usage_node_build.js;
       npm run test-coverage;
       )
