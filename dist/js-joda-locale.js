@@ -1,4 +1,4 @@
-//! @version js-joda-locale - 0.1.0
+//! @version js-joda-locale - 0.8.0
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -75,7 +75,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -107,18 +107,29 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
 
 exports._init = _init;
 
+var _CldrDateTimeTextProvider = __webpack_require__(4);
+
+var _CldrDateTimeTextProvider2 = _interopRequireDefault(_CldrDateTimeTextProvider);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-/*
- * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
- * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
- */
-
 var Locale = function () {
+    _createClass(Locale, null, [{
+        key: 'getAvailableLocales',
+        value: function getAvailableLocales() {
+            return new _CldrDateTimeTextProvider2.default().getAvailableLocales();
+        }
+    }]);
+
     function Locale(language) {
         var country = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
         var localeString = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
@@ -196,6 +207,259 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+
+var _jsJoda = __webpack_require__(0);
+
+var _cldrData = __webpack_require__(1);
+
+var _cldrData2 = _interopRequireDefault(_cldrData);
+
+var _cldrjs = __webpack_require__(2);
+
+var _cldrjs2 = _interopRequireDefault(_cldrjs);
+
+var _LocaleStore = __webpack_require__(5);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var CldrDateTimeTextProvider = function () {
+    function CldrDateTimeTextProvider() {
+        _classCallCheck(this, CldrDateTimeTextProvider);
+
+        this._cache = {};
+        _cldrjs2.default.load((0, _cldrData2.default)('supplemental/likelySubtags.json'));
+    }
+
+    _createClass(CldrDateTimeTextProvider, [{
+        key: 'getAvailableLocales',
+        value: function getAvailableLocales() {
+            if (typeof JS_JODA_LOCALE_AVAILABLE_LOCALES !== 'undefined') {
+                return JS_JODA_LOCALE_AVAILABLE_LOCALES;
+            }
+
+            return (0, _cldrData2.default)('availableLocales.json').availableLocales;
+        }
+    }, {
+        key: 'getText',
+        value: function getText(field, value, style, locale) {
+            var store = this._findStore(field, locale);
+            if (store instanceof _LocaleStore.LocaleStore) {
+                return store.getText(value, style);
+            }
+            return null;
+        }
+    }, {
+        key: 'getTextIterator',
+        value: function getTextIterator(field, style, locale) {
+            var store = this._findStore(field, locale);
+            if (store instanceof _LocaleStore.LocaleStore) {
+                return store.getTextIterator(style);
+            }
+            return null;
+        }
+    }, {
+        key: '_findStore',
+        value: function _findStore(field, locale) {
+            var key = (0, _LocaleStore.createEntry)(field, locale);
+            var store = this._cache[key];
+            if (store === undefined) {
+                store = this._createStore(field, locale);
+                this._cache[key] = store;
+            }
+            return store;
+        }
+    }, {
+        key: '_createStore',
+        value: function _createStore(field, locale) {
+            _cldrjs2.default.load((0, _cldrData2.default)('main/' + locale.localeString() + '/ca-gregorian.json'));
+            var cldr = new _cldrjs2.default(locale.localeString());
+            if (field === _jsJoda.ChronoField.MONTH_OF_YEAR) {
+                var monthsData = cldr.main('dates/calendars/gregorian/months/format');
+                var styleMap = {};
+                var data = {};
+                data[1] = monthsData.wide[1];
+                data[2] = monthsData.wide[2];
+                data[3] = monthsData.wide[3];
+                data[4] = monthsData.wide[4];
+                data[5] = monthsData.wide[5];
+                data[6] = monthsData.wide[6];
+                data[7] = monthsData.wide[7];
+                data[8] = monthsData.wide[8];
+                data[9] = monthsData.wide[9];
+                data[10] = monthsData.wide[10];
+                data[11] = monthsData.wide[11];
+                data[12] = monthsData.wide[12];
+                styleMap[_jsJoda.TextStyle.FULL] = data;
+
+                data = {};
+                data[1] = monthsData.narrow[1];
+                data[2] = monthsData.narrow[2];
+                data[3] = monthsData.narrow[3];
+                data[4] = monthsData.narrow[4];
+                data[5] = monthsData.narrow[5];
+                data[6] = monthsData.narrow[6];
+                data[7] = monthsData.narrow[7];
+                data[8] = monthsData.narrow[8];
+                data[9] = monthsData.narrow[9];
+                data[10] = monthsData.narrow[10];
+                data[11] = monthsData.narrow[11];
+                data[12] = monthsData.narrow[12];
+                styleMap[_jsJoda.TextStyle.NARROW] = data;
+
+                data = {};
+                data[1] = monthsData.abbreviated[1];
+                data[2] = monthsData.abbreviated[2];
+                data[3] = monthsData.abbreviated[3];
+                data[4] = monthsData.abbreviated[4];
+                data[5] = monthsData.abbreviated[5];
+                data[6] = monthsData.abbreviated[6];
+                data[7] = monthsData.abbreviated[7];
+                data[8] = monthsData.abbreviated[8];
+                data[9] = monthsData.abbreviated[9];
+                data[10] = monthsData.abbreviated[10];
+                data[11] = monthsData.abbreviated[11];
+                data[12] = monthsData.abbreviated[12];
+                styleMap[_jsJoda.TextStyle.SHORT] = data;
+                return this._createLocaleStore(styleMap);
+            }
+            if (field === _jsJoda.ChronoField.DAY_OF_WEEK) {
+                var daysData = cldr.main('dates/calendars/gregorian/days/format');
+                var _styleMap = {};
+                var _data = {};
+                _data[1] = daysData.wide.mon;
+                _data[2] = daysData.wide.tue;
+                _data[3] = daysData.wide.wed;
+                _data[4] = daysData.wide.thu;
+                _data[5] = daysData.wide.fri;
+                _data[6] = daysData.wide.sat;
+                _data[7] = daysData.wide.sun;
+                _styleMap[_jsJoda.TextStyle.FULL] = _data;
+
+                _data = {};
+                _data[1] = daysData.narrow.mon;
+                _data[2] = daysData.narrow.tue;
+                _data[3] = daysData.narrow.wed;
+                _data[4] = daysData.narrow.thu;
+                _data[5] = daysData.narrow.fri;
+                _data[6] = daysData.narrow.sat;
+                _data[7] = daysData.narrow.sun;
+                _styleMap[_jsJoda.TextStyle.NARROW] = _data;
+
+                _data = {};
+                _data[1] = daysData.abbreviated.mon;
+                _data[2] = daysData.abbreviated.tue;
+                _data[3] = daysData.abbreviated.wed;
+                _data[4] = daysData.abbreviated.thu;
+                _data[5] = daysData.abbreviated.fri;
+                _data[6] = daysData.abbreviated.sat;
+                _data[7] = daysData.abbreviated.sun;
+                _styleMap[_jsJoda.TextStyle.SHORT] = _data;
+                return this._createLocaleStore(_styleMap);
+            }
+            if (field === _jsJoda.ChronoField.AMPM_OF_DAY) {
+                var dayPeriodsData = cldr.main('dates/calendars/gregorian/dayPeriods/format');
+                var _styleMap2 = {};
+                var _data2 = {};
+                _data2[0] = dayPeriodsData.wide.am;
+                _data2[1] = dayPeriodsData.wide.pm;
+                _styleMap2[_jsJoda.TextStyle.FULL] = _data2;
+
+                _data2 = {};
+                _data2[0] = dayPeriodsData.narrow.am;
+                _data2[1] = dayPeriodsData.narrow.pm;
+                _styleMap2[_jsJoda.TextStyle.NARROW] = _data2;
+
+                _data2 = {};
+                _data2[0] = dayPeriodsData.abbreviated.am;
+                _data2[1] = dayPeriodsData.abbreviated.pm;
+                _styleMap2[_jsJoda.TextStyle.SHORT] = _data2;
+
+                return this._createLocaleStore(_styleMap2);
+            }
+            if (field === _jsJoda.ChronoField.ERA) {
+                var erasData = cldr.main('dates/calendars/gregorian/eras');
+                var _styleMap3 = {};
+                var _data3 = {};
+                _data3[0] = erasData.eraNames['0'];
+                _data3[1] = erasData.eraNames['1'];
+                _styleMap3[_jsJoda.TextStyle.FULL] = _data3;
+
+                _data3 = {};
+                _data3[0] = erasData.eraNarrow['0'];
+                _data3[1] = erasData.eraNarrow['1'];
+                _styleMap3[_jsJoda.TextStyle.NARROW] = _data3;
+
+                _data3 = {};
+                _data3[0] = erasData.eraAbbr['0'];
+                _data3[1] = erasData.eraAbbr['1'];
+                _styleMap3[_jsJoda.TextStyle.SHORT] = _data3;
+
+                return this._createLocaleStore(_styleMap3);
+            }
+            if (field === _jsJoda.IsoFields.QUARTER_OF_YEAR) {
+                var quartersData = cldr.main('dates/calendars/gregorian/quarters/format');
+                var _styleMap4 = {};
+                var _data4 = {};
+                _data4[1] = quartersData.wide['1'];
+                _data4[2] = quartersData.wide['2'];
+                _data4[3] = quartersData.wide['3'];
+                _data4[4] = quartersData.wide['4'];
+                _styleMap4[_jsJoda.TextStyle.FULL] = _data4;
+
+                _data4 = {};
+                _data4[1] = quartersData.narrow['1'];
+                _data4[2] = quartersData.narrow['2'];
+                _data4[3] = quartersData.narrow['3'];
+                _data4[4] = quartersData.narrow['4'];
+                _styleMap4[_jsJoda.TextStyle.NARROW] = _data4;
+
+                _data4 = {};
+                _data4[1] = quartersData.abbreviated['1'];
+                _data4[2] = quartersData.abbreviated['2'];
+                _data4[3] = quartersData.abbreviated['3'];
+                _data4[4] = quartersData.abbreviated['4'];
+                _styleMap4[_jsJoda.TextStyle.SHORT] = _data4;
+
+                return this._createLocaleStore(_styleMap4);
+            }
+            return null;
+        }
+    }, {
+        key: '_createLocaleStore',
+        value: function _createLocaleStore(valueTextMap) {
+            valueTextMap[_jsJoda.TextStyle.FULL_STANDALONE] = valueTextMap[_jsJoda.TextStyle.FULL];
+            valueTextMap[_jsJoda.TextStyle.SHORT_STANDALONE] = valueTextMap[_jsJoda.TextStyle.SHORT];
+
+            if (Object.keys(valueTextMap).includes(_jsJoda.TextStyle.NARROW) && !Object.keys(valueTextMap).includes(_jsJoda.TextStyle.NARROW_STANDALONE)) {
+                valueTextMap[_jsJoda.TextStyle.NARROW_STANDALONE] = valueTextMap[_jsJoda.TextStyle.NARROW];
+            }
+            return new _LocaleStore.LocaleStore(valueTextMap);
+        }
+    }]);
+
+    return CldrDateTimeTextProvider;
+}();
+
+exports.default = CldrDateTimeTextProvider;
+module.exports = exports['default'];
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -262,7 +526,7 @@ var LocaleStore = exports.LocaleStore = function () {
 }();
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -732,11 +996,17 @@ var WeekFields = exports.WeekFields = function () {
             requireNonNull(locale, 'locale');
 
             _cldrjs2.default.load((0, _cldrData2.default)('supplemental/weekData.json'));
-            var country = locale.country() ? locale.country() : '001';
             var cldr = new _cldrjs2.default(locale.localeString());
+            var worldRegion = '001';
             var weekData = cldr.get('supplemental/weekData');
-            var dow = _weekDayMap[weekData.firstDay[country]];
-            var minDays = weekData.minDays[country];
+            var dow = _weekDayMap[weekData.firstDay[locale.country()]];
+            if (!dow) {
+                dow = _weekDayMap[weekData.firstDay[worldRegion]];
+            }
+            var minDays = weekData.minDays[locale.country()];
+            if (!minDays) {
+                minDays = weekData.minDays[worldRegion];
+            }
             return WeekFields.ofFirstDayOfWeekMinDays(dow, minDays);
         }
     }, {
@@ -843,7 +1113,7 @@ function _init() {
 }
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -853,7 +1123,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _plug = __webpack_require__(7);
+var _plug = __webpack_require__(8);
 
 var _plug2 = _interopRequireDefault(_plug);
 
@@ -867,7 +1137,7 @@ exports.default = _plug2.default; /*
 module.exports = exports['default'];
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -893,7 +1163,7 @@ exports.default = function (jsJoda) {
     jsJoda.Locale = _Locale2.default;
 };
 
-var _CldrDateTimeFormatterBuilder = __webpack_require__(8);
+var _CldrDateTimeFormatterBuilder = __webpack_require__(9);
 
 var _CldrDateTimeFormatterBuilder2 = _interopRequireDefault(_CldrDateTimeFormatterBuilder);
 
@@ -915,7 +1185,7 @@ module.exports = exports['default']; /*
                                       */
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -929,11 +1199,11 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _jsJoda = __webpack_require__(0);
 
-var _TextPrinterParser = __webpack_require__(9);
+var _TextPrinterParser = __webpack_require__(10);
 
 var _TextPrinterParser2 = _interopRequireDefault(_TextPrinterParser);
 
-var _CldrDateTimeTextProvider = __webpack_require__(10);
+var _CldrDateTimeTextProvider = __webpack_require__(4);
 
 var _CldrDateTimeTextProvider2 = _interopRequireDefault(_CldrDateTimeTextProvider);
 
@@ -941,7 +1211,7 @@ var _CldrZoneTextPrinterParser = __webpack_require__(11);
 
 var _CldrZoneTextPrinterParser2 = _interopRequireDefault(_CldrZoneTextPrinterParser);
 
-var _LocaleStore = __webpack_require__(4);
+var _LocaleStore = __webpack_require__(5);
 
 var _LocalizedOffsetPrinterParser = __webpack_require__(12);
 
@@ -1056,7 +1326,7 @@ exports.default = CldrDateTimeFormatterBuilder;
 module.exports = exports['default'];
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1093,12 +1363,12 @@ var TextPrinterParser = function () {
     }, {
         key: 'textStyle',
         value: function textStyle() {
-            return this.textStyle;
+            return this._textStyle;
         }
     }, {
         key: 'provider',
         value: function provider() {
-            return this.provider;
+            return this._provider;
         }
     }, {
         key: 'print',
@@ -1180,255 +1450,6 @@ var TextPrinterParser = function () {
 }();
 
 exports.default = TextPrinterParser;
-module.exports = exports['default'];
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /*
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
-
-var _jsJoda = __webpack_require__(0);
-
-var _cldrData = __webpack_require__(1);
-
-var _cldrData2 = _interopRequireDefault(_cldrData);
-
-var _cldrjs = __webpack_require__(2);
-
-var _cldrjs2 = _interopRequireDefault(_cldrjs);
-
-var _LocaleStore = __webpack_require__(4);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var CldrDateTimeTextProvider = function () {
-    function CldrDateTimeTextProvider() {
-        _classCallCheck(this, CldrDateTimeTextProvider);
-
-        this._cache = {};
-        _cldrjs2.default.load((0, _cldrData2.default)('supplemental/likelySubtags.json'));
-    }
-
-    _createClass(CldrDateTimeTextProvider, [{
-        key: 'getAvailableLocales',
-        value: function getAvailableLocales() {
-            return (0, _cldrData2.default)('availableLocales.json').availableLocales;
-        }
-    }, {
-        key: 'getText',
-        value: function getText(field, value, style, locale) {
-            var store = this._findStore(field, locale);
-            if (store instanceof _LocaleStore.LocaleStore) {
-                return store.getText(value, style);
-            }
-            return null;
-        }
-    }, {
-        key: 'getTextIterator',
-        value: function getTextIterator(field, style, locale) {
-            var store = this._findStore(field, locale);
-            if (store instanceof _LocaleStore.LocaleStore) {
-                return store.getTextIterator(style);
-            }
-            return null;
-        }
-    }, {
-        key: '_findStore',
-        value: function _findStore(field, locale) {
-            var key = (0, _LocaleStore.createEntry)(field, locale);
-            var store = this._cache[key];
-            if (store === undefined) {
-                store = this._createStore(field, locale);
-                this._cache[key] = store;
-            }
-            return store;
-        }
-    }, {
-        key: '_createStore',
-        value: function _createStore(field, locale) {
-            _cldrjs2.default.load((0, _cldrData2.default)('main/' + locale.localeString() + '/ca-gregorian.json'));
-            var cldr = new _cldrjs2.default(locale.localeString());
-            if (field === _jsJoda.ChronoField.MONTH_OF_YEAR) {
-                var monthsData = cldr.main('dates/calendars/gregorian/months/format');
-                var styleMap = {};
-                var data = {};
-                data[1] = monthsData.wide[1];
-                data[2] = monthsData.wide[2];
-                data[3] = monthsData.wide[3];
-                data[4] = monthsData.wide[4];
-                data[5] = monthsData.wide[5];
-                data[6] = monthsData.wide[6];
-                data[7] = monthsData.wide[7];
-                data[8] = monthsData.wide[8];
-                data[9] = monthsData.wide[9];
-                data[10] = monthsData.wide[10];
-                data[11] = monthsData.wide[11];
-                data[12] = monthsData.wide[12];
-                styleMap[_jsJoda.TextStyle.FULL] = data;
-
-                data = {};
-                data[1] = monthsData.narrow[1];
-                data[2] = monthsData.narrow[2];
-                data[3] = monthsData.narrow[3];
-                data[4] = monthsData.narrow[4];
-                data[5] = monthsData.narrow[5];
-                data[6] = monthsData.narrow[6];
-                data[7] = monthsData.narrow[7];
-                data[8] = monthsData.narrow[8];
-                data[9] = monthsData.narrow[9];
-                data[10] = monthsData.narrow[10];
-                data[11] = monthsData.narrow[11];
-                data[12] = monthsData.narrow[12];
-                styleMap[_jsJoda.TextStyle.NARROW] = data;
-
-                data = {};
-                data[1] = monthsData.abbreviated[1];
-                data[2] = monthsData.abbreviated[2];
-                data[3] = monthsData.abbreviated[3];
-                data[4] = monthsData.abbreviated[4];
-                data[5] = monthsData.abbreviated[5];
-                data[6] = monthsData.abbreviated[6];
-                data[7] = monthsData.abbreviated[7];
-                data[8] = monthsData.abbreviated[8];
-                data[9] = monthsData.abbreviated[9];
-                data[10] = monthsData.abbreviated[10];
-                data[11] = monthsData.abbreviated[11];
-                data[12] = monthsData.abbreviated[12];
-                styleMap[_jsJoda.TextStyle.SHORT] = data;
-                return this._createLocaleStore(styleMap);
-            }
-            if (field === _jsJoda.ChronoField.DAY_OF_WEEK) {
-                var daysData = cldr.main('dates/calendars/gregorian/days/format');
-                var _styleMap = {};
-                var _data = {};
-                _data[1] = daysData.wide.mon;
-                _data[2] = daysData.wide.tue;
-                _data[3] = daysData.wide.wed;
-                _data[4] = daysData.wide.thu;
-                _data[5] = daysData.wide.fri;
-                _data[6] = daysData.wide.sat;
-                _data[7] = daysData.wide.sun;
-                _styleMap[_jsJoda.TextStyle.FULL] = _data;
-
-                _data = {};
-                _data[1] = daysData.narrow.mon;
-                _data[2] = daysData.narrow.tue;
-                _data[3] = daysData.narrow.wed;
-                _data[4] = daysData.narrow.thu;
-                _data[5] = daysData.narrow.fri;
-                _data[6] = daysData.narrow.sat;
-                _data[7] = daysData.narrow.sun;
-                _styleMap[_jsJoda.TextStyle.NARROW] = _data;
-
-                _data = {};
-                _data[1] = daysData.abbreviated.mon;
-                _data[2] = daysData.abbreviated.tue;
-                _data[3] = daysData.abbreviated.wed;
-                _data[4] = daysData.abbreviated.thu;
-                _data[5] = daysData.abbreviated.fri;
-                _data[6] = daysData.abbreviated.sat;
-                _data[7] = daysData.abbreviated.sun;
-                _styleMap[_jsJoda.TextStyle.SHORT] = _data;
-                return this._createLocaleStore(_styleMap);
-            }
-            if (field === _jsJoda.ChronoField.AMPM_OF_DAY) {
-                var dayPeriodsData = cldr.main('dates/calendars/gregorian/dayPeriods/format');
-                var _styleMap2 = {};
-                var _data2 = {};
-                _data2[0] = dayPeriodsData.wide.am;
-                _data2[1] = dayPeriodsData.wide.pm;
-                _styleMap2[_jsJoda.TextStyle.FULL] = _data2;
-
-                _data2 = {};
-                _data2[0] = dayPeriodsData.narrow.am;
-                _data2[1] = dayPeriodsData.narrow.pm;
-                _styleMap2[_jsJoda.TextStyle.NARROW] = _data2;
-
-                _data2 = {};
-                _data2[0] = dayPeriodsData.abbreviated.am;
-                _data2[1] = dayPeriodsData.abbreviated.pm;
-                _styleMap2[_jsJoda.TextStyle.SHORT] = _data2;
-
-                return this._createLocaleStore(_styleMap2);
-            }
-            if (field === _jsJoda.ChronoField.ERA) {
-                var erasData = cldr.main('dates/calendars/gregorian/eras');
-                var _styleMap3 = {};
-                var _data3 = {};
-                _data3[0] = erasData.eraNames['0'];
-                _data3[1] = erasData.eraNames['1'];
-                _styleMap3[_jsJoda.TextStyle.FULL] = _data3;
-
-                _data3 = {};
-                _data3[0] = erasData.eraNarrow['0'];
-                _data3[1] = erasData.eraNarrow['1'];
-                _styleMap3[_jsJoda.TextStyle.NARROW] = _data3;
-
-                _data3 = {};
-                _data3[0] = erasData.eraAbbr['0'];
-                _data3[1] = erasData.eraAbbr['1'];
-                _styleMap3[_jsJoda.TextStyle.SHORT] = _data3;
-
-                return this._createLocaleStore(_styleMap3);
-            }
-            if (field === _jsJoda.IsoFields.QUARTER_OF_YEAR) {
-                var quartersData = cldr.main('dates/calendars/gregorian/quarters/format');
-                var _styleMap4 = {};
-                var _data4 = {};
-                _data4[1] = quartersData.wide['1'];
-                _data4[2] = quartersData.wide['2'];
-                _data4[3] = quartersData.wide['3'];
-                _data4[4] = quartersData.wide['4'];
-                _styleMap4[_jsJoda.TextStyle.FULL] = _data4;
-
-                _data4 = {};
-                _data4[1] = quartersData.narrow['1'];
-                _data4[2] = quartersData.narrow['2'];
-                _data4[3] = quartersData.narrow['3'];
-                _data4[4] = quartersData.narrow['4'];
-                _styleMap4[_jsJoda.TextStyle.NARROW] = _data4;
-
-                _data4 = {};
-                _data4[1] = quartersData.abbreviated['1'];
-                _data4[2] = quartersData.abbreviated['2'];
-                _data4[3] = quartersData.abbreviated['3'];
-                _data4[4] = quartersData.abbreviated['4'];
-                _styleMap4[_jsJoda.TextStyle.SHORT] = _data4;
-
-                return this._createLocaleStore(_styleMap4);
-            }
-            return null;
-        }
-    }, {
-        key: '_createLocaleStore',
-        value: function _createLocaleStore(valueTextMap) {
-            valueTextMap[_jsJoda.TextStyle.FULL_STANDALONE] = valueTextMap[_jsJoda.TextStyle.FULL];
-            valueTextMap[_jsJoda.TextStyle.SHORT_STANDALONE] = valueTextMap[_jsJoda.TextStyle.SHORT];
-
-            if (Object.keys(valueTextMap).includes(_jsJoda.TextStyle.NARROW) && !Object.keys(valueTextMap).includes(_jsJoda.TextStyle.NARROW_STANDALONE)) {
-                valueTextMap[_jsJoda.TextStyle.NARROW_STANDALONE] = valueTextMap[_jsJoda.TextStyle.NARROW];
-            }
-            return new _LocaleStore.LocaleStore(valueTextMap);
-        }
-    }]);
-
-    return CldrDateTimeTextProvider;
-}();
-
-exports.default = CldrDateTimeTextProvider;
 module.exports = exports['default'];
 
 /***/ }),
@@ -1844,7 +1865,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _jsJoda = __webpack_require__(0);
 
-var _WeekFields = __webpack_require__(5);
+var _WeekFields = __webpack_require__(6);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2001,7 +2022,7 @@ module.exports = exports['default'];
 
 var _Locale = __webpack_require__(3);
 
-var _WeekFields = __webpack_require__(5);
+var _WeekFields = __webpack_require__(6);
 
 /*
  * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
