@@ -1,27 +1,13 @@
 {
     "packages": {
-        "core": [
-            "en",
-            "de",
-            "es"
-        ],
         "de": [
-            "de"
-        ],
-        "de_all": [
             "de.*"
         ],
         "en": [
-            "en"
-        ],
-        "en_all": [
             "en.*"
         ],
         "es": [
-            "es"
+            "es.*"
         ]
-    },
-    "statsOptions": {
-        "colors": true
     }
 }

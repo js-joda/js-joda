@@ -13,7 +13,7 @@ function updateWebpackConfigForLocales(webpackConfig, locales, modulesDir) {
         delete webpackConfig.externals['cldr-data'];
     }
     // for cldr-data, we only want to include needed files for locales from main and supplemental /
-    // availableLocales so exclude everything else via null-loader
+    // availableLocales so "exclude" everything else via null-loader
 
     // basic nullLoaderConfig
     const nullLoaderConfig = {
@@ -53,7 +53,6 @@ function updateWebpackConfigForLocales(webpackConfig, locales, modulesDir) {
     webpackConfig.module.rules.push(nullLoaderConfig);
     webpackConfig.plugins.push(new DefinePlugin({
         JS_JODA_LOCALE_AVAILABLE_LOCALES: JSON.stringify(locales),
-        JS_JODA_LOCALE_CLDRDATA_BASEDIR: JSON.stringify(modulesDir),
     }));
     return webpackConfig;
 }
