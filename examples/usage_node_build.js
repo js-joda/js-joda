@@ -41,4 +41,5 @@ try {
     console.error('');
     console.error('');
     console.error('NOTE: if you see errors about missing modules/locales, you may need to run `npm run build-examples` before using this example.');
+    process.exit(1);
 }
