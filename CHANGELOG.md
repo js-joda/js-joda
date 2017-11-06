@@ -3,6 +3,10 @@ Changelog
 
 ### 1.6.3 (next)
 
+#### public API
+
+ * improve typescript definition (see PR #196)
+ 
 ### 1.6.2
 
 #### public API
