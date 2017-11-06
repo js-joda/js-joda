@@ -82,7 +82,7 @@ also see the [example](examples/usage_es6.js)
 
 ### Use prebuilt locale packages
 
-Since the process described [below](#without-prebuild-locale-packages) requires a lot of setup and internal knowledge, 
+Since the process described [below](#without-prebuilt-locale-packages) requires a lot of setup and internal knowledge, 
 we provide the possibility to create prebuilt locale packages when installing `js-joda-locale`. This basically automates the steps described 
 in the description how to setup webpack for use with js-joda-locale below
 
@@ -177,7 +177,7 @@ which parts of cldr-data are required for `js-joda-locale` to work)
 
 In e.g. webpack.config.js, define which parts/locales of the cldr-data files should end up in the final package
 
-You can for example use the `null-loader` plugin to disable loading cldr-data except for the absolutely required parts/locales
+You can for example use the `null-loader` to disable loading cldr-data except for the absolutely required parts/locales
 
 ```js
 use: [{ loader: 'null-loader' }],
@@ -193,6 +193,16 @@ resource: {
     ],
 }
 ``` 
+or (as we do for our prebuilt packages) use the CldrDataIgnorePlugin, provided in `utils/CldrDataIgnorePlugin.js`
+```json
+    "plugins": [
+        new CldrDataIgnorePlugin(modulesDir, locales)),
+    ]
+
+```
+where modulesDir is the absolute path to `node_modules` and `locales` is an array of locales to use as they can be defined 
+for the prebuilt packages. This will only load the absolutely required files for js-joda-locale, it is what we use internally
+for the prebuilt packages and to build packages for our karma tests as well.
 
 Depending on your usecase it might also be necessary to define a  "faked" cldr-data module that loads 
 the cldr-data files, this is necessary at least if the code needs to run in the browser since the 
