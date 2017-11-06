@@ -3,6 +3,10 @@ Changelog
 
 ### next
 
+### 0.8.1
+
+update package builder, use a webpack plugin to ignore unnecessary cldr-data files instead of `null-loader`
+
 ### 0.8.0
 
 - update dependencies
