@@ -64,7 +64,7 @@ let yargs = yargsPkg
     .wrap(Math.min(120, yargsPkg.terminalWidth()))
     .help();
 
-if (process.env['npm_lifecycle_event'] === 'postinstall') {
+if ((process.env['npm_lifecycle_event'] === 'postinstall') || (process.env['POSTINSTALL_BUILD'] === '1')) {
     yargs = yargs
         .pkgConf('js-joda-locale', process.cwd()) // in postinstall this is the js-joda-locale  module dir
         .pkgConf('js-joda-locale', path.resolve(process.cwd(), '../..')); // in postinstall this is the dir of the root package
