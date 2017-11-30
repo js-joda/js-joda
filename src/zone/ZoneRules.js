@@ -413,11 +413,11 @@ class Fixed extends ZoneRules{
 
     /**
      *
-     * @param {LocalDateTime} LocalDateTime
+     * @param {LocalDateTime} localDateTime
      * @param {ZoneOffset} offset
      * @return {boolean}
      */
-    isValidOffset(dateTime, offset) {
+    isValidOffset(localDateTime, offset) {
         return this._offset.equals(offset);
     }
 
