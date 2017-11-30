@@ -204,33 +204,30 @@ export class MathUtil {
     }
 
     // convert to small integer for v8 optimisation
-    static smi(i32) {
-        return ((i32 >>> 1) & 0x40000000) | (i32 & 0xBFFFFFFF);
+    static smi(int) {
+        return ((int >>> 1) & 0x40000000) | (int & 0xBFFFFFFF);
     }
 
-    // calculate 32 bit int of a number and convert to SMI
-    static hash(o) {
-        if (o !== o || o === Infinity) {
+    // calculate 32 bit hash of a number and convert to SMI
+    static hash(number) {
+        if (number !== number || number === Infinity) {
             return 0;
         }
-        let h = o | 0;
-        if (h !== o) {
-            h ^= o * 0xFFFFFFFF;
+        let h = number;
+        while (number > 0xFFFFFFFF) {
+            number /= 0xFFFFFFFF;
+            h ^= number;
         }
-        while (o > 0xFFFFFFFF) {
-            o /= 0xFFFFFFFF;
-            h ^= o;
-        }
-        return MathUtil.smi(h);
+        return h;
     }
 
     // default hashCode calculation for a number sequence as mentioned by Joshua Bloch
-    static hashCode(...o) {
-        let r = 17;
-        for (const n of o) {
-            r = (r << 5) - r + MathUtil.hash(n);
+    static hashCode(...numbers) {
+        let result = 17;
+        for (const number of numbers) {
+            result = (result << 5) - result + MathUtil.hash(number);
         }
-        return MathUtil.hash(r);
+        return MathUtil.hash(result);
     }
 }
 
