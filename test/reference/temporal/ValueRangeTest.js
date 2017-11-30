@@ -180,6 +180,28 @@ describe('org.threeten.bp.temporal.TestValueRange', function () {
             assertEquals(a.hashCode() === b.hashCode(), true);
         });
 
+        it('test_hashcode_equal', () => {
+            const testData = [
+                [ValueRange.of(1, 2, 3, 4), ValueRange.of(1, 2, 3, 4)],
+                [ValueRange.of(1, 2), ValueRange.of(1, 2)],
+                [ValueRange.of(1, 2, 3), ValueRange.of(1, 2, 3)],
+            ];
+            testData.forEach(([a, b]) => {
+                assertEquals(a.hashCode() === b.hashCode(), true);
+            });
+        });
+
+        it('test_hashcode_unequal', () => {
+            const testData = [
+                [ValueRange.of(1, 2, 3, 4), ValueRange.of(1, 2, 3, 5)],
+                [ValueRange.of(1, 2), ValueRange.of(0, 2)],
+                [ValueRange.of(1, 4, 5), ValueRange.of(1, 2, 5)],
+            ];
+            testData.forEach(([a, b]) => {
+                assertEquals(a.hashCode() === b.hashCode(), false);
+            });
+        });
+
         it('test_equals2', () => {
             const a = ValueRange.of(1, 2, 3, 4);
             assertEquals(a.equals(ValueRange.of(0, 2, 3, 4)), false);
