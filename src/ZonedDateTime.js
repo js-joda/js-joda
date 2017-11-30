@@ -21,6 +21,7 @@ import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
 import {createTemporalQuery} from './temporal/TemporalQuery';
 import {TemporalQueries} from './temporal/TemporalQueries';
+import {MathUtil} from "./MathUtil";
 
 /**
  * A date-time with a time-zone in the ISO-8601 calendar system,
@@ -1997,11 +1998,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @return {number} a suitable hash code
      */
     hashCode() {
-        let r = 17;
-        r = 31 * r + this._dateTime.hashCode();
-        r = 31 * r + this._offset.hashCode();
-        r = 31 * r + this._zone.hashCode();
-        return r;
+        return MathUtil.hashCode(this._dateTime.hashCode(), this._offset.hashCode(), this._zone.hashCode());
     }
 
     //-----------------------------------------------------------------------

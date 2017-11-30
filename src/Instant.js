@@ -1018,7 +1018,7 @@ export class Instant extends Temporal {
      * @return {number} a suitable hash code
      */
     hashCode() {
-        return ((this._seconds ^ (this._seconds >>> 24))) + 51 * this._nanos;
+        return MathUtil.hashCode(this._seconds, this._nanos);
     }
 
     /**

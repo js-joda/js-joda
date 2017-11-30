@@ -1661,7 +1661,7 @@ export class LocalDate extends ChronoLocalDate{
         const yearValue = this._year;
         const monthValue = this._month;
         const dayValue = this._day;
-        return (yearValue & 0xFFFFF800) ^ ((yearValue << 11) + (monthValue << 6) + (dayValue));
+        return MathUtil.hash((yearValue & 0xFFFFF800) ^ ((yearValue << 11) + (monthValue << 6) + (dayValue)));
     }
 
     /**

@@ -192,9 +192,7 @@ export class ValueRange {
      * @return {number} a suitable hash code
      */
     hashCode() {
-        const hash = this._minSmallest + (this._minLargest << 16) + (this._minLargest >> 48) + (this._maxSmallest << 32) +
-            (this._maxSmallest >> 32) + (this._maxLargest << 48) + (this._maxLargest >> 16);
-        return hash;
+        return MathUtil.hashCode(this._minSmallest, this._minLargest, this._maxSmallest, this._maxLargest);
     }
 
     /*

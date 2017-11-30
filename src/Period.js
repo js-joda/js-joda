@@ -880,7 +880,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      * @return {number} a suitable hash code
      */
     hashCode() {
-        return this._years + (this._months << 8) + (this._days << 16);
+        return MathUtil.hashCode(this._years, this._months, this._days);
     }
 
     //-----------------------------------------------------------------------

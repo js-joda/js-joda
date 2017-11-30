@@ -1310,7 +1310,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      */
     hashCode() {
         const nod = this.toNanoOfDay();
-        return (nod ^ (nod >>> 24));
+        return MathUtil.hash(nod);
     }
 
     //-----------------------------------------------------------------------
