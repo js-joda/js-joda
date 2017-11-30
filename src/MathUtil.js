@@ -213,19 +213,19 @@ export class MathUtil {
         if (number !== number || number === Infinity) {
             return 0;
         }
-        let h = number;
+        let result = number;
         while (number > 0xFFFFFFFF) {
             number /= 0xFFFFFFFF;
-            h ^= number;
+            result ^= number;
         }
-        return h;
+        return MathUtil.smi(result);
     }
 
     // default hashCode calculation for a number sequence as mentioned by Joshua Bloch
     static hashCode(...numbers) {
         let result = 17;
-        for (const number of numbers) {
-            result = (result << 5) - result + MathUtil.hash(number);
+        for (const n of numbers) {
+            result = (result << 5) - result + MathUtil.hash(n);
         }
         return MathUtil.hash(result);
     }
