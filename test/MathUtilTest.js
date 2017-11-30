@@ -219,4 +219,54 @@ describe('MathUtil', () => {
         });
 
     });
+
+    describe('hashCode', function () {
+        const testData = [
+            [0, 0],
+            [-0, 0],
+            [Infinity, 0],
+            [1, 1],
+            [123456, 123456],
+            [1234567890, 160826066],
+            [MAX_SAFE_INTEGER, -2097153],
+            [MIN_SAFE_INTEGER, 1],
+        ];
+
+        it('should generate different hashes for different integers', function () {
+            testData.forEach(([n, r]) => {
+                expect(MathUtil.hash(n)).to.equal(r);
+            });
+        });
+
+        it('should generate small integers', function () {
+            testData.forEach(([n]) => {
+                expect(MathUtil.hash(n) % 1).to.equal(0);
+                expect(MathUtil.hash(n)).to.be.within(-Math.pow(2,31), Math.pow(2,31));
+            });
+        });
+
+        it('should return equal hashcodes for same values', function () {
+            const testData = [
+                [1],
+                [1, 2],
+                [2, 1],
+                [0],
+            ];
+            testData.forEach((data) => {
+                expect(MathUtil.hashCode(...data)).to.equal(MathUtil.hashCode(...data));
+            });
+        });
+
+        it('should return unequal hashcodes for selected different values', function () {
+            const testData = [
+                [[1], [2]],
+                [[1, 2], [1, 3]],
+                [[1, 2], [2, 1]],
+                [[0], [0, 0]],
+            ];
+            testData.forEach((data) => {
+                expect(MathUtil.hashCode(...data[0])).to.not.equal(MathUtil.hashCode(...data[1]));
+            });
+        });
+    });
 });

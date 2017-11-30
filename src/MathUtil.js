@@ -202,6 +202,36 @@ export class MathUtil {
         }
         return 0;
     }
+
+    // convert to small integer for v8 optimisation
+    static smi(i32) {
+        return ((i32 >>> 1) & 0x40000000) | (i32 & 0xBFFFFFFF);
+    }
+
+    // calculate 32 bit int of a number and convert to SMI
+    static hash(o) {
+        if (o !== o || o === Infinity) {
+            return 0;
+        }
+        let h = o | 0;
+        if (h !== o) {
+            h ^= o * 0xFFFFFFFF;
+        }
+        while (o > 0xFFFFFFFF) {
+            o /= 0xFFFFFFFF;
+            h ^= o;
+        }
+        return MathUtil.smi(h);
+    }
+
+    // default hashCode calculation for a number sequence as mentioned by Joshua Bloch
+    static hashCode(...o) {
+        let r = 17;
+        for (const n of o) {
+            r = (r << 5) - r + MathUtil.hash(n);
+        }
+        return MathUtil.hash(r);
+    }
 }
 
 MathUtil.MAX_SAFE_INTEGER = MAX_SAFE_INTEGER;
