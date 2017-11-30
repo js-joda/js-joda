@@ -6,6 +6,7 @@
 
 import {requireNonNull} from './assert';
 import {DateTimeException, IllegalArgumentException} from './errors';
+import {MathUtil} from './MathUtil';
 
 import {Clock} from './Clock';
 import {Instant} from './Instant';
@@ -21,7 +22,6 @@ import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
 import {createTemporalQuery} from './temporal/TemporalQuery';
 import {TemporalQueries} from './temporal/TemporalQueries';
-import {MathUtil} from "./MathUtil";
 
 /**
  * A date-time with a time-zone in the ISO-8601 calendar system,
