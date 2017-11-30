@@ -13,7 +13,7 @@ export const MIN_SAFE_INTEGER = -9007199254740991;
  */
 export class MathUtil {
     /**
-     * 
+     *
      * @param {number} x
      * @param {number} y
      * @returns {number}
@@ -25,7 +25,7 @@ export class MathUtil {
     }
 
     /**
-     * 
+     *
      * @param {number} x
      * @param {number} y
      * @returns {number}
@@ -37,7 +37,7 @@ export class MathUtil {
     }
 
     /**
-     * 
+     *
      * @param {number} r
      * @returns {number}
      */
@@ -48,9 +48,9 @@ export class MathUtil {
             return Math.floor(r);
         }
     }
-    
+
     /**
-     * 
+     *
      * @param {number} x
      * @param {number} y
      * @returns {number}
@@ -61,7 +61,7 @@ export class MathUtil {
     }
 
     /**
-     * 
+     *
      * @param {number} x
      * @param {number} y
      * @returns {number}
@@ -72,7 +72,7 @@ export class MathUtil {
     }
 
     /**
-     * 
+     *
      * @param {number} x
      * @param {number} y
      * @returns {number}
@@ -94,7 +94,7 @@ export class MathUtil {
     }
 
     /**
-     * 
+     *
      * @param {number} x
      * @param {number} y
      * @returns {number}
@@ -113,7 +113,7 @@ export class MathUtil {
     }
 
     /**
-     * 
+     *
      * @param {number} x
      * @param {number} y
      * @returns {number}
@@ -138,7 +138,7 @@ export class MathUtil {
     }
 
     /**
-     * 
+     *
      * @param {number} value
      * @returns {number}
      */
@@ -148,7 +148,7 @@ export class MathUtil {
     }
 
     /**
-     * 
+     *
      * @param {number} value
      * @returns {number}
      */
@@ -158,7 +158,7 @@ export class MathUtil {
     }
 
     /**
-     * 
+     *
      * @param {number} value
      */
     static verifyInt(value){
@@ -178,7 +178,7 @@ export class MathUtil {
 
     /**
      * convert -0 to 0 and int as string to a number ( '1' -> 1 )
-     * 
+     *
      * @param {number} value
      * @returns {number}
      */
@@ -202,7 +202,6 @@ export class MathUtil {
         }
         return 0;
     }
-
 }
 
 MathUtil.MAX_SAFE_INTEGER = MAX_SAFE_INTEGER;
