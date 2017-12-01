@@ -3,6 +3,10 @@ Changelog
 
 ### next
 
+### 1.0.0
+
+just bump the version
+
 ### 0.8.2
 
 get rid of dependencies for postinstall package build, use `postinstall_build` to install the needed
