@@ -854,8 +854,6 @@ declare namespace JSJoda {
 
         static ofInstant(instant: Instant, zoneId?: ZoneId): LocalDateTime
 
-        static ofYearDay(year: number, dayOfYear: number): LocalDateTime
-
         static parse(text: string, formatter?: DateTimeFormatter): LocalDateTime
 
         atZone(zone: ZoneId): ZonedDateTime
