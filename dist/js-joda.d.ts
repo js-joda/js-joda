@@ -8,6 +8,8 @@ declare namespace JSJoda {
         range(field: TemporalField): ValueRange
     }
     abstract class Temporal extends TemporalAccessor {
+        plus(amount: TemporalAmount): this
+        plus(amountToAdd: number, unit: TemporalUnit): this
     }
 
     abstract class Clock {
@@ -25,7 +27,7 @@ declare namespace JSJoda {
 
         abstract zone(): any
     }
-    class DayOfWeek extends Temporal implements TemporalAdjuster {
+    class DayOfWeek extends TemporalAccessor implements TemporalAdjuster {
         static MONDAY: DayOfWeek
         static TUESDAY: DayOfWeek
         static WEDNESDAY: DayOfWeek
@@ -228,9 +230,6 @@ declare namespace JSJoda {
 
         nano(): number
 
-        plus(amount: TemporalAmount): Instant
-        plus(amountToAdd: number, unit: TemporalUnit): Instant
-
         plusMillis(millisToAdd: number): Instant
 
         plusNanos(nanosToAdd: number): Instant
@@ -412,9 +411,6 @@ declare namespace JSJoda {
 
         nano(): number
 
-        plus(amount: TemporalAmount): LocalTime
-        plus(amountToAdd: number, unit: TemporalUnit): LocalTime
-
         plusHours(hoursToAdd: number): LocalTime
 
         plusMinutes(minutesToAdd: number): LocalTime
@@ -481,7 +477,7 @@ declare namespace JSJoda {
 
         static verifyInt(value: number): void
     }
-    class Month extends Temporal implements TemporalAdjuster {
+    class Month extends TemporalAccessor implements TemporalAdjuster {
         static JANUARY: Month
         static FEBRUARY: Month
         static MARCH: Month
@@ -788,9 +784,6 @@ declare namespace JSJoda {
 
         monthValue(): number
 
-        plus(amount: TemporalAmount): LocalDate
-        plus(amountToAdd: number, unit: TemporalUnit): LocalDate
-
         plusDays(daysToAdd: number): LocalDate
 
         plusMonths(monthsToAdd: number): LocalDate
@@ -914,9 +907,6 @@ declare namespace JSJoda {
         monthValue(): number
 
         nano(): number
-
-        plus(amount: TemporalAmount): LocalDateTime
-        plus(amountToAdd: number, unit: TemporalUnit): LocalDateTime
 
         plusDays(days: number): LocalDateTime
 
@@ -1157,8 +1147,6 @@ declare namespace JSJoda {
 
         atMonth(monthOrNumber: Month|number): Year
 
-        plus(amountOrNumber: TemporalAmount|number, unit?: TemporalUnit): Year
-
         minus(amountOrNumber: TemporalAmount|number, unit?: TemporalUnit): Year
     }
     class YearMonth extends Temporal implements TemporalAdjuster {
@@ -1177,8 +1165,6 @@ declare namespace JSJoda {
         minusYears(yearsToSubtract: number): YearMonth
         minusMonths(monthsToSubtract: number): YearMonth
 
-        plus(amount: TemporalAmount): YearMonth
-        plus(amountToAdd: number, unit: TemporalUnit): YearMonth
         plusYears(yearsToAdd: number): YearMonth
         plusMonths(monthsToAdd: number): YearMonth
 

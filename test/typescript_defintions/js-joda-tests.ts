@@ -13,6 +13,7 @@ import {
     Month,
     nativeJs,
     Period,
+    Temporal,
     TemporalAdjusters,
     YearMonth,
     ZoneOffset,
@@ -185,8 +186,8 @@ function test_LocalTime() {
     t.withSecond(1);
     t.with(ChronoField.MILLI_OF_SECOND, 51);
     let nextEvenSecond = {
-        adjustInto: function (t: LocalTime) {
-            return t.second() % 2 === 0 ? t.plusSeconds(2) : t.plusSeconds(1);
+        adjustInto: function<T extends Temporal> (t: T): T {
+            return t.plus(t.get(ChronoField.SECOND_OF_MINUTE) % 2 === 0 ? 2 : 1, ChronoUnit.SECONDS);
         }
     };
     t.with(nextEvenSecond);
@@ -327,8 +328,8 @@ function test_LocalDateTime() {
 
 
     var nextEvenSecond = {
-        adjustInto: function (t: LocalDateTime) {
-            return t.second() % 2 === 0 ? t.plusSeconds(2) : t.plusSeconds(1);
+        adjustInto: function<T extends Temporal> (t: T): T {
+            return t.plus(t.get(ChronoField.SECOND_OF_MINUTE) % 2 === 0 ? 2 : 1, ChronoUnit.SECONDS);
         }
     };
     dt.with(nextEvenSecond);

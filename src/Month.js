@@ -12,7 +12,7 @@ import {ChronoUnit} from './temporal/ChronoUnit';
 import {DateTimeException, IllegalArgumentException, UnsupportedTemporalTypeException} from './errors';
 import {DateTimeFormatterBuilder} from './format/DateTimeFormatterBuilder';
 import {IsoChronology} from './chrono/IsoChronology';
-import {Temporal} from './temporal/Temporal';
+import {TemporalAccessor} from './temporal/TemporalAccessor';
 import {TemporalQueries} from './temporal/TemporalQueries';
 
 /**
@@ -37,7 +37,7 @@ import {TemporalQueries} from './temporal/TemporalQueries';
  * Month.JULY, Month.AUGUST, Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER
  *
  */
-export class Month extends Temporal {
+export class Month extends TemporalAccessor {
 
     /**
      *
