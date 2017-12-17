@@ -671,6 +671,59 @@ export function _init() {
         .appendLiteral(']')
         .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
 
+    DateTimeFormatter.BASIC_DATE = new DateTimeFormatterBuilder()
+        .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
+        .appendValue(ChronoField.MONTH_OF_YEAR, 2)
+        .appendValue(ChronoField.DAY_OF_MONTH, 2)
+        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+
+    DateTimeFormatter.BASIC_TIME = new DateTimeFormatterBuilder()
+        .appendValue(ChronoField.HOUR_OF_DAY, 2)
+        .appendValue(ChronoField.MINUTE_OF_HOUR, 2)
+        .appendValue(ChronoField.SECOND_OF_MINUTE, 2)
+        .appendLiteral('.')
+        .appendFraction(ChronoField.NANO_OF_SECOND, 3, 9, false)
+        .appendOffsetId()
+        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+
+    DateTimeFormatter.BASIC_TIME_NO_MILLIS = new DateTimeFormatterBuilder()
+        .appendValue(ChronoField.HOUR_OF_DAY, 2)
+        .appendValue(ChronoField.MINUTE_OF_HOUR, 2)
+        .appendValue(ChronoField.SECOND_OF_MINUTE, 2)
+        .appendOffsetId()
+        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+
+    DateTimeFormatter.BASIC_DATE_TIME = new DateTimeFormatterBuilder()
+        .append(DateTimeFormatter.BASIC_DATE)
+        .appendLiteral('T')
+        .append(DateTimeFormatter.BASIC_TIME)
+        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+
+    DateTimeFormatter.BASIC_DATE_TIME_NO_MILLIS = new DateTimeFormatterBuilder()
+        .append(DateTimeFormatter.BASIC_DATE)
+        .appendLiteral('T')
+        .append(DateTimeFormatter.BASIC_TIME_NO_MILLIS)
+        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+
+    DateTimeFormatter.BASIC_WEEK_DATE = new DateTimeFormatterBuilder()
+        .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
+        .appendLiteral('W')
+        .appendValue(ChronoField.ALIGNED_WEEK_OF_YEAR, 2)
+        .appendValue(ChronoField.DAY_OF_WEEK, 1)
+        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+
+    DateTimeFormatter.BASIC_WEEK_DATE_TIME = new DateTimeFormatterBuilder()
+        .append(DateTimeFormatter.BASIC_WEEK_DATE)
+        .appendLiteral('T')
+        .append(DateTimeFormatter.BASIC_TIME)
+        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+
+    DateTimeFormatter.BASIC_WEEK_DATE_TIME_NO_MILLIS = new DateTimeFormatterBuilder()
+        .append(DateTimeFormatter.BASIC_WEEK_DATE)
+        .appendLiteral('T')
+        .append(DateTimeFormatter.BASIC_TIME_NO_MILLIS)
+        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+
     DateTimeFormatter.PARSED_EXCESS_DAYS = createTemporalQuery('PARSED_EXCESS_DAYS', (temporal) => {
         if (temporal instanceof DateTimeBuilder) {
             return temporal.excessDays;
