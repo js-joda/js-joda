@@ -1461,6 +1461,10 @@ declare namespace JSJoda {
 
         withZoneSameLocal(zone: ZoneId): ZonedDateTime
 
+        withEarlierOffsetAtOverlap(): ZonedDateTime
+
+        withLaterOffsetAtOverlap(): ZonedDateTime
+
         year(): number
 
         zone(): ZoneId
