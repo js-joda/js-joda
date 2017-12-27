@@ -3,6 +3,8 @@ Changelog
 
 ### 1.1.6 (next)
 
+#### dependendency updates
+
 ### 1.1.5
 
 #### etc

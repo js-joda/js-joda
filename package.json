@@ -41,7 +41,7 @@
     "phueper"
   ],
   "peerDependencies": {
-    "js-joda": "^1.6.1"
+    "js-joda": "^1.6.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -52,28 +52,28 @@
     "babel-preset-es2015": "^6.24.1",
     "chai": "^4.1.2",
     "coveralls": "^3.0.0",
-    "esdoc": "^1.0.3",
+    "esdoc": "^1.0.4",
     "esdoc-standard-plugin": "^1.0.0",
-    "eslint": "^4.7.1",
+    "eslint": "^4.14.0",
     "eslint-config-js-joda": "^1.0.0",
-    "js-joda": "^1.6.1",
+    "js-joda": "^1.6.2",
     "json-loader": "^0.5.7",
-    "karma": "^1.7.1",
+    "karma": "^2.0.0",
     "karma-chai-plugins": "^0.9.0",
     "karma-chrome-launcher": "^2.2.0",
-    "karma-firefox-launcher": "^1.0.1",
+    "karma-firefox-launcher": "^1.1.0",
     "karma-mocha": "^1.3.0",
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-sauce-launcher": "^1.2.0",
     "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^2.0.4",
+    "karma-webpack": "^2.0.9",
     "markdown-toc": "^1.2.0",
-    "mocha": "^4.0.0",
-    "moment-timezone": "^0.5.13",
-    "nyc": "^11.2.1",
-    "phantomjs-prebuilt": "^2.1.15",
-    "typescript": "^2.5.2",
-    "webpack": "^3.6.0"
+    "mocha": "^4.0.1",
+    "moment-timezone": "^0.5.14",
+    "nyc": "^11.4.1",
+    "phantomjs-prebuilt": "^2.1.16",
+    "typescript": "^2.6.2",
+    "webpack": "^3.10.0"
   },
   "license": "BSD-3-Clause",
   "bugs": {
