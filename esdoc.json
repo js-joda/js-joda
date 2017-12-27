@@ -12,6 +12,12 @@
           "autoPrivate": true
         }
       }
+    },
+    {
+      "name": "esdoc-ecmascript-proposal-plugin",
+      "option": {
+        "all": true
+      }
     }
   ]
 }

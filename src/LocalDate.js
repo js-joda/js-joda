@@ -83,6 +83,22 @@ const  DAYS_0000_TO_1970 = (DAYS_PER_CYCLE * 5) - (30 * 365 + 7);
 export class LocalDate extends ChronoLocalDate{
 
     /**
+     * The minimum supported {@link LocalDate}
+     * This could be used by an application as a "far past" date.
+     *
+     * @type {LocalDate}
+     */
+    static MIN;
+
+    /**
+     * The maximum supported {@link LocalDate}
+     * This could be used by an application as a "far future" date.
+     *
+     * @type {LocalDate}
+     */
+    static MAX;
+
+    /**
      * Obtains the current date from the system clock in the default time-zone or
      * if specified, the current date from the specified clock or
      * if argument is a ZoneId this will query a clock with the specified ZoneId.
