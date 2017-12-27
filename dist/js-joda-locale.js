@@ -12,7 +12,7 @@
 		exports["JSJodaLocale"] = factory(require("js-joda"), require("cldr-data"), require("cldrjs"));
 	else
 		root["JSJodaLocale"] = factory(root["JSJoda"], root["cldrData"], root["Cldr"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__) {
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
