@@ -7,6 +7,8 @@ Changelog
 
  * improve typescript definition (see PR #196)
  
+#### dependency updates
+
 ### 1.6.2
 
 #### public API
