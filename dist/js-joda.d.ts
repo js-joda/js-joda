@@ -1156,9 +1156,21 @@ declare namespace JSJoda {
 
         atMonth(monthOrNumber: Month|number): Year
 
+        atMonthDay(monthDay: MonthDay): LocalDate
+
+        isAfter(other: Year): boolean
+
+        isBefore(other: Year): boolean
+
+        isLeap(): boolean
+
+        length(): number
+
         plus(amountOrNumber: TemporalAmount|number, unit?: TemporalUnit): Year
 
         minus(amountOrNumber: TemporalAmount|number, unit?: TemporalUnit): Year
+
+        value(): number
     }
     class YearMonth extends Temporal {
         static from(temporal: TemporalAccessor): YearMonth
