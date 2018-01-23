@@ -84,7 +84,7 @@
     "requirejs-text": "^2.0.15",
     "webpack": "^3.10.0",
     "webpack-build-notifier": "^0.1.21",
-    "yargs": "^10.0.3"
+    "yargs": "^11.0.0"
   },
   "buildDependencies": [
     "babel-core",
