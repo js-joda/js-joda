@@ -1,9 +1,15 @@
 Changelog
 =========
 
-### 1.1.6 (next)
+### 1.1.7 (next)
+
+### 1.1.6
 
 #### dependendency updates
+
+#### etc
+
+ * private export of tzdb data
 
 ### 1.1.5
 

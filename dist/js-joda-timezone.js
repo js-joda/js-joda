@@ -1,4 +1,4 @@
-//! @version js-joda-timezone - 1.1.5-2017c
+//! @version js-joda-timezone - 1.1.6-2017c
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -116,6 +116,9 @@ exports.__esModule = true;
 exports.default = function (jsJoda) {
     jsJoda.ZoneRulesProvider.getRules = _MomentZoneRulesProvider.MomentZoneRulesProvider.getRules;
     jsJoda.ZoneRulesProvider.getAvailableZoneIds = _MomentZoneRulesProvider.MomentZoneRulesProvider.getAvailableZoneIds;
+
+    jsJoda.ZoneRulesProvider._TZDB = _latest2.default;
+
     (0, _systemDefaultZone2.default)(jsJoda.ZoneId);
     return jsJoda;
 };
