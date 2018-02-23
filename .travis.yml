@@ -22,8 +22,7 @@ script:
   - if [[ "$CI_STEP" == "build" ]]; then
       (
       set -evx;
-      npm run build-dist;
-      npm run build-esdoc;
+      npm run build-all;
       npm run lint;
       )
     fi

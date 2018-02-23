@@ -3,6 +3,10 @@ Changelog
 
 ### 1.6.4 (next)
 
+#### public API
+
+ * add ESM module to pkg.module build with rollup
+ 
 ### 1.6.3
 
 #### public API
