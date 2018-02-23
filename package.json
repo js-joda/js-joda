@@ -52,7 +52,7 @@
     "coveralls": "^3.0.0",
     "esdoc": "^1.0.4",
     "esdoc-standard-plugin": "^1.0.0",
-    "eslint": "^4.14.0",
+    "eslint": "^4.18.1",
     "eslint-config-js-joda": "^1.0.0",
     "karma": "^2.0.0",
     "karma-chai-plugins": "^0.9.0",
