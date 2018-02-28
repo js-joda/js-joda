@@ -45,7 +45,7 @@
     "cldr-data": "*",
     "cldrjs": "^0.5.0",
     "js-joda": "^1.6.2",
-    "js-joda-timezone": "^1.1.5"
+    "js-joda-timezone": "^1.1.6"
   },
   "dependencies": {
     "postinstall-build": "^5.0.1"
@@ -53,20 +53,20 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
+    "babel-loader": "^7.1.3",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-istanbul": "^4.1.5",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "chai": "^4.1.2",
-    "cldr-data": "^32.0.0",
+    "cldr-data": "^32.0.1",
     "cldrjs": "^0.5.0",
     "coveralls": "^3.0.0",
     "esdoc": "^1.0.4",
-    "eslint": "^4.14.0",
+    "eslint": "^4.18.1",
     "eslint-config-js-joda": "^1.0.0",
     "js-joda": "^1.6.2",
-    "js-joda-timezone": "^1.1.5",
+    "js-joda-timezone": "^1.1.6",
     "karma": "^2.0.0",
     "karma-chai-plugins": "^0.9.0",
     "karma-chrome-launcher": "^2.2.0",
@@ -75,15 +75,15 @@
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-sauce-launcher": "^1.2.0",
     "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^2.0.9",
-    "mocha": "^4.1.0",
+    "karma-webpack": "^2.0.13",
+    "mocha": "^5.0.1",
     "nyc": "^11.4.1",
     "phantomjs-prebuilt": "^2.1.16",
     "requirejs": "^2.3.5",
     "requirejs-json": "0.0.3",
     "requirejs-text": "^2.0.15",
-    "webpack": "^3.10.0",
-    "webpack-build-notifier": "^0.1.21",
+    "webpack": "^4.0.1",
+    "webpack-build-notifier": "^0.1.23",
     "yargs": "^11.0.0"
   },
   "buildDependencies": [
