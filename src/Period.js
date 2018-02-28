@@ -77,6 +77,12 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
         const _days = MathUtil.safeToInt(days);
 
         if((_years | _months | _days) === 0){
+            if (!Period.ZERO) {
+                this._years = _years;
+                this._months =  _months;
+                this._days = _days;
+                Period.ZERO = this;
+            }
             return Period.ZERO;
         }
         
@@ -923,14 +929,5 @@ export function _init() {
     /**
      * A constant for a period of zero.
      */
-    Period.ZERO = makeZeroPeriod();
-
-    function makeZeroPeriod() {
-        const zero = Object.create(Period.prototype);
-        TemporalAmount.call(zero);
-        zero._years = 0;
-        zero._months = 0;
-        zero._days = 0;
-        return zero;
-    }
+    Period.ofDays(0);
 }

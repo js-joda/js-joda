@@ -39,9 +39,9 @@ function init() {
 
     YearConstantsInit();
     DurationInit();
-    LocalTimeInit();
     ChronoUnitInit();
     ChronoFieldInit();
+    LocalTimeInit();
     IsoFieldsInit();
     TemporalQueriesInit();
     DayOfWeekInit();

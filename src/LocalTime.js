@@ -281,6 +281,13 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
         const _nanoOfSecond = MathUtil.safeToInt(nanoOfSecond);
         LocalTime._validate(_hour, _minute, _second, _nanoOfSecond);
         if ((_minute | _second | _nanoOfSecond) === 0) {
+            if (!LocalTime.HOURS[_hour]) {
+                this._hour = _hour;
+                this._minute = _minute;
+                this._second = _second;
+                this._nano = _nanoOfSecond;
+                LocalTime.HOURS[_hour] = this;
+            }
             return LocalTime.HOURS[_hour];
         }
         this._hour = _hour;
@@ -1383,18 +1390,8 @@ export function _init() {
      * Constants for the local time of each hour.
      */
     LocalTime.HOURS = [];
-    for (let i = 0; i < 24; i++) {
-        LocalTime.HOURS[i] = makeLocalTimeConst(i);
-    }
-
-    function makeLocalTimeConst(hour = 0, minute = 0, second = 0, nano = 0) {
-        const localTime = Object.create(LocalTime.prototype);
-        Temporal.call(localTime);
-        localTime._hour = hour;
-        localTime._minute = minute;
-        localTime._second = second;
-        localTime._nano = nano;
-        return localTime;
+    for (let hour = 0; hour < 24; hour++) {
+        LocalTime.of(hour, 0, 0, 0);
     }
 
     /**
@@ -1406,7 +1403,7 @@ export function _init() {
      * The maximum supported {@link LocalTime}, '23:59:59.999999999'.
      * This is the time just before midnight at the end of the day.
      */
-    LocalTime.MAX = makeLocalTimeConst(23, 59, 59, 999999999);
+    LocalTime.MAX = new LocalTime(23, 59, 59, 999999999);
     /**
      * The time of midnight at the start of the day, '00:00'.
      */
@@ -1419,53 +1416,53 @@ export function _init() {
     LocalTime.FROM = createTemporalQuery('LocalTime.FROM', (temporal) => {
         return LocalTime.from(temporal);
     });
-
-    /**
-     * Hours per day.
-     */
-    LocalTime.HOURS_PER_DAY = 24;
-    /**
-     * Minutes per hour.
-     */
-    LocalTime.MINUTES_PER_HOUR = 60;
-    /**
-     * Minutes per day.
-     */
-    LocalTime.MINUTES_PER_DAY = LocalTime.MINUTES_PER_HOUR * LocalTime.HOURS_PER_DAY;
-    /**
-     * Seconds per minute.
-     */
-    LocalTime.SECONDS_PER_MINUTE = 60;
-    /**
-     * Seconds per hour.
-     */
-    LocalTime.SECONDS_PER_HOUR = LocalTime.SECONDS_PER_MINUTE * LocalTime.MINUTES_PER_HOUR;
-    /**
-     * Seconds per day.
-     */
-    LocalTime.SECONDS_PER_DAY = LocalTime.SECONDS_PER_HOUR * LocalTime.HOURS_PER_DAY;
-    /**
-     * Milliseconds per day.
-     */
-    LocalTime.MILLIS_PER_DAY = LocalTime.SECONDS_PER_DAY * 1000;
-    /**
-     * Microseconds per day.
-     */
-    LocalTime.MICROS_PER_DAY = LocalTime.SECONDS_PER_DAY * 1000000;
-    /**
-     * Nanos per second.
-     */
-    LocalTime.NANOS_PER_SECOND = 1000000000;
-    /**
-     * Nanos per minute.
-     */
-    LocalTime.NANOS_PER_MINUTE = LocalTime.NANOS_PER_SECOND * LocalTime.SECONDS_PER_MINUTE;
-    /**
-     * Nanos per hour.
-     */
-    LocalTime.NANOS_PER_HOUR = LocalTime.NANOS_PER_MINUTE * LocalTime.MINUTES_PER_HOUR;
-    /**
-     * Nanos per day.
-     */
-    LocalTime.NANOS_PER_DAY = LocalTime.NANOS_PER_HOUR * LocalTime.HOURS_PER_DAY;
 }
+
+/**
+ * Hours per day.
+ */
+LocalTime.HOURS_PER_DAY = 24;
+/**
+ * Minutes per hour.
+ */
+LocalTime.MINUTES_PER_HOUR = 60;
+/**
+ * Minutes per day.
+ */
+LocalTime.MINUTES_PER_DAY = LocalTime.MINUTES_PER_HOUR * LocalTime.HOURS_PER_DAY;
+/**
+ * Seconds per minute.
+ */
+LocalTime.SECONDS_PER_MINUTE = 60;
+/**
+ * Seconds per hour.
+ */
+LocalTime.SECONDS_PER_HOUR = LocalTime.SECONDS_PER_MINUTE * LocalTime.MINUTES_PER_HOUR;
+/**
+ * Seconds per day.
+ */
+LocalTime.SECONDS_PER_DAY = LocalTime.SECONDS_PER_HOUR * LocalTime.HOURS_PER_DAY;
+/**
+ * Milliseconds per day.
+ */
+LocalTime.MILLIS_PER_DAY = LocalTime.SECONDS_PER_DAY * 1000;
+/**
+ * Microseconds per day.
+ */
+LocalTime.MICROS_PER_DAY = LocalTime.SECONDS_PER_DAY * 1000000;
+/**
+ * Nanos per second.
+ */
+LocalTime.NANOS_PER_SECOND = 1000000000;
+/**
+ * Nanos per minute.
+ */
+LocalTime.NANOS_PER_MINUTE = LocalTime.NANOS_PER_SECOND * LocalTime.SECONDS_PER_MINUTE;
+/**
+ * Nanos per hour.
+ */
+LocalTime.NANOS_PER_HOUR = LocalTime.NANOS_PER_MINUTE * LocalTime.MINUTES_PER_HOUR;
+/**
+ * Nanos per day.
+ */
+LocalTime.NANOS_PER_DAY = LocalTime.NANOS_PER_HOUR * LocalTime.HOURS_PER_DAY;
