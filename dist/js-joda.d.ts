@@ -1466,6 +1466,13 @@ declare namespace JSJoda {
         zone(): ZoneId
     }
     class TextStyle {
+        static FULL: TextStyle
+        static FULL_STANDALONE: TextStyle
+        static SHORT: TextStyle
+        static SHORT_STANDALONE: TextStyle
+        static NARROW: TextStyle
+        static NARROW_STANDALONE: TextStyle
+
         asNormal(): TextStyle
 
         asStandalone(): TextStyle
