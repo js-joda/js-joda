@@ -1,4 +1,4 @@
-//! @version js-joda - 1.6.2
+//! @version js-joda - 1.6.3
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -12,7 +12,7 @@
 		exports["JSJoda"] = factory();
 	else
 		root["JSJoda"] = factory();
-})(this, function() {
+})(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -343,6 +343,48 @@ var MathUtil = exports.MathUtil = function () {
             return 1;
         }
         return 0;
+    };
+
+    MathUtil.smi = function smi(int) {
+        return int >>> 1 & 0x40000000 | int & 0xBFFFFFFF;
+    };
+
+    MathUtil.hash = function hash(number) {
+        if (number !== number || number === Infinity) {
+            return 0;
+        }
+        var result = number;
+        while (number > 0xFFFFFFFF) {
+            number /= 0xFFFFFFFF;
+            result ^= number;
+        }
+        return MathUtil.smi(result);
+    };
+
+    MathUtil.hashCode = function hashCode() {
+        var result = 17;
+
+        for (var _len = arguments.length, numbers = Array(_len), _key = 0; _key < _len; _key++) {
+            numbers[_key] = arguments[_key];
+        }
+
+        for (var _iterator = numbers, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+            var _ref;
+
+            if (_isArray) {
+                if (_i >= _iterator.length) break;
+                _ref = _iterator[_i++];
+            } else {
+                _i = _iterator.next();
+                if (_i.done) break;
+                _ref = _i.value;
+            }
+
+            var n = _ref;
+
+            result = (result << 5) - result + MathUtil.hash(n);
+        }
+        return MathUtil.hash(result);
     };
 
     return MathUtil;
@@ -1422,7 +1464,7 @@ var LocalDate = function (_ChronoLocalDate) {
         var yearValue = this._year;
         var monthValue = this._month;
         var dayValue = this._day;
-        return yearValue & 0xFFFFF800 ^ (yearValue << 11) + (monthValue << 6) + dayValue;
+        return _MathUtil.MathUtil.hash(yearValue & 0xFFFFF800 ^ (yearValue << 11) + (monthValue << 6) + dayValue);
     };
 
     LocalDate.prototype.toString = function toString() {
@@ -2532,6 +2574,13 @@ var LocalTime = function (_Temporal) {
         if ((_minute | _second | _nanoOfSecond) === 0) {
             var _ret;
 
+            if (!LocalTime.HOURS[_hour]) {
+                _this._hour = _hour;
+                _this._minute = _minute;
+                _this._second = _second;
+                _this._nano = _nanoOfSecond;
+                LocalTime.HOURS[_hour] = _this;
+            }
             return _ret = LocalTime.HOURS[_hour], _possibleConstructorReturn(_this, _ret);
         }
         _this._hour = _hour;
@@ -2967,7 +3016,7 @@ var LocalTime = function (_Temporal) {
 
     LocalTime.prototype.hashCode = function hashCode() {
         var nod = this.toNanoOfDay();
-        return nod ^ nod >>> 24;
+        return _MathUtil.MathUtil.hash(nod);
     };
 
     LocalTime.prototype.toString = function toString() {
@@ -3012,28 +3061,13 @@ var LocalTime = function (_Temporal) {
 exports.LocalTime = LocalTime;
 function _init() {
     LocalTime.HOURS = [];
-    for (var i = 0; i < 24; i++) {
-        LocalTime.HOURS[i] = makeLocalTimeConst(i);
-    }
-
-    function makeLocalTimeConst() {
-        var hour = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-        var minute = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-        var second = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-        var nano = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
-
-        var localTime = Object.create(LocalTime.prototype);
-        _Temporal2.Temporal.call(localTime);
-        localTime._hour = hour;
-        localTime._minute = minute;
-        localTime._second = second;
-        localTime._nano = nano;
-        return localTime;
+    for (var hour = 0; hour < 24; hour++) {
+        LocalTime.of(hour, 0, 0, 0);
     }
 
     LocalTime.MIN = LocalTime.HOURS[0];
 
-    LocalTime.MAX = makeLocalTimeConst(23, 59, 59, 999999999);
+    LocalTime.MAX = new LocalTime(23, 59, 59, 999999999);
 
     LocalTime.MIDNIGHT = LocalTime.HOURS[0];
 
@@ -3042,31 +3076,31 @@ function _init() {
     LocalTime.FROM = (0, _TemporalQuery.createTemporalQuery)('LocalTime.FROM', function (temporal) {
         return LocalTime.from(temporal);
     });
-
-    LocalTime.HOURS_PER_DAY = 24;
-
-    LocalTime.MINUTES_PER_HOUR = 60;
-
-    LocalTime.MINUTES_PER_DAY = LocalTime.MINUTES_PER_HOUR * LocalTime.HOURS_PER_DAY;
-
-    LocalTime.SECONDS_PER_MINUTE = 60;
-
-    LocalTime.SECONDS_PER_HOUR = LocalTime.SECONDS_PER_MINUTE * LocalTime.MINUTES_PER_HOUR;
-
-    LocalTime.SECONDS_PER_DAY = LocalTime.SECONDS_PER_HOUR * LocalTime.HOURS_PER_DAY;
-
-    LocalTime.MILLIS_PER_DAY = LocalTime.SECONDS_PER_DAY * 1000;
-
-    LocalTime.MICROS_PER_DAY = LocalTime.SECONDS_PER_DAY * 1000000;
-
-    LocalTime.NANOS_PER_SECOND = 1000000000;
-
-    LocalTime.NANOS_PER_MINUTE = LocalTime.NANOS_PER_SECOND * LocalTime.SECONDS_PER_MINUTE;
-
-    LocalTime.NANOS_PER_HOUR = LocalTime.NANOS_PER_MINUTE * LocalTime.MINUTES_PER_HOUR;
-
-    LocalTime.NANOS_PER_DAY = LocalTime.NANOS_PER_HOUR * LocalTime.HOURS_PER_DAY;
 }
+
+LocalTime.HOURS_PER_DAY = 24;
+
+LocalTime.MINUTES_PER_HOUR = 60;
+
+LocalTime.MINUTES_PER_DAY = LocalTime.MINUTES_PER_HOUR * LocalTime.HOURS_PER_DAY;
+
+LocalTime.SECONDS_PER_MINUTE = 60;
+
+LocalTime.SECONDS_PER_HOUR = LocalTime.SECONDS_PER_MINUTE * LocalTime.MINUTES_PER_HOUR;
+
+LocalTime.SECONDS_PER_DAY = LocalTime.SECONDS_PER_HOUR * LocalTime.HOURS_PER_DAY;
+
+LocalTime.MILLIS_PER_DAY = LocalTime.SECONDS_PER_DAY * 1000;
+
+LocalTime.MICROS_PER_DAY = LocalTime.SECONDS_PER_DAY * 1000000;
+
+LocalTime.NANOS_PER_SECOND = 1000000000;
+
+LocalTime.NANOS_PER_MINUTE = LocalTime.NANOS_PER_SECOND * LocalTime.SECONDS_PER_MINUTE;
+
+LocalTime.NANOS_PER_HOUR = LocalTime.NANOS_PER_MINUTE * LocalTime.MINUTES_PER_HOUR;
+
+LocalTime.NANOS_PER_DAY = LocalTime.NANOS_PER_HOUR * LocalTime.HOURS_PER_DAY;
 
 /***/ }),
 /* 14 */
@@ -3469,7 +3503,7 @@ var Instant = function (_Temporal) {
     };
 
     Instant.prototype.hashCode = function hashCode() {
-        return (this._seconds ^ this._seconds >>> 24) + 51 * this._nanos;
+        return _MathUtil.MathUtil.hashCode(this._seconds, this._nanos);
     };
 
     Instant.prototype.toString = function toString() {
@@ -6111,8 +6145,7 @@ var ValueRange = exports.ValueRange = function () {
     };
 
     ValueRange.prototype.hashCode = function hashCode() {
-        var hash = this._minSmallest + this._minLargest << 16 + this._minLargest >> 48 + this._maxSmallest << 32 + this._maxSmallest >> 32 + this._maxLargest << 48 + this._maxLargest >> 16;
-        return hash ^ hash >>> 32;
+        return _MathUtil.MathUtil.hashCode(this._minSmallest, this._minLargest, this._maxSmallest, this._maxLargest);
     };
 
     ValueRange.prototype.toString = function toString() {
@@ -7000,6 +7033,12 @@ var Period = exports.Period = function (_TemporalAmount) {
         if ((_years | _months | _days) === 0) {
             var _ret;
 
+            if (!Period.ZERO) {
+                _this._years = _years;
+                _this._months = _months;
+                _this._days = _days;
+                Period.ZERO = _this;
+            }
             return _ret = Period.ZERO, _possibleConstructorReturn(_this, _ret);
         }
 
@@ -7286,7 +7325,7 @@ var Period = exports.Period = function (_TemporalAmount) {
     };
 
     Period.prototype.hashCode = function hashCode() {
-        return this._years + (this._months << 8) + (this._days << 16);
+        return _MathUtil.MathUtil.hashCode(this._years, this._months, this._days);
     };
 
     Period.prototype.toString = function toString() {
@@ -7315,16 +7354,7 @@ var Period = exports.Period = function (_TemporalAmount) {
 }(_TemporalAmount2.TemporalAmount);
 
 function _init() {
-    Period.ZERO = makeZeroPeriod();
-
-    function makeZeroPeriod() {
-        var zero = Object.create(Period.prototype);
-        _TemporalAmount2.TemporalAmount.call(zero);
-        zero._years = 0;
-        zero._months = 0;
-        zero._days = 0;
-        return zero;
-    }
+    Period.ofDays(0);
 }
 
 /***/ }),
@@ -7341,6 +7371,8 @@ exports._init = _init;
 var _assert = __webpack_require__(0);
 
 var _errors = __webpack_require__(1);
+
+var _MathUtil = __webpack_require__(2);
 
 var _Clock = __webpack_require__(15);
 
@@ -7914,11 +7946,7 @@ var ZonedDateTime = function (_ChronoZonedDateTime) {
     };
 
     ZonedDateTime.prototype.hashCode = function hashCode() {
-        var r = 17;
-        r = 31 * r + this._dateTime.hashCode();
-        r = 31 * r + this._offset.hashCode();
-        r = 31 * r + this._zone.hashCode();
-        return r;
+        return _MathUtil.MathUtil.hashCode(this._dateTime.hashCode(), this._offset.hashCode(), this._zone.hashCode());
     };
 
     ZonedDateTime.prototype.toString = function toString() {
@@ -8069,38 +8097,40 @@ var ZoneRulesProvider = exports.ZoneRulesProvider = function () {
 
 
 exports.__esModule = true;
+exports.StringUtil = undefined;
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _MathUtil = __webpack_require__(2);
 
-/*
- * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
- * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
- */
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /*
+                                                                                                                                                           * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+                                                                                                                                                           * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+                                                                                                                                                           */
 
 var StringUtil = exports.StringUtil = function () {
-  function StringUtil() {
-    _classCallCheck(this, StringUtil);
-  }
-
-  StringUtil.startsWith = function startsWith(text, pattern) {
-    return text.indexOf(pattern) === 0;
-  };
-
-  StringUtil.hashCode = function hashCode(text) {
-    var hash = 0,
-        i = void 0,
-        chr = void 0,
-        len = void 0;
-    if (text.length === 0) return hash;
-    for (i = 0, len = text.length; i < len; i++) {
-      chr = text.charCodeAt(i);
-      hash = (hash << 5) - hash + chr;
-      hash |= 0;
+    function StringUtil() {
+        _classCallCheck(this, StringUtil);
     }
-    return hash;
-  };
 
-  return StringUtil;
+    StringUtil.startsWith = function startsWith(text, pattern) {
+        return text.indexOf(pattern) === 0;
+    };
+
+    StringUtil.hashCode = function hashCode(text) {
+        var len = text.length;
+        if (len === 0) {
+            return 0;
+        }
+
+        var hash = 0;
+        for (var i = 0; i < len; i++) {
+            var chr = text.charCodeAt(i);
+            hash = (hash << 5) - hash + chr;
+            hash |= 0;
+        }
+        return _MathUtil.MathUtil.smi(hash);
+    };
+
+    return StringUtil;
 }();
 
 /***/ }),
@@ -8262,7 +8292,7 @@ var Fixed = function (_ZoneRules) {
         return false;
     };
 
-    Fixed.prototype.isValidOffset = function isValidOffset(dateTime, offset) {
+    Fixed.prototype.isValidOffset = function isValidOffset(localDateTime, offset) {
         return this._offset.equals(offset);
     };
 
@@ -13281,9 +13311,9 @@ function init() {
 
     (0, _YearConstants._init)();
     (0, _Duration._init)();
-    (0, _LocalTime._init)();
     (0, _ChronoUnit._init)();
     (0, _ChronoField._init)();
+    (0, _LocalTime._init)();
     (0, _IsoFields._init)();
     (0, _TemporalQueriesFactory._init)();
     (0, _DayOfWeek._init)();
