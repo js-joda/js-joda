@@ -9,6 +9,10 @@ Changelog
  
 #### dependency updates
 
+### etc
+
+ * Remove usage of call on constructors
+
 ### 1.6.2
 
 #### public API
