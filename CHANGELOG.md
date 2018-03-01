@@ -1,7 +1,11 @@
 Changelog
 =========
 
+### 1.7.2 (next)
+
 ### 1.7.1 (next)
+
+ * Remove pkg.module again, until issues are fixed
 
 ### 1.7.0
 
