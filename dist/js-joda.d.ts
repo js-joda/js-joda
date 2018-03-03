@@ -267,6 +267,14 @@ declare namespace JSJoda {
         static ISO_INSTANT: DateTimeFormatter
         static ISO_OFFSET_DATE_TIME: DateTimeFormatter
         static ISO_ZONED_DATE_TIME: DateTimeFormatter
+        static BASIC_DATE: DateTimeFormatter
+        static BASIC_TIME: DateTimeFormatter
+        static BASIC_TIME_NO_MILLIS: DateTimeFormatter
+        static BASIC_DATE_TIME: DateTimeFormatter
+        static BASIC_DATE_TIME_NO_MILLIS: DateTimeFormatter
+        static BASIC_WEEK_DATE: DateTimeFormatter
+        static BASIC_WEEK_DATE_TIME: DateTimeFormatter
+        static BASIC_WEEK_DATE_TIME_NO_MILLIS: DateTimeFormatter
 
         static ofPattern(pattern: string): DateTimeFormatter
 
