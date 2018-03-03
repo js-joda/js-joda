@@ -8,6 +8,8 @@ declare namespace JSJoda {
         range(field: TemporalField): ValueRange
     }
     abstract class Temporal extends TemporalAccessor {
+        plus(amount: TemporalAmount): this
+        plus(amountToAdd: number, unit: TemporalUnit): this
     }
 
     abstract class Clock {
@@ -25,7 +27,7 @@ declare namespace JSJoda {
 
         abstract zone(): any
     }
-    class DayOfWeek extends Temporal {
+    class DayOfWeek extends TemporalAccessor implements TemporalAdjuster {
         static MONDAY: DayOfWeek
         static TUESDAY: DayOfWeek
         static WEDNESDAY: DayOfWeek
@@ -42,7 +44,7 @@ declare namespace JSJoda {
 
         static values(): DayOfWeek[]
 
-        adjustInto(temporal: TemporalAdjuster): this
+        adjustInto<T extends Temporal>(temporal: T): T
 
         equals(other: any): boolean
 
@@ -180,7 +182,7 @@ declare namespace JSJoda {
 
         withSeconds(seconds: number): Duration
     }
-    class Instant extends Temporal {
+    class Instant extends Temporal implements TemporalAdjuster {
         static EPOCH: Instant
         static MIN: Instant
         static MAX: Instant
@@ -197,7 +199,7 @@ declare namespace JSJoda {
 
         static parse(text: string): Instant
 
-        adjustInto(temporal: Temporal): Temporal
+        adjustInto<T extends Temporal>(temporal: T): T
 
         compareTo(otherInstant: Instant): number
 
@@ -227,9 +229,6 @@ declare namespace JSJoda {
         minusSeconds(secondsToSubtract: number): Instant
 
         nano(): number
-
-        plus(amount: TemporalAmount): Instant
-        plus(amountToAdd: number, unit: TemporalUnit): Instant
 
         plusMillis(millisToAdd: number): Instant
 
@@ -340,7 +339,7 @@ declare namespace JSJoda {
     class Chronology {
         // TODO: this
     }
-    class LocalTime extends Temporal {
+    class LocalTime extends Temporal implements TemporalAdjuster {
         static MIN: LocalTime
         static MAX: LocalTime
         static MIDNIGHT: LocalTime
@@ -373,7 +372,7 @@ declare namespace JSJoda {
 
         static parse(text: String, formatter?: DateTimeFormatter): LocalTime
 
-        adjustInto(temporal: TemporalAdjuster): Temporal
+        adjustInto<T extends Temporal>(temporal: T): T
 
         atDate(date: LocalDate): LocalDateTime
 
@@ -411,9 +410,6 @@ declare namespace JSJoda {
         minute(): number
 
         nano(): number
-
-        plus(amount: TemporalAmount): LocalTime
-        plus(amountToAdd: number, unit: TemporalUnit): LocalTime
 
         plusHours(hoursToAdd: number): LocalTime
 
@@ -481,7 +477,7 @@ declare namespace JSJoda {
 
         static verifyInt(value: number): void
     }
-    class Month extends Temporal {
+    class Month extends TemporalAccessor implements TemporalAdjuster {
         static JANUARY: Month
         static FEBRUARY: Month
         static MARCH: Month
@@ -501,7 +497,7 @@ declare namespace JSJoda {
 
         static values(): Month[]
 
-        adjustInto(temporal: Temporal): Temporal
+        adjustInto<T extends Temporal>(temporal: T): T
 
         firstDayOfYear(leapYear: boolean): number
 
@@ -531,7 +527,7 @@ declare namespace JSJoda {
 
         value(): number
     }
-    class MonthDay extends Temporal {
+    class MonthDay extends Temporal implements TemporalAdjuster {
         static from(temporal: TemporalAccessor): MonthDay
 
         static now(arg1?: ZoneId|Clock): MonthDay
@@ -548,7 +544,7 @@ declare namespace JSJoda {
 
         static parseStringFormatter(text: string, formatter: DateTimeFormatter): MonthDay
 
-        adjustInto(temporal: Temporal): Temporal
+        adjustInto<T extends Temporal>(temporal: T): T
 
         atYear(year: number): LocalDate
 
@@ -706,8 +702,8 @@ declare namespace JSJoda {
         static WEEK_BASED_YEARS: IsoFields
         static QUARTER_YEARS: IsoFields
     }
-    class ChronoLocalDate extends Temporal {
-        adjustInto(temporal: TemporalAdjuster): this
+    class ChronoLocalDate extends Temporal implements TemporalAdjuster {
+        adjustInto<T extends Temporal>(temporal: T): T
 
         format(formatter: DateTimeFormatter): string
 
@@ -788,9 +784,6 @@ declare namespace JSJoda {
 
         monthValue(): number
 
-        plus(amount: TemporalAmount): LocalDate
-        plus(amountToAdd: number, unit: TemporalUnit): LocalDate
-
         plusDays(daysToAdd: number): LocalDate
 
         plusMonths(monthsToAdd: number): LocalDate
@@ -829,8 +822,8 @@ declare namespace JSJoda {
 
         year(): number
     }
-    abstract class ChronoLocalDateTime extends Temporal {
-        adjustInto(temporal: any): any
+    abstract class ChronoLocalDateTime extends Temporal implements TemporalAdjuster {
+        adjustInto<T extends Temporal>(temporal: T): T
 
         chronology(): Chronology
 
@@ -855,8 +848,6 @@ declare namespace JSJoda {
         static ofInstant(instant: Instant, zoneId?: ZoneId): LocalDateTime
 
         static parse(text: string, formatter?: DateTimeFormatter): LocalDateTime
-
-        adjustInto(temporal: TemporalAdjuster): LocalDateTime
 
         atZone(zone: ZoneId): ZonedDateTime
 
@@ -917,9 +908,6 @@ declare namespace JSJoda {
 
         nano(): number
 
-        plus(amount: TemporalAmount): LocalDateTime
-        plus(amountToAdd: number, unit: TemporalUnit): LocalDateTime
-
         plusDays(days: number): LocalDateTime
 
         plusHours(hours: number): LocalDateTime
@@ -979,8 +967,9 @@ declare namespace JSJoda {
 
         year(): number
     }
-    class OffsetDateTime {
+    class OffsetDateTime implements TemporalAdjuster{
         // TODO
+        adjustInto<T extends Temporal>(temporal: T): T
     }
     class Period extends TemporalAmount {
         static ZERO: Period
@@ -1061,8 +1050,8 @@ declare namespace JSJoda {
 
         years(): number
     }
-    class TemporalAdjuster {
-        adjustInto(temporal: Temporal): Temporal
+    interface TemporalAdjuster {
+        adjustInto<T extends Temporal>(temporal: T): T
     }
     class TemporalAdjusters {
         static dayOfWeekInMonth(ordinal: number, dayOfWeek: DayOfWeek): TemporalAdjuster
@@ -1140,7 +1129,7 @@ declare namespace JSJoda {
 
         toString(): string
     }
-    class Year extends Temporal {
+    class Year extends Temporal implements TemporalAdjuster {
         static MIN_VALUE: number;
         static MAX_VALUE: number;
 
@@ -1154,13 +1143,13 @@ declare namespace JSJoda {
 
         static parse(text: string, formatter?: DateTimeFormatter): Year
 
-        atMonth(monthOrNumber: Month|number): Year
+        adjustInto<T extends Temporal>(temporal: T): T
 
-        plus(amountOrNumber: TemporalAmount|number, unit?: TemporalUnit): Year
+        atMonth(monthOrNumber: Month|number): Year
 
         minus(amountOrNumber: TemporalAmount|number, unit?: TemporalUnit): Year
     }
-    class YearMonth extends Temporal {
+    class YearMonth extends Temporal implements TemporalAdjuster {
         static from(temporal: TemporalAccessor): YearMonth
 
         static now(zoneIdOrClock?: ZoneId|Clock): YearMonth
@@ -1169,13 +1158,13 @@ declare namespace JSJoda {
 
         static parse(text: string, formatter?: DateTimeFormatter): YearMonth
 
+        adjustInto<T extends Temporal>(temporal: T): T
+
         minus(amount: TemporalAmount): YearMonth
         minus(amountToSubtract: number, unit: TemporalUnit): YearMonth
         minusYears(yearsToSubtract: number): YearMonth
         minusMonths(monthsToSubtract: number): YearMonth
 
-        plus(amount: TemporalAmount): YearMonth
-        plus(amountToAdd: number, unit: TemporalUnit): YearMonth
         plusYears(yearsToAdd: number): YearMonth
         plusMonths(monthsToAdd: number): YearMonth
 
@@ -1238,7 +1227,7 @@ declare namespace JSJoda {
 
         toString(): string
     }
-    class ZoneOffset extends ZoneId {
+    class ZoneOffset extends ZoneId implements TemporalAdjuster {
         static MAX_SECONDS: ZoneOffset
         static UTC: ZoneOffset
         static MIN: ZoneOffset
@@ -1256,7 +1245,7 @@ declare namespace JSJoda {
 
         static ofTotalSeconds(totalSeconds: number): ZoneOffset
 
-        adjustInto(temporal: Temporal): Temporal
+        adjustInto<T extends Temporal>(temporal: T): T
 
         compareTo(other: ZoneOffset): number
 

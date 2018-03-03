@@ -5,6 +5,7 @@
  */
 
 import {TemporalAccessor} from './TemporalAccessor';
+import {abstractMethodFail} from '../assert';
 
 /**
  * Framework-level interface defining read-write access to a temporal object,
@@ -60,4 +61,11 @@ import {TemporalAccessor} from './TemporalAccessor';
  *
  * @interface
  */
-export class Temporal extends TemporalAccessor {}
+export class Temporal extends TemporalAccessor {
+    minus() {
+        abstractMethodFail('minus');
+    }
+    plus() {
+        abstractMethodFail('plus');
+    }
+}
