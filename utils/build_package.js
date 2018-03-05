@@ -5,7 +5,6 @@
 const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
-const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 const yargsPkg = require('yargs');
 const { updateWebpackConfigForLocales } = require('./buildWebpackConfig');
 
@@ -38,7 +37,7 @@ let yargs = yargsPkg
         cldrDataLoader: {
             alias: 'c',
             string: true,
-            default: path.resolve(`${__dirname}/load_cldrData.js`),
+            default: path.resolve(`${__dirname}/load_cldrData.prebuilt.js`),
             description: 'specify the cldrDataLoader to use, this will need to require the cldr-data json files. Since it has to require the actual files, it is different depending on installation location. See for example test/utils/karma_clrData.js and utils/load_cldrData.js. Can be absolute or relative (to cwd)'
         },
         modulesDir: {
@@ -106,7 +105,8 @@ function createWebpackConfig(locales, output) {
     const modulesDir = path.resolve(process.cwd(), argv.modulesDir);
     if (!(fs.existsSync(path.resolve(modulesDir, 'cldr-data')))) {
         // eslint-disable-next-line no-console
-        console.warn('cldr-data module directory does not exist, js-joda-locale package build will very probably fail, so skipping it...!');
+        console.warn(
+            'cldr-data module directory does not exist, js-joda-locale package build will very probably fail, so skipping it...!');
         process.exit(0);
     }
     webpackConfig = updateWebpackConfigForLocales(webpackConfig, locales, modulesDir);
@@ -133,19 +133,7 @@ if (webpackConfig) {
     }
     const webpackCompiler = webpack(webpackConfig);
 
-    webpackCompiler.apply(new ProgressPlugin((percentage, msg, current, active, modulepath) => {
-        if (process.stdout.isTTY && percentage < 1) {
-            process.stdout.cursorTo(0);
-            modulepath = modulepath ? ' …' + modulepath.substr(modulepath.length - 100) : '';
-            current = current ? ' ' + current : '';
-            active = active ? ' ' + active : '';
-            process.stdout.write((percentage * 100).toFixed(0) + '% ' + msg + current + active + modulepath + ' ');
-            process.stdout.clearLine(1);
-        } else if (percentage === 1) {
-            process.stdout.write('\n');
-            console.log('webpack: done.');
-        }
-    }));
+    webpackCompiler.apply(new webpack.ProgressPlugin());
 
     webpackCompiler.run((err, stats) => {
         if (err) {
