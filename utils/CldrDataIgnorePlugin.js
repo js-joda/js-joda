@@ -24,32 +24,32 @@ class CldrDataIgnorePlugin {
         this.checkIgnore = this.checkIgnore.bind(this);
     }
 
-    checkIgnore(result, callback) {
+    checkIgnore(result) {
         if (!result) {
             // ignore
-            return callback();
+            return null;
         }
         if (this.contextRegex.test(result.context)) {
             for (let i = 0; i < this.requestRegex.length; i += 1) {
                 const regex = this.requestRegex[i];
                 if (regex.test(result.request)) {
                     // do not ignore
-                    return callback(null, result);
+                    return result;
                 }
             }
             // cldr-data but not in requestRegex... so ignore
-            return callback();
+            return null;
         }
         // do not ignore
-        callback(null, result);
+        return result;
     }
 
     apply(compiler) {
-        compiler.plugin('normal-module-factory', (nmf) => {
-            nmf.plugin('before-resolve', this.checkIgnore);
+        compiler.hooks.normalModuleFactory.tap('CldrDataIgnorePlugin', nmf => {
+            nmf.hooks.beforeResolve.tap('CldrDataIgnorePlugin', this.checkIgnore);
         });
-        compiler.plugin('context-module-factory', (cmf) => {
-            cmf.plugin('before-resolve', this.checkIgnore);
+        compiler.hooks.contextModuleFactory.tap('CldrDataIgnorePlugin', cmf => {
+            cmf.hooks.beforeResolve.tap('CldrDataIgnorePlugin', this.checkIgnore);
         });
     }
 }
