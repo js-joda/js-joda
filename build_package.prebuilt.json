@@ -1,6 +1,6 @@
 {
     "modulesDir": "node_modules",
-    "output": "build/prebuilt",
+    "output": "dist/prebuilt",
     "cldrDataLoader": "utils/load_cldrData.prebuilt.js",
     "stats": false,
     "packages_test": {
