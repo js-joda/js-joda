@@ -1,0 +1,43 @@
+{
+    "modulesDir": "node_modules",
+    "output": "build/prebuilt",
+    "cldrDataLoader": "utils/load_cldrData.prebuilt.js",
+    "stats": false,
+    "packages_test": {
+        "de": [
+            "de.*"
+        ]
+    },
+    "packages": {
+        "de": [
+            "de.*"
+        ],
+        "de-DE": [
+            "de-DE"
+        ],
+        "en": [
+            "en.*"
+        ],
+        "en-US": [
+            "en-US"
+        ],
+        "es": [
+            "es.*"
+        ],
+        "fr": [
+            "fr.*"
+        ],
+        "it": [
+            "it.*"
+        ],
+        "it-IT": [
+            "it-IT"
+        ],
+        "zh": [
+            "zh.*"
+        ],
+        "hi": [
+            "hi.*"
+        ]
+    }
+}

@@ -19,6 +19,7 @@
     "build-dist-es5": "./node_modules/.bin/babel src -d build/es5",
     "build-dist": "./node_modules/.bin/webpack --progress --colors --bail && DIST_MIN=1 ./node_modules/.bin/webpack --progress --colors --bail",
     "build-examples": "node ./utils/build_package.js -o examples/build/js-joda-locale -m node_modules -c test/utils/karma_cldrData.js -l \"en.*\" de fr es zh hi ru",
+    "build-prebuilt": "node ./utils/build_package.js --config build_package.prebuilt.json",
     "build_package": "node ./utils/build_package.js",
     "lint": "./node_modules/.bin/eslint ."
   },
