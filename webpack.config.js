@@ -29,6 +29,7 @@ const createConfig = (/*env, argv*/) => {
         entry: './src/js-joda-locale.js',
         devtool: sourceMaps ? 'hidden-source-map' : false,
         output: {
+            globalObject: 'this',
             path: `${__dirname}/dist`,
             filename: outputFilename,
             libraryTarget: 'umd',
