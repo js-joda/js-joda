@@ -3,9 +3,6 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-/*
- eslint-disable import/no-localeneous-dependencies, global-require
- */
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
@@ -27,9 +24,10 @@ const outputFilename = minify ? 'js-joda-locale.min.js' : 'js-joda-locale.js';
 
 const createConfig = (/*env, argv*/) => {
     const config = {
+        mode: minify ? 'production' : 'development',
         context: __dirname,
         entry: './src/js-joda-locale.js',
-        devtool: sourceMaps ? 'hidden-source-map' : '',
+        devtool: sourceMaps ? 'hidden-source-map' : false,
         output: {
             path: `${__dirname}/dist`,
             filename: outputFilename,
@@ -81,16 +79,6 @@ const createConfig = (/*env, argv*/) => {
             new WebpackBuildNotifier(),
         ],
     };
-
-    if (minify) {
-        config.plugins.push(
-            new webpack.optimize.UglifyJsPlugin({
-                comments: false,
-                compress: {
-                    warnings: false,
-                },
-            }));
-    }
     return config;
 };
 module.exports = createConfig;
