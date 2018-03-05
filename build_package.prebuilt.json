@@ -8,17 +8,30 @@
             "de.*"
         ]
     },
+    "packages_disabled": {
+        "full": [
+            ".*"
+        ],
+        "core": [
+            "en.*",
+            "de.*",
+            "fr.*",
+            "es.*"
+        ]
+    },
     "packages": {
         "de": [
             "de.*"
         ],
         "de-DE": [
+            "de",
             "de-DE"
         ],
         "en": [
             "en.*"
         ],
         "en-US": [
+            "en",
             "en-US"
         ],
         "es": [
@@ -31,6 +44,7 @@
             "it.*"
         ],
         "it-IT": [
+            "it",
             "it-IT"
         ],
         "zh": [
