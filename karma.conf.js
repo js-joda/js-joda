@@ -8,11 +8,11 @@ const { updateWebpackConfigForLocales } = require('./utils/buildWebpackConfig');
 
 module.exports = function (config) {
     const saucelabsLaunchers = {
-        sl_ie_9: {
+        sl_ie: {
             base: 'SauceLabs',
             browserName: 'internet explorer',
-            platform: 'Windows 7',
-            version: '9'
+            platform: 'Windows 10',
+            version: 'latest'
         },
         sl_chrome: {
             base: 'SauceLabs',
