@@ -85,6 +85,7 @@
     "requirejs-text": "^2.0.15",
     "webpack": "^4.1.0",
     "webpack-build-notifier": "^0.1.23",
+    "webpack-cli": "^2.0.10",
     "yargs": "^11.0.0"
   },
   "buildDependencies": [
