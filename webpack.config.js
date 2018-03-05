@@ -79,6 +79,11 @@ const createConfig = (/*env, argv*/) => {
             new webpack.BannerPlugin({ banner, raw: true }),
             new WebpackBuildNotifier(),
         ],
+        performance: {
+            /* we know that we will be generating big packages with locale data, no reason to have webpack warn us */
+            maxEntrypointSize: 25000000,
+            maxAssetSize: 25000000,
+        }
     };
     return config;
 };
