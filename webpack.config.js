@@ -15,9 +15,10 @@ function createBanner(){
 const banner = createBanner();
 
 module.exports = {
+    mode: minify ? 'production' : 'development',
     context: __dirname,
     entry: './src/js-joda.js',
-    devtool: sourceMaps ? 'hidden-source-map' : '',
+    devtool: sourceMaps ? 'hidden-source-map' : false,
     output: {
         path: __dirname  + '/dist',
         filename: minify ? 'js-joda.min.js' : 'js-joda.js',
@@ -34,19 +35,17 @@ module.exports = {
             test: /.js$/
         }]
     },
-    plugins: minify ? [
-        new webpack.optimize.UglifyJsPlugin({
-            comments: false,
-            compress: {
-                warnings: false
-            }
-        }),
+    plugins: [
         new webpack.BannerPlugin(
             {banner: banner, raw: true}
         )
-    ] : [
-        new webpack.BannerPlugin(
-            {banner: banner, raw: true}
-        )
-    ]
+    ],
+    performance: {
+        /*
+         * silence the size warnings.. default is 250000... we are slightly larger in production/minify mode
+         * set this to 300000, to get a warning if we exceed that size
+         */
+        maxEntrypointSize: 300000,
+        maxAssetSize: 300000,
+    }
 };
