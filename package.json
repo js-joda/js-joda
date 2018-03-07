@@ -27,7 +27,7 @@
     "build-esdoc": "./node_modules/.bin/esdoc -c esdoc.json",
     "build-dist-es5": "./node_modules/.bin/babel src -d build/es5",
     "build-dist-esm": "npx rollup -c rollup.config.js",
-    "build-dist": "./node_modules/.bin/webpack --progress --colors --bail && DIST_MIN=1 ./node_modules/.bin/webpack --progress --colors --bail",
+    "build-dist": "./node_modules/.bin/webpack-cli --progress --colors --bail && DIST_MIN=1 ./node_modules/.bin/webpack-cli --progress --colors --bail",
     "build-all": "npm run build-dist && npm run build-dist-esm && npm run build-esdoc",
     "build-md-toc": "./node_modules/.bin/markdown-toc -i CheatSheet.md",
     "build-gz-check": "gzip -kf dist/js-joda.min.js && ls -alh ./dist/js-joda.min.js*",
@@ -71,7 +71,8 @@
     "phantomjs-prebuilt": "^2.1.16",
     "rollup": "^0.56.5",
     "typescript": "^2.7.2",
-    "webpack": "^4.1.0"
+    "webpack": "^4.1.0",
+    "webpack-cli": "^2.0.10"
   },
   "license": "BSD-3-Clause"
 }
