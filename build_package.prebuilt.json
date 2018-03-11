@@ -9,7 +9,7 @@
         ]
     },
     "packages_disabled": {
-        "full": [
+        "all": [
             ".*"
         ],
         "core": [
