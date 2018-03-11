@@ -17,6 +17,9 @@ karma.conf.js
 # build output
 build
 
+#submodules output
+packages
+
 # Ide
 .idea
 
