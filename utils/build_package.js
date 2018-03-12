@@ -85,7 +85,7 @@ if (argv.debug) {
     Object.keys(process.env)
         .sort()
         .forEach(function (v) {
-            // console.log(v, process.env[v]);
+            console.log(v, process.env[v]);
         });
     /* eslint-enable no-console */
 }
@@ -104,7 +104,7 @@ function createWebpackConfig(locales, output) {
     };
 
     const modulesDir = path.resolve(process.cwd(), argv.modulesDir);
-    const cldrDataDir = path.resolve(modulesDir, 'cldr-data')
+    const cldrDataDir = path.resolve(modulesDir, 'cldr-data');
     if (!(fs.existsSync(cldrDataDir))) {
         // eslint-disable-next-line no-console
         console.warn(
