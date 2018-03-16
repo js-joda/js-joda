@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const minify = JSON.parse(process.env.DIST_MIN || '0');
 const sourceMaps = !minify;
@@ -46,6 +47,17 @@ const config = {
                 test: /.js$/
             },
         }]
+    },
+    optimization: {
+        minimizer: [
+            new UglifyJsPlugin({
+                uglifyOptions: {
+                    output: {
+                        comments: false,
+                    },
+                }
+            })
+        ]
     },
     plugins: [
         new webpack.BannerPlugin(
