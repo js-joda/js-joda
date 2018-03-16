@@ -12,6 +12,7 @@ esdoc.json
 karma.conf.js
 webpack.config.js
 yarn.lock
+package-lock.json
 .*
 
 # build output
