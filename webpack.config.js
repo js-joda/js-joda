@@ -16,10 +16,11 @@ function createBanner(){
 
 const banner = createBanner();
 
-module.exports = {
+const config = {
+    mode: minify ? 'production' : 'development',
     context: __dirname,
     entry: './src/js-joda-timezone.js',
-    devtool: sourceMaps ? 'hidden-source-map' : '',
+    devtool: sourceMaps ? 'hidden-source-map' : false,
     output: {
         path: __dirname  + '/dist',
         filename: minify ? 'js-joda-timezone.min.js' : 'js-joda-timezone.js',
@@ -35,31 +36,22 @@ module.exports = {
         }
     },
     module: {
-        loaders: [{
-            loader: 'babel-loader',
-            include: [
-                path.resolve(__dirname, 'src'),
-                path.resolve(__dirname, 'test')
-            ],
-            test: /.js$/
-        },{
-            loader: 'json-loader',
-            test: /.json$/
+        rules: [{
+            use: [{loader: 'babel-loader'}],
+            resource: {
+                include: [
+                    path.resolve(__dirname, 'src'),
+                    path.resolve(__dirname, 'test')
+                ],
+                test: /.js$/
+            },
         }]
     },
-    plugins: minify ? [
-        new webpack.optimize.UglifyJsPlugin({
-            comments: false,
-            compress: {
-                warnings: false
-            }
-        }),
+    plugins: [
         new webpack.BannerPlugin(
             {banner: banner, raw: true}
-        )
-    ] : [
-        new webpack.BannerPlugin(
-            {banner: banner, raw: true}
-        )
-    ]
+        ),
+    ],
 };
+
+module.exports = config;
