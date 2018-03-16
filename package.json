@@ -71,6 +71,7 @@
     "phantomjs-prebuilt": "^2.1.16",
     "rollup": "^0.56.5",
     "typescript": "^2.7.2",
+    "uglifyjs-webpack-plugin": "^1.2.4",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.12"
   },
