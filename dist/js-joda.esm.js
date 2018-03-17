@@ -84,12 +84,11 @@ function abstractMethodFail(methodName){
     throw new TypeError('abstract method "' + methodName + '" is not implemented');
 }
 
-
-var assert$1 = Object.freeze({
-	assert: assert,
-	requireNonNull: requireNonNull,
-	requireInstance: requireInstance,
-	abstractMethodFail: abstractMethodFail
+var assert$1 = /*#__PURE__*/Object.freeze({
+    assert: assert,
+    requireNonNull: requireNonNull,
+    requireInstance: requireInstance,
+    abstractMethodFail: abstractMethodFail
 });
 
 /**
