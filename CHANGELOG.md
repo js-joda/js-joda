@@ -3,6 +3,10 @@ Changelog
 
 ### 1.7.2 (next)
 
+#### dev setup
+
+ * Migrate from webpack to rollup
+
 #### dependency updates
 
 ### 1.7.1

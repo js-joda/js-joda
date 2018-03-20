@@ -1,18 +1,23 @@
 {
   "presets": [
-    [
-      "es2015",
-      {
-        "loose": true
+    ["env", {
+      "modules": false,
+      "loose": true,
+      "targets": {
+        "browsers": [
+          "last 2 versions"
+        ]
       }
-    ]
+    }]
   ],
   "comments": false,
   "env": {
     "test": {
-      "plugins": [
-        "istanbul"
-      ]
+      "presets": ["env", {
+        "plugins": [
+          "istanbul"
+        ]
+      }]
     }
   }
 }

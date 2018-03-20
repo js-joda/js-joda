@@ -1,31 +1,10 @@
-const fs = require('fs');
 const path = require('path');
-const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-
-const minify = JSON.parse(process.env.DIST_MIN || '0');
-const sourceMaps = !minify;
-
-function createBanner(){
-    const packageJson = require('./package.json');
-    const version = '//! @version ' + packageJson.name + ' - ' + packageJson.version + '\n';
-    const preamble = fs.readFileSync('./src/license-preamble.js', 'utf8');
-    return version + preamble;
-}
-
-const banner = createBanner();
 
 module.exports = {
-    mode: minify ? 'production' : 'development',
+    mode: 'development',
     context: __dirname,
     entry: './src/js-joda.js',
-    devtool: sourceMaps ? 'hidden-source-map' : false,
-    output: {
-        path: __dirname  + '/dist',
-        filename: minify ? 'js-joda.min.js' : 'js-joda.js',
-        libraryTarget: minify ? 'var' : 'umd',
-        library: 'JSJoda'
-    },
+    devtool: 'hidden-source-map',
     module: {
         rules: [{
             use: 'babel-loader',
@@ -36,22 +15,6 @@ module.exports = {
             test: /.js$/
         }]
     },
-    optimization: {
-        minimizer: [
-            new UglifyJsPlugin({
-                uglifyOptions: {
-                    output: {
-                        comments: false,
-                    },
-                }
-            })
-        ]
-    },
-    plugins: [
-        new webpack.BannerPlugin(
-            {banner: banner, raw: true}
-        )
-    ],
     performance: {
         /*
          * silence the size warnings.. default is 250000... we are slightly larger in production/minify mode
