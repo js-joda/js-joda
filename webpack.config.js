@@ -14,7 +14,47 @@ function createBanner(){
 
 const banner = createBanner();
 
-const config = [{
+const externals = {
+    'js-joda': {
+        amd: 'js-joda',
+        commonjs: 'js-joda',
+        commonjs2: 'js-joda',
+        root: 'JSJoda'
+    }
+};
+
+const moduleConfig = {
+    rules: [{
+        use: [{loader: 'babel-loader'}],
+        resource: {
+            include: [
+                path.resolve(__dirname, 'src'),
+                path.resolve(__dirname, 'test')
+            ],
+            test: /.js$/
+        },
+    }]
+};
+
+const optimization = {
+    minimizer: [
+        new UglifyJsPlugin({
+            uglifyOptions: {
+                output: {
+                    comments: false,
+                },
+            }
+        })
+    ]
+};
+
+const plugins = [
+    new webpack.BannerPlugin(
+        {banner: banner, raw: true}
+    ),
+];
+
+const productionConfig = {
     mode: 'production',
     context: __dirname,
     entry: './src/js-joda-timezone.js',
@@ -25,43 +65,13 @@ const config = [{
         libraryTarget: 'umd',
         library: 'JSJodaTimezone'
     },
-    externals: {
-        'js-joda': {
-            amd: 'js-joda',
-            commonjs: 'js-joda',
-            commonjs2: 'js-joda',
-            root: 'JSJoda'
-        }
-    },
-    module: {
-        rules: [{
-            use: [{loader: 'babel-loader'}],
-            resource: {
-                include: [
-                    path.resolve(__dirname, 'src'),
-                    path.resolve(__dirname, 'test')
-                ],
-                test: /.js$/
-            },
-        }]
-    },
-    optimization: {
-        minimizer: [
-            new UglifyJsPlugin({
-                uglifyOptions: {
-                    output: {
-                        comments: false,
-                    },
-                }
-            })
-        ]
-    },
-    plugins: [
-        new webpack.BannerPlugin(
-            {banner: banner, raw: true}
-        ),
-    ],
-}, {
+    externals,
+    module: moduleConfig,
+    optimization,
+    plugins,
+};
+
+const developmentConfig = {
     mode: 'development',
     context: __dirname,
     entry: './src/js-joda-timezone.js',
@@ -72,31 +82,11 @@ const config = [{
         libraryTarget: 'umd',
         library: 'JSJodaTimezone'
     },
-    externals: {
-        'js-joda': {
-            amd: 'js-joda',
-            commonjs: 'js-joda',
-            commonjs2: 'js-joda',
-            root: 'JSJoda'
-        }
-    },
-    module: {
-        rules: [{
-            use: [{loader: 'babel-loader'}],
-            resource: {
-                include: [
-                    path.resolve(__dirname, 'src'),
-                    path.resolve(__dirname, 'test')
-                ],
-                test: /.js$/
-            },
-        }]
-    },
-    plugins: [
-        new webpack.BannerPlugin(
-            {banner: banner, raw: true}
-        ),
-    ],
-}];
+    externals,
+    module: moduleConfig,
+    plugins,
+};
+
+const config = [developmentConfig, productionConfig];
 
 module.exports = config;

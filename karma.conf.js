@@ -41,7 +41,7 @@ module.exports = function (config) {
     };
 
     // eslint-disable-next-line global-require
-    const webpackConfig = require('./webpack.config.js');
+    const webpackConfig = require('./webpack.config.js')[0];
     // for the karma test runs, we don't want to have any externals,
     // especially js-joda should be included!
     webpackConfig.externals = undefined;
