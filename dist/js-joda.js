@@ -11374,7 +11374,6 @@
      * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
      */
-    var use = bindUse(exports);
 
     var _ = {
         assert: assert$1,
@@ -11386,8 +11385,69 @@
         StringBuilder: StringBuilder
     };
 
-    exports.use = use;
+    var jsJiodaExports = {
+        _: _,
+        convert: convert,
+        nativeJs: nativeJs,
+        ArithmeticException: ArithmeticException,
+        DateTimeException: DateTimeException,
+        DateTimeParseException: DateTimeParseException,
+        IllegalArgumentException: IllegalArgumentException,
+        IllegalStateException: IllegalStateException,
+        UnsupportedTemporalTypeException: UnsupportedTemporalTypeException,
+        NullPointerException: NullPointerException,
+        Clock: Clock,
+        DayOfWeek: DayOfWeek,
+        Duration: Duration,
+        Instant: Instant,
+        LocalDate: LocalDate,
+        LocalTime: LocalTime,
+        LocalDateTime: LocalDateTime,
+        Month: Month,
+        MonthDay: MonthDay,
+        Period: Period,
+        Year: Year,
+        YearConstants: YearConstants,
+        YearMonth: YearMonth,
+        ZonedDateTime: ZonedDateTime,
+        ZoneOffset: ZoneOffset,
+        ZoneId: ZoneId,
+        ZoneRegion: ZoneRegion,
+        ZoneOffsetTransition: ZoneOffsetTransition,
+        ZoneRules: ZoneRules,
+        ZoneRulesProvider: ZoneRulesProvider,
+        ChronoLocalDate: ChronoLocalDate,
+        ChronoLocalDateTime: ChronoLocalDateTime,
+        ChronoZonedDateTime: ChronoZonedDateTime,
+        IsoChronology: IsoChronology,
+        ChronoField: ChronoField,
+        ChronoUnit: ChronoUnit,
+        IsoFields: IsoFields,
+        Temporal: Temporal,
+        TemporalAccessor: TemporalAccessor,
+        TemporalAdjuster: TemporalAdjuster,
+        TemporalAdjusters: TemporalAdjusters,
+        TemporalAmount: TemporalAmount,
+        TemporalField: TemporalField,
+        TemporalQueries: TemporalQueries,
+        TemporalQuery: TemporalQuery,
+        TemporalUnit: TemporalUnit,
+        ValueRange: ValueRange,
+        DateTimeFormatter: DateTimeFormatter,
+        DateTimeFormatterBuilder: DateTimeFormatterBuilder,
+        DecimalStyle: DecimalStyle,
+        ResolverStyle: ResolverStyle,
+        SignStyle: SignStyle,
+        TextStyle: TextStyle
+    };
+
+    var use = bindUse(jsJiodaExports);
+    jsJiodaExports.use = use;
+
     exports._ = _;
+    exports.use = use;
+    exports.convert = convert;
+    exports.nativeJs = nativeJs;
     exports.ArithmeticException = ArithmeticException;
     exports.DateTimeException = DateTimeException;
     exports.DateTimeParseException = DateTimeParseException;
@@ -11438,8 +11498,6 @@
     exports.ResolverStyle = ResolverStyle;
     exports.SignStyle = SignStyle;
     exports.TextStyle = TextStyle;
-    exports.convert = convert;
-    exports.nativeJs = nativeJs;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

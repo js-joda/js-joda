@@ -1,7 +1,11 @@
 Changelog
 =========
 
-### 1.7.2 (next)
+### 1.8.0 (next)
+
+#### public API
+
+ * add ESM module to pkg.module build with rollup
 
 #### dev setup
 

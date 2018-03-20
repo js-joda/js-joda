@@ -11368,7 +11368,6 @@ function bindUse(jsJoda) {
  * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
-var use = bindUse(exports);
 
 var _ = {
     assert: assert$1,
@@ -11380,4 +11379,63 @@ var _ = {
     StringBuilder: StringBuilder
 };
 
-export { use, _, ArithmeticException, DateTimeException, DateTimeParseException, IllegalArgumentException, IllegalStateException, UnsupportedTemporalTypeException, NullPointerException, Clock, DayOfWeek, Duration, Instant, LocalDate, LocalTime, LocalDateTime, Month, MonthDay, Period, Year, YearConstants, YearMonth, ZonedDateTime, ZoneOffset, ZoneId, ZoneRegion, ZoneOffsetTransition, ZoneRules, ZoneRulesProvider, ChronoLocalDate, ChronoLocalDateTime, ChronoZonedDateTime, IsoChronology, ChronoField, ChronoUnit, IsoFields, Temporal, TemporalAccessor, TemporalAdjuster, TemporalAdjusters, TemporalAmount, TemporalField, TemporalQueries, TemporalQuery, TemporalUnit, ValueRange, DateTimeFormatter, DateTimeFormatterBuilder, DecimalStyle, ResolverStyle, SignStyle, TextStyle, convert, nativeJs };
+var jsJiodaExports = {
+    _: _,
+    convert: convert,
+    nativeJs: nativeJs,
+    ArithmeticException: ArithmeticException,
+    DateTimeException: DateTimeException,
+    DateTimeParseException: DateTimeParseException,
+    IllegalArgumentException: IllegalArgumentException,
+    IllegalStateException: IllegalStateException,
+    UnsupportedTemporalTypeException: UnsupportedTemporalTypeException,
+    NullPointerException: NullPointerException,
+    Clock: Clock,
+    DayOfWeek: DayOfWeek,
+    Duration: Duration,
+    Instant: Instant,
+    LocalDate: LocalDate,
+    LocalTime: LocalTime,
+    LocalDateTime: LocalDateTime,
+    Month: Month,
+    MonthDay: MonthDay,
+    Period: Period,
+    Year: Year,
+    YearConstants: YearConstants,
+    YearMonth: YearMonth,
+    ZonedDateTime: ZonedDateTime,
+    ZoneOffset: ZoneOffset,
+    ZoneId: ZoneId,
+    ZoneRegion: ZoneRegion,
+    ZoneOffsetTransition: ZoneOffsetTransition,
+    ZoneRules: ZoneRules,
+    ZoneRulesProvider: ZoneRulesProvider,
+    ChronoLocalDate: ChronoLocalDate,
+    ChronoLocalDateTime: ChronoLocalDateTime,
+    ChronoZonedDateTime: ChronoZonedDateTime,
+    IsoChronology: IsoChronology,
+    ChronoField: ChronoField,
+    ChronoUnit: ChronoUnit,
+    IsoFields: IsoFields,
+    Temporal: Temporal,
+    TemporalAccessor: TemporalAccessor,
+    TemporalAdjuster: TemporalAdjuster,
+    TemporalAdjusters: TemporalAdjusters,
+    TemporalAmount: TemporalAmount,
+    TemporalField: TemporalField,
+    TemporalQueries: TemporalQueries,
+    TemporalQuery: TemporalQuery,
+    TemporalUnit: TemporalUnit,
+    ValueRange: ValueRange,
+    DateTimeFormatter: DateTimeFormatter,
+    DateTimeFormatterBuilder: DateTimeFormatterBuilder,
+    DecimalStyle: DecimalStyle,
+    ResolverStyle: ResolverStyle,
+    SignStyle: SignStyle,
+    TextStyle: TextStyle
+};
+
+var use = bindUse(jsJiodaExports);
+jsJiodaExports.use = use;
+
+export { _, use, convert, nativeJs, ArithmeticException, DateTimeException, DateTimeParseException, IllegalArgumentException, IllegalStateException, UnsupportedTemporalTypeException, NullPointerException, Clock, DayOfWeek, Duration, Instant, LocalDate, LocalTime, LocalDateTime, Month, MonthDay, Period, Year, YearConstants, YearMonth, ZonedDateTime, ZoneOffset, ZoneId, ZoneRegion, ZoneOffsetTransition, ZoneRules, ZoneRulesProvider, ChronoLocalDate, ChronoLocalDateTime, ChronoZonedDateTime, IsoChronology, ChronoField, ChronoUnit, IsoFields, Temporal, TemporalAccessor, TemporalAdjuster, TemporalAdjusters, TemporalAmount, TemporalField, TemporalQueries, TemporalQuery, TemporalUnit, ValueRange, DateTimeFormatter, DateTimeFormatterBuilder, DecimalStyle, ResolverStyle, SignStyle, TextStyle };

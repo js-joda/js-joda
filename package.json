@@ -7,6 +7,7 @@
     "url": "https://github.com/js-joda/js-joda.git"
   },
   "main": "dist/js-joda.js",
+  "module": "dist/js-joda.esm.js",
   "typings": "dist/js-joda.d.ts",
   "files": [
     "dist",
