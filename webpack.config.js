@@ -3,9 +3,6 @@ const path = require('path');
 const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-const minify = JSON.parse(process.env.DIST_MIN || '0');
-const sourceMaps = !minify;
-
 function createBanner(){
     const packageJson = require('./package.json');
     const tzdbLatest = require('moment-timezone/data/packed/latest');
@@ -17,14 +14,14 @@ function createBanner(){
 
 const banner = createBanner();
 
-const config = {
-    mode: minify ? 'production' : 'development',
+const config = [{
+    mode: 'production',
     context: __dirname,
     entry: './src/js-joda-timezone.js',
-    devtool: sourceMaps ? 'hidden-source-map' : false,
+    devtool: false,
     output: {
         path: __dirname  + '/dist',
-        filename: minify ? 'js-joda-timezone.min.js' : 'js-joda-timezone.js',
+        filename: 'js-joda-timezone.min.js',
         libraryTarget: 'umd',
         library: 'JSJodaTimezone'
     },
@@ -64,6 +61,42 @@ const config = {
             {banner: banner, raw: true}
         ),
     ],
-};
+}, {
+    mode: 'development',
+    context: __dirname,
+    entry: './src/js-joda-timezone.js',
+    devtool: 'hidden-source-map',
+    output: {
+        path: __dirname  + '/dist',
+        filename: 'js-joda-timezone.js',
+        libraryTarget: 'umd',
+        library: 'JSJodaTimezone'
+    },
+    externals: {
+        'js-joda': {
+            amd: 'js-joda',
+            commonjs: 'js-joda',
+            commonjs2: 'js-joda',
+            root: 'JSJoda'
+        }
+    },
+    module: {
+        rules: [{
+            use: [{loader: 'babel-loader'}],
+            resource: {
+                include: [
+                    path.resolve(__dirname, 'src'),
+                    path.resolve(__dirname, 'test')
+                ],
+                test: /.js$/
+            },
+        }]
+    },
+    plugins: [
+        new webpack.BannerPlugin(
+            {banner: banner, raw: true}
+        ),
+    ],
+}];
 
 module.exports = config;
