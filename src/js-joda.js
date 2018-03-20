@@ -3,7 +3,7 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-export {
+import {
     ArithmeticException,
     DateTimeException,
     DateTimeParseException,
@@ -13,61 +13,56 @@ export {
     NullPointerException
 } from './errors';
 
-export { Clock } from './Clock';
-export { DayOfWeek } from './DayOfWeek';
-export { Duration } from './Duration';
-export { Instant } from './Instant';
-export { LocalDate } from './LocalDate';
-export { LocalTime } from './LocalTime';
-export { LocalDateTime } from './LocalDateTime';
-export { Month } from './Month';
-export { MonthDay } from './MonthDay';
-export { Period } from './Period';
-export { Year } from './Year';
-export { YearConstants } from './YearConstants';
-export { YearMonth } from './YearMonth';
-export { ZonedDateTime } from './ZonedDateTime';
-export { ZoneOffset } from './ZoneOffset';
-export { ZoneId } from './ZoneId';
-export { ZoneRegion } from './ZoneRegion';
+import { Clock } from './Clock';
+import { DayOfWeek } from './DayOfWeek';
+import { Duration } from './Duration';
+import { Instant } from './Instant';
+import { LocalDate } from './LocalDate';
+import { LocalTime } from './LocalTime';
+import { LocalDateTime } from './LocalDateTime';
+import { Month } from './Month';
+import { MonthDay } from './MonthDay';
+import { Period } from './Period';
+import { Year } from './Year';
+import { YearConstants } from './YearConstants';
+import { YearMonth } from './YearMonth';
+import { ZonedDateTime } from './ZonedDateTime';
+import { ZoneOffset } from './ZoneOffset';
+import { ZoneId } from './ZoneId';
+import { ZoneRegion } from './ZoneRegion';
 
-export { ZoneOffsetTransition } from './zone/ZoneOffsetTransition';
-export { ZoneRules } from './zone/ZoneRules';
-export { ZoneRulesProvider } from './zone/ZoneRulesProvider';
+import { ZoneOffsetTransition } from './zone/ZoneOffsetTransition';
+import { ZoneRules } from './zone/ZoneRules';
+import { ZoneRulesProvider } from './zone/ZoneRulesProvider';
 
-export { ChronoLocalDate } from './chrono/ChronoLocalDate';
-export { ChronoLocalDateTime } from './chrono/ChronoLocalDateTime';
-export { ChronoZonedDateTime } from './chrono/ChronoZonedDateTime';
-export { IsoChronology } from './chrono/IsoChronology';
+import { ChronoLocalDate } from './chrono/ChronoLocalDate';
+import { ChronoLocalDateTime } from './chrono/ChronoLocalDateTime';
+import { ChronoZonedDateTime } from './chrono/ChronoZonedDateTime';
+import { IsoChronology } from './chrono/IsoChronology';
 
-export { ChronoField } from './temporal/ChronoField';
-export { ChronoUnit } from './temporal/ChronoUnit';
-export { IsoFields } from './temporal/IsoFields';
-export { Temporal } from './temporal/Temporal';
-export { TemporalAccessor } from './temporal/TemporalAccessor';
-export { TemporalAdjuster } from './temporal/TemporalAdjuster';
-export { TemporalAdjusters } from './temporal/TemporalAdjusters';
-export { TemporalAmount } from './temporal/TemporalAmount';
-export { TemporalField } from './temporal/TemporalField';
-export { TemporalQueries } from './temporal/TemporalQueries';
-export { TemporalQuery } from './temporal/TemporalQuery';
-export { TemporalUnit } from './temporal/TemporalUnit';
-export { ValueRange } from './temporal/ValueRange';
+import { ChronoField } from './temporal/ChronoField';
+import { ChronoUnit } from './temporal/ChronoUnit';
+import { IsoFields } from './temporal/IsoFields';
+import { Temporal } from './temporal/Temporal';
+import { TemporalAccessor } from './temporal/TemporalAccessor';
+import { TemporalAdjuster } from './temporal/TemporalAdjuster';
+import { TemporalAdjusters } from './temporal/TemporalAdjusters';
+import { TemporalAmount } from './temporal/TemporalAmount';
+import { TemporalField } from './temporal/TemporalField';
+import { TemporalQueries } from './temporal/TemporalQueries';
+import { TemporalQuery } from './temporal/TemporalQuery';
+import { TemporalUnit } from './temporal/TemporalUnit';
+import { ValueRange } from './temporal/ValueRange';
 
-export { DateTimeFormatter } from './format/DateTimeFormatter';
-export { DateTimeFormatterBuilder } from './format/DateTimeFormatterBuilder';
-export { DecimalStyle } from './format/DecimalStyle';
-export { ResolverStyle } from './format/ResolverStyle';
-export { SignStyle } from './format/SignStyle';
-export { TextStyle } from './format/TextStyle';
+import { DateTimeFormatter } from './format/DateTimeFormatter';
+import { DateTimeFormatterBuilder } from './format/DateTimeFormatterBuilder';
+import { DecimalStyle } from './format/DecimalStyle';
+import { ResolverStyle } from './format/ResolverStyle';
+import { SignStyle } from './format/SignStyle';
+import { TextStyle } from './format/TextStyle';
 
+// init static properties
 import './_init';
-
-export { convert } from './convert';
-export { nativeJs } from './temporal/NativeJsTemporal';
-
-import { bindUse } from './use';
-export const use = bindUse(exports);
 
 // private/internal exports, e.g. for use in plugins
 import { MathUtil } from './MathUtil';
@@ -78,7 +73,11 @@ import { DateTimePrintContext } from './format/DateTimePrintContext';
 import { StringBuilder } from './format/StringBuilder';
 import * as assert from './assert';
 
-export const _ = {
+import { convert } from './convert';
+import { nativeJs } from './temporal/NativeJsTemporal';
+import { bindUse } from './use';
+
+const _ = {
     assert,
     DateTimeBuilder,
     DateTimeParseContext,
@@ -86,4 +85,120 @@ export const _ = {
     MathUtil,
     StringUtil,
     StringBuilder,
+};
+
+const jsJiodaExports = {
+    _,
+    convert,
+    nativeJs,
+    ArithmeticException,
+    DateTimeException,
+    DateTimeParseException,
+    IllegalArgumentException,
+    IllegalStateException,
+    UnsupportedTemporalTypeException,
+    NullPointerException,
+    Clock,
+    DayOfWeek,
+    Duration,
+    Instant,
+    LocalDate,
+    LocalTime,
+    LocalDateTime,
+    Month,
+    MonthDay,
+    Period,
+    Year,
+    YearConstants,
+    YearMonth,
+    ZonedDateTime,
+    ZoneOffset,
+    ZoneId,
+    ZoneRegion,
+    ZoneOffsetTransition,
+    ZoneRules,
+    ZoneRulesProvider,
+    ChronoLocalDate,
+    ChronoLocalDateTime,
+    ChronoZonedDateTime,
+    IsoChronology,
+    ChronoField,
+    ChronoUnit,
+    IsoFields,
+    Temporal,
+    TemporalAccessor,
+    TemporalAdjuster,
+    TemporalAdjusters,
+    TemporalAmount,
+    TemporalField,
+    TemporalQueries,
+    TemporalQuery,
+    TemporalUnit,
+    ValueRange,
+    DateTimeFormatter,
+    DateTimeFormatterBuilder,
+    DecimalStyle,
+    ResolverStyle,
+    SignStyle,
+    TextStyle,
+};
+
+const use = bindUse(jsJiodaExports);
+jsJiodaExports.use = use;
+
+export {
+    _,
+    use,
+    convert,
+    nativeJs,
+    ArithmeticException,
+    DateTimeException,
+    DateTimeParseException,
+    IllegalArgumentException,
+    IllegalStateException,
+    UnsupportedTemporalTypeException,
+    NullPointerException,
+    Clock,
+    DayOfWeek,
+    Duration,
+    Instant,
+    LocalDate,
+    LocalTime,
+    LocalDateTime,
+    Month,
+    MonthDay,
+    Period,
+    Year,
+    YearConstants,
+    YearMonth,
+    ZonedDateTime,
+    ZoneOffset,
+    ZoneId,
+    ZoneRegion,
+    ZoneOffsetTransition,
+    ZoneRules,
+    ZoneRulesProvider,
+    ChronoLocalDate,
+    ChronoLocalDateTime,
+    ChronoZonedDateTime,
+    IsoChronology,
+    ChronoField,
+    ChronoUnit,
+    IsoFields,
+    Temporal,
+    TemporalAccessor,
+    TemporalAdjuster,
+    TemporalAdjusters,
+    TemporalAmount,
+    TemporalField,
+    TemporalQueries,
+    TemporalQuery,
+    TemporalUnit,
+    ValueRange,
+    DateTimeFormatter,
+    DateTimeFormatterBuilder,
+    DecimalStyle,
+    ResolverStyle,
+    SignStyle,
+    TextStyle,
 };
