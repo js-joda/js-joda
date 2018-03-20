@@ -13,7 +13,8 @@ import { MomentZoneRules } from './MomentZoneRules';
 
 import { unpack } from './unpack';
 
-let TZDB_VERSION = null;
+let TZDB_DATA;
+let TZDB_VERSION;
 const AVAILABLE_ZONE_IDS = [];
 
 const zones = {};
@@ -50,11 +51,32 @@ export class MomentZoneRulesProvider extends ZoneRulesProvider {
         return AVAILABLE_ZONE_IDS;
     }
 
+    /**
+     *
+     * @return {string} the tzdb version.
+     */
     static getVersion() {
         return TZDB_VERSION;
     }
 
-    static loadData(packedJson){
+    /**
+     * Provides the packed tzdb data,
+     * the data has the same format as provided from moment-timezone.
+     *
+     * @return {object} the packed tzdb data.
+     */
+    static getTzdbData(){
+        return TZDB_DATA;
+    }
+
+    /**
+     * Sets the packed tzdb data.
+     * Accepts tzdb data in the same format as provided from moment-timezone.
+     *
+     * @param packedJson
+     */
+    static loadTzdbData(packedJson){
+        TZDB_DATA = packedJson;
         TZDB_VERSION = packedJson.version;
 
         for (const packedZoneInfo of packedJson.zones) {

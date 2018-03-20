@@ -1,8 +1,15 @@
 Changelog
 =========
 
-### 1.1.7 (next)
+### 1.2.0 (next)
 
+#### public api
+ 
+ * remove private export of tzdb data, instead 
+ * add loadTzdbData() and getTzdbData() static methods to the class ZoneRulesProvider,
+   that allows to provide/share tzdb data.
+ * provide empty dist versions of js-joda-timezone without preconfigured tzdb data.
+ 
 #### dependendency updates
 
 ### 1.1.6

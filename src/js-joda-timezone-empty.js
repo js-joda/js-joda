@@ -3,11 +3,6 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import latest from 'moment-timezone/data/packed/latest';
-
 import plug from './plug';
-import { MomentZoneRulesProvider } from './MomentZoneRulesProvider';
-
-MomentZoneRulesProvider.loadTzdbData(latest);
 
 export default plug;

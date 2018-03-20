@@ -1,4 +1,4 @@
-//! @version js-joda-timezone - 1.1.6-2017c
+//! @version js-joda-timezone - 1.1.6 - 2017c
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -368,7 +368,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 */
 
-var TZDB_VERSION = null;
+var TZDB_DATA = void 0;
+var TZDB_VERSION = void 0;
 var AVAILABLE_ZONE_IDS = [];
 
 var zones = {};
@@ -399,7 +400,12 @@ var MomentZoneRulesProvider = exports.MomentZoneRulesProvider = function (_ZoneR
         return TZDB_VERSION;
     };
 
-    MomentZoneRulesProvider.loadData = function loadData(packedJson) {
+    MomentZoneRulesProvider.getTzdbData = function getTzdbData() {
+        return TZDB_DATA;
+    };
+
+    MomentZoneRulesProvider.loadTzdbData = function loadTzdbData(packedJson) {
+        TZDB_DATA = packedJson;
         TZDB_VERSION = packedJson.version;
 
         for (var _iterator = packedJson.zones, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
@@ -459,17 +465,24 @@ var MomentZoneRulesProvider = exports.MomentZoneRulesProvider = function (_ZoneR
 
 exports.__esModule = true;
 
+var _latest = __webpack_require__(/*! moment-timezone/data/packed/latest */ "./node_modules/moment-timezone/data/packed/latest.json");
+
+var _latest2 = _interopRequireDefault(_latest);
+
 var _plug = __webpack_require__(/*! ./plug */ "./src/plug.js");
 
 var _plug2 = _interopRequireDefault(_plug);
 
+var _MomentZoneRulesProvider = __webpack_require__(/*! ./MomentZoneRulesProvider */ "./src/MomentZoneRulesProvider.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _plug2.default; /*
-                                   * @copyright (c) 2016, Philipp Thürwächter, Pattrick Hüper
-                                   * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-                                   */
+_MomentZoneRulesProvider.MomentZoneRulesProvider.loadTzdbData(_latest2.default); /*
+                                                                                  * @copyright (c) 2016, Philipp Thürwächter, Pattrick Hüper
+                                                                                  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+                                                                                  */
 
+exports.default = _plug2.default;
 module.exports = exports['default'];
 
 /***/ }),
@@ -489,16 +502,12 @@ exports.__esModule = true;
 exports.default = function (jsJoda) {
     jsJoda.ZoneRulesProvider.getRules = _MomentZoneRulesProvider.MomentZoneRulesProvider.getRules;
     jsJoda.ZoneRulesProvider.getAvailableZoneIds = _MomentZoneRulesProvider.MomentZoneRulesProvider.getAvailableZoneIds;
-
-    jsJoda.ZoneRulesProvider._TZDB = _latest2.default;
+    jsJoda.ZoneRulesProvider.getTzdbData = _MomentZoneRulesProvider.MomentZoneRulesProvider.getTzdbData;
+    jsJoda.ZoneRulesProvider.loadTzdbData = _MomentZoneRulesProvider.MomentZoneRulesProvider.loadTzdbData;
 
     (0, _systemDefaultZone2.default)(jsJoda.ZoneId);
     return jsJoda;
 };
-
-var _latest = __webpack_require__(/*! moment-timezone/data/packed/latest */ "./node_modules/moment-timezone/data/packed/latest.json");
-
-var _latest2 = _interopRequireDefault(_latest);
 
 var _MomentZoneRulesProvider = __webpack_require__(/*! ./MomentZoneRulesProvider */ "./src/MomentZoneRulesProvider.js");
 
@@ -508,12 +517,10 @@ var _systemDefaultZone2 = _interopRequireDefault(_systemDefaultZone);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_MomentZoneRulesProvider.MomentZoneRulesProvider.loadData(_latest2.default); /*
-                                                                              * @copyright (c) 2016, Philipp Thürwächter, Pattrick Hüper
-                                                                              * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-                                                                              */
-
-module.exports = exports['default'];
+module.exports = exports['default']; /*
+                                      * @copyright (c) 2016, Philipp Thürwächter, Pattrick Hüper
+                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+                                      */
 
 /***/ }),
 
