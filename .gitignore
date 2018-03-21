@@ -7,6 +7,7 @@ npm-debug.log
 # build output
 build
 tmp
+package-lock.json
 .nyc_output
 
 # Ide

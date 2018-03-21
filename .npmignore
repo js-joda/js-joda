@@ -15,6 +15,7 @@ webpack.config.js
 
 # build output
 build
+package-lock.json
 
 # Ide
 .idea
