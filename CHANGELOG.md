@@ -1,7 +1,9 @@
 Changelog
 =========
 
-### 1.2.0 (next)
+### 1.2.1 (next)
+
+### 1.2.0
 
 #### public api
  
