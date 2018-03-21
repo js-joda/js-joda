@@ -6,11 +6,11 @@
 // eslint-disable-next-line func-names
 module.exports = function (config) {
     const saucelabsLaunchers = {
-        sl_ie_9: {
+        sl_ie: {
             base: 'SauceLabs',
             browserName: 'internet explorer',
-            platform: 'Windows 7',
-            version: '9',
+            platform: 'Windows 10',
+            version: 'latest'
         },
         sl_firefox: {
             base: 'SauceLabs',
