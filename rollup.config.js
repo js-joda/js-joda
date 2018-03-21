@@ -37,7 +37,7 @@ export default [{
     input: './src/js-joda.js',
     plugins: [
         babel(),
-        uglify(),
+        uglify({ output: { comments: /^!/ } }),
     ],
     output: {
         banner,
