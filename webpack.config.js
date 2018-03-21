@@ -5,11 +5,11 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 function createBanner(withTzdbVersion = true){
     const packageJson = require('./package.json');
-    const tzdbLatest = require('moment-timezone/data/packed/latest');
+    const tzdbLatest = require('./data/packed/latest');
 
     const version = withTzdbVersion ?
-        `//! @version ${packageJson.name} - ${packageJson.version} - ${tzdbLatest.version}\n` :
-        `//! @version ${packageJson.name} - ${packageJson.version}\n`;
+        `//! @version ${packageJson.name}-${packageJson.version}-${tzdbLatest.version}\n` :
+        `//! @version ${packageJson.name}-${packageJson.version}\n`;
     const preamble = fs.readFileSync('./src/license-preamble.js', 'utf8');
     return version + preamble;
 }

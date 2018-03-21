@@ -10,6 +10,10 @@ Changelog
    that allows to provide/share tzdb data.
  * provide empty dist versions of js-joda-timezone without preconfigured tzdb data.
  
+#### iana tzdb
+
+ * manually updated iana tzdb to 2018c 
+ 
 #### dependendency updates
 
 ### 1.1.6
