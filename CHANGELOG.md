@@ -11,6 +11,10 @@ Changelog
 
  * Migrate from webpack to rollup
 
+#### etc
+
+ * Remove usage of module.exports
+ 
 #### dependency updates
 
 ### 1.7.1
