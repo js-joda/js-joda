@@ -40,7 +40,7 @@ script:
   - if [[ "$CI_STEP" == "karma" ]]; then
       (
       set -evx;
-      npm run test-browser -- --browsers Firefox,PhantomJS --browserNoActivityTimeout 20000;
+      npm run test-browser -- --browsers PhantomJS --browserNoActivityTimeout 20000;
       )
     fi
   # CI_STEP = saucelabs steps to run,
