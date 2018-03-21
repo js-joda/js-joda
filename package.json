@@ -35,7 +35,7 @@
   ],
   "license": "BSD-3-Clause",
   "peerDependencies": {
-    "js-joda": "^1.6.2"
+    "js-joda": "^1.8.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -58,7 +58,7 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-react": "^7.5.1",
     "eslint-plugin-standard": "^3.0.1",
-    "js-joda": "^1.6.2",
+    "js-joda": "^1.8.0",
     "karma": "^2.0.0",
     "karma-chai-plugins": "^0.9.0",
     "karma-chrome-launcher": "^2.2.0",
