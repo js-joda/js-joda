@@ -12,7 +12,7 @@
 		exports["JSJodaExtra"] = factory(require("js-joda"));
 	else
 		root["JSJodaExtra"] = factory(root["JSJoda"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE_js_joda__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -59,6 +59,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 		}
 /******/ 	};
 /******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
@@ -74,12 +79,18 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/js-joda-extra.js");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ "./src/Interval.js":
+/*!*************************!*\
+  !*** ./src/Interval.js ***!
+  \*************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89,9 +100,9 @@ exports.__esModule = true;
 exports.Interval = undefined;
 exports._init = _init;
 
-var _jsJoda = __webpack_require__(1);
+var _jsJoda = __webpack_require__(/*! js-joda */ "js-joda");
 
-var _assert = __webpack_require__(4);
+var _assert = __webpack_require__(/*! ./assert */ "./src/assert.js");
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /*
                                                                                                                                                            * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -334,57 +345,43 @@ function _init() {
 }
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
-
-/***/ }),
-/* 2 */
+/***/ "./src/_init.js":
+/*!**********************!*\
+  !*** ./src/_init.js ***!
+  \**********************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-exports.__esModule = true;
+var _Interval = __webpack_require__(/*! ./Interval */ "./src/Interval.js");
 
-var _main = __webpack_require__(3);
+var isInit = false; /*
+                     * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+                     * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+                     */
 
-var _main2 = _interopRequireDefault(_main);
+function init() {
+    if (isInit) {
+        return;
+    }
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+    isInit = true;
 
-exports.default = _main2.default; /*
-                                   * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-                                   * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
-                                   */
+    (0, _Interval._init)();
+}
 
-module.exports = exports['default'];
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-exports.default = function (jsJoda) {
-  jsJoda.Interval = _Interval.Interval;
-};
-
-var _Interval = __webpack_require__(0);
-
-__webpack_require__(5);
-
-module.exports = exports['default']; /*
-                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-                                      * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
-                                      */
+init();
 
 /***/ }),
-/* 4 */
+
+/***/ "./src/assert.js":
+/*!***********************!*\
+  !*** ./src/assert.js ***!
+  \***********************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -396,7 +393,7 @@ exports.requireNonNull = requireNonNull;
 exports.requireInstance = requireInstance;
 exports.abstractMethodFail = abstractMethodFail;
 
-var _jsJoda = __webpack_require__(1);
+var _jsJoda = __webpack_require__(/*! js-joda */ "js-joda");
 
 function assert(assertion, msg, error) {
     if (!assertion) {
@@ -429,31 +426,71 @@ function abstractMethodFail(methodName) {
 }
 
 /***/ }),
-/* 5 */
+
+/***/ "./src/js-joda-extra.js":
+/*!******************************!*\
+  !*** ./src/js-joda-extra.js ***!
+  \******************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _Interval = __webpack_require__(0);
+exports.__esModule = true;
 
-var isInit = false; /*
-                     * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
-                     * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-                     */
+var _main = __webpack_require__(/*! ./main */ "./src/main.js");
 
-function init() {
-    if (isInit) {
-        return;
-    }
+var _main2 = _interopRequireDefault(_main);
 
-    isInit = true;
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-    (0, _Interval._init)();
-}
+exports.default = _main2.default; /*
+                                   * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+                                   * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
+                                   */
 
-init();
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./src/main.js":
+/*!*********************!*\
+  !*** ./src/main.js ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+exports.default = function (jsJoda) {
+  jsJoda.Interval = _Interval.Interval;
+};
+
+var _Interval = __webpack_require__(/*! ./Interval */ "./src/Interval.js");
+
+__webpack_require__(/*! ./_init */ "./src/_init.js");
+
+module.exports = exports['default']; /*
+                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+                                      * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
+                                      */
+
+/***/ }),
+
+/***/ "js-joda":
+/*!*********************************************************************************************!*\
+  !*** external {"amd":"js-joda","commonjs":"js-joda","commonjs2":"js-joda","root":"JSJoda"} ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_js_joda__;
 
 /***/ })
-/******/ ]);
+
+/******/ });
 });

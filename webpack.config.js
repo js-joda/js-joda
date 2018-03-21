@@ -2,13 +2,10 @@
  * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
-
-/*
- eslint-disable import/no-extraneous-dependencies, global-require
- */
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const minify = JSON.parse(process.env.DIST_MIN || '0');
 const sourceMaps = !minify;
@@ -23,9 +20,10 @@ function createBanner() {
 const banner = createBanner();
 
 module.exports = {
+    mode: minify ? 'production' : 'development',
     context: __dirname,
     entry: './src/js-joda-extra.js',
-    devtool: sourceMaps ? 'hidden-source-map' : '',
+    devtool: sourceMaps ? 'hidden-source-map' : false,
     output: {
         path: `${__dirname}/dist`,
         filename: minify ? 'js-joda-extra.min.js' : 'js-joda-extra.js',
@@ -41,8 +39,8 @@ module.exports = {
         },
     },
     module: {
-        loaders: [{
-            loader: 'babel-loader',
+        rules: [{
+            use: 'babel-loader',
             include: [
                 path.resolve(__dirname, 'src'),
                 path.resolve(__dirname, 'test'),
@@ -50,15 +48,20 @@ module.exports = {
             test: /.js$/,
         }],
     },
-    plugins: minify ? [
-        new webpack.optimize.UglifyJsPlugin({
-            comments: false,
-            compress: {
-                warnings: false,
-            },
-        }),
-        new webpack.BannerPlugin({ banner, raw: true }),
-    ] : [
-        new webpack.BannerPlugin({ banner, raw: true }),
+    optimization: {
+        minimizer: [
+            new UglifyJsPlugin({
+                uglifyOptions: {
+                    output: {
+                        comments: /^!/,
+                    },
+                }
+            })
+        ]
+    },
+    plugins: [
+        new webpack.BannerPlugin(
+            {banner: banner, raw: true}
+        )
     ],
 };
