@@ -9,6 +9,7 @@
     <script>
         // use js-joda-timezone
         var jsJoda = JSJoda.use(JSJodaTimezone).use(JSJodaExtra);
+
         // copy all js-joda classes to the global scope
         for(var prop in jsJoda) { window[prop] = jsJoda[prop]; }
         console.log("Welcome to js-joda at '"+ LocalDateTime.now().toString() + "' local time");
@@ -19,9 +20,9 @@
     <div id="content" />
     <script>
         var d = document.querySelector('#content')
-        d.innerHTML = "Welcome to js-joda at '"+ LocalDateTime.now().toString() + "' local time.<br>"
-        d.innerHTML += "Its '"+ ZonedDateTime.now().toString() + "' system default timezone.<br>"
-        d.innerHTML += "An example from js-joda-extra '"+ Interval.of(Instant.now(), Instant.now().plusSeconds(60)).toDuration().toString() + "'.<br>"
+        d.innerHTML = "Welcome to js-joda at '"+ LocalDateTime.now().toString() + "' local time.<p>"
+        d.innerHTML += "An example from js-joda-timezone: Its '"+ ZonedDateTime.now().toString() + "' system default timezone.<p>"
+        d.innerHTML += "An example from js-joda-extra: Interval of 1 minute '"+ Interval.of(Instant.now(), Instant.now().plusSeconds(60)).toDuration().toString() + "'.<p>"
     </script>
 </body>
 </html>
