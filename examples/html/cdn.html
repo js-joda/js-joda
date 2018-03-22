@@ -22,7 +22,7 @@
         var d = document.querySelector('#content')
         d.innerHTML = "Welcome to js-joda at '"+ LocalDateTime.now().toString() + "' local time.<p>"
         d.innerHTML += "An example from js-joda-timezone: Its '"+ ZonedDateTime.now().toString() + "' system default timezone.<p>"
-        d.innerHTML += "An example from js-joda-extra: Interval of 1 minute '"+ Interval.of(Instant.now(), Instant.now().plusSeconds(60)).toDuration().toString() + "'.<p>"
+        d.innerHTML += "An example from js-joda-extra: Interval of 1 minute '"+ Interval.of(Instant.now(), Duration.ofMinutes(1)).toString() + "'.<p>"
     </script>
 </body>
 </html>
