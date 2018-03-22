@@ -1,6 +1,10 @@
 Changelog
 =========
 
+### 0.1.1
+
+* dependency updates
+
 ### 0.1.0
 
 * add missing method in `Interval`
