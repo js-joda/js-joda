@@ -3,6 +3,7 @@
 node ./examples/node/node-modules-01.js
 node ./examples/node/node-modules-02.js
 node ./examples/node/node-modules-03.js
+node ./examples/node/node-modules-04.js
 
 node ./examples/node/es6-index.js
 
