@@ -1,7 +1,13 @@
 Changelog
 =========
 
-### 1.2.1 (next)
+### 1.2.2 (next)
+
+### 1.2.1
+
+#### bug
+
+ * fix umd build
 
 ### 1.2.0
 
