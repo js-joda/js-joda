@@ -1,8 +1,8 @@
 module.exports = {
-    mode: 'production',
+    mode: 'development',
     entry: './examples/webpack/webpack-index.js',
     output: {
-        filename: '../examples/webpack/webpack-bundle.js'
+        filename: '../examples/webpack/webpack-bundle.js',
     },
     module: {
         rules: [{
@@ -12,5 +12,5 @@ module.exports = {
             },
         }]
     },
-    target: 'node',
+    target: 'node'
 };
