@@ -9,6 +9,8 @@ Changelog
 
  * fix umd build
 
+#### dependendency updates
+
 ### 1.2.0
 
 #### public api
