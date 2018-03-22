@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/js-joda/js-joda-examples#readme",
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
     "eslint": "^4.19.1",
     "eslint-config-js-joda": "^1.0.0",
     "js-joda": "^1.8.0",
