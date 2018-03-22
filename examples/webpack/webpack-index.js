@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 
-import JsJoda from 'js-joda';
+import { use } from 'js-joda';
 import JsJodaTimeZone from 'js-joda-timezone';
 import JsJodaExtra from 'js-joda-extra';
 
-const jsJoda = JsJoda.use(JsJodaTimeZone).use(JsJodaExtra);
+const jsJoda = use(JsJodaTimeZone).use(JsJodaExtra);
 
 const {
     Duration,
