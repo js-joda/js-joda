@@ -1,7 +1,9 @@
 Changelog
 =========
 
-### 1.8.2 (next)
+### 1.8.2 
+
+* revert release 1.8.1
 
 ### 1.8.1
 
