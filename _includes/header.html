@@ -6,15 +6,18 @@
         <link rel="shortcut icon" href="favicon.ico">
         <link rel="stylesheet" href="bundle.css">
         <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
-        <script src="//cdn.jsdelivr.net/npm/js-joda@1.8.0/dist/js-joda.js"></script>
-        <script src="//cdn.jsdelivr.net/npm/js-joda-timezone@1.2.0/dist/js-joda-timezone.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/js-joda@1.8.2/dist/js-joda.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/js-joda-extra@0.1.1/dist/js-joda-extra.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/js-joda-timezone@1.2.1/dist/js-joda-timezone.js"></script>
         <script>
             // use js-joda-timezone
-            JSJoda.use(JSJodaTimezone);
+            var jsJoda = JSJoda.use(JSJodaTimezone).use(JSJodaExtra);
+
             // copy all js-joda classes to the global scope
-            for(var prop in JSJoda) { window[prop] = JSJoda[prop]; }
+            for(var prop in jsJoda) { window[prop] = jsJoda[prop]; }
             console.log("Welcome to js-joda at '"+ LocalDateTime.now().toString() + "' local time");
-            console.log("and '"+ LocalDateTime.now().atZone(ZoneId.systemDefault()).toString() + "' system default timezone");
+            console.log("An example from js-joda-timezone: Its '"+ LocalDateTime.now().atZone(ZoneId.systemDefault()).toString() + "' system default timezone.");
+            console.log("An example from js-joda-extra: Interval of 1 minute '"+ Interval.of(Instant.now(), Duration.ofMinutes(1)).toString() + ".");
         </script>
     </head>
     <body>
