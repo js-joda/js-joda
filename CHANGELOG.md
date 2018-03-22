@@ -1,7 +1,15 @@
 Changelog
 =========
 
-### 1.8.0 (next)
+### 1.8.2 (next)
+
+### 1.8.1
+
+#### public API
+
+* simplify public export
+
+### 1.8.0
 
 #### public API
 
