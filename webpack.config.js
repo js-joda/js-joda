@@ -54,17 +54,21 @@ const plugins = withTzdbVersion => [
     ),
 ];
 
+const output = {
+    path: __dirname  + '/dist',
+    libraryTarget: 'umd',
+    library: 'JSJodaTimezone',
+    globalObject: 'this',
+};
+
 const productionConfig = {
     mode: 'production',
     context: __dirname,
     entry: './src/js-joda-timezone.js',
     devtool: false,
-    output: {
-        path: __dirname  + '/dist',
-        filename: 'js-joda-timezone.min.js',
-        libraryTarget: 'umd',
-        library: 'JSJodaTimezone'
-    },
+    output: Object.assign({}, output,
+        { filename: 'js-joda-timezone.min.js' }
+    ),
     externals,
     module: moduleConfig,
     optimization,
@@ -76,12 +80,9 @@ const productionConfigEmpty = {
     context: __dirname,
     entry: './src/js-joda-timezone-empty.js',
     devtool: false,
-    output: {
-        path: __dirname  + '/dist',
-        filename: 'js-joda-timezone-empty.min.js',
-        libraryTarget: 'umd',
-        library: 'JSJodaTimezone'
-    },
+    output: Object.assign({}, output,
+        { filename: 'js-joda-timezone-empty.min.js' }
+    ),
     externals,
     module: moduleConfig,
     optimization,
@@ -93,12 +94,9 @@ const developmentConfig = {
     context: __dirname,
     entry: './src/js-joda-timezone.js',
     devtool: 'hidden-source-map',
-    output: {
-        path: __dirname  + '/dist',
-        filename: 'js-joda-timezone.js',
-        libraryTarget: 'umd',
-        library: 'JSJodaTimezone'
-    },
+    output: Object.assign({}, output,
+        { filename: 'js-joda-timezone.js' }
+    ),
     externals,
     module: moduleConfig,
     plugins: plugins(true),
@@ -109,12 +107,9 @@ const developmentConfigEmpty = {
     context: __dirname,
     entry: './src/js-joda-timezone-empty.js',
     devtool: 'hidden-source-map',
-    output: {
-        path: __dirname  + '/dist',
-        filename: 'js-joda-timezone-empty.js',
-        libraryTarget: 'umd',
-        library: 'JSJodaTimezone'
-    },
+    output: Object.assign({}, output,
+        { filename: 'js-joda-timezone-empty.js' }
+    ),
     externals,
     module: moduleConfig,
     plugins: plugins(false),
