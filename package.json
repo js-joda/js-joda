@@ -1,0 +1,19 @@
+{
+  "name": "js-joda-examples",
+  "version": "1.0.0",
+  "description": "HowTo use js-joda libraries in different environments",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/js-joda/js-joda-examples.git"
+  },
+  "author": "pithu",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/js-joda/js-joda-examples/issues"
+  },
+  "homepage": "https://github.com/js-joda/js-joda-examples#readme"
+}
