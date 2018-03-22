@@ -13,7 +13,8 @@
         // copy all js-joda classes to the global scope
         for(var prop in jsJoda) { window[prop] = jsJoda[prop]; }
         console.log("Welcome to js-joda at '"+ LocalDateTime.now().toString() + "' local time");
-        console.log("and '"+ LocalDateTime.now().atZone(ZoneId.systemDefault()).toString() + "' system default timezone");
+        console.log("An example from js-joda-timezone: Its '"+ LocalDateTime.now().atZone(ZoneId.systemDefault()).toString() + "' system default timezone.");
+        console.log("An example from js-joda-extra: Interval of 1 minute '"+ Interval.of(Instant.now(), Duration.ofMinutes(1)).toString() + ".");
     </script>
 </head>
 <body>
