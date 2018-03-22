@@ -29,6 +29,7 @@ module.exports = {
         filename: minify ? 'js-joda-extra.min.js' : 'js-joda-extra.js',
         libraryTarget: 'umd',
         library: 'JSJodaExtra',
+        globalObject: 'this',
     },
     externals: {
         'js-joda': {

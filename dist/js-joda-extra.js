@@ -12,7 +12,7 @@
 		exports["JSJodaExtra"] = factory(require("js-joda"));
 	else
 		root["JSJodaExtra"] = factory(root["JSJoda"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE_js_joda__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_js_joda__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
