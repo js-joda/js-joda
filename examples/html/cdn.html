@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>js-joda</title>
+    <script src="//cdn.jsdelivr.net/npm/js-joda@1.8.0/dist/js-joda.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/js-joda-extra@0.1.0/dist/js-joda-extra.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/js-joda-timezone@1.2.0/dist/js-joda-timezone.js"></script>
+    <script>
+        // use js-joda-timezone
+        var jsJoda = JSJoda.use(JSJodaTimezone).use(JSJodaExtra);
+        // copy all js-joda classes to the global scope
+        for(var prop in jsJoda) { window[prop] = jsJoda[prop]; }
+        console.log("Welcome to js-joda at '"+ LocalDateTime.now().toString() + "' local time");
+        console.log("and '"+ LocalDateTime.now().atZone(ZoneId.systemDefault()).toString() + "' system default timezone");
+    </script>
+</head>
+<body>
+    <div id="content" />
+    <script>
+        var d = document.querySelector('#content')
+        d.innerHTML = "Welcome to js-joda at '"+ LocalDateTime.now().toString() + "' local time.<br>"
+        d.innerHTML += "Its '"+ ZonedDateTime.now().toString() + "' system default timezone.<br>"
+        d.innerHTML += "An example from js-joda-extra '"+ Interval.of(Instant.now(), Instant.now().plusSeconds(60)).toDuration().toString() + "'.<br>"
+    </script>
+</body>
+</html>
