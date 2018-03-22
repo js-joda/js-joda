@@ -4,24 +4,24 @@
  */
 import { expect } from 'chai';
 
-import * as joda from '../src/js-joda';
+import JsJoda from '../src/js-joda';
 
 describe('js-joda exports', () => {
 
     describe('errors', function () {
 
         it('should export DateTimeException', function () {
-            expect(joda.DateTimeException).to.exist;
+            expect(JsJoda.DateTimeException).to.exist;
         });
 
         it('should export NullPointerException', function () {
-            expect(joda.NullPointerException).to.exist;
+            expect(JsJoda.NullPointerException).to.exist;
         });
 
     });
 
     it('should export Clock', function () {
-        expect(joda.Clock).to.exist;
+        expect(JsJoda.Clock).to.exist;
     });
 
 });
