@@ -87,7 +87,7 @@ const _ = {
     StringBuilder,
 };
 
-const jsJodaExports = {
+const jsJiodaExports = {
     _,
     convert,
     nativeJs,
@@ -143,7 +143,62 @@ const jsJodaExports = {
     TextStyle,
 };
 
-const use = bindUse(jsJodaExports);
-jsJodaExports.use = use;
+const use = bindUse(jsJiodaExports);
+jsJiodaExports.use = use;
 
-export default jsJodaExports;
+export {
+    _,
+    use,
+    convert,
+    nativeJs,
+    ArithmeticException,
+    DateTimeException,
+    DateTimeParseException,
+    IllegalArgumentException,
+    IllegalStateException,
+    UnsupportedTemporalTypeException,
+    NullPointerException,
+    Clock,
+    DayOfWeek,
+    Duration,
+    Instant,
+    LocalDate,
+    LocalTime,
+    LocalDateTime,
+    Month,
+    MonthDay,
+    Period,
+    Year,
+    YearConstants,
+    YearMonth,
+    ZonedDateTime,
+    ZoneOffset,
+    ZoneId,
+    ZoneRegion,
+    ZoneOffsetTransition,
+    ZoneRules,
+    ZoneRulesProvider,
+    ChronoLocalDate,
+    ChronoLocalDateTime,
+    ChronoZonedDateTime,
+    IsoChronology,
+    ChronoField,
+    ChronoUnit,
+    IsoFields,
+    Temporal,
+    TemporalAccessor,
+    TemporalAdjuster,
+    TemporalAdjusters,
+    TemporalAmount,
+    TemporalField,
+    TemporalQueries,
+    TemporalQuery,
+    TemporalUnit,
+    ValueRange,
+    DateTimeFormatter,
+    DateTimeFormatterBuilder,
+    DecimalStyle,
+    ResolverStyle,
+    SignStyle,
+    TextStyle,
+};

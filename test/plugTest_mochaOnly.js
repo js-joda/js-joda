@@ -3,14 +3,10 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import { expect } from 'chai';
+import {expect} from 'chai';
 
-import JsJoda from '../src/js-joda';
-
-const {
-    use,
-    LocalDate,
-} = JsJoda;
+import {use} from '../src/js-joda';
+import {LocalDate} from '../src/js-joda';
 
 /**
  * this test is not executable with webpack because it has a reference to the webpack entry point
@@ -47,4 +43,5 @@ describe('plugTest', () => {
         expect(otherDate.isBeforeOrEqual(date1)).to.be.false;
         expect(date1.isBeforeOrEqual(otherDate)).to.be.true;
     });
+
 });

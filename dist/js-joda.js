@@ -4,10 +4,10 @@
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-    typeof define === 'function' && define.amd ? define(factory) :
-    (global.JSJoda = factory());
-}(this, (function () { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+    typeof define === 'function' && define.amd ? define(['exports'], factory) :
+    (factory((global.JSJoda = {})));
+}(this, (function (exports) { 'use strict';
 
     /**
      * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -11385,7 +11385,7 @@
         StringBuilder: StringBuilder
     };
 
-    var jsJodaExports = {
+    var jsJiodaExports = {
         _: _,
         convert: convert,
         nativeJs: nativeJs,
@@ -11441,10 +11441,65 @@
         TextStyle: TextStyle
     };
 
-    var use = bindUse(jsJodaExports);
-    jsJodaExports.use = use;
+    var use = bindUse(jsJiodaExports);
+    jsJiodaExports.use = use;
 
-    return jsJodaExports;
+    exports._ = _;
+    exports.use = use;
+    exports.convert = convert;
+    exports.nativeJs = nativeJs;
+    exports.ArithmeticException = ArithmeticException;
+    exports.DateTimeException = DateTimeException;
+    exports.DateTimeParseException = DateTimeParseException;
+    exports.IllegalArgumentException = IllegalArgumentException;
+    exports.IllegalStateException = IllegalStateException;
+    exports.UnsupportedTemporalTypeException = UnsupportedTemporalTypeException;
+    exports.NullPointerException = NullPointerException;
+    exports.Clock = Clock;
+    exports.DayOfWeek = DayOfWeek;
+    exports.Duration = Duration;
+    exports.Instant = Instant;
+    exports.LocalDate = LocalDate;
+    exports.LocalTime = LocalTime;
+    exports.LocalDateTime = LocalDateTime;
+    exports.Month = Month;
+    exports.MonthDay = MonthDay;
+    exports.Period = Period;
+    exports.Year = Year;
+    exports.YearConstants = YearConstants;
+    exports.YearMonth = YearMonth;
+    exports.ZonedDateTime = ZonedDateTime;
+    exports.ZoneOffset = ZoneOffset;
+    exports.ZoneId = ZoneId;
+    exports.ZoneRegion = ZoneRegion;
+    exports.ZoneOffsetTransition = ZoneOffsetTransition;
+    exports.ZoneRules = ZoneRules;
+    exports.ZoneRulesProvider = ZoneRulesProvider;
+    exports.ChronoLocalDate = ChronoLocalDate;
+    exports.ChronoLocalDateTime = ChronoLocalDateTime;
+    exports.ChronoZonedDateTime = ChronoZonedDateTime;
+    exports.IsoChronology = IsoChronology;
+    exports.ChronoField = ChronoField;
+    exports.ChronoUnit = ChronoUnit;
+    exports.IsoFields = IsoFields;
+    exports.Temporal = Temporal;
+    exports.TemporalAccessor = TemporalAccessor;
+    exports.TemporalAdjuster = TemporalAdjuster;
+    exports.TemporalAdjusters = TemporalAdjusters;
+    exports.TemporalAmount = TemporalAmount;
+    exports.TemporalField = TemporalField;
+    exports.TemporalQueries = TemporalQueries;
+    exports.TemporalQuery = TemporalQuery;
+    exports.TemporalUnit = TemporalUnit;
+    exports.ValueRange = ValueRange;
+    exports.DateTimeFormatter = DateTimeFormatter;
+    exports.DateTimeFormatterBuilder = DateTimeFormatterBuilder;
+    exports.DecimalStyle = DecimalStyle;
+    exports.ResolverStyle = ResolverStyle;
+    exports.SignStyle = SignStyle;
+    exports.TextStyle = TextStyle;
+
+    Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 //# sourceMappingURL=js-joda.js.map
