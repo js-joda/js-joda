@@ -3,16 +3,6 @@ Changelog
 
 ### 1.8.2 
 
-* revert release 1.8.1
-
-### 1.8.1
-
-#### public API
-
-* simplify public export
-
-### 1.8.0
-
 #### public API
 
  * add ESM module to pkg.module build with rollup
@@ -26,16 +16,10 @@ Changelog
  * Remove usage of module.exports
  
 #### dependency updates
+ 
+### 1.7.0 1.7.1 1.8.0 1.8.1
 
-### 1.7.1
-
- * Remove pkg.module again, until issues are fixed
-
-### 1.7.0
-
-#### public API
-
- * add ESM module to pkg.module build with rollup
+ * issues with build artifacts, dont use it.
  
 ### 1.6.3
 
