@@ -96,18 +96,20 @@ Object.keys(argv.packages).forEach((packageName) => {
     packageTemplate.version = mainPackageJSON.version;
     packageTemplate.name = `@js-joda/js-joda-locale_${packageName}`;
     packageTemplate.description = `prebuilt js-joda-locale package for locales: ${argv.packages[packageName]}`;
-    const localesArg = argv.packages[packageName].join();
     fs.writeFileSync(path.resolve(packageDir, 'package.json'),
         JSON.stringify(packageTemplate, null, 4));
+    const nodeArgs = [
+        './utils/build_package.js',
+        '-o', `${path.resolve(packageDir, 'dist')}`,
+        '-m', 'node_modules',
+        '-c', 'utils/load_cldrData.prebuilt.js',
+    ];
+    argv.packages[packageName].forEach((locale) => {
+        nodeArgs.push('-l', `${locale}`);
+    });
     execFile(
         'node',
-        [
-            './utils/build_package.js',
-            '-o', `${path.resolve(packageDir, 'dist')}`,
-            '-m', 'node_modules',
-            '-c', 'utils/load_cldrData.prebuilt.js',
-            '-l', `${localesArg}`,
-        ],
+        nodeArgs,
         undefined, /* options */
         (error, stdout, stderr) => {
             if (error) {
