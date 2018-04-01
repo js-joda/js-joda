@@ -46,8 +46,8 @@
   "peerDependencies": {
     "cldr-data": "*",
     "cldrjs": "^0.5.0",
-    "js-joda": "^1.7.1",
-    "js-joda-timezone": "^1.1.6"
+    "js-joda": "^1.8.2",
+    "js-joda-timezone": "^1.2.1"
   },
   "dependencies": {
     "postinstall-build": "^5.0.1"
@@ -65,10 +65,10 @@
     "cldrjs": "^0.5.0",
     "coveralls": "^3.0.0",
     "esdoc": "^1.0.4",
-    "eslint": "^4.18.2",
+    "eslint": "^4.19.1",
     "eslint-config-js-joda": "^1.0.0",
-    "js-joda": "^1.7.1",
-    "js-joda-timezone": "^1.1.6",
+    "js-joda": "^1.8.2",
+    "js-joda-timezone": "^1.2.1",
     "karma": "^2.0.0",
     "karma-chai-plugins": "^0.9.0",
     "karma-chrome-launcher": "^2.2.0",
@@ -77,16 +77,16 @@
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-sauce-launcher": "^1.2.0",
     "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^2.0.13",
-    "mocha": "^5.0.4",
-    "nyc": "^11.4.1",
+    "karma-webpack": "^3.0.0",
+    "mocha": "^5.0.5",
+    "nyc": "^11.6.0",
     "phantomjs-prebuilt": "^2.1.16",
     "requirejs": "^2.3.5",
     "requirejs-json": "0.0.3",
     "requirejs-text": "^2.0.15",
-    "webpack": "^4.1.1",
+    "webpack": "^4.4.1",
     "webpack-build-notifier": "^0.1.23",
-    "webpack-cli": "^2.0.11",
+    "webpack-cli": "^2.0.13",
     "yargs": "^11.0.0"
   },
   "buildDependencies": [
