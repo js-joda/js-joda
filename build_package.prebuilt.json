@@ -5,7 +5,8 @@
     "stats": false,
     "packages_test": {
         "de": [
-            "de.*"
+            "de",
+            "de-DE"
         ]
     },
     "packages_disabled": {
