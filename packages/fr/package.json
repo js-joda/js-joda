@@ -1,5 +1,5 @@
 {
-    "name": "@js-joda/js-joda-locale_fr",
+    "name": "js-joda-locale_fr",
     "version": "1.1.0-pre+32.0.1",
     "description": "prebuilt js-joda-locale package for locales: fr.*",
     "repository": {
