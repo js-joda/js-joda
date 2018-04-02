@@ -12,7 +12,9 @@ function createErrorType(name, init, superErrorClass = Error) {
         }
         this.message = message;
         init && init.apply(this, arguments);
-
+        this.toString = function () {
+            return `${this.name}: ${this.message}`;
+        };
     }
     E.prototype = new superErrorClass();
     E.prototype.name = name;
