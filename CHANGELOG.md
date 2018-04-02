@@ -3,6 +3,10 @@ Changelog
 
 ### next
 
+get rid of postinstall build
+
+add possibility to publish locale specific packages (e.g. js-joda-locale_de, js-joda-locale_en-US, ...)
+
 ### 1.0.0
 
 just bump the version
