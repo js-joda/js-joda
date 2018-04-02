@@ -49,6 +49,7 @@ if (argv.debug) {
     /* eslint-enable no-console */
 }
 
+const mainPackageJSON = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'package.json')));
 const packageTemplate = {
     name: '<will be overridden>',
     version: '<will be overridden>',
@@ -73,16 +74,13 @@ const packageTemplate = {
         url: 'https://github.com/js-joda/js-joda-locale/issues'
     },
     homepage: 'https://github.com/js-joda/js-joda-locale#readme',
-    // TODO: peer dependencies versions from main package.json?
     peerDependencies: {
-        'js-joda': '^1.7.1',
-        'js-joda-timezone': '^1.1.6'
+        'js-joda': mainPackageJSON.peerDependencies['js-joda'],
+        'js-joda-timezone': mainPackageJSON.peerDependencies['js-joda-timezone'],
     },
     dependencies: {},
     devDependencies: {}
 };
-const mainPackageJSON = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'package.json')));
-
 
 // TODO: build minified (DIST_MIN=1) package?? in dist/index.min.js?
 Object.keys(argv.packages).forEach((packageName) => {
