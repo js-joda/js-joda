@@ -3,11 +3,33 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 /* eslint-disable no-console, no-var */
-var joda = require('js-joda').use(require('js-joda-timezone')).use(require('../dist/js-joda-locale'));
+const joda = require('js-joda')
+    .use(require('js-joda-timezone'))
+    .use(require('../dist/js-joda-locale'));
 
-var zdt = joda.ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, joda.ZoneId.of('Europe/Berlin'));
-// var zdt = joda.ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, joda.ZoneId.of('America/Chicago'));
-console.log('en_US formatted string:', zdt.format(joda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, \'Week \' ww, \'Quarter \' QQQ').withLocale(joda.Locale.US)));
-console.log('en_GB formatted string:', zdt.format(joda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, \'Week \' ww, \'Quarter \' QQQ').withLocale(joda.Locale.UK)));
-console.log('de_DE formatted string:', zdt.format(joda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, \'Week \' ww, \'Quarter \' QQQ').withLocale(joda.Locale.GERMANY)));
-console.log('fr_FR formatted string:', zdt.format(joda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, \'Week \' ww, \'Quarter \' QQQ').withLocale(joda.Locale.FRANCE)));
+const {
+    DateTimeFormatter,
+    Instant,
+    Locale,
+    ZonedDateTime,
+    ZoneId,
+} = joda;
+
+const zdt = ZonedDateTime.of(2016, 1, 1, 1, 2, 3, 4, ZoneId.of('Europe/Berlin'));
+const pattern = 'eeee MMMM dd yyyy GGGG, hh:mm:ss,nnnn a zzzz, \'Week \' ww, \'Quarter \' QQQ';
+const enUSFormatter = DateTimeFormatter.ofPattern(pattern).withLocale(Locale.US);
+const enGBFormatter = DateTimeFormatter.ofPattern(pattern).withLocale(Locale.UK);
+const deDEFormatter = DateTimeFormatter.ofPattern(pattern).withLocale(Locale.GERMANY);
+const frFRFormatter = DateTimeFormatter.ofPattern(pattern).withLocale(Locale.FRANCE);
+const enUSString = zdt.format(enUSFormatter);
+const enGBString = zdt.format(enGBFormatter);
+const deDEString = zdt.format(deDEFormatter);
+const frFRString = zdt.format(frFRFormatter);
+console.log('en_US formatted string:', enUSString);
+console.log('en_US string parsed back same Instant as original? ', Instant.from(ZonedDateTime.parse(enUSString, enUSFormatter)).equals(Instant.from(zdt)));
+console.log('en_GB formatted string:', enGBString);
+console.log('en_GB string parsed back same Instant as original? ', Instant.from(ZonedDateTime.parse(enGBString, enGBFormatter)).equals(Instant.from(zdt)));
+console.log('de_DE formatted string:', deDEString);
+console.log('en_GB string parsed back same Instant as original? ', Instant.from(ZonedDateTime.parse(deDEString, deDEFormatter)).equals(Instant.from(zdt)));
+console.log('fr_FR formatted string:', frFRString);
+console.log('en_GB string parsed back same Instant as original? ', Instant.from(ZonedDateTime.parse(frFRString, frFRFormatter)).equals(Instant.from(zdt)));
