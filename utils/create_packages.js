@@ -18,12 +18,6 @@ const yargs = yargsPkg
             default: path.resolve(__dirname, '../packages'),
             description: 'packages directory, where the package(s) are generated, can be absolute or relative (to cwd)'
         },
-        packageJsonTemplate: {
-            alias: 't',
-            string: true,
-            default: path.resolve(__dirname, 'package_template.json'),
-            description: 'package.json template for the packages'
-        },
         config: {
             config: true,
             description: 'path to a JSON file with config options, for a format example see build_package.default.json'
