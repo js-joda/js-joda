@@ -502,7 +502,7 @@ export class DateTimeFormatter {
     _createError(text, ex) {
         let abbr = '';
         if (text.length > 64) {
-            abbr = text.subString(0, 64) + '...';
+            abbr = text.substring(0, 64) + '...';
         } else {
             abbr = text;
         }

@@ -190,7 +190,7 @@ export class DateTimeBuilder extends Temporal {
             this._addObject(date);
             for (const fieldName in this.fieldValues.keySet()) {
                 const field = ChronoField.byName(fieldName);
-                if (field !== null) {
+                if (field) {
                     if (this.fieldValues.get(field) !== undefined) { // undefined if "removed" in EnumMap
                         if (field.isDateBased()) {
                             let val1;
