@@ -10,7 +10,6 @@
   "scripts": {
     "prepublishOnly": "npm run build-dist; npm run create-packages; npm run build-prebuilt",
     "version": "npm run build-dist; npm run create-packages; npm run build-prebuilt",
-    "__disabled__postinstall": "POSTINSTALL_BUILD=1 postinstall-build __always_build__ --only-as-dependency --script build_package",
     "test": "./node_modules/.bin/mocha --timeout 5000 --require babel-core/register ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js test/pluginTest_mochaOnly.js",
     "test-coverage": "NODE_ENV=test COVERAGE=1 ./node_modules/.bin/nyc --report-dir=build/coverage --reporter=lcov --reporter html ./node_modules/.bin/mocha --timeout 5000 --require babel-core/register --reporter progress ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js",
     "test-browser": "./node_modules/.bin/karma start --reporters=dots --single-run",
@@ -49,9 +48,6 @@
     "js-joda": "^1.8.2",
     "js-joda-timezone": "^1.2.1"
   },
-  "dependencies": {
-    "postinstall-build": "^5.0.1"
-  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
@@ -89,15 +85,6 @@
     "webpack-cli": "^2.1.3",
     "yargs": "^11.0.0"
   },
-  "buildDependencies": [
-    "babel-core",
-    "babel-loader",
-    "babel-plugin-add-module-exports",
-    "babel-preset-env",
-    "webpack",
-    "webpack-build-notifier",
-    "yargs"
-  ],
   "cldr-data-coverage": "core",
   "cldr-data-urls-filter": "(cldr-core|cldr-numbers-modern|cldr-dates-modern)"
 }
