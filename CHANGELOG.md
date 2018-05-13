@@ -1,11 +1,13 @@
 Changelog
 =========
 
-### next
+### next (1.1.0)
 
-get rid of postinstall build
+* get rid of postinstall build
 
-add possibility to publish locale specific packages (e.g. js-joda-locale_de, js-joda-locale_en-US, ...)
+* add possibility to publish locale specific packages (e.g. js-joda-locale_de, js-joda-locale_en-US, ...)
+
+* add prebuilt packages to main js-joda-locale package (e.g. js-joda-locale/build/package/de/js-joda-locale, ...)
 
 ### 1.0.0
 
