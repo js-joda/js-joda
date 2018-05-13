@@ -38,8 +38,8 @@ const yargs = yargsPkg
 const argv = yargs.parse();
 if (argv.debug) {
     /* eslint-disable no-console */
-    console.log('build_package parsed argument', argv);
-    console.log('build_package cwd', process.cwd());
+    console.log('create_packages parsed argument', argv);
+    console.log('create_packages cwd', process.cwd());
     /* eslint-enable no-console */
 }
 
@@ -91,7 +91,7 @@ Object.keys(argv.packages).forEach((packageName) => {
     fs.writeFileSync(path.resolve(packageDir, 'package.json'),
         JSON.stringify(packageTemplate, null, 4));
     const nodeArgs = [
-        './utils/build_package.js',
+        './utils/create_packages.js',
         '-o', `${path.resolve(packageDir, 'dist')}`,
         '-m', 'node_modules',
         '-c', 'utils/load_cldrData.prebuilt.js',
