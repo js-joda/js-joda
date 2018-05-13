@@ -84,24 +84,29 @@ packages.forEach((packageName) => {
         console.log('running npm with args', npmArgs);
         /* eslint-enable no-console */
     }
-    execFile(
-        'npm',
-        npmArgs,
-        npmOptions,
-        (error, stdout, stderr) => {
-            if (error) {
-                throw error;
+    if (argv.dryRun) {
+        // eslint-disable-next-line no-console
+        console.info('dryRun, not running npm publish');
+    } else {
+        execFile(
+            'npm',
+            npmArgs,
+            npmOptions,
+            (error, stdout, stderr) => {
+                if (error) {
+                    throw error;
+                }
+                if (stdout) {
+                    // eslint-disable-next-line no-console
+                    console.log(`stdout output from creating '${packageName}': `, stdout);
+                }
+                if (stderr) {
+                    // eslint-disable-next-line no-console
+                    console.error(`stderr output from creating '${packageName}': `, stderr);
+                }
             }
-            if (stdout) {
-                // eslint-disable-next-line no-console
-                console.log(`stdout output from creating '${packageName}': `, stdout);
-            }
-            if (stderr) {
-                // eslint-disable-next-line no-console
-                console.error(`stderr output from creating '${packageName}': `, stderr);
-            }
-        }
-    );
+        );
+    }
 });
 const npmOptions = {
     cwd: path.resolve(argv.mainDir)
@@ -116,21 +121,26 @@ if (argv.debug) {
     console.log('running npm with args', npmArgs);
     /* eslint-enable no-console */
 }
-execFile(
-    'npm',
-    npmArgs,
-    npmOptions,
-    (error, stdout, stderr) => {
-        if (error) {
-            throw error;
+if (argv.dryRun) {
+    // eslint-disable-next-line no-console
+    console.info('dryRun, not running npm publish');
+} else {
+    execFile(
+        'npm',
+        npmArgs,
+        npmOptions,
+        (error, stdout, stderr) => {
+            if (error) {
+                throw error;
+            }
+            if (stdout) {
+                // eslint-disable-next-line no-console
+                console.log('stdout output from creating main package: ', stdout);
+            }
+            if (stderr) {
+                // eslint-disable-next-line no-console
+                console.error('stderr output from creating main package: ', stderr);
+            }
         }
-        if (stdout) {
-            // eslint-disable-next-line no-console
-            console.log('stdout output from creating main package: ', stdout);
-        }
-        if (stderr) {
-            // eslint-disable-next-line no-console
-            console.error('stderr output from creating main package: ', stderr);
-        }
-    }
-);
+    );
+}
