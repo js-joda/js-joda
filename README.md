@@ -20,6 +20,32 @@ Especially this implements patterns elements to print and parse locale specific 
 
 also see examples in  [examples folder](examples/)
 
+### Use prebuilt locale packages
+
+Since the process described [below](#without-prebuilt-locale-packages) requires a lot of setup and internal knowledge, 
+we provide prebuilt sets of locales as separate npm packages. 
+So for ease of use you may want to install the corresponding `js-joda-locale_<locale>` package.
+The current list of available prebuilt locales is:
+- de (i.e. de-*)
+- de-DE
+- en (i.e. en-*)
+- en-US
+- es (i.e. es-*)
+- fr (i.e. fr-*)
+- hi (i.e. hi-*)
+- it (i.e. it-*)
+- it-IT
+- zh (i.e. zh-*)
+
+this list could be extended relatively easily if needed, as long as data is available in cldr-data
+
+with these packages, no further steps are needed to build the cldr-data.
+
+### Without prebuilt locale packages
+
+It is also possible to not use the prebuilt packages. 
+This results in a more complex setup, but also more control over the complete process. 
+
 #### Dependencies
 
 The implementation requires cldr data provided by the [cldr-data](https://github.com/rxaviers/cldr-data-npm) package 
@@ -79,73 +105,6 @@ also see [examples/usage_node.js](examples/usage_node.js) or [examples/usage_nod
 ```
 
 also see the [example](examples/usage_es6.js)
-
-### Use prebuilt locale packages
-
-Since the process described [below](#without-prebuilt-locale-packages) requires a lot of setup and internal knowledge, 
-we provide the possibility to create prebuilt locale packages when installing `js-joda-locale`. This basically automates the steps described 
-in the description how to setup webpack for use with js-joda-locale below
-
-To optimize the build speed and output it is important to only load the required `cldr-data` files, so you should
-in `package.json` file define which parts of cldr-data to download and install
-
-(for more information see the [cldr-data-npm docs](https://github.com/rxaviers/cldr-data-npm#locale-coverage))
-```
-...
-"cldr-data-coverage": "core",
-"cldr-data-urls-filter": "(cldr-core|cldr-numbers-modern|cldr-dates-modern)"
-...
-```
-(data-coverage `core` only downloads data for the most popular languages / locales, while the urls-filter defines 
-which parts of cldr-data are required for `js-joda-locale` to work)
-
-Without further configuration the `postinstall` script of `js-joda-locale` will create packages for a core set of locales
-(currently `en`, `es` and `de`), these can be required using
-
-```js
-var jsJodaLocale = require('js-joda-locale/build/package/en')
-```
-
-The configuration can be adapted by creating a config section for `js-joda-locale` in your package.json file, like this:
-
-```json
-"js-joda-locale": {
-    "packages": {
-      "core": [
-        "de.*",
-        "en.*",
-        "es.*"
-      ],
-      "others": [
-        "zh",
-        "hi",
-        "ru"
-      ],
-    },
-    "stats": false,
-    "debug": false
-  }
-```
-
-This would result in two pacakges being built, one containing all `en.*`,`es.*`, `de.*` locales called `core` and one only containing the `zh`, `hi`, `ru` locales called `others`.
-These could then be required using
-
-```js
-var jsJodaLocale = require('js-joda-locale/build/package/core')
-```
-or
-```js
-var jsJodaLocale = require('js-joda-locale/build/package/others')
-```
-
-Note that when specifying locales a regex style pattern is possible, but if you *only* specify a specific 
-cldr-data locale, only this data can be used, e.g. if only the locale `en` is specified, only
-the default data (in this case for the `en_US` style would be loaded), using `en_GB` would *NOT* 
-be possible but either require an extra package, several locales in one package or a regex pattern like `en.*`
-
-### Without prebuilt locale packages
-
-It is also possible to not use the prebuilt packages. This results in a more complex setup, but also more control over the complete process. 
 
 ### Browser
 - using requirejs to load
