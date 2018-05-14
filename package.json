@@ -8,7 +8,6 @@
   },
   "main": "dist/js-joda-locale.js",
   "scripts": {
-    "prepublishOnly": "npm run build-dist; npm run create-packages;",
     "version": "npm run build-dist; npm run create-packages;",
     "test": "./node_modules/.bin/mocha --timeout 5000 --require babel-core/register ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js test/pluginTest_mochaOnly.js",
     "test-coverage": "NODE_ENV=test COVERAGE=1 ./node_modules/.bin/nyc --report-dir=build/coverage --reporter=lcov --reporter html ./node_modules/.bin/mocha --timeout 5000 --require babel-core/register --reporter progress ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js",
