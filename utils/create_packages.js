@@ -91,7 +91,7 @@ Object.keys(argv.packages).forEach((packageName) => {
     fs.writeFileSync(path.resolve(packageDir, 'package.json'),
         JSON.stringify(packageTemplate, null, 4));
     const nodeArgs = [
-        './utils/create_packages.js',
+        './utils/build_package.js',
         '-o', `${path.resolve(packageDir, 'dist')}`,
         '-m', 'node_modules',
         '-c', 'utils/load_cldrData.prebuilt.js',
