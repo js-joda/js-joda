@@ -94,7 +94,8 @@ packages.forEach((packageName) => {
             npmOptions,
             (error, stdout, stderr) => {
                 if (error) {
-                    throw error;
+                    // eslint-disable-next-line no-console
+                    console.error(`error occurred when creating '${packageName}': `, error);
                 }
                 if (stdout) {
                     // eslint-disable-next-line no-console
@@ -131,7 +132,8 @@ if (argv.dryRun) {
         npmOptions,
         (error, stdout, stderr) => {
             if (error) {
-                throw error;
+                // eslint-disable-next-line no-console
+                console.error('error occurred when creating main package: ', error);
             }
             if (stdout) {
                 // eslint-disable-next-line no-console
