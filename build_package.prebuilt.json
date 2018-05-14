@@ -7,14 +7,14 @@
         "de": [
             "de.*"
         ],
-        "deDE": [
+        "de-de": [
             "de",
             "de-DE"
         ],
         "en": [
             "en.*"
         ],
-        "enUS": [
+        "en-us": [
             "en",
             "en-US"
         ],
@@ -27,7 +27,7 @@
         "it": [
             "it.*"
         ],
-        "itIT": [
+        "it-it": [
             "it",
             "it-IT"
         ],
