@@ -1,7 +1,7 @@
 {
-    "name": "js-joda-locale_en-US",
+    "name": "js-joda-locale_deDE",
     "version": "1.1.0-pre1+32.0.1",
-    "description": "prebuilt js-joda-locale package for locales: en,en-US",
+    "description": "prebuilt js-joda-locale package for locales: de,de-DE",
     "repository": {
         "type": "git",
         "url": "https://github.com/js-joda/js-joda-locale.git"
