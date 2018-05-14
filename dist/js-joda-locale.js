@@ -1,18 +1,18 @@
-//! @version js-joda-locale - 1.0.0
+//! @version js-joda-locale - 1.1.0-pre2+32.0.1
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("js-joda"), require("cldr-data"), require("cldrjs"));
+		module.exports = factory(require("cldr-data"), require("cldrjs"), require("js-joda"));
 	else if(typeof define === 'function' && define.amd)
-		define(["js-joda", "cldr-data", "cldrjs"], factory);
+		define(["cldr-data", "cldrjs", "js-joda"], factory);
 	else if(typeof exports === 'object')
-		exports["JSJodaLocale"] = factory(require("js-joda"), require("cldr-data"), require("cldrjs"));
+		exports["JSJodaLocale"] = factory(require("cldr-data"), require("cldrjs"), require("js-joda"));
 	else
-		root["JSJodaLocale"] = factory(root["JSJoda"], root["cldrData"], root["Cldr"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__) {
+		root["JSJodaLocale"] = factory(root["cldrData"], root["Cldr"], root["JSJoda"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_cldr_data__, __WEBPACK_EXTERNAL_MODULE_cldrjs__, __WEBPACK_EXTERNAL_MODULE_js_joda__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -59,6 +59,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 		}
 /******/ 	};
 /******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
@@ -74,30 +79,18 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/js-joda-locale.js");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports) {
+/******/ ({
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
-
-/***/ }),
-/* 3 */
+/***/ "./src/Locale.js":
+/*!***********************!*\
+  !*** ./src/Locale.js ***!
+  \***********************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -114,7 +107,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 exports._init = _init;
 
-var _CldrDateTimeTextProvider = __webpack_require__(4);
+var _CldrDateTimeTextProvider = __webpack_require__(/*! ./format/cldr/CldrDateTimeTextProvider */ "./src/format/cldr/CldrDateTimeTextProvider.js");
 
 var _CldrDateTimeTextProvider2 = _interopRequireDefault(_CldrDateTimeTextProvider);
 
@@ -197,7 +190,338 @@ function _init() {
 }
 
 /***/ }),
-/* 4 */
+
+/***/ "./src/_init.js":
+/*!**********************!*\
+  !*** ./src/_init.js ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _Locale = __webpack_require__(/*! ./Locale */ "./src/Locale.js");
+
+var _WeekFields = __webpack_require__(/*! ./temporal/WeekFields */ "./src/temporal/WeekFields.js");
+
+/*
+ * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
+
+var isInit = false;
+
+function init() {
+    if (isInit) {
+        return;
+    }
+
+    isInit = true;
+
+    (0, _Locale._init)();
+    (0, _WeekFields._init)();
+}
+
+init();
+
+/***/ }),
+
+/***/ "./src/format/LocaleDateTimeFormatter.js":
+/*!***********************************************!*\
+  !*** ./src/format/LocaleDateTimeFormatter.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _jsJoda = __webpack_require__(/*! js-joda */ "js-joda");
+
+var _Locale = __webpack_require__(/*! ../Locale */ "./src/Locale.js");
+
+var _Locale2 = _interopRequireDefault(_Locale);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+var requireNonNull = _jsJoda._.assert.requireNonNull;
+
+var LocaleDateTimeFormatter = function (_DateTimeFormatter) {
+    _inherits(LocaleDateTimeFormatter, _DateTimeFormatter);
+
+    function LocaleDateTimeFormatter() {
+        _classCallCheck(this, LocaleDateTimeFormatter);
+
+        return _possibleConstructorReturn(this, (LocaleDateTimeFormatter.__proto__ || Object.getPrototypeOf(LocaleDateTimeFormatter)).apply(this, arguments));
+    }
+
+    _createClass(LocaleDateTimeFormatter, [{
+        key: 'withLocale',
+        value: function withLocale(locale) {
+            requireNonNull(locale, 'locale');
+            if (locale.equals(this._locale)) {
+                return this;
+            }
+            return new _jsJoda.DateTimeFormatter(this._printerParser, locale, this._decimalStyle, this._resolverStyle, this._resolverFields, this._chrono, this._zone);
+        }
+    }]);
+
+    return LocaleDateTimeFormatter;
+}(_jsJoda.DateTimeFormatter);
+
+exports.default = LocaleDateTimeFormatter;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./src/format/LocaleStore.js":
+/*!***********************************!*\
+  !*** ./src/format/LocaleStore.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/*
+ * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
+ * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
+ */
+
+var createEntry = exports.createEntry = function createEntry(text, field) {
+    return {
+        key: text,
+        value: field,
+        toString: function toString() {
+            return text + '->' + field;
+        }
+    };
+};
+
+var _comparator = function _comparator(obj1, obj2) {
+    return obj2.key.length - obj1.key.length;
+};
+
+var LocaleStore = exports.LocaleStore = function () {
+    function LocaleStore(valueTextMap) {
+        _classCallCheck(this, LocaleStore);
+
+        this._valueTextMap = valueTextMap;
+        var map = {};
+        var allList = [];
+        Object.keys(valueTextMap).forEach(function (style) {
+            var reverse = {};
+            Object.keys(valueTextMap[style]).forEach(function (key) {
+                var value = valueTextMap[style][key];
+                if (reverse[value] === undefined) {
+                    reverse[value] = createEntry(value, Number.parseInt(key));
+                }
+            });
+            var list = Object.values(reverse);
+            list.sort(_comparator);
+            map[style] = list;
+            allList = allList.concat(list);
+            map[null] = allList;
+        });
+        allList.sort(_comparator);
+        this._parsable = map;
+    }
+
+    _createClass(LocaleStore, [{
+        key: 'getText',
+        value: function getText(value, style) {
+            var map = this._valueTextMap[style];
+            return map != null ? map[value] : null;
+        }
+    }, {
+        key: 'getTextIterator',
+        value: function getTextIterator(style) {
+            var list = this._parsable[style];
+            return list != null ? list[Symbol.iterator]() : null;
+        }
+    }]);
+
+    return LocaleStore;
+}();
+
+/***/ }),
+
+/***/ "./src/format/cldr/CldrDateTimeFormatterBuilder.js":
+/*!*********************************************************!*\
+  !*** ./src/format/cldr/CldrDateTimeFormatterBuilder.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _jsJoda = __webpack_require__(/*! js-joda */ "js-joda");
+
+var _TextPrinterParser = __webpack_require__(/*! ../parser/TextPrinterParser */ "./src/format/parser/TextPrinterParser.js");
+
+var _TextPrinterParser2 = _interopRequireDefault(_TextPrinterParser);
+
+var _CldrDateTimeTextProvider = __webpack_require__(/*! ./CldrDateTimeTextProvider */ "./src/format/cldr/CldrDateTimeTextProvider.js");
+
+var _CldrDateTimeTextProvider2 = _interopRequireDefault(_CldrDateTimeTextProvider);
+
+var _CldrZoneTextPrinterParser = __webpack_require__(/*! ./CldrZoneTextPrinterParser */ "./src/format/cldr/CldrZoneTextPrinterParser.js");
+
+var _CldrZoneTextPrinterParser2 = _interopRequireDefault(_CldrZoneTextPrinterParser);
+
+var _LocaleStore = __webpack_require__(/*! ../LocaleStore */ "./src/format/LocaleStore.js");
+
+var _LocalizedOffsetPrinterParser = __webpack_require__(/*! ../parser/LocalizedOffsetPrinterParser */ "./src/format/parser/LocalizedOffsetPrinterParser.js");
+
+var _LocalizedOffsetPrinterParser2 = _interopRequireDefault(_LocalizedOffsetPrinterParser);
+
+var _WeekFieldsPrinterParser = __webpack_require__(/*! ../parser/WeekFieldsPrinterParser */ "./src/format/parser/WeekFieldsPrinterParser.js");
+
+var _WeekFieldsPrinterParser2 = _interopRequireDefault(_WeekFieldsPrinterParser);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+
+var _jodaInternal$assert = _jsJoda._.assert,
+    requireNonNull = _jodaInternal$assert.requireNonNull,
+    requireInstance = _jodaInternal$assert.requireInstance;
+
+var CldrDateTimeFormatterBuilder = function (_DateTimeFormatterBui) {
+    _inherits(CldrDateTimeFormatterBuilder, _DateTimeFormatterBui);
+
+    function CldrDateTimeFormatterBuilder() {
+        _classCallCheck(this, CldrDateTimeFormatterBuilder);
+
+        return _possibleConstructorReturn(this, (CldrDateTimeFormatterBuilder.__proto__ || Object.getPrototypeOf(CldrDateTimeFormatterBuilder)).apply(this, arguments));
+    }
+
+    _createClass(CldrDateTimeFormatterBuilder, [{
+        key: 'appendText',
+        value: function appendText(field, styleOrMap) {
+            if (styleOrMap === undefined) {
+                return this.appendTextField(field);
+            } else if (styleOrMap instanceof _jsJoda.TextStyle) {
+                return this.appendTextFieldStyle(field, styleOrMap);
+            } else {
+                return this.appendTextFieldMap(field, styleOrMap);
+            }
+        }
+    }, {
+        key: 'appendTextField',
+        value: function appendTextField(field) {
+            return this.appendTextFieldStyle(field, _jsJoda.TextStyle.FULL);
+        }
+    }, {
+        key: 'appendTextFieldStyle',
+        value: function appendTextFieldStyle(field, textStyle) {
+            requireNonNull(field, 'field');
+            requireInstance(field, _jsJoda.TemporalField, 'field');
+            requireNonNull(textStyle, 'textStyle');
+            requireInstance(textStyle, _jsJoda.TextStyle, 'textStyle');
+            this._appendInternal(new _TextPrinterParser2.default(field, textStyle, new _CldrDateTimeTextProvider2.default()));
+            return this;
+        }
+    }, {
+        key: 'appendTextFieldMap',
+        value: function appendTextFieldMap(field, textLookup) {
+            requireNonNull(field, 'field');
+            requireInstance(field, _jsJoda.ChronoField, 'field');
+            requireNonNull(textLookup, 'textLookup');
+            var copy = Object.assign({}, textLookup);
+            var map = {};
+            map[_jsJoda.TextStyle.FULL] = copy;
+            var store = new _LocaleStore.LocaleStore(map);
+            var provider = {
+                getText: function getText(field, value, style) {
+                    return store.getText(value, style);
+                },
+                getTextIterator: function getTextIterator(field, style) {
+                    return store.getTextIterator(style);
+                }
+            };
+            this._appendInternal(new _TextPrinterParser2.default(field, _jsJoda.TextStyle.FULL, provider));
+            return this;
+        }
+    }, {
+        key: 'appendWeekField',
+        value: function appendWeekField(field, count) {
+            requireNonNull(field, 'field');
+            requireNonNull(count, 'count');
+            this._appendInternal(new _WeekFieldsPrinterParser2.default(field, count));
+            return this;
+        }
+    }, {
+        key: 'appendZoneText',
+        value: function appendZoneText(textStyle) {
+            this._appendInternal(new _CldrZoneTextPrinterParser2.default(textStyle));
+            return this;
+        }
+    }, {
+        key: 'appendLocalizedOffset',
+        value: function appendLocalizedOffset(textStyle) {
+            requireNonNull(textStyle, 'textStyle');
+            if (textStyle !== _jsJoda.TextStyle.FULL && textStyle !== _jsJoda.TextStyle.SHORT) {
+                throw new _jsJoda.IllegalArgumentException('Style must be either full or short');
+            }
+            this._appendInternal(new _LocalizedOffsetPrinterParser2.default(textStyle));
+            return this;
+        }
+    }]);
+
+    return CldrDateTimeFormatterBuilder;
+}(_jsJoda.DateTimeFormatterBuilder);
+
+exports.default = CldrDateTimeFormatterBuilder;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./src/format/cldr/CldrDateTimeTextProvider.js":
+/*!*****************************************************!*\
+  !*** ./src/format/cldr/CldrDateTimeTextProvider.js ***!
+  \*****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -212,17 +536,17 @@ var _createClass = function () { function defineProperties(target, props) { for 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       */
 
-var _jsJoda = __webpack_require__(0);
+var _jsJoda = __webpack_require__(/*! js-joda */ "js-joda");
 
-var _cldrData = __webpack_require__(1);
+var _cldrData = __webpack_require__(/*! cldr-data */ "cldr-data");
 
 var _cldrData2 = _interopRequireDefault(_cldrData);
 
-var _cldrjs = __webpack_require__(2);
+var _cldrjs = __webpack_require__(/*! cldrjs */ "cldrjs");
 
 var _cldrjs2 = _interopRequireDefault(_cldrjs);
 
-var _LocaleStore = __webpack_require__(5);
+var _LocaleStore = __webpack_require__(/*! ../LocaleStore */ "./src/format/LocaleStore.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -450,7 +774,12 @@ exports.default = CldrDateTimeTextProvider;
 module.exports = exports['default'];
 
 /***/ }),
-/* 5 */
+
+/***/ "./src/format/cldr/CldrZoneTextPrinterParser.js":
+/*!******************************************************!*\
+  !*** ./src/format/cldr/CldrZoneTextPrinterParser.js ***!
+  \******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -460,73 +789,729 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+
+var _cldrData = __webpack_require__(/*! cldr-data */ "cldr-data");
+
+var _cldrData2 = _interopRequireDefault(_cldrData);
+
+var _cldrjs = __webpack_require__(/*! cldrjs */ "cldrjs");
+
+var _cldrjs2 = _interopRequireDefault(_cldrjs);
+
+var _jsJoda = __webpack_require__(/*! js-joda */ "js-joda");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-/*
- * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
- * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
- */
+var _jodaInternal$assert = _jsJoda._.assert,
+    requireNonNull = _jodaInternal$assert.requireNonNull,
+    requireInstance = _jodaInternal$assert.requireInstance;
 
-var createEntry = exports.createEntry = function createEntry(text, field) {
-    return {
-        key: text,
-        value: field,
-        toString: function toString() {
-            return text + '->' + field;
-        }
-    };
+var LENGTH_COMPARATOR = function LENGTH_COMPARATOR(str1, str2) {
+    var cmp = str2.length - str1.length;
+    if (cmp === 0) {
+        cmp = str1.localeCompare(str2);
+    }
+    return cmp;
 };
 
-var _comparator = function _comparator(obj1, obj2) {
-    return obj2.key.length - obj1.key.length;
-};
+var CldrZoneTextPrinterParser = function () {
+    function CldrZoneTextPrinterParser(textStyle) {
+        _classCallCheck(this, CldrZoneTextPrinterParser);
 
-var LocaleStore = exports.LocaleStore = function () {
-    function LocaleStore(valueTextMap) {
-        _classCallCheck(this, LocaleStore);
-
-        this._valueTextMap = valueTextMap;
-        var map = {};
-        var allList = [];
-        Object.keys(valueTextMap).forEach(function (style) {
-            var reverse = {};
-            Object.keys(valueTextMap[style]).forEach(function (key) {
-                var value = valueTextMap[style][key];
-                if (reverse[value] === undefined) {
-                    reverse[value] = createEntry(value, Number.parseInt(key));
-                }
-            });
-            var list = Object.values(reverse);
-            list.sort(_comparator);
-            map[style] = list;
-            allList = allList.concat(list);
-            map[null] = allList;
-        });
-        allList.sort(_comparator);
-        this._parsable = map;
+        requireNonNull(textStyle, 'textStyle');
+        requireInstance(textStyle, _jsJoda.TextStyle, 'textStyle');
+        this._textStyle = textStyle;
+        _cldrjs2.default.load((0, _cldrData2.default)('supplemental/likelySubtags.json'));
+        _cldrjs2.default.load((0, _cldrData2.default)('supplemental/metaZones.json'));
     }
 
-    _createClass(LocaleStore, [{
-        key: 'getText',
-        value: function getText(value, style) {
-            var map = this._valueTextMap[style];
-            return map != null ? map[value] : null;
+    _createClass(CldrZoneTextPrinterParser, [{
+        key: '_resolveZoneIdText',
+        value: function _resolveZoneIdText(cldr, zoneId, style, type, mapZones) {
+            var zoneData = cldr.main('dates/timeZoneNames/zone/' + zoneId + '/' + style + '/' + type);
+            if (zoneData) {
+                return zoneData;
+            } else {
+                var metazoneInfo = cldr.get('supplemental/metaZones/metazoneInfo/timezone/' + zoneId);
+                if (metazoneInfo) {
+                    var metazone = metazoneInfo[metazoneInfo.length - 1]['usesMetazone']['_mzone'];
+                    var metaZoneData = cldr.main('dates/timeZoneNames/metazone/' + metazone + '/' + style + '/' + type);
+                    if (metaZoneData) {
+                        return metaZoneData;
+                    } else {
+                        metaZoneData = cldr.main('dates/timeZoneNames/metazone/' + metazone + '/' + style + '/generic');
+                        if (!metaZoneData) {
+                            metaZoneData = cldr.main('dates/timeZoneNames/metazone/' + metazone + '/' + style + '/standard');
+                        }
+                        if (metaZoneData) {
+                            return metaZoneData;
+                        } else {
+                            var preferredZone = mapZones[metazone][cldr.attributes.territory];
+                            if (preferredZone) {
+                                if (preferredZone !== zoneId) {
+                                    return this._resolveZoneIdText(cldr, preferredZone, style, type, mapZones);
+                                }
+                            } else {
+                                var goldenZone = mapZones[metazone]['001'];
+                                if (goldenZone !== zoneId) {
+                                    return this._resolveZoneIdText(cldr, goldenZone, style, type, mapZones);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }, {
-        key: 'getTextIterator',
-        value: function getTextIterator(style) {
-            var list = this._parsable[style];
-            return list != null ? list[Symbol.iterator]() : null;
+        key: 'print',
+        value: function print(context, buf) {
+
+            var zone = context.getValueQuery(_jsJoda.TemporalQueries.zoneId());
+
+            if (zone == null) {
+                return false;
+            }
+            if (zone.normalized() instanceof _jsJoda.ZoneOffset) {
+                buf.append(zone.id());
+                return true;
+            }
+            var daylight = false;
+            var hasDaylightSupport = false;
+
+            var tzType = hasDaylightSupport ? daylight ? 'daylight' : 'standard' : 'generic';
+            var tzstyle = this._textStyle.asNormal() === _jsJoda.TextStyle.FULL ? 'long' : 'short';
+            _cldrjs2.default.load((0, _cldrData2.default)('main/' + context.locale().localeString() + '/timeZoneNames.json'));
+            var cldr = new _cldrjs2.default(context.locale().localeString());
+            var mapZones = {};
+
+            cldr.get('supplemental/metaZones/metazones').forEach(function (metaZone) {
+                if (metaZone.mapZone) {
+                    if (!mapZones[metaZone.mapZone._other]) {
+                        mapZones[metaZone.mapZone._other] = {};
+                    }
+                    mapZones[metaZone.mapZone._other][metaZone.mapZone._territory] = metaZone.mapZone._type;
+                }
+            });
+
+            var text = this._resolveZoneIdText(cldr, zone.id(), tzstyle, tzType, mapZones);
+            if (text) {
+                buf.append(text);
+            } else {
+                buf.append(zone.id());
+            }
+            return true;
+        }
+    }, {
+        key: 'parse',
+        value: function parse(context, text, position) {
+            var ids = {};
+            _cldrjs2.default.load((0, _cldrData2.default)('main/' + context.locale().localeString() + '/timeZoneNames.json'));
+            var cldr = new _cldrjs2.default(context.locale().localeString());
+            var mapZones = {};
+
+            cldr.get('supplemental/metaZones/metazones').forEach(function (metaZone) {
+                if (metaZone.mapZone) {
+                    if (!mapZones[metaZone.mapZone._other]) {
+                        mapZones[metaZone.mapZone._other] = {};
+                    }
+                    mapZones[metaZone.mapZone._other][metaZone.mapZone._territory] = metaZone.mapZone._type;
+                }
+            });
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = _jsJoda.ZoneRulesProvider.getAvailableZoneIds()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var id = _step.value;
+
+                    ids[id] = id;
+                    var tzstyle = this._textStyle.asNormal() === _jsJoda.TextStyle.FULL ? 'long' : 'short';
+
+                    var genericText = this._resolveZoneIdText(cldr, id, tzstyle, 'generic', mapZones);
+                    if (genericText) {
+                        ids[genericText] = id;
+                    }
+                    var standardText = this._resolveZoneIdText(cldr, id, tzstyle, 'standard', mapZones);
+                    if (standardText) {
+                        ids[standardText] = id;
+                    }
+                    var daylightText = this._resolveZoneIdText(cldr, id, tzstyle, 'daylight', mapZones);
+                    if (daylightText) {
+                        ids[daylightText] = id;
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            var sortedKeys = Object.keys(ids).sort(LENGTH_COMPARATOR);
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+                for (var _iterator2 = sortedKeys[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var name = _step2.value;
+
+                    if (context.subSequenceEquals(text, position, name, 0, name.length)) {
+                        context.setParsedZone(_jsJoda.ZoneId.of(ids[name]));
+                        return position + name.length;
+                    }
+                }
+            } catch (err) {
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                        _iterator2.return();
+                    }
+                } finally {
+                    if (_didIteratorError2) {
+                        throw _iteratorError2;
+                    }
+                }
+            }
+
+            return ~position;
+        }
+    }, {
+        key: 'toString',
+        value: function toString() {
+            return 'ZoneText(' + this._textStyle + ')';
         }
     }]);
 
-    return LocaleStore;
+    return CldrZoneTextPrinterParser;
 }();
 
+exports.default = CldrZoneTextPrinterParser;
+module.exports = exports['default'];
+
 /***/ }),
-/* 6 */
+
+/***/ "./src/format/parser/LocalizedOffsetPrinterParser.js":
+/*!***********************************************************!*\
+  !*** ./src/format/parser/LocalizedOffsetPrinterParser.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+
+var _jsJoda = __webpack_require__(/*! js-joda */ "js-joda");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var MathUtil = _jsJoda._.MathUtil;
+
+var LocalizedOffsetPrinterParser = function () {
+    function LocalizedOffsetPrinterParser(textStyle) {
+        _classCallCheck(this, LocalizedOffsetPrinterParser);
+
+        this._textStyle = textStyle;
+    }
+
+    _createClass(LocalizedOffsetPrinterParser, [{
+        key: 'textStyle',
+        value: function textStyle() {
+            return this._textStyle;
+        }
+    }, {
+        key: 'print',
+        value: function print(context, buf) {
+            var offsetSecs = context.getValue(_jsJoda.ChronoField.OFFSET_SECONDS);
+
+            if (offsetSecs == null) {
+                return false;
+            }
+            buf.append('GMT');
+            if (this._textStyle === _jsJoda.TextStyle.FULL) {
+                return new _jsJoda.DateTimeFormatterBuilder.OffsetIdPrinterParser('', '+HH:MM:ss').print(context, buf);
+            }
+            var totalSecs = MathUtil.safeToInt(offsetSecs);
+            if (totalSecs !== 0) {
+                var absHours = Math.abs(MathUtil.intMod(MathUtil.intDiv(totalSecs, 3600), 100));
+                var absMinutes = Math.abs(MathUtil.intMod(MathUtil.intDiv(totalSecs, 60), 60));
+                var absSeconds = Math.abs(MathUtil.intMod(totalSecs, 60));
+                buf.append(totalSecs < 0 ? '-' : '+').append(absHours);
+                if (absMinutes > 0 || absSeconds > 0) {
+                    buf.append(':').append(MathUtil.intDiv(absMinutes, 10)).append(MathUtil.intMod(absMinutes, 10));
+                    if (absSeconds > 0) {
+                        buf.append(':').append(MathUtil.intDiv(absSeconds, 10)).append(MathUtil.intMod(absSeconds, 10));
+                    }
+                }
+            }
+            return true;
+        }
+    }, {
+        key: 'parse',
+        value: function parse(context, text, position) {
+            if (context.subSequenceEquals(text, position, 'GMT', 0, 3) === false) {
+                return ~position;
+            }
+            position += 3;
+            if (this._textStyle === _jsJoda.TextStyle.FULL) {
+                return new _jsJoda.DateTimeFormatterBuilder.OffsetIdPrinterParser('', '+HH:MM:ss').parse(context, text, position);
+            }
+            var end = text.length;
+            if (position === end) {
+                return context.setParsedField(_jsJoda.ChronoField.OFFSET_SECONDS, 0, position, position);
+            }
+            var sign = text.charAt(position);
+            if (sign !== '+' && sign !== '-') {
+                return context.setParsedField(_jsJoda.ChronoField.OFFSET_SECONDS, 0, position, position);
+            }
+            var negative = sign === '-' ? -1 : 1;
+
+            if (position === end) {
+                return ~position;
+            }
+            position++;
+
+            var ch = text.charAt(position);
+            if (ch < '0' || ch > '9') {
+                return ~position;
+            }
+            position++;
+            var hour = MathUtil.parseInt(ch);
+            if (position !== end) {
+                ch = text.charAt(position);
+                if (ch >= '0' && ch <= '9') {
+                    hour = hour * 10 + MathUtil.parseInt(ch);
+                    if (hour > 23) {
+                        return ~position;
+                    }
+                    position++;
+                }
+            }
+            if (position === end || text.charAt(position) !== ':') {
+                var _offset = negative * 3600 * hour;
+                return context.setParsedField(_jsJoda.ChronoField.OFFSET_SECONDS, _offset, position, position);
+            }
+            position++;
+
+            if (position > end - 2) {
+                return ~position;
+            }
+            ch = text.charAt(position);
+            if (ch < '0' || ch > '9') {
+                return ~position;
+            }
+            position++;
+            var min = MathUtil.parseInt(ch);
+            ch = text.charAt(position);
+            if (ch < '0' || ch > '9') {
+                return ~position;
+            }
+            position++;
+            min = min * 10 + MathUtil.parseInt(ch);
+            if (min > 59) {
+                return ~position;
+            }
+            if (position === end || text.charAt(position) !== ':') {
+                var _offset2 = negative * (3600 * hour + 60 * min);
+                return context.setParsedField(_jsJoda.ChronoField.OFFSET_SECONDS, _offset2, position, position);
+            }
+            position++;
+
+            if (position > end - 2) {
+                return ~position;
+            }
+            ch = text.charAt(position);
+            if (ch < '0' || ch > '9') {
+                return ~position;
+            }
+            position++;
+            var sec = MathUtil.parseInt(ch);
+            ch = text.charAt(position);
+            if (ch < '0' || ch > '9') {
+                return ~position;
+            }
+            position++;
+            sec = sec * 10 + MathUtil.parseInt(ch);
+            if (sec > 59) {
+                return ~position;
+            }
+            var offset = negative * (3600 * hour + 60 * min + sec);
+            return context.setParsedField(_jsJoda.ChronoField.OFFSET_SECONDS, offset, position, position);
+        }
+    }, {
+        key: 'toString',
+        value: function toString() {
+            return 'LocalizedOffset(' + this._textStyle + ')';
+        }
+    }]);
+
+    return LocalizedOffsetPrinterParser;
+}();
+
+exports.default = LocalizedOffsetPrinterParser;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./src/format/parser/TextPrinterParser.js":
+/*!************************************************!*\
+  !*** ./src/format/parser/TextPrinterParser.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+
+var _jsJoda = __webpack_require__(/*! js-joda */ "js-joda");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var TextPrinterParser = function () {
+    function TextPrinterParser(field, textStyle, provider) {
+        _classCallCheck(this, TextPrinterParser);
+
+        this._field = field;
+        this._textStyle = textStyle;
+        this._provider = provider;
+    }
+
+    _createClass(TextPrinterParser, [{
+        key: 'field',
+        value: function field() {
+            return this._field;
+        }
+    }, {
+        key: 'textStyle',
+        value: function textStyle() {
+            return this._textStyle;
+        }
+    }, {
+        key: 'provider',
+        value: function provider() {
+            return this._provider;
+        }
+    }, {
+        key: 'print',
+        value: function print(context, buf) {
+            var value = context.getValue(this._field);
+            if (value === null) {
+                return false;
+            }
+            var text = this._provider.getText(this._field, value, this._textStyle, context.locale());
+            if (text === null) {
+                return this._numberPrinterParser().print(context, buf);
+            }
+            buf.append(text);
+            return true;
+        }
+    }, {
+        key: 'parse',
+        value: function parse(context, parseText, position) {
+            var length = parseText.length;
+            if (position < 0 || position > length) {
+                throw new _jsJoda.IllegalArgumentException('The position is invalid: ' + position);
+            }
+            var style = context.isStrict() ? this._textStyle : null;
+            var it = this._provider.getTextIterator(this._field, style, context.locale());
+            if (it != null) {
+                var _iteratorNormalCompletion = true;
+                var _didIteratorError = false;
+                var _iteratorError = undefined;
+
+                try {
+                    for (var _iterator = it[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        var entry = _step.value;
+
+                        var itText = entry.key;
+                        if (context.subSequenceEquals(itText, 0, parseText, position, itText.length)) {
+                            return context.setParsedField(this._field, entry.value, position, position + itText.length);
+                        }
+                    }
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return) {
+                            _iterator.return();
+                        }
+                    } finally {
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
+                    }
+                }
+
+                if (context.isStrict()) {
+                    return ~position;
+                }
+            }
+            return this._numberPrinterParser().parse(context, parseText, position);
+        }
+    }, {
+        key: '_numberPrinterParser',
+        value: function _numberPrinterParser() {
+            if (this._currentNumberPrinterParser == null) {
+                this._currentNumberPrinterParser = new _jsJoda.DateTimeFormatterBuilder.NumberPrinterParser(this._field, 1, 19, _jsJoda.SignStyle.NORMAL);
+            }
+            return this._currentNumberPrinterParser;
+        }
+    }, {
+        key: 'toString',
+        value: function toString() {
+            if (this._textStyle === _jsJoda.TextStyle.FULL) {
+                return 'Text(' + this._field + ')';
+            }
+            return 'Text(' + this._field + ',' + this._textStyle + ')';
+        }
+    }]);
+
+    return TextPrinterParser;
+}();
+
+exports.default = TextPrinterParser;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./src/format/parser/WeekFieldsPrinterParser.js":
+/*!******************************************************!*\
+  !*** ./src/format/parser/WeekFieldsPrinterParser.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+
+var _jsJoda = __webpack_require__(/*! js-joda */ "js-joda");
+
+var _WeekFields = __webpack_require__(/*! ../../temporal/WeekFields */ "./src/temporal/WeekFields.js");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var StringBuilder = _jsJoda._.StringBuilder;
+
+var WeekFieldsPrinterParser = function () {
+    function WeekFieldsPrinterParser(letter, count) {
+        _classCallCheck(this, WeekFieldsPrinterParser);
+
+        this._letter = letter;
+        this._count = count;
+    }
+
+    _createClass(WeekFieldsPrinterParser, [{
+        key: 'print',
+        value: function print(context, buf) {
+            var weekFields = _WeekFields.WeekFields.of(context.locale());
+            var pp = this._evaluate(weekFields);
+            return pp.print(context, buf);
+        }
+    }, {
+        key: 'parse',
+        value: function parse(context, text, position) {
+            var weekFields = _WeekFields.WeekFields.of(context.locale());
+            var pp = this._evaluate(weekFields);
+            return pp.parse(context, text, position);
+        }
+    }, {
+        key: '_evaluate',
+        value: function _evaluate(weekFields) {
+            var pp = null;
+            switch (this._letter) {
+                case 'e':
+                    pp = new _jsJoda.DateTimeFormatterBuilder.NumberPrinterParser(weekFields.dayOfWeek(), this._count, 2, _jsJoda.SignStyle.NOT_NEGATIVE);
+                    break;
+                case 'c':
+                    pp = new _jsJoda.DateTimeFormatterBuilder.NumberPrinterParser(weekFields.dayOfWeek(), this._count, 2, _jsJoda.SignStyle.NOT_NEGATIVE);
+                    break;
+                case 'w':
+                    pp = new _jsJoda.DateTimeFormatterBuilder.NumberPrinterParser(weekFields.weekOfWeekBasedYear(), this._count, 2, _jsJoda.SignStyle.NOT_NEGATIVE);
+                    break;
+                case 'W':
+                    pp = new _jsJoda.DateTimeFormatterBuilder.NumberPrinterParser(weekFields.weekOfMonth(), 1, 2, _jsJoda.SignStyle.NOT_NEGATIVE);
+                    break;
+                case 'Y':
+                    if (this._count === 2) {
+                        pp = new _jsJoda.DateTimeFormatterBuilder.ReducedPrinterParser(weekFields.weekBasedYear(), 2, 2, 0, _jsJoda.DateTimeFormatterBuilder.ReducedPrinterParser.BASE_DATE);
+                    } else {
+                        pp = new _jsJoda.DateTimeFormatterBuilder.NumberPrinterParser(weekFields.weekBasedYear(), this._count, 19, this._count < 4 ? _jsJoda.SignStyle.NORMAL : _jsJoda.SignStyle.EXCEEDS_PAD, -1);
+                    }
+                    break;
+            }
+            return pp;
+        }
+    }, {
+        key: 'toString',
+        value: function toString() {
+            var sb = new StringBuilder(30);
+            sb.append('Localized(');
+            if (this._letter === 'Y') {
+                if (this._count === 1) {
+                    sb.append('WeekBasedYear');
+                } else if (this._count === 2) {
+                    sb.append('ReducedValue(WeekBasedYear,2,2,2000-01-01)');
+                } else {
+                    sb.append('WeekBasedYear,').append(this._count).append(',').append(19).append(',').append(this._count < 4 ? _jsJoda.SignStyle.NORMAL : _jsJoda.SignStyle.EXCEEDS_PAD);
+                }
+            } else {
+                if (this._letter === 'c' || this._letter === 'e') {
+                    sb.append('DayOfWeek');
+                } else if (this._letter === 'w') {
+                    sb.append('WeekOfWeekBasedYear');
+                } else if (this._letter === 'W') {
+                    sb.append('WeekOfMonth');
+                }
+                sb.append(',');
+                sb.append(this._count);
+            }
+            sb.append(')');
+            return sb.toString();
+        }
+    }]);
+
+    return WeekFieldsPrinterParser;
+}();
+
+exports.default = WeekFieldsPrinterParser;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./src/js-joda-locale.js":
+/*!*******************************!*\
+  !*** ./src/js-joda-locale.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _plug = __webpack_require__(/*! ./plug */ "./src/plug.js");
+
+var _plug2 = _interopRequireDefault(_plug);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _plug2.default; /*
+                                   * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
+                                   * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
+                                   */
+
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./src/plug.js":
+/*!*********************!*\
+  !*** ./src/plug.js ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+exports.default = function (jsJoda) {
+    Object.getOwnPropertyNames(_CldrDateTimeFormatterBuilder2.default.prototype).forEach(function (prop) {
+        if (prop !== 'constructor') {
+            jsJoda.DateTimeFormatterBuilder.prototype[prop] = _CldrDateTimeFormatterBuilder2.default.prototype[prop];
+        }
+    });
+
+    Object.getOwnPropertyNames(_LocaleDateTimeFormatter2.default.prototype).forEach(function (prop) {
+        if (prop !== 'constructor') {
+            jsJoda.DateTimeFormatter.prototype[prop] = _LocaleDateTimeFormatter2.default.prototype[prop];
+        }
+    });
+
+    jsJoda.Locale = _Locale2.default;
+};
+
+var _CldrDateTimeFormatterBuilder = __webpack_require__(/*! ./format/cldr/CldrDateTimeFormatterBuilder */ "./src/format/cldr/CldrDateTimeFormatterBuilder.js");
+
+var _CldrDateTimeFormatterBuilder2 = _interopRequireDefault(_CldrDateTimeFormatterBuilder);
+
+var _LocaleDateTimeFormatter = __webpack_require__(/*! ./format/LocaleDateTimeFormatter */ "./src/format/LocaleDateTimeFormatter.js");
+
+var _LocaleDateTimeFormatter2 = _interopRequireDefault(_LocaleDateTimeFormatter);
+
+var _Locale = __webpack_require__(/*! ./Locale */ "./src/Locale.js");
+
+var _Locale2 = _interopRequireDefault(_Locale);
+
+__webpack_require__(/*! ./_init */ "./src/_init.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+module.exports = exports['default']; /*
+                                      * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
+                                      * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
+                                      */
+
+/***/ }),
+
+/***/ "./src/temporal/WeekFields.js":
+/*!************************************!*\
+  !*** ./src/temporal/WeekFields.js ***!
+  \************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -544,13 +1529,13 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 exports._init = _init;
 
-var _jsJoda = __webpack_require__(0);
+var _jsJoda = __webpack_require__(/*! js-joda */ "js-joda");
 
-var _cldrData = __webpack_require__(1);
+var _cldrData = __webpack_require__(/*! cldr-data */ "cldr-data");
 
 var _cldrData2 = _interopRequireDefault(_cldrData);
 
-var _cldrjs = __webpack_require__(2);
+var _cldrjs = __webpack_require__(/*! cldrjs */ "cldrjs");
 
 var _cldrjs2 = _interopRequireDefault(_cldrjs);
 
@@ -1113,937 +2098,39 @@ function _init() {
 }
 
 /***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+/***/ "cldr-data":
+/*!*****************************************************************************************************!*\
+  !*** external {"amd":"cldr-data","commonjs":"cldr-data","commonjs2":"cldr-data","root":"cldrData"} ***!
+  \*****************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _plug = __webpack_require__(8);
-
-var _plug2 = _interopRequireDefault(_plug);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _plug2.default; /*
-                                   * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
-                                   * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
-                                   */
-
-module.exports = exports['default'];
+module.exports = __WEBPACK_EXTERNAL_MODULE_cldr_data__;
 
 /***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+/***/ "cldrjs":
+/*!****************************************************************************************!*\
+  !*** external {"amd":"cldrjs","commonjs":"cldrjs","commonjs2":"cldrjs","root":"Cldr"} ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-exports.default = function (jsJoda) {
-    Object.getOwnPropertyNames(_CldrDateTimeFormatterBuilder2.default.prototype).forEach(function (prop) {
-        if (prop !== 'constructor') {
-            jsJoda.DateTimeFormatterBuilder.prototype[prop] = _CldrDateTimeFormatterBuilder2.default.prototype[prop];
-        }
-    });
-
-    Object.getOwnPropertyNames(_LocaleDateTimeFormatter2.default.prototype).forEach(function (prop) {
-        if (prop !== 'constructor') {
-            jsJoda.DateTimeFormatter.prototype[prop] = _LocaleDateTimeFormatter2.default.prototype[prop];
-        }
-    });
-
-    jsJoda.Locale = _Locale2.default;
-};
-
-var _CldrDateTimeFormatterBuilder = __webpack_require__(9);
-
-var _CldrDateTimeFormatterBuilder2 = _interopRequireDefault(_CldrDateTimeFormatterBuilder);
-
-var _LocaleDateTimeFormatter = __webpack_require__(14);
-
-var _LocaleDateTimeFormatter2 = _interopRequireDefault(_LocaleDateTimeFormatter);
-
-var _Locale = __webpack_require__(3);
-
-var _Locale2 = _interopRequireDefault(_Locale);
-
-__webpack_require__(15);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default']; /*
-                                      * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
-                                      * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
-                                      */
+module.exports = __WEBPACK_EXTERNAL_MODULE_cldrjs__;
 
 /***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _jsJoda = __webpack_require__(0);
-
-var _TextPrinterParser = __webpack_require__(10);
-
-var _TextPrinterParser2 = _interopRequireDefault(_TextPrinterParser);
-
-var _CldrDateTimeTextProvider = __webpack_require__(4);
-
-var _CldrDateTimeTextProvider2 = _interopRequireDefault(_CldrDateTimeTextProvider);
-
-var _CldrZoneTextPrinterParser = __webpack_require__(11);
-
-var _CldrZoneTextPrinterParser2 = _interopRequireDefault(_CldrZoneTextPrinterParser);
-
-var _LocaleStore = __webpack_require__(5);
-
-var _LocalizedOffsetPrinterParser = __webpack_require__(12);
-
-var _LocalizedOffsetPrinterParser2 = _interopRequireDefault(_LocalizedOffsetPrinterParser);
-
-var _WeekFieldsPrinterParser = __webpack_require__(13);
-
-var _WeekFieldsPrinterParser2 = _interopRequireDefault(_WeekFieldsPrinterParser);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-
-var _jodaInternal$assert = _jsJoda._.assert,
-    requireNonNull = _jodaInternal$assert.requireNonNull,
-    requireInstance = _jodaInternal$assert.requireInstance;
-
-var CldrDateTimeFormatterBuilder = function (_DateTimeFormatterBui) {
-    _inherits(CldrDateTimeFormatterBuilder, _DateTimeFormatterBui);
-
-    function CldrDateTimeFormatterBuilder() {
-        _classCallCheck(this, CldrDateTimeFormatterBuilder);
-
-        return _possibleConstructorReturn(this, (CldrDateTimeFormatterBuilder.__proto__ || Object.getPrototypeOf(CldrDateTimeFormatterBuilder)).apply(this, arguments));
-    }
-
-    _createClass(CldrDateTimeFormatterBuilder, [{
-        key: 'appendText',
-        value: function appendText(field, styleOrMap) {
-            if (styleOrMap === undefined) {
-                return this.appendTextField(field);
-            } else if (styleOrMap instanceof _jsJoda.TextStyle) {
-                return this.appendTextFieldStyle(field, styleOrMap);
-            } else {
-                return this.appendTextFieldMap(field, styleOrMap);
-            }
-        }
-    }, {
-        key: 'appendTextField',
-        value: function appendTextField(field) {
-            return this.appendTextFieldStyle(field, _jsJoda.TextStyle.FULL);
-        }
-    }, {
-        key: 'appendTextFieldStyle',
-        value: function appendTextFieldStyle(field, textStyle) {
-            requireNonNull(field, 'field');
-            requireInstance(field, _jsJoda.TemporalField, 'field');
-            requireNonNull(textStyle, 'textStyle');
-            requireInstance(textStyle, _jsJoda.TextStyle, 'textStyle');
-            this._appendInternal(new _TextPrinterParser2.default(field, textStyle, new _CldrDateTimeTextProvider2.default()));
-            return this;
-        }
-    }, {
-        key: 'appendTextFieldMap',
-        value: function appendTextFieldMap(field, textLookup) {
-            requireNonNull(field, 'field');
-            requireInstance(field, _jsJoda.ChronoField, 'field');
-            requireNonNull(textLookup, 'textLookup');
-            var copy = Object.assign({}, textLookup);
-            var map = {};
-            map[_jsJoda.TextStyle.FULL] = copy;
-            var store = new _LocaleStore.LocaleStore(map);
-            var provider = {
-                getText: function getText(field, value, style) {
-                    return store.getText(value, style);
-                },
-                getTextIterator: function getTextIterator(field, style) {
-                    return store.getTextIterator(style);
-                }
-            };
-            this._appendInternal(new _TextPrinterParser2.default(field, _jsJoda.TextStyle.FULL, provider));
-            return this;
-        }
-    }, {
-        key: 'appendWeekField',
-        value: function appendWeekField(field, count) {
-            requireNonNull(field, 'field');
-            requireNonNull(count, 'count');
-            this._appendInternal(new _WeekFieldsPrinterParser2.default(field, count));
-            return this;
-        }
-    }, {
-        key: 'appendZoneText',
-        value: function appendZoneText(textStyle) {
-            this._appendInternal(new _CldrZoneTextPrinterParser2.default(textStyle));
-            return this;
-        }
-    }, {
-        key: 'appendLocalizedOffset',
-        value: function appendLocalizedOffset(textStyle) {
-            requireNonNull(textStyle, 'textStyle');
-            if (textStyle !== _jsJoda.TextStyle.FULL && textStyle !== _jsJoda.TextStyle.SHORT) {
-                throw new _jsJoda.IllegalArgumentException('Style must be either full or short');
-            }
-            this._appendInternal(new _LocalizedOffsetPrinterParser2.default(textStyle));
-            return this;
-        }
-    }]);
-
-    return CldrDateTimeFormatterBuilder;
-}(_jsJoda.DateTimeFormatterBuilder);
-
-exports.default = CldrDateTimeFormatterBuilder;
-module.exports = exports['default'];
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
-
-var _jsJoda = __webpack_require__(0);
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var TextPrinterParser = function () {
-    function TextPrinterParser(field, textStyle, provider) {
-        _classCallCheck(this, TextPrinterParser);
-
-        this._field = field;
-        this._textStyle = textStyle;
-        this._provider = provider;
-    }
-
-    _createClass(TextPrinterParser, [{
-        key: 'field',
-        value: function field() {
-            return this._field;
-        }
-    }, {
-        key: 'textStyle',
-        value: function textStyle() {
-            return this._textStyle;
-        }
-    }, {
-        key: 'provider',
-        value: function provider() {
-            return this._provider;
-        }
-    }, {
-        key: 'print',
-        value: function print(context, buf) {
-            var value = context.getValue(this._field);
-            if (value === null) {
-                return false;
-            }
-            var text = this._provider.getText(this._field, value, this._textStyle, context.locale());
-            if (text === null) {
-                return this._numberPrinterParser().print(context, buf);
-            }
-            buf.append(text);
-            return true;
-        }
-    }, {
-        key: 'parse',
-        value: function parse(context, parseText, position) {
-            var length = parseText.length;
-            if (position < 0 || position > length) {
-                throw new _jsJoda.IllegalArgumentException('The position is invalid: ' + position);
-            }
-            var style = context.isStrict() ? this._textStyle : null;
-            var it = this._provider.getTextIterator(this._field, style, context.locale());
-            if (it != null) {
-                var _iteratorNormalCompletion = true;
-                var _didIteratorError = false;
-                var _iteratorError = undefined;
-
-                try {
-                    for (var _iterator = it[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                        var entry = _step.value;
-
-                        var itText = entry.key;
-                        if (context.subSequenceEquals(itText, 0, parseText, position, itText.length)) {
-                            return context.setParsedField(this._field, entry.value, position, position + itText.length);
-                        }
-                    }
-                } catch (err) {
-                    _didIteratorError = true;
-                    _iteratorError = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion && _iterator.return) {
-                            _iterator.return();
-                        }
-                    } finally {
-                        if (_didIteratorError) {
-                            throw _iteratorError;
-                        }
-                    }
-                }
-
-                if (context.isStrict()) {
-                    return ~position;
-                }
-            }
-            return this._numberPrinterParser().parse(context, parseText, position);
-        }
-    }, {
-        key: '_numberPrinterParser',
-        value: function _numberPrinterParser() {
-            if (this._currentNumberPrinterParser == null) {
-                this._currentNumberPrinterParser = new _jsJoda.DateTimeFormatterBuilder.NumberPrinterParser(this._field, 1, 19, _jsJoda.SignStyle.NORMAL);
-            }
-            return this._currentNumberPrinterParser;
-        }
-    }, {
-        key: 'toString',
-        value: function toString() {
-            if (this._textStyle === _jsJoda.TextStyle.FULL) {
-                return 'Text(' + this._field + ')';
-            }
-            return 'Text(' + this._field + ',' + this._textStyle + ')';
-        }
-    }]);
-
-    return TextPrinterParser;
-}();
-
-exports.default = TextPrinterParser;
-module.exports = exports['default'];
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /*
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
-
-var _cldrData = __webpack_require__(1);
-
-var _cldrData2 = _interopRequireDefault(_cldrData);
-
-var _cldrjs = __webpack_require__(2);
-
-var _cldrjs2 = _interopRequireDefault(_cldrjs);
-
-var _jsJoda = __webpack_require__(0);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var _jodaInternal$assert = _jsJoda._.assert,
-    requireNonNull = _jodaInternal$assert.requireNonNull,
-    requireInstance = _jodaInternal$assert.requireInstance;
-
-var LENGTH_COMPARATOR = function LENGTH_COMPARATOR(str1, str2) {
-    var cmp = str2.length - str1.length;
-    if (cmp === 0) {
-        cmp = str1.localeCompare(str2);
-    }
-    return cmp;
-};
-
-var CldrZoneTextPrinterParser = function () {
-    function CldrZoneTextPrinterParser(textStyle) {
-        _classCallCheck(this, CldrZoneTextPrinterParser);
-
-        requireNonNull(textStyle, 'textStyle');
-        requireInstance(textStyle, _jsJoda.TextStyle, 'textStyle');
-        this._textStyle = textStyle;
-        _cldrjs2.default.load((0, _cldrData2.default)('supplemental/likelySubtags.json'));
-        _cldrjs2.default.load((0, _cldrData2.default)('supplemental/metaZones.json'));
-    }
-
-    _createClass(CldrZoneTextPrinterParser, [{
-        key: '_resolveZoneIdText',
-        value: function _resolveZoneIdText(cldr, zoneId, style, type, mapZones) {
-            var zoneData = cldr.main('dates/timeZoneNames/zone/' + zoneId + '/' + style + '/' + type);
-            if (zoneData) {
-                return zoneData;
-            } else {
-                var metazoneInfo = cldr.get('supplemental/metaZones/metazoneInfo/timezone/' + zoneId);
-                if (metazoneInfo) {
-                    var metazone = metazoneInfo[metazoneInfo.length - 1]['usesMetazone']['_mzone'];
-                    var metaZoneData = cldr.main('dates/timeZoneNames/metazone/' + metazone + '/' + style + '/' + type);
-                    if (metaZoneData) {
-                        return metaZoneData;
-                    } else {
-                        metaZoneData = cldr.main('dates/timeZoneNames/metazone/' + metazone + '/' + style + '/generic');
-                        if (!metaZoneData) {
-                            metaZoneData = cldr.main('dates/timeZoneNames/metazone/' + metazone + '/' + style + '/standard');
-                        }
-                        if (metaZoneData) {
-                            return metaZoneData;
-                        } else {
-                            var preferredZone = mapZones[metazone][cldr.attributes.territory];
-                            if (preferredZone) {
-                                if (preferredZone !== zoneId) {
-                                    return this._resolveZoneIdText(cldr, preferredZone, style, type, mapZones);
-                                }
-                            } else {
-                                var goldenZone = mapZones[metazone]['001'];
-                                if (goldenZone !== zoneId) {
-                                    return this._resolveZoneIdText(cldr, goldenZone, style, type, mapZones);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }, {
-        key: 'print',
-        value: function print(context, buf) {
-
-            var zone = context.getValueQuery(_jsJoda.TemporalQueries.zoneId());
-
-            if (zone == null) {
-                return false;
-            }
-            if (zone.normalized() instanceof _jsJoda.ZoneOffset) {
-                buf.append(zone.id());
-                return true;
-            }
-            var daylight = false;
-            var hasDaylightSupport = false;
-
-            var tzType = hasDaylightSupport ? daylight ? 'daylight' : 'standard' : 'generic';
-            var tzstyle = this._textStyle.asNormal() === _jsJoda.TextStyle.FULL ? 'long' : 'short';
-            _cldrjs2.default.load((0, _cldrData2.default)('main/' + context.locale().localeString() + '/timeZoneNames.json'));
-            var cldr = new _cldrjs2.default(context.locale().localeString());
-            var mapZones = {};
-
-            cldr.get('supplemental/metaZones/metazones').forEach(function (metaZone) {
-                if (metaZone.mapZone) {
-                    if (!mapZones[metaZone.mapZone._other]) {
-                        mapZones[metaZone.mapZone._other] = {};
-                    }
-                    mapZones[metaZone.mapZone._other][metaZone.mapZone._territory] = metaZone.mapZone._type;
-                }
-            });
-
-            var text = this._resolveZoneIdText(cldr, zone.id(), tzstyle, tzType, mapZones);
-            if (text) {
-                buf.append(text);
-            } else {
-                buf.append(zone.id());
-            }
-            return true;
-        }
-    }, {
-        key: 'parse',
-        value: function parse(context, text, position) {
-            var ids = {};
-            _cldrjs2.default.load((0, _cldrData2.default)('main/' + context.locale().localeString() + '/timeZoneNames.json'));
-            var cldr = new _cldrjs2.default(context.locale().localeString());
-            var mapZones = {};
-
-            cldr.get('supplemental/metaZones/metazones').forEach(function (metaZone) {
-                if (metaZone.mapZone) {
-                    if (!mapZones[metaZone.mapZone._other]) {
-                        mapZones[metaZone.mapZone._other] = {};
-                    }
-                    mapZones[metaZone.mapZone._other][metaZone.mapZone._territory] = metaZone.mapZone._type;
-                }
-            });
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-                for (var _iterator = _jsJoda.ZoneRulesProvider.getAvailableZoneIds()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var id = _step.value;
-
-                    ids[id] = id;
-                    var tzstyle = this._textStyle.asNormal() === _jsJoda.TextStyle.FULL ? 'long' : 'short';
-
-                    var genericText = this._resolveZoneIdText(cldr, id, tzstyle, 'generic', mapZones);
-                    if (genericText) {
-                        ids[genericText] = id;
-                    }
-                    var standardText = this._resolveZoneIdText(cldr, id, tzstyle, 'standard', mapZones);
-                    if (standardText) {
-                        ids[standardText] = id;
-                    }
-                    var daylightText = this._resolveZoneIdText(cldr, id, tzstyle, 'daylight', mapZones);
-                    if (daylightText) {
-                        ids[daylightText] = id;
-                    }
-                }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
-            }
-
-            var sortedKeys = Object.keys(ids).sort(LENGTH_COMPARATOR);
-            var _iteratorNormalCompletion2 = true;
-            var _didIteratorError2 = false;
-            var _iteratorError2 = undefined;
-
-            try {
-                for (var _iterator2 = sortedKeys[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                    var name = _step2.value;
-
-                    if (context.subSequenceEquals(text, position, name, 0, name.length)) {
-                        context.setParsedZone(_jsJoda.ZoneId.of(ids[name]));
-                        return position + name.length;
-                    }
-                }
-            } catch (err) {
-                _didIteratorError2 = true;
-                _iteratorError2 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                        _iterator2.return();
-                    }
-                } finally {
-                    if (_didIteratorError2) {
-                        throw _iteratorError2;
-                    }
-                }
-            }
-
-            return ~position;
-        }
-    }, {
-        key: 'toString',
-        value: function toString() {
-            return 'ZoneText(' + this._textStyle + ')';
-        }
-    }]);
-
-    return CldrZoneTextPrinterParser;
-}();
-
-exports.default = CldrZoneTextPrinterParser;
-module.exports = exports['default'];
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
-
-var _jsJoda = __webpack_require__(0);
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var MathUtil = _jsJoda._.MathUtil;
-
-var LocalizedOffsetPrinterParser = function () {
-    function LocalizedOffsetPrinterParser(textStyle) {
-        _classCallCheck(this, LocalizedOffsetPrinterParser);
-
-        this._textStyle = textStyle;
-    }
-
-    _createClass(LocalizedOffsetPrinterParser, [{
-        key: 'textStyle',
-        value: function textStyle() {
-            return this._textStyle;
-        }
-    }, {
-        key: 'print',
-        value: function print(context, buf) {
-            var offsetSecs = context.getValue(_jsJoda.ChronoField.OFFSET_SECONDS);
-
-            if (offsetSecs == null) {
-                return false;
-            }
-            buf.append('GMT');
-            if (this._textStyle === _jsJoda.TextStyle.FULL) {
-                return new _jsJoda.DateTimeFormatterBuilder.OffsetIdPrinterParser('', '+HH:MM:ss').print(context, buf);
-            }
-            var totalSecs = MathUtil.safeToInt(offsetSecs);
-            if (totalSecs !== 0) {
-                var absHours = Math.abs(MathUtil.intMod(MathUtil.intDiv(totalSecs, 3600), 100));
-                var absMinutes = Math.abs(MathUtil.intMod(MathUtil.intDiv(totalSecs, 60), 60));
-                var absSeconds = Math.abs(MathUtil.intMod(totalSecs, 60));
-                buf.append(totalSecs < 0 ? '-' : '+').append(absHours);
-                if (absMinutes > 0 || absSeconds > 0) {
-                    buf.append(':').append(MathUtil.intDiv(absMinutes, 10)).append(MathUtil.intMod(absMinutes, 10));
-                    if (absSeconds > 0) {
-                        buf.append(':').append(MathUtil.intDiv(absSeconds, 10)).append(MathUtil.intMod(absSeconds, 10));
-                    }
-                }
-            }
-            return true;
-        }
-    }, {
-        key: 'parse',
-        value: function parse(context, text, position) {
-            if (context.subSequenceEquals(text, position, 'GMT', 0, 3) === false) {
-                return ~position;
-            }
-            position += 3;
-            if (this._textStyle === _jsJoda.TextStyle.FULL) {
-                return new _jsJoda.DateTimeFormatterBuilder.OffsetIdPrinterParser('', '+HH:MM:ss').parse(context, text, position);
-            }
-            var end = text.length;
-            if (position === end) {
-                return context.setParsedField(_jsJoda.ChronoField.OFFSET_SECONDS, 0, position, position);
-            }
-            var sign = text.charAt(position);
-            if (sign !== '+' && sign !== '-') {
-                return context.setParsedField(_jsJoda.ChronoField.OFFSET_SECONDS, 0, position, position);
-            }
-            var negative = sign === '-' ? -1 : 1;
-
-            if (position === end) {
-                return ~position;
-            }
-            position++;
-
-            var ch = text.charAt(position);
-            if (ch < '0' || ch > '9') {
-                return ~position;
-            }
-            position++;
-            var hour = MathUtil.parseInt(ch);
-            if (position !== end) {
-                ch = text.charAt(position);
-                if (ch >= '0' && ch <= '9') {
-                    hour = hour * 10 + MathUtil.parseInt(ch);
-                    if (hour > 23) {
-                        return ~position;
-                    }
-                    position++;
-                }
-            }
-            if (position === end || text.charAt(position) !== ':') {
-                var _offset = negative * 3600 * hour;
-                return context.setParsedField(_jsJoda.ChronoField.OFFSET_SECONDS, _offset, position, position);
-            }
-            position++;
-
-            if (position > end - 2) {
-                return ~position;
-            }
-            ch = text.charAt(position);
-            if (ch < '0' || ch > '9') {
-                return ~position;
-            }
-            position++;
-            var min = MathUtil.parseInt(ch);
-            ch = text.charAt(position);
-            if (ch < '0' || ch > '9') {
-                return ~position;
-            }
-            position++;
-            min = min * 10 + MathUtil.parseInt(ch);
-            if (min > 59) {
-                return ~position;
-            }
-            if (position === end || text.charAt(position) !== ':') {
-                var _offset2 = negative * (3600 * hour + 60 * min);
-                return context.setParsedField(_jsJoda.ChronoField.OFFSET_SECONDS, _offset2, position, position);
-            }
-            position++;
-
-            if (position > end - 2) {
-                return ~position;
-            }
-            ch = text.charAt(position);
-            if (ch < '0' || ch > '9') {
-                return ~position;
-            }
-            position++;
-            var sec = MathUtil.parseInt(ch);
-            ch = text.charAt(position);
-            if (ch < '0' || ch > '9') {
-                return ~position;
-            }
-            position++;
-            sec = sec * 10 + MathUtil.parseInt(ch);
-            if (sec > 59) {
-                return ~position;
-            }
-            var offset = negative * (3600 * hour + 60 * min + sec);
-            return context.setParsedField(_jsJoda.ChronoField.OFFSET_SECONDS, offset, position, position);
-        }
-    }, {
-        key: 'toString',
-        value: function toString() {
-            return 'LocalizedOffset(' + this._textStyle + ')';
-        }
-    }]);
-
-    return LocalizedOffsetPrinterParser;
-}();
-
-exports.default = LocalizedOffsetPrinterParser;
-module.exports = exports['default'];
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /*
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
-
-var _jsJoda = __webpack_require__(0);
-
-var _WeekFields = __webpack_require__(6);
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var StringBuilder = _jsJoda._.StringBuilder;
-
-var WeekFieldsPrinterParser = function () {
-    function WeekFieldsPrinterParser(letter, count) {
-        _classCallCheck(this, WeekFieldsPrinterParser);
-
-        this._letter = letter;
-        this._count = count;
-    }
-
-    _createClass(WeekFieldsPrinterParser, [{
-        key: 'print',
-        value: function print(context, buf) {
-            var weekFields = _WeekFields.WeekFields.of(context.locale());
-            var pp = this._evaluate(weekFields);
-            return pp.print(context, buf);
-        }
-    }, {
-        key: 'parse',
-        value: function parse(context, text, position) {
-            var weekFields = _WeekFields.WeekFields.of(context.locale());
-            var pp = this._evaluate(weekFields);
-            return pp.parse(context, text, position);
-        }
-    }, {
-        key: '_evaluate',
-        value: function _evaluate(weekFields) {
-            var pp = null;
-            switch (this._letter) {
-                case 'e':
-                    pp = new _jsJoda.DateTimeFormatterBuilder.NumberPrinterParser(weekFields.dayOfWeek(), this._count, 2, _jsJoda.SignStyle.NOT_NEGATIVE);
-                    break;
-                case 'c':
-                    pp = new _jsJoda.DateTimeFormatterBuilder.NumberPrinterParser(weekFields.dayOfWeek(), this._count, 2, _jsJoda.SignStyle.NOT_NEGATIVE);
-                    break;
-                case 'w':
-                    pp = new _jsJoda.DateTimeFormatterBuilder.NumberPrinterParser(weekFields.weekOfWeekBasedYear(), this._count, 2, _jsJoda.SignStyle.NOT_NEGATIVE);
-                    break;
-                case 'W':
-                    pp = new _jsJoda.DateTimeFormatterBuilder.NumberPrinterParser(weekFields.weekOfMonth(), 1, 2, _jsJoda.SignStyle.NOT_NEGATIVE);
-                    break;
-                case 'Y':
-                    if (this._count === 2) {
-                        pp = new _jsJoda.DateTimeFormatterBuilder.ReducedPrinterParser(weekFields.weekBasedYear(), 2, 2, 0, _jsJoda.DateTimeFormatterBuilder.ReducedPrinterParser.BASE_DATE);
-                    } else {
-                        pp = new _jsJoda.DateTimeFormatterBuilder.NumberPrinterParser(weekFields.weekBasedYear(), this._count, 19, this._count < 4 ? _jsJoda.SignStyle.NORMAL : _jsJoda.SignStyle.EXCEEDS_PAD, -1);
-                    }
-                    break;
-            }
-            return pp;
-        }
-    }, {
-        key: 'toString',
-        value: function toString() {
-            var sb = new StringBuilder(30);
-            sb.append('Localized(');
-            if (this._letter === 'Y') {
-                if (this._count === 1) {
-                    sb.append('WeekBasedYear');
-                } else if (this._count === 2) {
-                    sb.append('ReducedValue(WeekBasedYear,2,2,2000-01-01)');
-                } else {
-                    sb.append('WeekBasedYear,').append(this._count).append(',').append(19).append(',').append(this._count < 4 ? _jsJoda.SignStyle.NORMAL : _jsJoda.SignStyle.EXCEEDS_PAD);
-                }
-            } else {
-                if (this._letter === 'c' || this._letter === 'e') {
-                    sb.append('DayOfWeek');
-                } else if (this._letter === 'w') {
-                    sb.append('WeekOfWeekBasedYear');
-                } else if (this._letter === 'W') {
-                    sb.append('WeekOfMonth');
-                }
-                sb.append(',');
-                sb.append(this._count);
-            }
-            sb.append(')');
-            return sb.toString();
-        }
-    }]);
-
-    return WeekFieldsPrinterParser;
-}();
-
-exports.default = WeekFieldsPrinterParser;
-module.exports = exports['default'];
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _jsJoda = __webpack_require__(0);
-
-var _Locale = __webpack_require__(3);
-
-var _Locale2 = _interopRequireDefault(_Locale);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-
-var requireNonNull = _jsJoda._.assert.requireNonNull;
-
-var LocaleDateTimeFormatter = function (_DateTimeFormatter) {
-    _inherits(LocaleDateTimeFormatter, _DateTimeFormatter);
-
-    function LocaleDateTimeFormatter() {
-        _classCallCheck(this, LocaleDateTimeFormatter);
-
-        return _possibleConstructorReturn(this, (LocaleDateTimeFormatter.__proto__ || Object.getPrototypeOf(LocaleDateTimeFormatter)).apply(this, arguments));
-    }
-
-    _createClass(LocaleDateTimeFormatter, [{
-        key: 'withLocale',
-        value: function withLocale(locale) {
-            requireNonNull(locale, 'locale');
-            if (locale.equals(this._locale)) {
-                return this;
-            }
-            return new _jsJoda.DateTimeFormatter(this._printerParser, locale, this._decimalStyle, this._resolverStyle, this._resolverFields, this._chrono, this._zone);
-        }
-    }]);
-
-    return LocaleDateTimeFormatter;
-}(_jsJoda.DateTimeFormatter);
-
-exports.default = LocaleDateTimeFormatter;
-module.exports = exports['default'];
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _Locale = __webpack_require__(3);
-
-var _WeekFields = __webpack_require__(6);
-
-/*
- * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
- * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
- */
-
-var isInit = false;
-
-function init() {
-    if (isInit) {
-        return;
-    }
-
-    isInit = true;
-
-    (0, _Locale._init)();
-    (0, _WeekFields._init)();
-}
-
-init();
+/***/ "js-joda":
+/*!*********************************************************************************************!*\
+  !*** external {"amd":"js-joda","commonjs":"js-joda","commonjs2":"js-joda","root":"JSJoda"} ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_js_joda__;
 
 /***/ })
-/******/ ]);
+
+/******/ });
 });
