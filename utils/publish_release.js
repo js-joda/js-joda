@@ -81,7 +81,7 @@ packages.forEach((packageName) => {
     };
     if (argv.debug) {
         /* eslint-disable no-console */
-        console.log('running npm with args', npmArgs);
+        console.log('running npm with args', npmArgs, 'options ', npmOptions);
         /* eslint-enable no-console */
     }
     if (argv.dryRun) {
@@ -119,7 +119,7 @@ const packageJSON = JSON.parse(
 console.info('processing', packageJSON.name);
 if (argv.debug) {
     /* eslint-disable no-console */
-    console.log('running npm with args', npmArgs);
+    console.log('running npm with args', npmArgs, 'options ', npmOptions);
     /* eslint-enable no-console */
 }
 if (argv.dryRun) {
