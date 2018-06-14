@@ -438,25 +438,30 @@ function abstractMethodFail(methodName) {
 
 
 exports.__esModule = true;
+exports.Interval = undefined;
 
-var _main = __webpack_require__(/*! ./main */ "./src/main.js");
+var _jsJoda = __webpack_require__(/*! js-joda */ "js-joda");
 
-var _main2 = _interopRequireDefault(_main);
+var _Interval = __webpack_require__(/*! ./Interval */ "./src/Interval.js");
+
+var _plug = __webpack_require__(/*! ./plug */ "./src/plug.js");
+
+var _plug2 = _interopRequireDefault(_plug);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _main2.default; /*
+(0, _jsJoda.use)(_plug2.default); /*
                                    * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
                                    * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
                                    */
 
-module.exports = exports['default'];
+exports.Interval = _Interval.Interval;
 
 /***/ }),
 
-/***/ "./src/main.js":
+/***/ "./src/plug.js":
 /*!*********************!*\
-  !*** ./src/main.js ***!
+  !*** ./src/plug.js ***!
   \*********************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -473,11 +478,6 @@ exports.default = function (jsJoda) {
 var _Interval = __webpack_require__(/*! ./Interval */ "./src/Interval.js");
 
 __webpack_require__(/*! ./_init */ "./src/_init.js");
-
-module.exports = exports['default']; /*
-                                      * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
-                                      * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
-                                      */
 
 /***/ }),
 

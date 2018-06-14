@@ -1,6 +1,13 @@
 Changelog
 =========
 
+### 0.2.0
+
+#### public api
+
+* hide `use(plug)` from public api, that is done automatically from now on.
+* Interval must be imported from js-joda-extra, its not added to js-joda anymore. 
+
 ### 0.1.1
 
 * dependency updates
