@@ -44,7 +44,7 @@ Install joda using npm
         .withZoneSameLocal(ZoneId.of('America/New_York'))
         .toString() // 2016-06-30T11:30-04:00[America/New_York]
 
-### es6
+### es6 / typescript
 
     import { ZonedDateTime, ZoneId } from 'js-joda'
     import 'js-joda-timezone'
