@@ -5,10 +5,10 @@
     <title>js-joda</title>
     <script src="//cdn.jsdelivr.net/npm/js-joda@1.8.2/dist/js-joda.js"></script>
     <script src="//cdn.jsdelivr.net/npm/js-joda-extra@0.1.1/dist/js-joda-extra.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/js-joda-timezone@1.2.1/dist/js-joda-timezone.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/js-joda-timezone@1.3.0/dist/js-joda-timezone.js"></script>
     <script>
         // use js-joda-timezone
-        var jsJoda = JSJoda.use(JSJodaTimezone).use(JSJodaExtra);
+        var jsJoda = JSJoda.use(JSJodaExtra);
 
         // copy all js-joda classes to the global scope
         for(var prop in jsJoda) { window[prop] = jsJoda[prop]; }

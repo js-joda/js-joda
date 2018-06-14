@@ -8,7 +8,7 @@
     <script src="../../node_modules/js-joda-timezone/dist/js-joda-timezone.js"></script>
     <script>
         // use js-joda-timezone
-        var jsJoda = JSJoda.use(JSJodaTimezone).use(JSJodaExtra);
+        var jsJoda = JSJoda.use(JSJodaExtra);
 
         // copy all js-joda classes to the global scope
         for(var prop in jsJoda) { window[prop] = jsJoda[prop]; }
