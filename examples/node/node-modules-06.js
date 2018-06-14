@@ -1,9 +1,7 @@
 /* eslint-disable no-console */
 
-const jsJoda = require('js-joda')
-    .use(require('js-joda-timezone'));
-
-const { Instant, ZoneRulesProvider, ZoneId } = jsJoda;
+require('js-joda-timezone');
+const { Instant, ZoneRulesProvider, ZoneId } = require('js-joda');
 
 const now = Instant.now();
 

@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 
-const jsJoda = require('js-joda')
-    .use(require('js-joda-timezone'));
+const jsJoda = require('js-joda');
+require('js-joda-timezone');
 
 const { LocalDateTime, ZoneId, ZonedDateTime } = jsJoda;
 

@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 
 const JsJoda = require('js-joda');
-const JsJodaTimezone = require('js-joda-timezone');
+require('js-joda-timezone');
 const JsJodaExtra = require('js-joda-extra');
 
-const jsJoda = JsJoda.use(JsJodaTimezone).use(JsJodaExtra);
+const jsJoda = JsJoda.use(JsJodaExtra);
 
 const {
     Duration,

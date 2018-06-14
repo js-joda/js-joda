@@ -1,9 +1,7 @@
 /* eslint-disable no-console */
 
-import { use as jsJodaUse, ZonedDateTime, ZoneId } from 'js-joda';
-import jsJodaTimeZone from 'js-joda-timezone';
-
-jsJodaUse(jsJodaTimeZone);
+import { ZonedDateTime, ZoneId } from 'js-joda';
+import 'js-joda-timezone';
 
 const zdt = ZonedDateTime.now(ZoneId.of('America/New_York'));
 

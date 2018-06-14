@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 
 const { use } = require('js-joda');
+require('js-joda-timezone');
 
 const {
     Duration,
@@ -9,7 +10,7 @@ const {
     ZonedDateTime,
     ZoneId,
     Interval,
-} = use(require('js-joda-timezone')).use(require('js-joda-extra'));
+} = use(require('js-joda-extra'));
 
 console.log(LocalDateTime.now().toString());
 console.log(ZonedDateTime.now().toString());
