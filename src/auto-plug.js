@@ -3,6 +3,11 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import autoPlug from './auto-plug';
+import { use } from 'js-joda';
 
-autoPlug();
+import plug from './plug';
+
+export default function autoPlug() {
+    use(plug);
+}
+
