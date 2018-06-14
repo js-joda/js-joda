@@ -1,12 +1,6 @@
 /* eslint-disable no-console */
 
-import { use } from 'js-joda';
-import 'js-joda-timezone';
-import JsJodaExtra from 'js-joda-extra';
-
-const jsJoda = use(JsJodaExtra);
-
-const {
+import {
     ChronoUnit,
     Duration,
     Instant,
@@ -14,8 +8,11 @@ const {
     LocalDateTime,
     ZonedDateTime,
     ZoneId,
+} from 'js-joda';
+import {
     Interval,
-} = jsJoda;
+} from 'js-joda-extra';
+import 'js-joda-timezone';
 
 console.log(LocalDate.now().until(LocalDate.now().plusDays(10), ChronoUnit.DAYS));
 console.log(LocalDateTime.now().toString());

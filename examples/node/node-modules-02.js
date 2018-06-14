@@ -1,16 +1,17 @@
 /* eslint-disable no-console */
 
-const { use } = require('js-joda');
-require('js-joda-timezone');
-
 const {
     Duration,
     Instant,
     LocalDateTime,
     ZonedDateTime,
     ZoneId,
+} = require('js-joda');
+require('js-joda-timezone');
+
+const {
     Interval,
-} = use(require('js-joda-extra'));
+} = require('js-joda-extra');
 
 console.log(LocalDateTime.now().toString());
 console.log(ZonedDateTime.now().toString());
