@@ -1,4 +1,4 @@
-//! @version js-joda-timezone-1.2.1
+//! @version js-joda-timezone-1.3.0
 //! @copyright (c) 2015-present, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -442,6 +442,38 @@ var MomentZoneRulesProvider = exports.MomentZoneRulesProvider = function (_ZoneR
 
 /***/ }),
 
+/***/ "./src/auto-plug.js":
+/*!**************************!*\
+  !*** ./src/auto-plug.js ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.default = autoPlug;
+
+var _jsJoda = __webpack_require__(/*! js-joda */ "js-joda");
+
+var _plug = __webpack_require__(/*! ./plug */ "./src/plug.js");
+
+var _plug2 = _interopRequireDefault(_plug);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/*
+ * @copyright (c) 2016-present, Philipp Thürwächter, Pattrick Hüper
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
+
+function autoPlug() {
+  (0, _jsJoda.use)(_plug2.default);
+}
+
+/***/ }),
+
 /***/ "./src/js-joda-timezone-empty.js":
 /*!***************************************!*\
   !*** ./src/js-joda-timezone-empty.js ***!
@@ -452,20 +484,16 @@ var MomentZoneRulesProvider = exports.MomentZoneRulesProvider = function (_ZoneR
 "use strict";
 
 
-exports.__esModule = true;
+var _autoPlug = __webpack_require__(/*! ./auto-plug */ "./src/auto-plug.js");
 
-var _plug = __webpack_require__(/*! ./plug */ "./src/plug.js");
-
-var _plug2 = _interopRequireDefault(_plug);
+var _autoPlug2 = _interopRequireDefault(_autoPlug);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = _plug2.default; /*
-                                   * @copyright (c) 2016-present, Philipp Thürwächter, Pattrick Hüper
-                                   * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-                                   */
-
-module.exports = exports['default'];
+(0, _autoPlug2.default)(); /*
+                            * @copyright (c) 2016-present, Philipp Thürwächter, Pattrick Hüper
+                            * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+                            */
 
 /***/ }),
 
@@ -498,11 +526,6 @@ var _systemDefaultZone = __webpack_require__(/*! ./system-default-zone */ "./src
 var _systemDefaultZone2 = _interopRequireDefault(_systemDefaultZone);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default']; /*
-                                      * @copyright (c) 2016-present, Philipp Thürwächter, Pattrick Hüper
-                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-                                      */
 
 /***/ }),
 
@@ -538,7 +561,6 @@ function extendSystemDefaultZoneId(ZoneId) {
         return resolvedZoneId;
     };
 }
-module.exports = exports["default"];
 
 /***/ }),
 

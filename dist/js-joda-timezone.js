@@ -1,4 +1,4 @@
-//! @version js-joda-timezone-1.2.1-2018c
+//! @version js-joda-timezone-1.3.0-2018c
 //! @copyright (c) 2015-present, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -453,6 +453,38 @@ var MomentZoneRulesProvider = exports.MomentZoneRulesProvider = function (_ZoneR
 
 /***/ }),
 
+/***/ "./src/auto-plug.js":
+/*!**************************!*\
+  !*** ./src/auto-plug.js ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.default = autoPlug;
+
+var _jsJoda = __webpack_require__(/*! js-joda */ "js-joda");
+
+var _plug = __webpack_require__(/*! ./plug */ "./src/plug.js");
+
+var _plug2 = _interopRequireDefault(_plug);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/*
+ * @copyright (c) 2016-present, Philipp Thürwächter, Pattrick Hüper
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
+
+function autoPlug() {
+  (0, _jsJoda.use)(_plug2.default);
+}
+
+/***/ }),
+
 /***/ "./src/js-joda-timezone.js":
 /*!*********************************!*\
   !*** ./src/js-joda-timezone.js ***!
@@ -463,27 +495,24 @@ var MomentZoneRulesProvider = exports.MomentZoneRulesProvider = function (_ZoneR
 "use strict";
 
 
-exports.__esModule = true;
+var _tzdbData = __webpack_require__(/*! ./tzdbData */ "./src/tzdbData.js");
 
-var _latest = __webpack_require__(/*! ../data/packed/latest */ "./data/packed/latest.json");
-
-var _latest2 = _interopRequireDefault(_latest);
-
-var _plug = __webpack_require__(/*! ./plug */ "./src/plug.js");
-
-var _plug2 = _interopRequireDefault(_plug);
+var _tzdbData2 = _interopRequireDefault(_tzdbData);
 
 var _MomentZoneRulesProvider = __webpack_require__(/*! ./MomentZoneRulesProvider */ "./src/MomentZoneRulesProvider.js");
 
+var _autoPlug = __webpack_require__(/*! ./auto-plug */ "./src/auto-plug.js");
+
+var _autoPlug2 = _interopRequireDefault(_autoPlug);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_MomentZoneRulesProvider.MomentZoneRulesProvider.loadTzdbData(_latest2.default); /*
-                                                                                  * @copyright (c) 2016-present, Philipp Thürwächter, Pattrick Hüper
-                                                                                  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-                                                                                  */
+_MomentZoneRulesProvider.MomentZoneRulesProvider.loadTzdbData(_tzdbData2.default); /*
+                                                                                    * @copyright (c) 2016-present, Philipp Thürwächter, Pattrick Hüper
+                                                                                    * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+                                                                                    */
 
-exports.default = _plug2.default;
-module.exports = exports['default'];
+(0, _autoPlug2.default)();
 
 /***/ }),
 
@@ -516,11 +545,6 @@ var _systemDefaultZone = __webpack_require__(/*! ./system-default-zone */ "./src
 var _systemDefaultZone2 = _interopRequireDefault(_systemDefaultZone);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-module.exports = exports['default']; /*
-                                      * @copyright (c) 2016-present, Philipp Thürwächter, Pattrick Hüper
-                                      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-                                      */
 
 /***/ }),
 
@@ -556,7 +580,28 @@ function extendSystemDefaultZoneId(ZoneId) {
         return resolvedZoneId;
     };
 }
-module.exports = exports["default"];
+
+/***/ }),
+
+/***/ "./src/tzdbData.js":
+/*!*************************!*\
+  !*** ./src/tzdbData.js ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _latest = __webpack_require__(/*! ../data/packed/latest.json */ "./data/packed/latest.json");
+
+var _latest2 = _interopRequireDefault(_latest);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _latest2.default;
 
 /***/ }),
 
