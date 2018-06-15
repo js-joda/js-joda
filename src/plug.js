@@ -3,9 +3,7 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-/* eslint-disable no-param-reassign */
-
-import { Interval } from './Interval';
+// import { Interval } from './Interval';
 
 import './_init';
 
@@ -14,6 +12,7 @@ import './_init';
  *
  * @param jsJoda
  */
-export default function (jsJoda) {
-    jsJoda.Interval = Interval;
+export default function (/* jsJoda */) {
+    // assign new prop to jsJoda context is useless, because it lives only in the local context
+    // jsJoda.Interval = Interval;
 }

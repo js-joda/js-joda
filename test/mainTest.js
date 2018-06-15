@@ -9,8 +9,8 @@ import '../src/js-joda-extra';
 import { Interval } from 'js-joda';
 
 describe('main test', () => {
+    // do not work, because context lives only locally
     it.skip('should add Interval to joda', () => {
-        // we have to import Interval from js-joda-extra from now on
         expect(Interval).to.exist;
     });
 });
