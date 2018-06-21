@@ -1,6 +1,6 @@
 import fs from 'fs';
 import babel from 'rollup-plugin-babel';
-import uglify from 'rollup-plugin-uglify';
+import { uglify } from 'rollup-plugin-uglify';
 
 function createBanner(){
     const packageJson = require('./package.json');

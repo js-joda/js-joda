@@ -8,6 +8,8 @@ Changelog
  * fix error when parsing dates from string with e.g. WeekOfWeekbasedYear fields
  * fix call to `substring` in generating error message when parsing  
 
+#### dependency updates
+
 ### 1.8.2 
 
 #### public API
