@@ -79,9 +79,10 @@ packages.forEach((packageName) => {
     const npmOptions = {
         cwd: path.resolve(argv.packagesDir, packageName)
     };
+    const runArgs = [...npmArgs, path.resolve(argv.packagesDir, packageName)];
     if (argv.debug) {
         /* eslint-disable no-console */
-        console.log('running npm with args', npmArgs, 'options ', npmOptions);
+        console.log('running npm with args', runArgs, 'options ', npmOptions);
         /* eslint-enable no-console */
     }
     if (argv.dryRun) {
@@ -90,7 +91,7 @@ packages.forEach((packageName) => {
     } else {
         execFile(
             'npm',
-            npmArgs,
+            runArgs,
             npmOptions,
             (error, stdout, stderr) => {
                 if (error) {
@@ -114,12 +115,13 @@ const npmOptions = {
 };
 const packageJSON = JSON.parse(
     fs.readFileSync(path.resolve(argv.mainDir, 'package.json')));
+const runArgs = [...npmArgs, path.resolve(argv.mainDir)];
 
 // eslint-disable-next-line no-console
 console.info('processing', packageJSON.name);
 if (argv.debug) {
     /* eslint-disable no-console */
-    console.log('running npm with args', npmArgs, 'options ', npmOptions);
+    console.log('running npm with args', runArgs, 'options ', npmOptions);
     /* eslint-enable no-console */
 }
 if (argv.dryRun) {
@@ -128,7 +130,7 @@ if (argv.dryRun) {
 } else {
     execFile(
         'npm',
-        npmArgs,
+        runArgs,
         npmOptions,
         (error, stdout, stderr) => {
             if (error) {
