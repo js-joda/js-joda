@@ -86,7 +86,7 @@ Object.keys(argv.packages).forEach((packageName) => {
     }
     // create package.json
     packageTemplate.version = mainPackageJSON.version;
-    packageTemplate.name = `js-joda-locale_${packageName}`;
+    packageTemplate.name = `js-joda-locale-${packageName}`;
     packageTemplate.description = `prebuilt js-joda-locale package for locales: ${argv.packages[packageName]}`;
     fs.writeFileSync(path.resolve(packageDir, 'package.json'),
         JSON.stringify(packageTemplate, null, 4));
