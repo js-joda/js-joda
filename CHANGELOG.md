@@ -1,9 +1,23 @@
 Changelog
 =========
 
-### 1.3.1 (next)
+### 2.0.1 (next)
+
+### 2.0.0
+
+#### public API
+
+(re) introduced new plugin concept
+ * Hide `use(plug)` concept from public api.
+   The function for extending js-joda is not exported anymore (the default export of this module is removed).
+   The code for extending js-joda `use(plug)` is not required anymore, because js-joda-timezone automaticaly extends
+   js-joda when imported.
 
 #### dependendency updates
+
+### 1.3.1
+
+revert previous (breaking) public API change (see https://github.com/js-joda/js-joda-timezone/issues/48)
 
 ### 1.3.0
 
