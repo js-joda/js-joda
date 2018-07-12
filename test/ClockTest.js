@@ -7,6 +7,9 @@ import {expect} from 'chai';
 import './_init';
 
 import {Clock} from '../src/Clock';
+import {Duration} from  '../src/Duration';
+import {Instant} from '../src/Instant';
+import {ZoneId} from '../src/ZoneId';
 
 describe('Clock', () => {
     describe('should deny calling an instant method of pseudo abstract class Clock', () => {
@@ -37,6 +40,16 @@ describe('Clock', () => {
         it('Fixed', () => {
             expect(Clock.fixed().toString()).to.contain('FixedClock');
         });
+    });
+    
+    describe('offset clock', () => {
+        it('is offset', () => {
+            const duration = Duration.parse('PT0H3M');
+            const base = Clock.fixed(Instant.now(), ZoneId.systemDefault());
+            const offset = Clock.offset(base, duration);
+            expect(base.millis() === offset.millis() + duration.toMillis()); 
+        });
+    
     });
 });
 

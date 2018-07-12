@@ -104,6 +104,29 @@ export class Clock {
     static fixed(fixedInstant, zoneOffset) {
         return new FixedClock(fixedInstant, zoneOffset);
     }
+    
+    /**
+     * Obtains a clock that returns instants from the specified clock with the
+     * specified duration added
+     * <p>
+     * This clock wraps another clock, returning instants that are later by the
+     * specified duration. If the duration is negative, the instants will be
+     * earlier than the current date and time.
+     * The main use case for this is to simulate running in the future or in the past.
+     * <p>
+     * A duration of zero would have no offsetting effect.
+     * Passing zero will return the underlying clock.
+     * <p>
+     * The returned implementation is immutable, thread-safe and {@code Serializable}
+     * providing that the base clock is.
+     *
+     * @param baseClock  the base clock to add the duration to, not null
+     * @param offsetDuration  the duration to add, not null
+     * @return a clock based on the base clock with the duration added, not null
+     */
+    static offset(baseClock, duration) {
+        return new OffsetClock(baseClock, duration);   
+    }
 
     /**
       * Gets the current millisecond instant of the clock.
@@ -218,5 +241,50 @@ class FixedClock extends Clock{
 
     toString(){
         return 'FixedClock[]';
+    }
+}
+
+
+/**
+ * Implementation of a clock that adds an offset to an underlying clock.
+ */
+class OffsetClock extends Clock {
+    constructor(baseClock, offset) {
+        super();
+        this._baseClock = baseClock;
+        this._offset = offset;
+    }
+   
+    zone() {
+        return this._baseClock.zone();
+    }
+    
+    
+    withZone(zone) {
+        if (zone.equals(this._baseClock.zone())) {  // intentional NPE
+            return this;
+        }
+        return new OffsetClock(this._baseClock.withZone(zone), this._offset);
+    }
+    
+    millis() {
+        return this._baseClock.millis() + this._offset.toMillis();
+    }
+    
+    instant() {
+        return this._baseClock.instant().plus(this._offset);
+    }
+    
+    
+    equals(obj) {
+        if (obj instanceof OffsetClock) {
+            
+            return this._baseClock.equals(obj.baseClock) && this._offset.equals(obj.offset);
+        }
+        return false;
+    }
+    
+    toString() {
+        return 'OffsetClock[' + this._baseClock + ',' + this._offset + ']';
     }
 }
