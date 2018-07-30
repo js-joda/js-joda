@@ -1154,7 +1154,7 @@ declare namespace JSJoda {
 
         static parse(text: string, formatter?: DateTimeFormatter): Year
 
-        atMonth(monthOrNumber: Month|number): Year
+        atMonth(monthOrNumber: Month|number): YearMonth
 
         plus(amountOrNumber: TemporalAmount|number, unit?: TemporalUnit): Year
 
