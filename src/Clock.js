@@ -98,11 +98,11 @@ export class Clock {
      * tests are not dependent on the current clock.
      *
      * @param {Instant} fixedInstant  the instant to use as the clock, not null
-     * @param {ZoneOffset} zoneOffset  the zoneOffset to use as zone Offset, not null
+     * @param {ZoneId} zoneId  the zoneOffset to use as zone Offset, not null
      * @return {Clock} a clock that always returns the same instant, not null
      */
-    static fixed(fixedInstant, zoneOffset) {
-        return new FixedClock(fixedInstant, zoneOffset);
+    static fixed(fixedInstant, zoneId) {
+        return new FixedClock(fixedInstant, zoneId);
     }
     
     /**
