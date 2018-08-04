@@ -3,6 +3,10 @@ Changelog
 
 ### next
 
+#### public API
+
+ * add OffsetClock and add withZone and equals to other Clock impls
+
 #### bugfixes
 
  * fix error when parsing dates from string with e.g. WeekOfWeekbasedYear fields
