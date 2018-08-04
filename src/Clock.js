@@ -98,11 +98,34 @@ export class Clock {
      * tests are not dependent on the current clock.
      *
      * @param {Instant} fixedInstant  the instant to use as the clock, not null
-     * @param {ZoneOffset} zoneOffset  the zoneOffset to use as zone Offset, not null
+     * @param {ZoneId} zoneId  the zoneOffset to use as zone Offset, not null
      * @return {Clock} a clock that always returns the same instant, not null
      */
-    static fixed(fixedInstant, zoneOffset) {
-        return new FixedClock(fixedInstant, zoneOffset);
+    static fixed(fixedInstant, zoneId) {
+        return new FixedClock(fixedInstant, zoneId);
+    }
+    
+    /**
+     * Obtains a clock that returns instants from the specified clock with the
+     * specified duration added
+     * <p>
+     * This clock wraps another clock, returning instants that are later by the
+     * specified duration. If the duration is negative, the instants will be
+     * earlier than the current date and time.
+     * The main use case for this is to simulate running in the future or in the past.
+     * <p>
+     * A duration of zero would have no offsetting effect.
+     * Passing zero will return the underlying clock.
+     * <p>
+     * The returned implementation is immutable, thread-safe and {@code Serializable}
+     * providing that the base clock is.
+     *
+     * @param baseClock  the base clock to add the duration to, not null
+     * @param offsetDuration  the duration to add, not null
+     * @return a clock based on the base clock with the duration added, not null
+     */
+    static offset(baseClock, duration) {
+        return new OffsetClock(baseClock, duration);   
     }
 
     /**
@@ -138,6 +161,20 @@ export class Clock {
 
     zone(){
         abstractMethodFail('Clock.zone');
+    }
+    
+    /**
+     * Returns a copy of this clock with a different time-zone.
+     * <p>
+     * A clock will typically obtain the current instant and then convert that
+     * to a date or time using a time-zone. This method returns a clock with
+     * similar properties but using a different time-zone.
+     *
+     * @param zone  the time-zone to change to, not null
+     * @return a clock based on this clock with the specified time-zone, not null
+     */
+    withZone(){
+        abstractMethodFail('Clock.withZone');
     }
 }
 
@@ -181,6 +218,20 @@ class SystemClock extends Clock {
     instant() {
         return Instant.ofEpochMilli(this.millis());
     }
+    
+    equals(obj) {    
+        if (obj instanceof SystemClock) {            
+            return this._zone.equals(obj._zone);
+        }
+        return false;    
+    }  
+      
+    withZone(zone) {
+        if (zone.equals(this._zone)) {  // intentional NPE
+            return this;
+        }
+        return new SystemClock(zone);
+    }      
 
     /**
      *
@@ -218,5 +269,62 @@ class FixedClock extends Clock{
 
     toString(){
         return 'FixedClock[]';
+    }
+    
+    equals(obj) {    
+        if (obj instanceof FixedClock) {            
+            return this._instant.equals(obj._instant) && this._zoneId.equals(obj._zoneId);
+        }
+        return false;    
+    }
+
+    withZone(zone) {
+        if (zone.equals(this._zoneId)) {  // intentional NPE
+            return this;
+        }
+        return new FixedClock(this._instant, zone);
+    }      
+    
+}
+
+
+/**
+ * Implementation of a clock that adds an offset to an underlying clock.
+ */
+class OffsetClock extends Clock {
+    constructor(baseClock, offset) {
+        super();
+        this._baseClock = baseClock;
+        this._offset = offset;
+    }
+   
+    zone() {
+        return this._baseClock.zone();
+    }
+        
+    withZone(zone) {
+        if (zone.equals(this._baseClock.zone())) {  // intentional NPE
+            return this;
+        }
+        return new OffsetClock(this._baseClock.withZone(zone), this._offset);
+    }
+    
+    millis() {
+        return this._baseClock.millis() + this._offset.toMillis();
+    }
+    
+    instant() {
+        return this._baseClock.instant().plus(this._offset);
+    }
+        
+    equals(obj) {
+        if (obj instanceof OffsetClock) {            
+            return this._baseClock.equals(obj._baseClock) && this._offset.equals(obj._offset);
+        }
+        return false;
+    }
+    
+    toString() {
+        return 'OffsetClock[' + this._baseClock + ',' + this._offset + ']';
     }
 }
