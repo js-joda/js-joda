@@ -6,6 +6,7 @@
 
 import {requireNonNull, abstractMethodFail} from '../assert';
 
+import {LocalDateTime} from '../LocalDateTime';
 import {Duration} from '../Duration';
 import {Instant} from '../Instant';
 
@@ -43,10 +44,10 @@ export class ZoneRules {
      * @returns {ZoneOffset}
      */
     offset(instantOrLocalDateTime){
-        if(instantOrLocalDateTime instanceof Instant){
-            return this.offsetOfInstant(instantOrLocalDateTime);
-        } else {
+        if(instantOrLocalDateTime instanceof LocalDateTime){
             return this.offsetOfLocalDateTime(instantOrLocalDateTime);
+        } else {
+            return this.offsetOfInstant(instantOrLocalDateTime);
         }
     }
 
