@@ -345,7 +345,7 @@ declare namespace JSJoda {
         static MAX: LocalTime
         static MIDNIGHT: LocalTime
         static NOON: LocalTime
-        
+
         static HOURS_PER_DAY: number
         static MINUTES_PER_HOUR: number
         static MINUTES_PER_DAY: number
@@ -1159,6 +1159,8 @@ declare namespace JSJoda {
         plus(amountOrNumber: TemporalAmount|number, unit?: TemporalUnit): Year
 
         minus(amountOrNumber: TemporalAmount|number, unit?: TemporalUnit): Year
+
+        value(): number
     }
     class YearMonth extends Temporal {
         static from(temporal: TemporalAccessor): YearMonth
