@@ -421,7 +421,7 @@
         };
 
         Duration.ofSeconds = function ofSeconds(seconds) {
-            var nanoAdjustment = arguments.length > 1 && arguments[1] !== undefined$6 ? arguments[1] : 0;
+            var nanoAdjustment = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
             var secs = MathUtil.safeAdd(seconds, MathUtil.floorDiv(nanoAdjustment, LocalTime.NANOS_PER_SECOND));
             var nos = MathUtil.floorMod(nanoAdjustment, LocalTime.NANOS_PER_SECOND);
@@ -554,8 +554,8 @@
         };
 
         Duration._createSecondsNanos = function _createSecondsNanos() {
-            var seconds = arguments.length > 0 && arguments[0] !== undefined$6 ? arguments[0] : 0;
-            var nanoAdjustment = arguments.length > 1 && arguments[1] !== undefined$6 ? arguments[1] : 0;
+            var seconds = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+            var nanoAdjustment = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
             if ((seconds | nanoAdjustment) === 0) {
                 return Duration.ZERO;
@@ -2494,7 +2494,7 @@
         };
 
         EnumMap.prototype.containsKey = function containsKey(key) {
-            return this._map.hasOwnProperty(key.name()) && this.get(key) !== undefined$n;
+            return this._map.hasOwnProperty(key.name()) && this.get(key) !== undefined;
         };
 
         EnumMap.prototype.get = function get(key) {
@@ -2523,7 +2523,7 @@
         EnumMap.prototype.remove = function remove(key) {
             var keyName = key.name();
             var val = this._map[keyName];
-            this._map[keyName] = undefined$n;
+            this._map[keyName] = undefined;
             return val;
         };
 
@@ -2645,7 +2645,7 @@
                 for (var fieldName in this.fieldValues.keySet()) {
                     var field = ChronoField.byName(fieldName);
                     if (field) {
-                        if (this.fieldValues.get(field) !== undefined$p) {
+                        if (this.fieldValues.get(field) !== undefined) {
                             if (field.isDateBased()) {
                                 var val1 = void 0;
                                 try {
@@ -2885,7 +2885,7 @@
             if (field == null) {
                 return false;
             }
-            return this.fieldValues.containsKey(field) && this.fieldValues.get(field) !== undefined$p || this.date != null && this.date.isSupported(field) || this.time != null && this.time.isSupported(field);
+            return this.fieldValues.containsKey(field) && this.fieldValues.get(field) !== undefined || this.date != null && this.date.isSupported(field) || this.time != null && this.time.isSupported(field);
         };
 
         DateTimeBuilder.prototype.getLong = function getLong(field) {
@@ -3328,7 +3328,7 @@
         };
 
         function DateTimeFormatter(printerParser, locale, decimalStyle, resolverStyle, resolverFields) {
-            var chrono = arguments.length > 5 && arguments[5] !== undefined$u ? arguments[5] : IsoChronology.INSTANCE;
+            var chrono = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : IsoChronology.INSTANCE;
             var zone = arguments[6];
 
             _classCallCheck$s(this, DateTimeFormatter);
@@ -4514,7 +4514,7 @@
 
     var NumberPrinterParser = function () {
         function NumberPrinterParser(field, minWidth, maxWidth, signStyle) {
-            var subsequentWidth = arguments.length > 4 && arguments[4] !== undefined$C ? arguments[4] : 0;
+            var subsequentWidth = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
 
             _classCallCheck$A(this, NumberPrinterParser);
 
@@ -5254,8 +5254,8 @@
 
     var ZoneIdTreeMap = function () {
         function ZoneIdTreeMap() {
-            var length = arguments.length > 0 && arguments[0] !== undefined$J ? arguments[0] : 0;
-            var isLeaf = arguments.length > 1 && arguments[1] !== undefined$J ? arguments[1] : false;
+            var length = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+            var isLeaf = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
             _classCallCheck$H(this, ZoneIdTreeMap);
 
@@ -5443,7 +5443,7 @@
         };
 
         DateTimeFormatterBuilder.prototype.appendInstant = function appendInstant() {
-            var fractionalDigits = arguments.length > 0 && arguments[0] !== undefined$K ? arguments[0] : -2;
+            var fractionalDigits = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : -2;
 
             if (fractionalDigits < -2 || fractionalDigits > 9) {
                 throw new IllegalArgumentException('Invalid fractional digits: ' + fractionalDigits);
@@ -5894,7 +5894,7 @@
         };
 
         DateTimeFormatterBuilder.prototype.toFormatter = function toFormatter() {
-            var resolverStyle = arguments.length > 0 && arguments[0] !== undefined$K ? arguments[0] : ResolverStyle.SMART;
+            var resolverStyle = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : ResolverStyle.SMART;
 
             while (this._active._parent != null) {
                 this.optionalEnd();
@@ -7009,9 +7009,9 @@
         };
 
         Year.now = function now() {
-            var zoneIdOrClock = arguments.length > 0 && arguments[0] !== undefined$O ? arguments[0] : undefined$O;
+            var zoneIdOrClock = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
 
-            if (zoneIdOrClock === undefined$O) {
+            if (zoneIdOrClock === undefined) {
                 return Year.now0();
             } else if (zoneIdOrClock instanceof ZoneId) {
                 return Year.nowZoneId(zoneIdOrClock);
@@ -7070,7 +7070,7 @@
         };
 
         Year.parseTextFormatter = function parseTextFormatter(text) {
-            var formatter = arguments.length > 1 && arguments[1] !== undefined$O ? arguments[1] : PARSER$2;
+            var formatter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : PARSER$2;
 
             requireNonNull(text, 'text');
             requireNonNull(formatter, 'formatter');
@@ -7955,7 +7955,7 @@
         };
 
         ZonedDateTime.parse = function parse(text) {
-            var formatter = arguments.length > 1 && arguments[1] !== undefined$T ? arguments[1] : DateTimeFormatter.ISO_ZONED_DATE_TIME;
+            var formatter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : DateTimeFormatter.ISO_ZONED_DATE_TIME;
 
             requireNonNull(formatter, 'fromatter');
             return formatter.parse(text, ZonedDateTime.FROM);
@@ -8399,7 +8399,7 @@
         };
 
         LocalDate.ofInstant = function ofInstant(instant) {
-            var zone = arguments.length > 1 && arguments[1] !== undefined$U ? arguments[1] : ZoneId.systemDefault();
+            var zone = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ZoneId.systemDefault();
 
             requireNonNull(instant, 'instant');
             var offset = zone.rules().offset(instant);
@@ -8429,7 +8429,7 @@
         };
 
         LocalDate.ofEpochDay = function ofEpochDay() {
-            var epochDay = arguments.length > 0 && arguments[0] !== undefined$U ? arguments[0] : 0;
+            var epochDay = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
             var adjust = void 0,
                 adjustCycles = void 0,
@@ -8470,7 +8470,7 @@
         };
 
         LocalDate.parse = function parse(text) {
-            var formatter = arguments.length > 1 && arguments[1] !== undefined$U ? arguments[1] : DateTimeFormatter.ISO_LOCAL_DATE;
+            var formatter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : DateTimeFormatter.ISO_LOCAL_DATE;
 
             assert(formatter != null, 'formatter', NullPointerException);
             return formatter.parse(text, LocalDate.FROM);
@@ -8936,8 +8936,8 @@
         };
 
         LocalDate.prototype.atTime4 = function atTime4(hour, minute) {
-            var second = arguments.length > 2 && arguments[2] !== undefined$U ? arguments[2] : 0;
-            var nanoOfSecond = arguments.length > 3 && arguments[3] !== undefined$U ? arguments[3] : 0;
+            var second = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+            var nanoOfSecond = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
 
             return this.atTime1(LocalTime.of(hour, minute, second, nanoOfSecond));
         };
@@ -9193,13 +9193,13 @@
         };
 
         LocalDateTime.ofNumbers = function ofNumbers() {
-            var year = arguments.length > 0 && arguments[0] !== undefined$W ? arguments[0] : 0;
-            var month = arguments.length > 1 && arguments[1] !== undefined$W ? arguments[1] : 0;
-            var dayOfMonth = arguments.length > 2 && arguments[2] !== undefined$W ? arguments[2] : 0;
-            var hour = arguments.length > 3 && arguments[3] !== undefined$W ? arguments[3] : 0;
-            var minute = arguments.length > 4 && arguments[4] !== undefined$W ? arguments[4] : 0;
-            var second = arguments.length > 5 && arguments[5] !== undefined$W ? arguments[5] : 0;
-            var nanoOfSecond = arguments.length > 6 && arguments[6] !== undefined$W ? arguments[6] : 0;
+            var year = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+            var month = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+            var dayOfMonth = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+            var hour = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+            var minute = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
+            var second = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
+            var nanoOfSecond = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 0;
 
             var date = LocalDate.of(year, month, dayOfMonth);
             var time = LocalTime.of(hour, minute, second, nanoOfSecond);
@@ -9213,7 +9213,7 @@
         };
 
         LocalDateTime.ofInstant = function ofInstant(instant) {
-            var zone = arguments.length > 1 && arguments[1] !== undefined$W ? arguments[1] : ZoneId.systemDefault();
+            var zone = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ZoneId.systemDefault();
 
             requireNonNull(instant, 'instant');
             requireInstance(instant, Instant, 'instant');
@@ -9223,8 +9223,8 @@
         };
 
         LocalDateTime.ofEpochSecond = function ofEpochSecond() {
-            var epochSecond = arguments.length > 0 && arguments[0] !== undefined$W ? arguments[0] : 0;
-            var nanoOfSecond = arguments.length > 1 && arguments[1] !== undefined$W ? arguments[1] : 0;
+            var epochSecond = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+            var nanoOfSecond = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
             var offset = arguments[2];
 
             if (arguments.length === 2 && nanoOfSecond instanceof ZoneOffset) {
@@ -9257,7 +9257,7 @@
         };
 
         LocalDateTime.parse = function parse(text) {
-            var formatter = arguments.length > 1 && arguments[1] !== undefined$W ? arguments[1] : DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+            var formatter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
             requireNonNull(formatter, 'formatter');
             return formatter.parse(text, LocalDateTime.FROM);
@@ -9728,14 +9728,14 @@
         };
 
         LocalTime._now = function _now() {
-            var clock = arguments.length > 0 && arguments[0] !== undefined$X ? arguments[0] : Clock.systemDefaultZone();
+            var clock = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Clock.systemDefaultZone();
 
             requireNonNull(clock, 'clock');
             return LocalTime.ofInstant(clock.instant(), clock.zone());
         };
 
         LocalTime.ofInstant = function ofInstant(instant) {
-            var zone = arguments.length > 1 && arguments[1] !== undefined$X ? arguments[1] : ZoneId.systemDefault();
+            var zone = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ZoneId.systemDefault();
 
             var offset = zone.rules().offset(instant);
             var secsOfDay = MathUtil.intMod(instant.epochSecond(), LocalTime.SECONDS_PER_DAY);
@@ -9751,8 +9751,8 @@
         };
 
         LocalTime.ofSecondOfDay = function ofSecondOfDay() {
-            var secondOfDay = arguments.length > 0 && arguments[0] !== undefined$X ? arguments[0] : 0;
-            var nanoOfSecond = arguments.length > 1 && arguments[1] !== undefined$X ? arguments[1] : 0;
+            var secondOfDay = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+            var nanoOfSecond = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
             ChronoField.SECOND_OF_DAY.checkValidValue(secondOfDay);
             ChronoField.NANO_OF_SECOND.checkValidValue(nanoOfSecond);
@@ -9764,7 +9764,7 @@
         };
 
         LocalTime.ofNanoOfDay = function ofNanoOfDay() {
-            var nanoOfDay = arguments.length > 0 && arguments[0] !== undefined$X ? arguments[0] : 0;
+            var nanoOfDay = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
             ChronoField.NANO_OF_DAY.checkValidValue(nanoOfDay);
             var hours = MathUtil.intDiv(nanoOfDay, LocalTime.NANOS_PER_HOUR);
@@ -9786,17 +9786,17 @@
         };
 
         LocalTime.parse = function parse(text) {
-            var formatter = arguments.length > 1 && arguments[1] !== undefined$X ? arguments[1] : DateTimeFormatter.ISO_LOCAL_TIME;
+            var formatter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : DateTimeFormatter.ISO_LOCAL_TIME;
 
             requireNonNull(formatter, 'formatter');
             return formatter.parse(text, LocalTime.FROM);
         };
 
         function LocalTime() {
-            var hour = arguments.length > 0 && arguments[0] !== undefined$X ? arguments[0] : 0;
-            var minute = arguments.length > 1 && arguments[1] !== undefined$X ? arguments[1] : 0;
-            var second = arguments.length > 2 && arguments[2] !== undefined$X ? arguments[2] : 0;
-            var nanoOfSecond = arguments.length > 3 && arguments[3] !== undefined$X ? arguments[3] : 0;
+            var hour = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+            var minute = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+            var second = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+            var nanoOfSecond = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
 
             _classCallCheck$V(this, LocalTime);
 
@@ -9975,7 +9975,7 @@
         };
 
         LocalTime.prototype.withHour = function withHour() {
-            var hour = arguments.length > 0 && arguments[0] !== undefined$X ? arguments[0] : 0;
+            var hour = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
             if (this._hour === hour) {
                 return this;
@@ -9984,7 +9984,7 @@
         };
 
         LocalTime.prototype.withMinute = function withMinute() {
-            var minute = arguments.length > 0 && arguments[0] !== undefined$X ? arguments[0] : 0;
+            var minute = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
             if (this._minute === minute) {
                 return this;
@@ -9993,7 +9993,7 @@
         };
 
         LocalTime.prototype.withSecond = function withSecond() {
-            var second = arguments.length > 0 && arguments[0] !== undefined$X ? arguments[0] : 0;
+            var second = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
             if (this._second === second) {
                 return this;
@@ -10002,7 +10002,7 @@
         };
 
         LocalTime.prototype.withNano = function withNano() {
-            var nanoOfSecond = arguments.length > 0 && arguments[0] !== undefined$X ? arguments[0] : 0;
+            var nanoOfSecond = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
             if (this._nano === nanoOfSecond) {
                 return this;
@@ -10352,13 +10352,13 @@
         _inherits$v(Instant, _Temporal);
 
         Instant.now = function now() {
-            var clock = arguments.length > 0 && arguments[0] !== undefined$Y ? arguments[0] : Clock.systemUTC();
+            var clock = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Clock.systemUTC();
 
             return clock.instant();
         };
 
         Instant.ofEpochSecond = function ofEpochSecond(epochSecond) {
-            var nanoAdjustment = arguments.length > 1 && arguments[1] !== undefined$Y ? arguments[1] : 0;
+            var nanoAdjustment = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
             var secs = epochSecond + MathUtil.floorDiv(nanoAdjustment, LocalTime.NANOS_PER_SECOND);
             var nos = MathUtil.floorMod(nanoAdjustment, LocalTime.NANOS_PER_SECOND);
@@ -11384,7 +11384,7 @@
         _inherits$z(NativeJsTemporal, _TemporalAccessor);
 
         function NativeJsTemporal(date) {
-            var zone = arguments.length > 1 && arguments[1] !== undefined$16 ? arguments[1] : ZoneId.systemDefault();
+            var zone = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ZoneId.systemDefault();
 
             _classCallCheck$12(this, NativeJsTemporal);
 
