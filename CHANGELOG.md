@@ -3,6 +3,8 @@ Changelog
 
 ### next
 
+### 1.9.0
+
 #### public API
 
  * add OffsetClock and add withZone and equals to other Clock impls

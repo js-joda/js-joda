@@ -1,4 +1,4 @@
-//! @version js-joda - 1.8.2
+//! @version js-joda - 1.9.0
 //! @copyright (c) 2015-present, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -25,6 +25,9 @@
             }
             this.message = message;
             init && init.apply(this, arguments);
+            this.toString = function () {
+                return this.name + ': ' + this.message;
+            };
         }
         E.prototype = new superErrorClass();
         E.prototype.name = name;
@@ -418,7 +421,7 @@
         };
 
         Duration.ofSeconds = function ofSeconds(seconds) {
-            var nanoAdjustment = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+            var nanoAdjustment = arguments.length > 1 && arguments[1] !== undefined$6 ? arguments[1] : 0;
 
             var secs = MathUtil.safeAdd(seconds, MathUtil.floorDiv(nanoAdjustment, LocalTime.NANOS_PER_SECOND));
             var nos = MathUtil.floorMod(nanoAdjustment, LocalTime.NANOS_PER_SECOND);
@@ -551,8 +554,8 @@
         };
 
         Duration._createSecondsNanos = function _createSecondsNanos() {
-            var seconds = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-            var nanoAdjustment = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+            var seconds = arguments.length > 0 && arguments[0] !== undefined$6 ? arguments[0] : 0;
+            var nanoAdjustment = arguments.length > 1 && arguments[1] !== undefined$6 ? arguments[1] : 0;
 
             if ((seconds | nanoAdjustment) === 0) {
                 return Duration.ZERO;
@@ -1275,7 +1278,7 @@
         ChronoField.OFFSET_SECONDS = new ChronoField('OffsetSeconds', ChronoUnit.SECONDS, ChronoUnit.FOREVER, ValueRange.of(-18 * 3600, 18 * 3600));
     }
 
-    function _classCallCheck$10(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$a(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     /**
      * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -1285,7 +1288,7 @@
 
     var TemporalQueries = function () {
       function TemporalQueries() {
-        _classCallCheck$10(this, TemporalQueries);
+        _classCallCheck$a(this, TemporalQueries);
       }
 
       TemporalQueries.zoneId = function zoneId() {
@@ -1319,11 +1322,11 @@
       return TemporalQueries;
     }();
 
-    function _classCallCheck$11(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$b(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var TemporalAccessor = function () {
         function TemporalAccessor() {
-            _classCallCheck$11(this, TemporalAccessor);
+            _classCallCheck$b(this, TemporalAccessor);
         }
 
         TemporalAccessor.prototype.query = function query(_query) {
@@ -1350,7 +1353,7 @@
         return TemporalAccessor;
     }();
 
-    function _classCallCheck$12(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$c(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     function _possibleConstructorReturn$3(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
@@ -1360,7 +1363,7 @@
       _inherits$3(Temporal, _TemporalAccessor);
 
       function Temporal() {
-        _classCallCheck$12(this, Temporal);
+        _classCallCheck$c(this, Temporal);
 
         return _possibleConstructorReturn$3(this, _TemporalAccessor.apply(this, arguments));
       }
@@ -1368,7 +1371,7 @@
       return Temporal;
     }(TemporalAccessor);
 
-    function _classCallCheck$13(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$d(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     function _possibleConstructorReturn$4(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
@@ -1378,7 +1381,7 @@
       _inherits$4(TemporalQuery, _Enum);
 
       function TemporalQuery() {
-        _classCallCheck$13(this, TemporalQuery);
+        _classCallCheck$d(this, TemporalQuery);
 
         return _possibleConstructorReturn$4(this, _Enum.apply(this, arguments));
       }
@@ -1395,7 +1398,7 @@
         _inherits$4(ExtendedTemporalQuery, _TemporalQuery);
 
         function ExtendedTemporalQuery() {
-          _classCallCheck$13(this, ExtendedTemporalQuery);
+          _classCallCheck$d(this, ExtendedTemporalQuery);
 
           return _possibleConstructorReturn$4(this, _TemporalQuery.apply(this, arguments));
         }
@@ -1407,7 +1410,7 @@
       return new ExtendedTemporalQuery(name);
     }
 
-    function _classCallCheck$14(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$e(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     function _possibleConstructorReturn$5(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
@@ -1417,7 +1420,7 @@
         _inherits$5(DayOfWeek, _Temporal);
 
         function DayOfWeek(ordinal, name) {
-            _classCallCheck$14(this, DayOfWeek);
+            _classCallCheck$e(this, DayOfWeek);
 
             var _this = _possibleConstructorReturn$5(this, _Temporal.call(this));
 
@@ -1569,11 +1572,11 @@
         ENUMS = [DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY, DayOfWeek.SATURDAY, DayOfWeek.SUNDAY];
     }
 
-    function _classCallCheck$15(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$f(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var StringUtil = function () {
         function StringUtil() {
-            _classCallCheck$15(this, StringUtil);
+            _classCallCheck$f(this, StringUtil);
         }
 
         StringUtil.startsWith = function startsWith(text, pattern) {
@@ -1598,11 +1601,11 @@
         return StringUtil;
     }();
 
-    function _classCallCheck$16(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$g(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var ZoneId = function () {
         function ZoneId() {
-            _classCallCheck$16(this, ZoneId);
+            _classCallCheck$g(this, ZoneId);
         }
 
         ZoneId.systemDefault = function systemDefault() {
@@ -1671,11 +1674,11 @@
 
     function _inherits$6(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-    function _classCallCheck$17(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$h(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var ZoneRules = function () {
         function ZoneRules() {
-            _classCallCheck$17(this, ZoneRules);
+            _classCallCheck$h(this, ZoneRules);
         }
 
         ZoneRules.of = function of(offset) {
@@ -1762,7 +1765,7 @@
         _inherits$6(Fixed, _ZoneRules);
 
         function Fixed(offset) {
-            _classCallCheck$17(this, Fixed);
+            _classCallCheck$h(this, Fixed);
 
             var _this = _possibleConstructorReturn$6(this, _ZoneRules.call(this));
 
@@ -1843,7 +1846,7 @@
         return Fixed;
     }(ZoneRules);
 
-    function _classCallCheck$18(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$i(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     function _possibleConstructorReturn$7(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
@@ -1856,7 +1859,7 @@
         _inherits$7(ZoneOffset, _ZoneId);
 
         function ZoneOffset(totalSeconds) {
-            _classCallCheck$18(this, ZoneOffset);
+            _classCallCheck$i(this, ZoneOffset);
 
             var _this = _possibleConstructorReturn$7(this, _ZoneId.call(this));
 
@@ -2087,7 +2090,7 @@
         ZoneOffset.MAX = ZoneOffset.ofTotalSeconds(ZoneOffset.MAX_SECONDS);
     }
 
-    function _classCallCheck$19(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$j(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     function _possibleConstructorReturn$8(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
@@ -2099,7 +2102,7 @@
         _inherits$8(Period, _TemporalAmount);
 
         function Period(years, months, days) {
-            _classCallCheck$19(this, Period);
+            _classCallCheck$j(this, Period);
 
             var _this = _possibleConstructorReturn$8(this, _TemporalAmount.call(this));
 
@@ -2434,7 +2437,7 @@
         Period.ofDays(0);
     }
 
-    function _classCallCheck$20(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$k(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     /*
      * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -2444,7 +2447,7 @@
 
     var ParsePosition = function () {
         function ParsePosition(index) {
-            _classCallCheck$20(this, ParsePosition);
+            _classCallCheck$k(this, ParsePosition);
 
             this._index = index;
             this._errorIndex = -1;
@@ -2469,7 +2472,7 @@
         return ParsePosition;
     }();
 
-    function _classCallCheck$21(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$l(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     /*
      * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -2478,7 +2481,7 @@
 
     var EnumMap = function () {
         function EnumMap() {
-            _classCallCheck$21(this, EnumMap);
+            _classCallCheck$l(this, EnumMap);
 
             this._map = {};
         }
@@ -2491,7 +2494,7 @@
         };
 
         EnumMap.prototype.containsKey = function containsKey(key) {
-            return this._map.hasOwnProperty(key.name()) && this.get(key) !== undefined;
+            return this._map.hasOwnProperty(key.name()) && this.get(key) !== undefined$n;
         };
 
         EnumMap.prototype.get = function get(key) {
@@ -2520,7 +2523,7 @@
         EnumMap.prototype.remove = function remove(key) {
             var keyName = key.name();
             var val = this._map[keyName];
-            this._map[keyName] = undefined;
+            this._map[keyName] = undefined$n;
             return val;
         };
 
@@ -2535,7 +2538,7 @@
         return EnumMap;
     }();
 
-    function _classCallCheck$22(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$m(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     function _possibleConstructorReturn$9(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
@@ -2545,7 +2548,7 @@
       _inherits$9(ResolverStyle, _Enum);
 
       function ResolverStyle() {
-        _classCallCheck$22(this, ResolverStyle);
+        _classCallCheck$m(this, ResolverStyle);
 
         return _possibleConstructorReturn$9(this, _Enum.apply(this, arguments));
       }
@@ -2559,14 +2562,14 @@
 
     ResolverStyle.LENIENT = new ResolverStyle('LENIENT');
 
-    function _classCallCheck$23(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$n(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function _possibleConstructorReturn$10(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$a(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$10(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$a(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var DateTimeBuilder = function (_Temporal) {
-        _inherits$10(DateTimeBuilder, _Temporal);
+        _inherits$a(DateTimeBuilder, _Temporal);
 
         DateTimeBuilder.create = function create(field, value) {
             var dtb = new DateTimeBuilder();
@@ -2575,9 +2578,9 @@
         };
 
         function DateTimeBuilder() {
-            _classCallCheck$23(this, DateTimeBuilder);
+            _classCallCheck$n(this, DateTimeBuilder);
 
-            var _this = _possibleConstructorReturn$10(this, _Temporal.call(this));
+            var _this = _possibleConstructorReturn$a(this, _Temporal.call(this));
 
             _this.fieldValues = new EnumMap();
 
@@ -2641,8 +2644,8 @@
                 this._addObject(date);
                 for (var fieldName in this.fieldValues.keySet()) {
                     var field = ChronoField.byName(fieldName);
-                    if (field !== null) {
-                        if (this.fieldValues.get(field) !== undefined) {
+                    if (field) {
+                        if (this.fieldValues.get(field) !== undefined$p) {
                             if (field.isDateBased()) {
                                 var val1 = void 0;
                                 try {
@@ -2669,7 +2672,7 @@
             if (this.fieldValues.containsKey(ChronoField.CLOCK_HOUR_OF_DAY)) {
                 var ch = this.fieldValues.remove(ChronoField.CLOCK_HOUR_OF_DAY);
                 if (resolverStyle !== ResolverStyle.LENIENT) {
-                    if (resolverStyle === ResolverStyle.SMART && ch === 0) {} else {
+                    if (resolverStyle === ResolverStyle.SMART && ch === 0) ; else {
                         ChronoField.CLOCK_HOUR_OF_DAY.checkValidValue(ch);
                     }
                 }
@@ -2678,7 +2681,7 @@
             if (this.fieldValues.containsKey(ChronoField.CLOCK_HOUR_OF_AMPM)) {
                 var _ch = this.fieldValues.remove(ChronoField.CLOCK_HOUR_OF_AMPM);
                 if (resolverStyle !== ResolverStyle.LENIENT) {
-                    if (resolverStyle === ResolverStyle.SMART && _ch === 0) {} else {
+                    if (resolverStyle === ResolverStyle.SMART && _ch === 0) ; else {
                         ChronoField.CLOCK_HOUR_OF_AMPM.checkValidValue(_ch);
                     }
                 }
@@ -2882,7 +2885,7 @@
             if (field == null) {
                 return false;
             }
-            return this.fieldValues.containsKey(field) && this.fieldValues.get(field) !== undefined || this.date != null && this.date.isSupported(field) || this.time != null && this.time.isSupported(field);
+            return this.fieldValues.containsKey(field) && this.fieldValues.get(field) !== undefined$p || this.date != null && this.date.isSupported(field) || this.time != null && this.time.isSupported(field);
         };
 
         DateTimeBuilder.prototype.getLong = function getLong(field) {
@@ -2921,15 +2924,15 @@
         return DateTimeBuilder;
     }(Temporal);
 
-    function _possibleConstructorReturn$11(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$b(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$11(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$b(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-    function _classCallCheck$24(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$o(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var DateTimeParseContext = function () {
         function DateTimeParseContext() {
-            _classCallCheck$24(this, DateTimeParseContext);
+            _classCallCheck$o(this, DateTimeParseContext);
 
             if (arguments.length === 1) {
                 if (arguments[0] instanceof DateTimeParseContext) {
@@ -3085,12 +3088,12 @@
     }();
 
     var Parsed = function (_Temporal) {
-        _inherits$11(Parsed, _Temporal);
+        _inherits$b(Parsed, _Temporal);
 
         function Parsed(dateTimeParseContext) {
-            _classCallCheck$24(this, Parsed);
+            _classCallCheck$o(this, Parsed);
 
-            var _this = _possibleConstructorReturn$11(this, _Temporal.call(this));
+            var _this = _possibleConstructorReturn$b(this, _Temporal.call(this));
 
             _this.chrono = null;
             _this.zone = null;
@@ -3151,11 +3154,11 @@
         return Parsed;
     }(Temporal);
 
-    function _classCallCheck$25(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$p(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var DateTimePrintContext = function () {
         function DateTimePrintContext(temporal, localeOrFormatter, symbols) {
-            _classCallCheck$25(this, DateTimePrintContext);
+            _classCallCheck$p(this, DateTimePrintContext);
 
             if (arguments.length === 2 && arguments[1] instanceof DateTimeFormatter) {
                 this._temporal = DateTimePrintContext.adjust(temporal, localeOrFormatter);
@@ -3223,19 +3226,19 @@
         return DateTimePrintContext;
     }();
 
-    function _classCallCheck$26(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$q(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function _possibleConstructorReturn$12(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$c(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$12(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$c(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var SignStyle = function (_Enum) {
-        _inherits$12(SignStyle, _Enum);
+        _inherits$c(SignStyle, _Enum);
 
         function SignStyle() {
-            _classCallCheck$26(this, SignStyle);
+            _classCallCheck$q(this, SignStyle);
 
-            return _possibleConstructorReturn$12(this, _Enum.apply(this, arguments));
+            return _possibleConstructorReturn$c(this, _Enum.apply(this, arguments));
         }
 
         SignStyle.prototype.parse = function parse(positive, strict, fixedWidth) {
@@ -3259,7 +3262,7 @@
     SignStyle.EXCEEDS_PAD = new SignStyle('EXCEEDS_PAD');
     SignStyle.NOT_NEGATIVE = new SignStyle('NOT_NEGATIVE');
 
-    function _classCallCheck$27(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$r(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     /*
      * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -3268,7 +3271,7 @@
 
     var StringBuilder = function () {
         function StringBuilder() {
-            _classCallCheck$27(this, StringBuilder);
+            _classCallCheck$r(this, StringBuilder);
 
             this._str = '';
         }
@@ -3309,7 +3312,7 @@
         return StringBuilder;
     }();
 
-    function _classCallCheck$28(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$s(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var DateTimeFormatter = function () {
         DateTimeFormatter.parsedExcessDays = function parsedExcessDays() {
@@ -3325,10 +3328,10 @@
         };
 
         function DateTimeFormatter(printerParser, locale, decimalStyle, resolverStyle, resolverFields) {
-            var chrono = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : IsoChronology.INSTANCE;
+            var chrono = arguments.length > 5 && arguments[5] !== undefined$u ? arguments[5] : IsoChronology.INSTANCE;
             var zone = arguments[6];
 
-            _classCallCheck$28(this, DateTimeFormatter);
+            _classCallCheck$s(this, DateTimeFormatter);
 
             assert(printerParser != null);
             assert(decimalStyle != null);
@@ -3432,7 +3435,7 @@
         DateTimeFormatter.prototype._createError = function _createError(text, ex) {
             var abbr = '';
             if (text.length > 64) {
-                abbr = text.subString(0, 64) + '...';
+                abbr = text.substring(0, 64) + '...';
             } else {
                 abbr = text;
             }
@@ -3519,19 +3522,19 @@
         });
     }
 
-    function _classCallCheck$29(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$t(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function _possibleConstructorReturn$13(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$d(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$13(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$d(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var ChronoLocalDate = function (_Temporal) {
-        _inherits$13(ChronoLocalDate, _Temporal);
+        _inherits$d(ChronoLocalDate, _Temporal);
 
         function ChronoLocalDate() {
-            _classCallCheck$29(this, ChronoLocalDate);
+            _classCallCheck$t(this, ChronoLocalDate);
 
-            return _possibleConstructorReturn$13(this, _Temporal.apply(this, arguments));
+            return _possibleConstructorReturn$d(this, _Temporal.apply(this, arguments));
         }
 
         ChronoLocalDate.prototype.isSupported = function isSupported(fieldOrUnit) {
@@ -3569,25 +3572,25 @@
         return ChronoLocalDate;
     }(Temporal);
 
-    function _possibleConstructorReturn$14(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$e(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$14(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$e(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-    function _classCallCheck$30(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$u(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var IsoFields = function IsoFields() {
-        _classCallCheck$30(this, IsoFields);
+        _classCallCheck$u(this, IsoFields);
     };
 
     var QUARTER_DAYS = [0, 90, 181, 273, 0, 91, 182, 274];
 
     var Field = function (_TemporalField) {
-        _inherits$14(Field, _TemporalField);
+        _inherits$e(Field, _TemporalField);
 
         function Field() {
-            _classCallCheck$30(this, Field);
+            _classCallCheck$u(this, Field);
 
-            return _possibleConstructorReturn$14(this, _TemporalField.apply(this, arguments));
+            return _possibleConstructorReturn$e(this, _TemporalField.apply(this, arguments));
         }
 
         Field.prototype.isDateBased = function isDateBased() {
@@ -3672,12 +3675,12 @@
     }(TemporalField);
 
     var DAY_OF_QUARTER_FIELD = function (_Field) {
-        _inherits$14(DAY_OF_QUARTER_FIELD, _Field);
+        _inherits$e(DAY_OF_QUARTER_FIELD, _Field);
 
         function DAY_OF_QUARTER_FIELD() {
-            _classCallCheck$30(this, DAY_OF_QUARTER_FIELD);
+            _classCallCheck$u(this, DAY_OF_QUARTER_FIELD);
 
-            return _possibleConstructorReturn$14(this, _Field.apply(this, arguments));
+            return _possibleConstructorReturn$e(this, _Field.apply(this, arguments));
         }
 
         DAY_OF_QUARTER_FIELD.prototype.toString = function toString() {
@@ -3771,12 +3774,12 @@
     }(Field);
 
     var QUARTER_OF_YEAR_FIELD = function (_Field2) {
-        _inherits$14(QUARTER_OF_YEAR_FIELD, _Field2);
+        _inherits$e(QUARTER_OF_YEAR_FIELD, _Field2);
 
         function QUARTER_OF_YEAR_FIELD() {
-            _classCallCheck$30(this, QUARTER_OF_YEAR_FIELD);
+            _classCallCheck$u(this, QUARTER_OF_YEAR_FIELD);
 
-            return _possibleConstructorReturn$14(this, _Field2.apply(this, arguments));
+            return _possibleConstructorReturn$e(this, _Field2.apply(this, arguments));
         }
 
         QUARTER_OF_YEAR_FIELD.prototype.toString = function toString() {
@@ -3821,12 +3824,12 @@
     }(Field);
 
     var WEEK_OF_WEEK_BASED_YEAR_FIELD = function (_Field3) {
-        _inherits$14(WEEK_OF_WEEK_BASED_YEAR_FIELD, _Field3);
+        _inherits$e(WEEK_OF_WEEK_BASED_YEAR_FIELD, _Field3);
 
         function WEEK_OF_WEEK_BASED_YEAR_FIELD() {
-            _classCallCheck$30(this, WEEK_OF_WEEK_BASED_YEAR_FIELD);
+            _classCallCheck$u(this, WEEK_OF_WEEK_BASED_YEAR_FIELD);
 
-            return _possibleConstructorReturn$14(this, _Field3.apply(this, arguments));
+            return _possibleConstructorReturn$e(this, _Field3.apply(this, arguments));
         }
 
         WEEK_OF_WEEK_BASED_YEAR_FIELD.prototype.toString = function toString() {
@@ -3913,12 +3916,12 @@
     }(Field);
 
     var WEEK_BASED_YEAR_FIELD = function (_Field4) {
-        _inherits$14(WEEK_BASED_YEAR_FIELD, _Field4);
+        _inherits$e(WEEK_BASED_YEAR_FIELD, _Field4);
 
         function WEEK_BASED_YEAR_FIELD() {
-            _classCallCheck$30(this, WEEK_BASED_YEAR_FIELD);
+            _classCallCheck$u(this, WEEK_BASED_YEAR_FIELD);
 
-            return _possibleConstructorReturn$14(this, _Field4.apply(this, arguments));
+            return _possibleConstructorReturn$e(this, _Field4.apply(this, arguments));
         }
 
         WEEK_BASED_YEAR_FIELD.prototype.toString = function toString() {
@@ -3973,12 +3976,12 @@
     }(Field);
 
     var Unit = function (_TemporalUnit) {
-        _inherits$14(Unit, _TemporalUnit);
+        _inherits$e(Unit, _TemporalUnit);
 
         function Unit(name, estimatedDuration) {
-            _classCallCheck$30(this, Unit);
+            _classCallCheck$u(this, Unit);
 
-            var _this6 = _possibleConstructorReturn$14(this, _TemporalUnit.call(this));
+            var _this6 = _possibleConstructorReturn$e(this, _TemporalUnit.call(this));
 
             _this6._name = name;
             _this6._duration = estimatedDuration;
@@ -4069,7 +4072,7 @@
         };
     }
 
-    function _classCallCheck$31(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$v(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     /**
      * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -4079,7 +4082,7 @@
 
     var DecimalStyle = function () {
         function DecimalStyle(zeroChar, positiveSignChar, negativeSignChar, decimalPointChar) {
-            _classCallCheck$31(this, DecimalStyle);
+            _classCallCheck$v(this, DecimalStyle);
 
             this._zeroDigit = zeroChar;
             this._zeroDigitCharCode = zeroChar.charCodeAt(0);
@@ -4180,19 +4183,19 @@
 
     DecimalStyle.STANDARD = new DecimalStyle('0', '+', '-', '.');
 
-    function _classCallCheck$32(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$w(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function _possibleConstructorReturn$15(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$f(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$15(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$f(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var TextStyle = function (_Enum) {
-        _inherits$15(TextStyle, _Enum);
+        _inherits$f(TextStyle, _Enum);
 
         function TextStyle() {
-            _classCallCheck$32(this, TextStyle);
+            _classCallCheck$w(this, TextStyle);
 
-            return _possibleConstructorReturn$15(this, _Enum.apply(this, arguments));
+            return _possibleConstructorReturn$f(this, _Enum.apply(this, arguments));
         }
 
         TextStyle.prototype.isStandalone = function isStandalone() {
@@ -4247,11 +4250,11 @@
 
     TextStyle.NARROW_STANDALONE = new TextStyle('NARROW_STANDALONE');
 
-    function _classCallCheck$33(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$x(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var CharLiteralPrinterParser = function () {
         function CharLiteralPrinterParser(literal) {
-            _classCallCheck$33(this, CharLiteralPrinterParser);
+            _classCallCheck$x(this, CharLiteralPrinterParser);
 
             if (literal.length > 1) {
                 throw new IllegalArgumentException('invalid literal, too long: "' + literal + '"');
@@ -4286,7 +4289,7 @@
         return CharLiteralPrinterParser;
     }();
 
-    function _classCallCheck$34(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$y(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     /**
      * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -4296,7 +4299,7 @@
 
     var CompositePrinterParser = function () {
         function CompositePrinterParser(printerParsers, optional) {
-            _classCallCheck$34(this, CompositePrinterParser);
+            _classCallCheck$y(this, CompositePrinterParser);
 
             this._printerParsers = printerParsers;
             this._optional = optional;
@@ -4372,11 +4375,11 @@
         return CompositePrinterParser;
     }();
 
-    function _classCallCheck$35(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$z(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var FractionPrinterParser = function () {
         function FractionPrinterParser(field, minWidth, maxWidth, decimalPoint) {
-            _classCallCheck$35(this, FractionPrinterParser);
+            _classCallCheck$z(this, FractionPrinterParser);
 
             requireNonNull(field, 'field');
             if (field.range().isFixed() === false) {
@@ -4499,11 +4502,11 @@
         return FractionPrinterParser;
     }();
 
-    function _possibleConstructorReturn$16(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$g(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$16(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$g(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-    function _classCallCheck$36(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$A(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var MAX_WIDTH = 15;
 
@@ -4511,9 +4514,9 @@
 
     var NumberPrinterParser = function () {
         function NumberPrinterParser(field, minWidth, maxWidth, signStyle) {
-            var subsequentWidth = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
+            var subsequentWidth = arguments.length > 4 && arguments[4] !== undefined$C ? arguments[4] : 0;
 
-            _classCallCheck$36(this, NumberPrinterParser);
+            _classCallCheck$A(this, NumberPrinterParser);
 
             this._field = field;
             this._minWidth = minWidth;
@@ -4700,12 +4703,12 @@
     }();
 
     var ReducedPrinterParser = function (_NumberPrinterParser) {
-        _inherits$16(ReducedPrinterParser, _NumberPrinterParser);
+        _inherits$g(ReducedPrinterParser, _NumberPrinterParser);
 
         function ReducedPrinterParser(field, width, maxWidth, baseValue, baseDate) {
-            _classCallCheck$36(this, ReducedPrinterParser);
+            _classCallCheck$A(this, ReducedPrinterParser);
 
-            var _this = _possibleConstructorReturn$16(this, _NumberPrinterParser.call(this, field, width, maxWidth, SignStyle.NOT_NEGATIVE));
+            var _this = _possibleConstructorReturn$g(this, _NumberPrinterParser.call(this, field, width, maxWidth, SignStyle.NOT_NEGATIVE));
 
             if (width < 1 || width > 10) {
                 throw new IllegalArgumentException('The width must be from 1 to 10 inclusive but was ' + width);
@@ -4791,13 +4794,13 @@
         return ReducedPrinterParser;
     }(NumberPrinterParser);
 
-    function _classCallCheck$37(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$B(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var PATTERNS = ['+HH', '+HHmm', '+HH:mm', '+HHMM', '+HH:MM', '+HHMMss', '+HH:MM:ss', '+HHMMSS', '+HH:MM:SS'];
 
     var OffsetIdPrinterParser = function () {
         function OffsetIdPrinterParser(noOffsetText, pattern) {
-            _classCallCheck$37(this, OffsetIdPrinterParser);
+            _classCallCheck$B(this, OffsetIdPrinterParser);
 
             requireNonNull(noOffsetText, 'noOffsetText');
             requireNonNull(pattern, 'pattern');
@@ -4916,11 +4919,11 @@
     OffsetIdPrinterParser.INSTANCE_ID = new OffsetIdPrinterParser('Z', '+HH:MM:ss');
     OffsetIdPrinterParser.PATTERNS = PATTERNS;
 
-    function _classCallCheck$38(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$C(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var PadPrinterParserDecorator = function () {
         function PadPrinterParserDecorator(printerParser, padWidth, padChar) {
-            _classCallCheck$38(this, PadPrinterParserDecorator);
+            _classCallCheck$C(this, PadPrinterParserDecorator);
 
             this._printerParser = printerParser;
             this._padWidth = padWidth;
@@ -4977,19 +4980,19 @@
         return PadPrinterParserDecorator;
     }();
 
-    function _classCallCheck$39(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$D(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function _possibleConstructorReturn$17(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$h(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$17(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$h(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var SettingsParser = function (_Enum) {
-        _inherits$17(SettingsParser, _Enum);
+        _inherits$h(SettingsParser, _Enum);
 
         function SettingsParser() {
-            _classCallCheck$39(this, SettingsParser);
+            _classCallCheck$D(this, SettingsParser);
 
-            return _possibleConstructorReturn$17(this, _Enum.apply(this, arguments));
+            return _possibleConstructorReturn$h(this, _Enum.apply(this, arguments));
         }
 
         SettingsParser.prototype.print = function print() {
@@ -5031,11 +5034,11 @@
     SettingsParser.STRICT = new SettingsParser('STRICT');
     SettingsParser.LENIENT = new SettingsParser('LENIENT');
 
-    function _classCallCheck$40(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$E(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var StringLiteralPrinterParser = function () {
         function StringLiteralPrinterParser(literal) {
-            _classCallCheck$40(this, StringLiteralPrinterParser);
+            _classCallCheck$E(this, StringLiteralPrinterParser);
 
             this._literal = literal;
         }
@@ -5063,11 +5066,11 @@
         return StringLiteralPrinterParser;
     }();
 
-    function _classCallCheck$41(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$F(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var ZoneRulesProvider = function () {
       function ZoneRulesProvider() {
-        _classCallCheck$41(this, ZoneRulesProvider);
+        _classCallCheck$F(this, ZoneRulesProvider);
       }
 
       ZoneRulesProvider.getRules = function getRules(zoneId) {
@@ -5081,14 +5084,14 @@
       return ZoneRulesProvider;
     }();
 
-    function _classCallCheck$42(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$G(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function _possibleConstructorReturn$18(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$i(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$18(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$i(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var ZoneRegion = function (_ZoneId) {
-      _inherits$18(ZoneRegion, _ZoneId);
+      _inherits$i(ZoneRegion, _ZoneId);
 
       ZoneRegion.ofId = function ofId(zoneId) {
         var rules = ZoneRulesProvider.getRules(zoneId);
@@ -5096,9 +5099,9 @@
       };
 
       function ZoneRegion(id, rules) {
-        _classCallCheck$42(this, ZoneRegion);
+        _classCallCheck$G(this, ZoneRegion);
 
-        var _this = _possibleConstructorReturn$18(this, _ZoneId.call(this));
+        var _this = _possibleConstructorReturn$i(this, _ZoneId.call(this));
 
         _this._id = id;
         _this._rules = rules;
@@ -5116,11 +5119,11 @@
       return ZoneRegion;
     }(ZoneId);
 
-    function _classCallCheck$43(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$H(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var ZoneIdPrinterParser = function () {
         function ZoneIdPrinterParser(query, description) {
-            _classCallCheck$43(this, ZoneIdPrinterParser);
+            _classCallCheck$H(this, ZoneIdPrinterParser);
 
             this.query = query;
             this.description = description;
@@ -5240,7 +5243,7 @@
         };
 
         function ZoneIdTree(size, treeMap) {
-            _classCallCheck$43(this, ZoneIdTree);
+            _classCallCheck$H(this, ZoneIdTree);
 
             this.size = size;
             this.treeMap = treeMap;
@@ -5251,10 +5254,10 @@
 
     var ZoneIdTreeMap = function () {
         function ZoneIdTreeMap() {
-            var length = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-            var isLeaf = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+            var length = arguments.length > 0 && arguments[0] !== undefined$J ? arguments[0] : 0;
+            var isLeaf = arguments.length > 1 && arguments[1] !== undefined$J ? arguments[1] : false;
 
-            _classCallCheck$43(this, ZoneIdTreeMap);
+            _classCallCheck$H(this, ZoneIdTreeMap);
 
             this.length = length;
             this.isLeaf = isLeaf;
@@ -5285,13 +5288,13 @@
 
     var zoneIdTree = new ZoneIdTree([]);
 
-    function _classCallCheck$44(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$I(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var MAX_WIDTH$1 = 15;
 
     var DateTimeFormatterBuilder = function () {
         function DateTimeFormatterBuilder() {
-            _classCallCheck$44(this, DateTimeFormatterBuilder);
+            _classCallCheck$I(this, DateTimeFormatterBuilder);
 
             this._active = this;
 
@@ -5440,7 +5443,7 @@
         };
 
         DateTimeFormatterBuilder.prototype.appendInstant = function appendInstant() {
-            var fractionalDigits = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : -2;
+            var fractionalDigits = arguments.length > 0 && arguments[0] !== undefined$K ? arguments[0] : -2;
 
             if (fractionalDigits < -2 || fractionalDigits > 9) {
                 throw new IllegalArgumentException('Invalid fractional digits: ' + fractionalDigits);
@@ -5891,7 +5894,7 @@
         };
 
         DateTimeFormatterBuilder.prototype.toFormatter = function toFormatter() {
-            var resolverStyle = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : ResolverStyle.SMART;
+            var resolverStyle = arguments.length > 0 && arguments[0] !== undefined$K ? arguments[0] : ResolverStyle.SMART;
 
             while (this._active._parent != null) {
                 this.optionalEnd();
@@ -5908,7 +5911,7 @@
 
     var InstantPrinterParser = function () {
         function InstantPrinterParser(fractionalDigits) {
-            _classCallCheck$44(this, InstantPrinterParser);
+            _classCallCheck$I(this, InstantPrinterParser);
 
             this.fractionalDigits = fractionalDigits;
         }
@@ -6046,19 +6049,19 @@
         DateTimeFormatterBuilder.ZoneIdPrinterParser = ZoneIdPrinterParser;
     }
 
-    function _classCallCheck$45(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$J(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function _possibleConstructorReturn$19(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$j(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$19(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$j(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var Month = function (_Temporal) {
-        _inherits$19(Month, _Temporal);
+        _inherits$j(Month, _Temporal);
 
         function Month(value) {
-            _classCallCheck$45(this, Month);
+            _classCallCheck$J(this, Month);
 
-            var _this = _possibleConstructorReturn$19(this, _Temporal.call(this));
+            var _this = _possibleConstructorReturn$j(this, _Temporal.call(this));
 
             _this._value = MathUtil.safeToInt(value);
             return _this;
@@ -6284,7 +6287,7 @@
 
     var MONTHS = void 0;
 
-    function _init$10() {
+    function _init$a() {
         Month.JANUARY = new Month(1);
         Month.FEBRUARY = new Month(2);
         Month.MARCH = new Month(3);
@@ -6301,14 +6304,14 @@
         MONTHS = [Month.JANUARY, Month.FEBRUARY, Month.MARCH, Month.APRIL, Month.MAY, Month.JUNE, Month.JULY, Month.AUGUST, Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER];
     }
 
-    function _classCallCheck$46(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$K(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function _possibleConstructorReturn$20(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$k(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$20(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$k(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var MonthDay = function (_Temporal) {
-        _inherits$20(MonthDay, _Temporal);
+        _inherits$k(MonthDay, _Temporal);
 
         MonthDay.now = function now(zoneIdOrClock) {
             if (arguments.length === 0) {
@@ -6391,9 +6394,9 @@
         };
 
         function MonthDay(month, dayOfMonth) {
-            _classCallCheck$46(this, MonthDay);
+            _classCallCheck$K(this, MonthDay);
 
-            var _this = _possibleConstructorReturn$20(this, _Temporal.call(this));
+            var _this = _possibleConstructorReturn$k(this, _Temporal.call(this));
 
             _this._month = MathUtil.safeToInt(month);
             _this._day = MathUtil.safeToInt(dayOfMonth);
@@ -6543,7 +6546,7 @@
 
     var PARSER = void 0;
 
-    function _init$11() {
+    function _init$b() {
         PARSER = new DateTimeFormatterBuilder().appendLiteral('--').appendValue(ChronoField.MONTH_OF_YEAR, 2).appendLiteral('-').appendValue(ChronoField.DAY_OF_MONTH, 2).toFormatter();
 
         MonthDay.FROM = createTemporalQuery('MonthDay.FROM', function (temporal) {
@@ -6551,14 +6554,14 @@
         });
     }
 
-    function _classCallCheck$47(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$L(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function _possibleConstructorReturn$21(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$l(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$21(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$l(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var YearMonth = function (_Temporal) {
-        _inherits$21(YearMonth, _Temporal);
+        _inherits$l(YearMonth, _Temporal);
 
         YearMonth.now = function now(zoneIdOrClock) {
             if (arguments.length === 0) {
@@ -6635,9 +6638,9 @@
         };
 
         function YearMonth(year, month) {
-            _classCallCheck$47(this, YearMonth);
+            _classCallCheck$L(this, YearMonth);
 
-            var _this = _possibleConstructorReturn$21(this, _Temporal.call(this));
+            var _this = _possibleConstructorReturn$l(this, _Temporal.call(this));
 
             _this._year = MathUtil.safeToInt(year);
             _this._month = MathUtil.safeToInt(month);
@@ -6974,7 +6977,7 @@
 
     var PARSER$1 = void 0;
 
-    function _init$12() {
+    function _init$c() {
 
         PARSER$1 = new DateTimeFormatterBuilder().appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD).appendLiteral('-').appendValue(ChronoField.MONTH_OF_YEAR, 2).toFormatter();
 
@@ -6983,19 +6986,19 @@
         });
     }
 
-    function _classCallCheck$48(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$M(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function _possibleConstructorReturn$22(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$m(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$22(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$m(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var Year = function (_Temporal) {
-        _inherits$22(Year, _Temporal);
+        _inherits$m(Year, _Temporal);
 
         function Year(value) {
-            _classCallCheck$48(this, Year);
+            _classCallCheck$M(this, Year);
 
-            var _this = _possibleConstructorReturn$22(this, _Temporal.call(this));
+            var _this = _possibleConstructorReturn$m(this, _Temporal.call(this));
 
             _this._year = MathUtil.safeToInt(value);
             return _this;
@@ -7006,9 +7009,9 @@
         };
 
         Year.now = function now() {
-            var zoneIdOrClock = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
+            var zoneIdOrClock = arguments.length > 0 && arguments[0] !== undefined$O ? arguments[0] : undefined$O;
 
-            if (zoneIdOrClock === undefined) {
+            if (zoneIdOrClock === undefined$O) {
                 return Year.now0();
             } else if (zoneIdOrClock instanceof ZoneId) {
                 return Year.nowZoneId(zoneIdOrClock);
@@ -7067,7 +7070,7 @@
         };
 
         Year.parseTextFormatter = function parseTextFormatter(text) {
-            var formatter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : PARSER$2;
+            var formatter = arguments.length > 1 && arguments[1] !== undefined$O ? arguments[1] : PARSER$2;
 
             requireNonNull(text, 'text');
             requireNonNull(formatter, 'formatter');
@@ -7337,7 +7340,7 @@
 
     var PARSER$2 = void 0;
 
-    function _init$13() {
+    function _init$d() {
 
         Year.MIN_VALUE = YearConstants.MIN_VALUE;
         Year.MAX_VALUE = YearConstants.MAX_VALUE;
@@ -7349,11 +7352,11 @@
         });
     }
 
-    function _classCallCheck$49(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$N(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var TemporalAdjuster = function () {
       function TemporalAdjuster() {
-        _classCallCheck$49(this, TemporalAdjuster);
+        _classCallCheck$N(this, TemporalAdjuster);
       }
 
       TemporalAdjuster.prototype.adjustInto = function adjustInto(temporal) {
@@ -7363,15 +7366,15 @@
       return TemporalAdjuster;
     }();
 
-    function _possibleConstructorReturn$23(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$n(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$23(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$n(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-    function _classCallCheck$50(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$O(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var TemporalAdjusters = function () {
         function TemporalAdjusters() {
-            _classCallCheck$50(this, TemporalAdjusters);
+            _classCallCheck$O(this, TemporalAdjusters);
         }
 
         TemporalAdjusters.firstDayOfMonth = function firstDayOfMonth() {
@@ -7433,12 +7436,12 @@
     }();
 
     var Impl = function (_TemporalAdjuster) {
-        _inherits$23(Impl, _TemporalAdjuster);
+        _inherits$n(Impl, _TemporalAdjuster);
 
         function Impl(ordinal) {
-            _classCallCheck$50(this, Impl);
+            _classCallCheck$O(this, Impl);
 
-            var _this = _possibleConstructorReturn$23(this, _TemporalAdjuster.call(this));
+            var _this = _possibleConstructorReturn$n(this, _TemporalAdjuster.call(this));
 
             _this._ordinal = ordinal;
             return _this;
@@ -7478,12 +7481,12 @@
     Impl.FIRST_DAY_OF_NEXT_YEAR = new Impl(5);
 
     var DayOfWeekInMonth = function (_TemporalAdjuster2) {
-        _inherits$23(DayOfWeekInMonth, _TemporalAdjuster2);
+        _inherits$n(DayOfWeekInMonth, _TemporalAdjuster2);
 
         function DayOfWeekInMonth(ordinal, dow) {
-            _classCallCheck$50(this, DayOfWeekInMonth);
+            _classCallCheck$O(this, DayOfWeekInMonth);
 
-            var _this2 = _possibleConstructorReturn$23(this, _TemporalAdjuster2.call(this));
+            var _this2 = _possibleConstructorReturn$n(this, _TemporalAdjuster2.call(this));
 
             _this2._ordinal = ordinal;
             _this2._dowValue = dow.value();
@@ -7511,12 +7514,12 @@
     }(TemporalAdjuster);
 
     var RelativeDayOfWeek = function (_TemporalAdjuster3) {
-        _inherits$23(RelativeDayOfWeek, _TemporalAdjuster3);
+        _inherits$n(RelativeDayOfWeek, _TemporalAdjuster3);
 
         function RelativeDayOfWeek(relative, dayOfWeek) {
-            _classCallCheck$50(this, RelativeDayOfWeek);
+            _classCallCheck$O(this, RelativeDayOfWeek);
 
-            var _this3 = _possibleConstructorReturn$23(this, _TemporalAdjuster3.call(this));
+            var _this3 = _possibleConstructorReturn$n(this, _TemporalAdjuster3.call(this));
 
             requireNonNull(dayOfWeek, 'dayOfWeek');
 
@@ -7543,19 +7546,19 @@
         return RelativeDayOfWeek;
     }(TemporalAdjuster);
 
-    function _classCallCheck$51(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$P(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function _possibleConstructorReturn$24(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$o(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$24(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$o(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var IsoChronology = function (_Enum) {
-        _inherits$24(IsoChronology, _Enum);
+        _inherits$o(IsoChronology, _Enum);
 
         function IsoChronology() {
-            _classCallCheck$51(this, IsoChronology);
+            _classCallCheck$P(this, IsoChronology);
 
-            return _possibleConstructorReturn$24(this, _Enum.apply(this, arguments));
+            return _possibleConstructorReturn$o(this, _Enum.apply(this, arguments));
         }
 
         IsoChronology.isLeapYear = function isLeapYear(prolepticYear) {
@@ -7689,23 +7692,23 @@
         return IsoChronology;
     }(Enum);
 
-    function _init$14() {
+    function _init$e() {
         IsoChronology.INSTANCE = new IsoChronology('IsoChronology');
     }
 
-    function _classCallCheck$52(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$Q(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function _possibleConstructorReturn$25(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$p(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$25(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$p(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var ChronoZonedDateTime = function (_Temporal) {
-        _inherits$25(ChronoZonedDateTime, _Temporal);
+        _inherits$p(ChronoZonedDateTime, _Temporal);
 
         function ChronoZonedDateTime() {
-            _classCallCheck$52(this, ChronoZonedDateTime);
+            _classCallCheck$Q(this, ChronoZonedDateTime);
 
-            return _possibleConstructorReturn$25(this, _Temporal.apply(this, arguments));
+            return _possibleConstructorReturn$p(this, _Temporal.apply(this, arguments));
         }
 
         ChronoZonedDateTime.prototype.query = function query(_query) {
@@ -7799,14 +7802,14 @@
         return 0;
     }
 
-    function _classCallCheck$53(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$R(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function _possibleConstructorReturn$26(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$q(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$26(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$q(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var ZonedDateTime = function (_ChronoZonedDateTime) {
-        _inherits$26(ZonedDateTime, _ChronoZonedDateTime);
+        _inherits$q(ZonedDateTime, _ChronoZonedDateTime);
 
         ZonedDateTime.now = function now(clockOrZone) {
             var clock = void 0;
@@ -7952,20 +7955,20 @@
         };
 
         ZonedDateTime.parse = function parse(text) {
-            var formatter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : DateTimeFormatter.ISO_ZONED_DATE_TIME;
+            var formatter = arguments.length > 1 && arguments[1] !== undefined$T ? arguments[1] : DateTimeFormatter.ISO_ZONED_DATE_TIME;
 
             requireNonNull(formatter, 'fromatter');
             return formatter.parse(text, ZonedDateTime.FROM);
         };
 
         function ZonedDateTime(dateTime, offset, zone) {
-            _classCallCheck$53(this, ZonedDateTime);
+            _classCallCheck$R(this, ZonedDateTime);
 
             requireNonNull(dateTime, 'dateTime');
             requireNonNull(offset, 'offset');
             requireNonNull(zone, 'zone');
 
-            var _this = _possibleConstructorReturn$26(this, _ChronoZonedDateTime.call(this));
+            var _this = _possibleConstructorReturn$q(this, _ChronoZonedDateTime.call(this));
 
             _this._dateTime = dateTime;
 
@@ -8364,24 +8367,24 @@
     }(ChronoZonedDateTime);
 
 
-    function _init$15() {
+    function _init$f() {
         ZonedDateTime.FROM = createTemporalQuery('ZonedDateTime.FROM', function (temporal) {
             return ZonedDateTime.from(temporal);
         });
     }
 
-    function _classCallCheck$54(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$S(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function _possibleConstructorReturn$27(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$r(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$27(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$r(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var DAYS_PER_CYCLE = 146097;
 
     var DAYS_0000_TO_1970 = DAYS_PER_CYCLE * 5 - (30 * 365 + 7);
 
     var LocalDate = function (_ChronoLocalDate) {
-        _inherits$27(LocalDate, _ChronoLocalDate);
+        _inherits$r(LocalDate, _ChronoLocalDate);
 
         LocalDate.now = function now(clockOrZone) {
             var clock = void 0;
@@ -8396,7 +8399,7 @@
         };
 
         LocalDate.ofInstant = function ofInstant(instant) {
-            var zone = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ZoneId.systemDefault();
+            var zone = arguments.length > 1 && arguments[1] !== undefined$U ? arguments[1] : ZoneId.systemDefault();
 
             requireNonNull(instant, 'instant');
             var offset = zone.rules().offset(instant);
@@ -8426,7 +8429,7 @@
         };
 
         LocalDate.ofEpochDay = function ofEpochDay() {
-            var epochDay = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+            var epochDay = arguments.length > 0 && arguments[0] !== undefined$U ? arguments[0] : 0;
 
             var adjust = void 0,
                 adjustCycles = void 0,
@@ -8467,7 +8470,7 @@
         };
 
         LocalDate.parse = function parse(text) {
-            var formatter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : DateTimeFormatter.ISO_LOCAL_DATE;
+            var formatter = arguments.length > 1 && arguments[1] !== undefined$U ? arguments[1] : DateTimeFormatter.ISO_LOCAL_DATE;
 
             assert(formatter != null, 'formatter', NullPointerException);
             return formatter.parse(text, LocalDate.FROM);
@@ -8489,9 +8492,9 @@
         };
 
         function LocalDate(year, month, dayOfMonth) {
-            _classCallCheck$54(this, LocalDate);
+            _classCallCheck$S(this, LocalDate);
 
-            var _this = _possibleConstructorReturn$27(this, _ChronoLocalDate.call(this));
+            var _this = _possibleConstructorReturn$r(this, _ChronoLocalDate.call(this));
 
             if (month instanceof Month) {
                 month = month.value();
@@ -8933,8 +8936,8 @@
         };
 
         LocalDate.prototype.atTime4 = function atTime4(hour, minute) {
-            var second = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-            var nanoOfSecond = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+            var second = arguments.length > 2 && arguments[2] !== undefined$U ? arguments[2] : 0;
+            var nanoOfSecond = arguments.length > 3 && arguments[3] !== undefined$U ? arguments[3] : 0;
 
             return this.atTime1(LocalTime.of(hour, minute, second, nanoOfSecond));
         };
@@ -9081,7 +9084,7 @@
     }(ChronoLocalDate);
 
 
-    function _init$16() {
+    function _init$g() {
         LocalDate.MIN = LocalDate.of(YearConstants.MIN_VALUE, 1, 1);
 
         LocalDate.MAX = LocalDate.of(YearConstants.MAX_VALUE, 12, 31);
@@ -9093,19 +9096,19 @@
         });
     }
 
-    function _classCallCheck$55(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$T(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function _possibleConstructorReturn$28(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$s(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$28(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$s(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var ChronoLocalDateTime = function (_Temporal) {
-        _inherits$28(ChronoLocalDateTime, _Temporal);
+        _inherits$s(ChronoLocalDateTime, _Temporal);
 
         function ChronoLocalDateTime() {
-            _classCallCheck$55(this, ChronoLocalDateTime);
+            _classCallCheck$T(this, ChronoLocalDateTime);
 
-            return _possibleConstructorReturn$28(this, _Temporal.apply(this, arguments));
+            return _possibleConstructorReturn$s(this, _Temporal.apply(this, arguments));
         }
 
         ChronoLocalDateTime.prototype.chronology = function chronology() {
@@ -9147,14 +9150,14 @@
         return ChronoLocalDateTime;
     }(Temporal);
 
-    function _classCallCheck$56(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$U(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function _possibleConstructorReturn$29(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$t(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$29(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$t(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var LocalDateTime = function (_ChronoLocalDateTime) {
-        _inherits$29(LocalDateTime, _ChronoLocalDateTime);
+        _inherits$t(LocalDateTime, _ChronoLocalDateTime);
 
         LocalDateTime.now = function now(clockOrZone) {
             if (clockOrZone == null) {
@@ -9190,13 +9193,13 @@
         };
 
         LocalDateTime.ofNumbers = function ofNumbers() {
-            var year = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-            var month = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-            var dayOfMonth = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-            var hour = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
-            var minute = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
-            var second = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
-            var nanoOfSecond = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 0;
+            var year = arguments.length > 0 && arguments[0] !== undefined$W ? arguments[0] : 0;
+            var month = arguments.length > 1 && arguments[1] !== undefined$W ? arguments[1] : 0;
+            var dayOfMonth = arguments.length > 2 && arguments[2] !== undefined$W ? arguments[2] : 0;
+            var hour = arguments.length > 3 && arguments[3] !== undefined$W ? arguments[3] : 0;
+            var minute = arguments.length > 4 && arguments[4] !== undefined$W ? arguments[4] : 0;
+            var second = arguments.length > 5 && arguments[5] !== undefined$W ? arguments[5] : 0;
+            var nanoOfSecond = arguments.length > 6 && arguments[6] !== undefined$W ? arguments[6] : 0;
 
             var date = LocalDate.of(year, month, dayOfMonth);
             var time = LocalTime.of(hour, minute, second, nanoOfSecond);
@@ -9210,7 +9213,7 @@
         };
 
         LocalDateTime.ofInstant = function ofInstant(instant) {
-            var zone = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ZoneId.systemDefault();
+            var zone = arguments.length > 1 && arguments[1] !== undefined$W ? arguments[1] : ZoneId.systemDefault();
 
             requireNonNull(instant, 'instant');
             requireInstance(instant, Instant, 'instant');
@@ -9220,8 +9223,8 @@
         };
 
         LocalDateTime.ofEpochSecond = function ofEpochSecond() {
-            var epochSecond = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-            var nanoOfSecond = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+            var epochSecond = arguments.length > 0 && arguments[0] !== undefined$W ? arguments[0] : 0;
+            var nanoOfSecond = arguments.length > 1 && arguments[1] !== undefined$W ? arguments[1] : 0;
             var offset = arguments[2];
 
             if (arguments.length === 2 && nanoOfSecond instanceof ZoneOffset) {
@@ -9254,16 +9257,16 @@
         };
 
         LocalDateTime.parse = function parse(text) {
-            var formatter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+            var formatter = arguments.length > 1 && arguments[1] !== undefined$W ? arguments[1] : DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
             requireNonNull(formatter, 'formatter');
             return formatter.parse(text, LocalDateTime.FROM);
         };
 
         function LocalDateTime(date, time) {
-            _classCallCheck$56(this, LocalDateTime);
+            _classCallCheck$U(this, LocalDateTime);
 
-            var _this = _possibleConstructorReturn$29(this, _ChronoLocalDateTime.call(this));
+            var _this = _possibleConstructorReturn$t(this, _ChronoLocalDateTime.call(this));
 
             requireInstance(date, LocalDate, 'date');
             requireInstance(time, LocalTime, 'time');
@@ -9695,7 +9698,7 @@
     }(ChronoLocalDateTime);
 
 
-    function _init$17() {
+    function _init$h() {
         LocalDateTime.MIN = LocalDateTime.of(LocalDate.MIN, LocalTime.MIN);
 
         LocalDateTime.MAX = LocalDateTime.of(LocalDate.MAX, LocalTime.MAX);
@@ -9705,14 +9708,14 @@
         });
     }
 
-    function _classCallCheck$57(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$V(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function _possibleConstructorReturn$30(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$u(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$30(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$u(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var LocalTime = function (_Temporal) {
-        _inherits$30(LocalTime, _Temporal);
+        _inherits$u(LocalTime, _Temporal);
 
         LocalTime.now = function now(clockOrZone) {
             if (clockOrZone == null) {
@@ -9725,14 +9728,14 @@
         };
 
         LocalTime._now = function _now() {
-            var clock = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Clock.systemDefaultZone();
+            var clock = arguments.length > 0 && arguments[0] !== undefined$X ? arguments[0] : Clock.systemDefaultZone();
 
             requireNonNull(clock, 'clock');
             return LocalTime.ofInstant(clock.instant(), clock.zone());
         };
 
         LocalTime.ofInstant = function ofInstant(instant) {
-            var zone = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ZoneId.systemDefault();
+            var zone = arguments.length > 1 && arguments[1] !== undefined$X ? arguments[1] : ZoneId.systemDefault();
 
             var offset = zone.rules().offset(instant);
             var secsOfDay = MathUtil.intMod(instant.epochSecond(), LocalTime.SECONDS_PER_DAY);
@@ -9748,8 +9751,8 @@
         };
 
         LocalTime.ofSecondOfDay = function ofSecondOfDay() {
-            var secondOfDay = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-            var nanoOfSecond = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+            var secondOfDay = arguments.length > 0 && arguments[0] !== undefined$X ? arguments[0] : 0;
+            var nanoOfSecond = arguments.length > 1 && arguments[1] !== undefined$X ? arguments[1] : 0;
 
             ChronoField.SECOND_OF_DAY.checkValidValue(secondOfDay);
             ChronoField.NANO_OF_SECOND.checkValidValue(nanoOfSecond);
@@ -9761,7 +9764,7 @@
         };
 
         LocalTime.ofNanoOfDay = function ofNanoOfDay() {
-            var nanoOfDay = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+            var nanoOfDay = arguments.length > 0 && arguments[0] !== undefined$X ? arguments[0] : 0;
 
             ChronoField.NANO_OF_DAY.checkValidValue(nanoOfDay);
             var hours = MathUtil.intDiv(nanoOfDay, LocalTime.NANOS_PER_HOUR);
@@ -9783,21 +9786,21 @@
         };
 
         LocalTime.parse = function parse(text) {
-            var formatter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : DateTimeFormatter.ISO_LOCAL_TIME;
+            var formatter = arguments.length > 1 && arguments[1] !== undefined$X ? arguments[1] : DateTimeFormatter.ISO_LOCAL_TIME;
 
             requireNonNull(formatter, 'formatter');
             return formatter.parse(text, LocalTime.FROM);
         };
 
         function LocalTime() {
-            var hour = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-            var minute = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-            var second = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-            var nanoOfSecond = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+            var hour = arguments.length > 0 && arguments[0] !== undefined$X ? arguments[0] : 0;
+            var minute = arguments.length > 1 && arguments[1] !== undefined$X ? arguments[1] : 0;
+            var second = arguments.length > 2 && arguments[2] !== undefined$X ? arguments[2] : 0;
+            var nanoOfSecond = arguments.length > 3 && arguments[3] !== undefined$X ? arguments[3] : 0;
 
-            _classCallCheck$57(this, LocalTime);
+            _classCallCheck$V(this, LocalTime);
 
-            var _this = _possibleConstructorReturn$30(this, _Temporal.call(this));
+            var _this = _possibleConstructorReturn$u(this, _Temporal.call(this));
 
             var _hour = MathUtil.safeToInt(hour);
             var _minute = MathUtil.safeToInt(minute);
@@ -9814,7 +9817,7 @@
                     _this._nano = _nanoOfSecond;
                     LocalTime.HOURS[_hour] = _this;
                 }
-                return _ret = LocalTime.HOURS[_hour], _possibleConstructorReturn$30(_this, _ret);
+                return _ret = LocalTime.HOURS[_hour], _possibleConstructorReturn$u(_this, _ret);
             }
             _this._hour = _hour;
             _this._minute = _minute;
@@ -9972,7 +9975,7 @@
         };
 
         LocalTime.prototype.withHour = function withHour() {
-            var hour = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+            var hour = arguments.length > 0 && arguments[0] !== undefined$X ? arguments[0] : 0;
 
             if (this._hour === hour) {
                 return this;
@@ -9981,7 +9984,7 @@
         };
 
         LocalTime.prototype.withMinute = function withMinute() {
-            var minute = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+            var minute = arguments.length > 0 && arguments[0] !== undefined$X ? arguments[0] : 0;
 
             if (this._minute === minute) {
                 return this;
@@ -9990,7 +9993,7 @@
         };
 
         LocalTime.prototype.withSecond = function withSecond() {
-            var second = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+            var second = arguments.length > 0 && arguments[0] !== undefined$X ? arguments[0] : 0;
 
             if (this._second === second) {
                 return this;
@@ -9999,7 +10002,7 @@
         };
 
         LocalTime.prototype.withNano = function withNano() {
-            var nanoOfSecond = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+            var nanoOfSecond = arguments.length > 0 && arguments[0] !== undefined$X ? arguments[0] : 0;
 
             if (this._nano === nanoOfSecond) {
                 return this;
@@ -10292,7 +10295,7 @@
     }(Temporal);
 
 
-    function _init$18() {
+    function _init$i() {
         LocalTime.HOURS = [];
         for (var hour = 0; hour < 24; hour++) {
             LocalTime.of(hour, 0, 0, 0);
@@ -10337,25 +10340,25 @@
 
     var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-    function _classCallCheck$58(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$W(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function _possibleConstructorReturn$31(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$v(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$31(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$v(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var NANOS_PER_MILLI = 1000000;
 
     var Instant = function (_Temporal) {
-        _inherits$31(Instant, _Temporal);
+        _inherits$v(Instant, _Temporal);
 
         Instant.now = function now() {
-            var clock = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Clock.systemUTC();
+            var clock = arguments.length > 0 && arguments[0] !== undefined$Y ? arguments[0] : Clock.systemUTC();
 
             return clock.instant();
         };
 
         Instant.ofEpochSecond = function ofEpochSecond(epochSecond) {
-            var nanoAdjustment = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+            var nanoAdjustment = arguments.length > 1 && arguments[1] !== undefined$Y ? arguments[1] : 0;
 
             var secs = epochSecond + MathUtil.floorDiv(nanoAdjustment, LocalTime.NANOS_PER_SECOND);
             var nos = MathUtil.floorMod(nanoAdjustment, LocalTime.NANOS_PER_SECOND);
@@ -10399,9 +10402,9 @@
         };
 
         function Instant(seconds, nanoOfSecond) {
-            _classCallCheck$58(this, Instant);
+            _classCallCheck$W(this, Instant);
 
-            var _this = _possibleConstructorReturn$31(this, _Temporal.call(this));
+            var _this = _possibleConstructorReturn$v(this, _Temporal.call(this));
 
             Instant._validate(seconds, nanoOfSecond);
             _this._seconds = MathUtil.safeToInt(seconds);
@@ -10711,7 +10714,7 @@
     }(Temporal);
 
 
-    function _init$19() {
+    function _init$j() {
         Instant.MIN_SECONDS = -31619119219200;
         Instant.MAX_SECONDS = 31494816403199;
         Instant.EPOCH = new Instant(0, 0);
@@ -10722,15 +10725,15 @@
         });
     }
 
-    function _possibleConstructorReturn$32(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$w(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$32(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$w(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-    function _classCallCheck$59(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$X(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var Clock = function () {
         function Clock() {
-            _classCallCheck$59(this, Clock);
+            _classCallCheck$X(this, Clock);
         }
 
         Clock.systemUTC = function systemUTC() {
@@ -10745,8 +10748,12 @@
             return new SystemClock(zone);
         };
 
-        Clock.fixed = function fixed(fixedInstant, zoneOffset) {
-            return new FixedClock(fixedInstant, zoneOffset);
+        Clock.fixed = function fixed(fixedInstant, zoneId) {
+            return new FixedClock(fixedInstant, zoneId);
+        };
+
+        Clock.offset = function offset(baseClock, duration) {
+            return new OffsetClock(baseClock, duration);
         };
 
         Clock.prototype.millis = function millis() {
@@ -10761,18 +10768,22 @@
             abstractMethodFail('Clock.zone');
         };
 
+        Clock.prototype.withZone = function withZone() {
+            abstractMethodFail('Clock.withZone');
+        };
+
         return Clock;
     }();
 
     var SystemClock = function (_Clock) {
-        _inherits$32(SystemClock, _Clock);
+        _inherits$w(SystemClock, _Clock);
 
         function SystemClock(zone) {
-            _classCallCheck$59(this, SystemClock);
+            _classCallCheck$X(this, SystemClock);
 
             requireNonNull(zone, 'zone');
 
-            var _this = _possibleConstructorReturn$32(this, _Clock.call(this));
+            var _this = _possibleConstructorReturn$w(this, _Clock.call(this));
 
             _this._zone = zone;
             return _this;
@@ -10790,6 +10801,20 @@
             return Instant.ofEpochMilli(this.millis());
         };
 
+        SystemClock.prototype.equals = function equals(obj) {
+            if (obj instanceof SystemClock) {
+                return this._zone.equals(obj._zone);
+            }
+            return false;
+        };
+
+        SystemClock.prototype.withZone = function withZone(zone) {
+            if (zone.equals(this._zone)) {
+                return this;
+            }
+            return new SystemClock(zone);
+        };
+
         SystemClock.prototype.toString = function toString() {
             return 'SystemClock[' + this._zone.toString() + ']';
         };
@@ -10798,12 +10823,12 @@
     }(Clock);
 
     var FixedClock = function (_Clock2) {
-        _inherits$32(FixedClock, _Clock2);
+        _inherits$w(FixedClock, _Clock2);
 
         function FixedClock(fixedInstant, zoneId) {
-            _classCallCheck$59(this, FixedClock);
+            _classCallCheck$X(this, FixedClock);
 
-            var _this2 = _possibleConstructorReturn$32(this, _Clock2.call(this));
+            var _this2 = _possibleConstructorReturn$w(this, _Clock2.call(this));
 
             _this2._instant = fixedInstant;
             _this2._zoneId = zoneId;
@@ -10826,10 +10851,70 @@
             return 'FixedClock[]';
         };
 
+        FixedClock.prototype.equals = function equals(obj) {
+            if (obj instanceof FixedClock) {
+                return this._instant.equals(obj._instant) && this._zoneId.equals(obj._zoneId);
+            }
+            return false;
+        };
+
+        FixedClock.prototype.withZone = function withZone(zone) {
+            if (zone.equals(this._zoneId)) {
+                return this;
+            }
+            return new FixedClock(this._instant, zone);
+        };
+
         return FixedClock;
     }(Clock);
 
-    function _classCallCheck$60(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    var OffsetClock = function (_Clock3) {
+        _inherits$w(OffsetClock, _Clock3);
+
+        function OffsetClock(baseClock, offset) {
+            _classCallCheck$X(this, OffsetClock);
+
+            var _this3 = _possibleConstructorReturn$w(this, _Clock3.call(this));
+
+            _this3._baseClock = baseClock;
+            _this3._offset = offset;
+            return _this3;
+        }
+
+        OffsetClock.prototype.zone = function zone() {
+            return this._baseClock.zone();
+        };
+
+        OffsetClock.prototype.withZone = function withZone(zone) {
+            if (zone.equals(this._baseClock.zone())) {
+                return this;
+            }
+            return new OffsetClock(this._baseClock.withZone(zone), this._offset);
+        };
+
+        OffsetClock.prototype.millis = function millis() {
+            return this._baseClock.millis() + this._offset.toMillis();
+        };
+
+        OffsetClock.prototype.instant = function instant() {
+            return this._baseClock.instant().plus(this._offset);
+        };
+
+        OffsetClock.prototype.equals = function equals(obj) {
+            if (obj instanceof OffsetClock) {
+                return this._baseClock.equals(obj._baseClock) && this._offset.equals(obj._offset);
+            }
+            return false;
+        };
+
+        OffsetClock.prototype.toString = function toString() {
+            return 'OffsetClock[' + this._baseClock + ',' + this._offset + ']';
+        };
+
+        return OffsetClock;
+    }(Clock);
+
+    function _classCallCheck$Y(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var ZoneOffsetTransition = function () {
         ZoneOffsetTransition.of = function of(transition, offsetBefore, offsetAfter) {
@@ -10837,7 +10922,7 @@
         };
 
         function ZoneOffsetTransition(transition, offsetBefore, offsetAfter) {
-            _classCallCheck$60(this, ZoneOffsetTransition);
+            _classCallCheck$Y(this, ZoneOffsetTransition);
 
             requireNonNull(transition, 'transition');
             requireNonNull(offsetBefore, 'offsetBefore');
@@ -10941,7 +11026,7 @@
      * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
      */
 
-    function _init$20() {
+    function _init$k() {
         TemporalQueries.ZONE_ID = createTemporalQuery('ZONE_ID', function (temporal) {
             return temporal.query(TemporalQueries.ZONE_ID);
         });
@@ -10981,19 +11066,19 @@
         });
     }
 
-    function _classCallCheck$61(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$Z(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function _possibleConstructorReturn$33(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$x(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$33(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$x(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var SystemDefaultZoneRules = function (_ZoneRules) {
-        _inherits$33(SystemDefaultZoneRules, _ZoneRules);
+        _inherits$x(SystemDefaultZoneRules, _ZoneRules);
 
         function SystemDefaultZoneRules() {
-            _classCallCheck$61(this, SystemDefaultZoneRules);
+            _classCallCheck$Z(this, SystemDefaultZoneRules);
 
-            return _possibleConstructorReturn$33(this, _ZoneRules.apply(this, arguments));
+            return _possibleConstructorReturn$x(this, _ZoneRules.apply(this, arguments));
         }
 
         SystemDefaultZoneRules.prototype.isFixedOffset = function isFixedOffset() {
@@ -11077,19 +11162,19 @@
         return SystemDefaultZoneRules;
     }(ZoneRules);
 
-    function _classCallCheck$62(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$_(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function _possibleConstructorReturn$34(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$y(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$34(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$y(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var SystemDefaultZoneId = function (_ZoneId) {
-        _inherits$34(SystemDefaultZoneId, _ZoneId);
+        _inherits$y(SystemDefaultZoneId, _ZoneId);
 
         function SystemDefaultZoneId() {
-            _classCallCheck$62(this, SystemDefaultZoneId);
+            _classCallCheck$_(this, SystemDefaultZoneId);
 
-            var _this = _possibleConstructorReturn$34(this, _ZoneId.call(this));
+            var _this = _possibleConstructorReturn$y(this, _ZoneId.call(this));
 
             _this._rules = new SystemDefaultZoneRules();
             return _this;
@@ -11113,11 +11198,11 @@
         return SystemDefaultZoneId;
     }(ZoneId);
 
-    function _classCallCheck$63(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$10(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var ZoneIdFactory = function () {
         function ZoneIdFactory() {
-            _classCallCheck$63(this, ZoneIdFactory);
+            _classCallCheck$10(this, ZoneIdFactory);
         }
 
         ZoneIdFactory.systemDefault = function systemDefault() {
@@ -11192,7 +11277,7 @@
 
     var SYSTEM_DEFAULT_ZONE_ID_INSTANCE = null;
 
-    function _init$21() {
+    function _init$l() {
         SYSTEM_DEFAULT_ZONE_ID_INSTANCE = new SystemDefaultZoneId();
 
         ZoneId.systemDefault = ZoneIdFactory.systemDefault;
@@ -11225,33 +11310,33 @@
         _init();
         _init$2();
         _init$3();
-        _init$18();
+        _init$i();
         _init$8();
-        _init$20();
+        _init$k();
         _init$4();
-        _init$19();
-        _init$16();
-        _init$17();
-        _init$13();
-        _init$10();
-        _init$12();
-        _init$11();
+        _init$j();
+        _init$g();
+        _init$h();
+        _init$d();
+        _init$a();
+        _init$c();
+        _init$b();
         _init$6();
         _init$5();
-        _init$15();
-        _init$21();
-        _init$14();
+        _init$f();
+        _init$l();
+        _init$e();
         _init$7();
         _init$9();
     }
 
     init();
 
-    function _classCallCheck$64(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$11(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var ToNativeJsConverter = function () {
         function ToNativeJsConverter(temporal, zone) {
-            _classCallCheck$64(this, ToNativeJsConverter);
+            _classCallCheck$11(this, ToNativeJsConverter);
 
             var zonedDateTime = void 0;
 
@@ -11289,29 +11374,29 @@
         return new ToNativeJsConverter(temporal, zone);
     }
 
-    function _classCallCheck$65(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$12(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function _possibleConstructorReturn$35(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$z(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$35(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$z(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var NativeJsTemporal = function (_TemporalAccessor) {
-        _inherits$35(NativeJsTemporal, _TemporalAccessor);
+        _inherits$z(NativeJsTemporal, _TemporalAccessor);
 
         function NativeJsTemporal(date) {
-            var zone = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ZoneId.systemDefault();
+            var zone = arguments.length > 1 && arguments[1] !== undefined$16 ? arguments[1] : ZoneId.systemDefault();
 
-            _classCallCheck$65(this, NativeJsTemporal);
+            _classCallCheck$12(this, NativeJsTemporal);
 
-            var _this = _possibleConstructorReturn$35(this, _TemporalAccessor.call(this));
+            var _this = _possibleConstructorReturn$z(this, _TemporalAccessor.call(this));
 
             _this._zone = zone;
             if (date instanceof Date) {
                 _this._epochMilli = date.getTime();
-                return _possibleConstructorReturn$35(_this);
+                return _possibleConstructorReturn$z(_this);
             } else if (typeof date.toDate === 'function' && date.toDate() instanceof Date) {
                 _this._epochMilli = date.toDate().getTime();
-                return _possibleConstructorReturn$35(_this);
+                return _possibleConstructorReturn$z(_this);
             }
             assert(false, 'date must be either a javascript date or a moment');
             return _this;

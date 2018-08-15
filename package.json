@@ -1,6 +1,6 @@
 {
   "name": "js-joda",
-  "version": "1.8.2",
+  "version": "1.9.0",
   "description": "a date and time library for javascript",
   "repository": {
     "type": "git",
