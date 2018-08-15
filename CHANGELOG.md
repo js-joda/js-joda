@@ -3,6 +3,12 @@ Changelog
 
 ### next
 
+### 1.9.1
+
+#### dependency updates
+
+ * revert babel to previous version
+
 ### 1.9.0
 
 #### public API
