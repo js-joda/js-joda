@@ -61,7 +61,7 @@
     "esdoc": "^1.1.0",
     "eslint": "^4.19.1",
     "eslint-config-js-joda": "^1.0.0",
-    "js-joda": "^1.8.2",
+    "js-joda": "^1.9.1",
     "js-joda-timezone": "^1.2.1",
     "karma": "^2.0.2",
     "karma-chai-plugins": "^0.9.0",
