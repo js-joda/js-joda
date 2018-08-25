@@ -1493,6 +1493,8 @@ declare namespace JSJoda {
         toEpochMilli: () => number
     };
     function use(plugin: Function):any;
+
+    class DateTimeParseException extends Error {}
 }
 
 export = JSJoda;
