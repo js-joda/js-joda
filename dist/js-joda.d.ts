@@ -1494,7 +1494,9 @@ declare namespace JSJoda {
     };
     function use(plugin: Function):any;
 
-    class DateTimeParseException extends Error {}
+    class DateTimeParseException extends Error {
+        constructor(message?: string)
+    }
 }
 
 export = JSJoda;
