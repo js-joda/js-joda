@@ -763,6 +763,13 @@ describe('org.threeten.bp.TestInstant', () => {
         });
     });
 
+    describe('atZone', () => {
+        it('instant to UTC zdt and back are equal', () => {
+            const base = Instant.now();
+            expect(base.equals(base.atZone(ZoneOffset.UTC).toInstant()));
+        });    
+    });
+    
     describe('plusSeconds', () => {
         let dataProviderPlus;
         beforeEach(() => {
