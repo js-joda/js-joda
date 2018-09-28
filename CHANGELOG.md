@@ -3,6 +3,13 @@ Changelog
 
 ### next
 
+### 1.9.2
+
+#### public API
+
+ * implement atZone in Instant
+ * Add DateTimeParseException to typings file
+
 ### 1.9.1
 
 #### dependency updates
