@@ -1234,6 +1234,8 @@ declare namespace JSJoda {
 
         hashCode(): number
 
+        id(): string
+
         normalized(): ZoneId
 
         rules(): ZoneRules
