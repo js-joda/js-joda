@@ -526,3 +526,9 @@ function test_DateTimeFormatter() {
 function test_DateTimeParseException() {
     new DateTimeParseException()
 }
+
+function test_ZoneId() {
+    var zoneId = ZoneId.SYSTEM;
+
+    zoneId.id();
+}
