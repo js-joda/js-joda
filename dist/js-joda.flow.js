@@ -777,6 +777,7 @@ declare module "js-joda" {
         getAvailableZoneIds(): string[];
         equals(other: any): boolean;
         hashCode(): number;
+        id(): string;
         normalized(): ZoneId;
         rules(): ZoneRules;
         toString(): string
