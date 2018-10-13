@@ -1234,6 +1234,8 @@ declare namespace JSJoda {
 
         hashCode(): number
 
+        id(): string
+
         normalized(): ZoneId
 
         rules(): ZoneRules
@@ -1493,6 +1495,10 @@ declare namespace JSJoda {
         toEpochMilli: () => number
     };
     function use(plugin: Function):any;
+
+    class DateTimeParseException extends Error {
+        constructor(message?: string)
+    }
 }
 
 export = JSJoda;

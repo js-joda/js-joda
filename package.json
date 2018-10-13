@@ -1,6 +1,6 @@
 {
   "name": "js-joda",
-  "version": "1.8.2",
+  "version": "1.9.2",
   "description": "a date and time library for javascript",
   "repository": {
     "type": "git",
@@ -44,10 +44,10 @@
   "homepage": "https://js-joda.github.io/js-joda",
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
+    "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
-    "babel-plugin-istanbul": "^4.1.6",
-    "babel-preset-env": "^1.7.0",
+    "babel-plugin-istanbul": "^4.1.5",
+    "babel-preset-env": "^1.6.1",
     "chai": "^4.1.2",
     "coveralls": "^3.0.1",
     "esdoc": "^1.1.0",

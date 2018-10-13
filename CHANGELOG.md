@@ -3,6 +3,21 @@ Changelog
 
 ### next
 
+### 1.9.2
+
+#### public API
+
+ * implement atZone in Instant
+ * Add DateTimeParseException to typings file
+
+### 1.9.1
+
+#### dependency updates
+
+ * revert babel to previous version
+
+### 1.9.0
+
 #### public API
 
  * add OffsetClock and add withZone and equals to other Clock impls

@@ -17,7 +17,8 @@ import {
     YearMonth,
     ZoneOffset,
     ZonedDateTime,
-    ZoneId
+    ZoneId,
+    DateTimeParseException
 } from '../../'
 
 // used below
@@ -410,7 +411,7 @@ function test_ZonedDateTime() {
 }
 
 function test_Period() {
-    
+
     Period.parse('P1Y10M').toString();
 
     Period.of(10, 5, 30).toString();
@@ -432,7 +433,7 @@ function test_Period() {
 }
 
 function test_Duration() {
-    
+
     Duration.ofHours(10).toString();
 
     Duration.ofDays(10).toString();
@@ -450,11 +451,11 @@ function test_Duration() {
 function test_YearMonth() {
     YearMonth.from(YearMonth.now());
     YearMonth.from(LocalDate.now());
-    
+
     YearMonth.now();
     YearMonth.now(ZoneId.systemDefault());
     YearMonth.now(Clock.systemUTC());
-    
+
     YearMonth.of(2017, 10);
     YearMonth.of(2017, Month.of(10));
 
@@ -522,3 +523,12 @@ function test_DateTimeFormatter() {
     ZonedDateTime.parse("2017-01-01T00:00:00.12345678", DateTimeFormatter.ISO_INSTANT)
 }
 
+function test_DateTimeParseException() {
+    new DateTimeParseException()
+}
+
+function test_ZoneId() {
+    var zoneId = ZoneId.SYSTEM;
+
+    zoneId.id();
+}

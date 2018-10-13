@@ -9,6 +9,7 @@ import {DateTimeException, UnsupportedTemporalTypeException} from './errors';
 
 import {Clock} from './Clock';
 import {LocalTime} from './LocalTime';
+import {ZonedDateTime} from './ZonedDateTime';
 import {MathUtil} from './MathUtil';
 
 import {Temporal} from './temporal/Temporal';
@@ -922,9 +923,9 @@ export class Instant extends Temporal {
      * @return {ZonedDateTime} the zoned date-time formed from this instant and the specified zone, not null
      * @throws DateTimeException if the result exceeds the supported range
      */
-    //atZone(zone) {
-    //    return ZonedDateTime.ofInstant(this, zone);
-    //}
+    atZone(zone) {
+        return ZonedDateTime.ofInstant(this, zone);
+    }
 
     //-----------------------------------------------------------------------
     /**
