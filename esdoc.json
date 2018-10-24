@@ -6,10 +6,24 @@
       "name": "esdoc-standard-plugin",
       "option": {
         "accessor": {
-          "access": [
-            "public"
-          ],
+          "access": ["public"],
           "autoPrivate": true
+        },
+        "manual": {
+          "index": "./docs/index.md",
+          "globalIndex": true,
+          "files": [
+            "./docs/getting-started.md",
+            "./docs/usage.md",
+            "./docs/LocalDate.md",
+            "./docs/LocalTime.md",
+            "./docs/LocalDateTime.md",
+            "./docs/ZonedDateTime.md",
+            "./docs/Period.md",
+            "./docs/Duration.md",
+            "./docs/customizing.md",
+            "./CHANGELOG.md"
+          ]
         }
       }
     }
