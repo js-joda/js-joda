@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/zone/ZoneRules.js | js-joda</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="a date and time library for javascript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="js-joda"><meta property="twitter:description" content="a date and time library for javascript"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/js-joda/js-joda.git"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Clock.js~Clock.html">Clock</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Duration.js~Duration.html">Duration</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Enum.js~Enum.html">Enum</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Instant.js~Instant.html">Instant</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/MathUtil.js~MathUtil.html">MathUtil</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Month.js~Month.html">Month</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Period.js~Period.html">Period</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Year.js~Year.html">Year</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/YearConstants.js~YearConstants.html">YearConstants</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/YearMonth.js~YearMonth.html">YearMonth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneRegion.js~ZoneRegion.html">ZoneRegion</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-abstractMethodFail">abstractMethodFail</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-assert">assert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bindUse">bindUse</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeParseException">DateTimeParseException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalArgumentException">IllegalArgumentException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalStateException">IllegalStateException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NullPointerException">NullPointerException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-UnsupportedTemporalTypeException">UnsupportedTemporalTypeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-use">use</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#chrono">chrono</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/IsoChronology.js~IsoChronology.html">IsoChronology</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#format">format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html">DateTimeFormatterBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DecimalStyle.js~DecimalStyle.html">DecimalStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/SignStyle.js~SignStyle.html">SignStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#temporal">temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html">ValueRange</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nativeJs">nativeJs</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#zone">zone</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/zone/ZoneRules.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/*
+ * @copyright (c) 2016, Philipp Th&#xFC;rw&#xE4;chter &amp; Pattrick H&#xFC;per
+ * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
+
+import {requireNonNull, abstractMethodFail} from &apos;../assert&apos;;
+
+import {Duration} from &apos;../Duration&apos;;
+import {Instant} from &apos;../Instant&apos;;
+
+export class ZoneRules {
+
+    /**
+     * Obtains an instance of {@link ZoneRules} that always uses the same offset.
+     *
+     * The returned rules always have the same offset.
+     *
+     * @param {ZoneOffset} offset - the offset, not null
+     * @return {ZoneRules} the zone rules, not null
+     */
+    static of(offset) {
+        requireNonNull(offset, &apos;offset&apos;);
+        return new Fixed(offset);
+    }
+
+
+    //-----------------------------------------------------------------------
+    /**
+     * Checks of the zone rules are fixed, such that the offset never varies.
+     *
+     * @return {boolean} true if the time-zone is fixed and the offset never changes
+     */
+    isFixedOffset(){
+        abstractMethodFail(&apos;ZoneRules.isFixedOffset&apos;);
+    }
+
+    //-----------------------------------------------------------------------
+
+    /**
+     *
+     * @param instantOrLocalDateTime
+     * @returns {ZoneOffset}
+     */
+    offset(instantOrLocalDateTime){
+        if(instantOrLocalDateTime instanceof Instant){
+            return this.offsetOfInstant(instantOrLocalDateTime);
+        } else {
+            return this.offsetOfLocalDateTime(instantOrLocalDateTime);
+        }
+    }
+
+    /**
+     * Gets the offset applicable at the specified instant in these rules.
+     *
+     * The mapping from an instant to an offset is simple, there is only
+     * one valid offset for each instant.
+     * This method returns that offset.
+     *
+     * @param {Instant} instant - the instant to find the offset for, not null, but null
+     *  may be ignored if the rules have a single offset for all instants
+     * @return {ZoneOffset} the offset, not null
+     */
+    // eslint-disable-next-line no-unused-vars
+    offsetOfInstant(instant){
+        abstractMethodFail(&apos;ZoneRules.offsetInstant&apos;);
+    }
+
+    /**
+     * Gets the offset applicable at the specified epochMilli in these rules.
+     *
+     * The method is for javascript performance optimisation.
+     *
+     * @param {number} epochMilli - the epoch millisecond to find the offset for, not null, but null
+     *  may be ignored if the rules have a single offset for all instants
+     * @return {ZoneOffset} the offset, not null
+     */
+    // eslint-disable-next-line no-unused-vars
+    offsetOfEpochMilli(epochMilli){
+        abstractMethodFail(&apos;ZoneRules.offsetOfEpochMilli&apos;);
+    }
+
+
+    /**
+     * Gets a suitable offset for the specified local date-time in these rules.
+     *
+     * The mapping from a local date-time to an offset is not straightforward.
+     * There are three cases:
+     *
+     * * Normal, with one valid offset. For the vast majority of the year, the normal
+     *   case applies, where there is a single valid offset for the local date-time.
+     * * Gap, with zero valid offsets. This is when clocks jump forward typically
+     *   due to the spring daylight savings change from &quot;winter&quot; to &quot;summer&quot;.
+     *   In a gap there are local date-time values with no valid offset.
+     * * Overlap, with two valid offsets. This is when clocks are set back typically
+     *   due to the autumn daylight savings change from &quot;summer&quot; to &quot;winter&quot;.
+     *   In an overlap there are local date-time values with two valid offsets.
+     *
+     * Thus, for any given local date-time there can be zero, one or two valid offsets.
+     * This method returns the single offset in the Normal case, and in the Gap or Overlap
+     * case it returns the offset before the transition.
+     *
+     * Since, in the case of Gap and Overlap, the offset returned is a &quot;best&quot; value, rather
+     * than the &quot;correct&quot; value, it should be treated with care. Applications that care
+     * about the correct offset should use a combination of this method,
+     * {@link getValidOffsets} and {@link getTransition}.
+     *
+     * @param {LocalDateTime} localDateTime - the local date-time to query, not null, but null
+     *  may be ignored if the rules have a single offset for all instants
+     * @return {ZoneOffset} the best available offset for the local date-time, not null
+     */
+    // eslint-disable-next-line no-unused-vars
+    offsetOfLocalDateTime(localDateTime){
+        abstractMethodFail(&apos;ZoneRules.offsetLocalDateTime&apos;);
+    }
+
+    /**
+     * Gets the offset applicable at the specified local date-time in these rules.
+     *
+     * The mapping from a local date-time to an offset is not straightforward.
+     * There are three cases:
+     *
+     * * Normal, with one valid offset. For the vast majority of the year, the normal
+     *   case applies, where there is a single valid offset for the local date-time.
+     * * Gap, with zero valid offsets. This is when clocks jump forward typically
+     *   due to the spring daylight savings change from &quot;winter&quot; to &quot;summer&quot;.
+     *   In a gap there are local date-time values with no valid offset.
+     * * Overlap, with two valid offsets. This is when clocks are set back typically
+     *   due to the autumn daylight savings change from &quot;summer&quot; to &quot;winter&quot;.
+     *   In an overlap there are local date-time values with two valid offsets.
+     *
+     * Thus, for any given local date-time there can be zero, one or two valid offsets.
+     * This method returns that list of valid offsets, which is a list of size 0, 1 or 2.
+     * In the case where there are two offsets, the earlier offset is returned at index 0
+     * and the later offset at index 1.
+     *
+     * There are various ways to handle the conversion from a {@link LocalDateTime}.
+     * One technique, using this method, would be:
+     * &lt;pre&gt;
+     *  List&lt;ZoneOffset&gt; validOffsets = rules.getOffset(localDT);
+     *  if (validOffsets.size() == 1) {
+     *    // Normal case: only one valid offset
+     *    zoneOffset = validOffsets.get(0);
+     *  } else {
+     *    // Gap or Overlap: determine what to do from transition (which will be non-null)
+     *    ZoneOffsetTransition trans = rules.getTransition(localDT);
+     *  }
+     * &lt;/pre&gt;
+     *
+     * In theory, it is possible for there to be more than two valid offsets.
+     * This would happen if clocks to be put back more than once in quick succession.
+     * This has never happened in the history of time-zones and thus has no special handling.
+     * However, if it were to happen, then the list would return more than 2 entries.
+     *
+     * @param {LocalDateTime} localDateTime - the local date-time to query for valid offsets, not null
+     *  may be ignored if the rules have a single offset for all instants
+     * @return {ZoneOffset[]} the list of valid offsets, may be immutable, not null
+     */
+    // eslint-disable-next-line no-unused-vars
+    validOffsets(localDateTime){
+        abstractMethodFail(&apos;ZoneRules.validOffsets&apos;);
+    }
+
+    /**
+     * Gets the offset transition applicable at the specified local date-time in these rules.
+     *
+     * The mapping from a local date-time to an offset is not straightforward.
+     * There are three cases:
+     *
+     * * Normal, with one valid offset. For the vast majority of the year, the normal
+     *   case applies, where there is a single valid offset for the local date-time.
+     * * Gap, with zero valid offsets. This is when clocks jump forward typically
+     *   due to the spring daylight savings change from &quot;winter&quot; to &quot;summer&quot;.
+     *   In a gap there are local date-time values with no valid offset.
+     * * Overlap, with two valid offsets. This is when clocks are set back typically
+     *   due to the autumn daylight savings change from &quot;summer&quot; to &quot;winter&quot;.
+     *   In an overlap there are local date-time values with two valid offsets.
+     *
+     * A transition is used to model the cases of a Gap or Overlap.
+     * The Normal case will return null.
+     *
+     * There are various ways to handle the conversion from a {@link LocalDateTime}.
+     * One technique, using this method, would be:
+     * &lt;pre&gt;
+     *  ZoneOffsetTransition trans = rules.getTransition(localDT);
+     *  if (trans != null) {
+     *    // Gap or Overlap: determine what to do from transition
+     *  } else {
+     *    // Normal case: only one valid offset
+     *    zoneOffset = rule.getOffset(localDT);
+     *  }
+     * &lt;/pre&gt;
+     *
+     * @param {LocalDateTime} localDateTime  the local date-time to query for offset transition, not null, but null
+     *  may be ignored if the rules have a single offset for all instants
+     * @return {ZoneOffsetTransition} the offset transition, null if the local date-time is not in transition
+     */
+    // eslint-disable-next-line no-unused-vars
+    transition(localDateTime){
+        abstractMethodFail(&apos;ZoneRules.transition&apos;);
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Gets the standard offset for the specified instant in this zone.
+     *
+     * This provides access to historic information on how the standard offset
+     * has changed over time.
+     * The standard offset is the offset before any daylight saving time is applied.
+     * This is typically the offset applicable during winter.
+     *
+     * @param {Instant} instant - the instant to find the offset information for, not null, but null
+     *  may be ignored if the rules have a single offset for all instants
+     * @return {ZoneOffset} the standard offset, not null
+     */
+    // eslint-disable-next-line no-unused-vars
+    standardOffset(instant){
+        abstractMethodFail(&apos;ZoneRules.standardOffset&apos;);
+    }
+
+    /**
+     * Gets the amount of daylight savings in use for the specified instant in this zone.
+     *
+     * This provides access to historic information on how the amount of daylight
+     * savings has changed over time.
+     * This is the difference between the standard offset and the actual offset.
+     * Typically the amount is zero during winter and one hour during summer.
+     * Time-zones are second-based, so the nanosecond part of the duration will be zero.
+     *
+     * @param {Instant} instant - the instant to find the daylight savings for, not null, but null
+     *  may be ignored if the rules have a single offset for all instants
+     * @return {Duration} the difference between the standard and actual offset, not null
+     */
+    // eslint-disable-next-line no-unused-vars
+    daylightSavings(instant){
+        abstractMethodFail(&apos;ZoneRules.daylightSavings&apos;);
+        //    default {
+        //        ZoneOffset standardOffset = getStandardOffset(instant);
+        //        ZoneOffset actualOffset = getOffset(instant);
+        //        return actualOffset.toDuration().minus(standardOffset.toDuration()).normalized();
+        //    }
+    }
+
+    /**
+     * Checks if the specified instant is in daylight savings.
+     *
+     * This checks if the standard and actual offsets are the same at the specified instant.
+     *
+     * @param {Instant} instant - the instant to find the offset information for, not null, but null
+     *  may be ignored if the rules have a single offset for all instants
+     * @return {boolean} the standard offset, not null
+     */
+    // eslint-disable-next-line no-unused-vars
+    isDaylightSavings(instant) {
+        abstractMethodFail(&apos;ZoneRules.isDaylightSavings&apos;);
+        //    default {
+        //        return (getStandardOffset(instant).equals(getOffset(instant)) == false);
+        //    }
+    }
+
+    /**
+     * Checks if the offset date-time is valid for these rules.
+     *
+     * To be valid, the local date-time must not be in a gap and the offset
+     * must match the valid offsets.
+     *
+     * @param {LocalDateTime} localDateTime - the date-time to check, not null, but null
+     *  may be ignored if the rules have a single offset for all instants
+     * @param {ZoneOffset} offset - the offset to check, null returns false
+     * @return {boolean} true if the offset date-time is valid for these rules
+     */
+    // eslint-disable-next-line no-unused-vars
+    isValidOffset(localDateTime, offset){
+        abstractMethodFail(&apos;ZoneRules.isValidOffset&apos;);
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Gets the next transition after the specified instant.
+     *
+     * This returns details of the next transition after the specified instant.
+     * For example, if the instant represents a point where &quot;Summer&quot; daylight savings time
+     * applies, then the method will return the transition to the next &quot;Winter&quot; time.
+     *
+     * @param {Instant} instant - the instant to get the next transition after, not null, but null
+     *  may be ignored if the rules have a single offset for all instants
+     * @return {ZoneOffsetTransition} the next transition after the specified instant, null if this is after the last transition
+     */
+    // eslint-disable-next-line no-unused-vars
+    nextTransition(instant){
+        abstractMethodFail(&apos;ZoneRules.nextTransition&apos;);
+    }
+
+    /**
+     * Gets the previous transition before the specified instant.
+     *
+     * This returns details of the previous transition after the specified instant.
+     * For example, if the instant represents a point where &quot;summer&quot; daylight saving time
+     * applies, then the method will return the transition from the previous &quot;winter&quot; time.
+     *
+     * @param {Instant} instant - the instant to get the previous transition after, not null, but null
+     *  may be ignored if the rules have a single offset for all instants
+     * @return {ZoneOffsetTransition} the previous transition after the specified instant, null if this is before the first transition
+     */
+    // eslint-disable-next-line no-unused-vars
+    previousTransition(instant){
+        abstractMethodFail(&apos;ZoneRules.previousTransition&apos;);
+    }
+
+    /**
+     * Gets the complete list of fully defined transitions.
+     *
+     * The complete set of transitions for this rules instance is defined by this method
+     * and {@link getTransitionRules}. This method returns those transitions that have
+     * been fully defined. These are typically historical, but may be in the future.
+     *
+     * The list will be empty for fixed offset rules and for any time-zone where there has
+     * only ever been a single offset. The list will also be empty if the transition rules are unknown.
+     *
+     * @return {ZoneOffsetTransition[]} an immutable list of fully defined transitions, not null
+     */
+    transitions(){
+        abstractMethodFail(&apos;ZoneRules.transitions&apos;);
+    }
+
+    /**
+     * Gets the list of transition rules for years beyond those defined in the transition list.
+     *
+     * The complete set of transitions for this rules instance is defined by this method
+     * and {@link getTransitions}. This method returns instances of {@link ZoneOffsetTransitionRule}
+     * that define an algorithm for when transitions will occur.
+     *
+     * For any given {@link ZoneRules}, this list contains the transition rules for years
+     * beyond those years that have been fully defined. These rules typically refer to future
+     * daylight saving time rule changes.
+     *
+     * If the zone defines daylight savings into the future, then the list will normally
+     * be of size two and hold information about entering and exiting daylight savings.
+     * If the zone does not have daylight savings, or information about future changes
+     * is uncertain, then the list will be empty.
+     *
+     * The list will be empty for fixed offset rules and for any time-zone where there is no
+     * daylight saving time. The list will also be empty if the transition rules are unknown.
+     *
+     * @return {ZoneOffsetTransitionRule[]} an immutable list of transition rules, not null
+     */
+    transitionRules(){
+        abstractMethodFail(&apos;ZoneRules.transitionRules&apos;);
+    }
+
+    toString(){
+        abstractMethodFail(&apos;ZoneRules.toString&apos;);
+    }
+
+    /**
+     * toJSON() use by JSON.stringify
+     * delegates to toString()
+     *
+     * @return {string}
+     */
+    toJSON() {
+        return this.toString();
+    }
+}
+
+
+class Fixed extends ZoneRules{
+    /**
+     *
+     * @param {ZoneOffset} offset
+     * @private
+     */
+    constructor(offset){
+        super();
+        this._offset = offset;
+    }
+
+    isFixedOffset(){
+        return true;
+    }
+
+    offsetOfInstant(){
+        return this._offset;
+    }
+
+    offsetOfEpochMilli(){
+        return this._offset;
+    }
+
+    offsetOfLocalDateTime(){
+        return this._offset;
+    }
+
+    validOffsets(){
+        return [this._offset];
+    }
+
+    transition(){
+        return null;
+    }
+
+    standardOffset(){
+        return this._offset;
+    }
+
+    daylightSavings(){
+        return Duration.ZERO;
+    }
+
+    isDaylightSavings(){
+        return false;
+    }
+
+    /**
+     *
+     * @param {LocalDateTime} localDateTime
+     * @param {ZoneOffset} offset
+     * @return {boolean}
+     */
+    isValidOffset(localDateTime, offset) {
+        return this._offset.equals(offset);
+    }
+
+    nextTransition(){
+        return null;
+    }
+
+    previousTransition(){
+        return null;
+    }
+
+    transitions(){
+        return [];
+    }
+
+    transitionRules(){
+        return [];
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     *
+     * @param other
+     * @returns {boolean}
+     */
+    equals(other) {
+        if (this === other) {
+            return true;
+        }
+        if (other instanceof Fixed) {
+            return this._offset.equals(other._offset);
+        }
+        return false;
+    }
+
+    /**
+     *
+     * @returns {string}
+     */
+    toString() {
+        return &apos;FixedRules:&apos; + this._offset.toString();
+    }
+
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

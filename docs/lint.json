@@ -1,0 +1,150 @@
+[
+  {
+    "name": "Clock.offset",
+    "filePath": "src/Clock.js",
+    "lines": [
+      {
+        "lineNumber": 107,
+        "line": "    /**\r"
+      },
+      {
+        "lineNumber": 108,
+        "line": "     * Obtains a clock that returns instants from the specified clock with the\r"
+      },
+      {
+        "lineNumber": 109,
+        "line": "     * specified duration added\r"
+      },
+      {
+        "lineNumber": 110,
+        "line": "     * <p>\r"
+      },
+      {
+        "lineNumber": 111,
+        "line": "     * This clock wraps another clock, returning instants that are later by the\r"
+      },
+      {
+        "lineNumber": 112,
+        "line": "     * specified duration. If the duration is negative, the instants will be\r"
+      },
+      {
+        "lineNumber": 113,
+        "line": "     * earlier than the current date and time.\r"
+      },
+      {
+        "lineNumber": 114,
+        "line": "     * The main use case for this is to simulate running in the future or in the past.\r"
+      },
+      {
+        "lineNumber": 115,
+        "line": "     * <p>\r"
+      },
+      {
+        "lineNumber": 116,
+        "line": "     * A duration of zero would have no offsetting effect.\r"
+      },
+      {
+        "lineNumber": 117,
+        "line": "     * Passing zero will return the underlying clock.\r"
+      },
+      {
+        "lineNumber": 118,
+        "line": "     * <p>\r"
+      },
+      {
+        "lineNumber": 119,
+        "line": "     * The returned implementation is immutable, thread-safe and {@code Serializable}\r"
+      },
+      {
+        "lineNumber": 120,
+        "line": "     * providing that the base clock is.\r"
+      },
+      {
+        "lineNumber": 121,
+        "line": "     *\r"
+      },
+      {
+        "lineNumber": 122,
+        "line": "     * @param baseClock  the base clock to add the duration to, not null\r"
+      },
+      {
+        "lineNumber": 123,
+        "line": "     * @param offsetDuration  the duration to add, not null\r"
+      },
+      {
+        "lineNumber": 124,
+        "line": "     * @return a clock based on the base clock with the duration added, not null\r"
+      },
+      {
+        "lineNumber": 125,
+        "line": "     */\r"
+      },
+      {
+        "lineNumber": 126,
+        "line": "    static offset(baseClock, duration) {\r"
+      }
+    ],
+    "codeParams": [
+      "baseClock",
+      "duration"
+    ],
+    "docParams": [
+      "baseClock",
+      "offsetDuration"
+    ]
+  },
+  {
+    "name": "Clock#withZone",
+    "filePath": "src/Clock.js",
+    "lines": [
+      {
+        "lineNumber": 165,
+        "line": "    /**\r"
+      },
+      {
+        "lineNumber": 166,
+        "line": "     * Returns a copy of this clock with a different time-zone.\r"
+      },
+      {
+        "lineNumber": 167,
+        "line": "     * <p>\r"
+      },
+      {
+        "lineNumber": 168,
+        "line": "     * A clock will typically obtain the current instant and then convert that\r"
+      },
+      {
+        "lineNumber": 169,
+        "line": "     * to a date or time using a time-zone. This method returns a clock with\r"
+      },
+      {
+        "lineNumber": 170,
+        "line": "     * similar properties but using a different time-zone.\r"
+      },
+      {
+        "lineNumber": 171,
+        "line": "     *\r"
+      },
+      {
+        "lineNumber": 172,
+        "line": "     * @param zone  the time-zone to change to, not null\r"
+      },
+      {
+        "lineNumber": 173,
+        "line": "     * @return a clock based on this clock with the specified time-zone, not null\r"
+      },
+      {
+        "lineNumber": 174,
+        "line": "     */\r"
+      },
+      {
+        "lineNumber": 175,
+        "line": "    withZone(){\r"
+      }
+    ],
+    "codeParams": [],
+    "docParams": [
+      "zone"
+    ]
+  }
+]

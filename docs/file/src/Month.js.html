@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/Month.js | js-joda</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="a date and time library for javascript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="js-joda"><meta property="twitter:description" content="a date and time library for javascript"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/js-joda/js-joda.git"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Clock.js~Clock.html">Clock</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Duration.js~Duration.html">Duration</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Enum.js~Enum.html">Enum</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Instant.js~Instant.html">Instant</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/LocalDate.js~LocalDate.html">LocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/LocalTime.js~LocalTime.html">LocalTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/MathUtil.js~MathUtil.html">MathUtil</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Month.js~Month.html">Month</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Period.js~Period.html">Period</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Year.js~Year.html">Year</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/YearConstants.js~YearConstants.html">YearConstants</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/YearMonth.js~YearMonth.html">YearMonth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneId.js~ZoneId.html">ZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZoneRegion.js~ZoneRegion.html">ZoneRegion</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-abstractMethodFail">abstractMethodFail</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-assert">assert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bindUse">bindUse</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeParseException">DateTimeParseException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalArgumentException">IllegalArgumentException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalStateException">IllegalStateException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NullPointerException">NullPointerException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-UnsupportedTemporalTypeException">UnsupportedTemporalTypeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-use">use</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#chrono">chrono</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/chrono/IsoChronology.js~IsoChronology.html">IsoChronology</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#format">format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html">DateTimeFormatterBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/DecimalStyle.js~DecimalStyle.html">DecimalStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/SignStyle.js~SignStyle.html">SignStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#temporal">temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/temporal/ValueRange.js~ValueRange.html">ValueRange</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nativeJs">nativeJs</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#zone">zone</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/Month.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * @copyright (c) 2016, Philipp Th&#xFC;rw&#xE4;chter &amp; Pattrick H&#xFC;per
+ * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
+
+import {assert} from &apos;./assert&apos;;
+import {MathUtil} from &apos;./MathUtil&apos;;
+
+import {ChronoField} from &apos;./temporal/ChronoField&apos;;
+import {ChronoUnit} from &apos;./temporal/ChronoUnit&apos;;
+import {DateTimeException, IllegalArgumentException, UnsupportedTemporalTypeException} from &apos;./errors&apos;;
+import {DateTimeFormatterBuilder} from &apos;./format/DateTimeFormatterBuilder&apos;;
+import {IsoChronology} from &apos;./chrono/IsoChronology&apos;;
+import {Temporal} from &apos;./temporal/Temporal&apos;;
+import {TemporalQueries} from &apos;./temporal/TemporalQueries&apos;;
+
+/**
+ * A month-of-year, such as &apos;July&apos;.
+ *
+ * {@link Month} is representing the 12 months of the year -
+ * January, February, March, April, May, June, July, August, September, October,
+ * November and December.
+ *
+ * In addition to the textual name, each month-of-year has an `int` value.
+ * The `int` value follows normal usage and the ISO-8601 standard,
+ * from 1 (January) to 12 (December). It is recommended that applications use the static values defined by this class
+ * rather than the `int` value to ensure code clarity.
+ *
+ * This class represents a common concept that is found in many calendar systems.
+ * As such, this class may be used by any calendar system that has the month-of-year
+ * concept defined exactly equivalent to the ISO-8601 calendar system.
+ *
+ * ### Static properties of Class {@link Month}
+ *
+ * Month.JANUARY, Month.FEBRUARY, Month.MARCH, Month.APRIL, Month.MAY, Month.JUNE,
+ * Month.JULY, Month.AUGUST, Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER
+ *
+ */
+export class Month extends Temporal {
+
+    /**
+     *
+     * @param {number} value
+     * @private
+     */
+    constructor(value) {
+        super();
+        this._value = MathUtil.safeToInt(value);
+    }
+
+    /**
+     *
+     * @return {number} gets the value
+     */
+    value() {
+        return this._value;
+    }
+
+    /**
+     * Gets the textual representation, such as &apos;Jan&apos; or &apos;December&apos;.
+     *
+     * This returns the textual name used to identify the month-of-year.
+     * The parameters control the length of the returned text and the locale.
+     *
+     * If no textual mapping is found then the numeric value (see {@link getValue}) is returned.
+     *
+     * @param {TextStyle} style - the length of the text required, not null
+     * @param {Locale} locale - the locale to use, not null
+     * @return {string} the text value of the day-of-week, not null
+     */
+    getDisplayName(style, locale) {
+        // TODO:
+        throw new IllegalArgumentException(&apos;Pattern using (localized) text not implemented yet!&apos;);
+        //eslint-disable-next-line no-unreachable
+        return new DateTimeFormatterBuilder().appendText(ChronoField.MONTH_OF_YEAR, style).toFormatter(locale).format(this);
+    }
+
+    /**
+     * Checks if the specified field is supported.
+     *
+     * This checks if this month-of-year can be queried for the specified field.
+     * If false, then calling the range (see {@link range}) and
+     * get (see {@link get}) methods will throw an exception.
+     *
+     * If the field is MONTH_OF_YEAR (see {@link ChronoField#MONTH_OF_YEAR}) then
+     * this method returns true.
+     * All other {@link ChronoField} instances will return false.
+     *
+     * If the field is not a {@link ChronoField}, then the result of this method
+     * is obtained by invoking {@link TemporalField.isSupportedBy}
+     * passing `this` as the argument.
+     * Whether the field is supported is determined by the field.
+     *
+     * @param {TemporalField} field - the field to check, null returns false
+     * @return {boolean} true if the field is supported on this month-of-year, false if not
+     */
+    isSupported(field) {
+        if (null === field) {
+            return false;
+        }
+        if (field instanceof ChronoField) {
+            return field === ChronoField.MONTH_OF_YEAR;
+        }
+        return field != null &amp;&amp; field.isSupportedBy(this);
+    }
+
+    /**
+     * Gets the value of the specified field from this month-of-year as an `int`.
+     *
+     * This queries this month for the value of the specified field.
+     * The returned value will always be within the valid range of values for the field.
+     * If it is not possible to return the value, because the field is not supported
+     * or for some other reason, an exception is thrown.
+     *
+     * If the field is MONTH_OF_YEAR (see {@link ChronoField#MONTH_OF_YEAR}) then the
+     * value of the month-of-year, from 1 to 12, will be returned.
+     * All other {@link ChronoField} instances will throw an {@link UnsupportedTemporalTypeException}.
+     *
+     * If the field is not a {@link ChronoField}, then the result of this method
+     * is obtained by invoking {@link TemporalField.getFrom}
+     * passing `this` as the argument. Whether the value can be obtained,
+     * and what the value represents, is determined by the field.
+     *
+     * @param {TemporalField} field - the field to get, not null
+     * @return {Number} the value for the field, within the valid range of values
+     * @throws DateTimeException if a value for the field cannot be obtained or
+     *         the value is outside the range of valid values for the field
+     * @throws UnsupportedTemporalTypeException if the field is not supported or
+     *         the range of values exceeds an `int`
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    get(field) {
+        if (field === ChronoField.MONTH_OF_YEAR) {
+            return this.value();
+        }
+        return this.range(field).checkValidIntValue(this.getLong(field), field);
+    }
+
+    /**
+     * Gets the value of the specified field from this month-of-year as a `long`.
+     *
+     * This queries this month for the value of the specified field.
+     * If it is not possible to return the value, because the field is not supported
+     * or for some other reason, an exception is thrown.
+     *
+     * If the field is MONTH_OF_YEAR (see {@link ChronoField#MONTH_OF_YEAR}) then the
+     * value of the month-of-year, from 1 to 12, will be returned.
+     * All other {@link ChronoField} instances will throw an {@link UnsupportedTemporalTypeException}.
+     *
+     * If the field is not a {@link ChronoField}, then the result of this method
+     * is obtained by invoking {@link TemporalField.getFrom}
+     * passing `this` as the argument. Whether the value can be obtained,
+     * and what the value represents, is determined by the field.
+     *
+     * @param {TemporalField} field - the field to get, not null
+     * @return {Number} the value for the field
+     * @throws DateTimeException if a value for the field cannot be obtained
+     * @throws UnsupportedTemporalTypeException if the field is not supported
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    getLong(field) {
+        if (field === ChronoField.MONTH_OF_YEAR) {
+            return this.value();
+        } else if (field instanceof ChronoField) {
+            throw new UnsupportedTemporalTypeException(&apos;Unsupported field: &apos; + field);
+        }
+        return field.getFrom(this);
+    }
+
+    /**
+     * Returns the month-of-year that is the specified number of months after this one.
+     *
+     * The calculation rolls around the end of the year from December to January.
+     * The specified period may be negative.
+     *
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {number} months - the months to add, positive or negative
+     * @return {Month} the resulting month, not null
+     */
+    plus(months) {
+        const amount = MathUtil.intMod(months, 12) + 12; // + 12 to make sure negative arguments are positive, the total is &quot;corrected&quot; by the next % 12
+        let newMonthVal = MathUtil.intMod((this.value() + amount), 12);
+        /* December is 12, not 0, but 12 % 12 = 0 */
+        newMonthVal = newMonthVal === 0 ? 12 : newMonthVal;
+        return Month.of(newMonthVal);
+    }
+
+    /**
+     * Returns the month-of-year that is the specified number of months before this one.
+     *
+     * The calculation rolls around the start of the year from January to December.
+     * The specified period may be negative.
+     *
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {number} months - the months to subtract, positive or negative
+     * @return {Month} the resulting month, not null
+     */
+    minus(months) {
+        return this.plus(-1 * MathUtil.intMod(months, 12));
+    }
+
+    /**
+     * Gets the length of this month in days.
+     *
+     * This takes a flag to determine whether to return the length for a leap year or not.
+     *
+     * February has 28 days in a standard year and 29 days in a leap year.
+     * April, June, September and November have 30 days.
+     * All other months have 31 days.
+     *
+     * @param {boolean} leapYear - true if the length is required for a leap year
+     * @return {number} the length of this month in days, from 28 to 31
+     */
+    length(leapYear) {
+        switch (this) {
+            case Month.FEBRUARY:
+                return (leapYear ? 29 : 28);
+            case Month.APRIL:
+            case Month.JUNE:
+            case Month.SEPTEMBER:
+            case Month.NOVEMBER:
+                return 30;
+            default:
+                return 31;
+        }
+    }
+
+    /**
+     * Gets the minimum length of this month in days.
+     *
+     * February has a minimum length of 28 days.
+     * April, June, September and November have 30 days.
+     * All other months have 31 days.
+     *
+     * @return {number} the minimum length of this month in days, from 28 to 31
+     */
+    minLength() {
+        switch (this) {
+            case Month.FEBRUARY:
+                return 28;
+            case Month.APRIL:
+            case Month.JUNE:
+            case Month.SEPTEMBER:
+            case Month.NOVEMBER:
+                return 30;
+            default:
+                return 31;
+        }
+    }
+
+    /**
+     * Gets the maximum length of this month in days.
+     *
+     * February has a maximum length of 29 days.
+     * April, June, September and November have 30 days.
+     * All other months have 31 days.
+     *
+     * @return {number} the maximum length of this month in days, from 29 to 31
+     */
+    maxLength() {
+        switch (this) {
+            case Month.FEBRUARY:
+                return 29;
+            case Month.APRIL:
+            case Month.JUNE:
+            case Month.SEPTEMBER:
+            case Month.NOVEMBER:
+                return 30;
+            default:
+                return 31;
+        }
+    }
+
+    /**
+     * Gets the day-of-year corresponding to the first day of this month.
+     *
+     * This returns the day-of-year that this month begins on, using the leap
+     * year flag to determine the length of February.
+     *
+     * @param {boolean} leapYear - true if the length is required for a leap year
+     * @return {number} the day of year corresponding to the first day of this month, from 1 to 336
+     */
+    firstDayOfYear(leapYear) {
+        const leap = leapYear ? 1 : 0;
+        switch (this) {
+            case Month.JANUARY:
+                return 1;
+            case Month.FEBRUARY:
+                return 32;
+            case Month.MARCH:
+                return 60 + leap;
+            case Month.APRIL:
+                return 91 + leap;
+            case Month.MAY:
+                return 121 + leap;
+            case Month.JUNE:
+                return 152 + leap;
+            case Month.JULY:
+                return 182 + leap;
+            case Month.AUGUST:
+                return 213 + leap;
+            case Month.SEPTEMBER:
+                return 244 + leap;
+            case Month.OCTOBER:
+                return 274 + leap;
+            case Month.NOVEMBER:
+                return 305 + leap;
+            case Month.DECEMBER:
+            default:
+                return 335 + leap;
+        }
+    }
+
+    /**
+     * Gets the month corresponding to the first month of this quarter.
+     *
+     * The year can be divided into four quarters.
+     * This method returns the first month of the quarter for the base month.
+     * January, February and March return January.
+     * April, May and June return April.
+     * July, August and September return July.
+     * October, November and December return October.
+     *
+     * @return {Month} the first month of the quarter corresponding to this month, not null
+     */
+    firstMonthOfQuarter() {
+        switch (this) {
+            case Month.JANUARY:
+            case Month.FEBRUARY:
+            case Month.MARCH:
+                return Month.JANUARY;
+            case Month.APRIL:
+            case Month.MAY:
+            case Month.JUNE:
+                return Month.APRIL;
+            case Month.JULY:
+            case Month.AUGUST:
+            case Month.SEPTEMBER:
+                return Month.JULY;
+            case Month.OCTOBER:
+            case Month.NOVEMBER:
+            case Month.DECEMBER:
+            default:
+                return Month.OCTOBER;
+        }
+    }
+
+    /**
+     * Queries this month-of-year using the specified query.
+     *
+     * This queries this month-of-year using the specified query strategy object.
+     * The {@link TemporalQuery} object defines the logic to be used to
+     * obtain the result. Read the documentation of the query to understand
+     * what the result of this method will be.
+     *
+     * The result of this method is obtained by invoking the
+     * {@link TemporalQuery#queryFrom} method on the
+     * specified query passing `this` as the argument.
+     *
+     * @param {TemporalQuery} query - the query to invoke, not null
+     * @return {*} the query result, null may be returned (defined by the query)
+     * @throws DateTimeException if unable to query (defined by the query)
+     * @throws ArithmeticException if numeric overflow occurs (defined by the query)
+     */
+    query(query) {
+        assert(query != null, &apos;query() parameter must not be null&apos;, DateTimeException);
+        if (query === TemporalQueries.chronology()) {
+            return IsoChronology.INSTANCE;
+        } else if (query === TemporalQueries.precision()) {
+            return ChronoUnit.MONTHS;
+        }
+        return super.query(query);
+    }
+
+
+
+    /**
+     * toString implementation... in JDK this is inherited from the Enum class
+     *
+     * @return {String}
+     */
+    toString() {
+        switch (this) {
+            case Month.JANUARY:
+                return &apos;JANUARY&apos;;
+            case Month.FEBRUARY:
+                return &apos;FEBRUARY&apos;;
+            case Month.MARCH:
+                return &apos;MARCH&apos;;
+            case Month.APRIL:
+                return &apos;APRIL&apos;;
+            case Month.MAY:
+                return &apos;MAY&apos;;
+            case Month.JUNE:
+                return &apos;JUNE&apos;;
+            case Month.JULY:
+                return &apos;JULY&apos;;
+            case Month.AUGUST:
+                return &apos;AUGUST&apos;;
+            case Month.SEPTEMBER:
+                return &apos;SEPTEMBER&apos;;
+            case Month.OCTOBER:
+                return &apos;OCTOBER&apos;;
+            case Month.NOVEMBER:
+                return &apos;NOVEMBER&apos;;
+            case Month.DECEMBER:
+                return &apos;DECEMBER&apos;;
+            default:
+                return &apos;unknown Month, value: &apos; + this.value();
+        }
+    }
+
+    /**
+     * toJSON() use by JSON.stringify
+     * delegates to toString()
+     *
+     * @return {string}
+     */
+    toJSON() {
+        return this.toString();
+    }
+
+    /**
+     * Adjusts the specified temporal object to have this month-of-year.
+     *
+     * This returns a temporal object of the same observable type as the input
+     * with the month-of-year changed to be the same as this.
+     *
+     * The adjustment is equivalent to using {@link Temporal#with}
+     * passing {@link ChronoField#MONTH_OF_YEAR} as the field.
+     * If the specified temporal object does not use the ISO calendar system then
+     * a {@link DateTimeException} is thrown.
+     *
+     * In most cases, it is clearer to reverse the calling pattern by using
+     * {@link Temporal#with}:
+     * &lt;pre&gt;
+     *   // these two lines are equivalent, but the second approach is recommended
+     *   temporal = thisMonth.adjustInto(temporal);
+     *   temporal = temporal.with(thisMonth);
+     * &lt;/pre&gt;
+     *
+     * For example, given a date in May, the following are output:
+     * &lt;pre&gt;
+     *   dateInMay.with(JANUARY);    // four months earlier
+     *   dateInMay.with(APRIL);      // one months earlier
+     *   dateInMay.with(MAY);        // same date
+     *   dateInMay.with(JUNE);       // one month later
+     *   dateInMay.with(DECEMBER);   // seven months later
+     * &lt;/pre&gt;
+     *
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {Temporal} temporal - the target object to be adjusted, not null
+     * @return {Temporal} the adjusted object, not null
+     * @throws DateTimeException if unable to make the adjustment
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    adjustInto(temporal) {
+        /* we support only ISO for now
+            if (Chronology.from(temporal).equals(IsoChronology.INSTANCE) === false) {
+                throw new DateTimeException(&apos;Adjustment only supported on ISO date-time&apos;);
+            }
+        */
+        return temporal.with(ChronoField.MONTH_OF_YEAR, this.value());
+    }
+
+    /**
+     * replacement for enum values
+     * @return {Month[]}
+     */
+    static values(){
+        return MONTHS.slice();
+    }
+
+    /**
+     *
+     * @param {number} month
+     * @return {Month} not null
+     **/
+    static of(month) {
+        if (month &lt; 1 || month &gt; 12) {
+            assert(false, &apos;Invalid value for MonthOfYear: &apos; + month, DateTimeException);
+        }
+        return MONTHS[month-1];
+    }
+
+    /**
+     * Obtains an instance of {@link Month} from a temporal object.
+     *
+     * This obtains a month based on the specified temporal.
+     * A {@link TemporalAccessor} represents an arbitrary set of date and time information,
+     * which this factory converts to an instance of {@link Month}.
+     *
+     * The conversion extracts the MONTH_OF_YEAR (see {@link ChronoField#MONTH_OF_YEAR}) field.
+     * The extraction is only permitted if the temporal object has an ISO
+     * chronology, or can be converted to a {@link LocalDate}.
+     *
+     * This method matches the signature of the functional interface {@link TemporalQuery}
+     * allowing it to be used in queries via method reference, {@link Month::from}.
+     *
+     * @param {TemporalAccessor} temporal  the temporal object to convert, not null
+     * @return {Month} the month-of-year, not null
+     * @throws DateTimeException if unable to convert to a {@link Month}
+     */
+    static from(temporal) {
+        if (temporal instanceof Month) {
+            return temporal;
+        }
+        try {
+            /* only ISO for now
+            if (IsoChronology.INSTANCE.equals(Chronology.from(temporal)) == false) {
+                temporal = LocalDate.from(temporal);
+            }*/
+            return Month.of(temporal.get(ChronoField.MONTH_OF_YEAR));
+        } catch (ex) {
+            throw new DateTimeException(&apos;Unable to obtain Month from TemporalAccessor: &apos; +
+                    temporal + &apos; of type &apos; + (temporal &amp;&amp; temporal.constructor != null ? temporal.constructor.name : &apos;&apos;), ex);
+        }
+    }
+}
+
+let MONTHS;
+
+export function _init() {
+    Month.JANUARY = new Month(1);
+    Month.FEBRUARY = new Month(2);
+    Month.MARCH = new Month(3);
+    Month.APRIL = new Month(4);
+    Month.MAY = new Month(5);
+    Month.JUNE = new Month(6);
+    Month.JULY = new Month(7);
+    Month.AUGUST = new Month(8);
+    Month.SEPTEMBER = new Month(9);
+    Month.OCTOBER = new Month(10);
+    Month.NOVEMBER = new Month(11);
+    Month.DECEMBER = new Month(12);
+
+    MONTHS = [
+        Month.JANUARY, Month.FEBRUARY, Month.MARCH, Month.APRIL, Month.MAY, Month.JUNE,
+        Month.JULY, Month.AUGUST, Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER
+    ];
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

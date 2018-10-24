@@ -1,6 +1,6 @@
 {
   "source": "./src",
-  "destination": "./build/esdoc",
+  "destination": "./docs",
   "plugins": [
     {
       "name": "esdoc-standard-plugin",
@@ -10,18 +10,18 @@
           "autoPrivate": true
         },
         "manual": {
-          "index": "./docs/index.md",
+          "index": "./src/docs/index.md",
           "globalIndex": true,
           "files": [
-            "./docs/getting-started.md",
-            "./docs/usage.md",
-            "./docs/LocalDate.md",
-            "./docs/LocalTime.md",
-            "./docs/LocalDateTime.md",
-            "./docs/ZonedDateTime.md",
-            "./docs/Period.md",
-            "./docs/Duration.md",
-            "./docs/customizing.md",
+            "./src/docs/getting-started.md",
+            "./src/docs/usage.md",
+            "./src/docs/LocalDate.md",
+            "./src/docs/LocalTime.md",
+            "./src/docs/LocalDateTime.md",
+            "./src/docs/ZonedDateTime.md",
+            "./src/docs/Period.md",
+            "./src/docs/Duration.md",
+            "./src/docs/customizing.md",
             "./CHANGELOG.md"
           ]
         }

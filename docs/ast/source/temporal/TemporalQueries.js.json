@@ -1,0 +1,3710 @@
+{
+  "type": "File",
+  "start": 0,
+  "end": 9973,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 224,
+      "column": 0
+    }
+  },
+  "program": {
+    "type": "Program",
+    "start": 0,
+    "end": 9973,
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 224,
+        "column": 0
+      }
+    },
+    "sourceType": "module",
+    "body": [
+      {
+        "type": "ExportNamedDeclaration",
+        "start": 1207,
+        "end": 9971,
+        "loc": {
+          "start": {
+            "line": 29,
+            "column": 0
+          },
+          "end": {
+            "line": 223,
+            "column": 1
+          }
+        },
+        "specifiers": [],
+        "source": null,
+        "declaration": {
+          "type": "ClassDeclaration",
+          "start": 1214,
+          "end": 9971,
+          "loc": {
+            "start": {
+              "line": 29,
+              "column": 7
+            },
+            "end": {
+              "line": 223,
+              "column": 1
+            }
+          },
+          "id": {
+            "type": "Identifier",
+            "start": 1220,
+            "end": 1235,
+            "loc": {
+              "start": {
+                "line": 29,
+                "column": 13
+              },
+              "end": {
+                "line": 29,
+                "column": 28
+              },
+              "identifierName": "TemporalQueries"
+            },
+            "name": "TemporalQueries",
+            "leadingComments": null
+          },
+          "superClass": null,
+          "body": {
+            "type": "ClassBody",
+            "start": 1236,
+            "end": 9971,
+            "loc": {
+              "start": {
+                "line": 29,
+                "column": 29
+              },
+              "end": {
+                "line": 223,
+                "column": 1
+              }
+            },
+            "body": [
+              {
+                "type": "ClassMethod",
+                "start": 2739,
+                "end": 2804,
+                "loc": {
+                  "start": {
+                    "line": 64,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 66,
+                    "column": 5
+                  }
+                },
+                "static": true,
+                "computed": false,
+                "key": {
+                  "type": "Identifier",
+                  "start": 2746,
+                  "end": 2752,
+                  "loc": {
+                    "start": {
+                      "line": 64,
+                      "column": 11
+                    },
+                    "end": {
+                      "line": 64,
+                      "column": 17
+                    },
+                    "identifierName": "zoneId"
+                  },
+                  "name": "zoneId"
+                },
+                "kind": "method",
+                "id": null,
+                "generator": false,
+                "expression": false,
+                "async": false,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "start": 2755,
+                  "end": 2804,
+                  "loc": {
+                    "start": {
+                      "line": 64,
+                      "column": 20
+                    },
+                    "end": {
+                      "line": 66,
+                      "column": 5
+                    }
+                  },
+                  "body": [
+                    {
+                      "type": "ReturnStatement",
+                      "start": 2766,
+                      "end": 2797,
+                      "loc": {
+                        "start": {
+                          "line": 65,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 65,
+                          "column": 39
+                        }
+                      },
+                      "argument": {
+                        "type": "MemberExpression",
+                        "start": 2773,
+                        "end": 2796,
+                        "loc": {
+                          "start": {
+                            "line": 65,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 65,
+                            "column": 38
+                          }
+                        },
+                        "object": {
+                          "type": "Identifier",
+                          "start": 2773,
+                          "end": 2788,
+                          "loc": {
+                            "start": {
+                              "line": 65,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 65,
+                              "column": 30
+                            },
+                            "identifierName": "TemporalQueries"
+                          },
+                          "name": "TemporalQueries"
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "start": 2789,
+                          "end": 2796,
+                          "loc": {
+                            "start": {
+                              "line": 65,
+                              "column": 31
+                            },
+                            "end": {
+                              "line": 65,
+                              "column": 38
+                            },
+                            "identifierName": "ZONE_ID"
+                          },
+                          "name": "ZONE_ID"
+                        },
+                        "computed": false
+                      }
+                    }
+                  ],
+                  "directives": [],
+                  "trailingComments": null
+                },
+                "leadingComments": [
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\r\n     * A strict query for the {@link ZoneId}.\r\n     *\r\n     * This queries a {@link TemporalAccessor} for the zone.\r\n     * The zone is only returned if the date-time conceptually contains a {@link ZoneId}.\r\n     * It will not be returned if the date-time only conceptually has an {@link ZoneOffset}.\r\n     * Thus a {@link ZonedDateTime} will return the result of\r\n     * {@link getZone}, but an {@link OffsetDateTime} will\r\n     * return null.\r\n     *\r\n     * In most cases, applications should use {@link ZONE} as this query is too strict.\r\n     *\r\n     * The result from JDK classes implementing {@link TemporalAccessor} is as follows:\r\n     * * * {@link LocalDate} returns null\r\n     * * {@link LocalTime} returns null\r\n     * * {@link LocalDateTime} returns null\r\n     * * {@link ZonedDateTime} returns the associated zone\r\n     * * {@link OffsetTime} returns null\r\n     * * {@link OffsetDateTime} returns null\r\n     * * {@link ChronoLocalDate} returns null\r\n     * * {@link ChronoLocalDateTime} returns null\r\n     * * {@link ChronoZonedDateTime} returns the associated zone\r\n     * * {@link Era} returns null\r\n     * * {@link DayOfWeek} returns null\r\n     * * {@link Month} returns null\r\n     * * {@link Year} returns null\r\n     * * {@link YearMonth} returns null\r\n     * * {@link MonthDay} returns null\r\n     * * {@link ZoneOffset} returns null\r\n     * * {@link Instant} returns null\r\n     *\r\n     * @return a query that can obtain the zone ID of a temporal, not null\r\n     ",
+                    "start": 1245,
+                    "end": 2733,
+                    "loc": {
+                      "start": {
+                        "line": 31,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 63,
+                        "column": 7
+                      }
+                    }
+                  }
+                ],
+                "trailingComments": [
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\r\n     * A query for the {@link Chronology}.\r\n     *\r\n     * This queries a {@link TemporalAccessor} for the chronology.\r\n     * If the target {@link TemporalAccessor} represents a date, or part of a date,\r\n     * then it should return the chronology that the date is expressed in.\r\n     * As a result of this definition, objects only representing time, such as\r\n     * {@link LocalTime}, will return null.\r\n     *\r\n     * The result from js-joda classes implementing {@link TemporalAccessor} is as follows:\r\n     *\r\n     * * {@link LocalDate} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link LocalTime} returns null (does not represent a date)\r\n     * * {@link LocalDateTime} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link ZonedDateTime} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link OffsetTime} returns null (does not represent a date)\r\n     * * {@link OffsetDateTime} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link ChronoLocalDate} returns the associated chronology\r\n     * * {@link ChronoLocalDateTime} returns the associated chronology\r\n     * * {@link ChronoZonedDateTime} returns the associated chronology\r\n     * * {@link Era} returns the associated chronology\r\n     * * {@link DayOfWeek} returns null (shared across chronologies)\r\n     * * {@link Month} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link Year} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link YearMonth} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link MonthDay} returns null * {@link IsoChronology.INSTANCE}\r\n     * * {@link ZoneOffset} returns null (does not represent a date)\r\n     * * {@link Instant} returns null (does not represent a date)\r\n     *\r\n     * The method {@link Chronology#from} can be used as a\r\n     * {@link TemporalQuery}\r\n     * That method is equivalent to this query, except that it throws an\r\n     * exception if a chronology cannot be obtained.\r\n     *\r\n     * @return {TemporalQuery} a query that can obtain the chronology of a temporal, not null\r\n     ",
+                    "start": 2812,
+                    "end": 4842,
+                    "loc": {
+                      "start": {
+                        "line": 68,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 103,
+                        "column": 7
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ClassMethod",
+                "start": 4848,
+                "end": 4916,
+                "loc": {
+                  "start": {
+                    "line": 104,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 106,
+                    "column": 5
+                  }
+                },
+                "static": true,
+                "computed": false,
+                "key": {
+                  "type": "Identifier",
+                  "start": 4855,
+                  "end": 4865,
+                  "loc": {
+                    "start": {
+                      "line": 104,
+                      "column": 11
+                    },
+                    "end": {
+                      "line": 104,
+                      "column": 21
+                    },
+                    "identifierName": "chronology"
+                  },
+                  "name": "chronology"
+                },
+                "kind": "method",
+                "id": null,
+                "generator": false,
+                "expression": false,
+                "async": false,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "start": 4868,
+                  "end": 4916,
+                  "loc": {
+                    "start": {
+                      "line": 104,
+                      "column": 24
+                    },
+                    "end": {
+                      "line": 106,
+                      "column": 5
+                    }
+                  },
+                  "body": [
+                    {
+                      "type": "ReturnStatement",
+                      "start": 4879,
+                      "end": 4909,
+                      "loc": {
+                        "start": {
+                          "line": 105,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 105,
+                          "column": 38
+                        }
+                      },
+                      "argument": {
+                        "type": "MemberExpression",
+                        "start": 4886,
+                        "end": 4908,
+                        "loc": {
+                          "start": {
+                            "line": 105,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 105,
+                            "column": 37
+                          }
+                        },
+                        "object": {
+                          "type": "Identifier",
+                          "start": 4886,
+                          "end": 4901,
+                          "loc": {
+                            "start": {
+                              "line": 105,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 105,
+                              "column": 30
+                            },
+                            "identifierName": "TemporalQueries"
+                          },
+                          "name": "TemporalQueries"
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "start": 4902,
+                          "end": 4908,
+                          "loc": {
+                            "start": {
+                              "line": 105,
+                              "column": 31
+                            },
+                            "end": {
+                              "line": 105,
+                              "column": 37
+                            },
+                            "identifierName": "CHRONO"
+                          },
+                          "name": "CHRONO"
+                        },
+                        "computed": false
+                      }
+                    }
+                  ],
+                  "directives": [],
+                  "trailingComments": null
+                },
+                "leadingComments": [
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\r\n     * A query for the {@link Chronology}.\r\n     *\r\n     * This queries a {@link TemporalAccessor} for the chronology.\r\n     * If the target {@link TemporalAccessor} represents a date, or part of a date,\r\n     * then it should return the chronology that the date is expressed in.\r\n     * As a result of this definition, objects only representing time, such as\r\n     * {@link LocalTime}, will return null.\r\n     *\r\n     * The result from js-joda classes implementing {@link TemporalAccessor} is as follows:\r\n     *\r\n     * * {@link LocalDate} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link LocalTime} returns null (does not represent a date)\r\n     * * {@link LocalDateTime} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link ZonedDateTime} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link OffsetTime} returns null (does not represent a date)\r\n     * * {@link OffsetDateTime} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link ChronoLocalDate} returns the associated chronology\r\n     * * {@link ChronoLocalDateTime} returns the associated chronology\r\n     * * {@link ChronoZonedDateTime} returns the associated chronology\r\n     * * {@link Era} returns the associated chronology\r\n     * * {@link DayOfWeek} returns null (shared across chronologies)\r\n     * * {@link Month} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link Year} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link YearMonth} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link MonthDay} returns null * {@link IsoChronology.INSTANCE}\r\n     * * {@link ZoneOffset} returns null (does not represent a date)\r\n     * * {@link Instant} returns null (does not represent a date)\r\n     *\r\n     * The method {@link Chronology#from} can be used as a\r\n     * {@link TemporalQuery}\r\n     * That method is equivalent to this query, except that it throws an\r\n     * exception if a chronology cannot be obtained.\r\n     *\r\n     * @return {TemporalQuery} a query that can obtain the chronology of a temporal, not null\r\n     ",
+                    "start": 2812,
+                    "end": 4842,
+                    "loc": {
+                      "start": {
+                        "line": 68,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 103,
+                        "column": 7
+                      }
+                    }
+                  }
+                ],
+                "trailingComments": [
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\r\n     * A query for the smallest supported unit.\r\n     *\r\n     * This queries a {@link TemporalAccessor} for the time precision.\r\n     * If the target {@link TemporalAccessor} represents a consistent or complete date-time,\r\n     * date or time then this must return the smallest precision actually supported.\r\n     * Note that fields such as {@link NANO_OF_DAY} and {@link NANO_OF_SECOND}\r\n     * are defined to always return ignoring the precision, thus this is the only\r\n     * way to find the actual smallest supported unit.\r\n     * For example, were {@link GregorianCalendar} to implement {@link TemporalAccessor}\r\n     * it would return a precision of {@link MILLIS}.\r\n     *\r\n     * The result from js-joda classes implementing {@link TemporalAccessor} is as follows:\r\n     *\r\n     * {@link LocalDate} returns {@link DAYS}\r\n     * {@link LocalTime} returns {@link NANOS}\r\n     * {@link LocalDateTime} returns {@link NANOS}\r\n     * {@link ZonedDateTime} returns {@link NANOS}\r\n     * {@link OffsetTime} returns {@link NANOS}\r\n     * {@link OffsetDateTime} returns {@link NANOS}\r\n     * {@link ChronoLocalDate} returns {@link DAYS}\r\n     * {@link ChronoLocalDateTime} returns {@link NANOS}\r\n     * {@link ChronoZonedDateTime} returns {@link NANOS}\r\n     * {@link Era} returns {@link ERAS}\r\n     * {@link DayOfWeek} returns {@link DAYS}\r\n     * {@link Month} returns {@link MONTHS}\r\n     * {@link Year} returns {@link YEARS}\r\n     * {@link YearMonth} returns {@link MONTHS}\r\n     * {@link MonthDay} returns null (does not represent a complete date or time)\r\n     * {@link ZoneOffset} returns null (does not represent a date or time)\r\n     * {@link Instant} returns {@link NANOS}\r\n     *\r\n     * @return a query that can obtain the precision of a temporal, not null\r\n     ",
+                    "start": 4924,
+                    "end": 6704,
+                    "loc": {
+                      "start": {
+                        "line": 108,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 141,
+                        "column": 7
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ClassMethod",
+                "start": 6710,
+                "end": 6780,
+                "loc": {
+                  "start": {
+                    "line": 142,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 144,
+                    "column": 5
+                  }
+                },
+                "static": true,
+                "computed": false,
+                "key": {
+                  "type": "Identifier",
+                  "start": 6717,
+                  "end": 6726,
+                  "loc": {
+                    "start": {
+                      "line": 142,
+                      "column": 11
+                    },
+                    "end": {
+                      "line": 142,
+                      "column": 20
+                    },
+                    "identifierName": "precision"
+                  },
+                  "name": "precision"
+                },
+                "kind": "method",
+                "id": null,
+                "generator": false,
+                "expression": false,
+                "async": false,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "start": 6729,
+                  "end": 6780,
+                  "loc": {
+                    "start": {
+                      "line": 142,
+                      "column": 23
+                    },
+                    "end": {
+                      "line": 144,
+                      "column": 5
+                    }
+                  },
+                  "body": [
+                    {
+                      "type": "ReturnStatement",
+                      "start": 6740,
+                      "end": 6773,
+                      "loc": {
+                        "start": {
+                          "line": 143,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 143,
+                          "column": 41
+                        }
+                      },
+                      "argument": {
+                        "type": "MemberExpression",
+                        "start": 6747,
+                        "end": 6772,
+                        "loc": {
+                          "start": {
+                            "line": 143,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 143,
+                            "column": 40
+                          }
+                        },
+                        "object": {
+                          "type": "Identifier",
+                          "start": 6747,
+                          "end": 6762,
+                          "loc": {
+                            "start": {
+                              "line": 143,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 143,
+                              "column": 30
+                            },
+                            "identifierName": "TemporalQueries"
+                          },
+                          "name": "TemporalQueries"
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "start": 6763,
+                          "end": 6772,
+                          "loc": {
+                            "start": {
+                              "line": 143,
+                              "column": 31
+                            },
+                            "end": {
+                              "line": 143,
+                              "column": 40
+                            },
+                            "identifierName": "PRECISION"
+                          },
+                          "name": "PRECISION"
+                        },
+                        "computed": false
+                      }
+                    }
+                  ],
+                  "directives": [],
+                  "trailingComments": null
+                },
+                "leadingComments": [
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\r\n     * A query for the smallest supported unit.\r\n     *\r\n     * This queries a {@link TemporalAccessor} for the time precision.\r\n     * If the target {@link TemporalAccessor} represents a consistent or complete date-time,\r\n     * date or time then this must return the smallest precision actually supported.\r\n     * Note that fields such as {@link NANO_OF_DAY} and {@link NANO_OF_SECOND}\r\n     * are defined to always return ignoring the precision, thus this is the only\r\n     * way to find the actual smallest supported unit.\r\n     * For example, were {@link GregorianCalendar} to implement {@link TemporalAccessor}\r\n     * it would return a precision of {@link MILLIS}.\r\n     *\r\n     * The result from js-joda classes implementing {@link TemporalAccessor} is as follows:\r\n     *\r\n     * {@link LocalDate} returns {@link DAYS}\r\n     * {@link LocalTime} returns {@link NANOS}\r\n     * {@link LocalDateTime} returns {@link NANOS}\r\n     * {@link ZonedDateTime} returns {@link NANOS}\r\n     * {@link OffsetTime} returns {@link NANOS}\r\n     * {@link OffsetDateTime} returns {@link NANOS}\r\n     * {@link ChronoLocalDate} returns {@link DAYS}\r\n     * {@link ChronoLocalDateTime} returns {@link NANOS}\r\n     * {@link ChronoZonedDateTime} returns {@link NANOS}\r\n     * {@link Era} returns {@link ERAS}\r\n     * {@link DayOfWeek} returns {@link DAYS}\r\n     * {@link Month} returns {@link MONTHS}\r\n     * {@link Year} returns {@link YEARS}\r\n     * {@link YearMonth} returns {@link MONTHS}\r\n     * {@link MonthDay} returns null (does not represent a complete date or time)\r\n     * {@link ZoneOffset} returns null (does not represent a date or time)\r\n     * {@link Instant} returns {@link NANOS}\r\n     *\r\n     * @return a query that can obtain the precision of a temporal, not null\r\n     ",
+                    "start": 4924,
+                    "end": 6704,
+                    "loc": {
+                      "start": {
+                        "line": 108,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 141,
+                        "column": 7
+                      }
+                    }
+                  }
+                ],
+                "trailingComments": [
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\r\n     * A lenient query for the {@link ZoneId}, falling back to the {@link ZoneOffset}.\r\n     *\r\n     * This queries a {@link TemporalAccessor} for the zone.\r\n     * It first tries to obtain the zone, using {@link zoneId}.\r\n     * If that is not found it tries to obtain the {@link offset}.\r\n     *\r\n     * In most cases, applications should use this query rather than {@link zoneId}.\r\n     *\r\n     * This query examines the {@link ChronoField#OFFSET_SECONDS}\r\n     * field and uses it to create a {@link ZoneOffset}.\r\n     *\r\n     * The method {@link ZoneId#from} can be used as a\r\n     * {@link TemporalQuery} via a method reference, {@link ZoneId::from}.\r\n     * That method is equivalent to this query, except that it throws an\r\n     * exception if a zone cannot be obtained.\r\n     *\r\n     * @return a query that can obtain the zone ID or offset of a temporal, not null\r\n     ",
+                    "start": 6788,
+                    "end": 7674,
+                    "loc": {
+                      "start": {
+                        "line": 146,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 164,
+                        "column": 7
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ClassMethod",
+                "start": 7680,
+                "end": 7740,
+                "loc": {
+                  "start": {
+                    "line": 165,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 167,
+                    "column": 5
+                  }
+                },
+                "static": true,
+                "computed": false,
+                "key": {
+                  "type": "Identifier",
+                  "start": 7687,
+                  "end": 7691,
+                  "loc": {
+                    "start": {
+                      "line": 165,
+                      "column": 11
+                    },
+                    "end": {
+                      "line": 165,
+                      "column": 15
+                    },
+                    "identifierName": "zone"
+                  },
+                  "name": "zone"
+                },
+                "kind": "method",
+                "id": null,
+                "generator": false,
+                "expression": false,
+                "async": false,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "start": 7694,
+                  "end": 7740,
+                  "loc": {
+                    "start": {
+                      "line": 165,
+                      "column": 18
+                    },
+                    "end": {
+                      "line": 167,
+                      "column": 5
+                    }
+                  },
+                  "body": [
+                    {
+                      "type": "ReturnStatement",
+                      "start": 7705,
+                      "end": 7733,
+                      "loc": {
+                        "start": {
+                          "line": 166,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 166,
+                          "column": 36
+                        }
+                      },
+                      "argument": {
+                        "type": "MemberExpression",
+                        "start": 7712,
+                        "end": 7732,
+                        "loc": {
+                          "start": {
+                            "line": 166,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 166,
+                            "column": 35
+                          }
+                        },
+                        "object": {
+                          "type": "Identifier",
+                          "start": 7712,
+                          "end": 7727,
+                          "loc": {
+                            "start": {
+                              "line": 166,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 166,
+                              "column": 30
+                            },
+                            "identifierName": "TemporalQueries"
+                          },
+                          "name": "TemporalQueries"
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "start": 7728,
+                          "end": 7732,
+                          "loc": {
+                            "start": {
+                              "line": 166,
+                              "column": 31
+                            },
+                            "end": {
+                              "line": 166,
+                              "column": 35
+                            },
+                            "identifierName": "ZONE"
+                          },
+                          "name": "ZONE"
+                        },
+                        "computed": false
+                      }
+                    }
+                  ],
+                  "directives": [],
+                  "trailingComments": null
+                },
+                "leadingComments": [
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\r\n     * A lenient query for the {@link ZoneId}, falling back to the {@link ZoneOffset}.\r\n     *\r\n     * This queries a {@link TemporalAccessor} for the zone.\r\n     * It first tries to obtain the zone, using {@link zoneId}.\r\n     * If that is not found it tries to obtain the {@link offset}.\r\n     *\r\n     * In most cases, applications should use this query rather than {@link zoneId}.\r\n     *\r\n     * This query examines the {@link ChronoField#OFFSET_SECONDS}\r\n     * field and uses it to create a {@link ZoneOffset}.\r\n     *\r\n     * The method {@link ZoneId#from} can be used as a\r\n     * {@link TemporalQuery} via a method reference, {@link ZoneId::from}.\r\n     * That method is equivalent to this query, except that it throws an\r\n     * exception if a zone cannot be obtained.\r\n     *\r\n     * @return a query that can obtain the zone ID or offset of a temporal, not null\r\n     ",
+                    "start": 6788,
+                    "end": 7674,
+                    "loc": {
+                      "start": {
+                        "line": 146,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 164,
+                        "column": 7
+                      }
+                    }
+                  }
+                ],
+                "trailingComments": [
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\r\n     * A query for {@link ZoneOffset} returning null if not found.\r\n     *\r\n     * This returns a {@link TemporalQuery} that can be used to query a temporal\r\n     * object for the offset. The query will return null if the temporal\r\n     * object cannot supply an offset.\r\n     *\r\n     * The query implementation examines the {@link ChronoField#OFFSET_SECONDS}\r\n     * field and uses it to create a {@link ZoneOffset}.\r\n     *\r\n     * The method {@link java.time.ZoneOffset#from} can be used as a\r\n     * {@link TemporalQuery} via a method reference, {@link ZoneOffset::from}.\r\n     * This query and {@link ZoneOffset::from} will return the same result if the\r\n     * temporal object contains an offset. If the temporal object does not contain\r\n     * an offset, then the method reference will throw an exception, whereas this\r\n     * query will return null.\r\n     *\r\n     * @return a query that can obtain the offset of a temporal, not null\r\n     ",
+                    "start": 7748,
+                    "end": 8702,
+                    "loc": {
+                      "start": {
+                        "line": 169,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 187,
+                        "column": 7
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ClassMethod",
+                "start": 8708,
+                "end": 8772,
+                "loc": {
+                  "start": {
+                    "line": 188,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 190,
+                    "column": 5
+                  }
+                },
+                "static": true,
+                "computed": false,
+                "key": {
+                  "type": "Identifier",
+                  "start": 8715,
+                  "end": 8721,
+                  "loc": {
+                    "start": {
+                      "line": 188,
+                      "column": 11
+                    },
+                    "end": {
+                      "line": 188,
+                      "column": 17
+                    },
+                    "identifierName": "offset"
+                  },
+                  "name": "offset"
+                },
+                "kind": "method",
+                "id": null,
+                "generator": false,
+                "expression": false,
+                "async": false,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "start": 8724,
+                  "end": 8772,
+                  "loc": {
+                    "start": {
+                      "line": 188,
+                      "column": 20
+                    },
+                    "end": {
+                      "line": 190,
+                      "column": 5
+                    }
+                  },
+                  "body": [
+                    {
+                      "type": "ReturnStatement",
+                      "start": 8735,
+                      "end": 8765,
+                      "loc": {
+                        "start": {
+                          "line": 189,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 189,
+                          "column": 38
+                        }
+                      },
+                      "argument": {
+                        "type": "MemberExpression",
+                        "start": 8742,
+                        "end": 8764,
+                        "loc": {
+                          "start": {
+                            "line": 189,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 189,
+                            "column": 37
+                          }
+                        },
+                        "object": {
+                          "type": "Identifier",
+                          "start": 8742,
+                          "end": 8757,
+                          "loc": {
+                            "start": {
+                              "line": 189,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 189,
+                              "column": 30
+                            },
+                            "identifierName": "TemporalQueries"
+                          },
+                          "name": "TemporalQueries"
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "start": 8758,
+                          "end": 8764,
+                          "loc": {
+                            "start": {
+                              "line": 189,
+                              "column": 31
+                            },
+                            "end": {
+                              "line": 189,
+                              "column": 37
+                            },
+                            "identifierName": "OFFSET"
+                          },
+                          "name": "OFFSET"
+                        },
+                        "computed": false
+                      }
+                    }
+                  ],
+                  "directives": [],
+                  "trailingComments": null
+                },
+                "leadingComments": [
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\r\n     * A query for {@link ZoneOffset} returning null if not found.\r\n     *\r\n     * This returns a {@link TemporalQuery} that can be used to query a temporal\r\n     * object for the offset. The query will return null if the temporal\r\n     * object cannot supply an offset.\r\n     *\r\n     * The query implementation examines the {@link ChronoField#OFFSET_SECONDS}\r\n     * field and uses it to create a {@link ZoneOffset}.\r\n     *\r\n     * The method {@link java.time.ZoneOffset#from} can be used as a\r\n     * {@link TemporalQuery} via a method reference, {@link ZoneOffset::from}.\r\n     * This query and {@link ZoneOffset::from} will return the same result if the\r\n     * temporal object contains an offset. If the temporal object does not contain\r\n     * an offset, then the method reference will throw an exception, whereas this\r\n     * query will return null.\r\n     *\r\n     * @return a query that can obtain the offset of a temporal, not null\r\n     ",
+                    "start": 7748,
+                    "end": 8702,
+                    "loc": {
+                      "start": {
+                        "line": 169,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 187,
+                        "column": 7
+                      }
+                    }
+                  }
+                ],
+                "trailingComments": [
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\r\n     * A query for {@link LocalDate} returning null if not found.\r\n     *\r\n     * This returns a {@link TemporalQuery} that can be used to query a temporal\r\n     * object for the local date. The query will return null if the temporal\r\n     * object cannot supply a local date.\r\n     *\r\n     * The query implementation examines the {@link ChronoField#EPOCH_DAY}\r\n     * field and uses it to create a {@link LocalDate}.\r\n     *\r\n     * @return a query that can obtain the date of a temporal, not null\r\n     ",
+                    "start": 8780,
+                    "end": 9292,
+                    "loc": {
+                      "start": {
+                        "line": 192,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 203,
+                        "column": 7
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ClassMethod",
+                "start": 9298,
+                "end": 9369,
+                "loc": {
+                  "start": {
+                    "line": 204,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 206,
+                    "column": 5
+                  }
+                },
+                "static": true,
+                "computed": false,
+                "key": {
+                  "type": "Identifier",
+                  "start": 9305,
+                  "end": 9314,
+                  "loc": {
+                    "start": {
+                      "line": 204,
+                      "column": 11
+                    },
+                    "end": {
+                      "line": 204,
+                      "column": 20
+                    },
+                    "identifierName": "localDate"
+                  },
+                  "name": "localDate"
+                },
+                "kind": "method",
+                "id": null,
+                "generator": false,
+                "expression": false,
+                "async": false,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "start": 9317,
+                  "end": 9369,
+                  "loc": {
+                    "start": {
+                      "line": 204,
+                      "column": 23
+                    },
+                    "end": {
+                      "line": 206,
+                      "column": 5
+                    }
+                  },
+                  "body": [
+                    {
+                      "type": "ReturnStatement",
+                      "start": 9328,
+                      "end": 9362,
+                      "loc": {
+                        "start": {
+                          "line": 205,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 205,
+                          "column": 42
+                        }
+                      },
+                      "argument": {
+                        "type": "MemberExpression",
+                        "start": 9335,
+                        "end": 9361,
+                        "loc": {
+                          "start": {
+                            "line": 205,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 205,
+                            "column": 41
+                          }
+                        },
+                        "object": {
+                          "type": "Identifier",
+                          "start": 9335,
+                          "end": 9350,
+                          "loc": {
+                            "start": {
+                              "line": 205,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 205,
+                              "column": 30
+                            },
+                            "identifierName": "TemporalQueries"
+                          },
+                          "name": "TemporalQueries"
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "start": 9351,
+                          "end": 9361,
+                          "loc": {
+                            "start": {
+                              "line": 205,
+                              "column": 31
+                            },
+                            "end": {
+                              "line": 205,
+                              "column": 41
+                            },
+                            "identifierName": "LOCAL_DATE"
+                          },
+                          "name": "LOCAL_DATE"
+                        },
+                        "computed": false
+                      }
+                    }
+                  ],
+                  "directives": [],
+                  "trailingComments": null
+                },
+                "leadingComments": [
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\r\n     * A query for {@link LocalDate} returning null if not found.\r\n     *\r\n     * This returns a {@link TemporalQuery} that can be used to query a temporal\r\n     * object for the local date. The query will return null if the temporal\r\n     * object cannot supply a local date.\r\n     *\r\n     * The query implementation examines the {@link ChronoField#EPOCH_DAY}\r\n     * field and uses it to create a {@link LocalDate}.\r\n     *\r\n     * @return a query that can obtain the date of a temporal, not null\r\n     ",
+                    "start": 8780,
+                    "end": 9292,
+                    "loc": {
+                      "start": {
+                        "line": 192,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 203,
+                        "column": 7
+                      }
+                    }
+                  }
+                ],
+                "trailingComments": [
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\r\n     * A query for {@link LocalTime} returning null if not found.\r\n     *\r\n     * This returns a {@link TemporalQuery} that can be used to query a temporal\r\n     * object for the local time. The query will return null if the temporal\r\n     * object cannot supply a local time.\r\n     *\r\n     * The query implementation examines the {@link ChronoField#NANO_OF_DAY}\r\n     * field and uses it to create a {@link LocalTime}.\r\n     *\r\n     * @return a query that can obtain the time of a temporal, not null\r\n     ",
+                    "start": 9377,
+                    "end": 9891,
+                    "loc": {
+                      "start": {
+                        "line": 208,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 219,
+                        "column": 7
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "ClassMethod",
+                "start": 9897,
+                "end": 9968,
+                "loc": {
+                  "start": {
+                    "line": 220,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 222,
+                    "column": 5
+                  }
+                },
+                "static": true,
+                "computed": false,
+                "key": {
+                  "type": "Identifier",
+                  "start": 9904,
+                  "end": 9913,
+                  "loc": {
+                    "start": {
+                      "line": 220,
+                      "column": 11
+                    },
+                    "end": {
+                      "line": 220,
+                      "column": 20
+                    },
+                    "identifierName": "localTime"
+                  },
+                  "name": "localTime"
+                },
+                "kind": "method",
+                "id": null,
+                "generator": false,
+                "expression": false,
+                "async": false,
+                "params": [],
+                "body": {
+                  "type": "BlockStatement",
+                  "start": 9916,
+                  "end": 9968,
+                  "loc": {
+                    "start": {
+                      "line": 220,
+                      "column": 23
+                    },
+                    "end": {
+                      "line": 222,
+                      "column": 5
+                    }
+                  },
+                  "body": [
+                    {
+                      "type": "ReturnStatement",
+                      "start": 9927,
+                      "end": 9961,
+                      "loc": {
+                        "start": {
+                          "line": 221,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 221,
+                          "column": 42
+                        }
+                      },
+                      "argument": {
+                        "type": "MemberExpression",
+                        "start": 9934,
+                        "end": 9960,
+                        "loc": {
+                          "start": {
+                            "line": 221,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 221,
+                            "column": 41
+                          }
+                        },
+                        "object": {
+                          "type": "Identifier",
+                          "start": 9934,
+                          "end": 9949,
+                          "loc": {
+                            "start": {
+                              "line": 221,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 221,
+                              "column": 30
+                            },
+                            "identifierName": "TemporalQueries"
+                          },
+                          "name": "TemporalQueries"
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "start": 9950,
+                          "end": 9960,
+                          "loc": {
+                            "start": {
+                              "line": 221,
+                              "column": 31
+                            },
+                            "end": {
+                              "line": 221,
+                              "column": 41
+                            },
+                            "identifierName": "LOCAL_TIME"
+                          },
+                          "name": "LOCAL_TIME"
+                        },
+                        "computed": false
+                      }
+                    }
+                  ],
+                  "directives": []
+                },
+                "leadingComments": [
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\r\n     * A query for {@link LocalTime} returning null if not found.\r\n     *\r\n     * This returns a {@link TemporalQuery} that can be used to query a temporal\r\n     * object for the local time. The query will return null if the temporal\r\n     * object cannot supply a local time.\r\n     *\r\n     * The query implementation examines the {@link ChronoField#NANO_OF_DAY}\r\n     * field and uses it to create a {@link LocalTime}.\r\n     *\r\n     * @return a query that can obtain the time of a temporal, not null\r\n     ",
+                    "start": 9377,
+                    "end": 9891,
+                    "loc": {
+                      "start": {
+                        "line": 208,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 219,
+                        "column": 7
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "leadingComments": [
+            {
+              "type": "CommentBlock",
+              "value": "*\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\r\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\r\n ",
+              "start": 0,
+              "end": 232,
+              "loc": {
+                "start": {
+                  "line": 1,
+                  "column": 0
+                },
+                "end": {
+                  "line": 5,
+                  "column": 3
+                }
+              }
+            },
+            {
+              "type": "CommentBlock",
+              "value": "*\r\n * Common implementations of {@link TemporalQuery}.\r\n *\r\n * This class provides common implementations of {@link TemporalQuery}.\r\n * These queries are primarily used as optimizations, allowing the internals\r\n * of other objects to be extracted effectively. Note that application code\r\n * can also use the {@link from} method on most temporal\r\n * objects as a method reference matching the query interface, such as\r\n * {@link LocalDate::from} and {@link ZoneId::from}.\r\n *\r\n * There are two equivalent ways of using a {@link TemporalQuery}.\r\n * The first is to invoke the method on the interface directly.\r\n * The second is to use {@link TemporalAccessor#query}:\r\n * <pre>\r\n *   // these two lines are equivalent, but the second approach is recommended\r\n *   dateTime = query.queryFrom(dateTime);\r\n *   dateTime = dateTime.query(query);\r\n * </pre>\r\n * It is recommended to use the second approach, {@link query},\r\n * as it is a lot clearer to read in code.\r\n *\r\n ",
+              "start": 236,
+              "end": 1205,
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 0
+                },
+                "end": {
+                  "line": 28,
+                  "column": 3
+                }
+              }
+            }
+          ],
+          "trailingComments": []
+        },
+        "leadingComments": [
+          {
+            "type": "CommentBlock",
+            "value": "*\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\r\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\r\n ",
+            "start": 0,
+            "end": 232,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 0
+              },
+              "end": {
+                "line": 5,
+                "column": 3
+              }
+            }
+          },
+          {
+            "type": "CommentBlock",
+            "value": "*\r\n * Common implementations of {@link TemporalQuery}.\r\n *\r\n * This class provides common implementations of {@link TemporalQuery}.\r\n * These queries are primarily used as optimizations, allowing the internals\r\n * of other objects to be extracted effectively. Note that application code\r\n * can also use the {@link from} method on most temporal\r\n * objects as a method reference matching the query interface, such as\r\n * {@link LocalDate::from} and {@link ZoneId::from}.\r\n *\r\n * There are two equivalent ways of using a {@link TemporalQuery}.\r\n * The first is to invoke the method on the interface directly.\r\n * The second is to use {@link TemporalAccessor#query}:\r\n * <pre>\r\n *   // these two lines are equivalent, but the second approach is recommended\r\n *   dateTime = query.queryFrom(dateTime);\r\n *   dateTime = dateTime.query(query);\r\n * </pre>\r\n * It is recommended to use the second approach, {@link query},\r\n * as it is a lot clearer to read in code.\r\n *\r\n ",
+            "start": 236,
+            "end": 1205,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 0
+              },
+              "end": {
+                "line": 28,
+                "column": 3
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "directives": []
+  },
+  "comments": [
+    {
+      "type": "CommentBlock",
+      "value": "*\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\r\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\r\n ",
+      "start": 0,
+      "end": 232,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\r\n * Common implementations of {@link TemporalQuery}.\r\n *\r\n * This class provides common implementations of {@link TemporalQuery}.\r\n * These queries are primarily used as optimizations, allowing the internals\r\n * of other objects to be extracted effectively. Note that application code\r\n * can also use the {@link from} method on most temporal\r\n * objects as a method reference matching the query interface, such as\r\n * {@link LocalDate::from} and {@link ZoneId::from}.\r\n *\r\n * There are two equivalent ways of using a {@link TemporalQuery}.\r\n * The first is to invoke the method on the interface directly.\r\n * The second is to use {@link TemporalAccessor#query}:\r\n * <pre>\r\n *   // these two lines are equivalent, but the second approach is recommended\r\n *   dateTime = query.queryFrom(dateTime);\r\n *   dateTime = dateTime.query(query);\r\n * </pre>\r\n * It is recommended to use the second approach, {@link query},\r\n * as it is a lot clearer to read in code.\r\n *\r\n ",
+      "start": 236,
+      "end": 1205,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 28,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\r\n     * A strict query for the {@link ZoneId}.\r\n     *\r\n     * This queries a {@link TemporalAccessor} for the zone.\r\n     * The zone is only returned if the date-time conceptually contains a {@link ZoneId}.\r\n     * It will not be returned if the date-time only conceptually has an {@link ZoneOffset}.\r\n     * Thus a {@link ZonedDateTime} will return the result of\r\n     * {@link getZone}, but an {@link OffsetDateTime} will\r\n     * return null.\r\n     *\r\n     * In most cases, applications should use {@link ZONE} as this query is too strict.\r\n     *\r\n     * The result from JDK classes implementing {@link TemporalAccessor} is as follows:\r\n     * * * {@link LocalDate} returns null\r\n     * * {@link LocalTime} returns null\r\n     * * {@link LocalDateTime} returns null\r\n     * * {@link ZonedDateTime} returns the associated zone\r\n     * * {@link OffsetTime} returns null\r\n     * * {@link OffsetDateTime} returns null\r\n     * * {@link ChronoLocalDate} returns null\r\n     * * {@link ChronoLocalDateTime} returns null\r\n     * * {@link ChronoZonedDateTime} returns the associated zone\r\n     * * {@link Era} returns null\r\n     * * {@link DayOfWeek} returns null\r\n     * * {@link Month} returns null\r\n     * * {@link Year} returns null\r\n     * * {@link YearMonth} returns null\r\n     * * {@link MonthDay} returns null\r\n     * * {@link ZoneOffset} returns null\r\n     * * {@link Instant} returns null\r\n     *\r\n     * @return a query that can obtain the zone ID of a temporal, not null\r\n     ",
+      "start": 1245,
+      "end": 2733,
+      "loc": {
+        "start": {
+          "line": 31,
+          "column": 4
+        },
+        "end": {
+          "line": 63,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\r\n     * A query for the {@link Chronology}.\r\n     *\r\n     * This queries a {@link TemporalAccessor} for the chronology.\r\n     * If the target {@link TemporalAccessor} represents a date, or part of a date,\r\n     * then it should return the chronology that the date is expressed in.\r\n     * As a result of this definition, objects only representing time, such as\r\n     * {@link LocalTime}, will return null.\r\n     *\r\n     * The result from js-joda classes implementing {@link TemporalAccessor} is as follows:\r\n     *\r\n     * * {@link LocalDate} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link LocalTime} returns null (does not represent a date)\r\n     * * {@link LocalDateTime} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link ZonedDateTime} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link OffsetTime} returns null (does not represent a date)\r\n     * * {@link OffsetDateTime} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link ChronoLocalDate} returns the associated chronology\r\n     * * {@link ChronoLocalDateTime} returns the associated chronology\r\n     * * {@link ChronoZonedDateTime} returns the associated chronology\r\n     * * {@link Era} returns the associated chronology\r\n     * * {@link DayOfWeek} returns null (shared across chronologies)\r\n     * * {@link Month} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link Year} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link YearMonth} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link MonthDay} returns null * {@link IsoChronology.INSTANCE}\r\n     * * {@link ZoneOffset} returns null (does not represent a date)\r\n     * * {@link Instant} returns null (does not represent a date)\r\n     *\r\n     * The method {@link Chronology#from} can be used as a\r\n     * {@link TemporalQuery}\r\n     * That method is equivalent to this query, except that it throws an\r\n     * exception if a chronology cannot be obtained.\r\n     *\r\n     * @return {TemporalQuery} a query that can obtain the chronology of a temporal, not null\r\n     ",
+      "start": 2812,
+      "end": 4842,
+      "loc": {
+        "start": {
+          "line": 68,
+          "column": 4
+        },
+        "end": {
+          "line": 103,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\r\n     * A query for the smallest supported unit.\r\n     *\r\n     * This queries a {@link TemporalAccessor} for the time precision.\r\n     * If the target {@link TemporalAccessor} represents a consistent or complete date-time,\r\n     * date or time then this must return the smallest precision actually supported.\r\n     * Note that fields such as {@link NANO_OF_DAY} and {@link NANO_OF_SECOND}\r\n     * are defined to always return ignoring the precision, thus this is the only\r\n     * way to find the actual smallest supported unit.\r\n     * For example, were {@link GregorianCalendar} to implement {@link TemporalAccessor}\r\n     * it would return a precision of {@link MILLIS}.\r\n     *\r\n     * The result from js-joda classes implementing {@link TemporalAccessor} is as follows:\r\n     *\r\n     * {@link LocalDate} returns {@link DAYS}\r\n     * {@link LocalTime} returns {@link NANOS}\r\n     * {@link LocalDateTime} returns {@link NANOS}\r\n     * {@link ZonedDateTime} returns {@link NANOS}\r\n     * {@link OffsetTime} returns {@link NANOS}\r\n     * {@link OffsetDateTime} returns {@link NANOS}\r\n     * {@link ChronoLocalDate} returns {@link DAYS}\r\n     * {@link ChronoLocalDateTime} returns {@link NANOS}\r\n     * {@link ChronoZonedDateTime} returns {@link NANOS}\r\n     * {@link Era} returns {@link ERAS}\r\n     * {@link DayOfWeek} returns {@link DAYS}\r\n     * {@link Month} returns {@link MONTHS}\r\n     * {@link Year} returns {@link YEARS}\r\n     * {@link YearMonth} returns {@link MONTHS}\r\n     * {@link MonthDay} returns null (does not represent a complete date or time)\r\n     * {@link ZoneOffset} returns null (does not represent a date or time)\r\n     * {@link Instant} returns {@link NANOS}\r\n     *\r\n     * @return a query that can obtain the precision of a temporal, not null\r\n     ",
+      "start": 4924,
+      "end": 6704,
+      "loc": {
+        "start": {
+          "line": 108,
+          "column": 4
+        },
+        "end": {
+          "line": 141,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\r\n     * A lenient query for the {@link ZoneId}, falling back to the {@link ZoneOffset}.\r\n     *\r\n     * This queries a {@link TemporalAccessor} for the zone.\r\n     * It first tries to obtain the zone, using {@link zoneId}.\r\n     * If that is not found it tries to obtain the {@link offset}.\r\n     *\r\n     * In most cases, applications should use this query rather than {@link zoneId}.\r\n     *\r\n     * This query examines the {@link ChronoField#OFFSET_SECONDS}\r\n     * field and uses it to create a {@link ZoneOffset}.\r\n     *\r\n     * The method {@link ZoneId#from} can be used as a\r\n     * {@link TemporalQuery} via a method reference, {@link ZoneId::from}.\r\n     * That method is equivalent to this query, except that it throws an\r\n     * exception if a zone cannot be obtained.\r\n     *\r\n     * @return a query that can obtain the zone ID or offset of a temporal, not null\r\n     ",
+      "start": 6788,
+      "end": 7674,
+      "loc": {
+        "start": {
+          "line": 146,
+          "column": 4
+        },
+        "end": {
+          "line": 164,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\r\n     * A query for {@link ZoneOffset} returning null if not found.\r\n     *\r\n     * This returns a {@link TemporalQuery} that can be used to query a temporal\r\n     * object for the offset. The query will return null if the temporal\r\n     * object cannot supply an offset.\r\n     *\r\n     * The query implementation examines the {@link ChronoField#OFFSET_SECONDS}\r\n     * field and uses it to create a {@link ZoneOffset}.\r\n     *\r\n     * The method {@link java.time.ZoneOffset#from} can be used as a\r\n     * {@link TemporalQuery} via a method reference, {@link ZoneOffset::from}.\r\n     * This query and {@link ZoneOffset::from} will return the same result if the\r\n     * temporal object contains an offset. If the temporal object does not contain\r\n     * an offset, then the method reference will throw an exception, whereas this\r\n     * query will return null.\r\n     *\r\n     * @return a query that can obtain the offset of a temporal, not null\r\n     ",
+      "start": 7748,
+      "end": 8702,
+      "loc": {
+        "start": {
+          "line": 169,
+          "column": 4
+        },
+        "end": {
+          "line": 187,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\r\n     * A query for {@link LocalDate} returning null if not found.\r\n     *\r\n     * This returns a {@link TemporalQuery} that can be used to query a temporal\r\n     * object for the local date. The query will return null if the temporal\r\n     * object cannot supply a local date.\r\n     *\r\n     * The query implementation examines the {@link ChronoField#EPOCH_DAY}\r\n     * field and uses it to create a {@link LocalDate}.\r\n     *\r\n     * @return a query that can obtain the date of a temporal, not null\r\n     ",
+      "start": 8780,
+      "end": 9292,
+      "loc": {
+        "start": {
+          "line": 192,
+          "column": 4
+        },
+        "end": {
+          "line": 203,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\r\n     * A query for {@link LocalTime} returning null if not found.\r\n     *\r\n     * This returns a {@link TemporalQuery} that can be used to query a temporal\r\n     * object for the local time. The query will return null if the temporal\r\n     * object cannot supply a local time.\r\n     *\r\n     * The query implementation examines the {@link ChronoField#NANO_OF_DAY}\r\n     * field and uses it to create a {@link LocalTime}.\r\n     *\r\n     * @return a query that can obtain the time of a temporal, not null\r\n     ",
+      "start": 9377,
+      "end": 9891,
+      "loc": {
+        "start": {
+          "line": 208,
+          "column": 4
+        },
+        "end": {
+          "line": 219,
+          "column": 7
+        }
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "type": "CommentBlock",
+      "value": "*\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\r\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\r\n ",
+      "start": 0,
+      "end": 232,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\r\n * Common implementations of {@link TemporalQuery}.\r\n *\r\n * This class provides common implementations of {@link TemporalQuery}.\r\n * These queries are primarily used as optimizations, allowing the internals\r\n * of other objects to be extracted effectively. Note that application code\r\n * can also use the {@link from} method on most temporal\r\n * objects as a method reference matching the query interface, such as\r\n * {@link LocalDate::from} and {@link ZoneId::from}.\r\n *\r\n * There are two equivalent ways of using a {@link TemporalQuery}.\r\n * The first is to invoke the method on the interface directly.\r\n * The second is to use {@link TemporalAccessor#query}:\r\n * <pre>\r\n *   // these two lines are equivalent, but the second approach is recommended\r\n *   dateTime = query.queryFrom(dateTime);\r\n *   dateTime = dateTime.query(query);\r\n * </pre>\r\n * It is recommended to use the second approach, {@link query},\r\n * as it is a lot clearer to read in code.\r\n *\r\n ",
+      "start": 236,
+      "end": 1205,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 28,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "export",
+        "keyword": "export",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "export",
+      "start": 1207,
+      "end": 1213,
+      "loc": {
+        "start": {
+          "line": 29,
+          "column": 0
+        },
+        "end": {
+          "line": 29,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "class",
+        "keyword": "class",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "class",
+      "start": 1214,
+      "end": 1219,
+      "loc": {
+        "start": {
+          "line": 29,
+          "column": 7
+        },
+        "end": {
+          "line": 29,
+          "column": 12
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "TemporalQueries",
+      "start": 1220,
+      "end": 1235,
+      "loc": {
+        "start": {
+          "line": 29,
+          "column": 13
+        },
+        "end": {
+          "line": 29,
+          "column": 28
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 1236,
+      "end": 1237,
+      "loc": {
+        "start": {
+          "line": 29,
+          "column": 29
+        },
+        "end": {
+          "line": 29,
+          "column": 30
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\r\n     * A strict query for the {@link ZoneId}.\r\n     *\r\n     * This queries a {@link TemporalAccessor} for the zone.\r\n     * The zone is only returned if the date-time conceptually contains a {@link ZoneId}.\r\n     * It will not be returned if the date-time only conceptually has an {@link ZoneOffset}.\r\n     * Thus a {@link ZonedDateTime} will return the result of\r\n     * {@link getZone}, but an {@link OffsetDateTime} will\r\n     * return null.\r\n     *\r\n     * In most cases, applications should use {@link ZONE} as this query is too strict.\r\n     *\r\n     * The result from JDK classes implementing {@link TemporalAccessor} is as follows:\r\n     * * * {@link LocalDate} returns null\r\n     * * {@link LocalTime} returns null\r\n     * * {@link LocalDateTime} returns null\r\n     * * {@link ZonedDateTime} returns the associated zone\r\n     * * {@link OffsetTime} returns null\r\n     * * {@link OffsetDateTime} returns null\r\n     * * {@link ChronoLocalDate} returns null\r\n     * * {@link ChronoLocalDateTime} returns null\r\n     * * {@link ChronoZonedDateTime} returns the associated zone\r\n     * * {@link Era} returns null\r\n     * * {@link DayOfWeek} returns null\r\n     * * {@link Month} returns null\r\n     * * {@link Year} returns null\r\n     * * {@link YearMonth} returns null\r\n     * * {@link MonthDay} returns null\r\n     * * {@link ZoneOffset} returns null\r\n     * * {@link Instant} returns null\r\n     *\r\n     * @return a query that can obtain the zone ID of a temporal, not null\r\n     ",
+      "start": 1245,
+      "end": 2733,
+      "loc": {
+        "start": {
+          "line": 31,
+          "column": 4
+        },
+        "end": {
+          "line": 63,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "static",
+      "start": 2739,
+      "end": 2745,
+      "loc": {
+        "start": {
+          "line": 64,
+          "column": 4
+        },
+        "end": {
+          "line": 64,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "zoneId",
+      "start": 2746,
+      "end": 2752,
+      "loc": {
+        "start": {
+          "line": 64,
+          "column": 11
+        },
+        "end": {
+          "line": 64,
+          "column": 17
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "(",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 2752,
+      "end": 2753,
+      "loc": {
+        "start": {
+          "line": 64,
+          "column": 17
+        },
+        "end": {
+          "line": 64,
+          "column": 18
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ")",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 2753,
+      "end": 2754,
+      "loc": {
+        "start": {
+          "line": 64,
+          "column": 18
+        },
+        "end": {
+          "line": 64,
+          "column": 19
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 2755,
+      "end": 2756,
+      "loc": {
+        "start": {
+          "line": 64,
+          "column": 20
+        },
+        "end": {
+          "line": 64,
+          "column": 21
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "return",
+        "keyword": "return",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "return",
+      "start": 2766,
+      "end": 2772,
+      "loc": {
+        "start": {
+          "line": 65,
+          "column": 8
+        },
+        "end": {
+          "line": 65,
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "TemporalQueries",
+      "start": 2773,
+      "end": 2788,
+      "loc": {
+        "start": {
+          "line": 65,
+          "column": 15
+        },
+        "end": {
+          "line": 65,
+          "column": 30
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ".",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 2788,
+      "end": 2789,
+      "loc": {
+        "start": {
+          "line": 65,
+          "column": 30
+        },
+        "end": {
+          "line": 65,
+          "column": 31
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "ZONE_ID",
+      "start": 2789,
+      "end": 2796,
+      "loc": {
+        "start": {
+          "line": 65,
+          "column": 31
+        },
+        "end": {
+          "line": 65,
+          "column": 38
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 2796,
+      "end": 2797,
+      "loc": {
+        "start": {
+          "line": 65,
+          "column": 38
+        },
+        "end": {
+          "line": 65,
+          "column": 39
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 2803,
+      "end": 2804,
+      "loc": {
+        "start": {
+          "line": 66,
+          "column": 4
+        },
+        "end": {
+          "line": 66,
+          "column": 5
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\r\n     * A query for the {@link Chronology}.\r\n     *\r\n     * This queries a {@link TemporalAccessor} for the chronology.\r\n     * If the target {@link TemporalAccessor} represents a date, or part of a date,\r\n     * then it should return the chronology that the date is expressed in.\r\n     * As a result of this definition, objects only representing time, such as\r\n     * {@link LocalTime}, will return null.\r\n     *\r\n     * The result from js-joda classes implementing {@link TemporalAccessor} is as follows:\r\n     *\r\n     * * {@link LocalDate} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link LocalTime} returns null (does not represent a date)\r\n     * * {@link LocalDateTime} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link ZonedDateTime} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link OffsetTime} returns null (does not represent a date)\r\n     * * {@link OffsetDateTime} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link ChronoLocalDate} returns the associated chronology\r\n     * * {@link ChronoLocalDateTime} returns the associated chronology\r\n     * * {@link ChronoZonedDateTime} returns the associated chronology\r\n     * * {@link Era} returns the associated chronology\r\n     * * {@link DayOfWeek} returns null (shared across chronologies)\r\n     * * {@link Month} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link Year} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link YearMonth} returns * {@link IsoChronology.INSTANCE}\r\n     * * {@link MonthDay} returns null * {@link IsoChronology.INSTANCE}\r\n     * * {@link ZoneOffset} returns null (does not represent a date)\r\n     * * {@link Instant} returns null (does not represent a date)\r\n     *\r\n     * The method {@link Chronology#from} can be used as a\r\n     * {@link TemporalQuery}\r\n     * That method is equivalent to this query, except that it throws an\r\n     * exception if a chronology cannot be obtained.\r\n     *\r\n     * @return {TemporalQuery} a query that can obtain the chronology of a temporal, not null\r\n     ",
+      "start": 2812,
+      "end": 4842,
+      "loc": {
+        "start": {
+          "line": 68,
+          "column": 4
+        },
+        "end": {
+          "line": 103,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "static",
+      "start": 4848,
+      "end": 4854,
+      "loc": {
+        "start": {
+          "line": 104,
+          "column": 4
+        },
+        "end": {
+          "line": 104,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "chronology",
+      "start": 4855,
+      "end": 4865,
+      "loc": {
+        "start": {
+          "line": 104,
+          "column": 11
+        },
+        "end": {
+          "line": 104,
+          "column": 21
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "(",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 4865,
+      "end": 4866,
+      "loc": {
+        "start": {
+          "line": 104,
+          "column": 21
+        },
+        "end": {
+          "line": 104,
+          "column": 22
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ")",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 4866,
+      "end": 4867,
+      "loc": {
+        "start": {
+          "line": 104,
+          "column": 22
+        },
+        "end": {
+          "line": 104,
+          "column": 23
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 4868,
+      "end": 4869,
+      "loc": {
+        "start": {
+          "line": 104,
+          "column": 24
+        },
+        "end": {
+          "line": 104,
+          "column": 25
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "return",
+        "keyword": "return",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "return",
+      "start": 4879,
+      "end": 4885,
+      "loc": {
+        "start": {
+          "line": 105,
+          "column": 8
+        },
+        "end": {
+          "line": 105,
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "TemporalQueries",
+      "start": 4886,
+      "end": 4901,
+      "loc": {
+        "start": {
+          "line": 105,
+          "column": 15
+        },
+        "end": {
+          "line": 105,
+          "column": 30
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ".",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 4901,
+      "end": 4902,
+      "loc": {
+        "start": {
+          "line": 105,
+          "column": 30
+        },
+        "end": {
+          "line": 105,
+          "column": 31
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "CHRONO",
+      "start": 4902,
+      "end": 4908,
+      "loc": {
+        "start": {
+          "line": 105,
+          "column": 31
+        },
+        "end": {
+          "line": 105,
+          "column": 37
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 4908,
+      "end": 4909,
+      "loc": {
+        "start": {
+          "line": 105,
+          "column": 37
+        },
+        "end": {
+          "line": 105,
+          "column": 38
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 4915,
+      "end": 4916,
+      "loc": {
+        "start": {
+          "line": 106,
+          "column": 4
+        },
+        "end": {
+          "line": 106,
+          "column": 5
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\r\n     * A query for the smallest supported unit.\r\n     *\r\n     * This queries a {@link TemporalAccessor} for the time precision.\r\n     * If the target {@link TemporalAccessor} represents a consistent or complete date-time,\r\n     * date or time then this must return the smallest precision actually supported.\r\n     * Note that fields such as {@link NANO_OF_DAY} and {@link NANO_OF_SECOND}\r\n     * are defined to always return ignoring the precision, thus this is the only\r\n     * way to find the actual smallest supported unit.\r\n     * For example, were {@link GregorianCalendar} to implement {@link TemporalAccessor}\r\n     * it would return a precision of {@link MILLIS}.\r\n     *\r\n     * The result from js-joda classes implementing {@link TemporalAccessor} is as follows:\r\n     *\r\n     * {@link LocalDate} returns {@link DAYS}\r\n     * {@link LocalTime} returns {@link NANOS}\r\n     * {@link LocalDateTime} returns {@link NANOS}\r\n     * {@link ZonedDateTime} returns {@link NANOS}\r\n     * {@link OffsetTime} returns {@link NANOS}\r\n     * {@link OffsetDateTime} returns {@link NANOS}\r\n     * {@link ChronoLocalDate} returns {@link DAYS}\r\n     * {@link ChronoLocalDateTime} returns {@link NANOS}\r\n     * {@link ChronoZonedDateTime} returns {@link NANOS}\r\n     * {@link Era} returns {@link ERAS}\r\n     * {@link DayOfWeek} returns {@link DAYS}\r\n     * {@link Month} returns {@link MONTHS}\r\n     * {@link Year} returns {@link YEARS}\r\n     * {@link YearMonth} returns {@link MONTHS}\r\n     * {@link MonthDay} returns null (does not represent a complete date or time)\r\n     * {@link ZoneOffset} returns null (does not represent a date or time)\r\n     * {@link Instant} returns {@link NANOS}\r\n     *\r\n     * @return a query that can obtain the precision of a temporal, not null\r\n     ",
+      "start": 4924,
+      "end": 6704,
+      "loc": {
+        "start": {
+          "line": 108,
+          "column": 4
+        },
+        "end": {
+          "line": 141,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "static",
+      "start": 6710,
+      "end": 6716,
+      "loc": {
+        "start": {
+          "line": 142,
+          "column": 4
+        },
+        "end": {
+          "line": 142,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "precision",
+      "start": 6717,
+      "end": 6726,
+      "loc": {
+        "start": {
+          "line": 142,
+          "column": 11
+        },
+        "end": {
+          "line": 142,
+          "column": 20
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "(",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 6726,
+      "end": 6727,
+      "loc": {
+        "start": {
+          "line": 142,
+          "column": 20
+        },
+        "end": {
+          "line": 142,
+          "column": 21
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ")",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 6727,
+      "end": 6728,
+      "loc": {
+        "start": {
+          "line": 142,
+          "column": 21
+        },
+        "end": {
+          "line": 142,
+          "column": 22
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 6729,
+      "end": 6730,
+      "loc": {
+        "start": {
+          "line": 142,
+          "column": 23
+        },
+        "end": {
+          "line": 142,
+          "column": 24
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "return",
+        "keyword": "return",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "return",
+      "start": 6740,
+      "end": 6746,
+      "loc": {
+        "start": {
+          "line": 143,
+          "column": 8
+        },
+        "end": {
+          "line": 143,
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "TemporalQueries",
+      "start": 6747,
+      "end": 6762,
+      "loc": {
+        "start": {
+          "line": 143,
+          "column": 15
+        },
+        "end": {
+          "line": 143,
+          "column": 30
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ".",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 6762,
+      "end": 6763,
+      "loc": {
+        "start": {
+          "line": 143,
+          "column": 30
+        },
+        "end": {
+          "line": 143,
+          "column": 31
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "PRECISION",
+      "start": 6763,
+      "end": 6772,
+      "loc": {
+        "start": {
+          "line": 143,
+          "column": 31
+        },
+        "end": {
+          "line": 143,
+          "column": 40
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 6772,
+      "end": 6773,
+      "loc": {
+        "start": {
+          "line": 143,
+          "column": 40
+        },
+        "end": {
+          "line": 143,
+          "column": 41
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 6779,
+      "end": 6780,
+      "loc": {
+        "start": {
+          "line": 144,
+          "column": 4
+        },
+        "end": {
+          "line": 144,
+          "column": 5
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\r\n     * A lenient query for the {@link ZoneId}, falling back to the {@link ZoneOffset}.\r\n     *\r\n     * This queries a {@link TemporalAccessor} for the zone.\r\n     * It first tries to obtain the zone, using {@link zoneId}.\r\n     * If that is not found it tries to obtain the {@link offset}.\r\n     *\r\n     * In most cases, applications should use this query rather than {@link zoneId}.\r\n     *\r\n     * This query examines the {@link ChronoField#OFFSET_SECONDS}\r\n     * field and uses it to create a {@link ZoneOffset}.\r\n     *\r\n     * The method {@link ZoneId#from} can be used as a\r\n     * {@link TemporalQuery} via a method reference, {@link ZoneId::from}.\r\n     * That method is equivalent to this query, except that it throws an\r\n     * exception if a zone cannot be obtained.\r\n     *\r\n     * @return a query that can obtain the zone ID or offset of a temporal, not null\r\n     ",
+      "start": 6788,
+      "end": 7674,
+      "loc": {
+        "start": {
+          "line": 146,
+          "column": 4
+        },
+        "end": {
+          "line": 164,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "static",
+      "start": 7680,
+      "end": 7686,
+      "loc": {
+        "start": {
+          "line": 165,
+          "column": 4
+        },
+        "end": {
+          "line": 165,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "zone",
+      "start": 7687,
+      "end": 7691,
+      "loc": {
+        "start": {
+          "line": 165,
+          "column": 11
+        },
+        "end": {
+          "line": 165,
+          "column": 15
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "(",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 7691,
+      "end": 7692,
+      "loc": {
+        "start": {
+          "line": 165,
+          "column": 15
+        },
+        "end": {
+          "line": 165,
+          "column": 16
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ")",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 7692,
+      "end": 7693,
+      "loc": {
+        "start": {
+          "line": 165,
+          "column": 16
+        },
+        "end": {
+          "line": 165,
+          "column": 17
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 7694,
+      "end": 7695,
+      "loc": {
+        "start": {
+          "line": 165,
+          "column": 18
+        },
+        "end": {
+          "line": 165,
+          "column": 19
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "return",
+        "keyword": "return",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "return",
+      "start": 7705,
+      "end": 7711,
+      "loc": {
+        "start": {
+          "line": 166,
+          "column": 8
+        },
+        "end": {
+          "line": 166,
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "TemporalQueries",
+      "start": 7712,
+      "end": 7727,
+      "loc": {
+        "start": {
+          "line": 166,
+          "column": 15
+        },
+        "end": {
+          "line": 166,
+          "column": 30
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ".",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 7727,
+      "end": 7728,
+      "loc": {
+        "start": {
+          "line": 166,
+          "column": 30
+        },
+        "end": {
+          "line": 166,
+          "column": 31
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "ZONE",
+      "start": 7728,
+      "end": 7732,
+      "loc": {
+        "start": {
+          "line": 166,
+          "column": 31
+        },
+        "end": {
+          "line": 166,
+          "column": 35
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 7732,
+      "end": 7733,
+      "loc": {
+        "start": {
+          "line": 166,
+          "column": 35
+        },
+        "end": {
+          "line": 166,
+          "column": 36
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 7739,
+      "end": 7740,
+      "loc": {
+        "start": {
+          "line": 167,
+          "column": 4
+        },
+        "end": {
+          "line": 167,
+          "column": 5
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\r\n     * A query for {@link ZoneOffset} returning null if not found.\r\n     *\r\n     * This returns a {@link TemporalQuery} that can be used to query a temporal\r\n     * object for the offset. The query will return null if the temporal\r\n     * object cannot supply an offset.\r\n     *\r\n     * The query implementation examines the {@link ChronoField#OFFSET_SECONDS}\r\n     * field and uses it to create a {@link ZoneOffset}.\r\n     *\r\n     * The method {@link java.time.ZoneOffset#from} can be used as a\r\n     * {@link TemporalQuery} via a method reference, {@link ZoneOffset::from}.\r\n     * This query and {@link ZoneOffset::from} will return the same result if the\r\n     * temporal object contains an offset. If the temporal object does not contain\r\n     * an offset, then the method reference will throw an exception, whereas this\r\n     * query will return null.\r\n     *\r\n     * @return a query that can obtain the offset of a temporal, not null\r\n     ",
+      "start": 7748,
+      "end": 8702,
+      "loc": {
+        "start": {
+          "line": 169,
+          "column": 4
+        },
+        "end": {
+          "line": 187,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "static",
+      "start": 8708,
+      "end": 8714,
+      "loc": {
+        "start": {
+          "line": 188,
+          "column": 4
+        },
+        "end": {
+          "line": 188,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "offset",
+      "start": 8715,
+      "end": 8721,
+      "loc": {
+        "start": {
+          "line": 188,
+          "column": 11
+        },
+        "end": {
+          "line": 188,
+          "column": 17
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "(",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 8721,
+      "end": 8722,
+      "loc": {
+        "start": {
+          "line": 188,
+          "column": 17
+        },
+        "end": {
+          "line": 188,
+          "column": 18
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ")",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 8722,
+      "end": 8723,
+      "loc": {
+        "start": {
+          "line": 188,
+          "column": 18
+        },
+        "end": {
+          "line": 188,
+          "column": 19
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 8724,
+      "end": 8725,
+      "loc": {
+        "start": {
+          "line": 188,
+          "column": 20
+        },
+        "end": {
+          "line": 188,
+          "column": 21
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "return",
+        "keyword": "return",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "return",
+      "start": 8735,
+      "end": 8741,
+      "loc": {
+        "start": {
+          "line": 189,
+          "column": 8
+        },
+        "end": {
+          "line": 189,
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "TemporalQueries",
+      "start": 8742,
+      "end": 8757,
+      "loc": {
+        "start": {
+          "line": 189,
+          "column": 15
+        },
+        "end": {
+          "line": 189,
+          "column": 30
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ".",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 8757,
+      "end": 8758,
+      "loc": {
+        "start": {
+          "line": 189,
+          "column": 30
+        },
+        "end": {
+          "line": 189,
+          "column": 31
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "OFFSET",
+      "start": 8758,
+      "end": 8764,
+      "loc": {
+        "start": {
+          "line": 189,
+          "column": 31
+        },
+        "end": {
+          "line": 189,
+          "column": 37
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 8764,
+      "end": 8765,
+      "loc": {
+        "start": {
+          "line": 189,
+          "column": 37
+        },
+        "end": {
+          "line": 189,
+          "column": 38
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 8771,
+      "end": 8772,
+      "loc": {
+        "start": {
+          "line": 190,
+          "column": 4
+        },
+        "end": {
+          "line": 190,
+          "column": 5
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\r\n     * A query for {@link LocalDate} returning null if not found.\r\n     *\r\n     * This returns a {@link TemporalQuery} that can be used to query a temporal\r\n     * object for the local date. The query will return null if the temporal\r\n     * object cannot supply a local date.\r\n     *\r\n     * The query implementation examines the {@link ChronoField#EPOCH_DAY}\r\n     * field and uses it to create a {@link LocalDate}.\r\n     *\r\n     * @return a query that can obtain the date of a temporal, not null\r\n     ",
+      "start": 8780,
+      "end": 9292,
+      "loc": {
+        "start": {
+          "line": 192,
+          "column": 4
+        },
+        "end": {
+          "line": 203,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "static",
+      "start": 9298,
+      "end": 9304,
+      "loc": {
+        "start": {
+          "line": 204,
+          "column": 4
+        },
+        "end": {
+          "line": 204,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "localDate",
+      "start": 9305,
+      "end": 9314,
+      "loc": {
+        "start": {
+          "line": 204,
+          "column": 11
+        },
+        "end": {
+          "line": 204,
+          "column": 20
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "(",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 9314,
+      "end": 9315,
+      "loc": {
+        "start": {
+          "line": 204,
+          "column": 20
+        },
+        "end": {
+          "line": 204,
+          "column": 21
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ")",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 9315,
+      "end": 9316,
+      "loc": {
+        "start": {
+          "line": 204,
+          "column": 21
+        },
+        "end": {
+          "line": 204,
+          "column": 22
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 9317,
+      "end": 9318,
+      "loc": {
+        "start": {
+          "line": 204,
+          "column": 23
+        },
+        "end": {
+          "line": 204,
+          "column": 24
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "return",
+        "keyword": "return",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "return",
+      "start": 9328,
+      "end": 9334,
+      "loc": {
+        "start": {
+          "line": 205,
+          "column": 8
+        },
+        "end": {
+          "line": 205,
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "TemporalQueries",
+      "start": 9335,
+      "end": 9350,
+      "loc": {
+        "start": {
+          "line": 205,
+          "column": 15
+        },
+        "end": {
+          "line": 205,
+          "column": 30
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ".",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 9350,
+      "end": 9351,
+      "loc": {
+        "start": {
+          "line": 205,
+          "column": 30
+        },
+        "end": {
+          "line": 205,
+          "column": 31
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "LOCAL_DATE",
+      "start": 9351,
+      "end": 9361,
+      "loc": {
+        "start": {
+          "line": 205,
+          "column": 31
+        },
+        "end": {
+          "line": 205,
+          "column": 41
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 9361,
+      "end": 9362,
+      "loc": {
+        "start": {
+          "line": 205,
+          "column": 41
+        },
+        "end": {
+          "line": 205,
+          "column": 42
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 9368,
+      "end": 9369,
+      "loc": {
+        "start": {
+          "line": 206,
+          "column": 4
+        },
+        "end": {
+          "line": 206,
+          "column": 5
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\r\n     * A query for {@link LocalTime} returning null if not found.\r\n     *\r\n     * This returns a {@link TemporalQuery} that can be used to query a temporal\r\n     * object for the local time. The query will return null if the temporal\r\n     * object cannot supply a local time.\r\n     *\r\n     * The query implementation examines the {@link ChronoField#NANO_OF_DAY}\r\n     * field and uses it to create a {@link LocalTime}.\r\n     *\r\n     * @return a query that can obtain the time of a temporal, not null\r\n     ",
+      "start": 9377,
+      "end": 9891,
+      "loc": {
+        "start": {
+          "line": 208,
+          "column": 4
+        },
+        "end": {
+          "line": 219,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "static",
+      "start": 9897,
+      "end": 9903,
+      "loc": {
+        "start": {
+          "line": 220,
+          "column": 4
+        },
+        "end": {
+          "line": 220,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "localTime",
+      "start": 9904,
+      "end": 9913,
+      "loc": {
+        "start": {
+          "line": 220,
+          "column": 11
+        },
+        "end": {
+          "line": 220,
+          "column": 20
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "(",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 9913,
+      "end": 9914,
+      "loc": {
+        "start": {
+          "line": 220,
+          "column": 20
+        },
+        "end": {
+          "line": 220,
+          "column": 21
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ")",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 9914,
+      "end": 9915,
+      "loc": {
+        "start": {
+          "line": 220,
+          "column": 21
+        },
+        "end": {
+          "line": 220,
+          "column": 22
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 9916,
+      "end": 9917,
+      "loc": {
+        "start": {
+          "line": 220,
+          "column": 23
+        },
+        "end": {
+          "line": 220,
+          "column": 24
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "return",
+        "keyword": "return",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "return",
+      "start": 9927,
+      "end": 9933,
+      "loc": {
+        "start": {
+          "line": 221,
+          "column": 8
+        },
+        "end": {
+          "line": 221,
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "TemporalQueries",
+      "start": 9934,
+      "end": 9949,
+      "loc": {
+        "start": {
+          "line": 221,
+          "column": 15
+        },
+        "end": {
+          "line": 221,
+          "column": 30
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ".",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 9949,
+      "end": 9950,
+      "loc": {
+        "start": {
+          "line": 221,
+          "column": 30
+        },
+        "end": {
+          "line": 221,
+          "column": 31
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "LOCAL_TIME",
+      "start": 9950,
+      "end": 9960,
+      "loc": {
+        "start": {
+          "line": 221,
+          "column": 31
+        },
+        "end": {
+          "line": 221,
+          "column": 41
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 9960,
+      "end": 9961,
+      "loc": {
+        "start": {
+          "line": 221,
+          "column": 41
+        },
+        "end": {
+          "line": 221,
+          "column": 42
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 9967,
+      "end": 9968,
+      "loc": {
+        "start": {
+          "line": 222,
+          "column": 4
+        },
+        "end": {
+          "line": 222,
+          "column": 5
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 9970,
+      "end": 9971,
+      "loc": {
+        "start": {
+          "line": 223,
+          "column": 0
+        },
+        "end": {
+          "line": 223,
+          "column": 1
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "eof",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 9973,
+      "end": 9973,
+      "loc": {
+        "start": {
+          "line": 224,
+          "column": 0
+        },
+        "end": {
+          "line": 224,
+          "column": 0
+        }
+      }
+    }
+  ]
+}
