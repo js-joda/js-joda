@@ -61,6 +61,8 @@ module.exports = function (config) {
     // for the karma test runs, we don't want to have any externals,
     // especially js-joda and others should be included!
     webpackConfig.externals = undefined;
+    // clear entry, for karma we use the karmaWebpackTestEntry
+    webpackConfig.entry = undefined;
 
     // add cldr-data load workaround
     webpackConfig.resolve = {
