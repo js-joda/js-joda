@@ -5,13 +5,12 @@
 
 import {
     _ as jodaInternal,
-    use as jodaUse,
     DecimalStyle,
     IsoChronology,
     LocalDate,
 } from 'js-joda';
 
-import jodaTZ from 'js-joda-timezone';
+import 'js-joda-timezone';
 
 import { assertEquals, dataProviderTest } from '../testUtils';
 
@@ -20,9 +19,6 @@ import '../_init';
 import WeekFieldsPrinterParser from '../../src/format/parser/WeekFieldsPrinterParser';
 import Locale from '../../src/Locale';
 import { ComputedDayOfField } from '../../src/temporal/WeekFields';
-
-//use js-joda-timezone
-jodaUse(jodaTZ);
 
 const {
     DateTimeParseContext,

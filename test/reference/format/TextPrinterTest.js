@@ -6,7 +6,6 @@
 import { expect } from 'chai';
 import {
     _ as jodaInternal,
-    use as jodaUse,
     ChronoField,
     DateTimeException,
     DecimalStyle,
@@ -17,7 +16,7 @@ import {
     ZoneId,
 } from 'js-joda';
 
-import jodaTZ from 'js-joda-timezone';
+import 'js-joda-timezone';
 
 import { assertEquals, dataProviderTest } from '../../testUtils';
 
@@ -27,9 +26,6 @@ import CldrDateTimeTextProvider from '../../../src/format/cldr/CldrDateTimeTextP
 import Locale from '../../../src/Locale';
 import TextPrinterParser from '../../../src/format/parser/TextPrinterParser';
 import { MockFieldValue } from '../temporal/MockFieldValue';
-
-//use js-joda-timezone
-jodaUse(jodaTZ);
 
 const {
     DateTimePrintContext,

@@ -24,7 +24,7 @@ also see examples in  [examples folder](examples/)
 
 Since the process described [below](#without-prebuilt-locale-packages) requires a lot of setup and internal knowledge, 
 we provide prebuilt sets of locales as separate npm packages. 
-So for ease of use you may want to install the corresponding `js-joda-locale_<locale>` package.
+So for ease of use you may want to install the corresponding `@js-joda/locale_<locale>` package.
 The current list of available prebuilt locales is:
 - de (i.e. de-*)
 - de-DE
