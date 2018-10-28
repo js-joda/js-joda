@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../">
+  <title data-ice="title">Manual | js-joda</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="a date and time library for javascript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="js-joda"><meta property="twitter:description" content="a date and time library for javascript"></head>
+<body class="layout-container manual-root" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/js-joda/js-joda.git"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div class="manual-toc-root">
+  
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/getting-started.html"><a href="manual/getting-started.html" data-ice="link">Getting started</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/getting-started.html"><a href="manual/getting-started.html#node" data-ice="link">Node</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/getting-started.html"><a href="manual/getting-started.html#browser" data-ice="link">Browser</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/usage.html"><a href="manual/usage.html" data-ice="link">Usage</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/usage.html"><a href="manual/usage.html#method-naming-conventions" data-ice="link">Method naming conventions</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html" data-ice="link">LocalDate</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#create-a--code-localdate--code-" data-ice="link">Create a LocalDate</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#get-values-from--code-localdate--code-" data-ice="link">Get values from LocalDate</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#get-week-of-week-based-year--quarter-of-year--day-of-quarter" data-ice="link">Get week of week-based year, quarter of year, day of quarter</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#adding-to-and-subtracting-from-a--code-localdate--code-" data-ice="link">Adding to and subtracting from a LocalDate</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#alter-specific-fields-of-a-localdate" data-ice="link">Alter specific fields of a LocalDate</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#compare-one--code-localdate--code--with-another" data-ice="link">Compare one LocalDate with another</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#distance-on-the-timeline" data-ice="link">Distance on the timeline</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#converting-from-and-to-other-temporals" data-ice="link">Converting from and to other temporals</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#adjust-a-date-to-another-date" data-ice="link">Adjust a date to another date</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html" data-ice="link">LocalTime</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html#create-a--code-localtime--code--instance" data-ice="link">Create a LocalTime instance</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html#get-values-from--code-localtime--code-" data-ice="link">Get values from LocalTime</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html#adding-to--subtracting-from-a--code-localtime--code--instance" data-ice="link">Adding to/ subtracting from a LocalTime instance</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html#alter-specific-fields-of-a--code-localtime--code--instance" data-ice="link">Alter specific fields of a LocalTime instance</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html#truncate-a--code-localtime--code--instance" data-ice="link">Truncate a LocalTime instance</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html#compare--code-localtime--code--instances" data-ice="link">Compare LocalTime instances</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html#distance-between-times" data-ice="link">Distance between times</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html#convert-a--code-localtime--code--from-a--code-moment--code--or-javascript--code-date--code-" data-ice="link">Convert a LocalTime from a moment or JavaScript Date</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html" data-ice="link">LocalDateTime</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html#create-a--code-localdatetime--code--instance" data-ice="link">Create a LocalDateTime instance</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html#get-values-from--code-localdatetime--code-" data-ice="link">Get values from LocalDateTime</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html#adding-to-and-subtracting-from-a--code-localdatetime--code--instance" data-ice="link">Adding to and subtracting from a LocalDateTime instance</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html#alter-specific-fields-of-a--code-localdatetime--code--instance" data-ice="link">Alter specific fields of a LocalDateTime instance</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html#truncate-a--code-localdatetime--code--instance" data-ice="link">Truncate a LocalDateTime instance</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html#compare--code-localdatetime--code--instances" data-ice="link">Compare LocalDateTime instances</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html#distance-between-two--code-localdatetime--code--instances" data-ice="link">Distance between two LocalDateTime instances</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html#convert-from-a--code-moment--code--or-javascript--code-date--code-" data-ice="link">Convert from a moment or JavaScript Date</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/ZonedDateTime.html"><a href="manual/ZonedDateTime.html" data-ice="link">ZonedDateTime</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/ZonedDateTime.html"><a href="manual/ZonedDateTime.html#the--code-system--code--zone-id" data-ice="link">The SYSTEM zone ID</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/ZonedDateTime.html"><a href="manual/ZonedDateTime.html#working-with-time-zones" data-ice="link">Working with time zones</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/ZonedDateTime.html"><a href="manual/ZonedDateTime.html#create-a-zoneddatetime" data-ice="link">Create a ZonedDateTime</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/ZonedDateTime.html"><a href="manual/ZonedDateTime.html#switch-time-zones" data-ice="link">Switch time zones</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/ZonedDateTime.html"><a href="manual/ZonedDateTime.html#get-and-manipulate-values-from-a--code-zoneddatetime--code-" data-ice="link">Get and manipulate values from a ZonedDateTime</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/ZonedDateTime.html"><a href="manual/ZonedDateTime.html#calculate-values-across-daylight-savings-transitions" data-ice="link">Calculate values across daylight savings transitions</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/Period.html"><a href="manual/Period.html" data-ice="link">Period</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/Duration.html"><a href="manual/Duration.html" data-ice="link">Duration</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/customizing.html"><a href="manual/customizing.html" data-ice="link">Customizing js-joda</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/customizing.html"><a href="manual/customizing.html#custom-temporal-adjuster" data-ice="link">Custom temporal adjuster</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/customizing.html"><a href="manual/customizing.html#custom-temporal-fields-and-temporal-units" data-ice="link">Custom temporal fields and temporal units</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/customizing.html"><a href="manual/customizing.html#custom-formatter-and-queries" data-ice="link">Custom formatter and queries</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html" data-ice="link">Changelog</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#next" data-ice="link">next</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#1-9-2" data-ice="link">1.9.2</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#public-api" data-ice="link">public API</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#1-9-1" data-ice="link">1.9.1</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#dependency-updates" data-ice="link">dependency updates</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#1-9-0" data-ice="link">1.9.0</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#public-api" data-ice="link">public API</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#bugfixes" data-ice="link">bugfixes</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#dependency-updates" data-ice="link">dependency updates</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#1-8-2" data-ice="link">1.8.2</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#public-api" data-ice="link">public API</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#dev-setup" data-ice="link">dev setup</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#etc" data-ice="link">etc</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#dependency-updates" data-ice="link">dependency updates</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#1-7-0-1-7-1-1-8-0-1-8-1" data-ice="link">1.7.0 1.7.1 1.8.0 1.8.1</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#1-6-3" data-ice="link">1.6.3</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#public-api" data-ice="link">public API</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#dependency-updates" data-ice="link">dependency updates</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#etc" data-ice="link">etc</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#1-6-2" data-ice="link">1.6.2</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#public-api" data-ice="link">public API</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#internal-api" data-ice="link">internal API</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#dependency-updates" data-ice="link">dependency updates</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#1-6-1" data-ice="link">1.6.1</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#dependency-updates" data-ice="link">dependency updates</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#bugs" data-ice="link">bugs</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#1-6-0" data-ice="link">1.6.0</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#public-api" data-ice="link">public API</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#1-5-5" data-ice="link">1.5.5</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#bugs" data-ice="link">bugs</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#public-api" data-ice="link">public API</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#1-5-4" data-ice="link">1.5.4</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#public-api" data-ice="link">public API</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#dependency-updates" data-ice="link">dependency updates</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#1-5-2" data-ice="link">1.5.2</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#public-api" data-ice="link">public API</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#1-5-1" data-ice="link">1.5.1</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#public-api" data-ice="link">public API</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#1-5-0" data-ice="link">1.5.0</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#public-api" data-ice="link">public API</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#lint" data-ice="link">lint</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#dependency-updates" data-ice="link">dependency updates</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#1-4-0" data-ice="link">1.4.0</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#public-api" data-ice="link">public API</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#1-3-1" data-ice="link">1.3.1</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#public-api" data-ice="link">public API</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#etc" data-ice="link">etc</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#1-3-0" data-ice="link">1.3.0</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#public-api" data-ice="link">public API</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#1-2-0" data-ice="link">1.2.0</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#iana-tzdb" data-ice="link">iana tzdb</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#etc" data-ice="link">etc</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#dependency-updates" data-ice="link">dependency updates</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#1-1-17" data-ice="link">1.1.17</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#bugfixes" data-ice="link">Bugfixes</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#iana-tzdb" data-ice="link">iana tzdb</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#1-1-14" data-ice="link">1.1.14</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#add-more-classes-to-public-export" data-ice="link">Add more classes to public export</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#code-cleanup" data-ice="link">code cleanup</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#dependency-updates" data-ice="link">dependency updates</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#1-1-13" data-ice="link">1.1.13</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#add-zonerulesprovider-stub" data-ice="link">Add ZoneRulesProvider stub</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#provide-a-way-to-extend-js-joda" data-ice="link">Provide a way to extend js-joda</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#bugfixes" data-ice="link">Bugfixes</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#1-1-12" data-ice="link">1.1.12</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#implement-daylight-saving-transition-functionality" data-ice="link">Implement daylight saving transition functionality</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#test-coverage-and-more-threetenbp-features" data-ice="link">Test Coverage and more threetenbp Features</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#bugfixes" data-ice="link">Bugfixes</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#dependency-updates" data-ice="link">dependency updates</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#1-1-11" data-ice="link">1.1.11</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#typescript-typings" data-ice="link">Typescript typings</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#esdoc-updates" data-ice="link">ESDoc Updates</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#bugfixes" data-ice="link">Bugfixes</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#dependency-updates" data-ice="link">dependency updates</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#1-1-9" data-ice="link">1.1.9</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#typescript-typings" data-ice="link">Typescript typings</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#bugfixes" data-ice="link">Bugfixes</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#dependency-updates" data-ice="link">dependency updates</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#1-1-8" data-ice="link">1.1.8</a></li>
+</ul>
+  </div>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="usage">Usage</h1><p>The API is <strong>immutable</strong>. An existing instance is never changed. All manipulating methods (<code>plus</code>, <code>at</code>, etc.) return new instances.</p>
+<p><strong>An existing instance is always valid</strong>. If you try to create an invalid value, you&apos;ll get an exception instead of a <code>null</code> or <code>undefined</code> value.</p>
+<h3 id="method-naming-conventions">Method naming conventions</h3><p>The API uses consistently named methods.</p>
+<table>
+<thead>
+<tr>
+<th>method name or prefix</th>
+<th>usage</th>
+<th>examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.of</code></td>
+<td>static factory method for building by parts</td>
+<td><code>LocalDate.of(2016, 2, 23)</code> <br> <code>LocalDate.ofInstant(i)</code></td>
+</tr>
+<tr>
+<td><code>.parse</code></td>
+<td>static factory method for parsing strings</td>
+<td><code>LocalDate.parse(&apos;2016-02-23&apos;)</code> <br> <code>LocalTime.parse(&apos;12:34&apos;)</code></td>
+</tr>
+<tr>
+<td><code>.is</code></td>
+<td>checks for certain conditions</td>
+<td><code>t1.isAfter(t2)</code> <br> <code>d1.isLeapYear()</code></td>
+</tr>
+<tr>
+<td><code>.equals</code></td>
+<td>checks for equivalence between two instances</td>
+<td><code>t1.equals(t2)</code></td>
+</tr>
+<tr>
+<td><code>.with</code></td>
+<td>the immutable equivalent of a setter</td>
+<td><code>d.withDayOfMonth(1)</code> <br> <code>t.withHour(9)</code></td>
+</tr>
+<tr>
+<td><code>.plus</code></td>
+<td>adds an amount to an object</td>
+<td><code>t.plusMinutes(5)</code> <br> <code>d.plus(3, ChronoUnit.YEARS)</code></td>
+</tr>
+<tr>
+<td><code>.minus</code></td>
+<td>subtracts an amount from an object</td>
+<td><code>t.minusHours(1)</code> <br> <code>d.minus(1, ChronoUnit.DAYS)</code></td>
+</tr>
+<tr>
+<td><code>.to</code></td>
+<td>converts this object to another type</td>
+<td><code>dt.toLocalDate()</code> <br> <code>d1.until(d2).toTotalMonths()</code></td>
+</tr>
+<tr>
+<td><code>.at</code></td>
+<td>combines one object with another</td>
+<td><code>date.atTime(time)</code> <br> <code>localDate.atZone(tz)</code></td>
+</tr>
+</tbody>
+</table>
+<p>Note that getter methods for instance properties omit the get keyword: <code>d.year()</code>, not <del><code>d.getYear()</code></del>.</p>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

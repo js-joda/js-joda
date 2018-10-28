@@ -1,0 +1,741 @@
+{
+  "type": "File",
+  "start": 0,
+  "end": 3485,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 64,
+      "column": 0
+    }
+  },
+  "program": {
+    "type": "Program",
+    "start": 0,
+    "end": 3485,
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 64,
+        "column": 0
+      }
+    },
+    "sourceType": "module",
+    "body": [
+      {
+        "type": "ImportDeclaration",
+        "start": 235,
+        "end": 287,
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 0
+          },
+          "end": {
+            "line": 7,
+            "column": 52
+          }
+        },
+        "specifiers": [
+          {
+            "type": "ImportSpecifier",
+            "start": 243,
+            "end": 259,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 8
+              },
+              "end": {
+                "line": 7,
+                "column": 24
+              }
+            },
+            "imported": {
+              "type": "Identifier",
+              "start": 243,
+              "end": 259,
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 8
+                },
+                "end": {
+                  "line": 7,
+                  "column": 24
+                },
+                "identifierName": "TemporalAccessor"
+              },
+              "name": "TemporalAccessor",
+              "leadingComments": null
+            },
+            "local": {
+              "type": "Identifier",
+              "start": 243,
+              "end": 259,
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 8
+                },
+                "end": {
+                  "line": 7,
+                  "column": 24
+                },
+                "identifierName": "TemporalAccessor"
+              },
+              "name": "TemporalAccessor"
+            },
+            "leadingComments": null
+          }
+        ],
+        "source": {
+          "type": "StringLiteral",
+          "start": 266,
+          "end": 286,
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 31
+            },
+            "end": {
+              "line": 7,
+              "column": 51
+            }
+          },
+          "extra": {
+            "rawValue": "./TemporalAccessor",
+            "raw": "'./TemporalAccessor'"
+          },
+          "value": "./TemporalAccessor"
+        },
+        "leadingComments": [
+          {
+            "type": "CommentBlock",
+            "value": "\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\r\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\r\n ",
+            "start": 0,
+            "end": 231,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 0
+              },
+              "end": {
+                "line": 5,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "CommentBlock",
+            "value": "*\r\n * Framework-level interface defining read-write access to a temporal object,\r\n * such as a date, time, offset or some combination of these.\r\n *\r\n * This is the base interface type for date, time and offset objects that\r\n * are complete enough to be manipulated using plus and minus.\r\n * It is implemented by those classes that can provide and manipulate information\r\n * as fields (see {@link TemporalField}) or queries (see {@link TemporalQuery}).\r\n * See {@link TemporalAccessor} for the read-only version of this interface.\r\n *\r\n * Most date and time information can be represented as a number.\r\n * These are modeled using {@link TemporalField} with the number held using\r\n * a `long` to handle large values. Year, month and day-of-month are\r\n * simple examples of fields, but they also include instant and offsets.\r\n * See {@link ChronoField} for the standard set of fields.\r\n *\r\n * Two pieces of date/time information cannot be represented by numbers,\r\n * the {@link Chronology} and the {@link ZoneId}.\r\n * These can be accessed using the static methods defined on {@link TemporalQueries}.\r\n *\r\n * This interface is a framework-level interface that should not be widely\r\n * used in application code. Instead, applications should create and pass\r\n * around instances of concrete types, such as {@link LocalDate}.\r\n * There are many reasons for this, part of which is that implementations\r\n * of this interface may be in calendar systems other than ISO.\r\n * See {@link ChronoLocalDate} for a fuller discussion of the issues.\r\n *\r\n * ### When to implement\r\n *\r\n * A class should implement this interface if it meets three criteria:\r\n *\r\n * * it provides access to date/time/offset information, as per {@link TemporalAccessor}\r\n * * the set of fields are contiguous from the largest to the smallest\r\n * * the set of fields are complete, such that no other field is needed to define the\r\n *   valid range of values for the fields that are represented\r\n *\r\n * Four examples make this clear:\r\n *\r\n * * {@link LocalDate} implements this interface as it represents a set of fields\r\n *   that are contiguous from days to forever and require no external information to determine\r\n *   the validity of each date. It is therefore able to implement plus/minus correctly.\r\n * * {@link LocalTime} implements this interface as it represents a set of fields\r\n *   that are contiguous from nanos to within days and require no external information to determine\r\n *   validity. It is able to implement plus/minus correctly, by wrapping around the day.\r\n * * {@link MonthDay}, the combination of month-of-year and day-of-month, does not implement\r\n *   this interface.  While the combination is contiguous, from days to months within years,\r\n *   the combination does not have sufficient information to define the valid range of values\r\n *   for day-of-month.  As such, it is unable to implement plus/minus correctly.\r\n * * The combination day-of-week and day-of-month (\"Friday the 13th\") should not implement\r\n *   this interface. It does not represent a contiguous set of fields, as days to weeks overlaps\r\n *   days to months.\r\n *\r\n * @interface\r\n ",
+            "start": 291,
+            "end": 3432,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 0
+              },
+              "end": {
+                "line": 62,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "ExportNamedDeclaration",
+        "start": 3434,
+        "end": 3483,
+        "loc": {
+          "start": {
+            "line": 63,
+            "column": 0
+          },
+          "end": {
+            "line": 63,
+            "column": 49
+          }
+        },
+        "specifiers": [],
+        "source": null,
+        "declaration": {
+          "type": "ClassDeclaration",
+          "start": 3441,
+          "end": 3483,
+          "loc": {
+            "start": {
+              "line": 63,
+              "column": 7
+            },
+            "end": {
+              "line": 63,
+              "column": 49
+            }
+          },
+          "id": {
+            "type": "Identifier",
+            "start": 3447,
+            "end": 3455,
+            "loc": {
+              "start": {
+                "line": 63,
+                "column": 13
+              },
+              "end": {
+                "line": 63,
+                "column": 21
+              },
+              "identifierName": "Temporal"
+            },
+            "name": "Temporal",
+            "leadingComments": null
+          },
+          "superClass": {
+            "type": "Identifier",
+            "start": 3464,
+            "end": 3480,
+            "loc": {
+              "start": {
+                "line": 63,
+                "column": 30
+              },
+              "end": {
+                "line": 63,
+                "column": 46
+              },
+              "identifierName": "TemporalAccessor"
+            },
+            "name": "TemporalAccessor"
+          },
+          "body": {
+            "type": "ClassBody",
+            "start": 3481,
+            "end": 3483,
+            "loc": {
+              "start": {
+                "line": 63,
+                "column": 47
+              },
+              "end": {
+                "line": 63,
+                "column": 49
+              }
+            },
+            "body": []
+          },
+          "leadingComments": [
+            {
+              "type": "CommentBlock",
+              "value": "*\r\n * Framework-level interface defining read-write access to a temporal object,\r\n * such as a date, time, offset or some combination of these.\r\n *\r\n * This is the base interface type for date, time and offset objects that\r\n * are complete enough to be manipulated using plus and minus.\r\n * It is implemented by those classes that can provide and manipulate information\r\n * as fields (see {@link TemporalField}) or queries (see {@link TemporalQuery}).\r\n * See {@link TemporalAccessor} for the read-only version of this interface.\r\n *\r\n * Most date and time information can be represented as a number.\r\n * These are modeled using {@link TemporalField} with the number held using\r\n * a `long` to handle large values. Year, month and day-of-month are\r\n * simple examples of fields, but they also include instant and offsets.\r\n * See {@link ChronoField} for the standard set of fields.\r\n *\r\n * Two pieces of date/time information cannot be represented by numbers,\r\n * the {@link Chronology} and the {@link ZoneId}.\r\n * These can be accessed using the static methods defined on {@link TemporalQueries}.\r\n *\r\n * This interface is a framework-level interface that should not be widely\r\n * used in application code. Instead, applications should create and pass\r\n * around instances of concrete types, such as {@link LocalDate}.\r\n * There are many reasons for this, part of which is that implementations\r\n * of this interface may be in calendar systems other than ISO.\r\n * See {@link ChronoLocalDate} for a fuller discussion of the issues.\r\n *\r\n * ### When to implement\r\n *\r\n * A class should implement this interface if it meets three criteria:\r\n *\r\n * * it provides access to date/time/offset information, as per {@link TemporalAccessor}\r\n * * the set of fields are contiguous from the largest to the smallest\r\n * * the set of fields are complete, such that no other field is needed to define the\r\n *   valid range of values for the fields that are represented\r\n *\r\n * Four examples make this clear:\r\n *\r\n * * {@link LocalDate} implements this interface as it represents a set of fields\r\n *   that are contiguous from days to forever and require no external information to determine\r\n *   the validity of each date. It is therefore able to implement plus/minus correctly.\r\n * * {@link LocalTime} implements this interface as it represents a set of fields\r\n *   that are contiguous from nanos to within days and require no external information to determine\r\n *   validity. It is able to implement plus/minus correctly, by wrapping around the day.\r\n * * {@link MonthDay}, the combination of month-of-year and day-of-month, does not implement\r\n *   this interface.  While the combination is contiguous, from days to months within years,\r\n *   the combination does not have sufficient information to define the valid range of values\r\n *   for day-of-month.  As such, it is unable to implement plus/minus correctly.\r\n * * The combination day-of-week and day-of-month (\"Friday the 13th\") should not implement\r\n *   this interface. It does not represent a contiguous set of fields, as days to weeks overlaps\r\n *   days to months.\r\n *\r\n * @interface\r\n ",
+              "start": 291,
+              "end": 3432,
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 0
+                },
+                "end": {
+                  "line": 62,
+                  "column": 3
+                }
+              }
+            }
+          ],
+          "trailingComments": []
+        },
+        "leadingComments": [
+          {
+            "type": "CommentBlock",
+            "value": "*\r\n * Framework-level interface defining read-write access to a temporal object,\r\n * such as a date, time, offset or some combination of these.\r\n *\r\n * This is the base interface type for date, time and offset objects that\r\n * are complete enough to be manipulated using plus and minus.\r\n * It is implemented by those classes that can provide and manipulate information\r\n * as fields (see {@link TemporalField}) or queries (see {@link TemporalQuery}).\r\n * See {@link TemporalAccessor} for the read-only version of this interface.\r\n *\r\n * Most date and time information can be represented as a number.\r\n * These are modeled using {@link TemporalField} with the number held using\r\n * a `long` to handle large values. Year, month and day-of-month are\r\n * simple examples of fields, but they also include instant and offsets.\r\n * See {@link ChronoField} for the standard set of fields.\r\n *\r\n * Two pieces of date/time information cannot be represented by numbers,\r\n * the {@link Chronology} and the {@link ZoneId}.\r\n * These can be accessed using the static methods defined on {@link TemporalQueries}.\r\n *\r\n * This interface is a framework-level interface that should not be widely\r\n * used in application code. Instead, applications should create and pass\r\n * around instances of concrete types, such as {@link LocalDate}.\r\n * There are many reasons for this, part of which is that implementations\r\n * of this interface may be in calendar systems other than ISO.\r\n * See {@link ChronoLocalDate} for a fuller discussion of the issues.\r\n *\r\n * ### When to implement\r\n *\r\n * A class should implement this interface if it meets three criteria:\r\n *\r\n * * it provides access to date/time/offset information, as per {@link TemporalAccessor}\r\n * * the set of fields are contiguous from the largest to the smallest\r\n * * the set of fields are complete, such that no other field is needed to define the\r\n *   valid range of values for the fields that are represented\r\n *\r\n * Four examples make this clear:\r\n *\r\n * * {@link LocalDate} implements this interface as it represents a set of fields\r\n *   that are contiguous from days to forever and require no external information to determine\r\n *   the validity of each date. It is therefore able to implement plus/minus correctly.\r\n * * {@link LocalTime} implements this interface as it represents a set of fields\r\n *   that are contiguous from nanos to within days and require no external information to determine\r\n *   validity. It is able to implement plus/minus correctly, by wrapping around the day.\r\n * * {@link MonthDay}, the combination of month-of-year and day-of-month, does not implement\r\n *   this interface.  While the combination is contiguous, from days to months within years,\r\n *   the combination does not have sufficient information to define the valid range of values\r\n *   for day-of-month.  As such, it is unable to implement plus/minus correctly.\r\n * * The combination day-of-week and day-of-month (\"Friday the 13th\") should not implement\r\n *   this interface. It does not represent a contiguous set of fields, as days to weeks overlaps\r\n *   days to months.\r\n *\r\n * @interface\r\n ",
+            "start": 291,
+            "end": 3432,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 0
+              },
+              "end": {
+                "line": 62,
+                "column": 3
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "directives": []
+  },
+  "comments": [
+    {
+      "type": "CommentBlock",
+      "value": "\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\r\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\r\n ",
+      "start": 0,
+      "end": 231,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\r\n * Framework-level interface defining read-write access to a temporal object,\r\n * such as a date, time, offset or some combination of these.\r\n *\r\n * This is the base interface type for date, time and offset objects that\r\n * are complete enough to be manipulated using plus and minus.\r\n * It is implemented by those classes that can provide and manipulate information\r\n * as fields (see {@link TemporalField}) or queries (see {@link TemporalQuery}).\r\n * See {@link TemporalAccessor} for the read-only version of this interface.\r\n *\r\n * Most date and time information can be represented as a number.\r\n * These are modeled using {@link TemporalField} with the number held using\r\n * a `long` to handle large values. Year, month and day-of-month are\r\n * simple examples of fields, but they also include instant and offsets.\r\n * See {@link ChronoField} for the standard set of fields.\r\n *\r\n * Two pieces of date/time information cannot be represented by numbers,\r\n * the {@link Chronology} and the {@link ZoneId}.\r\n * These can be accessed using the static methods defined on {@link TemporalQueries}.\r\n *\r\n * This interface is a framework-level interface that should not be widely\r\n * used in application code. Instead, applications should create and pass\r\n * around instances of concrete types, such as {@link LocalDate}.\r\n * There are many reasons for this, part of which is that implementations\r\n * of this interface may be in calendar systems other than ISO.\r\n * See {@link ChronoLocalDate} for a fuller discussion of the issues.\r\n *\r\n * ### When to implement\r\n *\r\n * A class should implement this interface if it meets three criteria:\r\n *\r\n * * it provides access to date/time/offset information, as per {@link TemporalAccessor}\r\n * * the set of fields are contiguous from the largest to the smallest\r\n * * the set of fields are complete, such that no other field is needed to define the\r\n *   valid range of values for the fields that are represented\r\n *\r\n * Four examples make this clear:\r\n *\r\n * * {@link LocalDate} implements this interface as it represents a set of fields\r\n *   that are contiguous from days to forever and require no external information to determine\r\n *   the validity of each date. It is therefore able to implement plus/minus correctly.\r\n * * {@link LocalTime} implements this interface as it represents a set of fields\r\n *   that are contiguous from nanos to within days and require no external information to determine\r\n *   validity. It is able to implement plus/minus correctly, by wrapping around the day.\r\n * * {@link MonthDay}, the combination of month-of-year and day-of-month, does not implement\r\n *   this interface.  While the combination is contiguous, from days to months within years,\r\n *   the combination does not have sufficient information to define the valid range of values\r\n *   for day-of-month.  As such, it is unable to implement plus/minus correctly.\r\n * * The combination day-of-week and day-of-month (\"Friday the 13th\") should not implement\r\n *   this interface. It does not represent a contiguous set of fields, as days to weeks overlaps\r\n *   days to months.\r\n *\r\n * @interface\r\n ",
+      "start": 291,
+      "end": 3432,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 62,
+          "column": 3
+        }
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "type": "CommentBlock",
+      "value": "\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\r\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\r\n ",
+      "start": 0,
+      "end": 231,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "import",
+        "keyword": "import",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "import",
+      "start": 235,
+      "end": 241,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 242,
+      "end": 243,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 7
+        },
+        "end": {
+          "line": 7,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "TemporalAccessor",
+      "start": 243,
+      "end": 259,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 8
+        },
+        "end": {
+          "line": 7,
+          "column": 24
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 259,
+      "end": 260,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 24
+        },
+        "end": {
+          "line": 7,
+          "column": 25
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "from",
+      "start": 261,
+      "end": 265,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 26
+        },
+        "end": {
+          "line": 7,
+          "column": 30
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "string",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "./TemporalAccessor",
+      "start": 266,
+      "end": 286,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 31
+        },
+        "end": {
+          "line": 7,
+          "column": 51
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 286,
+      "end": 287,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 51
+        },
+        "end": {
+          "line": 7,
+          "column": 52
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\r\n * Framework-level interface defining read-write access to a temporal object,\r\n * such as a date, time, offset or some combination of these.\r\n *\r\n * This is the base interface type for date, time and offset objects that\r\n * are complete enough to be manipulated using plus and minus.\r\n * It is implemented by those classes that can provide and manipulate information\r\n * as fields (see {@link TemporalField}) or queries (see {@link TemporalQuery}).\r\n * See {@link TemporalAccessor} for the read-only version of this interface.\r\n *\r\n * Most date and time information can be represented as a number.\r\n * These are modeled using {@link TemporalField} with the number held using\r\n * a `long` to handle large values. Year, month and day-of-month are\r\n * simple examples of fields, but they also include instant and offsets.\r\n * See {@link ChronoField} for the standard set of fields.\r\n *\r\n * Two pieces of date/time information cannot be represented by numbers,\r\n * the {@link Chronology} and the {@link ZoneId}.\r\n * These can be accessed using the static methods defined on {@link TemporalQueries}.\r\n *\r\n * This interface is a framework-level interface that should not be widely\r\n * used in application code. Instead, applications should create and pass\r\n * around instances of concrete types, such as {@link LocalDate}.\r\n * There are many reasons for this, part of which is that implementations\r\n * of this interface may be in calendar systems other than ISO.\r\n * See {@link ChronoLocalDate} for a fuller discussion of the issues.\r\n *\r\n * ### When to implement\r\n *\r\n * A class should implement this interface if it meets three criteria:\r\n *\r\n * * it provides access to date/time/offset information, as per {@link TemporalAccessor}\r\n * * the set of fields are contiguous from the largest to the smallest\r\n * * the set of fields are complete, such that no other field is needed to define the\r\n *   valid range of values for the fields that are represented\r\n *\r\n * Four examples make this clear:\r\n *\r\n * * {@link LocalDate} implements this interface as it represents a set of fields\r\n *   that are contiguous from days to forever and require no external information to determine\r\n *   the validity of each date. It is therefore able to implement plus/minus correctly.\r\n * * {@link LocalTime} implements this interface as it represents a set of fields\r\n *   that are contiguous from nanos to within days and require no external information to determine\r\n *   validity. It is able to implement plus/minus correctly, by wrapping around the day.\r\n * * {@link MonthDay}, the combination of month-of-year and day-of-month, does not implement\r\n *   this interface.  While the combination is contiguous, from days to months within years,\r\n *   the combination does not have sufficient information to define the valid range of values\r\n *   for day-of-month.  As such, it is unable to implement plus/minus correctly.\r\n * * The combination day-of-week and day-of-month (\"Friday the 13th\") should not implement\r\n *   this interface. It does not represent a contiguous set of fields, as days to weeks overlaps\r\n *   days to months.\r\n *\r\n * @interface\r\n ",
+      "start": 291,
+      "end": 3432,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 62,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "export",
+        "keyword": "export",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "export",
+      "start": 3434,
+      "end": 3440,
+      "loc": {
+        "start": {
+          "line": 63,
+          "column": 0
+        },
+        "end": {
+          "line": 63,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "class",
+        "keyword": "class",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "class",
+      "start": 3441,
+      "end": 3446,
+      "loc": {
+        "start": {
+          "line": 63,
+          "column": 7
+        },
+        "end": {
+          "line": 63,
+          "column": 12
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "Temporal",
+      "start": 3447,
+      "end": 3455,
+      "loc": {
+        "start": {
+          "line": 63,
+          "column": 13
+        },
+        "end": {
+          "line": 63,
+          "column": 21
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "extends",
+        "keyword": "extends",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "extends",
+      "start": 3456,
+      "end": 3463,
+      "loc": {
+        "start": {
+          "line": 63,
+          "column": 22
+        },
+        "end": {
+          "line": 63,
+          "column": 29
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "TemporalAccessor",
+      "start": 3464,
+      "end": 3480,
+      "loc": {
+        "start": {
+          "line": 63,
+          "column": 30
+        },
+        "end": {
+          "line": 63,
+          "column": 46
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 3481,
+      "end": 3482,
+      "loc": {
+        "start": {
+          "line": 63,
+          "column": 47
+        },
+        "end": {
+          "line": 63,
+          "column": 48
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 3482,
+      "end": 3483,
+      "loc": {
+        "start": {
+          "line": 63,
+          "column": 48
+        },
+        "end": {
+          "line": 63,
+          "column": 49
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "eof",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 3485,
+      "end": 3485,
+      "loc": {
+        "start": {
+          "line": 64,
+          "column": 0
+        },
+        "end": {
+          "line": 64,
+          "column": 0
+        }
+      }
+    }
+  ]
+}
