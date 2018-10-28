@@ -1,4 +1,4 @@
-//! @version @js-joda/locale - 1.1.0-pre5+34.0.0
+//! @version @js-joda/locale - 2.0.0-pre5+34.0.0
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -2108,6 +2108,31 @@ init();
 
 /***/ }),
 
+/***/ "./src/auto-plug.js":
+/*!**************************!*\
+  !*** ./src/auto-plug.js ***!
+  \**************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return autoPlug; });
+/* harmony import */ var js_joda__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-joda */ "js-joda");
+/* harmony import */ var js_joda__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(js_joda__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _plug__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./plug */ "./src/plug.js");
+/*
+ * @copyright (c) 2016-present, Philipp Thürwächter, Pattrick Hüper
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
+
+
+function autoPlug() {
+  Object(js_joda__WEBPACK_IMPORTED_MODULE_0__["use"])(_plug__WEBPACK_IMPORTED_MODULE_1__["default"]);
+}
+
+/***/ }),
+
 /***/ "./src/format/LocaleDateTimeFormatter.js":
 /*!***********************************************!*\
   !*** ./src/format/LocaleDateTimeFormatter.js ***!
@@ -3387,18 +3412,18 @@ var WeekFieldsPrinterParser = function () {
 /*!*******************************!*\
   !*** ./src/js-joda-locale.js ***!
   \*******************************/
-/*! exports provided: default */
+/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _plug__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./plug */ "./src/plug.js");
+/* harmony import */ var _auto_plug__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./auto-plug */ "./src/auto-plug.js");
 /*
  * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-/* harmony default export */ __webpack_exports__["default"] = (_plug__WEBPACK_IMPORTED_MODULE_0__["default"]);
+Object(_auto_plug__WEBPACK_IMPORTED_MODULE_0__["default"])();
 
 /***/ }),
 

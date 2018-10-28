@@ -7,7 +7,6 @@
 
 import CldrDateTimeFormatterBuilder from './format/cldr/CldrDateTimeFormatterBuilder';
 import LocaleDateTimeFormatter from './format/LocaleDateTimeFormatter';
-import Locale from './Locale';
 
 import './_init';
 
@@ -29,6 +28,4 @@ export default function (jsJoda) {
             jsJoda.DateTimeFormatter.prototype[prop] = LocaleDateTimeFormatter.prototype[prop];
         }
     });
-    // inject Locale into jsJoda
-    jsJoda.Locale = Locale;
 }

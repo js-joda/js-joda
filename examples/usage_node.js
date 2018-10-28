@@ -3,17 +3,20 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 /* eslint-disable no-console, no-var */
-const joda = require('js-joda')
-    .use(require('js-joda-timezone'))
-    .use(require('../dist/js-joda-locale'));
+const joda = require('js-joda');
+require('js-joda-timezone');
 
 const {
     DateTimeFormatter,
     Instant,
-    Locale,
     ZonedDateTime,
     ZoneId,
 } = joda;
+
+const {
+    Locale,
+} = require('./build/js-joda-locale');
+
 
 const zdt = ZonedDateTime.of(2016, 1, 1, 1, 2, 3, 4, ZoneId.of('Europe/Berlin'));
 const pattern = 'eeee MMMM dd yyyy GGGG, hh:mm:ss,nnnn a zzzz, \'Week \' ww, \'Quarter \' QQQ';

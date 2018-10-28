@@ -39,20 +39,19 @@
         function outputDateInDifferentLocales(zdt) {
             output('Times in ' + zdt.zone());
             output('&nbsp;');
-            output('en_US formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(JSJoda.Locale.US)));
-            output('en_CA formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(JSJoda.Locale.CANADA)));
-            output('en_GB formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(JSJoda.Locale.UK)));
-            output('de_DE formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(JSJoda.Locale.GERMANY)));
-            output('fr_FR formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(JSJoda.Locale.FRANCE)));
-            output('es_ES formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(new JSJoda.Locale('es', 'ES ', 'es'))));
-            output('ru_RU formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(new JSJoda.Locale('ru', 'RU ', 'ru'))));
-            output('zh_CN formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(new JSJoda.Locale('zh', 'CN ', 'zh'))));
-            output('hi_IN formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(new JSJoda.Locale('hi', 'IN ', 'hi'))));
+            output('en_US formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(JSJodaLocale.Locale.US)));
+            output('en_CA formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(JSJodaLocale.Locale.CANADA)));
+            output('en_GB formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(JSJodaLocale.Locale.UK)));
+            output('de_DE formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(JSJodaLocale.Locale.GERMANY)));
+            output('fr_FR formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(JSJodaLocale.Locale.FRANCE)));
+            output('es_ES formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(new JSJodaLocale.Locale('es', 'ES ', 'es'))));
+            output('ru_RU formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(new JSJodaLocale.Locale('ru', 'RU ', 'ru'))));
+            output('zh_CN formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(new JSJodaLocale.Locale('zh', 'CN ', 'zh'))));
+            output('hi_IN formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(new JSJodaLocale.Locale('hi', 'IN ', 'hi'))));
             output('&nbsp;');
             output('<hr />');
         }
 
-        JSJoda = JSJoda.use(JSJodaTimezone).use(JSJodaLocale);
         var zdt = JSJoda.ZonedDateTime.of(2017, 1, 1, 0, 0, 0, 0, JSJoda.ZoneId.of('Europe/Berlin'));
         outputDateInDifferentLocales(zdt)
         zdt = JSJoda.ZonedDateTime.of(2017, 1, 1, 0, 0, 0, 0, JSJoda.ZoneId.of('America/Chicago'));

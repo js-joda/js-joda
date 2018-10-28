@@ -4,11 +4,9 @@
  */
 
 import { expect } from 'chai';
-import * as joda from 'js-joda';
+import { DateTimeFormatter } from 'js-joda';
 
-import jodaLocale from '../../src/plug';
-
-const { DateTimeFormatter, Locale } = joda.use(jodaLocale);
+import { Locale } from '../../src/js-joda-locale';
 
 describe('LocaleDateTimeFormatter', () => {
     describe('withLocale', () => {

@@ -1,4 +1,4 @@
-//! @version @js-joda/locale - 1.1.0-pre5+34.0.0
+//! @version @js-joda/locale - 2.0.0-pre5+34.0.0
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -1516,18 +1516,26 @@ var WeekFieldsPrinterParser = function () {
 /*!*******************************!*\
   !*** ./src/js-joda-locale.js ***!
   \*******************************/
-/*! exports provided: default */
+/*! exports provided: Locale */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _plug__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./plug */ "./src/plug.js");
+/* harmony import */ var js_joda__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-joda */ "js-joda");
+/* harmony import */ var js_joda__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(js_joda__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _plug__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./plug */ "./src/plug.js");
+/* harmony import */ var _Locale__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Locale */ "./src/Locale.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Locale", function() { return _Locale__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
 /*
  * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-/* harmony default export */ __webpack_exports__["default"] = (_plug__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+
+Object(js_joda__WEBPACK_IMPORTED_MODULE_0__["use"])(_plug__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
 
 /***/ }),
 
@@ -1542,13 +1550,11 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _format_cldr_CldrDateTimeFormatterBuilder__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./format/cldr/CldrDateTimeFormatterBuilder */ "./src/format/cldr/CldrDateTimeFormatterBuilder.js");
 /* harmony import */ var _format_LocaleDateTimeFormatter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./format/LocaleDateTimeFormatter */ "./src/format/LocaleDateTimeFormatter.js");
-/* harmony import */ var _Locale__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Locale */ "./src/Locale.js");
-/* harmony import */ var _init__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_init */ "./src/_init.js");
+/* harmony import */ var _init__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_init */ "./src/_init.js");
 /*
  * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
-
 
 
 
@@ -1563,7 +1569,6 @@ __webpack_require__.r(__webpack_exports__);
       jsJoda.DateTimeFormatter.prototype[prop] = _format_LocaleDateTimeFormatter__WEBPACK_IMPORTED_MODULE_1__["default"].prototype[prop];
     }
   });
-  jsJoda.Locale = _Locale__WEBPACK_IMPORTED_MODULE_2__["default"];
 });
 
 /***/ }),
