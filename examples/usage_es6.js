@@ -3,11 +3,9 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 /* eslint-disable no-console, no-var */
-import { use as jsJodaUse } from 'js-joda';
-import jsJodaTimeZone from 'js-joda-timezone';
-import jsJodaLocale from '../dist/js-joda-locale';
-
-const { DateTimeFormatter, Locale, ZonedDateTime, ZoneId } = jsJodaUse(jsJodaTimeZone).use(jsJodaLocale);
+import { DateTimeFormatter, ZonedDateTime, ZoneId } from 'js-joda';
+import 'js-joda-timezone';
+import { Locale } from './build/js-joda-locale';
 
 const zdt = ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, ZoneId.of('Europe/Berlin'));
 // var zdt = joda.ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, joda.ZoneId.of('America/Chicago'));

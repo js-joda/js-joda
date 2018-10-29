@@ -5,7 +5,6 @@
 
 import {
     _ as jodaInternal,
-    use as jodaUse,
     ChronoField,
     DecimalStyle,
     IsoFields,
@@ -14,7 +13,7 @@ import {
     TemporalQueries,
 } from 'js-joda';
 
-import jodaTZ from 'js-joda-timezone';
+import 'js-joda-timezone';
 
 import { assertEquals, dataProviderTest } from '../testUtils';
 
@@ -23,9 +22,6 @@ import '../_init';
 import CldrDateTimeTextProvider from '../../src/format/cldr/CldrDateTimeTextProvider';
 import Locale from '../../src/Locale';
 import TextPrinterParser from '../../src/format/parser/TextPrinterParser';
-
-//use js-joda-timezone
-jodaUse(jodaTZ);
 
 const {
     DateTimeParseContext,

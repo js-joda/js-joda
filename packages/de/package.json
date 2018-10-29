@@ -1,7 +1,7 @@
 {
-    "name": "js-joda-locale_de",
-    "version": "1.1.0-pre5+32.0.1",
-    "description": "prebuilt js-joda-locale package for locales: de.*",
+    "name": "@js-joda/locale_de",
+    "version": "2.0.0-pre5+34.0.0",
+    "description": "prebuilt js-joda locale package for locales: de.*",
     "repository": {
         "type": "git",
         "url": "https://github.com/js-joda/js-joda-locale.git"
@@ -23,8 +23,8 @@
     },
     "homepage": "https://github.com/js-joda/js-joda-locale#readme",
     "peerDependencies": {
-        "js-joda": "^1.8.2",
-        "js-joda-timezone": "^1.2.1"
+        "js-joda": "^1.9.2",
+        "js-joda-timezone": "^2.0.1"
     },
     "dependencies": {},
     "devDependencies": {}

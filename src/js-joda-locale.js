@@ -2,6 +2,12 @@
  * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
-import localeDefault from './plug';
+import { use } from 'js-joda';
+import plug from './plug';
+import Locale from './Locale';
 
-export default localeDefault;
+use(plug);
+
+export {
+    Locale
+};

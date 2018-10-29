@@ -7,7 +7,6 @@ import { expect } from 'chai';
 
 import {
     _ as jodaInternal,
-    use as jodaUse,
     DecimalStyle,
     IsoChronology,
     LocalDateTime,
@@ -16,7 +15,7 @@ import {
     ZoneRulesProvider,
 } from 'js-joda';
 
-import jodaTZ from 'js-joda-timezone';
+import 'js-joda-timezone';
 
 import { assertEquals, dataProviderTest } from '../testUtils';
 
@@ -24,9 +23,6 @@ import '../_init';
 
 import CldrZoneTextPrinterParser from '../../src/format/cldr/CldrZoneTextPrinterParser';
 import Locale from '../../src/Locale';
-
-//use js-joda-timezone
-jodaUse(jodaTZ);
 
 const {
     DateTimeParseContext,

@@ -6,7 +6,6 @@ import {expect} from 'chai';
 
 import {
     _ as jodaInternal,
-    use as jodaUse,
     ChronoField,
     DecimalStyle,
     IsoFields,
@@ -15,7 +14,7 @@ import {
     ZoneId,
 } from 'js-joda';
 
-import jodaTZ from 'js-joda-timezone';
+import 'js-joda-timezone';
 
 import { assertEquals, dataProviderTest } from '../testUtils';
 
@@ -25,9 +24,6 @@ import CldrDateTimeTextProvider from '../../src/format/cldr/CldrDateTimeTextProv
 import Locale from '../../src/Locale';
 import TextPrinterParser from '../../src/format/parser/TextPrinterParser';
 import { MockFieldValue } from '../reference/temporal/MockFieldValue';
-
-//use js-joda-timezone
-jodaUse(jodaTZ);
 
 const {
     DateTimePrintContext,
@@ -113,8 +109,8 @@ describe('js-joda-locale TextPrinterTest', () => {
                 [ChronoField.AMPM_OF_DAY, TextStyle.FULL, 0, 'AM'],
                 [ChronoField.AMPM_OF_DAY, TextStyle.FULL, 1, 'PM'],
 
-                [ChronoField.AMPM_OF_DAY, TextStyle.NARROW, 0, 'vm.'],
-                [ChronoField.AMPM_OF_DAY, TextStyle.NARROW, 1, 'nm.'],
+                [ChronoField.AMPM_OF_DAY, TextStyle.NARROW, 0, 'a'],
+                [ChronoField.AMPM_OF_DAY, TextStyle.NARROW, 1, 'p'],
 
                 [ChronoField.AMPM_OF_DAY, TextStyle.SHORT, 0, 'AM'],
                 [ChronoField.AMPM_OF_DAY, TextStyle.SHORT, 1, 'PM'],

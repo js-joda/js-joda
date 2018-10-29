@@ -6,18 +6,11 @@
 import { expect } from 'chai';
 import * as joda from 'js-joda';
 
-// since for karma/webpack tests we cannot require the actual webpack entry point,
-// we test using `plug` ... the entry point js-joda-locale.js only re-exports the default from
-// plug anyway...
-import locale from '../src/plug';
+import '../src/js-joda-locale';
 import CldrDateTimeFormatterBuilder from '../src/format/cldr/CldrDateTimeFormatterBuilder';
 import LocaleDateTimeFormatter from '../src/format/LocaleDateTimeFormatter';
 
-const testPlugin = (plugin) => {
-    before('use', () => {
-        joda.use(plugin);
-    });
-
+const testPlugin = () => {
     it('should add CldrDateTimeFormatterBuilder methods to joda', () => {
         const jodaDateTimeFormatterBuilder = joda.DateTimeFormatterBuilder.prototype;
         const cldrDateTimeFormatterBuilder = CldrDateTimeFormatterBuilder.prototype;
@@ -36,7 +29,7 @@ const testPlugin = (plugin) => {
 };
 
 describe('plug test', () => {
-    testPlugin(locale);
+    testPlugin();
 });
 
 // export the testPlugin function to be re-used in pluginTest_mochaOnly
