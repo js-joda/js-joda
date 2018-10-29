@@ -52,12 +52,12 @@ The implementation requires cldr data provided by the [cldr-data](https://github
 and uses [cldrjs](https://github.com/rxaviers/cldrjs) to load the data.
 This is necessary to display and parse locale specific data, e.g DayOfWeek or Month Names.
 
-The cldr data is a peer dependency of this package, meaning it must be provided/`npm install`ed by users of `js-joda-locale`
+The cldr data is a peer dependency of this package, meaning it must be provided/`npm install`ed by users of `@js-joda/locale`
 
 Since the complete cldr-data package can be quite large, the examples and documentation below show ways to dynamically
 load or reduce the amount of data needed.
 
-The implementation of `js-joda-locale` also requires `js-joda-timezone` package e.g. to parse and output timezone names and offsets
+The implementation of `@js-joda/locale` also requires `js-joda-timezone` package e.g. to parse and output timezone names and offsets
 
 ### Node
 
@@ -68,13 +68,14 @@ Install joda using npm
     npm install js-joda-timezone
     npm install cldr-data
     npm install cldrjs
-    npm install js-joda-locale
+    npm install @js-joda/locale
 ```
 
-To enable js-joda-locale you will need to provide it to js-joda as a plugin via the `use` function
+To enable js-joda-locale you will onlye need to require it, requireing it automatically registers the locale extensions in the base `js-joda`
+Note: the `Locale` class is exported by `@js-joda/locale` so in order to use it, you will need to extract it from there.
 
 ```javascript
-jsJoda.use('js-joda-locale')
+require('js-joda-locale')
 ```
 since `js-joda-locale` requires `js-joda-timezone` it will also need to be provided, as shown 
 in the following examples
@@ -85,23 +86,33 @@ the plugin `use`
 ### es5
 
 ```javascript
-    var joda = require('js-joda').use(require('js-joda-timezone')).use(require('../dist/js-joda-locale'));    
-    var zdt = joda.ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, joda.ZoneId.of('Europe/Berlin'));
-    console.log('en_US formatted string:', zdt.format(joda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, \'Week \' ww, \'Quarter \' QQQ').withLocale(joda.Locale.US)));
+const joda = require('js-joda');
+require('js-joda-timezone');
+
+const {
+    DateTimeFormatter,
+    ZonedDateTime,
+    ZoneId,
+} = joda;
+
+const {
+    Locale,
+} = require('js-joda-locale');
+
+var zdt = ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, ZoneId.of('Europe/Berlin'));
+console.log('en_US formatted string:', zdt.format(DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, \'Week \' ww, \'Quarter \' QQQ').withLocale(Locale.US)));
 ```
 also see [examples/usage_node.js](examples/usage_node.js) or [examples/usage_node_build.js](examples/usage_node_build.js) 
 
 ### es6
 
 ```ecmascript 6
-   import { use as jsJodaUse } from 'js-joda';
-   import jsJodaTimeZone from 'js-joda-timezone';
-   import jsJodaLocale from 'js-joda-locale';
-   
-   const { DateTimeFormatter, Locale, ZonedDateTime, ZoneId } = jsJodaUse(jsJodaTimeZone).use(jsJodaLocale);
-   
-   const zdt = ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, ZoneId.of('Europe/Berlin'));
-   console.log('en_US formatted string:', zdt.format(DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, \'Week \' ww, \'Quarter \' QQQ').withLocale(Locale.US)));
+import { DateTimeFormatter, ZonedDateTime, ZoneId } from 'js-joda';
+import 'js-joda-timezone';
+import { Locale } from './build/js-joda-locale';
+
+const zdt = ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, ZoneId.of('Europe/Berlin'));
+console.log('en_US formatted string:', zdt.format(DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, \'Week \' ww, \'Quarter \' QQQ').withLocale(Locale.US)));
 ```
 
 also see the [example](examples/usage_es6.js)

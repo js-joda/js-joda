@@ -7,15 +7,16 @@ Changelog
 
 introduced new plugin concept
  * Hide `use(plug)` concept from public api.
-   The function for extending js-joda is not exported anymore (the default export of this module is removed).
-   The code for extending js-joda `use(plug)` is not required anymore, because js-joda-timezone automaticaly extends
+   The function for extending js-joda is not exported anymore.
+   The code for extending js-joda `use(plug)` is not required anymore, because js-joda-locale automaticaly extends
    js-joda when imported.
+   However, using `Locale` now requires extracting it from the `@js-joda/locale` module instead of `js-joda`
 
 * get rid of postinstall build
 
-* add possibility to publish locale specific packages (e.g. js-joda-locale_de, js-joda-locale_en-US, ...)
+* add possibility to publish locale specific packages (e.g. @js-joda/locale_de, @js-joda/locale_en-US, ...)
 
-* add prebuilt packages to main js-joda-locale package (e.g. js-joda-locale/build/package/de/js-joda-locale, ...)
+* add prebuilt packages to main js-joda-locale package (e.g. @js-joda/locale/dist/prebuilt/de/js-joda-locale, ...)
 
 ### 1.0.0
 
