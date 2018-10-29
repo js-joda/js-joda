@@ -65,6 +65,7 @@ const packages = fs
     .filter((name) => fs.lstatSync(path.resolve(argv.packagesDir, name)).isDirectory());
 const npmArgs = [
     'publish',
+    '--access=public',
 ];
 if (argv.beta) {
     npmArgs.push('--tag', 'beta');
