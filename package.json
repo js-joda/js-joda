@@ -1,6 +1,6 @@
 {
   "name": "@js-joda/locale",
-  "version": "2.0.0-pre7+34.0.0",
+  "version": "2.0.0-pre8+34.0.0",
   "description": "plugin for locale functionality for js-joda",
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
     "build-examples": "node ./utils/build_package.js -o examples/build/js-joda-locale -m node_modules -c utils/load_cldrData.prebuilt.js -l \"en.*\" de fr es zh hi ru",
     "build-prebuilt": "rm -rf dist/prebuilt/*;node utils/build_package.js --config build_package.prebuilt.json",
     "build_package": "node ./utils/build_package.js",
-    "build-all": "npm run build-esdoc && npm run build-dist-es5 && npm run build-dist && npm run build-examples && npm run build-prebuilt",
+    "build-all": "npm run build-esdoc && npm run build-dist-es5 && npm run build-dist && npm run build-examples && npm run build-prebuilt && npm run create-packages",
     "create-packages": "rm -rf packages/*;node utils/create_packages.js --config build_package.prebuilt.json",
     "lint": "./node_modules/.bin/eslint ."
   },
