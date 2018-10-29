@@ -26,16 +26,16 @@ Since the process described [below](#without-prebuilt-locale-packages) requires 
 we provide prebuilt sets of locales as separate npm packages. 
 So for ease of use you may want to install the corresponding `@js-joda/locale_<locale>` package.
 The current list of available prebuilt locales is:
-- de (i.e. de-*)
-- de-DE
-- en (i.e. en-*)
-- en-US
-- es (i.e. es-*)
-- fr (i.e. fr-*)
-- hi (i.e. hi-*)
-- it (i.e. it-*)
-- it-IT
-- zh (i.e. zh-*)
+- [de (i.e. de-*)](https://www.npmjs.com/package/@js-joda/locale_de)
+- [de-DE](https://www.npmjs.com/package/@js-joda/locale_de-de)
+- [en (i.e. en-*)](https://www.npmjs.com/package/@js-joda/locale_en)
+- [en-US](https://www.npmjs.com/package/@js-joda/locale_en-us)
+- [es (i.e. es-*)](https://www.npmjs.com/package/@js-joda/locale_es)
+- [fr (i.e. fr-*)](https://www.npmjs.com/package/@js-joda/locale_fr)
+- [hi (i.e. hi-*)](https://www.npmjs.com/package/@js-joda/locale_hi)
+- [it (i.e. it-*)](https://www.npmjs.com/package/@js-joda/locale_it)
+- [it-IT](https://www.npmjs.com/package/@js-joda/locale_it-it)
+- [zh (i.e. zh-*)](https://www.npmjs.com/package/@js-joda/locale_zh)
 
 this list could be extended relatively easily if needed, as long as data is available in cldr-data
 

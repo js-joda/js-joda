@@ -76,6 +76,9 @@ const packageTemplate = {
     devDependencies: {}
 };
 
+const readmeTemplate = fs.readFileSync(path.resolve(__dirname, 'README_package.template.md'), 'utf8');
+const readmeLocaleRegex = /{{locale}}/g;
+
 // TODO: build minified (DIST_MIN=1) package?? in dist/index.min.js?
 Object.keys(argv.packages).forEach((packageName) => {
     // eslint-disable-next-line no-console
@@ -90,6 +93,8 @@ Object.keys(argv.packages).forEach((packageName) => {
     packageTemplate.description = `prebuilt js-joda locale package for locales: ${argv.packages[packageName]}`;
     fs.writeFileSync(path.resolve(packageDir, 'package.json'),
         JSON.stringify(packageTemplate, null, 4));
+    fs.writeFileSync(path.resolve(packageDir, 'README.md'),
+        readmeTemplate.replace(readmeLocaleRegex, argv.packages[packageName].join(',')));
     const nodeArgs = [
         './utils/build_package.js',
         '-o', `${path.resolve(packageDir, 'dist')}`,
