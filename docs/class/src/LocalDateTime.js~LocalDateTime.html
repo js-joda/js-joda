@@ -3897,7 +3897,7 @@ The returned value will always be within the valid range of values for the field
 If it is not possible to return the value, because the field is not supported
 or for some other reason, an exception is thrown.</p>
 <p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
-The supported fields (see <span><a href="class/src/Month.js~Month.html#instance-method-isSupported">isSupported</a></span>) will return valid
+The supported fields (see <span><a href="class/src/LocalTime.js~LocalTime.html#instance-method-isSupported">isSupported</a></span>) will return valid
 values based on this date-time, except <span>NANO_OF_DAY</span>, <span>MICRO_OF_DAY</span>,
 <span>EPOCH_DAY</span> and <span>EPOCH_MONTH</span> which are too large to fit in
 an <code>int</code> and throw a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span>.
@@ -4001,7 +4001,7 @@ and what the value represents, is determined by the field.</p>
 If it is not possible to return the value, because the field is not supported
 or for some other reason, an exception is thrown.</p>
 <p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
-The supported fields (see <span><a href="class/src/Month.js~Month.html#instance-method-isSupported">isSupported</a></span>) will return valid
+The supported fields (see <span><a href="class/src/LocalTime.js~LocalTime.html#instance-method-isSupported">isSupported</a></span>) will return valid
 values based on this date-time.
 All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will throw a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span>.</p>
 <p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
@@ -4226,7 +4226,7 @@ local time-line after the other date-time.</p>
 </p>
 <p>This method only considers the position of the two date-times on the local time-line.
 It does not take into account the chronology, or calendar system.
-This is different from the comparison in <span><a href="class/src/Year.js~Year.html#instance-method-compareTo">compareTo</a></span>,
+This is different from the comparison in <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-compareTo">compareTo</a></span>,
 but is the same approach as <span>DATE_TIME_COMPARATOR</span>.</p>
 </div>
 
@@ -4315,7 +4315,7 @@ local time-line before the other date-time.</p>
 </p>
 <p>This method only considers the position of the two date-times on the local time-line.
 It does not take into account the chronology, or calendar system.
-This is different from the comparison in <span><a href="class/src/Year.js~Year.html#instance-method-compareTo">compareTo</a></span>,
+This is different from the comparison in <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-compareTo">compareTo</a></span>,
 but is the same approach as <span>DATE_TIME_COMPARATOR</span>.</p>
 </div>
 
@@ -4404,7 +4404,7 @@ local time-line as the other date-time.</p>
 </p>
 <p>This method only considers the position of the two date-times on the local time-line.
 It does not take into account the chronology, or calendar system.
-This is different from the comparison in <span><a href="class/src/Year.js~Year.html#instance-method-compareTo">compareTo</a></span>,
+This is different from the comparison in <span><a href="class/src/MonthDay.js~MonthDay.html#instance-method-compareTo">compareTo</a></span>,
 but is the same approach as <span>DATE_TIME_COMPARATOR</span>.</p>
 </div>
 
@@ -6926,7 +6926,7 @@ This date-time is used to enhance the accuracy of the returned range.
 If it is not possible to return the range, because the field is not supported
 or for some other reason, an exception is thrown.</p>
 <p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the query is implemented here.
-The supported fields (see <span><a href="class/src/Month.js~Month.html#instance-method-isSupported">isSupported</a></span>) will return
+The supported fields (see <span><a href="class/src/LocalTime.js~LocalTime.html#instance-method-isSupported">isSupported</a></span>) will return
 appropriate range instances.
 All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will throw a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span>.</p>
 <p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
@@ -7633,7 +7633,7 @@ such as changing the month from 31st January to February would make the day-of-m
 In cases like this, the field is responsible for resolving the date. Typically it will choose
 the previous valid date, which would be the last valid day of February in this example.</p>
 <p>If the field is a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> then the adjustment is implemented here.
-The supported fields (see <span><a href="class/src/Month.js~Month.html#instance-method-isSupported">isSupported</a></span>) will behave as in
+The supported fields (see <span><a href="class/src/LocalTime.js~LocalTime.html#instance-method-isSupported">isSupported</a></span>) will behave as in
 <span><a href="class/src/LocalDate.js~LocalDate.html#instance-method-with">LocalDate#with</a></span> or <span><a href="class/src/LocalTime.js~LocalTime.html#instance-method-with">LocalTime#with</a></span>.
 All other <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will throw a <span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span>.</p>
 <p>If the field is not a <span><a href="class/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>, then the result of this method
