@@ -21,6 +21,7 @@
             "./src/docs/ZonedDateTime.md",
             "./src/docs/Period.md",
             "./src/docs/Duration.md",
+            "./src/docs/formatting.md",
             "./src/docs/customizing.md",
             "./CHANGELOG.md"
           ]
