@@ -3,6 +3,8 @@ Changelog
 
 ### next
 
+* update README to reflect new package name `@js-joda/locale*`
+
 ### 2.0.0
 
 #### public API
