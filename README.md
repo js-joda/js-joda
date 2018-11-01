@@ -71,37 +71,34 @@ Install joda using npm
     npm install @js-joda/locale
 ```
 
-To enable js-joda-locale you will onlye need to require it, requireing it automatically registers the locale extensions in the base `js-joda`
+To enable js-joda-locale you will only need to require it, requiring it automatically registers the locale extensions in the base `js-joda`
 Note: the `Locale` class is exported by `@js-joda/locale` so in order to use it, you will need to extract it from there.
 
 ```javascript
-require('js-joda-locale')
+require('@js-joda/locale_<locale>')
 ```
 since `js-joda-locale` requires `js-joda-timezone` it will also need to be provided, as shown 
 in the following examples
 
-NOTE: if you are using a destructuring assignment in ES6, it should only be performed *after* 
-the plugin `use` 
-
 ### es5
 
 ```javascript
-const joda = require('js-joda');
-require('js-joda-timezone');
-
 const {
     DateTimeFormatter,
     ZonedDateTime,
     ZoneId,
-} = joda;
+} = require('js-joda');
+require('js-joda-timezone');
 
 const {
     Locale,
-} = require('js-joda-locale');
+} = require('@js-joda/locale_en-us');
 
 var zdt = ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, ZoneId.of('Europe/Berlin'));
 console.log('en_US formatted string:', zdt.format(DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, \'Week \' ww, \'Quarter \' QQQ').withLocale(Locale.US)));
 ```
+this will output `en_US formatted string: Friday January 01 2016 Anno Domini, 12:00:00 AM Central European Time, Week  01, Quarter  Q1`
+
 also see [examples/usage_node.js](examples/usage_node.js) or [examples/usage_node_build.js](examples/usage_node_build.js) 
 
 ### es6
@@ -109,13 +106,21 @@ also see [examples/usage_node.js](examples/usage_node.js) or [examples/usage_nod
 ```ecmascript 6
 import { DateTimeFormatter, ZonedDateTime, ZoneId } from 'js-joda';
 import 'js-joda-timezone';
-import { Locale } from './build/js-joda-locale';
+import { Locale } from '.@js-joda/locale_en-us';
 
 const zdt = ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, ZoneId.of('Europe/Berlin'));
 console.log('en_US formatted string:', zdt.format(DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, \'Week \' ww, \'Quarter \' QQQ').withLocale(Locale.US)));
 ```
 
 also see the [example](examples/usage_es6.js)
+
+### using prebuilt locale files from core `@js-joda/locale`
+
+If you prefer to download `@js-joda/locale` as a single dependency (albeit a rather large one in terms of download size), all prebuilt locale packages are also included.
+You still need to load the separate locale packages, this can be done e.g. 
+```javascript
+require('@js-joda/locale/dist/prebuilt/en-us');
+```
 
 ### Browser
 - using requirejs to load
