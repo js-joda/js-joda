@@ -183,7 +183,7 @@ declare module "js-joda" {
         parseUnresolved(text: any, position: any): any;
         toString(): string;
         withChronology(chrono: any): any;
-        withLocale(): DateTimeFormatter;
+        withLocale(locale: Locale): DateTimeFormatter;
         withResolverStyle(resolverStyle: ResolverStyle): DateTimeFormatter
     }
 
