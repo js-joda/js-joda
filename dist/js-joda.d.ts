@@ -294,7 +294,7 @@ declare namespace JSJoda {
 
         withChronology(chrono: any): any
 
-        withLocale(): DateTimeFormatter
+        withLocale(locale: Locale): DateTimeFormatter
 
         withResolverStyle(resolverStyle: ResolverStyle): DateTimeFormatter
     }
