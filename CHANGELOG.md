@@ -3,7 +3,10 @@ Changelog
 
 ### next
 
+### 2.0.1
+
 * update README to reflect new package name `@js-joda/locale*`
+* update dev dependencies
 
 ### 2.0.0
 
