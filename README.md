@@ -88,9 +88,8 @@ To use js-joda from a browser, download either `dist/js-joda.min.js` or `dist/js
 
 ## Documentation
 
-- [Cheat Sheet](//js-joda.github.io/js-joda/cheat-sheet.html) Quick start guide
-- [API](//js-joda.github.io/js-joda/esdoc/) ESDoc generated API documentation
-- [js-joda Homepage](http://js-joda.github.io/js-joda/) Project homepage
+- [js-joda Quick start guide](//js-joda.github.io/js-joda/manual/getting-started.html) Quick start guide and examples
+- [API](//js-joda.github.io/js-joda/identifiers.html) ESDoc generated API documentation
 
 ## Roadmap
 
