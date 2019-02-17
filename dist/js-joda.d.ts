@@ -260,6 +260,13 @@ declare namespace JSJoda {
         static SMART: ResolverStyle
         static LENIENT: ResolverStyle
     }
+    class SignStyle {
+        static NORMAL: SignStyle;
+        static NEVER: SignStyle;
+        static ALWAYS: SignStyle;
+        static EXCEEDS_PAD: SignStyle;
+        static NOT_NEGATIVE: SignStyle;
+    }
     class DateTimeFormatter {
         static ISO_LOCAL_DATE: DateTimeFormatter
         static ISO_LOCAL_TIME: DateTimeFormatter
@@ -315,9 +322,9 @@ declare namespace JSJoda {
 
         appendPattern(pattern: string): DateTimeFormatterBuilder
 
-        appendValue(): DateTimeFormatterBuilder
+        appendValue(field: TemporalField, width?: number, maxWidth?: number, signStyle?: SignStyle): DateTimeFormatterBuilder
 
-        appendValueReduced(): DateTimeFormatterBuilder
+        appendValueReduced(field: TemporalField, width: number, maxWidth: number, base: ChronoLocalDate | number): DateTimeFormatterBuilder
 
         appendZoneId(): DateTimeFormatterBuilder
 
