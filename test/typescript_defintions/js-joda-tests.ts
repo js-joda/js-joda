@@ -395,6 +395,9 @@ function test_ZonedDateTime() {
 
     ZonedDateTime.ofInstant(Instant.now(), ZoneId.SYSTEM);
 
+    ZonedDateTime.ofLocal(LocalDateTime.now(), ZoneId.SYSTEM, null)
+    ZonedDateTime.ofLocal(LocalDateTime.now(), ZoneId.UTC, ZoneOffset.UTC)
+
     var d = LocalDate.of(2016, 3, 18);
     var zdt = d.atTime(LocalTime.NOON).atZone(ZoneId.of('UTC-05:00'));
 
