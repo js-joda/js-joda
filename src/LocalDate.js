@@ -488,7 +488,7 @@ export class LocalDate extends ChronoLocalDate{
      * The {@link Chronology} represents the calendar system in use.
      * The ISO-8601 calendar system is the modern civil calendar system used today
      * in most of the world. It is equivalent to the proleptic Gregorian calendar
-     * system, in which todays's rules for leap years are applied for all time.
+     * system, in which today's rules for leap years are applied for all time.
      *
      * @return {Chronology} the ISO chronology, not null
      */

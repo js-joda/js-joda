@@ -49,7 +49,7 @@ describe('ZonedDateTime', () => {
     const FIXED_ZONE_M04 = ZoneOffset.ofHours(-4);
     const FIXED_ZONE_M05 = ZoneOffset.ofHours(-5);
     const EUROPE_BERLIN = new CurrentStandardZoneEuropeBerlin();
-    const AMERICA_NEW_YORCK = new CurrentStandardZoneAmericaNew_York();
+    const AMERICA_NEW_YORK = new CurrentStandardZoneAmericaNew_York();
 
     describe('ofLocal', () => {
 
@@ -60,7 +60,7 @@ describe('ZonedDateTime', () => {
                     SYSTEM_DEFAULT_ZONE,
                     ZoneOffset.UTC,
                     EUROPE_BERLIN,
-                    AMERICA_NEW_YORCK
+                    AMERICA_NEW_YORK
                 ];
             };
 
@@ -80,8 +80,8 @@ describe('ZonedDateTime', () => {
                     [LOCAL_DATE_IN_SUMMER, ZoneOffset.UTC, '2016-06-30T11:30:59.000000500Z'],
                     [LOCAL_DATE_IN_SUMMER, EUROPE_BERLIN, '2016-06-30T11:30:59.000000500+02:00[Pseudo/Europe/Berlin]'],
                     [LOCAL_DATE_IN_WINTER, EUROPE_BERLIN, '2016-12-21T11:30:59.000000500+01:00[Pseudo/Europe/Berlin]'],
-                    [LOCAL_DATE_IN_SUMMER, AMERICA_NEW_YORCK, '2016-06-30T11:30:59.000000500-04:00[Pseudo/America/New_York]'],
-                    [LOCAL_DATE_IN_WINTER, AMERICA_NEW_YORCK, '2016-12-21T11:30:59.000000500-05:00[Pseudo/America/New_York]'],
+                    [LOCAL_DATE_IN_SUMMER, AMERICA_NEW_YORK, '2016-06-30T11:30:59.000000500-04:00[Pseudo/America/New_York]'],
+                    [LOCAL_DATE_IN_WINTER, AMERICA_NEW_YORK, '2016-12-21T11:30:59.000000500-05:00[Pseudo/America/New_York]'],
                 ];
             };
 
@@ -99,9 +99,9 @@ describe('ZonedDateTime', () => {
                     ['2016-03-27T02:00', EUROPE_BERLIN, '2016-03-27T03:00+02:00[Pseudo/Europe/Berlin]'],
                     ['2016-03-27T02:30', EUROPE_BERLIN, '2016-03-27T03:30+02:00[Pseudo/Europe/Berlin]'],
                     ['2016-03-27T03:00', EUROPE_BERLIN, '2016-03-27T03:00+02:00[Pseudo/Europe/Berlin]'],
-                    ['2016-03-13T02:00', AMERICA_NEW_YORCK, '2016-03-13T03:00-04:00[Pseudo/America/New_York]'],
-                    ['2016-03-13T02:30', AMERICA_NEW_YORCK, '2016-03-13T03:30-04:00[Pseudo/America/New_York]'],
-                    ['2016-03-13T03:00', AMERICA_NEW_YORCK, '2016-03-13T03:00-04:00[Pseudo/America/New_York]'],
+                    ['2016-03-13T02:00', AMERICA_NEW_YORK, '2016-03-13T03:00-04:00[Pseudo/America/New_York]'],
+                    ['2016-03-13T02:30', AMERICA_NEW_YORK, '2016-03-13T03:30-04:00[Pseudo/America/New_York]'],
+                    ['2016-03-13T03:00', AMERICA_NEW_YORK, '2016-03-13T03:00-04:00[Pseudo/America/New_York]'],
                 ];
             };
 
@@ -120,9 +120,9 @@ describe('ZonedDateTime', () => {
                     ['2016-10-30T02:00', EUROPE_BERLIN, '2016-10-30T02:00+02:00[Pseudo/Europe/Berlin]'],
                     ['2016-10-30T02:30', EUROPE_BERLIN, '2016-10-30T02:30+02:00[Pseudo/Europe/Berlin]'],
                     ['2016-10-30T03:00', EUROPE_BERLIN, '2016-10-30T03:00+01:00[Pseudo/Europe/Berlin]'],
-                    ['2016-11-06T01:00', AMERICA_NEW_YORCK, '2016-11-06T01:00-04:00[Pseudo/America/New_York]'],
-                    ['2016-11-06T01:30', AMERICA_NEW_YORCK, '2016-11-06T01:30-04:00[Pseudo/America/New_York]'],
-                    ['2016-11-06T02:00', AMERICA_NEW_YORCK, '2016-11-06T02:00-05:00[Pseudo/America/New_York]'],
+                    ['2016-11-06T01:00', AMERICA_NEW_YORK, '2016-11-06T01:00-04:00[Pseudo/America/New_York]'],
+                    ['2016-11-06T01:30', AMERICA_NEW_YORK, '2016-11-06T01:30-04:00[Pseudo/America/New_York]'],
+                    ['2016-11-06T02:00', AMERICA_NEW_YORK, '2016-11-06T02:00-05:00[Pseudo/America/New_York]'],
                 ];
             };
 
@@ -140,8 +140,8 @@ describe('ZonedDateTime', () => {
                 return [
                     ['2016-10-30T02:30', EUROPE_BERLIN, ZoneOffset.ofHours(1)],
                     ['2016-10-30T02:30', EUROPE_BERLIN, ZoneOffset.ofHours(2)],
-                    ['2016-11-06T01:30', AMERICA_NEW_YORCK, ZoneOffset.ofHours(-4)],
-                    ['2016-11-06T01:30', AMERICA_NEW_YORCK, ZoneOffset.ofHours(-5)],
+                    ['2016-11-06T01:30', AMERICA_NEW_YORK, ZoneOffset.ofHours(-4)],
+                    ['2016-11-06T01:30', AMERICA_NEW_YORK, ZoneOffset.ofHours(-5)],
                 ];
             };
 
@@ -347,19 +347,19 @@ describe('ZonedDateTime', () => {
                     // gap
                     [zoneDateTimeAtStartOfDay(2016, 3, 27, FIXED_ZONE_00, ZoneOffset.UTC),
                         zoneDateTimeAtStartOfDay(2016, 3, 28, FIXED_ZONE_02, EUROPE_BERLIN), 22],
-                    [zoneDateTimeAtStartOfDay(2016, 3, 27, FIXED_ZONE_M04, AMERICA_NEW_YORCK),
+                    [zoneDateTimeAtStartOfDay(2016, 3, 27, FIXED_ZONE_M04, AMERICA_NEW_YORK),
                         zoneDateTimeAtStartOfDay(2016, 3, 28, FIXED_ZONE_02, EUROPE_BERLIN), 18],
-                    [zoneDateTimeAtStartOfDay(2016, 3, 1, FIXED_ZONE_M05, AMERICA_NEW_YORCK),
+                    [zoneDateTimeAtStartOfDay(2016, 3, 1, FIXED_ZONE_M05, AMERICA_NEW_YORK),
                         zoneDateTimeAtStartOfDay(2016, 3, 28, FIXED_ZONE_02, EUROPE_BERLIN), 26*24 + 17],
 
                     // overlap
                     [zoneDateTimeAtStartOfDay(2016, 10, 30, FIXED_ZONE_00, ZoneOffset.UTC),
                         zoneDateTimeAtStartOfDay(2016, 10, 31, FIXED_ZONE_01, EUROPE_BERLIN), 23],
-                    [zoneDateTimeAtStartOfDay(2016, 10, 30, FIXED_ZONE_M04, AMERICA_NEW_YORCK),
+                    [zoneDateTimeAtStartOfDay(2016, 10, 30, FIXED_ZONE_M04, AMERICA_NEW_YORK),
                         zoneDateTimeAtStartOfDay(2016, 10, 31, FIXED_ZONE_01, EUROPE_BERLIN), 19],
 
                     [zoneDateTimeAtStartOfDay(2016, 10, 30, FIXED_ZONE_02, EUROPE_BERLIN),
-                        zoneDateTimeAtStartOfDay(2016, 11, 30, FIXED_ZONE_M05, AMERICA_NEW_YORCK), 31*24 + 7],
+                        zoneDateTimeAtStartOfDay(2016, 11, 30, FIXED_ZONE_M05, AMERICA_NEW_YORK), 31*24 + 7],
 
                 ];
             }
@@ -630,7 +630,7 @@ describe('ZonedDateTime', () => {
 
             ZoneRulesProvider.getRules = (zoneId) => {
                 switch (zoneId) {
-                    case 'America/New_York': return AMERICA_NEW_YORCK.rules();
+                    case 'America/New_York': return AMERICA_NEW_YORK.rules();
                     case 'Europe/Berlin': return EUROPE_BERLIN.rules();
                     default: return null;
                 }

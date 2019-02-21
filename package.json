@@ -24,7 +24,7 @@
     "test-browser": "./node_modules/.bin/karma start --reporters=dots --single-run",
     "test-saucelabs": "./node_modules/.bin/karma start --reporters=\"dots,saucelabs\" --browsers=\"sl_chrome,sl_ie,sl_firefox,sl_android_simulator,sl_ios_simulator\" --single-run=true",
     "test-ci": "npm run build-dist && npm run build-esdoc && npm run test && npm run test-browser -- --browsers \"Firefox,PhantomJS\" && npm run test-ts-definitions && npm run build-esdoc && npm run test-coverage",
-    "test-ts-definitions": "tsc --noImplicitAny --noEmit --pretty --lib ES6 test/typescript_defintions/js-joda-tests.ts",
+    "test-ts-definitions": "tsc --noImplicitAny --strict --noEmit --pretty --lib ES6 test/typescript_definitions/js-joda-tests.ts",
     "build-esdoc": "./node_modules/.bin/esdoc -c esdoc.json",
     "build-dist": "npx rollup -c rollup.config.js",
     "build-md-toc": "./node_modules/.bin/markdown-toc -i CheatSheet.md",

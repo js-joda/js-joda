@@ -186,7 +186,7 @@ dt1.compareTo(dt1) === 0; // true
 dt1.compareTo(dt2) < 0; // true
 dt2.compareTo(dt1) > 0; // true
 
-// Warn! hashCode is equal if in insances are equal, but might be equal for unequal instances as well
+// Warn! hashCode is equal if in instances are equal, but might be equal for unequal instances as well
 dt1.hashCode(); // -2036645668
 dt2.hashCode(); // 1459191821
 dt1.hashCode() !== dt2.hashCode(); // true
