@@ -34,6 +34,7 @@
     <li data-ice="manualNav" class="indent-h1" data-link="manual/getting-started.html"><a href="manual/getting-started.html" data-ice="link">Getting started</a></li>
 <li data-ice="manualNav" class="indent-h3" data-link="manual/getting-started.html"><a href="manual/getting-started.html#node" data-ice="link">Node</a></li>
 <li data-ice="manualNav" class="indent-h3" data-link="manual/getting-started.html"><a href="manual/getting-started.html#browser" data-ice="link">Browser</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/getting-started.html"><a href="manual/getting-started.html#jsfiddle" data-ice="link">JSFiddle</a></li>
 </ul>
   </div>
 <div data-ice="manual">
@@ -228,7 +229,7 @@ var dt = LocalDateTime.parse(&quot;2012-12-24T12:00&quot;);
 dt.plus(Duration.ofHours(10).plusMinutes(30)).toString(); // &apos;2012-12-24T22:30&apos;
 dt.minus(Duration.ofHours(12).multipliedBy(10)).toString(); // &apos;2012-12-19T12:00&apos;
 
-// calculate the durations beetween to time-based temporals
+// calculate the durations between to time-based temporals
 var dt1 = LocalDateTime.parse(&quot;2012-12-24T12:00&quot;);
 
 Duration.between(dt1, dt1.plusHours(10)).toString(); // &apos;PT10H&apos;</code>

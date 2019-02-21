@@ -1,7 +1,7 @@
 {
   "type": "File",
   "start": 0,
-  "end": 2174,
+  "end": 2102,
   "loc": {
     "start": {
       "line": 1,
@@ -15,7 +15,7 @@
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 2174,
+    "end": 2102,
     "loc": {
       "start": {
         "line": 1,
@@ -30,8 +30,8 @@
     "body": [
       {
         "type": "ImportDeclaration",
-        "start": 237,
-        "end": 269,
+        "start": 230,
+        "end": 262,
         "loc": {
           "start": {
             "line": 8,
@@ -45,8 +45,8 @@
         "specifiers": [
           {
             "type": "ImportSpecifier",
-            "start": 245,
-            "end": 251,
+            "start": 238,
+            "end": 244,
             "loc": {
               "start": {
                 "line": 8,
@@ -59,8 +59,8 @@
             },
             "imported": {
               "type": "Identifier",
-              "start": 245,
-              "end": 251,
+              "start": 238,
+              "end": 244,
               "loc": {
                 "start": {
                   "line": 8,
@@ -77,8 +77,8 @@
             },
             "local": {
               "type": "Identifier",
-              "start": 245,
-              "end": 251,
+              "start": 238,
+              "end": 244,
               "loc": {
                 "start": {
                   "line": 8,
@@ -97,8 +97,8 @@
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 258,
-          "end": 268,
+          "start": 251,
+          "end": 261,
           "loc": {
             "start": {
               "line": 8,
@@ -118,9 +118,9 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\r\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\r\n ",
+            "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
             "start": 0,
-            "end": 231,
+            "end": 227,
             "loc": {
               "start": {
                 "line": 1,
@@ -136,8 +136,8 @@
       },
       {
         "type": "ImportDeclaration",
-        "start": 271,
-        "end": 330,
+        "start": 263,
+        "end": 322,
         "loc": {
           "start": {
             "line": 9,
@@ -151,8 +151,8 @@
         "specifiers": [
           {
             "type": "ImportSpecifier",
-            "start": 279,
-            "end": 296,
+            "start": 271,
+            "end": 288,
             "loc": {
               "start": {
                 "line": 9,
@@ -165,8 +165,8 @@
             },
             "imported": {
               "type": "Identifier",
-              "start": 279,
-              "end": 296,
+              "start": 271,
+              "end": 288,
               "loc": {
                 "start": {
                   "line": 9,
@@ -182,8 +182,8 @@
             },
             "local": {
               "type": "Identifier",
-              "start": 279,
-              "end": 296,
+              "start": 271,
+              "end": 288,
               "loc": {
                 "start": {
                   "line": 9,
@@ -201,8 +201,8 @@
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 303,
-          "end": 329,
+          "start": 295,
+          "end": 321,
           "loc": {
             "start": {
               "line": 9,
@@ -222,9 +222,9 @@
         "trailingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * A geographical region where the same time-zone rules apply.\r\n *\r\n * Time-zone information is categorized as a set of rules defining when and\r\n * how the offset from UTC/Greenwich changes. These rules are accessed using\r\n * identifiers based on geographical regions, such as countries or states.\r\n * The most common region classification is the Time Zone Database (TZDB),\r\n * which defines regions such as 'Europe/Paris' and 'Asia/Tokyo'.\r\n *\r\n * The region identifier, modeled by this class, is distinct from the\r\n * underlying rules, modeled by {@link ZoneRules}.\r\n * The rules are defined by governments and change frequently.\r\n * By contrast, the region identifier is well-defined and long-lived.\r\n * This separation also allows rules to be shared between regions if appropriate.\r\n *\r\n * ### Specification for implementors\r\n *\r\n * This class is immutable and thread-safe.\r\n ",
-            "start": 334,
-            "end": 1221,
+            "value": "*\n * A geographical region where the same time-zone rules apply.\n *\n * Time-zone information is categorized as a set of rules defining when and\n * how the offset from UTC/Greenwich changes. These rules are accessed using\n * identifiers based on geographical regions, such as countries or states.\n * The most common region classification is the Time Zone Database (TZDB),\n * which defines regions such as 'Europe/Paris' and 'Asia/Tokyo'.\n *\n * The region identifier, modeled by this class, is distinct from the\n * underlying rules, modeled by {@link ZoneRules}.\n * The rules are defined by governments and change frequently.\n * By contrast, the region identifier is well-defined and long-lived.\n * This separation also allows rules to be shared between regions if appropriate.\n *\n * ### Specification for implementors\n *\n * This class is immutable and thread-safe.\n ",
+            "start": 324,
+            "end": 1193,
             "loc": {
               "start": {
                 "line": 11,
@@ -240,8 +240,8 @@
       },
       {
         "type": "ExportNamedDeclaration",
-        "start": 1223,
-        "end": 2172,
+        "start": 1194,
+        "end": 2101,
         "loc": {
           "start": {
             "line": 30,
@@ -256,8 +256,8 @@
         "source": null,
         "declaration": {
           "type": "ClassDeclaration",
-          "start": 1230,
-          "end": 2172,
+          "start": 1201,
+          "end": 2101,
           "loc": {
             "start": {
               "line": 30,
@@ -270,8 +270,8 @@
           },
           "id": {
             "type": "Identifier",
-            "start": 1236,
-            "end": 1246,
+            "start": 1207,
+            "end": 1217,
             "loc": {
               "start": {
                 "line": 30,
@@ -288,8 +288,8 @@
           },
           "superClass": {
             "type": "Identifier",
-            "start": 1255,
-            "end": 1261,
+            "start": 1226,
+            "end": 1232,
             "loc": {
               "start": {
                 "line": 30,
@@ -305,8 +305,8 @@
           },
           "body": {
             "type": "ClassBody",
-            "start": 1262,
-            "end": 2172,
+            "start": 1233,
+            "end": 2101,
             "loc": {
               "start": {
                 "line": 30,
@@ -320,8 +320,8 @@
             "body": [
               {
                 "type": "ClassMethod",
-                "start": 1371,
-                "end": 1504,
+                "start": 1336,
+                "end": 1466,
                 "loc": {
                   "start": {
                     "line": 36,
@@ -336,8 +336,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 1378,
-                  "end": 1382,
+                  "start": 1343,
+                  "end": 1347,
                   "loc": {
                     "start": {
                       "line": 36,
@@ -359,8 +359,8 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 1383,
-                    "end": 1389,
+                    "start": 1348,
+                    "end": 1354,
                     "loc": {
                       "start": {
                         "line": 36,
@@ -377,8 +377,8 @@
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 1390,
-                  "end": 1504,
+                  "start": 1355,
+                  "end": 1466,
                   "loc": {
                     "start": {
                       "line": 36,
@@ -392,8 +392,8 @@
                   "body": [
                     {
                       "type": "VariableDeclaration",
-                      "start": 1401,
-                      "end": 1450,
+                      "start": 1365,
+                      "end": 1414,
                       "loc": {
                         "start": {
                           "line": 37,
@@ -407,8 +407,8 @@
                       "declarations": [
                         {
                           "type": "VariableDeclarator",
-                          "start": 1407,
-                          "end": 1449,
+                          "start": 1371,
+                          "end": 1413,
                           "loc": {
                             "start": {
                               "line": 37,
@@ -421,8 +421,8 @@
                           },
                           "id": {
                             "type": "Identifier",
-                            "start": 1407,
-                            "end": 1412,
+                            "start": 1371,
+                            "end": 1376,
                             "loc": {
                               "start": {
                                 "line": 37,
@@ -438,8 +438,8 @@
                           },
                           "init": {
                             "type": "CallExpression",
-                            "start": 1415,
-                            "end": 1449,
+                            "start": 1379,
+                            "end": 1413,
                             "loc": {
                               "start": {
                                 "line": 37,
@@ -452,8 +452,8 @@
                             },
                             "callee": {
                               "type": "MemberExpression",
-                              "start": 1415,
-                              "end": 1441,
+                              "start": 1379,
+                              "end": 1405,
                               "loc": {
                                 "start": {
                                   "line": 37,
@@ -466,8 +466,8 @@
                               },
                               "object": {
                                 "type": "Identifier",
-                                "start": 1415,
-                                "end": 1432,
+                                "start": 1379,
+                                "end": 1396,
                                 "loc": {
                                   "start": {
                                     "line": 37,
@@ -483,8 +483,8 @@
                               },
                               "property": {
                                 "type": "Identifier",
-                                "start": 1433,
-                                "end": 1441,
+                                "start": 1397,
+                                "end": 1405,
                                 "loc": {
                                   "start": {
                                     "line": 37,
@@ -503,8 +503,8 @@
                             "arguments": [
                               {
                                 "type": "Identifier",
-                                "start": 1442,
-                                "end": 1448,
+                                "start": 1406,
+                                "end": 1412,
                                 "loc": {
                                   "start": {
                                     "line": 37,
@@ -526,8 +526,8 @@
                     },
                     {
                       "type": "ReturnStatement",
-                      "start": 1460,
-                      "end": 1497,
+                      "start": 1423,
+                      "end": 1460,
                       "loc": {
                         "start": {
                           "line": 38,
@@ -540,8 +540,8 @@
                       },
                       "argument": {
                         "type": "NewExpression",
-                        "start": 1467,
-                        "end": 1496,
+                        "start": 1430,
+                        "end": 1459,
                         "loc": {
                           "start": {
                             "line": 38,
@@ -554,8 +554,8 @@
                         },
                         "callee": {
                           "type": "Identifier",
-                          "start": 1471,
-                          "end": 1481,
+                          "start": 1434,
+                          "end": 1444,
                           "loc": {
                             "start": {
                               "line": 38,
@@ -572,8 +572,8 @@
                         "arguments": [
                           {
                             "type": "Identifier",
-                            "start": 1482,
-                            "end": 1488,
+                            "start": 1445,
+                            "end": 1451,
                             "loc": {
                               "start": {
                                 "line": 38,
@@ -589,8 +589,8 @@
                           },
                           {
                             "type": "Identifier",
-                            "start": 1490,
-                            "end": 1495,
+                            "start": 1453,
+                            "end": 1458,
                             "loc": {
                               "start": {
                                 "line": 38,
@@ -614,9 +614,9 @@
                 "leadingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n     * not yet implemented\r\n     * @param {string} zoneId\r\n     * @return {ZoneId}\r\n     ",
-                    "start": 1269,
-                    "end": 1365,
+                    "value": "*\n     * not yet implemented\n     * @param {string} zoneId\n     * @return {ZoneId}\n     ",
+                    "start": 1239,
+                    "end": 1331,
                     "loc": {
                       "start": {
                         "line": 31,
@@ -633,8 +633,8 @@
                   {
                     "type": "CommentLine",
                     "value": "-------------------------------------------------------------------------",
-                    "start": 1512,
-                    "end": 1587,
+                    "start": 1472,
+                    "end": 1547,
                     "loc": {
                       "start": {
                         "line": 41,
@@ -648,9 +648,9 @@
                   },
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n     * Constructor.\r\n     *\r\n     * @param {string} id  the time-zone ID, not null\r\n     * @param {ZoneRules} rules  the rules, null for lazy lookup\r\n     * @private\r\n     ",
-                    "start": 1593,
-                    "end": 1772,
+                    "value": "*\n     * Constructor.\n     *\n     * @param {string} id  the time-zone ID, not null\n     * @param {ZoneRules} rules  the rules, null for lazy lookup\n     * @private\n     ",
+                    "start": 1552,
+                    "end": 1725,
                     "loc": {
                       "start": {
                         "line": 42,
@@ -666,8 +666,8 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 1778,
-                "end": 1881,
+                "start": 1730,
+                "end": 1829,
                 "loc": {
                   "start": {
                     "line": 49,
@@ -682,8 +682,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 1778,
-                  "end": 1789,
+                  "start": 1730,
+                  "end": 1741,
                   "loc": {
                     "start": {
                       "line": 49,
@@ -706,8 +706,8 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 1790,
-                    "end": 1792,
+                    "start": 1742,
+                    "end": 1744,
                     "loc": {
                       "start": {
                         "line": 49,
@@ -723,8 +723,8 @@
                   },
                   {
                     "type": "Identifier",
-                    "start": 1794,
-                    "end": 1799,
+                    "start": 1746,
+                    "end": 1751,
                     "loc": {
                       "start": {
                         "line": 49,
@@ -741,8 +741,8 @@
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 1801,
-                  "end": 1881,
+                  "start": 1753,
+                  "end": 1829,
                   "loc": {
                     "start": {
                       "line": 49,
@@ -756,8 +756,8 @@
                   "body": [
                     {
                       "type": "ExpressionStatement",
-                      "start": 1812,
-                      "end": 1820,
+                      "start": 1763,
+                      "end": 1771,
                       "loc": {
                         "start": {
                           "line": 50,
@@ -770,8 +770,8 @@
                       },
                       "expression": {
                         "type": "CallExpression",
-                        "start": 1812,
-                        "end": 1819,
+                        "start": 1763,
+                        "end": 1770,
                         "loc": {
                           "start": {
                             "line": 50,
@@ -784,8 +784,8 @@
                         },
                         "callee": {
                           "type": "Super",
-                          "start": 1812,
-                          "end": 1817,
+                          "start": 1763,
+                          "end": 1768,
                           "loc": {
                             "start": {
                               "line": 50,
@@ -802,8 +802,8 @@
                     },
                     {
                       "type": "ExpressionStatement",
-                      "start": 1830,
-                      "end": 1844,
+                      "start": 1780,
+                      "end": 1794,
                       "loc": {
                         "start": {
                           "line": 51,
@@ -816,8 +816,8 @@
                       },
                       "expression": {
                         "type": "AssignmentExpression",
-                        "start": 1830,
-                        "end": 1843,
+                        "start": 1780,
+                        "end": 1793,
                         "loc": {
                           "start": {
                             "line": 51,
@@ -831,8 +831,8 @@
                         "operator": "=",
                         "left": {
                           "type": "MemberExpression",
-                          "start": 1830,
-                          "end": 1838,
+                          "start": 1780,
+                          "end": 1788,
                           "loc": {
                             "start": {
                               "line": 51,
@@ -845,8 +845,8 @@
                           },
                           "object": {
                             "type": "ThisExpression",
-                            "start": 1830,
-                            "end": 1834,
+                            "start": 1780,
+                            "end": 1784,
                             "loc": {
                               "start": {
                                 "line": 51,
@@ -860,8 +860,8 @@
                           },
                           "property": {
                             "type": "Identifier",
-                            "start": 1835,
-                            "end": 1838,
+                            "start": 1785,
+                            "end": 1788,
                             "loc": {
                               "start": {
                                 "line": 51,
@@ -879,8 +879,8 @@
                         },
                         "right": {
                           "type": "Identifier",
-                          "start": 1841,
-                          "end": 1843,
+                          "start": 1791,
+                          "end": 1793,
                           "loc": {
                             "start": {
                               "line": 51,
@@ -898,8 +898,8 @@
                     },
                     {
                       "type": "ExpressionStatement",
-                      "start": 1854,
-                      "end": 1874,
+                      "start": 1803,
+                      "end": 1823,
                       "loc": {
                         "start": {
                           "line": 52,
@@ -912,8 +912,8 @@
                       },
                       "expression": {
                         "type": "AssignmentExpression",
-                        "start": 1854,
-                        "end": 1873,
+                        "start": 1803,
+                        "end": 1822,
                         "loc": {
                           "start": {
                             "line": 52,
@@ -927,8 +927,8 @@
                         "operator": "=",
                         "left": {
                           "type": "MemberExpression",
-                          "start": 1854,
-                          "end": 1865,
+                          "start": 1803,
+                          "end": 1814,
                           "loc": {
                             "start": {
                               "line": 52,
@@ -941,8 +941,8 @@
                           },
                           "object": {
                             "type": "ThisExpression",
-                            "start": 1854,
-                            "end": 1858,
+                            "start": 1803,
+                            "end": 1807,
                             "loc": {
                               "start": {
                                 "line": 52,
@@ -956,8 +956,8 @@
                           },
                           "property": {
                             "type": "Identifier",
-                            "start": 1859,
-                            "end": 1865,
+                            "start": 1808,
+                            "end": 1814,
                             "loc": {
                               "start": {
                                 "line": 52,
@@ -975,8 +975,8 @@
                         },
                         "right": {
                           "type": "Identifier",
-                          "start": 1868,
-                          "end": 1873,
+                          "start": 1817,
+                          "end": 1822,
                           "loc": {
                             "start": {
                               "line": 52,
@@ -1000,8 +1000,8 @@
                   {
                     "type": "CommentLine",
                     "value": "-------------------------------------------------------------------------",
-                    "start": 1512,
-                    "end": 1587,
+                    "start": 1472,
+                    "end": 1547,
                     "loc": {
                       "start": {
                         "line": 41,
@@ -1015,9 +1015,9 @@
                   },
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n     * Constructor.\r\n     *\r\n     * @param {string} id  the time-zone ID, not null\r\n     * @param {ZoneRules} rules  the rules, null for lazy lookup\r\n     * @private\r\n     ",
-                    "start": 1593,
-                    "end": 1772,
+                    "value": "*\n     * Constructor.\n     *\n     * @param {string} id  the time-zone ID, not null\n     * @param {ZoneRules} rules  the rules, null for lazy lookup\n     * @private\n     ",
+                    "start": 1552,
+                    "end": 1725,
                     "loc": {
                       "start": {
                         "line": 42,
@@ -1034,8 +1034,8 @@
                   {
                     "type": "CommentLine",
                     "value": "-----------------------------------------------------------------------",
-                    "start": 1889,
-                    "end": 1962,
+                    "start": 1835,
+                    "end": 1908,
                     "loc": {
                       "start": {
                         "line": 55,
@@ -1049,9 +1049,9 @@
                   },
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n     *\r\n     * @returns {string}\r\n     ",
-                    "start": 1968,
-                    "end": 2014,
+                    "value": "*\n     *\n     * @returns {string}\n     ",
+                    "start": 1913,
+                    "end": 1956,
                     "loc": {
                       "start": {
                         "line": 56,
@@ -1067,8 +1067,8 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 2020,
-                "end": 2059,
+                "start": 1961,
+                "end": 1998,
                 "loc": {
                   "start": {
                     "line": 60,
@@ -1083,8 +1083,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 2020,
-                  "end": 2022,
+                  "start": 1961,
+                  "end": 1963,
                   "loc": {
                     "start": {
                       "line": 60,
@@ -1107,8 +1107,8 @@
                 "params": [],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 2025,
-                  "end": 2059,
+                  "start": 1966,
+                  "end": 1998,
                   "loc": {
                     "start": {
                       "line": 60,
@@ -1122,8 +1122,8 @@
                   "body": [
                     {
                       "type": "ReturnStatement",
-                      "start": 2036,
-                      "end": 2052,
+                      "start": 1976,
+                      "end": 1992,
                       "loc": {
                         "start": {
                           "line": 61,
@@ -1136,8 +1136,8 @@
                       },
                       "argument": {
                         "type": "MemberExpression",
-                        "start": 2043,
-                        "end": 2051,
+                        "start": 1983,
+                        "end": 1991,
                         "loc": {
                           "start": {
                             "line": 61,
@@ -1150,8 +1150,8 @@
                         },
                         "object": {
                           "type": "ThisExpression",
-                          "start": 2043,
-                          "end": 2047,
+                          "start": 1983,
+                          "end": 1987,
                           "loc": {
                             "start": {
                               "line": 61,
@@ -1165,8 +1165,8 @@
                         },
                         "property": {
                           "type": "Identifier",
-                          "start": 2048,
-                          "end": 2051,
+                          "start": 1988,
+                          "end": 1991,
                           "loc": {
                             "start": {
                               "line": 61,
@@ -1191,8 +1191,8 @@
                   {
                     "type": "CommentLine",
                     "value": "-----------------------------------------------------------------------",
-                    "start": 1889,
-                    "end": 1962,
+                    "start": 1835,
+                    "end": 1908,
                     "loc": {
                       "start": {
                         "line": 55,
@@ -1206,9 +1206,9 @@
                   },
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n     *\r\n     * @returns {string}\r\n     ",
-                    "start": 1968,
-                    "end": 2014,
+                    "value": "*\n     *\n     * @returns {string}\n     ",
+                    "start": 1913,
+                    "end": 1956,
                     "loc": {
                       "start": {
                         "line": 56,
@@ -1224,9 +1224,9 @@
                 "trailingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n     *\r\n     * @returns {ZoneRules}\r\n     ",
-                    "start": 2067,
-                    "end": 2116,
+                    "value": "*\n     *\n     * @returns {ZoneRules}\n     ",
+                    "start": 2004,
+                    "end": 2050,
                     "loc": {
                       "start": {
                         "line": 64,
@@ -1242,8 +1242,8 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 2122,
-                "end": 2167,
+                "start": 2055,
+                "end": 2098,
                 "loc": {
                   "start": {
                     "line": 68,
@@ -1258,8 +1258,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 2122,
-                  "end": 2127,
+                  "start": 2055,
+                  "end": 2060,
                   "loc": {
                     "start": {
                       "line": 68,
@@ -1282,8 +1282,8 @@
                 "params": [],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 2130,
-                  "end": 2167,
+                  "start": 2063,
+                  "end": 2098,
                   "loc": {
                     "start": {
                       "line": 68,
@@ -1297,8 +1297,8 @@
                   "body": [
                     {
                       "type": "ReturnStatement",
-                      "start": 2141,
-                      "end": 2160,
+                      "start": 2073,
+                      "end": 2092,
                       "loc": {
                         "start": {
                           "line": 69,
@@ -1311,8 +1311,8 @@
                       },
                       "argument": {
                         "type": "MemberExpression",
-                        "start": 2148,
-                        "end": 2159,
+                        "start": 2080,
+                        "end": 2091,
                         "loc": {
                           "start": {
                             "line": 69,
@@ -1325,8 +1325,8 @@
                         },
                         "object": {
                           "type": "ThisExpression",
-                          "start": 2148,
-                          "end": 2152,
+                          "start": 2080,
+                          "end": 2084,
                           "loc": {
                             "start": {
                               "line": 69,
@@ -1340,8 +1340,8 @@
                         },
                         "property": {
                           "type": "Identifier",
-                          "start": 2153,
-                          "end": 2159,
+                          "start": 2085,
+                          "end": 2091,
                           "loc": {
                             "start": {
                               "line": 69,
@@ -1364,9 +1364,9 @@
                 "leadingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n     *\r\n     * @returns {ZoneRules}\r\n     ",
-                    "start": 2067,
-                    "end": 2116,
+                    "value": "*\n     *\n     * @returns {ZoneRules}\n     ",
+                    "start": 2004,
+                    "end": 2050,
                     "loc": {
                       "start": {
                         "line": 64,
@@ -1385,9 +1385,9 @@
           "leadingComments": [
             {
               "type": "CommentBlock",
-              "value": "*\r\n * A geographical region where the same time-zone rules apply.\r\n *\r\n * Time-zone information is categorized as a set of rules defining when and\r\n * how the offset from UTC/Greenwich changes. These rules are accessed using\r\n * identifiers based on geographical regions, such as countries or states.\r\n * The most common region classification is the Time Zone Database (TZDB),\r\n * which defines regions such as 'Europe/Paris' and 'Asia/Tokyo'.\r\n *\r\n * The region identifier, modeled by this class, is distinct from the\r\n * underlying rules, modeled by {@link ZoneRules}.\r\n * The rules are defined by governments and change frequently.\r\n * By contrast, the region identifier is well-defined and long-lived.\r\n * This separation also allows rules to be shared between regions if appropriate.\r\n *\r\n * ### Specification for implementors\r\n *\r\n * This class is immutable and thread-safe.\r\n ",
-              "start": 334,
-              "end": 1221,
+              "value": "*\n * A geographical region where the same time-zone rules apply.\n *\n * Time-zone information is categorized as a set of rules defining when and\n * how the offset from UTC/Greenwich changes. These rules are accessed using\n * identifiers based on geographical regions, such as countries or states.\n * The most common region classification is the Time Zone Database (TZDB),\n * which defines regions such as 'Europe/Paris' and 'Asia/Tokyo'.\n *\n * The region identifier, modeled by this class, is distinct from the\n * underlying rules, modeled by {@link ZoneRules}.\n * The rules are defined by governments and change frequently.\n * By contrast, the region identifier is well-defined and long-lived.\n * This separation also allows rules to be shared between regions if appropriate.\n *\n * ### Specification for implementors\n *\n * This class is immutable and thread-safe.\n ",
+              "start": 324,
+              "end": 1193,
               "loc": {
                 "start": {
                   "line": 11,
@@ -1405,9 +1405,9 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * A geographical region where the same time-zone rules apply.\r\n *\r\n * Time-zone information is categorized as a set of rules defining when and\r\n * how the offset from UTC/Greenwich changes. These rules are accessed using\r\n * identifiers based on geographical regions, such as countries or states.\r\n * The most common region classification is the Time Zone Database (TZDB),\r\n * which defines regions such as 'Europe/Paris' and 'Asia/Tokyo'.\r\n *\r\n * The region identifier, modeled by this class, is distinct from the\r\n * underlying rules, modeled by {@link ZoneRules}.\r\n * The rules are defined by governments and change frequently.\r\n * By contrast, the region identifier is well-defined and long-lived.\r\n * This separation also allows rules to be shared between regions if appropriate.\r\n *\r\n * ### Specification for implementors\r\n *\r\n * This class is immutable and thread-safe.\r\n ",
-            "start": 334,
-            "end": 1221,
+            "value": "*\n * A geographical region where the same time-zone rules apply.\n *\n * Time-zone information is categorized as a set of rules defining when and\n * how the offset from UTC/Greenwich changes. These rules are accessed using\n * identifiers based on geographical regions, such as countries or states.\n * The most common region classification is the Time Zone Database (TZDB),\n * which defines regions such as 'Europe/Paris' and 'Asia/Tokyo'.\n *\n * The region identifier, modeled by this class, is distinct from the\n * underlying rules, modeled by {@link ZoneRules}.\n * The rules are defined by governments and change frequently.\n * By contrast, the region identifier is well-defined and long-lived.\n * This separation also allows rules to be shared between regions if appropriate.\n *\n * ### Specification for implementors\n *\n * This class is immutable and thread-safe.\n ",
+            "start": 324,
+            "end": 1193,
             "loc": {
               "start": {
                 "line": 11,
@@ -1427,9 +1427,9 @@
   "comments": [
     {
       "type": "CommentBlock",
-      "value": "\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\r\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\r\n ",
+      "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
       "start": 0,
-      "end": 231,
+      "end": 227,
       "loc": {
         "start": {
           "line": 1,
@@ -1443,9 +1443,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * A geographical region where the same time-zone rules apply.\r\n *\r\n * Time-zone information is categorized as a set of rules defining when and\r\n * how the offset from UTC/Greenwich changes. These rules are accessed using\r\n * identifiers based on geographical regions, such as countries or states.\r\n * The most common region classification is the Time Zone Database (TZDB),\r\n * which defines regions such as 'Europe/Paris' and 'Asia/Tokyo'.\r\n *\r\n * The region identifier, modeled by this class, is distinct from the\r\n * underlying rules, modeled by {@link ZoneRules}.\r\n * The rules are defined by governments and change frequently.\r\n * By contrast, the region identifier is well-defined and long-lived.\r\n * This separation also allows rules to be shared between regions if appropriate.\r\n *\r\n * ### Specification for implementors\r\n *\r\n * This class is immutable and thread-safe.\r\n ",
-      "start": 334,
-      "end": 1221,
+      "value": "*\n * A geographical region where the same time-zone rules apply.\n *\n * Time-zone information is categorized as a set of rules defining when and\n * how the offset from UTC/Greenwich changes. These rules are accessed using\n * identifiers based on geographical regions, such as countries or states.\n * The most common region classification is the Time Zone Database (TZDB),\n * which defines regions such as 'Europe/Paris' and 'Asia/Tokyo'.\n *\n * The region identifier, modeled by this class, is distinct from the\n * underlying rules, modeled by {@link ZoneRules}.\n * The rules are defined by governments and change frequently.\n * By contrast, the region identifier is well-defined and long-lived.\n * This separation also allows rules to be shared between regions if appropriate.\n *\n * ### Specification for implementors\n *\n * This class is immutable and thread-safe.\n ",
+      "start": 324,
+      "end": 1193,
       "loc": {
         "start": {
           "line": 11,
@@ -1459,9 +1459,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * not yet implemented\r\n     * @param {string} zoneId\r\n     * @return {ZoneId}\r\n     ",
-      "start": 1269,
-      "end": 1365,
+      "value": "*\n     * not yet implemented\n     * @param {string} zoneId\n     * @return {ZoneId}\n     ",
+      "start": 1239,
+      "end": 1331,
       "loc": {
         "start": {
           "line": 31,
@@ -1476,8 +1476,8 @@
     {
       "type": "CommentLine",
       "value": "-------------------------------------------------------------------------",
-      "start": 1512,
-      "end": 1587,
+      "start": 1472,
+      "end": 1547,
       "loc": {
         "start": {
           "line": 41,
@@ -1491,9 +1491,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Constructor.\r\n     *\r\n     * @param {string} id  the time-zone ID, not null\r\n     * @param {ZoneRules} rules  the rules, null for lazy lookup\r\n     * @private\r\n     ",
-      "start": 1593,
-      "end": 1772,
+      "value": "*\n     * Constructor.\n     *\n     * @param {string} id  the time-zone ID, not null\n     * @param {ZoneRules} rules  the rules, null for lazy lookup\n     * @private\n     ",
+      "start": 1552,
+      "end": 1725,
       "loc": {
         "start": {
           "line": 42,
@@ -1508,8 +1508,8 @@
     {
       "type": "CommentLine",
       "value": "-----------------------------------------------------------------------",
-      "start": 1889,
-      "end": 1962,
+      "start": 1835,
+      "end": 1908,
       "loc": {
         "start": {
           "line": 55,
@@ -1523,9 +1523,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     *\r\n     * @returns {string}\r\n     ",
-      "start": 1968,
-      "end": 2014,
+      "value": "*\n     *\n     * @returns {string}\n     ",
+      "start": 1913,
+      "end": 1956,
       "loc": {
         "start": {
           "line": 56,
@@ -1539,9 +1539,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     *\r\n     * @returns {ZoneRules}\r\n     ",
-      "start": 2067,
-      "end": 2116,
+      "value": "*\n     *\n     * @returns {ZoneRules}\n     ",
+      "start": 2004,
+      "end": 2050,
       "loc": {
         "start": {
           "line": 64,
@@ -1557,9 +1557,9 @@
   "tokens": [
     {
       "type": "CommentBlock",
-      "value": "\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\r\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\r\n ",
+      "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
       "start": 0,
-      "end": 231,
+      "end": 227,
       "loc": {
         "start": {
           "line": 1,
@@ -1586,8 +1586,8 @@
         "updateContext": null
       },
       "value": "import",
-      "start": 237,
-      "end": 243,
+      "start": 230,
+      "end": 236,
       "loc": {
         "start": {
           "line": 8,
@@ -1611,8 +1611,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 244,
-      "end": 245,
+      "start": 237,
+      "end": 238,
       "loc": {
         "start": {
           "line": 8,
@@ -1637,8 +1637,8 @@
         "binop": null
       },
       "value": "ZoneId",
-      "start": 245,
-      "end": 251,
+      "start": 238,
+      "end": 244,
       "loc": {
         "start": {
           "line": 8,
@@ -1662,8 +1662,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 251,
-      "end": 252,
+      "start": 244,
+      "end": 245,
       "loc": {
         "start": {
           "line": 8,
@@ -1688,8 +1688,8 @@
         "binop": null
       },
       "value": "from",
-      "start": 253,
-      "end": 257,
+      "start": 246,
+      "end": 250,
       "loc": {
         "start": {
           "line": 8,
@@ -1715,8 +1715,8 @@
         "updateContext": null
       },
       "value": "./ZoneId",
-      "start": 258,
-      "end": 268,
+      "start": 251,
+      "end": 261,
       "loc": {
         "start": {
           "line": 8,
@@ -1741,8 +1741,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 268,
-      "end": 269,
+      "start": 261,
+      "end": 262,
       "loc": {
         "start": {
           "line": 8,
@@ -1769,8 +1769,8 @@
         "updateContext": null
       },
       "value": "import",
-      "start": 271,
-      "end": 277,
+      "start": 263,
+      "end": 269,
       "loc": {
         "start": {
           "line": 9,
@@ -1794,8 +1794,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 278,
-      "end": 279,
+      "start": 270,
+      "end": 271,
       "loc": {
         "start": {
           "line": 9,
@@ -1820,8 +1820,8 @@
         "binop": null
       },
       "value": "ZoneRulesProvider",
-      "start": 279,
-      "end": 296,
+      "start": 271,
+      "end": 288,
       "loc": {
         "start": {
           "line": 9,
@@ -1845,8 +1845,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 296,
-      "end": 297,
+      "start": 288,
+      "end": 289,
       "loc": {
         "start": {
           "line": 9,
@@ -1871,8 +1871,8 @@
         "binop": null
       },
       "value": "from",
-      "start": 298,
-      "end": 302,
+      "start": 290,
+      "end": 294,
       "loc": {
         "start": {
           "line": 9,
@@ -1898,8 +1898,8 @@
         "updateContext": null
       },
       "value": "./zone/ZoneRulesProvider",
-      "start": 303,
-      "end": 329,
+      "start": 295,
+      "end": 321,
       "loc": {
         "start": {
           "line": 9,
@@ -1924,8 +1924,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 329,
-      "end": 330,
+      "start": 321,
+      "end": 322,
       "loc": {
         "start": {
           "line": 9,
@@ -1939,9 +1939,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * A geographical region where the same time-zone rules apply.\r\n *\r\n * Time-zone information is categorized as a set of rules defining when and\r\n * how the offset from UTC/Greenwich changes. These rules are accessed using\r\n * identifiers based on geographical regions, such as countries or states.\r\n * The most common region classification is the Time Zone Database (TZDB),\r\n * which defines regions such as 'Europe/Paris' and 'Asia/Tokyo'.\r\n *\r\n * The region identifier, modeled by this class, is distinct from the\r\n * underlying rules, modeled by {@link ZoneRules}.\r\n * The rules are defined by governments and change frequently.\r\n * By contrast, the region identifier is well-defined and long-lived.\r\n * This separation also allows rules to be shared between regions if appropriate.\r\n *\r\n * ### Specification for implementors\r\n *\r\n * This class is immutable and thread-safe.\r\n ",
-      "start": 334,
-      "end": 1221,
+      "value": "*\n * A geographical region where the same time-zone rules apply.\n *\n * Time-zone information is categorized as a set of rules defining when and\n * how the offset from UTC/Greenwich changes. These rules are accessed using\n * identifiers based on geographical regions, such as countries or states.\n * The most common region classification is the Time Zone Database (TZDB),\n * which defines regions such as 'Europe/Paris' and 'Asia/Tokyo'.\n *\n * The region identifier, modeled by this class, is distinct from the\n * underlying rules, modeled by {@link ZoneRules}.\n * The rules are defined by governments and change frequently.\n * By contrast, the region identifier is well-defined and long-lived.\n * This separation also allows rules to be shared between regions if appropriate.\n *\n * ### Specification for implementors\n *\n * This class is immutable and thread-safe.\n ",
+      "start": 324,
+      "end": 1193,
       "loc": {
         "start": {
           "line": 11,
@@ -1968,8 +1968,8 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 1223,
-      "end": 1229,
+      "start": 1194,
+      "end": 1200,
       "loc": {
         "start": {
           "line": 30,
@@ -1996,8 +1996,8 @@
         "updateContext": null
       },
       "value": "class",
-      "start": 1230,
-      "end": 1235,
+      "start": 1201,
+      "end": 1206,
       "loc": {
         "start": {
           "line": 30,
@@ -2022,8 +2022,8 @@
         "binop": null
       },
       "value": "ZoneRegion",
-      "start": 1236,
-      "end": 1246,
+      "start": 1207,
+      "end": 1217,
       "loc": {
         "start": {
           "line": 30,
@@ -2050,8 +2050,8 @@
         "updateContext": null
       },
       "value": "extends",
-      "start": 1247,
-      "end": 1254,
+      "start": 1218,
+      "end": 1225,
       "loc": {
         "start": {
           "line": 30,
@@ -2076,8 +2076,8 @@
         "binop": null
       },
       "value": "ZoneId",
-      "start": 1255,
-      "end": 1261,
+      "start": 1226,
+      "end": 1232,
       "loc": {
         "start": {
           "line": 30,
@@ -2101,8 +2101,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1262,
-      "end": 1263,
+      "start": 1233,
+      "end": 1234,
       "loc": {
         "start": {
           "line": 30,
@@ -2116,9 +2116,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * not yet implemented\r\n     * @param {string} zoneId\r\n     * @return {ZoneId}\r\n     ",
-      "start": 1269,
-      "end": 1365,
+      "value": "*\n     * not yet implemented\n     * @param {string} zoneId\n     * @return {ZoneId}\n     ",
+      "start": 1239,
+      "end": 1331,
       "loc": {
         "start": {
           "line": 31,
@@ -2143,8 +2143,8 @@
         "binop": null
       },
       "value": "static",
-      "start": 1371,
-      "end": 1377,
+      "start": 1336,
+      "end": 1342,
       "loc": {
         "start": {
           "line": 36,
@@ -2169,8 +2169,8 @@
         "binop": null
       },
       "value": "ofId",
-      "start": 1378,
-      "end": 1382,
+      "start": 1343,
+      "end": 1347,
       "loc": {
         "start": {
           "line": 36,
@@ -2194,8 +2194,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1382,
-      "end": 1383,
+      "start": 1347,
+      "end": 1348,
       "loc": {
         "start": {
           "line": 36,
@@ -2220,8 +2220,8 @@
         "binop": null
       },
       "value": "zoneId",
-      "start": 1383,
-      "end": 1389,
+      "start": 1348,
+      "end": 1354,
       "loc": {
         "start": {
           "line": 36,
@@ -2245,8 +2245,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1389,
-      "end": 1390,
+      "start": 1354,
+      "end": 1355,
       "loc": {
         "start": {
           "line": 36,
@@ -2270,8 +2270,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1390,
-      "end": 1391,
+      "start": 1355,
+      "end": 1356,
       "loc": {
         "start": {
           "line": 36,
@@ -2298,8 +2298,8 @@
         "updateContext": null
       },
       "value": "const",
-      "start": 1401,
-      "end": 1406,
+      "start": 1365,
+      "end": 1370,
       "loc": {
         "start": {
           "line": 37,
@@ -2324,8 +2324,8 @@
         "binop": null
       },
       "value": "rules",
-      "start": 1407,
-      "end": 1412,
+      "start": 1371,
+      "end": 1376,
       "loc": {
         "start": {
           "line": 37,
@@ -2351,8 +2351,8 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 1413,
-      "end": 1414,
+      "start": 1377,
+      "end": 1378,
       "loc": {
         "start": {
           "line": 37,
@@ -2377,8 +2377,8 @@
         "binop": null
       },
       "value": "ZoneRulesProvider",
-      "start": 1415,
-      "end": 1432,
+      "start": 1379,
+      "end": 1396,
       "loc": {
         "start": {
           "line": 37,
@@ -2403,8 +2403,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1432,
-      "end": 1433,
+      "start": 1396,
+      "end": 1397,
       "loc": {
         "start": {
           "line": 37,
@@ -2429,8 +2429,8 @@
         "binop": null
       },
       "value": "getRules",
-      "start": 1433,
-      "end": 1441,
+      "start": 1397,
+      "end": 1405,
       "loc": {
         "start": {
           "line": 37,
@@ -2454,8 +2454,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1441,
-      "end": 1442,
+      "start": 1405,
+      "end": 1406,
       "loc": {
         "start": {
           "line": 37,
@@ -2480,8 +2480,8 @@
         "binop": null
       },
       "value": "zoneId",
-      "start": 1442,
-      "end": 1448,
+      "start": 1406,
+      "end": 1412,
       "loc": {
         "start": {
           "line": 37,
@@ -2505,8 +2505,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1448,
-      "end": 1449,
+      "start": 1412,
+      "end": 1413,
       "loc": {
         "start": {
           "line": 37,
@@ -2531,8 +2531,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1449,
-      "end": 1450,
+      "start": 1413,
+      "end": 1414,
       "loc": {
         "start": {
           "line": 37,
@@ -2559,8 +2559,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 1460,
-      "end": 1466,
+      "start": 1423,
+      "end": 1429,
       "loc": {
         "start": {
           "line": 38,
@@ -2587,8 +2587,8 @@
         "updateContext": null
       },
       "value": "new",
-      "start": 1467,
-      "end": 1470,
+      "start": 1430,
+      "end": 1433,
       "loc": {
         "start": {
           "line": 38,
@@ -2613,8 +2613,8 @@
         "binop": null
       },
       "value": "ZoneRegion",
-      "start": 1471,
-      "end": 1481,
+      "start": 1434,
+      "end": 1444,
       "loc": {
         "start": {
           "line": 38,
@@ -2638,8 +2638,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1481,
-      "end": 1482,
+      "start": 1444,
+      "end": 1445,
       "loc": {
         "start": {
           "line": 38,
@@ -2664,8 +2664,8 @@
         "binop": null
       },
       "value": "zoneId",
-      "start": 1482,
-      "end": 1488,
+      "start": 1445,
+      "end": 1451,
       "loc": {
         "start": {
           "line": 38,
@@ -2690,8 +2690,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1488,
-      "end": 1489,
+      "start": 1451,
+      "end": 1452,
       "loc": {
         "start": {
           "line": 38,
@@ -2716,8 +2716,8 @@
         "binop": null
       },
       "value": "rules",
-      "start": 1490,
-      "end": 1495,
+      "start": 1453,
+      "end": 1458,
       "loc": {
         "start": {
           "line": 38,
@@ -2741,8 +2741,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1495,
-      "end": 1496,
+      "start": 1458,
+      "end": 1459,
       "loc": {
         "start": {
           "line": 38,
@@ -2767,8 +2767,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1496,
-      "end": 1497,
+      "start": 1459,
+      "end": 1460,
       "loc": {
         "start": {
           "line": 38,
@@ -2792,8 +2792,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1503,
-      "end": 1504,
+      "start": 1465,
+      "end": 1466,
       "loc": {
         "start": {
           "line": 39,
@@ -2808,8 +2808,8 @@
     {
       "type": "CommentLine",
       "value": "-------------------------------------------------------------------------",
-      "start": 1512,
-      "end": 1587,
+      "start": 1472,
+      "end": 1547,
       "loc": {
         "start": {
           "line": 41,
@@ -2823,9 +2823,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Constructor.\r\n     *\r\n     * @param {string} id  the time-zone ID, not null\r\n     * @param {ZoneRules} rules  the rules, null for lazy lookup\r\n     * @private\r\n     ",
-      "start": 1593,
-      "end": 1772,
+      "value": "*\n     * Constructor.\n     *\n     * @param {string} id  the time-zone ID, not null\n     * @param {ZoneRules} rules  the rules, null for lazy lookup\n     * @private\n     ",
+      "start": 1552,
+      "end": 1725,
       "loc": {
         "start": {
           "line": 42,
@@ -2850,8 +2850,8 @@
         "binop": null
       },
       "value": "constructor",
-      "start": 1778,
-      "end": 1789,
+      "start": 1730,
+      "end": 1741,
       "loc": {
         "start": {
           "line": 49,
@@ -2875,8 +2875,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1789,
-      "end": 1790,
+      "start": 1741,
+      "end": 1742,
       "loc": {
         "start": {
           "line": 49,
@@ -2901,8 +2901,8 @@
         "binop": null
       },
       "value": "id",
-      "start": 1790,
-      "end": 1792,
+      "start": 1742,
+      "end": 1744,
       "loc": {
         "start": {
           "line": 49,
@@ -2927,8 +2927,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1792,
-      "end": 1793,
+      "start": 1744,
+      "end": 1745,
       "loc": {
         "start": {
           "line": 49,
@@ -2953,8 +2953,8 @@
         "binop": null
       },
       "value": "rules",
-      "start": 1794,
-      "end": 1799,
+      "start": 1746,
+      "end": 1751,
       "loc": {
         "start": {
           "line": 49,
@@ -2978,8 +2978,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1799,
-      "end": 1800,
+      "start": 1751,
+      "end": 1752,
       "loc": {
         "start": {
           "line": 49,
@@ -3003,8 +3003,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1801,
-      "end": 1802,
+      "start": 1753,
+      "end": 1754,
       "loc": {
         "start": {
           "line": 49,
@@ -3031,8 +3031,8 @@
         "updateContext": null
       },
       "value": "super",
-      "start": 1812,
-      "end": 1817,
+      "start": 1763,
+      "end": 1768,
       "loc": {
         "start": {
           "line": 50,
@@ -3056,8 +3056,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1817,
-      "end": 1818,
+      "start": 1768,
+      "end": 1769,
       "loc": {
         "start": {
           "line": 50,
@@ -3081,8 +3081,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1818,
-      "end": 1819,
+      "start": 1769,
+      "end": 1770,
       "loc": {
         "start": {
           "line": 50,
@@ -3107,8 +3107,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1819,
-      "end": 1820,
+      "start": 1770,
+      "end": 1771,
       "loc": {
         "start": {
           "line": 50,
@@ -3135,8 +3135,8 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 1830,
-      "end": 1834,
+      "start": 1780,
+      "end": 1784,
       "loc": {
         "start": {
           "line": 51,
@@ -3161,8 +3161,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1834,
-      "end": 1835,
+      "start": 1784,
+      "end": 1785,
       "loc": {
         "start": {
           "line": 51,
@@ -3187,8 +3187,8 @@
         "binop": null
       },
       "value": "_id",
-      "start": 1835,
-      "end": 1838,
+      "start": 1785,
+      "end": 1788,
       "loc": {
         "start": {
           "line": 51,
@@ -3214,8 +3214,8 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 1839,
-      "end": 1840,
+      "start": 1789,
+      "end": 1790,
       "loc": {
         "start": {
           "line": 51,
@@ -3240,8 +3240,8 @@
         "binop": null
       },
       "value": "id",
-      "start": 1841,
-      "end": 1843,
+      "start": 1791,
+      "end": 1793,
       "loc": {
         "start": {
           "line": 51,
@@ -3266,8 +3266,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1843,
-      "end": 1844,
+      "start": 1793,
+      "end": 1794,
       "loc": {
         "start": {
           "line": 51,
@@ -3294,8 +3294,8 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 1854,
-      "end": 1858,
+      "start": 1803,
+      "end": 1807,
       "loc": {
         "start": {
           "line": 52,
@@ -3320,8 +3320,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1858,
-      "end": 1859,
+      "start": 1807,
+      "end": 1808,
       "loc": {
         "start": {
           "line": 52,
@@ -3346,8 +3346,8 @@
         "binop": null
       },
       "value": "_rules",
-      "start": 1859,
-      "end": 1865,
+      "start": 1808,
+      "end": 1814,
       "loc": {
         "start": {
           "line": 52,
@@ -3373,8 +3373,8 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 1866,
-      "end": 1867,
+      "start": 1815,
+      "end": 1816,
       "loc": {
         "start": {
           "line": 52,
@@ -3399,8 +3399,8 @@
         "binop": null
       },
       "value": "rules",
-      "start": 1868,
-      "end": 1873,
+      "start": 1817,
+      "end": 1822,
       "loc": {
         "start": {
           "line": 52,
@@ -3425,8 +3425,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1873,
-      "end": 1874,
+      "start": 1822,
+      "end": 1823,
       "loc": {
         "start": {
           "line": 52,
@@ -3450,8 +3450,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1880,
-      "end": 1881,
+      "start": 1828,
+      "end": 1829,
       "loc": {
         "start": {
           "line": 53,
@@ -3466,8 +3466,8 @@
     {
       "type": "CommentLine",
       "value": "-----------------------------------------------------------------------",
-      "start": 1889,
-      "end": 1962,
+      "start": 1835,
+      "end": 1908,
       "loc": {
         "start": {
           "line": 55,
@@ -3481,9 +3481,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     *\r\n     * @returns {string}\r\n     ",
-      "start": 1968,
-      "end": 2014,
+      "value": "*\n     *\n     * @returns {string}\n     ",
+      "start": 1913,
+      "end": 1956,
       "loc": {
         "start": {
           "line": 56,
@@ -3508,8 +3508,8 @@
         "binop": null
       },
       "value": "id",
-      "start": 2020,
-      "end": 2022,
+      "start": 1961,
+      "end": 1963,
       "loc": {
         "start": {
           "line": 60,
@@ -3533,8 +3533,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2022,
-      "end": 2023,
+      "start": 1963,
+      "end": 1964,
       "loc": {
         "start": {
           "line": 60,
@@ -3558,8 +3558,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2023,
-      "end": 2024,
+      "start": 1964,
+      "end": 1965,
       "loc": {
         "start": {
           "line": 60,
@@ -3583,8 +3583,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2025,
-      "end": 2026,
+      "start": 1966,
+      "end": 1967,
       "loc": {
         "start": {
           "line": 60,
@@ -3611,8 +3611,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 2036,
-      "end": 2042,
+      "start": 1976,
+      "end": 1982,
       "loc": {
         "start": {
           "line": 61,
@@ -3639,8 +3639,8 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 2043,
-      "end": 2047,
+      "start": 1983,
+      "end": 1987,
       "loc": {
         "start": {
           "line": 61,
@@ -3665,8 +3665,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2047,
-      "end": 2048,
+      "start": 1987,
+      "end": 1988,
       "loc": {
         "start": {
           "line": 61,
@@ -3691,8 +3691,8 @@
         "binop": null
       },
       "value": "_id",
-      "start": 2048,
-      "end": 2051,
+      "start": 1988,
+      "end": 1991,
       "loc": {
         "start": {
           "line": 61,
@@ -3717,8 +3717,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2051,
-      "end": 2052,
+      "start": 1991,
+      "end": 1992,
       "loc": {
         "start": {
           "line": 61,
@@ -3742,8 +3742,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2058,
-      "end": 2059,
+      "start": 1997,
+      "end": 1998,
       "loc": {
         "start": {
           "line": 62,
@@ -3757,9 +3757,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     *\r\n     * @returns {ZoneRules}\r\n     ",
-      "start": 2067,
-      "end": 2116,
+      "value": "*\n     *\n     * @returns {ZoneRules}\n     ",
+      "start": 2004,
+      "end": 2050,
       "loc": {
         "start": {
           "line": 64,
@@ -3784,8 +3784,8 @@
         "binop": null
       },
       "value": "rules",
-      "start": 2122,
-      "end": 2127,
+      "start": 2055,
+      "end": 2060,
       "loc": {
         "start": {
           "line": 68,
@@ -3809,8 +3809,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2127,
-      "end": 2128,
+      "start": 2060,
+      "end": 2061,
       "loc": {
         "start": {
           "line": 68,
@@ -3834,8 +3834,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2128,
-      "end": 2129,
+      "start": 2061,
+      "end": 2062,
       "loc": {
         "start": {
           "line": 68,
@@ -3859,8 +3859,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2130,
-      "end": 2131,
+      "start": 2063,
+      "end": 2064,
       "loc": {
         "start": {
           "line": 68,
@@ -3887,8 +3887,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 2141,
-      "end": 2147,
+      "start": 2073,
+      "end": 2079,
       "loc": {
         "start": {
           "line": 69,
@@ -3915,8 +3915,8 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 2148,
-      "end": 2152,
+      "start": 2080,
+      "end": 2084,
       "loc": {
         "start": {
           "line": 69,
@@ -3941,8 +3941,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2152,
-      "end": 2153,
+      "start": 2084,
+      "end": 2085,
       "loc": {
         "start": {
           "line": 69,
@@ -3967,8 +3967,8 @@
         "binop": null
       },
       "value": "_rules",
-      "start": 2153,
-      "end": 2159,
+      "start": 2085,
+      "end": 2091,
       "loc": {
         "start": {
           "line": 69,
@@ -3993,8 +3993,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2159,
-      "end": 2160,
+      "start": 2091,
+      "end": 2092,
       "loc": {
         "start": {
           "line": 69,
@@ -4018,8 +4018,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2166,
-      "end": 2167,
+      "start": 2097,
+      "end": 2098,
       "loc": {
         "start": {
           "line": 70,
@@ -4043,8 +4043,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2171,
-      "end": 2172,
+      "start": 2100,
+      "end": 2101,
       "loc": {
         "start": {
           "line": 72,
@@ -4069,8 +4069,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2174,
-      "end": 2174,
+      "start": 2102,
+      "end": 2102,
       "loc": {
         "start": {
           "line": 73,

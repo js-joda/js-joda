@@ -1,7 +1,7 @@
 {
   "type": "File",
   "start": 0,
-  "end": 607,
+  "end": 586,
   "loc": {
     "start": {
       "line": 1,
@@ -15,7 +15,7 @@
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 607,
+    "end": 586,
     "loc": {
       "start": {
         "line": 1,
@@ -30,8 +30,8 @@
     "body": [
       {
         "type": "ExportNamedDeclaration",
-        "start": 359,
-        "end": 388,
+        "start": 350,
+        "end": 379,
         "loc": {
           "start": {
             "line": 10,
@@ -46,8 +46,8 @@
         "source": null,
         "declaration": {
           "type": "ClassDeclaration",
-          "start": 366,
-          "end": 388,
+          "start": 357,
+          "end": 379,
           "loc": {
             "start": {
               "line": 10,
@@ -60,8 +60,8 @@
           },
           "id": {
             "type": "Identifier",
-            "start": 372,
-            "end": 385,
+            "start": 363,
+            "end": 376,
             "loc": {
               "start": {
                 "line": 10,
@@ -79,8 +79,8 @@
           "superClass": null,
           "body": {
             "type": "ClassBody",
-            "start": 386,
-            "end": 388,
+            "start": 377,
+            "end": 379,
             "loc": {
               "start": {
                 "line": 10,
@@ -96,9 +96,9 @@
           "leadingComments": [
             {
               "type": "CommentBlock",
-              "value": "\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)\r\n ",
+              "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)\n ",
               "start": 0,
-              "end": 154,
+              "end": 151,
               "loc": {
                 "start": {
                   "line": 1,
@@ -112,9 +112,9 @@
             },
             {
               "type": "CommentBlock",
-              "value": "*\r\n * attempt to avoid dependency cycles... define all constants here and they could be used\r\n * so instead of using e.g. Year.MAX_VALUE we could use YearConstants.MAX_VALUE to avoid the cycle\r\n ",
-              "start": 158,
-              "end": 357,
+              "value": "*\n * attempt to avoid dependency cycles... define all constants here and they could be used\n * so instead of using e.g. Year.MAX_VALUE we could use YearConstants.MAX_VALUE to avoid the cycle\n ",
+              "start": 153,
+              "end": 349,
               "loc": {
                 "start": {
                   "line": 6,
@@ -132,9 +132,9 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)\r\n ",
+            "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)\n ",
             "start": 0,
-            "end": 154,
+            "end": 151,
             "loc": {
               "start": {
                 "line": 1,
@@ -148,9 +148,9 @@
           },
           {
             "type": "CommentBlock",
-            "value": "*\r\n * attempt to avoid dependency cycles... define all constants here and they could be used\r\n * so instead of using e.g. Year.MAX_VALUE we could use YearConstants.MAX_VALUE to avoid the cycle\r\n ",
-            "start": 158,
-            "end": 357,
+            "value": "*\n * attempt to avoid dependency cycles... define all constants here and they could be used\n * so instead of using e.g. Year.MAX_VALUE we could use YearConstants.MAX_VALUE to avoid the cycle\n ",
+            "start": 153,
+            "end": 349,
             "loc": {
               "start": {
                 "line": 6,
@@ -166,8 +166,8 @@
       },
       {
         "type": "ExportNamedDeclaration",
-        "start": 392,
-        "end": 605,
+        "start": 381,
+        "end": 585,
         "loc": {
           "start": {
             "line": 12,
@@ -182,8 +182,8 @@
         "source": null,
         "declaration": {
           "type": "FunctionDeclaration",
-          "start": 399,
-          "end": 605,
+          "start": 388,
+          "end": 585,
           "loc": {
             "start": {
               "line": 12,
@@ -196,8 +196,8 @@
           },
           "id": {
             "type": "Identifier",
-            "start": 408,
-            "end": 413,
+            "start": 397,
+            "end": 402,
             "loc": {
               "start": {
                 "line": 12,
@@ -217,8 +217,8 @@
           "params": [],
           "body": {
             "type": "BlockStatement",
-            "start": 416,
-            "end": 605,
+            "start": 405,
+            "end": 585,
             "loc": {
               "start": {
                 "line": 12,
@@ -232,8 +232,8 @@
             "body": [
               {
                 "type": "ExpressionStatement",
-                "start": 476,
-                "end": 510,
+                "start": 461,
+                "end": 495,
                 "loc": {
                   "start": {
                     "line": 16,
@@ -246,8 +246,8 @@
                 },
                 "expression": {
                   "type": "AssignmentExpression",
-                  "start": 476,
-                  "end": 509,
+                  "start": 461,
+                  "end": 494,
                   "loc": {
                     "start": {
                       "line": 16,
@@ -261,8 +261,8 @@
                   "operator": "=",
                   "left": {
                     "type": "MemberExpression",
-                    "start": 476,
-                    "end": 499,
+                    "start": 461,
+                    "end": 484,
                     "loc": {
                       "start": {
                         "line": 16,
@@ -275,8 +275,8 @@
                     },
                     "object": {
                       "type": "Identifier",
-                      "start": 476,
-                      "end": 489,
+                      "start": 461,
+                      "end": 474,
                       "loc": {
                         "start": {
                           "line": 16,
@@ -293,8 +293,8 @@
                     },
                     "property": {
                       "type": "Identifier",
-                      "start": 490,
-                      "end": 499,
+                      "start": 475,
+                      "end": 484,
                       "loc": {
                         "start": {
                           "line": 16,
@@ -313,8 +313,8 @@
                   },
                   "right": {
                     "type": "UnaryExpression",
-                    "start": 502,
-                    "end": 509,
+                    "start": 487,
+                    "end": 494,
                     "loc": {
                       "start": {
                         "line": 16,
@@ -329,8 +329,8 @@
                     "prefix": true,
                     "argument": {
                       "type": "NumericLiteral",
-                      "start": 503,
-                      "end": 509,
+                      "start": 488,
+                      "end": 494,
                       "loc": {
                         "start": {
                           "line": 16,
@@ -356,9 +356,9 @@
                 "leadingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n     * The minimum supported year\r\n     ",
-                    "start": 423,
-                    "end": 470,
+                    "value": "*\n     * The minimum supported year\n     ",
+                    "start": 411,
+                    "end": 456,
                     "loc": {
                       "start": {
                         "line": 13,
@@ -374,9 +374,9 @@
                 "trailingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n     * The maximum supported year\r\n     ",
-                    "start": 516,
-                    "end": 563,
+                    "value": "*\n     * The maximum supported year\n     ",
+                    "start": 500,
+                    "end": 545,
                     "loc": {
                       "start": {
                         "line": 17,
@@ -392,8 +392,8 @@
               },
               {
                 "type": "ExpressionStatement",
-                "start": 569,
-                "end": 602,
+                "start": 550,
+                "end": 583,
                 "loc": {
                   "start": {
                     "line": 20,
@@ -406,8 +406,8 @@
                 },
                 "expression": {
                   "type": "AssignmentExpression",
-                  "start": 569,
-                  "end": 601,
+                  "start": 550,
+                  "end": 582,
                   "loc": {
                     "start": {
                       "line": 20,
@@ -421,8 +421,8 @@
                   "operator": "=",
                   "left": {
                     "type": "MemberExpression",
-                    "start": 569,
-                    "end": 592,
+                    "start": 550,
+                    "end": 573,
                     "loc": {
                       "start": {
                         "line": 20,
@@ -435,8 +435,8 @@
                     },
                     "object": {
                       "type": "Identifier",
-                      "start": 569,
-                      "end": 582,
+                      "start": 550,
+                      "end": 563,
                       "loc": {
                         "start": {
                           "line": 20,
@@ -453,8 +453,8 @@
                     },
                     "property": {
                       "type": "Identifier",
-                      "start": 583,
-                      "end": 592,
+                      "start": 564,
+                      "end": 573,
                       "loc": {
                         "start": {
                           "line": 20,
@@ -473,8 +473,8 @@
                   },
                   "right": {
                     "type": "NumericLiteral",
-                    "start": 595,
-                    "end": 601,
+                    "start": 576,
+                    "end": 582,
                     "loc": {
                       "start": {
                         "line": 20,
@@ -496,9 +496,9 @@
                 "leadingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n     * The maximum supported year\r\n     ",
-                    "start": 516,
-                    "end": 563,
+                    "value": "*\n     * The maximum supported year\n     ",
+                    "start": 500,
+                    "end": 545,
                     "loc": {
                       "start": {
                         "line": 17,
@@ -525,9 +525,9 @@
   "comments": [
     {
       "type": "CommentBlock",
-      "value": "\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)\r\n ",
+      "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)\n ",
       "start": 0,
-      "end": 154,
+      "end": 151,
       "loc": {
         "start": {
           "line": 1,
@@ -541,9 +541,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * attempt to avoid dependency cycles... define all constants here and they could be used\r\n * so instead of using e.g. Year.MAX_VALUE we could use YearConstants.MAX_VALUE to avoid the cycle\r\n ",
-      "start": 158,
-      "end": 357,
+      "value": "*\n * attempt to avoid dependency cycles... define all constants here and they could be used\n * so instead of using e.g. Year.MAX_VALUE we could use YearConstants.MAX_VALUE to avoid the cycle\n ",
+      "start": 153,
+      "end": 349,
       "loc": {
         "start": {
           "line": 6,
@@ -557,9 +557,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * The minimum supported year\r\n     ",
-      "start": 423,
-      "end": 470,
+      "value": "*\n     * The minimum supported year\n     ",
+      "start": 411,
+      "end": 456,
       "loc": {
         "start": {
           "line": 13,
@@ -573,9 +573,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * The maximum supported year\r\n     ",
-      "start": 516,
-      "end": 563,
+      "value": "*\n     * The maximum supported year\n     ",
+      "start": 500,
+      "end": 545,
       "loc": {
         "start": {
           "line": 17,
@@ -591,9 +591,9 @@
   "tokens": [
     {
       "type": "CommentBlock",
-      "value": "\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)\r\n ",
+      "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)\n ",
       "start": 0,
-      "end": 154,
+      "end": 151,
       "loc": {
         "start": {
           "line": 1,
@@ -607,9 +607,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * attempt to avoid dependency cycles... define all constants here and they could be used\r\n * so instead of using e.g. Year.MAX_VALUE we could use YearConstants.MAX_VALUE to avoid the cycle\r\n ",
-      "start": 158,
-      "end": 357,
+      "value": "*\n * attempt to avoid dependency cycles... define all constants here and they could be used\n * so instead of using e.g. Year.MAX_VALUE we could use YearConstants.MAX_VALUE to avoid the cycle\n ",
+      "start": 153,
+      "end": 349,
       "loc": {
         "start": {
           "line": 6,
@@ -636,8 +636,8 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 359,
-      "end": 365,
+      "start": 350,
+      "end": 356,
       "loc": {
         "start": {
           "line": 10,
@@ -664,8 +664,8 @@
         "updateContext": null
       },
       "value": "class",
-      "start": 366,
-      "end": 371,
+      "start": 357,
+      "end": 362,
       "loc": {
         "start": {
           "line": 10,
@@ -690,8 +690,8 @@
         "binop": null
       },
       "value": "YearConstants",
-      "start": 372,
-      "end": 385,
+      "start": 363,
+      "end": 376,
       "loc": {
         "start": {
           "line": 10,
@@ -715,8 +715,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 386,
-      "end": 387,
+      "start": 377,
+      "end": 378,
       "loc": {
         "start": {
           "line": 10,
@@ -740,8 +740,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 387,
-      "end": 388,
+      "start": 378,
+      "end": 379,
       "loc": {
         "start": {
           "line": 10,
@@ -768,8 +768,8 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 392,
-      "end": 398,
+      "start": 381,
+      "end": 387,
       "loc": {
         "start": {
           "line": 12,
@@ -795,8 +795,8 @@
         "binop": null
       },
       "value": "function",
-      "start": 399,
-      "end": 407,
+      "start": 388,
+      "end": 396,
       "loc": {
         "start": {
           "line": 12,
@@ -821,8 +821,8 @@
         "binop": null
       },
       "value": "_init",
-      "start": 408,
-      "end": 413,
+      "start": 397,
+      "end": 402,
       "loc": {
         "start": {
           "line": 12,
@@ -846,8 +846,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 413,
-      "end": 414,
+      "start": 402,
+      "end": 403,
       "loc": {
         "start": {
           "line": 12,
@@ -871,8 +871,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 414,
-      "end": 415,
+      "start": 403,
+      "end": 404,
       "loc": {
         "start": {
           "line": 12,
@@ -896,8 +896,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 416,
-      "end": 417,
+      "start": 405,
+      "end": 406,
       "loc": {
         "start": {
           "line": 12,
@@ -911,9 +911,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * The minimum supported year\r\n     ",
-      "start": 423,
-      "end": 470,
+      "value": "*\n     * The minimum supported year\n     ",
+      "start": 411,
+      "end": 456,
       "loc": {
         "start": {
           "line": 13,
@@ -938,8 +938,8 @@
         "binop": null
       },
       "value": "YearConstants",
-      "start": 476,
-      "end": 489,
+      "start": 461,
+      "end": 474,
       "loc": {
         "start": {
           "line": 16,
@@ -964,8 +964,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 489,
-      "end": 490,
+      "start": 474,
+      "end": 475,
       "loc": {
         "start": {
           "line": 16,
@@ -990,8 +990,8 @@
         "binop": null
       },
       "value": "MIN_VALUE",
-      "start": 490,
-      "end": 499,
+      "start": 475,
+      "end": 484,
       "loc": {
         "start": {
           "line": 16,
@@ -1017,8 +1017,8 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 500,
-      "end": 501,
+      "start": 485,
+      "end": 486,
       "loc": {
         "start": {
           "line": 16,
@@ -1044,8 +1044,8 @@
         "updateContext": null
       },
       "value": "-",
-      "start": 502,
-      "end": 503,
+      "start": 487,
+      "end": 488,
       "loc": {
         "start": {
           "line": 16,
@@ -1071,8 +1071,8 @@
         "updateContext": null
       },
       "value": 999999,
-      "start": 503,
-      "end": 509,
+      "start": 488,
+      "end": 494,
       "loc": {
         "start": {
           "line": 16,
@@ -1097,8 +1097,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 509,
-      "end": 510,
+      "start": 494,
+      "end": 495,
       "loc": {
         "start": {
           "line": 16,
@@ -1112,9 +1112,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * The maximum supported year\r\n     ",
-      "start": 516,
-      "end": 563,
+      "value": "*\n     * The maximum supported year\n     ",
+      "start": 500,
+      "end": 545,
       "loc": {
         "start": {
           "line": 17,
@@ -1139,8 +1139,8 @@
         "binop": null
       },
       "value": "YearConstants",
-      "start": 569,
-      "end": 582,
+      "start": 550,
+      "end": 563,
       "loc": {
         "start": {
           "line": 20,
@@ -1165,8 +1165,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 582,
-      "end": 583,
+      "start": 563,
+      "end": 564,
       "loc": {
         "start": {
           "line": 20,
@@ -1191,8 +1191,8 @@
         "binop": null
       },
       "value": "MAX_VALUE",
-      "start": 583,
-      "end": 592,
+      "start": 564,
+      "end": 573,
       "loc": {
         "start": {
           "line": 20,
@@ -1218,8 +1218,8 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 593,
-      "end": 594,
+      "start": 574,
+      "end": 575,
       "loc": {
         "start": {
           "line": 20,
@@ -1245,8 +1245,8 @@
         "updateContext": null
       },
       "value": 999999,
-      "start": 595,
-      "end": 601,
+      "start": 576,
+      "end": 582,
       "loc": {
         "start": {
           "line": 20,
@@ -1271,8 +1271,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 601,
-      "end": 602,
+      "start": 582,
+      "end": 583,
       "loc": {
         "start": {
           "line": 20,
@@ -1296,8 +1296,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 604,
-      "end": 605,
+      "start": 584,
+      "end": 585,
       "loc": {
         "start": {
           "line": 21,
@@ -1322,8 +1322,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 607,
-      "end": 607,
+      "start": 586,
+      "end": 586,
       "loc": {
         "start": {
           "line": 22,

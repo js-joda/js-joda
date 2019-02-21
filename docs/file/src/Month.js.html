@@ -111,7 +111,6 @@ import {MathUtil} from &apos;./MathUtil&apos;;
 import {ChronoField} from &apos;./temporal/ChronoField&apos;;
 import {ChronoUnit} from &apos;./temporal/ChronoUnit&apos;;
 import {DateTimeException, IllegalArgumentException, UnsupportedTemporalTypeException} from &apos;./errors&apos;;
-import {DateTimeFormatterBuilder} from &apos;./format/DateTimeFormatterBuilder&apos;;
 import {IsoChronology} from &apos;./chrono/IsoChronology&apos;;
 import {Temporal} from &apos;./temporal/Temporal&apos;;
 import {TemporalQueries} from &apos;./temporal/TemporalQueries&apos;;
@@ -170,11 +169,10 @@ export class Month extends Temporal {
      * @param {Locale} locale - the locale to use, not null
      * @return {string} the text value of the day-of-week, not null
      */
+    // eslint-disable-next-line no-unused-vars
     getDisplayName(style, locale) {
         // TODO:
         throw new IllegalArgumentException(&apos;Pattern using (localized) text not implemented yet!&apos;);
-        //eslint-disable-next-line no-unreachable
-        return new DateTimeFormatterBuilder().appendText(ChronoField.MONTH_OF_YEAR, style).toFormatter(locale).format(this);
     }
 
     /**

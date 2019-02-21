@@ -581,7 +581,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @throws DateTimeParseException if the text cannot be parsed
      */
     static parse(text, formatter = DateTimeFormatter.ISO_ZONED_DATE_TIME) {
-        requireNonNull(formatter, &apos;fromatter&apos;);
+        requireNonNull(formatter, &apos;formatter&apos;);
         return formatter.parse(text, ZonedDateTime.FROM);
     }
 
