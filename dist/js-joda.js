@@ -1,4 +1,4 @@
-//! @version js-joda - 1.9.2
+//! @version js-joda - 1.9.3
 //! @copyright (c) 2015-present, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -1574,537 +1574,272 @@
 
     function _classCallCheck$f(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    var StringUtil = function () {
-        function StringUtil() {
-            _classCallCheck$f(this, StringUtil);
-        }
-
-        StringUtil.startsWith = function startsWith(text, pattern) {
-            return text.indexOf(pattern) === 0;
-        };
-
-        StringUtil.hashCode = function hashCode(text) {
-            var len = text.length;
-            if (len === 0) {
-                return 0;
-            }
-
-            var hash = 0;
-            for (var i = 0; i < len; i++) {
-                var chr = text.charCodeAt(i);
-                hash = (hash << 5) - hash + chr;
-                hash |= 0;
-            }
-            return MathUtil.smi(hash);
-        };
-
-        return StringUtil;
-    }();
-
-    function _classCallCheck$g(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-    var ZoneId = function () {
-        function ZoneId() {
-            _classCallCheck$g(this, ZoneId);
-        }
-
-        ZoneId.systemDefault = function systemDefault() {
-            throw new DateTimeException('not supported operation');
-        };
-
-        ZoneId.getAvailableZoneIds = function getAvailableZoneIds() {
-            throw new DateTimeException('not supported operation');
-        };
-
-        ZoneId.of = function of(zoneId) {
-            throw new DateTimeException('not supported operation' + zoneId);
-        };
-
-        ZoneId.ofOffset = function ofOffset(prefix, offset) {
-            throw new DateTimeException('not supported operation' + prefix + offset);
-        };
-
-        ZoneId.from = function from(temporal) {
-            throw new DateTimeException('not supported operation' + temporal);
-        };
-
-        ZoneId.prototype.id = function id() {
-            abstractMethodFail('ZoneId.id');
-        };
-
-        ZoneId.prototype.rules = function rules() {
-            abstractMethodFail('ZoneId.rules');
-        };
-
-        ZoneId.prototype.normalized = function normalized() {
-            var rules = this.rules();
-            if (rules.isFixedOffset()) {
-                return rules.offset(Instant.EPOCH);
-            }
-
-            return this;
-        };
-
-        ZoneId.prototype.equals = function equals(other) {
-            if (this === other) {
-                return true;
-            }
-            if (other instanceof ZoneId) {
-                return this.id() === other.id();
-            }
-            return false;
-        };
-
-        ZoneId.prototype.hashCode = function hashCode() {
-            return StringUtil.hashCode(this.id());
-        };
-
-        ZoneId.prototype.toString = function toString() {
-            return this.id();
-        };
-
-        ZoneId.prototype.toJSON = function toJSON() {
-            return this.toString();
-        };
-
-        return ZoneId;
-    }();
-
     function _possibleConstructorReturn$6(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
     function _inherits$6(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-    function _classCallCheck$h(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    var Month = function (_Temporal) {
+        _inherits$6(Month, _Temporal);
 
-    var ZoneRules = function () {
-        function ZoneRules() {
-            _classCallCheck$h(this, ZoneRules);
-        }
+        function Month(value) {
+            _classCallCheck$f(this, Month);
 
-        ZoneRules.of = function of(offset) {
-            requireNonNull(offset, 'offset');
-            return new Fixed(offset);
-        };
+            var _this = _possibleConstructorReturn$6(this, _Temporal.call(this));
 
-        ZoneRules.prototype.isFixedOffset = function isFixedOffset() {
-            abstractMethodFail('ZoneRules.isFixedOffset');
-        };
-
-        ZoneRules.prototype.offset = function offset(instantOrLocalDateTime) {
-            if (instantOrLocalDateTime instanceof Instant) {
-                return this.offsetOfInstant(instantOrLocalDateTime);
-            } else {
-                return this.offsetOfLocalDateTime(instantOrLocalDateTime);
-            }
-        };
-
-        ZoneRules.prototype.offsetOfInstant = function offsetOfInstant(instant) {
-            abstractMethodFail('ZoneRules.offsetInstant');
-        };
-
-        ZoneRules.prototype.offsetOfEpochMilli = function offsetOfEpochMilli(epochMilli) {
-            abstractMethodFail('ZoneRules.offsetOfEpochMilli');
-        };
-
-        ZoneRules.prototype.offsetOfLocalDateTime = function offsetOfLocalDateTime(localDateTime) {
-            abstractMethodFail('ZoneRules.offsetLocalDateTime');
-        };
-
-        ZoneRules.prototype.validOffsets = function validOffsets(localDateTime) {
-            abstractMethodFail('ZoneRules.validOffsets');
-        };
-
-        ZoneRules.prototype.transition = function transition(localDateTime) {
-            abstractMethodFail('ZoneRules.transition');
-        };
-
-        ZoneRules.prototype.standardOffset = function standardOffset(instant) {
-            abstractMethodFail('ZoneRules.standardOffset');
-        };
-
-        ZoneRules.prototype.daylightSavings = function daylightSavings(instant) {
-            abstractMethodFail('ZoneRules.daylightSavings');
-        };
-
-        ZoneRules.prototype.isDaylightSavings = function isDaylightSavings(instant) {
-            abstractMethodFail('ZoneRules.isDaylightSavings');
-        };
-
-        ZoneRules.prototype.isValidOffset = function isValidOffset(localDateTime, offset) {
-            abstractMethodFail('ZoneRules.isValidOffset');
-        };
-
-        ZoneRules.prototype.nextTransition = function nextTransition(instant) {
-            abstractMethodFail('ZoneRules.nextTransition');
-        };
-
-        ZoneRules.prototype.previousTransition = function previousTransition(instant) {
-            abstractMethodFail('ZoneRules.previousTransition');
-        };
-
-        ZoneRules.prototype.transitions = function transitions() {
-            abstractMethodFail('ZoneRules.transitions');
-        };
-
-        ZoneRules.prototype.transitionRules = function transitionRules() {
-            abstractMethodFail('ZoneRules.transitionRules');
-        };
-
-        ZoneRules.prototype.toString = function toString() {
-            abstractMethodFail('ZoneRules.toString');
-        };
-
-        ZoneRules.prototype.toJSON = function toJSON() {
-            return this.toString();
-        };
-
-        return ZoneRules;
-    }();
-
-    var Fixed = function (_ZoneRules) {
-        _inherits$6(Fixed, _ZoneRules);
-
-        function Fixed(offset) {
-            _classCallCheck$h(this, Fixed);
-
-            var _this = _possibleConstructorReturn$6(this, _ZoneRules.call(this));
-
-            _this._offset = offset;
+            _this._value = MathUtil.safeToInt(value);
             return _this;
         }
 
-        Fixed.prototype.isFixedOffset = function isFixedOffset() {
-            return true;
+        Month.prototype.value = function value() {
+            return this._value;
         };
 
-        Fixed.prototype.offsetOfInstant = function offsetOfInstant() {
-            return this._offset;
+        Month.prototype.getDisplayName = function getDisplayName(style, locale) {
+            throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
         };
 
-        Fixed.prototype.offsetOfEpochMilli = function offsetOfEpochMilli() {
-            return this._offset;
-        };
-
-        Fixed.prototype.offsetOfLocalDateTime = function offsetOfLocalDateTime() {
-            return this._offset;
-        };
-
-        Fixed.prototype.validOffsets = function validOffsets() {
-            return [this._offset];
-        };
-
-        Fixed.prototype.transition = function transition() {
-            return null;
-        };
-
-        Fixed.prototype.standardOffset = function standardOffset() {
-            return this._offset;
-        };
-
-        Fixed.prototype.daylightSavings = function daylightSavings() {
-            return Duration.ZERO;
-        };
-
-        Fixed.prototype.isDaylightSavings = function isDaylightSavings() {
-            return false;
-        };
-
-        Fixed.prototype.isValidOffset = function isValidOffset(localDateTime, offset) {
-            return this._offset.equals(offset);
-        };
-
-        Fixed.prototype.nextTransition = function nextTransition() {
-            return null;
-        };
-
-        Fixed.prototype.previousTransition = function previousTransition() {
-            return null;
-        };
-
-        Fixed.prototype.transitions = function transitions() {
-            return [];
-        };
-
-        Fixed.prototype.transitionRules = function transitionRules() {
-            return [];
-        };
-
-        Fixed.prototype.equals = function equals(other) {
-            if (this === other) {
-                return true;
+        Month.prototype.isSupported = function isSupported(field) {
+            if (null === field) {
+                return false;
             }
-            if (other instanceof Fixed) {
-                return this._offset.equals(other._offset);
+            if (field instanceof ChronoField) {
+                return field === ChronoField.MONTH_OF_YEAR;
             }
-            return false;
+            return field != null && field.isSupportedBy(this);
         };
 
-        Fixed.prototype.toString = function toString() {
-            return 'FixedRules:' + this._offset.toString();
+        Month.prototype.get = function get(field) {
+            if (field === ChronoField.MONTH_OF_YEAR) {
+                return this.value();
+            }
+            return this.range(field).checkValidIntValue(this.getLong(field), field);
         };
 
-        return Fixed;
-    }(ZoneRules);
+        Month.prototype.getLong = function getLong(field) {
+            if (field === ChronoField.MONTH_OF_YEAR) {
+                return this.value();
+            } else if (field instanceof ChronoField) {
+                throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+            }
+            return field.getFrom(this);
+        };
 
-    function _classCallCheck$i(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+        Month.prototype.plus = function plus(months) {
+            var amount = MathUtil.intMod(months, 12) + 12;
+            var newMonthVal = MathUtil.intMod(this.value() + amount, 12);
+
+            newMonthVal = newMonthVal === 0 ? 12 : newMonthVal;
+            return Month.of(newMonthVal);
+        };
+
+        Month.prototype.minus = function minus(months) {
+            return this.plus(-1 * MathUtil.intMod(months, 12));
+        };
+
+        Month.prototype.length = function length(leapYear) {
+            switch (this) {
+                case Month.FEBRUARY:
+                    return leapYear ? 29 : 28;
+                case Month.APRIL:
+                case Month.JUNE:
+                case Month.SEPTEMBER:
+                case Month.NOVEMBER:
+                    return 30;
+                default:
+                    return 31;
+            }
+        };
+
+        Month.prototype.minLength = function minLength() {
+            switch (this) {
+                case Month.FEBRUARY:
+                    return 28;
+                case Month.APRIL:
+                case Month.JUNE:
+                case Month.SEPTEMBER:
+                case Month.NOVEMBER:
+                    return 30;
+                default:
+                    return 31;
+            }
+        };
+
+        Month.prototype.maxLength = function maxLength() {
+            switch (this) {
+                case Month.FEBRUARY:
+                    return 29;
+                case Month.APRIL:
+                case Month.JUNE:
+                case Month.SEPTEMBER:
+                case Month.NOVEMBER:
+                    return 30;
+                default:
+                    return 31;
+            }
+        };
+
+        Month.prototype.firstDayOfYear = function firstDayOfYear(leapYear) {
+            var leap = leapYear ? 1 : 0;
+            switch (this) {
+                case Month.JANUARY:
+                    return 1;
+                case Month.FEBRUARY:
+                    return 32;
+                case Month.MARCH:
+                    return 60 + leap;
+                case Month.APRIL:
+                    return 91 + leap;
+                case Month.MAY:
+                    return 121 + leap;
+                case Month.JUNE:
+                    return 152 + leap;
+                case Month.JULY:
+                    return 182 + leap;
+                case Month.AUGUST:
+                    return 213 + leap;
+                case Month.SEPTEMBER:
+                    return 244 + leap;
+                case Month.OCTOBER:
+                    return 274 + leap;
+                case Month.NOVEMBER:
+                    return 305 + leap;
+                case Month.DECEMBER:
+                default:
+                    return 335 + leap;
+            }
+        };
+
+        Month.prototype.firstMonthOfQuarter = function firstMonthOfQuarter() {
+            switch (this) {
+                case Month.JANUARY:
+                case Month.FEBRUARY:
+                case Month.MARCH:
+                    return Month.JANUARY;
+                case Month.APRIL:
+                case Month.MAY:
+                case Month.JUNE:
+                    return Month.APRIL;
+                case Month.JULY:
+                case Month.AUGUST:
+                case Month.SEPTEMBER:
+                    return Month.JULY;
+                case Month.OCTOBER:
+                case Month.NOVEMBER:
+                case Month.DECEMBER:
+                default:
+                    return Month.OCTOBER;
+            }
+        };
+
+        Month.prototype.query = function query(_query) {
+            assert(_query != null, 'query() parameter must not be null', DateTimeException);
+            if (_query === TemporalQueries.chronology()) {
+                return IsoChronology.INSTANCE;
+            } else if (_query === TemporalQueries.precision()) {
+                return ChronoUnit.MONTHS;
+            }
+            return _Temporal.prototype.query.call(this, _query);
+        };
+
+        Month.prototype.toString = function toString() {
+            switch (this) {
+                case Month.JANUARY:
+                    return 'JANUARY';
+                case Month.FEBRUARY:
+                    return 'FEBRUARY';
+                case Month.MARCH:
+                    return 'MARCH';
+                case Month.APRIL:
+                    return 'APRIL';
+                case Month.MAY:
+                    return 'MAY';
+                case Month.JUNE:
+                    return 'JUNE';
+                case Month.JULY:
+                    return 'JULY';
+                case Month.AUGUST:
+                    return 'AUGUST';
+                case Month.SEPTEMBER:
+                    return 'SEPTEMBER';
+                case Month.OCTOBER:
+                    return 'OCTOBER';
+                case Month.NOVEMBER:
+                    return 'NOVEMBER';
+                case Month.DECEMBER:
+                    return 'DECEMBER';
+                default:
+                    return 'unknown Month, value: ' + this.value();
+            }
+        };
+
+        Month.prototype.toJSON = function toJSON() {
+            return this.toString();
+        };
+
+        Month.prototype.adjustInto = function adjustInto(temporal) {
+            return temporal.with(ChronoField.MONTH_OF_YEAR, this.value());
+        };
+
+        Month.values = function values() {
+            return MONTHS.slice();
+        };
+
+        Month.of = function of(month) {
+            if (month < 1 || month > 12) {
+                assert(false, 'Invalid value for MonthOfYear: ' + month, DateTimeException);
+            }
+            return MONTHS[month - 1];
+        };
+
+        Month.from = function from(temporal) {
+            if (temporal instanceof Month) {
+                return temporal;
+            }
+            try {
+                return Month.of(temporal.get(ChronoField.MONTH_OF_YEAR));
+            } catch (ex) {
+                throw new DateTimeException('Unable to obtain Month from TemporalAccessor: ' + temporal + ' of type ' + (temporal && temporal.constructor != null ? temporal.constructor.name : ''), ex);
+            }
+        };
+
+        return Month;
+    }(Temporal);
+
+
+    var MONTHS = void 0;
+
+    function _init$5() {
+        Month.JANUARY = new Month(1);
+        Month.FEBRUARY = new Month(2);
+        Month.MARCH = new Month(3);
+        Month.APRIL = new Month(4);
+        Month.MAY = new Month(5);
+        Month.JUNE = new Month(6);
+        Month.JULY = new Month(7);
+        Month.AUGUST = new Month(8);
+        Month.SEPTEMBER = new Month(9);
+        Month.OCTOBER = new Month(10);
+        Month.NOVEMBER = new Month(11);
+        Month.DECEMBER = new Month(12);
+
+        MONTHS = [Month.JANUARY, Month.FEBRUARY, Month.MARCH, Month.APRIL, Month.MAY, Month.JUNE, Month.JULY, Month.AUGUST, Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER];
+    }
+
+    function _classCallCheck$g(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     function _possibleConstructorReturn$7(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
     function _inherits$7(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-    var SECONDS_CACHE = {};
-    var ID_CACHE = {};
-
-    var ZoneOffset = function (_ZoneId) {
-        _inherits$7(ZoneOffset, _ZoneId);
-
-        function ZoneOffset(totalSeconds) {
-            _classCallCheck$i(this, ZoneOffset);
-
-            var _this = _possibleConstructorReturn$7(this, _ZoneId.call(this));
-
-            ZoneOffset._validateTotalSeconds(totalSeconds);
-            _this._totalSeconds = MathUtil.safeToInt(totalSeconds);
-            _this._rules = ZoneRules.of(_this);
-            _this._id = ZoneOffset._buildId(totalSeconds);
-            return _this;
-        }
-
-        ZoneOffset.prototype.totalSeconds = function totalSeconds() {
-            return this._totalSeconds;
-        };
-
-        ZoneOffset.prototype.id = function id() {
-            return this._id;
-        };
-
-        ZoneOffset._buildId = function _buildId(totalSeconds) {
-            if (totalSeconds === 0) {
-                return 'Z';
-            } else {
-                var absTotalSeconds = Math.abs(totalSeconds);
-                var absHours = MathUtil.intDiv(absTotalSeconds, LocalTime.SECONDS_PER_HOUR);
-                var absMinutes = MathUtil.intMod(MathUtil.intDiv(absTotalSeconds, LocalTime.SECONDS_PER_MINUTE), LocalTime.MINUTES_PER_HOUR);
-                var buf = '' + (totalSeconds < 0 ? '-' : '+') + (absHours < 10 ? '0' : '') + absHours + (absMinutes < 10 ? ':0' : ':') + absMinutes;
-                var absSeconds = MathUtil.intMod(absTotalSeconds, LocalTime.SECONDS_PER_MINUTE);
-                if (absSeconds !== 0) {
-                    buf += (absSeconds < 10 ? ':0' : ':') + absSeconds;
-                }
-                return buf;
-            }
-        };
-
-        ZoneOffset._validateTotalSeconds = function _validateTotalSeconds(totalSeconds) {
-            if (Math.abs(totalSeconds) > ZoneOffset.MAX_SECONDS) {
-                throw new DateTimeException('Zone offset not in valid range: -18:00 to +18:00');
-            }
-        };
-
-        ZoneOffset._validate = function _validate(hours, minutes, seconds) {
-            if (hours < -18 || hours > 18) {
-                throw new DateTimeException('Zone offset hours not in valid range: value ' + hours + ' is not in the range -18 to 18');
-            }
-            if (hours > 0) {
-                if (minutes < 0 || seconds < 0) {
-                    throw new DateTimeException('Zone offset minutes and seconds must be positive because hours is positive');
-                }
-            } else if (hours < 0) {
-                if (minutes > 0 || seconds > 0) {
-                    throw new DateTimeException('Zone offset minutes and seconds must be negative because hours is negative');
-                }
-            } else if (minutes > 0 && seconds < 0 || minutes < 0 && seconds > 0) {
-                throw new DateTimeException('Zone offset minutes and seconds must have the same sign');
-            }
-            if (Math.abs(minutes) > 59) {
-                throw new DateTimeException('Zone offset minutes not in valid range: abs(value) ' + Math.abs(minutes) + ' is not in the range 0 to 59');
-            }
-            if (Math.abs(seconds) > 59) {
-                throw new DateTimeException('Zone offset seconds not in valid range: abs(value) ' + Math.abs(seconds) + ' is not in the range 0 to 59');
-            }
-            if (Math.abs(hours) === 18 && (Math.abs(minutes) > 0 || Math.abs(seconds) > 0)) {
-                throw new DateTimeException('Zone offset not in valid range: -18:00 to +18:00');
-            }
-        };
-
-        ZoneOffset.of = function of(offsetId) {
-            requireNonNull(offsetId, 'offsetId');
-
-            var offset = ID_CACHE[offsetId];
-            if (offset != null) {
-                return offset;
-            }
-
-            var hours = void 0,
-                minutes = void 0,
-                seconds = void 0;
-            switch (offsetId.length) {
-                case 2:
-                    offsetId = offsetId[0] + '0' + offsetId[1];
-                case 3:
-                    hours = ZoneOffset._parseNumber(offsetId, 1, false);
-                    minutes = 0;
-                    seconds = 0;
-                    break;
-                case 5:
-                    hours = ZoneOffset._parseNumber(offsetId, 1, false);
-                    minutes = ZoneOffset._parseNumber(offsetId, 3, false);
-                    seconds = 0;
-                    break;
-                case 6:
-                    hours = ZoneOffset._parseNumber(offsetId, 1, false);
-                    minutes = ZoneOffset._parseNumber(offsetId, 4, true);
-                    seconds = 0;
-                    break;
-                case 7:
-                    hours = ZoneOffset._parseNumber(offsetId, 1, false);
-                    minutes = ZoneOffset._parseNumber(offsetId, 3, false);
-                    seconds = ZoneOffset._parseNumber(offsetId, 5, false);
-                    break;
-                case 9:
-                    hours = ZoneOffset._parseNumber(offsetId, 1, false);
-                    minutes = ZoneOffset._parseNumber(offsetId, 4, true);
-                    seconds = ZoneOffset._parseNumber(offsetId, 7, true);
-                    break;
-                default:
-                    throw new DateTimeException('Invalid ID for ZoneOffset, invalid format: ' + offsetId);
-            }
-            var first = offsetId[0];
-            if (first !== '+' && first !== '-') {
-                throw new DateTimeException('Invalid ID for ZoneOffset, plus/minus not found when expected: ' + offsetId);
-            }
-            if (first === '-') {
-                return ZoneOffset.ofHoursMinutesSeconds(-hours, -minutes, -seconds);
-            } else {
-                return ZoneOffset.ofHoursMinutesSeconds(hours, minutes, seconds);
-            }
-        };
-
-        ZoneOffset._parseNumber = function _parseNumber(offsetId, pos, precededByColon) {
-            if (precededByColon && offsetId[pos - 1] !== ':') {
-                throw new DateTimeException('Invalid ID for ZoneOffset, colon not found when expected: ' + offsetId);
-            }
-            var ch1 = offsetId[pos];
-            var ch2 = offsetId[pos + 1];
-            if (ch1 < '0' || ch1 > '9' || ch2 < '0' || ch2 > '9') {
-                throw new DateTimeException('Invalid ID for ZoneOffset, non numeric characters found: ' + offsetId);
-            }
-            return (ch1.charCodeAt(0) - 48) * 10 + (ch2.charCodeAt(0) - 48);
-        };
-
-        ZoneOffset.ofHours = function ofHours(hours) {
-            return ZoneOffset.ofHoursMinutesSeconds(hours, 0, 0);
-        };
-
-        ZoneOffset.ofHoursMinutes = function ofHoursMinutes(hours, minutes) {
-            return ZoneOffset.ofHoursMinutesSeconds(hours, minutes, 0);
-        };
-
-        ZoneOffset.ofHoursMinutesSeconds = function ofHoursMinutesSeconds(hours, minutes, seconds) {
-            ZoneOffset._validate(hours, minutes, seconds);
-            var totalSeconds = hours * LocalTime.SECONDS_PER_HOUR + minutes * LocalTime.SECONDS_PER_MINUTE + seconds;
-            return ZoneOffset.ofTotalSeconds(totalSeconds);
-        };
-
-        ZoneOffset.ofTotalMinutes = function ofTotalMinutes(totalMinutes) {
-            var totalSeconds = totalMinutes * LocalTime.SECONDS_PER_MINUTE;
-            return ZoneOffset.ofTotalSeconds(totalSeconds);
-        };
-
-        ZoneOffset.ofTotalSeconds = function ofTotalSeconds(totalSeconds) {
-            if (totalSeconds % (15 * LocalTime.SECONDS_PER_MINUTE) === 0) {
-                var totalSecs = totalSeconds;
-                var result = SECONDS_CACHE[totalSecs];
-                if (result == null) {
-                    result = new ZoneOffset(totalSeconds);
-                    SECONDS_CACHE[totalSecs] = result;
-                    ID_CACHE[result.id()] = result;
-                }
-                return result;
-            } else {
-                return new ZoneOffset(totalSeconds);
-            }
-        };
-
-        ZoneOffset.prototype.rules = function rules() {
-            return this._rules;
-        };
-
-        ZoneOffset.prototype.get = function get(field) {
-            return this.getLong(field);
-        };
-
-        ZoneOffset.prototype.getLong = function getLong(field) {
-            if (field === ChronoField.OFFSET_SECONDS) {
-                return this._totalSeconds;
-            } else if (field instanceof ChronoField) {
-                throw new DateTimeException('Unsupported field: ' + field);
-            }
-            return field.getFrom(this);
-        };
-
-        ZoneOffset.prototype.query = function query(_query) {
-            requireNonNull(_query, 'query');
-            if (_query === TemporalQueries.offset() || _query === TemporalQueries.zone()) {
-                return this;
-            } else if (_query === TemporalQueries.localDate() || _query === TemporalQueries.localTime() || _query === TemporalQueries.precision() || _query === TemporalQueries.chronology() || _query === TemporalQueries.zoneId()) {
-                return null;
-            }
-            return _query.queryFrom(this);
-        };
-
-        ZoneOffset.prototype.adjustInto = function adjustInto(temporal) {
-            return temporal.with(ChronoField.OFFSET_SECONDS, this._totalSeconds);
-        };
-
-        ZoneOffset.prototype.compareTo = function compareTo(other) {
-            requireNonNull(other, 'other');
-            return other._totalSeconds - this._totalSeconds;
-        };
-
-        ZoneOffset.prototype.equals = function equals(obj) {
-            if (this === obj) {
-                return true;
-            }
-            if (obj instanceof ZoneOffset) {
-                return this._totalSeconds === obj._totalSeconds;
-            }
-            return false;
-        };
-
-        ZoneOffset.prototype.hashCode = function hashCode() {
-            return this._totalSeconds;
-        };
-
-        ZoneOffset.prototype.toString = function toString() {
-            return this._id;
-        };
-
-        return ZoneOffset;
-    }(ZoneId);
-
-
-    function _init$5() {
-        ZoneOffset.MAX_SECONDS = 18 * LocalTime.SECONDS_PER_HOUR;
-        ZoneOffset.UTC = ZoneOffset.ofTotalSeconds(0);
-        ZoneOffset.MIN = ZoneOffset.ofTotalSeconds(-ZoneOffset.MAX_SECONDS);
-        ZoneOffset.MAX = ZoneOffset.ofTotalSeconds(ZoneOffset.MAX_SECONDS);
-    }
-
-    function _classCallCheck$j(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-    function _possibleConstructorReturn$8(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-    function _inherits$8(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
     var PATTERN = /([-+]?)P(?:([-+]?[0-9]+)Y)?(?:([-+]?[0-9]+)M)?(?:([-+]?[0-9]+)W)?(?:([-+]?[0-9]+)D)?/;
 
     var Period = function (_TemporalAmount) {
-        _inherits$8(Period, _TemporalAmount);
+        _inherits$7(Period, _TemporalAmount);
 
         function Period(years, months, days) {
-            _classCallCheck$j(this, Period);
+            _classCallCheck$g(this, Period);
 
-            var _this = _possibleConstructorReturn$8(this, _TemporalAmount.call(this));
+            var _this = _possibleConstructorReturn$7(this, _TemporalAmount.call(this));
 
             var _years = MathUtil.safeToInt(years);
             var _months = MathUtil.safeToInt(months);
@@ -2119,7 +1854,7 @@
                     _this._days = _days;
                     Period.ZERO = _this;
                 }
-                return _ret = Period.ZERO, _possibleConstructorReturn$8(_this, _ret);
+                return _ret = Period.ZERO, _possibleConstructorReturn$7(_this, _ret);
             }
 
             _this._years = _years;
@@ -2437,7 +2172,7 @@
         Period.ofDays(0);
     }
 
-    function _classCallCheck$k(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$h(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     /*
      * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -2447,7 +2182,7 @@
 
     var ParsePosition = function () {
         function ParsePosition(index) {
-            _classCallCheck$k(this, ParsePosition);
+            _classCallCheck$h(this, ParsePosition);
 
             this._index = index;
             this._errorIndex = -1;
@@ -2472,7 +2207,7 @@
         return ParsePosition;
     }();
 
-    function _classCallCheck$l(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$i(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     /*
      * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -2481,7 +2216,7 @@
 
     var EnumMap = function () {
         function EnumMap() {
-            _classCallCheck$l(this, EnumMap);
+            _classCallCheck$i(this, EnumMap);
 
             this._map = {};
         }
@@ -2538,19 +2273,19 @@
         return EnumMap;
     }();
 
-    function _classCallCheck$m(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$j(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function _possibleConstructorReturn$9(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$8(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$9(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$8(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var ResolverStyle = function (_Enum) {
-      _inherits$9(ResolverStyle, _Enum);
+      _inherits$8(ResolverStyle, _Enum);
 
       function ResolverStyle() {
-        _classCallCheck$m(this, ResolverStyle);
+        _classCallCheck$j(this, ResolverStyle);
 
-        return _possibleConstructorReturn$9(this, _Enum.apply(this, arguments));
+        return _possibleConstructorReturn$8(this, _Enum.apply(this, arguments));
       }
 
       return ResolverStyle;
@@ -2562,14 +2297,582 @@
 
     ResolverStyle.LENIENT = new ResolverStyle('LENIENT');
 
-    function _classCallCheck$n(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$k(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn$9(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits$9(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var ChronoLocalDate = function (_Temporal) {
+        _inherits$9(ChronoLocalDate, _Temporal);
+
+        function ChronoLocalDate() {
+            _classCallCheck$k(this, ChronoLocalDate);
+
+            return _possibleConstructorReturn$9(this, _Temporal.apply(this, arguments));
+        }
+
+        ChronoLocalDate.prototype.isSupported = function isSupported(fieldOrUnit) {
+            if (fieldOrUnit instanceof ChronoField) {
+                return fieldOrUnit.isDateBased();
+            } else if (fieldOrUnit instanceof ChronoUnit) {
+                return fieldOrUnit.isDateBased();
+            }
+            return fieldOrUnit != null && fieldOrUnit.isSupportedBy(this);
+        };
+
+        ChronoLocalDate.prototype.query = function query(_query) {
+            if (_query === TemporalQueries.chronology()) {
+                return this.chronology();
+            } else if (_query === TemporalQueries.precision()) {
+                return ChronoUnit.DAYS;
+            } else if (_query === TemporalQueries.localDate()) {
+                return LocalDate.ofEpochDay(this.toEpochDay());
+            } else if (_query === TemporalQueries.localTime() || _query === TemporalQueries.zone() || _query === TemporalQueries.zoneId() || _query === TemporalQueries.offset()) {
+                return null;
+            }
+            return _Temporal.prototype.query.call(this, _query);
+        };
+
+        ChronoLocalDate.prototype.adjustInto = function adjustInto(temporal) {
+            return temporal.with(ChronoField.EPOCH_DAY, this.toEpochDay());
+        };
+
+        ChronoLocalDate.prototype.format = function format(formatter) {
+            requireNonNull(formatter, 'formatter');
+            requireInstance(formatter, DateTimeFormatter, 'formatter');
+            return formatter.format(this);
+        };
+
+        return ChronoLocalDate;
+    }(Temporal);
+
+    function _classCallCheck$l(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    var StringUtil = function () {
+        function StringUtil() {
+            _classCallCheck$l(this, StringUtil);
+        }
+
+        StringUtil.startsWith = function startsWith(text, pattern) {
+            return text.indexOf(pattern) === 0;
+        };
+
+        StringUtil.hashCode = function hashCode(text) {
+            var len = text.length;
+            if (len === 0) {
+                return 0;
+            }
+
+            var hash = 0;
+            for (var i = 0; i < len; i++) {
+                var chr = text.charCodeAt(i);
+                hash = (hash << 5) - hash + chr;
+                hash |= 0;
+            }
+            return MathUtil.smi(hash);
+        };
+
+        return StringUtil;
+    }();
+
+    function _classCallCheck$m(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    var ZoneId = function () {
+        function ZoneId() {
+            _classCallCheck$m(this, ZoneId);
+        }
+
+        ZoneId.systemDefault = function systemDefault() {
+            throw new DateTimeException('not supported operation');
+        };
+
+        ZoneId.getAvailableZoneIds = function getAvailableZoneIds() {
+            throw new DateTimeException('not supported operation');
+        };
+
+        ZoneId.of = function of(zoneId) {
+            throw new DateTimeException('not supported operation' + zoneId);
+        };
+
+        ZoneId.ofOffset = function ofOffset(prefix, offset) {
+            throw new DateTimeException('not supported operation' + prefix + offset);
+        };
+
+        ZoneId.from = function from(temporal) {
+            throw new DateTimeException('not supported operation' + temporal);
+        };
+
+        ZoneId.prototype.id = function id() {
+            abstractMethodFail('ZoneId.id');
+        };
+
+        ZoneId.prototype.rules = function rules() {
+            abstractMethodFail('ZoneId.rules');
+        };
+
+        ZoneId.prototype.normalized = function normalized() {
+            var rules = this.rules();
+            if (rules.isFixedOffset()) {
+                return rules.offset(Instant.EPOCH);
+            }
+
+            return this;
+        };
+
+        ZoneId.prototype.equals = function equals(other) {
+            if (this === other) {
+                return true;
+            }
+            if (other instanceof ZoneId) {
+                return this.id() === other.id();
+            }
+            return false;
+        };
+
+        ZoneId.prototype.hashCode = function hashCode() {
+            return StringUtil.hashCode(this.id());
+        };
+
+        ZoneId.prototype.toString = function toString() {
+            return this.id();
+        };
+
+        ZoneId.prototype.toJSON = function toJSON() {
+            return this.toString();
+        };
+
+        return ZoneId;
+    }();
 
     function _possibleConstructorReturn$a(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
     function _inherits$a(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+    function _classCallCheck$n(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    var ZoneRules = function () {
+        function ZoneRules() {
+            _classCallCheck$n(this, ZoneRules);
+        }
+
+        ZoneRules.of = function of(offset) {
+            requireNonNull(offset, 'offset');
+            return new Fixed(offset);
+        };
+
+        ZoneRules.prototype.isFixedOffset = function isFixedOffset() {
+            abstractMethodFail('ZoneRules.isFixedOffset');
+        };
+
+        ZoneRules.prototype.offset = function offset(instantOrLocalDateTime) {
+            if (instantOrLocalDateTime instanceof Instant) {
+                return this.offsetOfInstant(instantOrLocalDateTime);
+            } else {
+                return this.offsetOfLocalDateTime(instantOrLocalDateTime);
+            }
+        };
+
+        ZoneRules.prototype.offsetOfInstant = function offsetOfInstant(instant) {
+            abstractMethodFail('ZoneRules.offsetInstant');
+        };
+
+        ZoneRules.prototype.offsetOfEpochMilli = function offsetOfEpochMilli(epochMilli) {
+            abstractMethodFail('ZoneRules.offsetOfEpochMilli');
+        };
+
+        ZoneRules.prototype.offsetOfLocalDateTime = function offsetOfLocalDateTime(localDateTime) {
+            abstractMethodFail('ZoneRules.offsetLocalDateTime');
+        };
+
+        ZoneRules.prototype.validOffsets = function validOffsets(localDateTime) {
+            abstractMethodFail('ZoneRules.validOffsets');
+        };
+
+        ZoneRules.prototype.transition = function transition(localDateTime) {
+            abstractMethodFail('ZoneRules.transition');
+        };
+
+        ZoneRules.prototype.standardOffset = function standardOffset(instant) {
+            abstractMethodFail('ZoneRules.standardOffset');
+        };
+
+        ZoneRules.prototype.daylightSavings = function daylightSavings(instant) {
+            abstractMethodFail('ZoneRules.daylightSavings');
+        };
+
+        ZoneRules.prototype.isDaylightSavings = function isDaylightSavings(instant) {
+            abstractMethodFail('ZoneRules.isDaylightSavings');
+        };
+
+        ZoneRules.prototype.isValidOffset = function isValidOffset(localDateTime, offset) {
+            abstractMethodFail('ZoneRules.isValidOffset');
+        };
+
+        ZoneRules.prototype.nextTransition = function nextTransition(instant) {
+            abstractMethodFail('ZoneRules.nextTransition');
+        };
+
+        ZoneRules.prototype.previousTransition = function previousTransition(instant) {
+            abstractMethodFail('ZoneRules.previousTransition');
+        };
+
+        ZoneRules.prototype.transitions = function transitions() {
+            abstractMethodFail('ZoneRules.transitions');
+        };
+
+        ZoneRules.prototype.transitionRules = function transitionRules() {
+            abstractMethodFail('ZoneRules.transitionRules');
+        };
+
+        ZoneRules.prototype.toString = function toString() {
+            abstractMethodFail('ZoneRules.toString');
+        };
+
+        ZoneRules.prototype.toJSON = function toJSON() {
+            return this.toString();
+        };
+
+        return ZoneRules;
+    }();
+
+    var Fixed = function (_ZoneRules) {
+        _inherits$a(Fixed, _ZoneRules);
+
+        function Fixed(offset) {
+            _classCallCheck$n(this, Fixed);
+
+            var _this = _possibleConstructorReturn$a(this, _ZoneRules.call(this));
+
+            _this._offset = offset;
+            return _this;
+        }
+
+        Fixed.prototype.isFixedOffset = function isFixedOffset() {
+            return true;
+        };
+
+        Fixed.prototype.offsetOfInstant = function offsetOfInstant() {
+            return this._offset;
+        };
+
+        Fixed.prototype.offsetOfEpochMilli = function offsetOfEpochMilli() {
+            return this._offset;
+        };
+
+        Fixed.prototype.offsetOfLocalDateTime = function offsetOfLocalDateTime() {
+            return this._offset;
+        };
+
+        Fixed.prototype.validOffsets = function validOffsets() {
+            return [this._offset];
+        };
+
+        Fixed.prototype.transition = function transition() {
+            return null;
+        };
+
+        Fixed.prototype.standardOffset = function standardOffset() {
+            return this._offset;
+        };
+
+        Fixed.prototype.daylightSavings = function daylightSavings() {
+            return Duration.ZERO;
+        };
+
+        Fixed.prototype.isDaylightSavings = function isDaylightSavings() {
+            return false;
+        };
+
+        Fixed.prototype.isValidOffset = function isValidOffset(localDateTime, offset) {
+            return this._offset.equals(offset);
+        };
+
+        Fixed.prototype.nextTransition = function nextTransition() {
+            return null;
+        };
+
+        Fixed.prototype.previousTransition = function previousTransition() {
+            return null;
+        };
+
+        Fixed.prototype.transitions = function transitions() {
+            return [];
+        };
+
+        Fixed.prototype.transitionRules = function transitionRules() {
+            return [];
+        };
+
+        Fixed.prototype.equals = function equals(other) {
+            if (this === other) {
+                return true;
+            }
+            if (other instanceof Fixed) {
+                return this._offset.equals(other._offset);
+            }
+            return false;
+        };
+
+        Fixed.prototype.toString = function toString() {
+            return 'FixedRules:' + this._offset.toString();
+        };
+
+        return Fixed;
+    }(ZoneRules);
+
+    function _classCallCheck$o(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn$b(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits$b(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var SECONDS_CACHE = {};
+    var ID_CACHE = {};
+
+    var ZoneOffset = function (_ZoneId) {
+        _inherits$b(ZoneOffset, _ZoneId);
+
+        function ZoneOffset(totalSeconds) {
+            _classCallCheck$o(this, ZoneOffset);
+
+            var _this = _possibleConstructorReturn$b(this, _ZoneId.call(this));
+
+            ZoneOffset._validateTotalSeconds(totalSeconds);
+            _this._totalSeconds = MathUtil.safeToInt(totalSeconds);
+            _this._rules = ZoneRules.of(_this);
+            _this._id = ZoneOffset._buildId(totalSeconds);
+            return _this;
+        }
+
+        ZoneOffset.prototype.totalSeconds = function totalSeconds() {
+            return this._totalSeconds;
+        };
+
+        ZoneOffset.prototype.id = function id() {
+            return this._id;
+        };
+
+        ZoneOffset._buildId = function _buildId(totalSeconds) {
+            if (totalSeconds === 0) {
+                return 'Z';
+            } else {
+                var absTotalSeconds = Math.abs(totalSeconds);
+                var absHours = MathUtil.intDiv(absTotalSeconds, LocalTime.SECONDS_PER_HOUR);
+                var absMinutes = MathUtil.intMod(MathUtil.intDiv(absTotalSeconds, LocalTime.SECONDS_PER_MINUTE), LocalTime.MINUTES_PER_HOUR);
+                var buf = '' + (totalSeconds < 0 ? '-' : '+') + (absHours < 10 ? '0' : '') + absHours + (absMinutes < 10 ? ':0' : ':') + absMinutes;
+                var absSeconds = MathUtil.intMod(absTotalSeconds, LocalTime.SECONDS_PER_MINUTE);
+                if (absSeconds !== 0) {
+                    buf += (absSeconds < 10 ? ':0' : ':') + absSeconds;
+                }
+                return buf;
+            }
+        };
+
+        ZoneOffset._validateTotalSeconds = function _validateTotalSeconds(totalSeconds) {
+            if (Math.abs(totalSeconds) > ZoneOffset.MAX_SECONDS) {
+                throw new DateTimeException('Zone offset not in valid range: -18:00 to +18:00');
+            }
+        };
+
+        ZoneOffset._validate = function _validate(hours, minutes, seconds) {
+            if (hours < -18 || hours > 18) {
+                throw new DateTimeException('Zone offset hours not in valid range: value ' + hours + ' is not in the range -18 to 18');
+            }
+            if (hours > 0) {
+                if (minutes < 0 || seconds < 0) {
+                    throw new DateTimeException('Zone offset minutes and seconds must be positive because hours is positive');
+                }
+            } else if (hours < 0) {
+                if (minutes > 0 || seconds > 0) {
+                    throw new DateTimeException('Zone offset minutes and seconds must be negative because hours is negative');
+                }
+            } else if (minutes > 0 && seconds < 0 || minutes < 0 && seconds > 0) {
+                throw new DateTimeException('Zone offset minutes and seconds must have the same sign');
+            }
+            if (Math.abs(minutes) > 59) {
+                throw new DateTimeException('Zone offset minutes not in valid range: abs(value) ' + Math.abs(minutes) + ' is not in the range 0 to 59');
+            }
+            if (Math.abs(seconds) > 59) {
+                throw new DateTimeException('Zone offset seconds not in valid range: abs(value) ' + Math.abs(seconds) + ' is not in the range 0 to 59');
+            }
+            if (Math.abs(hours) === 18 && (Math.abs(minutes) > 0 || Math.abs(seconds) > 0)) {
+                throw new DateTimeException('Zone offset not in valid range: -18:00 to +18:00');
+            }
+        };
+
+        ZoneOffset.of = function of(offsetId) {
+            requireNonNull(offsetId, 'offsetId');
+
+            var offset = ID_CACHE[offsetId];
+            if (offset != null) {
+                return offset;
+            }
+
+            var hours = void 0,
+                minutes = void 0,
+                seconds = void 0;
+            switch (offsetId.length) {
+                case 2:
+                    offsetId = offsetId[0] + '0' + offsetId[1];
+                case 3:
+                    hours = ZoneOffset._parseNumber(offsetId, 1, false);
+                    minutes = 0;
+                    seconds = 0;
+                    break;
+                case 5:
+                    hours = ZoneOffset._parseNumber(offsetId, 1, false);
+                    minutes = ZoneOffset._parseNumber(offsetId, 3, false);
+                    seconds = 0;
+                    break;
+                case 6:
+                    hours = ZoneOffset._parseNumber(offsetId, 1, false);
+                    minutes = ZoneOffset._parseNumber(offsetId, 4, true);
+                    seconds = 0;
+                    break;
+                case 7:
+                    hours = ZoneOffset._parseNumber(offsetId, 1, false);
+                    minutes = ZoneOffset._parseNumber(offsetId, 3, false);
+                    seconds = ZoneOffset._parseNumber(offsetId, 5, false);
+                    break;
+                case 9:
+                    hours = ZoneOffset._parseNumber(offsetId, 1, false);
+                    minutes = ZoneOffset._parseNumber(offsetId, 4, true);
+                    seconds = ZoneOffset._parseNumber(offsetId, 7, true);
+                    break;
+                default:
+                    throw new DateTimeException('Invalid ID for ZoneOffset, invalid format: ' + offsetId);
+            }
+            var first = offsetId[0];
+            if (first !== '+' && first !== '-') {
+                throw new DateTimeException('Invalid ID for ZoneOffset, plus/minus not found when expected: ' + offsetId);
+            }
+            if (first === '-') {
+                return ZoneOffset.ofHoursMinutesSeconds(-hours, -minutes, -seconds);
+            } else {
+                return ZoneOffset.ofHoursMinutesSeconds(hours, minutes, seconds);
+            }
+        };
+
+        ZoneOffset._parseNumber = function _parseNumber(offsetId, pos, precededByColon) {
+            if (precededByColon && offsetId[pos - 1] !== ':') {
+                throw new DateTimeException('Invalid ID for ZoneOffset, colon not found when expected: ' + offsetId);
+            }
+            var ch1 = offsetId[pos];
+            var ch2 = offsetId[pos + 1];
+            if (ch1 < '0' || ch1 > '9' || ch2 < '0' || ch2 > '9') {
+                throw new DateTimeException('Invalid ID for ZoneOffset, non numeric characters found: ' + offsetId);
+            }
+            return (ch1.charCodeAt(0) - 48) * 10 + (ch2.charCodeAt(0) - 48);
+        };
+
+        ZoneOffset.ofHours = function ofHours(hours) {
+            return ZoneOffset.ofHoursMinutesSeconds(hours, 0, 0);
+        };
+
+        ZoneOffset.ofHoursMinutes = function ofHoursMinutes(hours, minutes) {
+            return ZoneOffset.ofHoursMinutesSeconds(hours, minutes, 0);
+        };
+
+        ZoneOffset.ofHoursMinutesSeconds = function ofHoursMinutesSeconds(hours, minutes, seconds) {
+            ZoneOffset._validate(hours, minutes, seconds);
+            var totalSeconds = hours * LocalTime.SECONDS_PER_HOUR + minutes * LocalTime.SECONDS_PER_MINUTE + seconds;
+            return ZoneOffset.ofTotalSeconds(totalSeconds);
+        };
+
+        ZoneOffset.ofTotalMinutes = function ofTotalMinutes(totalMinutes) {
+            var totalSeconds = totalMinutes * LocalTime.SECONDS_PER_MINUTE;
+            return ZoneOffset.ofTotalSeconds(totalSeconds);
+        };
+
+        ZoneOffset.ofTotalSeconds = function ofTotalSeconds(totalSeconds) {
+            if (totalSeconds % (15 * LocalTime.SECONDS_PER_MINUTE) === 0) {
+                var totalSecs = totalSeconds;
+                var result = SECONDS_CACHE[totalSecs];
+                if (result == null) {
+                    result = new ZoneOffset(totalSeconds);
+                    SECONDS_CACHE[totalSecs] = result;
+                    ID_CACHE[result.id()] = result;
+                }
+                return result;
+            } else {
+                return new ZoneOffset(totalSeconds);
+            }
+        };
+
+        ZoneOffset.prototype.rules = function rules() {
+            return this._rules;
+        };
+
+        ZoneOffset.prototype.get = function get(field) {
+            return this.getLong(field);
+        };
+
+        ZoneOffset.prototype.getLong = function getLong(field) {
+            if (field === ChronoField.OFFSET_SECONDS) {
+                return this._totalSeconds;
+            } else if (field instanceof ChronoField) {
+                throw new DateTimeException('Unsupported field: ' + field);
+            }
+            return field.getFrom(this);
+        };
+
+        ZoneOffset.prototype.query = function query(_query) {
+            requireNonNull(_query, 'query');
+            if (_query === TemporalQueries.offset() || _query === TemporalQueries.zone()) {
+                return this;
+            } else if (_query === TemporalQueries.localDate() || _query === TemporalQueries.localTime() || _query === TemporalQueries.precision() || _query === TemporalQueries.chronology() || _query === TemporalQueries.zoneId()) {
+                return null;
+            }
+            return _query.queryFrom(this);
+        };
+
+        ZoneOffset.prototype.adjustInto = function adjustInto(temporal) {
+            return temporal.with(ChronoField.OFFSET_SECONDS, this._totalSeconds);
+        };
+
+        ZoneOffset.prototype.compareTo = function compareTo(other) {
+            requireNonNull(other, 'other');
+            return other._totalSeconds - this._totalSeconds;
+        };
+
+        ZoneOffset.prototype.equals = function equals(obj) {
+            if (this === obj) {
+                return true;
+            }
+            if (obj instanceof ZoneOffset) {
+                return this._totalSeconds === obj._totalSeconds;
+            }
+            return false;
+        };
+
+        ZoneOffset.prototype.hashCode = function hashCode() {
+            return this._totalSeconds;
+        };
+
+        ZoneOffset.prototype.toString = function toString() {
+            return this._id;
+        };
+
+        return ZoneOffset;
+    }(ZoneId);
+
+
+    function _init$7() {
+        ZoneOffset.MAX_SECONDS = 18 * LocalTime.SECONDS_PER_HOUR;
+        ZoneOffset.UTC = ZoneOffset.ofTotalSeconds(0);
+        ZoneOffset.MIN = ZoneOffset.ofTotalSeconds(-ZoneOffset.MAX_SECONDS);
+        ZoneOffset.MAX = ZoneOffset.ofTotalSeconds(ZoneOffset.MAX_SECONDS);
+    }
+
+    function _classCallCheck$p(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn$c(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits$c(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
     var DateTimeBuilder = function (_Temporal) {
-        _inherits$a(DateTimeBuilder, _Temporal);
+        _inherits$c(DateTimeBuilder, _Temporal);
 
         DateTimeBuilder.create = function create(field, value) {
             var dtb = new DateTimeBuilder();
@@ -2578,9 +2881,9 @@
         };
 
         function DateTimeBuilder() {
-            _classCallCheck$n(this, DateTimeBuilder);
+            _classCallCheck$p(this, DateTimeBuilder);
 
-            var _this = _possibleConstructorReturn$a(this, _Temporal.call(this));
+            var _this = _possibleConstructorReturn$c(this, _Temporal.call(this));
 
             _this.fieldValues = new EnumMap();
 
@@ -2924,15 +3227,15 @@
         return DateTimeBuilder;
     }(Temporal);
 
-    function _possibleConstructorReturn$b(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$d(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$b(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$d(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-    function _classCallCheck$o(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$q(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var DateTimeParseContext = function () {
         function DateTimeParseContext() {
-            _classCallCheck$o(this, DateTimeParseContext);
+            _classCallCheck$q(this, DateTimeParseContext);
 
             if (arguments.length === 1) {
                 if (arguments[0] instanceof DateTimeParseContext) {
@@ -3088,12 +3391,12 @@
     }();
 
     var Parsed = function (_Temporal) {
-        _inherits$b(Parsed, _Temporal);
+        _inherits$d(Parsed, _Temporal);
 
         function Parsed(dateTimeParseContext) {
-            _classCallCheck$o(this, Parsed);
+            _classCallCheck$q(this, Parsed);
 
-            var _this = _possibleConstructorReturn$b(this, _Temporal.call(this));
+            var _this = _possibleConstructorReturn$d(this, _Temporal.call(this));
 
             _this.chrono = null;
             _this.zone = null;
@@ -3154,11 +3457,11 @@
         return Parsed;
     }(Temporal);
 
-    function _classCallCheck$p(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$r(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var DateTimePrintContext = function () {
         function DateTimePrintContext(temporal, localeOrFormatter, symbols) {
-            _classCallCheck$p(this, DateTimePrintContext);
+            _classCallCheck$r(this, DateTimePrintContext);
 
             if (arguments.length === 2 && arguments[1] instanceof DateTimeFormatter) {
                 this._temporal = DateTimePrintContext.adjust(temporal, localeOrFormatter);
@@ -3226,360 +3529,14 @@
         return DateTimePrintContext;
     }();
 
-    function _classCallCheck$q(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-    function _possibleConstructorReturn$c(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-    function _inherits$c(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-    var SignStyle = function (_Enum) {
-        _inherits$c(SignStyle, _Enum);
-
-        function SignStyle() {
-            _classCallCheck$q(this, SignStyle);
-
-            return _possibleConstructorReturn$c(this, _Enum.apply(this, arguments));
-        }
-
-        SignStyle.prototype.parse = function parse(positive, strict, fixedWidth) {
-            switch (this) {
-                case SignStyle.NORMAL:
-                    return !positive || !strict;
-                case SignStyle.ALWAYS:
-                case SignStyle.EXCEEDS_PAD:
-                    return true;
-                default:
-                    return !strict && !fixedWidth;
-            }
-        };
-
-        return SignStyle;
-    }(Enum);
-
-    SignStyle.NORMAL = new SignStyle('NORMAL');
-    SignStyle.NEVER = new SignStyle('NEVER');
-    SignStyle.ALWAYS = new SignStyle('ALWAYS');
-    SignStyle.EXCEEDS_PAD = new SignStyle('EXCEEDS_PAD');
-    SignStyle.NOT_NEGATIVE = new SignStyle('NOT_NEGATIVE');
-
-    function _classCallCheck$r(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-    /*
-     * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
-     * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
-     */
-
-    var StringBuilder = function () {
-        function StringBuilder() {
-            _classCallCheck$r(this, StringBuilder);
-
-            this._str = '';
-        }
-
-        StringBuilder.prototype.append = function append(str) {
-            this._str += str;
-            return this;
-        };
-
-        StringBuilder.prototype.appendChar = function appendChar(str) {
-            this._str += str[0];
-            return this;
-        };
-
-        StringBuilder.prototype.insert = function insert(offset, str) {
-            this._str = this._str.slice(0, offset) + str + this._str.slice(offset);
-            return this;
-        };
-
-        StringBuilder.prototype.replace = function replace(start, end, str) {
-            this._str = this._str.slice(0, start) + str + this._str.slice(end);
-            return this;
-        };
-
-        StringBuilder.prototype.length = function length() {
-            return this._str.length;
-        };
-
-        StringBuilder.prototype.setLength = function setLength(length) {
-            this._str = this._str.slice(0, length);
-            return this;
-        };
-
-        StringBuilder.prototype.toString = function toString() {
-            return this._str;
-        };
-
-        return StringBuilder;
-    }();
-
-    function _classCallCheck$s(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-    var DateTimeFormatter = function () {
-        DateTimeFormatter.parsedExcessDays = function parsedExcessDays() {
-            return DateTimeFormatter.PARSED_EXCESS_DAYS;
-        };
-
-        DateTimeFormatter.parsedLeapSecond = function parsedLeapSecond() {
-            return DateTimeFormatter.PARSED_LEAP_SECOND;
-        };
-
-        DateTimeFormatter.ofPattern = function ofPattern(pattern) {
-            return new DateTimeFormatterBuilder().appendPattern(pattern).toFormatter();
-        };
-
-        function DateTimeFormatter(printerParser, locale, decimalStyle, resolverStyle, resolverFields) {
-            var chrono = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : IsoChronology.INSTANCE;
-            var zone = arguments[6];
-
-            _classCallCheck$s(this, DateTimeFormatter);
-
-            assert(printerParser != null);
-            assert(decimalStyle != null);
-            assert(resolverStyle != null);
-
-            this._printerParser = printerParser;
-
-            this._locale = locale;
-
-            this._decimalStyle = decimalStyle;
-
-            this._resolverStyle = resolverStyle;
-
-            this._resolverFields = resolverFields;
-
-            this._chrono = chrono;
-
-            this._zone = zone;
-        }
-
-        DateTimeFormatter.prototype.locale = function locale() {
-            return this._locale;
-        };
-
-        DateTimeFormatter.prototype.decimalStyle = function decimalStyle() {
-            return this._decimalStyle;
-        };
-
-        DateTimeFormatter.prototype.chronology = function chronology() {
-            return this._chrono;
-        };
-
-        DateTimeFormatter.prototype.withChronology = function withChronology(chrono) {
-            if (this._chrono != null && this._chrono.equals(chrono)) {
-                return this;
-            }
-            return new DateTimeFormatter(this._printerParser, this._locale, this._decimalStyle, this._resolverStyle, this._resolverFields, chrono, this._zone);
-        };
-
-        DateTimeFormatter.prototype.withLocale = function withLocale() {
-            return this;
-        };
-
-        DateTimeFormatter.prototype.withResolverStyle = function withResolverStyle(resolverStyle) {
-            requireNonNull(resolverStyle, 'resolverStyle');
-            if (resolverStyle.equals(this._resolverStyle)) {
-                return this;
-            }
-            return new DateTimeFormatter(this._printerParser, this._locale, this._decimalStyle, resolverStyle, this._resolverFields, this._chrono, this._zone);
-        };
-
-        DateTimeFormatter.prototype.format = function format(temporal) {
-            var buf = new StringBuilder(32);
-            this._formatTo(temporal, buf);
-            return buf.toString();
-        };
-
-        DateTimeFormatter.prototype._formatTo = function _formatTo(temporal, appendable) {
-            requireNonNull(temporal, 'temporal');
-            requireNonNull(appendable, 'appendable');
-            var context = new DateTimePrintContext(temporal, this);
-            this._printerParser.print(context, appendable);
-        };
-
-        DateTimeFormatter.prototype.parse = function parse(text, type) {
-            if (arguments.length === 1) {
-                return this.parse1(text);
-            } else {
-                return this.parse2(text, type);
-            }
-        };
-
-        DateTimeFormatter.prototype.parse1 = function parse1(text) {
-            requireNonNull(text, 'text');
-            try {
-                return this._parseToBuilder(text, null).resolve(this._resolverStyle, this._resolverFields);
-            } catch (ex) {
-                if (ex instanceof DateTimeParseException) {
-                    throw ex;
-                } else {
-                    throw this._createError(text, ex);
-                }
-            }
-        };
-
-        DateTimeFormatter.prototype.parse2 = function parse2(text, type) {
-            requireNonNull(text, 'text');
-            requireNonNull(type, 'type');
-            try {
-                var builder = this._parseToBuilder(text, null).resolve(this._resolverStyle, this._resolverFields);
-                return builder.build(type);
-            } catch (ex) {
-                if (ex instanceof DateTimeParseException) {
-                    throw ex;
-                } else {
-                    throw this._createError(text, ex);
-                }
-            }
-        };
-
-        DateTimeFormatter.prototype._createError = function _createError(text, ex) {
-            var abbr = '';
-            if (text.length > 64) {
-                abbr = text.substring(0, 64) + '...';
-            } else {
-                abbr = text;
-            }
-            return new DateTimeParseException('Text \'' + abbr + '\' could not be parsed: ' + ex.message, text, 0, ex);
-        };
-
-        DateTimeFormatter.prototype._parseToBuilder = function _parseToBuilder(text, position) {
-            var pos = position != null ? position : new ParsePosition(0);
-            var result = this._parseUnresolved0(text, pos);
-            if (result == null || pos.getErrorIndex() >= 0 || position == null && pos.getIndex() < text.length) {
-                var abbr = '';
-                if (text.length > 64) {
-                    abbr = text.substr(0, 64).toString() + '...';
-                } else {
-                    abbr = text;
-                }
-                if (pos.getErrorIndex() >= 0) {
-                    throw new DateTimeParseException('Text \'' + abbr + '\' could not be parsed at index ' + pos.getErrorIndex(), text, pos.getErrorIndex());
-                } else {
-                    throw new DateTimeParseException('Text \'' + abbr + '\' could not be parsed, unparsed text found at index ' + pos.getIndex(), text, pos.getIndex());
-                }
-            }
-            return result.toBuilder();
-        };
-
-        DateTimeFormatter.prototype.parseUnresolved = function parseUnresolved(text, position) {
-            return this._parseUnresolved0(text, position);
-        };
-
-        DateTimeFormatter.prototype._parseUnresolved0 = function _parseUnresolved0(text, position) {
-            assert(text != null, 'text', NullPointerException);
-            assert(position != null, 'position', NullPointerException);
-            var context = new DateTimeParseContext(this);
-            var pos = position.getIndex();
-            pos = this._printerParser.parse(context, text, pos);
-            if (pos < 0) {
-                position.setErrorIndex(~pos);
-                return null;
-            }
-            position.setIndex(pos);
-            return context.toParsed();
-        };
-
-        DateTimeFormatter.prototype._toPrinterParser = function _toPrinterParser(optional) {
-            return this._printerParser.withOptional(optional);
-        };
-
-        DateTimeFormatter.prototype.toString = function toString() {
-            var pattern = this._printerParser.toString();
-            return pattern.indexOf('[') === 0 ? pattern : pattern.substring(1, pattern.length - 1);
-        };
-
-        return DateTimeFormatter;
-    }();
-
-    function _init$7() {
-
-        DateTimeFormatter.ISO_LOCAL_DATE = new DateTimeFormatterBuilder().appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD).appendLiteral('-').appendValue(ChronoField.MONTH_OF_YEAR, 2).appendLiteral('-').appendValue(ChronoField.DAY_OF_MONTH, 2).toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
-
-        DateTimeFormatter.ISO_LOCAL_TIME = new DateTimeFormatterBuilder().appendValue(ChronoField.HOUR_OF_DAY, 2).appendLiteral(':').appendValue(ChronoField.MINUTE_OF_HOUR, 2).optionalStart().appendLiteral(':').appendValue(ChronoField.SECOND_OF_MINUTE, 2).optionalStart().appendFraction(ChronoField.NANO_OF_SECOND, 0, 9, true).toFormatter(ResolverStyle.STRICT);
-
-        DateTimeFormatter.ISO_LOCAL_DATE_TIME = new DateTimeFormatterBuilder().parseCaseInsensitive().append(DateTimeFormatter.ISO_LOCAL_DATE).appendLiteral('T').append(DateTimeFormatter.ISO_LOCAL_TIME).toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
-
-        DateTimeFormatter.ISO_INSTANT = new DateTimeFormatterBuilder().parseCaseInsensitive().appendInstant().toFormatter(ResolverStyle.STRICT);
-
-        DateTimeFormatter.ISO_OFFSET_DATE_TIME = new DateTimeFormatterBuilder().parseCaseInsensitive().append(DateTimeFormatter.ISO_LOCAL_DATE_TIME).appendOffsetId().toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
-
-        DateTimeFormatter.ISO_ZONED_DATE_TIME = new DateTimeFormatterBuilder().append(DateTimeFormatter.ISO_OFFSET_DATE_TIME).optionalStart().appendLiteral('[').parseCaseSensitive().appendZoneId().appendLiteral(']').toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
-
-        DateTimeFormatter.PARSED_EXCESS_DAYS = createTemporalQuery('PARSED_EXCESS_DAYS', function (temporal) {
-            if (temporal instanceof DateTimeBuilder) {
-                return temporal.excessDays;
-            } else {
-                return Period.ZERO;
-            }
-        });
-
-        DateTimeFormatter.PARSED_LEAP_SECOND = createTemporalQuery('PARSED_LEAP_SECOND', function (temporal) {
-            if (temporal instanceof DateTimeBuilder) {
-                return temporal.leapSecond;
-            } else {
-                return false;
-            }
-        });
-    }
-
-    function _classCallCheck$t(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-    function _possibleConstructorReturn$d(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-    function _inherits$d(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-    var ChronoLocalDate = function (_Temporal) {
-        _inherits$d(ChronoLocalDate, _Temporal);
-
-        function ChronoLocalDate() {
-            _classCallCheck$t(this, ChronoLocalDate);
-
-            return _possibleConstructorReturn$d(this, _Temporal.apply(this, arguments));
-        }
-
-        ChronoLocalDate.prototype.isSupported = function isSupported(fieldOrUnit) {
-            if (fieldOrUnit instanceof ChronoField) {
-                return fieldOrUnit.isDateBased();
-            } else if (fieldOrUnit instanceof ChronoUnit) {
-                return fieldOrUnit.isDateBased();
-            }
-            return fieldOrUnit != null && fieldOrUnit.isSupportedBy(this);
-        };
-
-        ChronoLocalDate.prototype.query = function query(_query) {
-            if (_query === TemporalQueries.chronology()) {
-                return this.chronology();
-            } else if (_query === TemporalQueries.precision()) {
-                return ChronoUnit.DAYS;
-            } else if (_query === TemporalQueries.localDate()) {
-                return LocalDate.ofEpochDay(this.toEpochDay());
-            } else if (_query === TemporalQueries.localTime() || _query === TemporalQueries.zone() || _query === TemporalQueries.zoneId() || _query === TemporalQueries.offset()) {
-                return null;
-            }
-            return _Temporal.prototype.query.call(this, _query);
-        };
-
-        ChronoLocalDate.prototype.adjustInto = function adjustInto(temporal) {
-            return temporal.with(ChronoField.EPOCH_DAY, this.toEpochDay());
-        };
-
-        ChronoLocalDate.prototype.format = function format(formatter) {
-            requireNonNull(formatter, 'formatter');
-            requireInstance(formatter, DateTimeFormatter, 'formatter');
-            return formatter.format(this);
-        };
-
-        return ChronoLocalDate;
-    }(Temporal);
-
     function _possibleConstructorReturn$e(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
     function _inherits$e(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-    function _classCallCheck$u(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$s(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var IsoFields = function IsoFields() {
-        _classCallCheck$u(this, IsoFields);
+        _classCallCheck$s(this, IsoFields);
     };
 
     var QUARTER_DAYS = [0, 90, 181, 273, 0, 91, 182, 274];
@@ -3588,7 +3545,7 @@
         _inherits$e(Field, _TemporalField);
 
         function Field() {
-            _classCallCheck$u(this, Field);
+            _classCallCheck$s(this, Field);
 
             return _possibleConstructorReturn$e(this, _TemporalField.apply(this, arguments));
         }
@@ -3678,7 +3635,7 @@
         _inherits$e(DAY_OF_QUARTER_FIELD, _Field);
 
         function DAY_OF_QUARTER_FIELD() {
-            _classCallCheck$u(this, DAY_OF_QUARTER_FIELD);
+            _classCallCheck$s(this, DAY_OF_QUARTER_FIELD);
 
             return _possibleConstructorReturn$e(this, _Field.apply(this, arguments));
         }
@@ -3777,7 +3734,7 @@
         _inherits$e(QUARTER_OF_YEAR_FIELD, _Field2);
 
         function QUARTER_OF_YEAR_FIELD() {
-            _classCallCheck$u(this, QUARTER_OF_YEAR_FIELD);
+            _classCallCheck$s(this, QUARTER_OF_YEAR_FIELD);
 
             return _possibleConstructorReturn$e(this, _Field2.apply(this, arguments));
         }
@@ -3827,7 +3784,7 @@
         _inherits$e(WEEK_OF_WEEK_BASED_YEAR_FIELD, _Field3);
 
         function WEEK_OF_WEEK_BASED_YEAR_FIELD() {
-            _classCallCheck$u(this, WEEK_OF_WEEK_BASED_YEAR_FIELD);
+            _classCallCheck$s(this, WEEK_OF_WEEK_BASED_YEAR_FIELD);
 
             return _possibleConstructorReturn$e(this, _Field3.apply(this, arguments));
         }
@@ -3919,7 +3876,7 @@
         _inherits$e(WEEK_BASED_YEAR_FIELD, _Field4);
 
         function WEEK_BASED_YEAR_FIELD() {
-            _classCallCheck$u(this, WEEK_BASED_YEAR_FIELD);
+            _classCallCheck$s(this, WEEK_BASED_YEAR_FIELD);
 
             return _possibleConstructorReturn$e(this, _Field4.apply(this, arguments));
         }
@@ -3979,7 +3936,7 @@
         _inherits$e(Unit, _TemporalUnit);
 
         function Unit(name, estimatedDuration) {
-            _classCallCheck$u(this, Unit);
+            _classCallCheck$s(this, Unit);
 
             var _this6 = _possibleConstructorReturn$e(this, _TemporalUnit.call(this));
 
@@ -4072,7 +4029,7 @@
         };
     }
 
-    function _classCallCheck$v(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$t(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     /**
      * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -4082,7 +4039,7 @@
 
     var DecimalStyle = function () {
         function DecimalStyle(zeroChar, positiveSignChar, negativeSignChar, decimalPointChar) {
-            _classCallCheck$v(this, DecimalStyle);
+            _classCallCheck$t(this, DecimalStyle);
 
             this._zeroDigit = zeroChar;
             this._zeroDigitCharCode = zeroChar.charCodeAt(0);
@@ -4183,19 +4140,55 @@
 
     DecimalStyle.STANDARD = new DecimalStyle('0', '+', '-', '.');
 
-    function _classCallCheck$w(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$u(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     function _possibleConstructorReturn$f(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
     function _inherits$f(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-    var TextStyle = function (_Enum) {
-        _inherits$f(TextStyle, _Enum);
+    var SignStyle = function (_Enum) {
+        _inherits$f(SignStyle, _Enum);
 
-        function TextStyle() {
-            _classCallCheck$w(this, TextStyle);
+        function SignStyle() {
+            _classCallCheck$u(this, SignStyle);
 
             return _possibleConstructorReturn$f(this, _Enum.apply(this, arguments));
+        }
+
+        SignStyle.prototype.parse = function parse(positive, strict, fixedWidth) {
+            switch (this) {
+                case SignStyle.NORMAL:
+                    return !positive || !strict;
+                case SignStyle.ALWAYS:
+                case SignStyle.EXCEEDS_PAD:
+                    return true;
+                default:
+                    return !strict && !fixedWidth;
+            }
+        };
+
+        return SignStyle;
+    }(Enum);
+
+    SignStyle.NORMAL = new SignStyle('NORMAL');
+    SignStyle.NEVER = new SignStyle('NEVER');
+    SignStyle.ALWAYS = new SignStyle('ALWAYS');
+    SignStyle.EXCEEDS_PAD = new SignStyle('EXCEEDS_PAD');
+    SignStyle.NOT_NEGATIVE = new SignStyle('NOT_NEGATIVE');
+
+    function _classCallCheck$v(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn$g(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits$g(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var TextStyle = function (_Enum) {
+        _inherits$g(TextStyle, _Enum);
+
+        function TextStyle() {
+            _classCallCheck$v(this, TextStyle);
+
+            return _possibleConstructorReturn$g(this, _Enum.apply(this, arguments));
         }
 
         TextStyle.prototype.isStandalone = function isStandalone() {
@@ -4250,11 +4243,11 @@
 
     TextStyle.NARROW_STANDALONE = new TextStyle('NARROW_STANDALONE');
 
-    function _classCallCheck$x(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$w(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var CharLiteralPrinterParser = function () {
         function CharLiteralPrinterParser(literal) {
-            _classCallCheck$x(this, CharLiteralPrinterParser);
+            _classCallCheck$w(this, CharLiteralPrinterParser);
 
             if (literal.length > 1) {
                 throw new IllegalArgumentException('invalid literal, too long: "' + literal + '"');
@@ -4289,7 +4282,7 @@
         return CharLiteralPrinterParser;
     }();
 
-    function _classCallCheck$y(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$x(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     /**
      * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -4299,7 +4292,7 @@
 
     var CompositePrinterParser = function () {
         function CompositePrinterParser(printerParsers, optional) {
-            _classCallCheck$y(this, CompositePrinterParser);
+            _classCallCheck$x(this, CompositePrinterParser);
 
             this._printerParsers = printerParsers;
             this._optional = optional;
@@ -4375,11 +4368,11 @@
         return CompositePrinterParser;
     }();
 
-    function _classCallCheck$z(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$y(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var FractionPrinterParser = function () {
         function FractionPrinterParser(field, minWidth, maxWidth, decimalPoint) {
-            _classCallCheck$z(this, FractionPrinterParser);
+            _classCallCheck$y(this, FractionPrinterParser);
 
             requireNonNull(field, 'field');
             if (field.range().isFixed() === false) {
@@ -4502,11 +4495,11 @@
         return FractionPrinterParser;
     }();
 
-    function _possibleConstructorReturn$g(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$h(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$g(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$h(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-    function _classCallCheck$A(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$z(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var MAX_WIDTH = 15;
 
@@ -4516,7 +4509,7 @@
         function NumberPrinterParser(field, minWidth, maxWidth, signStyle) {
             var subsequentWidth = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
 
-            _classCallCheck$A(this, NumberPrinterParser);
+            _classCallCheck$z(this, NumberPrinterParser);
 
             this._field = field;
             this._minWidth = minWidth;
@@ -4703,12 +4696,12 @@
     }();
 
     var ReducedPrinterParser = function (_NumberPrinterParser) {
-        _inherits$g(ReducedPrinterParser, _NumberPrinterParser);
+        _inherits$h(ReducedPrinterParser, _NumberPrinterParser);
 
         function ReducedPrinterParser(field, width, maxWidth, baseValue, baseDate) {
-            _classCallCheck$A(this, ReducedPrinterParser);
+            _classCallCheck$z(this, ReducedPrinterParser);
 
-            var _this = _possibleConstructorReturn$g(this, _NumberPrinterParser.call(this, field, width, maxWidth, SignStyle.NOT_NEGATIVE));
+            var _this = _possibleConstructorReturn$h(this, _NumberPrinterParser.call(this, field, width, maxWidth, SignStyle.NOT_NEGATIVE));
 
             if (width < 1 || width > 10) {
                 throw new IllegalArgumentException('The width must be from 1 to 10 inclusive but was ' + width);
@@ -4794,13 +4787,13 @@
         return ReducedPrinterParser;
     }(NumberPrinterParser);
 
-    function _classCallCheck$B(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$A(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var PATTERNS = ['+HH', '+HHmm', '+HH:mm', '+HHMM', '+HH:MM', '+HHMMss', '+HH:MM:ss', '+HHMMSS', '+HH:MM:SS'];
 
     var OffsetIdPrinterParser = function () {
         function OffsetIdPrinterParser(noOffsetText, pattern) {
-            _classCallCheck$B(this, OffsetIdPrinterParser);
+            _classCallCheck$A(this, OffsetIdPrinterParser);
 
             requireNonNull(noOffsetText, 'noOffsetText');
             requireNonNull(pattern, 'pattern');
@@ -4919,11 +4912,11 @@
     OffsetIdPrinterParser.INSTANCE_ID = new OffsetIdPrinterParser('Z', '+HH:MM:ss');
     OffsetIdPrinterParser.PATTERNS = PATTERNS;
 
-    function _classCallCheck$C(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$B(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var PadPrinterParserDecorator = function () {
         function PadPrinterParserDecorator(printerParser, padWidth, padChar) {
-            _classCallCheck$C(this, PadPrinterParserDecorator);
+            _classCallCheck$B(this, PadPrinterParserDecorator);
 
             this._printerParser = printerParser;
             this._padWidth = padWidth;
@@ -4980,19 +4973,19 @@
         return PadPrinterParserDecorator;
     }();
 
-    function _classCallCheck$D(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$C(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function _possibleConstructorReturn$h(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$i(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$h(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$i(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var SettingsParser = function (_Enum) {
-        _inherits$h(SettingsParser, _Enum);
+        _inherits$i(SettingsParser, _Enum);
 
         function SettingsParser() {
-            _classCallCheck$D(this, SettingsParser);
+            _classCallCheck$C(this, SettingsParser);
 
-            return _possibleConstructorReturn$h(this, _Enum.apply(this, arguments));
+            return _possibleConstructorReturn$i(this, _Enum.apply(this, arguments));
         }
 
         SettingsParser.prototype.print = function print() {
@@ -5034,11 +5027,11 @@
     SettingsParser.STRICT = new SettingsParser('STRICT');
     SettingsParser.LENIENT = new SettingsParser('LENIENT');
 
-    function _classCallCheck$E(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$D(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var StringLiteralPrinterParser = function () {
         function StringLiteralPrinterParser(literal) {
-            _classCallCheck$E(this, StringLiteralPrinterParser);
+            _classCallCheck$D(this, StringLiteralPrinterParser);
 
             this._literal = literal;
         }
@@ -5066,11 +5059,11 @@
         return StringLiteralPrinterParser;
     }();
 
-    function _classCallCheck$F(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$E(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var ZoneRulesProvider = function () {
       function ZoneRulesProvider() {
-        _classCallCheck$F(this, ZoneRulesProvider);
+        _classCallCheck$E(this, ZoneRulesProvider);
       }
 
       ZoneRulesProvider.getRules = function getRules(zoneId) {
@@ -5084,14 +5077,14 @@
       return ZoneRulesProvider;
     }();
 
-    function _classCallCheck$G(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$F(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function _possibleConstructorReturn$i(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    function _possibleConstructorReturn$j(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    function _inherits$i(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    function _inherits$j(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var ZoneRegion = function (_ZoneId) {
-      _inherits$i(ZoneRegion, _ZoneId);
+      _inherits$j(ZoneRegion, _ZoneId);
 
       ZoneRegion.ofId = function ofId(zoneId) {
         var rules = ZoneRulesProvider.getRules(zoneId);
@@ -5099,9 +5092,9 @@
       };
 
       function ZoneRegion(id, rules) {
-        _classCallCheck$G(this, ZoneRegion);
+        _classCallCheck$F(this, ZoneRegion);
 
-        var _this = _possibleConstructorReturn$i(this, _ZoneId.call(this));
+        var _this = _possibleConstructorReturn$j(this, _ZoneId.call(this));
 
         _this._id = id;
         _this._rules = rules;
@@ -5119,11 +5112,11 @@
       return ZoneRegion;
     }(ZoneId);
 
-    function _classCallCheck$H(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$G(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var ZoneIdPrinterParser = function () {
         function ZoneIdPrinterParser(query, description) {
-            _classCallCheck$H(this, ZoneIdPrinterParser);
+            _classCallCheck$G(this, ZoneIdPrinterParser);
 
             this.query = query;
             this.description = description;
@@ -5243,7 +5236,7 @@
         };
 
         function ZoneIdTree(size, treeMap) {
-            _classCallCheck$H(this, ZoneIdTree);
+            _classCallCheck$G(this, ZoneIdTree);
 
             this.size = size;
             this.treeMap = treeMap;
@@ -5257,7 +5250,7 @@
             var length = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
             var isLeaf = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
-            _classCallCheck$H(this, ZoneIdTreeMap);
+            _classCallCheck$G(this, ZoneIdTreeMap);
 
             this.length = length;
             this.isLeaf = isLeaf;
@@ -5288,13 +5281,13 @@
 
     var zoneIdTree = new ZoneIdTree([]);
 
-    function _classCallCheck$I(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$H(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
     var MAX_WIDTH$1 = 15;
 
     var DateTimeFormatterBuilder = function () {
         function DateTimeFormatterBuilder() {
-            _classCallCheck$I(this, DateTimeFormatterBuilder);
+            _classCallCheck$H(this, DateTimeFormatterBuilder);
 
             this._active = this;
 
@@ -5911,7 +5904,7 @@
 
     var InstantPrinterParser = function () {
         function InstantPrinterParser(fractionalDigits) {
-            _classCallCheck$I(this, InstantPrinterParser);
+            _classCallCheck$H(this, InstantPrinterParser);
 
             this.fractionalDigits = fractionalDigits;
         }
@@ -6049,259 +6042,264 @@
         DateTimeFormatterBuilder.ZoneIdPrinterParser = ZoneIdPrinterParser;
     }
 
-    function _classCallCheck$J(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+    function _classCallCheck$I(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    function _possibleConstructorReturn$j(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    /*
+     * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+     * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+     */
 
-    function _inherits$j(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+    var StringBuilder = function () {
+        function StringBuilder() {
+            _classCallCheck$I(this, StringBuilder);
 
-    var Month = function (_Temporal) {
-        _inherits$j(Month, _Temporal);
-
-        function Month(value) {
-            _classCallCheck$J(this, Month);
-
-            var _this = _possibleConstructorReturn$j(this, _Temporal.call(this));
-
-            _this._value = MathUtil.safeToInt(value);
-            return _this;
+            this._str = '';
         }
 
-        Month.prototype.value = function value() {
-            return this._value;
+        StringBuilder.prototype.append = function append(str) {
+            this._str += str;
+            return this;
         };
 
-        Month.prototype.getDisplayName = function getDisplayName(style, locale) {
-            throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
-
-            return new DateTimeFormatterBuilder().appendText(ChronoField.MONTH_OF_YEAR, style).toFormatter(locale).format(this);
+        StringBuilder.prototype.appendChar = function appendChar(str) {
+            this._str += str[0];
+            return this;
         };
 
-        Month.prototype.isSupported = function isSupported(field) {
-            if (null === field) {
-                return false;
+        StringBuilder.prototype.insert = function insert(offset, str) {
+            this._str = this._str.slice(0, offset) + str + this._str.slice(offset);
+            return this;
+        };
+
+        StringBuilder.prototype.replace = function replace(start, end, str) {
+            this._str = this._str.slice(0, start) + str + this._str.slice(end);
+            return this;
+        };
+
+        StringBuilder.prototype.length = function length() {
+            return this._str.length;
+        };
+
+        StringBuilder.prototype.setLength = function setLength(length) {
+            this._str = this._str.slice(0, length);
+            return this;
+        };
+
+        StringBuilder.prototype.toString = function toString() {
+            return this._str;
+        };
+
+        return StringBuilder;
+    }();
+
+    function _classCallCheck$J(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    var DateTimeFormatter = function () {
+        DateTimeFormatter.parsedExcessDays = function parsedExcessDays() {
+            return DateTimeFormatter.PARSED_EXCESS_DAYS;
+        };
+
+        DateTimeFormatter.parsedLeapSecond = function parsedLeapSecond() {
+            return DateTimeFormatter.PARSED_LEAP_SECOND;
+        };
+
+        DateTimeFormatter.ofPattern = function ofPattern(pattern) {
+            return new DateTimeFormatterBuilder().appendPattern(pattern).toFormatter();
+        };
+
+        function DateTimeFormatter(printerParser, locale, decimalStyle, resolverStyle, resolverFields) {
+            var chrono = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : IsoChronology.INSTANCE;
+            var zone = arguments[6];
+
+            _classCallCheck$J(this, DateTimeFormatter);
+
+            assert(printerParser != null);
+            assert(decimalStyle != null);
+            assert(resolverStyle != null);
+
+            this._printerParser = printerParser;
+
+            this._locale = locale;
+
+            this._decimalStyle = decimalStyle;
+
+            this._resolverStyle = resolverStyle;
+
+            this._resolverFields = resolverFields;
+
+            this._chrono = chrono;
+
+            this._zone = zone;
+        }
+
+        DateTimeFormatter.prototype.locale = function locale() {
+            return this._locale;
+        };
+
+        DateTimeFormatter.prototype.decimalStyle = function decimalStyle() {
+            return this._decimalStyle;
+        };
+
+        DateTimeFormatter.prototype.chronology = function chronology() {
+            return this._chrono;
+        };
+
+        DateTimeFormatter.prototype.withChronology = function withChronology(chrono) {
+            if (this._chrono != null && this._chrono.equals(chrono)) {
+                return this;
             }
-            if (field instanceof ChronoField) {
-                return field === ChronoField.MONTH_OF_YEAR;
+            return new DateTimeFormatter(this._printerParser, this._locale, this._decimalStyle, this._resolverStyle, this._resolverFields, chrono, this._zone);
+        };
+
+        DateTimeFormatter.prototype.withLocale = function withLocale() {
+            return this;
+        };
+
+        DateTimeFormatter.prototype.withResolverStyle = function withResolverStyle(resolverStyle) {
+            requireNonNull(resolverStyle, 'resolverStyle');
+            if (resolverStyle.equals(this._resolverStyle)) {
+                return this;
             }
-            return field != null && field.isSupportedBy(this);
+            return new DateTimeFormatter(this._printerParser, this._locale, this._decimalStyle, resolverStyle, this._resolverFields, this._chrono, this._zone);
         };
 
-        Month.prototype.get = function get(field) {
-            if (field === ChronoField.MONTH_OF_YEAR) {
-                return this.value();
-            }
-            return this.range(field).checkValidIntValue(this.getLong(field), field);
+        DateTimeFormatter.prototype.format = function format(temporal) {
+            var buf = new StringBuilder(32);
+            this._formatTo(temporal, buf);
+            return buf.toString();
         };
 
-        Month.prototype.getLong = function getLong(field) {
-            if (field === ChronoField.MONTH_OF_YEAR) {
-                return this.value();
-            } else if (field instanceof ChronoField) {
-                throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
-            }
-            return field.getFrom(this);
+        DateTimeFormatter.prototype._formatTo = function _formatTo(temporal, appendable) {
+            requireNonNull(temporal, 'temporal');
+            requireNonNull(appendable, 'appendable');
+            var context = new DateTimePrintContext(temporal, this);
+            this._printerParser.print(context, appendable);
         };
 
-        Month.prototype.plus = function plus(months) {
-            var amount = MathUtil.intMod(months, 12) + 12;
-            var newMonthVal = MathUtil.intMod(this.value() + amount, 12);
-
-            newMonthVal = newMonthVal === 0 ? 12 : newMonthVal;
-            return Month.of(newMonthVal);
-        };
-
-        Month.prototype.minus = function minus(months) {
-            return this.plus(-1 * MathUtil.intMod(months, 12));
-        };
-
-        Month.prototype.length = function length(leapYear) {
-            switch (this) {
-                case Month.FEBRUARY:
-                    return leapYear ? 29 : 28;
-                case Month.APRIL:
-                case Month.JUNE:
-                case Month.SEPTEMBER:
-                case Month.NOVEMBER:
-                    return 30;
-                default:
-                    return 31;
-            }
-        };
-
-        Month.prototype.minLength = function minLength() {
-            switch (this) {
-                case Month.FEBRUARY:
-                    return 28;
-                case Month.APRIL:
-                case Month.JUNE:
-                case Month.SEPTEMBER:
-                case Month.NOVEMBER:
-                    return 30;
-                default:
-                    return 31;
-            }
-        };
-
-        Month.prototype.maxLength = function maxLength() {
-            switch (this) {
-                case Month.FEBRUARY:
-                    return 29;
-                case Month.APRIL:
-                case Month.JUNE:
-                case Month.SEPTEMBER:
-                case Month.NOVEMBER:
-                    return 30;
-                default:
-                    return 31;
-            }
-        };
-
-        Month.prototype.firstDayOfYear = function firstDayOfYear(leapYear) {
-            var leap = leapYear ? 1 : 0;
-            switch (this) {
-                case Month.JANUARY:
-                    return 1;
-                case Month.FEBRUARY:
-                    return 32;
-                case Month.MARCH:
-                    return 60 + leap;
-                case Month.APRIL:
-                    return 91 + leap;
-                case Month.MAY:
-                    return 121 + leap;
-                case Month.JUNE:
-                    return 152 + leap;
-                case Month.JULY:
-                    return 182 + leap;
-                case Month.AUGUST:
-                    return 213 + leap;
-                case Month.SEPTEMBER:
-                    return 244 + leap;
-                case Month.OCTOBER:
-                    return 274 + leap;
-                case Month.NOVEMBER:
-                    return 305 + leap;
-                case Month.DECEMBER:
-                default:
-                    return 335 + leap;
-            }
-        };
-
-        Month.prototype.firstMonthOfQuarter = function firstMonthOfQuarter() {
-            switch (this) {
-                case Month.JANUARY:
-                case Month.FEBRUARY:
-                case Month.MARCH:
-                    return Month.JANUARY;
-                case Month.APRIL:
-                case Month.MAY:
-                case Month.JUNE:
-                    return Month.APRIL;
-                case Month.JULY:
-                case Month.AUGUST:
-                case Month.SEPTEMBER:
-                    return Month.JULY;
-                case Month.OCTOBER:
-                case Month.NOVEMBER:
-                case Month.DECEMBER:
-                default:
-                    return Month.OCTOBER;
+        DateTimeFormatter.prototype.parse = function parse(text, type) {
+            if (arguments.length === 1) {
+                return this.parse1(text);
+            } else {
+                return this.parse2(text, type);
             }
         };
 
-        Month.prototype.query = function query(_query) {
-            assert(_query != null, 'query() parameter must not be null', DateTimeException);
-            if (_query === TemporalQueries.chronology()) {
-                return IsoChronology.INSTANCE;
-            } else if (_query === TemporalQueries.precision()) {
-                return ChronoUnit.MONTHS;
-            }
-            return _Temporal.prototype.query.call(this, _query);
-        };
-
-        Month.prototype.toString = function toString() {
-            switch (this) {
-                case Month.JANUARY:
-                    return 'JANUARY';
-                case Month.FEBRUARY:
-                    return 'FEBRUARY';
-                case Month.MARCH:
-                    return 'MARCH';
-                case Month.APRIL:
-                    return 'APRIL';
-                case Month.MAY:
-                    return 'MAY';
-                case Month.JUNE:
-                    return 'JUNE';
-                case Month.JULY:
-                    return 'JULY';
-                case Month.AUGUST:
-                    return 'AUGUST';
-                case Month.SEPTEMBER:
-                    return 'SEPTEMBER';
-                case Month.OCTOBER:
-                    return 'OCTOBER';
-                case Month.NOVEMBER:
-                    return 'NOVEMBER';
-                case Month.DECEMBER:
-                    return 'DECEMBER';
-                default:
-                    return 'unknown Month, value: ' + this.value();
-            }
-        };
-
-        Month.prototype.toJSON = function toJSON() {
-            return this.toString();
-        };
-
-        Month.prototype.adjustInto = function adjustInto(temporal) {
-            return temporal.with(ChronoField.MONTH_OF_YEAR, this.value());
-        };
-
-        Month.values = function values() {
-            return MONTHS.slice();
-        };
-
-        Month.of = function of(month) {
-            if (month < 1 || month > 12) {
-                assert(false, 'Invalid value for MonthOfYear: ' + month, DateTimeException);
-            }
-            return MONTHS[month - 1];
-        };
-
-        Month.from = function from(temporal) {
-            if (temporal instanceof Month) {
-                return temporal;
-            }
+        DateTimeFormatter.prototype.parse1 = function parse1(text) {
+            requireNonNull(text, 'text');
             try {
-                return Month.of(temporal.get(ChronoField.MONTH_OF_YEAR));
+                return this._parseToBuilder(text, null).resolve(this._resolverStyle, this._resolverFields);
             } catch (ex) {
-                throw new DateTimeException('Unable to obtain Month from TemporalAccessor: ' + temporal + ' of type ' + (temporal && temporal.constructor != null ? temporal.constructor.name : ''), ex);
+                if (ex instanceof DateTimeParseException) {
+                    throw ex;
+                } else {
+                    throw this._createError(text, ex);
+                }
             }
         };
 
-        return Month;
-    }(Temporal);
+        DateTimeFormatter.prototype.parse2 = function parse2(text, type) {
+            requireNonNull(text, 'text');
+            requireNonNull(type, 'type');
+            try {
+                var builder = this._parseToBuilder(text, null).resolve(this._resolverStyle, this._resolverFields);
+                return builder.build(type);
+            } catch (ex) {
+                if (ex instanceof DateTimeParseException) {
+                    throw ex;
+                } else {
+                    throw this._createError(text, ex);
+                }
+            }
+        };
 
+        DateTimeFormatter.prototype._createError = function _createError(text, ex) {
+            var abbr = '';
+            if (text.length > 64) {
+                abbr = text.substring(0, 64) + '...';
+            } else {
+                abbr = text;
+            }
+            return new DateTimeParseException('Text \'' + abbr + '\' could not be parsed: ' + ex.message, text, 0, ex);
+        };
 
-    var MONTHS = void 0;
+        DateTimeFormatter.prototype._parseToBuilder = function _parseToBuilder(text, position) {
+            var pos = position != null ? position : new ParsePosition(0);
+            var result = this._parseUnresolved0(text, pos);
+            if (result == null || pos.getErrorIndex() >= 0 || position == null && pos.getIndex() < text.length) {
+                var abbr = '';
+                if (text.length > 64) {
+                    abbr = text.substr(0, 64).toString() + '...';
+                } else {
+                    abbr = text;
+                }
+                if (pos.getErrorIndex() >= 0) {
+                    throw new DateTimeParseException('Text \'' + abbr + '\' could not be parsed at index ' + pos.getErrorIndex(), text, pos.getErrorIndex());
+                } else {
+                    throw new DateTimeParseException('Text \'' + abbr + '\' could not be parsed, unparsed text found at index ' + pos.getIndex(), text, pos.getIndex());
+                }
+            }
+            return result.toBuilder();
+        };
+
+        DateTimeFormatter.prototype.parseUnresolved = function parseUnresolved(text, position) {
+            return this._parseUnresolved0(text, position);
+        };
+
+        DateTimeFormatter.prototype._parseUnresolved0 = function _parseUnresolved0(text, position) {
+            assert(text != null, 'text', NullPointerException);
+            assert(position != null, 'position', NullPointerException);
+            var context = new DateTimeParseContext(this);
+            var pos = position.getIndex();
+            pos = this._printerParser.parse(context, text, pos);
+            if (pos < 0) {
+                position.setErrorIndex(~pos);
+                return null;
+            }
+            position.setIndex(pos);
+            return context.toParsed();
+        };
+
+        DateTimeFormatter.prototype._toPrinterParser = function _toPrinterParser(optional) {
+            return this._printerParser.withOptional(optional);
+        };
+
+        DateTimeFormatter.prototype.toString = function toString() {
+            var pattern = this._printerParser.toString();
+            return pattern.indexOf('[') === 0 ? pattern : pattern.substring(1, pattern.length - 1);
+        };
+
+        return DateTimeFormatter;
+    }();
 
     function _init$a() {
-        Month.JANUARY = new Month(1);
-        Month.FEBRUARY = new Month(2);
-        Month.MARCH = new Month(3);
-        Month.APRIL = new Month(4);
-        Month.MAY = new Month(5);
-        Month.JUNE = new Month(6);
-        Month.JULY = new Month(7);
-        Month.AUGUST = new Month(8);
-        Month.SEPTEMBER = new Month(9);
-        Month.OCTOBER = new Month(10);
-        Month.NOVEMBER = new Month(11);
-        Month.DECEMBER = new Month(12);
 
-        MONTHS = [Month.JANUARY, Month.FEBRUARY, Month.MARCH, Month.APRIL, Month.MAY, Month.JUNE, Month.JULY, Month.AUGUST, Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER];
+        DateTimeFormatter.ISO_LOCAL_DATE = new DateTimeFormatterBuilder().appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD).appendLiteral('-').appendValue(ChronoField.MONTH_OF_YEAR, 2).appendLiteral('-').appendValue(ChronoField.DAY_OF_MONTH, 2).toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+
+        DateTimeFormatter.ISO_LOCAL_TIME = new DateTimeFormatterBuilder().appendValue(ChronoField.HOUR_OF_DAY, 2).appendLiteral(':').appendValue(ChronoField.MINUTE_OF_HOUR, 2).optionalStart().appendLiteral(':').appendValue(ChronoField.SECOND_OF_MINUTE, 2).optionalStart().appendFraction(ChronoField.NANO_OF_SECOND, 0, 9, true).toFormatter(ResolverStyle.STRICT);
+
+        DateTimeFormatter.ISO_LOCAL_DATE_TIME = new DateTimeFormatterBuilder().parseCaseInsensitive().append(DateTimeFormatter.ISO_LOCAL_DATE).appendLiteral('T').append(DateTimeFormatter.ISO_LOCAL_TIME).toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+
+        DateTimeFormatter.ISO_INSTANT = new DateTimeFormatterBuilder().parseCaseInsensitive().appendInstant().toFormatter(ResolverStyle.STRICT);
+
+        DateTimeFormatter.ISO_OFFSET_DATE_TIME = new DateTimeFormatterBuilder().parseCaseInsensitive().append(DateTimeFormatter.ISO_LOCAL_DATE_TIME).appendOffsetId().toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+
+        DateTimeFormatter.ISO_ZONED_DATE_TIME = new DateTimeFormatterBuilder().append(DateTimeFormatter.ISO_OFFSET_DATE_TIME).optionalStart().appendLiteral('[').parseCaseSensitive().appendZoneId().appendLiteral(']').toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+
+        DateTimeFormatter.PARSED_EXCESS_DAYS = createTemporalQuery('PARSED_EXCESS_DAYS', function (temporal) {
+            if (temporal instanceof DateTimeBuilder) {
+                return temporal.excessDays;
+            } else {
+                return Period.ZERO;
+            }
+        });
+
+        DateTimeFormatter.PARSED_LEAP_SECOND = createTemporalQuery('PARSED_LEAP_SECOND', function (temporal) {
+            if (temporal instanceof DateTimeBuilder) {
+                return temporal.leapSecond;
+            } else {
+                return false;
+            }
+        });
     }
 
     function _classCallCheck$K(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -7957,7 +7955,7 @@
         ZonedDateTime.parse = function parse(text) {
             var formatter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : DateTimeFormatter.ISO_ZONED_DATE_TIME;
 
-            requireNonNull(formatter, 'fromatter');
+            requireNonNull(formatter, 'formatter');
             return formatter.parse(text, ZonedDateTime.FROM);
         };
 
@@ -10087,12 +10085,12 @@
             return new LocalTime(newHour, newMinute, this._second, this._nano);
         };
 
-        LocalTime.prototype.plusSeconds = function plusSeconds(secondstoAdd) {
-            if (secondstoAdd === 0) {
+        LocalTime.prototype.plusSeconds = function plusSeconds(secondsToAdd) {
+            if (secondsToAdd === 0) {
                 return this;
             }
             var sofd = this._hour * LocalTime.SECONDS_PER_HOUR + this._minute * LocalTime.SECONDS_PER_MINUTE + this._second;
-            var newSofd = MathUtil.intMod(MathUtil.intMod(secondstoAdd, LocalTime.SECONDS_PER_DAY) + sofd + LocalTime.SECONDS_PER_DAY, LocalTime.SECONDS_PER_DAY);
+            var newSofd = MathUtil.intMod(MathUtil.intMod(secondsToAdd, LocalTime.SECONDS_PER_DAY) + sofd + LocalTime.SECONDS_PER_DAY, LocalTime.SECONDS_PER_DAY);
             if (sofd === newSofd) {
                 return this;
             }
@@ -11322,15 +11320,15 @@
         _init$g();
         _init$h();
         _init$d();
-        _init$a();
+        _init$5();
         _init$c();
         _init$b();
         _init$6();
-        _init$5();
+        _init$7();
         _init$f();
         _init$l();
         _init$e();
-        _init$7();
+        _init$a();
         _init$9();
     }
 
@@ -11474,7 +11472,7 @@
         StringBuilder: StringBuilder
     };
 
-    var jsJiodaExports = {
+    var jsJodaExports = {
         _: _,
         convert: convert,
         nativeJs: nativeJs,
@@ -11530,8 +11528,8 @@
         TextStyle: TextStyle
     };
 
-    var use = bindUse(jsJiodaExports);
-    jsJiodaExports.use = use;
+    var use = bindUse(jsJodaExports);
+    jsJodaExports.use = use;
 
     exports._ = _;
     exports.use = use;
