@@ -655,7 +655,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * Otherwise {@link Duration.plusSecondsNanos} is executed.
      *
      * @param {!(Duration|number)} durationOrNumber
-     * @param {!TemporaloUnit|number} unitOrNumber
+     * @param {!TemporalUnit|number} unitOrNumber
      * @returns {Duration}
      */
     plus(durationOrNumber, unitOrNumber) {
@@ -1227,7 +1227,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      *
      * The format of the returned string will be {@link PTnHnMnS}, where n is
      * the relevant hours, minutes or seconds part of the duration.
-     * Any fractional seconds are placed after a decimal povar i the seconds section.
+     * Any fractional seconds are placed after a decimal point in the seconds section.
      * If a section has a zero value, it is omitted.
      * The hours, minutes and seconds will all have the same sign.
      *

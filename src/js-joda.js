@@ -87,7 +87,7 @@ const _ = {
     StringBuilder,
 };
 
-const jsJiodaExports = {
+const jsJodaExports = {
     _,
     convert,
     nativeJs,
@@ -143,8 +143,8 @@ const jsJiodaExports = {
     TextStyle,
 };
 
-const use = bindUse(jsJiodaExports);
-jsJiodaExports.use = use;
+const use = bindUse(jsJodaExports);
+jsJodaExports.use = use;
 
 export {
     _,

@@ -1,7 +1,7 @@
 {
   "type": "File",
   "start": 0,
-  "end": 4520,
+  "end": 4413,
   "loc": {
     "start": {
       "line": 1,
@@ -15,7 +15,7 @@
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 4520,
+    "end": 4413,
     "loc": {
       "start": {
         "line": 1,
@@ -30,8 +30,8 @@
     "body": [
       {
         "type": "ImportDeclaration",
-        "start": 235,
-        "end": 280,
+        "start": 229,
+        "end": 274,
         "loc": {
           "start": {
             "line": 7,
@@ -45,8 +45,8 @@
         "specifiers": [
           {
             "type": "ImportSpecifier",
-            "start": 243,
-            "end": 261,
+            "start": 237,
+            "end": 255,
             "loc": {
               "start": {
                 "line": 7,
@@ -59,8 +59,8 @@
             },
             "imported": {
               "type": "Identifier",
-              "start": 243,
-              "end": 261,
+              "start": 237,
+              "end": 255,
               "loc": {
                 "start": {
                   "line": 7,
@@ -77,8 +77,8 @@
             },
             "local": {
               "type": "Identifier",
-              "start": 243,
-              "end": 261,
+              "start": 237,
+              "end": 255,
               "loc": {
                 "start": {
                   "line": 7,
@@ -97,8 +97,8 @@
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 268,
-          "end": 279,
+          "start": 262,
+          "end": 273,
           "loc": {
             "start": {
               "line": 7,
@@ -118,9 +118,9 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\r\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\r\n ",
+            "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
             "start": 0,
-            "end": 231,
+            "end": 227,
             "loc": {
               "start": {
                 "line": 1,
@@ -136,8 +136,8 @@
       },
       {
         "type": "ImportDeclaration",
-        "start": 282,
-        "end": 311,
+        "start": 275,
+        "end": 304,
         "loc": {
           "start": {
             "line": 8,
@@ -151,8 +151,8 @@
         "specifiers": [
           {
             "type": "ImportSpecifier",
-            "start": 290,
-            "end": 294,
+            "start": 283,
+            "end": 287,
             "loc": {
               "start": {
                 "line": 8,
@@ -165,8 +165,8 @@
             },
             "imported": {
               "type": "Identifier",
-              "start": 290,
-              "end": 294,
+              "start": 283,
+              "end": 287,
               "loc": {
                 "start": {
                   "line": 8,
@@ -182,8 +182,8 @@
             },
             "local": {
               "type": "Identifier",
-              "start": 290,
-              "end": 294,
+              "start": 283,
+              "end": 287,
               "loc": {
                 "start": {
                   "line": 8,
@@ -201,8 +201,8 @@
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 301,
-          "end": 310,
+          "start": 294,
+          "end": 303,
           "loc": {
             "start": {
               "line": 8,
@@ -222,9 +222,9 @@
         "trailingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Strategy for querying a temporal object.\r\n *\r\n * Queries are a key tool for extracting information from temporal objects.\r\n * They exist to externalize the process of querying, permitting different\r\n * approaches, as per the strategy design pattern.\r\n * Examples might be a query that checks if the date is the day before February 29th\r\n * in a leap year, or calculates the number of days to your next birthday.\r\n *\r\n * The {@link TemporalField} interface provides another mechanism for querying\r\n * temporal objects. That interface is limited to returning a `long`.\r\n * By contrast, queries can return any type.\r\n *\r\n * There are two equivalent ways of using a {@link TemporalQuery}.\r\n * The first is to invoke the method on this interface directly.\r\n * The second is to use {@link TemporalAccessor#query}:\r\n * <pre>\r\n *   // these two lines are equivalent, but the second approach is recommended\r\n *   temporal = thisQuery.queryFrom(temporal);\r\n *   temporal = temporal.query(thisQuery);\r\n * </pre>\r\n * It is recommended to use the second approach, {@link query},\r\n * as it is a lot clearer to read in code.\r\n *\r\n * The most common implementations are method references, such as\r\n * {@link LocalDate::from} and {@link ZoneId::from}.\r\n * Further implementations are on {@link TemporalQueries}.\r\n * Queries may also be defined by applications.\r\n *\r\n * ### Specification for implementors\r\n *\r\n * This interface places no restrictions on the mutability of implementations,\r\n * however immutability is strongly recommended.\r\n *\r\n * @interface\r\n ",
-            "start": 317,
-            "end": 1869,
+            "value": "*\n * Strategy for querying a temporal object.\n *\n * Queries are a key tool for extracting information from temporal objects.\n * They exist to externalize the process of querying, permitting different\n * approaches, as per the strategy design pattern.\n * Examples might be a query that checks if the date is the day before February 29th\n * in a leap year, or calculates the number of days to your next birthday.\n *\n * The {@link TemporalField} interface provides another mechanism for querying\n * temporal objects. That interface is limited to returning a `long`.\n * By contrast, queries can return any type.\n *\n * There are two equivalent ways of using a {@link TemporalQuery}.\n * The first is to invoke the method on this interface directly.\n * The second is to use {@link TemporalAccessor#query}:\n * <pre>\n *   // these two lines are equivalent, but the second approach is recommended\n *   temporal = thisQuery.queryFrom(temporal);\n *   temporal = temporal.query(thisQuery);\n * </pre>\n * It is recommended to use the second approach, {@link query},\n * as it is a lot clearer to read in code.\n *\n * The most common implementations are method references, such as\n * {@link LocalDate::from} and {@link ZoneId::from}.\n * Further implementations are on {@link TemporalQueries}.\n * Queries may also be defined by applications.\n *\n * ### Specification for implementors\n *\n * This interface places no restrictions on the mutability of implementations,\n * however immutability is strongly recommended.\n *\n * @interface\n ",
+            "start": 307,
+            "end": 1824,
             "loc": {
               "start": {
                 "line": 11,
@@ -240,8 +240,8 @@
       },
       {
         "type": "ExportNamedDeclaration",
-        "start": 1871,
-        "end": 3990,
+        "start": 1825,
+        "end": 3899,
         "loc": {
           "start": {
             "line": 47,
@@ -256,8 +256,8 @@
         "source": null,
         "declaration": {
           "type": "ClassDeclaration",
-          "start": 1878,
-          "end": 3990,
+          "start": 1832,
+          "end": 3899,
           "loc": {
             "start": {
               "line": 47,
@@ -270,8 +270,8 @@
           },
           "id": {
             "type": "Identifier",
-            "start": 1884,
-            "end": 1897,
+            "start": 1838,
+            "end": 1851,
             "loc": {
               "start": {
                 "line": 47,
@@ -288,8 +288,8 @@
           },
           "superClass": {
             "type": "Identifier",
-            "start": 1907,
-            "end": 1911,
+            "start": 1861,
+            "end": 1865,
             "loc": {
               "start": {
                 "line": 47,
@@ -305,8 +305,8 @@
           },
           "body": {
             "type": "ClassBody",
-            "start": 1912,
-            "end": 3990,
+            "start": 1866,
+            "end": 3899,
             "loc": {
               "start": {
                 "line": 47,
@@ -320,8 +320,8 @@
             "body": [
               {
                 "type": "ClassMethod",
-                "start": 3916,
-                "end": 3985,
+                "start": 3829,
+                "end": 3896,
                 "loc": {
                   "start": {
                     "line": 88,
@@ -336,8 +336,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 3916,
-                  "end": 3925,
+                  "start": 3829,
+                  "end": 3838,
                   "loc": {
                     "start": {
                       "line": 88,
@@ -360,8 +360,8 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 3926,
-                    "end": 3934,
+                    "start": 3839,
+                    "end": 3847,
                     "loc": {
                       "start": {
                         "line": 88,
@@ -378,8 +378,8 @@
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 3935,
-                  "end": 3985,
+                  "start": 3848,
+                  "end": 3896,
                   "loc": {
                     "start": {
                       "line": 88,
@@ -393,8 +393,8 @@
                   "body": [
                     {
                       "type": "ExpressionStatement",
-                      "start": 3946,
-                      "end": 3978,
+                      "start": 3858,
+                      "end": 3890,
                       "loc": {
                         "start": {
                           "line": 89,
@@ -407,8 +407,8 @@
                       },
                       "expression": {
                         "type": "CallExpression",
-                        "start": 3946,
-                        "end": 3977,
+                        "start": 3858,
+                        "end": 3889,
                         "loc": {
                           "start": {
                             "line": 89,
@@ -421,8 +421,8 @@
                         },
                         "callee": {
                           "type": "Identifier",
-                          "start": 3946,
-                          "end": 3964,
+                          "start": 3858,
+                          "end": 3876,
                           "loc": {
                             "start": {
                               "line": 89,
@@ -439,8 +439,8 @@
                         "arguments": [
                           {
                             "type": "StringLiteral",
-                            "start": 3965,
-                            "end": 3976,
+                            "start": 3877,
+                            "end": 3888,
                             "loc": {
                               "start": {
                                 "line": 89,
@@ -466,9 +466,9 @@
                 "leadingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n     * Queries the specified temporal object.\r\n     *\r\n     * This queries the specified temporal object to return an object using the logic\r\n     * encapsulated in the implementing class.\r\n     * Examples might be a query that checks if the date is the day before February 29th\r\n     * in a leap year, or calculates the number of days to your next birthday.\r\n     *\r\n     * There are two equivalent ways of using this method.\r\n     * The first is to invoke this method directly.\r\n     * The second is to use {@link TemporalAccessor#query}:\r\n     * <pre>\r\n     *   // these two lines are equivalent, but the second approach is recommended\r\n     *   temporal = thisQuery.queryFrom(temporal);\r\n     *   temporal = temporal.query(thisQuery);\r\n     * </pre>\r\n     * It is recommended to use the second approach, {@link query},\r\n     * as it is a lot clearer to read in code.\r\n     *\r\n     * ### Specification for implementors\r\n     *\r\n     * The implementation must take the input object and query it.\r\n     * The implementation defines the logic of the query and is responsible for\r\n     * documenting that logic.\r\n     * It may use any method on {@link TemporalAccessor} to determine the result.\r\n     * The input object must not be altered.\r\n     *\r\n     * The input temporal object may be in a calendar system other than ISO.\r\n     * Implementations may choose to document compatibility with other calendar systems,\r\n     * or reject non-ISO temporal objects by querying the chronology (see {@link TemporalQueries#chronology}).\r\n     *\r\n     * This method may be called from multiple threads in parallel.\r\n     * It must be thread-safe when invoked.\r\n     *\r\n     * @param {TemporalAccessor} temporal  the temporal object to query, not null\r\n     * @return the queried value, may return null to indicate not found\r\n     * @throws DateTimeException if unable to query\r\n     * @throws ArithmeticException if numeric overflow occurs\r\n     ",
-                    "start": 1919,
-                    "end": 3862,
+                    "value": "*\n     * Queries the specified temporal object.\n     *\n     * This queries the specified temporal object to return an object using the logic\n     * encapsulated in the implementing class.\n     * Examples might be a query that checks if the date is the day before February 29th\n     * in a leap year, or calculates the number of days to your next birthday.\n     *\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link TemporalAccessor#query}:\n     * <pre>\n     *   // these two lines are equivalent, but the second approach is recommended\n     *   temporal = thisQuery.queryFrom(temporal);\n     *   temporal = temporal.query(thisQuery);\n     * </pre>\n     * It is recommended to use the second approach, {@link query},\n     * as it is a lot clearer to read in code.\n     *\n     * ### Specification for implementors\n     *\n     * The implementation must take the input object and query it.\n     * The implementation defines the logic of the query and is responsible for\n     * documenting that logic.\n     * It may use any method on {@link TemporalAccessor} to determine the result.\n     * The input object must not be altered.\n     *\n     * The input temporal object may be in a calendar system other than ISO.\n     * Implementations may choose to document compatibility with other calendar systems,\n     * or reject non-ISO temporal objects by querying the chronology (see {@link TemporalQueries#chronology}).\n     *\n     * This method may be called from multiple threads in parallel.\n     * It must be thread-safe when invoked.\n     *\n     * @param {TemporalAccessor} temporal  the temporal object to query, not null\n     * @return the queried value, may return null to indicate not found\n     * @throws DateTimeException if unable to query\n     * @throws ArithmeticException if numeric overflow occurs\n     ",
+                    "start": 1872,
+                    "end": 3777,
                     "loc": {
                       "start": {
                         "line": 48,
@@ -483,8 +483,8 @@
                   {
                     "type": "CommentLine",
                     "value": " eslint-disable-next-line no-unused-vars",
-                    "start": 3868,
-                    "end": 3910,
+                    "start": 3782,
+                    "end": 3824,
                     "loc": {
                       "start": {
                         "line": 87,
@@ -504,9 +504,9 @@
           "leadingComments": [
             {
               "type": "CommentBlock",
-              "value": "*\r\n * Strategy for querying a temporal object.\r\n *\r\n * Queries are a key tool for extracting information from temporal objects.\r\n * They exist to externalize the process of querying, permitting different\r\n * approaches, as per the strategy design pattern.\r\n * Examples might be a query that checks if the date is the day before February 29th\r\n * in a leap year, or calculates the number of days to your next birthday.\r\n *\r\n * The {@link TemporalField} interface provides another mechanism for querying\r\n * temporal objects. That interface is limited to returning a `long`.\r\n * By contrast, queries can return any type.\r\n *\r\n * There are two equivalent ways of using a {@link TemporalQuery}.\r\n * The first is to invoke the method on this interface directly.\r\n * The second is to use {@link TemporalAccessor#query}:\r\n * <pre>\r\n *   // these two lines are equivalent, but the second approach is recommended\r\n *   temporal = thisQuery.queryFrom(temporal);\r\n *   temporal = temporal.query(thisQuery);\r\n * </pre>\r\n * It is recommended to use the second approach, {@link query},\r\n * as it is a lot clearer to read in code.\r\n *\r\n * The most common implementations are method references, such as\r\n * {@link LocalDate::from} and {@link ZoneId::from}.\r\n * Further implementations are on {@link TemporalQueries}.\r\n * Queries may also be defined by applications.\r\n *\r\n * ### Specification for implementors\r\n *\r\n * This interface places no restrictions on the mutability of implementations,\r\n * however immutability is strongly recommended.\r\n *\r\n * @interface\r\n ",
-              "start": 317,
-              "end": 1869,
+              "value": "*\n * Strategy for querying a temporal object.\n *\n * Queries are a key tool for extracting information from temporal objects.\n * They exist to externalize the process of querying, permitting different\n * approaches, as per the strategy design pattern.\n * Examples might be a query that checks if the date is the day before February 29th\n * in a leap year, or calculates the number of days to your next birthday.\n *\n * The {@link TemporalField} interface provides another mechanism for querying\n * temporal objects. That interface is limited to returning a `long`.\n * By contrast, queries can return any type.\n *\n * There are two equivalent ways of using a {@link TemporalQuery}.\n * The first is to invoke the method on this interface directly.\n * The second is to use {@link TemporalAccessor#query}:\n * <pre>\n *   // these two lines are equivalent, but the second approach is recommended\n *   temporal = thisQuery.queryFrom(temporal);\n *   temporal = temporal.query(thisQuery);\n * </pre>\n * It is recommended to use the second approach, {@link query},\n * as it is a lot clearer to read in code.\n *\n * The most common implementations are method references, such as\n * {@link LocalDate::from} and {@link ZoneId::from}.\n * Further implementations are on {@link TemporalQueries}.\n * Queries may also be defined by applications.\n *\n * ### Specification for implementors\n *\n * This interface places no restrictions on the mutability of implementations,\n * however immutability is strongly recommended.\n *\n * @interface\n ",
+              "start": 307,
+              "end": 1824,
               "loc": {
                 "start": {
                   "line": 11,
@@ -522,9 +522,9 @@
           "trailingComments": [
             {
               "type": "CommentBlock",
-              "value": "*\r\n * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function\r\n * as the queryFrom() function.\r\n * @param name for the underlying Enum\r\n * @param queryFromFunction\r\n ",
-              "start": 3994,
-              "end": 4270,
+              "value": "*\n * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function\n * as the queryFrom() function.\n * @param name for the underlying Enum\n * @param queryFromFunction\n ",
+              "start": 3901,
+              "end": 4172,
               "loc": {
                 "start": {
                   "line": 94,
@@ -541,9 +541,9 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Strategy for querying a temporal object.\r\n *\r\n * Queries are a key tool for extracting information from temporal objects.\r\n * They exist to externalize the process of querying, permitting different\r\n * approaches, as per the strategy design pattern.\r\n * Examples might be a query that checks if the date is the day before February 29th\r\n * in a leap year, or calculates the number of days to your next birthday.\r\n *\r\n * The {@link TemporalField} interface provides another mechanism for querying\r\n * temporal objects. That interface is limited to returning a `long`.\r\n * By contrast, queries can return any type.\r\n *\r\n * There are two equivalent ways of using a {@link TemporalQuery}.\r\n * The first is to invoke the method on this interface directly.\r\n * The second is to use {@link TemporalAccessor#query}:\r\n * <pre>\r\n *   // these two lines are equivalent, but the second approach is recommended\r\n *   temporal = thisQuery.queryFrom(temporal);\r\n *   temporal = temporal.query(thisQuery);\r\n * </pre>\r\n * It is recommended to use the second approach, {@link query},\r\n * as it is a lot clearer to read in code.\r\n *\r\n * The most common implementations are method references, such as\r\n * {@link LocalDate::from} and {@link ZoneId::from}.\r\n * Further implementations are on {@link TemporalQueries}.\r\n * Queries may also be defined by applications.\r\n *\r\n * ### Specification for implementors\r\n *\r\n * This interface places no restrictions on the mutability of implementations,\r\n * however immutability is strongly recommended.\r\n *\r\n * @interface\r\n ",
-            "start": 317,
-            "end": 1869,
+            "value": "*\n * Strategy for querying a temporal object.\n *\n * Queries are a key tool for extracting information from temporal objects.\n * They exist to externalize the process of querying, permitting different\n * approaches, as per the strategy design pattern.\n * Examples might be a query that checks if the date is the day before February 29th\n * in a leap year, or calculates the number of days to your next birthday.\n *\n * The {@link TemporalField} interface provides another mechanism for querying\n * temporal objects. That interface is limited to returning a `long`.\n * By contrast, queries can return any type.\n *\n * There are two equivalent ways of using a {@link TemporalQuery}.\n * The first is to invoke the method on this interface directly.\n * The second is to use {@link TemporalAccessor#query}:\n * <pre>\n *   // these two lines are equivalent, but the second approach is recommended\n *   temporal = thisQuery.queryFrom(temporal);\n *   temporal = temporal.query(thisQuery);\n * </pre>\n * It is recommended to use the second approach, {@link query},\n * as it is a lot clearer to read in code.\n *\n * The most common implementations are method references, such as\n * {@link LocalDate::from} and {@link ZoneId::from}.\n * Further implementations are on {@link TemporalQueries}.\n * Queries may also be defined by applications.\n *\n * ### Specification for implementors\n *\n * This interface places no restrictions on the mutability of implementations,\n * however immutability is strongly recommended.\n *\n * @interface\n ",
+            "start": 307,
+            "end": 1824,
             "loc": {
               "start": {
                 "line": 11,
@@ -559,9 +559,9 @@
         "trailingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function\r\n * as the queryFrom() function.\r\n * @param name for the underlying Enum\r\n * @param queryFromFunction\r\n ",
-            "start": 3994,
-            "end": 4270,
+            "value": "*\n * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function\n * as the queryFrom() function.\n * @param name for the underlying Enum\n * @param queryFromFunction\n ",
+            "start": 3901,
+            "end": 4172,
             "loc": {
               "start": {
                 "line": 94,
@@ -577,8 +577,8 @@
       },
       {
         "type": "ExportNamedDeclaration",
-        "start": 4272,
-        "end": 4518,
+        "start": 4173,
+        "end": 4412,
         "loc": {
           "start": {
             "line": 100,
@@ -593,8 +593,8 @@
         "source": null,
         "declaration": {
           "type": "FunctionDeclaration",
-          "start": 4279,
-          "end": 4518,
+          "start": 4180,
+          "end": 4412,
           "loc": {
             "start": {
               "line": 100,
@@ -607,8 +607,8 @@
           },
           "id": {
             "type": "Identifier",
-            "start": 4288,
-            "end": 4307,
+            "start": 4189,
+            "end": 4208,
             "loc": {
               "start": {
                 "line": 100,
@@ -629,8 +629,8 @@
           "params": [
             {
               "type": "Identifier",
-              "start": 4308,
-              "end": 4312,
+              "start": 4209,
+              "end": 4213,
               "loc": {
                 "start": {
                   "line": 100,
@@ -646,8 +646,8 @@
             },
             {
               "type": "Identifier",
-              "start": 4314,
-              "end": 4331,
+              "start": 4215,
+              "end": 4232,
               "loc": {
                 "start": {
                   "line": 100,
@@ -664,8 +664,8 @@
           ],
           "body": {
             "type": "BlockStatement",
-            "start": 4333,
-            "end": 4518,
+            "start": 4234,
+            "end": 4412,
             "loc": {
               "start": {
                 "line": 100,
@@ -679,8 +679,8 @@
             "body": [
               {
                 "type": "ClassDeclaration",
-                "start": 4340,
-                "end": 4400,
+                "start": 4240,
+                "end": 4298,
                 "loc": {
                   "start": {
                     "line": 101,
@@ -693,8 +693,8 @@
                 },
                 "id": {
                   "type": "Identifier",
-                  "start": 4346,
-                  "end": 4367,
+                  "start": 4246,
+                  "end": 4267,
                   "loc": {
                     "start": {
                       "line": 101,
@@ -710,8 +710,8 @@
                 },
                 "superClass": {
                   "type": "Identifier",
-                  "start": 4376,
-                  "end": 4389,
+                  "start": 4276,
+                  "end": 4289,
                   "loc": {
                     "start": {
                       "line": 101,
@@ -727,8 +727,8 @@
                 },
                 "body": {
                   "type": "ClassBody",
-                  "start": 4390,
-                  "end": 4400,
+                  "start": 4290,
+                  "end": 4298,
                   "loc": {
                     "start": {
                       "line": 101,
@@ -744,8 +744,8 @@
               },
               {
                 "type": "ExpressionStatement",
-                "start": 4408,
-                "end": 4470,
+                "start": 4304,
+                "end": 4366,
                 "loc": {
                   "start": {
                     "line": 105,
@@ -758,8 +758,8 @@
                 },
                 "expression": {
                   "type": "AssignmentExpression",
-                  "start": 4408,
-                  "end": 4469,
+                  "start": 4304,
+                  "end": 4365,
                   "loc": {
                     "start": {
                       "line": 105,
@@ -773,8 +773,8 @@
                   "operator": "=",
                   "left": {
                     "type": "MemberExpression",
-                    "start": 4408,
-                    "end": 4449,
+                    "start": 4304,
+                    "end": 4345,
                     "loc": {
                       "start": {
                         "line": 105,
@@ -787,8 +787,8 @@
                     },
                     "object": {
                       "type": "MemberExpression",
-                      "start": 4408,
-                      "end": 4439,
+                      "start": 4304,
+                      "end": 4335,
                       "loc": {
                         "start": {
                           "line": 105,
@@ -801,8 +801,8 @@
                       },
                       "object": {
                         "type": "Identifier",
-                        "start": 4408,
-                        "end": 4429,
+                        "start": 4304,
+                        "end": 4325,
                         "loc": {
                           "start": {
                             "line": 105,
@@ -818,8 +818,8 @@
                       },
                       "property": {
                         "type": "Identifier",
-                        "start": 4430,
-                        "end": 4439,
+                        "start": 4326,
+                        "end": 4335,
                         "loc": {
                           "start": {
                             "line": 105,
@@ -837,8 +837,8 @@
                     },
                     "property": {
                       "type": "Identifier",
-                      "start": 4440,
-                      "end": 4449,
+                      "start": 4336,
+                      "end": 4345,
                       "loc": {
                         "start": {
                           "line": 105,
@@ -856,8 +856,8 @@
                   },
                   "right": {
                     "type": "Identifier",
-                    "start": 4452,
-                    "end": 4469,
+                    "start": 4348,
+                    "end": 4365,
                     "loc": {
                       "start": {
                         "line": 105,
@@ -875,8 +875,8 @@
               },
               {
                 "type": "ReturnStatement",
-                "start": 4476,
-                "end": 4515,
+                "start": 4371,
+                "end": 4410,
                 "loc": {
                   "start": {
                     "line": 106,
@@ -889,8 +889,8 @@
                 },
                 "argument": {
                   "type": "NewExpression",
-                  "start": 4483,
-                  "end": 4514,
+                  "start": 4378,
+                  "end": 4409,
                   "loc": {
                     "start": {
                       "line": 106,
@@ -903,8 +903,8 @@
                   },
                   "callee": {
                     "type": "Identifier",
-                    "start": 4487,
-                    "end": 4508,
+                    "start": 4382,
+                    "end": 4403,
                     "loc": {
                       "start": {
                         "line": 106,
@@ -921,8 +921,8 @@
                   "arguments": [
                     {
                       "type": "Identifier",
-                      "start": 4509,
-                      "end": 4513,
+                      "start": 4404,
+                      "end": 4408,
                       "loc": {
                         "start": {
                           "line": 106,
@@ -945,9 +945,9 @@
           "leadingComments": [
             {
               "type": "CommentBlock",
-              "value": "*\r\n * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function\r\n * as the queryFrom() function.\r\n * @param name for the underlying Enum\r\n * @param queryFromFunction\r\n ",
-              "start": 3994,
-              "end": 4270,
+              "value": "*\n * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function\n * as the queryFrom() function.\n * @param name for the underlying Enum\n * @param queryFromFunction\n ",
+              "start": 3901,
+              "end": 4172,
               "loc": {
                 "start": {
                   "line": 94,
@@ -965,9 +965,9 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function\r\n * as the queryFrom() function.\r\n * @param name for the underlying Enum\r\n * @param queryFromFunction\r\n ",
-            "start": 3994,
-            "end": 4270,
+            "value": "*\n * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function\n * as the queryFrom() function.\n * @param name for the underlying Enum\n * @param queryFromFunction\n ",
+            "start": 3901,
+            "end": 4172,
             "loc": {
               "start": {
                 "line": 94,
@@ -987,9 +987,9 @@
   "comments": [
     {
       "type": "CommentBlock",
-      "value": "\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\r\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\r\n ",
+      "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
       "start": 0,
-      "end": 231,
+      "end": 227,
       "loc": {
         "start": {
           "line": 1,
@@ -1003,9 +1003,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Strategy for querying a temporal object.\r\n *\r\n * Queries are a key tool for extracting information from temporal objects.\r\n * They exist to externalize the process of querying, permitting different\r\n * approaches, as per the strategy design pattern.\r\n * Examples might be a query that checks if the date is the day before February 29th\r\n * in a leap year, or calculates the number of days to your next birthday.\r\n *\r\n * The {@link TemporalField} interface provides another mechanism for querying\r\n * temporal objects. That interface is limited to returning a `long`.\r\n * By contrast, queries can return any type.\r\n *\r\n * There are two equivalent ways of using a {@link TemporalQuery}.\r\n * The first is to invoke the method on this interface directly.\r\n * The second is to use {@link TemporalAccessor#query}:\r\n * <pre>\r\n *   // these two lines are equivalent, but the second approach is recommended\r\n *   temporal = thisQuery.queryFrom(temporal);\r\n *   temporal = temporal.query(thisQuery);\r\n * </pre>\r\n * It is recommended to use the second approach, {@link query},\r\n * as it is a lot clearer to read in code.\r\n *\r\n * The most common implementations are method references, such as\r\n * {@link LocalDate::from} and {@link ZoneId::from}.\r\n * Further implementations are on {@link TemporalQueries}.\r\n * Queries may also be defined by applications.\r\n *\r\n * ### Specification for implementors\r\n *\r\n * This interface places no restrictions on the mutability of implementations,\r\n * however immutability is strongly recommended.\r\n *\r\n * @interface\r\n ",
-      "start": 317,
-      "end": 1869,
+      "value": "*\n * Strategy for querying a temporal object.\n *\n * Queries are a key tool for extracting information from temporal objects.\n * They exist to externalize the process of querying, permitting different\n * approaches, as per the strategy design pattern.\n * Examples might be a query that checks if the date is the day before February 29th\n * in a leap year, or calculates the number of days to your next birthday.\n *\n * The {@link TemporalField} interface provides another mechanism for querying\n * temporal objects. That interface is limited to returning a `long`.\n * By contrast, queries can return any type.\n *\n * There are two equivalent ways of using a {@link TemporalQuery}.\n * The first is to invoke the method on this interface directly.\n * The second is to use {@link TemporalAccessor#query}:\n * <pre>\n *   // these two lines are equivalent, but the second approach is recommended\n *   temporal = thisQuery.queryFrom(temporal);\n *   temporal = temporal.query(thisQuery);\n * </pre>\n * It is recommended to use the second approach, {@link query},\n * as it is a lot clearer to read in code.\n *\n * The most common implementations are method references, such as\n * {@link LocalDate::from} and {@link ZoneId::from}.\n * Further implementations are on {@link TemporalQueries}.\n * Queries may also be defined by applications.\n *\n * ### Specification for implementors\n *\n * This interface places no restrictions on the mutability of implementations,\n * however immutability is strongly recommended.\n *\n * @interface\n ",
+      "start": 307,
+      "end": 1824,
       "loc": {
         "start": {
           "line": 11,
@@ -1019,9 +1019,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Queries the specified temporal object.\r\n     *\r\n     * This queries the specified temporal object to return an object using the logic\r\n     * encapsulated in the implementing class.\r\n     * Examples might be a query that checks if the date is the day before February 29th\r\n     * in a leap year, or calculates the number of days to your next birthday.\r\n     *\r\n     * There are two equivalent ways of using this method.\r\n     * The first is to invoke this method directly.\r\n     * The second is to use {@link TemporalAccessor#query}:\r\n     * <pre>\r\n     *   // these two lines are equivalent, but the second approach is recommended\r\n     *   temporal = thisQuery.queryFrom(temporal);\r\n     *   temporal = temporal.query(thisQuery);\r\n     * </pre>\r\n     * It is recommended to use the second approach, {@link query},\r\n     * as it is a lot clearer to read in code.\r\n     *\r\n     * ### Specification for implementors\r\n     *\r\n     * The implementation must take the input object and query it.\r\n     * The implementation defines the logic of the query and is responsible for\r\n     * documenting that logic.\r\n     * It may use any method on {@link TemporalAccessor} to determine the result.\r\n     * The input object must not be altered.\r\n     *\r\n     * The input temporal object may be in a calendar system other than ISO.\r\n     * Implementations may choose to document compatibility with other calendar systems,\r\n     * or reject non-ISO temporal objects by querying the chronology (see {@link TemporalQueries#chronology}).\r\n     *\r\n     * This method may be called from multiple threads in parallel.\r\n     * It must be thread-safe when invoked.\r\n     *\r\n     * @param {TemporalAccessor} temporal  the temporal object to query, not null\r\n     * @return the queried value, may return null to indicate not found\r\n     * @throws DateTimeException if unable to query\r\n     * @throws ArithmeticException if numeric overflow occurs\r\n     ",
-      "start": 1919,
-      "end": 3862,
+      "value": "*\n     * Queries the specified temporal object.\n     *\n     * This queries the specified temporal object to return an object using the logic\n     * encapsulated in the implementing class.\n     * Examples might be a query that checks if the date is the day before February 29th\n     * in a leap year, or calculates the number of days to your next birthday.\n     *\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link TemporalAccessor#query}:\n     * <pre>\n     *   // these two lines are equivalent, but the second approach is recommended\n     *   temporal = thisQuery.queryFrom(temporal);\n     *   temporal = temporal.query(thisQuery);\n     * </pre>\n     * It is recommended to use the second approach, {@link query},\n     * as it is a lot clearer to read in code.\n     *\n     * ### Specification for implementors\n     *\n     * The implementation must take the input object and query it.\n     * The implementation defines the logic of the query and is responsible for\n     * documenting that logic.\n     * It may use any method on {@link TemporalAccessor} to determine the result.\n     * The input object must not be altered.\n     *\n     * The input temporal object may be in a calendar system other than ISO.\n     * Implementations may choose to document compatibility with other calendar systems,\n     * or reject non-ISO temporal objects by querying the chronology (see {@link TemporalQueries#chronology}).\n     *\n     * This method may be called from multiple threads in parallel.\n     * It must be thread-safe when invoked.\n     *\n     * @param {TemporalAccessor} temporal  the temporal object to query, not null\n     * @return the queried value, may return null to indicate not found\n     * @throws DateTimeException if unable to query\n     * @throws ArithmeticException if numeric overflow occurs\n     ",
+      "start": 1872,
+      "end": 3777,
       "loc": {
         "start": {
           "line": 48,
@@ -1036,8 +1036,8 @@
     {
       "type": "CommentLine",
       "value": " eslint-disable-next-line no-unused-vars",
-      "start": 3868,
-      "end": 3910,
+      "start": 3782,
+      "end": 3824,
       "loc": {
         "start": {
           "line": 87,
@@ -1051,9 +1051,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function\r\n * as the queryFrom() function.\r\n * @param name for the underlying Enum\r\n * @param queryFromFunction\r\n ",
-      "start": 3994,
-      "end": 4270,
+      "value": "*\n * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function\n * as the queryFrom() function.\n * @param name for the underlying Enum\n * @param queryFromFunction\n ",
+      "start": 3901,
+      "end": 4172,
       "loc": {
         "start": {
           "line": 94,
@@ -1069,9 +1069,9 @@
   "tokens": [
     {
       "type": "CommentBlock",
-      "value": "\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\r\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\r\n ",
+      "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
       "start": 0,
-      "end": 231,
+      "end": 227,
       "loc": {
         "start": {
           "line": 1,
@@ -1098,8 +1098,8 @@
         "updateContext": null
       },
       "value": "import",
-      "start": 235,
-      "end": 241,
+      "start": 229,
+      "end": 235,
       "loc": {
         "start": {
           "line": 7,
@@ -1123,8 +1123,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 242,
-      "end": 243,
+      "start": 236,
+      "end": 237,
       "loc": {
         "start": {
           "line": 7,
@@ -1149,8 +1149,8 @@
         "binop": null
       },
       "value": "abstractMethodFail",
-      "start": 243,
-      "end": 261,
+      "start": 237,
+      "end": 255,
       "loc": {
         "start": {
           "line": 7,
@@ -1174,8 +1174,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 261,
-      "end": 262,
+      "start": 255,
+      "end": 256,
       "loc": {
         "start": {
           "line": 7,
@@ -1200,8 +1200,8 @@
         "binop": null
       },
       "value": "from",
-      "start": 263,
-      "end": 267,
+      "start": 257,
+      "end": 261,
       "loc": {
         "start": {
           "line": 7,
@@ -1227,8 +1227,8 @@
         "updateContext": null
       },
       "value": "../assert",
-      "start": 268,
-      "end": 279,
+      "start": 262,
+      "end": 273,
       "loc": {
         "start": {
           "line": 7,
@@ -1253,8 +1253,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 279,
-      "end": 280,
+      "start": 273,
+      "end": 274,
       "loc": {
         "start": {
           "line": 7,
@@ -1281,8 +1281,8 @@
         "updateContext": null
       },
       "value": "import",
-      "start": 282,
-      "end": 288,
+      "start": 275,
+      "end": 281,
       "loc": {
         "start": {
           "line": 8,
@@ -1306,8 +1306,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 289,
-      "end": 290,
+      "start": 282,
+      "end": 283,
       "loc": {
         "start": {
           "line": 8,
@@ -1332,8 +1332,8 @@
         "binop": null
       },
       "value": "Enum",
-      "start": 290,
-      "end": 294,
+      "start": 283,
+      "end": 287,
       "loc": {
         "start": {
           "line": 8,
@@ -1357,8 +1357,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 294,
-      "end": 295,
+      "start": 287,
+      "end": 288,
       "loc": {
         "start": {
           "line": 8,
@@ -1383,8 +1383,8 @@
         "binop": null
       },
       "value": "from",
-      "start": 296,
-      "end": 300,
+      "start": 289,
+      "end": 293,
       "loc": {
         "start": {
           "line": 8,
@@ -1410,8 +1410,8 @@
         "updateContext": null
       },
       "value": "../Enum",
-      "start": 301,
-      "end": 310,
+      "start": 294,
+      "end": 303,
       "loc": {
         "start": {
           "line": 8,
@@ -1436,8 +1436,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 310,
-      "end": 311,
+      "start": 303,
+      "end": 304,
       "loc": {
         "start": {
           "line": 8,
@@ -1451,9 +1451,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Strategy for querying a temporal object.\r\n *\r\n * Queries are a key tool for extracting information from temporal objects.\r\n * They exist to externalize the process of querying, permitting different\r\n * approaches, as per the strategy design pattern.\r\n * Examples might be a query that checks if the date is the day before February 29th\r\n * in a leap year, or calculates the number of days to your next birthday.\r\n *\r\n * The {@link TemporalField} interface provides another mechanism for querying\r\n * temporal objects. That interface is limited to returning a `long`.\r\n * By contrast, queries can return any type.\r\n *\r\n * There are two equivalent ways of using a {@link TemporalQuery}.\r\n * The first is to invoke the method on this interface directly.\r\n * The second is to use {@link TemporalAccessor#query}:\r\n * <pre>\r\n *   // these two lines are equivalent, but the second approach is recommended\r\n *   temporal = thisQuery.queryFrom(temporal);\r\n *   temporal = temporal.query(thisQuery);\r\n * </pre>\r\n * It is recommended to use the second approach, {@link query},\r\n * as it is a lot clearer to read in code.\r\n *\r\n * The most common implementations are method references, such as\r\n * {@link LocalDate::from} and {@link ZoneId::from}.\r\n * Further implementations are on {@link TemporalQueries}.\r\n * Queries may also be defined by applications.\r\n *\r\n * ### Specification for implementors\r\n *\r\n * This interface places no restrictions on the mutability of implementations,\r\n * however immutability is strongly recommended.\r\n *\r\n * @interface\r\n ",
-      "start": 317,
-      "end": 1869,
+      "value": "*\n * Strategy for querying a temporal object.\n *\n * Queries are a key tool for extracting information from temporal objects.\n * They exist to externalize the process of querying, permitting different\n * approaches, as per the strategy design pattern.\n * Examples might be a query that checks if the date is the day before February 29th\n * in a leap year, or calculates the number of days to your next birthday.\n *\n * The {@link TemporalField} interface provides another mechanism for querying\n * temporal objects. That interface is limited to returning a `long`.\n * By contrast, queries can return any type.\n *\n * There are two equivalent ways of using a {@link TemporalQuery}.\n * The first is to invoke the method on this interface directly.\n * The second is to use {@link TemporalAccessor#query}:\n * <pre>\n *   // these two lines are equivalent, but the second approach is recommended\n *   temporal = thisQuery.queryFrom(temporal);\n *   temporal = temporal.query(thisQuery);\n * </pre>\n * It is recommended to use the second approach, {@link query},\n * as it is a lot clearer to read in code.\n *\n * The most common implementations are method references, such as\n * {@link LocalDate::from} and {@link ZoneId::from}.\n * Further implementations are on {@link TemporalQueries}.\n * Queries may also be defined by applications.\n *\n * ### Specification for implementors\n *\n * This interface places no restrictions on the mutability of implementations,\n * however immutability is strongly recommended.\n *\n * @interface\n ",
+      "start": 307,
+      "end": 1824,
       "loc": {
         "start": {
           "line": 11,
@@ -1480,8 +1480,8 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 1871,
-      "end": 1877,
+      "start": 1825,
+      "end": 1831,
       "loc": {
         "start": {
           "line": 47,
@@ -1508,8 +1508,8 @@
         "updateContext": null
       },
       "value": "class",
-      "start": 1878,
-      "end": 1883,
+      "start": 1832,
+      "end": 1837,
       "loc": {
         "start": {
           "line": 47,
@@ -1534,8 +1534,8 @@
         "binop": null
       },
       "value": "TemporalQuery",
-      "start": 1884,
-      "end": 1897,
+      "start": 1838,
+      "end": 1851,
       "loc": {
         "start": {
           "line": 47,
@@ -1562,8 +1562,8 @@
         "updateContext": null
       },
       "value": "extends",
-      "start": 1899,
-      "end": 1906,
+      "start": 1853,
+      "end": 1860,
       "loc": {
         "start": {
           "line": 47,
@@ -1588,8 +1588,8 @@
         "binop": null
       },
       "value": "Enum",
-      "start": 1907,
-      "end": 1911,
+      "start": 1861,
+      "end": 1865,
       "loc": {
         "start": {
           "line": 47,
@@ -1613,8 +1613,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1912,
-      "end": 1913,
+      "start": 1866,
+      "end": 1867,
       "loc": {
         "start": {
           "line": 47,
@@ -1628,9 +1628,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Queries the specified temporal object.\r\n     *\r\n     * This queries the specified temporal object to return an object using the logic\r\n     * encapsulated in the implementing class.\r\n     * Examples might be a query that checks if the date is the day before February 29th\r\n     * in a leap year, or calculates the number of days to your next birthday.\r\n     *\r\n     * There are two equivalent ways of using this method.\r\n     * The first is to invoke this method directly.\r\n     * The second is to use {@link TemporalAccessor#query}:\r\n     * <pre>\r\n     *   // these two lines are equivalent, but the second approach is recommended\r\n     *   temporal = thisQuery.queryFrom(temporal);\r\n     *   temporal = temporal.query(thisQuery);\r\n     * </pre>\r\n     * It is recommended to use the second approach, {@link query},\r\n     * as it is a lot clearer to read in code.\r\n     *\r\n     * ### Specification for implementors\r\n     *\r\n     * The implementation must take the input object and query it.\r\n     * The implementation defines the logic of the query and is responsible for\r\n     * documenting that logic.\r\n     * It may use any method on {@link TemporalAccessor} to determine the result.\r\n     * The input object must not be altered.\r\n     *\r\n     * The input temporal object may be in a calendar system other than ISO.\r\n     * Implementations may choose to document compatibility with other calendar systems,\r\n     * or reject non-ISO temporal objects by querying the chronology (see {@link TemporalQueries#chronology}).\r\n     *\r\n     * This method may be called from multiple threads in parallel.\r\n     * It must be thread-safe when invoked.\r\n     *\r\n     * @param {TemporalAccessor} temporal  the temporal object to query, not null\r\n     * @return the queried value, may return null to indicate not found\r\n     * @throws DateTimeException if unable to query\r\n     * @throws ArithmeticException if numeric overflow occurs\r\n     ",
-      "start": 1919,
-      "end": 3862,
+      "value": "*\n     * Queries the specified temporal object.\n     *\n     * This queries the specified temporal object to return an object using the logic\n     * encapsulated in the implementing class.\n     * Examples might be a query that checks if the date is the day before February 29th\n     * in a leap year, or calculates the number of days to your next birthday.\n     *\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link TemporalAccessor#query}:\n     * <pre>\n     *   // these two lines are equivalent, but the second approach is recommended\n     *   temporal = thisQuery.queryFrom(temporal);\n     *   temporal = temporal.query(thisQuery);\n     * </pre>\n     * It is recommended to use the second approach, {@link query},\n     * as it is a lot clearer to read in code.\n     *\n     * ### Specification for implementors\n     *\n     * The implementation must take the input object and query it.\n     * The implementation defines the logic of the query and is responsible for\n     * documenting that logic.\n     * It may use any method on {@link TemporalAccessor} to determine the result.\n     * The input object must not be altered.\n     *\n     * The input temporal object may be in a calendar system other than ISO.\n     * Implementations may choose to document compatibility with other calendar systems,\n     * or reject non-ISO temporal objects by querying the chronology (see {@link TemporalQueries#chronology}).\n     *\n     * This method may be called from multiple threads in parallel.\n     * It must be thread-safe when invoked.\n     *\n     * @param {TemporalAccessor} temporal  the temporal object to query, not null\n     * @return the queried value, may return null to indicate not found\n     * @throws DateTimeException if unable to query\n     * @throws ArithmeticException if numeric overflow occurs\n     ",
+      "start": 1872,
+      "end": 3777,
       "loc": {
         "start": {
           "line": 48,
@@ -1645,8 +1645,8 @@
     {
       "type": "CommentLine",
       "value": " eslint-disable-next-line no-unused-vars",
-      "start": 3868,
-      "end": 3910,
+      "start": 3782,
+      "end": 3824,
       "loc": {
         "start": {
           "line": 87,
@@ -1671,8 +1671,8 @@
         "binop": null
       },
       "value": "queryFrom",
-      "start": 3916,
-      "end": 3925,
+      "start": 3829,
+      "end": 3838,
       "loc": {
         "start": {
           "line": 88,
@@ -1696,8 +1696,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3925,
-      "end": 3926,
+      "start": 3838,
+      "end": 3839,
       "loc": {
         "start": {
           "line": 88,
@@ -1722,8 +1722,8 @@
         "binop": null
       },
       "value": "temporal",
-      "start": 3926,
-      "end": 3934,
+      "start": 3839,
+      "end": 3847,
       "loc": {
         "start": {
           "line": 88,
@@ -1747,8 +1747,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3934,
-      "end": 3935,
+      "start": 3847,
+      "end": 3848,
       "loc": {
         "start": {
           "line": 88,
@@ -1772,8 +1772,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3935,
-      "end": 3936,
+      "start": 3848,
+      "end": 3849,
       "loc": {
         "start": {
           "line": 88,
@@ -1798,8 +1798,8 @@
         "binop": null
       },
       "value": "abstractMethodFail",
-      "start": 3946,
-      "end": 3964,
+      "start": 3858,
+      "end": 3876,
       "loc": {
         "start": {
           "line": 89,
@@ -1823,8 +1823,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3964,
-      "end": 3965,
+      "start": 3876,
+      "end": 3877,
       "loc": {
         "start": {
           "line": 89,
@@ -1850,8 +1850,8 @@
         "updateContext": null
       },
       "value": "queryFrom",
-      "start": 3965,
-      "end": 3976,
+      "start": 3877,
+      "end": 3888,
       "loc": {
         "start": {
           "line": 89,
@@ -1875,8 +1875,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3976,
-      "end": 3977,
+      "start": 3888,
+      "end": 3889,
       "loc": {
         "start": {
           "line": 89,
@@ -1901,8 +1901,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 3977,
-      "end": 3978,
+      "start": 3889,
+      "end": 3890,
       "loc": {
         "start": {
           "line": 89,
@@ -1926,8 +1926,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3984,
-      "end": 3985,
+      "start": 3895,
+      "end": 3896,
       "loc": {
         "start": {
           "line": 90,
@@ -1951,8 +1951,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3989,
-      "end": 3990,
+      "start": 3898,
+      "end": 3899,
       "loc": {
         "start": {
           "line": 92,
@@ -1966,9 +1966,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function\r\n * as the queryFrom() function.\r\n * @param name for the underlying Enum\r\n * @param queryFromFunction\r\n ",
-      "start": 3994,
-      "end": 4270,
+      "value": "*\n * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function\n * as the queryFrom() function.\n * @param name for the underlying Enum\n * @param queryFromFunction\n ",
+      "start": 3901,
+      "end": 4172,
       "loc": {
         "start": {
           "line": 94,
@@ -1995,8 +1995,8 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 4272,
-      "end": 4278,
+      "start": 4173,
+      "end": 4179,
       "loc": {
         "start": {
           "line": 100,
@@ -2022,8 +2022,8 @@
         "binop": null
       },
       "value": "function",
-      "start": 4279,
-      "end": 4287,
+      "start": 4180,
+      "end": 4188,
       "loc": {
         "start": {
           "line": 100,
@@ -2048,8 +2048,8 @@
         "binop": null
       },
       "value": "createTemporalQuery",
-      "start": 4288,
-      "end": 4307,
+      "start": 4189,
+      "end": 4208,
       "loc": {
         "start": {
           "line": 100,
@@ -2073,8 +2073,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4307,
-      "end": 4308,
+      "start": 4208,
+      "end": 4209,
       "loc": {
         "start": {
           "line": 100,
@@ -2099,8 +2099,8 @@
         "binop": null
       },
       "value": "name",
-      "start": 4308,
-      "end": 4312,
+      "start": 4209,
+      "end": 4213,
       "loc": {
         "start": {
           "line": 100,
@@ -2125,8 +2125,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 4312,
-      "end": 4313,
+      "start": 4213,
+      "end": 4214,
       "loc": {
         "start": {
           "line": 100,
@@ -2151,8 +2151,8 @@
         "binop": null
       },
       "value": "queryFromFunction",
-      "start": 4314,
-      "end": 4331,
+      "start": 4215,
+      "end": 4232,
       "loc": {
         "start": {
           "line": 100,
@@ -2176,8 +2176,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4331,
-      "end": 4332,
+      "start": 4232,
+      "end": 4233,
       "loc": {
         "start": {
           "line": 100,
@@ -2201,8 +2201,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4333,
-      "end": 4334,
+      "start": 4234,
+      "end": 4235,
       "loc": {
         "start": {
           "line": 100,
@@ -2229,8 +2229,8 @@
         "updateContext": null
       },
       "value": "class",
-      "start": 4340,
-      "end": 4345,
+      "start": 4240,
+      "end": 4245,
       "loc": {
         "start": {
           "line": 101,
@@ -2255,8 +2255,8 @@
         "binop": null
       },
       "value": "ExtendedTemporalQuery",
-      "start": 4346,
-      "end": 4367,
+      "start": 4246,
+      "end": 4267,
       "loc": {
         "start": {
           "line": 101,
@@ -2283,8 +2283,8 @@
         "updateContext": null
       },
       "value": "extends",
-      "start": 4368,
-      "end": 4375,
+      "start": 4268,
+      "end": 4275,
       "loc": {
         "start": {
           "line": 101,
@@ -2309,8 +2309,8 @@
         "binop": null
       },
       "value": "TemporalQuery",
-      "start": 4376,
-      "end": 4389,
+      "start": 4276,
+      "end": 4289,
       "loc": {
         "start": {
           "line": 101,
@@ -2334,8 +2334,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4390,
-      "end": 4391,
+      "start": 4290,
+      "end": 4291,
       "loc": {
         "start": {
           "line": 101,
@@ -2359,8 +2359,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4399,
-      "end": 4400,
+      "start": 4297,
+      "end": 4298,
       "loc": {
         "start": {
           "line": 103,
@@ -2385,8 +2385,8 @@
         "binop": null
       },
       "value": "ExtendedTemporalQuery",
-      "start": 4408,
-      "end": 4429,
+      "start": 4304,
+      "end": 4325,
       "loc": {
         "start": {
           "line": 105,
@@ -2411,8 +2411,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 4429,
-      "end": 4430,
+      "start": 4325,
+      "end": 4326,
       "loc": {
         "start": {
           "line": 105,
@@ -2437,8 +2437,8 @@
         "binop": null
       },
       "value": "prototype",
-      "start": 4430,
-      "end": 4439,
+      "start": 4326,
+      "end": 4335,
       "loc": {
         "start": {
           "line": 105,
@@ -2463,8 +2463,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 4439,
-      "end": 4440,
+      "start": 4335,
+      "end": 4336,
       "loc": {
         "start": {
           "line": 105,
@@ -2489,8 +2489,8 @@
         "binop": null
       },
       "value": "queryFrom",
-      "start": 4440,
-      "end": 4449,
+      "start": 4336,
+      "end": 4345,
       "loc": {
         "start": {
           "line": 105,
@@ -2516,8 +2516,8 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 4450,
-      "end": 4451,
+      "start": 4346,
+      "end": 4347,
       "loc": {
         "start": {
           "line": 105,
@@ -2542,8 +2542,8 @@
         "binop": null
       },
       "value": "queryFromFunction",
-      "start": 4452,
-      "end": 4469,
+      "start": 4348,
+      "end": 4365,
       "loc": {
         "start": {
           "line": 105,
@@ -2568,8 +2568,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 4469,
-      "end": 4470,
+      "start": 4365,
+      "end": 4366,
       "loc": {
         "start": {
           "line": 105,
@@ -2596,8 +2596,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 4476,
-      "end": 4482,
+      "start": 4371,
+      "end": 4377,
       "loc": {
         "start": {
           "line": 106,
@@ -2624,8 +2624,8 @@
         "updateContext": null
       },
       "value": "new",
-      "start": 4483,
-      "end": 4486,
+      "start": 4378,
+      "end": 4381,
       "loc": {
         "start": {
           "line": 106,
@@ -2650,8 +2650,8 @@
         "binop": null
       },
       "value": "ExtendedTemporalQuery",
-      "start": 4487,
-      "end": 4508,
+      "start": 4382,
+      "end": 4403,
       "loc": {
         "start": {
           "line": 106,
@@ -2675,8 +2675,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4508,
-      "end": 4509,
+      "start": 4403,
+      "end": 4404,
       "loc": {
         "start": {
           "line": 106,
@@ -2701,8 +2701,8 @@
         "binop": null
       },
       "value": "name",
-      "start": 4509,
-      "end": 4513,
+      "start": 4404,
+      "end": 4408,
       "loc": {
         "start": {
           "line": 106,
@@ -2726,8 +2726,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4513,
-      "end": 4514,
+      "start": 4408,
+      "end": 4409,
       "loc": {
         "start": {
           "line": 106,
@@ -2752,8 +2752,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 4514,
-      "end": 4515,
+      "start": 4409,
+      "end": 4410,
       "loc": {
         "start": {
           "line": 106,
@@ -2777,8 +2777,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4517,
-      "end": 4518,
+      "start": 4411,
+      "end": 4412,
       "loc": {
         "start": {
           "line": 107,
@@ -2803,8 +2803,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 4520,
-      "end": 4520,
+      "start": 4413,
+      "end": 4413,
       "loc": {
         "start": {
           "line": 108,

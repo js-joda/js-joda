@@ -1,7 +1,7 @@
 {
   "type": "File",
   "start": 0,
-  "end": 3931,
+  "end": 3839,
   "loc": {
     "start": {
       "line": 1,
@@ -15,7 +15,7 @@
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 3931,
+    "end": 3839,
     "loc": {
       "start": {
         "line": 1,
@@ -30,8 +30,8 @@
     "body": [
       {
         "type": "ImportDeclaration",
-        "start": 235,
-        "end": 280,
+        "start": 229,
+        "end": 274,
         "loc": {
           "start": {
             "line": 7,
@@ -45,8 +45,8 @@
         "specifiers": [
           {
             "type": "ImportSpecifier",
-            "start": 243,
-            "end": 261,
+            "start": 237,
+            "end": 255,
             "loc": {
               "start": {
                 "line": 7,
@@ -59,8 +59,8 @@
             },
             "imported": {
               "type": "Identifier",
-              "start": 243,
-              "end": 261,
+              "start": 237,
+              "end": 255,
               "loc": {
                 "start": {
                   "line": 7,
@@ -77,8 +77,8 @@
             },
             "local": {
               "type": "Identifier",
-              "start": 243,
-              "end": 261,
+              "start": 237,
+              "end": 255,
               "loc": {
                 "start": {
                   "line": 7,
@@ -97,8 +97,8 @@
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 268,
-          "end": 279,
+          "start": 262,
+          "end": 273,
           "loc": {
             "start": {
               "line": 7,
@@ -118,9 +118,9 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\r\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\r\n ",
+            "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
             "start": 0,
-            "end": 231,
+            "end": 227,
             "loc": {
               "start": {
                 "line": 1,
@@ -136,9 +136,9 @@
         "trailingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Strategy for adjusting a temporal object.\r\n *\r\n * Adjusters are a key tool for modifying temporal objects.\r\n * They exist to externalize the process of adjustment, permitting different\r\n * approaches, as per the strategy design pattern.\r\n * Examples might be an adjuster that sets the date avoiding weekends, or one that\r\n * sets the date to the last day of the month.\r\n *\r\n * There are two equivalent ways of using a {@link TemporalAdjuster}.\r\n * The first is to invoke the method on this interface directly.\r\n * The second is to use {@link Temporal#with}:\r\n * <pre>\r\n *   // these two lines are equivalent, but the second approach is recommended\r\n *   temporal = thisAdjuster.adjustInto(temporal);\r\n *   temporal = temporal.with(thisAdjuster);\r\n * </pre>\r\n * It is recommended to use the second approach, {@link with},\r\n * as it is a lot clearer to read in code.\r\n *\r\n * See {@link TemporalAdjusters} for a standard set of adjusters, including finding the\r\n * last day of the month.\r\n * Adjusters may also be defined by applications.\r\n *\r\n * ### Specification for implementors\r\n *\r\n * This interface places no restrictions on the mutability of implementations,\r\n * however immutability is strongly recommended.\r\n *\r\n * @interface\r\n ",
-            "start": 284,
-            "end": 1528,
+            "value": "*\n * Strategy for adjusting a temporal object.\n *\n * Adjusters are a key tool for modifying temporal objects.\n * They exist to externalize the process of adjustment, permitting different\n * approaches, as per the strategy design pattern.\n * Examples might be an adjuster that sets the date avoiding weekends, or one that\n * sets the date to the last day of the month.\n *\n * There are two equivalent ways of using a {@link TemporalAdjuster}.\n * The first is to invoke the method on this interface directly.\n * The second is to use {@link Temporal#with}:\n * <pre>\n *   // these two lines are equivalent, but the second approach is recommended\n *   temporal = thisAdjuster.adjustInto(temporal);\n *   temporal = temporal.with(thisAdjuster);\n * </pre>\n * It is recommended to use the second approach, {@link with},\n * as it is a lot clearer to read in code.\n *\n * See {@link TemporalAdjusters} for a standard set of adjusters, including finding the\n * last day of the month.\n * Adjusters may also be defined by applications.\n *\n * ### Specification for implementors\n *\n * This interface places no restrictions on the mutability of implementations,\n * however immutability is strongly recommended.\n *\n * @interface\n ",
+            "start": 276,
+            "end": 1490,
             "loc": {
               "start": {
                 "line": 9,
@@ -154,8 +154,8 @@
       },
       {
         "type": "ExportNamedDeclaration",
-        "start": 1530,
-        "end": 3929,
+        "start": 1491,
+        "end": 3838,
         "loc": {
           "start": {
             "line": 40,
@@ -170,8 +170,8 @@
         "source": null,
         "declaration": {
           "type": "ClassDeclaration",
-          "start": 1537,
-          "end": 3929,
+          "start": 1498,
+          "end": 3838,
           "loc": {
             "start": {
               "line": 40,
@@ -184,8 +184,8 @@
           },
           "id": {
             "type": "Identifier",
-            "start": 1543,
-            "end": 1559,
+            "start": 1504,
+            "end": 1520,
             "loc": {
               "start": {
                 "line": 40,
@@ -203,8 +203,8 @@
           "superClass": null,
           "body": {
             "type": "ClassBody",
-            "start": 1560,
-            "end": 3929,
+            "start": 1521,
+            "end": 3838,
             "loc": {
               "start": {
                 "line": 40,
@@ -218,8 +218,8 @@
             "body": [
               {
                 "type": "ClassMethod",
-                "start": 3853,
-                "end": 3924,
+                "start": 3766,
+                "end": 3835,
                 "loc": {
                   "start": {
                     "line": 88,
@@ -234,8 +234,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 3853,
-                  "end": 3863,
+                  "start": 3766,
+                  "end": 3776,
                   "loc": {
                     "start": {
                       "line": 88,
@@ -258,8 +258,8 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 3864,
-                    "end": 3872,
+                    "start": 3777,
+                    "end": 3785,
                     "loc": {
                       "start": {
                         "line": 88,
@@ -276,8 +276,8 @@
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 3873,
-                  "end": 3924,
+                  "start": 3786,
+                  "end": 3835,
                   "loc": {
                     "start": {
                       "line": 88,
@@ -291,8 +291,8 @@
                   "body": [
                     {
                       "type": "ExpressionStatement",
-                      "start": 3884,
-                      "end": 3917,
+                      "start": 3796,
+                      "end": 3829,
                       "loc": {
                         "start": {
                           "line": 89,
@@ -305,8 +305,8 @@
                       },
                       "expression": {
                         "type": "CallExpression",
-                        "start": 3884,
-                        "end": 3916,
+                        "start": 3796,
+                        "end": 3828,
                         "loc": {
                           "start": {
                             "line": 89,
@@ -319,8 +319,8 @@
                         },
                         "callee": {
                           "type": "Identifier",
-                          "start": 3884,
-                          "end": 3902,
+                          "start": 3796,
+                          "end": 3814,
                           "loc": {
                             "start": {
                               "line": 89,
@@ -337,8 +337,8 @@
                         "arguments": [
                           {
                             "type": "StringLiteral",
-                            "start": 3903,
-                            "end": 3915,
+                            "start": 3815,
+                            "end": 3827,
                             "loc": {
                               "start": {
                                 "line": 89,
@@ -364,9 +364,9 @@
                 "leadingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n     * Adjusts the specified temporal object.\r\n     *\r\n     * This adjusts the specified temporal object using the logic\r\n     * encapsulated in the implementing class.\r\n     * Examples might be an adjuster that sets the date avoiding weekends, or one that\r\n     * sets the date to the last day of the month.\r\n     *\r\n     * There are two equivalent ways of using this method.\r\n     * The first is to invoke this method directly.\r\n     * The second is to use {@link Temporal#with}:\r\n     * <pre>\r\n     *   // these two lines are equivalent, but the second approach is recommended\r\n     *   temporal = thisAdjuster.adjustInto(temporal);\r\n     *   temporal = temporal.with(thisAdjuster);\r\n     * </pre>\r\n     * It is recommended to use the second approach, {@link with},\r\n     * as it is a lot clearer to read in code.\r\n     *\r\n     * ### Specification for implementors\r\n     *\r\n     * The implementation must take the input object and adjust it.\r\n     * The implementation defines the logic of the adjustment and is responsible for\r\n     * documenting that logic. It may use any method on {@link Temporal} to\r\n     * query the temporal object and perform the adjustment.\r\n     * The returned object must have the same observable type as the input object\r\n     *\r\n     * The input object must not be altered.\r\n     * Instead, an adjusted copy of the original must be returned.\r\n     * This provides equivalent, safe behavior for immutable and mutable temporal objects.\r\n     *\r\n     * The input temporal object may be in a calendar system other than ISO.\r\n     * Implementations may choose to document compatibility with other calendar systems,\r\n     * or reject non-ISO temporal objects by querying the chronology (see {@link TemporalQueries#chronology}).\r\n     *\r\n     * This method may be called from multiple threads in parallel.\r\n     * It must be thread-safe when invoked.\r\n     *\r\n     * @param {Temporal} temporal  the temporal object to adjust, not null\r\n     * @return {Temporal} an object of the same observable type with the adjustment made, not null\r\n     * @throws DateTimeException if unable to make the adjustment\r\n     * @throws ArithmeticException if numeric overflow occurs\r\n     *\r\n     * @abstract\r\n     ",
-                    "start": 1569,
-                    "end": 3799,
+                    "value": "*\n     * Adjusts the specified temporal object.\n     *\n     * This adjusts the specified temporal object using the logic\n     * encapsulated in the implementing class.\n     * Examples might be an adjuster that sets the date avoiding weekends, or one that\n     * sets the date to the last day of the month.\n     *\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link Temporal#with}:\n     * <pre>\n     *   // these two lines are equivalent, but the second approach is recommended\n     *   temporal = thisAdjuster.adjustInto(temporal);\n     *   temporal = temporal.with(thisAdjuster);\n     * </pre>\n     * It is recommended to use the second approach, {@link with},\n     * as it is a lot clearer to read in code.\n     *\n     * ### Specification for implementors\n     *\n     * The implementation must take the input object and adjust it.\n     * The implementation defines the logic of the adjustment and is responsible for\n     * documenting that logic. It may use any method on {@link Temporal} to\n     * query the temporal object and perform the adjustment.\n     * The returned object must have the same observable type as the input object\n     *\n     * The input object must not be altered.\n     * Instead, an adjusted copy of the original must be returned.\n     * This provides equivalent, safe behavior for immutable and mutable temporal objects.\n     *\n     * The input temporal object may be in a calendar system other than ISO.\n     * Implementations may choose to document compatibility with other calendar systems,\n     * or reject non-ISO temporal objects by querying the chronology (see {@link TemporalQueries#chronology}).\n     *\n     * This method may be called from multiple threads in parallel.\n     * It must be thread-safe when invoked.\n     *\n     * @param {Temporal} temporal  the temporal object to adjust, not null\n     * @return {Temporal} an object of the same observable type with the adjustment made, not null\n     * @throws DateTimeException if unable to make the adjustment\n     * @throws ArithmeticException if numeric overflow occurs\n     *\n     * @abstract\n     ",
+                    "start": 1528,
+                    "end": 3714,
                     "loc": {
                       "start": {
                         "line": 42,
@@ -381,8 +381,8 @@
                   {
                     "type": "CommentLine",
                     "value": " eslint-disable-next-line no-unused-vars",
-                    "start": 3805,
-                    "end": 3847,
+                    "start": 3719,
+                    "end": 3761,
                     "loc": {
                       "start": {
                         "line": 87,
@@ -401,9 +401,9 @@
           "leadingComments": [
             {
               "type": "CommentBlock",
-              "value": "*\r\n * Strategy for adjusting a temporal object.\r\n *\r\n * Adjusters are a key tool for modifying temporal objects.\r\n * They exist to externalize the process of adjustment, permitting different\r\n * approaches, as per the strategy design pattern.\r\n * Examples might be an adjuster that sets the date avoiding weekends, or one that\r\n * sets the date to the last day of the month.\r\n *\r\n * There are two equivalent ways of using a {@link TemporalAdjuster}.\r\n * The first is to invoke the method on this interface directly.\r\n * The second is to use {@link Temporal#with}:\r\n * <pre>\r\n *   // these two lines are equivalent, but the second approach is recommended\r\n *   temporal = thisAdjuster.adjustInto(temporal);\r\n *   temporal = temporal.with(thisAdjuster);\r\n * </pre>\r\n * It is recommended to use the second approach, {@link with},\r\n * as it is a lot clearer to read in code.\r\n *\r\n * See {@link TemporalAdjusters} for a standard set of adjusters, including finding the\r\n * last day of the month.\r\n * Adjusters may also be defined by applications.\r\n *\r\n * ### Specification for implementors\r\n *\r\n * This interface places no restrictions on the mutability of implementations,\r\n * however immutability is strongly recommended.\r\n *\r\n * @interface\r\n ",
-              "start": 284,
-              "end": 1528,
+              "value": "*\n * Strategy for adjusting a temporal object.\n *\n * Adjusters are a key tool for modifying temporal objects.\n * They exist to externalize the process of adjustment, permitting different\n * approaches, as per the strategy design pattern.\n * Examples might be an adjuster that sets the date avoiding weekends, or one that\n * sets the date to the last day of the month.\n *\n * There are two equivalent ways of using a {@link TemporalAdjuster}.\n * The first is to invoke the method on this interface directly.\n * The second is to use {@link Temporal#with}:\n * <pre>\n *   // these two lines are equivalent, but the second approach is recommended\n *   temporal = thisAdjuster.adjustInto(temporal);\n *   temporal = temporal.with(thisAdjuster);\n * </pre>\n * It is recommended to use the second approach, {@link with},\n * as it is a lot clearer to read in code.\n *\n * See {@link TemporalAdjusters} for a standard set of adjusters, including finding the\n * last day of the month.\n * Adjusters may also be defined by applications.\n *\n * ### Specification for implementors\n *\n * This interface places no restrictions on the mutability of implementations,\n * however immutability is strongly recommended.\n *\n * @interface\n ",
+              "start": 276,
+              "end": 1490,
               "loc": {
                 "start": {
                   "line": 9,
@@ -421,9 +421,9 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Strategy for adjusting a temporal object.\r\n *\r\n * Adjusters are a key tool for modifying temporal objects.\r\n * They exist to externalize the process of adjustment, permitting different\r\n * approaches, as per the strategy design pattern.\r\n * Examples might be an adjuster that sets the date avoiding weekends, or one that\r\n * sets the date to the last day of the month.\r\n *\r\n * There are two equivalent ways of using a {@link TemporalAdjuster}.\r\n * The first is to invoke the method on this interface directly.\r\n * The second is to use {@link Temporal#with}:\r\n * <pre>\r\n *   // these two lines are equivalent, but the second approach is recommended\r\n *   temporal = thisAdjuster.adjustInto(temporal);\r\n *   temporal = temporal.with(thisAdjuster);\r\n * </pre>\r\n * It is recommended to use the second approach, {@link with},\r\n * as it is a lot clearer to read in code.\r\n *\r\n * See {@link TemporalAdjusters} for a standard set of adjusters, including finding the\r\n * last day of the month.\r\n * Adjusters may also be defined by applications.\r\n *\r\n * ### Specification for implementors\r\n *\r\n * This interface places no restrictions on the mutability of implementations,\r\n * however immutability is strongly recommended.\r\n *\r\n * @interface\r\n ",
-            "start": 284,
-            "end": 1528,
+            "value": "*\n * Strategy for adjusting a temporal object.\n *\n * Adjusters are a key tool for modifying temporal objects.\n * They exist to externalize the process of adjustment, permitting different\n * approaches, as per the strategy design pattern.\n * Examples might be an adjuster that sets the date avoiding weekends, or one that\n * sets the date to the last day of the month.\n *\n * There are two equivalent ways of using a {@link TemporalAdjuster}.\n * The first is to invoke the method on this interface directly.\n * The second is to use {@link Temporal#with}:\n * <pre>\n *   // these two lines are equivalent, but the second approach is recommended\n *   temporal = thisAdjuster.adjustInto(temporal);\n *   temporal = temporal.with(thisAdjuster);\n * </pre>\n * It is recommended to use the second approach, {@link with},\n * as it is a lot clearer to read in code.\n *\n * See {@link TemporalAdjusters} for a standard set of adjusters, including finding the\n * last day of the month.\n * Adjusters may also be defined by applications.\n *\n * ### Specification for implementors\n *\n * This interface places no restrictions on the mutability of implementations,\n * however immutability is strongly recommended.\n *\n * @interface\n ",
+            "start": 276,
+            "end": 1490,
             "loc": {
               "start": {
                 "line": 9,
@@ -443,9 +443,9 @@
   "comments": [
     {
       "type": "CommentBlock",
-      "value": "\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\r\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\r\n ",
+      "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
       "start": 0,
-      "end": 231,
+      "end": 227,
       "loc": {
         "start": {
           "line": 1,
@@ -459,9 +459,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Strategy for adjusting a temporal object.\r\n *\r\n * Adjusters are a key tool for modifying temporal objects.\r\n * They exist to externalize the process of adjustment, permitting different\r\n * approaches, as per the strategy design pattern.\r\n * Examples might be an adjuster that sets the date avoiding weekends, or one that\r\n * sets the date to the last day of the month.\r\n *\r\n * There are two equivalent ways of using a {@link TemporalAdjuster}.\r\n * The first is to invoke the method on this interface directly.\r\n * The second is to use {@link Temporal#with}:\r\n * <pre>\r\n *   // these two lines are equivalent, but the second approach is recommended\r\n *   temporal = thisAdjuster.adjustInto(temporal);\r\n *   temporal = temporal.with(thisAdjuster);\r\n * </pre>\r\n * It is recommended to use the second approach, {@link with},\r\n * as it is a lot clearer to read in code.\r\n *\r\n * See {@link TemporalAdjusters} for a standard set of adjusters, including finding the\r\n * last day of the month.\r\n * Adjusters may also be defined by applications.\r\n *\r\n * ### Specification for implementors\r\n *\r\n * This interface places no restrictions on the mutability of implementations,\r\n * however immutability is strongly recommended.\r\n *\r\n * @interface\r\n ",
-      "start": 284,
-      "end": 1528,
+      "value": "*\n * Strategy for adjusting a temporal object.\n *\n * Adjusters are a key tool for modifying temporal objects.\n * They exist to externalize the process of adjustment, permitting different\n * approaches, as per the strategy design pattern.\n * Examples might be an adjuster that sets the date avoiding weekends, or one that\n * sets the date to the last day of the month.\n *\n * There are two equivalent ways of using a {@link TemporalAdjuster}.\n * The first is to invoke the method on this interface directly.\n * The second is to use {@link Temporal#with}:\n * <pre>\n *   // these two lines are equivalent, but the second approach is recommended\n *   temporal = thisAdjuster.adjustInto(temporal);\n *   temporal = temporal.with(thisAdjuster);\n * </pre>\n * It is recommended to use the second approach, {@link with},\n * as it is a lot clearer to read in code.\n *\n * See {@link TemporalAdjusters} for a standard set of adjusters, including finding the\n * last day of the month.\n * Adjusters may also be defined by applications.\n *\n * ### Specification for implementors\n *\n * This interface places no restrictions on the mutability of implementations,\n * however immutability is strongly recommended.\n *\n * @interface\n ",
+      "start": 276,
+      "end": 1490,
       "loc": {
         "start": {
           "line": 9,
@@ -475,9 +475,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Adjusts the specified temporal object.\r\n     *\r\n     * This adjusts the specified temporal object using the logic\r\n     * encapsulated in the implementing class.\r\n     * Examples might be an adjuster that sets the date avoiding weekends, or one that\r\n     * sets the date to the last day of the month.\r\n     *\r\n     * There are two equivalent ways of using this method.\r\n     * The first is to invoke this method directly.\r\n     * The second is to use {@link Temporal#with}:\r\n     * <pre>\r\n     *   // these two lines are equivalent, but the second approach is recommended\r\n     *   temporal = thisAdjuster.adjustInto(temporal);\r\n     *   temporal = temporal.with(thisAdjuster);\r\n     * </pre>\r\n     * It is recommended to use the second approach, {@link with},\r\n     * as it is a lot clearer to read in code.\r\n     *\r\n     * ### Specification for implementors\r\n     *\r\n     * The implementation must take the input object and adjust it.\r\n     * The implementation defines the logic of the adjustment and is responsible for\r\n     * documenting that logic. It may use any method on {@link Temporal} to\r\n     * query the temporal object and perform the adjustment.\r\n     * The returned object must have the same observable type as the input object\r\n     *\r\n     * The input object must not be altered.\r\n     * Instead, an adjusted copy of the original must be returned.\r\n     * This provides equivalent, safe behavior for immutable and mutable temporal objects.\r\n     *\r\n     * The input temporal object may be in a calendar system other than ISO.\r\n     * Implementations may choose to document compatibility with other calendar systems,\r\n     * or reject non-ISO temporal objects by querying the chronology (see {@link TemporalQueries#chronology}).\r\n     *\r\n     * This method may be called from multiple threads in parallel.\r\n     * It must be thread-safe when invoked.\r\n     *\r\n     * @param {Temporal} temporal  the temporal object to adjust, not null\r\n     * @return {Temporal} an object of the same observable type with the adjustment made, not null\r\n     * @throws DateTimeException if unable to make the adjustment\r\n     * @throws ArithmeticException if numeric overflow occurs\r\n     *\r\n     * @abstract\r\n     ",
-      "start": 1569,
-      "end": 3799,
+      "value": "*\n     * Adjusts the specified temporal object.\n     *\n     * This adjusts the specified temporal object using the logic\n     * encapsulated in the implementing class.\n     * Examples might be an adjuster that sets the date avoiding weekends, or one that\n     * sets the date to the last day of the month.\n     *\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link Temporal#with}:\n     * <pre>\n     *   // these two lines are equivalent, but the second approach is recommended\n     *   temporal = thisAdjuster.adjustInto(temporal);\n     *   temporal = temporal.with(thisAdjuster);\n     * </pre>\n     * It is recommended to use the second approach, {@link with},\n     * as it is a lot clearer to read in code.\n     *\n     * ### Specification for implementors\n     *\n     * The implementation must take the input object and adjust it.\n     * The implementation defines the logic of the adjustment and is responsible for\n     * documenting that logic. It may use any method on {@link Temporal} to\n     * query the temporal object and perform the adjustment.\n     * The returned object must have the same observable type as the input object\n     *\n     * The input object must not be altered.\n     * Instead, an adjusted copy of the original must be returned.\n     * This provides equivalent, safe behavior for immutable and mutable temporal objects.\n     *\n     * The input temporal object may be in a calendar system other than ISO.\n     * Implementations may choose to document compatibility with other calendar systems,\n     * or reject non-ISO temporal objects by querying the chronology (see {@link TemporalQueries#chronology}).\n     *\n     * This method may be called from multiple threads in parallel.\n     * It must be thread-safe when invoked.\n     *\n     * @param {Temporal} temporal  the temporal object to adjust, not null\n     * @return {Temporal} an object of the same observable type with the adjustment made, not null\n     * @throws DateTimeException if unable to make the adjustment\n     * @throws ArithmeticException if numeric overflow occurs\n     *\n     * @abstract\n     ",
+      "start": 1528,
+      "end": 3714,
       "loc": {
         "start": {
           "line": 42,
@@ -492,8 +492,8 @@
     {
       "type": "CommentLine",
       "value": " eslint-disable-next-line no-unused-vars",
-      "start": 3805,
-      "end": 3847,
+      "start": 3719,
+      "end": 3761,
       "loc": {
         "start": {
           "line": 87,
@@ -509,9 +509,9 @@
   "tokens": [
     {
       "type": "CommentBlock",
-      "value": "\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\r\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\r\n ",
+      "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
       "start": 0,
-      "end": 231,
+      "end": 227,
       "loc": {
         "start": {
           "line": 1,
@@ -538,8 +538,8 @@
         "updateContext": null
       },
       "value": "import",
-      "start": 235,
-      "end": 241,
+      "start": 229,
+      "end": 235,
       "loc": {
         "start": {
           "line": 7,
@@ -563,8 +563,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 242,
-      "end": 243,
+      "start": 236,
+      "end": 237,
       "loc": {
         "start": {
           "line": 7,
@@ -589,8 +589,8 @@
         "binop": null
       },
       "value": "abstractMethodFail",
-      "start": 243,
-      "end": 261,
+      "start": 237,
+      "end": 255,
       "loc": {
         "start": {
           "line": 7,
@@ -614,8 +614,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 261,
-      "end": 262,
+      "start": 255,
+      "end": 256,
       "loc": {
         "start": {
           "line": 7,
@@ -640,8 +640,8 @@
         "binop": null
       },
       "value": "from",
-      "start": 263,
-      "end": 267,
+      "start": 257,
+      "end": 261,
       "loc": {
         "start": {
           "line": 7,
@@ -667,8 +667,8 @@
         "updateContext": null
       },
       "value": "../assert",
-      "start": 268,
-      "end": 279,
+      "start": 262,
+      "end": 273,
       "loc": {
         "start": {
           "line": 7,
@@ -693,8 +693,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 279,
-      "end": 280,
+      "start": 273,
+      "end": 274,
       "loc": {
         "start": {
           "line": 7,
@@ -708,9 +708,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Strategy for adjusting a temporal object.\r\n *\r\n * Adjusters are a key tool for modifying temporal objects.\r\n * They exist to externalize the process of adjustment, permitting different\r\n * approaches, as per the strategy design pattern.\r\n * Examples might be an adjuster that sets the date avoiding weekends, or one that\r\n * sets the date to the last day of the month.\r\n *\r\n * There are two equivalent ways of using a {@link TemporalAdjuster}.\r\n * The first is to invoke the method on this interface directly.\r\n * The second is to use {@link Temporal#with}:\r\n * <pre>\r\n *   // these two lines are equivalent, but the second approach is recommended\r\n *   temporal = thisAdjuster.adjustInto(temporal);\r\n *   temporal = temporal.with(thisAdjuster);\r\n * </pre>\r\n * It is recommended to use the second approach, {@link with},\r\n * as it is a lot clearer to read in code.\r\n *\r\n * See {@link TemporalAdjusters} for a standard set of adjusters, including finding the\r\n * last day of the month.\r\n * Adjusters may also be defined by applications.\r\n *\r\n * ### Specification for implementors\r\n *\r\n * This interface places no restrictions on the mutability of implementations,\r\n * however immutability is strongly recommended.\r\n *\r\n * @interface\r\n ",
-      "start": 284,
-      "end": 1528,
+      "value": "*\n * Strategy for adjusting a temporal object.\n *\n * Adjusters are a key tool for modifying temporal objects.\n * They exist to externalize the process of adjustment, permitting different\n * approaches, as per the strategy design pattern.\n * Examples might be an adjuster that sets the date avoiding weekends, or one that\n * sets the date to the last day of the month.\n *\n * There are two equivalent ways of using a {@link TemporalAdjuster}.\n * The first is to invoke the method on this interface directly.\n * The second is to use {@link Temporal#with}:\n * <pre>\n *   // these two lines are equivalent, but the second approach is recommended\n *   temporal = thisAdjuster.adjustInto(temporal);\n *   temporal = temporal.with(thisAdjuster);\n * </pre>\n * It is recommended to use the second approach, {@link with},\n * as it is a lot clearer to read in code.\n *\n * See {@link TemporalAdjusters} for a standard set of adjusters, including finding the\n * last day of the month.\n * Adjusters may also be defined by applications.\n *\n * ### Specification for implementors\n *\n * This interface places no restrictions on the mutability of implementations,\n * however immutability is strongly recommended.\n *\n * @interface\n ",
+      "start": 276,
+      "end": 1490,
       "loc": {
         "start": {
           "line": 9,
@@ -737,8 +737,8 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 1530,
-      "end": 1536,
+      "start": 1491,
+      "end": 1497,
       "loc": {
         "start": {
           "line": 40,
@@ -765,8 +765,8 @@
         "updateContext": null
       },
       "value": "class",
-      "start": 1537,
-      "end": 1542,
+      "start": 1498,
+      "end": 1503,
       "loc": {
         "start": {
           "line": 40,
@@ -791,8 +791,8 @@
         "binop": null
       },
       "value": "TemporalAdjuster",
-      "start": 1543,
-      "end": 1559,
+      "start": 1504,
+      "end": 1520,
       "loc": {
         "start": {
           "line": 40,
@@ -816,8 +816,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1560,
-      "end": 1561,
+      "start": 1521,
+      "end": 1522,
       "loc": {
         "start": {
           "line": 40,
@@ -831,9 +831,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Adjusts the specified temporal object.\r\n     *\r\n     * This adjusts the specified temporal object using the logic\r\n     * encapsulated in the implementing class.\r\n     * Examples might be an adjuster that sets the date avoiding weekends, or one that\r\n     * sets the date to the last day of the month.\r\n     *\r\n     * There are two equivalent ways of using this method.\r\n     * The first is to invoke this method directly.\r\n     * The second is to use {@link Temporal#with}:\r\n     * <pre>\r\n     *   // these two lines are equivalent, but the second approach is recommended\r\n     *   temporal = thisAdjuster.adjustInto(temporal);\r\n     *   temporal = temporal.with(thisAdjuster);\r\n     * </pre>\r\n     * It is recommended to use the second approach, {@link with},\r\n     * as it is a lot clearer to read in code.\r\n     *\r\n     * ### Specification for implementors\r\n     *\r\n     * The implementation must take the input object and adjust it.\r\n     * The implementation defines the logic of the adjustment and is responsible for\r\n     * documenting that logic. It may use any method on {@link Temporal} to\r\n     * query the temporal object and perform the adjustment.\r\n     * The returned object must have the same observable type as the input object\r\n     *\r\n     * The input object must not be altered.\r\n     * Instead, an adjusted copy of the original must be returned.\r\n     * This provides equivalent, safe behavior for immutable and mutable temporal objects.\r\n     *\r\n     * The input temporal object may be in a calendar system other than ISO.\r\n     * Implementations may choose to document compatibility with other calendar systems,\r\n     * or reject non-ISO temporal objects by querying the chronology (see {@link TemporalQueries#chronology}).\r\n     *\r\n     * This method may be called from multiple threads in parallel.\r\n     * It must be thread-safe when invoked.\r\n     *\r\n     * @param {Temporal} temporal  the temporal object to adjust, not null\r\n     * @return {Temporal} an object of the same observable type with the adjustment made, not null\r\n     * @throws DateTimeException if unable to make the adjustment\r\n     * @throws ArithmeticException if numeric overflow occurs\r\n     *\r\n     * @abstract\r\n     ",
-      "start": 1569,
-      "end": 3799,
+      "value": "*\n     * Adjusts the specified temporal object.\n     *\n     * This adjusts the specified temporal object using the logic\n     * encapsulated in the implementing class.\n     * Examples might be an adjuster that sets the date avoiding weekends, or one that\n     * sets the date to the last day of the month.\n     *\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link Temporal#with}:\n     * <pre>\n     *   // these two lines are equivalent, but the second approach is recommended\n     *   temporal = thisAdjuster.adjustInto(temporal);\n     *   temporal = temporal.with(thisAdjuster);\n     * </pre>\n     * It is recommended to use the second approach, {@link with},\n     * as it is a lot clearer to read in code.\n     *\n     * ### Specification for implementors\n     *\n     * The implementation must take the input object and adjust it.\n     * The implementation defines the logic of the adjustment and is responsible for\n     * documenting that logic. It may use any method on {@link Temporal} to\n     * query the temporal object and perform the adjustment.\n     * The returned object must have the same observable type as the input object\n     *\n     * The input object must not be altered.\n     * Instead, an adjusted copy of the original must be returned.\n     * This provides equivalent, safe behavior for immutable and mutable temporal objects.\n     *\n     * The input temporal object may be in a calendar system other than ISO.\n     * Implementations may choose to document compatibility with other calendar systems,\n     * or reject non-ISO temporal objects by querying the chronology (see {@link TemporalQueries#chronology}).\n     *\n     * This method may be called from multiple threads in parallel.\n     * It must be thread-safe when invoked.\n     *\n     * @param {Temporal} temporal  the temporal object to adjust, not null\n     * @return {Temporal} an object of the same observable type with the adjustment made, not null\n     * @throws DateTimeException if unable to make the adjustment\n     * @throws ArithmeticException if numeric overflow occurs\n     *\n     * @abstract\n     ",
+      "start": 1528,
+      "end": 3714,
       "loc": {
         "start": {
           "line": 42,
@@ -848,8 +848,8 @@
     {
       "type": "CommentLine",
       "value": " eslint-disable-next-line no-unused-vars",
-      "start": 3805,
-      "end": 3847,
+      "start": 3719,
+      "end": 3761,
       "loc": {
         "start": {
           "line": 87,
@@ -874,8 +874,8 @@
         "binop": null
       },
       "value": "adjustInto",
-      "start": 3853,
-      "end": 3863,
+      "start": 3766,
+      "end": 3776,
       "loc": {
         "start": {
           "line": 88,
@@ -899,8 +899,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3863,
-      "end": 3864,
+      "start": 3776,
+      "end": 3777,
       "loc": {
         "start": {
           "line": 88,
@@ -925,8 +925,8 @@
         "binop": null
       },
       "value": "temporal",
-      "start": 3864,
-      "end": 3872,
+      "start": 3777,
+      "end": 3785,
       "loc": {
         "start": {
           "line": 88,
@@ -950,8 +950,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3872,
-      "end": 3873,
+      "start": 3785,
+      "end": 3786,
       "loc": {
         "start": {
           "line": 88,
@@ -975,8 +975,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3873,
-      "end": 3874,
+      "start": 3786,
+      "end": 3787,
       "loc": {
         "start": {
           "line": 88,
@@ -1001,8 +1001,8 @@
         "binop": null
       },
       "value": "abstractMethodFail",
-      "start": 3884,
-      "end": 3902,
+      "start": 3796,
+      "end": 3814,
       "loc": {
         "start": {
           "line": 89,
@@ -1026,8 +1026,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3902,
-      "end": 3903,
+      "start": 3814,
+      "end": 3815,
       "loc": {
         "start": {
           "line": 89,
@@ -1053,8 +1053,8 @@
         "updateContext": null
       },
       "value": "adjustInto",
-      "start": 3903,
-      "end": 3915,
+      "start": 3815,
+      "end": 3827,
       "loc": {
         "start": {
           "line": 89,
@@ -1078,8 +1078,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3915,
-      "end": 3916,
+      "start": 3827,
+      "end": 3828,
       "loc": {
         "start": {
           "line": 89,
@@ -1104,8 +1104,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 3916,
-      "end": 3917,
+      "start": 3828,
+      "end": 3829,
       "loc": {
         "start": {
           "line": 89,
@@ -1129,8 +1129,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3923,
-      "end": 3924,
+      "start": 3834,
+      "end": 3835,
       "loc": {
         "start": {
           "line": 90,
@@ -1154,8 +1154,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3928,
-      "end": 3929,
+      "start": 3837,
+      "end": 3838,
       "loc": {
         "start": {
           "line": 92,
@@ -1180,8 +1180,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 3931,
-      "end": 3931,
+      "start": 3839,
+      "end": 3839,
       "loc": {
         "start": {
           "line": 93,

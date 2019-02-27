@@ -31,3 +31,7 @@ Then add it as a script tag to your page
     var d = LocalDate.parse('2012-12-24').atStartOfDay().plusMonths(2); // 2013-02-24T00:00:00
 </script>
 ```
+
+### JSFiddle
+
+Fiddle around with jsjoda, find a simple example setup at [https://jsfiddle.net/bo7yuk34/4/](https://jsfiddle.net/bo7yuk34/4/)

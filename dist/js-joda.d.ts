@@ -1345,7 +1345,7 @@ declare namespace JSJoda {
         static ofInstant(instant: Instant, zone: ZoneId): ZonedDateTime
         static ofInstant(localDateTime: LocalDateTime, offset: ZoneOffset, zone: ZoneId): ZonedDateTime
 
-        static ofLocal(localDateTime: LocalDateTime, zone: ZoneId, preferredOffset: ZoneOffset): ZonedDateTime
+        static ofLocal(localDateTime: LocalDateTime, zone: ZoneId, preferredOffset: ZoneOffset | null): ZonedDateTime
 
         static ofStrict(localDateTime: LocalDateTime, offset: ZoneOffset, zone: ZoneId): ZonedDateTime
 

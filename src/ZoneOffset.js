@@ -434,7 +434,7 @@ export class ZoneOffset extends ZoneId {
      * The comparison is "consistent with equals", as defined by {@link Comparable}.
      *
      * @param {!ZoneOffset} other - the other date to compare to, not null
-     * @return {number} the comparator value, negative if less, postive if greater
+     * @return {number} the comparator value, negative if less, positive if greater
      * @throws NullPointerException if {@link other} is null
      */
     compareTo(other) {

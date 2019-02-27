@@ -1,7 +1,7 @@
 {
   "type": "File",
   "start": 0,
-  "end": 3853,
+  "end": 3760,
   "loc": {
     "start": {
       "line": 1,
@@ -15,7 +15,7 @@
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 3853,
+    "end": 3760,
     "loc": {
       "start": {
         "line": 1,
@@ -30,8 +30,8 @@
     "body": [
       {
         "type": "ImportDeclaration",
-        "start": 235,
-        "end": 264,
+        "start": 229,
+        "end": 258,
         "loc": {
           "start": {
             "line": 7,
@@ -45,8 +45,8 @@
         "specifiers": [
           {
             "type": "ImportSpecifier",
-            "start": 243,
-            "end": 247,
+            "start": 237,
+            "end": 241,
             "loc": {
               "start": {
                 "line": 7,
@@ -59,8 +59,8 @@
             },
             "imported": {
               "type": "Identifier",
-              "start": 243,
-              "end": 247,
+              "start": 237,
+              "end": 241,
               "loc": {
                 "start": {
                   "line": 7,
@@ -77,8 +77,8 @@
             },
             "local": {
               "type": "Identifier",
-              "start": 243,
-              "end": 247,
+              "start": 237,
+              "end": 241,
               "loc": {
                 "start": {
                   "line": 7,
@@ -97,8 +97,8 @@
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 254,
-          "end": 263,
+          "start": 248,
+          "end": 257,
           "loc": {
             "start": {
               "line": 7,
@@ -118,9 +118,9 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\r\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\r\n ",
+            "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
             "start": 0,
-            "end": 231,
+            "end": 227,
             "loc": {
               "start": {
                 "line": 1,
@@ -136,9 +136,9 @@
         "trailingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Enumeration of different ways to resolve dates and times.\r\n * \r\n * Parsing a text string occurs in two phases.\r\n * Phase 1 is a basic text parse according to the fields added to the builder.\r\n * Phase 2 resolves the parsed field-value pairs into date and/or time objects.\r\n * This style is used to control how phase 2, resolving, happens.\r\n *\r\n * ### Static properties of Class {@link DateTimeFormatter}\r\n *\r\n * ResolverStyle.STRICT = new ResolverStyle('STRICT');\r\n *\r\n * Style to resolve dates and times strictly.\r\n *\r\n * Using strict resolution will ensure that all parsed values are within\r\n * the outer range of valid values for the field. Individual fields may\r\n * be further processed for strictness.\r\n *\r\n * For example, resolving year-month and day-of-month in the ISO calendar\r\n * system using strict mode will ensure that the day-of-month is valid\r\n * for the year-month, rejecting invalid values.\r\n *\r\n * ResolverStyle.SMART = new ResolverStyle('SMART');\r\n *\r\n * Style to resolve dates and times in a smart, or intelligent, manner.\r\n *\r\n * Using smart resolution will perform the sensible default for each\r\n * field, which may be the same as strict, the same as lenient, or a third\r\n * behavior. Individual fields will interpret this differently.\r\n *\r\n * For example, resolving year-month and day-of-month in the ISO calendar\r\n * system using smart mode will ensure that the day-of-month is from\r\n * 1 to 31, converting any value beyond the last valid day-of-month to be\r\n * the last valid day-of-month.\r\n *\r\n * ResolverStyle.LENIENT = new ResolverStyle('LENIENT');\r\n *\r\n * Style to resolve dates and times leniently.\r\n *\r\n * Using lenient resolution will resolve the values in an appropriate\r\n * lenient manner. Individual fields will interpret this differently.\r\n *\r\n * For example, lenient mode allows the month in the ISO calendar system\r\n * to be outside the range 1 to 12.\r\n * For example, month 15 is treated as being 3 months after month 12.\r\n *\r\n ",
-            "start": 268,
-            "end": 2245,
+            "value": "*\n * Enumeration of different ways to resolve dates and times.\n * \n * Parsing a text string occurs in two phases.\n * Phase 1 is a basic text parse according to the fields added to the builder.\n * Phase 2 resolves the parsed field-value pairs into date and/or time objects.\n * This style is used to control how phase 2, resolving, happens.\n *\n * ### Static properties of Class {@link DateTimeFormatter}\n *\n * ResolverStyle.STRICT = new ResolverStyle('STRICT');\n *\n * Style to resolve dates and times strictly.\n *\n * Using strict resolution will ensure that all parsed values are within\n * the outer range of valid values for the field. Individual fields may\n * be further processed for strictness.\n *\n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using strict mode will ensure that the day-of-month is valid\n * for the year-month, rejecting invalid values.\n *\n * ResolverStyle.SMART = new ResolverStyle('SMART');\n *\n * Style to resolve dates and times in a smart, or intelligent, manner.\n *\n * Using smart resolution will perform the sensible default for each\n * field, which may be the same as strict, the same as lenient, or a third\n * behavior. Individual fields will interpret this differently.\n *\n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using smart mode will ensure that the day-of-month is from\n * 1 to 31, converting any value beyond the last valid day-of-month to be\n * the last valid day-of-month.\n *\n * ResolverStyle.LENIENT = new ResolverStyle('LENIENT');\n *\n * Style to resolve dates and times leniently.\n *\n * Using lenient resolution will resolve the values in an appropriate\n * lenient manner. Individual fields will interpret this differently.\n *\n * For example, lenient mode allows the month in the ISO calendar system\n * to be outside the range 1 to 12.\n * For example, month 15 is treated as being 3 months after month 12.\n *\n ",
+            "start": 260,
+            "end": 2191,
             "loc": {
               "start": {
                 "line": 9,
@@ -154,8 +154,8 @@
       },
       {
         "type": "ExportNamedDeclaration",
-        "start": 2247,
-        "end": 2289,
+        "start": 2192,
+        "end": 2234,
         "loc": {
           "start": {
             "line": 56,
@@ -170,8 +170,8 @@
         "source": null,
         "declaration": {
           "type": "ClassDeclaration",
-          "start": 2254,
-          "end": 2289,
+          "start": 2199,
+          "end": 2234,
           "loc": {
             "start": {
               "line": 56,
@@ -184,8 +184,8 @@
           },
           "id": {
             "type": "Identifier",
-            "start": 2260,
-            "end": 2273,
+            "start": 2205,
+            "end": 2218,
             "loc": {
               "start": {
                 "line": 56,
@@ -202,8 +202,8 @@
           },
           "superClass": {
             "type": "Identifier",
-            "start": 2282,
-            "end": 2286,
+            "start": 2227,
+            "end": 2231,
             "loc": {
               "start": {
                 "line": 56,
@@ -219,8 +219,8 @@
           },
           "body": {
             "type": "ClassBody",
-            "start": 2287,
-            "end": 2289,
+            "start": 2232,
+            "end": 2234,
             "loc": {
               "start": {
                 "line": 56,
@@ -238,9 +238,9 @@
           "leadingComments": [
             {
               "type": "CommentBlock",
-              "value": "*\r\n * Enumeration of different ways to resolve dates and times.\r\n * \r\n * Parsing a text string occurs in two phases.\r\n * Phase 1 is a basic text parse according to the fields added to the builder.\r\n * Phase 2 resolves the parsed field-value pairs into date and/or time objects.\r\n * This style is used to control how phase 2, resolving, happens.\r\n *\r\n * ### Static properties of Class {@link DateTimeFormatter}\r\n *\r\n * ResolverStyle.STRICT = new ResolverStyle('STRICT');\r\n *\r\n * Style to resolve dates and times strictly.\r\n *\r\n * Using strict resolution will ensure that all parsed values are within\r\n * the outer range of valid values for the field. Individual fields may\r\n * be further processed for strictness.\r\n *\r\n * For example, resolving year-month and day-of-month in the ISO calendar\r\n * system using strict mode will ensure that the day-of-month is valid\r\n * for the year-month, rejecting invalid values.\r\n *\r\n * ResolverStyle.SMART = new ResolverStyle('SMART');\r\n *\r\n * Style to resolve dates and times in a smart, or intelligent, manner.\r\n *\r\n * Using smart resolution will perform the sensible default for each\r\n * field, which may be the same as strict, the same as lenient, or a third\r\n * behavior. Individual fields will interpret this differently.\r\n *\r\n * For example, resolving year-month and day-of-month in the ISO calendar\r\n * system using smart mode will ensure that the day-of-month is from\r\n * 1 to 31, converting any value beyond the last valid day-of-month to be\r\n * the last valid day-of-month.\r\n *\r\n * ResolverStyle.LENIENT = new ResolverStyle('LENIENT');\r\n *\r\n * Style to resolve dates and times leniently.\r\n *\r\n * Using lenient resolution will resolve the values in an appropriate\r\n * lenient manner. Individual fields will interpret this differently.\r\n *\r\n * For example, lenient mode allows the month in the ISO calendar system\r\n * to be outside the range 1 to 12.\r\n * For example, month 15 is treated as being 3 months after month 12.\r\n *\r\n ",
-              "start": 268,
-              "end": 2245,
+              "value": "*\n * Enumeration of different ways to resolve dates and times.\n * \n * Parsing a text string occurs in two phases.\n * Phase 1 is a basic text parse according to the fields added to the builder.\n * Phase 2 resolves the parsed field-value pairs into date and/or time objects.\n * This style is used to control how phase 2, resolving, happens.\n *\n * ### Static properties of Class {@link DateTimeFormatter}\n *\n * ResolverStyle.STRICT = new ResolverStyle('STRICT');\n *\n * Style to resolve dates and times strictly.\n *\n * Using strict resolution will ensure that all parsed values are within\n * the outer range of valid values for the field. Individual fields may\n * be further processed for strictness.\n *\n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using strict mode will ensure that the day-of-month is valid\n * for the year-month, rejecting invalid values.\n *\n * ResolverStyle.SMART = new ResolverStyle('SMART');\n *\n * Style to resolve dates and times in a smart, or intelligent, manner.\n *\n * Using smart resolution will perform the sensible default for each\n * field, which may be the same as strict, the same as lenient, or a third\n * behavior. Individual fields will interpret this differently.\n *\n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using smart mode will ensure that the day-of-month is from\n * 1 to 31, converting any value beyond the last valid day-of-month to be\n * the last valid day-of-month.\n *\n * ResolverStyle.LENIENT = new ResolverStyle('LENIENT');\n *\n * Style to resolve dates and times leniently.\n *\n * Using lenient resolution will resolve the values in an appropriate\n * lenient manner. Individual fields will interpret this differently.\n *\n * For example, lenient mode allows the month in the ISO calendar system\n * to be outside the range 1 to 12.\n * For example, month 15 is treated as being 3 months after month 12.\n *\n ",
+              "start": 260,
+              "end": 2191,
               "loc": {
                 "start": {
                   "line": 9,
@@ -256,9 +256,9 @@
           "trailingComments": [
             {
               "type": "CommentBlock",
-              "value": "*\r\n * Style to resolve dates and times strictly.\r\n * \r\n * Using strict resolution will ensure that all parsed values are within\r\n * the outer range of valid values for the field. Individual fields may\r\n * be further processed for strictness.\r\n * \r\n * For example, resolving year-month and day-of-month in the ISO calendar\r\n * system using strict mode will ensure that the day-of-month is valid\r\n * for the year-month, rejecting invalid values.\r\n ",
-              "start": 2293,
-              "end": 2743,
+              "value": "*\n * Style to resolve dates and times strictly.\n * \n * Using strict resolution will ensure that all parsed values are within\n * the outer range of valid values for the field. Individual fields may\n * be further processed for strictness.\n * \n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using strict mode will ensure that the day-of-month is valid\n * for the year-month, rejecting invalid values.\n ",
+              "start": 2236,
+              "end": 2676,
               "loc": {
                 "start": {
                   "line": 58,
@@ -275,9 +275,9 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Enumeration of different ways to resolve dates and times.\r\n * \r\n * Parsing a text string occurs in two phases.\r\n * Phase 1 is a basic text parse according to the fields added to the builder.\r\n * Phase 2 resolves the parsed field-value pairs into date and/or time objects.\r\n * This style is used to control how phase 2, resolving, happens.\r\n *\r\n * ### Static properties of Class {@link DateTimeFormatter}\r\n *\r\n * ResolverStyle.STRICT = new ResolverStyle('STRICT');\r\n *\r\n * Style to resolve dates and times strictly.\r\n *\r\n * Using strict resolution will ensure that all parsed values are within\r\n * the outer range of valid values for the field. Individual fields may\r\n * be further processed for strictness.\r\n *\r\n * For example, resolving year-month and day-of-month in the ISO calendar\r\n * system using strict mode will ensure that the day-of-month is valid\r\n * for the year-month, rejecting invalid values.\r\n *\r\n * ResolverStyle.SMART = new ResolverStyle('SMART');\r\n *\r\n * Style to resolve dates and times in a smart, or intelligent, manner.\r\n *\r\n * Using smart resolution will perform the sensible default for each\r\n * field, which may be the same as strict, the same as lenient, or a third\r\n * behavior. Individual fields will interpret this differently.\r\n *\r\n * For example, resolving year-month and day-of-month in the ISO calendar\r\n * system using smart mode will ensure that the day-of-month is from\r\n * 1 to 31, converting any value beyond the last valid day-of-month to be\r\n * the last valid day-of-month.\r\n *\r\n * ResolverStyle.LENIENT = new ResolverStyle('LENIENT');\r\n *\r\n * Style to resolve dates and times leniently.\r\n *\r\n * Using lenient resolution will resolve the values in an appropriate\r\n * lenient manner. Individual fields will interpret this differently.\r\n *\r\n * For example, lenient mode allows the month in the ISO calendar system\r\n * to be outside the range 1 to 12.\r\n * For example, month 15 is treated as being 3 months after month 12.\r\n *\r\n ",
-            "start": 268,
-            "end": 2245,
+            "value": "*\n * Enumeration of different ways to resolve dates and times.\n * \n * Parsing a text string occurs in two phases.\n * Phase 1 is a basic text parse according to the fields added to the builder.\n * Phase 2 resolves the parsed field-value pairs into date and/or time objects.\n * This style is used to control how phase 2, resolving, happens.\n *\n * ### Static properties of Class {@link DateTimeFormatter}\n *\n * ResolverStyle.STRICT = new ResolverStyle('STRICT');\n *\n * Style to resolve dates and times strictly.\n *\n * Using strict resolution will ensure that all parsed values are within\n * the outer range of valid values for the field. Individual fields may\n * be further processed for strictness.\n *\n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using strict mode will ensure that the day-of-month is valid\n * for the year-month, rejecting invalid values.\n *\n * ResolverStyle.SMART = new ResolverStyle('SMART');\n *\n * Style to resolve dates and times in a smart, or intelligent, manner.\n *\n * Using smart resolution will perform the sensible default for each\n * field, which may be the same as strict, the same as lenient, or a third\n * behavior. Individual fields will interpret this differently.\n *\n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using smart mode will ensure that the day-of-month is from\n * 1 to 31, converting any value beyond the last valid day-of-month to be\n * the last valid day-of-month.\n *\n * ResolverStyle.LENIENT = new ResolverStyle('LENIENT');\n *\n * Style to resolve dates and times leniently.\n *\n * Using lenient resolution will resolve the values in an appropriate\n * lenient manner. Individual fields will interpret this differently.\n *\n * For example, lenient mode allows the month in the ISO calendar system\n * to be outside the range 1 to 12.\n * For example, month 15 is treated as being 3 months after month 12.\n *\n ",
+            "start": 260,
+            "end": 2191,
             "loc": {
               "start": {
                 "line": 9,
@@ -293,9 +293,9 @@
         "trailingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Style to resolve dates and times strictly.\r\n * \r\n * Using strict resolution will ensure that all parsed values are within\r\n * the outer range of valid values for the field. Individual fields may\r\n * be further processed for strictness.\r\n * \r\n * For example, resolving year-month and day-of-month in the ISO calendar\r\n * system using strict mode will ensure that the day-of-month is valid\r\n * for the year-month, rejecting invalid values.\r\n ",
-            "start": 2293,
-            "end": 2743,
+            "value": "*\n * Style to resolve dates and times strictly.\n * \n * Using strict resolution will ensure that all parsed values are within\n * the outer range of valid values for the field. Individual fields may\n * be further processed for strictness.\n * \n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using strict mode will ensure that the day-of-month is valid\n * for the year-month, rejecting invalid values.\n ",
+            "start": 2236,
+            "end": 2676,
             "loc": {
               "start": {
                 "line": 58,
@@ -311,8 +311,8 @@
       },
       {
         "type": "ExpressionStatement",
-        "start": 2745,
-        "end": 2796,
+        "start": 2677,
+        "end": 2728,
         "loc": {
           "start": {
             "line": 69,
@@ -325,8 +325,8 @@
         },
         "expression": {
           "type": "AssignmentExpression",
-          "start": 2745,
-          "end": 2795,
+          "start": 2677,
+          "end": 2727,
           "loc": {
             "start": {
               "line": 69,
@@ -340,8 +340,8 @@
           "operator": "=",
           "left": {
             "type": "MemberExpression",
-            "start": 2745,
-            "end": 2765,
+            "start": 2677,
+            "end": 2697,
             "loc": {
               "start": {
                 "line": 69,
@@ -354,8 +354,8 @@
             },
             "object": {
               "type": "Identifier",
-              "start": 2745,
-              "end": 2758,
+              "start": 2677,
+              "end": 2690,
               "loc": {
                 "start": {
                   "line": 69,
@@ -372,8 +372,8 @@
             },
             "property": {
               "type": "Identifier",
-              "start": 2759,
-              "end": 2765,
+              "start": 2691,
+              "end": 2697,
               "loc": {
                 "start": {
                   "line": 69,
@@ -392,8 +392,8 @@
           },
           "right": {
             "type": "NewExpression",
-            "start": 2768,
-            "end": 2795,
+            "start": 2700,
+            "end": 2727,
             "loc": {
               "start": {
                 "line": 69,
@@ -406,8 +406,8 @@
             },
             "callee": {
               "type": "Identifier",
-              "start": 2772,
-              "end": 2785,
+              "start": 2704,
+              "end": 2717,
               "loc": {
                 "start": {
                   "line": 69,
@@ -424,8 +424,8 @@
             "arguments": [
               {
                 "type": "StringLiteral",
-                "start": 2786,
-                "end": 2794,
+                "start": 2718,
+                "end": 2726,
                 "loc": {
                   "start": {
                     "line": 69,
@@ -449,9 +449,9 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Style to resolve dates and times strictly.\r\n * \r\n * Using strict resolution will ensure that all parsed values are within\r\n * the outer range of valid values for the field. Individual fields may\r\n * be further processed for strictness.\r\n * \r\n * For example, resolving year-month and day-of-month in the ISO calendar\r\n * system using strict mode will ensure that the day-of-month is valid\r\n * for the year-month, rejecting invalid values.\r\n ",
-            "start": 2293,
-            "end": 2743,
+            "value": "*\n * Style to resolve dates and times strictly.\n * \n * Using strict resolution will ensure that all parsed values are within\n * the outer range of valid values for the field. Individual fields may\n * be further processed for strictness.\n * \n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using strict mode will ensure that the day-of-month is valid\n * for the year-month, rejecting invalid values.\n ",
+            "start": 2236,
+            "end": 2676,
             "loc": {
               "start": {
                 "line": 58,
@@ -467,9 +467,9 @@
         "trailingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Style to resolve dates and times in a smart, or intelligent, manner.\r\n * \r\n * Using smart resolution will perform the sensible default for each\r\n * field, which may be the same as strict, the same as lenient, or a third\r\n * behavior. Individual fields will interpret this differently.\r\n * \r\n * For example, resolving year-month and day-of-month in the ISO calendar\r\n * system using smart mode will ensure that the day-of-month is from\r\n * 1 to 31, converting any value beyond the last valid day-of-month to be\r\n * the last valid day-of-month.\r\n ",
-            "start": 2798,
-            "end": 3353,
+            "value": "*\n * Style to resolve dates and times in a smart, or intelligent, manner.\n * \n * Using smart resolution will perform the sensible default for each\n * field, which may be the same as strict, the same as lenient, or a third\n * behavior. Individual fields will interpret this differently.\n * \n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using smart mode will ensure that the day-of-month is from\n * 1 to 31, converting any value beyond the last valid day-of-month to be\n * the last valid day-of-month.\n ",
+            "start": 2729,
+            "end": 3273,
             "loc": {
               "start": {
                 "line": 70,
@@ -485,8 +485,8 @@
       },
       {
         "type": "ExpressionStatement",
-        "start": 3355,
-        "end": 3404,
+        "start": 3274,
+        "end": 3323,
         "loc": {
           "start": {
             "line": 82,
@@ -499,8 +499,8 @@
         },
         "expression": {
           "type": "AssignmentExpression",
-          "start": 3355,
-          "end": 3403,
+          "start": 3274,
+          "end": 3322,
           "loc": {
             "start": {
               "line": 82,
@@ -514,8 +514,8 @@
           "operator": "=",
           "left": {
             "type": "MemberExpression",
-            "start": 3355,
-            "end": 3374,
+            "start": 3274,
+            "end": 3293,
             "loc": {
               "start": {
                 "line": 82,
@@ -528,8 +528,8 @@
             },
             "object": {
               "type": "Identifier",
-              "start": 3355,
-              "end": 3368,
+              "start": 3274,
+              "end": 3287,
               "loc": {
                 "start": {
                   "line": 82,
@@ -546,8 +546,8 @@
             },
             "property": {
               "type": "Identifier",
-              "start": 3369,
-              "end": 3374,
+              "start": 3288,
+              "end": 3293,
               "loc": {
                 "start": {
                   "line": 82,
@@ -566,8 +566,8 @@
           },
           "right": {
             "type": "NewExpression",
-            "start": 3377,
-            "end": 3403,
+            "start": 3296,
+            "end": 3322,
             "loc": {
               "start": {
                 "line": 82,
@@ -580,8 +580,8 @@
             },
             "callee": {
               "type": "Identifier",
-              "start": 3381,
-              "end": 3394,
+              "start": 3300,
+              "end": 3313,
               "loc": {
                 "start": {
                   "line": 82,
@@ -598,8 +598,8 @@
             "arguments": [
               {
                 "type": "StringLiteral",
-                "start": 3395,
-                "end": 3402,
+                "start": 3314,
+                "end": 3321,
                 "loc": {
                   "start": {
                     "line": 82,
@@ -623,9 +623,9 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Style to resolve dates and times in a smart, or intelligent, manner.\r\n * \r\n * Using smart resolution will perform the sensible default for each\r\n * field, which may be the same as strict, the same as lenient, or a third\r\n * behavior. Individual fields will interpret this differently.\r\n * \r\n * For example, resolving year-month and day-of-month in the ISO calendar\r\n * system using smart mode will ensure that the day-of-month is from\r\n * 1 to 31, converting any value beyond the last valid day-of-month to be\r\n * the last valid day-of-month.\r\n ",
-            "start": 2798,
-            "end": 3353,
+            "value": "*\n * Style to resolve dates and times in a smart, or intelligent, manner.\n * \n * Using smart resolution will perform the sensible default for each\n * field, which may be the same as strict, the same as lenient, or a third\n * behavior. Individual fields will interpret this differently.\n * \n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using smart mode will ensure that the day-of-month is from\n * 1 to 31, converting any value beyond the last valid day-of-month to be\n * the last valid day-of-month.\n ",
+            "start": 2729,
+            "end": 3273,
             "loc": {
               "start": {
                 "line": 70,
@@ -641,9 +641,9 @@
         "trailingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Style to resolve dates and times leniently.\r\n * \r\n * Using lenient resolution will resolve the values in an appropriate\r\n * lenient manner. Individual fields will interpret this differently.\r\n * \r\n * For example, lenient mode allows the month in the ISO calendar system\r\n * to be outside the range 1 to 12.\r\n * For example, month 15 is treated as being 3 months after month 12.\r\n ",
-            "start": 3406,
-            "end": 3796,
+            "value": "*\n * Style to resolve dates and times leniently.\n * \n * Using lenient resolution will resolve the values in an appropriate\n * lenient manner. Individual fields will interpret this differently.\n * \n * For example, lenient mode allows the month in the ISO calendar system\n * to be outside the range 1 to 12.\n * For example, month 15 is treated as being 3 months after month 12.\n ",
+            "start": 3324,
+            "end": 3705,
             "loc": {
               "start": {
                 "line": 83,
@@ -659,8 +659,8 @@
       },
       {
         "type": "ExpressionStatement",
-        "start": 3798,
-        "end": 3851,
+        "start": 3706,
+        "end": 3759,
         "loc": {
           "start": {
             "line": 93,
@@ -673,8 +673,8 @@
         },
         "expression": {
           "type": "AssignmentExpression",
-          "start": 3798,
-          "end": 3850,
+          "start": 3706,
+          "end": 3758,
           "loc": {
             "start": {
               "line": 93,
@@ -688,8 +688,8 @@
           "operator": "=",
           "left": {
             "type": "MemberExpression",
-            "start": 3798,
-            "end": 3819,
+            "start": 3706,
+            "end": 3727,
             "loc": {
               "start": {
                 "line": 93,
@@ -702,8 +702,8 @@
             },
             "object": {
               "type": "Identifier",
-              "start": 3798,
-              "end": 3811,
+              "start": 3706,
+              "end": 3719,
               "loc": {
                 "start": {
                   "line": 93,
@@ -720,8 +720,8 @@
             },
             "property": {
               "type": "Identifier",
-              "start": 3812,
-              "end": 3819,
+              "start": 3720,
+              "end": 3727,
               "loc": {
                 "start": {
                   "line": 93,
@@ -740,8 +740,8 @@
           },
           "right": {
             "type": "NewExpression",
-            "start": 3822,
-            "end": 3850,
+            "start": 3730,
+            "end": 3758,
             "loc": {
               "start": {
                 "line": 93,
@@ -754,8 +754,8 @@
             },
             "callee": {
               "type": "Identifier",
-              "start": 3826,
-              "end": 3839,
+              "start": 3734,
+              "end": 3747,
               "loc": {
                 "start": {
                   "line": 93,
@@ -772,8 +772,8 @@
             "arguments": [
               {
                 "type": "StringLiteral",
-                "start": 3840,
-                "end": 3849,
+                "start": 3748,
+                "end": 3757,
                 "loc": {
                   "start": {
                     "line": 93,
@@ -797,9 +797,9 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Style to resolve dates and times leniently.\r\n * \r\n * Using lenient resolution will resolve the values in an appropriate\r\n * lenient manner. Individual fields will interpret this differently.\r\n * \r\n * For example, lenient mode allows the month in the ISO calendar system\r\n * to be outside the range 1 to 12.\r\n * For example, month 15 is treated as being 3 months after month 12.\r\n ",
-            "start": 3406,
-            "end": 3796,
+            "value": "*\n * Style to resolve dates and times leniently.\n * \n * Using lenient resolution will resolve the values in an appropriate\n * lenient manner. Individual fields will interpret this differently.\n * \n * For example, lenient mode allows the month in the ISO calendar system\n * to be outside the range 1 to 12.\n * For example, month 15 is treated as being 3 months after month 12.\n ",
+            "start": 3324,
+            "end": 3705,
             "loc": {
               "start": {
                 "line": 83,
@@ -819,9 +819,9 @@
   "comments": [
     {
       "type": "CommentBlock",
-      "value": "\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\r\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\r\n ",
+      "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
       "start": 0,
-      "end": 231,
+      "end": 227,
       "loc": {
         "start": {
           "line": 1,
@@ -835,9 +835,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Enumeration of different ways to resolve dates and times.\r\n * \r\n * Parsing a text string occurs in two phases.\r\n * Phase 1 is a basic text parse according to the fields added to the builder.\r\n * Phase 2 resolves the parsed field-value pairs into date and/or time objects.\r\n * This style is used to control how phase 2, resolving, happens.\r\n *\r\n * ### Static properties of Class {@link DateTimeFormatter}\r\n *\r\n * ResolverStyle.STRICT = new ResolverStyle('STRICT');\r\n *\r\n * Style to resolve dates and times strictly.\r\n *\r\n * Using strict resolution will ensure that all parsed values are within\r\n * the outer range of valid values for the field. Individual fields may\r\n * be further processed for strictness.\r\n *\r\n * For example, resolving year-month and day-of-month in the ISO calendar\r\n * system using strict mode will ensure that the day-of-month is valid\r\n * for the year-month, rejecting invalid values.\r\n *\r\n * ResolverStyle.SMART = new ResolverStyle('SMART');\r\n *\r\n * Style to resolve dates and times in a smart, or intelligent, manner.\r\n *\r\n * Using smart resolution will perform the sensible default for each\r\n * field, which may be the same as strict, the same as lenient, or a third\r\n * behavior. Individual fields will interpret this differently.\r\n *\r\n * For example, resolving year-month and day-of-month in the ISO calendar\r\n * system using smart mode will ensure that the day-of-month is from\r\n * 1 to 31, converting any value beyond the last valid day-of-month to be\r\n * the last valid day-of-month.\r\n *\r\n * ResolverStyle.LENIENT = new ResolverStyle('LENIENT');\r\n *\r\n * Style to resolve dates and times leniently.\r\n *\r\n * Using lenient resolution will resolve the values in an appropriate\r\n * lenient manner. Individual fields will interpret this differently.\r\n *\r\n * For example, lenient mode allows the month in the ISO calendar system\r\n * to be outside the range 1 to 12.\r\n * For example, month 15 is treated as being 3 months after month 12.\r\n *\r\n ",
-      "start": 268,
-      "end": 2245,
+      "value": "*\n * Enumeration of different ways to resolve dates and times.\n * \n * Parsing a text string occurs in two phases.\n * Phase 1 is a basic text parse according to the fields added to the builder.\n * Phase 2 resolves the parsed field-value pairs into date and/or time objects.\n * This style is used to control how phase 2, resolving, happens.\n *\n * ### Static properties of Class {@link DateTimeFormatter}\n *\n * ResolverStyle.STRICT = new ResolverStyle('STRICT');\n *\n * Style to resolve dates and times strictly.\n *\n * Using strict resolution will ensure that all parsed values are within\n * the outer range of valid values for the field. Individual fields may\n * be further processed for strictness.\n *\n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using strict mode will ensure that the day-of-month is valid\n * for the year-month, rejecting invalid values.\n *\n * ResolverStyle.SMART = new ResolverStyle('SMART');\n *\n * Style to resolve dates and times in a smart, or intelligent, manner.\n *\n * Using smart resolution will perform the sensible default for each\n * field, which may be the same as strict, the same as lenient, or a third\n * behavior. Individual fields will interpret this differently.\n *\n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using smart mode will ensure that the day-of-month is from\n * 1 to 31, converting any value beyond the last valid day-of-month to be\n * the last valid day-of-month.\n *\n * ResolverStyle.LENIENT = new ResolverStyle('LENIENT');\n *\n * Style to resolve dates and times leniently.\n *\n * Using lenient resolution will resolve the values in an appropriate\n * lenient manner. Individual fields will interpret this differently.\n *\n * For example, lenient mode allows the month in the ISO calendar system\n * to be outside the range 1 to 12.\n * For example, month 15 is treated as being 3 months after month 12.\n *\n ",
+      "start": 260,
+      "end": 2191,
       "loc": {
         "start": {
           "line": 9,
@@ -851,9 +851,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Style to resolve dates and times strictly.\r\n * \r\n * Using strict resolution will ensure that all parsed values are within\r\n * the outer range of valid values for the field. Individual fields may\r\n * be further processed for strictness.\r\n * \r\n * For example, resolving year-month and day-of-month in the ISO calendar\r\n * system using strict mode will ensure that the day-of-month is valid\r\n * for the year-month, rejecting invalid values.\r\n ",
-      "start": 2293,
-      "end": 2743,
+      "value": "*\n * Style to resolve dates and times strictly.\n * \n * Using strict resolution will ensure that all parsed values are within\n * the outer range of valid values for the field. Individual fields may\n * be further processed for strictness.\n * \n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using strict mode will ensure that the day-of-month is valid\n * for the year-month, rejecting invalid values.\n ",
+      "start": 2236,
+      "end": 2676,
       "loc": {
         "start": {
           "line": 58,
@@ -867,9 +867,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Style to resolve dates and times in a smart, or intelligent, manner.\r\n * \r\n * Using smart resolution will perform the sensible default for each\r\n * field, which may be the same as strict, the same as lenient, or a third\r\n * behavior. Individual fields will interpret this differently.\r\n * \r\n * For example, resolving year-month and day-of-month in the ISO calendar\r\n * system using smart mode will ensure that the day-of-month is from\r\n * 1 to 31, converting any value beyond the last valid day-of-month to be\r\n * the last valid day-of-month.\r\n ",
-      "start": 2798,
-      "end": 3353,
+      "value": "*\n * Style to resolve dates and times in a smart, or intelligent, manner.\n * \n * Using smart resolution will perform the sensible default for each\n * field, which may be the same as strict, the same as lenient, or a third\n * behavior. Individual fields will interpret this differently.\n * \n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using smart mode will ensure that the day-of-month is from\n * 1 to 31, converting any value beyond the last valid day-of-month to be\n * the last valid day-of-month.\n ",
+      "start": 2729,
+      "end": 3273,
       "loc": {
         "start": {
           "line": 70,
@@ -883,9 +883,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Style to resolve dates and times leniently.\r\n * \r\n * Using lenient resolution will resolve the values in an appropriate\r\n * lenient manner. Individual fields will interpret this differently.\r\n * \r\n * For example, lenient mode allows the month in the ISO calendar system\r\n * to be outside the range 1 to 12.\r\n * For example, month 15 is treated as being 3 months after month 12.\r\n ",
-      "start": 3406,
-      "end": 3796,
+      "value": "*\n * Style to resolve dates and times leniently.\n * \n * Using lenient resolution will resolve the values in an appropriate\n * lenient manner. Individual fields will interpret this differently.\n * \n * For example, lenient mode allows the month in the ISO calendar system\n * to be outside the range 1 to 12.\n * For example, month 15 is treated as being 3 months after month 12.\n ",
+      "start": 3324,
+      "end": 3705,
       "loc": {
         "start": {
           "line": 83,
@@ -901,9 +901,9 @@
   "tokens": [
     {
       "type": "CommentBlock",
-      "value": "\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\r\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\r\n ",
+      "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
       "start": 0,
-      "end": 231,
+      "end": 227,
       "loc": {
         "start": {
           "line": 1,
@@ -930,8 +930,8 @@
         "updateContext": null
       },
       "value": "import",
-      "start": 235,
-      "end": 241,
+      "start": 229,
+      "end": 235,
       "loc": {
         "start": {
           "line": 7,
@@ -955,8 +955,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 242,
-      "end": 243,
+      "start": 236,
+      "end": 237,
       "loc": {
         "start": {
           "line": 7,
@@ -981,8 +981,8 @@
         "binop": null
       },
       "value": "Enum",
-      "start": 243,
-      "end": 247,
+      "start": 237,
+      "end": 241,
       "loc": {
         "start": {
           "line": 7,
@@ -1006,8 +1006,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 247,
-      "end": 248,
+      "start": 241,
+      "end": 242,
       "loc": {
         "start": {
           "line": 7,
@@ -1032,8 +1032,8 @@
         "binop": null
       },
       "value": "from",
-      "start": 249,
-      "end": 253,
+      "start": 243,
+      "end": 247,
       "loc": {
         "start": {
           "line": 7,
@@ -1059,8 +1059,8 @@
         "updateContext": null
       },
       "value": "../Enum",
-      "start": 254,
-      "end": 263,
+      "start": 248,
+      "end": 257,
       "loc": {
         "start": {
           "line": 7,
@@ -1085,8 +1085,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 263,
-      "end": 264,
+      "start": 257,
+      "end": 258,
       "loc": {
         "start": {
           "line": 7,
@@ -1100,9 +1100,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Enumeration of different ways to resolve dates and times.\r\n * \r\n * Parsing a text string occurs in two phases.\r\n * Phase 1 is a basic text parse according to the fields added to the builder.\r\n * Phase 2 resolves the parsed field-value pairs into date and/or time objects.\r\n * This style is used to control how phase 2, resolving, happens.\r\n *\r\n * ### Static properties of Class {@link DateTimeFormatter}\r\n *\r\n * ResolverStyle.STRICT = new ResolverStyle('STRICT');\r\n *\r\n * Style to resolve dates and times strictly.\r\n *\r\n * Using strict resolution will ensure that all parsed values are within\r\n * the outer range of valid values for the field. Individual fields may\r\n * be further processed for strictness.\r\n *\r\n * For example, resolving year-month and day-of-month in the ISO calendar\r\n * system using strict mode will ensure that the day-of-month is valid\r\n * for the year-month, rejecting invalid values.\r\n *\r\n * ResolverStyle.SMART = new ResolverStyle('SMART');\r\n *\r\n * Style to resolve dates and times in a smart, or intelligent, manner.\r\n *\r\n * Using smart resolution will perform the sensible default for each\r\n * field, which may be the same as strict, the same as lenient, or a third\r\n * behavior. Individual fields will interpret this differently.\r\n *\r\n * For example, resolving year-month and day-of-month in the ISO calendar\r\n * system using smart mode will ensure that the day-of-month is from\r\n * 1 to 31, converting any value beyond the last valid day-of-month to be\r\n * the last valid day-of-month.\r\n *\r\n * ResolverStyle.LENIENT = new ResolverStyle('LENIENT');\r\n *\r\n * Style to resolve dates and times leniently.\r\n *\r\n * Using lenient resolution will resolve the values in an appropriate\r\n * lenient manner. Individual fields will interpret this differently.\r\n *\r\n * For example, lenient mode allows the month in the ISO calendar system\r\n * to be outside the range 1 to 12.\r\n * For example, month 15 is treated as being 3 months after month 12.\r\n *\r\n ",
-      "start": 268,
-      "end": 2245,
+      "value": "*\n * Enumeration of different ways to resolve dates and times.\n * \n * Parsing a text string occurs in two phases.\n * Phase 1 is a basic text parse according to the fields added to the builder.\n * Phase 2 resolves the parsed field-value pairs into date and/or time objects.\n * This style is used to control how phase 2, resolving, happens.\n *\n * ### Static properties of Class {@link DateTimeFormatter}\n *\n * ResolverStyle.STRICT = new ResolverStyle('STRICT');\n *\n * Style to resolve dates and times strictly.\n *\n * Using strict resolution will ensure that all parsed values are within\n * the outer range of valid values for the field. Individual fields may\n * be further processed for strictness.\n *\n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using strict mode will ensure that the day-of-month is valid\n * for the year-month, rejecting invalid values.\n *\n * ResolverStyle.SMART = new ResolverStyle('SMART');\n *\n * Style to resolve dates and times in a smart, or intelligent, manner.\n *\n * Using smart resolution will perform the sensible default for each\n * field, which may be the same as strict, the same as lenient, or a third\n * behavior. Individual fields will interpret this differently.\n *\n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using smart mode will ensure that the day-of-month is from\n * 1 to 31, converting any value beyond the last valid day-of-month to be\n * the last valid day-of-month.\n *\n * ResolverStyle.LENIENT = new ResolverStyle('LENIENT');\n *\n * Style to resolve dates and times leniently.\n *\n * Using lenient resolution will resolve the values in an appropriate\n * lenient manner. Individual fields will interpret this differently.\n *\n * For example, lenient mode allows the month in the ISO calendar system\n * to be outside the range 1 to 12.\n * For example, month 15 is treated as being 3 months after month 12.\n *\n ",
+      "start": 260,
+      "end": 2191,
       "loc": {
         "start": {
           "line": 9,
@@ -1129,8 +1129,8 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 2247,
-      "end": 2253,
+      "start": 2192,
+      "end": 2198,
       "loc": {
         "start": {
           "line": 56,
@@ -1157,8 +1157,8 @@
         "updateContext": null
       },
       "value": "class",
-      "start": 2254,
-      "end": 2259,
+      "start": 2199,
+      "end": 2204,
       "loc": {
         "start": {
           "line": 56,
@@ -1183,8 +1183,8 @@
         "binop": null
       },
       "value": "ResolverStyle",
-      "start": 2260,
-      "end": 2273,
+      "start": 2205,
+      "end": 2218,
       "loc": {
         "start": {
           "line": 56,
@@ -1211,8 +1211,8 @@
         "updateContext": null
       },
       "value": "extends",
-      "start": 2274,
-      "end": 2281,
+      "start": 2219,
+      "end": 2226,
       "loc": {
         "start": {
           "line": 56,
@@ -1237,8 +1237,8 @@
         "binop": null
       },
       "value": "Enum",
-      "start": 2282,
-      "end": 2286,
+      "start": 2227,
+      "end": 2231,
       "loc": {
         "start": {
           "line": 56,
@@ -1262,8 +1262,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2287,
-      "end": 2288,
+      "start": 2232,
+      "end": 2233,
       "loc": {
         "start": {
           "line": 56,
@@ -1287,8 +1287,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2288,
-      "end": 2289,
+      "start": 2233,
+      "end": 2234,
       "loc": {
         "start": {
           "line": 56,
@@ -1302,9 +1302,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Style to resolve dates and times strictly.\r\n * \r\n * Using strict resolution will ensure that all parsed values are within\r\n * the outer range of valid values for the field. Individual fields may\r\n * be further processed for strictness.\r\n * \r\n * For example, resolving year-month and day-of-month in the ISO calendar\r\n * system using strict mode will ensure that the day-of-month is valid\r\n * for the year-month, rejecting invalid values.\r\n ",
-      "start": 2293,
-      "end": 2743,
+      "value": "*\n * Style to resolve dates and times strictly.\n * \n * Using strict resolution will ensure that all parsed values are within\n * the outer range of valid values for the field. Individual fields may\n * be further processed for strictness.\n * \n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using strict mode will ensure that the day-of-month is valid\n * for the year-month, rejecting invalid values.\n ",
+      "start": 2236,
+      "end": 2676,
       "loc": {
         "start": {
           "line": 58,
@@ -1329,8 +1329,8 @@
         "binop": null
       },
       "value": "ResolverStyle",
-      "start": 2745,
-      "end": 2758,
+      "start": 2677,
+      "end": 2690,
       "loc": {
         "start": {
           "line": 69,
@@ -1355,8 +1355,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2758,
-      "end": 2759,
+      "start": 2690,
+      "end": 2691,
       "loc": {
         "start": {
           "line": 69,
@@ -1381,8 +1381,8 @@
         "binop": null
       },
       "value": "STRICT",
-      "start": 2759,
-      "end": 2765,
+      "start": 2691,
+      "end": 2697,
       "loc": {
         "start": {
           "line": 69,
@@ -1408,8 +1408,8 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 2766,
-      "end": 2767,
+      "start": 2698,
+      "end": 2699,
       "loc": {
         "start": {
           "line": 69,
@@ -1436,8 +1436,8 @@
         "updateContext": null
       },
       "value": "new",
-      "start": 2768,
-      "end": 2771,
+      "start": 2700,
+      "end": 2703,
       "loc": {
         "start": {
           "line": 69,
@@ -1462,8 +1462,8 @@
         "binop": null
       },
       "value": "ResolverStyle",
-      "start": 2772,
-      "end": 2785,
+      "start": 2704,
+      "end": 2717,
       "loc": {
         "start": {
           "line": 69,
@@ -1487,8 +1487,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2785,
-      "end": 2786,
+      "start": 2717,
+      "end": 2718,
       "loc": {
         "start": {
           "line": 69,
@@ -1514,8 +1514,8 @@
         "updateContext": null
       },
       "value": "STRICT",
-      "start": 2786,
-      "end": 2794,
+      "start": 2718,
+      "end": 2726,
       "loc": {
         "start": {
           "line": 69,
@@ -1539,8 +1539,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2794,
-      "end": 2795,
+      "start": 2726,
+      "end": 2727,
       "loc": {
         "start": {
           "line": 69,
@@ -1565,8 +1565,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2795,
-      "end": 2796,
+      "start": 2727,
+      "end": 2728,
       "loc": {
         "start": {
           "line": 69,
@@ -1580,9 +1580,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Style to resolve dates and times in a smart, or intelligent, manner.\r\n * \r\n * Using smart resolution will perform the sensible default for each\r\n * field, which may be the same as strict, the same as lenient, or a third\r\n * behavior. Individual fields will interpret this differently.\r\n * \r\n * For example, resolving year-month and day-of-month in the ISO calendar\r\n * system using smart mode will ensure that the day-of-month is from\r\n * 1 to 31, converting any value beyond the last valid day-of-month to be\r\n * the last valid day-of-month.\r\n ",
-      "start": 2798,
-      "end": 3353,
+      "value": "*\n * Style to resolve dates and times in a smart, or intelligent, manner.\n * \n * Using smart resolution will perform the sensible default for each\n * field, which may be the same as strict, the same as lenient, or a third\n * behavior. Individual fields will interpret this differently.\n * \n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using smart mode will ensure that the day-of-month is from\n * 1 to 31, converting any value beyond the last valid day-of-month to be\n * the last valid day-of-month.\n ",
+      "start": 2729,
+      "end": 3273,
       "loc": {
         "start": {
           "line": 70,
@@ -1607,8 +1607,8 @@
         "binop": null
       },
       "value": "ResolverStyle",
-      "start": 3355,
-      "end": 3368,
+      "start": 3274,
+      "end": 3287,
       "loc": {
         "start": {
           "line": 82,
@@ -1633,8 +1633,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 3368,
-      "end": 3369,
+      "start": 3287,
+      "end": 3288,
       "loc": {
         "start": {
           "line": 82,
@@ -1659,8 +1659,8 @@
         "binop": null
       },
       "value": "SMART",
-      "start": 3369,
-      "end": 3374,
+      "start": 3288,
+      "end": 3293,
       "loc": {
         "start": {
           "line": 82,
@@ -1686,8 +1686,8 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 3375,
-      "end": 3376,
+      "start": 3294,
+      "end": 3295,
       "loc": {
         "start": {
           "line": 82,
@@ -1714,8 +1714,8 @@
         "updateContext": null
       },
       "value": "new",
-      "start": 3377,
-      "end": 3380,
+      "start": 3296,
+      "end": 3299,
       "loc": {
         "start": {
           "line": 82,
@@ -1740,8 +1740,8 @@
         "binop": null
       },
       "value": "ResolverStyle",
-      "start": 3381,
-      "end": 3394,
+      "start": 3300,
+      "end": 3313,
       "loc": {
         "start": {
           "line": 82,
@@ -1765,8 +1765,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3394,
-      "end": 3395,
+      "start": 3313,
+      "end": 3314,
       "loc": {
         "start": {
           "line": 82,
@@ -1792,8 +1792,8 @@
         "updateContext": null
       },
       "value": "SMART",
-      "start": 3395,
-      "end": 3402,
+      "start": 3314,
+      "end": 3321,
       "loc": {
         "start": {
           "line": 82,
@@ -1817,8 +1817,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3402,
-      "end": 3403,
+      "start": 3321,
+      "end": 3322,
       "loc": {
         "start": {
           "line": 82,
@@ -1843,8 +1843,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 3403,
-      "end": 3404,
+      "start": 3322,
+      "end": 3323,
       "loc": {
         "start": {
           "line": 82,
@@ -1858,9 +1858,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Style to resolve dates and times leniently.\r\n * \r\n * Using lenient resolution will resolve the values in an appropriate\r\n * lenient manner. Individual fields will interpret this differently.\r\n * \r\n * For example, lenient mode allows the month in the ISO calendar system\r\n * to be outside the range 1 to 12.\r\n * For example, month 15 is treated as being 3 months after month 12.\r\n ",
-      "start": 3406,
-      "end": 3796,
+      "value": "*\n * Style to resolve dates and times leniently.\n * \n * Using lenient resolution will resolve the values in an appropriate\n * lenient manner. Individual fields will interpret this differently.\n * \n * For example, lenient mode allows the month in the ISO calendar system\n * to be outside the range 1 to 12.\n * For example, month 15 is treated as being 3 months after month 12.\n ",
+      "start": 3324,
+      "end": 3705,
       "loc": {
         "start": {
           "line": 83,
@@ -1885,8 +1885,8 @@
         "binop": null
       },
       "value": "ResolverStyle",
-      "start": 3798,
-      "end": 3811,
+      "start": 3706,
+      "end": 3719,
       "loc": {
         "start": {
           "line": 93,
@@ -1911,8 +1911,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 3811,
-      "end": 3812,
+      "start": 3719,
+      "end": 3720,
       "loc": {
         "start": {
           "line": 93,
@@ -1937,8 +1937,8 @@
         "binop": null
       },
       "value": "LENIENT",
-      "start": 3812,
-      "end": 3819,
+      "start": 3720,
+      "end": 3727,
       "loc": {
         "start": {
           "line": 93,
@@ -1964,8 +1964,8 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 3820,
-      "end": 3821,
+      "start": 3728,
+      "end": 3729,
       "loc": {
         "start": {
           "line": 93,
@@ -1992,8 +1992,8 @@
         "updateContext": null
       },
       "value": "new",
-      "start": 3822,
-      "end": 3825,
+      "start": 3730,
+      "end": 3733,
       "loc": {
         "start": {
           "line": 93,
@@ -2018,8 +2018,8 @@
         "binop": null
       },
       "value": "ResolverStyle",
-      "start": 3826,
-      "end": 3839,
+      "start": 3734,
+      "end": 3747,
       "loc": {
         "start": {
           "line": 93,
@@ -2043,8 +2043,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3839,
-      "end": 3840,
+      "start": 3747,
+      "end": 3748,
       "loc": {
         "start": {
           "line": 93,
@@ -2070,8 +2070,8 @@
         "updateContext": null
       },
       "value": "LENIENT",
-      "start": 3840,
-      "end": 3849,
+      "start": 3748,
+      "end": 3757,
       "loc": {
         "start": {
           "line": 93,
@@ -2095,8 +2095,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3849,
-      "end": 3850,
+      "start": 3757,
+      "end": 3758,
       "loc": {
         "start": {
           "line": 93,
@@ -2121,8 +2121,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 3850,
-      "end": 3851,
+      "start": 3758,
+      "end": 3759,
       "loc": {
         "start": {
           "line": 93,
@@ -2147,8 +2147,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 3853,
-      "end": 3853,
+      "start": 3760,
+      "end": 3760,
       "loc": {
         "start": {
           "line": 94,

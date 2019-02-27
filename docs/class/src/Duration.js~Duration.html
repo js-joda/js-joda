@@ -1056,7 +1056,7 @@ and an adjustment in nanoseconds.</p>
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/Duration.js~Duration.html#instance-method-plus">plus</a></span></span><span class="code" data-ice="signature">(durationOrNumber: <span><a href="class/src/Duration.js~Duration.html">Duration</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, unitOrNumber: <span>TemporaloUnit</span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/Duration.js~Duration.html">Duration</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/Duration.js~Duration.html#instance-method-plus">plus</a></span></span><span class="code" data-ice="signature">(durationOrNumber: <span><a href="class/src/Duration.js~Duration.html">Duration</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, unitOrNumber: <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/Duration.js~Duration.html">Duration</a></span></span>
         </p>
       </div>
       <div>
@@ -4404,7 +4404,7 @@ For example, <span>PT1.3S</span> will be returned as <span>PT-1.3S</span>.</p>
     
     
     
-    <span class="code" data-ice="name">plus</span><span class="code" data-ice="signature">(durationOrNumber: <span><a href="class/src/Duration.js~Duration.html">Duration</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, unitOrNumber: <span>TemporaloUnit</span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/Duration.js~Duration.html">Duration</a></span></span>
+    <span class="code" data-ice="name">plus</span><span class="code" data-ice="signature">(durationOrNumber: <span><a href="class/src/Duration.js~Duration.html">Duration</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, unitOrNumber: <span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>): <span><a href="class/src/Duration.js~Duration.html">Duration</a></span></span>
     <span class="right-info">
       
       
@@ -4439,7 +4439,7 @@ For example, <span>PT1.3S</span> will be returned as <span>PT-1.3S</span>.</p>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">unitOrNumber</td>
-      <td data-ice="type" class="code"><span>TemporaloUnit</span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="type" class="code"><span><a href="class/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"><ul><li>nullable: false</li></ul></td>
       <td data-ice="description"></td>
     </tr>
@@ -5857,7 +5857,7 @@ exception is thrown.</p>
 based representation, such as <span>PT8H6M12.345S</span>.</p>
 <p>The format of the returned string will be <span>PTnHnMnS</span>, where n is
 the relevant hours, minutes or seconds part of the duration.
-Any fractional seconds are placed after a decimal povar i the seconds section.
+Any fractional seconds are placed after a decimal point in the seconds section.
 If a section has a zero value, it is omitted.
 The hours, minutes and seconds will all have the same sign.</p>
 <p>Examples:</p>
