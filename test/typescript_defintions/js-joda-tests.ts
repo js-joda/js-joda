@@ -3,6 +3,7 @@ import {
     ChronoUnit,
     Clock,
     DateTimeFormatter,
+    DateTimeFormatterBuilder,
     DayOfWeek,
     Duration,
     Instant,
@@ -13,13 +14,14 @@ import {
     Month,
     nativeJs,
     Period,
+    ResolverStyle,
     TemporalAdjusters,
     YearMonth,
     ZoneOffset,
     ZonedDateTime,
     ZoneId,
     DateTimeParseException
-} from '../../'
+} from '../../';
 
 // used below
 declare function moment(): any;
@@ -459,8 +461,8 @@ function test_YearMonth() {
     YearMonth.of(2017, 10);
     YearMonth.of(2017, Month.of(10));
 
-    YearMonth.parse("2017-10");
-    YearMonth.parse("2017-10", DateTimeFormatter.ofPattern("yyyy-MM"));
+    YearMonth.parse('2017-10');
+    YearMonth.parse('2017-10', DateTimeFormatter.ofPattern('yyyy-MM'));
 
     var duration = Duration.of(10, ChronoUnit.MONTHS);
     var ym = YearMonth.of(2017, 10);
@@ -488,7 +490,7 @@ function test_YearMonth() {
 
     ym.monthValue();
 
-    ym.month()
+    ym.month();
 
     ym.isLeapYear();
 
@@ -512,19 +514,52 @@ function test_YearMonth() {
 
     ym.toJSON();
 
-    ym.format(DateTimeFormatter.ofPattern("yyyy-MM"));
+    ym.format(DateTimeFormatter.ofPattern('yyyy-MM'));
 }
 
 function test_DateTimeFormatter() {
-    ZonedDateTime.parse("2017-01-01T00:00:00+0200[Europe/Amsterdam]", DateTimeFormatter.ISO_ZONED_DATE_TIME)
+    ZonedDateTime.parse('2017-01-01T00:00:00+0200[Europe/Amsterdam]', DateTimeFormatter.ISO_ZONED_DATE_TIME);
 
-    ZonedDateTime.parse("2017-01-01T00:00:00+0200", DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+    ZonedDateTime.parse('2017-01-01T00:00:00+0200', DateTimeFormatter.ISO_OFFSET_DATE_TIME);
 
-    ZonedDateTime.parse("2017-01-01T00:00:00.12345678", DateTimeFormatter.ISO_INSTANT)
+    ZonedDateTime.parse('2017-01-01T00:00:00.12345678', DateTimeFormatter.ISO_INSTANT);
+}
+
+function test_DateTimeFormatterBuilder() {
+    const formatter1: DateTimeFormatter = new DateTimeFormatterBuilder()
+        .parseCaseInsensitive()
+        .appendPattern('d')
+        .appendLiteral('/')
+        .appendPattern('M')
+        .appendLiteral('/')
+        .appendValueReduced(ChronoField.YEAR, 2, 4, LocalDate.now().year())
+        .toFormatter(ResolverStyle.SMART);
+    const formatter2: DateTimeFormatter = new DateTimeFormatterBuilder()
+        .parseCaseInsensitive()
+        .appendPattern('d')
+        .optionalStart()
+        .optionalStart()
+        .appendLiteral('-')
+        .optionalEnd()
+        .optionalStart()
+        .appendLiteral(' ')
+        .optionalEnd()
+        .optionalEnd()
+        .appendPattern('MMM')
+        .optionalStart()
+        .optionalStart()
+        .appendLiteral('-')
+        .optionalEnd()
+        .optionalStart()
+        .appendLiteral(' ')
+        .optionalEnd()
+        .optionalEnd()
+        .appendValueReduced(ChronoField.YEAR, 2, 4, LocalDate.now().year())
+        .toFormatter(ResolverStyle.SMART);
 }
 
 function test_DateTimeParseException() {
-    new DateTimeParseException()
+    new DateTimeParseException();
 }
 
 function test_ZoneId() {
