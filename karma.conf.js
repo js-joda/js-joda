@@ -21,17 +21,17 @@ module.exports = function(config) {
         },
         sl_android_simulator: {
             base: 'SauceLabs',
-            browserName: 'chrome',
-            device: 'Android Emulator',
-            platform: 'Android',
-            version: 'latest'
+            browserName: 'Chrome',
+            deviceName: 'Android Emulator',
+            platformName: 'Android',
+            platformVersion: 'latest'
         },
         sl_ios_simulator: {
             base: 'SauceLabs',
-            browserName: 'safari',
-            device: 'iPhone Simulator',
-            platform: 'iOS',
-            version: 'latest'
+            browserName: 'Safari',
+            deviceName: 'iPhone Simulator',
+            platformName: 'iOS',
+            platformVersion: 'latest'
         },
         // these don't work yet :(
         sl_safari: {
