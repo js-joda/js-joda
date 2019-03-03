@@ -1,7 +1,7 @@
 {
   "type": "File",
   "start": 0,
-  "end": 1012,
+  "end": 976,
   "loc": {
     "start": {
       "line": 1,
@@ -15,7 +15,7 @@
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 1012,
+    "end": 976,
     "loc": {
       "start": {
         "line": 1,
@@ -30,8 +30,8 @@
     "body": [
       {
         "type": "ImportDeclaration",
-        "start": 234,
-        "end": 278,
+        "start": 228,
+        "end": 272,
         "loc": {
           "start": {
             "line": 7,
@@ -45,8 +45,8 @@
         "specifiers": [
           {
             "type": "ImportSpecifier",
-            "start": 242,
-            "end": 259,
+            "start": 236,
+            "end": 253,
             "loc": {
               "start": {
                 "line": 7,
@@ -59,8 +59,8 @@
             },
             "imported": {
               "type": "Identifier",
-              "start": 242,
-              "end": 259,
+              "start": 236,
+              "end": 253,
               "loc": {
                 "start": {
                   "line": 7,
@@ -77,8 +77,8 @@
             },
             "local": {
               "type": "Identifier",
-              "start": 242,
-              "end": 259,
+              "start": 236,
+              "end": 253,
               "loc": {
                 "start": {
                   "line": 7,
@@ -97,8 +97,8 @@
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 266,
-          "end": 277,
+          "start": 260,
+          "end": 271,
           "loc": {
             "start": {
               "line": 7,
@@ -118,9 +118,9 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "\r\n * @copyright (c) 2016, Philipp Thürwächter, Pattrick Hüper\r\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\r\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\r\n ",
+            "value": "\n * @copyright (c) 2016, Philipp Thürwächter, Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
             "start": 0,
-            "end": 230,
+            "end": 226,
             "loc": {
               "start": {
                 "line": 1,
@@ -136,8 +136,8 @@
       },
       {
         "type": "ExportNamedDeclaration",
-        "start": 282,
-        "end": 1008,
+        "start": 274,
+        "end": 974,
         "loc": {
           "start": {
             "line": 9,
@@ -152,8 +152,8 @@
         "source": null,
         "declaration": {
           "type": "ClassDeclaration",
-          "start": 289,
-          "end": 1008,
+          "start": 281,
+          "end": 974,
           "loc": {
             "start": {
               "line": 9,
@@ -166,8 +166,8 @@
           },
           "id": {
             "type": "Identifier",
-            "start": 295,
-            "end": 312,
+            "start": 287,
+            "end": 304,
             "loc": {
               "start": {
                 "line": 9,
@@ -184,8 +184,8 @@
           "superClass": null,
           "body": {
             "type": "ClassBody",
-            "start": 313,
-            "end": 1008,
+            "start": 305,
+            "end": 974,
             "loc": {
               "start": {
                 "line": 9,
@@ -199,8 +199,8 @@
             "body": [
               {
                 "type": "ClassMethod",
-                "start": 607,
-                "end": 708,
+                "start": 588,
+                "end": 687,
                 "loc": {
                   "start": {
                     "line": 20,
@@ -215,8 +215,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 614,
-                  "end": 622,
+                  "start": 595,
+                  "end": 603,
                   "loc": {
                     "start": {
                       "line": 20,
@@ -238,8 +238,8 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 623,
-                    "end": 629,
+                    "start": 604,
+                    "end": 610,
                     "loc": {
                       "start": {
                         "line": 20,
@@ -256,8 +256,8 @@
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 630,
-                  "end": 708,
+                  "start": 611,
+                  "end": 687,
                   "loc": {
                     "start": {
                       "line": 20,
@@ -271,8 +271,8 @@
                   "body": [
                     {
                       "type": "ThrowStatement",
-                      "start": 641,
-                      "end": 701,
+                      "start": 621,
+                      "end": 681,
                       "loc": {
                         "start": {
                           "line": 21,
@@ -285,8 +285,8 @@
                       },
                       "argument": {
                         "type": "NewExpression",
-                        "start": 647,
-                        "end": 700,
+                        "start": 627,
+                        "end": 680,
                         "loc": {
                           "start": {
                             "line": 21,
@@ -299,8 +299,8 @@
                         },
                         "callee": {
                           "type": "Identifier",
-                          "start": 651,
-                          "end": 668,
+                          "start": 631,
+                          "end": 648,
                           "loc": {
                             "start": {
                               "line": 21,
@@ -317,8 +317,8 @@
                         "arguments": [
                           {
                             "type": "BinaryExpression",
-                            "start": 669,
-                            "end": 699,
+                            "start": 649,
+                            "end": 679,
                             "loc": {
                               "start": {
                                 "line": 21,
@@ -331,8 +331,8 @@
                             },
                             "left": {
                               "type": "StringLiteral",
-                              "start": 669,
-                              "end": 690,
+                              "start": 649,
+                              "end": 670,
                               "loc": {
                                 "start": {
                                   "line": 21,
@@ -352,8 +352,8 @@
                             "operator": "+",
                             "right": {
                               "type": "Identifier",
-                              "start": 693,
-                              "end": 699,
+                              "start": 673,
+                              "end": 679,
                               "loc": {
                                 "start": {
                                   "line": 21,
@@ -378,9 +378,9 @@
                 "leadingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n     * Gets the rules for the zone ID.\r\n     *\r\n     * This returns the latest available rules for the zone ID.\r\n     *\r\n     * This method relies on time-zone data provider files that are configured.\r\n     *\r\n     * @param {string} zoneId\r\n     * @return {ZoneRules}\r\n     ",
-                    "start": 320,
-                    "end": 601,
+                    "value": "*\n     * Gets the rules for the zone ID.\n     *\n     * This returns the latest available rules for the zone ID.\n     *\n     * This method relies on time-zone data provider files that are configured.\n     *\n     * @param {string} zoneId\n     * @return {ZoneRules}\n     ",
+                    "start": 311,
+                    "end": 583,
                     "loc": {
                       "start": {
                         "line": 10,
@@ -396,9 +396,9 @@
                 "trailingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n     * Gets the set of available zone IDs.\r\n     *\r\n     * These zone IDs are loaded and available for use by {@link ZoneId}.\r\n     *\r\n     * @return {string[]} a modifiable copy of the set of zone IDs, not null\r\n     ",
-                    "start": 718,
-                    "end": 943,
+                    "value": "*\n     * Gets the set of available zone IDs.\n     *\n     * These zone IDs are loaded and available for use by {@link ZoneId}.\n     *\n     * @return {string[]} a modifiable copy of the set of zone IDs, not null\n     ",
+                    "start": 694,
+                    "end": 913,
                     "loc": {
                       "start": {
                         "line": 25,
@@ -414,8 +414,8 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 949,
-                "end": 1005,
+                "start": 918,
+                "end": 972,
                 "loc": {
                   "start": {
                     "line": 32,
@@ -430,8 +430,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 956,
-                  "end": 975,
+                  "start": 925,
+                  "end": 944,
                   "loc": {
                     "start": {
                       "line": 32,
@@ -453,8 +453,8 @@
                 "params": [],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 977,
-                  "end": 1005,
+                  "start": 946,
+                  "end": 972,
                   "loc": {
                     "start": {
                       "line": 32,
@@ -468,8 +468,8 @@
                   "body": [
                     {
                       "type": "ReturnStatement",
-                      "start": 988,
-                      "end": 998,
+                      "start": 956,
+                      "end": 966,
                       "loc": {
                         "start": {
                           "line": 33,
@@ -482,8 +482,8 @@
                       },
                       "argument": {
                         "type": "ArrayExpression",
-                        "start": 995,
-                        "end": 997,
+                        "start": 963,
+                        "end": 965,
                         "loc": {
                           "start": {
                             "line": 33,
@@ -503,9 +503,9 @@
                 "leadingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n     * Gets the set of available zone IDs.\r\n     *\r\n     * These zone IDs are loaded and available for use by {@link ZoneId}.\r\n     *\r\n     * @return {string[]} a modifiable copy of the set of zone IDs, not null\r\n     ",
-                    "start": 718,
-                    "end": 943,
+                    "value": "*\n     * Gets the set of available zone IDs.\n     *\n     * These zone IDs are loaded and available for use by {@link ZoneId}.\n     *\n     * @return {string[]} a modifiable copy of the set of zone IDs, not null\n     ",
+                    "start": 694,
+                    "end": 913,
                     "loc": {
                       "start": {
                         "line": 25,
@@ -531,9 +531,9 @@
   "comments": [
     {
       "type": "CommentBlock",
-      "value": "\r\n * @copyright (c) 2016, Philipp Thürwächter, Pattrick Hüper\r\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\r\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\r\n ",
+      "value": "\n * @copyright (c) 2016, Philipp Thürwächter, Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
       "start": 0,
-      "end": 230,
+      "end": 226,
       "loc": {
         "start": {
           "line": 1,
@@ -547,9 +547,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Gets the rules for the zone ID.\r\n     *\r\n     * This returns the latest available rules for the zone ID.\r\n     *\r\n     * This method relies on time-zone data provider files that are configured.\r\n     *\r\n     * @param {string} zoneId\r\n     * @return {ZoneRules}\r\n     ",
-      "start": 320,
-      "end": 601,
+      "value": "*\n     * Gets the rules for the zone ID.\n     *\n     * This returns the latest available rules for the zone ID.\n     *\n     * This method relies on time-zone data provider files that are configured.\n     *\n     * @param {string} zoneId\n     * @return {ZoneRules}\n     ",
+      "start": 311,
+      "end": 583,
       "loc": {
         "start": {
           "line": 10,
@@ -563,9 +563,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Gets the set of available zone IDs.\r\n     *\r\n     * These zone IDs are loaded and available for use by {@link ZoneId}.\r\n     *\r\n     * @return {string[]} a modifiable copy of the set of zone IDs, not null\r\n     ",
-      "start": 718,
-      "end": 943,
+      "value": "*\n     * Gets the set of available zone IDs.\n     *\n     * These zone IDs are loaded and available for use by {@link ZoneId}.\n     *\n     * @return {string[]} a modifiable copy of the set of zone IDs, not null\n     ",
+      "start": 694,
+      "end": 913,
       "loc": {
         "start": {
           "line": 25,
@@ -581,9 +581,9 @@
   "tokens": [
     {
       "type": "CommentBlock",
-      "value": "\r\n * @copyright (c) 2016, Philipp Thürwächter, Pattrick Hüper\r\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\r\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\r\n ",
+      "value": "\n * @copyright (c) 2016, Philipp Thürwächter, Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
       "start": 0,
-      "end": 230,
+      "end": 226,
       "loc": {
         "start": {
           "line": 1,
@@ -610,8 +610,8 @@
         "updateContext": null
       },
       "value": "import",
-      "start": 234,
-      "end": 240,
+      "start": 228,
+      "end": 234,
       "loc": {
         "start": {
           "line": 7,
@@ -635,8 +635,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 241,
-      "end": 242,
+      "start": 235,
+      "end": 236,
       "loc": {
         "start": {
           "line": 7,
@@ -661,8 +661,8 @@
         "binop": null
       },
       "value": "DateTimeException",
-      "start": 242,
-      "end": 259,
+      "start": 236,
+      "end": 253,
       "loc": {
         "start": {
           "line": 7,
@@ -686,8 +686,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 259,
-      "end": 260,
+      "start": 253,
+      "end": 254,
       "loc": {
         "start": {
           "line": 7,
@@ -712,8 +712,8 @@
         "binop": null
       },
       "value": "from",
-      "start": 261,
-      "end": 265,
+      "start": 255,
+      "end": 259,
       "loc": {
         "start": {
           "line": 7,
@@ -739,8 +739,8 @@
         "updateContext": null
       },
       "value": "../errors",
-      "start": 266,
-      "end": 277,
+      "start": 260,
+      "end": 271,
       "loc": {
         "start": {
           "line": 7,
@@ -765,8 +765,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 277,
-      "end": 278,
+      "start": 271,
+      "end": 272,
       "loc": {
         "start": {
           "line": 7,
@@ -793,8 +793,8 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 282,
-      "end": 288,
+      "start": 274,
+      "end": 280,
       "loc": {
         "start": {
           "line": 9,
@@ -821,8 +821,8 @@
         "updateContext": null
       },
       "value": "class",
-      "start": 289,
-      "end": 294,
+      "start": 281,
+      "end": 286,
       "loc": {
         "start": {
           "line": 9,
@@ -847,8 +847,8 @@
         "binop": null
       },
       "value": "ZoneRulesProvider",
-      "start": 295,
-      "end": 312,
+      "start": 287,
+      "end": 304,
       "loc": {
         "start": {
           "line": 9,
@@ -872,8 +872,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 313,
-      "end": 314,
+      "start": 305,
+      "end": 306,
       "loc": {
         "start": {
           "line": 9,
@@ -887,9 +887,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Gets the rules for the zone ID.\r\n     *\r\n     * This returns the latest available rules for the zone ID.\r\n     *\r\n     * This method relies on time-zone data provider files that are configured.\r\n     *\r\n     * @param {string} zoneId\r\n     * @return {ZoneRules}\r\n     ",
-      "start": 320,
-      "end": 601,
+      "value": "*\n     * Gets the rules for the zone ID.\n     *\n     * This returns the latest available rules for the zone ID.\n     *\n     * This method relies on time-zone data provider files that are configured.\n     *\n     * @param {string} zoneId\n     * @return {ZoneRules}\n     ",
+      "start": 311,
+      "end": 583,
       "loc": {
         "start": {
           "line": 10,
@@ -914,8 +914,8 @@
         "binop": null
       },
       "value": "static",
-      "start": 607,
-      "end": 613,
+      "start": 588,
+      "end": 594,
       "loc": {
         "start": {
           "line": 20,
@@ -940,8 +940,8 @@
         "binop": null
       },
       "value": "getRules",
-      "start": 614,
-      "end": 622,
+      "start": 595,
+      "end": 603,
       "loc": {
         "start": {
           "line": 20,
@@ -965,8 +965,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 622,
-      "end": 623,
+      "start": 603,
+      "end": 604,
       "loc": {
         "start": {
           "line": 20,
@@ -991,8 +991,8 @@
         "binop": null
       },
       "value": "zoneId",
-      "start": 623,
-      "end": 629,
+      "start": 604,
+      "end": 610,
       "loc": {
         "start": {
           "line": 20,
@@ -1016,8 +1016,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 629,
-      "end": 630,
+      "start": 610,
+      "end": 611,
       "loc": {
         "start": {
           "line": 20,
@@ -1041,8 +1041,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 630,
-      "end": 631,
+      "start": 611,
+      "end": 612,
       "loc": {
         "start": {
           "line": 20,
@@ -1069,8 +1069,8 @@
         "updateContext": null
       },
       "value": "throw",
-      "start": 641,
-      "end": 646,
+      "start": 621,
+      "end": 626,
       "loc": {
         "start": {
           "line": 21,
@@ -1097,8 +1097,8 @@
         "updateContext": null
       },
       "value": "new",
-      "start": 647,
-      "end": 650,
+      "start": 627,
+      "end": 630,
       "loc": {
         "start": {
           "line": 21,
@@ -1123,8 +1123,8 @@
         "binop": null
       },
       "value": "DateTimeException",
-      "start": 651,
-      "end": 668,
+      "start": 631,
+      "end": 648,
       "loc": {
         "start": {
           "line": 21,
@@ -1148,8 +1148,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 668,
-      "end": 669,
+      "start": 648,
+      "end": 649,
       "loc": {
         "start": {
           "line": 21,
@@ -1175,8 +1175,8 @@
         "updateContext": null
       },
       "value": "unsupported ZoneId:",
-      "start": 669,
-      "end": 690,
+      "start": 649,
+      "end": 670,
       "loc": {
         "start": {
           "line": 21,
@@ -1202,8 +1202,8 @@
         "updateContext": null
       },
       "value": "+",
-      "start": 691,
-      "end": 692,
+      "start": 671,
+      "end": 672,
       "loc": {
         "start": {
           "line": 21,
@@ -1228,8 +1228,8 @@
         "binop": null
       },
       "value": "zoneId",
-      "start": 693,
-      "end": 699,
+      "start": 673,
+      "end": 679,
       "loc": {
         "start": {
           "line": 21,
@@ -1253,8 +1253,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 699,
-      "end": 700,
+      "start": 679,
+      "end": 680,
       "loc": {
         "start": {
           "line": 21,
@@ -1279,8 +1279,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 700,
-      "end": 701,
+      "start": 680,
+      "end": 681,
       "loc": {
         "start": {
           "line": 21,
@@ -1304,8 +1304,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 707,
-      "end": 708,
+      "start": 686,
+      "end": 687,
       "loc": {
         "start": {
           "line": 22,
@@ -1319,9 +1319,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Gets the set of available zone IDs.\r\n     *\r\n     * These zone IDs are loaded and available for use by {@link ZoneId}.\r\n     *\r\n     * @return {string[]} a modifiable copy of the set of zone IDs, not null\r\n     ",
-      "start": 718,
-      "end": 943,
+      "value": "*\n     * Gets the set of available zone IDs.\n     *\n     * These zone IDs are loaded and available for use by {@link ZoneId}.\n     *\n     * @return {string[]} a modifiable copy of the set of zone IDs, not null\n     ",
+      "start": 694,
+      "end": 913,
       "loc": {
         "start": {
           "line": 25,
@@ -1346,8 +1346,8 @@
         "binop": null
       },
       "value": "static",
-      "start": 949,
-      "end": 955,
+      "start": 918,
+      "end": 924,
       "loc": {
         "start": {
           "line": 32,
@@ -1372,8 +1372,8 @@
         "binop": null
       },
       "value": "getAvailableZoneIds",
-      "start": 956,
-      "end": 975,
+      "start": 925,
+      "end": 944,
       "loc": {
         "start": {
           "line": 32,
@@ -1397,8 +1397,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 975,
-      "end": 976,
+      "start": 944,
+      "end": 945,
       "loc": {
         "start": {
           "line": 32,
@@ -1422,8 +1422,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 976,
-      "end": 977,
+      "start": 945,
+      "end": 946,
       "loc": {
         "start": {
           "line": 32,
@@ -1447,8 +1447,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 977,
-      "end": 978,
+      "start": 946,
+      "end": 947,
       "loc": {
         "start": {
           "line": 32,
@@ -1475,8 +1475,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 988,
-      "end": 994,
+      "start": 956,
+      "end": 962,
       "loc": {
         "start": {
           "line": 33,
@@ -1501,8 +1501,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 995,
-      "end": 996,
+      "start": 963,
+      "end": 964,
       "loc": {
         "start": {
           "line": 33,
@@ -1527,8 +1527,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 996,
-      "end": 997,
+      "start": 964,
+      "end": 965,
       "loc": {
         "start": {
           "line": 33,
@@ -1553,8 +1553,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 997,
-      "end": 998,
+      "start": 965,
+      "end": 966,
       "loc": {
         "start": {
           "line": 33,
@@ -1578,8 +1578,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1004,
-      "end": 1005,
+      "start": 971,
+      "end": 972,
       "loc": {
         "start": {
           "line": 34,
@@ -1603,8 +1603,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1007,
-      "end": 1008,
+      "start": 973,
+      "end": 974,
       "loc": {
         "start": {
           "line": 35,
@@ -1629,8 +1629,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1012,
-      "end": 1012,
+      "start": 976,
+      "end": 976,
       "loc": {
         "start": {
           "line": 37,

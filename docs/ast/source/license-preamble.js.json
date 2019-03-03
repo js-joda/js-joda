@@ -1,7 +1,7 @@
 {
   "type": "File",
   "start": 0,
-  "end": 257,
+  "end": 254,
   "loc": {
     "start": {
       "line": 1,
@@ -15,7 +15,7 @@
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 257,
+    "end": 254,
     "loc": {
       "start": {
         "line": 1,
@@ -50,8 +50,8 @@
       {
         "type": "CommentLine",
         "value": "! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos",
-        "start": 93,
-        "end": 172,
+        "start": 92,
+        "end": 171,
         "loc": {
           "start": {
             "line": 2,
@@ -66,8 +66,8 @@
       {
         "type": "CommentLine",
         "value": "! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)",
-        "start": 174,
-        "end": 255,
+        "start": 172,
+        "end": 253,
         "loc": {
           "start": {
             "line": 3,
@@ -101,8 +101,8 @@
     {
       "type": "CommentLine",
       "value": "! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos",
-      "start": 93,
-      "end": 172,
+      "start": 92,
+      "end": 171,
       "loc": {
         "start": {
           "line": 2,
@@ -117,8 +117,8 @@
     {
       "type": "CommentLine",
       "value": "! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)",
-      "start": 174,
-      "end": 255,
+      "start": 172,
+      "end": 253,
       "loc": {
         "start": {
           "line": 3,
@@ -151,8 +151,8 @@
     {
       "type": "CommentLine",
       "value": "! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos",
-      "start": 93,
-      "end": 172,
+      "start": 92,
+      "end": 171,
       "loc": {
         "start": {
           "line": 2,
@@ -167,8 +167,8 @@
     {
       "type": "CommentLine",
       "value": "! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)",
-      "start": 174,
-      "end": 255,
+      "start": 172,
+      "end": 253,
       "loc": {
         "start": {
           "line": 3,
@@ -193,8 +193,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 257,
-      "end": 257,
+      "start": 254,
+      "end": 254,
       "loc": {
         "start": {
           "line": 4,

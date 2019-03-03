@@ -418,7 +418,7 @@ export class DateTimeFormatterBuilder {
      * is the value within the range where the last two characters are "12".
      * By contrast, parsing the text `"1915"` will result in the value `1915`.
      *
-     * @param {TemporaField} field  the field to append, not null
+     * @param {TemporalField} field  the field to append, not null
      * @param {number} width  the field width of the printed and parsed field, from 1 to 10
      * @param {number} maxWidth  the maximum field width of the printed field, from 1 to 10
      * @param {ChronoLocalDate} baseDate  the base date used to calculate the base value for the range

@@ -986,16 +986,16 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      *
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {number} secondstoAdd - the seconds to add, may be negative
+     * @param {number} secondsToAdd - the seconds to add, may be negative
      * @return {LocalTime} a {@link LocalTime} based on this time with the seconds added, not null
      */
-    plusSeconds(secondstoAdd) {
-        if (secondstoAdd === 0) {
+    plusSeconds(secondsToAdd) {
+        if (secondsToAdd === 0) {
             return this;
         }
         const sofd = this._hour * LocalTime.SECONDS_PER_HOUR +
                     this._minute * LocalTime.SECONDS_PER_MINUTE + this._second;
-        const newSofd = MathUtil.intMod((MathUtil.intMod(secondstoAdd, LocalTime.SECONDS_PER_DAY) + sofd + LocalTime.SECONDS_PER_DAY), LocalTime.SECONDS_PER_DAY);
+        const newSofd = MathUtil.intMod((MathUtil.intMod(secondsToAdd, LocalTime.SECONDS_PER_DAY) + sofd + LocalTime.SECONDS_PER_DAY), LocalTime.SECONDS_PER_DAY);
         if (sofd === newSofd) {
             return this;
         }

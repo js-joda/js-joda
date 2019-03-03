@@ -3,6 +3,13 @@ Changelog
 
 ### next
 
+### 1.9.3
+
+ * fix typescript definitions: add `ZoneId#id()` #265
+ * fix typescript definitions: Fix DateTimeFormatter.withLocale() #277
+ * Remove unreachable code #278
+ * add package-lock for dev dependencies
+
 ### 1.9.2
 
 #### public API

@@ -1,7 +1,7 @@
 {
   "type": "File",
   "start": 0,
-  "end": 3955,
+  "end": 3841,
   "loc": {
     "start": {
       "line": 1,
@@ -15,7 +15,7 @@
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 3955,
+    "end": 3841,
     "loc": {
       "start": {
         "line": 1,
@@ -30,8 +30,8 @@
     "body": [
       {
         "type": "ImportDeclaration",
-        "start": 158,
-        "end": 187,
+        "start": 153,
+        "end": 182,
         "loc": {
           "start": {
             "line": 6,
@@ -45,8 +45,8 @@
         "specifiers": [
           {
             "type": "ImportSpecifier",
-            "start": 166,
-            "end": 170,
+            "start": 161,
+            "end": 165,
             "loc": {
               "start": {
                 "line": 6,
@@ -59,8 +59,8 @@
             },
             "imported": {
               "type": "Identifier",
-              "start": 166,
-              "end": 170,
+              "start": 161,
+              "end": 165,
               "loc": {
                 "start": {
                   "line": 6,
@@ -77,8 +77,8 @@
             },
             "local": {
               "type": "Identifier",
-              "start": 166,
-              "end": 170,
+              "start": 161,
+              "end": 165,
               "loc": {
                 "start": {
                   "line": 6,
@@ -97,8 +97,8 @@
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 177,
-          "end": 186,
+          "start": 172,
+          "end": 181,
           "loc": {
             "start": {
               "line": 6,
@@ -118,9 +118,9 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)\r\n ",
+            "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)\n ",
             "start": 0,
-            "end": 154,
+            "end": 151,
             "loc": {
               "start": {
                 "line": 1,
@@ -136,9 +136,9 @@
         "trailingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Enumeration of the style of text formatting and parsing.\r\n *\r\n * Text styles define three sizes for the formatted text - 'full', 'short' and 'narrow'.\r\n * Each of these three sizes is available in both 'standard' and 'stand-alone' variations.\r\n *\r\n * The difference between the three sizes is obvious in most languages.\r\n * For example, in English the 'full' month is 'January', the 'short' month is 'Jan'\r\n * and the 'narrow' month is 'J'. Note that the narrow size is often not unique.\r\n * For example, 'January', 'June' and 'July' all have the 'narrow' text 'J'.\r\n *\r\n * The difference between the 'standard' and 'stand-alone' forms is trickier to describe\r\n * as there is no difference in English. However, in other languages there is a difference\r\n * in the word used when the text is used alone, as opposed to in a complete date.\r\n * For example, the word used for a month when used alone in a date picker is different\r\n * to the word used for month in association with a day and year in a date.\r\n *\r\n * ### Specification for implementors\r\n *\r\n * This is immutable and thread-safe enum.\r\n ",
-            "start": 191,
-            "end": 1296,
+            "value": "*\n * Enumeration of the style of text formatting and parsing.\n *\n * Text styles define three sizes for the formatted text - 'full', 'short' and 'narrow'.\n * Each of these three sizes is available in both 'standard' and 'stand-alone' variations.\n *\n * The difference between the three sizes is obvious in most languages.\n * For example, in English the 'full' month is 'January', the 'short' month is 'Jan'\n * and the 'narrow' month is 'J'. Note that the narrow size is often not unique.\n * For example, 'January', 'June' and 'July' all have the 'narrow' text 'J'.\n *\n * The difference between the 'standard' and 'stand-alone' forms is trickier to describe\n * as there is no difference in English. However, in other languages there is a difference\n * in the word used when the text is used alone, as opposed to in a complete date.\n * For example, the word used for a month when used alone in a date picker is different\n * to the word used for month in association with a day and year in a date.\n *\n * ### Specification for implementors\n *\n * This is immutable and thread-safe enum.\n ",
+            "start": 184,
+            "end": 1269,
             "loc": {
               "start": {
                 "line": 8,
@@ -154,8 +154,8 @@
       },
       {
         "type": "ExportNamedDeclaration",
-        "start": 1298,
-        "end": 2901,
+        "start": 1270,
+        "end": 2819,
         "loc": {
           "start": {
             "line": 29,
@@ -170,8 +170,8 @@
         "source": null,
         "declaration": {
           "type": "ClassDeclaration",
-          "start": 1305,
-          "end": 2901,
+          "start": 1277,
+          "end": 2819,
           "loc": {
             "start": {
               "line": 29,
@@ -184,8 +184,8 @@
           },
           "id": {
             "type": "Identifier",
-            "start": 1311,
-            "end": 1320,
+            "start": 1283,
+            "end": 1292,
             "loc": {
               "start": {
                 "line": 29,
@@ -202,8 +202,8 @@
           },
           "superClass": {
             "type": "Identifier",
-            "start": 1329,
-            "end": 1333,
+            "start": 1301,
+            "end": 1305,
             "loc": {
               "start": {
                 "line": 29,
@@ -219,8 +219,8 @@
           },
           "body": {
             "type": "ClassBody",
-            "start": 1334,
-            "end": 2901,
+            "start": 1306,
+            "end": 2819,
             "loc": {
               "start": {
                 "line": 29,
@@ -234,8 +234,8 @@
             "body": [
               {
                 "type": "ClassMethod",
-                "start": 1470,
-                "end": 1750,
+                "start": 1436,
+                "end": 1707,
                 "loc": {
                   "start": {
                     "line": 35,
@@ -250,8 +250,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 1470,
-                  "end": 1482,
+                  "start": 1436,
+                  "end": 1448,
                   "loc": {
                     "start": {
                       "line": 35,
@@ -274,8 +274,8 @@
                 "params": [],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 1485,
-                  "end": 1750,
+                  "start": 1451,
+                  "end": 1707,
                   "loc": {
                     "start": {
                       "line": 35,
@@ -289,8 +289,8 @@
                   "body": [
                     {
                       "type": "SwitchStatement",
-                      "start": 1496,
-                      "end": 1743,
+                      "start": 1461,
+                      "end": 1701,
                       "loc": {
                         "start": {
                           "line": 36,
@@ -303,8 +303,8 @@
                       },
                       "discriminant": {
                         "type": "ThisExpression",
-                        "start": 1504,
-                        "end": 1508,
+                        "start": 1469,
+                        "end": 1473,
                         "loc": {
                           "start": {
                             "line": 36,
@@ -319,8 +319,8 @@
                       "cases": [
                         {
                           "type": "SwitchCase",
-                          "start": 1525,
-                          "end": 1556,
+                          "start": 1489,
+                          "end": 1520,
                           "loc": {
                             "start": {
                               "line": 37,
@@ -334,8 +334,8 @@
                           "consequent": [],
                           "test": {
                             "type": "MemberExpression",
-                            "start": 1530,
-                            "end": 1555,
+                            "start": 1494,
+                            "end": 1519,
                             "loc": {
                               "start": {
                                 "line": 37,
@@ -348,8 +348,8 @@
                             },
                             "object": {
                               "type": "Identifier",
-                              "start": 1530,
-                              "end": 1539,
+                              "start": 1494,
+                              "end": 1503,
                               "loc": {
                                 "start": {
                                   "line": 37,
@@ -365,8 +365,8 @@
                             },
                             "property": {
                               "type": "Identifier",
-                              "start": 1540,
-                              "end": 1555,
+                              "start": 1504,
+                              "end": 1519,
                               "loc": {
                                 "start": {
                                   "line": 37,
@@ -385,8 +385,8 @@
                         },
                         {
                           "type": "SwitchCase",
-                          "start": 1570,
-                          "end": 1602,
+                          "start": 1533,
+                          "end": 1565,
                           "loc": {
                             "start": {
                               "line": 38,
@@ -400,8 +400,8 @@
                           "consequent": [],
                           "test": {
                             "type": "MemberExpression",
-                            "start": 1575,
-                            "end": 1601,
+                            "start": 1538,
+                            "end": 1564,
                             "loc": {
                               "start": {
                                 "line": 38,
@@ -414,8 +414,8 @@
                             },
                             "object": {
                               "type": "Identifier",
-                              "start": 1575,
-                              "end": 1584,
+                              "start": 1538,
+                              "end": 1547,
                               "loc": {
                                 "start": {
                                   "line": 38,
@@ -431,8 +431,8 @@
                             },
                             "property": {
                               "type": "Identifier",
-                              "start": 1585,
-                              "end": 1601,
+                              "start": 1548,
+                              "end": 1564,
                               "loc": {
                                 "start": {
                                   "line": 38,
@@ -451,8 +451,8 @@
                         },
                         {
                           "type": "SwitchCase",
-                          "start": 1616,
-                          "end": 1679,
+                          "start": 1578,
+                          "end": 1640,
                           "loc": {
                             "start": {
                               "line": 39,
@@ -466,8 +466,8 @@
                           "consequent": [
                             {
                               "type": "ReturnStatement",
-                              "start": 1667,
-                              "end": 1679,
+                              "start": 1628,
+                              "end": 1640,
                               "loc": {
                                 "start": {
                                   "line": 40,
@@ -480,8 +480,8 @@
                               },
                               "argument": {
                                 "type": "BooleanLiteral",
-                                "start": 1674,
-                                "end": 1678,
+                                "start": 1635,
+                                "end": 1639,
                                 "loc": {
                                   "start": {
                                     "line": 40,
@@ -498,8 +498,8 @@
                           ],
                           "test": {
                             "type": "MemberExpression",
-                            "start": 1621,
-                            "end": 1648,
+                            "start": 1583,
+                            "end": 1610,
                             "loc": {
                               "start": {
                                 "line": 39,
@@ -512,8 +512,8 @@
                             },
                             "object": {
                               "type": "Identifier",
-                              "start": 1621,
-                              "end": 1630,
+                              "start": 1583,
+                              "end": 1592,
                               "loc": {
                                 "start": {
                                   "line": 39,
@@ -529,8 +529,8 @@
                             },
                             "property": {
                               "type": "Identifier",
-                              "start": 1631,
-                              "end": 1648,
+                              "start": 1593,
+                              "end": 1610,
                               "loc": {
                                 "start": {
                                   "line": 39,
@@ -549,8 +549,8 @@
                         },
                         {
                           "type": "SwitchCase",
-                          "start": 1693,
-                          "end": 1732,
+                          "start": 1653,
+                          "end": 1691,
                           "loc": {
                             "start": {
                               "line": 41,
@@ -564,8 +564,8 @@
                           "consequent": [
                             {
                               "type": "ReturnStatement",
-                              "start": 1719,
-                              "end": 1732,
+                              "start": 1678,
+                              "end": 1691,
                               "loc": {
                                 "start": {
                                   "line": 42,
@@ -578,8 +578,8 @@
                               },
                               "argument": {
                                 "type": "BooleanLiteral",
-                                "start": 1726,
-                                "end": 1731,
+                                "start": 1685,
+                                "end": 1690,
                                 "loc": {
                                   "start": {
                                     "line": 42,
@@ -605,9 +605,9 @@
                 "leadingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n     * Checks if the style is stand-alone.\r\n     *\r\n     * @return {boolean} true if the style is stand-alone\r\n     ",
-                    "start": 1341,
-                    "end": 1464,
+                    "value": "*\n     * Checks if the style is stand-alone.\n     *\n     * @return {boolean} true if the style is stand-alone\n     ",
+                    "start": 1312,
+                    "end": 1431,
                     "loc": {
                       "start": {
                         "line": 30,
@@ -623,9 +623,9 @@
                 "trailingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n     * Converts the style to the equivalent stand-alone style.\r\n     *\r\n     * @return {TextStyle} the matching stand-alone style\r\n     ",
-                    "start": 1758,
-                    "end": 1901,
+                    "value": "*\n     * Converts the style to the equivalent stand-alone style.\n     *\n     * @return {TextStyle} the matching stand-alone style\n     ",
+                    "start": 1713,
+                    "end": 1852,
                     "loc": {
                       "start": {
                         "line": 46,
@@ -641,8 +641,8 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 1907,
-                "end": 2333,
+                "start": 1857,
+                "end": 2271,
                 "loc": {
                   "start": {
                     "line": 51,
@@ -657,8 +657,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 1907,
-                  "end": 1919,
+                  "start": 1857,
+                  "end": 1869,
                   "loc": {
                     "start": {
                       "line": 51,
@@ -681,8 +681,8 @@
                 "params": [],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 1922,
-                  "end": 2333,
+                  "start": 1872,
+                  "end": 2271,
                   "loc": {
                     "start": {
                       "line": 51,
@@ -696,8 +696,8 @@
                   "body": [
                     {
                       "type": "SwitchStatement",
-                      "start": 1933,
-                      "end": 2326,
+                      "start": 1882,
+                      "end": 2265,
                       "loc": {
                         "start": {
                           "line": 52,
@@ -710,8 +710,8 @@
                       },
                       "discriminant": {
                         "type": "ThisExpression",
-                        "start": 1941,
-                        "end": 1945,
+                        "start": 1890,
+                        "end": 1894,
                         "loc": {
                           "start": {
                             "line": 52,
@@ -726,8 +726,8 @@
                       "cases": [
                         {
                           "type": "SwitchCase",
-                          "start": 1962,
-                          "end": 2033,
+                          "start": 1910,
+                          "end": 1980,
                           "loc": {
                             "start": {
                               "line": 53,
@@ -741,8 +741,8 @@
                           "consequent": [
                             {
                               "type": "ReturnStatement",
-                              "start": 2000,
-                              "end": 2033,
+                              "start": 1947,
+                              "end": 1980,
                               "loc": {
                                 "start": {
                                   "line": 54,
@@ -755,8 +755,8 @@
                               },
                               "argument": {
                                 "type": "MemberExpression",
-                                "start": 2007,
-                                "end": 2032,
+                                "start": 1954,
+                                "end": 1979,
                                 "loc": {
                                   "start": {
                                     "line": 54,
@@ -769,8 +769,8 @@
                                 },
                                 "object": {
                                   "type": "Identifier",
-                                  "start": 2007,
-                                  "end": 2016,
+                                  "start": 1954,
+                                  "end": 1963,
                                   "loc": {
                                     "start": {
                                       "line": 54,
@@ -786,8 +786,8 @@
                                 },
                                 "property": {
                                   "type": "Identifier",
-                                  "start": 2017,
-                                  "end": 2032,
+                                  "start": 1964,
+                                  "end": 1979,
                                   "loc": {
                                     "start": {
                                       "line": 54,
@@ -807,8 +807,8 @@
                           ],
                           "test": {
                             "type": "MemberExpression",
-                            "start": 1967,
-                            "end": 1981,
+                            "start": 1915,
+                            "end": 1929,
                             "loc": {
                               "start": {
                                 "line": 53,
@@ -821,8 +821,8 @@
                             },
                             "object": {
                               "type": "Identifier",
-                              "start": 1967,
-                              "end": 1976,
+                              "start": 1915,
+                              "end": 1924,
                               "loc": {
                                 "start": {
                                   "line": 53,
@@ -838,8 +838,8 @@
                             },
                             "property": {
                               "type": "Identifier",
-                              "start": 1977,
-                              "end": 1981,
+                              "start": 1925,
+                              "end": 1929,
                               "loc": {
                                 "start": {
                                   "line": 53,
@@ -858,8 +858,8 @@
                         },
                         {
                           "type": "SwitchCase",
-                          "start": 2047,
-                          "end": 2120,
+                          "start": 1993,
+                          "end": 2065,
                           "loc": {
                             "start": {
                               "line": 55,
@@ -873,8 +873,8 @@
                           "consequent": [
                             {
                               "type": "ReturnStatement",
-                              "start": 2086,
-                              "end": 2120,
+                              "start": 2031,
+                              "end": 2065,
                               "loc": {
                                 "start": {
                                   "line": 56,
@@ -887,8 +887,8 @@
                               },
                               "argument": {
                                 "type": "MemberExpression",
-                                "start": 2093,
-                                "end": 2119,
+                                "start": 2038,
+                                "end": 2064,
                                 "loc": {
                                   "start": {
                                     "line": 56,
@@ -901,8 +901,8 @@
                                 },
                                 "object": {
                                   "type": "Identifier",
-                                  "start": 2093,
-                                  "end": 2102,
+                                  "start": 2038,
+                                  "end": 2047,
                                   "loc": {
                                     "start": {
                                       "line": 56,
@@ -918,8 +918,8 @@
                                 },
                                 "property": {
                                   "type": "Identifier",
-                                  "start": 2103,
-                                  "end": 2119,
+                                  "start": 2048,
+                                  "end": 2064,
                                   "loc": {
                                     "start": {
                                       "line": 56,
@@ -939,8 +939,8 @@
                           ],
                           "test": {
                             "type": "MemberExpression",
-                            "start": 2052,
-                            "end": 2067,
+                            "start": 1998,
+                            "end": 2013,
                             "loc": {
                               "start": {
                                 "line": 55,
@@ -953,8 +953,8 @@
                             },
                             "object": {
                               "type": "Identifier",
-                              "start": 2052,
-                              "end": 2061,
+                              "start": 1998,
+                              "end": 2007,
                               "loc": {
                                 "start": {
                                   "line": 55,
@@ -970,8 +970,8 @@
                             },
                             "property": {
                               "type": "Identifier",
-                              "start": 2062,
-                              "end": 2067,
+                              "start": 2008,
+                              "end": 2013,
                               "loc": {
                                 "start": {
                                   "line": 55,
@@ -990,8 +990,8 @@
                         },
                         {
                           "type": "SwitchCase",
-                          "start": 2134,
-                          "end": 2209,
+                          "start": 2078,
+                          "end": 2152,
                           "loc": {
                             "start": {
                               "line": 57,
@@ -1005,8 +1005,8 @@
                           "consequent": [
                             {
                               "type": "ReturnStatement",
-                              "start": 2174,
-                              "end": 2209,
+                              "start": 2117,
+                              "end": 2152,
                               "loc": {
                                 "start": {
                                   "line": 58,
@@ -1019,8 +1019,8 @@
                               },
                               "argument": {
                                 "type": "MemberExpression",
-                                "start": 2181,
-                                "end": 2208,
+                                "start": 2124,
+                                "end": 2151,
                                 "loc": {
                                   "start": {
                                     "line": 58,
@@ -1033,8 +1033,8 @@
                                 },
                                 "object": {
                                   "type": "Identifier",
-                                  "start": 2181,
-                                  "end": 2190,
+                                  "start": 2124,
+                                  "end": 2133,
                                   "loc": {
                                     "start": {
                                       "line": 58,
@@ -1050,8 +1050,8 @@
                                 },
                                 "property": {
                                   "type": "Identifier",
-                                  "start": 2191,
-                                  "end": 2208,
+                                  "start": 2134,
+                                  "end": 2151,
                                   "loc": {
                                     "start": {
                                       "line": 58,
@@ -1071,8 +1071,8 @@
                           ],
                           "test": {
                             "type": "MemberExpression",
-                            "start": 2139,
-                            "end": 2155,
+                            "start": 2083,
+                            "end": 2099,
                             "loc": {
                               "start": {
                                 "line": 57,
@@ -1085,8 +1085,8 @@
                             },
                             "object": {
                               "type": "Identifier",
-                              "start": 2139,
-                              "end": 2148,
+                              "start": 2083,
+                              "end": 2092,
                               "loc": {
                                 "start": {
                                   "line": 57,
@@ -1102,8 +1102,8 @@
                             },
                             "property": {
                               "type": "Identifier",
-                              "start": 2149,
-                              "end": 2155,
+                              "start": 2093,
+                              "end": 2099,
                               "loc": {
                                 "start": {
                                   "line": 57,
@@ -1122,8 +1122,8 @@
                         },
                         {
                           "type": "SwitchCase",
-                          "start": 2223,
-                          "end": 2315,
+                          "start": 2165,
+                          "end": 2255,
                           "loc": {
                             "start": {
                               "line": 59,
@@ -1137,8 +1137,8 @@
                           "consequent": [
                             {
                               "type": "ReturnStatement",
-                              "start": 2303,
-                              "end": 2315,
+                              "start": 2243,
+                              "end": 2255,
                               "loc": {
                                 "start": {
                                   "line": 61,
@@ -1151,8 +1151,8 @@
                               },
                               "argument": {
                                 "type": "ThisExpression",
-                                "start": 2310,
-                                "end": 2314,
+                                "start": 2250,
+                                "end": 2254,
                                 "loc": {
                                   "start": {
                                     "line": 61,
@@ -1169,8 +1169,8 @@
                                 {
                                   "type": "CommentLine",
                                   "value": " all others are already standalone",
-                                  "start": 2249,
-                                  "end": 2285,
+                                  "start": 2190,
+                                  "end": 2226,
                                   "loc": {
                                     "start": {
                                       "line": 60,
@@ -1196,9 +1196,9 @@
                 "leadingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n     * Converts the style to the equivalent stand-alone style.\r\n     *\r\n     * @return {TextStyle} the matching stand-alone style\r\n     ",
-                    "start": 1758,
-                    "end": 1901,
+                    "value": "*\n     * Converts the style to the equivalent stand-alone style.\n     *\n     * @return {TextStyle} the matching stand-alone style\n     ",
+                    "start": 1713,
+                    "end": 1852,
                     "loc": {
                       "start": {
                         "line": 46,
@@ -1214,9 +1214,9 @@
                 "trailingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n     * Converts the style to the equivalent normal style.\r\n     *\r\n     * @return {TextStyle} the matching normal style\r\n     ",
-                    "start": 2341,
-                    "end": 2474,
+                    "value": "*\n     * Converts the style to the equivalent normal style.\n     *\n     * @return {TextStyle} the matching normal style\n     ",
+                    "start": 2277,
+                    "end": 2406,
                     "loc": {
                       "start": {
                         "line": 65,
@@ -1232,8 +1232,8 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 2480,
-                "end": 2898,
+                "start": 2411,
+                "end": 2817,
                 "loc": {
                   "start": {
                     "line": 70,
@@ -1248,8 +1248,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 2480,
-                  "end": 2488,
+                  "start": 2411,
+                  "end": 2419,
                   "loc": {
                     "start": {
                       "line": 70,
@@ -1272,8 +1272,8 @@
                 "params": [],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 2491,
-                  "end": 2898,
+                  "start": 2422,
+                  "end": 2817,
                   "loc": {
                     "start": {
                       "line": 70,
@@ -1287,8 +1287,8 @@
                   "body": [
                     {
                       "type": "SwitchStatement",
-                      "start": 2502,
-                      "end": 2891,
+                      "start": 2432,
+                      "end": 2811,
                       "loc": {
                         "start": {
                           "line": 71,
@@ -1301,8 +1301,8 @@
                       },
                       "discriminant": {
                         "type": "ThisExpression",
-                        "start": 2510,
-                        "end": 2514,
+                        "start": 2440,
+                        "end": 2444,
                         "loc": {
                           "start": {
                             "line": 71,
@@ -1317,8 +1317,8 @@
                       "cases": [
                         {
                           "type": "SwitchCase",
-                          "start": 2531,
-                          "end": 2602,
+                          "start": 2460,
+                          "end": 2530,
                           "loc": {
                             "start": {
                               "line": 72,
@@ -1332,8 +1332,8 @@
                           "consequent": [
                             {
                               "type": "ReturnStatement",
-                              "start": 2580,
-                              "end": 2602,
+                              "start": 2508,
+                              "end": 2530,
                               "loc": {
                                 "start": {
                                   "line": 73,
@@ -1346,8 +1346,8 @@
                               },
                               "argument": {
                                 "type": "MemberExpression",
-                                "start": 2587,
-                                "end": 2601,
+                                "start": 2515,
+                                "end": 2529,
                                 "loc": {
                                   "start": {
                                     "line": 73,
@@ -1360,8 +1360,8 @@
                                 },
                                 "object": {
                                   "type": "Identifier",
-                                  "start": 2587,
-                                  "end": 2596,
+                                  "start": 2515,
+                                  "end": 2524,
                                   "loc": {
                                     "start": {
                                       "line": 73,
@@ -1377,8 +1377,8 @@
                                 },
                                 "property": {
                                   "type": "Identifier",
-                                  "start": 2597,
-                                  "end": 2601,
+                                  "start": 2525,
+                                  "end": 2529,
                                   "loc": {
                                     "start": {
                                       "line": 73,
@@ -1398,8 +1398,8 @@
                           ],
                           "test": {
                             "type": "MemberExpression",
-                            "start": 2536,
-                            "end": 2561,
+                            "start": 2465,
+                            "end": 2490,
                             "loc": {
                               "start": {
                                 "line": 72,
@@ -1412,8 +1412,8 @@
                             },
                             "object": {
                               "type": "Identifier",
-                              "start": 2536,
-                              "end": 2545,
+                              "start": 2465,
+                              "end": 2474,
                               "loc": {
                                 "start": {
                                   "line": 72,
@@ -1429,8 +1429,8 @@
                             },
                             "property": {
                               "type": "Identifier",
-                              "start": 2546,
-                              "end": 2561,
+                              "start": 2475,
+                              "end": 2490,
                               "loc": {
                                 "start": {
                                   "line": 72,
@@ -1449,8 +1449,8 @@
                         },
                         {
                           "type": "SwitchCase",
-                          "start": 2616,
-                          "end": 2689,
+                          "start": 2543,
+                          "end": 2615,
                           "loc": {
                             "start": {
                               "line": 74,
@@ -1464,8 +1464,8 @@
                           "consequent": [
                             {
                               "type": "ReturnStatement",
-                              "start": 2666,
-                              "end": 2689,
+                              "start": 2592,
+                              "end": 2615,
                               "loc": {
                                 "start": {
                                   "line": 75,
@@ -1478,8 +1478,8 @@
                               },
                               "argument": {
                                 "type": "MemberExpression",
-                                "start": 2673,
-                                "end": 2688,
+                                "start": 2599,
+                                "end": 2614,
                                 "loc": {
                                   "start": {
                                     "line": 75,
@@ -1492,8 +1492,8 @@
                                 },
                                 "object": {
                                   "type": "Identifier",
-                                  "start": 2673,
-                                  "end": 2682,
+                                  "start": 2599,
+                                  "end": 2608,
                                   "loc": {
                                     "start": {
                                       "line": 75,
@@ -1509,8 +1509,8 @@
                                 },
                                 "property": {
                                   "type": "Identifier",
-                                  "start": 2683,
-                                  "end": 2688,
+                                  "start": 2609,
+                                  "end": 2614,
                                   "loc": {
                                     "start": {
                                       "line": 75,
@@ -1530,8 +1530,8 @@
                           ],
                           "test": {
                             "type": "MemberExpression",
-                            "start": 2621,
-                            "end": 2647,
+                            "start": 2548,
+                            "end": 2574,
                             "loc": {
                               "start": {
                                 "line": 74,
@@ -1544,8 +1544,8 @@
                             },
                             "object": {
                               "type": "Identifier",
-                              "start": 2621,
-                              "end": 2630,
+                              "start": 2548,
+                              "end": 2557,
                               "loc": {
                                 "start": {
                                   "line": 74,
@@ -1561,8 +1561,8 @@
                             },
                             "property": {
                               "type": "Identifier",
-                              "start": 2631,
-                              "end": 2647,
+                              "start": 2558,
+                              "end": 2574,
                               "loc": {
                                 "start": {
                                   "line": 74,
@@ -1581,8 +1581,8 @@
                         },
                         {
                           "type": "SwitchCase",
-                          "start": 2703,
-                          "end": 2778,
+                          "start": 2628,
+                          "end": 2702,
                           "loc": {
                             "start": {
                               "line": 76,
@@ -1596,8 +1596,8 @@
                           "consequent": [
                             {
                               "type": "ReturnStatement",
-                              "start": 2754,
-                              "end": 2778,
+                              "start": 2678,
+                              "end": 2702,
                               "loc": {
                                 "start": {
                                   "line": 77,
@@ -1610,8 +1610,8 @@
                               },
                               "argument": {
                                 "type": "MemberExpression",
-                                "start": 2761,
-                                "end": 2777,
+                                "start": 2685,
+                                "end": 2701,
                                 "loc": {
                                   "start": {
                                     "line": 77,
@@ -1624,8 +1624,8 @@
                                 },
                                 "object": {
                                   "type": "Identifier",
-                                  "start": 2761,
-                                  "end": 2770,
+                                  "start": 2685,
+                                  "end": 2694,
                                   "loc": {
                                     "start": {
                                       "line": 77,
@@ -1641,8 +1641,8 @@
                                 },
                                 "property": {
                                   "type": "Identifier",
-                                  "start": 2771,
-                                  "end": 2777,
+                                  "start": 2695,
+                                  "end": 2701,
                                   "loc": {
                                     "start": {
                                       "line": 77,
@@ -1662,8 +1662,8 @@
                           ],
                           "test": {
                             "type": "MemberExpression",
-                            "start": 2708,
-                            "end": 2735,
+                            "start": 2633,
+                            "end": 2660,
                             "loc": {
                               "start": {
                                 "line": 76,
@@ -1676,8 +1676,8 @@
                             },
                             "object": {
                               "type": "Identifier",
-                              "start": 2708,
-                              "end": 2717,
+                              "start": 2633,
+                              "end": 2642,
                               "loc": {
                                 "start": {
                                   "line": 76,
@@ -1693,8 +1693,8 @@
                             },
                             "property": {
                               "type": "Identifier",
-                              "start": 2718,
-                              "end": 2735,
+                              "start": 2643,
+                              "end": 2660,
                               "loc": {
                                 "start": {
                                   "line": 76,
@@ -1713,8 +1713,8 @@
                         },
                         {
                           "type": "SwitchCase",
-                          "start": 2792,
-                          "end": 2880,
+                          "start": 2715,
+                          "end": 2801,
                           "loc": {
                             "start": {
                               "line": 78,
@@ -1728,8 +1728,8 @@
                           "consequent": [
                             {
                               "type": "ReturnStatement",
-                              "start": 2868,
-                              "end": 2880,
+                              "start": 2789,
+                              "end": 2801,
                               "loc": {
                                 "start": {
                                   "line": 80,
@@ -1742,8 +1742,8 @@
                               },
                               "argument": {
                                 "type": "ThisExpression",
-                                "start": 2875,
-                                "end": 2879,
+                                "start": 2796,
+                                "end": 2800,
                                 "loc": {
                                   "start": {
                                     "line": 80,
@@ -1760,8 +1760,8 @@
                                 {
                                   "type": "CommentLine",
                                   "value": " all others are already normal",
-                                  "start": 2818,
-                                  "end": 2850,
+                                  "start": 2740,
+                                  "end": 2772,
                                   "loc": {
                                     "start": {
                                       "line": 79,
@@ -1786,9 +1786,9 @@
                 "leadingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\r\n     * Converts the style to the equivalent normal style.\r\n     *\r\n     * @return {TextStyle} the matching normal style\r\n     ",
-                    "start": 2341,
-                    "end": 2474,
+                    "value": "*\n     * Converts the style to the equivalent normal style.\n     *\n     * @return {TextStyle} the matching normal style\n     ",
+                    "start": 2277,
+                    "end": 2406,
                     "loc": {
                       "start": {
                         "line": 65,
@@ -1808,9 +1808,9 @@
           "leadingComments": [
             {
               "type": "CommentBlock",
-              "value": "*\r\n * Enumeration of the style of text formatting and parsing.\r\n *\r\n * Text styles define three sizes for the formatted text - 'full', 'short' and 'narrow'.\r\n * Each of these three sizes is available in both 'standard' and 'stand-alone' variations.\r\n *\r\n * The difference between the three sizes is obvious in most languages.\r\n * For example, in English the 'full' month is 'January', the 'short' month is 'Jan'\r\n * and the 'narrow' month is 'J'. Note that the narrow size is often not unique.\r\n * For example, 'January', 'June' and 'July' all have the 'narrow' text 'J'.\r\n *\r\n * The difference between the 'standard' and 'stand-alone' forms is trickier to describe\r\n * as there is no difference in English. However, in other languages there is a difference\r\n * in the word used when the text is used alone, as opposed to in a complete date.\r\n * For example, the word used for a month when used alone in a date picker is different\r\n * to the word used for month in association with a day and year in a date.\r\n *\r\n * ### Specification for implementors\r\n *\r\n * This is immutable and thread-safe enum.\r\n ",
-              "start": 191,
-              "end": 1296,
+              "value": "*\n * Enumeration of the style of text formatting and parsing.\n *\n * Text styles define three sizes for the formatted text - 'full', 'short' and 'narrow'.\n * Each of these three sizes is available in both 'standard' and 'stand-alone' variations.\n *\n * The difference between the three sizes is obvious in most languages.\n * For example, in English the 'full' month is 'January', the 'short' month is 'Jan'\n * and the 'narrow' month is 'J'. Note that the narrow size is often not unique.\n * For example, 'January', 'June' and 'July' all have the 'narrow' text 'J'.\n *\n * The difference between the 'standard' and 'stand-alone' forms is trickier to describe\n * as there is no difference in English. However, in other languages there is a difference\n * in the word used when the text is used alone, as opposed to in a complete date.\n * For example, the word used for a month when used alone in a date picker is different\n * to the word used for month in association with a day and year in a date.\n *\n * ### Specification for implementors\n *\n * This is immutable and thread-safe enum.\n ",
+              "start": 184,
+              "end": 1269,
               "loc": {
                 "start": {
                   "line": 8,
@@ -1826,9 +1826,9 @@
           "trailingComments": [
             {
               "type": "CommentBlock",
-              "value": "*\r\n * Full text, typically the full description.\r\n * For example, day-of-week Monday might output \"Monday\".\r\n ",
-              "start": 2905,
-              "end": 3019,
+              "value": "*\n * Full text, typically the full description.\n * For example, day-of-week Monday might output \"Monday\".\n ",
+              "start": 2821,
+              "end": 2932,
               "loc": {
                 "start": {
                   "line": 85,
@@ -1845,9 +1845,9 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Enumeration of the style of text formatting and parsing.\r\n *\r\n * Text styles define three sizes for the formatted text - 'full', 'short' and 'narrow'.\r\n * Each of these three sizes is available in both 'standard' and 'stand-alone' variations.\r\n *\r\n * The difference between the three sizes is obvious in most languages.\r\n * For example, in English the 'full' month is 'January', the 'short' month is 'Jan'\r\n * and the 'narrow' month is 'J'. Note that the narrow size is often not unique.\r\n * For example, 'January', 'June' and 'July' all have the 'narrow' text 'J'.\r\n *\r\n * The difference between the 'standard' and 'stand-alone' forms is trickier to describe\r\n * as there is no difference in English. However, in other languages there is a difference\r\n * in the word used when the text is used alone, as opposed to in a complete date.\r\n * For example, the word used for a month when used alone in a date picker is different\r\n * to the word used for month in association with a day and year in a date.\r\n *\r\n * ### Specification for implementors\r\n *\r\n * This is immutable and thread-safe enum.\r\n ",
-            "start": 191,
-            "end": 1296,
+            "value": "*\n * Enumeration of the style of text formatting and parsing.\n *\n * Text styles define three sizes for the formatted text - 'full', 'short' and 'narrow'.\n * Each of these three sizes is available in both 'standard' and 'stand-alone' variations.\n *\n * The difference between the three sizes is obvious in most languages.\n * For example, in English the 'full' month is 'January', the 'short' month is 'Jan'\n * and the 'narrow' month is 'J'. Note that the narrow size is often not unique.\n * For example, 'January', 'June' and 'July' all have the 'narrow' text 'J'.\n *\n * The difference between the 'standard' and 'stand-alone' forms is trickier to describe\n * as there is no difference in English. However, in other languages there is a difference\n * in the word used when the text is used alone, as opposed to in a complete date.\n * For example, the word used for a month when used alone in a date picker is different\n * to the word used for month in association with a day and year in a date.\n *\n * ### Specification for implementors\n *\n * This is immutable and thread-safe enum.\n ",
+            "start": 184,
+            "end": 1269,
             "loc": {
               "start": {
                 "line": 8,
@@ -1863,9 +1863,9 @@
         "trailingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Full text, typically the full description.\r\n * For example, day-of-week Monday might output \"Monday\".\r\n ",
-            "start": 2905,
-            "end": 3019,
+            "value": "*\n * Full text, typically the full description.\n * For example, day-of-week Monday might output \"Monday\".\n ",
+            "start": 2821,
+            "end": 2932,
             "loc": {
               "start": {
                 "line": 85,
@@ -1881,8 +1881,8 @@
       },
       {
         "type": "ExpressionStatement",
-        "start": 3021,
-        "end": 3060,
+        "start": 2933,
+        "end": 2972,
         "loc": {
           "start": {
             "line": 89,
@@ -1895,8 +1895,8 @@
         },
         "expression": {
           "type": "AssignmentExpression",
-          "start": 3021,
-          "end": 3059,
+          "start": 2933,
+          "end": 2971,
           "loc": {
             "start": {
               "line": 89,
@@ -1910,8 +1910,8 @@
           "operator": "=",
           "left": {
             "type": "MemberExpression",
-            "start": 3021,
-            "end": 3035,
+            "start": 2933,
+            "end": 2947,
             "loc": {
               "start": {
                 "line": 89,
@@ -1924,8 +1924,8 @@
             },
             "object": {
               "type": "Identifier",
-              "start": 3021,
-              "end": 3030,
+              "start": 2933,
+              "end": 2942,
               "loc": {
                 "start": {
                   "line": 89,
@@ -1942,8 +1942,8 @@
             },
             "property": {
               "type": "Identifier",
-              "start": 3031,
-              "end": 3035,
+              "start": 2943,
+              "end": 2947,
               "loc": {
                 "start": {
                   "line": 89,
@@ -1962,8 +1962,8 @@
           },
           "right": {
             "type": "NewExpression",
-            "start": 3038,
-            "end": 3059,
+            "start": 2950,
+            "end": 2971,
             "loc": {
               "start": {
                 "line": 89,
@@ -1976,8 +1976,8 @@
             },
             "callee": {
               "type": "Identifier",
-              "start": 3042,
-              "end": 3051,
+              "start": 2954,
+              "end": 2963,
               "loc": {
                 "start": {
                   "line": 89,
@@ -1994,8 +1994,8 @@
             "arguments": [
               {
                 "type": "StringLiteral",
-                "start": 3052,
-                "end": 3058,
+                "start": 2964,
+                "end": 2970,
                 "loc": {
                   "start": {
                     "line": 89,
@@ -2019,9 +2019,9 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Full text, typically the full description.\r\n * For example, day-of-week Monday might output \"Monday\".\r\n ",
-            "start": 2905,
-            "end": 3019,
+            "value": "*\n * Full text, typically the full description.\n * For example, day-of-week Monday might output \"Monday\".\n ",
+            "start": 2821,
+            "end": 2932,
             "loc": {
               "start": {
                 "line": 85,
@@ -2037,9 +2037,9 @@
         "trailingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Full text for stand-alone use, typically the full description.\r\n * For example, day-of-week Monday might output \"Monday\".\r\n ",
-            "start": 3062,
-            "end": 3196,
+            "value": "*\n * Full text for stand-alone use, typically the full description.\n * For example, day-of-week Monday might output \"Monday\".\n ",
+            "start": 2973,
+            "end": 3104,
             "loc": {
               "start": {
                 "line": 90,
@@ -2055,8 +2055,8 @@
       },
       {
         "type": "ExpressionStatement",
-        "start": 3198,
-        "end": 3259,
+        "start": 3105,
+        "end": 3166,
         "loc": {
           "start": {
             "line": 94,
@@ -2069,8 +2069,8 @@
         },
         "expression": {
           "type": "AssignmentExpression",
-          "start": 3198,
-          "end": 3258,
+          "start": 3105,
+          "end": 3165,
           "loc": {
             "start": {
               "line": 94,
@@ -2084,8 +2084,8 @@
           "operator": "=",
           "left": {
             "type": "MemberExpression",
-            "start": 3198,
-            "end": 3223,
+            "start": 3105,
+            "end": 3130,
             "loc": {
               "start": {
                 "line": 94,
@@ -2098,8 +2098,8 @@
             },
             "object": {
               "type": "Identifier",
-              "start": 3198,
-              "end": 3207,
+              "start": 3105,
+              "end": 3114,
               "loc": {
                 "start": {
                   "line": 94,
@@ -2116,8 +2116,8 @@
             },
             "property": {
               "type": "Identifier",
-              "start": 3208,
-              "end": 3223,
+              "start": 3115,
+              "end": 3130,
               "loc": {
                 "start": {
                   "line": 94,
@@ -2136,8 +2136,8 @@
           },
           "right": {
             "type": "NewExpression",
-            "start": 3226,
-            "end": 3258,
+            "start": 3133,
+            "end": 3165,
             "loc": {
               "start": {
                 "line": 94,
@@ -2150,8 +2150,8 @@
             },
             "callee": {
               "type": "Identifier",
-              "start": 3230,
-              "end": 3239,
+              "start": 3137,
+              "end": 3146,
               "loc": {
                 "start": {
                   "line": 94,
@@ -2168,8 +2168,8 @@
             "arguments": [
               {
                 "type": "StringLiteral",
-                "start": 3240,
-                "end": 3257,
+                "start": 3147,
+                "end": 3164,
                 "loc": {
                   "start": {
                     "line": 94,
@@ -2193,9 +2193,9 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Full text for stand-alone use, typically the full description.\r\n * For example, day-of-week Monday might output \"Monday\".\r\n ",
-            "start": 3062,
-            "end": 3196,
+            "value": "*\n * Full text for stand-alone use, typically the full description.\n * For example, day-of-week Monday might output \"Monday\".\n ",
+            "start": 2973,
+            "end": 3104,
             "loc": {
               "start": {
                 "line": 90,
@@ -2211,9 +2211,9 @@
         "trailingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Short text, typically an abbreviation.\r\n * For example, day-of-week Monday might output \"Mon\".\r\n ",
-            "start": 3261,
-            "end": 3368,
+            "value": "*\n * Short text, typically an abbreviation.\n * For example, day-of-week Monday might output \"Mon\".\n ",
+            "start": 3167,
+            "end": 3271,
             "loc": {
               "start": {
                 "line": 95,
@@ -2229,8 +2229,8 @@
       },
       {
         "type": "ExpressionStatement",
-        "start": 3370,
-        "end": 3411,
+        "start": 3272,
+        "end": 3313,
         "loc": {
           "start": {
             "line": 99,
@@ -2243,8 +2243,8 @@
         },
         "expression": {
           "type": "AssignmentExpression",
-          "start": 3370,
-          "end": 3410,
+          "start": 3272,
+          "end": 3312,
           "loc": {
             "start": {
               "line": 99,
@@ -2258,8 +2258,8 @@
           "operator": "=",
           "left": {
             "type": "MemberExpression",
-            "start": 3370,
-            "end": 3385,
+            "start": 3272,
+            "end": 3287,
             "loc": {
               "start": {
                 "line": 99,
@@ -2272,8 +2272,8 @@
             },
             "object": {
               "type": "Identifier",
-              "start": 3370,
-              "end": 3379,
+              "start": 3272,
+              "end": 3281,
               "loc": {
                 "start": {
                   "line": 99,
@@ -2290,8 +2290,8 @@
             },
             "property": {
               "type": "Identifier",
-              "start": 3380,
-              "end": 3385,
+              "start": 3282,
+              "end": 3287,
               "loc": {
                 "start": {
                   "line": 99,
@@ -2310,8 +2310,8 @@
           },
           "right": {
             "type": "NewExpression",
-            "start": 3388,
-            "end": 3410,
+            "start": 3290,
+            "end": 3312,
             "loc": {
               "start": {
                 "line": 99,
@@ -2324,8 +2324,8 @@
             },
             "callee": {
               "type": "Identifier",
-              "start": 3392,
-              "end": 3401,
+              "start": 3294,
+              "end": 3303,
               "loc": {
                 "start": {
                   "line": 99,
@@ -2342,8 +2342,8 @@
             "arguments": [
               {
                 "type": "StringLiteral",
-                "start": 3402,
-                "end": 3409,
+                "start": 3304,
+                "end": 3311,
                 "loc": {
                   "start": {
                     "line": 99,
@@ -2367,9 +2367,9 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Short text, typically an abbreviation.\r\n * For example, day-of-week Monday might output \"Mon\".\r\n ",
-            "start": 3261,
-            "end": 3368,
+            "value": "*\n * Short text, typically an abbreviation.\n * For example, day-of-week Monday might output \"Mon\".\n ",
+            "start": 3167,
+            "end": 3271,
             "loc": {
               "start": {
                 "line": 95,
@@ -2385,9 +2385,9 @@
         "trailingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Short text for stand-alone use, typically an abbreviation.\r\n * For example, day-of-week Monday might output \"Mon\".\r\n ",
-            "start": 3413,
-            "end": 3540,
+            "value": "*\n * Short text for stand-alone use, typically an abbreviation.\n * For example, day-of-week Monday might output \"Mon\".\n ",
+            "start": 3314,
+            "end": 3438,
             "loc": {
               "start": {
                 "line": 100,
@@ -2403,8 +2403,8 @@
       },
       {
         "type": "ExpressionStatement",
-        "start": 3542,
-        "end": 3605,
+        "start": 3439,
+        "end": 3502,
         "loc": {
           "start": {
             "line": 104,
@@ -2417,8 +2417,8 @@
         },
         "expression": {
           "type": "AssignmentExpression",
-          "start": 3542,
-          "end": 3604,
+          "start": 3439,
+          "end": 3501,
           "loc": {
             "start": {
               "line": 104,
@@ -2432,8 +2432,8 @@
           "operator": "=",
           "left": {
             "type": "MemberExpression",
-            "start": 3542,
-            "end": 3568,
+            "start": 3439,
+            "end": 3465,
             "loc": {
               "start": {
                 "line": 104,
@@ -2446,8 +2446,8 @@
             },
             "object": {
               "type": "Identifier",
-              "start": 3542,
-              "end": 3551,
+              "start": 3439,
+              "end": 3448,
               "loc": {
                 "start": {
                   "line": 104,
@@ -2464,8 +2464,8 @@
             },
             "property": {
               "type": "Identifier",
-              "start": 3552,
-              "end": 3568,
+              "start": 3449,
+              "end": 3465,
               "loc": {
                 "start": {
                   "line": 104,
@@ -2484,8 +2484,8 @@
           },
           "right": {
             "type": "NewExpression",
-            "start": 3571,
-            "end": 3604,
+            "start": 3468,
+            "end": 3501,
             "loc": {
               "start": {
                 "line": 104,
@@ -2498,8 +2498,8 @@
             },
             "callee": {
               "type": "Identifier",
-              "start": 3575,
-              "end": 3584,
+              "start": 3472,
+              "end": 3481,
               "loc": {
                 "start": {
                   "line": 104,
@@ -2516,8 +2516,8 @@
             "arguments": [
               {
                 "type": "StringLiteral",
-                "start": 3585,
-                "end": 3603,
+                "start": 3482,
+                "end": 3500,
                 "loc": {
                   "start": {
                     "line": 104,
@@ -2541,9 +2541,9 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Short text for stand-alone use, typically an abbreviation.\r\n * For example, day-of-week Monday might output \"Mon\".\r\n ",
-            "start": 3413,
-            "end": 3540,
+            "value": "*\n * Short text for stand-alone use, typically an abbreviation.\n * For example, day-of-week Monday might output \"Mon\".\n ",
+            "start": 3314,
+            "end": 3438,
             "loc": {
               "start": {
                 "line": 100,
@@ -2559,9 +2559,9 @@
         "trailingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Narrow text, typically a single letter.\r\n * For example, day-of-week Monday might output \"M\".\r\n ",
-            "start": 3607,
-            "end": 3713,
+            "value": "*\n * Narrow text, typically a single letter.\n * For example, day-of-week Monday might output \"M\".\n ",
+            "start": 3503,
+            "end": 3606,
             "loc": {
               "start": {
                 "line": 105,
@@ -2577,8 +2577,8 @@
       },
       {
         "type": "ExpressionStatement",
-        "start": 3715,
-        "end": 3758,
+        "start": 3607,
+        "end": 3650,
         "loc": {
           "start": {
             "line": 109,
@@ -2591,8 +2591,8 @@
         },
         "expression": {
           "type": "AssignmentExpression",
-          "start": 3715,
-          "end": 3757,
+          "start": 3607,
+          "end": 3649,
           "loc": {
             "start": {
               "line": 109,
@@ -2606,8 +2606,8 @@
           "operator": "=",
           "left": {
             "type": "MemberExpression",
-            "start": 3715,
-            "end": 3731,
+            "start": 3607,
+            "end": 3623,
             "loc": {
               "start": {
                 "line": 109,
@@ -2620,8 +2620,8 @@
             },
             "object": {
               "type": "Identifier",
-              "start": 3715,
-              "end": 3724,
+              "start": 3607,
+              "end": 3616,
               "loc": {
                 "start": {
                   "line": 109,
@@ -2638,8 +2638,8 @@
             },
             "property": {
               "type": "Identifier",
-              "start": 3725,
-              "end": 3731,
+              "start": 3617,
+              "end": 3623,
               "loc": {
                 "start": {
                   "line": 109,
@@ -2658,8 +2658,8 @@
           },
           "right": {
             "type": "NewExpression",
-            "start": 3734,
-            "end": 3757,
+            "start": 3626,
+            "end": 3649,
             "loc": {
               "start": {
                 "line": 109,
@@ -2672,8 +2672,8 @@
             },
             "callee": {
               "type": "Identifier",
-              "start": 3738,
-              "end": 3747,
+              "start": 3630,
+              "end": 3639,
               "loc": {
                 "start": {
                   "line": 109,
@@ -2690,8 +2690,8 @@
             "arguments": [
               {
                 "type": "StringLiteral",
-                "start": 3748,
-                "end": 3756,
+                "start": 3640,
+                "end": 3648,
                 "loc": {
                   "start": {
                     "line": 109,
@@ -2715,9 +2715,9 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Narrow text, typically a single letter.\r\n * For example, day-of-week Monday might output \"M\".\r\n ",
-            "start": 3607,
-            "end": 3713,
+            "value": "*\n * Narrow text, typically a single letter.\n * For example, day-of-week Monday might output \"M\".\n ",
+            "start": 3503,
+            "end": 3606,
             "loc": {
               "start": {
                 "line": 105,
@@ -2733,9 +2733,9 @@
         "trailingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Narrow text for stand-alone use, typically a single letter.\r\n * For example, day-of-week Monday might output \"M\".\r\n ",
-            "start": 3760,
-            "end": 3886,
+            "value": "*\n * Narrow text for stand-alone use, typically a single letter.\n * For example, day-of-week Monday might output \"M\".\n ",
+            "start": 3651,
+            "end": 3774,
             "loc": {
               "start": {
                 "line": 110,
@@ -2751,8 +2751,8 @@
       },
       {
         "type": "ExpressionStatement",
-        "start": 3888,
-        "end": 3953,
+        "start": 3775,
+        "end": 3840,
         "loc": {
           "start": {
             "line": 114,
@@ -2765,8 +2765,8 @@
         },
         "expression": {
           "type": "AssignmentExpression",
-          "start": 3888,
-          "end": 3952,
+          "start": 3775,
+          "end": 3839,
           "loc": {
             "start": {
               "line": 114,
@@ -2780,8 +2780,8 @@
           "operator": "=",
           "left": {
             "type": "MemberExpression",
-            "start": 3888,
-            "end": 3915,
+            "start": 3775,
+            "end": 3802,
             "loc": {
               "start": {
                 "line": 114,
@@ -2794,8 +2794,8 @@
             },
             "object": {
               "type": "Identifier",
-              "start": 3888,
-              "end": 3897,
+              "start": 3775,
+              "end": 3784,
               "loc": {
                 "start": {
                   "line": 114,
@@ -2812,8 +2812,8 @@
             },
             "property": {
               "type": "Identifier",
-              "start": 3898,
-              "end": 3915,
+              "start": 3785,
+              "end": 3802,
               "loc": {
                 "start": {
                   "line": 114,
@@ -2832,8 +2832,8 @@
           },
           "right": {
             "type": "NewExpression",
-            "start": 3918,
-            "end": 3952,
+            "start": 3805,
+            "end": 3839,
             "loc": {
               "start": {
                 "line": 114,
@@ -2846,8 +2846,8 @@
             },
             "callee": {
               "type": "Identifier",
-              "start": 3922,
-              "end": 3931,
+              "start": 3809,
+              "end": 3818,
               "loc": {
                 "start": {
                   "line": 114,
@@ -2864,8 +2864,8 @@
             "arguments": [
               {
                 "type": "StringLiteral",
-                "start": 3932,
-                "end": 3951,
+                "start": 3819,
+                "end": 3838,
                 "loc": {
                   "start": {
                     "line": 114,
@@ -2889,9 +2889,9 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\r\n * Narrow text for stand-alone use, typically a single letter.\r\n * For example, day-of-week Monday might output \"M\".\r\n ",
-            "start": 3760,
-            "end": 3886,
+            "value": "*\n * Narrow text for stand-alone use, typically a single letter.\n * For example, day-of-week Monday might output \"M\".\n ",
+            "start": 3651,
+            "end": 3774,
             "loc": {
               "start": {
                 "line": 110,
@@ -2911,9 +2911,9 @@
   "comments": [
     {
       "type": "CommentBlock",
-      "value": "\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)\r\n ",
+      "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)\n ",
       "start": 0,
-      "end": 154,
+      "end": 151,
       "loc": {
         "start": {
           "line": 1,
@@ -2927,9 +2927,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Enumeration of the style of text formatting and parsing.\r\n *\r\n * Text styles define three sizes for the formatted text - 'full', 'short' and 'narrow'.\r\n * Each of these three sizes is available in both 'standard' and 'stand-alone' variations.\r\n *\r\n * The difference between the three sizes is obvious in most languages.\r\n * For example, in English the 'full' month is 'January', the 'short' month is 'Jan'\r\n * and the 'narrow' month is 'J'. Note that the narrow size is often not unique.\r\n * For example, 'January', 'June' and 'July' all have the 'narrow' text 'J'.\r\n *\r\n * The difference between the 'standard' and 'stand-alone' forms is trickier to describe\r\n * as there is no difference in English. However, in other languages there is a difference\r\n * in the word used when the text is used alone, as opposed to in a complete date.\r\n * For example, the word used for a month when used alone in a date picker is different\r\n * to the word used for month in association with a day and year in a date.\r\n *\r\n * ### Specification for implementors\r\n *\r\n * This is immutable and thread-safe enum.\r\n ",
-      "start": 191,
-      "end": 1296,
+      "value": "*\n * Enumeration of the style of text formatting and parsing.\n *\n * Text styles define three sizes for the formatted text - 'full', 'short' and 'narrow'.\n * Each of these three sizes is available in both 'standard' and 'stand-alone' variations.\n *\n * The difference between the three sizes is obvious in most languages.\n * For example, in English the 'full' month is 'January', the 'short' month is 'Jan'\n * and the 'narrow' month is 'J'. Note that the narrow size is often not unique.\n * For example, 'January', 'June' and 'July' all have the 'narrow' text 'J'.\n *\n * The difference between the 'standard' and 'stand-alone' forms is trickier to describe\n * as there is no difference in English. However, in other languages there is a difference\n * in the word used when the text is used alone, as opposed to in a complete date.\n * For example, the word used for a month when used alone in a date picker is different\n * to the word used for month in association with a day and year in a date.\n *\n * ### Specification for implementors\n *\n * This is immutable and thread-safe enum.\n ",
+      "start": 184,
+      "end": 1269,
       "loc": {
         "start": {
           "line": 8,
@@ -2943,9 +2943,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Checks if the style is stand-alone.\r\n     *\r\n     * @return {boolean} true if the style is stand-alone\r\n     ",
-      "start": 1341,
-      "end": 1464,
+      "value": "*\n     * Checks if the style is stand-alone.\n     *\n     * @return {boolean} true if the style is stand-alone\n     ",
+      "start": 1312,
+      "end": 1431,
       "loc": {
         "start": {
           "line": 30,
@@ -2959,9 +2959,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Converts the style to the equivalent stand-alone style.\r\n     *\r\n     * @return {TextStyle} the matching stand-alone style\r\n     ",
-      "start": 1758,
-      "end": 1901,
+      "value": "*\n     * Converts the style to the equivalent stand-alone style.\n     *\n     * @return {TextStyle} the matching stand-alone style\n     ",
+      "start": 1713,
+      "end": 1852,
       "loc": {
         "start": {
           "line": 46,
@@ -2976,8 +2976,8 @@
     {
       "type": "CommentLine",
       "value": " all others are already standalone",
-      "start": 2249,
-      "end": 2285,
+      "start": 2190,
+      "end": 2226,
       "loc": {
         "start": {
           "line": 60,
@@ -2991,9 +2991,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Converts the style to the equivalent normal style.\r\n     *\r\n     * @return {TextStyle} the matching normal style\r\n     ",
-      "start": 2341,
-      "end": 2474,
+      "value": "*\n     * Converts the style to the equivalent normal style.\n     *\n     * @return {TextStyle} the matching normal style\n     ",
+      "start": 2277,
+      "end": 2406,
       "loc": {
         "start": {
           "line": 65,
@@ -3008,8 +3008,8 @@
     {
       "type": "CommentLine",
       "value": " all others are already normal",
-      "start": 2818,
-      "end": 2850,
+      "start": 2740,
+      "end": 2772,
       "loc": {
         "start": {
           "line": 79,
@@ -3023,9 +3023,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Full text, typically the full description.\r\n * For example, day-of-week Monday might output \"Monday\".\r\n ",
-      "start": 2905,
-      "end": 3019,
+      "value": "*\n * Full text, typically the full description.\n * For example, day-of-week Monday might output \"Monday\".\n ",
+      "start": 2821,
+      "end": 2932,
       "loc": {
         "start": {
           "line": 85,
@@ -3039,9 +3039,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Full text for stand-alone use, typically the full description.\r\n * For example, day-of-week Monday might output \"Monday\".\r\n ",
-      "start": 3062,
-      "end": 3196,
+      "value": "*\n * Full text for stand-alone use, typically the full description.\n * For example, day-of-week Monday might output \"Monday\".\n ",
+      "start": 2973,
+      "end": 3104,
       "loc": {
         "start": {
           "line": 90,
@@ -3055,9 +3055,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Short text, typically an abbreviation.\r\n * For example, day-of-week Monday might output \"Mon\".\r\n ",
-      "start": 3261,
-      "end": 3368,
+      "value": "*\n * Short text, typically an abbreviation.\n * For example, day-of-week Monday might output \"Mon\".\n ",
+      "start": 3167,
+      "end": 3271,
       "loc": {
         "start": {
           "line": 95,
@@ -3071,9 +3071,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Short text for stand-alone use, typically an abbreviation.\r\n * For example, day-of-week Monday might output \"Mon\".\r\n ",
-      "start": 3413,
-      "end": 3540,
+      "value": "*\n * Short text for stand-alone use, typically an abbreviation.\n * For example, day-of-week Monday might output \"Mon\".\n ",
+      "start": 3314,
+      "end": 3438,
       "loc": {
         "start": {
           "line": 100,
@@ -3087,9 +3087,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Narrow text, typically a single letter.\r\n * For example, day-of-week Monday might output \"M\".\r\n ",
-      "start": 3607,
-      "end": 3713,
+      "value": "*\n * Narrow text, typically a single letter.\n * For example, day-of-week Monday might output \"M\".\n ",
+      "start": 3503,
+      "end": 3606,
       "loc": {
         "start": {
           "line": 105,
@@ -3103,9 +3103,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Narrow text for stand-alone use, typically a single letter.\r\n * For example, day-of-week Monday might output \"M\".\r\n ",
-      "start": 3760,
-      "end": 3886,
+      "value": "*\n * Narrow text for stand-alone use, typically a single letter.\n * For example, day-of-week Monday might output \"M\".\n ",
+      "start": 3651,
+      "end": 3774,
       "loc": {
         "start": {
           "line": 110,
@@ -3121,9 +3121,9 @@
   "tokens": [
     {
       "type": "CommentBlock",
-      "value": "\r\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\r\n * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)\r\n ",
+      "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)\n ",
       "start": 0,
-      "end": 154,
+      "end": 151,
       "loc": {
         "start": {
           "line": 1,
@@ -3150,8 +3150,8 @@
         "updateContext": null
       },
       "value": "import",
-      "start": 158,
-      "end": 164,
+      "start": 153,
+      "end": 159,
       "loc": {
         "start": {
           "line": 6,
@@ -3175,8 +3175,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 165,
-      "end": 166,
+      "start": 160,
+      "end": 161,
       "loc": {
         "start": {
           "line": 6,
@@ -3201,8 +3201,8 @@
         "binop": null
       },
       "value": "Enum",
-      "start": 166,
-      "end": 170,
+      "start": 161,
+      "end": 165,
       "loc": {
         "start": {
           "line": 6,
@@ -3226,8 +3226,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 170,
-      "end": 171,
+      "start": 165,
+      "end": 166,
       "loc": {
         "start": {
           "line": 6,
@@ -3252,8 +3252,8 @@
         "binop": null
       },
       "value": "from",
-      "start": 172,
-      "end": 176,
+      "start": 167,
+      "end": 171,
       "loc": {
         "start": {
           "line": 6,
@@ -3279,8 +3279,8 @@
         "updateContext": null
       },
       "value": "../Enum",
-      "start": 177,
-      "end": 186,
+      "start": 172,
+      "end": 181,
       "loc": {
         "start": {
           "line": 6,
@@ -3305,8 +3305,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 186,
-      "end": 187,
+      "start": 181,
+      "end": 182,
       "loc": {
         "start": {
           "line": 6,
@@ -3320,9 +3320,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Enumeration of the style of text formatting and parsing.\r\n *\r\n * Text styles define three sizes for the formatted text - 'full', 'short' and 'narrow'.\r\n * Each of these three sizes is available in both 'standard' and 'stand-alone' variations.\r\n *\r\n * The difference between the three sizes is obvious in most languages.\r\n * For example, in English the 'full' month is 'January', the 'short' month is 'Jan'\r\n * and the 'narrow' month is 'J'. Note that the narrow size is often not unique.\r\n * For example, 'January', 'June' and 'July' all have the 'narrow' text 'J'.\r\n *\r\n * The difference between the 'standard' and 'stand-alone' forms is trickier to describe\r\n * as there is no difference in English. However, in other languages there is a difference\r\n * in the word used when the text is used alone, as opposed to in a complete date.\r\n * For example, the word used for a month when used alone in a date picker is different\r\n * to the word used for month in association with a day and year in a date.\r\n *\r\n * ### Specification for implementors\r\n *\r\n * This is immutable and thread-safe enum.\r\n ",
-      "start": 191,
-      "end": 1296,
+      "value": "*\n * Enumeration of the style of text formatting and parsing.\n *\n * Text styles define three sizes for the formatted text - 'full', 'short' and 'narrow'.\n * Each of these three sizes is available in both 'standard' and 'stand-alone' variations.\n *\n * The difference between the three sizes is obvious in most languages.\n * For example, in English the 'full' month is 'January', the 'short' month is 'Jan'\n * and the 'narrow' month is 'J'. Note that the narrow size is often not unique.\n * For example, 'January', 'June' and 'July' all have the 'narrow' text 'J'.\n *\n * The difference between the 'standard' and 'stand-alone' forms is trickier to describe\n * as there is no difference in English. However, in other languages there is a difference\n * in the word used when the text is used alone, as opposed to in a complete date.\n * For example, the word used for a month when used alone in a date picker is different\n * to the word used for month in association with a day and year in a date.\n *\n * ### Specification for implementors\n *\n * This is immutable and thread-safe enum.\n ",
+      "start": 184,
+      "end": 1269,
       "loc": {
         "start": {
           "line": 8,
@@ -3349,8 +3349,8 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 1298,
-      "end": 1304,
+      "start": 1270,
+      "end": 1276,
       "loc": {
         "start": {
           "line": 29,
@@ -3377,8 +3377,8 @@
         "updateContext": null
       },
       "value": "class",
-      "start": 1305,
-      "end": 1310,
+      "start": 1277,
+      "end": 1282,
       "loc": {
         "start": {
           "line": 29,
@@ -3403,8 +3403,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 1311,
-      "end": 1320,
+      "start": 1283,
+      "end": 1292,
       "loc": {
         "start": {
           "line": 29,
@@ -3431,8 +3431,8 @@
         "updateContext": null
       },
       "value": "extends",
-      "start": 1321,
-      "end": 1328,
+      "start": 1293,
+      "end": 1300,
       "loc": {
         "start": {
           "line": 29,
@@ -3457,8 +3457,8 @@
         "binop": null
       },
       "value": "Enum",
-      "start": 1329,
-      "end": 1333,
+      "start": 1301,
+      "end": 1305,
       "loc": {
         "start": {
           "line": 29,
@@ -3482,8 +3482,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1334,
-      "end": 1335,
+      "start": 1306,
+      "end": 1307,
       "loc": {
         "start": {
           "line": 29,
@@ -3497,9 +3497,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Checks if the style is stand-alone.\r\n     *\r\n     * @return {boolean} true if the style is stand-alone\r\n     ",
-      "start": 1341,
-      "end": 1464,
+      "value": "*\n     * Checks if the style is stand-alone.\n     *\n     * @return {boolean} true if the style is stand-alone\n     ",
+      "start": 1312,
+      "end": 1431,
       "loc": {
         "start": {
           "line": 30,
@@ -3524,8 +3524,8 @@
         "binop": null
       },
       "value": "isStandalone",
-      "start": 1470,
-      "end": 1482,
+      "start": 1436,
+      "end": 1448,
       "loc": {
         "start": {
           "line": 35,
@@ -3549,8 +3549,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1482,
-      "end": 1483,
+      "start": 1448,
+      "end": 1449,
       "loc": {
         "start": {
           "line": 35,
@@ -3574,8 +3574,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1483,
-      "end": 1484,
+      "start": 1449,
+      "end": 1450,
       "loc": {
         "start": {
           "line": 35,
@@ -3599,8 +3599,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1485,
-      "end": 1486,
+      "start": 1451,
+      "end": 1452,
       "loc": {
         "start": {
           "line": 35,
@@ -3627,8 +3627,8 @@
         "updateContext": null
       },
       "value": "switch",
-      "start": 1496,
-      "end": 1502,
+      "start": 1461,
+      "end": 1467,
       "loc": {
         "start": {
           "line": 36,
@@ -3652,8 +3652,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1503,
-      "end": 1504,
+      "start": 1468,
+      "end": 1469,
       "loc": {
         "start": {
           "line": 36,
@@ -3680,8 +3680,8 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 1504,
-      "end": 1508,
+      "start": 1469,
+      "end": 1473,
       "loc": {
         "start": {
           "line": 36,
@@ -3705,8 +3705,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1508,
-      "end": 1509,
+      "start": 1473,
+      "end": 1474,
       "loc": {
         "start": {
           "line": 36,
@@ -3730,8 +3730,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1510,
-      "end": 1511,
+      "start": 1475,
+      "end": 1476,
       "loc": {
         "start": {
           "line": 36,
@@ -3758,8 +3758,8 @@
         "updateContext": null
       },
       "value": "case",
-      "start": 1525,
-      "end": 1529,
+      "start": 1489,
+      "end": 1493,
       "loc": {
         "start": {
           "line": 37,
@@ -3784,8 +3784,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 1530,
-      "end": 1539,
+      "start": 1494,
+      "end": 1503,
       "loc": {
         "start": {
           "line": 37,
@@ -3810,8 +3810,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1539,
-      "end": 1540,
+      "start": 1503,
+      "end": 1504,
       "loc": {
         "start": {
           "line": 37,
@@ -3836,8 +3836,8 @@
         "binop": null
       },
       "value": "FULL_STANDALONE",
-      "start": 1540,
-      "end": 1555,
+      "start": 1504,
+      "end": 1519,
       "loc": {
         "start": {
           "line": 37,
@@ -3862,8 +3862,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1555,
-      "end": 1556,
+      "start": 1519,
+      "end": 1520,
       "loc": {
         "start": {
           "line": 37,
@@ -3890,8 +3890,8 @@
         "updateContext": null
       },
       "value": "case",
-      "start": 1570,
-      "end": 1574,
+      "start": 1533,
+      "end": 1537,
       "loc": {
         "start": {
           "line": 38,
@@ -3916,8 +3916,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 1575,
-      "end": 1584,
+      "start": 1538,
+      "end": 1547,
       "loc": {
         "start": {
           "line": 38,
@@ -3942,8 +3942,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1584,
-      "end": 1585,
+      "start": 1547,
+      "end": 1548,
       "loc": {
         "start": {
           "line": 38,
@@ -3968,8 +3968,8 @@
         "binop": null
       },
       "value": "SHORT_STANDALONE",
-      "start": 1585,
-      "end": 1601,
+      "start": 1548,
+      "end": 1564,
       "loc": {
         "start": {
           "line": 38,
@@ -3994,8 +3994,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1601,
-      "end": 1602,
+      "start": 1564,
+      "end": 1565,
       "loc": {
         "start": {
           "line": 38,
@@ -4022,8 +4022,8 @@
         "updateContext": null
       },
       "value": "case",
-      "start": 1616,
-      "end": 1620,
+      "start": 1578,
+      "end": 1582,
       "loc": {
         "start": {
           "line": 39,
@@ -4048,8 +4048,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 1621,
-      "end": 1630,
+      "start": 1583,
+      "end": 1592,
       "loc": {
         "start": {
           "line": 39,
@@ -4074,8 +4074,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1630,
-      "end": 1631,
+      "start": 1592,
+      "end": 1593,
       "loc": {
         "start": {
           "line": 39,
@@ -4100,8 +4100,8 @@
         "binop": null
       },
       "value": "NARROW_STANDALONE",
-      "start": 1631,
-      "end": 1648,
+      "start": 1593,
+      "end": 1610,
       "loc": {
         "start": {
           "line": 39,
@@ -4126,8 +4126,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1648,
-      "end": 1649,
+      "start": 1610,
+      "end": 1611,
       "loc": {
         "start": {
           "line": 39,
@@ -4154,8 +4154,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 1667,
-      "end": 1673,
+      "start": 1628,
+      "end": 1634,
       "loc": {
         "start": {
           "line": 40,
@@ -4182,8 +4182,8 @@
         "updateContext": null
       },
       "value": "true",
-      "start": 1674,
-      "end": 1678,
+      "start": 1635,
+      "end": 1639,
       "loc": {
         "start": {
           "line": 40,
@@ -4208,8 +4208,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1678,
-      "end": 1679,
+      "start": 1639,
+      "end": 1640,
       "loc": {
         "start": {
           "line": 40,
@@ -4236,8 +4236,8 @@
         "updateContext": null
       },
       "value": "default",
-      "start": 1693,
-      "end": 1700,
+      "start": 1653,
+      "end": 1660,
       "loc": {
         "start": {
           "line": 41,
@@ -4262,8 +4262,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1700,
-      "end": 1701,
+      "start": 1660,
+      "end": 1661,
       "loc": {
         "start": {
           "line": 41,
@@ -4290,8 +4290,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 1719,
-      "end": 1725,
+      "start": 1678,
+      "end": 1684,
       "loc": {
         "start": {
           "line": 42,
@@ -4318,8 +4318,8 @@
         "updateContext": null
       },
       "value": "false",
-      "start": 1726,
-      "end": 1731,
+      "start": 1685,
+      "end": 1690,
       "loc": {
         "start": {
           "line": 42,
@@ -4344,8 +4344,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1731,
-      "end": 1732,
+      "start": 1690,
+      "end": 1691,
       "loc": {
         "start": {
           "line": 42,
@@ -4369,8 +4369,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1742,
-      "end": 1743,
+      "start": 1700,
+      "end": 1701,
       "loc": {
         "start": {
           "line": 43,
@@ -4394,8 +4394,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1749,
-      "end": 1750,
+      "start": 1706,
+      "end": 1707,
       "loc": {
         "start": {
           "line": 44,
@@ -4409,9 +4409,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Converts the style to the equivalent stand-alone style.\r\n     *\r\n     * @return {TextStyle} the matching stand-alone style\r\n     ",
-      "start": 1758,
-      "end": 1901,
+      "value": "*\n     * Converts the style to the equivalent stand-alone style.\n     *\n     * @return {TextStyle} the matching stand-alone style\n     ",
+      "start": 1713,
+      "end": 1852,
       "loc": {
         "start": {
           "line": 46,
@@ -4436,8 +4436,8 @@
         "binop": null
       },
       "value": "asStandalone",
-      "start": 1907,
-      "end": 1919,
+      "start": 1857,
+      "end": 1869,
       "loc": {
         "start": {
           "line": 51,
@@ -4461,8 +4461,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1919,
-      "end": 1920,
+      "start": 1869,
+      "end": 1870,
       "loc": {
         "start": {
           "line": 51,
@@ -4486,8 +4486,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1920,
-      "end": 1921,
+      "start": 1870,
+      "end": 1871,
       "loc": {
         "start": {
           "line": 51,
@@ -4511,8 +4511,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1922,
-      "end": 1923,
+      "start": 1872,
+      "end": 1873,
       "loc": {
         "start": {
           "line": 51,
@@ -4539,8 +4539,8 @@
         "updateContext": null
       },
       "value": "switch",
-      "start": 1933,
-      "end": 1939,
+      "start": 1882,
+      "end": 1888,
       "loc": {
         "start": {
           "line": 52,
@@ -4564,8 +4564,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1940,
-      "end": 1941,
+      "start": 1889,
+      "end": 1890,
       "loc": {
         "start": {
           "line": 52,
@@ -4592,8 +4592,8 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 1941,
-      "end": 1945,
+      "start": 1890,
+      "end": 1894,
       "loc": {
         "start": {
           "line": 52,
@@ -4617,8 +4617,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1945,
-      "end": 1946,
+      "start": 1894,
+      "end": 1895,
       "loc": {
         "start": {
           "line": 52,
@@ -4642,8 +4642,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1947,
-      "end": 1948,
+      "start": 1896,
+      "end": 1897,
       "loc": {
         "start": {
           "line": 52,
@@ -4670,8 +4670,8 @@
         "updateContext": null
       },
       "value": "case",
-      "start": 1962,
-      "end": 1966,
+      "start": 1910,
+      "end": 1914,
       "loc": {
         "start": {
           "line": 53,
@@ -4696,8 +4696,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 1967,
-      "end": 1976,
+      "start": 1915,
+      "end": 1924,
       "loc": {
         "start": {
           "line": 53,
@@ -4722,8 +4722,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1976,
-      "end": 1977,
+      "start": 1924,
+      "end": 1925,
       "loc": {
         "start": {
           "line": 53,
@@ -4748,8 +4748,8 @@
         "binop": null
       },
       "value": "FULL",
-      "start": 1977,
-      "end": 1981,
+      "start": 1925,
+      "end": 1929,
       "loc": {
         "start": {
           "line": 53,
@@ -4774,8 +4774,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1981,
-      "end": 1982,
+      "start": 1929,
+      "end": 1930,
       "loc": {
         "start": {
           "line": 53,
@@ -4802,8 +4802,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 2000,
-      "end": 2006,
+      "start": 1947,
+      "end": 1953,
       "loc": {
         "start": {
           "line": 54,
@@ -4828,8 +4828,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 2007,
-      "end": 2016,
+      "start": 1954,
+      "end": 1963,
       "loc": {
         "start": {
           "line": 54,
@@ -4854,8 +4854,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2016,
-      "end": 2017,
+      "start": 1963,
+      "end": 1964,
       "loc": {
         "start": {
           "line": 54,
@@ -4880,8 +4880,8 @@
         "binop": null
       },
       "value": "FULL_STANDALONE",
-      "start": 2017,
-      "end": 2032,
+      "start": 1964,
+      "end": 1979,
       "loc": {
         "start": {
           "line": 54,
@@ -4906,8 +4906,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2032,
-      "end": 2033,
+      "start": 1979,
+      "end": 1980,
       "loc": {
         "start": {
           "line": 54,
@@ -4934,8 +4934,8 @@
         "updateContext": null
       },
       "value": "case",
-      "start": 2047,
-      "end": 2051,
+      "start": 1993,
+      "end": 1997,
       "loc": {
         "start": {
           "line": 55,
@@ -4960,8 +4960,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 2052,
-      "end": 2061,
+      "start": 1998,
+      "end": 2007,
       "loc": {
         "start": {
           "line": 55,
@@ -4986,8 +4986,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2061,
-      "end": 2062,
+      "start": 2007,
+      "end": 2008,
       "loc": {
         "start": {
           "line": 55,
@@ -5012,8 +5012,8 @@
         "binop": null
       },
       "value": "SHORT",
-      "start": 2062,
-      "end": 2067,
+      "start": 2008,
+      "end": 2013,
       "loc": {
         "start": {
           "line": 55,
@@ -5038,8 +5038,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2067,
-      "end": 2068,
+      "start": 2013,
+      "end": 2014,
       "loc": {
         "start": {
           "line": 55,
@@ -5066,8 +5066,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 2086,
-      "end": 2092,
+      "start": 2031,
+      "end": 2037,
       "loc": {
         "start": {
           "line": 56,
@@ -5092,8 +5092,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 2093,
-      "end": 2102,
+      "start": 2038,
+      "end": 2047,
       "loc": {
         "start": {
           "line": 56,
@@ -5118,8 +5118,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2102,
-      "end": 2103,
+      "start": 2047,
+      "end": 2048,
       "loc": {
         "start": {
           "line": 56,
@@ -5144,8 +5144,8 @@
         "binop": null
       },
       "value": "SHORT_STANDALONE",
-      "start": 2103,
-      "end": 2119,
+      "start": 2048,
+      "end": 2064,
       "loc": {
         "start": {
           "line": 56,
@@ -5170,8 +5170,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2119,
-      "end": 2120,
+      "start": 2064,
+      "end": 2065,
       "loc": {
         "start": {
           "line": 56,
@@ -5198,8 +5198,8 @@
         "updateContext": null
       },
       "value": "case",
-      "start": 2134,
-      "end": 2138,
+      "start": 2078,
+      "end": 2082,
       "loc": {
         "start": {
           "line": 57,
@@ -5224,8 +5224,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 2139,
-      "end": 2148,
+      "start": 2083,
+      "end": 2092,
       "loc": {
         "start": {
           "line": 57,
@@ -5250,8 +5250,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2148,
-      "end": 2149,
+      "start": 2092,
+      "end": 2093,
       "loc": {
         "start": {
           "line": 57,
@@ -5276,8 +5276,8 @@
         "binop": null
       },
       "value": "NARROW",
-      "start": 2149,
-      "end": 2155,
+      "start": 2093,
+      "end": 2099,
       "loc": {
         "start": {
           "line": 57,
@@ -5302,8 +5302,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2155,
-      "end": 2156,
+      "start": 2099,
+      "end": 2100,
       "loc": {
         "start": {
           "line": 57,
@@ -5330,8 +5330,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 2174,
-      "end": 2180,
+      "start": 2117,
+      "end": 2123,
       "loc": {
         "start": {
           "line": 58,
@@ -5356,8 +5356,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 2181,
-      "end": 2190,
+      "start": 2124,
+      "end": 2133,
       "loc": {
         "start": {
           "line": 58,
@@ -5382,8 +5382,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2190,
-      "end": 2191,
+      "start": 2133,
+      "end": 2134,
       "loc": {
         "start": {
           "line": 58,
@@ -5408,8 +5408,8 @@
         "binop": null
       },
       "value": "NARROW_STANDALONE",
-      "start": 2191,
-      "end": 2208,
+      "start": 2134,
+      "end": 2151,
       "loc": {
         "start": {
           "line": 58,
@@ -5434,8 +5434,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2208,
-      "end": 2209,
+      "start": 2151,
+      "end": 2152,
       "loc": {
         "start": {
           "line": 58,
@@ -5462,8 +5462,8 @@
         "updateContext": null
       },
       "value": "default",
-      "start": 2223,
-      "end": 2230,
+      "start": 2165,
+      "end": 2172,
       "loc": {
         "start": {
           "line": 59,
@@ -5488,8 +5488,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2230,
-      "end": 2231,
+      "start": 2172,
+      "end": 2173,
       "loc": {
         "start": {
           "line": 59,
@@ -5504,8 +5504,8 @@
     {
       "type": "CommentLine",
       "value": " all others are already standalone",
-      "start": 2249,
-      "end": 2285,
+      "start": 2190,
+      "end": 2226,
       "loc": {
         "start": {
           "line": 60,
@@ -5532,8 +5532,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 2303,
-      "end": 2309,
+      "start": 2243,
+      "end": 2249,
       "loc": {
         "start": {
           "line": 61,
@@ -5560,8 +5560,8 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 2310,
-      "end": 2314,
+      "start": 2250,
+      "end": 2254,
       "loc": {
         "start": {
           "line": 61,
@@ -5586,8 +5586,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2314,
-      "end": 2315,
+      "start": 2254,
+      "end": 2255,
       "loc": {
         "start": {
           "line": 61,
@@ -5611,8 +5611,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2325,
-      "end": 2326,
+      "start": 2264,
+      "end": 2265,
       "loc": {
         "start": {
           "line": 62,
@@ -5636,8 +5636,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2332,
-      "end": 2333,
+      "start": 2270,
+      "end": 2271,
       "loc": {
         "start": {
           "line": 63,
@@ -5651,9 +5651,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n     * Converts the style to the equivalent normal style.\r\n     *\r\n     * @return {TextStyle} the matching normal style\r\n     ",
-      "start": 2341,
-      "end": 2474,
+      "value": "*\n     * Converts the style to the equivalent normal style.\n     *\n     * @return {TextStyle} the matching normal style\n     ",
+      "start": 2277,
+      "end": 2406,
       "loc": {
         "start": {
           "line": 65,
@@ -5678,8 +5678,8 @@
         "binop": null
       },
       "value": "asNormal",
-      "start": 2480,
-      "end": 2488,
+      "start": 2411,
+      "end": 2419,
       "loc": {
         "start": {
           "line": 70,
@@ -5703,8 +5703,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2488,
-      "end": 2489,
+      "start": 2419,
+      "end": 2420,
       "loc": {
         "start": {
           "line": 70,
@@ -5728,8 +5728,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2489,
-      "end": 2490,
+      "start": 2420,
+      "end": 2421,
       "loc": {
         "start": {
           "line": 70,
@@ -5753,8 +5753,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2491,
-      "end": 2492,
+      "start": 2422,
+      "end": 2423,
       "loc": {
         "start": {
           "line": 70,
@@ -5781,8 +5781,8 @@
         "updateContext": null
       },
       "value": "switch",
-      "start": 2502,
-      "end": 2508,
+      "start": 2432,
+      "end": 2438,
       "loc": {
         "start": {
           "line": 71,
@@ -5806,8 +5806,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2509,
-      "end": 2510,
+      "start": 2439,
+      "end": 2440,
       "loc": {
         "start": {
           "line": 71,
@@ -5834,8 +5834,8 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 2510,
-      "end": 2514,
+      "start": 2440,
+      "end": 2444,
       "loc": {
         "start": {
           "line": 71,
@@ -5859,8 +5859,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2514,
-      "end": 2515,
+      "start": 2444,
+      "end": 2445,
       "loc": {
         "start": {
           "line": 71,
@@ -5884,8 +5884,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2516,
-      "end": 2517,
+      "start": 2446,
+      "end": 2447,
       "loc": {
         "start": {
           "line": 71,
@@ -5912,8 +5912,8 @@
         "updateContext": null
       },
       "value": "case",
-      "start": 2531,
-      "end": 2535,
+      "start": 2460,
+      "end": 2464,
       "loc": {
         "start": {
           "line": 72,
@@ -5938,8 +5938,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 2536,
-      "end": 2545,
+      "start": 2465,
+      "end": 2474,
       "loc": {
         "start": {
           "line": 72,
@@ -5964,8 +5964,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2545,
-      "end": 2546,
+      "start": 2474,
+      "end": 2475,
       "loc": {
         "start": {
           "line": 72,
@@ -5990,8 +5990,8 @@
         "binop": null
       },
       "value": "FULL_STANDALONE",
-      "start": 2546,
-      "end": 2561,
+      "start": 2475,
+      "end": 2490,
       "loc": {
         "start": {
           "line": 72,
@@ -6016,8 +6016,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2561,
-      "end": 2562,
+      "start": 2490,
+      "end": 2491,
       "loc": {
         "start": {
           "line": 72,
@@ -6044,8 +6044,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 2580,
-      "end": 2586,
+      "start": 2508,
+      "end": 2514,
       "loc": {
         "start": {
           "line": 73,
@@ -6070,8 +6070,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 2587,
-      "end": 2596,
+      "start": 2515,
+      "end": 2524,
       "loc": {
         "start": {
           "line": 73,
@@ -6096,8 +6096,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2596,
-      "end": 2597,
+      "start": 2524,
+      "end": 2525,
       "loc": {
         "start": {
           "line": 73,
@@ -6122,8 +6122,8 @@
         "binop": null
       },
       "value": "FULL",
-      "start": 2597,
-      "end": 2601,
+      "start": 2525,
+      "end": 2529,
       "loc": {
         "start": {
           "line": 73,
@@ -6148,8 +6148,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2601,
-      "end": 2602,
+      "start": 2529,
+      "end": 2530,
       "loc": {
         "start": {
           "line": 73,
@@ -6176,8 +6176,8 @@
         "updateContext": null
       },
       "value": "case",
-      "start": 2616,
-      "end": 2620,
+      "start": 2543,
+      "end": 2547,
       "loc": {
         "start": {
           "line": 74,
@@ -6202,8 +6202,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 2621,
-      "end": 2630,
+      "start": 2548,
+      "end": 2557,
       "loc": {
         "start": {
           "line": 74,
@@ -6228,8 +6228,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2630,
-      "end": 2631,
+      "start": 2557,
+      "end": 2558,
       "loc": {
         "start": {
           "line": 74,
@@ -6254,8 +6254,8 @@
         "binop": null
       },
       "value": "SHORT_STANDALONE",
-      "start": 2631,
-      "end": 2647,
+      "start": 2558,
+      "end": 2574,
       "loc": {
         "start": {
           "line": 74,
@@ -6280,8 +6280,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2647,
-      "end": 2648,
+      "start": 2574,
+      "end": 2575,
       "loc": {
         "start": {
           "line": 74,
@@ -6308,8 +6308,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 2666,
-      "end": 2672,
+      "start": 2592,
+      "end": 2598,
       "loc": {
         "start": {
           "line": 75,
@@ -6334,8 +6334,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 2673,
-      "end": 2682,
+      "start": 2599,
+      "end": 2608,
       "loc": {
         "start": {
           "line": 75,
@@ -6360,8 +6360,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2682,
-      "end": 2683,
+      "start": 2608,
+      "end": 2609,
       "loc": {
         "start": {
           "line": 75,
@@ -6386,8 +6386,8 @@
         "binop": null
       },
       "value": "SHORT",
-      "start": 2683,
-      "end": 2688,
+      "start": 2609,
+      "end": 2614,
       "loc": {
         "start": {
           "line": 75,
@@ -6412,8 +6412,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2688,
-      "end": 2689,
+      "start": 2614,
+      "end": 2615,
       "loc": {
         "start": {
           "line": 75,
@@ -6440,8 +6440,8 @@
         "updateContext": null
       },
       "value": "case",
-      "start": 2703,
-      "end": 2707,
+      "start": 2628,
+      "end": 2632,
       "loc": {
         "start": {
           "line": 76,
@@ -6466,8 +6466,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 2708,
-      "end": 2717,
+      "start": 2633,
+      "end": 2642,
       "loc": {
         "start": {
           "line": 76,
@@ -6492,8 +6492,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2717,
-      "end": 2718,
+      "start": 2642,
+      "end": 2643,
       "loc": {
         "start": {
           "line": 76,
@@ -6518,8 +6518,8 @@
         "binop": null
       },
       "value": "NARROW_STANDALONE",
-      "start": 2718,
-      "end": 2735,
+      "start": 2643,
+      "end": 2660,
       "loc": {
         "start": {
           "line": 76,
@@ -6544,8 +6544,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2735,
-      "end": 2736,
+      "start": 2660,
+      "end": 2661,
       "loc": {
         "start": {
           "line": 76,
@@ -6572,8 +6572,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 2754,
-      "end": 2760,
+      "start": 2678,
+      "end": 2684,
       "loc": {
         "start": {
           "line": 77,
@@ -6598,8 +6598,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 2761,
-      "end": 2770,
+      "start": 2685,
+      "end": 2694,
       "loc": {
         "start": {
           "line": 77,
@@ -6624,8 +6624,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2770,
-      "end": 2771,
+      "start": 2694,
+      "end": 2695,
       "loc": {
         "start": {
           "line": 77,
@@ -6650,8 +6650,8 @@
         "binop": null
       },
       "value": "NARROW",
-      "start": 2771,
-      "end": 2777,
+      "start": 2695,
+      "end": 2701,
       "loc": {
         "start": {
           "line": 77,
@@ -6676,8 +6676,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2777,
-      "end": 2778,
+      "start": 2701,
+      "end": 2702,
       "loc": {
         "start": {
           "line": 77,
@@ -6704,8 +6704,8 @@
         "updateContext": null
       },
       "value": "default",
-      "start": 2792,
-      "end": 2799,
+      "start": 2715,
+      "end": 2722,
       "loc": {
         "start": {
           "line": 78,
@@ -6730,8 +6730,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2799,
-      "end": 2800,
+      "start": 2722,
+      "end": 2723,
       "loc": {
         "start": {
           "line": 78,
@@ -6746,8 +6746,8 @@
     {
       "type": "CommentLine",
       "value": " all others are already normal",
-      "start": 2818,
-      "end": 2850,
+      "start": 2740,
+      "end": 2772,
       "loc": {
         "start": {
           "line": 79,
@@ -6774,8 +6774,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 2868,
-      "end": 2874,
+      "start": 2789,
+      "end": 2795,
       "loc": {
         "start": {
           "line": 80,
@@ -6802,8 +6802,8 @@
         "updateContext": null
       },
       "value": "this",
-      "start": 2875,
-      "end": 2879,
+      "start": 2796,
+      "end": 2800,
       "loc": {
         "start": {
           "line": 80,
@@ -6828,8 +6828,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2879,
-      "end": 2880,
+      "start": 2800,
+      "end": 2801,
       "loc": {
         "start": {
           "line": 80,
@@ -6853,8 +6853,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2890,
-      "end": 2891,
+      "start": 2810,
+      "end": 2811,
       "loc": {
         "start": {
           "line": 81,
@@ -6878,8 +6878,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2897,
-      "end": 2898,
+      "start": 2816,
+      "end": 2817,
       "loc": {
         "start": {
           "line": 82,
@@ -6903,8 +6903,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2900,
-      "end": 2901,
+      "start": 2818,
+      "end": 2819,
       "loc": {
         "start": {
           "line": 83,
@@ -6918,9 +6918,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Full text, typically the full description.\r\n * For example, day-of-week Monday might output \"Monday\".\r\n ",
-      "start": 2905,
-      "end": 3019,
+      "value": "*\n * Full text, typically the full description.\n * For example, day-of-week Monday might output \"Monday\".\n ",
+      "start": 2821,
+      "end": 2932,
       "loc": {
         "start": {
           "line": 85,
@@ -6945,8 +6945,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 3021,
-      "end": 3030,
+      "start": 2933,
+      "end": 2942,
       "loc": {
         "start": {
           "line": 89,
@@ -6971,8 +6971,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 3030,
-      "end": 3031,
+      "start": 2942,
+      "end": 2943,
       "loc": {
         "start": {
           "line": 89,
@@ -6997,8 +6997,8 @@
         "binop": null
       },
       "value": "FULL",
-      "start": 3031,
-      "end": 3035,
+      "start": 2943,
+      "end": 2947,
       "loc": {
         "start": {
           "line": 89,
@@ -7024,8 +7024,8 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 3036,
-      "end": 3037,
+      "start": 2948,
+      "end": 2949,
       "loc": {
         "start": {
           "line": 89,
@@ -7052,8 +7052,8 @@
         "updateContext": null
       },
       "value": "new",
-      "start": 3038,
-      "end": 3041,
+      "start": 2950,
+      "end": 2953,
       "loc": {
         "start": {
           "line": 89,
@@ -7078,8 +7078,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 3042,
-      "end": 3051,
+      "start": 2954,
+      "end": 2963,
       "loc": {
         "start": {
           "line": 89,
@@ -7103,8 +7103,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3051,
-      "end": 3052,
+      "start": 2963,
+      "end": 2964,
       "loc": {
         "start": {
           "line": 89,
@@ -7130,8 +7130,8 @@
         "updateContext": null
       },
       "value": "FULL",
-      "start": 3052,
-      "end": 3058,
+      "start": 2964,
+      "end": 2970,
       "loc": {
         "start": {
           "line": 89,
@@ -7155,8 +7155,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3058,
-      "end": 3059,
+      "start": 2970,
+      "end": 2971,
       "loc": {
         "start": {
           "line": 89,
@@ -7181,8 +7181,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 3059,
-      "end": 3060,
+      "start": 2971,
+      "end": 2972,
       "loc": {
         "start": {
           "line": 89,
@@ -7196,9 +7196,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Full text for stand-alone use, typically the full description.\r\n * For example, day-of-week Monday might output \"Monday\".\r\n ",
-      "start": 3062,
-      "end": 3196,
+      "value": "*\n * Full text for stand-alone use, typically the full description.\n * For example, day-of-week Monday might output \"Monday\".\n ",
+      "start": 2973,
+      "end": 3104,
       "loc": {
         "start": {
           "line": 90,
@@ -7223,8 +7223,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 3198,
-      "end": 3207,
+      "start": 3105,
+      "end": 3114,
       "loc": {
         "start": {
           "line": 94,
@@ -7249,8 +7249,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 3207,
-      "end": 3208,
+      "start": 3114,
+      "end": 3115,
       "loc": {
         "start": {
           "line": 94,
@@ -7275,8 +7275,8 @@
         "binop": null
       },
       "value": "FULL_STANDALONE",
-      "start": 3208,
-      "end": 3223,
+      "start": 3115,
+      "end": 3130,
       "loc": {
         "start": {
           "line": 94,
@@ -7302,8 +7302,8 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 3224,
-      "end": 3225,
+      "start": 3131,
+      "end": 3132,
       "loc": {
         "start": {
           "line": 94,
@@ -7330,8 +7330,8 @@
         "updateContext": null
       },
       "value": "new",
-      "start": 3226,
-      "end": 3229,
+      "start": 3133,
+      "end": 3136,
       "loc": {
         "start": {
           "line": 94,
@@ -7356,8 +7356,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 3230,
-      "end": 3239,
+      "start": 3137,
+      "end": 3146,
       "loc": {
         "start": {
           "line": 94,
@@ -7381,8 +7381,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3239,
-      "end": 3240,
+      "start": 3146,
+      "end": 3147,
       "loc": {
         "start": {
           "line": 94,
@@ -7408,8 +7408,8 @@
         "updateContext": null
       },
       "value": "FULL_STANDALONE",
-      "start": 3240,
-      "end": 3257,
+      "start": 3147,
+      "end": 3164,
       "loc": {
         "start": {
           "line": 94,
@@ -7433,8 +7433,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3257,
-      "end": 3258,
+      "start": 3164,
+      "end": 3165,
       "loc": {
         "start": {
           "line": 94,
@@ -7459,8 +7459,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 3258,
-      "end": 3259,
+      "start": 3165,
+      "end": 3166,
       "loc": {
         "start": {
           "line": 94,
@@ -7474,9 +7474,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Short text, typically an abbreviation.\r\n * For example, day-of-week Monday might output \"Mon\".\r\n ",
-      "start": 3261,
-      "end": 3368,
+      "value": "*\n * Short text, typically an abbreviation.\n * For example, day-of-week Monday might output \"Mon\".\n ",
+      "start": 3167,
+      "end": 3271,
       "loc": {
         "start": {
           "line": 95,
@@ -7501,8 +7501,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 3370,
-      "end": 3379,
+      "start": 3272,
+      "end": 3281,
       "loc": {
         "start": {
           "line": 99,
@@ -7527,8 +7527,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 3379,
-      "end": 3380,
+      "start": 3281,
+      "end": 3282,
       "loc": {
         "start": {
           "line": 99,
@@ -7553,8 +7553,8 @@
         "binop": null
       },
       "value": "SHORT",
-      "start": 3380,
-      "end": 3385,
+      "start": 3282,
+      "end": 3287,
       "loc": {
         "start": {
           "line": 99,
@@ -7580,8 +7580,8 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 3386,
-      "end": 3387,
+      "start": 3288,
+      "end": 3289,
       "loc": {
         "start": {
           "line": 99,
@@ -7608,8 +7608,8 @@
         "updateContext": null
       },
       "value": "new",
-      "start": 3388,
-      "end": 3391,
+      "start": 3290,
+      "end": 3293,
       "loc": {
         "start": {
           "line": 99,
@@ -7634,8 +7634,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 3392,
-      "end": 3401,
+      "start": 3294,
+      "end": 3303,
       "loc": {
         "start": {
           "line": 99,
@@ -7659,8 +7659,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3401,
-      "end": 3402,
+      "start": 3303,
+      "end": 3304,
       "loc": {
         "start": {
           "line": 99,
@@ -7686,8 +7686,8 @@
         "updateContext": null
       },
       "value": "SHORT",
-      "start": 3402,
-      "end": 3409,
+      "start": 3304,
+      "end": 3311,
       "loc": {
         "start": {
           "line": 99,
@@ -7711,8 +7711,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3409,
-      "end": 3410,
+      "start": 3311,
+      "end": 3312,
       "loc": {
         "start": {
           "line": 99,
@@ -7737,8 +7737,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 3410,
-      "end": 3411,
+      "start": 3312,
+      "end": 3313,
       "loc": {
         "start": {
           "line": 99,
@@ -7752,9 +7752,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Short text for stand-alone use, typically an abbreviation.\r\n * For example, day-of-week Monday might output \"Mon\".\r\n ",
-      "start": 3413,
-      "end": 3540,
+      "value": "*\n * Short text for stand-alone use, typically an abbreviation.\n * For example, day-of-week Monday might output \"Mon\".\n ",
+      "start": 3314,
+      "end": 3438,
       "loc": {
         "start": {
           "line": 100,
@@ -7779,8 +7779,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 3542,
-      "end": 3551,
+      "start": 3439,
+      "end": 3448,
       "loc": {
         "start": {
           "line": 104,
@@ -7805,8 +7805,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 3551,
-      "end": 3552,
+      "start": 3448,
+      "end": 3449,
       "loc": {
         "start": {
           "line": 104,
@@ -7831,8 +7831,8 @@
         "binop": null
       },
       "value": "SHORT_STANDALONE",
-      "start": 3552,
-      "end": 3568,
+      "start": 3449,
+      "end": 3465,
       "loc": {
         "start": {
           "line": 104,
@@ -7858,8 +7858,8 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 3569,
-      "end": 3570,
+      "start": 3466,
+      "end": 3467,
       "loc": {
         "start": {
           "line": 104,
@@ -7886,8 +7886,8 @@
         "updateContext": null
       },
       "value": "new",
-      "start": 3571,
-      "end": 3574,
+      "start": 3468,
+      "end": 3471,
       "loc": {
         "start": {
           "line": 104,
@@ -7912,8 +7912,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 3575,
-      "end": 3584,
+      "start": 3472,
+      "end": 3481,
       "loc": {
         "start": {
           "line": 104,
@@ -7937,8 +7937,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3584,
-      "end": 3585,
+      "start": 3481,
+      "end": 3482,
       "loc": {
         "start": {
           "line": 104,
@@ -7964,8 +7964,8 @@
         "updateContext": null
       },
       "value": "SHORT_STANDALONE",
-      "start": 3585,
-      "end": 3603,
+      "start": 3482,
+      "end": 3500,
       "loc": {
         "start": {
           "line": 104,
@@ -7989,8 +7989,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3603,
-      "end": 3604,
+      "start": 3500,
+      "end": 3501,
       "loc": {
         "start": {
           "line": 104,
@@ -8015,8 +8015,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 3604,
-      "end": 3605,
+      "start": 3501,
+      "end": 3502,
       "loc": {
         "start": {
           "line": 104,
@@ -8030,9 +8030,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Narrow text, typically a single letter.\r\n * For example, day-of-week Monday might output \"M\".\r\n ",
-      "start": 3607,
-      "end": 3713,
+      "value": "*\n * Narrow text, typically a single letter.\n * For example, day-of-week Monday might output \"M\".\n ",
+      "start": 3503,
+      "end": 3606,
       "loc": {
         "start": {
           "line": 105,
@@ -8057,8 +8057,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 3715,
-      "end": 3724,
+      "start": 3607,
+      "end": 3616,
       "loc": {
         "start": {
           "line": 109,
@@ -8083,8 +8083,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 3724,
-      "end": 3725,
+      "start": 3616,
+      "end": 3617,
       "loc": {
         "start": {
           "line": 109,
@@ -8109,8 +8109,8 @@
         "binop": null
       },
       "value": "NARROW",
-      "start": 3725,
-      "end": 3731,
+      "start": 3617,
+      "end": 3623,
       "loc": {
         "start": {
           "line": 109,
@@ -8136,8 +8136,8 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 3732,
-      "end": 3733,
+      "start": 3624,
+      "end": 3625,
       "loc": {
         "start": {
           "line": 109,
@@ -8164,8 +8164,8 @@
         "updateContext": null
       },
       "value": "new",
-      "start": 3734,
-      "end": 3737,
+      "start": 3626,
+      "end": 3629,
       "loc": {
         "start": {
           "line": 109,
@@ -8190,8 +8190,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 3738,
-      "end": 3747,
+      "start": 3630,
+      "end": 3639,
       "loc": {
         "start": {
           "line": 109,
@@ -8215,8 +8215,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3747,
-      "end": 3748,
+      "start": 3639,
+      "end": 3640,
       "loc": {
         "start": {
           "line": 109,
@@ -8242,8 +8242,8 @@
         "updateContext": null
       },
       "value": "NARROW",
-      "start": 3748,
-      "end": 3756,
+      "start": 3640,
+      "end": 3648,
       "loc": {
         "start": {
           "line": 109,
@@ -8267,8 +8267,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3756,
-      "end": 3757,
+      "start": 3648,
+      "end": 3649,
       "loc": {
         "start": {
           "line": 109,
@@ -8293,8 +8293,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 3757,
-      "end": 3758,
+      "start": 3649,
+      "end": 3650,
       "loc": {
         "start": {
           "line": 109,
@@ -8308,9 +8308,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\r\n * Narrow text for stand-alone use, typically a single letter.\r\n * For example, day-of-week Monday might output \"M\".\r\n ",
-      "start": 3760,
-      "end": 3886,
+      "value": "*\n * Narrow text for stand-alone use, typically a single letter.\n * For example, day-of-week Monday might output \"M\".\n ",
+      "start": 3651,
+      "end": 3774,
       "loc": {
         "start": {
           "line": 110,
@@ -8335,8 +8335,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 3888,
-      "end": 3897,
+      "start": 3775,
+      "end": 3784,
       "loc": {
         "start": {
           "line": 114,
@@ -8361,8 +8361,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 3897,
-      "end": 3898,
+      "start": 3784,
+      "end": 3785,
       "loc": {
         "start": {
           "line": 114,
@@ -8387,8 +8387,8 @@
         "binop": null
       },
       "value": "NARROW_STANDALONE",
-      "start": 3898,
-      "end": 3915,
+      "start": 3785,
+      "end": 3802,
       "loc": {
         "start": {
           "line": 114,
@@ -8414,8 +8414,8 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 3916,
-      "end": 3917,
+      "start": 3803,
+      "end": 3804,
       "loc": {
         "start": {
           "line": 114,
@@ -8442,8 +8442,8 @@
         "updateContext": null
       },
       "value": "new",
-      "start": 3918,
-      "end": 3921,
+      "start": 3805,
+      "end": 3808,
       "loc": {
         "start": {
           "line": 114,
@@ -8468,8 +8468,8 @@
         "binop": null
       },
       "value": "TextStyle",
-      "start": 3922,
-      "end": 3931,
+      "start": 3809,
+      "end": 3818,
       "loc": {
         "start": {
           "line": 114,
@@ -8493,8 +8493,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3931,
-      "end": 3932,
+      "start": 3818,
+      "end": 3819,
       "loc": {
         "start": {
           "line": 114,
@@ -8520,8 +8520,8 @@
         "updateContext": null
       },
       "value": "NARROW_STANDALONE",
-      "start": 3932,
-      "end": 3951,
+      "start": 3819,
+      "end": 3838,
       "loc": {
         "start": {
           "line": 114,
@@ -8545,8 +8545,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3951,
-      "end": 3952,
+      "start": 3838,
+      "end": 3839,
       "loc": {
         "start": {
           "line": 114,
@@ -8571,8 +8571,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 3952,
-      "end": 3953,
+      "start": 3839,
+      "end": 3840,
       "loc": {
         "start": {
           "line": 114,
@@ -8597,8 +8597,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 3955,
-      "end": 3955,
+      "start": 3841,
+      "end": 3841,
       "loc": {
         "start": {
           "line": 115,
