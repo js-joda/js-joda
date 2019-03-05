@@ -10,7 +10,7 @@
 
 ## Introduction
 
-**js-joda** is an **immutable date and time library** for JavaScript. It provides a **simple, domain-driven and clean API** based on the **ISO8601** calendar.
+**js-joda** is an **immutable date and time library** for JavaScript. It provides a **simple, domain-driven and clean API** based on the **ISO8601** calendar (NB: it does not fully support all of ISO8601).
 
 - js-joda has a lightweight footprint, only **43 kB minified and compressed**, no third party dependencies.
 
