@@ -664,6 +664,7 @@ declare namespace JSJoda {
         isTimeBased(): boolean
     }
     class ChronoUnit extends TemporalUnit {
+        static NANOS: ChronoUnit
         static MICROS: ChronoUnit
         static MILLIS: ChronoUnit
         static SECONDS: ChronoUnit
