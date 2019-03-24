@@ -243,6 +243,8 @@ declare namespace JSJoda {
 
         toEpochMilli(): number
 
+        toJSON(): string;
+
         toString(): string
 
         truncatedTo(unit: TemporalUnit): Instant
