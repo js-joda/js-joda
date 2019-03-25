@@ -1364,20 +1364,84 @@ declare namespace JSJoda {
         rules(): ZoneRules
     }
 
+    class ZoneOffsetTransition {
+        static of(transition: LocalDateTime, offsetBefore: ZoneOffset, offsetAfter: ZoneOffset): ZoneOffsetTransition
+
+        private constructor()
+
+        instant(): Instant
+
+        toEpochSecond(): number
+
+        dateTimeBefore(): LocalDateTime
+
+        dateTimeAfter(): LocalDateTime
+
+        offsetBefore(): ZoneOffset
+
+        offsetAfter(): ZoneOffset
+
+        duration(): Duration
+
+        durationSeconds(): number
+
+        isGap(): boolean
+
+        isOverlap(): boolean
+
+        isValidOffset(offset: ZoneOffset): boolean
+
+        validOffsets(): ZoneOffset[]
+
+        compareTo(transition: ZoneOffsetTransition): number
+
+        equals(other: any): boolean
+
+        hashCode(): number
+
+        toString(): string
+    }
+
+    interface ZoneOffsetTransitionRule {
+        // TODO: Not implemented yet
+    }
+
     abstract class ZoneRules {
         static of(offest: ZoneOffset): ZoneRules
 
-        isFixedOffset(): boolean
-
-        isValidOffset(localDateTime: LocalDateTime, offset: ZoneOffset): boolean
+        abstract isFixedOffset(): boolean
 
         offset(instantOrLocalDateTime: Instant|LocalDateTime): ZoneOffset
 
-        offsetOfEpochMilli(epochMilli: number): ZoneOffset
+        toJSON(): string
 
-        offsetOfInstant(instant: Instant): ZoneOffset
+        abstract offsetOfEpochMilli(epochMilli: number): ZoneOffset
 
-        offsetOfLocalDateTime(localDateTime: LocalDateTime): ZoneOffset
+        abstract offsetOfInstant(instant: Instant): ZoneOffset
+
+        abstract offsetOfLocalDateTime(localDateTime: LocalDateTime): ZoneOffset
+
+        abstract validOffsets(localDateTime: LocalDateTime): ZoneOffset[]
+
+        abstract transition(localDateTime: LocalDateTime): ZoneOffsetTransition
+
+        abstract standardOffset(instant: Instant): ZoneOffset
+
+        abstract daylightSavings(instant: Instant): Duration
+
+        abstract isDaylightSavings(instant: Instant): boolean
+
+        abstract isValidOffset(localDateTime: LocalDateTime, offset: ZoneOffset): boolean
+
+        abstract nextTransition(instant: Instant): ZoneOffsetTransition
+
+        abstract previousTransition(instant: Instant): ZoneOffsetTransition
+
+        abstract transitions(): ZoneOffsetTransition[]
+
+        abstract transitionRules(): ZoneOffsetTransitionRule[]
+
+        abstract toString(): string
     }
 
     abstract class ChronoZonedDateTime extends Temporal {
