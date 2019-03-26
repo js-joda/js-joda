@@ -25,6 +25,7 @@ describe('org.threeten.bp.TestMonth', () => {
         for (let i = 1; i <= MAX_LENGTH; i++) {
             const test = Month.of(i);
             expect(test.value()).to.eql(i);
+            expect(test.ordinal()).to.eql(i-1);
         }
     });
 
@@ -350,6 +351,44 @@ describe('org.threeten.bp.TestMonth', () => {
             expect(Month.DECEMBER.toString()).to.eql('DECEMBER');
         });
     });
+    
+    describe('when calling equals', () => {
+        it('should return true if the instances are equal', () => {
+            expect(Month.of(1).equals(Month.of(1))).to.be.true;
+        });
+        it('should return false if the months are not equal', () => {
+            const oneDay = Month.of(1);
+            const otherDay = Month.of(2);
+            expect(oneDay.equals(otherDay)).to.be.false;
+        });
+        it('should return false if the other month is not an instance of Month', () => {
+            const oneDay = Month.of(1);
+            const otherDay = {};
+            expect(oneDay.equals(otherDay)).to.be.false;
+        });
+    });
+        
+    describe('when calling compareTo', () => {
+        it('should return true if the instances are equal', () => {
+            expect(Month.of(1).compareTo(Month.of(1))).to.equal(0);
+        });
+        it('should return negative if the first month is before the second', () => {
+            const oneDay = Month.of(1);
+            const otherDay = Month.of(2);
+            expect(oneDay.compareTo(otherDay)).to.be.lessThan(0);
+        });
+        it('should throw if the other month is not an instance of Month', () => {
+            const oneDay = Month.of(1);
+            const otherDay = {};
+            expect(() => {oneDay.compareTo(otherDay);}).to.throw(Error);
+        });
+    });
+                                
+    describe('when calling valueOf', () => {
+        it('should return true if the instances are equal', () => {
+            expect(Month.valueOf('MAY').equals(Month.of(5))).to.be.true;
+        });
+    });                                  
 
 });
 
