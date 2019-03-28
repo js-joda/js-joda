@@ -3,6 +3,8 @@ Changelog
 
 ### next
 
+### 1.10.1
+
  * implement methods on DayOfWeek and Month #300
  * Adding private constructors and abstract modifiers to TypeScript definitions #298
 
