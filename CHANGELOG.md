@@ -3,6 +3,8 @@ Changelog
 
 ### next
 
+ * implement methods on DayOfWeek and Month #300
+
 ### 1.9.3
 
  * fix typescript definitions: add `ZoneId#id()` #265
