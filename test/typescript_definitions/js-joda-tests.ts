@@ -590,6 +590,19 @@ function test_ZoneId() {
     zoneId.id();
 }
 
+function test_DayOfWeek() {
+    expectType<number>(DayOfWeek.MONDAY.compareTo(DayOfWeek.WEDNESDAY));
+}
+
+function test_Month() {
+    expectType<number>(Month.JANUARY.ordinal());
+    expectType<string>(Month.MARCH.name());
+    expectType<number>(Month.SEPTEMBER.compareTo(Month.DECEMBER));
+    expectType<boolean>(Month.OCTOBER.equals(Month.NOVEMBER));
+
+    expectType<Month>(Month.valueOf('FEBRUARY'));
+}
+
 /**
  * Use this to check if an expression is of type T.
  * Don't let TypeScript infer the type, give it explicitly.

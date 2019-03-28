@@ -48,6 +48,8 @@ declare namespace JSJoda {
 
         adjustInto(temporal: TemporalAdjuster): this
 
+        compareTo(other: DayOfWeek): number
+
         equals(other: any): boolean
 
         getDisplayName(style: TextStyle, locale: Locale): string
@@ -527,11 +529,17 @@ declare namespace JSJoda {
 
         static of(month: number): Month
 
+        static valueOf(name: string): Month
+
         static values(): Month[]
 
         private constructor()
 
         adjustInto(temporal: Temporal): Temporal
+
+        compareTo(other: Month): number
+
+        equals(other: Month): boolean
 
         firstDayOfYear(leapYear: boolean): number
 
@@ -552,6 +560,10 @@ declare namespace JSJoda {
         minLength(): number
 
         minus(months: number): Month
+
+        name(): string
+
+        ordinal(): number
 
         plus(months: number): Month
 
