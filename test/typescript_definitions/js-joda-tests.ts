@@ -142,6 +142,13 @@ function test_LocalDate() {
     d.with(TemporalAdjusters.firstInMonth(DayOfWeek.SATURDAY));
 }
 
+function test_Instant() {
+    let i = Instant.parse('2019-03-24T23:32:46.488Z');
+
+    i.toString();
+    i.toJSON();
+}
+
 function test_LocalTime() {
     LocalTime.now();
     LocalTime.now(ZoneOffset.UTC);
