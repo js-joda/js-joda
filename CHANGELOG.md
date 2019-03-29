@@ -3,6 +3,8 @@ Changelog
 
 ### next
 
+ * Added ts defs for #300, DayOfWeek Month #301
+
 ### 1.10.1
 
  * implement methods on DayOfWeek and Month #300
