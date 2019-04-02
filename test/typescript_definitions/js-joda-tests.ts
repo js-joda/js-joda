@@ -15,6 +15,7 @@ import {
     nativeJs,
     Period,
     ResolverStyle,
+    SignStyle,
     TemporalAdjusters,
     YearMonth,
     ZoneOffset,
@@ -559,6 +560,15 @@ function test_DateTimeFormatterBuilder() {
         .optionalEnd()
         .appendValueReduced(ChronoField.YEAR, 2, 4, LocalDate.now().year())
         .toFormatter(ResolverStyle.SMART);
+    const formatter3: DateTimeFormatter = new DateTimeFormatterBuilder()
+        .append(DateTimeFormatter.ofPattern('yyyy-MM-dd HH:mm:ss'))
+        .appendLiteral('.')
+        .appendValue(ChronoField.MICRO_OF_SECOND, 1, 6, SignStyle.NOT_NEGATIVE)
+        .toFormatter(ResolverStyle.STRICT);
+    const formatter4: DateTimeFormatter = new DateTimeFormatterBuilder()
+        .appendPattern("yyyy-MM-dd HH:mm:ss")
+        .appendFraction(ChronoField.MICRO_OF_SECOND, 0, 6, true)
+        .toFormatter(ResolverStyle.LENIENT);
 }
 
 function test_DateTimeParseException() {
