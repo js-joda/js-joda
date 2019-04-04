@@ -175,6 +175,7 @@ function test_LocalTime() {
     t.minusSeconds(30);
     t.plusNanos(1000000);
     t.minusNanos(1000000);
+    t.plus(1, ChronoUnit.NANOS);
     t.plus(1, ChronoUnit.MILLIS);
     t.plus(1, ChronoUnit.HALF_DAYS);
     t.plus(Duration.ofMinutes(15));
@@ -309,6 +310,7 @@ function test_LocalDateTime() {
     dt.plusNanos(1000000);
     dt.minusNanos(1000000);
 
+    dt.plus(1, ChronoUnit.NANOS);
     dt.plus(1, ChronoUnit.MILLIS);
     dt.plus(1, ChronoUnit.HALF_DAYS);
 
