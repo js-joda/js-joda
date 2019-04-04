@@ -1,4 +1,4 @@
-//! @version js-joda - 1.9.3
+//! @version js-joda - 1.10.1
 //! @copyright (c) 2015-present, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -1540,6 +1540,12 @@ var DayOfWeek = function (_Temporal) {
         return this._name;
     };
 
+    DayOfWeek.prototype.compareTo = function compareTo(other) {
+        requireNonNull(other, 'other');
+        requireInstance(other, DayOfWeek, 'other');
+        return this._ordinal - other._ordinal;
+    };
+
     DayOfWeek.prototype.toJSON = function toJSON() {
         return this.toString();
     };
@@ -1575,17 +1581,26 @@ function _inherits$6(subClass, superClass) { if (typeof superClass !== "function
 var Month = function (_Temporal) {
     _inherits$6(Month, _Temporal);
 
-    function Month(value) {
+    function Month(value, name) {
         _classCallCheck$f(this, Month);
 
         var _this = _possibleConstructorReturn$6(this, _Temporal.call(this));
 
         _this._value = MathUtil.safeToInt(value);
+        _this._name = name;
         return _this;
     }
 
     Month.prototype.value = function value() {
         return this._value;
+    };
+
+    Month.prototype.ordinal = function ordinal() {
+        return this._value - 1;
+    };
+
+    Month.prototype.name = function name() {
+        return this._name;
     };
 
     Month.prototype.getDisplayName = function getDisplayName(style, locale) {
@@ -1774,6 +1789,26 @@ var Month = function (_Temporal) {
         return temporal.with(ChronoField.MONTH_OF_YEAR, this.value());
     };
 
+    Month.prototype.compareTo = function compareTo(other) {
+        requireNonNull(other, 'other');
+        requireInstance(other, Month, 'other');
+        return this._value - other._value;
+    };
+
+    Month.prototype.equals = function equals(other) {
+        return this === other;
+    };
+
+    Month.valueOf = function valueOf(name) {
+        var ordinal = 0;
+        for (ordinal; ordinal < MONTHS.length; ordinal++) {
+            if (MONTHS[ordinal].name() === name) {
+                break;
+            }
+        }
+        return Month.of(ordinal + 1);
+    };
+
     Month.values = function values() {
         return MONTHS.slice();
     };
@@ -1803,18 +1838,18 @@ var Month = function (_Temporal) {
 var MONTHS = void 0;
 
 function _init$5() {
-    Month.JANUARY = new Month(1);
-    Month.FEBRUARY = new Month(2);
-    Month.MARCH = new Month(3);
-    Month.APRIL = new Month(4);
-    Month.MAY = new Month(5);
-    Month.JUNE = new Month(6);
-    Month.JULY = new Month(7);
-    Month.AUGUST = new Month(8);
-    Month.SEPTEMBER = new Month(9);
-    Month.OCTOBER = new Month(10);
-    Month.NOVEMBER = new Month(11);
-    Month.DECEMBER = new Month(12);
+    Month.JANUARY = new Month(1, 'JANUARY');
+    Month.FEBRUARY = new Month(2, 'FEBRUARY');
+    Month.MARCH = new Month(3, 'MARCH');
+    Month.APRIL = new Month(4, 'APRIL');
+    Month.MAY = new Month(5, 'MAY');
+    Month.JUNE = new Month(6, 'JUNE');
+    Month.JULY = new Month(7, 'JULY');
+    Month.AUGUST = new Month(8, 'AUGUST');
+    Month.SEPTEMBER = new Month(9, 'SEPTEMBER');
+    Month.OCTOBER = new Month(10, 'OCTOBER');
+    Month.NOVEMBER = new Month(11, 'NOVEMBER');
+    Month.DECEMBER = new Month(12, 'DECEMBER');
 
     MONTHS = [Month.JANUARY, Month.FEBRUARY, Month.MARCH, Month.APRIL, Month.MAY, Month.JUNE, Month.JULY, Month.AUGUST, Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER];
 }

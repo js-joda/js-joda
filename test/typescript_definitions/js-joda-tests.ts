@@ -19,10 +19,13 @@ import {
     TemporalAdjusters,
     YearMonth,
     ZoneOffset,
+    ZoneOffsetTransition,
+    ZoneRules,
     ZonedDateTime,
     ZoneId,
-    DateTimeParseException
-} from '../../';
+    DateTimeParseException,
+    ZoneOffsetTransitionRule,
+} from '../../'
 
 // used below
 declare function moment(): any;
@@ -143,6 +146,13 @@ function test_LocalDate() {
     d.with(TemporalAdjusters.next(DayOfWeek.SATURDAY));
     d.with(TemporalAdjusters.lastInMonth(DayOfWeek.SATURDAY));
     d.with(TemporalAdjusters.firstInMonth(DayOfWeek.SATURDAY));
+}
+
+function test_Instant() {
+    let i = Instant.parse('2019-03-24T23:32:46.488Z');
+
+    i.toString();
+    i.toJSON();
 }
 
 function test_LocalTime() {
@@ -416,6 +426,50 @@ function test_ZonedDateTime() {
     zdt.plusHours(2 * 7 * 24);
 }
 
+function test_ZoneOffsetTransition() {
+    const zot = ZoneOffsetTransition.of(LocalDateTime.now(), ZoneOffset.UTC, ZoneOffset.ofHours(2));
+
+    expectType<Instant>(zot.instant());
+    expectType<number>(zot.toEpochSecond());;
+    expectType<LocalDateTime>(zot.dateTimeAfter());
+    expectType<LocalDateTime>(zot.dateTimeBefore());
+    expectType<ZoneOffset>(zot.offsetAfter());
+    expectType<ZoneOffset>(zot.offsetBefore());
+    expectType<Duration>(zot.duration());
+    expectType<number>(zot.durationSeconds());
+    expectType<boolean>(zot.isGap());
+    expectType<boolean>(zot.isOverlap());
+    expectType<boolean>(zot.isValidOffset(ZoneOffset.UTC));
+    expectType<ZoneOffset[]>(zot.validOffsets());
+    expectType<boolean>(zot.equals({}));
+    expectType<number>(zot.compareTo(undefined! as ZoneOffsetTransition));
+    expectType<number>(zot.hashCode());
+    expectType<string>(zot.toString());
+}
+
+function test_ZoneRules() {
+    const zr = ZoneRules.of(ZoneOffset.UTC);
+
+    expectType<boolean>(zr.isFixedOffset());
+    expectType<ZoneOffset>(zr.offset(Instant.now()));
+    expectType<ZoneOffset>(zr.offset(LocalDateTime.now()));
+    expectType<string>(zr.toJSON());
+    expectType<ZoneOffset>(zr.offsetOfEpochMilli(0));
+    expectType<ZoneOffset>(zr.offsetOfInstant(Instant.now()));
+    expectType<ZoneOffset>(zr.offsetOfLocalDateTime(LocalDateTime.now()));
+    expectType<ZoneOffset[]>(zr.validOffsets(LocalDateTime.now()));
+    expectType<ZoneOffsetTransition>(zr.transition(LocalDateTime.now()));
+    expectType<ZoneOffset>(zr.standardOffset(Instant.now()));
+    expectType<Duration>(zr.daylightSavings(Instant.now()));
+    expectType<boolean>(zr.isDaylightSavings(Instant.now()));
+    expectType<boolean>(zr.isValidOffset(LocalDateTime.now(), ZoneOffset.UTC));
+    expectType<ZoneOffsetTransition>(zr.nextTransition(Instant.now()));
+    expectType<ZoneOffsetTransition>(zr.previousTransition(Instant.now()));
+    expectType<ZoneOffsetTransition[]>(zr.transitions());
+    expectType<ZoneOffsetTransitionRule[]>(zr.transitionRules());
+    expectType<string>(zr.toString());
+}
+
 function test_Period() {
 
     Period.parse('P1Y10M').toString();
@@ -580,3 +634,22 @@ function test_ZoneId() {
 
     zoneId.id();
 }
+
+function test_DayOfWeek() {
+    expectType<number>(DayOfWeek.MONDAY.compareTo(DayOfWeek.WEDNESDAY));
+}
+
+function test_Month() {
+    expectType<number>(Month.JANUARY.ordinal());
+    expectType<string>(Month.MARCH.name());
+    expectType<number>(Month.SEPTEMBER.compareTo(Month.DECEMBER));
+    expectType<boolean>(Month.OCTOBER.equals(Month.NOVEMBER));
+
+    expectType<Month>(Month.valueOf('FEBRUARY'));
+}
+
+/**
+ * Use this to check if an expression is of type T.
+ * Don't let TypeScript infer the type, give it explicitly.
+ */
+declare function expectType<T>(v: T): T;

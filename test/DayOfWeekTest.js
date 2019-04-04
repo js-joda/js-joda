@@ -156,4 +156,42 @@ describe('js-joda DayOfWeek', () => {
     
     });
     
+    describe('when calling equals', () => {
+        it('should return true if the instances are equal', () => {
+            expect(DayOfWeek.of(1).equals(DayOfWeek.of(1))).to.be.true;
+        });
+        it('should return false if the days are not equal', () => {
+            const oneDay = DayOfWeek.of(1);
+            const otherDay = DayOfWeek.of(2);
+            expect(oneDay.equals(otherDay)).to.be.false;
+        });
+        it('should return false if the other day is not an instance of DayOfWeek', () => {
+            const oneDay = DayOfWeek.of(1);
+            const otherDay = {};
+            expect(oneDay.equals(otherDay)).to.be.false;
+        });
+    });
+            
+    describe('when calling compareTo', () => {
+        it('should return true if the instances are equal', () => {
+            expect(DayOfWeek.of(1).compareTo(DayOfWeek.of(1))).to.equal(0);
+        });
+        it('should return negative if the first day is before the second', () => {
+            const oneDay = DayOfWeek.of(1);
+            const otherDay = DayOfWeek.of(2);
+            expect(oneDay.compareTo(otherDay)).to.be.lessThan(0);
+        });
+        it('should throw if the other day is not an instance of DayOfWeek', () => {
+            const oneDay = DayOfWeek.of(1);
+            const otherDay = {};
+            expect(() => {oneDay.compareTo(otherDay);}).to.throw(Error);
+        });
+    });     
+                   
+    describe('when calling valueOf', () => {
+        it('should return true if the instances are equal', () => {
+            expect(DayOfWeek.valueOf('TUESDAY').equals(DayOfWeek.of(2))).to.be.true;
+        });
+    });                       
+    
 });
