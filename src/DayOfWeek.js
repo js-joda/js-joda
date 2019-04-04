@@ -6,7 +6,7 @@
 
 import {DateTimeException, UnsupportedTemporalTypeException, NullPointerException} from './errors';
 import {MathUtil} from './MathUtil';
-import {assert, requireNonNull} from './assert';
+import {assert, requireNonNull, requireInstance} from './assert';
 
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
@@ -386,7 +386,7 @@ export class DayOfWeek extends Temporal {
      *
      * @returns {boolean}
      */
-    equals(other){
+    equals(other){ 
         return this === other;
     }
 
@@ -396,6 +396,21 @@ export class DayOfWeek extends Temporal {
      */
     toString(){
         return this._name;
+    }
+
+    /**
+     * Compares this DayOfWeek to another DayOfWeek.
+     *
+     * The comparison is based on the value of the DayOfWeek.
+     * It is "consistent with equals", as defined by {@link Comparable}.
+     *
+     * @param {DayOfWeek} other  the other year to compare to, not null
+     * @return {number} the comparator value, negative if less, positive if greater
+     */    
+    compareTo(other) {
+        requireNonNull(other, 'other');
+        requireInstance(other, DayOfWeek, 'other');
+        return this._ordinal - other._ordinal;
     }
 
     /**

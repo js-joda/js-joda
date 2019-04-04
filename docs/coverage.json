@@ -1,7 +1,7 @@
 {
-  "coverage": "74.22%",
-  "expectCount": 1455,
-  "actualCount": 1080,
+  "coverage": "74.28%",
+  "expectCount": 1462,
+  "actualCount": 1086,
   "files": {
     "src/Clock.js": {
       "expectCount": 39,
@@ -32,12 +32,12 @@
       ]
     },
     "src/DayOfWeek.js": {
-      "expectCount": 24,
-      "actualCount": 21,
+      "expectCount": 25,
+      "actualCount": 22,
       "undocumentLines": [
         40,
         41,
-        414
+        429
       ]
     },
     "src/Duration.js": {
@@ -117,11 +117,12 @@
       ]
     },
     "src/Month.js": {
-      "expectCount": 23,
-      "actualCount": 21,
+      "expectCount": 29,
+      "actualCount": 26,
       "undocumentLines": [
-        48,
-        525
+        49,
+        50,
+        582
       ]
     },
     "src/MonthDay.js": {
