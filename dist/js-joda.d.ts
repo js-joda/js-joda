@@ -723,6 +723,7 @@ declare namespace JSJoda {
     }
 
     class ChronoUnit extends TemporalUnit {
+        static NANOS: ChronoUnit
         static MICROS: ChronoUnit
         static MILLIS: ChronoUnit
         static SECONDS: ChronoUnit
