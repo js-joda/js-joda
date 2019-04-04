@@ -4,6 +4,7 @@ Changelog
 ### next
 
  * Added ts defs for #300, DayOfWeek Month #301
+ * add method params for #appendValue and #appendValueReduced #288 
 
 ### 1.10.1
 
