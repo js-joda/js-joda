@@ -744,6 +744,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/dayofweek.js~dayofweek#compareto",
+    "class/src/DayOfWeek.js~DayOfWeek.html#instance-method-compareTo",
+    "src/DayOfWeek.js~DayOfWeek#compareTo",
+    "method"
+  ],
+  [
     "src/dayofweek.js~dayofweek#equals",
     "class/src/DayOfWeek.js~DayOfWeek.html#instance-method-equals",
     "src/DayOfWeek.js~DayOfWeek#equals",
@@ -2676,6 +2682,18 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/month.js~month#compareto",
+    "class/src/Month.js~Month.html#instance-method-compareTo",
+    "src/Month.js~Month#compareTo",
+    "method"
+  ],
+  [
+    "src/month.js~month#equals",
+    "class/src/Month.js~Month.html#instance-method-equals",
+    "src/Month.js~Month#equals",
+    "method"
+  ],
+  [
     "src/month.js~month#firstdayofyear",
     "class/src/Month.js~Month.html#instance-method-firstDayOfYear",
     "src/Month.js~Month#firstDayOfYear",
@@ -2736,6 +2754,18 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/month.js~month#name",
+    "class/src/Month.js~Month.html#instance-method-name",
+    "src/Month.js~Month#name",
+    "method"
+  ],
+  [
+    "src/month.js~month#ordinal",
+    "class/src/Month.js~Month.html#instance-method-ordinal",
+    "src/Month.js~Month#ordinal",
+    "method"
+  ],
+  [
     "src/month.js~month#plus",
     "class/src/Month.js~Month.html#instance-method-plus",
     "src/Month.js~Month#plus",
@@ -2775,6 +2805,12 @@ window.esdocSearchIndex = [
     "src/month.js~month.of",
     "class/src/Month.js~Month.html#static-method-of",
     "src/Month.js~Month.of",
+    "method"
+  ],
+  [
+    "src/month.js~month.valueof",
+    "class/src/Month.js~Month.html#static-method-valueOf",
+    "src/Month.js~Month.valueOf",
     "method"
   ],
   [

@@ -105,7 +105,7 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {assert} from &apos;./assert&apos;;
+import {assert, requireNonNull, requireInstance} from &apos;./assert&apos;;
 import {MathUtil} from &apos;./MathUtil&apos;;
 
 import {ChronoField} from &apos;./temporal/ChronoField&apos;;
@@ -138,16 +138,18 @@ import {TemporalQueries} from &apos;./temporal/TemporalQueries&apos;;
  *
  */
 export class Month extends Temporal {
-
+    
     /**
      *
-     * @param {number} value
+     * @param {number} ordinal
+     * @param {string} name
      * @private
      */
-    constructor(value) {
+    constructor(value, name){
         super();
         this._value = MathUtil.safeToInt(value);
-    }
+        this._name = name;
+    }    
 
     /**
      *
@@ -156,6 +158,22 @@ export class Month extends Temporal {
     value() {
         return this._value;
     }
+    
+    /**
+     *
+     * @returns {number}
+     */
+    ordinal(){
+        return this._value - 1;
+    }
+
+    /**
+     *
+     * @returns {string}
+     */
+    name(){
+        return this._name;
+    }  
 
     /**
      * Gets the textual representation, such as &apos;Jan&apos; or &apos;December&apos;.
@@ -565,6 +583,45 @@ export class Month extends Temporal {
         */
         return temporal.with(ChronoField.MONTH_OF_YEAR, this.value());
     }
+    
+    /**
+     * Compares this Month to another Month.
+     *
+     * The comparison is based on the value of the Month.
+     * It is &quot;consistent with equals&quot;, as defined by {@link Comparable}.
+     *
+     * @param {Month} other  the other year to compare to, not null
+     * @return {number} the comparator value, negative if less, positive if greater
+     */    
+    compareTo(other) {
+        requireNonNull(other, &apos;other&apos;);
+        requireInstance(other, Month, &apos;other&apos;);
+        return this._value - other._value;
+    }    
+    
+    /**
+     *
+     * @returns {boolean}
+     */
+    equals(other){    
+        return this === other;
+    }
+
+    /**
+     *
+     * @param {string} name
+     * @returns {Month}
+     */
+    static valueOf(name) {
+        let ordinal = 0;
+        for(ordinal; ordinal &lt; MONTHS.length; ordinal++){
+            if(MONTHS[ordinal].name() === name){
+                break;
+            }
+        }
+        return Month.of(ordinal+1);
+    }
+    
 
     /**
      * replacement for enum values
@@ -624,18 +681,18 @@ export class Month extends Temporal {
 let MONTHS;
 
 export function _init() {
-    Month.JANUARY = new Month(1);
-    Month.FEBRUARY = new Month(2);
-    Month.MARCH = new Month(3);
-    Month.APRIL = new Month(4);
-    Month.MAY = new Month(5);
-    Month.JUNE = new Month(6);
-    Month.JULY = new Month(7);
-    Month.AUGUST = new Month(8);
-    Month.SEPTEMBER = new Month(9);
-    Month.OCTOBER = new Month(10);
-    Month.NOVEMBER = new Month(11);
-    Month.DECEMBER = new Month(12);
+    Month.JANUARY = new Month(1, &apos;JANUARY&apos;);
+    Month.FEBRUARY = new Month(2, &apos;FEBRUARY&apos;);
+    Month.MARCH = new Month(3, &apos;MARCH&apos;);
+    Month.APRIL = new Month(4, &apos;APRIL&apos;);
+    Month.MAY = new Month(5, &apos;MAY&apos;);
+    Month.JUNE = new Month(6, &apos;JUNE&apos;);
+    Month.JULY = new Month(7, &apos;JULY&apos;);
+    Month.AUGUST = new Month(8, &apos;AUGUST&apos;);
+    Month.SEPTEMBER = new Month(9, &apos;SEPTEMBER&apos;);
+    Month.OCTOBER = new Month(10, &apos;OCTOBER&apos;);
+    Month.NOVEMBER = new Month(11, &apos;NOVEMBER&apos;);
+    Month.DECEMBER = new Month(12, &apos;DECEMBER&apos;);
 
     MONTHS = [
         Month.JANUARY, Month.FEBRUARY, Month.MARCH, Month.APRIL, Month.MAY, Month.JUNE,

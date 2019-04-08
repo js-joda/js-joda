@@ -3,6 +3,15 @@ Changelog
 
 ### next
 
+ * Added ts defs for #300, DayOfWeek Month #301
+ * add method params for #appendValue and #appendValueReduced #288 
+ * add type definition for ChronoUnit.NANOS #296
+
+### 1.10.1
+
+ * implement methods on DayOfWeek and Month #300
+ * Adding private constructors and abstract modifiers to TypeScript definitions #298
+
 ### 1.9.3
 
  * fix typescript definitions: add `ZoneId#id()` #265

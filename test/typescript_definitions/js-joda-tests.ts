@@ -3,6 +3,7 @@ import {
     ChronoUnit,
     Clock,
     DateTimeFormatter,
+    DateTimeFormatterBuilder,
     DayOfWeek,
     Duration,
     Instant,
@@ -13,12 +14,17 @@ import {
     Month,
     nativeJs,
     Period,
+    ResolverStyle,
+    SignStyle,
     TemporalAdjusters,
     YearMonth,
     ZoneOffset,
+    ZoneOffsetTransition,
+    ZoneRules,
     ZonedDateTime,
     ZoneId,
-    DateTimeParseException
+    DateTimeParseException,
+    ZoneOffsetTransitionRule,
 } from '../../'
 
 // used below
@@ -142,6 +148,13 @@ function test_LocalDate() {
     d.with(TemporalAdjusters.firstInMonth(DayOfWeek.SATURDAY));
 }
 
+function test_Instant() {
+    let i = Instant.parse('2019-03-24T23:32:46.488Z');
+
+    i.toString();
+    i.toJSON();
+}
+
 function test_LocalTime() {
     LocalTime.now();
     LocalTime.now(ZoneOffset.UTC);
@@ -175,6 +188,7 @@ function test_LocalTime() {
     t.minusSeconds(30);
     t.plusNanos(1000000);
     t.minusNanos(1000000);
+    t.plus(1, ChronoUnit.NANOS);
     t.plus(1, ChronoUnit.MILLIS);
     t.plus(1, ChronoUnit.HALF_DAYS);
     t.plus(Duration.ofMinutes(15));
@@ -309,6 +323,7 @@ function test_LocalDateTime() {
     dt.plusNanos(1000000);
     dt.minusNanos(1000000);
 
+    dt.plus(1, ChronoUnit.NANOS);
     dt.plus(1, ChronoUnit.MILLIS);
     dt.plus(1, ChronoUnit.HALF_DAYS);
 
@@ -413,6 +428,50 @@ function test_ZonedDateTime() {
     zdt.plusHours(2 * 7 * 24);
 }
 
+function test_ZoneOffsetTransition() {
+    const zot = ZoneOffsetTransition.of(LocalDateTime.now(), ZoneOffset.UTC, ZoneOffset.ofHours(2));
+
+    expectType<Instant>(zot.instant());
+    expectType<number>(zot.toEpochSecond());;
+    expectType<LocalDateTime>(zot.dateTimeAfter());
+    expectType<LocalDateTime>(zot.dateTimeBefore());
+    expectType<ZoneOffset>(zot.offsetAfter());
+    expectType<ZoneOffset>(zot.offsetBefore());
+    expectType<Duration>(zot.duration());
+    expectType<number>(zot.durationSeconds());
+    expectType<boolean>(zot.isGap());
+    expectType<boolean>(zot.isOverlap());
+    expectType<boolean>(zot.isValidOffset(ZoneOffset.UTC));
+    expectType<ZoneOffset[]>(zot.validOffsets());
+    expectType<boolean>(zot.equals({}));
+    expectType<number>(zot.compareTo(undefined! as ZoneOffsetTransition));
+    expectType<number>(zot.hashCode());
+    expectType<string>(zot.toString());
+}
+
+function test_ZoneRules() {
+    const zr = ZoneRules.of(ZoneOffset.UTC);
+
+    expectType<boolean>(zr.isFixedOffset());
+    expectType<ZoneOffset>(zr.offset(Instant.now()));
+    expectType<ZoneOffset>(zr.offset(LocalDateTime.now()));
+    expectType<string>(zr.toJSON());
+    expectType<ZoneOffset>(zr.offsetOfEpochMilli(0));
+    expectType<ZoneOffset>(zr.offsetOfInstant(Instant.now()));
+    expectType<ZoneOffset>(zr.offsetOfLocalDateTime(LocalDateTime.now()));
+    expectType<ZoneOffset[]>(zr.validOffsets(LocalDateTime.now()));
+    expectType<ZoneOffsetTransition>(zr.transition(LocalDateTime.now()));
+    expectType<ZoneOffset>(zr.standardOffset(Instant.now()));
+    expectType<Duration>(zr.daylightSavings(Instant.now()));
+    expectType<boolean>(zr.isDaylightSavings(Instant.now()));
+    expectType<boolean>(zr.isValidOffset(LocalDateTime.now(), ZoneOffset.UTC));
+    expectType<ZoneOffsetTransition>(zr.nextTransition(Instant.now()));
+    expectType<ZoneOffsetTransition>(zr.previousTransition(Instant.now()));
+    expectType<ZoneOffsetTransition[]>(zr.transitions());
+    expectType<ZoneOffsetTransitionRule[]>(zr.transitionRules());
+    expectType<string>(zr.toString());
+}
+
 function test_Period() {
 
     Period.parse('P1Y10M').toString();
@@ -462,8 +521,8 @@ function test_YearMonth() {
     YearMonth.of(2017, 10);
     YearMonth.of(2017, Month.of(10));
 
-    YearMonth.parse("2017-10");
-    YearMonth.parse("2017-10", DateTimeFormatter.ofPattern("yyyy-MM"));
+    YearMonth.parse('2017-10');
+    YearMonth.parse('2017-10', DateTimeFormatter.ofPattern('yyyy-MM'));
 
     var duration = Duration.of(10, ChronoUnit.MONTHS);
     var ym = YearMonth.of(2017, 10);
@@ -491,7 +550,7 @@ function test_YearMonth() {
 
     ym.monthValue();
 
-    ym.month()
+    ym.month();
 
     ym.isLeapYear();
 
@@ -515,19 +574,61 @@ function test_YearMonth() {
 
     ym.toJSON();
 
-    ym.format(DateTimeFormatter.ofPattern("yyyy-MM"));
+    ym.format(DateTimeFormatter.ofPattern('yyyy-MM'));
 }
 
 function test_DateTimeFormatter() {
-    ZonedDateTime.parse("2017-01-01T00:00:00+0200[Europe/Amsterdam]", DateTimeFormatter.ISO_ZONED_DATE_TIME)
+    ZonedDateTime.parse('2017-01-01T00:00:00+0200[Europe/Amsterdam]', DateTimeFormatter.ISO_ZONED_DATE_TIME);
 
-    ZonedDateTime.parse("2017-01-01T00:00:00+0200", DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+    ZonedDateTime.parse('2017-01-01T00:00:00+0200', DateTimeFormatter.ISO_OFFSET_DATE_TIME);
 
-    ZonedDateTime.parse("2017-01-01T00:00:00.12345678", DateTimeFormatter.ISO_INSTANT)
+    ZonedDateTime.parse('2017-01-01T00:00:00.12345678', DateTimeFormatter.ISO_INSTANT);
+}
+
+function test_DateTimeFormatterBuilder() {
+    const formatter1: DateTimeFormatter = new DateTimeFormatterBuilder()
+        .parseCaseInsensitive()
+        .appendPattern('d')
+        .appendLiteral('/')
+        .appendPattern('M')
+        .appendLiteral('/')
+        .appendValueReduced(ChronoField.YEAR, 2, 4, LocalDate.now().year())
+        .toFormatter(ResolverStyle.SMART);
+    const formatter2: DateTimeFormatter = new DateTimeFormatterBuilder()
+        .parseCaseInsensitive()
+        .appendPattern('d')
+        .optionalStart()
+        .optionalStart()
+        .appendLiteral('-')
+        .optionalEnd()
+        .optionalStart()
+        .appendLiteral(' ')
+        .optionalEnd()
+        .optionalEnd()
+        .appendPattern('MMM')
+        .optionalStart()
+        .optionalStart()
+        .appendLiteral('-')
+        .optionalEnd()
+        .optionalStart()
+        .appendLiteral(' ')
+        .optionalEnd()
+        .optionalEnd()
+        .appendValueReduced(ChronoField.YEAR, 2, 4, LocalDate.now().year())
+        .toFormatter(ResolverStyle.SMART);
+    const formatter3: DateTimeFormatter = new DateTimeFormatterBuilder()
+        .append(DateTimeFormatter.ofPattern('yyyy-MM-dd HH:mm:ss'))
+        .appendLiteral('.')
+        .appendValue(ChronoField.MICRO_OF_SECOND, 1, 6, SignStyle.NOT_NEGATIVE)
+        .toFormatter(ResolverStyle.STRICT);
+    const formatter4: DateTimeFormatter = new DateTimeFormatterBuilder()
+        .appendPattern("yyyy-MM-dd HH:mm:ss")
+        .appendFraction(ChronoField.MICRO_OF_SECOND, 0, 6, true)
+        .toFormatter(ResolverStyle.LENIENT);
 }
 
 function test_DateTimeParseException() {
-    new DateTimeParseException()
+    new DateTimeParseException();
 }
 
 function test_ZoneId() {
@@ -535,3 +636,22 @@ function test_ZoneId() {
 
     zoneId.id();
 }
+
+function test_DayOfWeek() {
+    expectType<number>(DayOfWeek.MONDAY.compareTo(DayOfWeek.WEDNESDAY));
+}
+
+function test_Month() {
+    expectType<number>(Month.JANUARY.ordinal());
+    expectType<string>(Month.MARCH.name());
+    expectType<number>(Month.SEPTEMBER.compareTo(Month.DECEMBER));
+    expectType<boolean>(Month.OCTOBER.equals(Month.NOVEMBER));
+
+    expectType<Month>(Month.valueOf('FEBRUARY'));
+}
+
+/**
+ * Use this to check if an expression is of type T.
+ * Don't let TypeScript infer the type, give it explicitly.
+ */
+declare function expectType<T>(v: T): T;
