@@ -46,7 +46,7 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
-    "babel-plugin-istanbul": "^4.1.5",
+    "babel-plugin-istanbul": "^5.1.2",
     "babel-preset-env": "^1.6.1",
     "chai": "^4.2.0",
     "coveralls": "^3.0.2",
