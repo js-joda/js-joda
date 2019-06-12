@@ -3,12 +3,12 @@ const path = require('path');
 const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-function createBanner(withTzdbVersion = true){
+function createBanner(withTzdbVersion = true, suffix = ""){
     const packageJson = require('./package.json');
     const tzdbLatest = require('./data/packed/latest');
 
     const version = withTzdbVersion ?
-        `//! @version ${packageJson.name}-${packageJson.version}-${tzdbLatest.version}\n` :
+        `//! @version ${packageJson.name}-${packageJson.version}-${tzdbLatest.version}${suffix}\n` :
         `//! @version ${packageJson.name}-${packageJson.version}\n`;
     const preamble = fs.readFileSync('./src/license-preamble.js', 'utf8');
     return version + preamble;
@@ -48,9 +48,9 @@ const optimization = {
     ]
 };
 
-const bannerPlugin = withTzdbVersion =>
+const bannerPlugin = (withTzdbVersion, suffix) =>
     new webpack.BannerPlugin(
-        {banner: createBanner(withTzdbVersion), raw: true}
+        {banner: createBanner(withTzdbVersion, suffix), raw: true}
     );
 
 const output = {
@@ -72,7 +72,7 @@ const getProductionConfig = (fileSuffix) => ({
     module: moduleConfig,
     optimization,
     plugins: [
-        bannerPlugin(true),
+        bannerPlugin(true, fileSuffix),
         new webpack.NormalModuleReplacementPlugin(
             /data\/packed\/latest.json/,
             require.resolve(`./data/packed/latest${fileSuffix}`)
@@ -91,7 +91,7 @@ const getDevelopmentConfig = (fileSuffix) => ({
     externals,
     module: moduleConfig,
     plugins: [
-        bannerPlugin(true),
+        bannerPlugin(true, fileSuffix),
         new webpack.NormalModuleReplacementPlugin(
             /data\/packed\/latest.json/,
             require.resolve(`./data/packed/latest${fileSuffix}`)
