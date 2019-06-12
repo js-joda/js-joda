@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
+const CopyPlugin = require('copy-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 function createBanner(withTzdbVersion = true, suffix = ""){
@@ -77,6 +78,11 @@ const getProductionConfig = (fileSuffix) => ({
             /data\/packed\/latest.json/,
             require.resolve(`./data/packed/latest${fileSuffix}`)
         ),
+        new CopyPlugin([{
+            from: './dist/js-joda-timezone.d.ts',
+            to: `./js-joda-timezone${fileSuffix}.d.ts`,
+            transform: () => 'export { };',
+        }]),
     ],
 });
 
