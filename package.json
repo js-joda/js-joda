@@ -20,6 +20,7 @@
     "test-ci": "npm run build-dist && npm run test && npm run test-browser && npm run test-ts-definitions && npm run build-esdoc && npm run test-coverage",
     "build-esdoc": "./node_modules/.bin/esdoc -c esdoc.json",
     "build-dist": "./node_modules/.bin/webpack --progress --colors --bail",
+    "transform-data": "node ./transform-data.js",
     "lint": "./node_modules/.bin/eslint ."
   },
   "repository": {

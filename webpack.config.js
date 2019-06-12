@@ -48,11 +48,10 @@ const optimization = {
     ]
 };
 
-const plugins = withTzdbVersion => [
+const bannerPlugin = withTzdbVersion =>
     new webpack.BannerPlugin(
         {banner: createBanner(withTzdbVersion), raw: true}
-    ),
-];
+    );
 
 const output = {
     path: __dirname  + '/dist',
@@ -61,19 +60,52 @@ const output = {
     globalObject: 'this',
 };
 
-const productionConfig = {
+const getProductionConfig = (fileSuffix) => ({
     mode: 'production',
     context: __dirname,
     entry: './src/js-joda-timezone.js',
     devtool: false,
     output: Object.assign({}, output,
-        { filename: 'js-joda-timezone.min.js' }
+        { filename: `js-joda-timezone${fileSuffix}.min.js` }
     ),
     externals,
     module: moduleConfig,
     optimization,
-    plugins: plugins(true),
-};
+    plugins: [
+        bannerPlugin(true),
+        new webpack.NormalModuleReplacementPlugin(
+            /data\/packed\/latest.json/,
+            require.resolve(`./data/packed/latest${fileSuffix}`)
+        ),
+    ],
+});
+
+const getDevelopmentConfig = (fileSuffix) => ({
+    mode: 'development',
+    context: __dirname,
+    entry: './src/js-joda-timezone.js',
+    devtool: 'hidden-source-map',
+    output: Object.assign({}, output,
+        { filename: `js-joda-timezone${fileSuffix}.js` }
+    ),
+    externals,
+    module: moduleConfig,
+    plugins: [
+        bannerPlugin(true),
+        new webpack.NormalModuleReplacementPlugin(
+            /data\/packed\/latest.json/,
+            require.resolve(`./data/packed/latest${fileSuffix}`)
+        ),
+    ],
+});
+
+
+const dataFileRegex = /^latest(.*)\.json/;
+const dataFileSuffixes = fs.readdirSync('./data/packed')
+    .filter(fileName => fileName.match(dataFileRegex))
+    .map(fileName => fileName.match(dataFileRegex)[1]);
+const productionConfigs = dataFileSuffixes.map(getProductionConfig);
+const developmentConfigs = dataFileSuffixes.map(getDevelopmentConfig);
 
 const productionConfigEmpty = {
     mode: 'production',
@@ -86,20 +118,7 @@ const productionConfigEmpty = {
     externals,
     module: moduleConfig,
     optimization,
-    plugins: plugins(false),
-};
-
-const developmentConfig = {
-    mode: 'development',
-    context: __dirname,
-    entry: './src/js-joda-timezone.js',
-    devtool: 'hidden-source-map',
-    output: Object.assign({}, output,
-        { filename: 'js-joda-timezone.js' }
-    ),
-    externals,
-    module: moduleConfig,
-    plugins: plugins(true),
+    plugins: [bannerPlugin(false)],
 };
 
 const developmentConfigEmpty = {
@@ -112,12 +131,12 @@ const developmentConfigEmpty = {
     ),
     externals,
     module: moduleConfig,
-    plugins: plugins(false),
+    plugins: [bannerPlugin(false)],
 };
 
 const config = [
-    developmentConfig,
-    productionConfig,
+    ...developmentConfigs,
+    ...productionConfigs,
     developmentConfigEmpty,
     productionConfigEmpty,
 ];
