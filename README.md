@@ -75,6 +75,17 @@ Install joda using npm
             .toString() // 2016-06-30T11:30-04:00[America/New_York]
     </script>
 
+## Reducing js-joda-timezone file size
+If you don't need all the historical data that js-joda-timezone provides, you can instead use one of the reduced files ize builds:
+
+* `js-joda-timezone-10-year-range.js` covers +- five years from the current version's release
+* `js-joda-timezone-1970-2030.js` covers from 1970 to 2030
+* `js-joda-timezone-2012-2022.js` covers from 2012 to 2022
+
+To use one of these, just change your import path to the following format:
+
+    import 'js-joda-timezone/dist/js-joda-timezone-1970-2030'
+
 ## Implementation details
 
 * This ZoneRulesProvider implemantion supplies all functionality that is required by the js-joda package. 
@@ -86,6 +97,6 @@ Install joda using npm
 
 * The author of joda time and the lead architect of the JSR-310 is Stephen Colebourne.
 
-* The packed json version of the iana tzdb is imported from [moment-timezone](https://github.com/moment/moment-timezone) package.   
+* The json versions of the iana tzdb are imported from and generated with [moment-timezone](https://github.com/moment/moment-timezone).   
 
 
