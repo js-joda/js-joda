@@ -6,7 +6,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 function createBanner(withTzdbVersion = true, suffix = ""){
     const packageJson = require('./package.json');
-    const tzdbLatest = require('./data/packed/latest');
+    const tzdbLatest = require('./data/unpacked/latest');
 
     const version = withTzdbVersion ?
         `//! @version ${packageJson.name}-${packageJson.version}-${tzdbLatest.version}${suffix}\n` :
@@ -49,9 +49,9 @@ const optimization = {
     ]
 };
 
-const bannerPlugin = (withTzdbVersion, suffix) =>
+const bannerPlugin = (withTzdbVersion, fileSuffix) =>
     new webpack.BannerPlugin(
-        {banner: createBanner(withTzdbVersion, suffix), raw: true}
+        {banner: createBanner(withTzdbVersion, fileSuffix), raw: true}
     );
 
 const output = {
@@ -74,14 +74,16 @@ const getProductionConfig = (fileSuffix) => ({
     optimization,
     plugins: [
         bannerPlugin(true, fileSuffix),
+        // replace the import in `src/tzdbData.js`
+        // with a link to the data file we want to reference
         new webpack.NormalModuleReplacementPlugin(
             /data\/packed\/latest.json/,
             require.resolve(`./data/packed/latest${fileSuffix}`)
         ),
+        // generate a `.d.ts` file for the bundle also
         new CopyPlugin([{
             from: './dist/js-joda-timezone.d.ts',
             to: `./js-joda-timezone${fileSuffix}.d.ts`,
-            transform: () => 'export { };',
         }]),
     ],
 });
@@ -105,11 +107,12 @@ const getDevelopmentConfig = (fileSuffix) => ({
     ],
 });
 
-
+// find all packed data files produced by our `transform-data.js` script
 const dataFileRegex = /^latest(.*)\.json/;
 const dataFileSuffixes = fs.readdirSync('./data/packed')
     .filter(fileName => fileName.match(dataFileRegex))
     .map(fileName => fileName.match(dataFileRegex)[1]);
+// and add a config to produce a development and prod bundle for each
 const productionConfigs = dataFileSuffixes.map(getProductionConfig);
 const developmentConfigs = dataFileSuffixes.map(getDevelopmentConfig);
 
