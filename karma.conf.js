@@ -41,7 +41,9 @@ module.exports = function (config) {
     };
 
     // eslint-disable-next-line global-require
-    const webpackConfig = require('./webpack.config.js')[0];
+    const webpackConfigs = require('./webpack.config.js');
+    // find the config for our main dev build
+    const webpackConfig = webpackConfigs.find(c => c.output.filename === 'js-joda-timezone.js');
     // for the karma test runs, we don't want to have any externals,
     // especially js-joda should be included!
     webpackConfig.externals = undefined;
