@@ -3,6 +3,10 @@ Changelog
 
 ### next
 
+### 2.1.1
+
+ * Update js-joda peer dependency
+
 ### 2.1.0
 
  * produce smaller builds containing a more limited set of timezone data #73

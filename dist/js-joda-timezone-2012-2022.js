@@ -1,4 +1,4 @@
-//! @version js-joda-timezone-2.0.3-2019a-2012-2022
+//! @version js-joda-timezone-2.1.1-2019a-2012-2022
 //! @copyright (c) 2015-present, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
 (function webpackUniversalModuleDefinition(root, factory) {
