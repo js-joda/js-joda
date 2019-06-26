@@ -1,6 +1,8 @@
 Changelog
 =========
 
+### next
+
 ### 0.2.1 (next)
 
 * dependency updates
