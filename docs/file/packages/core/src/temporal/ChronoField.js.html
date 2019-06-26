@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../../">
+  <title data-ice="title">packages/core/src/temporal/ChronoField.js | @js-joda/root</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src">core/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Clock.js~Clock.html">Clock</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Duration.js~Duration.html">Duration</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Enum.js~Enum.html">Enum</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalDate.js~LocalDate.html">LocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalTime.js~LocalTime.html">LocalTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/MathUtil.js~MathUtil.html">MathUtil</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Month.js~Month.html">Month</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Period.js~Period.html">Period</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Year.js~Year.html">Year</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/YearConstants.js~YearConstants.html">YearConstants</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/YearMonth.js~YearMonth.html">YearMonth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneId.js~ZoneId.html">ZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneRegion.js~ZoneRegion.html">ZoneRegion</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-abstractMethodFail">abstractMethodFail</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-assert">assert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bindUse">bindUse</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeParseException">DateTimeParseException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalArgumentException">IllegalArgumentException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalStateException">IllegalStateException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NullPointerException">NullPointerException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-UnsupportedTemporalTypeException">UnsupportedTemporalTypeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-use">use</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-chrono">core/src/chrono</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/IsoChronology.js~IsoChronology.html">IsoChronology</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-format">core/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html">DateTimeFormatterBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DecimalStyle.js~DecimalStyle.html">DecimalStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/SignStyle.js~SignStyle.html">SignStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ValueRange.js~ValueRange.html">ValueRange</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nativeJs">nativeJs</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-zone">core/src/zone</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#extra-src">extra/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/Interval.js~Interval.html">Interval</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-abstractMethodFail">abstractMethodFail</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-assert">assert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-plug">plug</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src">locale/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/Locale.js~Locale.html">Locale</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-plug">plug</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format">locale/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleDateTimeFormatter.js~LocaleDateTimeFormatter.html">LocaleDateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleStore.js~LocaleStore.html">LocaleStore</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createEntry">createEntry</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-cldr">locale/src/format/cldr</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js~CldrDateTimeFormatterBuilder.html">CldrDateTimeFormatterBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrZoneTextPrinterParser.js~CldrZoneTextPrinterParser.html">CldrZoneTextPrinterParser</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-parser">locale/src/format/parser</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/parser/WeekFieldsPrinterParser.js~WeekFieldsPrinterParser.html">WeekFieldsPrinterParser</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-temporal">locale/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~ComputedDayOfField.html">ComputedDayOfField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-autoPlug">autoPlug</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-plug">plug</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extendSystemDefaultZoneId">extendSystemDefaultZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">packages/core/src/temporal/ChronoField.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * @copyright (c) 2016, Philipp Th&#xFC;rw&#xE4;chter &amp; Pattrick H&#xFC;per
+ * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
+
+import {MAX_SAFE_INTEGER, MIN_SAFE_INTEGER} from &apos;../MathUtil&apos;;
+
+import {ChronoUnit} from &apos;./ChronoUnit&apos;;
+import {TemporalField} from &apos;./TemporalField&apos;;
+import {ValueRange} from &apos;./ValueRange&apos;;
+import {YearConstants} from &apos;../YearConstants&apos;;
+
+/**
+ * A standard set of fields.
+ *
+ * This set of fields provide field-based access to manipulate a date, time or date-time.
+ * The standard set of fields can be extended by implementing {@link TemporalField}.
+ *
+ * These fields are intended to be applicable in multiple calendar systems.
+ * For example, most non-ISO calendar systems define dates as a year, month and day,
+ * just with slightly different rules.
+ * The documentation of each field explains how it operates.
+ *
+ * ### Static properties of Class {@link ChronoField}
+ *
+ * ChronoField.NANO_OF_SECOND
+ *
+ * ChronoField.NANO_OF_DAY
+ *
+ * ChronoField.MICRO_OF_SECOND
+ *
+ * ChronoField.MICRO_OF_DAY
+ *
+ * ChronoField.MILLI_OF_SECOND
+ *
+ * ChronoField.MILLI_OF_DAY
+ *
+ * ChronoField.SECOND_OF_MINUTE
+ *
+ * ChronoField.SECOND_OF_DAY
+ *
+ * ChronoField.MINUTE_OF_HOUR
+ *
+ * ChronoField.MINUTE_OF_DAY
+ *
+ * ChronoField.HOUR_OF_AMPM
+ *
+ * ChronoField.CLOCK_HOUR_OF_AMPM
+ *
+ * ChronoField.HOUR_OF_DAY
+ *
+ * ChronoField.CLOCK_HOUR_OF_DAY
+ *
+ * ChronoField.AMPM_OF_DAY
+ *
+ * ChronoField.DAY_OF_WEEK
+ *
+ * ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH
+ *
+ * ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR
+ *
+ * ChronoField.DAY_OF_MONTH
+ *
+ * ChronoField.DAY_OF_YEAR
+ *
+ * ChronoField.EPOCH_DAY
+ *
+ * ChronoField.ALIGNED_WEEK_OF_MONTH
+ *
+ * ChronoField.ALIGNED_WEEK_OF_YEAR
+ *
+ * ChronoField.MONTH_OF_YEAR
+ *
+ * ChronoField.PROLEPTIC_MONTH
+ *
+ * ChronoField.YEAR_OF_ERA
+ *
+ * ChronoField.YEAR
+ *
+ * ChronoField.ERA
+ *
+ * ChronoField.INSTANT_SECONDS
+ *
+ * ChronoField.OFFSET_SECONDS
+ *
+ */
+export class ChronoField extends TemporalField {
+
+    /**
+     * helper function to get one of the static ChronoField defines by name, needed to resolve ChronoField from EnumMap
+     *
+     * @param {String} fieldName
+     * @return {ChronoField | null}
+     */
+    static byName(fieldName) {
+        for (const prop in ChronoField) {
+            if (ChronoField.hasOwnProperty(prop)) {
+                if ((ChronoField[prop] instanceof ChronoField) &amp;&amp; ChronoField[prop].name() === fieldName) {
+                    return ChronoField[prop];
+                }
+            }
+        }
+    }
+
+    /**
+     *
+     * @param {!string} name
+     * @param {!number} baseUnit
+     * @param {!number} rangeUnit
+     * @param {!ValueRange} range
+     * @private
+     */
+    constructor(name, baseUnit, rangeUnit, range) {
+        super();
+        this._name = name;
+        this._baseUnit = baseUnit;
+        this._rangeUnit = rangeUnit;
+        this._range = range;
+    }
+
+    /**
+     *
+     * @returns {string}
+     */
+    name(){
+        return this._name;
+    }
+
+    /**
+     *
+     * @returns {!number}
+     */
+    baseUnit(){
+        return this._baseUnit;
+    }
+
+    /**
+     *
+     * @returns {!number}
+     */
+    rangeUnit(){
+        return this._rangeUnit;
+    }
+
+    /**
+     *
+     * @returns {!ValueRange}
+     */
+    range(){
+        return this._range;
+    }
+
+    /**
+     *
+     * @returns {string}
+     */
+    displayName(){
+        return this.toString();
+    }
+
+    /**
+     *
+     * @param {number} value
+     * @returns {*}
+     */
+    checkValidValue(value) {
+        return this.range().checkValidValue(value, this.name());
+    }
+
+    /**
+     * Checks if this field represents a component of a date.
+     *
+     * @return {boolean} true if it is a component of a date
+     */
+    isDateBased() {
+        const dateBased =
+            this === ChronoField.DAY_OF_WEEK ||
+            this === ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH ||
+            this === ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR ||
+            this === ChronoField.DAY_OF_MONTH ||
+            this === ChronoField.DAY_OF_YEAR ||
+            this === ChronoField.EPOCH_DAY ||
+            this === ChronoField.ALIGNED_WEEK_OF_MONTH ||
+            this === ChronoField.ALIGNED_WEEK_OF_YEAR ||
+            this === ChronoField.MONTH_OF_YEAR ||
+            //this === ChronoField.EPOCH_MONTH ||
+            this === ChronoField.YEAR_OF_ERA ||
+            this === ChronoField.YEAR ||
+            this === ChronoField.ERA;
+        return dateBased;
+    }
+
+    /**
+     * Checks if this field represents a component of a time.
+     *
+     * @return {boolean} true if it is a component of a time
+     */
+    isTimeBased() {
+        const timeBased =
+            this === ChronoField.NANO_OF_SECOND     ||
+            this === ChronoField.NANO_OF_DAY        ||
+            this === ChronoField.MICRO_OF_SECOND    ||
+            this === ChronoField.MICRO_OF_DAY       ||
+            this === ChronoField.MILLI_OF_SECOND    ||
+            this === ChronoField.MILLI_OF_DAY       ||
+            this === ChronoField.SECOND_OF_MINUTE   ||
+            this === ChronoField.SECOND_OF_DAY      ||
+            this === ChronoField.MINUTE_OF_HOUR     ||
+            this === ChronoField.MINUTE_OF_DAY      ||
+            this === ChronoField.HOUR_OF_AMPM       ||
+            this === ChronoField.CLOCK_HOUR_OF_AMPM ||
+            this === ChronoField.HOUR_OF_DAY        ||
+            this === ChronoField.CLOCK_HOUR_OF_DAY  ||
+            this === ChronoField.AMPM_OF_DAY;
+        return timeBased;
+    }
+
+    /**
+     * Get the range of valid values for this field using the temporal object to
+     * refine the result.
+     *
+     * This uses the temporal object to find the range of valid values for the field.
+     * This is similar to {@link range}, however this method refines the result
+     * using the temporal. For example, if the field is {@link DAY_OF_MONTH} the
+     * {@link range} method is not accurate as there are four possible month lengths,
+     * 28, 29, 30 and 31 days. Using this method with a date allows the range to be
+     * accurate, returning just one of those four options.
+     *
+     * There are two equivalent ways of using this method.
+     * The first is to invoke this method directly.
+     * The second is to use {@link TemporalAccessor#range}:
+     * &lt;pre&gt;
+     *   // these two lines are equivalent, but the second approach is recommended
+     *   temporal = thisField.rangeRefinedBy(temporal);
+     *   temporal = temporal.range(thisField);
+     * &lt;/pre&gt;
+     * It is recommended to use the second approach, {@link range},
+     * as it is a lot clearer to read in code.
+     *
+     * Implementations should perform any queries or calculations using the fields
+     * available in {@link ChronoField}.
+     * If the field is not supported a {@link DateTimeException} must be thrown.
+     *
+     * @param {!TemporalAccessor} temporal - the temporal object used to refine the result, not null
+     * @return {ValueRange} the range of valid values for this field, not null
+     * @throws DateTimeException if the range for the field cannot be obtained
+     */
+    rangeRefinedBy(temporal) {
+        return temporal.range(this);
+    }
+
+    /**
+     * Checks that the specified value is valid and fits in an `int`.
+     *
+     * This validates that the value is within the outer range of valid values
+     * returned by {@link range}.
+     * It also checks that all valid values are within the bounds of an `int`.
+     *
+     * This method checks against the range of the field in the ISO-8601 calendar system.
+     * This range may be incorrect for other calendar systems.
+     * Use {@link Chronology#range} to access the correct range
+     * for a different calendar system.
+     *
+     * @param {number} value - the value to check
+     * @return {number} the value that was passed in
+     */
+    checkValidIntValue(value) {
+        return this.range().checkValidIntValue(value, this);
+    }
+
+    /**
+     *
+     * @param {TemporalAccessor} temporal
+     * @returns {number}
+     */
+    getFrom(temporal) {
+        return temporal.getLong(this);
+    }
+
+    /**
+     *
+     * @returns {string}
+     */
+    toString(){
+        return this.name();
+    }
+
+    /**
+     *
+     * @param {*} other
+     * @returns {boolean}
+     */
+    equals(other){
+        return this === other;
+    }
+}
+
+export function _init() {
+
+    ChronoField.NANO_OF_SECOND = new ChronoField(&apos;NanoOfSecond&apos;, ChronoUnit.NANOS, ChronoUnit.SECONDS, ValueRange.of(0, 999999999));
+
+    ChronoField.NANO_OF_DAY = new ChronoField(&apos;NanoOfDay&apos;, ChronoUnit.NANOS, ChronoUnit.DAYS, ValueRange.of(0, 86400 * 1000000000 - 1));
+
+    ChronoField.MICRO_OF_SECOND = new ChronoField(&apos;MicroOfSecond&apos;, ChronoUnit.MICROS, ChronoUnit.SECONDS, ValueRange.of(0, 999999));
+
+    ChronoField.MICRO_OF_DAY = new ChronoField(&apos;MicroOfDay&apos;, ChronoUnit.MICROS, ChronoUnit.DAYS, ValueRange.of(0, 86400 * 1000000 - 1));
+
+    ChronoField.MILLI_OF_SECOND = new ChronoField(&apos;MilliOfSecond&apos;, ChronoUnit.MILLIS, ChronoUnit.SECONDS, ValueRange.of(0, 999));
+
+    ChronoField.MILLI_OF_DAY = new ChronoField(&apos;MilliOfDay&apos;, ChronoUnit.MILLIS, ChronoUnit.DAYS, ValueRange.of(0, 86400 * 1000 - 1));
+
+    ChronoField.SECOND_OF_MINUTE = new ChronoField(&apos;SecondOfMinute&apos;, ChronoUnit.SECONDS, ChronoUnit.MINUTES, ValueRange.of(0, 59));
+
+    ChronoField.SECOND_OF_DAY = new ChronoField(&apos;SecondOfDay&apos;, ChronoUnit.SECONDS, ChronoUnit.DAYS, ValueRange.of(0, 86400 - 1));
+
+    ChronoField.MINUTE_OF_HOUR = new ChronoField(&apos;MinuteOfHour&apos;, ChronoUnit.MINUTES, ChronoUnit.HOURS, ValueRange.of(0, 59));
+
+    ChronoField.MINUTE_OF_DAY = new ChronoField(&apos;MinuteOfDay&apos;, ChronoUnit.MINUTES, ChronoUnit.DAYS, ValueRange.of(0, (24 * 60) - 1));
+
+    ChronoField.HOUR_OF_AMPM = new ChronoField(&apos;HourOfAmPm&apos;, ChronoUnit.HOURS, ChronoUnit.HALF_DAYS, ValueRange.of(0, 11));
+
+    ChronoField.CLOCK_HOUR_OF_AMPM = new ChronoField(&apos;ClockHourOfAmPm&apos;, ChronoUnit.HOURS, ChronoUnit.HALF_DAYS, ValueRange.of(1, 12));
+
+    ChronoField.HOUR_OF_DAY = new ChronoField(&apos;HourOfDay&apos;, ChronoUnit.HOURS, ChronoUnit.DAYS, ValueRange.of(0, 23));
+
+    ChronoField.CLOCK_HOUR_OF_DAY = new ChronoField(&apos;ClockHourOfDay&apos;, ChronoUnit.HOURS, ChronoUnit.DAYS, ValueRange.of(1, 24));
+
+    ChronoField.AMPM_OF_DAY = new ChronoField(&apos;AmPmOfDay&apos;, ChronoUnit.HALF_DAYS, ChronoUnit.DAYS, ValueRange.of(0, 1));
+
+    ChronoField.DAY_OF_WEEK = new ChronoField(&apos;DayOfWeek&apos;, ChronoUnit.DAYS, ChronoUnit.WEEKS, ValueRange.of(1, 7));
+
+    ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH = new ChronoField(&apos;AlignedDayOfWeekInMonth&apos;, ChronoUnit.DAYS, ChronoUnit.WEEKS, ValueRange.of(1, 7));
+
+    ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR = new ChronoField(&apos;AlignedDayOfWeekInYear&apos;, ChronoUnit.DAYS, ChronoUnit.WEEKS, ValueRange.of(1, 7));
+
+    ChronoField.DAY_OF_MONTH = new ChronoField(&apos;DayOfMonth&apos;, ChronoUnit.DAYS, ChronoUnit.MONTHS, ValueRange.of(1, 28, 31), &apos;day&apos;);
+
+    ChronoField.DAY_OF_YEAR = new ChronoField(&apos;DayOfYear&apos;, ChronoUnit.DAYS, ChronoUnit.YEARS, ValueRange.of(1, 365, 366));
+
+    ChronoField.EPOCH_DAY = new ChronoField(&apos;EpochDay&apos;, ChronoUnit.DAYS, ChronoUnit.FOREVER, ValueRange.of(Math.floor(YearConstants.MIN_VALUE * 365.25), Math.floor(YearConstants.MAX_VALUE * 365.25)));
+
+    ChronoField.ALIGNED_WEEK_OF_MONTH = new ChronoField(&apos;AlignedWeekOfMonth&apos;, ChronoUnit.WEEKS, ChronoUnit.MONTHS, ValueRange.of(1, 4, 5));
+
+    ChronoField.ALIGNED_WEEK_OF_YEAR = new ChronoField(&apos;AlignedWeekOfYear&apos;, ChronoUnit.WEEKS, ChronoUnit.YEARS, ValueRange.of(1, 53));
+
+    ChronoField.MONTH_OF_YEAR = new ChronoField(&apos;MonthOfYear&apos;, ChronoUnit.MONTHS, ChronoUnit.YEARS, ValueRange.of(1, 12), &apos;month&apos;);
+
+    ChronoField.PROLEPTIC_MONTH = new ChronoField(&apos;ProlepticMonth&apos;, ChronoUnit.MONTHS, ChronoUnit.FOREVER, ValueRange.of(YearConstants.MIN_VALUE * 12, YearConstants.MAX_VALUE * 12 + 11));
+
+    ChronoField.YEAR_OF_ERA = new ChronoField(&apos;YearOfEra&apos;, ChronoUnit.YEARS, ChronoUnit.FOREVER, ValueRange.of(1, YearConstants.MAX_VALUE, YearConstants.MAX_VALUE + 1));
+
+    ChronoField.YEAR = new ChronoField(&apos;Year&apos;, ChronoUnit.YEARS, ChronoUnit.FOREVER, ValueRange.of(YearConstants.MIN_VALUE, YearConstants.MAX_VALUE), &apos;year&apos;);
+
+    ChronoField.ERA = new ChronoField(&apos;Era&apos;, ChronoUnit.ERAS, ChronoUnit.FOREVER, ValueRange.of(0, 1));
+
+    ChronoField.INSTANT_SECONDS = new ChronoField(&apos;InstantSeconds&apos;, ChronoUnit.SECONDS, ChronoUnit.FOREVER, ValueRange.of(MIN_SAFE_INTEGER, MAX_SAFE_INTEGER));
+
+    ChronoField.OFFSET_SECONDS = new ChronoField(&apos;OffsetSeconds&apos;, ChronoUnit.SECONDS, ChronoUnit.FOREVER, ValueRange.of(-18 * 3600, 18 * 3600));
+
+}
+
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

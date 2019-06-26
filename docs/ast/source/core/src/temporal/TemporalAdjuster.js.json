@@ -1,0 +1,1197 @@
+{
+  "type": "File",
+  "start": 0,
+  "end": 3839,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 93,
+      "column": 0
+    }
+  },
+  "program": {
+    "type": "Program",
+    "start": 0,
+    "end": 3839,
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 93,
+        "column": 0
+      }
+    },
+    "sourceType": "module",
+    "body": [
+      {
+        "type": "ImportDeclaration",
+        "start": 229,
+        "end": 274,
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 0
+          },
+          "end": {
+            "line": 7,
+            "column": 45
+          }
+        },
+        "specifiers": [
+          {
+            "type": "ImportSpecifier",
+            "start": 237,
+            "end": 255,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 8
+              },
+              "end": {
+                "line": 7,
+                "column": 26
+              }
+            },
+            "imported": {
+              "type": "Identifier",
+              "start": 237,
+              "end": 255,
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 8
+                },
+                "end": {
+                  "line": 7,
+                  "column": 26
+                },
+                "identifierName": "abstractMethodFail"
+              },
+              "name": "abstractMethodFail",
+              "leadingComments": null
+            },
+            "local": {
+              "type": "Identifier",
+              "start": 237,
+              "end": 255,
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 8
+                },
+                "end": {
+                  "line": 7,
+                  "column": 26
+                },
+                "identifierName": "abstractMethodFail"
+              },
+              "name": "abstractMethodFail"
+            },
+            "leadingComments": null
+          }
+        ],
+        "source": {
+          "type": "StringLiteral",
+          "start": 262,
+          "end": 273,
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 33
+            },
+            "end": {
+              "line": 7,
+              "column": 44
+            }
+          },
+          "extra": {
+            "rawValue": "../assert",
+            "raw": "'../assert'"
+          },
+          "value": "../assert"
+        },
+        "leadingComments": [
+          {
+            "type": "CommentBlock",
+            "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+            "start": 0,
+            "end": 227,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 0
+              },
+              "end": {
+                "line": 5,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "CommentBlock",
+            "value": "*\n * Strategy for adjusting a temporal object.\n *\n * Adjusters are a key tool for modifying temporal objects.\n * They exist to externalize the process of adjustment, permitting different\n * approaches, as per the strategy design pattern.\n * Examples might be an adjuster that sets the date avoiding weekends, or one that\n * sets the date to the last day of the month.\n *\n * There are two equivalent ways of using a {@link TemporalAdjuster}.\n * The first is to invoke the method on this interface directly.\n * The second is to use {@link Temporal#with}:\n * <pre>\n *   // these two lines are equivalent, but the second approach is recommended\n *   temporal = thisAdjuster.adjustInto(temporal);\n *   temporal = temporal.with(thisAdjuster);\n * </pre>\n * It is recommended to use the second approach, {@link with},\n * as it is a lot clearer to read in code.\n *\n * See {@link TemporalAdjusters} for a standard set of adjusters, including finding the\n * last day of the month.\n * Adjusters may also be defined by applications.\n *\n * ### Specification for implementors\n *\n * This interface places no restrictions on the mutability of implementations,\n * however immutability is strongly recommended.\n *\n * @interface\n ",
+            "start": 276,
+            "end": 1490,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 0
+              },
+              "end": {
+                "line": 39,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "ExportNamedDeclaration",
+        "start": 1491,
+        "end": 3838,
+        "loc": {
+          "start": {
+            "line": 40,
+            "column": 0
+          },
+          "end": {
+            "line": 92,
+            "column": 1
+          }
+        },
+        "specifiers": [],
+        "source": null,
+        "declaration": {
+          "type": "ClassDeclaration",
+          "start": 1498,
+          "end": 3838,
+          "loc": {
+            "start": {
+              "line": 40,
+              "column": 7
+            },
+            "end": {
+              "line": 92,
+              "column": 1
+            }
+          },
+          "id": {
+            "type": "Identifier",
+            "start": 1504,
+            "end": 1520,
+            "loc": {
+              "start": {
+                "line": 40,
+                "column": 13
+              },
+              "end": {
+                "line": 40,
+                "column": 29
+              },
+              "identifierName": "TemporalAdjuster"
+            },
+            "name": "TemporalAdjuster",
+            "leadingComments": null
+          },
+          "superClass": null,
+          "body": {
+            "type": "ClassBody",
+            "start": 1521,
+            "end": 3838,
+            "loc": {
+              "start": {
+                "line": 40,
+                "column": 30
+              },
+              "end": {
+                "line": 92,
+                "column": 1
+              }
+            },
+            "body": [
+              {
+                "type": "ClassMethod",
+                "start": 3766,
+                "end": 3835,
+                "loc": {
+                  "start": {
+                    "line": 88,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 90,
+                    "column": 5
+                  }
+                },
+                "static": false,
+                "computed": false,
+                "key": {
+                  "type": "Identifier",
+                  "start": 3766,
+                  "end": 3776,
+                  "loc": {
+                    "start": {
+                      "line": 88,
+                      "column": 4
+                    },
+                    "end": {
+                      "line": 88,
+                      "column": 14
+                    },
+                    "identifierName": "adjustInto"
+                  },
+                  "name": "adjustInto",
+                  "leadingComments": null
+                },
+                "kind": "method",
+                "id": null,
+                "generator": false,
+                "expression": false,
+                "async": false,
+                "params": [
+                  {
+                    "type": "Identifier",
+                    "start": 3777,
+                    "end": 3785,
+                    "loc": {
+                      "start": {
+                        "line": 88,
+                        "column": 15
+                      },
+                      "end": {
+                        "line": 88,
+                        "column": 23
+                      },
+                      "identifierName": "temporal"
+                    },
+                    "name": "temporal"
+                  }
+                ],
+                "body": {
+                  "type": "BlockStatement",
+                  "start": 3786,
+                  "end": 3835,
+                  "loc": {
+                    "start": {
+                      "line": 88,
+                      "column": 24
+                    },
+                    "end": {
+                      "line": 90,
+                      "column": 5
+                    }
+                  },
+                  "body": [
+                    {
+                      "type": "ExpressionStatement",
+                      "start": 3796,
+                      "end": 3829,
+                      "loc": {
+                        "start": {
+                          "line": 89,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 89,
+                          "column": 41
+                        }
+                      },
+                      "expression": {
+                        "type": "CallExpression",
+                        "start": 3796,
+                        "end": 3828,
+                        "loc": {
+                          "start": {
+                            "line": 89,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 89,
+                            "column": 40
+                          }
+                        },
+                        "callee": {
+                          "type": "Identifier",
+                          "start": 3796,
+                          "end": 3814,
+                          "loc": {
+                            "start": {
+                              "line": 89,
+                              "column": 8
+                            },
+                            "end": {
+                              "line": 89,
+                              "column": 26
+                            },
+                            "identifierName": "abstractMethodFail"
+                          },
+                          "name": "abstractMethodFail"
+                        },
+                        "arguments": [
+                          {
+                            "type": "StringLiteral",
+                            "start": 3815,
+                            "end": 3827,
+                            "loc": {
+                              "start": {
+                                "line": 89,
+                                "column": 27
+                              },
+                              "end": {
+                                "line": 89,
+                                "column": 39
+                              }
+                            },
+                            "extra": {
+                              "rawValue": "adjustInto",
+                              "raw": "'adjustInto'"
+                            },
+                            "value": "adjustInto"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "directives": []
+                },
+                "leadingComments": [
+                  {
+                    "type": "CommentBlock",
+                    "value": "*\n     * Adjusts the specified temporal object.\n     *\n     * This adjusts the specified temporal object using the logic\n     * encapsulated in the implementing class.\n     * Examples might be an adjuster that sets the date avoiding weekends, or one that\n     * sets the date to the last day of the month.\n     *\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link Temporal#with}:\n     * <pre>\n     *   // these two lines are equivalent, but the second approach is recommended\n     *   temporal = thisAdjuster.adjustInto(temporal);\n     *   temporal = temporal.with(thisAdjuster);\n     * </pre>\n     * It is recommended to use the second approach, {@link with},\n     * as it is a lot clearer to read in code.\n     *\n     * ### Specification for implementors\n     *\n     * The implementation must take the input object and adjust it.\n     * The implementation defines the logic of the adjustment and is responsible for\n     * documenting that logic. It may use any method on {@link Temporal} to\n     * query the temporal object and perform the adjustment.\n     * The returned object must have the same observable type as the input object\n     *\n     * The input object must not be altered.\n     * Instead, an adjusted copy of the original must be returned.\n     * This provides equivalent, safe behavior for immutable and mutable temporal objects.\n     *\n     * The input temporal object may be in a calendar system other than ISO.\n     * Implementations may choose to document compatibility with other calendar systems,\n     * or reject non-ISO temporal objects by querying the chronology (see {@link TemporalQueries#chronology}).\n     *\n     * This method may be called from multiple threads in parallel.\n     * It must be thread-safe when invoked.\n     *\n     * @param {Temporal} temporal  the temporal object to adjust, not null\n     * @return {Temporal} an object of the same observable type with the adjustment made, not null\n     * @throws DateTimeException if unable to make the adjustment\n     * @throws ArithmeticException if numeric overflow occurs\n     *\n     * @abstract\n     ",
+                    "start": 1528,
+                    "end": 3714,
+                    "loc": {
+                      "start": {
+                        "line": 42,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 86,
+                        "column": 7
+                      }
+                    }
+                  },
+                  {
+                    "type": "CommentLine",
+                    "value": " eslint-disable-next-line no-unused-vars",
+                    "start": 3719,
+                    "end": 3761,
+                    "loc": {
+                      "start": {
+                        "line": 87,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 87,
+                        "column": 46
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "leadingComments": [
+            {
+              "type": "CommentBlock",
+              "value": "*\n * Strategy for adjusting a temporal object.\n *\n * Adjusters are a key tool for modifying temporal objects.\n * They exist to externalize the process of adjustment, permitting different\n * approaches, as per the strategy design pattern.\n * Examples might be an adjuster that sets the date avoiding weekends, or one that\n * sets the date to the last day of the month.\n *\n * There are two equivalent ways of using a {@link TemporalAdjuster}.\n * The first is to invoke the method on this interface directly.\n * The second is to use {@link Temporal#with}:\n * <pre>\n *   // these two lines are equivalent, but the second approach is recommended\n *   temporal = thisAdjuster.adjustInto(temporal);\n *   temporal = temporal.with(thisAdjuster);\n * </pre>\n * It is recommended to use the second approach, {@link with},\n * as it is a lot clearer to read in code.\n *\n * See {@link TemporalAdjusters} for a standard set of adjusters, including finding the\n * last day of the month.\n * Adjusters may also be defined by applications.\n *\n * ### Specification for implementors\n *\n * This interface places no restrictions on the mutability of implementations,\n * however immutability is strongly recommended.\n *\n * @interface\n ",
+              "start": 276,
+              "end": 1490,
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 0
+                },
+                "end": {
+                  "line": 39,
+                  "column": 3
+                }
+              }
+            }
+          ],
+          "trailingComments": []
+        },
+        "leadingComments": [
+          {
+            "type": "CommentBlock",
+            "value": "*\n * Strategy for adjusting a temporal object.\n *\n * Adjusters are a key tool for modifying temporal objects.\n * They exist to externalize the process of adjustment, permitting different\n * approaches, as per the strategy design pattern.\n * Examples might be an adjuster that sets the date avoiding weekends, or one that\n * sets the date to the last day of the month.\n *\n * There are two equivalent ways of using a {@link TemporalAdjuster}.\n * The first is to invoke the method on this interface directly.\n * The second is to use {@link Temporal#with}:\n * <pre>\n *   // these two lines are equivalent, but the second approach is recommended\n *   temporal = thisAdjuster.adjustInto(temporal);\n *   temporal = temporal.with(thisAdjuster);\n * </pre>\n * It is recommended to use the second approach, {@link with},\n * as it is a lot clearer to read in code.\n *\n * See {@link TemporalAdjusters} for a standard set of adjusters, including finding the\n * last day of the month.\n * Adjusters may also be defined by applications.\n *\n * ### Specification for implementors\n *\n * This interface places no restrictions on the mutability of implementations,\n * however immutability is strongly recommended.\n *\n * @interface\n ",
+            "start": 276,
+            "end": 1490,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 0
+              },
+              "end": {
+                "line": 39,
+                "column": 3
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "directives": []
+  },
+  "comments": [
+    {
+      "type": "CommentBlock",
+      "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+      "start": 0,
+      "end": 227,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\n * Strategy for adjusting a temporal object.\n *\n * Adjusters are a key tool for modifying temporal objects.\n * They exist to externalize the process of adjustment, permitting different\n * approaches, as per the strategy design pattern.\n * Examples might be an adjuster that sets the date avoiding weekends, or one that\n * sets the date to the last day of the month.\n *\n * There are two equivalent ways of using a {@link TemporalAdjuster}.\n * The first is to invoke the method on this interface directly.\n * The second is to use {@link Temporal#with}:\n * <pre>\n *   // these two lines are equivalent, but the second approach is recommended\n *   temporal = thisAdjuster.adjustInto(temporal);\n *   temporal = temporal.with(thisAdjuster);\n * </pre>\n * It is recommended to use the second approach, {@link with},\n * as it is a lot clearer to read in code.\n *\n * See {@link TemporalAdjusters} for a standard set of adjusters, including finding the\n * last day of the month.\n * Adjusters may also be defined by applications.\n *\n * ### Specification for implementors\n *\n * This interface places no restrictions on the mutability of implementations,\n * however immutability is strongly recommended.\n *\n * @interface\n ",
+      "start": 276,
+      "end": 1490,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 39,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\n     * Adjusts the specified temporal object.\n     *\n     * This adjusts the specified temporal object using the logic\n     * encapsulated in the implementing class.\n     * Examples might be an adjuster that sets the date avoiding weekends, or one that\n     * sets the date to the last day of the month.\n     *\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link Temporal#with}:\n     * <pre>\n     *   // these two lines are equivalent, but the second approach is recommended\n     *   temporal = thisAdjuster.adjustInto(temporal);\n     *   temporal = temporal.with(thisAdjuster);\n     * </pre>\n     * It is recommended to use the second approach, {@link with},\n     * as it is a lot clearer to read in code.\n     *\n     * ### Specification for implementors\n     *\n     * The implementation must take the input object and adjust it.\n     * The implementation defines the logic of the adjustment and is responsible for\n     * documenting that logic. It may use any method on {@link Temporal} to\n     * query the temporal object and perform the adjustment.\n     * The returned object must have the same observable type as the input object\n     *\n     * The input object must not be altered.\n     * Instead, an adjusted copy of the original must be returned.\n     * This provides equivalent, safe behavior for immutable and mutable temporal objects.\n     *\n     * The input temporal object may be in a calendar system other than ISO.\n     * Implementations may choose to document compatibility with other calendar systems,\n     * or reject non-ISO temporal objects by querying the chronology (see {@link TemporalQueries#chronology}).\n     *\n     * This method may be called from multiple threads in parallel.\n     * It must be thread-safe when invoked.\n     *\n     * @param {Temporal} temporal  the temporal object to adjust, not null\n     * @return {Temporal} an object of the same observable type with the adjustment made, not null\n     * @throws DateTimeException if unable to make the adjustment\n     * @throws ArithmeticException if numeric overflow occurs\n     *\n     * @abstract\n     ",
+      "start": 1528,
+      "end": 3714,
+      "loc": {
+        "start": {
+          "line": 42,
+          "column": 4
+        },
+        "end": {
+          "line": 86,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": " eslint-disable-next-line no-unused-vars",
+      "start": 3719,
+      "end": 3761,
+      "loc": {
+        "start": {
+          "line": 87,
+          "column": 4
+        },
+        "end": {
+          "line": 87,
+          "column": 46
+        }
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "type": "CommentBlock",
+      "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+      "start": 0,
+      "end": 227,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "import",
+        "keyword": "import",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "import",
+      "start": 229,
+      "end": 235,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 236,
+      "end": 237,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 7
+        },
+        "end": {
+          "line": 7,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "abstractMethodFail",
+      "start": 237,
+      "end": 255,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 8
+        },
+        "end": {
+          "line": 7,
+          "column": 26
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 255,
+      "end": 256,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 26
+        },
+        "end": {
+          "line": 7,
+          "column": 27
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "from",
+      "start": 257,
+      "end": 261,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 28
+        },
+        "end": {
+          "line": 7,
+          "column": 32
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "string",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "../assert",
+      "start": 262,
+      "end": 273,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 33
+        },
+        "end": {
+          "line": 7,
+          "column": 44
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 273,
+      "end": 274,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 44
+        },
+        "end": {
+          "line": 7,
+          "column": 45
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\n * Strategy for adjusting a temporal object.\n *\n * Adjusters are a key tool for modifying temporal objects.\n * They exist to externalize the process of adjustment, permitting different\n * approaches, as per the strategy design pattern.\n * Examples might be an adjuster that sets the date avoiding weekends, or one that\n * sets the date to the last day of the month.\n *\n * There are two equivalent ways of using a {@link TemporalAdjuster}.\n * The first is to invoke the method on this interface directly.\n * The second is to use {@link Temporal#with}:\n * <pre>\n *   // these two lines are equivalent, but the second approach is recommended\n *   temporal = thisAdjuster.adjustInto(temporal);\n *   temporal = temporal.with(thisAdjuster);\n * </pre>\n * It is recommended to use the second approach, {@link with},\n * as it is a lot clearer to read in code.\n *\n * See {@link TemporalAdjusters} for a standard set of adjusters, including finding the\n * last day of the month.\n * Adjusters may also be defined by applications.\n *\n * ### Specification for implementors\n *\n * This interface places no restrictions on the mutability of implementations,\n * however immutability is strongly recommended.\n *\n * @interface\n ",
+      "start": 276,
+      "end": 1490,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 39,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "export",
+        "keyword": "export",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "export",
+      "start": 1491,
+      "end": 1497,
+      "loc": {
+        "start": {
+          "line": 40,
+          "column": 0
+        },
+        "end": {
+          "line": 40,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "class",
+        "keyword": "class",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "class",
+      "start": 1498,
+      "end": 1503,
+      "loc": {
+        "start": {
+          "line": 40,
+          "column": 7
+        },
+        "end": {
+          "line": 40,
+          "column": 12
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "TemporalAdjuster",
+      "start": 1504,
+      "end": 1520,
+      "loc": {
+        "start": {
+          "line": 40,
+          "column": 13
+        },
+        "end": {
+          "line": 40,
+          "column": 29
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 1521,
+      "end": 1522,
+      "loc": {
+        "start": {
+          "line": 40,
+          "column": 30
+        },
+        "end": {
+          "line": 40,
+          "column": 31
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\n     * Adjusts the specified temporal object.\n     *\n     * This adjusts the specified temporal object using the logic\n     * encapsulated in the implementing class.\n     * Examples might be an adjuster that sets the date avoiding weekends, or one that\n     * sets the date to the last day of the month.\n     *\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link Temporal#with}:\n     * <pre>\n     *   // these two lines are equivalent, but the second approach is recommended\n     *   temporal = thisAdjuster.adjustInto(temporal);\n     *   temporal = temporal.with(thisAdjuster);\n     * </pre>\n     * It is recommended to use the second approach, {@link with},\n     * as it is a lot clearer to read in code.\n     *\n     * ### Specification for implementors\n     *\n     * The implementation must take the input object and adjust it.\n     * The implementation defines the logic of the adjustment and is responsible for\n     * documenting that logic. It may use any method on {@link Temporal} to\n     * query the temporal object and perform the adjustment.\n     * The returned object must have the same observable type as the input object\n     *\n     * The input object must not be altered.\n     * Instead, an adjusted copy of the original must be returned.\n     * This provides equivalent, safe behavior for immutable and mutable temporal objects.\n     *\n     * The input temporal object may be in a calendar system other than ISO.\n     * Implementations may choose to document compatibility with other calendar systems,\n     * or reject non-ISO temporal objects by querying the chronology (see {@link TemporalQueries#chronology}).\n     *\n     * This method may be called from multiple threads in parallel.\n     * It must be thread-safe when invoked.\n     *\n     * @param {Temporal} temporal  the temporal object to adjust, not null\n     * @return {Temporal} an object of the same observable type with the adjustment made, not null\n     * @throws DateTimeException if unable to make the adjustment\n     * @throws ArithmeticException if numeric overflow occurs\n     *\n     * @abstract\n     ",
+      "start": 1528,
+      "end": 3714,
+      "loc": {
+        "start": {
+          "line": 42,
+          "column": 4
+        },
+        "end": {
+          "line": 86,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "CommentLine",
+      "value": " eslint-disable-next-line no-unused-vars",
+      "start": 3719,
+      "end": 3761,
+      "loc": {
+        "start": {
+          "line": 87,
+          "column": 4
+        },
+        "end": {
+          "line": 87,
+          "column": 46
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "adjustInto",
+      "start": 3766,
+      "end": 3776,
+      "loc": {
+        "start": {
+          "line": 88,
+          "column": 4
+        },
+        "end": {
+          "line": 88,
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "(",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 3776,
+      "end": 3777,
+      "loc": {
+        "start": {
+          "line": 88,
+          "column": 14
+        },
+        "end": {
+          "line": 88,
+          "column": 15
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "temporal",
+      "start": 3777,
+      "end": 3785,
+      "loc": {
+        "start": {
+          "line": 88,
+          "column": 15
+        },
+        "end": {
+          "line": 88,
+          "column": 23
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ")",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 3785,
+      "end": 3786,
+      "loc": {
+        "start": {
+          "line": 88,
+          "column": 23
+        },
+        "end": {
+          "line": 88,
+          "column": 24
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 3786,
+      "end": 3787,
+      "loc": {
+        "start": {
+          "line": 88,
+          "column": 24
+        },
+        "end": {
+          "line": 88,
+          "column": 25
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "abstractMethodFail",
+      "start": 3796,
+      "end": 3814,
+      "loc": {
+        "start": {
+          "line": 89,
+          "column": 8
+        },
+        "end": {
+          "line": 89,
+          "column": 26
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "(",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 3814,
+      "end": 3815,
+      "loc": {
+        "start": {
+          "line": 89,
+          "column": 26
+        },
+        "end": {
+          "line": 89,
+          "column": 27
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "string",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "adjustInto",
+      "start": 3815,
+      "end": 3827,
+      "loc": {
+        "start": {
+          "line": 89,
+          "column": 27
+        },
+        "end": {
+          "line": 89,
+          "column": 39
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ")",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 3827,
+      "end": 3828,
+      "loc": {
+        "start": {
+          "line": 89,
+          "column": 39
+        },
+        "end": {
+          "line": 89,
+          "column": 40
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 3828,
+      "end": 3829,
+      "loc": {
+        "start": {
+          "line": 89,
+          "column": 40
+        },
+        "end": {
+          "line": 89,
+          "column": 41
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 3834,
+      "end": 3835,
+      "loc": {
+        "start": {
+          "line": 90,
+          "column": 4
+        },
+        "end": {
+          "line": 90,
+          "column": 5
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 3837,
+      "end": 3838,
+      "loc": {
+        "start": {
+          "line": 92,
+          "column": 0
+        },
+        "end": {
+          "line": 92,
+          "column": 1
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "eof",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 3839,
+      "end": 3839,
+      "loc": {
+        "start": {
+          "line": 93,
+          "column": 0
+        },
+        "end": {
+          "line": 93,
+          "column": 0
+        }
+      }
+    }
+  ]
+}

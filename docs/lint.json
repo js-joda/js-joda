@@ -1,0 +1,184 @@
+[
+  {
+    "name": "Clock.offset",
+    "filePath": "packages/core/src/Clock.js",
+    "lines": [
+      {
+        "lineNumber": 107,
+        "line": "    /**"
+      },
+      {
+        "lineNumber": 108,
+        "line": "     * Obtains a clock that returns instants from the specified clock with the"
+      },
+      {
+        "lineNumber": 109,
+        "line": "     * specified duration added"
+      },
+      {
+        "lineNumber": 110,
+        "line": "     * <p>"
+      },
+      {
+        "lineNumber": 111,
+        "line": "     * This clock wraps another clock, returning instants that are later by the"
+      },
+      {
+        "lineNumber": 112,
+        "line": "     * specified duration. If the duration is negative, the instants will be"
+      },
+      {
+        "lineNumber": 113,
+        "line": "     * earlier than the current date and time."
+      },
+      {
+        "lineNumber": 114,
+        "line": "     * The main use case for this is to simulate running in the future or in the past."
+      },
+      {
+        "lineNumber": 115,
+        "line": "     * <p>"
+      },
+      {
+        "lineNumber": 116,
+        "line": "     * A duration of zero would have no offsetting effect."
+      },
+      {
+        "lineNumber": 117,
+        "line": "     * Passing zero will return the underlying clock."
+      },
+      {
+        "lineNumber": 118,
+        "line": "     * <p>"
+      },
+      {
+        "lineNumber": 119,
+        "line": "     * The returned implementation is immutable, thread-safe and {@code Serializable}"
+      },
+      {
+        "lineNumber": 120,
+        "line": "     * providing that the base clock is."
+      },
+      {
+        "lineNumber": 121,
+        "line": "     *"
+      },
+      {
+        "lineNumber": 122,
+        "line": "     * @param baseClock  the base clock to add the duration to, not null"
+      },
+      {
+        "lineNumber": 123,
+        "line": "     * @param offsetDuration  the duration to add, not null"
+      },
+      {
+        "lineNumber": 124,
+        "line": "     * @return a clock based on the base clock with the duration added, not null"
+      },
+      {
+        "lineNumber": 125,
+        "line": "     */"
+      },
+      {
+        "lineNumber": 126,
+        "line": "    static offset(baseClock, duration) {"
+      }
+    ],
+    "codeParams": [
+      "baseClock",
+      "duration"
+    ],
+    "docParams": [
+      "baseClock",
+      "offsetDuration"
+    ]
+  },
+  {
+    "name": "Clock#withZone",
+    "filePath": "packages/core/src/Clock.js",
+    "lines": [
+      {
+        "lineNumber": 165,
+        "line": "    /**"
+      },
+      {
+        "lineNumber": 166,
+        "line": "     * Returns a copy of this clock with a different time-zone."
+      },
+      {
+        "lineNumber": 167,
+        "line": "     * <p>"
+      },
+      {
+        "lineNumber": 168,
+        "line": "     * A clock will typically obtain the current instant and then convert that"
+      },
+      {
+        "lineNumber": 169,
+        "line": "     * to a date or time using a time-zone. This method returns a clock with"
+      },
+      {
+        "lineNumber": 170,
+        "line": "     * similar properties but using a different time-zone."
+      },
+      {
+        "lineNumber": 171,
+        "line": "     *"
+      },
+      {
+        "lineNumber": 172,
+        "line": "     * @param zone  the time-zone to change to, not null"
+      },
+      {
+        "lineNumber": 173,
+        "line": "     * @return a clock based on this clock with the specified time-zone, not null"
+      },
+      {
+        "lineNumber": 174,
+        "line": "     */"
+      },
+      {
+        "lineNumber": 175,
+        "line": "    withZone(){"
+      }
+    ],
+    "codeParams": [],
+    "docParams": [
+      "zone"
+    ]
+  },
+  {
+    "name": "plug",
+    "filePath": "packages/extra/src/plug.js",
+    "lines": [
+      {
+        "lineNumber": 9,
+        "line": "/**"
+      },
+      {
+        "lineNumber": 10,
+        "line": " * plugin Function, call using js-jodas use()"
+      },
+      {
+        "lineNumber": 11,
+        "line": " *"
+      },
+      {
+        "lineNumber": 12,
+        "line": " * @param jsJoda"
+      },
+      {
+        "lineNumber": 13,
+        "line": " */"
+      },
+      {
+        "lineNumber": 14,
+        "line": "export default function (/* jsJoda */) {"
+      }
+    ],
+    "codeParams": [],
+    "docParams": [
+      "jsJoda"
+    ]
+  }
+]

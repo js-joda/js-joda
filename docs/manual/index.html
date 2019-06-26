@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../">
+  <title data-ice="title">Manual | @js-joda/root</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container manual-root manual-index" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div class="manual-toc-root">
+  
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/getting-started.html"><a href="manual/getting-started.html" data-ice="link">Getting started</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/getting-started.html"><a href="manual/getting-started.html#node" data-ice="link">Node</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/getting-started.html"><a href="manual/getting-started.html#browser" data-ice="link">Browser</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/getting-started.html"><a href="manual/getting-started.html#jsfiddle" data-ice="link">JSFiddle</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/usage.html"><a href="manual/usage.html" data-ice="link">Usage</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/usage.html"><a href="manual/usage.html#method-naming-conventions" data-ice="link">Method naming conventions</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html" data-ice="link">LocalDate</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#create-a--code-localdate--code-" data-ice="link">Create a LocalDate</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#get-values-from--code-localdate--code-" data-ice="link">Get values from LocalDate</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#get-week-of-week-based-year--quarter-of-year--day-of-quarter" data-ice="link">Get week of week-based year, quarter of year, day of quarter</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#adding-to-and-subtracting-from-a--code-localdate--code-" data-ice="link">Adding to and subtracting from a LocalDate</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#alter-specific-fields-of-a-localdate" data-ice="link">Alter specific fields of a LocalDate</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#compare-one--code-localdate--code--with-another" data-ice="link">Compare one LocalDate with another</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#distance-on-the-timeline" data-ice="link">Distance on the timeline</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#converting-from-and-to-other-temporals" data-ice="link">Converting from and to other temporals</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#adjust-a-date-to-another-date" data-ice="link">Adjust a date to another date</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html" data-ice="link">LocalTime</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html#create-a--code-localtime--code--instance" data-ice="link">Create a LocalTime instance</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html#get-values-from--code-localtime--code-" data-ice="link">Get values from LocalTime</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html#adding-to--subtracting-from-a--code-localtime--code--instance" data-ice="link">Adding to/ subtracting from a LocalTime instance</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html#alter-specific-fields-of-a--code-localtime--code--instance" data-ice="link">Alter specific fields of a LocalTime instance</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html#truncate-a--code-localtime--code--instance" data-ice="link">Truncate a LocalTime instance</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html#compare--code-localtime--code--instances" data-ice="link">Compare LocalTime instances</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html#distance-between-times" data-ice="link">Distance between times</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html#convert-a--code-localtime--code--from-a--code-moment--code--or-javascript--code-date--code-" data-ice="link">Convert a LocalTime from a moment or JavaScript Date</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html" data-ice="link">LocalDateTime</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html#create-a--code-localdatetime--code--instance" data-ice="link">Create a LocalDateTime instance</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html#get-values-from--code-localdatetime--code-" data-ice="link">Get values from LocalDateTime</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html#adding-to-and-subtracting-from-a--code-localdatetime--code--instance" data-ice="link">Adding to and subtracting from a LocalDateTime instance</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html#alter-specific-fields-of-a--code-localdatetime--code--instance" data-ice="link">Alter specific fields of a LocalDateTime instance</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html#truncate-a--code-localdatetime--code--instance" data-ice="link">Truncate a LocalDateTime instance</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html#compare--code-localdatetime--code--instances" data-ice="link">Compare LocalDateTime instances</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html#distance-between-two--code-localdatetime--code--instances" data-ice="link">Distance between two LocalDateTime instances</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html#convert-from-a--code-moment--code--or-javascript--code-date--code-" data-ice="link">Convert from a moment or JavaScript Date</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/ZonedDateTime.html"><a href="manual/ZonedDateTime.html" data-ice="link">ZonedDateTime</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/ZonedDateTime.html"><a href="manual/ZonedDateTime.html#the--code-system--code--zone-id" data-ice="link">The SYSTEM zone ID</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/ZonedDateTime.html"><a href="manual/ZonedDateTime.html#working-with-time-zones" data-ice="link">Working with time zones</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/ZonedDateTime.html"><a href="manual/ZonedDateTime.html#create-a-zoneddatetime" data-ice="link">Create a ZonedDateTime</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/ZonedDateTime.html"><a href="manual/ZonedDateTime.html#switch-time-zones" data-ice="link">Switch time zones</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/ZonedDateTime.html"><a href="manual/ZonedDateTime.html#get-and-manipulate-values-from-a--code-zoneddatetime--code-" data-ice="link">Get and manipulate values from a ZonedDateTime</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/ZonedDateTime.html"><a href="manual/ZonedDateTime.html#calculate-values-across-daylight-savings-transitions" data-ice="link">Calculate values across daylight savings transitions</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/Period.html"><a href="manual/Period.html" data-ice="link">Period</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/Duration.html"><a href="manual/Duration.html" data-ice="link">Duration</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/formatting.html"><a href="manual/formatting.html" data-ice="link">Formatting</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/formatting.html"><a href="manual/formatting.html#formatting-with-locales" data-ice="link">Formatting with locales</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/formatting.html"><a href="manual/formatting.html#format-patterns" data-ice="link">Format patterns</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/customizing.html"><a href="manual/customizing.html" data-ice="link">Customizing js-joda</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/customizing.html"><a href="manual/customizing.html#custom-temporal-adjuster" data-ice="link">Custom temporal adjuster</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/customizing.html"><a href="manual/customizing.html#custom-temporal-fields-and-temporal-units" data-ice="link">Custom temporal fields and temporal units</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/customizing.html"><a href="manual/customizing.html#custom-formatter-and-queries" data-ice="link">Custom formatter and queries</a></li>
+</ul>
+  </div>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div class="github-markdown">
+  <div class="manual-user-index" data-ice="manualUserIndex"><h1 id="immutable-date-and-time-library-for-javascript">Immutable date and time library for javascript</h1><p><a href="https://badge.fury.io/js/js-joda"><img src="https://badge.fury.io/js/js-joda.svg" alt="npm version"></a>
+<a href="https://travis-ci.org/js-joda/js-joda"><img src="https://travis-ci.org/js-joda/js-joda.svg?branch=master" alt="Build Status"></a>
+<a href="https://saucelabs.com/u/js-joda"><img src="https://saucelabs.com/buildstatus/js-joda" alt="Sauce Test Status"></a>
+<a href="https://coveralls.io/github/js-joda/js-joda?branch=master"><img src="https://coveralls.io/repos/js-joda/js-joda/badge.svg?branch=master&amp;service=github" alt="Coverage Status"></a>
+<a href><img src="https://img.shields.io/badge/tested_with-current_node_LTS-blue.svg?style=flat" alt="Tested node version"></a>
+<a href="https://img.shields.io/npm/dm/js-joda.svg"><img src="https://img.shields.io/npm/dm/js-joda.svg" alt="Downloads/Month"></a></p>
+<p><a href="https://saucelabs.com/u/js-joda"><img src="https://saucelabs.com/browser-matrix/js-joda.svg" alt="Sauce Test Status"></a></p>
+<ul>
+<li><p><strong>js-joda</strong> is an <strong>immutable date and time library</strong> for javascript. It provides a <strong>simple, domain-driven and clean API</strong> based on the <strong>ISO8601</strong> calendar.</p>
+</li>
+<li><p>js-joda has a lightweight footprint, only <strong>46 kB minified and compressed</strong>, no third party dependencies.</p>
+</li>
+<li><p>js-joda is <strong>fast</strong>. It is about 2 to 10 times faster than other javascript date libraries.</p>
+</li>
+<li><p>js-joda supports <strong>ECMAScript 5</strong> browsers down to ie9.</p>
+</li>
+<li><p>js-joda is a <strong>port of the threeten</strong> backport, that is the base for JSR-310 implementation of the Java SE 8 java.time package. Threeten is inspired by <strong>Joda-Time</strong>, having similar concepts and the same author.</p>
+</li>
+<li><p>js-joda is <strong>robust and stable</strong>. We ported more then 1700 test-cases with a lots of test-permutations from the threetenbp project. We run the automated karma test-suite against Firefox, Chrome, Node and phantomjs.</p>
+</li>
+</ul>
+<h2 id="why-yet-another-javascript-date-and-time-library">Why yet another javascript date and time library</h2><ul>
+<li><p>Popular javascript date libraries like moment or date-utils are wrappers around the native javascript Date object,
+providing syntactic sugar. The native Date object always consist of a date, time and a timezone part.
+In opposite to that, js-joda is a standalone date and time implementation.</p>
+</li>
+<li><p>The API has a domain-driven design with classes for the different use cases, like LocalDate, ZonedDateTime or Period.
+For examples LocalDate allows to handle dates like birthdays or holidays in a clean and error-safe way,
+especially if these dates are persisted to an external server.</p>
+</li>
+<li><p>js-joda is immutable. Immutability aligns well with pure functions and
+with the architecture of frameworks like React and Flux.</p>
+</li>
+</ul>
+<h2 id="the-threeten-domain-models">The threeten domain models</h2><h3 id="dates-and-times">Dates and Times</h3><ul>
+<li><p><strong>LocalDate</strong> represents a date without a time and time-zone in the ISO-8601 calendar system, such as 2007-12-24.</p>
+</li>
+<li><p><strong>LocalTime</strong> represents a time without time-zone in the ISO-8601 calendar system such as &apos;11:55:00&apos;.</p>
+</li>
+<li><p><strong>LocalDateTime</strong> is a description of the date (LocalDate), as used for birthdays, combined with the local time (LocalTime) as seen on a wall clock.</p>
+</li>
+<li><p><strong>ZonedDateTime</strong> is a date-time with a time-zone in the ISO-8601 calendar system, such as 2007-12-24T16:15:30+01:00 UTC+01:00.</p>
+</li>
+<li><p><strong>Instant</strong> is an instantaneous point on the time-line measured from the epoch of <em>1970-01-01T00:00:00Z</em> in epoch-seconds and nanosecond-of-second.</p>
+</li>
+</ul>
+<h3 id="duration-and-period">Duration and Period</h3><ul>
+<li><p><strong>Duration</strong> is a time-based amount of time, such as &apos;34.5 seconds&apos;.</p>
+</li>
+<li><p><strong>Period</strong> is a date-based amount of time in the ISO-8601 calendar system, such as &apos;2 years, 3 months and 4 days&apos;.</p>
+</li>
+</ul>
+<h3 id="additional-value-types">Additional value types</h3><ul>
+<li><p><strong>Year</strong> represents a year in the ISO-8601 calendar system, such as &apos;2016&apos;.</p>
+</li>
+<li><p><strong>YearMonth</strong> represents a year and a month in the ISO-8601 calendar system, such as &apos;2016-01&apos;.</p>
+</li>
+<li><p><strong>Month</strong> represents a month-of-year in the ISO-8601 calendar system, such as &apos;July&apos;.</p>
+</li>
+<li><p><strong>MonthDay</strong> represents a month-day in the ISO-8601 calendar system, such as &apos;--12-03&apos;. Could be used to represent e.g. Birthdays.</p>
+</li>
+<li><p><strong>DayOfWeek</strong> represents a day-of-week in the ISO-8601 calendar system, such as &apos;Tuesday&apos;.</p>
+</li>
+</ul>
+</div>
+
+  
+
+  <div class="manual-cards">
+    
+  <div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>Getting started</h1><h3>Node</h3><p>Install joda using npm</p><pre><code class="lang-bash"><code class="source-code prettyprint">npm install js-joda</code>
+</code></pre><p>Then require it to any module</p><pre><code class="lang-javascript"><code class="source-code prettyprint">var LocalDate = require(&quot;js-joda&quot;).LocalDate;
+
+var d = LocalDate.parse(&quot;2012-12-24&quot;)
+  .atStartOfDay()
+  .plusMonths(2); // 2013-02-24T00:00:00</code>
+</code></pre><h3>Browser</h3><p>To use js-joda from a browser, download either dist/js-joda.min.js or dist/js-joda.js (with sourcemaps for development)</p><p>Then add it as a script tag to your page</p><pre><code class="lang-html"><code class="source-code prettyprint">&lt;script src=&quot;js-joda.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    var LocalDate = JSJoda.LocalDate;
+    var d = LocalDate.parse(&apos;2012-12-24&apos;).atStartOfDay().plusMonths(2); // 2013-02-24T00:00:00
+&lt;/script&gt;</code>
+</code></pre><h3>JSFiddle</h3><p>Fiddle around with jsjoda, find a simple example setup at <a href="https://jsfiddle.net/bo7yuk34/4/">https://jsfiddle.net/bo7yuk34/4/</a></p></div>
+        <a data-ice="link" href="manual/getting-started.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>Usage</h1><p>The API is <strong>immutable</strong>. An existing instance is never changed. All manipulating methods (<code>plus</code>, <code>at</code>, etc.) return new instances.</p><p><strong>An existing instance is always valid</strong>. If you try to create an invalid value, you&apos;ll get an exception instead of a <code>null</code> or <code>undefined</code> value.</p><h3>Method naming conventions</h3><p>The API uses consistently named methods.</p><table>
+<thead>
+<tr>
+<th>method name or prefix</th>
+<th>usage</th>
+<th>examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.of</code></td>
+<td>static factory method for building by parts</td>
+<td><code>LocalDate.of(2016, 2, 23)</code> <br> <code>LocalDate.ofInstant(i)</code></td>
+</tr>
+<tr>
+<td><code>.parse</code></td>
+<td>static factory method for parsing strings</td>
+<td><code>LocalDate.parse(&apos;2016-02-23&apos;)</code> <br> <code>LocalTime.parse(&apos;12:34&apos;)</code></td>
+</tr>
+<tr>
+<td><code>.is</code></td>
+<td>checks for certain conditions</td>
+<td><code>t1.isAfter(t2)</code> <br> <code>d1.isLeapYear()</code></td>
+</tr>
+<tr>
+<td><code>.equals</code></td>
+<td>checks for equivalence between two instances</td>
+<td><code>t1.equals(t2)</code></td>
+</tr>
+<tr>
+<td><code>.with</code></td>
+<td>the immutable equivalent of a setter</td>
+<td><code>d.withDayOfMonth(1)</code> <br> <code>t.withHour(9)</code></td>
+</tr>
+<tr>
+<td><code>.plus</code></td>
+<td>adds an amount to an object</td>
+<td><code>t.plusMinutes(5)</code> <br> <code>d.plus(3, ChronoUnit.YEARS)</code></td>
+</tr>
+<tr>
+<td><code>.minus</code></td>
+<td>subtracts an amount from an object</td>
+<td><code>t.minusHours(1)</code> <br> <code>d.minus(1, ChronoUnit.DAYS)</code></td>
+</tr>
+<tr>
+<td><code>.to</code></td>
+<td>converts this object to another type</td>
+<td><code>dt.toLocalDate()</code> <br> <code>d1.until(d2).toTotalMonths()</code></td>
+</tr>
+<tr>
+<td><code>.at</code></td>
+<td>combines one object with another</td>
+<td><code>date.atTime(time)</code> <br> <code>localDate.atZone(tz)</code></td>
+</tr>
+</tbody>
+</table><p>Note that getter methods for instance properties omit the get keyword: <code>d.year()</code>, not <del><code>d.getYear()</code></del>.</p></div>
+        <a data-ice="link" href="manual/usage.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>LocalDate</h1><p>A <code>LocalDate</code> represents a date with <strong>no time</strong> and <strong>no time zone</strong> in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> calendar system, such as 2007-12-24.</p><h3>Create a <code>LocalDate</code></h3><pre><code class="lang-javascript"><code class="source-code prettyprint">// obtain the current date in the system default time zone, e.g. 2016-02-23
+LocalDate.now();
+
+// obtain the current date in the UTC time zone, e.g. 2016-02-23
+LocalDate.now(ZoneOffset.UTC);
+
+// obtain an instance of LocalDate from an ISO 8601 formatted text string
+LocalDate.parse(&quot;2016-02-23&quot;);
+
+// obtain an instance of LocalDate from a year, month, and dayOfMonth value
+LocalDate.of(2016, 2, 23); // 2016-02-23
+
+// obtain an instance of LocalDate from a year, month, and dayOfMonth value
+LocalDate.of(2016, Month.FEBRUARY, 23); // 2016-02-23
+
+// obtain an instance of LocalDate from an epochDay where day 0 is 1970-01-01
+LocalDate.ofEpochDay(-1); // 1969-12-31
+
+// obtain an instance of LocalDate from an epochDay where day 0 is 1970-01-01
+LocalDate.ofYearDay(2016, 42); // 2016-02-11</code>
+</code></pre><h3>Get values from <code>LocalDate</code></h3><pre><code class="lang-javascript"><code class="source-code prettyprint">var d = LocalDate.parse(&quot;2016-12-24&quot;);
+
+d.toString(); // &apos;2016-12-24&apos; ISO 8601 format
+
+d.dayOfMonth(); // 24
+d.month(); // Month.DECEMBER
+d.monthValue(); // 12
+d.year(); // 2016
+
+d.dayOfWeek(); // DayOfWeek.SATURDAY
+d.dayOfWeek().value(); // 6
+d.dayOfYear(); // 359
+
+d.isLeapYear(); // true - 2016 is a leap year
+d.plusYears(1).isLeapYear(); // false
+
+// get the epoch day where 0 is 1970-01-01
+d.toEpochDay(); // 17159
+
+// get range of month
+d.lengthOfMonth(); // 31
+d.range(ChronoField.DAY_OF_MONTH); // ValueRange(1 - 31)
+
+// get range of year
+d.lengthOfYear(); // 366
+d.range(ChronoField.DAY_OF_YEAR); // ValueRange(1 - 366)
+
+// get other date-based field like the aligned week of year
+d.get(ChronoField.ALIGNED_WEEK_OF_YEAR); // 52
+
+// or the day of week aligned to the first day of month
+d.get(ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH); // 3</code>
+</code></pre><h3>Get week of week-based year, quarter of year, day of quarter</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">// get week of week-based year as defined by ISO 8601, with a Monday-based week
+d.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR); // 51
+
+d.isoWeekOfWeekyear(); // 51, equivalent to the above
+d.isoWeekyear(); // 2016
+
+LocalDate.of(2017, 1, 1).isoWeekOfWeekyear(); // 52
+LocalDate.of(2017, 1, 1).isoWeekyear(); // 2016
+
+// set the date to week 52 of week-based year with the same day of week
+d.with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, 52); // 2016-12-31
+
+// get the quarter of the year
+d.get(IsoFields.QUARTER_OF_YEAR); // 4
+d.get(IsoFields.DAY_OF_QUARTER); // 85
+
+// set the date to the 15th day of the third quarter
+d.with(IsoFields.QUARTER_OF_YEAR, 3).with(IsoFields.DAY_OF_QUARTER, 15); // 2016-07-15</code>
+</code></pre><h3>Adding to and subtracting from a <code>LocalDate</code></h3><p>Note that each of these methods returns a new <code>LocalDate</code> instance.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">var d = LocalDate.parse(&quot;2016-02-23&quot;);
+
+// add/subtract 366 days
+d.plusDays(366); // &apos;2017-02-23&apos;
+d.minusDays(366); // &apos;2015-02-22&apos;
+
+// add/subtract 12 months
+d.plusMonths(12); // &apos;2017-02-23&apos;
+d.minusMonths(12); // &apos;2015-02-23&apos;
+
+// add/subtract 4 weeks
+d.plusWeeks(4); // &apos;2016-03-22&apos;
+d.minusWeeks(4); // &apos;2016-01-26&apos;
+
+// add/subtract 1 year
+d.plusYears(1); // &apos;2017-02-23&apos;
+d.minusYears(1); // &apos;2015-02-23&apos;
+
+// add/subtract 30 years
+d.plus(3, ChronoUnit.DECADES); // &apos;2046-02-23&apos;
+d.minus(3, ChronoUnit.DECADES); // &apos;1986-02-23&apos;
+
+// add/subtract a Period of 3 Months and 3 Days
+d.plus(Period.ofMonths(3).plusDays(3)); // &apos;2016-05-26&apos;
+d.minus(Period.ofMonths(3).plusDays(3)); // &apos;2015-11-20&apos;</code>
+</code></pre><h3>Alter specific fields of a LocalDate</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">var d = LocalDate.parse(&quot;2016-12-24&quot;);
+
+// set the day of month to 1
+d.withDayOfMonth(1); // &apos;2016-12-01&apos;
+
+// set month and the day of month to 1
+d.withMonth(1).withDayOfMonth(1); // &apos;2016-01-01&apos;
+
+// set month to November and the day of month to 1
+d.withMonth(Month.NOVEMBER).withDayOfMonth(1); // &apos;2016-11-01&apos;
+
+// set the year to beginning of era
+d.withYear(1); // &apos;0001-12-24&apos;
+
+// get the last day of the current month
+LocalDate.now()
+  .plusMonths(1)
+  .withDayOfMonth(1)
+  .minusDays(1);
+
+// set the day of year
+d.withDayOfYear(42); // 2016-02-11
+
+// set the week of week-based year to 52
+d.with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, 52); // 2016-12-31</code>
+</code></pre><h3>Compare one <code>LocalDate</code> with another</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">var d1 = LocalDate.parse(&quot;2016-12-24&quot;);
+var d2 = d1.plusDays(2);
+
+d1.isAfter(d2); // false
+d1.isBefore(d2); // true
+
+d1.equals(d2); // false
+d1.equals(d1.plusDays(0)); // true
+d1.equals(d1.plusDays(1)); // false
+
+d1.compareTo(d1) === 0; // true
+d1.compareTo(d2) &lt; 0; // true
+d2.compareTo(d1) &gt; 0; // true
+
+d1.hashCode(); // 4129560
+d2.hashCode(); // 4129562
+d1.hashCode() !== d2.hashCode(); // true</code>
+</code></pre><h3>Distance on the timeline</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">var d1 = LocalDate.parse(&quot;2016-12-24&quot;);
+var d2 = d1.plusMonths(13).plusDays(42);
+
+// obtain the Period between the two dates
+d1.until(d2).toString(); // &apos;P1Y2M11D&apos; (1 year, 2 months, 11 days in ISO-8601 period format)
+d1.until(d2).toTotalMonths(); // 14
+
+// obtain the distance between the two dates with a specific precision
+d1.until(d2, ChronoUnit.MONTHS); // 14, returns the distance in total months
+d1.until(d2, ChronoUnit.DAYS); // 438, returns the distance in total days</code>
+</code></pre><h3>Converting from and to other temporals</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">// obtain a LocalDate from a LocalDateTime instance
+var dt = LocalDateTime.now();
+LocalDate.from(dt); // LocalDate from LocalDateTime
+dt.toLocalDate(); // LocalDateTime to LocalDate (equivalent to the above)
+
+var d1 = LocalDate.parse(&quot;2016-02-25&quot;);
+
+// obtain a LocalDateTime at a certain LocalTime
+d1.atStartOfDay(); // &apos;2016-02-25T00:00&apos;
+d1.atTime(LocalTime.of(11, 55)); // &apos;2016-02-25T11:55&apos;
+d1.atTime(LocalTime.NOON); // &apos;2016-02-25T12:00&apos;
+
+// obtain a LocalDate from a JavaScript Date
+
+// the manual way
+var d = LocalDate.ofInstant(Instant.ofEpochMilli(new Date().getTime()));
+// the recommended way with the JavaScript temporal
+d = LocalDate.from(nativeJs(new Date()));
+// converting from a moment works the same way
+d = LocalDate.from(nativeJs(moment()));</code>
+</code></pre><h3>Adjust a date to another date</h3><p><code>TemporalAdjusters</code> provide compact business logic for date-based temporals such as <code>LocalDate</code>, <code>LocalDateTime</code> or <code>ZonedDateTime</code>.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">var d = LocalDate.parse(&quot;2016-12-24&quot;);
+
+// get first/ last day of month
+d.with(TemporalAdjusters.firstDayOfMonth()); // 2016-12-01
+d.with(TemporalAdjusters.lastDayOfMonth()); // 2016-12-31
+
+// get the next specified weekday
+d.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY)); // 2016-12-25
+d.with(TemporalAdjusters.nextOrSame(DayOfWeek.SATURDAY)); // 2016-12-24
+d.with(TemporalAdjusters.next(DayOfWeek.SATURDAY)); // 2016-12-31
+
+// get the first/last weekday of month
+d.with(TemporalAdjusters.lastInMonth(DayOfWeek.SATURDAY)); // 2016-12-31
+d.with(TemporalAdjusters.firstInMonth(DayOfWeek.SATURDAY)); // 2016-12-03</code>
+</code></pre><p>Find more adjusters in the TemporalAdjusters API documentation.</p></div>
+        <a data-ice="link" href="manual/LocalDate.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>LocalTime</h1><p>A <code>LocalTime</code> represents a time with <strong>no date</strong> and <strong>no time zone</strong> in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> calendar system, such as &apos;10:15:30&apos;</p><h3>Create a <code>LocalTime</code> instance</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">// obtain the current time in the system default time zone, e.g. &apos;10:29:05.743&apos;
+LocalTime.now();
+
+// obtain the current time in the UTC time zone, e.g. &apos;09:29:05.743&apos;
+LocalTime.now(ZoneOffset.UTC);
+
+// obtain an instance of LocalTime from an ISO 8601 formatted text string
+LocalTime.parse(&quot;09:42&quot;); // &apos;09:42&apos;
+LocalTime.parse(&quot;09:42:42&quot;); // &apos;09:42:42&apos;
+LocalTime.parse(&quot;09:42:42.123&quot;); // &apos;09:42:42.123&apos;
+LocalTime.parse(&quot;09:42:42.123456789&quot;); // &apos;09:42:42.123456789&apos;
+
+// obtain an instance of LocalTime from hour, minute, second, and nanosecond values
+LocalTime.of(23, 55); // &apos;23:55&apos;
+LocalTime.of(23, 55, 42); // &apos;23:55:42&apos;
+LocalTime.of(23, 55, 42, 123000000); // &apos;23:55:42.123&apos;
+
+// obtain an instance of LocalTime from second of day
+LocalTime.ofSecondOfDay(3666); // &apos;01:01:06&apos;</code>
+</code></pre><h3>Get values from <code>LocalTime</code></h3><pre><code class="lang-javascript"><code class="source-code prettyprint">var t = LocalTime.parse(&quot;23:55:42.123&quot;);
+
+t.toString(); // &apos;23:55:42.123&apos; ISO 8601 format
+
+t.hour(); // 23
+t.minute(); // 55
+t.second(); // 42
+t.nano(); // 123000000
+
+// get other time-based fields
+t.get(ChronoField.SECOND_OF_DAY); // 86142
+t.get(ChronoField.MILLI_OF_SECOND); // 123
+t.get(ChronoField.HOUR_OF_AMPM); // 11
+// any other time-based ChronoField is allowed as param for get</code>
+</code></pre><h3>Adding to/ subtracting from a <code>LocalTime</code> instance</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">var t = LocalTime.parse(&quot;11:55:42&quot;);
+
+// add/subtract 12 hours
+t.plusHours(12); // &apos;23:55:42&apos;
+t.minusHours(12); // &apos;23:55:42&apos;
+
+// add/subtract 30 minutes
+t.plusMinutes(30); // &apos;12:25:42&apos;
+t.minusMinutes(30); // &apos;11:25:42&apos;
+
+// add/subtract 30 seconds
+t.plusSeconds(30); // &apos;11:56:12&apos;
+t.minusSeconds(30); // &apos;11:55:12&apos;
+
+// add/subtract 1 million nanoseconds (1 millisecond)
+t.plusNanos(1000000); // &apos;11:56:42.001&apos;
+t.minusNanos(1000000); // &apos;11:55:41.999&apos;
+
+// add/subtract a time-based unit
+t.plus(1, ChronoUnit.MILLIS); // &apos;11:55:42.001&apos;
+t.plus(1, ChronoUnit.HALF_DAYS); // &apos;23:55:42&apos;
+
+// add/subtract a duration of 15 minutes
+t.plus(Duration.ofMinutes(15)); // &apos;12:10:42&apos;
+t.minus(Duration.ofMinutes(15)); // &apos;11:40:42&apos;</code>
+</code></pre><h3>Alter specific fields of a <code>LocalTime</code> instance</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">var t = LocalTime.parse(&quot;11:55:42&quot;);
+
+// set the hour of day to 1
+t.withHour(1); // &apos;01:55:42&apos;
+
+// set the minute of hour to 1
+t.withMinute(1); // &apos;11:01:42&apos;
+
+// set the second of minute to 1
+t.withSecond(1); // &apos;11:55:01&apos;
+
+// set the MILLI_OF_SECOND to 51
+t.with(ChronoField.MILLI_OF_SECOND, 51); // &apos;11:55:42.051&apos;
+
+// set by a custom  TemporalAdjusters
+// sample of a custom adjuster that adjust to the next even second
+nextEvenSecond = {
+  adjustInto: function(t) {
+    return t.second() % 2 === 0 ? t.plusSeconds(2) : t.plusSeconds(1);
+  }
+};
+t.with(nextEvenSecond); // &apos;11:55:44&apos;
+t.plusSeconds(1).with(nextEvenSecond); // &apos;11:55:44&apos;</code>
+</code></pre><h3>Truncate a <code>LocalTime</code> instance</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">var t = LocalTime.parse(&quot;23:55:42.123&quot;);
+
+t.truncatedTo(ChronoUnit.SECONDS); // &apos;23:55:42&apos;
+t.truncatedTo(ChronoUnit.MINUTES); // &apos;23:55:00&apos;
+t.truncatedTo(ChronoUnit.HOURS); // &apos;23:00&apos;
+t.truncatedTo(ChronoUnit.HALF_DAYS); // &apos;12:00&apos;
+t.truncatedTo(ChronoUnit.DAYS); // &apos;00:00&apos;</code>
+</code></pre><h3>Compare <code>LocalTime</code> instances</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">var t1 = LocalTime.parse(&quot;11:55:42&quot;);
+var t2 = t1.plusHours(2);
+
+t1.isAfter(t2); // false
+t1.isBefore(t2); // true
+
+t1.equals(t1.plusHours(0)); // true
+t1.equals(t1.plusHours(1)); // false
+
+t1.compareTo(t1) === 0; // true
+t1.compareTo(t2) &lt; 0; // true
+t2.compareTo(t1) &gt; 0; // true
+
+t1.hashCode(); // 916974646
+t2.hashCode(); // -1743180648
+t1.hashCode() !== t2.hashCode(); // true</code>
+</code></pre><h3>Distance between times</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">var t1 = LocalTime.parse(&quot;11:00&quot;);
+var t2 = t1
+  .plusHours(2)
+  .plusMinutes(42)
+  .plusSeconds(12);
+
+// obtain the duration between the two dates
+t1.until(t2, ChronoUnit.HOURS); // 2
+t1.until(t2, ChronoUnit.MINUTES); // 162
+t1.until(t2, ChronoUnit.SECONDS); // 9732</code>
+</code></pre><h3>Convert a <code>LocalTime</code> from a <code>moment</code> or JavaScript <code>Date</code></h3><pre><code class="lang-javascript"><code class="source-code prettyprint">// obtain a LocalTime instance from a JavaScript Date
+
+// the manual way
+var t = LocalTime.ofInstant(Instant.ofEpochMilli(new Date().getTime()));
+// the recommended way with the JavaScript temporal
+t = LocalTime.from(nativeJs(new Date()));
+// converting from a `moment` instance works the same way
+d = LocalTime.from(nativeJs(moment()));</code>
+</code></pre></div>
+        <a data-ice="link" href="manual/LocalTime.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>LocalDateTime</h1><p>A LocalDateTime represents a date-time with <strong>no time zone</strong> in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> calendar system, such as &apos;2007-12-03T10:15:30&apos;.</p><h3>Create a <code>LocalDateTime</code> instance</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">// obtain the current date and time in the system default time zone, e.g. &apos;2016-02-26T10:29:05.743&apos;
+LocalDateTime.now();
+
+// obtain the current date and time in the UTC time zone
+LocalDateTime.now(ZoneOffset.UTC);
+
+// obtain an instance of LocalDateTime from an ISO 8601 formatted text string
+LocalDateTime.parse(&quot;2016-02-26T09:42&quot;); // &apos;2016-02-26T09:42&apos;
+LocalDateTime.parse(&quot;2016-02-26T09:42:42.123&quot;); // &apos;2016-02-26T09:42:42.123&apos;
+
+// obtain an instance of LocalDateTime from year, month, dayOfMonth, hour, minute, second and nanosecond values
+LocalDateTime.of(2016, 2, 29); // &apos;2016-02-29T00:00&apos;
+LocalDateTime.of(2016, 2, 29, 12, 55, 42); // &apos;2016-02-29T12:55:42&apos;
+LocalDateTime.of(2016, 2, 29, 12, 55, 42, 9); // &apos;2016-02-29T12:55:42.000000009&apos;
+
+// obtain an instance of LocalDateTime from epoch seconds and a ZoneOffset
+LocalDateTime.ofEpochSecond(0, ZoneOffset.UTC); // &apos;1970-01-01T00:00&apos;
+LocalDateTime.ofInstant(Instant.now()); // current local date-time
+LocalDateTime.ofInstant(Instant.now(), ZoneOffset.UTC); // current local UTC date-time</code>
+</code></pre><h3>Get values from <code>LocalDateTime</code></h3><pre><code class="lang-javascript"><code class="source-code prettyprint">var dt = LocalDateTime.parse(&quot;2016-02-26T23:55:42.123&quot;);
+
+dt.toString(); // &apos;2016-02-26T23:55:42.123&apos; ISO 8601 format
+
+dt.year(); // 2016
+dt.month(); // Month.FEBRUARY
+dt.monthValue(); // 2
+dt.dayOfMonth(); // 26
+dt.hour(); // 23
+dt.minute(); // 55
+dt.second(); // 42
+dt.nano(); // 123000000
+
+dt.dayOfWeek(); // DayOfWeek.FRIDAY
+dt.dayOfWeek().value(); // 5
+dt.dayOfYear(); // 57
+
+dt.toLocalDate().isLeapYear(); // true 2016 is a leap year
+
+// obtain the date and time components of the LocalDateTime
+dt.toLocalDate();
+dt.toLocalTime();
+
+// get range of month
+dt.toLocalDate().lengthOfMonth(); // 29
+dt.range(ChronoField.DAY_OF_MONTH); // ValueRange(1 - 29)
+
+// get range of year
+dt.toLocalDate().lengthOfYear(); // 366
+dt.range(ChronoField.DAY_OF_YEAR); // ValueRange(1 - 366)
+
+// get other date-based fields like the aligned week of year
+dt.get(ChronoField.ALIGNED_WEEK_OF_YEAR); // 9
+
+// get week of week-based year
+dt.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR); // 8
+dt.toLocalDate().isoWeekOfWeekyear();
+
+// get other time-based fields
+dt.get(ChronoField.SECOND_OF_DAY); // 86142
+dt.get(ChronoField.MILLI_OF_SECOND); // 123
+dt.get(ChronoField.HOUR_OF_AMPM); // 11
+// any other date or time-based ChronoField can be passed to `get`</code>
+</code></pre><h3>Adding to and subtracting from a <code>LocalDateTime</code> instance</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">var dt = LocalDateTime.parse(&quot;2016-02-26T23:55:42.123&quot;);
+
+// add/subtract 366 days
+dt.plusDays(366); // &apos;2017-02-26T23:55:42.123&apos;
+dt.minusDays(366); // &apos;2015-02-25T23:55:42.123&apos;
+
+// add/subtract 12 months
+dt.plusMonths(12); // &apos;2017-02-26&apos;
+dt.minusMonths(12); // &apos;2015-02-26&apos;
+
+// add/subtract 4 weeks
+dt.plusWeeks(4); // &apos;2016-03-25T23:55:42.123&apos;
+dt.minusWeeks(4); // &apos;2016-01-29T23:55:42.123&apos;
+
+// add/subtract 1 year to the parsed LocalDate and returns a new instance
+dt.plusYears(1); // &apos;2017-02-26T23:55:42.123&apos;
+dt.minusYears(1); // &apos;2015-02-26T23:55:42.123&apos;
+
+// add/subtract 30 years
+dt.plus(3, ChronoUnit.DECADES); // &apos;2046-02-26T23:55:42.123&apos;
+dt.minus(3, ChronoUnit.DECADES); // &apos;1986-02-26T23:55:42.123&apos;
+
+// add subtract a Period of 3 Months and 3 Days
+dt.plus(Period.ofMonths(3).plusDays(3)); // &apos;2016-05-29T23:55:42.123&apos;
+dt.minus(Period.ofMonths(3).plusDays(3)); // &apos;2015-11-23T23:55:42.123&apos;
+
+// add/subtract 12 hours
+dt.plusHours(12); // &apos;2016-02-27T11:55:42.123&apos;
+dt.minusHours(12); // &apos;2016-02-26T11:55:42.123&apos;
+
+// add/subtract 30 minutes
+dt.plusMinutes(30); // &apos;2016-02-27T00:25:42.123&apos;
+dt.minusMinutes(30); // &apos;2016-02-26T23:25:42.123&apos;
+
+// add/subtract 30 seconds
+dt.plusSeconds(30); // &apos;2016-02-26T23:56:12.123&apos;
+dt.minusSeconds(30); // &apos;2016-02-26T23:55:12.123&apos;
+
+// add/subtract 1 million nanoseconds (1 millisecond)
+dt.plusNanos(1000000); // &apos;2016-02-26T23:55:42.124&apos;
+dt.minusNanos(1000000); // &apos;2016-02-26T23:55:42.122&apos;
+
+// add/subtract a time-based unit
+dt.plus(1, ChronoUnit.MILLIS); // &apos;2016-02-26T23:55:42.124&apos;
+dt.plus(1, ChronoUnit.HALF_DAYS); // &apos;2016-02-26T11:55:42.123&apos;
+
+// add/subtract a duration of 30 hours and 45 minutes
+dt.plus(Duration.ofHours(30).plusMinutes(45)); // &apos;2016-02-28T06:40:42.123&apos;
+dt.minus(Duration.ofHours(30).plusMinutes(45)); // &apos;2016-02-25T17:10:42.123&apos;</code>
+</code></pre><h3>Alter specific fields of a <code>LocalDateTime</code> instance</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">var dt = LocalDateTime.parse(&quot;2016-02-26T23:55:42.123&quot;);
+
+// set the hour of day to 1
+dt.withHour(1); // &apos;2016-02-26T01:55:42.123&apos;
+
+// set the minute of hour to 1
+dt.withMinute(1); // &apos;2016-02-26T23:01:42.123&apos;
+
+// set the second of minute to 1
+dt.withSecond(1); // &apos;2016-02-26T23:55:01.123&apos;
+
+// set the nanosecond of second to 1
+dt.withNano(0); // &apos;2016-02-26T23:55:42&apos;
+
+// set the millisecond of second to 51
+dt.with(ChronoField.MILLI_OF_SECOND, 51); // &apos;2016-02-26T23:55:42.051&apos;
+
+// set by a custom TemporalAdjuster that adjusts to the next even second
+var nextEvenSecond = {
+  adjustInto: function(t) {
+    return t.second() % 2 === 0 ? t.plusSeconds(2) : t.plusSeconds(1);
+  }
+};
+dt.with(nextEvenSecond); // &apos;2016-02-26T23:55:44.123&apos;
+dt.plusSeconds(1).with(nextEvenSecond); // &apos;2016-02-26T23:55:44.123&apos;</code>
+</code></pre><h3>Truncate a <code>LocalDateTime</code> instance</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">var dt = LocalDateTime.parse(&quot;2016-02-26T23:55:42.123&quot;);
+
+dt.truncatedTo(ChronoUnit.SECONDS); // &apos;2016-02-26T23:55:42&apos;
+dt.truncatedTo(ChronoUnit.MINUTES); // &apos;2016-02-26T23:55:00&apos;
+dt.truncatedTo(ChronoUnit.HOURS); // &apos;2016-02-26T23:00&apos;
+dt.truncatedTo(ChronoUnit.HALF_DAYS); // &apos;2016-02-26T12:00&apos;
+dt.truncatedTo(ChronoUnit.DAYS); // &apos;2016-02-26T00:00&apos;</code>
+</code></pre><h3>Compare <code>LocalDateTime</code> instances</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">var dt1 = LocalDateTime.parse(&quot;2016-02-26T23:55:42.123&quot;);
+var dt2 = dt1.plusHours(2);
+
+dt1.isAfter(dt2); // false
+dt1.isBefore(dt2); // true
+
+dt1.equals(dt1.plusHours(0)); // true
+dt1.equals(dt1.plusHours(1)); // false
+
+dt1.compareTo(dt1) === 0; // true
+dt1.compareTo(dt2) &lt; 0; // true
+dt2.compareTo(dt1) &gt; 0; // true
+
+// Warn! hashCode is equal if in instances are equal, but might be equal for unequal instances as well
+dt1.hashCode(); // -2036645668
+dt2.hashCode(); // 1459191821
+dt1.hashCode() !== dt2.hashCode(); // true</code>
+</code></pre><h3>Distance between two <code>LocalDateTime</code> instances</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">var dt1 = LocalDateTime.parse(&quot;2016-02-26T23:55:42.123&quot;);
+var dt2 = dt1
+  .plusYears(6)
+  .plusMonths(12)
+  .plusHours(2)
+  .plusMinutes(42)
+  .plusSeconds(12);
+
+// obtain the duration between the two dates
+dt1.until(dt2, ChronoUnit.YEARS); // 7
+dt1.until(dt2, ChronoUnit.MONTHS); // 84
+dt1.until(dt2, ChronoUnit.WEEKS); // 356
+dt1.until(dt2, ChronoUnit.DAYS); // 2557
+dt1.until(dt2, ChronoUnit.HOURS); // 61370
+dt1.until(dt2, ChronoUnit.MINUTES); // 3682242
+dt1.until(dt2, ChronoUnit.SECONDS); // 220934532</code>
+</code></pre><h3>Convert from a <code>moment</code> or JavaScript <code>Date</code></h3><pre><code class="lang-javascript"><code class="source-code prettyprint">// obtain a LocalDateTime instance from a JavaScript Date
+
+// the manual way
+var t = LocalDateTime.ofInstant(Instant.ofEpochMilli(new Date().getTime()));
+// the recommended way with the JavaScript temporal
+t = LocalDateTime.from(nativeJs(new Date()));
+// converting from a moment works the same way
+d = LocalDateTime.from(nativeJs(moment()));</code>
+</code></pre></div>
+        <a data-ice="link" href="manual/LocalDateTime.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>ZonedDateTime</h1><p>A <code>ZonedDateTime</code> represents a date-time with a <a href="https://en.wikipedia.org/wiki/UTC_offset">time offset</a> and/or a <a href="https://en.wikipedia.org/wiki/Time_zone">time zone</a> in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> calendar system.</p><p>On its own, <code>ZonedDateTime</code> only supports specifying <strong>time offsets</strong> such as <code>UTC</code> or <code>UTC+02:00</code>, plus the <code>SYSTEM</code> time zone ID.</p><h3>The <code>SYSTEM</code> zone ID</h3><p>The <code>SYSTEM</code> zone ID is a non-standard ID that is specific to <code>js-joda</code>. It represents the default time zone of the current JavaScript runtime. The JavaScript spec does not provide an API this; it only provides the system default time offset for a point in the timeline (<code>Date.prototype.getTimezoneOffset()</code>).</p><p>You should not exchange <code>ZonedDateTime</code> instances using the <code>SYSTEM</code> zone ID between JavaScript environments (e.g. between server and client, or between two servers). The time offset on another machine won&apos;t necessarily be the same as yours. Before sending a <code>ZonedDateTime</code> to someone else, convert it to a fixed offset:</p><pre><code class="lang-javascript"><code class="source-code prettyprint">// current time with default `SYSTEM`
+ZonedDateTime.now().toString(); // e.g. 2016-03-18T12:38:23.561+01:00[SYSTEM]
+
+// converted to a fixed time offset
+ZonedDateTime.now()
+  .withFixedOffsetZone()
+  .toString(); // e.g. 2016-03-18T12:38:23.561+01:00</code>
+</code></pre><h3>Working with time zones</h3><p>A <strong>time zone</strong> and a <strong>time offset</strong> are <a href="https://en.wikipedia.org/wiki/UTC_offset#Time_zones_and_time_offsets">not the same thing</a>. Some timezones change from standard time to <a href="https://en.wikipedia.org/wiki/Daylight_saving_time">daylight savings time</a> and back every year:</p><ul>
+<li>In the <code>Europe/Berlin</code> <em>time zone</em>, the <em>time offset</em> is <code>UTC+2</code> during the summer, and <code>UTC+1</code> during the rest of the year.</li>
+<li>In the <code>Africa/Lagos</code> <em>time zone</em>, on the other hand, the <em>time offset</em> is <code>UTC+1</code> all year round.</li>
+</ul><p>Calculations that might span time zones or daylight savings transitions need to reference the time zone, not just the offset.</p><p>The <a href="https://github.com/js-joda/js-joda-timezone">js-joda-timezone</a> package provides bindings to the the <a href="https://www.iana.org/time-zones">IANA tz database</a>, making <code>joda-js</code>&apos;s calculations time zone aware. The <code>tz</code> database uses zone names like <code>Africa/Bujumbura</code>, <code>America/New_York</code>, and <code>Europe/Lisbon</code> (see the <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">full list</a>).</p><p>To specify time zones using these names, you just need to <code>require</code> <a href="https://github.com/js-joda/js-joda-timezone">js-joda-timezone</a>.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">var jsJoda = require(&quot;js-joda&quot;);
+require(&quot;js-joda-timezone&quot;);
+
+var zdt = ZonedDateTime.now(ZoneId.of(&quot;Europe/Paris&quot;));</code>
+</code></pre><h3>Create a ZonedDateTime</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">// get now with the default system time zone
+ZonedDateTime.now().toString(); // e.g. 2016-03-18T12:38:23.561+01:00[SYSTEM]
+
+// get now with the UTC time zone
+ZonedDateTime.now(ZoneOffset.UTC).toString(); // e.g. 2016-03-18T11:38:23.561Z
+
+// get now with a fixed offset time zone
+ZonedDateTime.now(ZoneId.of(&quot;UTC-05:00&quot;)).toString(); // e.g. 2016-03-18T06:38:23.561-05:00[UTC-05:00]
+
+// get now with a ZoneRegion (requires `js-joda-timezone`)
+ZonedDateTime.now(ZoneId.of(&quot;Europe/Paris&quot;)).toString(); // e.g. 2017-02-04T17:01:15.846+01:00[Europe/Paris]
+
+// parse a date time with a time zone ISO String
+ZonedDateTime.parse(&quot;2016-03-18T12:38:23.561+01:00[SYSTEM]&quot;);
+ZonedDateTime.parse(&quot;2016-03-18T12:38:23.561+01:00&quot;);
+ZonedDateTime.parse(&quot;2016-03-18T11:38:23.561Z&quot;);
+ZonedDateTime.parse(&quot;2016-03-18T06:38:23.561-05:00[UTC-05:00]&quot;);
+ZonedDateTime.parse(&quot;2017-02-04T17:01:15.846+01:00[Europe/Paris]&quot;);
+
+// create from a LocalDate(Time) (requires `js-joda-timezone`)
+LocalDate.parse(&quot;2012-06-06&quot;)
+  .atStartOfDay()
+  .atZone(ZoneId.of(&quot;Europe/Paris&quot;)); // 2012-06-06T00:00+02:00[Europe/Paris]
+ZonedDateTime.of(
+  LocalDateTime.parse(&quot;2012-06-06T00:00&quot;),
+  ZoneId.of(&quot;Europe/Paris&quot;)
+); // 2012-06-06T00:00+02:00[Europe/Paris]
+ZonedDateTime.of(
+  LocalDate.parse(&quot;2012-06-06&quot;),
+  LocalTime.MIDNIGHT,
+  ZoneId.of(&quot;Europe/Paris&quot;)
+); // 2012-06-06T00:00+02:00[Europe/Paris]
+
+// create from an Instant
+ZonedDateTime.ofInstant(Instant.now(), ZoneId.SYSTEM); // current system time</code>
+</code></pre><h3>Switch time zones</h3><blockquote>
+<p>These examples require <code>js-joda-timezone</code>.</p>
+</blockquote><pre><code class="lang-javascript"><code class="source-code prettyprint">var d = LocalDate.of(2016, 3, 18);
+var zdt = d.atTime(LocalTime.NOON).atZone(ZoneId.of(&quot;America/New_York&quot;)); //2016-03-18T12:00-04:00[America/New_York]
+
+// switch time zone retaining the local date-time if possible
+zdt.withZoneSameLocal(ZoneId.of(&quot;Europe/Berlin&quot;)); // 2016-03-18T12:00+01:00[Europe/Berlin]
+
+// switch time zone and retain the instant
+zdt.withZoneSameInstant(ZoneId.of(&quot;Europe/Berlin&quot;)); // 2016-03-18T17:00+01:00[Europe/Berlin]</code>
+</code></pre><h3>Get and manipulate values from a <code>ZonedDateTime</code></h3><p><code>ZonedDateTime</code> implements the same methods as <code>LocalDateTime</code> for getting or setting values. See <a href="#get-values-from-localdatetime">the examples above</a> for <code>LocalDateTime</code>.</p><h3>Calculate values across daylight savings transitions</h3><p>When adding to or subtracting from a <code>ZonedDateTime</code> instance, the calculation is different depending on whether date or time units are passed.</p><ul>
+<li>Addition/subtraction of <strong>date units</strong> are made on the <strong>local</strong> timeline.</li>
+<li>Addition/subtraction of <strong>time units</strong> are made on the <strong>instant</strong> timeline.</li>
+</ul><p>This example shows the difference for a daylight saving transition.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">// assume the system default time zone is CET; we define a time as 2016-03-18 at 17:00 local time
+var zdt = ZonedDateTime.parse(&quot;2016-03-18T17:00+01:00[Europe/Berlin]&quot;);
+
+// adding a date unit of 2 weeks, crossing a daylight saving transition
+zdt.plusWeeks(2); // 2016-04-01T17:00+02:00[Europe/Berlin] (still 17:00)
+
+// adding a time unit of 2 weeks (2 * 7 * 24)
+zdt.plusHours(2 * 7 * 24); // 2016-04-01T18:00+02:00[Europe/Berlin] (now 18:00)</code>
+</code></pre></div>
+        <a data-ice="link" href="manual/ZonedDateTime.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>Period</h1><p><code>Period</code> is a <strong>date-based</strong> amount of time in the ISO-8601 calendar system, such as &apos;2 years, 3 months and 4 days&apos;.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">// parse and format ISO 8601 period strings
+Period.parse(&quot;P1Y10M&quot;).toString(); // &apos;P1Y10M&apos;
+
+// obtain a Period of 10 years, 5 month and 30 days
+Period.of(10, 5, 30).toString(); // &apos;P10Y5M30D&apos;
+
+// 10 years
+Period.ofYears(10).toString(); // &apos;P10Y&apos;
+
+// add 45 days to a Period
+Period.ofYears(10)
+  .plusDays(45)
+  .toString(); // &apos;P10Y45D&apos;
+
+// normalize a Period of years and month
+Period.of(1, 37, 0)
+  .normalized()
+  .toString(); // &apos;P4Y1M&apos;
+
+// add/subtract from a Period
+Period.ofYears(10)
+  .plusMonths(10)
+  .minusDays(42)
+  .toString(); // &apos;P10Y10M-42D&apos;
+
+// add a Period to LocalDate
+var p = Period.ofMonths(1);
+LocalDate.parse(&quot;2012-12-12&quot;).plus(p); // &apos;2013-01-12&apos;;
+LocalDate.parse(&quot;2012-01-31&quot;).plus(p); // &apos;2012-02-29&apos;;
+LocalDateTime.parse(&quot;2012-05-31T12:00&quot;).plus(p); // &apos;2012-06-30T12:00&apos;;
+
+// calculate the Period between two Dates
+Period.between(LocalDate.parse(&quot;2012-06-30&quot;), LocalDate.parse(&quot;2012-08-31&quot;)); // &apos;P2M1D&apos;</code>
+</code></pre></div>
+        <a data-ice="link" href="manual/Period.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>Duration</h1><p><code>Duration</code> is a <strong>time-based</strong> amount of time, such as &apos;34.5 seconds&apos;.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">// obtain a Duration of 10 hours
+Duration.ofHours(10).toString(); // &apos;PT10H&apos;
+
+// obtain a Duration of 10 days (10 x 24 hours)
+Duration.ofDays(10).toString(); // &apos;PT240H&apos;
+
+// add/subtract a duration from a LocalDateTime
+var dt = LocalDateTime.parse(&quot;2012-12-24T12:00&quot;);
+
+dt.plus(Duration.ofHours(10).plusMinutes(30)).toString(); // &apos;2012-12-24T22:30&apos;
+dt.minus(Duration.ofHours(12).multipliedBy(10)).toString(); // &apos;2012-12-19T12:00&apos;
+
+// calculate the durations between to time-based temporals
+var dt1 = LocalDateTime.parse(&quot;2012-12-24T12:00&quot;);
+
+Duration.between(dt1, dt1.plusHours(10)).toString(); // &apos;PT10H&apos;</code>
+</code></pre></div>
+        <a data-ice="link" href="manual/Duration.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>Formatting</h1><p>To format a date and/or time, create a <a href="./manual/../../class/src/format/DateTimeFormatter.js~DateTimeFormatter.html"><code>DateTimeFormatter</code></a> and pass it to the <code>.format</code> method of a <code>LocalDate</code>, <code>LocalTime</code>, <code>LocalDateTime</code>, or <code>ZonedDateTime</code> instance.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">const d = LocalDateTime.parse(&apos;2018-04-28T12:34&apos;)
+
+d.format(DateTimeFormatter.ofPattern(&apos;M/d/yyyy&apos;)) // 4/28/2018
+d.format(DateTimeFormatter.ofPattern(&apos;HH:mm&apos;)) // 12:34</code>
+</code></pre><h2>Formatting with locales</h2><p>Non-numeric date and time formats need to know what language to use, for things like names of months and days of the week. For example, the format <code>eeee (d MMMM)</code> might return <code>Saturday (28 April)</code> in English, and <code>samedi (28 avril)</code> in French. If you try to use a locale-dependent format pattern without specifying the locale, you&apos;ll get this error message: </p><pre><code><code class="source-code prettyprint">ERROR: Pattern using (localized) text not implemented, use js-joda-locale plugin!</code>
+</code></pre><p>To specify a locale, you&apos;ll need to import the <a href="/js-joda/js-joda-timezone"><code>js-joda-timezone</code></a> and <a href="/js-joda/js-joda-locale"><code>js-joda-locale</code></a> plugins. The simplest way to use <code>js-joda-locale</code> is to install one of the locale-specific builds from npm:</p><ul>
+<li><a href="https://www.npmjs.com/package/@js-joda/locale_de">@js-joda/locale_de</a></li>
+<li><a href="https://www.npmjs.com/package/@js-joda/locale_de-de">@js-joda/locale_de-de</a></li>
+<li><a href="https://www.npmjs.com/package/@js-joda/locale_en">@js-joda/locale_en</a></li>
+<li><a href="https://www.npmjs.com/package/@js-joda/locale_en-us">@js-joda/locale_en-us</a></li>
+<li><a href="https://www.npmjs.com/package/@js-joda/locale_es">@js-joda/locale_es</a></li>
+<li><a href="https://www.npmjs.com/package/@js-joda/locale_fr">@js-joda/locale_fr</a></li>
+<li><a href="https://www.npmjs.com/package/@js-joda/locale_hi">@js-joda/locale_hi</a></li>
+<li><a href="https://www.npmjs.com/package/@js-joda/locale_it">@js-joda/locale_it</a></li>
+<li><a href="https://www.npmjs.com/package/@js-joda/locale_it-it">@js-joda/locale_it-it</a></li>
+<li><a href="https://www.npmjs.com/package/@js-joda/locale_zh">@js-joda/locale_zh</a></li>
+</ul><p>You can then use localized format strings as follows.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">import &apos;js-joda-timezone&apos; // Just needs to be imported; registers itself automatically
+import { Locale } from &apos;@js-joda/locale_fr&apos; // Get `Locale` from the prebuilt package of your choice
+import { DateTimeFormatter, LocalDateTime } from &apos;js-joda&apos;
+
+const d = LocalDateTime.parse(&apos;2018-04-28T12:34&apos;)
+const formatter = DateTimeFormatter
+  .ofPattern(&apos;eeee (d MMMM)&apos;)
+  .withLocale(Locale.FRANCE)
+d.format(formatter) // samedi (28 avril)</code>
+</code></pre><p><strong>Note:</strong> If internationalization is an important aspect of your application, you might consider using the standard <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat"><code>Intl.DateTimeFormat</code></a> API instead. It is built into modern browsers, supports a comprehensive set of locales, and handles a lot of internationalization subtleties that go beyond the scope of this library. To do this, you would need to convert your <code>js-joda</code> dates and times to JavaScript <code>Date</code> objects just before outputting them:</p><pre><code class="lang-javascript"><code class="source-code prettyprint">const ldt = LocalDateTime.parse(&apos;2018-04-28T12:34&apos;)
+
+const jsDate = convert(ldt).toDate() // Convert to JavaScript `Date` object
+
+var options = { 
+  weekday: &apos;long&apos;, 
+  year: &apos;numeric&apos;, 
+  month: &apos;long&apos;, 
+  day: &apos;numeric&apos;, 
+  hour: &apos;numeric&apos;, 
+  minute: &apos;2-digit&apos; 
+}
+
+jsDate.toLocaleDateString(&apos;en-US&apos;, options) // Saturday, April 28, 2018, 12:34 PM 
+jsDate.toLocaleDateString(&apos;de-DE&apos;, options) // Samstag, 28. April 2018, 12:34
+jsDate.toLocaleDateString(&apos;ar-EG&apos;, options) // &#x627;&#x644;&#x633;&#x628;&#x62A;&#x60C; &#x662;&#x668; &#x623;&#x628;&#x631;&#x64A;&#x644; &#x662;&#x660;&#x661;&#x668; &#x661;&#x662;:&#x663;&#x664; &#x645;
+jsDate.toLocaleDateString(&apos;ko-KR&apos;, options) // 2018&#xB144; 4&#xC6D4; 28&#xC77C; &#xD1A0;&#xC694;&#xC77C; &#xC624;&#xD6C4; 12:34</code>
+</code></pre><h2>Format patterns</h2><p>Date and time formats are specified by date and time pattern strings using <a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html">Java SimpleDateFormat</a> codes.</p><table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+<th>Presentation</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G</td>
+<td>era</td>
+<td>number/text</td>
+<td>1; 01; AD; Anno Domini</td>
+</tr>
+<tr>
+<td>u</td>
+<td>year</td>
+<td>year</td>
+<td>2004; 04</td>
+</tr>
+<tr>
+<td>y</td>
+<td>year-of-era</td>
+<td>year</td>
+<td>2004; 04</td>
+</tr>
+<tr>
+<td>D</td>
+<td>day-of-year</td>
+<td>number</td>
+<td>189</td>
+</tr>
+<tr>
+<td>M</td>
+<td>month-of-year</td>
+<td>number/text</td>
+<td>7; 07; Jul; July; J</td>
+</tr>
+<tr>
+<td>d</td>
+<td>day-of-month</td>
+<td>number</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>quarter-of-year</td>
+<td>number/text</td>
+<td>3; 03; Q3</td>
+</tr>
+<tr>
+<td>Y</td>
+<td>week-based-year</td>
+<td>year</td>
+<td>1996; 96</td>
+</tr>
+<tr>
+<td>w</td>
+<td>week-of-year</td>
+<td>number</td>
+<td>27</td>
+</tr>
+<tr>
+<td>W</td>
+<td>week-of-month</td>
+<td>number</td>
+<td>27</td>
+</tr>
+<tr>
+<td>e</td>
+<td>localized day-of-week</td>
+<td>number</td>
+<td>2; Tue; Tuesday; T</td>
+</tr>
+<tr>
+<td>E</td>
+<td>day-of-week</td>
+<td>number/text</td>
+<td>2; Tue; Tuesday; T</td>
+</tr>
+<tr>
+<td>F</td>
+<td>week-of-month</td>
+<td>number</td>
+<td>3</td>
+</tr>
+<tr>
+<td>a</td>
+<td>am-pm-of-day</td>
+<td>text</td>
+<td>PM</td>
+</tr>
+<tr>
+<td>h</td>
+<td>clock-hour-of-am-pm (1-12)</td>
+<td>number</td>
+<td>12</td>
+</tr>
+<tr>
+<td>K</td>
+<td>hour-of-am-pm (0-11)</td>
+<td>number</td>
+<td>0</td>
+</tr>
+<tr>
+<td>k</td>
+<td>clock-hour-of-am-pm (1-24)</td>
+<td>number</td>
+<td>0</td>
+</tr>
+<tr>
+<td>H</td>
+<td>hour-of-day (0-23)</td>
+<td>number</td>
+<td>0</td>
+</tr>
+<tr>
+<td>m</td>
+<td>minute-of-hour</td>
+<td>number</td>
+<td>30</td>
+</tr>
+<tr>
+<td>s</td>
+<td>second-of-minute</td>
+<td>number</td>
+<td>55</td>
+</tr>
+<tr>
+<td>S</td>
+<td>fraction-of-second</td>
+<td>fraction</td>
+<td>978</td>
+</tr>
+<tr>
+<td>A</td>
+<td>milli-of-day</td>
+<td>number</td>
+<td>1234</td>
+</tr>
+<tr>
+<td>n</td>
+<td>nano-of-second</td>
+<td>number</td>
+<td>987654321</td>
+</tr>
+<tr>
+<td>N</td>
+<td>nano-of-day</td>
+<td>number</td>
+<td>1234000000</td>
+</tr>
+<tr>
+<td>V</td>
+<td>time-zone ID</td>
+<td>zone-id</td>
+<td>America/Los_Angeles; Z; -08:30</td>
+</tr>
+<tr>
+<td>z</td>
+<td>time-zone name</td>
+<td>zone-name</td>
+<td>Pacific Standard Time; PST</td>
+</tr>
+<tr>
+<td>X</td>
+<td>zone-offset &apos;Z&apos; for zero</td>
+<td>offset-X</td>
+<td>Z; -08; -0830; -08:30; -083015; -08:30:15;</td>
+</tr>
+<tr>
+<td>x</td>
+<td>zone-offset</td>
+<td>offset-x</td>
+<td>+0000; -08; -0830; -08:30; -083015; -08:30:15;</td>
+</tr>
+<tr>
+<td>Z</td>
+<td>zone-offset</td>
+<td>offset-Z</td>
+<td>+0000; -0800; -08:00;</td>
+</tr>
+<tr>
+<td>p</td>
+<td>pad next</td>
+<td>pad modifier</td>
+<td>1</td>
+</tr>
+<tr>
+<td>&apos;</td>
+<td>escape for text</td>
+<td>delimiter</td>
+</tr>
+<tr>
+<td>&apos;&apos;</td>
+<td>single quote</td>
+<td>literal</td>
+<td>&apos;</td>
+</tr>
+<tr>
+<td>[</td>
+<td>optional section start</td>
+<td></td>
+</tr>
+<tr>
+<td>]</td>
+<td>optional section end</td>
+<td></td>
+</tr>
+<tr>
+<td>{}</td>
+<td>reserved for future use</td>
+</tr>
+</tbody>
+</table></div>
+        <a data-ice="link" href="manual/formatting.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>Customizing js-joda</h1><p>This package is extensible, allowing you to create your own custom temporal calculations. See the <a href="https://js-joda.github.io/js-joda/esdoc/class/src/temporal/Temporal.js~Temporal.html">temporal interface documentation</a> for more information.</p><h3>Custom temporal adjuster</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">// implement a TemporalAdjuster that the next or same even day of month
+var nextOrSameEvenDay = {
+  adjustInto: function(t) {
+    return t.dayOfMonth() % 2 === 0 ? t : t.plusDays(1);
+  }
+};
+
+LocalDateTime.parse(&quot;2012-12-23T12:00&quot;).with(nextOrSameEvenDay); // &apos;2012-12-24T12:00&apos;
+LocalDate.parse(&quot;2012-12-24&quot;).with(nextOrSameEvenDay); // &apos;2012-12-24&apos;</code>
+</code></pre><h3>Custom temporal fields and temporal units</h3><p>See the source for <a href="https://github.com/js-joda/js-joda/blob/master/src/temporal/IsoFields.js">temporal/IsoFields</a> as an example how to implement custom fields and units. <code>IsoFields</code> implements fields and units for an ISO week-based year.</p><h3>Custom formatter and queries</h3><p>The following example implements a parser for a local date with an optional local time. It returns either a <code>LocalDate</code> or a <code>LocalDateTime</code>, depending on the parsed fields.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">// build a custom date time formatter where the time field is optional
+var OPTIONAL_FORMATTER = DateTimeFormatter.ofPattern(
+  &apos;yyyy-MM-dd[&apos;T&apos;HH:mm[:ss]]&apos;
+);
+
+// create a temporal query that create a new Temporal depending on the existing fields
+dateOrDateTimeQuery = {
+  queryFrom: function(temporal) {
+    var date = temporal.query(TemporalQueries.localDate());
+    var time = temporal.query(TemporalQueries.localTime());
+    if (time == null) return date;
+    else return date.atTime(time);
+  }
+};
+
+localDate = OPTIONAL_FORMATTER.parse(&apos;2012-12-24&apos;, dateOrDateTimeQuery);
+localDateTime = OPTIONAL_FORMATTER.parse(
+  &apos;2012-12-24T23:59&apos;,
+  dateOrDateTimeQuery
+);</code>
+</code></pre></div>
+        <a data-ice="link" href="manual/customizing.html"></a>
+      </div>
+    </div>
+</div>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

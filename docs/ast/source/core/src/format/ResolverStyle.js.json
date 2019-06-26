@@ -1,0 +1,2164 @@
+{
+  "type": "File",
+  "start": 0,
+  "end": 3760,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 94,
+      "column": 0
+    }
+  },
+  "program": {
+    "type": "Program",
+    "start": 0,
+    "end": 3760,
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 94,
+        "column": 0
+      }
+    },
+    "sourceType": "module",
+    "body": [
+      {
+        "type": "ImportDeclaration",
+        "start": 229,
+        "end": 258,
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 0
+          },
+          "end": {
+            "line": 7,
+            "column": 29
+          }
+        },
+        "specifiers": [
+          {
+            "type": "ImportSpecifier",
+            "start": 237,
+            "end": 241,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 8
+              },
+              "end": {
+                "line": 7,
+                "column": 12
+              }
+            },
+            "imported": {
+              "type": "Identifier",
+              "start": 237,
+              "end": 241,
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 8
+                },
+                "end": {
+                  "line": 7,
+                  "column": 12
+                },
+                "identifierName": "Enum"
+              },
+              "name": "Enum",
+              "leadingComments": null
+            },
+            "local": {
+              "type": "Identifier",
+              "start": 237,
+              "end": 241,
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 8
+                },
+                "end": {
+                  "line": 7,
+                  "column": 12
+                },
+                "identifierName": "Enum"
+              },
+              "name": "Enum"
+            },
+            "leadingComments": null
+          }
+        ],
+        "source": {
+          "type": "StringLiteral",
+          "start": 248,
+          "end": 257,
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 19
+            },
+            "end": {
+              "line": 7,
+              "column": 28
+            }
+          },
+          "extra": {
+            "rawValue": "../Enum",
+            "raw": "'../Enum'"
+          },
+          "value": "../Enum"
+        },
+        "leadingComments": [
+          {
+            "type": "CommentBlock",
+            "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+            "start": 0,
+            "end": 227,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 0
+              },
+              "end": {
+                "line": 5,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "CommentBlock",
+            "value": "*\n * Enumeration of different ways to resolve dates and times.\n * \n * Parsing a text string occurs in two phases.\n * Phase 1 is a basic text parse according to the fields added to the builder.\n * Phase 2 resolves the parsed field-value pairs into date and/or time objects.\n * This style is used to control how phase 2, resolving, happens.\n *\n * ### Static properties of Class {@link DateTimeFormatter}\n *\n * ResolverStyle.STRICT = new ResolverStyle('STRICT');\n *\n * Style to resolve dates and times strictly.\n *\n * Using strict resolution will ensure that all parsed values are within\n * the outer range of valid values for the field. Individual fields may\n * be further processed for strictness.\n *\n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using strict mode will ensure that the day-of-month is valid\n * for the year-month, rejecting invalid values.\n *\n * ResolverStyle.SMART = new ResolverStyle('SMART');\n *\n * Style to resolve dates and times in a smart, or intelligent, manner.\n *\n * Using smart resolution will perform the sensible default for each\n * field, which may be the same as strict, the same as lenient, or a third\n * behavior. Individual fields will interpret this differently.\n *\n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using smart mode will ensure that the day-of-month is from\n * 1 to 31, converting any value beyond the last valid day-of-month to be\n * the last valid day-of-month.\n *\n * ResolverStyle.LENIENT = new ResolverStyle('LENIENT');\n *\n * Style to resolve dates and times leniently.\n *\n * Using lenient resolution will resolve the values in an appropriate\n * lenient manner. Individual fields will interpret this differently.\n *\n * For example, lenient mode allows the month in the ISO calendar system\n * to be outside the range 1 to 12.\n * For example, month 15 is treated as being 3 months after month 12.\n *\n ",
+            "start": 260,
+            "end": 2191,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 0
+              },
+              "end": {
+                "line": 55,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "ExportNamedDeclaration",
+        "start": 2192,
+        "end": 2234,
+        "loc": {
+          "start": {
+            "line": 56,
+            "column": 0
+          },
+          "end": {
+            "line": 56,
+            "column": 42
+          }
+        },
+        "specifiers": [],
+        "source": null,
+        "declaration": {
+          "type": "ClassDeclaration",
+          "start": 2199,
+          "end": 2234,
+          "loc": {
+            "start": {
+              "line": 56,
+              "column": 7
+            },
+            "end": {
+              "line": 56,
+              "column": 42
+            }
+          },
+          "id": {
+            "type": "Identifier",
+            "start": 2205,
+            "end": 2218,
+            "loc": {
+              "start": {
+                "line": 56,
+                "column": 13
+              },
+              "end": {
+                "line": 56,
+                "column": 26
+              },
+              "identifierName": "ResolverStyle"
+            },
+            "name": "ResolverStyle",
+            "leadingComments": null
+          },
+          "superClass": {
+            "type": "Identifier",
+            "start": 2227,
+            "end": 2231,
+            "loc": {
+              "start": {
+                "line": 56,
+                "column": 35
+              },
+              "end": {
+                "line": 56,
+                "column": 39
+              },
+              "identifierName": "Enum"
+            },
+            "name": "Enum"
+          },
+          "body": {
+            "type": "ClassBody",
+            "start": 2232,
+            "end": 2234,
+            "loc": {
+              "start": {
+                "line": 56,
+                "column": 40
+              },
+              "end": {
+                "line": 56,
+                "column": 42
+              }
+            },
+            "body": [],
+            "leadingComments": null,
+            "trailingComments": null
+          },
+          "leadingComments": [
+            {
+              "type": "CommentBlock",
+              "value": "*\n * Enumeration of different ways to resolve dates and times.\n * \n * Parsing a text string occurs in two phases.\n * Phase 1 is a basic text parse according to the fields added to the builder.\n * Phase 2 resolves the parsed field-value pairs into date and/or time objects.\n * This style is used to control how phase 2, resolving, happens.\n *\n * ### Static properties of Class {@link DateTimeFormatter}\n *\n * ResolverStyle.STRICT = new ResolverStyle('STRICT');\n *\n * Style to resolve dates and times strictly.\n *\n * Using strict resolution will ensure that all parsed values are within\n * the outer range of valid values for the field. Individual fields may\n * be further processed for strictness.\n *\n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using strict mode will ensure that the day-of-month is valid\n * for the year-month, rejecting invalid values.\n *\n * ResolverStyle.SMART = new ResolverStyle('SMART');\n *\n * Style to resolve dates and times in a smart, or intelligent, manner.\n *\n * Using smart resolution will perform the sensible default for each\n * field, which may be the same as strict, the same as lenient, or a third\n * behavior. Individual fields will interpret this differently.\n *\n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using smart mode will ensure that the day-of-month is from\n * 1 to 31, converting any value beyond the last valid day-of-month to be\n * the last valid day-of-month.\n *\n * ResolverStyle.LENIENT = new ResolverStyle('LENIENT');\n *\n * Style to resolve dates and times leniently.\n *\n * Using lenient resolution will resolve the values in an appropriate\n * lenient manner. Individual fields will interpret this differently.\n *\n * For example, lenient mode allows the month in the ISO calendar system\n * to be outside the range 1 to 12.\n * For example, month 15 is treated as being 3 months after month 12.\n *\n ",
+              "start": 260,
+              "end": 2191,
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 0
+                },
+                "end": {
+                  "line": 55,
+                  "column": 3
+                }
+              }
+            }
+          ],
+          "trailingComments": [
+            {
+              "type": "CommentBlock",
+              "value": "*\n * Style to resolve dates and times strictly.\n * \n * Using strict resolution will ensure that all parsed values are within\n * the outer range of valid values for the field. Individual fields may\n * be further processed for strictness.\n * \n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using strict mode will ensure that the day-of-month is valid\n * for the year-month, rejecting invalid values.\n ",
+              "start": 2236,
+              "end": 2676,
+              "loc": {
+                "start": {
+                  "line": 58,
+                  "column": 0
+                },
+                "end": {
+                  "line": 68,
+                  "column": 3
+                }
+              }
+            }
+          ]
+        },
+        "leadingComments": [
+          {
+            "type": "CommentBlock",
+            "value": "*\n * Enumeration of different ways to resolve dates and times.\n * \n * Parsing a text string occurs in two phases.\n * Phase 1 is a basic text parse according to the fields added to the builder.\n * Phase 2 resolves the parsed field-value pairs into date and/or time objects.\n * This style is used to control how phase 2, resolving, happens.\n *\n * ### Static properties of Class {@link DateTimeFormatter}\n *\n * ResolverStyle.STRICT = new ResolverStyle('STRICT');\n *\n * Style to resolve dates and times strictly.\n *\n * Using strict resolution will ensure that all parsed values are within\n * the outer range of valid values for the field. Individual fields may\n * be further processed for strictness.\n *\n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using strict mode will ensure that the day-of-month is valid\n * for the year-month, rejecting invalid values.\n *\n * ResolverStyle.SMART = new ResolverStyle('SMART');\n *\n * Style to resolve dates and times in a smart, or intelligent, manner.\n *\n * Using smart resolution will perform the sensible default for each\n * field, which may be the same as strict, the same as lenient, or a third\n * behavior. Individual fields will interpret this differently.\n *\n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using smart mode will ensure that the day-of-month is from\n * 1 to 31, converting any value beyond the last valid day-of-month to be\n * the last valid day-of-month.\n *\n * ResolverStyle.LENIENT = new ResolverStyle('LENIENT');\n *\n * Style to resolve dates and times leniently.\n *\n * Using lenient resolution will resolve the values in an appropriate\n * lenient manner. Individual fields will interpret this differently.\n *\n * For example, lenient mode allows the month in the ISO calendar system\n * to be outside the range 1 to 12.\n * For example, month 15 is treated as being 3 months after month 12.\n *\n ",
+            "start": 260,
+            "end": 2191,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 0
+              },
+              "end": {
+                "line": 55,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "CommentBlock",
+            "value": "*\n * Style to resolve dates and times strictly.\n * \n * Using strict resolution will ensure that all parsed values are within\n * the outer range of valid values for the field. Individual fields may\n * be further processed for strictness.\n * \n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using strict mode will ensure that the day-of-month is valid\n * for the year-month, rejecting invalid values.\n ",
+            "start": 2236,
+            "end": 2676,
+            "loc": {
+              "start": {
+                "line": 58,
+                "column": 0
+              },
+              "end": {
+                "line": 68,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "ExpressionStatement",
+        "start": 2677,
+        "end": 2728,
+        "loc": {
+          "start": {
+            "line": 69,
+            "column": 0
+          },
+          "end": {
+            "line": 69,
+            "column": 51
+          }
+        },
+        "expression": {
+          "type": "AssignmentExpression",
+          "start": 2677,
+          "end": 2727,
+          "loc": {
+            "start": {
+              "line": 69,
+              "column": 0
+            },
+            "end": {
+              "line": 69,
+              "column": 50
+            }
+          },
+          "operator": "=",
+          "left": {
+            "type": "MemberExpression",
+            "start": 2677,
+            "end": 2697,
+            "loc": {
+              "start": {
+                "line": 69,
+                "column": 0
+              },
+              "end": {
+                "line": 69,
+                "column": 20
+              }
+            },
+            "object": {
+              "type": "Identifier",
+              "start": 2677,
+              "end": 2690,
+              "loc": {
+                "start": {
+                  "line": 69,
+                  "column": 0
+                },
+                "end": {
+                  "line": 69,
+                  "column": 13
+                },
+                "identifierName": "ResolverStyle"
+              },
+              "name": "ResolverStyle",
+              "leadingComments": null
+            },
+            "property": {
+              "type": "Identifier",
+              "start": 2691,
+              "end": 2697,
+              "loc": {
+                "start": {
+                  "line": 69,
+                  "column": 14
+                },
+                "end": {
+                  "line": 69,
+                  "column": 20
+                },
+                "identifierName": "STRICT"
+              },
+              "name": "STRICT"
+            },
+            "computed": false,
+            "leadingComments": null
+          },
+          "right": {
+            "type": "NewExpression",
+            "start": 2700,
+            "end": 2727,
+            "loc": {
+              "start": {
+                "line": 69,
+                "column": 23
+              },
+              "end": {
+                "line": 69,
+                "column": 50
+              }
+            },
+            "callee": {
+              "type": "Identifier",
+              "start": 2704,
+              "end": 2717,
+              "loc": {
+                "start": {
+                  "line": 69,
+                  "column": 27
+                },
+                "end": {
+                  "line": 69,
+                  "column": 40
+                },
+                "identifierName": "ResolverStyle"
+              },
+              "name": "ResolverStyle"
+            },
+            "arguments": [
+              {
+                "type": "StringLiteral",
+                "start": 2718,
+                "end": 2726,
+                "loc": {
+                  "start": {
+                    "line": 69,
+                    "column": 41
+                  },
+                  "end": {
+                    "line": 69,
+                    "column": 49
+                  }
+                },
+                "extra": {
+                  "rawValue": "STRICT",
+                  "raw": "'STRICT'"
+                },
+                "value": "STRICT"
+              }
+            ]
+          },
+          "leadingComments": null
+        },
+        "leadingComments": [
+          {
+            "type": "CommentBlock",
+            "value": "*\n * Style to resolve dates and times strictly.\n * \n * Using strict resolution will ensure that all parsed values are within\n * the outer range of valid values for the field. Individual fields may\n * be further processed for strictness.\n * \n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using strict mode will ensure that the day-of-month is valid\n * for the year-month, rejecting invalid values.\n ",
+            "start": 2236,
+            "end": 2676,
+            "loc": {
+              "start": {
+                "line": 58,
+                "column": 0
+              },
+              "end": {
+                "line": 68,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "CommentBlock",
+            "value": "*\n * Style to resolve dates and times in a smart, or intelligent, manner.\n * \n * Using smart resolution will perform the sensible default for each\n * field, which may be the same as strict, the same as lenient, or a third\n * behavior. Individual fields will interpret this differently.\n * \n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using smart mode will ensure that the day-of-month is from\n * 1 to 31, converting any value beyond the last valid day-of-month to be\n * the last valid day-of-month.\n ",
+            "start": 2729,
+            "end": 3273,
+            "loc": {
+              "start": {
+                "line": 70,
+                "column": 0
+              },
+              "end": {
+                "line": 81,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "ExpressionStatement",
+        "start": 3274,
+        "end": 3323,
+        "loc": {
+          "start": {
+            "line": 82,
+            "column": 0
+          },
+          "end": {
+            "line": 82,
+            "column": 49
+          }
+        },
+        "expression": {
+          "type": "AssignmentExpression",
+          "start": 3274,
+          "end": 3322,
+          "loc": {
+            "start": {
+              "line": 82,
+              "column": 0
+            },
+            "end": {
+              "line": 82,
+              "column": 48
+            }
+          },
+          "operator": "=",
+          "left": {
+            "type": "MemberExpression",
+            "start": 3274,
+            "end": 3293,
+            "loc": {
+              "start": {
+                "line": 82,
+                "column": 0
+              },
+              "end": {
+                "line": 82,
+                "column": 19
+              }
+            },
+            "object": {
+              "type": "Identifier",
+              "start": 3274,
+              "end": 3287,
+              "loc": {
+                "start": {
+                  "line": 82,
+                  "column": 0
+                },
+                "end": {
+                  "line": 82,
+                  "column": 13
+                },
+                "identifierName": "ResolverStyle"
+              },
+              "name": "ResolverStyle",
+              "leadingComments": null
+            },
+            "property": {
+              "type": "Identifier",
+              "start": 3288,
+              "end": 3293,
+              "loc": {
+                "start": {
+                  "line": 82,
+                  "column": 14
+                },
+                "end": {
+                  "line": 82,
+                  "column": 19
+                },
+                "identifierName": "SMART"
+              },
+              "name": "SMART"
+            },
+            "computed": false,
+            "leadingComments": null
+          },
+          "right": {
+            "type": "NewExpression",
+            "start": 3296,
+            "end": 3322,
+            "loc": {
+              "start": {
+                "line": 82,
+                "column": 22
+              },
+              "end": {
+                "line": 82,
+                "column": 48
+              }
+            },
+            "callee": {
+              "type": "Identifier",
+              "start": 3300,
+              "end": 3313,
+              "loc": {
+                "start": {
+                  "line": 82,
+                  "column": 26
+                },
+                "end": {
+                  "line": 82,
+                  "column": 39
+                },
+                "identifierName": "ResolverStyle"
+              },
+              "name": "ResolverStyle"
+            },
+            "arguments": [
+              {
+                "type": "StringLiteral",
+                "start": 3314,
+                "end": 3321,
+                "loc": {
+                  "start": {
+                    "line": 82,
+                    "column": 40
+                  },
+                  "end": {
+                    "line": 82,
+                    "column": 47
+                  }
+                },
+                "extra": {
+                  "rawValue": "SMART",
+                  "raw": "'SMART'"
+                },
+                "value": "SMART"
+              }
+            ]
+          },
+          "leadingComments": null
+        },
+        "leadingComments": [
+          {
+            "type": "CommentBlock",
+            "value": "*\n * Style to resolve dates and times in a smart, or intelligent, manner.\n * \n * Using smart resolution will perform the sensible default for each\n * field, which may be the same as strict, the same as lenient, or a third\n * behavior. Individual fields will interpret this differently.\n * \n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using smart mode will ensure that the day-of-month is from\n * 1 to 31, converting any value beyond the last valid day-of-month to be\n * the last valid day-of-month.\n ",
+            "start": 2729,
+            "end": 3273,
+            "loc": {
+              "start": {
+                "line": 70,
+                "column": 0
+              },
+              "end": {
+                "line": 81,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "CommentBlock",
+            "value": "*\n * Style to resolve dates and times leniently.\n * \n * Using lenient resolution will resolve the values in an appropriate\n * lenient manner. Individual fields will interpret this differently.\n * \n * For example, lenient mode allows the month in the ISO calendar system\n * to be outside the range 1 to 12.\n * For example, month 15 is treated as being 3 months after month 12.\n ",
+            "start": 3324,
+            "end": 3705,
+            "loc": {
+              "start": {
+                "line": 83,
+                "column": 0
+              },
+              "end": {
+                "line": 92,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "ExpressionStatement",
+        "start": 3706,
+        "end": 3759,
+        "loc": {
+          "start": {
+            "line": 93,
+            "column": 0
+          },
+          "end": {
+            "line": 93,
+            "column": 53
+          }
+        },
+        "expression": {
+          "type": "AssignmentExpression",
+          "start": 3706,
+          "end": 3758,
+          "loc": {
+            "start": {
+              "line": 93,
+              "column": 0
+            },
+            "end": {
+              "line": 93,
+              "column": 52
+            }
+          },
+          "operator": "=",
+          "left": {
+            "type": "MemberExpression",
+            "start": 3706,
+            "end": 3727,
+            "loc": {
+              "start": {
+                "line": 93,
+                "column": 0
+              },
+              "end": {
+                "line": 93,
+                "column": 21
+              }
+            },
+            "object": {
+              "type": "Identifier",
+              "start": 3706,
+              "end": 3719,
+              "loc": {
+                "start": {
+                  "line": 93,
+                  "column": 0
+                },
+                "end": {
+                  "line": 93,
+                  "column": 13
+                },
+                "identifierName": "ResolverStyle"
+              },
+              "name": "ResolverStyle",
+              "leadingComments": null
+            },
+            "property": {
+              "type": "Identifier",
+              "start": 3720,
+              "end": 3727,
+              "loc": {
+                "start": {
+                  "line": 93,
+                  "column": 14
+                },
+                "end": {
+                  "line": 93,
+                  "column": 21
+                },
+                "identifierName": "LENIENT"
+              },
+              "name": "LENIENT"
+            },
+            "computed": false,
+            "leadingComments": null
+          },
+          "right": {
+            "type": "NewExpression",
+            "start": 3730,
+            "end": 3758,
+            "loc": {
+              "start": {
+                "line": 93,
+                "column": 24
+              },
+              "end": {
+                "line": 93,
+                "column": 52
+              }
+            },
+            "callee": {
+              "type": "Identifier",
+              "start": 3734,
+              "end": 3747,
+              "loc": {
+                "start": {
+                  "line": 93,
+                  "column": 28
+                },
+                "end": {
+                  "line": 93,
+                  "column": 41
+                },
+                "identifierName": "ResolverStyle"
+              },
+              "name": "ResolverStyle"
+            },
+            "arguments": [
+              {
+                "type": "StringLiteral",
+                "start": 3748,
+                "end": 3757,
+                "loc": {
+                  "start": {
+                    "line": 93,
+                    "column": 42
+                  },
+                  "end": {
+                    "line": 93,
+                    "column": 51
+                  }
+                },
+                "extra": {
+                  "rawValue": "LENIENT",
+                  "raw": "'LENIENT'"
+                },
+                "value": "LENIENT"
+              }
+            ]
+          },
+          "leadingComments": null
+        },
+        "leadingComments": [
+          {
+            "type": "CommentBlock",
+            "value": "*\n * Style to resolve dates and times leniently.\n * \n * Using lenient resolution will resolve the values in an appropriate\n * lenient manner. Individual fields will interpret this differently.\n * \n * For example, lenient mode allows the month in the ISO calendar system\n * to be outside the range 1 to 12.\n * For example, month 15 is treated as being 3 months after month 12.\n ",
+            "start": 3324,
+            "end": 3705,
+            "loc": {
+              "start": {
+                "line": 83,
+                "column": 0
+              },
+              "end": {
+                "line": 92,
+                "column": 3
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "directives": []
+  },
+  "comments": [
+    {
+      "type": "CommentBlock",
+      "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+      "start": 0,
+      "end": 227,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\n * Enumeration of different ways to resolve dates and times.\n * \n * Parsing a text string occurs in two phases.\n * Phase 1 is a basic text parse according to the fields added to the builder.\n * Phase 2 resolves the parsed field-value pairs into date and/or time objects.\n * This style is used to control how phase 2, resolving, happens.\n *\n * ### Static properties of Class {@link DateTimeFormatter}\n *\n * ResolverStyle.STRICT = new ResolverStyle('STRICT');\n *\n * Style to resolve dates and times strictly.\n *\n * Using strict resolution will ensure that all parsed values are within\n * the outer range of valid values for the field. Individual fields may\n * be further processed for strictness.\n *\n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using strict mode will ensure that the day-of-month is valid\n * for the year-month, rejecting invalid values.\n *\n * ResolverStyle.SMART = new ResolverStyle('SMART');\n *\n * Style to resolve dates and times in a smart, or intelligent, manner.\n *\n * Using smart resolution will perform the sensible default for each\n * field, which may be the same as strict, the same as lenient, or a third\n * behavior. Individual fields will interpret this differently.\n *\n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using smart mode will ensure that the day-of-month is from\n * 1 to 31, converting any value beyond the last valid day-of-month to be\n * the last valid day-of-month.\n *\n * ResolverStyle.LENIENT = new ResolverStyle('LENIENT');\n *\n * Style to resolve dates and times leniently.\n *\n * Using lenient resolution will resolve the values in an appropriate\n * lenient manner. Individual fields will interpret this differently.\n *\n * For example, lenient mode allows the month in the ISO calendar system\n * to be outside the range 1 to 12.\n * For example, month 15 is treated as being 3 months after month 12.\n *\n ",
+      "start": 260,
+      "end": 2191,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 55,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\n * Style to resolve dates and times strictly.\n * \n * Using strict resolution will ensure that all parsed values are within\n * the outer range of valid values for the field. Individual fields may\n * be further processed for strictness.\n * \n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using strict mode will ensure that the day-of-month is valid\n * for the year-month, rejecting invalid values.\n ",
+      "start": 2236,
+      "end": 2676,
+      "loc": {
+        "start": {
+          "line": 58,
+          "column": 0
+        },
+        "end": {
+          "line": 68,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\n * Style to resolve dates and times in a smart, or intelligent, manner.\n * \n * Using smart resolution will perform the sensible default for each\n * field, which may be the same as strict, the same as lenient, or a third\n * behavior. Individual fields will interpret this differently.\n * \n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using smart mode will ensure that the day-of-month is from\n * 1 to 31, converting any value beyond the last valid day-of-month to be\n * the last valid day-of-month.\n ",
+      "start": 2729,
+      "end": 3273,
+      "loc": {
+        "start": {
+          "line": 70,
+          "column": 0
+        },
+        "end": {
+          "line": 81,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\n * Style to resolve dates and times leniently.\n * \n * Using lenient resolution will resolve the values in an appropriate\n * lenient manner. Individual fields will interpret this differently.\n * \n * For example, lenient mode allows the month in the ISO calendar system\n * to be outside the range 1 to 12.\n * For example, month 15 is treated as being 3 months after month 12.\n ",
+      "start": 3324,
+      "end": 3705,
+      "loc": {
+        "start": {
+          "line": 83,
+          "column": 0
+        },
+        "end": {
+          "line": 92,
+          "column": 3
+        }
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "type": "CommentBlock",
+      "value": "\n * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper\n * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos\n * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)\n ",
+      "start": 0,
+      "end": 227,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "import",
+        "keyword": "import",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "import",
+      "start": 229,
+      "end": 235,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 236,
+      "end": 237,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 7
+        },
+        "end": {
+          "line": 7,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "Enum",
+      "start": 237,
+      "end": 241,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 8
+        },
+        "end": {
+          "line": 7,
+          "column": 12
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 241,
+      "end": 242,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 12
+        },
+        "end": {
+          "line": 7,
+          "column": 13
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "from",
+      "start": 243,
+      "end": 247,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 14
+        },
+        "end": {
+          "line": 7,
+          "column": 18
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "string",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "../Enum",
+      "start": 248,
+      "end": 257,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 19
+        },
+        "end": {
+          "line": 7,
+          "column": 28
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 257,
+      "end": 258,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 28
+        },
+        "end": {
+          "line": 7,
+          "column": 29
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\n * Enumeration of different ways to resolve dates and times.\n * \n * Parsing a text string occurs in two phases.\n * Phase 1 is a basic text parse according to the fields added to the builder.\n * Phase 2 resolves the parsed field-value pairs into date and/or time objects.\n * This style is used to control how phase 2, resolving, happens.\n *\n * ### Static properties of Class {@link DateTimeFormatter}\n *\n * ResolverStyle.STRICT = new ResolverStyle('STRICT');\n *\n * Style to resolve dates and times strictly.\n *\n * Using strict resolution will ensure that all parsed values are within\n * the outer range of valid values for the field. Individual fields may\n * be further processed for strictness.\n *\n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using strict mode will ensure that the day-of-month is valid\n * for the year-month, rejecting invalid values.\n *\n * ResolverStyle.SMART = new ResolverStyle('SMART');\n *\n * Style to resolve dates and times in a smart, or intelligent, manner.\n *\n * Using smart resolution will perform the sensible default for each\n * field, which may be the same as strict, the same as lenient, or a third\n * behavior. Individual fields will interpret this differently.\n *\n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using smart mode will ensure that the day-of-month is from\n * 1 to 31, converting any value beyond the last valid day-of-month to be\n * the last valid day-of-month.\n *\n * ResolverStyle.LENIENT = new ResolverStyle('LENIENT');\n *\n * Style to resolve dates and times leniently.\n *\n * Using lenient resolution will resolve the values in an appropriate\n * lenient manner. Individual fields will interpret this differently.\n *\n * For example, lenient mode allows the month in the ISO calendar system\n * to be outside the range 1 to 12.\n * For example, month 15 is treated as being 3 months after month 12.\n *\n ",
+      "start": 260,
+      "end": 2191,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 55,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "export",
+        "keyword": "export",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "export",
+      "start": 2192,
+      "end": 2198,
+      "loc": {
+        "start": {
+          "line": 56,
+          "column": 0
+        },
+        "end": {
+          "line": 56,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "class",
+        "keyword": "class",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "class",
+      "start": 2199,
+      "end": 2204,
+      "loc": {
+        "start": {
+          "line": 56,
+          "column": 7
+        },
+        "end": {
+          "line": 56,
+          "column": 12
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "ResolverStyle",
+      "start": 2205,
+      "end": 2218,
+      "loc": {
+        "start": {
+          "line": 56,
+          "column": 13
+        },
+        "end": {
+          "line": 56,
+          "column": 26
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "extends",
+        "keyword": "extends",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "extends",
+      "start": 2219,
+      "end": 2226,
+      "loc": {
+        "start": {
+          "line": 56,
+          "column": 27
+        },
+        "end": {
+          "line": 56,
+          "column": 34
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "Enum",
+      "start": 2227,
+      "end": 2231,
+      "loc": {
+        "start": {
+          "line": 56,
+          "column": 35
+        },
+        "end": {
+          "line": 56,
+          "column": 39
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 2232,
+      "end": 2233,
+      "loc": {
+        "start": {
+          "line": 56,
+          "column": 40
+        },
+        "end": {
+          "line": 56,
+          "column": 41
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 2233,
+      "end": 2234,
+      "loc": {
+        "start": {
+          "line": 56,
+          "column": 41
+        },
+        "end": {
+          "line": 56,
+          "column": 42
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\n * Style to resolve dates and times strictly.\n * \n * Using strict resolution will ensure that all parsed values are within\n * the outer range of valid values for the field. Individual fields may\n * be further processed for strictness.\n * \n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using strict mode will ensure that the day-of-month is valid\n * for the year-month, rejecting invalid values.\n ",
+      "start": 2236,
+      "end": 2676,
+      "loc": {
+        "start": {
+          "line": 58,
+          "column": 0
+        },
+        "end": {
+          "line": 68,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "ResolverStyle",
+      "start": 2677,
+      "end": 2690,
+      "loc": {
+        "start": {
+          "line": 69,
+          "column": 0
+        },
+        "end": {
+          "line": 69,
+          "column": 13
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ".",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 2690,
+      "end": 2691,
+      "loc": {
+        "start": {
+          "line": 69,
+          "column": 13
+        },
+        "end": {
+          "line": 69,
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "STRICT",
+      "start": 2691,
+      "end": 2697,
+      "loc": {
+        "start": {
+          "line": 69,
+          "column": 14
+        },
+        "end": {
+          "line": 69,
+          "column": 20
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "=",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": true,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "=",
+      "start": 2698,
+      "end": 2699,
+      "loc": {
+        "start": {
+          "line": 69,
+          "column": 21
+        },
+        "end": {
+          "line": 69,
+          "column": 22
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "new",
+        "keyword": "new",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "new",
+      "start": 2700,
+      "end": 2703,
+      "loc": {
+        "start": {
+          "line": 69,
+          "column": 23
+        },
+        "end": {
+          "line": 69,
+          "column": 26
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "ResolverStyle",
+      "start": 2704,
+      "end": 2717,
+      "loc": {
+        "start": {
+          "line": 69,
+          "column": 27
+        },
+        "end": {
+          "line": 69,
+          "column": 40
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "(",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 2717,
+      "end": 2718,
+      "loc": {
+        "start": {
+          "line": 69,
+          "column": 40
+        },
+        "end": {
+          "line": 69,
+          "column": 41
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "string",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "STRICT",
+      "start": 2718,
+      "end": 2726,
+      "loc": {
+        "start": {
+          "line": 69,
+          "column": 41
+        },
+        "end": {
+          "line": 69,
+          "column": 49
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ")",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 2726,
+      "end": 2727,
+      "loc": {
+        "start": {
+          "line": 69,
+          "column": 49
+        },
+        "end": {
+          "line": 69,
+          "column": 50
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 2727,
+      "end": 2728,
+      "loc": {
+        "start": {
+          "line": 69,
+          "column": 50
+        },
+        "end": {
+          "line": 69,
+          "column": 51
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\n * Style to resolve dates and times in a smart, or intelligent, manner.\n * \n * Using smart resolution will perform the sensible default for each\n * field, which may be the same as strict, the same as lenient, or a third\n * behavior. Individual fields will interpret this differently.\n * \n * For example, resolving year-month and day-of-month in the ISO calendar\n * system using smart mode will ensure that the day-of-month is from\n * 1 to 31, converting any value beyond the last valid day-of-month to be\n * the last valid day-of-month.\n ",
+      "start": 2729,
+      "end": 3273,
+      "loc": {
+        "start": {
+          "line": 70,
+          "column": 0
+        },
+        "end": {
+          "line": 81,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "ResolverStyle",
+      "start": 3274,
+      "end": 3287,
+      "loc": {
+        "start": {
+          "line": 82,
+          "column": 0
+        },
+        "end": {
+          "line": 82,
+          "column": 13
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ".",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 3287,
+      "end": 3288,
+      "loc": {
+        "start": {
+          "line": 82,
+          "column": 13
+        },
+        "end": {
+          "line": 82,
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "SMART",
+      "start": 3288,
+      "end": 3293,
+      "loc": {
+        "start": {
+          "line": 82,
+          "column": 14
+        },
+        "end": {
+          "line": 82,
+          "column": 19
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "=",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": true,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "=",
+      "start": 3294,
+      "end": 3295,
+      "loc": {
+        "start": {
+          "line": 82,
+          "column": 20
+        },
+        "end": {
+          "line": 82,
+          "column": 21
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "new",
+        "keyword": "new",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "new",
+      "start": 3296,
+      "end": 3299,
+      "loc": {
+        "start": {
+          "line": 82,
+          "column": 22
+        },
+        "end": {
+          "line": 82,
+          "column": 25
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "ResolverStyle",
+      "start": 3300,
+      "end": 3313,
+      "loc": {
+        "start": {
+          "line": 82,
+          "column": 26
+        },
+        "end": {
+          "line": 82,
+          "column": 39
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "(",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 3313,
+      "end": 3314,
+      "loc": {
+        "start": {
+          "line": 82,
+          "column": 39
+        },
+        "end": {
+          "line": 82,
+          "column": 40
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "string",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "SMART",
+      "start": 3314,
+      "end": 3321,
+      "loc": {
+        "start": {
+          "line": 82,
+          "column": 40
+        },
+        "end": {
+          "line": 82,
+          "column": 47
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ")",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 3321,
+      "end": 3322,
+      "loc": {
+        "start": {
+          "line": 82,
+          "column": 47
+        },
+        "end": {
+          "line": 82,
+          "column": 48
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 3322,
+      "end": 3323,
+      "loc": {
+        "start": {
+          "line": 82,
+          "column": 48
+        },
+        "end": {
+          "line": 82,
+          "column": 49
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\n * Style to resolve dates and times leniently.\n * \n * Using lenient resolution will resolve the values in an appropriate\n * lenient manner. Individual fields will interpret this differently.\n * \n * For example, lenient mode allows the month in the ISO calendar system\n * to be outside the range 1 to 12.\n * For example, month 15 is treated as being 3 months after month 12.\n ",
+      "start": 3324,
+      "end": 3705,
+      "loc": {
+        "start": {
+          "line": 83,
+          "column": 0
+        },
+        "end": {
+          "line": 92,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "ResolverStyle",
+      "start": 3706,
+      "end": 3719,
+      "loc": {
+        "start": {
+          "line": 93,
+          "column": 0
+        },
+        "end": {
+          "line": 93,
+          "column": 13
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ".",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 3719,
+      "end": 3720,
+      "loc": {
+        "start": {
+          "line": 93,
+          "column": 13
+        },
+        "end": {
+          "line": 93,
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "LENIENT",
+      "start": 3720,
+      "end": 3727,
+      "loc": {
+        "start": {
+          "line": 93,
+          "column": 14
+        },
+        "end": {
+          "line": 93,
+          "column": 21
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "=",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": true,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "=",
+      "start": 3728,
+      "end": 3729,
+      "loc": {
+        "start": {
+          "line": 93,
+          "column": 22
+        },
+        "end": {
+          "line": 93,
+          "column": 23
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "new",
+        "keyword": "new",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "new",
+      "start": 3730,
+      "end": 3733,
+      "loc": {
+        "start": {
+          "line": 93,
+          "column": 24
+        },
+        "end": {
+          "line": 93,
+          "column": 27
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "ResolverStyle",
+      "start": 3734,
+      "end": 3747,
+      "loc": {
+        "start": {
+          "line": 93,
+          "column": 28
+        },
+        "end": {
+          "line": 93,
+          "column": 41
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "(",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 3747,
+      "end": 3748,
+      "loc": {
+        "start": {
+          "line": 93,
+          "column": 41
+        },
+        "end": {
+          "line": 93,
+          "column": 42
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "string",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "LENIENT",
+      "start": 3748,
+      "end": 3757,
+      "loc": {
+        "start": {
+          "line": 93,
+          "column": 42
+        },
+        "end": {
+          "line": 93,
+          "column": 51
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ")",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 3757,
+      "end": 3758,
+      "loc": {
+        "start": {
+          "line": 93,
+          "column": 51
+        },
+        "end": {
+          "line": 93,
+          "column": 52
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 3758,
+      "end": 3759,
+      "loc": {
+        "start": {
+          "line": 93,
+          "column": 52
+        },
+        "end": {
+          "line": 93,
+          "column": 53
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "eof",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 3760,
+      "end": 3760,
+      "loc": {
+        "start": {
+          "line": 94,
+          "column": 0
+        },
+        "end": {
+          "line": 94,
+          "column": 0
+        }
+      }
+    }
+  ]
+}
