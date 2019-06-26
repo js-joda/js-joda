@@ -1680,6 +1680,16 @@ declare namespace JSJoda {
     class DateTimeParseException extends Error {
         constructor(message?: string)
     }
+
+    class ZoneRulesProvider {
+        static getRules(zoneId: string): ZoneRules
+
+        static getAvailableZoneIds(): string[]
+    }
+
+    class DateTimeException extends Error {
+        constructor(message?: string)
+    }
 }
 
 export = JSJoda;
