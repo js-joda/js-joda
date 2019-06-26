@@ -3,8 +3,8 @@ Changelog
 
 ### next
 
- * produce smaller builds containing a more limited set of timezone data
- * updated to iana tzdb 2019a
+ * produce smaller builds containing a more limited set of timezone data #73
+ * updated to iana tzdb 2019a #73
 
 ### 2.0.2
 
