@@ -12,6 +12,8 @@ esdoc.json
 karma.conf.js
 webpack.config.js
 .*
+*.iml
+dist/main*
 
 # build output
 build
