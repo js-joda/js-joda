@@ -212,6 +212,8 @@ declare namespace JSJoda {
 
         adjustInto(temporal: Temporal): Temporal
 
+        atZone(zone: ZoneId): ZonedDateTime
+
         compareTo(otherInstant: Instant): number
 
         epochSecond(): number
@@ -278,7 +280,7 @@ declare namespace JSJoda {
 
         private constructor()
     }
-    
+
     class SignStyle {
         static NORMAL: SignStyle;
         static NEVER: SignStyle;
