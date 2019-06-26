@@ -3,9 +3,14 @@ Changelog
 
 ### next
 
- * Added ts defs for #300, DayOfWeek Month #301
+
+### 1.11.0
+ 
+ * Added ts defs for new methods in DayOfWeek and Month #301
  * add method params for #appendValue and #appendValueReduced #288 
  * add type definition for ChronoUnit.NANOS #296
+ * Add ZoneRulesProvider TypeScript definition #317 
+ * Add type definition for Instant.atZone #313 
 
 ### 1.10.1
 
