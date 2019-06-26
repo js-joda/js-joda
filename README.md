@@ -16,7 +16,7 @@
 
 - js-joda is **fast**. It is about 2 to 10 times faster than other JavaScript date libraries.
 
-- js-joda supports **ECMAScript 5** browsers down to ie9.
+- js-joda supports **ECMAScript 5** browsers down to IE9.
 
 - js-joda is a **port of the threeten** backport, which is the base for JSR-310 implementation of the Java SE 8 java.time package. Threeten is inspired by **Joda-Time**, having similar concepts and the same author.
 
@@ -30,17 +30,17 @@
 
 - js-joda is **immutable**. Immutability aligns well with pure functions and with the architecture of frameworks like React and Flux.
 
-## The threeten domain models
+## The ThreeTen domain models
 
 ### Dates and Times
 
-- **LocalDate** represents a date without a time and time-zone in the ISO-8601 calendar system, such as 2007-12-24.
+- **LocalDate** represents a date without a time and timezone in the ISO-8601 calendar system, such as 2007-12-24.
 
-- **LocalTime** represents a time without time-zone in the ISO-8601 calendar system such as '11:55:00'.
+- **LocalTime** represents a time without timezone in the ISO-8601 calendar system such as '11:55:00'.
 
 - **LocalDateTime** is a description of the date (LocalDate), as used for birthdays, combined with the local time (LocalTime) as seen on a wall clock.
 
-- **ZonedDateTime** is a date-time with a time-zone in the ISO-8601 calendar system, such as 2007-12-24T16:15:30+01:00 UTC+01:00.
+- **ZonedDateTime** is a date-time with a timezone in the ISO-8601 calendar system, such as 2007-12-24T16:15:30+01:00 UTC+01:00.
 
 - **Instant** is an instantaneous point on the time-line measured from the epoch of _1970-01-01T00:00:00Z_ in epoch-seconds and nanosecond-of-second.
 
@@ -68,23 +68,29 @@
 
 Install joda using npm
 
-    npm install js-joda
+```
+npm install js-joda
+```
 
 Then require it to any module
 
-    var LocalDate = require('js-joda').LocalDate;
+```js
+var LocalDate = require('js-joda').LocalDate;
 
-    var d = LocalDate.parse('2012-12-24').atStartOfDay().plusMonths(2); // 2013-02-24T00:00:00
+var d = LocalDate.parse('2012-12-24').atStartOfDay().plusMonths(2); // 2013-02-24T00:00:00
+```
 
 ### Browser
 
 To use js-joda from a browser, download either `dist/js-joda.min.js` or `dist/js-joda.js` (with sourcemaps for development). Then add it as a script tag to your page
 
-    <script src="js-joda.min.js"></script>
-    <script>
-        var LocalDate = JSJoda.LocalDate;
-        var d = LocalDate.parse('2012-12-24').atStartOfDay().plusMonths(2); // 2013-02-24T00:00:00
-    </script>
+```html
+<script src="js-joda.min.js"></script>
+<script>
+    var LocalDate = JSJoda.LocalDate;
+    var d = LocalDate.parse('2012-12-24').atStartOfDay().plusMonths(2); // 2013-02-24T00:00:00
+</script>
+```
 
 ## Documentation
 
@@ -96,7 +102,7 @@ To use js-joda from a browser, download either `dist/js-joda.min.js` or `dist/js
 ### Milestone 1: Core domains (reached with version v1.0.0)
 
 - Support for the domain models `LocalDate`, `LocalDateTime`, `ZonedDateTime`, `Instant`, `Duration` and `Period` converting to and from ISO8601.
-- `ZonedDateTime` (without support for loading iana time-zone databases) currently supports only fixed offsets like UTC or UTC+02:00 and the system default time zone.
+- `ZonedDateTime` (without support for loading iana timezone databases) currently supports only fixed offsets like UTC or UTC+02:00 and the system default time zone.
 
 ### Milestone 2: IANA timezone support (reached with version v1.2.0)
 

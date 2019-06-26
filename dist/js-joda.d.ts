@@ -212,6 +212,8 @@ declare namespace JSJoda {
 
         adjustInto(temporal: Temporal): Temporal
 
+        atZone(zone: ZoneId): ZonedDateTime
+
         compareTo(otherInstant: Instant): number
 
         epochSecond(): number
@@ -278,7 +280,7 @@ declare namespace JSJoda {
 
         private constructor()
     }
-    
+
     class SignStyle {
         static NORMAL: SignStyle;
         static NEVER: SignStyle;
@@ -1676,6 +1678,16 @@ declare namespace JSJoda {
     function use(plugin: Function):any;
 
     class DateTimeParseException extends Error {
+        constructor(message?: string)
+    }
+
+    class ZoneRulesProvider {
+        static getRules(zoneId: string): ZoneRules
+
+        static getAvailableZoneIds(): string[]
+    }
+
+    class DateTimeException extends Error {
         constructor(message?: string)
     }
 }
