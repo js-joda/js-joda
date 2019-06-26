@@ -1,5 +1,5 @@
 {
-  "name": "js-joda-timezone",
+  "name": "@js-joda/timezone",
   "version": "2.1.1",
   "description": "iana tzdb timezone bindings for js-joda",
   "typings": "dist/js-joda-timezone.d.ts",
