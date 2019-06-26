@@ -1,5 +1,5 @@
 {
-  "name": "js-joda",
+  "name": "@js-joda/core",
   "version": "1.11.0",
   "description": "a date and time library for javascript",
   "repository": {
