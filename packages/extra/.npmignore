@@ -1,0 +1,28 @@
+# test files
+test
+
+# Node dependency directory
+node_modules
+
+# npm
+npm-debug.log
+
+# build config
+esdoc.json
+karma.conf.js
+webpack.config.js
+.*
+*.iml
+dist/main*
+
+# build output
+build
+package-lock.json
+
+# Ide
+.idea
+
+# etc
+benchmark
+tmp
+ReleaseHowTo.md
