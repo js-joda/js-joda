@@ -107,14 +107,14 @@ To use js-joda from a browser, download either `dist/js-joda.min.js` or `dist/js
 ### Milestone 2: IANA timezone support (reached with version v1.2.0)
 
 - Add IANA timezone database support to js-joda. Implement handling of daylight saving transitions, mainly in `ZonedDateTime`.
-- For access to the IANA timezone database, the plugin [js-joda-timezone](//github.com/js-joda/js-joda-timezone) is required. It provides an implementation of the [ZoneRulesProvider](//js-joda.github.io/js-joda/esdoc/class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html) and contains the iana timezone database.
+- For access to the IANA timezone database, the plugin [@js-joda/timezone](//github.com/js-joda/js-joda/packages/timezone) is required. It provides an implementation of the [ZoneRulesProvider](//js-joda.github.io/js-joda/esdoc/class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html) and contains the iana timezone database.
 
 ### Milestone 3: Locale support (reached with v2.0.0 of js-joda-locale)
 
 - Add locale support.
 - Extend pattern parser/ formatter for text with locale support.
 
-see the plugin [js-joda-locale](//github.com/js-joda/js-joda-locale)
+see the plugin [@js-joda/locale](//github.com/js-joda/js-joda/packages/locale)
 
 ### Future Milestones
 
