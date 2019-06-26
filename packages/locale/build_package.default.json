@@ -1,0 +1,14 @@
+{
+    "cldrDataLoader": "utils/load_cldrData.postinstall.js",
+    "packages": {
+        "de": [
+            "de.*"
+        ],
+        "en": [
+            "en.*"
+        ],
+        "es": [
+            "es.*"
+        ]
+    }
+}
