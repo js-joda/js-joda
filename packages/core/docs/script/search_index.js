@@ -1,392 +1,392 @@
 window.esdocSearchIndex = [
   [
-    "js-joda/src/errors.js~arithmeticexception",
+    "@js-joda/core/src/errors.js~arithmeticexception",
     "variable/index.html#static-variable-ArithmeticException",
-    "<span>ArithmeticException</span> <span class=\"search-result-import-path\">js-joda/src/errors.js</span>",
+    "<span>ArithmeticException</span> <span class=\"search-result-import-path\">@js-joda/core/src/errors.js</span>",
     "variable"
   ],
   [
-    "js-joda/src/temporal/chronofield.js~chronofield",
+    "@js-joda/core/src/temporal/chronofield.js~chronofield",
     "class/src/temporal/ChronoField.js~ChronoField.html",
-    "<span>ChronoField</span> <span class=\"search-result-import-path\">js-joda/src/temporal/ChronoField.js</span>",
+    "<span>ChronoField</span> <span class=\"search-result-import-path\">@js-joda/core/src/temporal/ChronoField.js</span>",
     "class"
   ],
   [
-    "js-joda/src/chrono/chronolocaldate.js~chronolocaldate",
+    "@js-joda/core/src/chrono/chronolocaldate.js~chronolocaldate",
     "class/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html",
-    "<span>ChronoLocalDate</span> <span class=\"search-result-import-path\">js-joda/src/chrono/ChronoLocalDate.js</span>",
+    "<span>ChronoLocalDate</span> <span class=\"search-result-import-path\">@js-joda/core/src/chrono/ChronoLocalDate.js</span>",
     "class"
   ],
   [
-    "js-joda/src/chrono/chronolocaldatetime.js~chronolocaldatetime",
+    "@js-joda/core/src/chrono/chronolocaldatetime.js~chronolocaldatetime",
     "class/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html",
-    "<span>ChronoLocalDateTime</span> <span class=\"search-result-import-path\">js-joda/src/chrono/ChronoLocalDateTime.js</span>",
+    "<span>ChronoLocalDateTime</span> <span class=\"search-result-import-path\">@js-joda/core/src/chrono/ChronoLocalDateTime.js</span>",
     "class"
   ],
   [
-    "js-joda/src/temporal/chronounit.js~chronounit",
+    "@js-joda/core/src/temporal/chronounit.js~chronounit",
     "class/src/temporal/ChronoUnit.js~ChronoUnit.html",
-    "<span>ChronoUnit</span> <span class=\"search-result-import-path\">js-joda/src/temporal/ChronoUnit.js</span>",
+    "<span>ChronoUnit</span> <span class=\"search-result-import-path\">@js-joda/core/src/temporal/ChronoUnit.js</span>",
     "class"
   ],
   [
-    "js-joda/src/chrono/chronozoneddatetime.js~chronozoneddatetime",
+    "@js-joda/core/src/chrono/chronozoneddatetime.js~chronozoneddatetime",
     "class/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html",
-    "<span>ChronoZonedDateTime</span> <span class=\"search-result-import-path\">js-joda/src/chrono/ChronoZonedDateTime.js</span>",
+    "<span>ChronoZonedDateTime</span> <span class=\"search-result-import-path\">@js-joda/core/src/chrono/ChronoZonedDateTime.js</span>",
     "class"
   ],
   [
-    "js-joda/src/clock.js~clock",
+    "@js-joda/core/src/clock.js~clock",
     "class/src/Clock.js~Clock.html",
-    "<span>Clock</span> <span class=\"search-result-import-path\">js-joda/src/Clock.js</span>",
+    "<span>Clock</span> <span class=\"search-result-import-path\">@js-joda/core/src/Clock.js</span>",
     "class"
   ],
   [
-    "js-joda/src/errors.js~datetimeexception",
+    "@js-joda/core/src/errors.js~datetimeexception",
     "variable/index.html#static-variable-DateTimeException",
-    "<span>DateTimeException</span> <span class=\"search-result-import-path\">js-joda/src/errors.js</span>",
+    "<span>DateTimeException</span> <span class=\"search-result-import-path\">@js-joda/core/src/errors.js</span>",
     "variable"
   ],
   [
-    "js-joda/src/format/datetimeformatter.js~datetimeformatter",
+    "@js-joda/core/src/format/datetimeformatter.js~datetimeformatter",
     "class/src/format/DateTimeFormatter.js~DateTimeFormatter.html",
-    "<span>DateTimeFormatter</span> <span class=\"search-result-import-path\">js-joda/src/format/DateTimeFormatter.js</span>",
+    "<span>DateTimeFormatter</span> <span class=\"search-result-import-path\">@js-joda/core/src/format/DateTimeFormatter.js</span>",
     "class"
   ],
   [
-    "js-joda/src/format/datetimeformatterbuilder.js~datetimeformatterbuilder",
+    "@js-joda/core/src/format/datetimeformatterbuilder.js~datetimeformatterbuilder",
     "class/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html",
-    "<span>DateTimeFormatterBuilder</span> <span class=\"search-result-import-path\">js-joda/src/format/DateTimeFormatterBuilder.js</span>",
+    "<span>DateTimeFormatterBuilder</span> <span class=\"search-result-import-path\">@js-joda/core/src/format/DateTimeFormatterBuilder.js</span>",
     "class"
   ],
   [
-    "js-joda/src/errors.js~datetimeparseexception",
+    "@js-joda/core/src/errors.js~datetimeparseexception",
     "variable/index.html#static-variable-DateTimeParseException",
-    "<span>DateTimeParseException</span> <span class=\"search-result-import-path\">js-joda/src/errors.js</span>",
+    "<span>DateTimeParseException</span> <span class=\"search-result-import-path\">@js-joda/core/src/errors.js</span>",
     "variable"
   ],
   [
-    "js-joda/src/dayofweek.js~dayofweek",
+    "@js-joda/core/src/dayofweek.js~dayofweek",
     "class/src/DayOfWeek.js~DayOfWeek.html",
-    "<span>DayOfWeek</span> <span class=\"search-result-import-path\">js-joda/src/DayOfWeek.js</span>",
+    "<span>DayOfWeek</span> <span class=\"search-result-import-path\">@js-joda/core/src/DayOfWeek.js</span>",
     "class"
   ],
   [
-    "js-joda/src/format/decimalstyle.js~decimalstyle",
+    "@js-joda/core/src/format/decimalstyle.js~decimalstyle",
     "class/src/format/DecimalStyle.js~DecimalStyle.html",
-    "<span>DecimalStyle</span> <span class=\"search-result-import-path\">js-joda/src/format/DecimalStyle.js</span>",
+    "<span>DecimalStyle</span> <span class=\"search-result-import-path\">@js-joda/core/src/format/DecimalStyle.js</span>",
     "class"
   ],
   [
-    "js-joda/src/duration.js~duration",
+    "@js-joda/core/src/duration.js~duration",
     "class/src/Duration.js~Duration.html",
-    "<span>Duration</span> <span class=\"search-result-import-path\">js-joda/src/Duration.js</span>",
+    "<span>Duration</span> <span class=\"search-result-import-path\">@js-joda/core/src/Duration.js</span>",
     "class"
   ],
   [
-    "js-joda/src/enum.js~enum",
+    "@js-joda/core/src/enum.js~enum",
     "class/src/Enum.js~Enum.html",
-    "<span>Enum</span> <span class=\"search-result-import-path\">js-joda/src/Enum.js</span>",
+    "<span>Enum</span> <span class=\"search-result-import-path\">@js-joda/core/src/Enum.js</span>",
     "class"
   ],
   [
-    "js-joda/src/errors.js~illegalargumentexception",
+    "@js-joda/core/src/errors.js~illegalargumentexception",
     "variable/index.html#static-variable-IllegalArgumentException",
-    "<span>IllegalArgumentException</span> <span class=\"search-result-import-path\">js-joda/src/errors.js</span>",
+    "<span>IllegalArgumentException</span> <span class=\"search-result-import-path\">@js-joda/core/src/errors.js</span>",
     "variable"
   ],
   [
-    "js-joda/src/errors.js~illegalstateexception",
+    "@js-joda/core/src/errors.js~illegalstateexception",
     "variable/index.html#static-variable-IllegalStateException",
-    "<span>IllegalStateException</span> <span class=\"search-result-import-path\">js-joda/src/errors.js</span>",
+    "<span>IllegalStateException</span> <span class=\"search-result-import-path\">@js-joda/core/src/errors.js</span>",
     "variable"
   ],
   [
-    "js-joda/src/instant.js~instant",
+    "@js-joda/core/src/instant.js~instant",
     "class/src/Instant.js~Instant.html",
-    "<span>Instant</span> <span class=\"search-result-import-path\">js-joda/src/Instant.js</span>",
+    "<span>Instant</span> <span class=\"search-result-import-path\">@js-joda/core/src/Instant.js</span>",
     "class"
   ],
   [
-    "js-joda/src/chrono/isochronology.js~isochronology",
+    "@js-joda/core/src/chrono/isochronology.js~isochronology",
     "class/src/chrono/IsoChronology.js~IsoChronology.html",
-    "<span>IsoChronology</span> <span class=\"search-result-import-path\">js-joda/src/chrono/IsoChronology.js</span>",
+    "<span>IsoChronology</span> <span class=\"search-result-import-path\">@js-joda/core/src/chrono/IsoChronology.js</span>",
     "class"
   ],
   [
-    "js-joda/src/temporal/isofields.js~isofields",
+    "@js-joda/core/src/temporal/isofields.js~isofields",
     "class/src/temporal/IsoFields.js~IsoFields.html",
-    "<span>IsoFields</span> <span class=\"search-result-import-path\">js-joda/src/temporal/IsoFields.js</span>",
+    "<span>IsoFields</span> <span class=\"search-result-import-path\">@js-joda/core/src/temporal/IsoFields.js</span>",
     "class"
   ],
   [
-    "js-joda/src/localdate.js~localdate",
+    "@js-joda/core/src/localdate.js~localdate",
     "class/src/LocalDate.js~LocalDate.html",
-    "<span>LocalDate</span> <span class=\"search-result-import-path\">js-joda/src/LocalDate.js</span>",
+    "<span>LocalDate</span> <span class=\"search-result-import-path\">@js-joda/core/src/LocalDate.js</span>",
     "class"
   ],
   [
-    "js-joda/src/localdatetime.js~localdatetime",
+    "@js-joda/core/src/localdatetime.js~localdatetime",
     "class/src/LocalDateTime.js~LocalDateTime.html",
-    "<span>LocalDateTime</span> <span class=\"search-result-import-path\">js-joda/src/LocalDateTime.js</span>",
+    "<span>LocalDateTime</span> <span class=\"search-result-import-path\">@js-joda/core/src/LocalDateTime.js</span>",
     "class"
   ],
   [
-    "js-joda/src/localtime.js~localtime",
+    "@js-joda/core/src/localtime.js~localtime",
     "class/src/LocalTime.js~LocalTime.html",
-    "<span>LocalTime</span> <span class=\"search-result-import-path\">js-joda/src/LocalTime.js</span>",
+    "<span>LocalTime</span> <span class=\"search-result-import-path\">@js-joda/core/src/LocalTime.js</span>",
     "class"
   ],
   [
-    "js-joda/src/mathutil.js~max_safe_integer",
+    "@js-joda/core/src/mathutil.js~max_safe_integer",
     "variable/index.html#static-variable-MAX_SAFE_INTEGER",
-    "<span>MAX_SAFE_INTEGER</span> <span class=\"search-result-import-path\">js-joda/src/MathUtil.js</span>",
+    "<span>MAX_SAFE_INTEGER</span> <span class=\"search-result-import-path\">@js-joda/core/src/MathUtil.js</span>",
     "variable"
   ],
   [
-    "js-joda/src/mathutil.js~min_safe_integer",
+    "@js-joda/core/src/mathutil.js~min_safe_integer",
     "variable/index.html#static-variable-MIN_SAFE_INTEGER",
-    "<span>MIN_SAFE_INTEGER</span> <span class=\"search-result-import-path\">js-joda/src/MathUtil.js</span>",
+    "<span>MIN_SAFE_INTEGER</span> <span class=\"search-result-import-path\">@js-joda/core/src/MathUtil.js</span>",
     "variable"
   ],
   [
-    "js-joda/src/mathutil.js~mathutil",
+    "@js-joda/core/src/mathutil.js~mathutil",
     "class/src/MathUtil.js~MathUtil.html",
-    "<span>MathUtil</span> <span class=\"search-result-import-path\">js-joda/src/MathUtil.js</span>",
+    "<span>MathUtil</span> <span class=\"search-result-import-path\">@js-joda/core/src/MathUtil.js</span>",
     "class"
   ],
   [
-    "js-joda/src/month.js~month",
+    "@js-joda/core/src/month.js~month",
     "class/src/Month.js~Month.html",
-    "<span>Month</span> <span class=\"search-result-import-path\">js-joda/src/Month.js</span>",
+    "<span>Month</span> <span class=\"search-result-import-path\">@js-joda/core/src/Month.js</span>",
     "class"
   ],
   [
-    "js-joda/src/monthday.js~monthday",
+    "@js-joda/core/src/monthday.js~monthday",
     "class/src/MonthDay.js~MonthDay.html",
-    "<span>MonthDay</span> <span class=\"search-result-import-path\">js-joda/src/MonthDay.js</span>",
+    "<span>MonthDay</span> <span class=\"search-result-import-path\">@js-joda/core/src/MonthDay.js</span>",
     "class"
   ],
   [
-    "js-joda/src/errors.js~nullpointerexception",
+    "@js-joda/core/src/errors.js~nullpointerexception",
     "variable/index.html#static-variable-NullPointerException",
-    "<span>NullPointerException</span> <span class=\"search-result-import-path\">js-joda/src/errors.js</span>",
+    "<span>NullPointerException</span> <span class=\"search-result-import-path\">@js-joda/core/src/errors.js</span>",
     "variable"
   ],
   [
-    "js-joda/src/period.js~period",
+    "@js-joda/core/src/period.js~period",
     "class/src/Period.js~Period.html",
-    "<span>Period</span> <span class=\"search-result-import-path\">js-joda/src/Period.js</span>",
+    "<span>Period</span> <span class=\"search-result-import-path\">@js-joda/core/src/Period.js</span>",
     "class"
   ],
   [
-    "js-joda/src/format/resolverstyle.js~resolverstyle",
+    "@js-joda/core/src/format/resolverstyle.js~resolverstyle",
     "class/src/format/ResolverStyle.js~ResolverStyle.html",
-    "<span>ResolverStyle</span> <span class=\"search-result-import-path\">js-joda/src/format/ResolverStyle.js</span>",
+    "<span>ResolverStyle</span> <span class=\"search-result-import-path\">@js-joda/core/src/format/ResolverStyle.js</span>",
     "class"
   ],
   [
-    "js-joda/src/format/signstyle.js~signstyle",
+    "@js-joda/core/src/format/signstyle.js~signstyle",
     "class/src/format/SignStyle.js~SignStyle.html",
-    "<span>SignStyle</span> <span class=\"search-result-import-path\">js-joda/src/format/SignStyle.js</span>",
+    "<span>SignStyle</span> <span class=\"search-result-import-path\">@js-joda/core/src/format/SignStyle.js</span>",
     "class"
   ],
   [
-    "js-joda/src/zone/systemdefaultzoneid.js~systemdefaultzoneid",
+    "@js-joda/core/src/zone/systemdefaultzoneid.js~systemdefaultzoneid",
     "class/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html",
-    "<span>SystemDefaultZoneId</span> <span class=\"search-result-import-path\">js-joda/src/zone/SystemDefaultZoneId.js</span>",
+    "<span>SystemDefaultZoneId</span> <span class=\"search-result-import-path\">@js-joda/core/src/zone/SystemDefaultZoneId.js</span>",
     "class"
   ],
   [
-    "js-joda/src/zone/systemdefaultzonerules.js~systemdefaultzonerules",
+    "@js-joda/core/src/zone/systemdefaultzonerules.js~systemdefaultzonerules",
     "class/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html",
-    "<span>SystemDefaultZoneRules</span> <span class=\"search-result-import-path\">js-joda/src/zone/SystemDefaultZoneRules.js</span>",
+    "<span>SystemDefaultZoneRules</span> <span class=\"search-result-import-path\">@js-joda/core/src/zone/SystemDefaultZoneRules.js</span>",
     "class"
   ],
   [
-    "js-joda/src/temporal/temporal.js~temporal",
+    "@js-joda/core/src/temporal/temporal.js~temporal",
     "class/src/temporal/Temporal.js~Temporal.html",
-    "<span>Temporal</span> <span class=\"search-result-import-path\">js-joda/src/temporal/Temporal.js</span>",
+    "<span>Temporal</span> <span class=\"search-result-import-path\">@js-joda/core/src/temporal/Temporal.js</span>",
     "class"
   ],
   [
-    "js-joda/src/temporal/temporalaccessor.js~temporalaccessor",
+    "@js-joda/core/src/temporal/temporalaccessor.js~temporalaccessor",
     "class/src/temporal/TemporalAccessor.js~TemporalAccessor.html",
-    "<span>TemporalAccessor</span> <span class=\"search-result-import-path\">js-joda/src/temporal/TemporalAccessor.js</span>",
+    "<span>TemporalAccessor</span> <span class=\"search-result-import-path\">@js-joda/core/src/temporal/TemporalAccessor.js</span>",
     "class"
   ],
   [
-    "js-joda/src/temporal/temporaladjuster.js~temporaladjuster",
+    "@js-joda/core/src/temporal/temporaladjuster.js~temporaladjuster",
     "class/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html",
-    "<span>TemporalAdjuster</span> <span class=\"search-result-import-path\">js-joda/src/temporal/TemporalAdjuster.js</span>",
+    "<span>TemporalAdjuster</span> <span class=\"search-result-import-path\">@js-joda/core/src/temporal/TemporalAdjuster.js</span>",
     "class"
   ],
   [
-    "js-joda/src/temporal/temporaladjusters.js~temporaladjusters",
+    "@js-joda/core/src/temporal/temporaladjusters.js~temporaladjusters",
     "class/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html",
-    "<span>TemporalAdjusters</span> <span class=\"search-result-import-path\">js-joda/src/temporal/TemporalAdjusters.js</span>",
+    "<span>TemporalAdjusters</span> <span class=\"search-result-import-path\">@js-joda/core/src/temporal/TemporalAdjusters.js</span>",
     "class"
   ],
   [
-    "js-joda/src/temporal/temporalamount.js~temporalamount",
+    "@js-joda/core/src/temporal/temporalamount.js~temporalamount",
     "class/src/temporal/TemporalAmount.js~TemporalAmount.html",
-    "<span>TemporalAmount</span> <span class=\"search-result-import-path\">js-joda/src/temporal/TemporalAmount.js</span>",
+    "<span>TemporalAmount</span> <span class=\"search-result-import-path\">@js-joda/core/src/temporal/TemporalAmount.js</span>",
     "class"
   ],
   [
-    "js-joda/src/temporal/temporalfield.js~temporalfield",
+    "@js-joda/core/src/temporal/temporalfield.js~temporalfield",
     "class/src/temporal/TemporalField.js~TemporalField.html",
-    "<span>TemporalField</span> <span class=\"search-result-import-path\">js-joda/src/temporal/TemporalField.js</span>",
+    "<span>TemporalField</span> <span class=\"search-result-import-path\">@js-joda/core/src/temporal/TemporalField.js</span>",
     "class"
   ],
   [
-    "js-joda/src/temporal/temporalqueries.js~temporalqueries",
+    "@js-joda/core/src/temporal/temporalqueries.js~temporalqueries",
     "class/src/temporal/TemporalQueries.js~TemporalQueries.html",
-    "<span>TemporalQueries</span> <span class=\"search-result-import-path\">js-joda/src/temporal/TemporalQueries.js</span>",
+    "<span>TemporalQueries</span> <span class=\"search-result-import-path\">@js-joda/core/src/temporal/TemporalQueries.js</span>",
     "class"
   ],
   [
-    "js-joda/src/temporal/temporalquery.js~temporalquery",
+    "@js-joda/core/src/temporal/temporalquery.js~temporalquery",
     "class/src/temporal/TemporalQuery.js~TemporalQuery.html",
-    "<span>TemporalQuery</span> <span class=\"search-result-import-path\">js-joda/src/temporal/TemporalQuery.js</span>",
+    "<span>TemporalQuery</span> <span class=\"search-result-import-path\">@js-joda/core/src/temporal/TemporalQuery.js</span>",
     "class"
   ],
   [
-    "js-joda/src/temporal/temporalunit.js~temporalunit",
+    "@js-joda/core/src/temporal/temporalunit.js~temporalunit",
     "class/src/temporal/TemporalUnit.js~TemporalUnit.html",
-    "<span>TemporalUnit</span> <span class=\"search-result-import-path\">js-joda/src/temporal/TemporalUnit.js</span>",
+    "<span>TemporalUnit</span> <span class=\"search-result-import-path\">@js-joda/core/src/temporal/TemporalUnit.js</span>",
     "class"
   ],
   [
-    "js-joda/src/format/textstyle.js~textstyle",
+    "@js-joda/core/src/format/textstyle.js~textstyle",
     "class/src/format/TextStyle.js~TextStyle.html",
-    "<span>TextStyle</span> <span class=\"search-result-import-path\">js-joda/src/format/TextStyle.js</span>",
+    "<span>TextStyle</span> <span class=\"search-result-import-path\">@js-joda/core/src/format/TextStyle.js</span>",
     "class"
   ],
   [
-    "js-joda/src/errors.js~unsupportedtemporaltypeexception",
+    "@js-joda/core/src/errors.js~unsupportedtemporaltypeexception",
     "variable/index.html#static-variable-UnsupportedTemporalTypeException",
-    "<span>UnsupportedTemporalTypeException</span> <span class=\"search-result-import-path\">js-joda/src/errors.js</span>",
+    "<span>UnsupportedTemporalTypeException</span> <span class=\"search-result-import-path\">@js-joda/core/src/errors.js</span>",
     "variable"
   ],
   [
-    "js-joda/src/temporal/valuerange.js~valuerange",
+    "@js-joda/core/src/temporal/valuerange.js~valuerange",
     "class/src/temporal/ValueRange.js~ValueRange.html",
-    "<span>ValueRange</span> <span class=\"search-result-import-path\">js-joda/src/temporal/ValueRange.js</span>",
+    "<span>ValueRange</span> <span class=\"search-result-import-path\">@js-joda/core/src/temporal/ValueRange.js</span>",
     "class"
   ],
   [
-    "js-joda/src/year.js~year",
+    "@js-joda/core/src/year.js~year",
     "class/src/Year.js~Year.html",
-    "<span>Year</span> <span class=\"search-result-import-path\">js-joda/src/Year.js</span>",
+    "<span>Year</span> <span class=\"search-result-import-path\">@js-joda/core/src/Year.js</span>",
     "class"
   ],
   [
-    "js-joda/src/yearconstants.js~yearconstants",
+    "@js-joda/core/src/yearconstants.js~yearconstants",
     "class/src/YearConstants.js~YearConstants.html",
-    "<span>YearConstants</span> <span class=\"search-result-import-path\">js-joda/src/YearConstants.js</span>",
+    "<span>YearConstants</span> <span class=\"search-result-import-path\">@js-joda/core/src/YearConstants.js</span>",
     "class"
   ],
   [
-    "js-joda/src/yearmonth.js~yearmonth",
+    "@js-joda/core/src/yearmonth.js~yearmonth",
     "class/src/YearMonth.js~YearMonth.html",
-    "<span>YearMonth</span> <span class=\"search-result-import-path\">js-joda/src/YearMonth.js</span>",
+    "<span>YearMonth</span> <span class=\"search-result-import-path\">@js-joda/core/src/YearMonth.js</span>",
     "class"
   ],
   [
-    "js-joda/src/zoneid.js~zoneid",
+    "@js-joda/core/src/zoneid.js~zoneid",
     "class/src/ZoneId.js~ZoneId.html",
-    "<span>ZoneId</span> <span class=\"search-result-import-path\">js-joda/src/ZoneId.js</span>",
+    "<span>ZoneId</span> <span class=\"search-result-import-path\">@js-joda/core/src/ZoneId.js</span>",
     "class"
   ],
   [
-    "js-joda/src/zoneoffset.js~zoneoffset",
+    "@js-joda/core/src/zoneoffset.js~zoneoffset",
     "class/src/ZoneOffset.js~ZoneOffset.html",
-    "<span>ZoneOffset</span> <span class=\"search-result-import-path\">js-joda/src/ZoneOffset.js</span>",
+    "<span>ZoneOffset</span> <span class=\"search-result-import-path\">@js-joda/core/src/ZoneOffset.js</span>",
     "class"
   ],
   [
-    "js-joda/src/zone/zoneoffsettransition.js~zoneoffsettransition",
+    "@js-joda/core/src/zone/zoneoffsettransition.js~zoneoffsettransition",
     "class/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html",
-    "<span>ZoneOffsetTransition</span> <span class=\"search-result-import-path\">js-joda/src/zone/ZoneOffsetTransition.js</span>",
+    "<span>ZoneOffsetTransition</span> <span class=\"search-result-import-path\">@js-joda/core/src/zone/ZoneOffsetTransition.js</span>",
     "class"
   ],
   [
-    "js-joda/src/zoneregion.js~zoneregion",
+    "@js-joda/core/src/zoneregion.js~zoneregion",
     "class/src/ZoneRegion.js~ZoneRegion.html",
-    "<span>ZoneRegion</span> <span class=\"search-result-import-path\">js-joda/src/ZoneRegion.js</span>",
+    "<span>ZoneRegion</span> <span class=\"search-result-import-path\">@js-joda/core/src/ZoneRegion.js</span>",
     "class"
   ],
   [
-    "js-joda/src/zone/zonerules.js~zonerules",
+    "@js-joda/core/src/zone/zonerules.js~zonerules",
     "class/src/zone/ZoneRules.js~ZoneRules.html",
-    "<span>ZoneRules</span> <span class=\"search-result-import-path\">js-joda/src/zone/ZoneRules.js</span>",
+    "<span>ZoneRules</span> <span class=\"search-result-import-path\">@js-joda/core/src/zone/ZoneRules.js</span>",
     "class"
   ],
   [
-    "js-joda/src/zone/zonerulesprovider.js~zonerulesprovider",
+    "@js-joda/core/src/zone/zonerulesprovider.js~zonerulesprovider",
     "class/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html",
-    "<span>ZoneRulesProvider</span> <span class=\"search-result-import-path\">js-joda/src/zone/ZoneRulesProvider.js</span>",
+    "<span>ZoneRulesProvider</span> <span class=\"search-result-import-path\">@js-joda/core/src/zone/ZoneRulesProvider.js</span>",
     "class"
   ],
   [
-    "js-joda/src/zoneddatetime.js~zoneddatetime",
+    "@js-joda/core/src/zoneddatetime.js~zoneddatetime",
     "class/src/ZonedDateTime.js~ZonedDateTime.html",
-    "<span>ZonedDateTime</span> <span class=\"search-result-import-path\">js-joda/src/ZonedDateTime.js</span>",
+    "<span>ZonedDateTime</span> <span class=\"search-result-import-path\">@js-joda/core/src/ZonedDateTime.js</span>",
     "class"
   ],
   [
-    "js-joda/src/assert.js~abstractmethodfail",
+    "@js-joda/core/src/assert.js~abstractmethodfail",
     "function/index.html#static-function-abstractMethodFail",
-    "<span>abstractMethodFail</span> <span class=\"search-result-import-path\">js-joda/src/assert.js</span>",
+    "<span>abstractMethodFail</span> <span class=\"search-result-import-path\">@js-joda/core/src/assert.js</span>",
     "function"
   ],
   [
-    "js-joda/src/assert.js~assert",
+    "@js-joda/core/src/assert.js~assert",
     "function/index.html#static-function-assert",
-    "<span>assert</span> <span class=\"search-result-import-path\">js-joda/src/assert.js</span>",
+    "<span>assert</span> <span class=\"search-result-import-path\">@js-joda/core/src/assert.js</span>",
     "function"
   ],
   [
-    "js-joda/src/use.js~binduse",
+    "@js-joda/core/src/use.js~binduse",
     "function/index.html#static-function-bindUse",
-    "<span>bindUse</span> <span class=\"search-result-import-path\">js-joda/src/use.js</span>",
+    "<span>bindUse</span> <span class=\"search-result-import-path\">@js-joda/core/src/use.js</span>",
     "function"
   ],
   [
-    "js-joda/src/convert.js~convert",
+    "@js-joda/core/src/convert.js~convert",
     "function/index.html#static-function-convert",
-    "<span>convert</span> <span class=\"search-result-import-path\">js-joda/src/convert.js</span>",
+    "<span>convert</span> <span class=\"search-result-import-path\">@js-joda/core/src/convert.js</span>",
     "function"
   ],
   [
-    "js-joda/src/temporal/temporalquery.js~createtemporalquery",
+    "@js-joda/core/src/temporal/temporalquery.js~createtemporalquery",
     "function/index.html#static-function-createTemporalQuery",
-    "<span>createTemporalQuery</span> <span class=\"search-result-import-path\">js-joda/src/temporal/TemporalQuery.js</span>",
+    "<span>createTemporalQuery</span> <span class=\"search-result-import-path\">@js-joda/core/src/temporal/TemporalQuery.js</span>",
     "function"
   ],
   [
-    "js-joda/src/temporal/nativejstemporal.js~nativejs",
+    "@js-joda/core/src/temporal/nativejstemporal.js~nativejs",
     "function/index.html#static-function-nativeJs",
-    "<span>nativeJs</span> <span class=\"search-result-import-path\">js-joda/src/temporal/NativeJsTemporal.js</span>",
+    "<span>nativeJs</span> <span class=\"search-result-import-path\">@js-joda/core/src/temporal/NativeJsTemporal.js</span>",
     "function"
   ],
   [
-    "js-joda/src/assert.js~requireinstance",
+    "@js-joda/core/src/assert.js~requireinstance",
     "function/index.html#static-function-requireInstance",
-    "<span>requireInstance</span> <span class=\"search-result-import-path\">js-joda/src/assert.js</span>",
+    "<span>requireInstance</span> <span class=\"search-result-import-path\">@js-joda/core/src/assert.js</span>",
     "function"
   ],
   [
-    "js-joda/src/assert.js~requirenonnull",
+    "@js-joda/core/src/assert.js~requirenonnull",
     "function/index.html#static-function-requireNonNull",
-    "<span>requireNonNull</span> <span class=\"search-result-import-path\">js-joda/src/assert.js</span>",
+    "<span>requireNonNull</span> <span class=\"search-result-import-path\">@js-joda/core/src/assert.js</span>",
     "function"
   ],
   [
-    "js-joda/src/js-joda.js~use",
+    "@js-joda/core/src/js-joda.js~use",
     "variable/index.html#static-variable-use",
-    "<span>use</span> <span class=\"search-result-import-path\">js-joda/src/js-joda.js</span>",
+    "<span>use</span> <span class=\"search-result-import-path\">@js-joda/core/src/js-joda.js</span>",
     "variable"
   ],
   [
