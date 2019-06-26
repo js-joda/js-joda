@@ -4,7 +4,7 @@
   "description": "plugin for locale functionality for js-joda",
   "repository": {
     "type": "git",
-    "url": "https://github.com/js-joda/js-joda-locale.git"
+    "url": "https://github.com/js-joda/js-joda.git"
   },
   "main": "dist/js-joda-locale.js",
   "scripts": {
