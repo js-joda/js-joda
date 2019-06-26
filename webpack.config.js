@@ -26,7 +26,7 @@ module.exports = {
     devtool: sourceMaps ? 'hidden-source-map' : false,
     output: {
         path: `${__dirname}/dist`,
-        filename: minify ? 'js-joda-extra.min.js' : 'js-joda-extra.js',
+        filename: minify ? 'js-joda-extra.min.js' : '[name].js',
         libraryTarget: 'umd',
         library: 'JSJodaExtra',
         globalObject: 'this',
