@@ -55,7 +55,7 @@
     "coveralls": "^3.0.1",
     "esdoc": "^1.1.0",
     "esdoc-standard-plugin": "^1.0.0",
-    "eslint": "^4.19.1",
+    "eslint": "^6.0.0",
     "eslint-config-js-joda": "^1.0.0",
     "js-joda": "^1.9.1",
     "json-loader": "^0.5.7",
