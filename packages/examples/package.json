@@ -4,7 +4,7 @@
   "description": "HowTo use js-joda libraries in different environments",
   "main": "index.js",
   "scripts": {
-    "test": "./test/run-node-samples.sh"
+    "test-skipped": "./test/run-node-samples.sh"
   },
   "repository": {
     "type": "git",
