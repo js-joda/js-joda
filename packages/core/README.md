@@ -69,13 +69,13 @@
 Install joda using npm
 
 ```
-npm install js-joda
+npm install @js-joda/core
 ```
 
 Then require it to any module
 
 ```js
-var LocalDate = require('js-joda').LocalDate;
+var LocalDate = require('@js-joda/core').LocalDate;
 
 var d = LocalDate.parse('2012-12-24').atStartOfDay().plusMonths(2); // 2013-02-24T00:00:00
 ```
