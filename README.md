@@ -23,7 +23,7 @@ put all js-joda npm modules under the @js-joda scope.
 |---|---|---|
 | `js-joda` | `@1.11.0` |`@js-joda/core`| 
 | `js-joda-timezone` | `@2.0.2` |`@js-joda/timezone` |
-| `js-joda-extra` | `@0.2.0` |`@js-joda/extra` |
+| `js-joda-extra` | `@0.2.2` |`@js-joda/extra` |
 | `@js-joda/locale` | is already under `@js-joda` scope |
 
 
