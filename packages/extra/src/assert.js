@@ -2,7 +2,7 @@
  * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
-import { NullPointerException, IllegalArgumentException } from 'js-joda';
+import { NullPointerException, IllegalArgumentException } from '@js-joda/core';
 
 export function assert(assertion, msg, error) {
     if (!assertion) {

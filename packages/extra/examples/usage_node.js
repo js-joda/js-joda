@@ -3,7 +3,7 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 /* eslint-disable no-console, no-var */
-var joda = require('js-joda');
+var joda = require('@js-joda/core');
 var jodaExtra = require('../dist/js-joda-extra');
 
 var startInstant = joda.ZonedDateTime.of(2016, 11, 7, 0, 0, 0, 0, joda.ZoneOffset.UTC).toInstant();

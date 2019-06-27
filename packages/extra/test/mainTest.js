@@ -6,7 +6,7 @@
 import { expect } from 'chai';
 
 import '../src/js-joda-extra';
-import { Interval } from 'js-joda';
+import { Interval } from '@js-joda/core';
 
 describe('main test', () => {
     // do not work, because context lives only locally

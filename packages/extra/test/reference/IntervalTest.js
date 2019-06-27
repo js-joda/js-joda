@@ -15,7 +15,7 @@ import {
     NullPointerException,
     ZonedDateTime,
     ZoneOffset,
-} from 'js-joda';
+} from '@js-joda/core';
 
 import '../_init';
 

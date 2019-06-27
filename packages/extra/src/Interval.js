@@ -5,7 +5,7 @@
  */
 
 /* eslint-disable no-else-return */
-import { DateTimeException, DateTimeParseException, Duration, IllegalArgumentException, Instant, ZonedDateTime } from 'js-joda';
+import { DateTimeException, DateTimeParseException, Duration, IllegalArgumentException, Instant, ZonedDateTime } from '@js-joda/core';
 
 // TODO: hm... is this a good idea?? copied from joda currently, could we add a js-joda-utils module??
 import { requireNonNull, requireInstance } from './assert';
