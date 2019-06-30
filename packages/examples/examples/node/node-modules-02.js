@@ -6,12 +6,12 @@ const {
     LocalDateTime,
     ZonedDateTime,
     ZoneId,
-} = require('js-joda');
-require('js-joda-timezone');
+} = require('@js-joda/core');
+require('@js-joda/timezone');
 
 const {
     Interval,
-} = require('js-joda-extra');
+} = require('@js-joda/extra');
 
 console.log(LocalDateTime.now().toString());
 console.log(ZonedDateTime.now().toString());

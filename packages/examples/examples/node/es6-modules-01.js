@@ -8,11 +8,11 @@ import {
     LocalDateTime,
     ZonedDateTime,
     ZoneId,
-} from 'js-joda';
+} from '@js-joda/core';
 import {
     Interval,
-} from 'js-joda-extra';
-import 'js-joda-timezone';
+} from '@js-joda/extra';
+import '@js-joda/timezone';
 
 console.log(LocalDate.now().until(LocalDate.now().plusDays(10), ChronoUnit.DAYS));
 console.log(LocalDateTime.now().toString());

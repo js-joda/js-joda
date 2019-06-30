@@ -5,7 +5,7 @@ const {
     LocalDate,
     LocalDateTime,
     ZonedDateTime,
-} = require('js-joda');
+} = require('@js-joda/core');
 
 console.log(LocalDateTime.now().toString());
 console.log(ZonedDateTime.now().toString());

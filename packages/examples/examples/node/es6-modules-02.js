@@ -3,7 +3,7 @@
 import {
     LocalDateTime,
     ZonedDateTime,
-} from 'js-joda';
+} from '@js-joda/core';
 
 console.log(LocalDateTime.now().toString());
 console.log(ZonedDateTime.now().toString());

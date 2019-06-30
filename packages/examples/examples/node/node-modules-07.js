@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 
-const { DateTimeFormatter, ZonedDateTime, ZoneId } = require('js-joda');
-require('js-joda-timezone');
+const { DateTimeFormatter, ZonedDateTime, ZoneId } = require('@js-joda/core');
+require('@js-joda/timezone');
 const { Locale } = require('@js-joda/locale_en-us');
 
 const zdt = ZonedDateTime.of(2017, 1, 1, 0, 0, 0, 0, ZoneId.of('Europe/Berlin'));
