@@ -49,6 +49,12 @@ module.exports = function(config) {
         },
     };
 
+    const webpackConfig = require('./webpack.config.js');
+    // clear entry, for karma we use the karmaWebpackTestEntry
+    webpackConfig.entry = undefined;
+    // no sourceMaps for karma build (seems to cause problems with saucelabs runs?)
+    webpackConfig.devtool = false;
+
     config.set({
         files: [
             {pattern: 'test/karmaWebpackTestEntry.js'}
@@ -68,6 +74,10 @@ module.exports = function(config) {
             testName: 'js-joda karma Tests',
             recordVideo: false,
             recordScreenshots: false,
+            // don't connect to saucelabs, let travis start a sauce connect proxy
+            startConnect: false,
+            // needed for travis sauce connect connection to work
+            tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
             connectOptions: {
                 logfile: 'sauce_connect.log'
             }
