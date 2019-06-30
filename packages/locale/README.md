@@ -64,8 +64,8 @@ The implementation of `@js-joda/locale` also requires `js-joda-timezone` package
 Install joda using npm
 
 ```shell
-    npm install js-joda
-    npm install js-joda-timezone
+    npm install @js-joda/core
+    npm install @js-joda/timezone
     npm install cldr-data
     npm install cldrjs
     npm install @js-joda/locale
