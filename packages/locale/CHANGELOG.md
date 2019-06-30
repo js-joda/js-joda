@@ -3,6 +3,10 @@
 
 ### next
 
+### 3.0.0
+
+* Switch to latest @js-joda/core and @js-joda/timezone peer dependencies
+
 ### 2.0.1
 
 * update README to reflect new package name `@js-joda/locale*`

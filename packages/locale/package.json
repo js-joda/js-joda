@@ -1,6 +1,6 @@
 {
   "name": "@js-joda/locale",
-  "version": "2.0.1+34.0.0",
+  "version": "3.0.0+34.0.0",
   "description": "plugin for locale functionality for js-joda",
   "repository": {
     "type": "git",
@@ -47,8 +47,8 @@
   "peerDependencies": {
     "cldr-data": "*",
     "cldrjs": "^0.5.1",
-    "@js-joda/core": "^1.9.2",
-    "@js-joda/timezone": "^2.0.1"
+    "@js-joda/core": "^1.11.0",
+    "@js-joda/timezone": "^2.1.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
@@ -56,8 +56,8 @@
     "@babel/polyfill": "^7.2.5",
     "@babel/preset-env": "^7.3.4",
     "@babel/register": "^7.0.0",
-    "@js-joda/core": "^1.9.2",
-    "@js-joda/timezone": "^2.0.1",
+    "@js-joda/core": "^1.11.0",
+    "@js-joda/timezone": "^2.1.1",
     "babel-loader": "^8.0.5",
     "babel-plugin-add-module-exports": "^1.0.0",
     "babel-plugin-istanbul": "^5.1.1",

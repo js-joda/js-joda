@@ -1,6 +1,6 @@
 {
     "name": "@js-joda/locale_zh",
-    "version": "2.0.1+34.0.0",
+    "version": "3.0.0+34.0.0",
     "description": "prebuilt js-joda locale package for locales: zh.*",
     "repository": {
         "type": "git",
@@ -23,8 +23,8 @@
     },
     "homepage": "https://github.com/js-joda/js-joda-locale#readme",
     "peerDependencies": {
-        "@js-joda/core": "^1.9.2",
-        "@js-joda/timezone": "^2.0.1"
+        "@js-joda/core": "^1.11.0",
+        "@js-joda/timezone": "^2.1.1"
     },
     "dependencies": {},
     "devDependencies": {}
