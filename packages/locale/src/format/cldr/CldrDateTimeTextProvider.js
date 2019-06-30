@@ -3,7 +3,7 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-import { ChronoField, IsoFields, TextStyle } from 'js-joda';
+import { ChronoField, IsoFields, TextStyle } from '@js-joda/core';
 
 import cldrData from 'cldr-data';
 import Cldr from 'cldrjs';

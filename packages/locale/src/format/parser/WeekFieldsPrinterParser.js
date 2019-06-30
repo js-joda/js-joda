@@ -3,7 +3,7 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-import { _ as jodaInternal, DateTimeFormatterBuilder, SignStyle } from 'js-joda';
+import { _ as jodaInternal, DateTimeFormatterBuilder, SignStyle } from '@js-joda/core';
 
 import { WeekFields } from '../../temporal/WeekFields';
 

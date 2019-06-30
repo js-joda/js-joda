@@ -4,7 +4,7 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import { DateTimeFormatterBuilder, IllegalArgumentException, SignStyle, TextStyle } from 'js-joda';
+import { DateTimeFormatterBuilder, IllegalArgumentException, SignStyle, TextStyle } from '@js-joda/core';
 
 //-----------------------------------------------------------------------
 /**

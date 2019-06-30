@@ -87,8 +87,8 @@ const {
     DateTimeFormatter,
     ZonedDateTime,
     ZoneId,
-} = require('js-joda');
-require('js-joda-timezone');
+} = require('@js-joda/core');
+require('@js-joda/timezone');
 
 const {
     Locale,
@@ -104,8 +104,8 @@ also see [examples/usage_node.js](examples/usage_node.js) or [examples/usage_nod
 ### es6
 
 ```ecmascript 6
-import { DateTimeFormatter, ZonedDateTime, ZoneId } from 'js-joda';
-import 'js-joda-timezone';
+import { DateTimeFormatter, ZonedDateTime, ZoneId } from '@js-joda/core';
+import '@js-joda/timezone';
 import { Locale } from '.@js-joda/locale_en-us';
 
 const zdt = ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, ZoneId.of('Europe/Berlin'));

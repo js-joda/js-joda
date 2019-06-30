@@ -9,7 +9,7 @@ import {
     DateTimeFormatterBuilder,
     ChronoField,
     TextStyle
-} from 'js-joda';
+} from '@js-joda/core';
 
 const { MathUtil } = jodaInternal;
 //-----------------------------------------------------------------------

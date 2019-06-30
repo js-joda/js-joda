@@ -13,7 +13,7 @@ import {
     ZoneId,
     ZoneOffset,
     ZoneRulesProvider,
-} from 'js-joda';
+} from '@js-joda/core';
 
 const { assert: { requireNonNull, requireInstance } } = jodaInternal;
 

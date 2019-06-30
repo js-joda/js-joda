@@ -15,9 +15,9 @@ import {
     TextStyle,
     TemporalAccessor,
     TemporalQueries,
-} from 'js-joda';
+} from '@js-joda/core';
 
-import 'js-joda-timezone';
+import '@js-joda/timezone';
 
 import { assertEquals, dataProviderTest } from '../../testUtils';
 

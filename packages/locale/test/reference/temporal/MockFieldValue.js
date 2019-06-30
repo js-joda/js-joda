@@ -4,7 +4,7 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import { ChronoField, DateTimeException } from 'js-joda';
+import { ChronoField, DateTimeException } from '@js-joda/core';
 
 //TODO: copied from js-joda
 /**

@@ -4,7 +4,7 @@
  */
 
 import { expect } from 'chai';
-import * as joda from 'js-joda';
+import * as joda from '@js-joda/core';
 
 import jodaLocale from '../../../src/plug';
 

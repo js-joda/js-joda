@@ -12,9 +12,9 @@ import {
     LocalDateTime,
     TextStyle,
     ZoneId,
-} from 'js-joda';
+} from '@js-joda/core';
 
-import 'js-joda-timezone';
+import '@js-joda/timezone';
 
 import { assertEquals, dataProviderTest } from '../testUtils';
 
@@ -31,7 +31,7 @@ const {
 } = jodaInternal;
 
 /* these tests are not copied from threetenbp, but js-joda tests to increase coverage */
-describe('js-joda-locale TextPrinterTest', () => {
+describe('@js-joda/locale TextPrinterTest', () => {
 
     let printContext;
     let buf;

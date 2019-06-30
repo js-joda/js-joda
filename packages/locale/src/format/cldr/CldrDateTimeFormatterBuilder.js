@@ -11,7 +11,7 @@ import {
     TextStyle,
     ChronoField,
     TemporalField
-} from 'js-joda';
+} from '@js-joda/core';
 
 import TextPrinterParser from '../parser/TextPrinterParser';
 import CldrDateTimeTextProvider from './CldrDateTimeTextProvider';

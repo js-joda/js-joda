@@ -11,9 +11,9 @@ import {
     LocalDateTime,
     TextStyle,
     ZoneId,
-} from 'js-joda';
+} from '@js-joda/core';
 
-import 'js-joda-timezone';
+import '@js-joda/timezone';
 
 import { assertEquals, dataProviderTest } from '../testUtils';
 
@@ -29,7 +29,7 @@ const {
 } = jodaInternal;
 
 /* these tests are not copied from threetenbp, but js-joda tests to increase coverage */
-describe('js-joda-locale LocalizedOffsetPrinterParser', () => {
+describe('@js-joda/locale LocalizedOffsetPrinterParser', () => {
 
     it('constructor', () => {
         const lop = new LocalizedOffsetPrinterParser(TextStyle.FULL);

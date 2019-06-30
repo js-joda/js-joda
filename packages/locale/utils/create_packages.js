@@ -69,8 +69,8 @@ const packageTemplate = {
     },
     homepage: 'https://github.com/js-joda/js-joda-locale#readme',
     peerDependencies: {
-        'js-joda': mainPackageJSON.peerDependencies['js-joda'],
-        'js-joda-timezone': mainPackageJSON.peerDependencies['js-joda-timezone'],
+        '@js-joda/core': mainPackageJSON.peerDependencies['@js-joda/core'],
+        '@js-joda/timezone': mainPackageJSON.peerDependencies['@js-joda/timezone'],
     },
     dependencies: {},
     devDependencies: {}

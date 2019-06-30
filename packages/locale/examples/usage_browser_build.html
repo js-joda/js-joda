@@ -23,17 +23,17 @@
 
     require.config({
         paths: {
-            'js-joda': '../node_modules/js-joda/dist/js-joda',
+            '@js-joda/core': '../node_modules/js-joda/dist/js-joda',
 
-            'js-joda-timezone': '../node_modules/js-joda-timezone/dist/js-joda-timezone',
+            '@js-joda/timezone': '../node_modules/js-joda-timezone/dist/js-joda-timezone',
 
-            'js-joda-locale': '../examples/build/js-joda-locale/index',
+            '@js-joda/locale': '../examples/build/js-joda-locale/index',
         }
     });
     require([
-        'js-joda',
-        'js-joda-timezone',
-        'js-joda-locale',
+        '@js-joda/core',
+        '@js-joda/timezone',
+        '@js-joda/locale',
     ], function (JSJoda, JSJodaTimezone, JSJodaLocale) {
 
         function outputDateInDifferentLocales(zdt) {

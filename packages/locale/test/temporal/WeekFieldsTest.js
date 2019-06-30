@@ -18,7 +18,7 @@ import {
     Month,
     ResolverStyle,
     ValueRange,
-} from 'js-joda';
+} from '@js-joda/core';
 
 import '../_init';
 import Locale from '../../src/Locale';
@@ -30,7 +30,7 @@ const {
     DateTimeBuilder,
 } = jodaInternal;
 
-describe('js-joda-locale WeekFields', () => {
+describe('@js-joda/locale WeekFields', () => {
     const data = [
         [LocalDate.of(2016, 12, 31), DayOfWeek.MONDAY, 7, 6, 52, 4, 52, 2016],
         [LocalDate.of(2016, 12, 31), DayOfWeek.SATURDAY, 7, 1, 53, 5, 53, 2016],

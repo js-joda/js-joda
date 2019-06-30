@@ -11,9 +11,9 @@ import {
     IsoChronology,
     TextStyle,
     TemporalQueries,
-} from 'js-joda';
+} from '@js-joda/core';
 
-import 'js-joda-timezone';
+import '@js-joda/timezone';
 
 import { assertEquals, dataProviderTest } from '../testUtils';
 
@@ -28,7 +28,7 @@ const {
 } = jodaInternal;
 
 /* these tests are not copied from threetenbp, but js-joda tests to increase coverage */
-describe('js-joda-local TextParserTest', () => {
+describe('@js-joda/local TextParserTest', () => {
     let parseContext;
 
     beforeEach(() => {

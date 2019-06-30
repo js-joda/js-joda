@@ -6,7 +6,6 @@
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
-const WebpackBuildNotifier = require('webpack-build-notifier');
 
 const minify = JSON.parse(process.env.DIST_MIN || '0');
 const sourceMaps = !minify;
@@ -36,16 +35,16 @@ const createConfig = (/*env, argv*/) => {
             library: 'JSJodaLocale',
         },
         externals: {
-            'js-joda': {
-                amd: 'js-joda',
-                commonjs: 'js-joda',
-                commonjs2: 'js-joda',
+            '@js-joda/core': {
+                amd: '@js-joda/core',
+                commonjs: '@js-joda/core',
+                commonjs2: '@js-joda/core',
                 root: 'JSJoda',
             },
-            'js-joda-timezone': {
-                amd: 'js-joda-timezone',
-                commonjs: 'js-joda-timzezone',
-                commonjs2: 'js-joda-timezone',
+            '@js-joda/timezone': {
+                amd: '@js-joda/timezone',
+                commonjs: '@js-joda/timzezone',
+                commonjs2: '@js-joda/timezone',
                 root: 'JSJodaTimezone',
             },
             'cldr-data': {
@@ -77,7 +76,6 @@ const createConfig = (/*env, argv*/) => {
         },
         plugins: [
             new webpack.BannerPlugin({ banner, raw: true }),
-            new WebpackBuildNotifier(),
         ],
         performance: {
             /* we know that we will be generating big packages with locale data, no reason to have webpack warn us */

@@ -3,8 +3,8 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-import { _ as jodaInternal, DateTimeFormatter } from 'js-joda';
-// eslint-disable-next-line no-unused-vars, (needed for esdoc)
+import { _ as jodaInternal, DateTimeFormatter } from '@js-joda/core';
+// eslint-disable-next-line no-unused-vars
 import Locale from '../Locale';
 
 const { assert: { requireNonNull } } = jodaInternal;

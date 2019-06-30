@@ -3,8 +3,8 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 /* eslint-disable no-console, no-var */
-var joda = require('js-joda');
-require('js-joda-timezone');
+var joda = require('@js-joda/core');
+require('@js-joda/timezone');
 
 function outputDateInDifferentLocales(zdt) {
     var { Locale } = require('./build/js-joda-locale');

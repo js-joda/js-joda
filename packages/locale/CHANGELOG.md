@@ -1,4 +1,4 @@
-Changelog
+@js-joda/locale Changelog
 =========
 
 ### next

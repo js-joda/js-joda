@@ -5,14 +5,14 @@
 
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("js-joda"));
+		module.exports = factory(require("@js-joda/core"));
 	else if(typeof define === 'function' && define.amd)
-		define(["js-joda"], factory);
+		define(["@js-joda/core"], factory);
 	else if(typeof exports === 'object')
-		exports["JSJodaLocale"] = factory(require("js-joda"));
+		exports["JSJodaLocale"] = factory(require("@js-joda/core"));
 	else
 		root["JSJodaLocale"] = factory(root["JSJoda"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_js_joda__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE__js_joda_core__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -2597,8 +2597,8 @@ init();
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LocaleDateTimeFormatter; });
-/* harmony import */ var js_joda__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-joda */ "js-joda");
-/* harmony import */ var js_joda__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(js_joda__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @js-joda/core */ "@js-joda/core");
+/* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Locale__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Locale */ "./src/Locale.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -2624,7 +2624,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
  */
 
 
-var requireNonNull = js_joda__WEBPACK_IMPORTED_MODULE_0__["_"].assert.requireNonNull;
+var requireNonNull = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["_"].assert.requireNonNull;
 
 var LocaleDateTimeFormatter = function (_DateTimeFormatter) {
   _inherits(LocaleDateTimeFormatter, _DateTimeFormatter);
@@ -2644,12 +2644,12 @@ var LocaleDateTimeFormatter = function (_DateTimeFormatter) {
         return this;
       }
 
-      return new js_joda__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatter"](this._printerParser, locale, this._decimalStyle, this._resolverStyle, this._resolverFields, this._chrono, this._zone);
+      return new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatter"](this._printerParser, locale, this._decimalStyle, this._resolverStyle, this._resolverFields, this._chrono, this._zone);
     }
   }]);
 
   return LocaleDateTimeFormatter;
-}(js_joda__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatter"]);
+}(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatter"]);
 
 
 
@@ -2745,8 +2745,8 @@ var LocaleStore = function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CldrDateTimeFormatterBuilder; });
-/* harmony import */ var js_joda__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-joda */ "js-joda");
-/* harmony import */ var js_joda__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(js_joda__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @js-joda/core */ "@js-joda/core");
+/* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _parser_TextPrinterParser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../parser/TextPrinterParser */ "./src/format/parser/TextPrinterParser.js");
 /* harmony import */ var _CldrDateTimeTextProvider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CldrDateTimeTextProvider */ "./src/format/cldr/CldrDateTimeTextProvider.js");
 /* harmony import */ var _CldrZoneTextPrinterParser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CldrZoneTextPrinterParser */ "./src/format/cldr/CldrZoneTextPrinterParser.js");
@@ -2783,7 +2783,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var _jodaInternal$assert = js_joda__WEBPACK_IMPORTED_MODULE_0__["_"].assert,
+var _jodaInternal$assert = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["_"].assert,
     requireNonNull = _jodaInternal$assert.requireNonNull,
     requireInstance = _jodaInternal$assert.requireInstance;
 
@@ -2801,7 +2801,7 @@ var CldrDateTimeFormatterBuilder = function (_DateTimeFormatterBui) {
     value: function appendText(field, styleOrMap) {
       if (styleOrMap === undefined) {
         return this.appendTextField(field);
-      } else if (styleOrMap instanceof js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"]) {
+      } else if (styleOrMap instanceof _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"]) {
         return this.appendTextFieldStyle(field, styleOrMap);
       } else {
         return this.appendTextFieldMap(field, styleOrMap);
@@ -2810,15 +2810,15 @@ var CldrDateTimeFormatterBuilder = function (_DateTimeFormatterBui) {
   }, {
     key: "appendTextField",
     value: function appendTextField(field) {
-      return this.appendTextFieldStyle(field, js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL);
+      return this.appendTextFieldStyle(field, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL);
     }
   }, {
     key: "appendTextFieldStyle",
     value: function appendTextFieldStyle(field, textStyle) {
       requireNonNull(field, 'field');
-      requireInstance(field, js_joda__WEBPACK_IMPORTED_MODULE_0__["TemporalField"], 'field');
+      requireInstance(field, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TemporalField"], 'field');
       requireNonNull(textStyle, 'textStyle');
-      requireInstance(textStyle, js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"], 'textStyle');
+      requireInstance(textStyle, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"], 'textStyle');
 
       this._appendInternal(new _parser_TextPrinterParser__WEBPACK_IMPORTED_MODULE_1__["default"](field, textStyle, new _CldrDateTimeTextProvider__WEBPACK_IMPORTED_MODULE_2__["default"]()));
 
@@ -2828,11 +2828,11 @@ var CldrDateTimeFormatterBuilder = function (_DateTimeFormatterBui) {
     key: "appendTextFieldMap",
     value: function appendTextFieldMap(field, textLookup) {
       requireNonNull(field, 'field');
-      requireInstance(field, js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"], 'field');
+      requireInstance(field, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"], 'field');
       requireNonNull(textLookup, 'textLookup');
       var copy = Object.assign({}, textLookup);
       var map = {};
-      map[js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL] = copy;
+      map[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL] = copy;
       var store = new _LocaleStore__WEBPACK_IMPORTED_MODULE_4__["LocaleStore"](map);
       var provider = {
         getText: function getText(field, value, style) {
@@ -2843,7 +2843,7 @@ var CldrDateTimeFormatterBuilder = function (_DateTimeFormatterBui) {
         }
       };
 
-      this._appendInternal(new _parser_TextPrinterParser__WEBPACK_IMPORTED_MODULE_1__["default"](field, js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL, provider));
+      this._appendInternal(new _parser_TextPrinterParser__WEBPACK_IMPORTED_MODULE_1__["default"](field, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL, provider));
 
       return this;
     }
@@ -2869,8 +2869,8 @@ var CldrDateTimeFormatterBuilder = function (_DateTimeFormatterBui) {
     value: function appendLocalizedOffset(textStyle) {
       requireNonNull(textStyle, 'textStyle');
 
-      if (textStyle !== js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL && textStyle !== js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].SHORT) {
-        throw new js_joda__WEBPACK_IMPORTED_MODULE_0__["IllegalArgumentException"]('Style must be either full or short');
+      if (textStyle !== _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL && textStyle !== _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].SHORT) {
+        throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["IllegalArgumentException"]('Style must be either full or short');
       }
 
       this._appendInternal(new _parser_LocalizedOffsetPrinterParser__WEBPACK_IMPORTED_MODULE_5__["default"](textStyle));
@@ -2880,7 +2880,7 @@ var CldrDateTimeFormatterBuilder = function (_DateTimeFormatterBui) {
   }]);
 
   return CldrDateTimeFormatterBuilder;
-}(js_joda__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatterBuilder"]);
+}(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatterBuilder"]);
 
 
 
@@ -2896,8 +2896,8 @@ var CldrDateTimeFormatterBuilder = function (_DateTimeFormatterBui) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CldrDateTimeTextProvider; });
-/* harmony import */ var js_joda__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-joda */ "js-joda");
-/* harmony import */ var js_joda__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(js_joda__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @js-joda/core */ "@js-joda/core");
+/* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var cldr_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! cldr-data */ "./utils/load_cldrData.prebuilt.js");
 /* harmony import */ var cldr_data__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(cldr_data__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var cldrjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! cldrjs */ "./node_modules/cldrjs/dist/node_main.js");
@@ -2976,7 +2976,7 @@ var CldrDateTimeTextProvider = function () {
       cldrjs__WEBPACK_IMPORTED_MODULE_2___default.a.load(cldr_data__WEBPACK_IMPORTED_MODULE_1___default()("main/".concat(locale.localeString(), "/ca-gregorian.json")));
       var cldr = new cldrjs__WEBPACK_IMPORTED_MODULE_2___default.a(locale.localeString());
 
-      if (field === js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].MONTH_OF_YEAR) {
+      if (field === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].MONTH_OF_YEAR) {
         var monthsData = cldr.main('dates/calendars/gregorian/months/format');
         var styleMap = {};
         var data = {};
@@ -2992,7 +2992,7 @@ var CldrDateTimeTextProvider = function () {
         data[10] = monthsData.wide[10];
         data[11] = monthsData.wide[11];
         data[12] = monthsData.wide[12];
-        styleMap[js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL] = data;
+        styleMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL] = data;
         data = {};
         data[1] = monthsData.narrow[1];
         data[2] = monthsData.narrow[2];
@@ -3006,7 +3006,7 @@ var CldrDateTimeTextProvider = function () {
         data[10] = monthsData.narrow[10];
         data[11] = monthsData.narrow[11];
         data[12] = monthsData.narrow[12];
-        styleMap[js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW] = data;
+        styleMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW] = data;
         data = {};
         data[1] = monthsData.abbreviated[1];
         data[2] = monthsData.abbreviated[2];
@@ -3020,11 +3020,11 @@ var CldrDateTimeTextProvider = function () {
         data[10] = monthsData.abbreviated[10];
         data[11] = monthsData.abbreviated[11];
         data[12] = monthsData.abbreviated[12];
-        styleMap[js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].SHORT] = data;
+        styleMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].SHORT] = data;
         return this._createLocaleStore(styleMap);
       }
 
-      if (field === js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK) {
+      if (field === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK) {
         var daysData = cldr.main('dates/calendars/gregorian/days/format');
         var _styleMap = {};
         var _data = {};
@@ -3035,7 +3035,7 @@ var CldrDateTimeTextProvider = function () {
         _data[5] = daysData.wide.fri;
         _data[6] = daysData.wide.sat;
         _data[7] = daysData.wide.sun;
-        _styleMap[js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL] = _data;
+        _styleMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL] = _data;
         _data = {};
         _data[1] = daysData.narrow.mon;
         _data[2] = daysData.narrow.tue;
@@ -3044,7 +3044,7 @@ var CldrDateTimeTextProvider = function () {
         _data[5] = daysData.narrow.fri;
         _data[6] = daysData.narrow.sat;
         _data[7] = daysData.narrow.sun;
-        _styleMap[js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW] = _data;
+        _styleMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW] = _data;
         _data = {};
         _data[1] = daysData.abbreviated.mon;
         _data[2] = daysData.abbreviated.tue;
@@ -3053,47 +3053,47 @@ var CldrDateTimeTextProvider = function () {
         _data[5] = daysData.abbreviated.fri;
         _data[6] = daysData.abbreviated.sat;
         _data[7] = daysData.abbreviated.sun;
-        _styleMap[js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].SHORT] = _data;
+        _styleMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].SHORT] = _data;
         return this._createLocaleStore(_styleMap);
       }
 
-      if (field === js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].AMPM_OF_DAY) {
+      if (field === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].AMPM_OF_DAY) {
         var dayPeriodsData = cldr.main('dates/calendars/gregorian/dayPeriods/format');
         var _styleMap2 = {};
         var _data2 = {};
         _data2[0] = dayPeriodsData.wide.am;
         _data2[1] = dayPeriodsData.wide.pm;
-        _styleMap2[js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL] = _data2;
+        _styleMap2[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL] = _data2;
         _data2 = {};
         _data2[0] = dayPeriodsData.narrow.am;
         _data2[1] = dayPeriodsData.narrow.pm;
-        _styleMap2[js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW] = _data2;
+        _styleMap2[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW] = _data2;
         _data2 = {};
         _data2[0] = dayPeriodsData.abbreviated.am;
         _data2[1] = dayPeriodsData.abbreviated.pm;
-        _styleMap2[js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].SHORT] = _data2;
+        _styleMap2[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].SHORT] = _data2;
         return this._createLocaleStore(_styleMap2);
       }
 
-      if (field === js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].ERA) {
+      if (field === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].ERA) {
         var erasData = cldr.main('dates/calendars/gregorian/eras');
         var _styleMap3 = {};
         var _data3 = {};
         _data3[0] = erasData.eraNames['0'];
         _data3[1] = erasData.eraNames['1'];
-        _styleMap3[js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL] = _data3;
+        _styleMap3[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL] = _data3;
         _data3 = {};
         _data3[0] = erasData.eraNarrow['0'];
         _data3[1] = erasData.eraNarrow['1'];
-        _styleMap3[js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW] = _data3;
+        _styleMap3[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW] = _data3;
         _data3 = {};
         _data3[0] = erasData.eraAbbr['0'];
         _data3[1] = erasData.eraAbbr['1'];
-        _styleMap3[js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].SHORT] = _data3;
+        _styleMap3[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].SHORT] = _data3;
         return this._createLocaleStore(_styleMap3);
       }
 
-      if (field === js_joda__WEBPACK_IMPORTED_MODULE_0__["IsoFields"].QUARTER_OF_YEAR) {
+      if (field === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["IsoFields"].QUARTER_OF_YEAR) {
         var quartersData = cldr.main('dates/calendars/gregorian/quarters/format');
         var _styleMap4 = {};
         var _data4 = {};
@@ -3101,19 +3101,19 @@ var CldrDateTimeTextProvider = function () {
         _data4[2] = quartersData.wide['2'];
         _data4[3] = quartersData.wide['3'];
         _data4[4] = quartersData.wide['4'];
-        _styleMap4[js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL] = _data4;
+        _styleMap4[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL] = _data4;
         _data4 = {};
         _data4[1] = quartersData.narrow['1'];
         _data4[2] = quartersData.narrow['2'];
         _data4[3] = quartersData.narrow['3'];
         _data4[4] = quartersData.narrow['4'];
-        _styleMap4[js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW] = _data4;
+        _styleMap4[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW] = _data4;
         _data4 = {};
         _data4[1] = quartersData.abbreviated['1'];
         _data4[2] = quartersData.abbreviated['2'];
         _data4[3] = quartersData.abbreviated['3'];
         _data4[4] = quartersData.abbreviated['4'];
-        _styleMap4[js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].SHORT] = _data4;
+        _styleMap4[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].SHORT] = _data4;
         return this._createLocaleStore(_styleMap4);
       }
 
@@ -3122,11 +3122,11 @@ var CldrDateTimeTextProvider = function () {
   }, {
     key: "_createLocaleStore",
     value: function _createLocaleStore(valueTextMap) {
-      valueTextMap[js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL_STANDALONE] = valueTextMap[js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL];
-      valueTextMap[js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].SHORT_STANDALONE] = valueTextMap[js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].SHORT];
+      valueTextMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL_STANDALONE] = valueTextMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL];
+      valueTextMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].SHORT_STANDALONE] = valueTextMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].SHORT];
 
-      if (Object.keys(valueTextMap).includes(js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW) && !Object.keys(valueTextMap).includes(js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW_STANDALONE)) {
-        valueTextMap[js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW_STANDALONE] = valueTextMap[js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW];
+      if (Object.keys(valueTextMap).includes(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW) && !Object.keys(valueTextMap).includes(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW_STANDALONE)) {
+        valueTextMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW_STANDALONE] = valueTextMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW];
       }
 
       return new _LocaleStore__WEBPACK_IMPORTED_MODULE_3__["LocaleStore"](valueTextMap);
@@ -3154,8 +3154,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var cldr_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(cldr_data__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var cldrjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! cldrjs */ "./node_modules/cldrjs/dist/node_main.js");
 /* harmony import */ var cldrjs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(cldrjs__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var js_joda__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! js-joda */ "js-joda");
-/* harmony import */ var js_joda__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(js_joda__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @js-joda/core */ "@js-joda/core");
+/* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_js_joda_core__WEBPACK_IMPORTED_MODULE_2__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -3169,7 +3169,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-var _jodaInternal$assert = js_joda__WEBPACK_IMPORTED_MODULE_2__["_"].assert,
+var _jodaInternal$assert = _js_joda_core__WEBPACK_IMPORTED_MODULE_2__["_"].assert,
     requireNonNull = _jodaInternal$assert.requireNonNull,
     requireInstance = _jodaInternal$assert.requireInstance;
 
@@ -3188,7 +3188,7 @@ var CldrZoneTextPrinterParser = function () {
     _classCallCheck(this, CldrZoneTextPrinterParser);
 
     requireNonNull(textStyle, 'textStyle');
-    requireInstance(textStyle, js_joda__WEBPACK_IMPORTED_MODULE_2__["TextStyle"], 'textStyle');
+    requireInstance(textStyle, _js_joda_core__WEBPACK_IMPORTED_MODULE_2__["TextStyle"], 'textStyle');
     this._textStyle = textStyle;
     cldrjs__WEBPACK_IMPORTED_MODULE_1___default.a.load(cldr_data__WEBPACK_IMPORTED_MODULE_0___default()('supplemental/likelySubtags.json'));
     cldrjs__WEBPACK_IMPORTED_MODULE_1___default.a.load(cldr_data__WEBPACK_IMPORTED_MODULE_0___default()('supplemental/metaZones.json'));
@@ -3241,13 +3241,13 @@ var CldrZoneTextPrinterParser = function () {
   }, {
     key: "print",
     value: function print(context, buf) {
-      var zone = context.getValueQuery(js_joda__WEBPACK_IMPORTED_MODULE_2__["TemporalQueries"].zoneId());
+      var zone = context.getValueQuery(_js_joda_core__WEBPACK_IMPORTED_MODULE_2__["TemporalQueries"].zoneId());
 
       if (zone == null) {
         return false;
       }
 
-      if (zone.normalized() instanceof js_joda__WEBPACK_IMPORTED_MODULE_2__["ZoneOffset"]) {
+      if (zone.normalized() instanceof _js_joda_core__WEBPACK_IMPORTED_MODULE_2__["ZoneOffset"]) {
         buf.append(zone.id());
         return true;
       }
@@ -3255,7 +3255,7 @@ var CldrZoneTextPrinterParser = function () {
       var daylight = false;
       var hasDaylightSupport = false;
       var tzType = hasDaylightSupport ? daylight ? 'daylight' : 'standard' : 'generic';
-      var tzstyle = this._textStyle.asNormal() === js_joda__WEBPACK_IMPORTED_MODULE_2__["TextStyle"].FULL ? 'long' : 'short';
+      var tzstyle = this._textStyle.asNormal() === _js_joda_core__WEBPACK_IMPORTED_MODULE_2__["TextStyle"].FULL ? 'long' : 'short';
       cldrjs__WEBPACK_IMPORTED_MODULE_1___default.a.load(cldr_data__WEBPACK_IMPORTED_MODULE_0___default()("main/".concat(context.locale().localeString(), "/timeZoneNames.json")));
       var cldr = new cldrjs__WEBPACK_IMPORTED_MODULE_1___default.a(context.locale().localeString());
       var mapZones = {};
@@ -3300,10 +3300,10 @@ var CldrZoneTextPrinterParser = function () {
       var _iteratorError = undefined;
 
       try {
-        for (var _iterator = js_joda__WEBPACK_IMPORTED_MODULE_2__["ZoneRulesProvider"].getAvailableZoneIds()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        for (var _iterator = _js_joda_core__WEBPACK_IMPORTED_MODULE_2__["ZoneRulesProvider"].getAvailableZoneIds()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
           var id = _step.value;
           ids[id] = id;
-          var tzstyle = this._textStyle.asNormal() === js_joda__WEBPACK_IMPORTED_MODULE_2__["TextStyle"].FULL ? 'long' : 'short';
+          var tzstyle = this._textStyle.asNormal() === _js_joda_core__WEBPACK_IMPORTED_MODULE_2__["TextStyle"].FULL ? 'long' : 'short';
 
           var genericText = this._resolveZoneIdText(cldr, id, tzstyle, 'generic', mapZones);
 
@@ -3348,7 +3348,7 @@ var CldrZoneTextPrinterParser = function () {
           var name = _step2.value;
 
           if (context.subSequenceEquals(text, position, name, 0, name.length)) {
-            context.setParsedZone(js_joda__WEBPACK_IMPORTED_MODULE_2__["ZoneId"].of(ids[name]));
+            context.setParsedZone(_js_joda_core__WEBPACK_IMPORTED_MODULE_2__["ZoneId"].of(ids[name]));
             return position + name.length;
           }
         }
@@ -3393,8 +3393,8 @@ var CldrZoneTextPrinterParser = function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LocalizedOffsetPrinterParser; });
-/* harmony import */ var js_joda__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-joda */ "js-joda");
-/* harmony import */ var js_joda__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(js_joda__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @js-joda/core */ "@js-joda/core");
+/* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -3407,7 +3407,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-var MathUtil = js_joda__WEBPACK_IMPORTED_MODULE_0__["_"].MathUtil;
+var MathUtil = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["_"].MathUtil;
 
 var LocalizedOffsetPrinterParser = function () {
   function LocalizedOffsetPrinterParser(textStyle) {
@@ -3424,7 +3424,7 @@ var LocalizedOffsetPrinterParser = function () {
   }, {
     key: "print",
     value: function print(context, buf) {
-      var offsetSecs = context.getValue(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].OFFSET_SECONDS);
+      var offsetSecs = context.getValue(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].OFFSET_SECONDS);
 
       if (offsetSecs == null) {
         return false;
@@ -3432,8 +3432,8 @@ var LocalizedOffsetPrinterParser = function () {
 
       buf.append('GMT');
 
-      if (this._textStyle === js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL) {
-        return new js_joda__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatterBuilder"].OffsetIdPrinterParser('', '+HH:MM:ss').print(context, buf);
+      if (this._textStyle === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL) {
+        return new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatterBuilder"].OffsetIdPrinterParser('', '+HH:MM:ss').print(context, buf);
       }
 
       var totalSecs = MathUtil.safeToInt(offsetSecs);
@@ -3464,20 +3464,20 @@ var LocalizedOffsetPrinterParser = function () {
 
       position += 3;
 
-      if (this._textStyle === js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL) {
-        return new js_joda__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatterBuilder"].OffsetIdPrinterParser('', '+HH:MM:ss').parse(context, text, position);
+      if (this._textStyle === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL) {
+        return new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatterBuilder"].OffsetIdPrinterParser('', '+HH:MM:ss').parse(context, text, position);
       }
 
       var end = text.length;
 
       if (position === end) {
-        return context.setParsedField(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].OFFSET_SECONDS, 0, position, position);
+        return context.setParsedField(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].OFFSET_SECONDS, 0, position, position);
       }
 
       var sign = text.charAt(position);
 
       if (sign !== '+' && sign !== '-') {
-        return context.setParsedField(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].OFFSET_SECONDS, 0, position, position);
+        return context.setParsedField(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].OFFSET_SECONDS, 0, position, position);
       }
 
       var negative = sign === '-' ? -1 : 1;
@@ -3513,7 +3513,7 @@ var LocalizedOffsetPrinterParser = function () {
       if (position === end || text.charAt(position) !== ':') {
         var _offset = negative * 3600 * hour;
 
-        return context.setParsedField(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].OFFSET_SECONDS, _offset, position, position);
+        return context.setParsedField(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].OFFSET_SECONDS, _offset, position, position);
       }
 
       position++;
@@ -3546,7 +3546,7 @@ var LocalizedOffsetPrinterParser = function () {
       if (position === end || text.charAt(position) !== ':') {
         var _offset2 = negative * (3600 * hour + 60 * min);
 
-        return context.setParsedField(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].OFFSET_SECONDS, _offset2, position, position);
+        return context.setParsedField(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].OFFSET_SECONDS, _offset2, position, position);
       }
 
       position++;
@@ -3577,7 +3577,7 @@ var LocalizedOffsetPrinterParser = function () {
       }
 
       var offset = negative * (3600 * hour + 60 * min + sec);
-      return context.setParsedField(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].OFFSET_SECONDS, offset, position, position);
+      return context.setParsedField(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].OFFSET_SECONDS, offset, position, position);
     }
   }, {
     key: "toString",
@@ -3603,8 +3603,8 @@ var LocalizedOffsetPrinterParser = function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TextPrinterParser; });
-/* harmony import */ var js_joda__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-joda */ "js-joda");
-/* harmony import */ var js_joda__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(js_joda__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @js-joda/core */ "@js-joda/core");
+/* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -3666,7 +3666,7 @@ var TextPrinterParser = function () {
       var length = parseText.length;
 
       if (position < 0 || position > length) {
-        throw new js_joda__WEBPACK_IMPORTED_MODULE_0__["IllegalArgumentException"]("The position is invalid: ".concat(position));
+        throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["IllegalArgumentException"]("The position is invalid: ".concat(position));
       }
 
       var style = context.isStrict() ? this._textStyle : null;
@@ -3713,7 +3713,7 @@ var TextPrinterParser = function () {
     key: "_numberPrinterParser",
     value: function _numberPrinterParser() {
       if (this._currentNumberPrinterParser == null) {
-        this._currentNumberPrinterParser = new js_joda__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatterBuilder"].NumberPrinterParser(this._field, 1, 19, js_joda__WEBPACK_IMPORTED_MODULE_0__["SignStyle"].NORMAL);
+        this._currentNumberPrinterParser = new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatterBuilder"].NumberPrinterParser(this._field, 1, 19, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["SignStyle"].NORMAL);
       }
 
       return this._currentNumberPrinterParser;
@@ -3721,7 +3721,7 @@ var TextPrinterParser = function () {
   }, {
     key: "toString",
     value: function toString() {
-      if (this._textStyle === js_joda__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL) {
+      if (this._textStyle === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL) {
         return "Text(".concat(this._field, ")");
       }
 
@@ -3746,8 +3746,8 @@ var TextPrinterParser = function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return WeekFieldsPrinterParser; });
-/* harmony import */ var js_joda__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-joda */ "js-joda");
-/* harmony import */ var js_joda__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(js_joda__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @js-joda/core */ "@js-joda/core");
+/* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _temporal_WeekFields__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../temporal/WeekFields */ "./src/temporal/WeekFields.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -3761,7 +3761,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  */
 
 
-var StringBuilder = js_joda__WEBPACK_IMPORTED_MODULE_0__["_"].StringBuilder;
+var StringBuilder = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["_"].StringBuilder;
 
 var WeekFieldsPrinterParser = function () {
   function WeekFieldsPrinterParser(letter, count) {
@@ -3796,26 +3796,26 @@ var WeekFieldsPrinterParser = function () {
 
       switch (this._letter) {
         case 'e':
-          pp = new js_joda__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatterBuilder"].NumberPrinterParser(weekFields.dayOfWeek(), this._count, 2, js_joda__WEBPACK_IMPORTED_MODULE_0__["SignStyle"].NOT_NEGATIVE);
+          pp = new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatterBuilder"].NumberPrinterParser(weekFields.dayOfWeek(), this._count, 2, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["SignStyle"].NOT_NEGATIVE);
           break;
 
         case 'c':
-          pp = new js_joda__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatterBuilder"].NumberPrinterParser(weekFields.dayOfWeek(), this._count, 2, js_joda__WEBPACK_IMPORTED_MODULE_0__["SignStyle"].NOT_NEGATIVE);
+          pp = new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatterBuilder"].NumberPrinterParser(weekFields.dayOfWeek(), this._count, 2, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["SignStyle"].NOT_NEGATIVE);
           break;
 
         case 'w':
-          pp = new js_joda__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatterBuilder"].NumberPrinterParser(weekFields.weekOfWeekBasedYear(), this._count, 2, js_joda__WEBPACK_IMPORTED_MODULE_0__["SignStyle"].NOT_NEGATIVE);
+          pp = new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatterBuilder"].NumberPrinterParser(weekFields.weekOfWeekBasedYear(), this._count, 2, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["SignStyle"].NOT_NEGATIVE);
           break;
 
         case 'W':
-          pp = new js_joda__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatterBuilder"].NumberPrinterParser(weekFields.weekOfMonth(), 1, 2, js_joda__WEBPACK_IMPORTED_MODULE_0__["SignStyle"].NOT_NEGATIVE);
+          pp = new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatterBuilder"].NumberPrinterParser(weekFields.weekOfMonth(), 1, 2, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["SignStyle"].NOT_NEGATIVE);
           break;
 
         case 'Y':
           if (this._count === 2) {
-            pp = new js_joda__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatterBuilder"].ReducedPrinterParser(weekFields.weekBasedYear(), 2, 2, 0, js_joda__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatterBuilder"].ReducedPrinterParser.BASE_DATE);
+            pp = new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatterBuilder"].ReducedPrinterParser(weekFields.weekBasedYear(), 2, 2, 0, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatterBuilder"].ReducedPrinterParser.BASE_DATE);
           } else {
-            pp = new js_joda__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatterBuilder"].NumberPrinterParser(weekFields.weekBasedYear(), this._count, 19, this._count < 4 ? js_joda__WEBPACK_IMPORTED_MODULE_0__["SignStyle"].NORMAL : js_joda__WEBPACK_IMPORTED_MODULE_0__["SignStyle"].EXCEEDS_PAD, -1);
+            pp = new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatterBuilder"].NumberPrinterParser(weekFields.weekBasedYear(), this._count, 19, this._count < 4 ? _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["SignStyle"].NORMAL : _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["SignStyle"].EXCEEDS_PAD, -1);
           }
 
           break;
@@ -3835,7 +3835,7 @@ var WeekFieldsPrinterParser = function () {
         } else if (this._count === 2) {
           sb.append('ReducedValue(WeekBasedYear,2,2,2000-01-01)');
         } else {
-          sb.append('WeekBasedYear,').append(this._count).append(',').append(19).append(',').append(this._count < 4 ? js_joda__WEBPACK_IMPORTED_MODULE_0__["SignStyle"].NORMAL : js_joda__WEBPACK_IMPORTED_MODULE_0__["SignStyle"].EXCEEDS_PAD);
+          sb.append('WeekBasedYear,').append(this._count).append(',').append(19).append(',').append(this._count < 4 ? _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["SignStyle"].NORMAL : _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["SignStyle"].EXCEEDS_PAD);
         }
       } else {
         if (this._letter === 'c' || this._letter === 'e') {
@@ -3871,8 +3871,8 @@ var WeekFieldsPrinterParser = function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var js_joda__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-joda */ "js-joda");
-/* harmony import */ var js_joda__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(js_joda__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @js-joda/core */ "@js-joda/core");
+/* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _plug__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./plug */ "./src/plug.js");
 /* harmony import */ var _Locale__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Locale */ "./src/Locale.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Locale", function() { return _Locale__WEBPACK_IMPORTED_MODULE_2__["default"]; });
@@ -3884,7 +3884,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-Object(js_joda__WEBPACK_IMPORTED_MODULE_0__["use"])(_plug__WEBPACK_IMPORTED_MODULE_1__["default"]);
+Object(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["use"])(_plug__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
 
 /***/ }),
@@ -3935,8 +3935,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ComputedDayOfField", function() { return ComputedDayOfField; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WeekFields", function() { return WeekFields; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_init", function() { return _init; });
-/* harmony import */ var js_joda__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! js-joda */ "js-joda");
-/* harmony import */ var js_joda__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(js_joda__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @js-joda/core */ "@js-joda/core");
+/* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var cldr_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! cldr-data */ "./utils/load_cldrData.prebuilt.js");
 /* harmony import */ var cldr_data__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(cldr_data__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var cldrjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! cldrjs */ "./node_modules/cldrjs/dist/node_main.js");
@@ -3954,49 +3954,49 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-var MathUtil = js_joda__WEBPACK_IMPORTED_MODULE_0__["_"].MathUtil,
-    _jodaInternal$assert = js_joda__WEBPACK_IMPORTED_MODULE_0__["_"].assert,
+var MathUtil = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["_"].MathUtil,
+    _jodaInternal$assert = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["_"].assert,
     requireNonNull = _jodaInternal$assert.requireNonNull,
     requireInstance = _jodaInternal$assert.requireInstance;
-var DAY_OF_WEEK_RANGE = js_joda__WEBPACK_IMPORTED_MODULE_0__["ValueRange"].of(1, 7);
-var WEEK_OF_MONTH_RANGE = js_joda__WEBPACK_IMPORTED_MODULE_0__["ValueRange"].of(0, 1, 4, 6);
-var WEEK_OF_YEAR_RANGE = js_joda__WEBPACK_IMPORTED_MODULE_0__["ValueRange"].of(0, 1, 52, 54);
-var WEEK_OF_WEEK_BASED_YEAR_RANGE = js_joda__WEBPACK_IMPORTED_MODULE_0__["ValueRange"].of(1, 52, 53);
-var WEEK_BASED_YEAR_RANGE = js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].YEAR.range();
+var DAY_OF_WEEK_RANGE = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ValueRange"].of(1, 7);
+var WEEK_OF_MONTH_RANGE = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ValueRange"].of(0, 1, 4, 6);
+var WEEK_OF_YEAR_RANGE = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ValueRange"].of(0, 1, 52, 54);
+var WEEK_OF_WEEK_BASED_YEAR_RANGE = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ValueRange"].of(1, 52, 53);
+var WEEK_BASED_YEAR_RANGE = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].YEAR.range();
 var _weekDayMap = {
-  'mon': js_joda__WEBPACK_IMPORTED_MODULE_0__["DayOfWeek"].MONDAY,
-  'tue': js_joda__WEBPACK_IMPORTED_MODULE_0__["DayOfWeek"].TUESDAY,
-  'wed': js_joda__WEBPACK_IMPORTED_MODULE_0__["DayOfWeek"].WEDNESDAY,
-  'thu': js_joda__WEBPACK_IMPORTED_MODULE_0__["DayOfWeek"].THURSDAY,
-  'fri': js_joda__WEBPACK_IMPORTED_MODULE_0__["DayOfWeek"].FRIDAY,
-  'sat': js_joda__WEBPACK_IMPORTED_MODULE_0__["DayOfWeek"].SATURDAY,
-  'sun': js_joda__WEBPACK_IMPORTED_MODULE_0__["DayOfWeek"].SUNDAY
+  'mon': _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DayOfWeek"].MONDAY,
+  'tue': _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DayOfWeek"].TUESDAY,
+  'wed': _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DayOfWeek"].WEDNESDAY,
+  'thu': _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DayOfWeek"].THURSDAY,
+  'fri': _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DayOfWeek"].FRIDAY,
+  'sat': _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DayOfWeek"].SATURDAY,
+  'sun': _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DayOfWeek"].SUNDAY
 };
 var ComputedDayOfField = function () {
   _createClass(ComputedDayOfField, null, [{
     key: "ofDayOfWeekField",
     value: function ofDayOfWeekField(weekDef) {
-      return new ComputedDayOfField('DayOfWeek', weekDef, js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].DAYS, js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS, DAY_OF_WEEK_RANGE);
+      return new ComputedDayOfField('DayOfWeek', weekDef, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].DAYS, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS, DAY_OF_WEEK_RANGE);
     }
   }, {
     key: "ofWeekOfMonthField",
     value: function ofWeekOfMonthField(weekDef) {
-      return new ComputedDayOfField('WeekOfMonth', weekDef, js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS, js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].MONTHS, WEEK_OF_MONTH_RANGE);
+      return new ComputedDayOfField('WeekOfMonth', weekDef, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].MONTHS, WEEK_OF_MONTH_RANGE);
     }
   }, {
     key: "ofWeekOfYearField",
     value: function ofWeekOfYearField(weekDef) {
-      return new ComputedDayOfField('WeekOfYear', weekDef, js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS, js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].YEARS, WEEK_OF_YEAR_RANGE);
+      return new ComputedDayOfField('WeekOfYear', weekDef, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].YEARS, WEEK_OF_YEAR_RANGE);
     }
   }, {
     key: "ofWeekOfWeekBasedYearField",
     value: function ofWeekOfWeekBasedYearField(weekDef) {
-      return new ComputedDayOfField('WeekOfWeekBasedYear', weekDef, js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS, js_joda__WEBPACK_IMPORTED_MODULE_0__["IsoFields"].WEEK_BASED_YEARS, WEEK_OF_WEEK_BASED_YEAR_RANGE);
+      return new ComputedDayOfField('WeekOfWeekBasedYear', weekDef, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["IsoFields"].WEEK_BASED_YEARS, WEEK_OF_WEEK_BASED_YEAR_RANGE);
     }
   }, {
     key: "ofWeekBasedYearField",
     value: function ofWeekBasedYearField(weekDef) {
-      return new ComputedDayOfField('WeekBasedYear', weekDef, js_joda__WEBPACK_IMPORTED_MODULE_0__["IsoFields"].WEEK_BASED_YEARS, js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].FOREVER, WEEK_BASED_YEAR_RANGE);
+      return new ComputedDayOfField('WeekBasedYear', weekDef, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["IsoFields"].WEEK_BASED_YEARS, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].FOREVER, WEEK_BASED_YEAR_RANGE);
     }
   }]);
 
@@ -4017,30 +4017,30 @@ var ComputedDayOfField = function () {
 
       var dow = this._localizedDayOfWeek(temporal, sow);
 
-      if (this._rangeUnit === js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS) {
+      if (this._rangeUnit === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS) {
         return dow;
-      } else if (this._rangeUnit === js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].MONTHS) {
+      } else if (this._rangeUnit === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].MONTHS) {
         return this._localizedWeekOfMonth(temporal, dow);
-      } else if (this._rangeUnit === js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].YEARS) {
+      } else if (this._rangeUnit === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].YEARS) {
         return this._localizedWeekOfYear(temporal, dow);
-      } else if (this._rangeUnit === js_joda__WEBPACK_IMPORTED_MODULE_0__["IsoFields"].WEEK_BASED_YEARS) {
+      } else if (this._rangeUnit === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["IsoFields"].WEEK_BASED_YEARS) {
         return this._localizedWOWBY(temporal);
-      } else if (this._rangeUnit === js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].FOREVER) {
+      } else if (this._rangeUnit === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].FOREVER) {
         return this._localizedWBY(temporal);
       } else {
-        throw new js_joda__WEBPACK_IMPORTED_MODULE_0__["IllegalStateException"]('unreachable');
+        throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["IllegalStateException"]('unreachable');
       }
     }
   }, {
     key: "_localizedDayOfWeek",
     value: function _localizedDayOfWeek(temporal, sow) {
-      var isoDow = temporal.get(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK);
+      var isoDow = temporal.get(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK);
       return MathUtil.floorMod(isoDow - sow, 7) + 1;
     }
   }, {
     key: "_localizedWeekOfMonth",
     value: function _localizedWeekOfMonth(temporal, dow) {
-      var dom = temporal.get(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_MONTH);
+      var dom = temporal.get(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_MONTH);
 
       var offset = this._startOfWeekOffset(dom, dow);
 
@@ -4049,7 +4049,7 @@ var ComputedDayOfField = function () {
   }, {
     key: "_localizedWeekOfYear",
     value: function _localizedWeekOfYear(temporal, dow) {
-      var doy = temporal.get(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_YEAR);
+      var doy = temporal.get(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_YEAR);
 
       var offset = this._startOfWeekOffset(doy, dow);
 
@@ -4060,19 +4060,19 @@ var ComputedDayOfField = function () {
     value: function _localizedWOWBY(temporal) {
       var sow = this._weekDef.firstDayOfWeek().value();
 
-      var isoDow = temporal.get(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK);
+      var isoDow = temporal.get(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK);
       var dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
 
       var woy = this._localizedWeekOfYear(temporal, dow);
 
       if (woy === 0) {
-        var previous = js_joda__WEBPACK_IMPORTED_MODULE_0__["LocalDate"].from(temporal).minus(1, js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS);
+        var previous = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["LocalDate"].from(temporal).minus(1, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS);
         return this._localizedWeekOfYear(previous, dow) + 1;
       } else if (woy >= 53) {
-        var offset = this._startOfWeekOffset(temporal.get(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_YEAR), dow);
+        var offset = this._startOfWeekOffset(temporal.get(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_YEAR), dow);
 
-        var year = temporal.get(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].YEAR);
-        var yearLen = js_joda__WEBPACK_IMPORTED_MODULE_0__["Year"].isLeap(year) ? 366 : 365;
+        var year = temporal.get(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].YEAR);
+        var yearLen = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Year"].isLeap(year) ? 366 : 365;
 
         var weekIndexOfFirstWeekNextYear = ComputedDayOfField._computeWeek(offset, yearLen + this._weekDef.minimalDaysInFirstWeek());
 
@@ -4088,9 +4088,9 @@ var ComputedDayOfField = function () {
     value: function _localizedWBY(temporal) {
       var sow = this._weekDef.firstDayOfWeek().value();
 
-      var isoDow = temporal.get(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK);
+      var isoDow = temporal.get(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK);
       var dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
-      var year = temporal.get(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].YEAR);
+      var year = temporal.get(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].YEAR);
 
       var woy = this._localizedWeekOfYear(temporal, dow);
 
@@ -4100,9 +4100,9 @@ var ComputedDayOfField = function () {
         return year;
       }
 
-      var offset = this._startOfWeekOffset(temporal.get(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_YEAR), dow);
+      var offset = this._startOfWeekOffset(temporal.get(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_YEAR), dow);
 
-      var yearLen = js_joda__WEBPACK_IMPORTED_MODULE_0__["Year"].isLeap(year) ? 366 : 365;
+      var yearLen = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Year"].isLeap(year) ? 366 : 365;
 
       var weekIndexOfFirstWeekNextYear = ComputedDayOfField._computeWeek(offset, yearLen + this._weekDef.minimalDaysInFirstWeek());
 
@@ -4135,25 +4135,25 @@ var ComputedDayOfField = function () {
         return temporal;
       }
 
-      if (this._rangeUnit === js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].FOREVER) {
+      if (this._rangeUnit === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].FOREVER) {
         var baseWowby = temporal.get(this._weekDef.weekOfWeekBasedYear());
         var diffWeeks = MathUtil.roundDown((newValue - currentVal) * 52.1775);
-        var result = temporal.plus(diffWeeks, js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS);
+        var result = temporal.plus(diffWeeks, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS);
 
         if (result.get(this) > newVal) {
           var newWowby = result.get(this._weekDef.weekOfWeekBasedYear());
-          result = result.minus(newWowby, js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS);
+          result = result.minus(newWowby, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS);
         } else {
           if (result.get(this) < newVal) {
-            result = result.plus(2, js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS);
+            result = result.plus(2, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS);
           }
 
           var _newWowby = result.get(this._weekDef.weekOfWeekBasedYear());
 
-          result = result.plus(baseWowby - _newWowby, js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS);
+          result = result.plus(baseWowby - _newWowby, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS);
 
           if (result.get(this) > newVal) {
-            result = result.minus(1, js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS);
+            result = result.minus(1, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS);
           }
         }
 
@@ -4168,27 +4168,27 @@ var ComputedDayOfField = function () {
     value: function resolve(fieldValues, partialTemporal, resolverStyle) {
       var sow = this._weekDef.firstDayOfWeek().value();
 
-      if (this._rangeUnit === js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS) {
+      if (this._rangeUnit === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS) {
         var value = fieldValues.remove(this);
 
         var localDow = this._range.checkValidIntValue(value, this);
 
         var _isoDow = MathUtil.floorMod(sow - 1 + (localDow - 1), 7) + 1;
 
-        fieldValues.put(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK, _isoDow);
+        fieldValues.put(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK, _isoDow);
         return null;
       }
 
-      if (fieldValues.containsKey(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK) === false) {
+      if (fieldValues.containsKey(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK) === false) {
         return null;
       }
 
-      if (this._rangeUnit === js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].FOREVER) {
+      if (this._rangeUnit === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].FOREVER) {
         if (fieldValues.containsKey(this._weekDef.weekOfWeekBasedYear()) === false) {
           return null;
         }
 
-        var _isoDow2 = js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK.checkValidIntValue(fieldValues.get(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK));
+        var _isoDow2 = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK.checkValidIntValue(fieldValues.get(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK));
 
         var _dow = MathUtil.floorMod(_isoDow2 - sow, 7) + 1;
 
@@ -4196,8 +4196,8 @@ var ComputedDayOfField = function () {
         var date;
         var days;
 
-        if (resolverStyle === js_joda__WEBPACK_IMPORTED_MODULE_0__["ResolverStyle"].LENIENT) {
-          date = js_joda__WEBPACK_IMPORTED_MODULE_0__["LocalDate"].of(wby, 1, this._weekDef.minimalDaysInFirstWeek());
+        if (resolverStyle === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ResolverStyle"].LENIENT) {
+          date = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["LocalDate"].of(wby, 1, this._weekDef.minimalDaysInFirstWeek());
           var wowby = fieldValues.get(this._weekDef.weekOfWeekBasedYear());
 
           var dateDow = this._localizedDayOfWeek(date, sow);
@@ -4206,7 +4206,7 @@ var ComputedDayOfField = function () {
 
           days = weeks * 7 + (_dow - dateDow);
         } else {
-          date = js_joda__WEBPACK_IMPORTED_MODULE_0__["LocalDate"].of(wby, 1, this._weekDef.minimalDaysInFirstWeek());
+          date = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["LocalDate"].of(wby, 1, this._weekDef.minimalDaysInFirstWeek());
 
           var _wowby = this._weekDef.weekOfWeekBasedYear().range().checkValidIntValue(fieldValues.get(this._weekDef.weekOfWeekBasedYear()), this._weekDef.weekOfWeekBasedYear);
 
@@ -4217,30 +4217,30 @@ var ComputedDayOfField = function () {
           days = _weeks * 7 + (_dow - _dateDow);
         }
 
-        date = date.plus(days, js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].DAYS);
+        date = date.plus(days, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].DAYS);
 
-        if (resolverStyle === js_joda__WEBPACK_IMPORTED_MODULE_0__["ResolverStyle"].STRICT) {
+        if (resolverStyle === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ResolverStyle"].STRICT) {
           if (date.getLong(this) !== fieldValues.get(this)) {
-            throw new js_joda__WEBPACK_IMPORTED_MODULE_0__["DateTimeException"]('Strict mode rejected date parsed to a different year');
+            throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeException"]('Strict mode rejected date parsed to a different year');
           }
         }
 
         fieldValues.remove(this);
         fieldValues.remove(this._weekDef.weekOfWeekBasedYear());
-        fieldValues.remove(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK);
+        fieldValues.remove(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK);
         return date;
       }
 
-      if (fieldValues.containsKey(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].YEAR) === false) {
+      if (fieldValues.containsKey(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].YEAR) === false) {
         return null;
       }
 
-      var isoDow = js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK.checkValidIntValue(fieldValues.get(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK));
+      var isoDow = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK.checkValidIntValue(fieldValues.get(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK));
       var dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
-      var year = js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].YEAR.checkValidIntValue(fieldValues.get(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].YEAR));
+      var year = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].YEAR.checkValidIntValue(fieldValues.get(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].YEAR));
 
-      if (this._rangeUnit === js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].MONTHS) {
-        if (fieldValues.containsKey(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].MONTH_OF_YEAR) === false) {
+      if (this._rangeUnit === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].MONTHS) {
+        if (fieldValues.containsKey(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].MONTH_OF_YEAR) === false) {
           return null;
         }
 
@@ -4250,10 +4250,10 @@ var ComputedDayOfField = function () {
 
         var _days;
 
-        if (resolverStyle === js_joda__WEBPACK_IMPORTED_MODULE_0__["ResolverStyle"].LENIENT) {
-          var month = fieldValues.get(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].MONTH_OF_YEAR);
-          _date = js_joda__WEBPACK_IMPORTED_MODULE_0__["LocalDate"].of(year, 1, 1);
-          _date = _date.plus(month - 1, js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].MONTHS);
+        if (resolverStyle === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ResolverStyle"].LENIENT) {
+          var month = fieldValues.get(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].MONTH_OF_YEAR);
+          _date = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["LocalDate"].of(year, 1, 1);
+          _date = _date.plus(month - 1, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].MONTHS);
 
           var _dateDow2 = this._localizedDayOfWeek(_date, sow);
 
@@ -4261,9 +4261,9 @@ var ComputedDayOfField = function () {
 
           _days = _weeks2 * 7 + (dow - _dateDow2);
         } else {
-          var _month = js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].MONTH_OF_YEAR.checkValidIntValue(fieldValues.get(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].MONTH_OF_YEAR));
+          var _month = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].MONTH_OF_YEAR.checkValidIntValue(fieldValues.get(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].MONTH_OF_YEAR));
 
-          _date = js_joda__WEBPACK_IMPORTED_MODULE_0__["LocalDate"].of(year, _month, 8);
+          _date = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["LocalDate"].of(year, _month, 8);
 
           var _dateDow3 = this._localizedDayOfWeek(_date, sow);
 
@@ -4274,27 +4274,27 @@ var ComputedDayOfField = function () {
           _days = _weeks3 * 7 + (dow - _dateDow3);
         }
 
-        _date = _date.plus(_days, js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].DAYS);
+        _date = _date.plus(_days, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].DAYS);
 
-        if (resolverStyle === js_joda__WEBPACK_IMPORTED_MODULE_0__["ResolverStyle"].STRICT) {
-          if (_date.getLong(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].MONTH_OF_YEAR) !== fieldValues.get(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].MONTH_OF_YEAR)) {
-            throw new js_joda__WEBPACK_IMPORTED_MODULE_0__["DateTimeException"]('Strict mode rejected date parsed to a different month');
+        if (resolverStyle === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ResolverStyle"].STRICT) {
+          if (_date.getLong(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].MONTH_OF_YEAR) !== fieldValues.get(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].MONTH_OF_YEAR)) {
+            throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeException"]('Strict mode rejected date parsed to a different month');
           }
         }
 
         fieldValues.remove(this);
-        fieldValues.remove(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].YEAR);
-        fieldValues.remove(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].MONTH_OF_YEAR);
-        fieldValues.remove(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK);
+        fieldValues.remove(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].YEAR);
+        fieldValues.remove(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].MONTH_OF_YEAR);
+        fieldValues.remove(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK);
         return _date;
-      } else if (this._rangeUnit === js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].YEARS) {
+      } else if (this._rangeUnit === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].YEARS) {
         var _value2 = fieldValues.remove(this);
 
-        var _date2 = js_joda__WEBPACK_IMPORTED_MODULE_0__["LocalDate"].of(year, 1, 1);
+        var _date2 = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["LocalDate"].of(year, 1, 1);
 
         var _days2;
 
-        if (resolverStyle === js_joda__WEBPACK_IMPORTED_MODULE_0__["ResolverStyle"].LENIENT) {
+        if (resolverStyle === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ResolverStyle"].LENIENT) {
           var _dateDow4 = this._localizedDayOfWeek(_date2, sow);
 
           var _weeks4 = _value2 - this._localizedWeekOfYear(_date2, _dateDow4);
@@ -4310,20 +4310,20 @@ var ComputedDayOfField = function () {
           _days2 = _weeks5 * 7 + (dow - _dateDow5);
         }
 
-        _date2 = _date2.plus(_days2, js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].DAYS);
+        _date2 = _date2.plus(_days2, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].DAYS);
 
-        if (resolverStyle === js_joda__WEBPACK_IMPORTED_MODULE_0__["ResolverStyle"].STRICT) {
-          if (_date2.getLong(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].YEAR) !== fieldValues.get(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].YEAR)) {
-            throw new js_joda__WEBPACK_IMPORTED_MODULE_0__["DateTimeException"]('Strict mode rejected date parsed to a different year');
+        if (resolverStyle === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ResolverStyle"].STRICT) {
+          if (_date2.getLong(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].YEAR) !== fieldValues.get(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].YEAR)) {
+            throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeException"]('Strict mode rejected date parsed to a different year');
           }
         }
 
         fieldValues.remove(this);
-        fieldValues.remove(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].YEAR);
-        fieldValues.remove(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK);
+        fieldValues.remove(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].YEAR);
+        fieldValues.remove(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK);
         return _date2;
       } else {
-        throw new js_joda__WEBPACK_IMPORTED_MODULE_0__["IllegalStateException"]('unreachable');
+        throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["IllegalStateException"]('unreachable');
       }
     }
   }, {
@@ -4359,17 +4359,17 @@ var ComputedDayOfField = function () {
   }, {
     key: "isSupportedBy",
     value: function isSupportedBy(temporal) {
-      if (temporal.isSupported(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK)) {
-        if (this._rangeUnit === js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS) {
+      if (temporal.isSupported(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK)) {
+        if (this._rangeUnit === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS) {
           return true;
-        } else if (this._rangeUnit === js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].MONTHS) {
-          return temporal.isSupported(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_MONTH);
-        } else if (this._rangeUnit === js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].YEARS) {
-          return temporal.isSupported(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_YEAR);
-        } else if (this._rangeUnit === js_joda__WEBPACK_IMPORTED_MODULE_0__["IsoFields"].WEEK_BASED_YEARS) {
-          return temporal.isSupported(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].EPOCH_DAY);
-        } else if (this._rangeUnit === js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].FOREVER) {
-          return temporal.isSupported(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].EPOCH_DAY);
+        } else if (this._rangeUnit === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].MONTHS) {
+          return temporal.isSupported(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_MONTH);
+        } else if (this._rangeUnit === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].YEARS) {
+          return temporal.isSupported(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_YEAR);
+        } else if (this._rangeUnit === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["IsoFields"].WEEK_BASED_YEARS) {
+          return temporal.isSupported(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].EPOCH_DAY);
+        } else if (this._rangeUnit === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].FOREVER) {
+          return temporal.isSupported(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].EPOCH_DAY);
         }
       }
 
@@ -4378,67 +4378,67 @@ var ComputedDayOfField = function () {
   }, {
     key: "rangeRefinedBy",
     value: function rangeRefinedBy(temporal) {
-      if (this._rangeUnit === js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS) {
+      if (this._rangeUnit === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS) {
         return this._range;
       }
 
       var field = null;
 
-      if (this._rangeUnit === js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].MONTHS) {
-        field = js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_MONTH;
-      } else if (this._rangeUnit === js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].YEARS) {
-        field = js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_YEAR;
-      } else if (this._rangeUnit === js_joda__WEBPACK_IMPORTED_MODULE_0__["IsoFields"].WEEK_BASED_YEARS) {
+      if (this._rangeUnit === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].MONTHS) {
+        field = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_MONTH;
+      } else if (this._rangeUnit === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].YEARS) {
+        field = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_YEAR;
+      } else if (this._rangeUnit === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["IsoFields"].WEEK_BASED_YEARS) {
         return this._rangeWOWBY(temporal);
-      } else if (this._rangeUnit === js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].FOREVER) {
-        return temporal.range(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].YEAR);
+      } else if (this._rangeUnit === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].FOREVER) {
+        return temporal.range(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].YEAR);
       } else {
-        throw new js_joda__WEBPACK_IMPORTED_MODULE_0__["IllegalStateException"]('unreachable');
+        throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["IllegalStateException"]('unreachable');
       }
 
       var sow = this._weekDef.firstDayOfWeek().value();
 
-      var isoDow = temporal.get(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK);
+      var isoDow = temporal.get(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK);
       var dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
 
       var offset = this._startOfWeekOffset(temporal.get(field), dow);
 
       var fieldRange = temporal.range(field);
-      return js_joda__WEBPACK_IMPORTED_MODULE_0__["ValueRange"].of(ComputedDayOfField._computeWeek(offset, fieldRange.minimum()), ComputedDayOfField._computeWeek(offset, fieldRange.maximum()));
+      return _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ValueRange"].of(ComputedDayOfField._computeWeek(offset, fieldRange.minimum()), ComputedDayOfField._computeWeek(offset, fieldRange.maximum()));
     }
   }, {
     key: "_rangeWOWBY",
     value: function _rangeWOWBY(temporal) {
       var sow = this._weekDef.firstDayOfWeek().value();
 
-      var isoDow = temporal.get(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK);
+      var isoDow = temporal.get(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK);
       var dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
 
       var woy = this._localizedWeekOfYear(temporal, dow);
 
       if (woy === 0) {
-        return this._rangeWOWBY(js_joda__WEBPACK_IMPORTED_MODULE_0__["IsoChronology"].INSTANCE.date(temporal).minus(2, js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS));
+        return this._rangeWOWBY(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["IsoChronology"].INSTANCE.date(temporal).minus(2, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS));
       }
 
-      var offset = this._startOfWeekOffset(temporal.get(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_YEAR), dow);
+      var offset = this._startOfWeekOffset(temporal.get(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_YEAR), dow);
 
-      var year = temporal.get(js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].YEAR);
-      var yearLen = js_joda__WEBPACK_IMPORTED_MODULE_0__["Year"].isLeap(year) ? 366 : 365;
+      var year = temporal.get(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].YEAR);
+      var yearLen = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Year"].isLeap(year) ? 366 : 365;
 
       var weekIndexOfFirstWeekNextYear = ComputedDayOfField._computeWeek(offset, yearLen + this._weekDef.minimalDaysInFirstWeek());
 
       if (woy >= weekIndexOfFirstWeekNextYear) {
-        return this._rangeWOWBY(js_joda__WEBPACK_IMPORTED_MODULE_0__["IsoChronology"].INSTANCE.date(temporal).plus(2, js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS));
+        return this._rangeWOWBY(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["IsoChronology"].INSTANCE.date(temporal).plus(2, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].WEEKS));
       }
 
-      return js_joda__WEBPACK_IMPORTED_MODULE_0__["ValueRange"].of(1, weekIndexOfFirstWeekNextYear - 1);
+      return _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ValueRange"].of(1, weekIndexOfFirstWeekNextYear - 1);
     }
   }, {
     key: "getDisplayName",
     value: function getDisplayName(locale) {
       requireNonNull(locale, 'locale');
 
-      if (this._rangeUnit === js_joda__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].YEARS) {
+      if (this._rangeUnit === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].YEARS) {
         return 'Week';
       }
 
@@ -4496,7 +4496,7 @@ var WeekFields = function () {
     key: "ofFirstDayOfWeekMinDays",
     value: function ofFirstDayOfWeekMinDays(firstDayOfWeek, minimalDaysInFirstWeek) {
       requireNonNull(firstDayOfWeek, 'firstDayOfWeek');
-      requireInstance(firstDayOfWeek, js_joda__WEBPACK_IMPORTED_MODULE_0__["DayOfWeek"], 'firstDayOfWeek');
+      requireInstance(firstDayOfWeek, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DayOfWeek"], 'firstDayOfWeek');
       requireNonNull(minimalDaysInFirstWeek, 'minimalDaysInFirstWeek');
       var key = firstDayOfWeek.toString() + minimalDaysInFirstWeek;
       var rules = WeekFieldsCache.get(key);
@@ -4515,11 +4515,11 @@ var WeekFields = function () {
     _classCallCheck(this, WeekFields);
 
     requireNonNull(firstDayOfWeek, 'firstDayOfWeek');
-    requireInstance(firstDayOfWeek, js_joda__WEBPACK_IMPORTED_MODULE_0__["DayOfWeek"], 'firstDayOfWeek');
+    requireInstance(firstDayOfWeek, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DayOfWeek"], 'firstDayOfWeek');
     requireNonNull(minimalDaysInFirstWeek, 'minimalDaysInFirstWeek');
 
     if (minimalDaysInFirstWeek < 1 || minimalDaysInFirstWeek > 7) {
-      throw new js_joda__WEBPACK_IMPORTED_MODULE_0__["IllegalArgumentException"]('Minimal number of days is invalid');
+      throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["IllegalArgumentException"]('Minimal number of days is invalid');
     }
 
     this._firstDayOfWeek = firstDayOfWeek;
@@ -4595,8 +4595,8 @@ var WeekFields = function () {
   return WeekFields;
 }();
 function _init() {
-  WeekFields.ISO = WeekFields.of(js_joda__WEBPACK_IMPORTED_MODULE_0__["DayOfWeek"].MONDAY, 4);
-  WeekFields.SUNDAY_START = WeekFields.of(js_joda__WEBPACK_IMPORTED_MODULE_0__["DayOfWeek"].SUNDAY, 1);
+  WeekFields.ISO = WeekFields.of(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DayOfWeek"].MONDAY, 4);
+  WeekFields.SUNDAY_START = WeekFields.of(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DayOfWeek"].SUNDAY, 1);
 }
 
 /***/ }),
@@ -4627,14 +4627,14 @@ module.exports = function (cldrPath) {
 
 /***/ }),
 
-/***/ "js-joda":
-/*!*********************************************************************************************!*\
-  !*** external {"amd":"js-joda","commonjs":"js-joda","commonjs2":"js-joda","root":"JSJoda"} ***!
-  \*********************************************************************************************/
+/***/ "@js-joda/core":
+/*!***************************************************************************************************************!*\
+  !*** external {"amd":"@js-joda/core","commonjs":"@js-joda/core","commonjs2":"@js-joda/core","root":"JSJoda"} ***!
+  \***************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_js_joda__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__js_joda_core__;
 
 /***/ })
 

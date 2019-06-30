@@ -4,7 +4,7 @@
  */
 
 import { expect } from 'chai';
-import { DateTimeFormatter } from 'js-joda';
+import { DateTimeFormatter } from '@js-joda/core';
 
 import { Locale } from '../../src/js-joda-locale';
 

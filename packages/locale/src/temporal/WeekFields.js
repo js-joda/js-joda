@@ -17,7 +17,7 @@ import {
     ResolverStyle,
     ValueRange,
     Year
-} from 'js-joda';
+} from '@js-joda/core';
 import cldrData from 'cldr-data';
 import Cldr from 'cldrjs';
 

@@ -63,6 +63,8 @@ module.exports = function (config) {
     webpackConfig.externals = undefined;
     // clear entry, for karma we use the karmaWebpackTestEntry
     webpackConfig.entry = undefined;
+    // no sourceMaps for karma build (seems to cause problems with saucelabs runs?)
+    webpackConfig.devtool = false;
 
     // add cldr-data load workaround
     webpackConfig.resolve = {
@@ -91,9 +93,13 @@ module.exports = function (config) {
             noInfo: true,
         },
         sauceLabs: {
-            testName: 'js-joda-locale karma Tests',
+            testName: '@js-joda/locale karma Tests',
             recordVideo: false,
             recordScreenshots: false,
+            // don't connect to saucelabs, let travis start a sauce connect proxy
+            startConnect: false,
+            // needed for travis sauce connect connection to work
+            tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
             connectOptions: {
                 logfile: 'sauce_connect.log',
             },
