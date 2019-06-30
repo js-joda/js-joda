@@ -6,7 +6,7 @@
 
 import {
     ZonedDateTime
-} from 'js-joda';
+} from '@js-joda/core';
 
 import { assertEquals } from './testUtils';
 import './useMomentZoneRules';

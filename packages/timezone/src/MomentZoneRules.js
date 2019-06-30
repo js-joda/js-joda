@@ -6,7 +6,7 @@
 
 import {
     LocalDateTime, Instant, ZoneOffset, ZoneOffsetTransition, ZoneRules
-} from 'js-joda';
+} from '@js-joda/core';
 
 export class MomentZoneRules extends ZoneRules{
     constructor(tzdbInfo){

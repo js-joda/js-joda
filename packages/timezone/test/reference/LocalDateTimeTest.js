@@ -10,7 +10,7 @@ import {
     Instant, LocalDateTime, ZonedDateTime,
     ZoneId, ZoneOffset,
     NullPointerException
-} from 'js-joda';
+} from '@js-joda/core';
 
 import { assertEquals } from '../testUtils';
 import '../useMomentZoneRules';

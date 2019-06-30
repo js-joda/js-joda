@@ -11,7 +11,7 @@ import {
     ZoneId, ZoneOffset,
     DateTimeFormatter,
     NullPointerException, DateTimeException
-} from 'js-joda';
+} from '@js-joda/core';
 
 import { assertEquals, dataProviderTest } from '../testUtils';
 import '../useMomentZoneRules';

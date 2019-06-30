@@ -5,7 +5,7 @@
 
 import { expect } from 'chai';
 
-import { ZoneRules, DateTimeException } from 'js-joda';
+import { ZoneRules, DateTimeException } from '@js-joda/core';
 import { MomentZoneRules } from '../src/MomentZoneRules';
 import { MomentZoneRulesProvider } from '../src/MomentZoneRulesProvider';
 

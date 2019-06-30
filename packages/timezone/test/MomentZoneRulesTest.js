@@ -8,7 +8,7 @@ import { expect } from 'chai';
 
 import {
     Instant, LocalDateTime, ZonedDateTime, ZoneId, ZoneOffset
-} from 'js-joda';
+} from '@js-joda/core';
 
 import { assertEquals, dataProviderTest } from './testUtils';
 import './useMomentZoneRules';

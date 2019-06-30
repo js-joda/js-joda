@@ -7,7 +7,7 @@
 import {
     LocalDate, LocalDateTime, ZonedDateTime,
     ZoneId,
-} from 'js-joda';
+} from '@js-joda/core';
 
 import { assertEquals } from '../testUtils';
 import '../useMomentZoneRules';

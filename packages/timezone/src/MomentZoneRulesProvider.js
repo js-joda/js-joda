@@ -7,7 +7,7 @@
 import {
     DateTimeException,
     ZoneRulesProvider,
-} from 'js-joda';
+} from '@js-joda/core';
 
 import { MomentZoneRules } from './MomentZoneRules';
 
