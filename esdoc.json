@@ -2,7 +2,7 @@
   "source": "./packages/",
   "destination": "./docs",
   "includes": ["^.*/src/.*\\.js$"],
-  "excludes": ["/node_modules/"],
+  "excludes": ["/node_modules/", "/examples/"],
   "plugins": [
     {
       "name": "esdoc-standard-plugin",
