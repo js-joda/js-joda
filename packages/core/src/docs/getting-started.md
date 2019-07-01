@@ -34,4 +34,4 @@ Then add it as a script tag to your page
 
 ### JSFiddle
 
-Fiddle around with jsjoda, find a simple example setup at [https://jsfiddle.net/bo7yuk34/4/](https://jsfiddle.net/bo7yuk34/4/)
+Fiddle around with jsjoda, find a simple example setup at [https://jsfiddle.net/shto0ze6/](https://jsfiddle.net/shto0ze6/)
