@@ -10,32 +10,40 @@
 
 - js-joda supports **ECMAScript 5** browsers down to IE9.
 
-- js-joda is a **port of the threeten** backport, which is the base for JSR-310 implementation of the Java SE 8 java.time package. Threeten is inspired by **Joda-Time**, having similar concepts and the same author.
+- js-joda is a **port of the ThreeTen** backport, which is the base for JSR-310 implementation of the Java SE 8 java.time package. Threeten is inspired by **Joda-Time**, having similar concepts and the same author.
 
-- js-joda is **robust and stable**. We ported more then 1700 test-cases with a lots of test-permutations from the threetenbp project. We run the automated karma test-suite against Firefox, Chrome, Node and phantomjs.
+- js-joda is **robust and stable**. We ported more then 1700 test-cases with a lots of test-permutations from the ThreeTen Backport project. We run the automated karma test-suite against Firefox, Chrome, Node and phantomjs.
+
+## js-joda packages
+
+js-joda consist of four packages:
+
+|  package name | description  |  path |
+|---|---|---|
+| `@js-joda/core` | Implementation of the ThreeTen Classes and API | [/packages/core](//github.com/js-joda/js-joda/tree/master/packages/core) |
+| `@js-joda/timezone` | Implementation of timezone calculation based on the iana Time Zone Database | [/packages/timezone](//github.com/js-joda/js-joda/tree/master/packages/timezone) |
+| `@js-joda/locale` | Implementation of locale specific functionality for js-joda, especially for formatting and parsing locale specific dates | [/packages/locale](//github.com/js-joda/js-joda/tree/master/packages/locale) |
+| `@js-joda/extra` | Implementation of the ThreeTen-Extra Classes and API |[/packages/extra](//github.com/js-joda/js-joda/tree/master/packages/extra) |
+
+The [@js-joda/examples]((//github.com/js-joda/js-joda/tree/master/packages/examples)) package is for testing the different build artifacts in different context, like webpack, browser node, etc.
 
 ## js-joda is now a mono repo
 
 We moved all js-joda libraries into this repository as a monorepo and
 put all js-joda npm modules under the @js-joda scope.
 
-|  previous package name | last version  | new scoped package name  |  
-|---|---|---|
-| `js-joda` | `@1.11.0` |`@js-joda/core`| 
-| `js-joda-timezone` | `@2.0.2` |`@js-joda/timezone` |
-| `js-joda-extra` | `@0.2.2` |`@js-joda/extra` |
-| `@js-joda/locale` | is already under `@js-joda` scope |
+The previous repositories for the packages [js-joda-timezone](https://github.com/js-joda/js-joda-timezone ),
+[js-joda-locale](https://github.com/js-joda/js-joda-locale ) and [js-joda-extra](https://github.com/js-joda/js-joda-extra)
+are outdated.
 
+The previous package versions and the equivalent new scoped package versions are as follows:
 
-Except the monorepo, the old repositories are deprecated from now on.
-
-| package | old repo | new path in monorepo |
-|---|---|---|
-| `js-joda` | https://github.com/js-joda/js-joda | `/packages/core` |
-| `js-joda-timezone` | https://github.com/js-joda/js-joda-timezone | `/packages/timezone` | 
-| `js-joda-locale` | https://github.com/js-joda/js-joda-locale | `/packages/locale` |
-| `js-joda-extra` | https://github.com/js-joda/js-joda-extra | `/packages/extra` |
-| `js-joda-examples` | https://github.com/js-joda/js-joda-examples | `/packages/examples` |
+|  previous package | equivalent new scoped package |  
+|---|---|
+| `js-joda@1.11.0` |`@js-joda/core@1.11.0`| 
+| `js-joda-timezone@2.0.2` |`@js-joda/timezone@2.0.2` |
+| `@js-joda/locale@2.0.1+34.0.0` | `@js-joda/locale@3.0.0+34.0.0` |
+| `js-joda-extra@0.2.2` |`@js-joda/extra@0.2.2` |
 
 ## Links
 
