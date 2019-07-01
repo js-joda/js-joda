@@ -11,6 +11,11 @@
           "access": ["public"],
           "autoPrivate": true
         },
+        "brand": {
+          "title": "js-joda",
+          "description": "Immutable date and time library for JavaScript",
+          "repository": "https://github.com/js-joda/js-joda"
+        },
         "manual": {
           "index": "./packages/core/src/docs/index.md",
           "globalIndex": true,
