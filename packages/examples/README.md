@@ -1,5 +1,6 @@
-HowTo use js-joda libraries in different environments
-==============================================
+# @js-joda/examples
+
+## HowTo use js-joda libraries in different environments
 
 **Incomplete and Work In Progress!**
 

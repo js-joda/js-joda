@@ -1,5 +1,6 @@
-additional date-time classes that complement those in js-joda
-==============================================
+# @js-joda/locale
+
+# additional date-time classes that complement those in js-joda
 
 [![npm version](https://badge.fury.io/js/%40js-joda%2Flocale.svg)](https://badge.fury.io/js/%40js-joda%2Flocale)
 [![Build Status](https://travis-ci.org/js-joda/js-joda-locale.svg?branch=master)](https://travis-ci.org/js-joda/js-joda-locale)

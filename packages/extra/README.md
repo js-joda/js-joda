@@ -1,5 +1,6 @@
-additional date-time classes that complement those in js-joda
-==============================================
+# @js-joda/extra
+
+## additional date-time classes that complement those in js-joda
 
 [![npm version](https://badge.fury.io/js/js-joda-extra.svg)](https://badge.fury.io/js/js-joda-extra)
 [![Build Status](https://travis-ci.org/js-joda/js-joda-extra.svg)](https://travis-ci.org/js-joda/js-joda-extra)

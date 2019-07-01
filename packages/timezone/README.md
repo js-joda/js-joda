@@ -1,4 +1,4 @@
-# js-joda-timezone
+# @js-joda/timezone
 
 [![npm version](https://badge.fury.io/js/js-joda-timezone.svg)](https://badge.fury.io/js/js-joda-timezone)
 [![Build Status](https://travis-ci.org/js-joda/js-joda-timezone.svg)](https://travis-ci.org/js-joda/js-joda-timezone)
