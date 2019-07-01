@@ -34,8 +34,8 @@ The [js-joda-timezone](https://github.com/js-joda/js-joda-timezone) package prov
 To specify time zones using these names, you just need to `require` [js-joda-timezone](https://github.com/js-joda/js-joda-timezone).
 
 ```javascript
-var jsJoda = require("js-joda");
-require("js-joda-timezone");
+var jsJoda = require("@js-joda/core");
+require("@js-joda/timezone");
 
 var zdt = ZonedDateTime.now(ZoneId.of("Europe/Paris"));
 ```

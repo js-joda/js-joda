@@ -11,7 +11,7 @@ npm install js-joda
 Then require it to any module
 
 ```javascript
-var LocalDate = require("js-joda").LocalDate;
+var LocalDate = require("@js-joda/core").LocalDate;
 
 var d = LocalDate.parse("2012-12-24")
   .atStartOfDay()
