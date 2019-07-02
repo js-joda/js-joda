@@ -2,6 +2,8 @@
 
 [![Tested node version](https://img.shields.io/badge/tested_with-current_node_LTS-blue.svg?style=flat)]()
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
+[![Build Status](https://travis-ci.org/js-joda/js-joda.svg)](https://travis-ci.org/js-joda/js-joda)
+[![Sauce Test Status](https://saucelabs.com/buildstatus/js-joda)](https://saucelabs.com/u/js-joda)
 
 
 ## Introduction
