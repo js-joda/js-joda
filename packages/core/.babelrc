@@ -1,6 +1,6 @@
 {
   "presets": [
-    ["env", {
+    ["@babel/preset-env", {
       "modules": false,
       "loose": true,
       "targets": {
@@ -13,7 +13,7 @@
   "comments": false,
   "env": {
     "test": {
-      "presets": ["env", {
+      "presets": ["@babel/preset-env", {
         "plugins": [
           "istanbul"
         ]

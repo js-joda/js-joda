@@ -66,7 +66,7 @@ module.exports = function(config) {
         preprocessors: {
             'test/karmaWebpackTestEntry.js': ['webpack']
         },
-        webpack: require('./webpack.config.js'),
+        webpack: webpackConfig,
         webpackMiddleware: {
             noInfo: true
         },
