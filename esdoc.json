@@ -17,19 +17,19 @@
           "repository": "https://github.com/js-joda/js-joda"
         },
         "manual": {
-          "index": "./packages/core/src/docs/index.md",
+          "index": "./esdoc/manual/index.md",
           "globalIndex": true,
           "files": [
-            "./packages/core/src/docs/getting-started.md",
-            "./packages/core/src/docs/usage.md",
-            "./packages/core/src/docs/LocalDate.md",
-            "./packages/core/src/docs/LocalTime.md",
-            "./packages/core/src/docs/LocalDateTime.md",
-            "./packages/core/src/docs/ZonedDateTime.md",
-            "./packages/core/src/docs/Period.md",
-            "./packages/core/src/docs/Duration.md",
-            "./packages/core/src/docs/formatting.md",
-            "./packages/core/src/docs/customizing.md"
+            "./esdoc/manual/getting-started.md",
+            "./esdoc/manual/usage.md",
+            "./esdoc/manual/LocalDate.md",
+            "./esdoc/manual/LocalTime.md",
+            "./esdoc/manual/LocalDateTime.md",
+            "./esdoc/manual/ZonedDateTime.md",
+            "./esdoc/manual/Period.md",
+            "./esdoc/manual/Duration.md",
+            "./esdoc/manual/formatting.md",
+            "./esdoc/manual/customizing.md"
           ]
         }
       }
