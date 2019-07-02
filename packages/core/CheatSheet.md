@@ -8,7 +8,6 @@ For a detailed API Reference refer to the [ESDoc generated docs](./esdoc/).
 
 - [General concepts](#general-concepts)
   * [Method naming conventions](#method-naming-conventions)
-  * [Try it out](#try-it-out)
 - [LocalDate](#localdate)
   * [Create a `LocalDate`](#create-a-localdate)
   * [Get values from `LocalDate`](#get-values-from-localdate)
@@ -78,12 +77,6 @@ The API uses consistently named methods.
 | `.at`                 | combines one object with another             | `date.atTime(time)` <br> `localDate.atZone(tz)`                 |
 
 Note that getter methods for instance properties omit the get keyword: `d.year()`, not ~~`d.getYear()`~~.
-
-### Try it out
-
-**Tip:** You can run the examples on this page in your browser console. All `js-joda` classes are imported into the global namespace of this web page.
-
-![image](https://user-images.githubusercontent.com/2136620/47266364-9be10b00-d535-11e8-9a38-b53a6c16728d.png)
 
 ## LocalDate
 
