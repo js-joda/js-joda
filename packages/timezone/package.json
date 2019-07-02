@@ -20,7 +20,7 @@
     "test-ci": "npm run build-dist && npm run test && npm run test-browser && npm run test-ts-definitions && npm run test-coverage",
     "build-dist": "./node_modules/.bin/webpack --progress --colors --bail",
     "transform-data": "node ./transform-data.js",
-    "lint": "./node_modules/.bin/eslint ."
+    "lint": "../../node_modules/.bin/eslint ."
   },
   "repository": {
     "type": "git",

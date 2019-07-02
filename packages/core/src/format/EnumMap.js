@@ -19,6 +19,7 @@ export class EnumMap {
     }
 
     containsKey(key){
+        // eslint-disable-next-line no-prototype-builtins
         return (this._map.hasOwnProperty(key.name())) && (this.get(key) !== undefined);
     }
 

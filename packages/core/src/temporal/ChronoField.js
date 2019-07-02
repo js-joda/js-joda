@@ -95,7 +95,7 @@ export class ChronoField extends TemporalField {
      */
     static byName(fieldName) {
         for (const prop in ChronoField) {
-            if (ChronoField.hasOwnProperty(prop)) {
+            if (ChronoField[prop]) {
                 if ((ChronoField[prop] instanceof ChronoField) && ChronoField[prop].name() === fieldName) {
                     return ChronoField[prop];
                 }

@@ -7,7 +7,7 @@
   "devDependencies": {
     "esdoc": "^1.1.0",
     "esdoc-standard-plugin": "^1.0.0",
-    "eslint": "^5.15.0",
+    "eslint": "^6.0.1",
     "eslint-config-js-joda": "^1.0.0",
     "lerna": "^3.13.1"
   },
