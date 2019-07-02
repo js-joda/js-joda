@@ -57,7 +57,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^3.0.5",
     "mocha": "^6.0.2",
-    "nyc": "^13.3.0",
+    "nyc": "^14.1.1",
     "phantomjs-prebuilt": "^2.1.16",
     "uglifyjs-webpack-plugin": "^2.1.2",
     "webpack": "^4.29.6",
