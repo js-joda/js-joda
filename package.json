@@ -2,14 +2,17 @@
   "name": "@js-joda/root",
   "private": true,
   "scripts": {
-    "build-esdoc": "./node_modules/.bin/esdoc -c esdoc.json"
+    "build-esdoc": "./node_modules/.bin/esdoc -c esdoc.json",
+    "build-test-coverage-report": "./build-test-coverage-report.sh"
   },
   "devDependencies": {
+    "coveralls": "^3.0.4",
     "esdoc": "^1.1.0",
     "esdoc-standard-plugin": "^1.0.0",
     "eslint": "^6.0.1",
     "eslint-config-js-joda": "^1.0.0",
-    "lerna": "^3.13.1"
+    "lerna": "^3.13.1",
+    "nyc": "^14.1.1"
   },
   "dependencies": {}
 }
