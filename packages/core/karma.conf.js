@@ -71,7 +71,7 @@ module.exports = function(config) {
             noInfo: true
         },
         sauceLabs: {
-            testName: 'js-joda karma Tests',
+            testName: '@js-joda/core karma tests',
             recordVideo: false,
             recordScreenshots: false,
             // don't connect to saucelabs, let travis start a sauce connect proxy
