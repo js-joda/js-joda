@@ -2,7 +2,7 @@ language: node_js
 os:
   - linux
 node_js:
-  - "--lts" # use latest stable node version
+  - "v10.15.0" # pin version might fix https://github.com/nickmerwin/node-coveralls/issues/207
 # to speed up/parallelize the build, we use the travis matrix feature
 # - CI_STEP=build will run the (webpack) build and doc build
 # - CI_STEP=node will run the mocha/typescript (node local) tests as well as providing testcoverage
