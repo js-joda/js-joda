@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "test": "./node_modules/.bin/mocha --timeout 5000 --require @babel/register ./test/*Test.js ./test/**/*Test.js",
-    "test-coverage": "NODE_ENV=test COVERAGE=1 ./node_modules/.bin/nyc --report-dir=build/coverage --reporter=lcov --reporter html ./node_modules/.bin/mocha --timeout 5000 --require @babel/register --reporter progress ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js",
+    "test-coverage": "NODE_ENV=test COVERAGE=1 ../../node_modules/.bin/nyc --report-dir=build/coverage --reporter=lcov --reporter html ./node_modules/.bin/mocha --timeout 5000 --require @babel/register --reporter progress ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js",
     "test-browser": "./node_modules/.bin/karma start --reporters=dots --single-run",
     "test-ts-definitions": "tsc --noImplicitAny --noEmit --pretty test/typescript_defintions/js-joda-timezone-tests.ts",
     "test-saucelabs": "./node_modules/.bin/karma start --reporters=\"dots,saucelabs\" --browsers=\"sl_chrome,sl_ie,sl_firefox\" --single-run=true",
@@ -67,7 +67,6 @@
     "karma-webpack": "^3.0.5",
     "mocha": "^6.0.2",
     "moment-timezone": "^0.5.23",
-    "nyc": "^14.1.1",
     "phantomjs-prebuilt": "^2.1.16",
     "typescript": "^3.3.3333",
     "uglifyjs-webpack-plugin": "^2.1.2",

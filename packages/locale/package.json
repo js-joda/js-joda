@@ -10,7 +10,7 @@
   "scripts": {
     "version": "npm run build-all",
     "test": "./node_modules/.bin/mocha --timeout 5000 --require @babel/register ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js test/pluginTest_mochaOnly.js",
-    "test-coverage": "NODE_ENV=test COVERAGE=1 ./node_modules/.bin/nyc --report-dir=build/coverage --reporter=lcov --reporter html ./node_modules/.bin/mocha --timeout 5000 --require @babel/register --reporter progress ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js",
+    "test-coverage": "NODE_ENV=test COVERAGE=1 ../../node_modules/.bin/nyc --report-dir=build/coverage --reporter=lcov --reporter html ./node_modules/.bin/mocha --timeout 5000 --require @babel/register --reporter progress ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js",
     "test-browser": "./node_modules/.bin/karma start --reporters=dots --single-run",
     "test-saucelabs": "./node_modules/.bin/karma start --reporters=\"dots,saucelabs\" --browsers=\"sl_chrome,sl_ie,sl_firefox,sl_android_simulator,sl_ios_simulator\" --single-run=true",
     "build-dist-es5": "./node_modules/.bin/babel src -d build/es5",
@@ -75,7 +75,6 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^3.0.5",
     "mocha": "^6.0.2",
-    "nyc": "^13.3.0",
     "phantomjs-prebuilt": "^2.1.16",
     "requirejs": "^2.3.6",
     "requirejs-json": "0.0.3",
