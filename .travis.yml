@@ -61,8 +61,8 @@ script:
 after_success:
   - if [[ "$CI_STEP" == "node" ]]; then
       (
-      npm run build-test-coverage-report
-      cat ./build/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js -v
+      npm run build-test-coverage-report;
+      cat ./build/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js -v;
       )
       fi
 
