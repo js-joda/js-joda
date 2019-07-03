@@ -3,13 +3,11 @@
 # additional date-time classes that complement those in js-joda
 
 [![npm version](https://badge.fury.io/js/%40js-joda%2Flocale.svg)](https://badge.fury.io/js/%40js-joda%2Flocale)
-[![Build Status](https://travis-ci.org/js-joda/js-joda-locale.svg?branch=master)](https://travis-ci.org/js-joda/js-joda-locale)
-![Sauce Test Status](https://saucelabs.com/buildstatus/js-joda-locale)
+[![Travis Build Status](https://travis-ci.org/js-joda/js-joda.svg)](https://travis-ci.org/js-joda/js-joda)
+[![Sauce Test Status](https://saucelabs.com/buildstatus/js-joda)](https://saucelabs.com/u/js-joda)
 [![Coverage Status](https://coveralls.io/repos/js-joda/js-joda/badge.svg?branch=master&service=github)](https://coveralls.io/github/js-joda/js-joda?branch=master)
 [![Tested node version](https://img.shields.io/badge/tested_with-current_node_LTS-blue.svg?style=flat)]()
-[![Greenkeeper badge](https://badges.greenkeeper.io/js-joda/js-joda-locale.svg)](https://greenkeeper.io/)
-
-![Sauce Test Status](https://saucelabs.com/browser-matrix/js-joda-locale.svg)
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/js-joda.svg)](https://saucelabs.com/u/js-joda)
 
 ## Motivation
 
