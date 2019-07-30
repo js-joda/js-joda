@@ -5,7 +5,7 @@
 Install joda using npm
 
 ```bash
-npm install js-joda
+npm install @js-joda/core
 ```
 
 Then require it to any module
