@@ -1,5 +1,11 @@
-declare module '@js-joda/extra' {
-  import { Duration, Instant } from '@js-joda/core';
+declare module JSJoda {
+  class Duration {}
+  class Instant {}
+}
+
+declare namespace JSJodaExtra {
+  import Duration = JSJoda.Duration;
+  import Instant = JSJoda.Instant;
 
   class Interval {
     static of(
@@ -49,3 +55,5 @@ declare module '@js-joda/extra' {
     toString(): string;
   }
 }
+
+export = JSJodaExtra;
