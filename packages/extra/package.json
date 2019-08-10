@@ -60,6 +60,7 @@
     "karma-webpack": "^3.0.5",
     "mocha": "^6.0.2",
     "phantomjs-prebuilt": "^2.1.16",
+    "typescript": "^3.5.3",
     "uglifyjs-webpack-plugin": "^2.1.2",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3"
