@@ -3,6 +3,8 @@
 
 ### next
 
+Add TypeScript declarations for extras package #339
+
 ### 0.2.1 (next)
 
 * dependency updates
