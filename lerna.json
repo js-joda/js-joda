@@ -1,0 +1,7 @@
+{
+  "packages": [
+    "packages/*",
+    "packages/locale/packages/*"
+  ],
+  "version": "independent"
+}

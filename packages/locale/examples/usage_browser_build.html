@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--
+  ~ @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
+  ~ @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
+  -->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js-joda-locale Usage Example</title>
+    <script type="text/javascript" src="../node_modules/requirejs/require.js"></script>
+</head>
+<body>
+<div class="out" />
+<script type="text/javascript">
+    function output(s) {
+        console.log(s);
+        var outDiv = document.getElementsByClassName('out')[0];
+        var p = document.createElement('p');
+        p.innerHTML = s;
+        outDiv.appendChild(p);
+    }
+
+    require.config({
+        paths: {
+            '@js-joda/core': '../node_modules/@js-joda/core/dist/js-joda',
+
+            '@js-joda/timezone': '../node_modules/@js-joda/timezone/dist/js-joda-timezone',
+
+            '@js-joda/locale': '../examples/build/js-joda-locale/index',
+        }
+    });
+    require([
+        '@js-joda/core',
+        '@js-joda/timezone',
+        '@js-joda/locale',
+    ], function (JSJoda, JSJodaTimezone, JSJodaLocale) {
+
+        function outputDateInDifferentLocales(zdt) {
+            output('Times in ' + zdt.zone());
+            output('&nbsp;');
+            output('en_US formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(JSJodaLocale.Locale.US)));
+            output('en_CA formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(JSJodaLocale.Locale.CANADA)));
+            output('en_GB formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(JSJodaLocale.Locale.UK)));
+            output('de_DE formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(JSJodaLocale.Locale.GERMANY)));
+            output('fr_FR formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(JSJodaLocale.Locale.FRANCE)));
+            output('es_ES formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(new JSJodaLocale.Locale('es', 'ES ', 'es'))));
+            output('ru_RU formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(new JSJodaLocale.Locale('ru', 'RU ', 'ru'))));
+            output('zh_CN formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(new JSJodaLocale.Locale('zh', 'CN ', 'zh'))));
+            output('hi_IN formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(new JSJodaLocale.Locale('hi', 'IN ', 'hi'))));
+            output('&nbsp;');
+            output('<hr />');
+        }
+
+        var zdt = JSJoda.ZonedDateTime.of(2017, 1, 1, 0, 0, 0, 0, JSJoda.ZoneId.of('Europe/Berlin'));
+        outputDateInDifferentLocales(zdt)
+        zdt = JSJoda.ZonedDateTime.of(2017, 1, 1, 0, 0, 0, 0, JSJoda.ZoneId.of('America/Chicago'));
+        outputDateInDifferentLocales(zdt)
+        zdt = JSJoda.ZonedDateTime.of(2017, 1, 1, 0, 0, 0, 0, JSJoda.ZoneId.of('America/New_York'));
+        outputDateInDifferentLocales(zdt);
+        zdt = JSJoda.ZonedDateTime.of(2017, 1, 1, 0, 0, 0, 0, JSJoda.ZoneId.of('Asia/Hong_Kong'));
+        outputDateInDifferentLocales(zdt);
+    }, function errorCallback(err) {
+        output(err);
+        output('<hr />');
+        output('If you get a Script error for js-joda-locale above, you may need to run ');
+        output('<pre>npm run build-examples</pre>');
+        output('before using this example');
+    });
+</script>
+</body>
+</html>

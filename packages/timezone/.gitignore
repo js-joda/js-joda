@@ -1,0 +1,19 @@
+# Node dependency directory
+node_modules
+
+# npm
+npm-debug.log
+
+# build output
+build
+tmp
+.nyc_output
+yarn.lock
+sauce_connect.log
+
+# Ide
+.idea
+*.iml
+
+
+

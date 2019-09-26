@@ -1,7 +1,7 @@
 [
   {
     "name": "Clock.offset",
-    "filePath": "src/Clock.js",
+    "filePath": "packages/core/src/Clock.js",
     "lines": [
       {
         "lineNumber": 107,
@@ -95,7 +95,7 @@
   },
   {
     "name": "Clock#withZone",
-    "filePath": "src/Clock.js",
+    "filePath": "packages/core/src/Clock.js",
     "lines": [
       {
         "lineNumber": 165,
@@ -145,6 +145,40 @@
     "codeParams": [],
     "docParams": [
       "zone"
+    ]
+  },
+  {
+    "name": "plug",
+    "filePath": "packages/extra/src/plug.js",
+    "lines": [
+      {
+        "lineNumber": 9,
+        "line": "/**"
+      },
+      {
+        "lineNumber": 10,
+        "line": " * plugin Function, call using js-jodas use()"
+      },
+      {
+        "lineNumber": 11,
+        "line": " *"
+      },
+      {
+        "lineNumber": 12,
+        "line": " * @param jsJoda"
+      },
+      {
+        "lineNumber": 13,
+        "line": " */"
+      },
+      {
+        "lineNumber": 14,
+        "line": "export default function (/* jsJoda */) {"
+      }
+    ],
+    "codeParams": [],
+    "docParams": [
+      "jsJoda"
     ]
   }
 ]

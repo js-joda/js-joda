@@ -16,44 +16,58 @@ env:
 before_script:
   # for karma tests, start xvfb and give it some time to start
   - if [[ "$CI_STEP" == "karma" ]]; then export DISPLAY=:99.0; sh -e /etc/init.d/xvfb start; sleep 3; fi
+install:
+  - npm install
+  - npx lerna clean -y
+  - npx lerna link
+  - npx lerna bootstrap --no-ci
 script:
   - #export
   # CI_STEP = build steps to run
   - if [[ "$CI_STEP" == "build" ]]; then
       (
       set -evx;
-      npm run build-dist;
+      npx lerna run --stream build-dist;
+      npx lerna run --stream build-all;
+      npx lerna run --stream lint;
       npm run build-esdoc;
-      npm run lint;
       )
     fi
   # CI_STEP = node steps to run
   - if [[ "$CI_STEP" == "node" ]]; then
       (
       set -evx;
-      npm run test;
-      npm run test-ts-definitions;
-      npm run test-coverage;
+      npx lerna run --stream test;
+      npx lerna run --stream test-ts-definitions;
+      npx lerna run --stream test-coverage;
       )
     fi
   # CI_STEP = karma steps to run
   - if [[ "$CI_STEP" == "karma" ]]; then
       (
       set -evx;
-      npm run test-browser -- --browsers PhantomJS --browserNoActivityTimeout 20000;
+      npx lerna run --stream test-browser -- -- --browsers PhantomJS --browserNoActivityTimeout 20000;
       )
     fi
   # CI_STEP = saucelabs steps to run,
   # since it needs encrypted env variables, it cannot run on Pull Requests!
-  - if [[ "$CI_STEP" == "saucelabs" ]] && [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then
+  - if [[ "$CI_STEP" == "saucelabs" ]] && [[ "$TRAVIS_PULL_REQUEST" == "false" ]] && [[ -n "$SAUCE_USERNAME" ]]; then
       (
       set -evx;
-      npm run test-saucelabs;
+      npx lerna run --stream test-saucelabs;
       )
     fi
 
-after_script:
-  - cat ./build/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+after_success:
+  - if [[ "$CI_STEP" == "node" ]]; then
+      (
+      npm run build-test-coverage-report;
+      cat ./build/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js;
+      )
+      fi
+
+addons:
+  sauce_connect: true
 
 notifications:
   slack:

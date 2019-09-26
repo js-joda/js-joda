@@ -1,0 +1,88 @@
+{
+  "name": "@js-joda/locale",
+  "version": "3.0.0+34.0.0",
+  "description": "plugin for locale functionality for js-joda",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/js-joda/js-joda.git"
+  },
+  "main": "dist/js-joda-locale.js",
+  "scripts": {
+    "version": "npm run build-all",
+    "test": "./node_modules/.bin/mocha --timeout 5000 --require @babel/register ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js test/pluginTest_mochaOnly.js",
+    "test-coverage": "NODE_ENV=test COVERAGE=1 ../../node_modules/.bin/nyc --report-dir=build/coverage --reporter=lcov --reporter html ./node_modules/.bin/mocha --timeout 5000 --require @babel/register --reporter progress ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js",
+    "test-browser": "./node_modules/.bin/karma start --reporters=dots --single-run",
+    "test-saucelabs": "./node_modules/.bin/karma start --reporters=\"dots,saucelabs\" --browsers=\"sl_chrome,sl_ie,sl_firefox,sl_android_simulator,sl_ios_simulator\" --single-run=true",
+    "build-dist-es5": "./node_modules/.bin/babel src -d build/es5",
+    "build-dist": "./node_modules/.bin/webpack --progress --colors --bail && DIST_MIN=1 ./node_modules/.bin/webpack --progress --colors --bail",
+    "build-examples": "node ./utils/build_package.js -o examples/build/js-joda-locale -m node_modules -c utils/load_cldrData.prebuilt.js -l \"en.*\" de fr es zh hi ru",
+    "build-prebuilt": "rm -rf dist/prebuilt/*;node utils/build_package.js --config build_package.prebuilt.json",
+    "build_package": "node ./utils/build_package.js",
+    "build-all": "npm run build-dist-es5 && npm run build-dist && npm run build-examples && npm run build-prebuilt && npm run create-packages",
+    "create-packages": "rm -rf packages/*;node utils/create_packages.js --config build_package.prebuilt.json",
+    "lint": "../../node_modules/.bin/eslint ."
+  },
+  "keywords": [
+    "date",
+    "time",
+    "locale"
+  ],
+  "nyc": {
+    "sourceMap": false,
+    "instrument": false
+  },
+  "yargs": {
+    "camel-case-expansion": false
+  },
+  "author": "phueper",
+  "contributors": [
+    "pithu",
+    "phueper"
+  ],
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/js-joda/js-joda-locale/issues"
+  },
+  "homepage": "https://github.com/js-joda/js-joda-locale#readme",
+  "peerDependencies": {
+    "cldr-data": "*",
+    "cldrjs": "^0.5.1",
+    "@js-joda/core": "^1.11.0",
+    "@js-joda/timezone": "^2.1.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/register": "^7.0.0",
+    "@js-joda/core": "^1.11.0",
+    "@js-joda/timezone": "^2.1.1",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-add-module-exports": "^1.0.0",
+    "babel-plugin-istanbul": "^5.1.1",
+    "chai": "^4.2.0",
+    "cldr-data": "^34.0.0",
+    "cldrjs": "^0.5.1",
+    "coveralls": "^3.0.3",
+    "karma": "^4.0.1",
+    "karma-chai-plugins": "^0.9.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-firefox-launcher": "^1.1.0",
+    "karma-mocha": "^1.3.0",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-sauce-launcher": "^2.0.2",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^3.0.5",
+    "mocha": "^6.0.2",
+    "phantomjs-prebuilt": "^2.1.16",
+    "requirejs": "^2.3.6",
+    "requirejs-json": "0.0.3",
+    "requirejs-text": "^2.0.15",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3",
+    "yargs": "^13.2.1"
+  },
+  "cldr-data-coverage": "core",
+  "cldr-data-urls-filter": "(cldr-core|cldr-numbers-modern|cldr-dates-modern)"
+}

@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../../">
+  <title data-ice="title">packages/locale/src/temporal/WeekFields.js | js-joda</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Immutable date and time library for JavaScript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="js-joda"><meta property="twitter:description" content="Immutable date and time library for JavaScript"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/js-joda/js-joda"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src">core/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Clock.js~Clock.html">Clock</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Duration.js~Duration.html">Duration</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Enum.js~Enum.html">Enum</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalDate.js~LocalDate.html">LocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalTime.js~LocalTime.html">LocalTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/MathUtil.js~MathUtil.html">MathUtil</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Month.js~Month.html">Month</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Period.js~Period.html">Period</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Year.js~Year.html">Year</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/YearConstants.js~YearConstants.html">YearConstants</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/YearMonth.js~YearMonth.html">YearMonth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneId.js~ZoneId.html">ZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneRegion.js~ZoneRegion.html">ZoneRegion</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-abstractMethodFail">abstractMethodFail</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-assert">assert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bindUse">bindUse</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeParseException">DateTimeParseException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalArgumentException">IllegalArgumentException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalStateException">IllegalStateException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NullPointerException">NullPointerException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-UnsupportedTemporalTypeException">UnsupportedTemporalTypeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-use">use</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-chrono">core/src/chrono</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/IsoChronology.js~IsoChronology.html">IsoChronology</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-format">core/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html">DateTimeFormatterBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DecimalStyle.js~DecimalStyle.html">DecimalStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/SignStyle.js~SignStyle.html">SignStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ValueRange.js~ValueRange.html">ValueRange</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nativeJs">nativeJs</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-zone">core/src/zone</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#extra-src">extra/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/Interval.js~Interval.html">Interval</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-abstractMethodFail">abstractMethodFail</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-assert">assert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-plug">plug</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src">locale/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/Locale.js~Locale.html">Locale</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-plug">plug</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format">locale/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleDateTimeFormatter.js~LocaleDateTimeFormatter.html">LocaleDateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleStore.js~LocaleStore.html">LocaleStore</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createEntry">createEntry</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-cldr">locale/src/format/cldr</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js~CldrDateTimeFormatterBuilder.html">CldrDateTimeFormatterBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrZoneTextPrinterParser.js~CldrZoneTextPrinterParser.html">CldrZoneTextPrinterParser</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-parser">locale/src/format/parser</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/parser/WeekFieldsPrinterParser.js~WeekFieldsPrinterParser.html">WeekFieldsPrinterParser</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-temporal">locale/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~ComputedDayOfField.html">ComputedDayOfField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-autoPlug">autoPlug</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-plug">plug</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extendSystemDefaultZoneId">extendSystemDefaultZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">packages/locale/src/temporal/WeekFields.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/*
+ * @copyright (c) 2017, Philipp Thuerwaechter &amp; Pattrick Hueper
+ * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
+ */
+
+import {
+    _ as jodaInternal,
+    DateTimeException,
+    DayOfWeek,
+    ChronoField,
+    ChronoUnit,
+    IllegalArgumentException,
+    IllegalStateException,
+    IsoChronology,
+    IsoFields,
+    LocalDate,
+    ResolverStyle,
+    ValueRange,
+    Year
+} from &apos;@js-joda/core&apos;;
+import cldrData from &apos;cldr-data&apos;;
+import Cldr from &apos;cldrjs&apos;;
+
+const { MathUtil, assert: { requireNonNull, requireInstance } } = jodaInternal;
+
+//-----------------------------------------------------------------------
+const DAY_OF_WEEK_RANGE = ValueRange.of(1, 7);
+const WEEK_OF_MONTH_RANGE = ValueRange.of(0, 1, 4, 6);
+const WEEK_OF_YEAR_RANGE = ValueRange.of(0, 1, 52, 54);
+const WEEK_OF_WEEK_BASED_YEAR_RANGE = ValueRange.of(1, 52, 53);
+const WEEK_BASED_YEAR_RANGE = ChronoField.YEAR.range();
+
+/* map from the string from cldr `firstDay()` to DayOfWeek */
+const _weekDayMap = {
+    &apos;mon&apos;: DayOfWeek.MONDAY,
+    &apos;tue&apos;: DayOfWeek.TUESDAY,
+    &apos;wed&apos;: DayOfWeek.WEDNESDAY,
+    &apos;thu&apos;: DayOfWeek.THURSDAY,
+    &apos;fri&apos;: DayOfWeek.FRIDAY,
+    &apos;sat&apos;: DayOfWeek.SATURDAY,
+    &apos;sun&apos;: DayOfWeek.SUNDAY,
+};
+
+/**
+ * Field type that computes DayOfWeek, WeekOfMonth, and WeekOfYear
+ * based on a WeekFields.
+ * A separate Field instance is required for each different WeekFields;
+ * combination of start of week and minimum number of days.
+ * Constructors are provided to create fields for DayOfWeek, WeekOfMonth,
+ * and WeekOfYear.
+ */
+export class ComputedDayOfField {
+
+    /**
+     * Returns a field to access the day of week,
+     * computed based on a WeekFields.
+     * &lt;p&gt;
+     * The WeekDefintion of the first day of the week is used with
+     * the ISO DAY_OF_WEEK field to compute week boundaries.
+     */
+    static ofDayOfWeekField(weekDef) {
+        return new ComputedDayOfField(&apos;DayOfWeek&apos;, weekDef,
+            ChronoUnit.DAYS, ChronoUnit.WEEKS, DAY_OF_WEEK_RANGE);
+    }
+
+    /**
+     * Returns a field to access the week of month,
+     * computed based on a WeekFields.
+     * @see WeekFields#weekOfMonth()
+     */
+    static ofWeekOfMonthField(weekDef) {
+        return new ComputedDayOfField(&apos;WeekOfMonth&apos;, weekDef,
+            ChronoUnit.WEEKS, ChronoUnit.MONTHS, WEEK_OF_MONTH_RANGE);
+    }
+
+    /**
+     * Returns a field to access the week of year,
+     * computed based on a WeekFields.
+     * @see WeekFields#weekOfYear()
+     */
+    static ofWeekOfYearField(weekDef) {
+        return new ComputedDayOfField(&apos;WeekOfYear&apos;, weekDef,
+            ChronoUnit.WEEKS, ChronoUnit.YEARS, WEEK_OF_YEAR_RANGE);
+    }
+
+    /**
+     * Returns a field to access the week of week-based-year,
+     * computed based on a WeekFields.
+     * @see WeekFields#weekOfWeekBasedYear()
+     */
+    static ofWeekOfWeekBasedYearField(weekDef) {
+        return new ComputedDayOfField(&apos;WeekOfWeekBasedYear&apos;, weekDef,
+            ChronoUnit.WEEKS, IsoFields.WEEK_BASED_YEARS, WEEK_OF_WEEK_BASED_YEAR_RANGE);
+    }
+
+    /**
+     * Returns a field to access the week-based-year,
+     * computed based on a WeekFields.
+     * @see WeekFields#weekBasedYear()
+     */
+    static ofWeekBasedYearField(weekDef) {
+        return new ComputedDayOfField(&apos;WeekBasedYear&apos;, weekDef,
+            IsoFields.WEEK_BASED_YEARS, ChronoUnit.FOREVER, WEEK_BASED_YEAR_RANGE);
+    }
+
+    /**
+     *@private
+     */
+    constructor(name, weekDef, baseUnit, rangeUnit, range) {
+        this._name = name;
+        this._weekDef = weekDef;
+        this._baseUnit = baseUnit;
+        this._rangeUnit = rangeUnit;
+        this._range = range;
+    }
+
+    getFrom(temporal) {
+        // Offset the ISO DOW by the start of this week
+        const sow = this._weekDef.firstDayOfWeek().value();
+        const dow = this._localizedDayOfWeek(temporal, sow);
+
+        if (this._rangeUnit === ChronoUnit.WEEKS) {
+            return dow;
+        } else if (this._rangeUnit === ChronoUnit.MONTHS) {
+            return this._localizedWeekOfMonth(temporal, dow);
+        } else if (this._rangeUnit === ChronoUnit.YEARS) {
+            return this._localizedWeekOfYear(temporal, dow);
+        } else if (this._rangeUnit === IsoFields.WEEK_BASED_YEARS) {
+            return this._localizedWOWBY(temporal);
+        } else if (this._rangeUnit === ChronoUnit.FOREVER) {
+            return this._localizedWBY(temporal);
+        } else {
+            throw new IllegalStateException(&apos;unreachable&apos;);
+        }
+    }
+
+    _localizedDayOfWeek(temporal, sow) {
+        const isoDow = temporal.get(ChronoField.DAY_OF_WEEK);
+        return MathUtil.floorMod(isoDow - sow, 7) + 1;
+    }
+
+    _localizedWeekOfMonth(temporal, dow) {
+        const dom = temporal.get(ChronoField.DAY_OF_MONTH);
+        const offset = this._startOfWeekOffset(dom, dow);
+        return ComputedDayOfField._computeWeek(offset, dom);
+    }
+
+    _localizedWeekOfYear(temporal, dow) {
+        const doy = temporal.get(ChronoField.DAY_OF_YEAR);
+        const offset = this._startOfWeekOffset(doy, dow);
+        return ComputedDayOfField._computeWeek(offset, doy);
+    }
+
+    _localizedWOWBY(temporal) {
+        const sow = this._weekDef.firstDayOfWeek().value();
+        const isoDow = temporal.get(ChronoField.DAY_OF_WEEK);
+        const dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
+        const woy = this._localizedWeekOfYear(temporal, dow);
+        if (woy === 0) {
+            const previous = LocalDate.from(temporal).minus(1, ChronoUnit.WEEKS);
+            return this._localizedWeekOfYear(previous, dow) + 1;
+        } else if (woy &gt;= 53) {
+            const offset = this._startOfWeekOffset(temporal.get(ChronoField.DAY_OF_YEAR), dow);
+            const year = temporal.get(ChronoField.YEAR);
+            const yearLen = Year.isLeap(year) ? 366 : 365;
+            const weekIndexOfFirstWeekNextYear = ComputedDayOfField._computeWeek(offset, yearLen + this._weekDef.minimalDaysInFirstWeek());
+            if (woy &gt;= weekIndexOfFirstWeekNextYear) {
+                return (woy - (weekIndexOfFirstWeekNextYear - 1));
+            }
+        }
+        return woy;
+    }
+
+    _localizedWBY(temporal) {
+        const sow = this._weekDef.firstDayOfWeek().value();
+        const isoDow = temporal.get(ChronoField.DAY_OF_WEEK);
+        const dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
+        const year = temporal.get(ChronoField.YEAR);
+        const woy = this._localizedWeekOfYear(temporal, dow);
+        if (woy === 0) {
+            return year - 1;
+        } else if (woy &lt; 53) {
+            return year;
+        }
+        const offset = this._startOfWeekOffset(temporal.get(ChronoField.DAY_OF_YEAR), dow);
+        const yearLen = Year.isLeap(year) ? 366 : 365;
+        const weekIndexOfFirstWeekNextYear = ComputedDayOfField._computeWeek(offset, yearLen + this._weekDef.minimalDaysInFirstWeek());
+        if (woy &gt;= weekIndexOfFirstWeekNextYear) {
+            return year + 1;
+        }
+        return year;
+    }
+
+    /**
+     * Returns an offset to align week start with a day of month or day of year.
+     *
+     * @param day the day; 1 through infinity
+     * @param dow the day of the week of that day; 1 through 7
+     * @return an offset in days to align a day with the start of the first &apos;full&apos; week
+     */
+    _startOfWeekOffset(day, dow) {
+        // offset of first day corresponding to the day of week in first 7 days (zero origin)
+        const weekStart = MathUtil.floorMod(day - dow, 7);
+        let offset = -weekStart;
+        if (weekStart + 1 &gt; this._weekDef.minimalDaysInFirstWeek()) {
+            // The previous week has the minimum days in the current month to be a &apos;week&apos;
+            offset = 7 - weekStart;
+        }
+        return offset;
+    }
+
+    /**
+     * Returns the week number computed from the reference day and reference dayOfWeek.
+     *
+     * @param offset the offset to align a date with the start of week
+     *     from {@link #startOfWeekOffset}.
+     * @param day  the day for which to compute the week number
+     * @return the week number where zero is used for a partial week and 1 for the first full week
+     */
+    static _computeWeek(offset, day) {
+        return MathUtil.intDiv((7 + offset + (day - 1)), 7);
+    }
+
+    adjustInto(temporal, newValue) {
+        // Check the new value and get the old value of the field
+        const newVal = this._range.checkValidIntValue(newValue, this);
+        const currentVal = temporal.get(this);
+        if (newVal === currentVal) {
+            return temporal;
+        }
+        if (this._rangeUnit === ChronoUnit.FOREVER) {
+            // adjust in whole weeks so dow never changes
+            const baseWowby = temporal.get(this._weekDef.weekOfWeekBasedYear());
+            const diffWeeks = MathUtil.roundDown((newValue - currentVal) * 52.1775);
+            let result = temporal.plus(diffWeeks, ChronoUnit.WEEKS);
+            if (result.get(this) &gt; newVal) {
+                // ended up in later week-based-year
+                // move to last week of previous year
+                const newWowby = result.get(this._weekDef.weekOfWeekBasedYear());
+                result = result.minus(newWowby, ChronoUnit.WEEKS);
+            } else {
+                if (result.get(this) &lt; newVal) {
+                    // ended up in earlier week-based-year
+                    result = result.plus(2, ChronoUnit.WEEKS);
+                }
+                // reset the week-of-week-based-year
+                const newWowby = result.get(this._weekDef.weekOfWeekBasedYear());
+                result = result.plus(baseWowby - newWowby, ChronoUnit.WEEKS);
+                if (result.get(this) &gt; newVal) {
+                    result = result.minus(1, ChronoUnit.WEEKS);
+                }
+            }
+            return result;
+        }
+        // Compute the difference and add that using the base using of the field
+        const delta = newVal - currentVal;
+        return temporal.plus(delta, this._baseUnit);
+    }
+
+    resolve(fieldValues, partialTemporal, resolverStyle) {
+        const sow = this._weekDef.firstDayOfWeek().value();
+        if (this._rangeUnit === ChronoUnit.WEEKS) {  // day-of-week
+            const value = fieldValues.remove(this);
+            const localDow = this._range.checkValidIntValue(value, this);
+            const isoDow = MathUtil.floorMod((sow - 1) + (localDow - 1), 7) + 1;
+            fieldValues.put(ChronoField.DAY_OF_WEEK, isoDow);
+            return null;
+        }
+        if (fieldValues.containsKey(ChronoField.DAY_OF_WEEK) === false) {
+            return null;
+        }
+
+        // week-based-year
+        if (this._rangeUnit === ChronoUnit.FOREVER) {
+            if (fieldValues.containsKey(this._weekDef.weekOfWeekBasedYear()) === false) {
+                return null;
+            }
+            // const chrono = IsoChronology.INSTANCE; //TODO: Chronology.from(partialTemporal);  // defaults to ISO
+            const isoDow = ChronoField.DAY_OF_WEEK.checkValidIntValue(fieldValues.get(ChronoField.DAY_OF_WEEK));
+            const dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
+            const wby = this.range().checkValidIntValue(fieldValues.get(this), this);
+            let date;
+            let days;
+            if (resolverStyle === ResolverStyle.LENIENT) {
+                date = LocalDate.of(wby, 1, this._weekDef.minimalDaysInFirstWeek()); //TODO: chrono.date(wby, 1, this._weekDef.minimalDaysInFirstWeek());
+                const wowby = fieldValues.get(this._weekDef.weekOfWeekBasedYear());
+                const dateDow = this._localizedDayOfWeek(date, sow);
+                const weeks = wowby - this._localizedWeekOfYear(date, dateDow);
+                days = weeks * 7 + (dow - dateDow);
+            } else {
+                date = LocalDate.of(wby, 1, this._weekDef.minimalDaysInFirstWeek()); //TODO: chrono.date(wby, 1, this._weekDef.minimalDaysInFirstWeek());
+                const wowby = this._weekDef.weekOfWeekBasedYear().range().checkValidIntValue(
+                    fieldValues.get(this._weekDef.weekOfWeekBasedYear()), this._weekDef.weekOfWeekBasedYear);
+                const dateDow = this._localizedDayOfWeek(date, sow);
+                const weeks = wowby - this._localizedWeekOfYear(date, dateDow);
+                days = weeks * 7 + (dow - dateDow);
+            }
+            date = date.plus(days, ChronoUnit.DAYS);
+            if (resolverStyle === ResolverStyle.STRICT) {
+                if (date.getLong(this) !== fieldValues.get(this)) {
+                    throw new DateTimeException(&apos;Strict mode rejected date parsed to a different year&apos;);
+                }
+            }
+            fieldValues.remove(this);
+            fieldValues.remove(this._weekDef.weekOfWeekBasedYear());
+            fieldValues.remove(ChronoField.DAY_OF_WEEK);
+            return date;
+        }
+
+        if (fieldValues.containsKey(ChronoField.YEAR) === false) {
+            return null;
+        }
+        const isoDow = ChronoField.DAY_OF_WEEK.checkValidIntValue(fieldValues.get(ChronoField.DAY_OF_WEEK));
+        const dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
+        const year = ChronoField.YEAR.checkValidIntValue(fieldValues.get(ChronoField.YEAR));
+        // const chrono = IsoChronology.INSTANCE; //TODO: Chronology.from(partialTemporal);  // defaults to ISO
+        if (this._rangeUnit === ChronoUnit.MONTHS) {  // week-of-month
+            if (fieldValues.containsKey(ChronoField.MONTH_OF_YEAR) === false) {
+                return null;
+            }
+            const value = fieldValues.remove(this);
+            let date;
+            let days;
+            if (resolverStyle === ResolverStyle.LENIENT) {
+                const month = fieldValues.get(ChronoField.MONTH_OF_YEAR);
+                date = LocalDate.of(year, 1, 1); // TODO: chrono.date(year, 1, 1);
+                date = date.plus(month - 1, ChronoUnit.MONTHS);
+                const dateDow = this._localizedDayOfWeek(date, sow);
+                const weeks = value - this._localizedWeekOfMonth(date, dateDow);
+                days = weeks * 7 + (dow - dateDow);
+            } else {
+                const month = ChronoField.MONTH_OF_YEAR.checkValidIntValue(fieldValues.get(ChronoField.MONTH_OF_YEAR));
+                date = LocalDate.of(year, month, 8); // TODO: chrono.date(year, month, 8);
+                const dateDow = this._localizedDayOfWeek(date, sow);
+                const wom = this._range.checkValidIntValue(value, this);
+                const weeks = wom - this._localizedWeekOfMonth(date, dateDow);
+                days = weeks * 7 + (dow - dateDow);
+            }
+            date = date.plus(days, ChronoUnit.DAYS);
+            if (resolverStyle === ResolverStyle.STRICT) {
+                if (date.getLong(ChronoField.MONTH_OF_YEAR) !== fieldValues.get(ChronoField.MONTH_OF_YEAR)) {
+                    throw new DateTimeException(&apos;Strict mode rejected date parsed to a different month&apos;);
+                }
+            }
+            fieldValues.remove(this);
+            fieldValues.remove(ChronoField.YEAR);
+            fieldValues.remove(ChronoField.MONTH_OF_YEAR);
+            fieldValues.remove(ChronoField.DAY_OF_WEEK);
+            return date;
+        } else if (this._rangeUnit === ChronoUnit.YEARS) {  // week-of-year
+            const value = fieldValues.remove(this);
+            let date = LocalDate.of(year, 1, 1); // TODO: chrono.date(year, 1, 1);
+            let days;
+            if (resolverStyle === ResolverStyle.LENIENT) {
+                const dateDow = this._localizedDayOfWeek(date, sow);
+                const weeks = value - this._localizedWeekOfYear(date, dateDow);
+                days = weeks * 7 + (dow - dateDow);
+            } else {
+                const dateDow = this._localizedDayOfWeek(date, sow);
+                const woy = this._range.checkValidIntValue(value, this);
+                const weeks = woy - this._localizedWeekOfYear(date, dateDow);
+                days = weeks * 7 + (dow - dateDow);
+            }
+            date = date.plus(days, ChronoUnit.DAYS);
+            if (resolverStyle === ResolverStyle.STRICT) {
+                if (date.getLong(ChronoField.YEAR) !== fieldValues.get(ChronoField.YEAR)) {
+                    throw new DateTimeException(&apos;Strict mode rejected date parsed to a different year&apos;);
+                }
+            }
+            fieldValues.remove(this);
+            fieldValues.remove(ChronoField.YEAR);
+            fieldValues.remove(ChronoField.DAY_OF_WEEK);
+            return date;
+        } else {
+            throw new IllegalStateException(&apos;unreachable&apos;);
+        }
+    }
+
+    //-----------------------------------------------------------------------
+    name() {
+        return this._name;
+    }
+
+    baseUnit() {
+        return this._baseUnit;
+    }
+
+    rangeUnit() {
+        return this._rangeUnit;
+    }
+
+    range() {
+        return this._range;
+    }
+
+    //-----------------------------------------------------------------------
+    isDateBased() {
+        return true;
+    }
+
+    isTimeBased() {
+        return false;
+    }
+
+    isSupportedBy(temporal) {
+        if (temporal.isSupported(ChronoField.DAY_OF_WEEK)) {
+            if (this._rangeUnit === ChronoUnit.WEEKS) {
+                return true;
+            } else if (this._rangeUnit === ChronoUnit.MONTHS) {
+                return temporal.isSupported(ChronoField.DAY_OF_MONTH);
+            } else if (this._rangeUnit === ChronoUnit.YEARS) {
+                return temporal.isSupported(ChronoField.DAY_OF_YEAR);
+            } else if (this._rangeUnit === IsoFields.WEEK_BASED_YEARS) {
+                return temporal.isSupported(ChronoField.EPOCH_DAY);
+            } else if (this._rangeUnit === ChronoUnit.FOREVER) {
+                return temporal.isSupported(ChronoField.EPOCH_DAY);
+            }
+        }
+        return false;
+    }
+
+    rangeRefinedBy(temporal) {
+        if (this._rangeUnit === ChronoUnit.WEEKS) {
+            return this._range;
+        }
+
+        let field = null;
+        if (this._rangeUnit === ChronoUnit.MONTHS) {
+            field = ChronoField.DAY_OF_MONTH;
+        } else if (this._rangeUnit === ChronoUnit.YEARS) {
+            field = ChronoField.DAY_OF_YEAR;
+        } else if (this._rangeUnit === IsoFields.WEEK_BASED_YEARS) {
+            return this._rangeWOWBY(temporal);
+        } else if (this._rangeUnit === ChronoUnit.FOREVER) {
+            return temporal.range(ChronoField.YEAR);
+        } else {
+            throw new IllegalStateException(&apos;unreachable&apos;);
+        }
+
+        // Offset the ISO DOW by the start of this week
+        const sow = this._weekDef.firstDayOfWeek().value();
+        const isoDow = temporal.get(ChronoField.DAY_OF_WEEK);
+        const dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
+
+        const offset = this._startOfWeekOffset(temporal.get(field), dow);
+        const fieldRange = temporal.range(field);
+        return ValueRange.of(ComputedDayOfField._computeWeek(offset, fieldRange.minimum()),
+            ComputedDayOfField._computeWeek(offset, fieldRange.maximum()));
+    }
+
+    _rangeWOWBY(temporal) {
+        const sow = this._weekDef.firstDayOfWeek().value();
+        const isoDow = temporal.get(ChronoField.DAY_OF_WEEK);
+        const dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
+        const woy = this._localizedWeekOfYear(temporal, dow);
+        if (woy === 0) {
+            // TODO: we use IsoChronology for now
+            return this._rangeWOWBY(IsoChronology.INSTANCE.date(temporal).minus(2, ChronoUnit.WEEKS));
+            // return this._rangeWOWBY(Chronology.from(temporal).date(temporal).minus(2, ChronoUnit.WEEKS));
+        }
+        const offset = this._startOfWeekOffset(temporal.get(ChronoField.DAY_OF_YEAR), dow);
+        const year = temporal.get(ChronoField.YEAR);
+        const yearLen = Year.isLeap(year) ? 366 : 365;
+        const weekIndexOfFirstWeekNextYear = ComputedDayOfField._computeWeek(offset, yearLen + this._weekDef.minimalDaysInFirstWeek());
+        if (woy &gt;= weekIndexOfFirstWeekNextYear) {
+            // TODO: we use IsoChronology for now
+            return this._rangeWOWBY(IsoChronology.INSTANCE.date(temporal).plus(2, ChronoUnit.WEEKS));
+            // return this._rangeWOWBY(Chronology.from(temporal).date(temporal).plus(2, ChronoUnit.WEEKS));
+        }
+        return ValueRange.of(1, weekIndexOfFirstWeekNextYear - 1);
+    }
+
+    getDisplayName(locale) {
+        requireNonNull(locale, &apos;locale&apos;);
+        if (this._rangeUnit === ChronoUnit.YEARS) {  // week-of-year
+            return &apos;Week&apos;;
+        }
+        return this.toString();
+    }
+
+    //-----------------------------------------------------------------------
+    toString() {
+        return this._name + &apos;[&apos; + this._weekDef.toString() + &apos;]&apos;;
+    }
+}
+
+/**
+ * The cache of rules by firstDayOfWeek plus minimalDays.
+ * Initialized first to be available for definition of ISO, etc.
+ */
+const WeekFieldsCache = new Map();
+
+
+/**
+ * Localized definitions of the day-of-week, week-of-month and week-of-year fields.
+ * &lt;p&gt;
+ * A standard week is seven days long, but cultures have different definitions for some
+ * other aspects of a week. This class represents the definition of the week, for the
+ * purpose of providing {@link TemporalField} instances.
+ * &lt;p&gt;
+ * WeekFields provides three fields,
+ * {@link #dayOfWeek()}, {@link #weekOfMonth()}, and {@link #weekOfYear()}
+ * that provide access to the values from any {@link Temporal temporal object}.
+ * &lt;p&gt;
+ * The computations for day-of-week, week-of-month, and week-of-year are based
+ * on the  {@link ChronoField#YEAR proleptic-year},
+ * {@link ChronoField#MONTH_OF_YEAR month-of-year},
+ * {@link ChronoField#DAY_OF_MONTH day-of-month}, and
+ * {@link ChronoField#DAY_OF_WEEK ISO day-of-week} which are based on the
+ * {@link ChronoField#EPOCH_DAY epoch-day} and the chronology.
+ * The values may not be aligned with the {@link ChronoField#YEAR_OF_ERA year-of-Era}
+ * depending on the Chronology.
+ * &lt;p&gt;A week is defined by:
+ * &lt;ul&gt;
+ * &lt;li&gt;The first day-of-week.
+ * For example, the ISO-8601 standard considers Monday to be the first day-of-week.
+ * &lt;li&gt;The minimal number of days in the first week.
+ * For example, the ISO-8601 standard counts the first week as needing at least 4 days.
+ * &lt;/ul&gt;&lt;p&gt;
+ * Together these two values allow a year or month to be divided into weeks.
+ * &lt;p&gt;
+ * &lt;h3&gt;Week of Month&lt;/h3&gt;
+ * One field is used: week-of-month.
+ * The calculation ensures that weeks never overlap a month boundary.
+ * The month is divided into periods where each period starts on the defined first day-of-week.
+ * The earliest period is referred to as week 0 if it has less than the minimal number of days
+ * and week 1 if it has at least the minimal number of days.
+ * &lt;p&gt;
+ * &lt;table cellpadding=&quot;0&quot; cellspacing=&quot;3&quot; border=&quot;0&quot; style=&quot;text-align: left; width: 50%;&quot;&gt;
+ * &lt;caption&gt;Examples of WeekFields&lt;/caption&gt;
+ * &lt;tr&gt;&lt;th&gt;Date&lt;/th&gt;&lt;td&gt;Day-of-week&lt;/td&gt;
+ *  &lt;td&gt;First day: Monday&lt;br&gt;Minimal days: 4&lt;/td&gt;&lt;td&gt;First day: Monday&lt;br&gt;Minimal days: 5&lt;/td&gt;&lt;/tr&gt;
+ * &lt;tr&gt;&lt;th&gt;2008-12-31&lt;/th&gt;&lt;td&gt;Wednesday&lt;/td&gt;
+ *  &lt;td&gt;Week 5 of December 2008&lt;/td&gt;&lt;td&gt;Week 5 of December 2008&lt;/td&gt;&lt;/tr&gt;
+ * &lt;tr&gt;&lt;th&gt;2009-01-01&lt;/th&gt;&lt;td&gt;Thursday&lt;/td&gt;
+ *  &lt;td&gt;Week 1 of January 2009&lt;/td&gt;&lt;td&gt;Week 0 of January 2009&lt;/td&gt;&lt;/tr&gt;
+ * &lt;tr&gt;&lt;th&gt;2009-01-04&lt;/th&gt;&lt;td&gt;Sunday&lt;/td&gt;
+ *  &lt;td&gt;Week 1 of January 2009&lt;/td&gt;&lt;td&gt;Week 0 of January 2009&lt;/td&gt;&lt;/tr&gt;
+ * &lt;tr&gt;&lt;th&gt;2009-01-05&lt;/th&gt;&lt;td&gt;Monday&lt;/td&gt;
+ *  &lt;td&gt;Week 2 of January 2009&lt;/td&gt;&lt;td&gt;Week 1 of January 2009&lt;/td&gt;&lt;/tr&gt;
+ * &lt;/table&gt;
+ * &lt;p&gt;
+ * &lt;h3&gt;Week of Year&lt;/h3&gt;
+ * One field is used: week-of-year.
+ * The calculation ensures that weeks never overlap a year boundary.
+ * The year is divided into periods where each period starts on the defined first day-of-week.
+ * The earliest period is referred to as week 0 if it has less than the minimal number of days
+ * and week 1 if it has at least the minimal number of days.
+ * &lt;p&gt;
+ * This class is immutable and thread-safe.
+ */
+export class WeekFields {
+    // implementation notes
+    // querying week-of-month or week-of-year should return the week value bound within the month/year
+    // however, setting the week value should be lenient (use plus/minus weeks)
+    // allow week-of-month outer range [0 to 5]
+    // allow week-of-year outer range [0 to 53]
+    // this is because callers shouldn&apos;t be expected to know the details of validity
+
+    /**
+     * function overloading for {@link WeekFields#of}
+     *
+     * if called with 1 arguments then {@link WeekFields.ofLocale} is executed.
+     *
+     * Otherwise {@link WeekFields.ofFirstDayOfWeekMinDays} is executed.
+     *
+     * @param {!DayOfWeek | Locale} firstDayOrLocale
+     * @param {Number} minDays
+     * @returns {WeekFields} this for chaining
+     */
+    static of(firstDayOrLocale, minDays) {
+        if (minDays === undefined) {
+            return WeekFields.ofLocale(firstDayOrLocale);
+        } else {
+            return WeekFields.ofFirstDayOfWeekMinDays(firstDayOrLocale, minDays);
+        }
+    }
+
+    /**
+     * Obtains an instance of {@code WeekFields} appropriate for a locale.
+     * &lt;p&gt;
+     * This will look up appropriate values from the provider of localization data.
+     *
+     * @param {!Locale} locale  the locale to use, not null
+     * @return the week-definition, not null
+     */
+    static ofLocale(locale) {
+        requireNonNull(locale, &apos;locale&apos;);
+
+        Cldr.load(cldrData(&apos;supplemental/weekData.json&apos;));
+        const cldr = new Cldr(locale.localeString());
+        const worldRegion = &apos;001&apos;;
+        const weekData = cldr.get(&apos;supplemental/weekData&apos;);
+        let dow = _weekDayMap[weekData.firstDay[locale.country()]];
+        if (!dow) {
+            dow = _weekDayMap[weekData.firstDay[worldRegion]];
+        }
+        let minDays = weekData.minDays[locale.country()];
+        if (!minDays) {
+            minDays = weekData.minDays[worldRegion];
+        }
+        return WeekFields.ofFirstDayOfWeekMinDays(dow, minDays);
+    }
+
+    /**
+     * Obtains an instance of {@code WeekFields} from the first day-of-week and minimal days.
+     * &lt;p&gt;
+     * The first day-of-week defines the ISO {@code DayOfWeek} that is day 1 of the week.
+     * The minimal number of days in the first week defines how many days must be present
+     * in a month or year, starting from the first day-of-week, before the week is counted
+     * as the first week. A value of 1 will count the first day of the month or year as part
+     * of the first week, whereas a value of 7 will require the whole seven days to be in
+     * the new month or year.
+     * &lt;p&gt;
+     * WeekFields instances are singletons; for each unique combination
+     * of {@code firstDayOfWeek} and {@code minimalDaysInFirstWeek} the
+     * the same instance will be returned.
+     *
+     * @param {!DayOfWeek} firstDayOfWeek  the first day of the week, not null
+     * @param {!Number} minimalDaysInFirstWeek  the minimal number of days in the first week, from
+     *     1 to 7
+     * @return {WeekFields} the week-definition, not null
+     * @throws IllegalArgumentException if the minimal days value is less than one
+     *      or greater than 7
+     */
+    static ofFirstDayOfWeekMinDays(firstDayOfWeek, minimalDaysInFirstWeek) {
+        requireNonNull(firstDayOfWeek, &apos;firstDayOfWeek&apos;);
+        requireInstance(firstDayOfWeek, DayOfWeek, &apos;firstDayOfWeek&apos;);
+        requireNonNull(minimalDaysInFirstWeek, &apos;minimalDaysInFirstWeek&apos;);
+        const key = firstDayOfWeek.toString() + minimalDaysInFirstWeek;
+        let rules = WeekFieldsCache.get(key);
+        if (rules == null) {
+            rules = new WeekFields(firstDayOfWeek, minimalDaysInFirstWeek);
+            WeekFieldsCache.set(key, rules);
+            rules = WeekFieldsCache.get(key);
+        }
+        return rules;
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Creates an instance of the definition.
+     *
+     * @param {!DayOfWeek} firstDayOfWeek  the first day of the week, not null
+     * @param {!Number} minimalDaysInFirstWeek  the minimal number of days in the first week, from
+     *     1 to 7
+     * @throws IllegalArgumentException if the minimal days value is invalid
+     *
+     * @private
+     */
+    constructor(firstDayOfWeek, minimalDaysInFirstWeek) {
+        requireNonNull(firstDayOfWeek, &apos;firstDayOfWeek&apos;);
+        requireInstance(firstDayOfWeek, DayOfWeek, &apos;firstDayOfWeek&apos;);
+        requireNonNull(minimalDaysInFirstWeek, &apos;minimalDaysInFirstWeek&apos;);
+        if (minimalDaysInFirstWeek &lt; 1 || minimalDaysInFirstWeek &gt; 7) {
+            throw new IllegalArgumentException(&apos;Minimal number of days is invalid&apos;);
+        }
+        this._firstDayOfWeek = firstDayOfWeek;
+        this._minimalDays = minimalDaysInFirstWeek;
+        this._dayOfWeek = ComputedDayOfField.ofDayOfWeekField(this);
+        this._weekOfMonth = ComputedDayOfField.ofWeekOfMonthField(this);
+        this._weekOfYear = ComputedDayOfField.ofWeekOfYearField(this);
+        this._weekOfWeekBasedYear = ComputedDayOfField.ofWeekOfWeekBasedYearField(this);
+        this._weekBasedYear = ComputedDayOfField.ofWeekBasedYearField(this);
+        Cldr.load(cldrData(&apos;supplemental/likelySubtags.json&apos;));
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Gets the first day-of-week.
+     * &lt;p&gt;
+     * The first day-of-week varies by culture.
+     * For example, the US uses Sunday, while France and the ISO-8601 standard use Monday.
+     * This method returns the first day using the standard {@code DayOfWeek} enum.
+     *
+     * @return {DayOfWeek} the first day-of-week, not null
+     */
+    firstDayOfWeek() {
+        return this._firstDayOfWeek;
+    }
+
+    /**
+     * Gets the minimal number of days in the first week.
+     * &lt;p&gt;
+     * The number of days considered to define the first week of a month or year
+     * varies by culture.
+     * For example, the ISO-8601 requires 4 days (more than half a week) to
+     * be present before counting the first week.
+     *
+     * @return {Number} the minimal number of days in the first week of a month or year, from 1 to 7
+     */
+    minimalDaysInFirstWeek() {
+        return this._minimalDays;
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Returns a field to access the day of week based on this {@code WeekFields}.
+     * &lt;p&gt;
+     * This is similar to {@link ChronoField#DAY_OF_WEEK} but uses values for
+     * the day-of-week based on this {@code WeekFields}.
+     * The days are numbered from 1 to 7 where the
+     * {@link #getFirstDayOfWeek() first day-of-week} is assigned the value 1.
+     * &lt;p&gt;
+     * For example, if the first day-of-week is Sunday, then that will have the
+     * value 1, with other days ranging from Monday as 2 to Saturday as 7.
+     * &lt;p&gt;
+     * In the resolving phase of parsing, a localized day-of-week will be converted
+     * to a standardized {@code ChronoField} day-of-week.
+     * The day-of-week must be in the valid range 1 to 7.
+     * Other fields in this class build dates using the standardized day-of-week.
+     *
+     * @return {TemporalField} a field providing access to the day-of-week with localized
+     *     numbering, not null
+     */
+    dayOfWeek() {
+        return this._dayOfWeek;
+    }
+
+    /**
+     * Returns a field to access the week of month based on this {@code WeekFields}.
+     * &lt;p&gt;
+     * This represents the concept of the count of weeks within the month where weeks
+     * start on a fixed day-of-week, such as Monday.
+     * This field is typically used with {@link WeekFields#dayOfWeek()}.
+     * &lt;p&gt;
+     * Week one (1) is the week starting on the {@link WeekFields#firstDayOfWeek}
+     * where there are at least {@link WeekFields#getMinimalDaysInFirstWeek()} days in the month.
+     * Thus, week one may start up to {@code minDays} days before the start of the month.
+     * If the first week starts after the start of the month then the period before is week zero
+     * (0).
+     * &lt;p&gt;
+     * For example:&lt;br&gt;
+     * - if the 1st day of the month is a Monday, week one starts on the 1st and there is no week
+     * zero&lt;br&gt;
+     * - if the 2nd day of the month is a Monday, week one starts on the 2nd and the 1st is in week
+     * zero&lt;br&gt;
+     * - if the 4th day of the month is a Monday, week one starts on the 4th and the 1st to 3rd is
+     * in week zero&lt;br&gt;
+     * - if the 5th day of the month is a Monday, week two starts on the 5th and the 1st to 4th is
+     * in week one&lt;br&gt;
+     * &lt;p&gt;
+     * This field can be used with any calendar system.
+     * &lt;p&gt;
+     * In the resolving phase of parsing, a date can be created from a year,
+     * week-of-month, month-of-year and day-of-week.
+     * &lt;p&gt;
+     * In {@linkplain ResolverStyle#STRICT strict mode}, all four fields are
+     * validated against their range of valid values. The week-of-month field
+     * is validated to ensure that the resulting month is the month requested.
+     * &lt;p&gt;
+     * In {@linkplain ResolverStyle#SMART smart mode}, all four fields are
+     * validated against their range of valid values. The week-of-month field
+     * is validated from 0 to 6, meaning that the resulting date can be in a
+     * different month to that specified.
+     * &lt;p&gt;
+     * In {@linkplain ResolverStyle#LENIENT lenient mode}, the year and day-of-week
+     * are validated against the range of valid values. The resulting date is calculated
+     * equivalent to the following four stage approach.
+     * First, create a date on the first day of the first week of January in the requested year.
+     * Then take the month-of-year, subtract one, and add the amount in months to the date.
+     * Then take the week-of-month, subtract one, and add the amount in weeks to the date.
+     * Finally, adjust to the correct day-of-week within the localized week.
+     *
+     * @return {TemporalField} a field providing access to the week-of-month, not null
+     */
+    weekOfMonth() {
+        return this._weekOfMonth;
+    }
+
+    /**
+     * Returns a field to access the week of year based on this {@code WeekFields}.
+     * &lt;p&gt;
+     * This represents the concept of the count of weeks within the year where weeks
+     * start on a fixed day-of-week, such as Monday.
+     * This field is typically used with {@link WeekFields#dayOfWeek()}.
+     * &lt;p&gt;
+     * Week one(1) is the week starting on the {@link WeekFields#firstDayOfWeek}
+     * where there are at least {@link WeekFields#getMinimalDaysInFirstWeek()} days in the year.
+     * Thus, week one may start up to {@code minDays} days before the start of the year.
+     * If the first week starts after the start of the year then the period before is week zero
+     * (0).
+     * &lt;p&gt;
+     * For example:&lt;br&gt;
+     * - if the 1st day of the year is a Monday, week one starts on the 1st and there is no week
+     * zero&lt;br&gt;
+     * - if the 2nd day of the year is a Monday, week one starts on the 2nd and the 1st is in week
+     * zero&lt;br&gt;
+     * - if the 4th day of the year is a Monday, week one starts on the 4th and the 1st to 3rd is
+     * in week zero&lt;br&gt;
+     * - if the 5th day of the year is a Monday, week two starts on the 5th and the 1st to 4th is
+     * in week one&lt;br&gt;
+     * &lt;p&gt;
+     * This field can be used with any calendar system.
+     * &lt;p&gt;
+     * In the resolving phase of parsing, a date can be created from a year,
+     * week-of-year and day-of-week.
+     * &lt;p&gt;
+     * In {@linkplain ResolverStyle#STRICT strict mode}, all three fields are
+     * validated against their range of valid values. The week-of-year field
+     * is validated to ensure that the resulting year is the year requested.
+     * &lt;p&gt;
+     * In {@linkplain ResolverStyle#SMART smart mode}, all three fields are
+     * validated against their range of valid values. The week-of-year field
+     * is validated from 0 to 54, meaning that the resulting date can be in a
+     * different year to that specified.
+     * &lt;p&gt;
+     * In {@linkplain ResolverStyle#LENIENT lenient mode}, the year and day-of-week
+     * are validated against the range of valid values. The resulting date is calculated
+     * equivalent to the following three stage approach.
+     * First, create a date on the first day of the first week in the requested year.
+     * Then take the week-of-year, subtract one, and add the amount in weeks to the date.
+     * Finally, adjust to the correct day-of-week within the localized week.
+     *
+     * @return {TemporalField} a field providing access to the week-of-year, not null
+     */
+    weekOfYear() {
+        return this._weekOfYear;
+    }
+
+    /**
+     * Returns a field to access the week of a week-based-year based on this {@code WeekFields}.
+     * &lt;p&gt;
+     * This represents the concept of the count of weeks within the year where weeks
+     * start on a fixed day-of-week, such as Monday and each week belongs to exactly one year.
+     * This field is typically used with {@link WeekFields#dayOfWeek()} and
+     * {@link WeekFields#weekBasedYear()}.
+     * &lt;p&gt;
+     * Week one(1) is the week starting on the {@link WeekFields#firstDayOfWeek}
+     * where there are at least {@link WeekFields#getMinimalDaysInFirstWeek()} days in the year.
+     * If the first week starts after the start of the year then the period before
+     * is in the last week of the previous year.
+     * &lt;p&gt;
+     * For example:&lt;br&gt;
+     * - if the 1st day of the year is a Monday, week one starts on the 1st&lt;br&gt;
+     * - if the 2nd day of the year is a Monday, week one starts on the 2nd and
+     *   the 1st is in the last week of the previous year&lt;br&gt;
+     * - if the 4th day of the year is a Monday, week one starts on the 4th and
+     *   the 1st to 3rd is in the last week of the previous year&lt;br&gt;
+     * - if the 5th day of the year is a Monday, week two starts on the 5th and
+     *   the 1st to 4th is in week one&lt;br&gt;
+     * &lt;p&gt;
+     * This field can be used with any calendar system.
+     * &lt;p&gt;
+     * In the resolving phase of parsing, a date can be created from a week-based-year,
+     * week-of-year and day-of-week.
+     * &lt;p&gt;
+     * In {@linkplain ResolverStyle#STRICT strict mode}, all three fields are
+     * validated against their range of valid values. The week-of-year field
+     * is validated to ensure that the resulting week-based-year is the
+     * week-based-year requested.
+     * &lt;p&gt;
+     * In {@linkplain ResolverStyle#SMART smart mode}, all three fields are
+     * validated against their range of valid values. The week-of-week-based-year field
+     * is validated from 1 to 53, meaning that the resulting date can be in the
+     * following week-based-year to that specified.
+     * &lt;p&gt;
+     * In {@linkplain ResolverStyle#LENIENT lenient mode}, the year and day-of-week
+     * are validated against the range of valid values. The resulting date is calculated
+     * equivalent to the following three stage approach.
+     * First, create a date on the first day of the first week in the requested week-based-year.
+     * Then take the week-of-week-based-year, subtract one, and add the amount in weeks to the date.
+     * Finally, adjust to the correct day-of-week within the localized week.
+     *
+     * @return {TemporalField} a field providing access to the week-of-week-based-year, not null
+     */
+    weekOfWeekBasedYear() {
+        return this._weekOfWeekBasedYear;
+    }
+
+    /**
+     * Returns a field to access the year of a week-based-year based on this {@code WeekFields}.
+     * &lt;p&gt;
+     * This represents the concept of the year where weeks start on a fixed day-of-week,
+     * such as Monday and each week belongs to exactly one year.
+     * This field is typically used with {@link WeekFields#dayOfWeek()} and
+     * {@link WeekFields#weekOfWeekBasedYear()}.
+     * &lt;p&gt;
+     * Week one(1) is the week starting on the {@link WeekFields#firstDayOfWeek}
+     * where there are at least {@link WeekFields#getMinimalDaysInFirstWeek()} days in the year.
+     * Thus, week one may start before the start of the year.
+     * If the first week starts after the start of the year then the period before
+     * is in the last week of the previous year.
+     * &lt;p&gt;
+     * This field can be used with any calendar system.
+     * &lt;p&gt;
+     * In the resolving phase of parsing, a date can be created from a week-based-year,
+     * week-of-year and day-of-week.
+     * &lt;p&gt;
+     * In {@linkplain ResolverStyle#STRICT strict mode}, all three fields are
+     * validated against their range of valid values. The week-of-year field
+     * is validated to ensure that the resulting week-based-year is the
+     * week-based-year requested.
+     * &lt;p&gt;
+     * In {@linkplain ResolverStyle#SMART smart mode}, all three fields are
+     * validated against their range of valid values. The week-of-week-based-year field
+     * is validated from 1 to 53, meaning that the resulting date can be in the
+     * following week-based-year to that specified.
+     * &lt;p&gt;
+     * In {@linkplain ResolverStyle#LENIENT lenient mode}, the year and day-of-week
+     * are validated against the range of valid values. The resulting date is calculated
+     * equivalent to the following three stage approach.
+     * First, create a date on the first day of the first week in the requested week-based-year.
+     * Then take the week-of-week-based-year, subtract one, and add the amount in weeks to the date.
+     * Finally, adjust to the correct day-of-week within the localized week.
+     *
+     * @return {TemporalField} a field providing access to the week-based-year, not null
+     */
+    weekBasedYear() {
+        return this._weekBasedYear;
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Checks if this {@code WeekFields} is equal to the specified object.
+     * &lt;p&gt;
+     * The comparison is based on the entire state of the rules, which is
+     * the first day-of-week and minimal days.
+     *
+     * @param {*} object  the other rules to compare to, null returns false
+     * @return true if this is equal to the specified rules
+     */
+    equals(object) {
+        if (this === object) {
+            return true;
+        }
+        if (object instanceof WeekFields) {
+            return this.hashCode() === object.hashCode();
+        }
+        return false;
+    }
+
+    /**
+     * A hash code for this {@code WeekFields}.
+     *
+     * @return a suitable hash code
+     */
+    hashCode() {
+        return this._firstDayOfWeek.ordinal() * 7 + this._minimalDays;
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * A string representation of this {@code WeekFields} instance.
+     *
+     * @return the string representation, not null
+     */
+    toString() {
+        return &apos;WeekFields[&apos; + this._firstDayOfWeek + &apos;,&apos; + this._minimalDays + &apos;]&apos;;
+    }
+
+}
+
+export function _init() {
+    /**
+     * The ISO-8601 definition, where a week starts on Monday and the first week
+     * has a minimum of 4 days.
+     * &lt;p&gt;
+     * The ISO-8601 standard defines a calendar system based on weeks.
+     * It uses the week-based-year and week-of-week-based-year concepts to split
+     * up the passage of days instead of the standard year/month/day.
+     * &lt;p&gt;
+     * Note that the first week may start in the previous calendar year.
+     * Note also that the first few days of a calendar year may be in the
+     * week-based-year corresponding to the previous calendar year.
+     */
+    WeekFields.ISO = WeekFields.of(DayOfWeek.MONDAY, 4);
+
+    /**
+     * The common definition of a week that starts on Sunday.
+     * &lt;p&gt;
+     * Defined as starting on Sunday and with a minimum of 1 day in the month.
+     * This week definition is in use in the US and other European countries.
+     *
+     */
+    WeekFields.SUNDAY_START = WeekFields.of(DayOfWeek.SUNDAY, 1);
+
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">packages/core/src/Year.js | js-joda</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Immutable date and time library for JavaScript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="js-joda"><meta property="twitter:description" content="Immutable date and time library for JavaScript"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/js-joda/js-joda"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src">core/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Clock.js~Clock.html">Clock</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Duration.js~Duration.html">Duration</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Enum.js~Enum.html">Enum</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalDate.js~LocalDate.html">LocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalTime.js~LocalTime.html">LocalTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/MathUtil.js~MathUtil.html">MathUtil</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Month.js~Month.html">Month</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Period.js~Period.html">Period</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Year.js~Year.html">Year</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/YearConstants.js~YearConstants.html">YearConstants</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/YearMonth.js~YearMonth.html">YearMonth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneId.js~ZoneId.html">ZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneRegion.js~ZoneRegion.html">ZoneRegion</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-abstractMethodFail">abstractMethodFail</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-assert">assert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bindUse">bindUse</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeParseException">DateTimeParseException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalArgumentException">IllegalArgumentException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalStateException">IllegalStateException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NullPointerException">NullPointerException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-UnsupportedTemporalTypeException">UnsupportedTemporalTypeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-use">use</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-chrono">core/src/chrono</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/IsoChronology.js~IsoChronology.html">IsoChronology</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-format">core/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html">DateTimeFormatterBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DecimalStyle.js~DecimalStyle.html">DecimalStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/SignStyle.js~SignStyle.html">SignStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ValueRange.js~ValueRange.html">ValueRange</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nativeJs">nativeJs</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-zone">core/src/zone</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#extra-src">extra/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/Interval.js~Interval.html">Interval</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-abstractMethodFail">abstractMethodFail</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-assert">assert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-plug">plug</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src">locale/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/Locale.js~Locale.html">Locale</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-plug">plug</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format">locale/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleDateTimeFormatter.js~LocaleDateTimeFormatter.html">LocaleDateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleStore.js~LocaleStore.html">LocaleStore</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createEntry">createEntry</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-cldr">locale/src/format/cldr</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js~CldrDateTimeFormatterBuilder.html">CldrDateTimeFormatterBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrZoneTextPrinterParser.js~CldrZoneTextPrinterParser.html">CldrZoneTextPrinterParser</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-parser">locale/src/format/parser</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/parser/WeekFieldsPrinterParser.js~WeekFieldsPrinterParser.html">WeekFieldsPrinterParser</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-temporal">locale/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~ComputedDayOfField.html">ComputedDayOfField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-autoPlug">autoPlug</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-plug">plug</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extendSystemDefaultZoneId">extendSystemDefaultZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">packages/core/src/Year.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * @copyright (c) 2016, Philipp Th&#xFC;rw&#xE4;chter &amp; Pattrick H&#xFC;per
+ * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
+
+import {DateTimeException, UnsupportedTemporalTypeException} from &apos;./errors&apos;;
+import {requireNonNull, requireInstance} from &apos;./assert&apos;;
+import {MathUtil} from &apos;./MathUtil&apos;;
+
+import {ChronoField} from &apos;./temporal/ChronoField&apos;;
+import {ChronoUnit} from &apos;./temporal/ChronoUnit&apos;;
+import {Clock} from &apos;./Clock&apos;;
+import {DateTimeFormatter} from &apos;./format/DateTimeFormatter&apos;;
+import {DateTimeFormatterBuilder} from &apos;./format/DateTimeFormatterBuilder&apos;;
+import {IsoChronology} from &apos;./chrono/IsoChronology&apos;;
+import {LocalDate} from &apos;./LocalDate&apos;;
+import {Month} from &apos;./Month&apos;;
+import {MonthDay} from &apos;./MonthDay&apos;;
+import {SignStyle} from &apos;./format/SignStyle&apos;;
+import {Temporal} from &apos;./temporal/Temporal&apos;;
+import {TemporalAccessor} from &apos;./temporal/TemporalAccessor&apos;;
+import {TemporalAmount} from &apos;./temporal/TemporalAmount&apos;;
+import {TemporalField} from &apos;./temporal/TemporalField&apos;;
+import {TemporalQueries} from &apos;./temporal/TemporalQueries&apos;;
+import {TemporalQuery, createTemporalQuery} from &apos;./temporal/TemporalQuery&apos;;
+import {TemporalUnit} from &apos;./temporal/TemporalUnit&apos;;
+import {YearConstants} from &apos;./YearConstants&apos;;
+import {YearMonth} from &apos;./YearMonth&apos;;
+import {ZoneId} from &apos;./ZoneId&apos;;
+
+
+/**
+ * A year in the ISO-8601 calendar system, such as `2007`.
+ *
+ * {@link Year} is an immutable date-time object that represents a year.
+ * Any field that can be derived from a year can be obtained.
+ *
+ * **Note that years in the ISO chronology only align with years in the
+ * Gregorian-Julian system for modern years. Parts of Russia did not switch to the
+ * modern Gregorian/ISO rules until 1920.
+ * As such, historical years must be treated with caution.**
+ *
+ * This class does not store or represent a month, day, time or time-zone.
+ * For example, the value &quot;2007&quot; can be stored in a {@link Year}.
+ *
+ * Years represented by this class follow the ISO-8601 standard and use
+ * the proleptic numbering system. Year 1 is preceded by year 0, then by year -1.
+ *
+ * The ISO-8601 calendar system is the modern civil calendar system used today
+ * in most of the world. It is equivalent to the proleptic Gregorian calendar
+ * system, in which today&apos;s rules for leap years are applied for all time.
+ * For most applications written today, the ISO-8601 rules are entirely suitable.
+ * However, any application that makes use of historical dates, and requires them
+ * to be accurate will find the ISO-8601 approach unsuitable.
+ *
+ * ### Static properties of Class {@link LocalDate}
+ *
+ * Year.MIN_VALUE = -999.999;
+ *
+ * The minimum supported year. Theoretically the minimum could be -28.542.4812 years in javascript.
+ * approx LocalDateTime.ofEpochSecond(Number.MIN_SAFE_INTEGER, 0, ZoneOffset.UTC).year()
+ *
+ * Year.MAX_VALUE = 999.999;
+ *
+ * The maximum supported year. Theoretically the maximum could be 285.428.751 years in javascript.
+ * approx LocalDateTime.ofEpochSecond(Number.MAX_SAFE_INTEGER, 0, ZoneOffset.UTC).year()
+ *
+ */
+export class Year extends Temporal {
+
+    /**
+     *
+     * @param {number} value
+     * @private
+     */
+    constructor(value) {
+        super();
+        this._year = MathUtil.safeToInt(value);
+    }
+
+    /**
+     *
+     * @return {number} gets the value
+     */
+    value() {
+        return this._year;
+    }
+
+    /**
+     * function overloading for {@link Year.now}
+     *
+     * if called without arguments, then {@link Year.now0} is executed.
+
+     * if called with 1 arguments and first argument is an instance of ZoneId, then {@link Year.nowZoneId} is executed.
+     *
+     * Otherwise {@link Year.nowClock} is executed.
+     *
+     * @param {!(ZoneId|Clock)} zoneIdOrClock
+     * @returns {Year}
+     */
+    static now(zoneIdOrClock = undefined) {
+        if (zoneIdOrClock === undefined) {
+            return Year.now0();
+        } else if (zoneIdOrClock instanceof ZoneId) {
+            return Year.nowZoneId(zoneIdOrClock);
+        } else {
+            return Year.nowClock(zoneIdOrClock);
+        }
+    }
+
+    /**
+     * Obtains the current year from the system clock in the default time-zone.
+     *
+     * This will query the system clock (see {@link Clock#systemDefaultZone}) in the default
+     * time-zone to obtain the current year.
+     *
+     * Using this method will prevent the ability to use an alternate clock for testing
+     * because the clock is hard-coded.
+     *
+     * @return {Year} the current year using the system clock and default time-zone, not null
+     */
+    static now0() {
+        return Year.nowClock(Clock.systemDefaultZone());
+    }
+
+    /**
+     * Obtains the current year from the system clock in the specified time-zone.
+     *
+     * This will query the system clock (see {@link Clock#system}) to obtain the current year.
+     * Specifying the time-zone avoids dependence on the default time-zone.
+     *
+     * Using this method will prevent the ability to use an alternate clock for testing
+     * because the clock is hard-coded.
+     *
+     * @param {ZoneId} zone  the zone ID to use, not null
+     * @return {Year} the current year using the system clock, not null
+     */
+    static nowZoneId(zone) {
+        requireNonNull(zone, &apos;zone&apos;);
+        requireInstance(zone, ZoneId, &apos;zone&apos;);
+        return Year.nowClock(Clock.system(zone));
+    }
+
+    /**
+     * Obtains the current year from the specified clock.
+     *
+     * This will query the specified clock to obtain the current year.
+     * Using this method allows the use of an alternate clock for testing.
+     * The alternate clock may be introduced using dependency injection.
+     *
+     * @param {Clock} clock  the clock to use, not null
+     * @return {Year} the current year, not null
+     */
+    static nowClock(clock) {
+        requireNonNull(clock, &apos;clock&apos;);
+        requireInstance(clock, Clock, &apos;clock&apos;);
+        const now = LocalDate.now(clock);  // called once
+        return Year.of(now.year());
+    }
+    /**
+     * Obtains an instance of {@link Year}.
+     *
+     * This method accepts a year value from the proleptic ISO calendar system.
+     *
+     * * The year 2AD/CE is represented by 2.
+     * * The year 1AD/CE is represented by 1.
+     * * The year 1BC/BCE is represented by 0.
+     * * The year 2BC/BCE is represented by -1.
+     *
+     * @param {Number} isoYear  the ISO proleptic year to represent, from {@link MIN_VALUE} to {@link MAX_VALUE}
+     * @return {Year} the year, not null
+     * @throws DateTimeException if the field is invalid
+     */
+    static of(isoYear) {
+        requireNonNull(isoYear, &apos;isoYear&apos;);
+        ChronoField.YEAR.checkValidValue(isoYear);
+        return new Year(isoYear);
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Obtains an instance of {@link Year} from a temporal object.
+     *
+     * A {@link TemporalAccessor} represents some form of date and time information.
+     * This factory converts the arbitrary temporal object to an instance of {@link Year}.
+     *
+     * The conversion extracts the {@link ChronoField#YEAR} field.
+     * The extraction is only permitted if the temporal object has an ISO
+     * chronology, or can be converted to a {@link LocalDate}.
+     *
+     * This method matches the signature of the functional interface {@link TemporalQuery}
+     * allowing it to be used in queries via method reference, {@link Year::from}.
+     *
+     * @param {TemporalAccessor} temporal  the temporal object to convert, not null
+     * @return {Year} the year, not null
+     * @throws DateTimeException if unable to convert to a {@link Year}
+     */
+    static from(temporal) {
+        requireNonNull(temporal, &apos;temporal&apos;);
+        requireInstance(temporal, TemporalAccessor, &apos;temporal&apos;);
+        if (temporal instanceof Year) {
+            return temporal;
+        }
+        try {
+            /* TODO: we support only ISO for now
+            if (IsoChronology.INSTANCE.equals(Chronology.from(temporal)) == false) {
+                temporal = LocalDate.from(temporal);
+            }*/
+            return Year.of(temporal.get(ChronoField.YEAR));
+        } catch (ex) {
+            throw new DateTimeException(&apos;Unable to obtain Year from TemporalAccessor: &apos; +
+                    temporal + &apos;, type &apos; + (temporal &amp;&amp; temporal.constructor != null ? temporal.constructor.name : &apos;&apos;));
+        }
+    }
+    //-----------------------------------------------------------------------
+    /**
+     * function overloading for {@link Year.parse}
+     *
+     * if called with 1 argument, then {@link Year.parseText} is executed.
+     *
+     * Otherwise {@link Year.parseTextFormatter} is executed.
+     *
+     * @param {!(String)} text
+     * @param {?DateTimeFormatter} formatter
+     * @returns {Year}
+     */
+    static parse(text, formatter) {
+        if (arguments.length &lt;= 1) {
+            return Year.parseText(text);
+        } else {
+            return Year.parseTextFormatter(text, formatter);
+        }
+    }
+
+    /**
+     * Obtains an instance of {@link Year} from a text string such as `2007`.
+     *
+     * The string must represent a valid year.
+     * Years outside the range 0000 to 9999 must be prefixed by the plus or minus symbol.
+     *
+     * @param {String} text  the text to parse such as &quot;2007&quot;, not null
+     * @return {Year} the parsed year, not null
+     * @throws DateTimeParseException if the text cannot be parsed
+     */
+    static parseText(text) {
+        requireNonNull(text, &apos;text&apos;);
+        return Year.parse(text, PARSER);
+    }
+
+    /**
+     * Obtains an instance of {@link Year} from a text string using a specific formatter.
+     *
+     * The text is parsed using the formatter, returning a year.
+     *
+     * @param {String} text  the text to parse, not null
+     * @param {DateTimeFormatter} formatter  the formatter to use, not null
+     * @return {Year} the parsed year, not null
+     * @throws DateTimeParseException if the text cannot be parsed
+     */
+    static parseTextFormatter(text, formatter = PARSER) {
+        requireNonNull(text, &apos;text&apos;);
+        requireNonNull(formatter, &apos;formatter&apos;);
+        requireInstance(formatter, DateTimeFormatter, &apos;formatter&apos;);
+        return formatter.parse(text, Year.FROM);
+    }
+
+    //-------------------------------------------------------------------------
+    /**
+     * Checks if the year is a leap year, according to the ISO proleptic
+     * calendar system rules.
+     *
+     * This method applies the current rules for leap years across the whole time-line.
+     * In general, a year is a leap year if it is divisible by four without
+     * remainder. However, years divisible by 100, are not leap years, with
+     * the exception of years divisible by 400 which are.
+     *
+     * For example, 1904 is a leap year it is divisible by 4.
+     * 1900 was not a leap year as it is divisible by 100, however 2000 was a
+     * leap year as it is divisible by 400.
+     *
+     * The calculation is proleptic - applying the same rules into the far future and far past.
+     * This is historically inaccurate, but is correct for the ISO-8601 standard.
+     *
+     * @param {number} year  the year to check
+     * @return {boolean} true if the year is leap, false otherwise
+     */
+    static isLeap(year) {
+        return ((MathUtil.intMod(year, 4) === 0) &amp;&amp; ((MathUtil.intMod(year, 100) !== 0) || (MathUtil.intMod(year, 400) === 0)));
+    }
+
+    /**
+     * function overloading for {@link YearMonth.isSupported}
+     *
+     * if called with 1 argument and first argument is an instance of TemporalField, then {@link YearMonth.isSupportedField} is executed,
+     *
+     * otherwise {@link YearMonth.isSupportedUnit} is executed
+     *
+     * @param {!(TemporalField|ChronoUnit)} fieldOrUnit
+     * @returns {boolean}
+     */
+    isSupported(fieldOrUnit) {
+        if (arguments.length === 1 &amp;&amp; fieldOrUnit instanceof TemporalField) {
+            return this.isSupportedField(fieldOrUnit);
+        } else {
+            return this.isSupportedUnit(fieldOrUnit);
+        }
+    }
+
+    /**
+     * Checks if the specified field is supported.
+     *
+     * This checks if this year can be queried for the specified field.
+     * If false, then calling {@link range} and {@link get} will throw an exception.
+     *
+     * If the field is a {@link ChronoField} then the query is implemented here.
+     * The supported fields (see {@link isSupported}) will return valid
+     * values based on this date-time.
+     * The supported fields are:
+     *
+     * * {@link YEAR_OF_ERA}
+     * * {@link YEAR}
+     * * {@link ERA}
+     *
+     * All other {@link ChronoField} instances will return false.
+     *
+     * If the field is not a {@link ChronoField}, then the result of this method
+     * is obtained by invoking {@link TemporalField.isSupportedBy}
+     * passing `this` as the argument.
+     * Whether the field is supported is determined by the field.
+     *
+     * @param {TemporalField} field  the field to check, null returns false
+     * @return {boolean} true if the field is supported on this year, false if not
+     */
+    isSupportedField(field) {
+        if (field instanceof ChronoField) {
+            return field === ChronoField.YEAR || field === ChronoField.YEAR_OF_ERA || field === ChronoField.ERA;
+        }
+        return field != null &amp;&amp; field.isSupportedBy(this);
+    }
+
+    isSupportedUnit(unit) {
+        if (unit instanceof ChronoUnit) {
+            return unit === ChronoUnit.YEARS || unit === ChronoUnit.DECADES || unit === ChronoUnit.CENTURIES || unit === ChronoUnit.MILLENNIA || unit === ChronoUnit.ERAS;
+        }
+        return unit != null &amp;&amp; unit.isSupportedBy(this);
+    }
+
+    /**
+     * Gets the range of valid values for the specified field.
+     *
+     * The range object expresses the minimum and maximum valid values for a field.
+     * This year is used to enhance the accuracy of the returned range.
+     * If it is not possible to return the range, because the field is not supported
+     * or for some other reason, an exception is thrown.
+     *
+     * If the field is a {@link ChronoField} then the query is implemented here.
+     * The supported fields (see {@link isSupported}) will return
+     * appropriate range instances.
+     * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
+     *
+     * If the field is not a {@link ChronoField}, then the result of this method
+     * is obtained by invoking {@link TemporalField.rangeRefinedBy}
+     * passing `this` as the argument.
+     * Whether the range can be obtained is determined by the field.
+     *
+     * @param {TemporalField} field  the field to query the range for, not null
+     * @return {ValueRange} the range of valid values for the field, not null
+     * @throws DateTimeException if the range for the field cannot be obtained
+     */
+    range(field) {
+        if (this.isSupported(field)) {
+            return field.range();
+        } else if (field instanceof ChronoField) {
+            throw new UnsupportedTemporalTypeException(&apos;Unsupported field: &apos; + field);
+        }
+        return super.range(field);
+    }
+
+    /**
+     * Gets the value of the specified field from this year as an `int`.
+     *
+     * This queries this year for the value for the specified field.
+     * The returned value will always be within the valid range of values for the field.
+     * If it is not possible to return the value, because the field is not supported
+     * or for some other reason, an exception is thrown.
+     *
+     * If the field is a {@link ChronoField} then the query is implemented here.
+     * The supported fields (see {@link isSupported}) will return valid
+     * values based on this year.
+     * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
+     *
+     * If the field is not a {@link ChronoField}, then the result of this method
+     * is obtained by invoking {@link TemporalField.getFrom}
+     * passing `this` as the argument. Whether the value can be obtained,
+     * and what the value represents, is determined by the field.
+     *
+     * @param {TemporalField} field  the field to get, not null
+     * @return {number} the value for the field
+     * @throws DateTimeException if a value for the field cannot be obtained
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    get(field) {
+        return this.range(field).checkValidIntValue(this.getLong(field), field);
+    }
+
+    /**
+     * Gets the value of the specified field from this year as a `long`.
+     *
+     * This queries this year for the value for the specified field.
+     * If it is not possible to return the value, because the field is not supported
+     * or for some other reason, an exception is thrown.
+     *
+     * If the field is a {@link ChronoField} then the query is implemented here.
+     * The supported fields (see {@link isSupported}) will return valid
+     * values based on this year.
+     * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
+     *
+     * If the field is not a {@link ChronoField}, then the result of this method
+     * is obtained by invoking {@link TemporalField.getFrom}
+     * passing `this` as the argument. Whether the value can be obtained,
+     * and what the value represents, is determined by the field.
+     *
+     * @param {TemporalField} field  the field to get, not null
+     * @return {number} the value for the field
+     * @throws DateTimeException if a value for the field cannot be obtained
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    getLong(field) {
+        requireNonNull(field, &apos;field&apos;);
+        if (field instanceof ChronoField) {
+            switch (field) {
+                case ChronoField.YEAR_OF_ERA: return (this._year &lt; 1 ? 1 - this._year : this._year);
+                case ChronoField.YEAR: return this._year;
+                case ChronoField.ERA: return (this._year &lt; 1 ? 0 : 1);
+            }
+            throw new UnsupportedTemporalTypeException(&apos;Unsupported field: &apos; + field);
+        }
+        return field.getFrom(this);
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Checks if the year is a leap year, according to the ISO proleptic
+     * calendar system rules.
+     *
+     * This method applies the current rules for leap years across the whole time-line.
+     * In general, a year is a leap year if it is divisible by four without
+     * remainder. However, years divisible by 100, are not leap years, with
+     * the exception of years divisible by 400 which are.
+     *
+     * For example, 1904 is a leap year it is divisible by 4.
+     * 1900 was not a leap year as it is divisible by 100, however 2000 was a
+     * leap year as it is divisible by 400.
+     *
+     * The calculation is proleptic - applying the same rules into the far future and far past.
+     * This is historically inaccurate, but is correct for the ISO-8601 standard.
+     *
+     * @return {boolean} true if the year is leap, false otherwise
+     */
+    isLeap() {
+        return Year.isLeap(this._year);
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * function overloading for {@link YearMonth.with}
+     *
+     * if called with 2 arguments and first argument is an instance of TemporalField, then {@link Year.withFieldValue} is executed,
+
+     * otherwise {@link Year.withAdjuster} is executed,
+     *
+     * @param {!(TemporalAdjuster|TemporalField|Number)} adjusterOrFieldOrNumber
+     * @param {?number} value nullable only of first argument is an instance of TemporalAdjuster
+     * @returns {Year}
+     */
+    with(adjusterOrFieldOrNumber, value) {
+        if (arguments.length === 2 &amp;&amp; adjusterOrFieldOrNumber instanceof TemporalField) {
+            return this.withFieldValue(adjusterOrFieldOrNumber, value);
+        } else {
+            return this.withAdjuster(adjusterOrFieldOrNumber);
+        }
+    }
+
+    /**
+     * Returns an adjusted copy of this year.
+     *
+     * This returns a new {@link Year}, based on this one, with the year adjusted.
+     * The adjustment takes place using the specified adjuster strategy object.
+     * Read the documentation of the adjuster to understand what adjustment will be made.
+     *
+     * The result of this method is obtained by invoking the
+     * {@link TemporalAdjuster#adjustInto} method on the
+     * specified adjuster passing `this` as the argument.
+     *
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {TemporalAdjuster} adjuster the adjuster to use, not null
+     * @returns {Year} based on `this` with the adjustment made, not null
+     * @throws DateTimeException if the adjustment cannot be made
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    withAdjuster(adjuster) {
+        requireNonNull(adjuster, &apos;adjuster&apos;);
+        return adjuster.adjustInto(this);
+    }
+
+    /**
+     * Returns a copy of this year with the specified field set to a new value.
+     *
+     * This returns a new {@link Year}, based on this one, with the value
+     * for the specified field changed.
+     * If it is not possible to set the value, because the field is not supported or for
+     * some other reason, an exception is thrown.
+     *
+     * If the field is a {@link ChronoField} then the adjustment is implemented here.
+     * The supported fields behave as follows:
+     *
+     * * {@link YEAR_OF_ERA} -
+     *   Returns a {@link Year} with the specified year-of-era
+     *   The era will be unchanged.
+     * * {@link YEAR} -
+     *   Returns a {@link Year} with the specified year.
+     *   This completely replaces the date and is equivalent to {@link of}.
+     * * {@link ERA} -
+     *   Returns a {@link Year} with the specified era.
+     *   The year-of-era will be unchanged.
+     *
+     * In all cases, if the new value is outside the valid range of values for the field
+     * then a {@link DateTimeException} will be thrown.
+     *
+     * All other {@link ChronoField} instances will throw a {@link DateTimeException}.
+     *
+     * If the field is not a {@link ChronoField}, then the result of this method
+     * is obtained by invoking {@link TemporalField.adjustInto}
+     * passing `this` as the argument. In this case, the field determines
+     * whether and how to adjust the instant.
+     *
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {TemporalField} field  the field to set in the result, not null
+     * @param {number} newValue  the new value of the field in the result
+     * @returns {Year} based on `this` with the specified field set, not null
+     * @throws DateTimeException if the field cannot be set
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    withFieldValue(field, newValue) {
+        requireNonNull(field, &apos;field&apos;);
+        requireInstance(field, TemporalField, &apos;field&apos;);
+        if (field instanceof ChronoField) {
+            field.checkValidValue(newValue);
+            switch (field) {
+                case ChronoField.YEAR_OF_ERA:
+                    return Year.of((this._year &lt; 1 ? 1 - newValue : newValue));
+                case ChronoField.YEAR:
+                    return Year.of(newValue);
+                case ChronoField.ERA:
+                    return (this.getLong(ChronoField.ERA) === newValue ? this : Year.of(1 - this._year));
+            }
+            throw new UnsupportedTemporalTypeException(&apos;Unsupported field: &apos; + field);
+        }
+        return field.adjustInto(this, newValue);
+    }
+
+    /**
+     * function overloading for {@link Year.plus}
+     *
+     * if called with 1 arguments, then {@link Year.plusAmount} is executed.
+     *
+     * Otherwise {@link Year.plusAmountToAddUnit} is executed.
+     *
+     * @param {!(TemporalAmount|number)} amountOrNumber
+     * @param {?TemporalUnit} unit nullable only if first argument is an instance of TemporalAmount
+     * @returns {Year}
+     */
+    plus(amountOrNumber, unit) {
+        if (arguments.length === 1) {
+            return this.plusAmount(amountOrNumber);
+        } else {
+            return this.plusAmountToAddUnit(amountOrNumber, unit);
+        }
+    }
+
+    /**
+     * Returns a copy of this year with the specified period added.
+     *
+     * This method returns a new year based on this year with the specified period added.
+     * The adder is typically {@link Period} but may be any other type implementing
+     * the {@link TemporalAmount} interface.
+     * The calculation is delegated to the specified adjuster, which typically calls
+     * back to {@link plus}.
+     *
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {TemporalAmount} amount  the amount to add, not null
+     * @return {Year} based on this year with the addition made, not null
+     * @throws DateTimeException if the addition cannot be made
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    plusAmount(amount) {
+        requireNonNull(amount, &apos;amount&apos;);
+        requireInstance(amount, TemporalAmount, &apos;amount&apos;);
+        return amount.addTo(this);
+    }
+
+    /**
+     * @param {number} amountToAdd
+     * @param {TemporalUnit} unit
+     * @return {Year} based on this year with the addition made, not null
+     * @throws DateTimeException if the addition cannot be made
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    plusAmountToAddUnit(amountToAdd, unit) {
+        requireNonNull(amountToAdd, &apos;amountToAdd&apos;);
+        requireNonNull(unit, &apos;unit&apos;);
+        requireInstance(unit, TemporalUnit, &apos;unit&apos;);
+        if (unit instanceof ChronoUnit) {
+            switch (unit) {
+                case ChronoUnit.YEARS: return this.plusYears(amountToAdd);
+                case ChronoUnit.DECADES: return this.plusYears(MathUtil.safeMultiply(amountToAdd, 10));
+                case ChronoUnit.CENTURIES: return this.plusYears(MathUtil.safeMultiply(amountToAdd, 100));
+                case ChronoUnit.MILLENNIA: return this.plusYears(MathUtil.safeMultiply(amountToAdd, 1000));
+                case ChronoUnit.ERAS: return this.with(ChronoField.ERA, MathUtil.safeAdd(this.getLong(ChronoField.ERA), amountToAdd));
+            }
+            throw new UnsupportedTemporalTypeException(&apos;Unsupported unit: &apos; + unit);
+        }
+        return unit.addTo(this, amountToAdd);
+    }
+
+    /**
+     * Returns a copy of this year with the specified number of years added.
+     *
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {number} yearsToAdd  the years to add, may be negative
+     * @return {Year} based on this year with the period added, not null
+     * @throws DateTimeException if the result exceeds the supported year range
+     */
+    plusYears(yearsToAdd) {
+        if (yearsToAdd === 0) {
+            return this;
+        }
+        return Year.of(ChronoField.YEAR.checkValidIntValue(MathUtil.safeAdd(this._year, yearsToAdd)));
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * function overloading for {@link Year.minus}
+     *
+     * if called with 1 argument, then {@link Year.minusAmount} is executed.
+     *
+     * Otherwise {@link Year.minusAmountToSubtractUnit} is executed.
+     *
+     * @param {!(TemporalAmount|number)} amountOrNumber
+     * @param {?TemporalUnit} unit
+     * @returns {Year}
+     */
+    minus(amountOrNumber, unit) {
+        if (arguments.length === 1) {
+            return this.minusAmount(amountOrNumber);
+        } else {
+            return this.minusAmountToSubtractUnit(amountOrNumber, unit);
+        }
+    }
+
+    /**
+     * Returns a copy of this year with the specified period subtracted.
+     *
+     * This method returns a new year based on this year with the specified period subtracted.
+     * The subtractor is typically {@link Period} but may be any other type implementing
+     * the {@link TemporalAmount} interface.
+     * The calculation is delegated to the specified adjuster, which typically calls
+     * back to {@link minus}.
+     *
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {TemporalAmount} amount  the amount to subtract, not null
+     * @return {Year} based on this year with the subtraction made, not null
+     * @throws DateTimeException if the subtraction cannot be made
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    minusAmount(amount) {
+        requireNonNull(amount, &apos;amount&apos;);
+        requireInstance(amount, TemporalAmount, &apos;amount&apos;);
+        return amount.subtractFrom(this);
+    }
+
+    /**
+     * @param {number} amountToSubtract  the amount to subtract, not null
+     * @param {TemporalUnit} unit
+     * @return {Year} based on this year with the subtraction made, not null
+     * @throws DateTimeException if the subtraction cannot be made
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    minusAmountToSubtractUnit(amountToSubtract, unit) {
+        requireNonNull(amountToSubtract, &apos;amountToSubtract&apos;);
+        requireNonNull(unit, &apos;unit&apos;);
+        requireInstance(unit, TemporalUnit, &apos;unit&apos;);
+        return (amountToSubtract === MathUtil.MIN_SAFE_INTEGER ? this.plus(MathUtil.MAX_SAFE_INTEGER, unit).plus(1, unit) : this.plus(-amountToSubtract, unit));
+    }
+
+    /**
+     * Returns a copy of this year with the specified number of years subtracted.
+     *
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {number} yearsToSubtract  the years to subtract, may be negative
+     * @return {Year} based on this year with the period subtracted, not null
+     * @throws DateTimeException if the result exceeds the supported year range
+     */
+    minusYears(yearsToSubtract) {
+        return (yearsToSubtract === MathUtil.MIN_SAFE_INTEGER ? this.plusYears(MathUtil.MAX_SAFE_INTEGER).plusYears(1) : this.plusYears(-yearsToSubtract));
+    }
+
+    /**
+     * Adjusts the specified temporal object to have this year.
+     *
+     * This returns a temporal object of the same observable type as the input
+     * with the year changed to be the same as this.
+     *
+     * The adjustment is equivalent to using {@link Temporal#with}
+     * passing {@link ChronoField#YEAR} as the field.
+     * If the specified temporal object does not use the ISO calendar system then
+     * a {@link DateTimeException} is thrown.
+     *
+     * In most cases, it is clearer to reverse the calling pattern by using
+     * {@link Temporal#with}:
+     * &lt;pre&gt;
+     *   // these two lines are equivalent, but the second approach is recommended
+     *   temporal = thisYear.adjustInto(temporal);
+     *   temporal = temporal.with(thisYear);
+     * &lt;/pre&gt;
+     *
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {Temporal} temporal  the target object to be adjusted, not null
+     * @return {Temporal} the adjusted object, not null
+     * @throws DateTimeException if unable to make the adjustment
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    adjustInto(temporal) {
+        requireNonNull(temporal, &apos;temporal&apos;);
+        /* TODO: only IsoChronology for now
+         if (Chronology.from(temporal).equals(IsoChronology.INSTANCE) == false) {
+         throw new DateTimeException(&quot;Adjustment only supported on ISO date-time&quot;);
+         }*/
+        return temporal.with(ChronoField.YEAR, this._year);
+    }
+
+    /**
+     * Checks if the month-day is valid for this year.
+     *
+     * This method checks whether this year and the input month and day form
+     * a valid date.
+     *
+     * @param {MonthDay} monthDay  the month-day to validate, null returns false
+     * @return {boolean} true if the month and day are valid for this year
+     */
+    isValidMonthDay(monthDay) {
+        return monthDay != null &amp;&amp; monthDay.isValidYear(this._year);
+    }
+
+    /**
+     * Gets the length of this year in days.
+     *
+     * @return {number} the length of this year in days, 365 or 366
+     */
+    length() {
+        return this.isLeap() ? 366 : 365;
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Combines this year with a day-of-year to create a {@link LocalDate}.
+     *
+     * This returns a {@link LocalDate} formed from this year and the specified day-of-year.
+     *
+     * The day-of-year value 366 is only valid in a leap year.
+     *
+     * @param {number} dayOfYear  the day-of-year to use, not null
+     * @return {LocalDate} the local date formed from this year and the specified date of year, not null
+     * @throws DateTimeException if the day of year is zero or less, 366 or greater or equal
+     *  to 366 and this is not a leap year
+     */
+    atDay(dayOfYear) {
+        return LocalDate.ofYearDay(this._year, dayOfYear);
+    }
+
+    /**
+     * function overloading for {@link Year.atMonth}
+     *
+     * if called with 1 arguments and first argument is instance of Month, then {@link Year.atMonthMonth} is executed.
+     *
+     * Otherwise {@link Year.atMonthNumber} is executed.
+     *
+     * @param {Month|number} monthOrNumber
+     * @returns {YearMonth}
+     */
+    atMonth(monthOrNumber) {
+        if (arguments.length === 1 &amp;&amp; monthOrNumber instanceof Month) {
+            return this.atMonthMonth(monthOrNumber);
+        } else {
+            return this.atMonthNumber(monthOrNumber);
+        }
+    }
+
+    /**
+     * Combines this year with a month to create a {@link YearMonth}.
+     *
+     * This returns a {@link YearMonth} formed from this year and the specified month.
+     * All possible combinations of year and month are valid.
+     *
+     * This method can be used as part of a chain to produce a date:
+     * &lt;pre&gt;
+     *  LocalDate date = year.atMonth(month).atDay(day);
+     * &lt;/pre&gt;
+     *
+     * @param {Month} month  the month-of-year to use, not null
+     * @return {YearMonth} the year-month formed from this year and the specified month, not null
+     */
+    atMonthMonth(month) {
+        requireNonNull(month, &apos;month&apos;);
+        requireInstance(month, Month, &apos;month&apos;);
+        return YearMonth.of(this._year, month);
+    }
+
+    /**
+     * Combines this year with a month to create a {@link YearMonth}.
+     *
+     * This returns a {@link YearMonth} formed from this year and the specified month.
+     * All possible combinations of year and month are valid.
+     *
+     * This method can be used as part of a chain to produce a date:
+     * &lt;pre&gt;
+     *  LocalDate date = year.atMonth(month).atDay(day);
+     * &lt;/pre&gt;
+     *
+     * @param {number} month  the month-of-year to use, from 1 (January) to 12 (December)
+     * @return {YearMonth} the year-month formed from this year and the specified month, not null
+     * @throws DateTimeException if the month is invalid
+     */
+    atMonthNumber(month) {
+        requireNonNull(month, &apos;month&apos;);
+        return YearMonth.of(this._year, month);
+    }
+
+    /**
+     * Combines this year with a month-day to create a {@link LocalDate}.
+     *
+     * This returns a {@link LocalDate} formed from this year and the specified month-day.
+     *
+     * A month-day of February 29th will be adjusted to February 28th in the resulting
+     * date if the year is not a leap year.
+     *
+     * @param {MonthDay} monthDay  the month-day to use, not null
+     * @return {LocalDate} the local date formed from this year and the specified month-day, not null
+     */
+    atMonthDay(monthDay) {
+        requireNonNull(monthDay, &apos;monthDay&apos;);
+        requireInstance(monthDay, MonthDay, &apos;monthDay&apos;);
+        return monthDay.atYear(this._year);
+    }
+
+
+    //-----------------------------------------------------------------------
+    /**
+     * Queries this year using the specified query.
+     *
+     * This queries this year using the specified query strategy object.
+     * The {@link TemporalQuery} object defines the logic to be used to
+     * obtain the result. Read the documentation of the query to understand
+     * what the result of this method will be.
+     *
+     * The result of this method is obtained by invoking the
+     * {@link TemporalQuery#queryFrom} method on the
+     * specified query passing `this` as the argument.
+     *
+     * @param {TemporalQuery} query  the query to invoke, not null
+     * @return {*} the query result, null may be returned (defined by the query)
+     * @throws DateTimeException if unable to query (defined by the query)
+     * @throws ArithmeticException if numeric overflow occurs (defined by the query)
+     */
+    query(query) {
+        requireNonNull(query, &apos;query()&apos;);
+        requireInstance(query, TemporalQuery, &apos;query()&apos;);
+        if (query === TemporalQueries.chronology()) {
+            return IsoChronology.INSTANCE;
+        } else if (query === TemporalQueries.precision()) {
+            return ChronoUnit.YEARS;
+        } else if (query === TemporalQueries.localDate() || query === TemporalQueries.localTime() ||
+                query === TemporalQueries.zone() || query === TemporalQueries.zoneId() || query === TemporalQueries.offset()) {
+            return null;
+        }
+        return super.query(query);
+    }
+    //-----------------------------------------------------------------------
+    /**
+     * Compares this year to another year.
+     *
+     * The comparison is based on the value of the year.
+     * It is &quot;consistent with equals&quot;, as defined by {@link Comparable}.
+     *
+     * @param {Year} other  the other year to compare to, not null
+     * @return {number} the comparator value, negative if less, positive if greater
+     */
+    compareTo(other) {
+        requireNonNull(other, &apos;other&apos;);
+        requireInstance(other, Year, &apos;other&apos;);
+        return this._year - other._year;
+    }
+
+    /**
+     * Is this year after the specified year.
+     *
+     * @param {Year} other  the other year to compare to, not null
+     * @return {boolean} true if this is after the specified year
+     */
+    isAfter(other) {
+        requireNonNull(other, &apos;other&apos;);
+        requireInstance(other, Year, &apos;other&apos;);
+        return this._year &gt; other._year;
+    }
+
+    /**
+     * Is this year before the specified year.
+     *
+     * @param {Year} other  the other year to compare to, not null
+     * @return {boolean} true if this point is before the specified year
+     */
+    isBefore(other) {
+        requireNonNull(other, &apos;other&apos;);
+        requireInstance(other, Year, &apos;other&apos;);
+        return this._year &lt; other._year;
+    }
+    /**
+     * Outputs this year as a string using the formatter.
+     *
+     * @param {DateTimeFormatter} formatter  the formatter to use, not null
+     * @return {String} the formatted year string, not null
+     * @throws DateTimeException if an error occurs during printing
+     */
+    format(formatter) {
+        requireNonNull(formatter, &apos;formatter&apos;);
+        requireInstance(formatter, DateTimeFormatter, &apos;formatter&apos;);
+        return formatter.format(this);
+    }
+
+    /**
+     * Checks if this year is equal to the specified {@link Year}.
+     *
+     * The comparison is based on the value
+     *
+     * @param {*} otherYear - the other year, null returns false
+     * @return {boolean} true if the other duration is equal to this one
+     */
+    equals(otherYear) {
+        if (this === otherYear) {
+            return true;
+        }
+        if (otherYear instanceof Year) {
+            return this.value() === otherYear.value();
+        }
+        return false;
+    }
+    /**
+     * Outputs this year as a string.
+     *
+     * @return {String} a string representation of this year, not null
+     */
+    toString() {
+        return &apos;&apos; + this._year;
+    }
+
+    /**
+     * toJSON() use by JSON.stringify
+     * delegates to toString()
+     *
+     * @return {string}
+     */
+    toJSON() {
+        return this.toString();
+    }
+}
+
+let PARSER;
+
+export function _init() {
+
+    Year.MIN_VALUE = YearConstants.MIN_VALUE;
+    Year.MAX_VALUE = YearConstants.MAX_VALUE;
+
+    PARSER = new DateTimeFormatterBuilder()
+        .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
+        .toFormatter();
+
+    Year.FROM = createTemporalQuery(&apos;Year.FROM&apos;, (temporal) =&gt; {
+        return Year.from(temporal);
+    });
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

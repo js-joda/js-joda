@@ -1,0 +1,5 @@
+dist/*
+build/*
+examples/build/*
+packages/*
+tmp/*

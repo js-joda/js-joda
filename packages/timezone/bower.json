@@ -1,0 +1,25 @@
+{
+  "name": "js-joda-timezone",
+  "description": "iana tzdb timezone bindings for js-joda",
+  "main": "dist/js-joda-timezone.js",
+  "authors": [
+    "pithu"
+  ],
+  "license": "BSD-3-Clause",
+  "keywords": [
+    "date",
+    "time",
+    "timezone"
+  ],
+  "homepage": "https://github.com/js-joda/js-joda-timezone",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "js-joda": "^1.5.1"
+  }
+}

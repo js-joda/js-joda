@@ -1,0 +1,18 @@
+# Node dependency directory
+node_modules
+
+# npm
+npm-debug.log
+
+# build output
+build
+tmp
+dist/main*
+.nyc_output
+
+# Ide
+.idea
+*.iml
+
+
+

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../../../">
+  <title data-ice="title">packages/core/src/format/parser/NumberPrinterParser.js | js-joda</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Immutable date and time library for JavaScript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="js-joda"><meta property="twitter:description" content="Immutable date and time library for JavaScript"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/js-joda/js-joda"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src">core/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Clock.js~Clock.html">Clock</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Duration.js~Duration.html">Duration</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Enum.js~Enum.html">Enum</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalDate.js~LocalDate.html">LocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalTime.js~LocalTime.html">LocalTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/MathUtil.js~MathUtil.html">MathUtil</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Month.js~Month.html">Month</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Period.js~Period.html">Period</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Year.js~Year.html">Year</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/YearConstants.js~YearConstants.html">YearConstants</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/YearMonth.js~YearMonth.html">YearMonth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneId.js~ZoneId.html">ZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneRegion.js~ZoneRegion.html">ZoneRegion</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-abstractMethodFail">abstractMethodFail</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-assert">assert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bindUse">bindUse</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeParseException">DateTimeParseException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalArgumentException">IllegalArgumentException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalStateException">IllegalStateException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NullPointerException">NullPointerException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-UnsupportedTemporalTypeException">UnsupportedTemporalTypeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-use">use</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-chrono">core/src/chrono</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/IsoChronology.js~IsoChronology.html">IsoChronology</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-format">core/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html">DateTimeFormatterBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DecimalStyle.js~DecimalStyle.html">DecimalStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/SignStyle.js~SignStyle.html">SignStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ValueRange.js~ValueRange.html">ValueRange</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nativeJs">nativeJs</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-zone">core/src/zone</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#extra-src">extra/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/Interval.js~Interval.html">Interval</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-abstractMethodFail">abstractMethodFail</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-assert">assert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-plug">plug</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src">locale/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/Locale.js~Locale.html">Locale</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-plug">plug</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format">locale/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleDateTimeFormatter.js~LocaleDateTimeFormatter.html">LocaleDateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleStore.js~LocaleStore.html">LocaleStore</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createEntry">createEntry</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-cldr">locale/src/format/cldr</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js~CldrDateTimeFormatterBuilder.html">CldrDateTimeFormatterBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrZoneTextPrinterParser.js~CldrZoneTextPrinterParser.html">CldrZoneTextPrinterParser</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-parser">locale/src/format/parser</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/parser/WeekFieldsPrinterParser.js~WeekFieldsPrinterParser.html">WeekFieldsPrinterParser</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-temporal">locale/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~ComputedDayOfField.html">ComputedDayOfField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-autoPlug">autoPlug</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-plug">plug</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extendSystemDefaultZoneId">extendSystemDefaultZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">packages/core/src/format/parser/NumberPrinterParser.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * @copyright (c) 2016, Philipp Th&#xFC;rw&#xE4;chter &amp; Pattrick H&#xFC;per
+ * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
+
+import {assert} from &apos;../../assert&apos;;
+import {ArithmeticException, DateTimeException, IllegalArgumentException} from &apos;../../errors&apos;;
+import {MathUtil} from &apos;../../MathUtil&apos;;
+
+import {IsoChronology} from &apos;../../chrono/IsoChronology&apos;;
+
+import {SignStyle} from &apos;../SignStyle&apos;;
+
+
+const MAX_WIDTH = 15; // can&apos;t parse all numbers with more then 15 digits in javascript
+
+const EXCEED_POINTS = [
+    0,
+    10,
+    100,
+    1000,
+    10000,
+    100000,
+    1000000,
+    10000000,
+    100000000,
+    1000000000
+];
+
+/**
+ * @private
+ */
+export class NumberPrinterParser {
+
+    /**
+     * Constructor.
+     *
+     * @param field  the field to print, not null
+     * @param minWidth  the minimum field width, from 1 to 19
+     * @param maxWidth  the maximum field width, from minWidth to 19
+     * @param signStyle  the positive/negative sign style, not null
+     * @param subsequentWidth  the width of subsequent non-negative numbers, 0 or greater,
+     *  -1 if fixed width due to active adjacent parsing
+     */
+    constructor(field, minWidth, maxWidth, signStyle, subsequentWidth=0){
+        this._field = field;
+        this._minWidth = minWidth;
+        this._maxWidth = maxWidth;
+        this._signStyle = signStyle;
+        this._subsequentWidth = subsequentWidth;
+    }
+
+    field(){ return this._field;}
+    minWidth(){ return this._minWidth;}
+    maxWidth(){ return this._maxWidth;}
+    signStyle(){ return this._signStyle;}
+
+    withFixedWidth() {
+        if (this._subsequentWidth === -1) {
+            return this;
+        }
+        return new NumberPrinterParser(this._field, this._minWidth, this._maxWidth, this._signStyle, -1);
+    }
+
+    withSubsequentWidth(subsequentWidth) {
+        return new NumberPrinterParser(this._field, this._minWidth, this._maxWidth, this._signStyle, this._subsequentWidth + subsequentWidth);
+    }
+
+    _isFixedWidth() {
+        return this._subsequentWidth === -1 ||
+            (this._subsequentWidth &gt; 0 &amp;&amp; this._minWidth === this._maxWidth &amp;&amp; this._signStyle === SignStyle.NOT_NEGATIVE);
+    }
+
+    print(context, buf) {
+        const contextValue = context.getValue(this._field);
+        if (contextValue == null) {
+            return false;
+        }
+        const value = this._getValue(context, contextValue);
+        const symbols = context.symbols();
+        let str = &apos;&apos; + Math.abs(value);
+        if (str.length &gt; this._maxWidth) {
+            throw new DateTimeException(&apos;Field &apos; + this._field +
+                &apos; cannot be printed as the value &apos; + value +
+                &apos; exceeds the maximum print width of &apos; + this._maxWidth);
+        }
+        str = symbols.convertNumberToI18N(str);
+
+        if (value &gt;= 0) {
+            switch (this._signStyle) {
+                case SignStyle.EXCEEDS_PAD:
+                    if (this._minWidth &lt; MAX_WIDTH &amp;&amp; value &gt;= EXCEED_POINTS[this._minWidth]) {
+                        buf.append(symbols.positiveSign());
+                    }
+                    break;
+                case SignStyle.ALWAYS:
+                    buf.append(symbols.positiveSign());
+                    break;
+            }
+        } else {
+            switch (this._signStyle) {
+                case SignStyle.NORMAL:
+                case SignStyle.EXCEEDS_PAD:
+                case SignStyle.ALWAYS:
+                    buf.append(symbols.negativeSign());
+                    break;
+                case SignStyle.NOT_NEGATIVE:
+                    throw new DateTimeException(&apos;Field &apos; + this._field +
+                        &apos; cannot be printed as the value &apos; + value +
+                        &apos; cannot be negative according to the SignStyle&apos;);
+            }
+        }
+        for (let i = 0; i &lt; this._minWidth - str.length; i++) {
+            buf.append(symbols.zeroDigit());
+        }
+        buf.append(str);
+        return true;
+    }
+
+    parse(context, text, position){
+        const length = text.length;
+        if (position === length) {
+            return ~position;
+        }
+        assert(position&gt;=0 &amp;&amp; position&lt;length);
+        const sign = text.charAt(position);  // IOOBE if invalid position
+        let negative = false;
+        let positive = false;
+        if (sign === context.symbols().positiveSign()) {
+            if (this._signStyle.parse(true, context.isStrict(), this._minWidth === this._maxWidth) === false) {
+                return ~position;
+            }
+            positive = true;
+            position++;
+        } else if (sign === context.symbols().negativeSign()) {
+            if (this._signStyle.parse(false, context.isStrict(), this._minWidth === this._maxWidth) === false) {
+                return ~position;
+            }
+            negative = true;
+            position++;
+        } else {
+            if (this._signStyle === SignStyle.ALWAYS &amp;&amp; context.isStrict()) {
+                return ~position;
+            }
+        }
+        const effMinWidth = (context.isStrict() || this._isFixedWidth() ? this._minWidth : 1);
+        const minEndPos = position + effMinWidth;
+        if (minEndPos &gt; length) {
+            return ~position;
+        }
+        let effMaxWidth = (context.isStrict() || this._isFixedWidth() ? this._maxWidth : 9) + Math.max(this._subsequentWidth, 0);
+        let total = 0;
+        let pos = position;
+        for (let pass = 0; pass &lt; 2; pass++) {
+            const maxEndPos = Math.min(pos + effMaxWidth, length);
+            while (pos &lt; maxEndPos) {
+                const ch = text.charAt(pos++);
+                const digit = context.symbols().convertToDigit(ch);
+                if (digit &lt; 0) {
+                    pos--;
+                    if (pos &lt; minEndPos) {
+                        return ~position;  // need at least min width digits
+                    }
+                    break;
+                }
+                if ((pos - position) &gt; MAX_WIDTH) {
+                    throw new ArithmeticException(&apos;number text exceeds length&apos;);
+                } else {
+                    total = total * 10 + digit;
+                }
+            }
+            if (this._subsequentWidth &gt; 0 &amp;&amp; pass === 0) {
+                // re-parse now we know the correct width
+                const parseLen = pos - position;
+                effMaxWidth = Math.max(effMinWidth, parseLen - this._subsequentWidth);
+                pos = position;
+                total = 0;
+            } else {
+                break;
+            }
+        }
+        if (negative) {
+            if (total === 0 &amp;&amp; context.isStrict()) {
+                return ~(position - 1);  // minus zero not allowed
+            }
+            if(total !== 0) {
+                total = -total;
+            }
+        } else if (this._signStyle === SignStyle.EXCEEDS_PAD &amp;&amp; context.isStrict()) {
+            const parseLen = pos - position;
+            if (positive) {
+                if (parseLen &lt;= this._minWidth) {
+                    return ~(position - 1);  // &apos;+&apos; only parsed if minWidth exceeded
+                }
+            } else {
+                if (parseLen &gt; this._minWidth) {
+                    return ~position;  // &apos;+&apos; must be parsed if minWidth exceeded
+                }
+            }
+        }
+        return this._setValue(context, total, position, pos);
+    }
+
+    /**
+     * Gets the value to output.
+     * (This is needed to allow e.g. ReducedPrinterParser to override this and change the value!
+     *
+     * @param context  the context
+     * @param value  the value of the field, not null
+     * @return the value
+     * @private
+     */
+    _getValue(context, value) {
+        return value;
+    }
+
+    /**
+     * Stores the value.
+     *
+     * @param context  the context to store into, not null
+     * @param value  the value
+     * @param errorPos  the position of the field being parsed
+     * @param successPos  the position after the field being parsed
+     * @return the new position
+     */
+    _setValue(context, value, errorPos, successPos) {
+        return context.setParsedField(this._field, value, errorPos, successPos);
+    }
+
+    toString() {
+        if (this._minWidth === 1 &amp;&amp; this._maxWidth === MAX_WIDTH &amp;&amp; this._signStyle === SignStyle.NORMAL) {
+            return &apos;Value(&apos; + this._field + &apos;)&apos;;
+        }
+        if (this._minWidth === this._maxWidth &amp;&amp; this._signStyle === SignStyle.NOT_NEGATIVE) {
+            return &apos;Value(&apos; + this._field + &apos;,&apos; + this._minWidth + &apos;)&apos;;
+        }
+        return &apos;Value(&apos; + this._field + &apos;,&apos; + this._minWidth + &apos;,&apos; + this._maxWidth + &apos;,&apos; + this._signStyle + &apos;)&apos;;
+    }
+
+}
+//-----------------------------------------------------------------------
+/**
+ * Prints and parses a reduced numeric date-time field.
+ * @private
+ */
+export class ReducedPrinterParser extends NumberPrinterParser {
+
+    /**
+     * Constructor.
+     *
+     * @param {TemporalField} field  the field to print, validated not null
+     * @param {number} width  the field width, from 1 to 10
+     * @param {number} maxWidth  the field max width, from 1 to 10
+     * @param {number} baseValue  the base value
+     * @param {ChronoLocalDate} baseDate  the base date
+     */
+    constructor(field, width, maxWidth, baseValue, baseDate) {
+        super(field, width, maxWidth, SignStyle.NOT_NEGATIVE);
+        if (width &lt; 1 || width &gt; 10) {
+            throw new IllegalArgumentException(&apos;The width must be from 1 to 10 inclusive but was &apos; + width);
+        }
+        if (maxWidth &lt; 1 || maxWidth &gt; 10) {
+            throw new IllegalArgumentException(&apos;The maxWidth must be from 1 to 10 inclusive but was &apos; + maxWidth);
+        }
+        if (maxWidth &lt; width) {
+            throw new IllegalArgumentException(&apos;The maxWidth must be greater than the width&apos;);
+        }
+        if (baseDate === null) {
+            if (field.range().isValidValue(baseValue) === false) {
+                throw new IllegalArgumentException(&apos;The base value must be within the range of the field&apos;);
+            }
+            if ((baseValue + EXCEED_POINTS[width]) &gt; MathUtil.MAX_SAFE_INTEGER) {
+                throw new DateTimeException(&apos;Unable to add printer-parser as the range exceeds the capacity of an int&apos;);
+            }
+        }
+        this._baseValue = baseValue;
+        this._baseDate = baseDate;
+    }
+
+    /**
+     *
+     * @param {DateTimePrintContext} context
+     * @param {number} value
+     */
+    _getValue(context, value) {
+        const absValue = Math.abs(value);
+        let baseValue = this._baseValue;
+        if (this._baseDate !== null) {
+            // TODO: in threetenbp the following line is used, but we dont have Chronology yet,
+            // let chrono = Chronology.from(context.getTemporal());
+            // so let&apos;s use IsoChronology for now
+            context.temporal();
+            const chrono = IsoChronology.INSTANCE;
+            baseValue = chrono.date(this._baseDate).get(this._field);
+        }
+        if (value &gt;= baseValue &amp;&amp; value &lt; baseValue + EXCEED_POINTS[this._minWidth]) {
+            return absValue % EXCEED_POINTS[this._minWidth];
+        }
+        return absValue % EXCEED_POINTS[this._maxWidth];
+    }
+
+    /**
+     *
+     * @param {DateTimeParseContext} context
+     * @param {number} value
+     * @param {number} errorPos
+     * @param {number} successPos
+     */
+    _setValue(context, value, errorPos, successPos) {
+        let baseValue = this._baseValue;
+        if (this._baseDate != null) {
+            const chrono = context.getEffectiveChronology();
+            baseValue = chrono.date(this._baseDate).get(this._field);
+            // TODO: not implemented??
+            // context.addChronologyChangedParser(this, value, errorPos, successPos);
+        }
+        const parseLen = successPos - errorPos;
+        if (parseLen === this._minWidth &amp;&amp; value &gt;= 0) {
+            const range = EXCEED_POINTS[this._minWidth];
+            const lastPart = baseValue % range;
+            const basePart = baseValue - lastPart;
+            if (baseValue &gt; 0) {
+                value = basePart + value;
+            } else {
+                value = basePart - value;
+            }
+            if (value &lt; baseValue) {
+                value += range;
+            }
+        }
+        return context.setParsedField(this._field, value, errorPos, successPos);
+    }
+
+    withFixedWidth() {
+        if (this._subsequentWidth === -1) {
+            return this;
+        }
+        return new ReducedPrinterParser(this._field, this._minWidth, this._maxWidth, this._baseValue, this._baseDate, -1);
+    }
+
+    /**
+     *
+     * @param {number} subsequentWidth
+     * @returns {ReducedPrinterParser}
+     */
+    withSubsequentWidth(subsequentWidth) {
+        return new ReducedPrinterParser(this._field, this._minWidth, this._maxWidth, this._baseValue, this._baseDate,
+            this._subsequentWidth + subsequentWidth);
+    }
+
+    /**
+     *
+     * @param {DateTimeParseContext} context
+     */
+    isFixedWidth(context) {
+        if (context.isStrict() === false) {
+            return false;
+        }
+        return super.isFixedWidth(context);
+    }
+
+    toString() {
+        return &apos;ReducedValue(&apos; + this._field + &apos;,&apos; + this._minWidth + &apos;,&apos; + this._maxWidth + &apos;,&apos; + (this._baseDate != null ? this._baseDate : this._baseValue) + &apos;)&apos;;
+    }
+}
+
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

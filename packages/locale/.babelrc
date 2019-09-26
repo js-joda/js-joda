@@ -1,0 +1,18 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env"
+    ]
+  ],
+  "plugins": [
+    "add-module-exports"
+  ],
+  "comments": false,
+  "env": {
+    "test": {
+      "plugins": [
+        "istanbul"
+      ]
+    }
+  }
+}

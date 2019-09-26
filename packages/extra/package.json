@@ -1,0 +1,68 @@
+{
+  "name": "@js-joda/extra",
+  "version": "0.3.0",
+  "description": "additional date-time classes that complement those in js-joda",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/js-joda/js-joda.git"
+  },
+  "typings": "dist/js-joda-extra.d.ts",
+  "main": "dist/js-joda-extra.js",
+  "scripts": {
+    "prepublish": "npm run build-dist",
+    "postversion": "npm run build-dist",
+    "test": "./node_modules/.bin/mocha --timeout 5000 --require @babel/register ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js test/pluginTest_mochaOnly.js",
+    "test-coverage": "NODE_ENV=test COVERAGE=1 ../../node_modules/.bin/nyc --report-dir=build/coverage --reporter=lcov --reporter html ./node_modules/.bin/mocha --timeout 5000 --require @babel/register --reporter progress ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js",
+    "test-browser": "./node_modules/.bin/karma start --reporters=dots --single-run",
+    "test-saucelabs": "./node_modules/.bin/karma start --reporters=\"dots,saucelabs\" --browsers=\"sl_chrome,sl_ie,sl_firefox\" --single-run=true",
+    "test-ci": "npm run build-dist && npm run test && npm run test-browser && npm run test-coverage && npm run test-ts-definitions",
+    "test-ts-definitions": "tsc --noImplicitAny --strict --noEmit --pretty --lib ES6 test/typescript_definitions/js-joda-extra-tests.ts",
+    "build-dist-es5": "./node_modules/.bin/babel src -d build/es5",
+    "build-dist": "./node_modules/.bin/webpack --progress --colors --bail && DIST_MIN=1 ./node_modules/.bin/webpack --progress --colors --bail",
+    "lint": "../../node_modules/.bin/eslint ."
+  },
+  "keywords": [
+    "date",
+    "time",
+    "timezone"
+  ],
+  "nyc": {
+    "sourceMap": false,
+    "instrument": false
+  },
+  "author": "phueper",
+  "contributors": [
+    "pithu",
+    "phueper"
+  ],
+  "license": "BSD-3-Clause",
+  "peerDependencies": {
+    "@js-joda/core": "^1.11.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/register": "^7.0.0",
+    "@js-joda/core": "^1.11.0",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-istanbul": "^5.1.1",
+    "chai": "^4.2.0",
+    "coveralls": "^3.0.3",
+    "karma": "^4.0.1",
+    "karma-chai-plugins": "^0.9.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-firefox-launcher": "^1.1.0",
+    "karma-mocha": "^1.3.0",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-sauce-launcher": "^2.0.2",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^3.0.5",
+    "mocha": "^6.0.2",
+    "phantomjs-prebuilt": "^2.1.16",
+    "typescript": "^3.5.3",
+    "uglifyjs-webpack-plugin": "^2.1.2",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
+  }
+}

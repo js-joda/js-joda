@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--
+  ~ @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
+  ~ @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
+  -->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js-joda-locale Usage Example</title>
+    <script type="text/javascript" src="../node_modules/requirejs/require.js"></script>
+</head>
+<body>
+<div class="out"/>
+<script type="text/javascript">
+    require.config({
+        paths: {
+
+            // Unicode CLDR JSON data.
+            'cldr-data': "../node_modules/cldr-data",
+
+            // require.js plugin we'll use to fetch CLDR JSON content.
+            json: "../node_modules/requirejs-json/json",
+
+            // text is json's dependency.
+            text: "../node_modules/requirejs-text/text",
+
+            '@js-joda/core': '../node_modules/@js-joda/core/dist/js-joda',
+
+            '@js-joda/timezone': '../node_modules/@js-joda/timezone/dist/js-joda-timezone',
+
+            '@js-joda/locale': '../dist/js-joda-locale',
+
+            cldrjs: '../node_modules/cldrjs/dist/cldr',
+
+        }
+    });
+    /* define cldr-data module that preloads and returns the necessary data when used
+    from within js-joda-locale implementation
+     */
+    define('cldr-data', [
+        // CLDR content, all files that are needed must be required here and can then be dynamically required below
+        "json!cldr-data/supplemental/likelySubtags.json",
+        "json!cldr-data/supplemental/metaZones.json",
+        "json!cldr-data/supplemental/weekData.json",
+        "json!cldr-data/main/en/ca-gregorian.json",
+        "json!cldr-data/main/en/timeZoneNames.json",
+        "json!cldr-data/main/en-CA/ca-gregorian.json",
+        "json!cldr-data/main/en-CA/timeZoneNames.json",
+        "json!cldr-data/main/en-GB/ca-gregorian.json",
+        "json!cldr-data/main/en-GB/timeZoneNames.json",
+        "json!cldr-data/main/de/ca-gregorian.json",
+        "json!cldr-data/main/de/timeZoneNames.json",
+        "json!cldr-data/main/fr/ca-gregorian.json",
+        "json!cldr-data/main/fr/timeZoneNames.json",
+        "json!cldr-data/main/es/ca-gregorian.json",
+        "json!cldr-data/main/es/timeZoneNames.json",
+        "json!cldr-data/main/ru/ca-gregorian.json",
+        "json!cldr-data/main/ru/timeZoneNames.json",
+        "json!cldr-data/main/zh/ca-gregorian.json",
+        "json!cldr-data/main/zh/timeZoneNames.json",
+        "json!cldr-data/main/hi/ca-gregorian.json",
+        "json!cldr-data/main/hi/timeZoneNames.json",
+    ], function (){
+        return function(path) {
+            return (require('json!cldr-data/' + path));
+        }
+    });
+    require([
+        '@js-joda/core',
+        '@js-joda/timezone',
+        '@js-joda/locale',
+    ], function (JSJoda, JSJodaTimezone, JSJodaLocale) {
+        function output(s) {
+            console.log(s);
+            var outDiv = document.getElementsByClassName('out')[0];
+            var p = document.createElement('p');
+            p.innerHTML = s;
+            outDiv.appendChild(p);
+        }
+
+        let outputDateInDifferentLocales = function (zdt) {
+            output('Times in ' + zdt.zone());
+            output('&nbsp;');
+            output('en_US formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(JSJodaLocale.Locale.US)));
+            output('en_CA formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(JSJodaLocale.Locale.CANADA)));
+            output('en_GB formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(JSJodaLocale.Locale.UK)));
+            output('de_DE formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(JSJodaLocale.Locale.GERMANY)));
+            output('fr_FR formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(JSJodaLocale.Locale.FRANCE)));
+            output('es_ES formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(new JSJodaLocale.Locale('es', 'ES ', 'es'))));
+            output('ru_RU formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(new JSJodaLocale.Locale('ru', 'RU ', 'ru'))));
+            output('zh_CN formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(new JSJodaLocale.Locale('zh', 'CN ', 'zh'))));
+            output('hi_IN formatted string: ' + zdt.format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(new JSJodaLocale.Locale('hi', 'IN ', 'hi'))));
+            output('&nbsp;');
+            output('<hr />');
+        }
+
+        var zdt = JSJoda.ZonedDateTime.of(2017, 1, 1, 0, 0, 0, 0, JSJoda.ZoneId.of('Europe/Berlin'));
+        outputDateInDifferentLocales(zdt)
+        zdt = JSJoda.ZonedDateTime.of(2017, 1, 1, 0, 0, 0, 0, JSJoda.ZoneId.of('America/Chicago'));
+        outputDateInDifferentLocales(zdt)
+        zdt = JSJoda.ZonedDateTime.of(2017, 1, 1, 0, 0, 0, 0, JSJoda.ZoneId.of('America/New_York'));
+        outputDateInDifferentLocales(zdt);
+        zdt = JSJoda.ZonedDateTime.of(2017, 1, 1, 0, 0, 0, 0, JSJoda.ZoneId.of('Asia/Hong_Kong'));
+        outputDateInDifferentLocales(zdt);
+    }, function errorCallback(err) {
+        output(err);
+    });
+</script>
+</body>
+</html>

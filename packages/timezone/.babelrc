@@ -1,0 +1,18 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "loose": true
+      }
+    ]
+  ],
+  "comments": false,
+  "env": {
+    "test": {
+      "plugins": [
+        "istanbul"
+      ]
+    }
+  }
+}

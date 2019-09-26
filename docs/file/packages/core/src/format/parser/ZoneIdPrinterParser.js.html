@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../../../">
+  <title data-ice="title">packages/core/src/format/parser/ZoneIdPrinterParser.js | js-joda</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Immutable date and time library for JavaScript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="js-joda"><meta property="twitter:description" content="Immutable date and time library for JavaScript"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/js-joda/js-joda"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src">core/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Clock.js~Clock.html">Clock</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Duration.js~Duration.html">Duration</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Enum.js~Enum.html">Enum</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalDate.js~LocalDate.html">LocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalTime.js~LocalTime.html">LocalTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/MathUtil.js~MathUtil.html">MathUtil</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Month.js~Month.html">Month</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Period.js~Period.html">Period</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Year.js~Year.html">Year</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/YearConstants.js~YearConstants.html">YearConstants</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/YearMonth.js~YearMonth.html">YearMonth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneId.js~ZoneId.html">ZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneRegion.js~ZoneRegion.html">ZoneRegion</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-abstractMethodFail">abstractMethodFail</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-assert">assert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bindUse">bindUse</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeParseException">DateTimeParseException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalArgumentException">IllegalArgumentException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalStateException">IllegalStateException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NullPointerException">NullPointerException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-UnsupportedTemporalTypeException">UnsupportedTemporalTypeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-use">use</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-chrono">core/src/chrono</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/IsoChronology.js~IsoChronology.html">IsoChronology</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-format">core/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html">DateTimeFormatterBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DecimalStyle.js~DecimalStyle.html">DecimalStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/SignStyle.js~SignStyle.html">SignStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ValueRange.js~ValueRange.html">ValueRange</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nativeJs">nativeJs</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-zone">core/src/zone</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#extra-src">extra/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/Interval.js~Interval.html">Interval</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-abstractMethodFail">abstractMethodFail</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-assert">assert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-plug">plug</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src">locale/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/Locale.js~Locale.html">Locale</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-plug">plug</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format">locale/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleDateTimeFormatter.js~LocaleDateTimeFormatter.html">LocaleDateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleStore.js~LocaleStore.html">LocaleStore</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createEntry">createEntry</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-cldr">locale/src/format/cldr</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js~CldrDateTimeFormatterBuilder.html">CldrDateTimeFormatterBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrZoneTextPrinterParser.js~CldrZoneTextPrinterParser.html">CldrZoneTextPrinterParser</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-parser">locale/src/format/parser</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/parser/WeekFieldsPrinterParser.js~WeekFieldsPrinterParser.html">WeekFieldsPrinterParser</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-temporal">locale/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~ComputedDayOfField.html">ComputedDayOfField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-autoPlug">autoPlug</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-plug">plug</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extendSystemDefaultZoneId">extendSystemDefaultZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">packages/core/src/format/parser/ZoneIdPrinterParser.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * @copyright (c) 2016, Philipp Th&#xFC;rw&#xE4;chter &amp; Pattrick H&#xFC;per
+ * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
+
+import {ZoneOffset} from &apos;../../ZoneOffset&apos;;
+import {ZoneId} from &apos;../../ZoneId&apos;;
+import {ZoneRegion} from &apos;../../ZoneRegion&apos;;
+
+import {ChronoField} from &apos;../../temporal/ChronoField&apos;;
+
+import { ZoneRulesProvider } from &apos;../../zone/ZoneRulesProvider&apos;;
+
+import {OffsetIdPrinterParser} from &apos;./OffsetIdPrinterParser&apos;;
+
+/**
+ * Prints or parses a zone ID.
+ * @private
+ */
+export class ZoneIdPrinterParser {
+
+    /**
+     *
+     * @param {TemporalQuery} query
+     * @param {string} description
+     */
+    constructor(query, description) {
+        this.query = query;
+        this.description = description;
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     *
+     * @param {DateTimePrintContext } context
+     * @param {StringBuilder} buf
+     * @returns {boolean}
+     */
+    print(context, buf) {
+        const zone = context.getValueQuery(this.query);
+        if (zone == null) {
+            return false;
+        }
+        buf.append(zone.id());
+        return true;
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * This implementation looks for the longest matching string.
+     * For example, parsing Etc/GMT-2 will return Etc/GMC-2 rather than just
+     * Etc/GMC although both are valid.
+     *
+     * This implementation uses a tree to search for valid time-zone names in
+     * the parseText. The top level node of the tree has a length equal to the
+     * length of the shortest time-zone as well as the beginning characters of
+     * all other time-zones.
+     *
+     * @param {DateTimeParseContext} context
+     * @param {String} text
+     * @param {number} position
+     * @return {number}
+     */
+    parse(context, text, position) {
+        const length = text.length;
+        if (position &gt; length) {
+            return ~position;
+        }
+        if (position === length) {
+            return ~position;
+        }
+
+        // handle fixed time-zone IDs
+        const nextChar = text.charAt(position);
+        if (nextChar === &apos;+&apos; || nextChar === &apos;-&apos;) {
+            const newContext = context.copy();
+            const endPos = OffsetIdPrinterParser.INSTANCE_ID.parse(newContext, text, position);
+            if (endPos &lt; 0) {
+                return endPos;
+            }
+            const offset = newContext.getParsed(ChronoField.OFFSET_SECONDS);
+            const zone = ZoneOffset.ofTotalSeconds(offset);
+            context.setParsedZone(zone);
+            return endPos;
+        } else if (length &gt;= position + 2) {
+            const nextNextChar = text.charAt(position + 1);
+            if (context.charEquals(nextChar, &apos;U&apos;) &amp;&amp;
+                context.charEquals(nextNextChar, &apos;T&apos;)) {
+                if (length &gt;= position + 3 &amp;&amp;
+                    context.charEquals(text.charAt(position + 2), &apos;C&apos;)) {
+                    return this._parsePrefixedOffset(context, text, position, position + 3);
+                }
+                return this._parsePrefixedOffset(context, text, position, position + 2);
+            } else if (context.charEquals(nextChar, &apos;G&apos;) &amp;&amp;
+                length &gt;= position + 3 &amp;&amp;
+                context.charEquals(nextNextChar, &apos;M&apos;) &amp;&amp;
+                context.charEquals(text.charAt(position + 2), &apos;T&apos;)) {
+                return this._parsePrefixedOffset(context, text, position, position + 3);
+            }
+        }
+        // javascript special case
+        if(text.substr(position, 6) === &apos;SYSTEM&apos;){
+            context.setParsedZone(ZoneId.systemDefault());
+            return position + 6;
+        }
+
+        // ...
+        if (context.charEquals(nextChar, &apos;Z&apos;)) {
+            context.setParsedZone(ZoneOffset.UTC);
+            return position + 1;
+        }
+
+        const availableZoneIds = ZoneRulesProvider.getAvailableZoneIds();
+        if (zoneIdTree.size !== availableZoneIds.length) {
+            zoneIdTree = ZoneIdTree.createTreeMap(availableZoneIds);
+        }
+
+        const maxParseLength = length - position;
+        let treeMap = zoneIdTree.treeMap;
+        let parsedZoneId = null;
+        let parseLength = 0;
+        while(treeMap != null) {
+            const parsedSubZoneId = text.substr(position, Math.min(treeMap.length, maxParseLength));
+            treeMap = treeMap.get(parsedSubZoneId);
+            if (treeMap != null &amp;&amp; treeMap.isLeaf) {
+                parsedZoneId = parsedSubZoneId;
+                parseLength = treeMap.length;
+            }
+        }
+        if (parsedZoneId != null) {
+            context.setParsedZone(ZoneRegion.ofId(parsedZoneId));
+            return position + parseLength;
+        }
+
+        return ~position;
+    }
+
+    /**
+     *
+     * @param {DateTimeParseContext} context
+     * @param {String} text
+     * @param {number} prefixPos
+     * @param {number} position
+     * @return {number}
+     */
+    _parsePrefixedOffset(context, text, prefixPos, position) {
+        const prefix = text.substring(prefixPos, position).toUpperCase();
+        const newContext = context.copy();
+        if (position &lt; text.length &amp;&amp; context.charEquals(text.charAt(position), &apos;Z&apos;)) {
+            context.setParsedZone(ZoneId.ofOffset(prefix, ZoneOffset.UTC));
+            return position;
+        }
+        const endPos = OffsetIdPrinterParser.INSTANCE_ID.parse(newContext, text, position);
+        if (endPos &lt; 0) {
+            context.setParsedZone(ZoneId.ofOffset(prefix, ZoneOffset.UTC));
+            return position;
+        }
+        const offsetSecs = newContext.getParsed(ChronoField.OFFSET_SECONDS);
+        const offset = ZoneOffset.ofTotalSeconds(offsetSecs);
+        context.setParsedZone(ZoneId.ofOffset(prefix, offset));
+        return endPos;
+    }
+
+    /**
+     *
+     * @returns {string}
+     */
+    toString() {
+        return this.description;
+    }
+}
+
+class ZoneIdTree {
+
+    static createTreeMap(availableZoneIds) {
+        const sortedZoneIds =  availableZoneIds.sort((a, b) =&gt; a.length - b.length);
+        const treeMap = new ZoneIdTreeMap(sortedZoneIds[0].length, false);
+        for (let i=0; i&lt;sortedZoneIds.length; i++){
+            treeMap.add(sortedZoneIds[i]);
+        }
+        return new ZoneIdTree(sortedZoneIds.length, treeMap);
+    }
+
+    constructor(size, treeMap) {
+        this.size = size;
+        this.treeMap = treeMap;
+    }
+}
+
+class ZoneIdTreeMap {
+    constructor(length = 0, isLeaf = false){
+        this.length = length;
+        this.isLeaf = isLeaf;
+        this._treeMap = {};
+    }
+
+    add(zoneId){
+        const idLength = zoneId.length;
+        if(idLength === this.length) {
+            this._treeMap[zoneId] = new ZoneIdTreeMap(idLength, true);
+        } else if (idLength &gt; this.length) {
+            const subZoneId = zoneId.substr(0, this.length);
+            let subTreeMap = this._treeMap[subZoneId];
+            if (subTreeMap == null) {
+                subTreeMap = new ZoneIdTreeMap(idLength, false);
+                this._treeMap[subZoneId] = subTreeMap;
+            }
+            subTreeMap.add(zoneId);
+        }
+    }
+
+    get(zoneId){
+        return this._treeMap[zoneId];
+    }
+}
+
+let zoneIdTree = new ZoneIdTree([]);</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

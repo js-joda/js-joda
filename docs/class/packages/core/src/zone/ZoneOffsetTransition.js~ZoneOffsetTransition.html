@@ -1,0 +1,1805 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../../">
+  <title data-ice="title">ZoneOffsetTransition | js-joda</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Immutable date and time library for JavaScript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="js-joda"><meta property="twitter:description" content="Immutable date and time library for JavaScript"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/js-joda/js-joda"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src">core/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Clock.js~Clock.html">Clock</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Duration.js~Duration.html">Duration</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Enum.js~Enum.html">Enum</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalDate.js~LocalDate.html">LocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalTime.js~LocalTime.html">LocalTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/MathUtil.js~MathUtil.html">MathUtil</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Month.js~Month.html">Month</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Period.js~Period.html">Period</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Year.js~Year.html">Year</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/YearConstants.js~YearConstants.html">YearConstants</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/YearMonth.js~YearMonth.html">YearMonth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneId.js~ZoneId.html">ZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneRegion.js~ZoneRegion.html">ZoneRegion</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-abstractMethodFail">abstractMethodFail</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-assert">assert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bindUse">bindUse</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeParseException">DateTimeParseException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalArgumentException">IllegalArgumentException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalStateException">IllegalStateException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NullPointerException">NullPointerException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-UnsupportedTemporalTypeException">UnsupportedTemporalTypeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-use">use</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-chrono">core/src/chrono</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/IsoChronology.js~IsoChronology.html">IsoChronology</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-format">core/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html">DateTimeFormatterBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DecimalStyle.js~DecimalStyle.html">DecimalStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/SignStyle.js~SignStyle.html">SignStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ValueRange.js~ValueRange.html">ValueRange</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nativeJs">nativeJs</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-zone">core/src/zone</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#extra-src">extra/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/Interval.js~Interval.html">Interval</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-abstractMethodFail">abstractMethodFail</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-assert">assert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-plug">plug</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src">locale/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/Locale.js~Locale.html">Locale</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-plug">plug</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format">locale/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleDateTimeFormatter.js~LocaleDateTimeFormatter.html">LocaleDateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleStore.js~LocaleStore.html">LocaleStore</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createEntry">createEntry</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-cldr">locale/src/format/cldr</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js~CldrDateTimeFormatterBuilder.html">CldrDateTimeFormatterBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrZoneTextPrinterParser.js~CldrZoneTextPrinterParser.html">CldrZoneTextPrinterParser</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-parser">locale/src/format/parser</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/parser/WeekFieldsPrinterParser.js~WeekFieldsPrinterParser.html">WeekFieldsPrinterParser</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-temporal">locale/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~ComputedDayOfField.html">ComputedDayOfField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-autoPlug">autoPlug</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-plug">plug</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extendSystemDefaultZoneId">extendSystemDefaultZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div class="header-notice">
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {ZoneOffsetTransition} from &apos;<span><a href="file/packages/core/src/zone/ZoneOffsetTransition.js.html#lineNumber29">@js-joda/root/packages/core/src/zone/ZoneOffsetTransition.js</a></span>&apos;</code></pre></div>
+  <span data-ice="access">public</span>
+  <span data-ice="kind">class</span>
+  
+  
+  
+  <span data-ice="source">| <span><a href="file/packages/core/src/zone/ZoneOffsetTransition.js.html#lineNumber29">source</a></span></span>
+</div>
+
+<div class="self-detail detail">
+  <h1 data-ice="name">ZoneOffsetTransition</h1>
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <div class="description" data-ice="description"><p>A transition between two offsets caused by a discontinuity in the local time-line.</p>
+<p>A transition between two offsets is normally the result of a daylight savings cutover.
+The discontinuity is normally a gap in spring and an overlap in autumn.
+<span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span> models the transition between the two offsets.</p>
+<p>Gaps occur where there are local date-times that simply do not not exist.
+An example would be when the offset changes from <code>+03:00</code> to <code>+04:00</code>.
+This might be described as &apos;the clocks will move forward one hour tonight at 1am&apos;.</p>
+<p>Overlaps occur where there are local date-times that exist twice.
+An example would be when the offset changes from <code>+04:00</code> to <code>+03:00</code>.
+This might be described as &apos;the clocks will move back one hour tonight at 2am&apos;.</p>
+</div>
+  
+
+  
+
+  
+
+  
+
+  
+</div>
+
+
+<div data-ice="staticMethodSummary"><h2>Static Method Summary</h2><table class="summary" data-ice="summary">
+  <thead><tr><td data-ice="title" colspan="3">Static Public Methods</td></tr></thead>
+  <tbody>
+  
+  <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      <span data-ice="static">static</span>
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#static-method-of">of</a></span></span><span class="code" data-ice="signature">(transition: <span><a href="class/packages/core/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, offsetBefore: <span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>, offsetAfter: <span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>): <span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Obtains an instance defining a transition between two offsets.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+
+
+<div data-ice="methodSummary"><h2>Method Summary</h2><table class="summary" data-ice="summary">
+  <thead><tr><td data-ice="title" colspan="3">Public Methods</td></tr></thead>
+  <tbody>
+  
+  <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-compareTo">compareTo</a></span></span><span class="code" data-ice="signature">(transition: <span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span>): <span>number</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Compares this transition to another based on the transition instant.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-dateTimeAfter">dateTimeAfter</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/packages/core/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the local transition date-time, as would be expressed with the &apos;after&apos; offset.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-dateTimeBefore">dateTimeBefore</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/packages/core/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the local transition date-time, as would be expressed with the &apos;before&apos; offset.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-duration">duration</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/packages/core/src/Duration.js~Duration.html">Duration</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the duration of the transition.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-durationSeconds">durationSeconds</a></span></span><span class="code" data-ice="signature">(): <span>number</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the duration of the transition in seconds.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-equals">equals</a></span></span><span class="code" data-ice="signature">(other: <span>*</span>): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Checks if this object equals another.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-hashCode">hashCode</a></span></span><span class="code" data-ice="signature">(): <span>number</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Returns a suitable hash code.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-instant">instant</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the transition instant.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-isGap">isGap</a></span></span><span class="code" data-ice="signature">(): <span>boolean</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Does this transition represent a gap in the local time-line.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-isOverlap">isOverlap</a></span></span><span class="code" data-ice="signature">(): <span>boolean</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Does this transition represent a gap in the local time-line.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-isValidOffset">isValidOffset</a></span></span><span class="code" data-ice="signature">(offset: <span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>): <span>boolean</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Checks if the specified offset is valid during this transition.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-offsetAfter">offsetAfter</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the offset after the transition.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-offsetBefore">offsetBefore</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the offset before the transition.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-toEpochSecond">toEpochSecond</a></span></span><span class="code" data-ice="signature">(): <span>number</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the transition instant as an epoch second.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-toString">toString</a></span></span><span class="code" data-ice="signature">(): <span>string</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Returns a string describing this object.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-validOffsets">validOffsets</a></span></span><span class="code" data-ice="signature">(): <span><span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span><span>[]</span></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the valid offsets during this transition.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+
+
+
+
+<div data-ice="staticMethodDetails"><h2 data-ice="title">Static Public Methods</h2>
+
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-method-of">
+    <span class="access" data-ice="access">public</span>
+    <span data-ice="static">static</span>
+    
+    
+    
+    
+    <span class="code" data-ice="name">of</span><span class="code" data-ice="signature">(transition: <span><a href="class/packages/core/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span>, offsetBefore: <span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>, offsetAfter: <span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>): <span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/core/src/zone/ZoneOffsetTransition.js.html#lineNumber46">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Obtains an instance defining a transition between two offsets.</p>
+<p>Applications should normally obtain an instance from <span><a href="class/packages/core/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span>.
+This factory is only intended for use when creating <span><a href="class/packages/core/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span>.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">transition</td>
+      <td data-ice="type" class="code"><span><a href="class/packages/core/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the transition date-time at the transition, which never
+ actually occurs, expressed local to the before offset, not null</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">offsetBefore</td>
+      <td data-ice="type" class="code"><span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the offset before the transition, not null</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">offsetAfter</td>
+      <td data-ice="type" class="code"><span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the offset at and after the transition, not null</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the transition, not null</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  <div data-ice="throwWrap">
+    <h4>Throw:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span>*</span></p></td>
+        <td data-ice="throwDesc"><p>IllegalArgumentException if <span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-offsetBefore">offsetBefore</a></span> and <span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html#instance-method-offsetAfter">offsetAfter</a></span>
+        are equal, or <span>transition.getNano</span> returns non-zero value</p>
+</td>
+      </tr>
+</tbody>
+    </table>
+  </div>
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+</div>
+
+
+<div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
+
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-compareTo">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">compareTo</span><span class="code" data-ice="signature">(transition: <span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span>): <span>number</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/core/src/zone/ZoneOffsetTransition.js.html#lineNumber243">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Compares this transition to another based on the transition instant.</p>
+<p>This compares the instants of each transition.
+The offsets are ignored, making this order inconsistent with equals.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">transition</td>
+      <td data-ice="type" class="code"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the transition to compare to, not null</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>number</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the comparator value, negative if less, positive if greater</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-dateTimeAfter">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">dateTimeAfter</span><span class="code" data-ice="signature">(): <span><a href="class/packages/core/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/core/src/zone/ZoneOffsetTransition.js.html#lineNumber130">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Gets the local transition date-time, as would be expressed with the &apos;after&apos; offset.</p>
+<p>This is the first date-time after the discontinuity, when the new offset applies.</p>
+<p>The combination of the &apos;before&apos; date-time and offset represents the same instant
+as the &apos;after&apos; date-time and offset.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/packages/core/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the transition date-time expressed with the after offset, not null</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-dateTimeBefore">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">dateTimeBefore</span><span class="code" data-ice="signature">(): <span><a href="class/packages/core/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/core/src/zone/ZoneOffsetTransition.js.html#lineNumber116">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Gets the local transition date-time, as would be expressed with the &apos;before&apos; offset.</p>
+<p>This is the date-time where the discontinuity begins expressed with the &apos;before&apos; offset.
+At this instant, the &apos;after&apos; offset is actually used, therefore the combination of this
+date-time and the &apos;before&apos; offset will never occur.</p>
+<p>The combination of the &apos;before&apos; date-time and offset represents the same instant
+as the &apos;after&apos; date-time and offset.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/packages/core/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the transition date-time expressed with the before offset, not null</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-duration">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">duration</span><span class="code" data-ice="signature">(): <span><a href="class/packages/core/src/Duration.js~Duration.html">Duration</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/core/src/zone/ZoneOffsetTransition.js.html#lineNumber165">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Gets the duration of the transition.</p>
+<p>In most cases, the transition duration is one hour, however this is not always the case.
+The duration will be positive for a gap and negative for an overlap.
+Time-zones are second-based, so the nanosecond part of the duration will be zero.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/packages/core/src/Duration.js~Duration.html">Duration</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the duration of the transition, positive for gaps, negative for overlaps</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-durationSeconds">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">durationSeconds</span><span class="code" data-ice="signature">(): <span>number</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/core/src/zone/ZoneOffsetTransition.js.html#lineNumber174">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Gets the duration of the transition in seconds.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>number</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the duration in seconds</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-equals">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">equals</span><span class="code" data-ice="signature">(other: <span>*</span>): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/core/src/zone/ZoneOffsetTransition.js.html#lineNumber256">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Checks if this object equals another.</p>
+<p>The entire state of the object is compared.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">other</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the other object to compare to, null returns false</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>true if equal</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-hashCode">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">hashCode</span><span class="code" data-ice="signature">(): <span>number</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/core/src/zone/ZoneOffsetTransition.js.html#lineNumber273">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Returns a suitable hash code.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>number</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the hash code</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-instant">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">instant</span><span class="code" data-ice="signature">(): <span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/core/src/zone/ZoneOffsetTransition.js.html#lineNumber90">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Gets the transition instant.</p>
+<p>This is the instant of the discontinuity, which is defined as the first
+instant that the &apos;after&apos; offset applies.</p>
+<p>The methods <span>getInstant</span>, <span>getDateTimeBefore</span> and <span>getDateTimeAfter</span>
+all represent the same instant.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the transition instant, not null</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-isGap">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">isGap</span><span class="code" data-ice="signature">(): <span>boolean</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/core/src/zone/ZoneOffsetTransition.js.html#lineNumber187">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Does this transition represent a gap in the local time-line.</p>
+<p>Gaps occur where there are local date-times that simply do not not exist.
+An example would be when the offset changes from <code>+01:00</code> to <code>+02:00</code>.
+This might be described as &apos;the clocks will move forward one hour tonight at 1am&apos;.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>boolean</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>true if this transition is a gap, false if it is an overlap</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-isOverlap">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">isOverlap</span><span class="code" data-ice="signature">(): <span>boolean</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/core/src/zone/ZoneOffsetTransition.js.html#lineNumber200">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Does this transition represent a gap in the local time-line.</p>
+<p>Overlaps occur where there are local date-times that exist twice.
+An example would be when the offset changes from <code>+02:00</code> to <code>+01:00</code>.
+This might be described as &apos;the clocks will move back one hour tonight at 2am&apos;.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>boolean</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>true if this transition is an overlap, false if it is a gap</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-isValidOffset">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">isValidOffset</span><span class="code" data-ice="signature">(offset: <span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span>): <span>boolean</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/core/src/zone/ZoneOffsetTransition.js.html#lineNumber214">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Checks if the specified offset is valid during this transition.</p>
+<p>This checks to see if the given offset will be valid at some point in the transition.
+A gap will always return false.
+An overlap will return true if the offset is either the before or after offset.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">offset</td>
+      <td data-ice="type" class="code"><span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the offset to check, null returns false</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>boolean</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>true if the offset is valid during the transition</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-offsetAfter">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">offsetAfter</span><span class="code" data-ice="signature">(): <span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/core/src/zone/ZoneOffsetTransition.js.html#lineNumber152">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Gets the offset after the transition.</p>
+<p>This is the offset in use on and after the instant of the transition.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the offset after the transition, not null</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-offsetBefore">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">offsetBefore</span><span class="code" data-ice="signature">(): <span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/core/src/zone/ZoneOffsetTransition.js.html#lineNumber141">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Gets the offset before the transition.</p>
+<p>This is the offset in use before the instant of the transition.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the offset before the transition, not null</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-toEpochSecond">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">toEpochSecond</span><span class="code" data-ice="signature">(): <span>number</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/core/src/zone/ZoneOffsetTransition.js.html#lineNumber99">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Gets the transition instant as an epoch second.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>number</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the transition epoch second</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-toString">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">toString</span><span class="code" data-ice="signature">(): <span>string</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/core/src/zone/ZoneOffsetTransition.js.html#lineNumber283">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Returns a string describing this object.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>string</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a string for debugging, not null</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-validOffsets">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">validOffsets</span><span class="code" data-ice="signature">(): <span><span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span><span>[]</span></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/core/src/zone/ZoneOffsetTransition.js.html#lineNumber225">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Gets the valid offsets during this transition.</p>
+<p>A gap will return an empty list, while an overlap will return both offsets.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span><span>[]</span></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the list of valid offsets</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

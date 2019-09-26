@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../../">
+  <title data-ice="title">WeekFields | js-joda</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Immutable date and time library for JavaScript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="js-joda"><meta property="twitter:description" content="Immutable date and time library for JavaScript"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/js-joda/js-joda"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src">core/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Clock.js~Clock.html">Clock</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Duration.js~Duration.html">Duration</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Enum.js~Enum.html">Enum</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalDate.js~LocalDate.html">LocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalTime.js~LocalTime.html">LocalTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/MathUtil.js~MathUtil.html">MathUtil</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Month.js~Month.html">Month</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Period.js~Period.html">Period</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Year.js~Year.html">Year</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/YearConstants.js~YearConstants.html">YearConstants</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/YearMonth.js~YearMonth.html">YearMonth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneId.js~ZoneId.html">ZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneRegion.js~ZoneRegion.html">ZoneRegion</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-abstractMethodFail">abstractMethodFail</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-assert">assert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bindUse">bindUse</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeParseException">DateTimeParseException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalArgumentException">IllegalArgumentException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalStateException">IllegalStateException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NullPointerException">NullPointerException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-UnsupportedTemporalTypeException">UnsupportedTemporalTypeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-use">use</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-chrono">core/src/chrono</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/IsoChronology.js~IsoChronology.html">IsoChronology</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-format">core/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html">DateTimeFormatterBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DecimalStyle.js~DecimalStyle.html">DecimalStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/SignStyle.js~SignStyle.html">SignStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ValueRange.js~ValueRange.html">ValueRange</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nativeJs">nativeJs</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-zone">core/src/zone</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#extra-src">extra/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/Interval.js~Interval.html">Interval</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-abstractMethodFail">abstractMethodFail</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-assert">assert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-plug">plug</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src">locale/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/Locale.js~Locale.html">Locale</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-plug">plug</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format">locale/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleDateTimeFormatter.js~LocaleDateTimeFormatter.html">LocaleDateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleStore.js~LocaleStore.html">LocaleStore</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createEntry">createEntry</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-cldr">locale/src/format/cldr</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js~CldrDateTimeFormatterBuilder.html">CldrDateTimeFormatterBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrZoneTextPrinterParser.js~CldrZoneTextPrinterParser.html">CldrZoneTextPrinterParser</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-parser">locale/src/format/parser</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/parser/WeekFieldsPrinterParser.js~WeekFieldsPrinterParser.html">WeekFieldsPrinterParser</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-temporal">locale/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~ComputedDayOfField.html">ComputedDayOfField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-autoPlug">autoPlug</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-plug">plug</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extendSystemDefaultZoneId">extendSystemDefaultZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div class="header-notice">
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {WeekFields} from &apos;<span><a href="file/packages/locale/src/temporal/WeekFields.js.html#lineNumber552">@js-joda/root/packages/locale/src/temporal/WeekFields.js</a></span>&apos;</code></pre></div>
+  <span data-ice="access">public</span>
+  <span data-ice="kind">class</span>
+  
+  
+  
+  <span data-ice="source">| <span><a href="file/packages/locale/src/temporal/WeekFields.js.html#lineNumber552">source</a></span></span>
+</div>
+
+<div class="self-detail detail">
+  <h1 data-ice="name">WeekFields</h1>
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <div class="description" data-ice="description"><p>Localized definitions of the day-of-week, week-of-month and week-of-year fields.</p>
+<p></p><p>
+A standard week is seven days long, but cultures have different definitions for some
+other aspects of a week. This class represents the definition of the week, for the
+purpose of providing <span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span> instances.</p>
+<p></p><p>
+WeekFields provides three fields,
+{@link #dayOfWeek()}, {@link #weekOfMonth()}, and {@link #weekOfYear()}
+that provide access to the values from any {@link Temporal temporal object}.</p>
+<p></p><p>
+The computations for day-of-week, week-of-month, and week-of-year are based
+on the  {@link ChronoField#YEAR proleptic-year},
+{@link ChronoField#MONTH_OF_YEAR month-of-year},
+{@link ChronoField#DAY_OF_MONTH day-of-month}, and
+{@link ChronoField#DAY_OF_WEEK ISO day-of-week} which are based on the
+{@link ChronoField#EPOCH_DAY epoch-day} and the chronology.
+The values may not be aligned with the {@link ChronoField#YEAR_OF_ERA year-of-Era}
+depending on the Chronology.</p>
+<p></p><p>A week is defined by:</p>
+<p><ul></ul></p>
+<p><li>The first day-of-week.
+For example, the ISO-8601 standard considers Monday to be the first day-of-week.</li></p>
+<p><li>The minimal number of days in the first week.
+For example, the ISO-8601 standard counts the first week as needing at least 4 days.
+<p>
+Together these two values allow a year or month to be divided into weeks.</p>
+<p></p><p></p>
+<p></p><h3>Week of Month</h3>
+One field is used: week-of-month.
+The calculation ensures that weeks never overlap a month boundary.
+The month is divided into periods where each period starts on the defined first day-of-week.
+The earliest period is referred to as week 0 if it has less than the minimal number of days
+and week 1 if it has at least the minimal number of days.</li></p>
+<p></p><p></p>
+<p>&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;3&quot; border=&quot;0&quot; style=&quot;text-align: left; width: 50%;&quot;&gt;</p>
+<p>&lt;caption&gt;Examples of WeekFields&lt;/caption&gt;</p>
+<p>&lt;tr&gt;&lt;th&gt;Date&lt;/th&gt;&lt;td&gt;Day-of-week&lt;/td&gt;
+ &lt;td&gt;First day: Monday<br>Minimal days: 4&lt;/td&gt;&lt;td&gt;First day: Monday<br>Minimal days: 5&lt;/td&gt;&lt;/tr&gt;</p>
+<p>&lt;tr&gt;&lt;th&gt;2008-12-31&lt;/th&gt;&lt;td&gt;Wednesday&lt;/td&gt;
+ &lt;td&gt;Week 5 of December 2008&lt;/td&gt;&lt;td&gt;Week 5 of December 2008&lt;/td&gt;&lt;/tr&gt;</p>
+<p>&lt;tr&gt;&lt;th&gt;2009-01-01&lt;/th&gt;&lt;td&gt;Thursday&lt;/td&gt;
+ &lt;td&gt;Week 1 of January 2009&lt;/td&gt;&lt;td&gt;Week 0 of January 2009&lt;/td&gt;&lt;/tr&gt;</p>
+<p>&lt;tr&gt;&lt;th&gt;2009-01-04&lt;/th&gt;&lt;td&gt;Sunday&lt;/td&gt;
+ &lt;td&gt;Week 1 of January 2009&lt;/td&gt;&lt;td&gt;Week 0 of January 2009&lt;/td&gt;&lt;/tr&gt;</p>
+<p>&lt;tr&gt;&lt;th&gt;2009-01-05&lt;/th&gt;&lt;td&gt;Monday&lt;/td&gt;
+ &lt;td&gt;Week 2 of January 2009&lt;/td&gt;&lt;td&gt;Week 1 of January 2009&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</p>
+<p></p><p></p>
+<p></p><h3>Week of Year</h3>
+One field is used: week-of-year.
+The calculation ensures that weeks never overlap a year boundary.
+The year is divided into periods where each period starts on the defined first day-of-week.
+The earliest period is referred to as week 0 if it has less than the minimal number of days
+and week 1 if it has at least the minimal number of days.<p></p>
+<p></p><p>
+This class is immutable and thread-safe.</p>
+</div>
+  
+
+  
+
+  
+
+  
+
+  
+</div>
+
+
+<div data-ice="staticMethodSummary"><h2>Static Method Summary</h2><table class="summary" data-ice="summary">
+  <thead><tr><td data-ice="title" colspan="3">Static Public Methods</td></tr></thead>
+  <tbody>
+  
+  <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      <span data-ice="static">static</span>
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html#static-method-of">of</a></span></span><span class="code" data-ice="signature">(firstDayOrLocale: <span>DayOfWeek </span> | <span> Locale</span>, minDays: <span>Number</span>): <span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>function overloading for <span>WeekFields#of</span></p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      <span data-ice="static">static</span>
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html#static-method-ofFirstDayOfWeekMinDays">ofFirstDayOfWeekMinDays</a></span></span><span class="code" data-ice="signature">(firstDayOfWeek: <span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span>, minimalDaysInFirstWeek: <span>Number</span>): <span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Obtains an instance of {@code WeekFields} from the first day-of-week and minimal days.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      <span data-ice="static">static</span>
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html#static-method-ofLocale">ofLocale</a></span></span><span class="code" data-ice="signature">(locale: <span><a href="class/packages/locale/src/Locale.js~Locale.html">Locale</a></span>): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Obtains an instance of {@code WeekFields} appropriate for a locale.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+
+
+<div data-ice="methodSummary"><h2>Method Summary</h2><table class="summary" data-ice="summary">
+  <thead><tr><td data-ice="title" colspan="3">Public Methods</td></tr></thead>
+  <tbody>
+  
+  <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html#instance-method-dayOfWeek">dayOfWeek</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Returns a field to access the day of week based on this {@code WeekFields}.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html#instance-method-equals">equals</a></span></span><span class="code" data-ice="signature">(object: <span>*</span>): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Checks if this {@code WeekFields} is equal to the specified object.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html#instance-method-firstDayOfWeek">firstDayOfWeek</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the first day-of-week.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html#instance-method-hashCode">hashCode</a></span></span><span class="code" data-ice="signature">(): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>A hash code for this {@code WeekFields}.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html#instance-method-minimalDaysInFirstWeek">minimalDaysInFirstWeek</a></span></span><span class="code" data-ice="signature">(): <span>Number</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Gets the minimal number of days in the first week.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html#instance-method-toString">toString</a></span></span><span class="code" data-ice="signature">(): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>A string representation of this {@code WeekFields} instance.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html#instance-method-weekBasedYear">weekBasedYear</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Returns a field to access the year of a week-based-year based on this {@code WeekFields}.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html#instance-method-weekOfMonth">weekOfMonth</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Returns a field to access the week of month based on this {@code WeekFields}.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html#instance-method-weekOfWeekBasedYear">weekOfWeekBasedYear</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Returns a field to access the week of a week-based-year based on this {@code WeekFields}.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html#instance-method-weekOfYear">weekOfYear</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Returns a field to access the week of year based on this {@code WeekFields}.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+
+
+
+
+<div data-ice="staticMethodDetails"><h2 data-ice="title">Static Public Methods</h2>
+
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-method-of">
+    <span class="access" data-ice="access">public</span>
+    <span data-ice="static">static</span>
+    
+    
+    
+    
+    <span class="code" data-ice="name">of</span><span class="code" data-ice="signature">(firstDayOrLocale: <span>DayOfWeek </span> | <span> Locale</span>, minDays: <span>Number</span>): <span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/locale/src/temporal/WeekFields.js.html#lineNumber571">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>function overloading for <span>WeekFields#of</span></p>
+<p>if called with 1 arguments then <span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html#static-method-ofLocale">WeekFields.ofLocale</a></span> is executed.</p>
+<p>Otherwise <span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html#static-method-ofFirstDayOfWeekMinDays">WeekFields.ofFirstDayOfWeekMinDays</a></span> is executed.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">firstDayOrLocale</td>
+      <td data-ice="type" class="code"><span>DayOfWeek </span> | <span> Locale</span></td>
+      <td data-ice="appendix"><ul><li>nullable: false</li></ul></td>
+      <td data-ice="description"></td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">minDays</td>
+      <td data-ice="type" class="code"><span>Number</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>this for chaining</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-method-ofFirstDayOfWeekMinDays">
+    <span class="access" data-ice="access">public</span>
+    <span data-ice="static">static</span>
+    
+    
+    
+    
+    <span class="code" data-ice="name">ofFirstDayOfWeekMinDays</span><span class="code" data-ice="signature">(firstDayOfWeek: <span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span>, minimalDaysInFirstWeek: <span>Number</span>): <span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/locale/src/temporal/WeekFields.js.html#lineNumber626">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Obtains an instance of {@code WeekFields} from the first day-of-week and minimal days.</p>
+<p></p><p>
+The first day-of-week defines the ISO {@code DayOfWeek} that is day 1 of the week.
+The minimal number of days in the first week defines how many days must be present
+in a month or year, starting from the first day-of-week, before the week is counted
+as the first week. A value of 1 will count the first day of the month or year as part
+of the first week, whereas a value of 7 will require the whole seven days to be in
+the new month or year.</p>
+<p></p><p>
+WeekFields instances are singletons; for each unique combination
+of {@code firstDayOfWeek} and {@code minimalDaysInFirstWeek} the
+the same instance will be returned.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">firstDayOfWeek</td>
+      <td data-ice="type" class="code"><span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></td>
+      <td data-ice="appendix"><ul><li>nullable: false</li></ul></td>
+      <td data-ice="description"><p>the first day of the week, not null</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">minimalDaysInFirstWeek</td>
+      <td data-ice="type" class="code"><span>Number</span></td>
+      <td data-ice="appendix"><ul><li>nullable: false</li></ul></td>
+      <td data-ice="description"><p>the minimal number of days in the first week, from
+    1 to 7</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the week-definition, not null</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  <div data-ice="throwWrap">
+    <h4>Throw:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span>*</span></p></td>
+        <td data-ice="throwDesc"><p>IllegalArgumentException if the minimal days value is less than one
+     or greater than 7</p>
+</td>
+      </tr>
+</tbody>
+    </table>
+  </div>
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-method-ofLocale">
+    <span class="access" data-ice="access">public</span>
+    <span data-ice="static">static</span>
+    
+    
+    
+    
+    <span class="code" data-ice="name">ofLocale</span><span class="code" data-ice="signature">(locale: <span><a href="class/packages/locale/src/Locale.js~Locale.html">Locale</a></span>): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/locale/src/temporal/WeekFields.js.html#lineNumber587">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Obtains an instance of {@code WeekFields} appropriate for a locale.</p>
+<p></p><p>
+This will look up appropriate values from the provider of localization data.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">locale</td>
+      <td data-ice="type" class="code"><span><a href="class/packages/locale/src/Locale.js~Locale.html">Locale</a></span></td>
+      <td data-ice="appendix"><ul><li>nullable: false</li></ul></td>
+      <td data-ice="description"><p>the locale to use, not null</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the week-definition, not null</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+</div>
+
+
+<div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
+
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-dayOfWeek">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">dayOfWeek</span><span class="code" data-ice="signature">(): <span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/locale/src/temporal/WeekFields.js.html#lineNumber716">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Returns a field to access the day of week based on this {@code WeekFields}.</p>
+<p></p><p>
+This is similar to <span>ChronoField#DAY_OF_WEEK</span> but uses values for
+the day-of-week based on this {@code WeekFields}.
+The days are numbered from 1 to 7 where the
+{@link #getFirstDayOfWeek() first day-of-week} is assigned the value 1.</p>
+<p></p><p>
+For example, if the first day-of-week is Sunday, then that will have the
+value 1, with other days ranging from Monday as 2 to Saturday as 7.</p>
+<p></p><p>
+In the resolving phase of parsing, a localized day-of-week will be converted
+to a standardized {@code ChronoField} day-of-week.
+The day-of-week must be in the valid range 1 to 7.
+Other fields in this class build dates using the standardized day-of-week.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a field providing access to the day-of-week with localized
+    numbering, not null</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-equals">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">equals</span><span class="code" data-ice="signature">(object: <span>*</span>): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/locale/src/temporal/WeekFields.js.html#lineNumber923">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Checks if this {@code WeekFields} is equal to the specified object.</p>
+<p></p><p>
+The comparison is based on the entire state of the rules, which is
+the first day-of-week and minimal days.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">object</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the other rules to compare to, null returns false</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>true if this is equal to the specified rules</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-firstDayOfWeek">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">firstDayOfWeek</span><span class="code" data-ice="signature">(): <span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/locale/src/temporal/WeekFields.js.html#lineNumber678">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Gets the first day-of-week.</p>
+<p></p><p>
+The first day-of-week varies by culture.
+For example, the US uses Sunday, while France and the ISO-8601 standard use Monday.
+This method returns the first day using the standard {@code DayOfWeek} enum.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the first day-of-week, not null</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-hashCode">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">hashCode</span><span class="code" data-ice="signature">(): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/locale/src/temporal/WeekFields.js.html#lineNumber938">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>A hash code for this {@code WeekFields}.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a suitable hash code</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-minimalDaysInFirstWeek">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">minimalDaysInFirstWeek</span><span class="code" data-ice="signature">(): <span>Number</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/locale/src/temporal/WeekFields.js.html#lineNumber692">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Gets the minimal number of days in the first week.</p>
+<p></p><p>
+The number of days considered to define the first week of a month or year
+varies by culture.
+For example, the ISO-8601 requires 4 days (more than half a week) to
+be present before counting the first week.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>Number</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the minimal number of days in the first week of a month or year, from 1 to 7</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-toString">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">toString</span><span class="code" data-ice="signature">(): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/locale/src/temporal/WeekFields.js.html#lineNumber948">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>A string representation of this {@code WeekFields} instance.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the string representation, not null</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-weekBasedYear">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">weekBasedYear</span><span class="code" data-ice="signature">(): <span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/locale/src/temporal/WeekFields.js.html#lineNumber909">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Returns a field to access the year of a week-based-year based on this {@code WeekFields}.</p>
+<p></p><p>
+This represents the concept of the year where weeks start on a fixed day-of-week,
+such as Monday and each week belongs to exactly one year.
+This field is typically used with {@link WeekFields#dayOfWeek()} and
+{@link WeekFields#weekOfWeekBasedYear()}.</p>
+<p></p><p>
+Week one(1) is the week starting on the <span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html#instance-method-firstDayOfWeek">WeekFields#firstDayOfWeek</a></span>
+where there are at least {@link WeekFields#getMinimalDaysInFirstWeek()} days in the year.
+Thus, week one may start before the start of the year.
+If the first week starts after the start of the year then the period before
+is in the last week of the previous year.</p>
+<p></p><p>
+This field can be used with any calendar system.</p>
+<p></p><p>
+In the resolving phase of parsing, a date can be created from a week-based-year,
+week-of-year and day-of-week.</p>
+<p></p><p>
+In {@linkplain ResolverStyle#STRICT strict mode}, all three fields are
+validated against their range of valid values. The week-of-year field
+is validated to ensure that the resulting week-based-year is the
+week-based-year requested.</p>
+<p></p><p>
+In {@linkplain ResolverStyle#SMART smart mode}, all three fields are
+validated against their range of valid values. The week-of-week-based-year field
+is validated from 1 to 53, meaning that the resulting date can be in the
+following week-based-year to that specified.</p>
+<p></p><p>
+In {@linkplain ResolverStyle#LENIENT lenient mode}, the year and day-of-week
+are validated against the range of valid values. The resulting date is calculated
+equivalent to the following three stage approach.
+First, create a date on the first day of the first week in the requested week-based-year.
+Then take the week-of-week-based-year, subtract one, and add the amount in weeks to the date.
+Finally, adjust to the correct day-of-week within the localized week.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a field providing access to the week-based-year, not null</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-weekOfMonth">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">weekOfMonth</span><span class="code" data-ice="signature">(): <span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/locale/src/temporal/WeekFields.js.html#lineNumber767">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Returns a field to access the week of month based on this {@code WeekFields}.</p>
+<p></p><p>
+This represents the concept of the count of weeks within the month where weeks
+start on a fixed day-of-week, such as Monday.
+This field is typically used with {@link WeekFields#dayOfWeek()}.</p>
+<p></p><p>
+Week one (1) is the week starting on the <span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html#instance-method-firstDayOfWeek">WeekFields#firstDayOfWeek</a></span>
+where there are at least {@link WeekFields#getMinimalDaysInFirstWeek()} days in the month.
+Thus, week one may start up to {@code minDays} days before the start of the month.
+If the first week starts after the start of the month then the period before is week zero
+(0).</p>
+<p></p><p>
+For example:<br></p>
+<ul>
+<li>if the 1st day of the month is a Monday, week one starts on the 1st and there is no week
+zero<br></li>
+<li>if the 2nd day of the month is a Monday, week one starts on the 2nd and the 1st is in week
+zero<br></li>
+<li>if the 4th day of the month is a Monday, week one starts on the 4th and the 1st to 3rd is
+in week zero<br></li>
+<li>if the 5th day of the month is a Monday, week two starts on the 5th and the 1st to 4th is
+in week one<br>
+<p>
+This field can be used with any calendar system.
+</p><p>
+In the resolving phase of parsing, a date can be created from a year,
+week-of-month, month-of-year and day-of-week.
+</p><p>
+In {@linkplain ResolverStyle#STRICT strict mode}, all four fields are
+validated against their range of valid values. The week-of-month field
+is validated to ensure that the resulting month is the month requested.
+</p><p>
+In {@linkplain ResolverStyle#SMART smart mode}, all four fields are
+validated against their range of valid values. The week-of-month field
+is validated from 0 to 6, meaning that the resulting date can be in a
+different month to that specified.
+</p><p>
+In {@linkplain ResolverStyle#LENIENT lenient mode}, the year and day-of-week
+are validated against the range of valid values. The resulting date is calculated
+equivalent to the following four stage approach.
+First, create a date on the first day of the first week of January in the requested year.
+Then take the month-of-year, subtract one, and add the amount in months to the date.
+Then take the week-of-month, subtract one, and add the amount in weeks to the date.
+Finally, adjust to the correct day-of-week within the localized week.</p></li>
+</ul>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a field providing access to the week-of-month, not null</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-weekOfWeekBasedYear">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">weekOfWeekBasedYear</span><span class="code" data-ice="signature">(): <span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/locale/src/temporal/WeekFields.js.html#lineNumber867">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Returns a field to access the week of a week-based-year based on this {@code WeekFields}.</p>
+<p></p><p>
+This represents the concept of the count of weeks within the year where weeks
+start on a fixed day-of-week, such as Monday and each week belongs to exactly one year.
+This field is typically used with {@link WeekFields#dayOfWeek()} and
+{@link WeekFields#weekBasedYear()}.</p>
+<p></p><p>
+Week one(1) is the week starting on the <span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html#instance-method-firstDayOfWeek">WeekFields#firstDayOfWeek</a></span>
+where there are at least {@link WeekFields#getMinimalDaysInFirstWeek()} days in the year.
+If the first week starts after the start of the year then the period before
+is in the last week of the previous year.</p>
+<p></p><p>
+For example:<br></p>
+<ul>
+<li>if the 1st day of the year is a Monday, week one starts on the 1st<br></li>
+<li>if the 2nd day of the year is a Monday, week one starts on the 2nd and
+the 1st is in the last week of the previous year<br></li>
+<li>if the 4th day of the year is a Monday, week one starts on the 4th and
+the 1st to 3rd is in the last week of the previous year<br></li>
+<li>if the 5th day of the year is a Monday, week two starts on the 5th and
+the 1st to 4th is in week one<br>
+<p>
+This field can be used with any calendar system.
+</p><p>
+In the resolving phase of parsing, a date can be created from a week-based-year,
+week-of-year and day-of-week.
+</p><p>
+In {@linkplain ResolverStyle#STRICT strict mode}, all three fields are
+validated against their range of valid values. The week-of-year field
+is validated to ensure that the resulting week-based-year is the
+week-based-year requested.
+</p><p>
+In {@linkplain ResolverStyle#SMART smart mode}, all three fields are
+validated against their range of valid values. The week-of-week-based-year field
+is validated from 1 to 53, meaning that the resulting date can be in the
+following week-based-year to that specified.
+</p><p>
+In {@linkplain ResolverStyle#LENIENT lenient mode}, the year and day-of-week
+are validated against the range of valid values. The resulting date is calculated
+equivalent to the following three stage approach.
+First, create a date on the first day of the first week in the requested week-based-year.
+Then take the week-of-week-based-year, subtract one, and add the amount in weeks to the date.
+Finally, adjust to the correct day-of-week within the localized week.</p></li>
+</ul>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a field providing access to the week-of-week-based-year, not null</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-weekOfYear">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">weekOfYear</span><span class="code" data-ice="signature">(): <span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/locale/src/temporal/WeekFields.js.html#lineNumber817">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Returns a field to access the week of year based on this {@code WeekFields}.</p>
+<p></p><p>
+This represents the concept of the count of weeks within the year where weeks
+start on a fixed day-of-week, such as Monday.
+This field is typically used with {@link WeekFields#dayOfWeek()}.</p>
+<p></p><p>
+Week one(1) is the week starting on the <span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html#instance-method-firstDayOfWeek">WeekFields#firstDayOfWeek</a></span>
+where there are at least {@link WeekFields#getMinimalDaysInFirstWeek()} days in the year.
+Thus, week one may start up to {@code minDays} days before the start of the year.
+If the first week starts after the start of the year then the period before is week zero
+(0).</p>
+<p></p><p>
+For example:<br></p>
+<ul>
+<li>if the 1st day of the year is a Monday, week one starts on the 1st and there is no week
+zero<br></li>
+<li>if the 2nd day of the year is a Monday, week one starts on the 2nd and the 1st is in week
+zero<br></li>
+<li>if the 4th day of the year is a Monday, week one starts on the 4th and the 1st to 3rd is
+in week zero<br></li>
+<li>if the 5th day of the year is a Monday, week two starts on the 5th and the 1st to 4th is
+in week one<br>
+<p>
+This field can be used with any calendar system.
+</p><p>
+In the resolving phase of parsing, a date can be created from a year,
+week-of-year and day-of-week.
+</p><p>
+In {@linkplain ResolverStyle#STRICT strict mode}, all three fields are
+validated against their range of valid values. The week-of-year field
+is validated to ensure that the resulting year is the year requested.
+</p><p>
+In {@linkplain ResolverStyle#SMART smart mode}, all three fields are
+validated against their range of valid values. The week-of-year field
+is validated from 0 to 54, meaning that the resulting date can be in a
+different year to that specified.
+</p><p>
+In {@linkplain ResolverStyle#LENIENT lenient mode}, the year and day-of-week
+are validated against the range of valid values. The resulting date is calculated
+equivalent to the following three stage approach.
+First, create a date on the first day of the first week in the requested year.
+Then take the week-of-year, subtract one, and add the amount in weeks to the date.
+Finally, adjust to the correct day-of-week within the localized week.</p></li>
+</ul>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>a field providing access to the week-of-year, not null</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

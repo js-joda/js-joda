@@ -1,6 +1,8 @@
 {
-  "source": "./src",
+  "source": "./packages/",
   "destination": "./docs",
+  "includes": ["^.*/src/.*\\.js$"],
+  "excludes": ["/node_modules/", "/examples/"],
   "plugins": [
     {
       "name": "esdoc-standard-plugin",
@@ -9,21 +11,25 @@
           "access": ["public"],
           "autoPrivate": true
         },
+        "brand": {
+          "title": "js-joda",
+          "description": "Immutable date and time library for JavaScript",
+          "repository": "https://github.com/js-joda/js-joda"
+        },
         "manual": {
-          "index": "./src/docs/index.md",
+          "index": "./esdoc/manual/index.md",
           "globalIndex": true,
           "files": [
-            "./src/docs/getting-started.md",
-            "./src/docs/usage.md",
-            "./src/docs/LocalDate.md",
-            "./src/docs/LocalTime.md",
-            "./src/docs/LocalDateTime.md",
-            "./src/docs/ZonedDateTime.md",
-            "./src/docs/Period.md",
-            "./src/docs/Duration.md",
-            "./src/docs/formatting.md",
-            "./src/docs/customizing.md",
-            "./CHANGELOG.md"
+            "./esdoc/manual/getting-started.md",
+            "./esdoc/manual/usage.md",
+            "./esdoc/manual/LocalDate.md",
+            "./esdoc/manual/LocalTime.md",
+            "./esdoc/manual/LocalDateTime.md",
+            "./esdoc/manual/ZonedDateTime.md",
+            "./esdoc/manual/Period.md",
+            "./esdoc/manual/Duration.md",
+            "./esdoc/manual/formatting.md",
+            "./esdoc/manual/customizing.md"
           ]
         }
       }

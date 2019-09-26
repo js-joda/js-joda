@@ -1,0 +1,29 @@
+# test files
+test
+
+# Node dependency directory
+node_modules
+
+# npm
+npm-debug.log
+package-lock.json
+
+# build config
+esdoc.json
+karma.conf.js
+.*
+!.babelrc
+
+# build output
+build
+
+#submodules output
+packages
+
+# Ide
+.idea
+
+# etc
+benchmark
+tmp
+ReleaseHowTo.md

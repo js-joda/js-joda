@@ -1,0 +1,23 @@
+{
+  "presets": [
+    ["@babel/preset-env", {
+      "modules": false,
+      "loose": true,
+      "targets": {
+        "browsers": [
+          "last 2 versions"
+        ]
+      }
+    }]
+  ],
+  "comments": false,
+  "env": {
+    "test": {
+      "presets": ["@babel/preset-env", {
+        "plugins": [
+          "istanbul"
+        ]
+      }]
+    }
+  }
+}
