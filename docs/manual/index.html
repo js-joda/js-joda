@@ -140,15 +140,17 @@
 <a href="https://img.shields.io/npm/dm/js-joda.svg"><img src="https://img.shields.io/npm/dm/js-joda.svg" alt="Downloads/Month"></a></p>
 <p><a href="https://saucelabs.com/u/js-joda"><img src="https://saucelabs.com/browser-matrix/js-joda.svg" alt="Sauce Test Status"></a></p>
 <ul>
-<li><p><strong>js-joda</strong> is an <strong>immutable date and time library</strong> for javascript. It provides a <strong>simple, domain-driven and clean API</strong> based on the <strong>ISO8601</strong> calendar.</p>
+<li><p><strong>js-joda</strong> is an <strong>immutable date and time library</strong> for JavaScript. It provides a <strong>simple, domain-driven and clean API</strong> based on the ISO calendar system, which is the de facto world calendar following the proleptic Gregorian rules.</p>
 </li>
-<li><p>js-joda has a lightweight footprint, only <strong>46 kB minified and compressed</strong>, no third party dependencies.</p>
+<li><p>js-joda has a lightweight footprint, only <strong>43 kB minified and compressed</strong>, no third party dependencies.</p>
 </li>
-<li><p>js-joda is <strong>fast</strong>. It is about 2 to 10 times faster than other javascript date libraries.</p>
+<li><p>js-joda is <strong>fast</strong>. It is about 2 to 10 times faster than other JavaScript date libraries.</p>
 </li>
-<li><p>js-joda supports <strong>ECMAScript 5</strong> browsers down to ie9.</p>
+<li><p>js-joda comes with built-in parsers/ formatters for ISO 8601 as specified in RFC 3339, that can be easily customized.</p>
 </li>
-<li><p>js-joda is a <strong>port of the threeten</strong> backport, that is the base for JSR-310 implementation of the Java SE 8 java.time package. Threeten is inspired by <strong>Joda-Time</strong>, having similar concepts and the same author.</p>
+<li><p>js-joda supports <strong>ECMAScript 5</strong> browsers down to IE9.</p>
+</li>
+<li><p>js-joda is a <strong>port of the threeten</strong> backport, which is the base for JSR-310 implementation of the Java SE 8 java.time package. Threeten is inspired by <strong>Joda-Time</strong>, having similar concepts and the same author.</p>
 </li>
 <li><p>js-joda is <strong>robust and stable</strong>. We ported more then 1700 test-cases with a lots of test-permutations from the threetenbp project. We run the automated karma test-suite against Firefox, Chrome, Node and phantomjs.</p>
 </li>
@@ -204,7 +206,7 @@ with the architecture of frameworks like React and Flux.</p>
     
   <div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
-        <div data-ice="card"><h1>Getting started</h1><h3>Node</h3><p>Install joda using npm</p><pre><code class="lang-bash"><code class="source-code prettyprint">npm install js-joda</code>
+        <div data-ice="card"><h1>Getting started</h1><h3>Node</h3><p>Install joda using npm</p><pre><code class="lang-bash"><code class="source-code prettyprint">npm install @js-joda/core</code>
 </code></pre><p>Then require it to any module</p><pre><code class="lang-javascript"><code class="source-code prettyprint">var LocalDate = require(&quot;@js-joda/core&quot;).LocalDate;
 
 var d = LocalDate.parse(&quot;2012-12-24&quot;)
