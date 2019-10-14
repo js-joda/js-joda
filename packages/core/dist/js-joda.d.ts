@@ -606,19 +606,11 @@ declare namespace JSJoda {
     class MonthDay extends TemporalAccessor {
         static from(temporal: TemporalAccessor): MonthDay
 
-        static now(arg1?: ZoneId|Clock): MonthDay
+        static now(zoneIdOrClock?: ZoneId|Clock): MonthDay
 
-        static of(monthOrNumber: Month|number, number?: number): MonthDay
-
-        static ofMonthNumber(month: Month, dayOfMonth: number): MonthDay
-
-        static ofNumberNumber(month: number, dayOfMonth: number): MonthDay
+        static of(month: Month|number, dayOfMonth: number): MonthDay
 
         static parse(text: string, formatter?: DateTimeFormatter): MonthDay
-
-        static parseString(text: string): MonthDay
-
-        static parseStringFormatter(text: string, formatter: DateTimeFormatter): MonthDay
 
         private constructor()
 
@@ -1082,8 +1074,6 @@ declare namespace JSJoda {
 
         static between(startDate: LocalDate, endDate: LocalDate): Period
 
-        static create(years: number, months: number, days: number): Duration
-
         static from(amount: TemporalAmount): Period
 
         static of(years: number, months: number, days: number): Period
@@ -1524,16 +1514,14 @@ declare namespace JSJoda {
 
         static now(clockOrZone?: Clock|ZoneId): ZonedDateTime
 
-        static of(): any
         static of(localDateTime: LocalDateTime, zone: ZoneId): ZonedDateTime
         static of(date: LocalDate, time: LocalTime, zone: ZoneId): ZonedDateTime
         static of(year: number, month: number, dayOfMonth: number, hour: number, minute: number, second: number, nanoOfSecond: number, zone: ZoneId): ZonedDateTime
 
-        static ofInstant(): ZonedDateTime
         static ofInstant(instant: Instant, zone: ZoneId): ZonedDateTime
         static ofInstant(localDateTime: LocalDateTime, offset: ZoneOffset, zone: ZoneId): ZonedDateTime
 
-        static ofLocal(localDateTime: LocalDateTime, zone: ZoneId, preferredOffset: ZoneOffset | null): ZonedDateTime
+        static ofLocal(localDateTime: LocalDateTime, zone: ZoneId, preferredOffset?: ZoneOffset | null): ZonedDateTime
 
         static ofStrict(localDateTime: LocalDateTime, offset: ZoneOffset, zone: ZoneId): ZonedDateTime
 
