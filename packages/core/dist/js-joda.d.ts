@@ -184,7 +184,7 @@ declare namespace JSJoda {
 
         toString(): string
 
-        units(): any
+        units(): TemporalUnit[]
 
         withNanos(nanoOfSecond: number): Duration
 
@@ -1126,7 +1126,7 @@ declare namespace JSJoda {
 
         toTotalMonths(): number
 
-        units(): ChronoUnit[]
+        units(): TemporalUnit[]
 
         withDays(days: number): Period
 

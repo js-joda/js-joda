@@ -39,6 +39,16 @@ declare function moment(): any;
  *  For more information, see e.g. http:
  */
 
+function test_ChronoUnit() {
+    const cu = ChronoUnit.DAYS;
+
+    expectType<LocalDate>(cu.addTo(LocalDate.now(), 1));
+    expectType<number>(cu.between(LocalDate.now(), LocalDate.now()));
+    expectType<Duration>(cu.duration());
+    expectType<boolean>(cu.isDateBased());
+    expectType<string>(cu.toString());
+}
+
 function test_LocalDate() {
     LocalDate.now();
     LocalDate.now(ZoneOffset.UTC);
