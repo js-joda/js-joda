@@ -453,7 +453,7 @@ function test_ZoneOffsetTransition() {
     expectType<boolean>(zot.isOverlap());
     expectType<boolean>(zot.isValidOffset(ZoneOffset.UTC));
     expectType<ZoneOffset[]>(zot.validOffsets());
-    expectType<boolean>(zot.equals({}));
+    expectType<boolean>(zot.equals(zot));
     expectType<number>(zot.compareTo(undefined! as ZoneOffsetTransition));
     expectType<number>(zot.hashCode());
     expectType<string>(zot.toString());

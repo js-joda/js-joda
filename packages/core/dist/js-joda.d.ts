@@ -114,7 +114,7 @@ declare namespace JSJoda {
 
         dividedBy(divisor: number): Duration
 
-        equals(otherDuration: any): boolean
+        equals(other: any): boolean
 
         get(unit: TemporalUnit): number
 
@@ -218,7 +218,7 @@ declare namespace JSJoda {
 
         epochSecond(): number
 
-        equals(otherInstant: any): boolean
+        equals(other: any): boolean
 
         get(field: TemporalField): number
 
@@ -549,7 +549,7 @@ declare namespace JSJoda {
 
         compareTo(other: Month): number
 
-        equals(other: Month): boolean
+        equals(other: any): boolean
 
         firstDayOfYear(leapYear: boolean): number
 
@@ -611,7 +611,7 @@ declare namespace JSJoda {
 
         dayOfMonth(): number
 
-        equals(obj: any): boolean
+        equals(other: any): boolean
 
         format(formatter: DateTimeFormatter): string
 
@@ -821,7 +821,7 @@ declare namespace JSJoda {
 
         dayOfYear(): number
 
-        equals(otherDate: any): boolean
+        equals(other: any): boolean
 
         get(field: TemporalField): number
 
@@ -959,7 +959,7 @@ declare namespace JSJoda {
 
         isBefore(other: LocalDateTime): boolean
 
-        isEqual(other: any): boolean
+        isEqual(other: LocalDateTime): boolean
 
         isSupported(fieldOrUnit: TemporalField|TemporalUnit): boolean
 
@@ -1084,7 +1084,7 @@ declare namespace JSJoda {
 
         days(): number
 
-        equals(obj: any): boolean
+        equals(other: any): boolean
 
         get(unit: TemporalUnit): number
 
@@ -1305,7 +1305,7 @@ declare namespace JSJoda {
 
         isBefore(other: YearMonth): boolean
 
-        equals(other: YearMonth): boolean
+        equals(other: any): boolean
 
         toJSON(): string
 
@@ -1360,7 +1360,7 @@ declare namespace JSJoda {
 
         compareTo(other: ZoneOffset): number
 
-        equals(obj: any): boolean
+        equals(other: any): boolean
 
         get(field: TemporalField): number
 
