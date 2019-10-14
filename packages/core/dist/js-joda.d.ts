@@ -1,5 +1,14 @@
 declare namespace JSJoda {
 
+    class ParsePosition {
+        constructor(index: number)
+    
+        getIndex(): number
+        setIndex(index: number): void
+        getErrorIndex(): number    
+        setErrorIndex(errorIndex: number): void
+    }
+
     abstract class TemporalAccessor {
         get(field: TemporalField): number
 
@@ -320,7 +329,7 @@ declare namespace JSJoda {
 
         static parsedExcessDays(): TemporalQuery
 
-        static parsedLeapSecond(): boolean
+        static parsedLeapSecond(): TemporalQuery
 
         private constructor()
 
@@ -332,13 +341,9 @@ declare namespace JSJoda {
 
         locale(): any
 
-        parse(text: string, type: TemporalQuery): TemporalAccessor
+        parse(text: string, type?: TemporalQuery): TemporalAccessor
 
-        parse1(text: string): TemporalAccessor
-
-        parse2(text: any, type: any): any
-
-        parseUnresolved(text: any, position: any): any
+        parseUnresolved(text: string, position: ParsePosition): TemporalAccessor
 
         toString(): string
 
