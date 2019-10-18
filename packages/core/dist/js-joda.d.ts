@@ -1232,24 +1232,32 @@ declare namespace JSJoda {
         static MAX_VALUE: number;
 
         static from(temporal: TemporalAccessor): Year
-
         static isLeap(year: number): boolean
-
-        static now(zoneIdOrClock?: ZoneId|Clock): Year
-
+        static now(zoneIdOrClock?: ZoneId | Clock): Year
         static of(isoYear: number): Year
-
         static parse(text: string, formatter?: DateTimeFormatter): Year
 
         private constructor()
 
-        atMonth(monthOrNumber: Month|number): YearMonth
-
-        plus(amountOrNumber: TemporalAmount|number, unit?: TemporalUnit): Year
-
-        minus(amountOrNumber: TemporalAmount|number, unit?: TemporalUnit): Year
-
+        atDay(dayOfYear: number): LocalDate
+        atMonth(month: Month | number): YearMonth
+        atMonthDay(monthDay: MonthDay): LocalDate
+        compareTo(other: Year): number
+        equals(other: any): boolean
+        isAfter(other: Year): boolean
+        isBefore(other: Year): boolean
+        isLeap(): boolean
+        isValidMonthDay(monthDay: MonthDay): boolean
+        length(): number
+        plus(amount: TemporalAmount): Year
+        plus(amountToAdd: number, unit: TemporalUnit): Year
+        plusYears(yearsToAdd: number): Year
+        minus(amount: TemporalAmount): Year
+        minus(amountToSubtract: number, unit: TemporalUnit): Year
+        minusYears(yearsToSubtract: number): Year
         value(): number
+        with(adjuster: TemporalAdjuster): Year
+        with(field: TemporalField, newValue: number): Year
     }
 
     class YearMonth extends Temporal {
