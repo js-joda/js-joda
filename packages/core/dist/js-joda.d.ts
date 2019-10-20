@@ -7,9 +7,13 @@ export class ParsePosition {
     setErrorIndex(errorIndex: number): void;
 }
 
+export abstract class TemporalQuery<R> {
+    abstract queryFrom(temporal: TemporalAccessor): R;
+}
+
 export abstract class TemporalAccessor {
     get(field: TemporalField): number;
-    query(query: TemporalQuery): any;
+    query<R>(query: TemporalQuery<R>): R;
     range(field: TemporalField): ValueRange;
 }
 
@@ -171,7 +175,7 @@ export class Instant extends Temporal {
     plusMillis(millisToAdd: number): Instant;
     plusNanos(nanosToAdd: number): Instant;
     plusSeconds(secondsToAdd: number): Instant;
-    query(query: TemporalQuery): any;
+    query<R>(query: TemporalQuery<R>): R;
     range(field: TemporalField): ValueRange;
     toEpochMilli(): number;
     toJSON(): string;
@@ -208,8 +212,8 @@ export class DateTimeFormatter {
     static ISO_ZONED_DATE_TIME: DateTimeFormatter;
 
     static ofPattern(pattern: string): DateTimeFormatter;
-    static parsedExcessDays(): TemporalQuery;
-    static parsedLeapSecond(): TemporalQuery;
+    static parsedExcessDays(): TemporalQuery<Period>;
+    static parsedLeapSecond(): TemporalQuery<boolean>;
 
     private constructor();
 
@@ -217,7 +221,8 @@ export class DateTimeFormatter {
     decimalStyle(): any;
     format(temporal: TemporalAccessor): string;
     locale(): any;
-    parse(text: string, type?: TemporalQuery): TemporalAccessor;
+    parse(text: string): TemporalAccessor;
+    parse<T>(text: string, query: TemporalQuery<T>): T;
     parseUnresolved(text: string, position: ParsePosition): TemporalAccessor;
     toString(): string;
     withChronology(chrono: any): any;
@@ -251,7 +256,7 @@ export class DateTimeFormatterBuilder {
 // TODO: js-joda doesn't have Chronology yet. Methods like `LocalDate.chronology()`
 // actually return an `IsoChronology` so Chronology is an alias type of that class
 // for now. Change this if Chronology is added.
-type Chronology = IsoChronology;
+export type Chronology = IsoChronology;
 
 export class LocalTime extends Temporal {
     static MIN: LocalTime;
@@ -307,7 +312,7 @@ export class LocalTime extends Temporal {
     plusMinutes(minutesToAdd: number): LocalTime;
     plusNanos(nanosToAdd: number): LocalTime;
     plusSeconds(secondstoAdd: number): LocalTime;
-    query(query: TemporalQuery): any;
+    query<R>(query: TemporalQuery<R>): R;
     range(field: ChronoField): ValueRange;
     second(): number;
     toJSON(): string;
@@ -378,7 +383,7 @@ export class Month extends TemporalAccessor {
     name(): string;
     ordinal(): number;
     plus(months: number): Month;
-    query(query: TemporalQuery): any;
+    query<R>(query: TemporalQuery<R>): R;
     toString(): string;
     value(): number;
 }
@@ -405,7 +410,7 @@ export class MonthDay extends TemporalAccessor {
     isValidYear(year: number): boolean;
     month(): Month;
     monthValue(): number;
-    query(query: TemporalQuery): any;
+    query<R>(query: TemporalQuery<R>): R;
     range(field: TemporalField): ValueRange;
     toString(): string;
     with(month: Month): MonthDay;
@@ -589,7 +594,7 @@ export class LocalDate extends ChronoLocalDate {
     plusMonths(monthsToAdd: number): LocalDate;
     plusWeeks(weeksToAdd: number): LocalDate;
     plusYears(yearsToAdd: number): LocalDate;
-    query(query: TemporalQuery): any;
+    query<R>(query: TemporalQuery<R>): R;
     range(field: TemporalField): ValueRange;
     toEpochDay(): number;
     toJSON(): string;
@@ -671,7 +676,7 @@ export class LocalDateTime extends ChronoLocalDateTime {
     plusTemporalAmount(amount: TemporalAmount): LocalDateTime;
     plusWeeks(weeks: number): LocalDateTime;
     plusYears(years: number): LocalDateTime;
-    query(query: TemporalQuery): any;
+    query<R>(query: TemporalQuery<R>): R;
     range(field: TemporalField): ValueRange;
     second(): number;
     toJSON(): string;
@@ -761,20 +766,14 @@ export class TemporalAdjusters {
     private constructor();
 }
 
-export class TemporalQueries {
-    static chronology(): TemporalQuery;
-    static localDate(): TemporalQuery;
-    static localTime(): TemporalQuery;
-    static offset(): TemporalQuery;
-    static precision(): TemporalQuery;
-    static zone(): TemporalQuery;
-    static zoneId(): TemporalQuery;
-
-    private constructor();
-}
-
-export abstract class TemporalQuery {
-    abstract queryFrom(temporal: TemporalAccessor): any;
+export namespace TemporalQueries {
+    function chronology(): TemporalQuery<Chronology>;
+    function localDate(): TemporalQuery<LocalDate>;
+    function localTime(): TemporalQuery<LocalTime>;
+    function offset(): TemporalQuery<ZoneOffset>;
+    function precision(): TemporalQuery<TemporalUnit>;
+    function zone(): TemporalQuery<ZoneId>;
+    function zoneId(): TemporalQuery<ZoneId>;
 }
 
 export class ValueRange {
@@ -912,7 +911,7 @@ export class ZoneOffset extends ZoneId {
     getLong(field: TemporalField): number;
     hashCode(): number;
     id(): string;
-    query(query: TemporalQuery): any;
+    query<R>(query: TemporalQuery<R>): R;
     rules(): ZoneRules;
     toString(): string;
     totalSeconds(): number;
@@ -1039,7 +1038,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     plusTemporalAmount(amount: TemporalAmount): ZonedDateTime;
     plusWeeks(weeks: number): any;
     plusYears(years: number): ZonedDateTime;
-    query(query: TemporalQuery): any;
+    query<R>(query: TemporalQuery<R>): R;
     range(field: TemporalField): ValueRange;
     second(): number;
     toJSON(): string;
