@@ -330,22 +330,6 @@ export class LocalTime extends Temporal {
     withTemporalAdjuster(adjuster: TemporalAdjuster): LocalTime;
 }
 
-export class MathUtil {
-    static compareNumbers(a: number, b: number): number;
-    static floorDiv(x: number, y: number): number;
-    static floorMod(x: number, y: number): number;
-    static intDiv(x: number, y: number): number;
-    static intMod(x: number, y: number): number;
-    static parseInt(value: number): number;
-    static roundDown(r: number): number;
-    static safeAdd(x: number, y: number): number;
-    static safeMultiply(x: number, y: number): number;
-    static safeSubtract(x: number, y: number): number;
-    static safeToInt(value: number): number;
-    static safeZero(value: number): number;
-    static verifyInt(value: number): void;
-}
-
 export class Month extends TemporalAccessor {
     static JANUARY: Month;
     static FEBRUARY: Month;
