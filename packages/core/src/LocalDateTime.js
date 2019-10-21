@@ -162,9 +162,9 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      *
      * The day must be valid for the year and month, otherwise an exception will be thrown.
      *
-     * @param {number} [year=0] - the year to represent, from MIN_YEAR to MAX_YEAR
-     * @param {number} [month=0] - the month-of-year to represent, from 1 to 12 or from a Month
-     * @param {number} [dayOfMonth=0] - the day-of-month to represent, from 1 to 31
+     * @param {number} [year] - the year to represent, from MIN_YEAR to MAX_YEAR, not null
+     * @param {number} [month] - the month-of-year to represent, from 1 to 12 or from a Month, not null
+     * @param {number} [dayOfMonth] - the day-of-month to represent, from 1 to 31, not null
      * @param {number} [hour=0] - the hour-of-day to represent, from 0 to 23
      * @param {number} [minute=0] - the minute-of-hour to represent, from 0 to 59
      * @param {number} [second=0] - the second-of-minute to represent, from 0 to 59
@@ -173,7 +173,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @throws {DateTimeException} if the value of any field is out of range
      * @throws {DateTimeException} if the day-of-month is invalid for the month-year
      */
-    static ofNumbers(year=0, month=0, dayOfMonth=0, hour=0, minute=0, second=0, nanoOfSecond=0) {
+    static ofNumbers(year, month, dayOfMonth, hour=0, minute=0, second=0, nanoOfSecond=0) {
         const date = LocalDate.of(year, month, dayOfMonth);
         const time = LocalTime.of(hour, minute, second, nanoOfSecond);
         return new LocalDateTime(date, time);
