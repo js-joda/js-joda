@@ -279,6 +279,10 @@ export class LocalDate extends ChronoLocalDate{
      */
     constructor(year, month, dayOfMonth){
         super();
+        requireNonNull(year, 'year');
+        requireNonNull(month, 'month');
+        requireNonNull(dayOfMonth, 'dayOfMonth');
+
         if (month instanceof Month) {
             month = month.value();
         }

@@ -8,7 +8,7 @@ import {expect} from 'chai';
 import './_init';
 
 import {LocalDateTime} from '../src/LocalDateTime';
-import {ArithmeticException, DateTimeException} from '../src/errors';
+import {NullPointerException, DateTimeException} from '../src/errors';
 
 /* these are not covered by the threetenbp ported tests */
 describe('js-joda LocalDateTime', () => {
@@ -28,8 +28,8 @@ describe('js-joda LocalDateTime', () => {
             expect(() => LocalDateTime.of(0, 0, 0)).to.throw(DateTimeException);
         });
 
-		it('should fail without arguments with ArithmeticException', () => {
-            expect(() => LocalDateTime.of()).to.throw(ArithmeticException);
+		it('should fail without arguments with NullPointerException', () => {
+            expect(() => LocalDateTime.of()).to.throw(NullPointerException);
         });
     });
 });

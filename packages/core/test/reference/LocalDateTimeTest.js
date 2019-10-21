@@ -279,7 +279,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         it('factory_of_4intsMonth_nullMonth', () => {
             expect(() => {
                 LocalDateTime.of(2007, null, 15, 12, 30);
-            }).to.throw(ArithmeticException);
+            }).to.throw(NullPointerException);
         });
 
         it('factory_of_4intsMonth_dayTooLow', () => {
@@ -334,7 +334,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         it('factory_of_5intsMonth_nullMonth', () => {
             expect(() => {
                 LocalDateTime.of(2007, null, 15, 12, 30, 40);
-            }).to.throw(ArithmeticException);
+            }).to.throw(NullPointerException);
         });
 
         it('factory_of_5intsMonth_dayTooLow', () => {
@@ -400,7 +400,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         it('factory_of_6intsMonth_nullMonth', () => {
             expect(() => {
                 LocalDateTime.of(2007, null, 15, 12, 30, 40, 987654321);
-            }).to.throw(ArithmeticException);
+            }).to.throw(NullPointerException);
         });
 
         it('factory_of_6intsMonth_dayTooLow', () => {
