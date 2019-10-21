@@ -468,6 +468,29 @@ export class ChronoField extends TemporalField {
     toString(): string;
 }
 
+export namespace IsoFields {
+    // TODO: Get rid of this class and typed all constants as TemporalField once
+    // the base class is ready and fixed (getDisplayName)
+    class Field extends TemporalField {
+        private constructor();
+
+        isDateBased(): boolean;
+        isTimeBased(): boolean;
+        name(): string;
+        getDisplayName(): string;
+    }
+
+    export const DAY_OF_QUARTER: Field;
+    export const QUARTER_OF_YEAR: Field;
+    export const WEEK_OF_WEEK_BASED_YEAR: Field;
+    export const WEEK_BASED_YEAR: Field;
+    export const WEEK_BASED_YEARS: TemporalUnit;
+    export const QUARTER_YEARS: TemporalUnit;
+
+    // This allows non-exported types, otherwise everyting is exported
+    export {};
+}
+
 export abstract class TemporalUnit {
     abstract addTo<T extends Temporal>(temporal: T, amount: number): T;
     abstract between(temporal1: Temporal, temporal2: Temporal): number;
@@ -507,17 +530,6 @@ export class ChronoUnit extends TemporalUnit {
     isSupportedBy(temporal: Temporal): boolean;
     isTimeBased(): boolean;
     toString(): string;
-}
-
-export class IsoFields {
-    static DAY_OF_QUARTER: TemporalField;
-    static QUARTER_OF_YEAR: TemporalField;
-    static WEEK_OF_WEEK_BASED_YEAR: TemporalField;
-    static WEEK_BASED_YEAR: TemporalField;
-    static WEEK_BASED_YEARS: TemporalUnit;
-    static QUARTER_YEARS: TemporalUnit;
-
-    private constructor();
 }
 
 export abstract class ChronoLocalDate extends Temporal {
