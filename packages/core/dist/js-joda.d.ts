@@ -7,6 +7,18 @@ export class ParsePosition {
     setErrorIndex(errorIndex: number): void;
 }
 
+export class DecimalStyle {
+    private constructor();
+
+    equals(other: any): boolean;
+    decimalSeparator(): string;
+    negativeSign(): string;
+    positiveSign(): string;
+    zeroDigit(): string;
+    hashCode(): any;
+    toString(): string;
+}
+
 export abstract class TemporalQuery<R> {
     abstract queryFrom(temporal: TemporalAccessor): R;
 }
@@ -217,15 +229,15 @@ export class DateTimeFormatter {
 
     private constructor();
 
-    chronology(): any;
-    decimalStyle(): any;
+    chronology(): Chronology | null;
+    decimalStyle(): DecimalStyle;
     format(temporal: TemporalAccessor): string;
     locale(): any;
     parse(text: string): TemporalAccessor;
     parse<T>(text: string, query: TemporalQuery<T>): T;
     parseUnresolved(text: string, position: ParsePosition): TemporalAccessor;
     toString(): string;
-    withChronology(chrono: any): any;
+    withChronology(chrono: Chronology): DateTimeFormatter;
     withLocale(locale: Locale): DateTimeFormatter;
     withResolverStyle(resolverStyle: ResolverStyle): DateTimeFormatter;
 }
@@ -597,7 +609,7 @@ export class LocalDate extends ChronoLocalDate {
 }
 
 export abstract class ChronoLocalDateTime extends Temporal {
-    adjustInto(temporal: any): any;
+    adjustInto(temporal: TemporalAdjuster): ChronoLocalDate;
     chronology(): Chronology;
     toEpochSecond(offset: ZoneOffset): number;
     toInstant(offset: ZoneOffset): Instant;
@@ -993,7 +1005,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     hashCode(): number;
     hour(): number;
     isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean;
-    minus(): any;
+    minus(): ZonedDateTime;
     minus(amountToSubtract: number, unit: TemporalUnit): ZonedDateTime;
     minusDays(days: number): ZonedDateTime;
     minusHours(hours: number): ZonedDateTime;
@@ -1008,17 +1020,17 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     month(): Month;
     monthValue(): number;
     nano(): number;
-    offset(): any;
-    plus(): any;
+    offset(): ZoneOffset;
+    plus(): ZonedDateTime;
     plus(amountToAdd: number, unit: TemporalUnit): ZonedDateTime;
-    plusDays(days: number): any;
+    plusDays(days: number): ZonedDateTime;
     plusHours(hours: number): ZonedDateTime;
     plusMinutes(minutes: number): ZonedDateTime;
     plusMonths(months: number): ZonedDateTime;
     plusNanos(nanos: number): ZonedDateTime;
     plusSeconds(seconds: number): ZonedDateTime;
     plusTemporalAmount(amount: TemporalAmount): ZonedDateTime;
-    plusWeeks(weeks: number): any;
+    plusWeeks(weeks: number): ZonedDateTime;
     plusYears(years: number): ZonedDateTime;
     query<R>(query: TemporalQuery<R>): R;
     range(field: TemporalField): ValueRange;
@@ -1030,7 +1042,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     toString(): string;
     truncatedTo(unit: TemporalUnit): ZonedDateTime;
     until(endExclusive: Temporal, unit: TemporalUnit): number;
-    with(): any;
+    with(adjuster: TemporalAdjuster): ZonedDateTime;
     with(field: TemporalField, newValue: number): ZonedDateTime;
     withDayOfMonth(dayOfMonth: number): ZonedDateTime;
     withDayOfYear(dayOfYear: number): ZonedDateTime;
