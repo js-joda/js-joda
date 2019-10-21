@@ -732,22 +732,20 @@ export abstract class TemporalAdjuster {
     abstract adjustInto(temporal: Temporal): Temporal;
 }
 
-export class TemporalAdjusters {
-    static dayOfWeekInMonth(ordinal: number, dayOfWeek: DayOfWeek): TemporalAdjuster;
-    static firstDayOfMonth(): TemporalAdjuster;
-    static firstDayOfNextMonth(): TemporalAdjuster;
-    static firstDayOfNextYear(): TemporalAdjuster;
-    static firstDayOfYear(): TemporalAdjuster;
-    static firstInMonth(dayOfWeek: DayOfWeek): TemporalAdjuster;
-    static lastDayOfMonth(): TemporalAdjuster;
-    static lastDayOfYear(): TemporalAdjuster;
-    static lastInMonth(dayOfWeek: DayOfWeek): TemporalAdjuster;
-    static next(dayOfWeek: DayOfWeek): TemporalAdjuster;
-    static nextOrSame(dayOfWeek: DayOfWeek): TemporalAdjuster;
-    static previous(dayOfWeek: DayOfWeek): TemporalAdjuster;
-    static previousOrSame(dayOfWeek: DayOfWeek): TemporalAdjuster;
-
-    private constructor();
+export namespace TemporalAdjusters {
+    function dayOfWeekInMonth(ordinal: number, dayOfWeek: DayOfWeek): TemporalAdjuster;
+    function firstDayOfMonth(): TemporalAdjuster;
+    function firstDayOfNextMonth(): TemporalAdjuster;
+    function firstDayOfNextYear(): TemporalAdjuster;
+    function firstDayOfYear(): TemporalAdjuster;
+    function firstInMonth(dayOfWeek: DayOfWeek): TemporalAdjuster;
+    function lastDayOfMonth(): TemporalAdjuster;
+    function lastDayOfYear(): TemporalAdjuster;
+    function lastInMonth(dayOfWeek: DayOfWeek): TemporalAdjuster;
+    function next(dayOfWeek: DayOfWeek): TemporalAdjuster;
+    function nextOrSame(dayOfWeek: DayOfWeek): TemporalAdjuster;
+    function previous(dayOfWeek: DayOfWeek): TemporalAdjuster;
+    function previousOrSame(dayOfWeek: DayOfWeek): TemporalAdjuster;
 }
 
 export namespace TemporalQueries {
