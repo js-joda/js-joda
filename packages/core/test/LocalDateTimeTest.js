@@ -17,18 +17,18 @@ describe('js-joda LocalDateTime', () => {
         it('should create a LocalDateTime instance for a valid date', () => {
             expect(LocalDateTime.of(2019, 10, 21)).to.be.an.instanceOf(LocalDateTime);
             expect(LocalDateTime.of(2000, 1, 1)).to.eql(LocalDateTime.parse('2000-01-01T00:00'));
-		});
+        });
 		
-		it('should create a LocalDateTime instance for a valid date with time', () => {
+        it('should create a LocalDateTime instance for a valid date with time', () => {
             expect(LocalDateTime.of(2015, 12, 30, 5, 0)).to.be.an.instanceOf(LocalDateTime);
             expect(LocalDateTime.of(2000, 1, 1, 13)).to.eql(LocalDateTime.parse('2000-01-01T13:00'));
-		});
+        });
 		
-		it('should fail for an invalid date time', () => {
+        it('should fail for an invalid date time', () => {
             expect(() => LocalDateTime.of(0, 0, 0)).to.throw(DateTimeException);
         });
 
-		it('should fail without arguments with NullPointerException', () => {
+        it('should fail without arguments with NullPointerException', () => {
             expect(() => LocalDateTime.of()).to.throw(NullPointerException);
         });
     });
