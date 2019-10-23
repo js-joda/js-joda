@@ -688,6 +688,13 @@ function test_Month() {
     expectType<Month>(Month.valueOf('FEBRUARY'));
 }
 
+function test_Clock() {
+    const clock = Clock.systemUTC();
+
+    expectType<ZoneId>(clock.zone());
+    expectType<Clock>(clock.withZone(ZoneId.UTC));
+}
+
 /**
  * Use this to check if an expression is of type T.
  * Don't let TypeScript infer the type, give it explicitly.

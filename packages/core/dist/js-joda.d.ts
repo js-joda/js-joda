@@ -24,7 +24,11 @@ declare namespace JSJoda {
 
         abstract millis(): number
 
-        abstract zone(): any
+        abstract zone(): ZoneId
+
+        abstract withZone(zone: ZoneId): Clock
+
+        abstract equals(other: any): boolean        
     }
 
     class DayOfWeek extends Temporal {
