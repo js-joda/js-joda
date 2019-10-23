@@ -645,9 +645,12 @@ declare namespace JSJoda {
     }
 
     abstract class TemporalField {
+        abstract isDateBased(): boolean
+        abstract isTimeBased(): boolean
+        abstract name(): string
     }
 
-    class ChronoField {
+    class ChronoField extends TemporalField {
         static NANO_OF_SECOND: ChronoField
         static NANO_OF_DAY: ChronoField
         static MICRO_OF_SECOND: ChronoField
@@ -763,15 +766,20 @@ declare namespace JSJoda {
         toString(): string
     }
 
-    class IsoFields {
+    class IsoFields extends TemporalField {
         static DAY_OF_QUARTER: IsoFields
         static QUARTER_OF_YEAR: IsoFields
         static WEEK_OF_WEEK_BASED_YEAR: IsoFields
         static WEEK_BASED_YEAR: IsoFields
-        static WEEK_BASED_YEARS: IsoFields
-        static QUARTER_YEARS: IsoFields
+        static WEEK_BASED_YEARS: TemporalUnit
+        static QUARTER_YEARS: TemporalUnit
 
         private constructor()
+
+        isDateBased(): boolean
+        isTimeBased(): boolean
+        name(): string
+        getDisplayName(): string
     }
 
     abstract class ChronoLocalDate extends Temporal {
