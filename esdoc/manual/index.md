@@ -9,15 +9,17 @@
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/js-joda.svg)](https://saucelabs.com/u/js-joda)
 
-- **js-joda** is an **immutable date and time library** for javascript. It provides a **simple, domain-driven and clean API** based on the **ISO8601** calendar.
+- **js-joda** is an **immutable date and time library** for JavaScript. It provides a **simple, domain-driven and clean API** based on the ISO calendar system, which is the de facto world calendar following the proleptic Gregorian rules.
 
-- js-joda has a lightweight footprint, only **46 kB minified and compressed**, no third party dependencies.
+- js-joda has a lightweight footprint, only **43 kB minified and compressed**, no third party dependencies.
 
-- js-joda is **fast**. It is about 2 to 10 times faster than other javascript date libraries.
+- js-joda is **fast**. It is about 2 to 10 times faster than other JavaScript date libraries.
 
-- js-joda supports **ECMAScript 5** browsers down to ie9.
+- js-joda comes with built-in parsers/ formatters for ISO 8601 as specified in RFC 3339, that can be easily customized.
 
-- js-joda is a **port of the threeten** backport, that is the base for JSR-310 implementation of the Java SE 8 java.time package. Threeten is inspired by **Joda-Time**, having similar concepts and the same author.
+- js-joda supports **ECMAScript 5** browsers down to IE9.
+
+- js-joda is a **port of the threeten** backport, which is the base for JSR-310 implementation of the Java SE 8 java.time package. Threeten is inspired by **Joda-Time**, having similar concepts and the same author.
 
 - js-joda is **robust and stable**. We ported more then 1700 test-cases with a lots of test-permutations from the threetenbp project. We run the automated karma test-suite against Firefox, Chrome, Node and phantomjs.
 
