@@ -12,11 +12,13 @@ import {
     LocalDateTime,
     LocalTime,
     Month,
+    MonthDay,
     nativeJs,
     Period,
     ResolverStyle,
     SignStyle,
     TemporalAdjusters,
+    Year,
     YearMonth,
     ZoneOffset,
     ZoneOffsetTransition,
@@ -38,6 +40,16 @@ declare function moment(): any;
  *  We used the Contribution guide ideas from DefinitelyTyped for these "tests"
  *  For more information, see e.g. http:
  */
+
+function test_ChronoUnit() {
+    const cu = ChronoUnit.DAYS;
+
+    expectType<LocalDate>(cu.addTo(LocalDate.now(), 1));
+    expectType<number>(cu.between(LocalDate.now(), LocalDate.now()));
+    expectType<Duration>(cu.duration());
+    expectType<boolean>(cu.isDateBased());
+    expectType<string>(cu.toString());
+}
 
 function test_LocalDate() {
     LocalDate.now();
@@ -443,7 +455,7 @@ function test_ZoneOffsetTransition() {
     expectType<boolean>(zot.isOverlap());
     expectType<boolean>(zot.isValidOffset(ZoneOffset.UTC));
     expectType<ZoneOffset[]>(zot.validOffsets());
-    expectType<boolean>(zot.equals({}));
+    expectType<boolean>(zot.equals(zot));
     expectType<number>(zot.compareTo(undefined! as ZoneOffsetTransition));
     expectType<number>(zot.hashCode());
     expectType<string>(zot.toString());
@@ -508,6 +520,32 @@ function test_Duration() {
     var dt1 = LocalDateTime.parse('2012-12-24T12:00');
 
     Duration.between(dt1, dt1.plusHours(10)).toString();
+}
+
+function test_Year() {
+    const year = Year.now();
+
+    expectType<LocalDate>(year.atDay(2));
+    expectType<YearMonth>(year.atMonth(5));
+    expectType<YearMonth>(year.atMonth(Month.DECEMBER));
+    expectType<LocalDate>(year.atMonthDay(MonthDay.of(6, 22)));
+
+    expectType<boolean>(year.isAfter(Year.of(2020)));
+    expectType<boolean>(year.isBefore(Year.of(2020)));
+    expectType<boolean>(year.isLeap());
+    expectType<boolean>(year.isValidMonthDay(MonthDay.of(2, 29)));
+    expectType<number>(year.compareTo(Year.of(2020)));
+    
+    expectType<number>(year.length());
+
+    year.plus(Period.ofYears(2));
+    year.plus(1, ChronoUnit.YEARS);
+    year.plusYears(3);
+    year.minus(Period.ofYears(2));
+    year.minus(1, ChronoUnit.YEARS);
+    year.minusYears(3);
+
+    year.with(ChronoField.YEAR, 2015);
 }
 
 function test_YearMonth() {
@@ -648,6 +686,13 @@ function test_Month() {
     expectType<boolean>(Month.OCTOBER.equals(Month.NOVEMBER));
 
     expectType<Month>(Month.valueOf('FEBRUARY'));
+}
+
+function test_Clock() {
+    const clock = Clock.systemUTC();
+
+    expectType<ZoneId>(clock.zone());
+    expectType<Clock>(clock.withZone(ZoneId.UTC));
 }
 
 /**

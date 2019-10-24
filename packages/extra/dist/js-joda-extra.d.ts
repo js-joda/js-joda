@@ -1,12 +1,8 @@
-declare module JSJoda {
-  class Duration {}
-  class Instant {}
-}
+/// <reference types="@js-joda/core" />
+
+import { Instant, Duration } from '@js-joda/core';
 
 declare namespace JSJodaExtra {
-  import Duration = JSJoda.Duration;
-  import Instant = JSJoda.Instant;
-
   class Interval {
     static of(
       startInstant: Instant,

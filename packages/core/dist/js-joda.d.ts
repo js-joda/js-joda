@@ -24,7 +24,11 @@ declare namespace JSJoda {
 
         abstract millis(): number
 
-        abstract zone(): any
+        abstract zone(): ZoneId
+
+        abstract withZone(zone: ZoneId): Clock
+
+        abstract equals(other: any): boolean        
     }
 
     class DayOfWeek extends Temporal {
@@ -114,7 +118,7 @@ declare namespace JSJoda {
 
         dividedBy(divisor: number): Duration
 
-        equals(otherDuration: any): boolean
+        equals(other: any): boolean
 
         get(unit: TemporalUnit): number
 
@@ -184,7 +188,7 @@ declare namespace JSJoda {
 
         toString(): string
 
-        units(): any
+        units(): TemporalUnit[]
 
         withNanos(nanoOfSecond: number): Duration
 
@@ -218,7 +222,7 @@ declare namespace JSJoda {
 
         epochSecond(): number
 
-        equals(otherInstant: any): boolean
+        equals(other: any): boolean
 
         get(field: TemporalField): number
 
@@ -549,7 +553,7 @@ declare namespace JSJoda {
 
         compareTo(other: Month): number
 
-        equals(other: Month): boolean
+        equals(other: any): boolean
 
         firstDayOfYear(leapYear: boolean): number
 
@@ -611,7 +615,7 @@ declare namespace JSJoda {
 
         dayOfMonth(): number
 
-        equals(obj: any): boolean
+        equals(other: any): boolean
 
         format(formatter: DateTimeFormatter): string
 
@@ -645,9 +649,12 @@ declare namespace JSJoda {
     }
 
     abstract class TemporalField {
+        abstract isDateBased(): boolean
+        abstract isTimeBased(): boolean
+        abstract name(): string
     }
 
-    class ChronoField {
+    class ChronoField extends TemporalField {
         static NANO_OF_SECOND: ChronoField
         static NANO_OF_DAY: ChronoField
         static MICRO_OF_SECOND: ChronoField
@@ -764,12 +771,12 @@ declare namespace JSJoda {
     }
 
     class IsoFields {
-        static DAY_OF_QUARTER: IsoFields
-        static QUARTER_OF_YEAR: IsoFields
-        static WEEK_OF_WEEK_BASED_YEAR: IsoFields
-        static WEEK_BASED_YEAR: IsoFields
-        static WEEK_BASED_YEARS: IsoFields
-        static QUARTER_YEARS: IsoFields
+        static DAY_OF_QUARTER: TemporalField
+        static QUARTER_OF_YEAR: TemporalField
+        static WEEK_OF_WEEK_BASED_YEAR: TemporalField
+        static WEEK_BASED_YEAR: TemporalField
+        static WEEK_BASED_YEARS: TemporalUnit
+        static QUARTER_YEARS: TemporalUnit
 
         private constructor()
     }
@@ -821,7 +828,7 @@ declare namespace JSJoda {
 
         dayOfYear(): number
 
-        equals(otherDate: any): boolean
+        equals(other: any): boolean
 
         get(field: TemporalField): number
 
@@ -920,7 +927,7 @@ declare namespace JSJoda {
         static now(clockOrZone?: Clock|ZoneId): LocalDateTime
 
         static of(date: LocalDate, time: LocalTime): LocalDateTime
-        static of(year?: number, month?: Month|number, dayOfMonth?: number, hour?: number, minute?: number, second?: number, nanoSecond?: number): LocalDateTime
+        static of(year: number, month: Month|number, dayOfMonth: number, hour?: number, minute?: number, second?: number, nanoSecond?: number): LocalDateTime
 
         static ofEpochSecond(epochSecond: number, offset:ZoneOffset): LocalDateTime
         static ofEpochSecond(epochSecond: number, nanoOfSecond: number, offset:ZoneOffset): LocalDateTime
@@ -959,7 +966,7 @@ declare namespace JSJoda {
 
         isBefore(other: LocalDateTime): boolean
 
-        isEqual(other: any): boolean
+        isEqual(other: LocalDateTime): boolean
 
         isSupported(fieldOrUnit: TemporalField|TemporalUnit): boolean
 
@@ -1084,7 +1091,7 @@ declare namespace JSJoda {
 
         days(): number
 
-        equals(obj: any): boolean
+        equals(other: any): boolean
 
         get(unit: TemporalUnit): number
 
@@ -1126,7 +1133,7 @@ declare namespace JSJoda {
 
         toTotalMonths(): number
 
-        units(): ChronoUnit[]
+        units(): TemporalUnit[]
 
         withDays(days: number): Period
 
@@ -1232,24 +1239,32 @@ declare namespace JSJoda {
         static MAX_VALUE: number;
 
         static from(temporal: TemporalAccessor): Year
-
         static isLeap(year: number): boolean
-
-        static now(zoneIdOrClock?: ZoneId|Clock): Year
-
+        static now(zoneIdOrClock?: ZoneId | Clock): Year
         static of(isoYear: number): Year
-
         static parse(text: string, formatter?: DateTimeFormatter): Year
 
         private constructor()
 
-        atMonth(monthOrNumber: Month|number): YearMonth
-
-        plus(amountOrNumber: TemporalAmount|number, unit?: TemporalUnit): Year
-
-        minus(amountOrNumber: TemporalAmount|number, unit?: TemporalUnit): Year
-
+        atDay(dayOfYear: number): LocalDate
+        atMonth(month: Month | number): YearMonth
+        atMonthDay(monthDay: MonthDay): LocalDate
+        compareTo(other: Year): number
+        equals(other: any): boolean
+        isAfter(other: Year): boolean
+        isBefore(other: Year): boolean
+        isLeap(): boolean
+        isValidMonthDay(monthDay: MonthDay): boolean
+        length(): number
+        plus(amount: TemporalAmount): Year
+        plus(amountToAdd: number, unit: TemporalUnit): Year
+        plusYears(yearsToAdd: number): Year
+        minus(amount: TemporalAmount): Year
+        minus(amountToSubtract: number, unit: TemporalUnit): Year
+        minusYears(yearsToSubtract: number): Year
         value(): number
+        with(adjuster: TemporalAdjuster): Year
+        with(field: TemporalField, newValue: number): Year
     }
 
     class YearMonth extends Temporal {
@@ -1305,7 +1320,7 @@ declare namespace JSJoda {
 
         isBefore(other: YearMonth): boolean
 
-        equals(other: YearMonth): boolean
+        equals(other: any): boolean
 
         toJSON(): string
 
@@ -1360,7 +1375,7 @@ declare namespace JSJoda {
 
         compareTo(other: ZoneOffset): number
 
-        equals(obj: any): boolean
+        equals(other: any): boolean
 
         get(field: TemporalField): number
 
