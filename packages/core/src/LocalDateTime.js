@@ -150,7 +150,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @returns {LocalDateTime}
      */
     static of(){
-        if (arguments.length === 2 && (arguments[0] instanceof LocalDate || arguments[1] instanceof LocalTime)){
+        if (arguments.length <= 2){
             return LocalDateTime.ofDateAndTime.apply(this, arguments);
         } else {
             return LocalDateTime.ofNumbers.apply(this, arguments);
@@ -173,7 +173,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @throws {DateTimeException} if the value of any field is out of range
      * @throws {DateTimeException} if the day-of-month is invalid for the month-year
      */
-    static ofNumbers(year=0, month=0, dayOfMonth=0, hour=0, minute=0, second=0, nanoOfSecond=0) {
+    static ofNumbers(year, month, dayOfMonth, hour=0, minute=0, second=0, nanoOfSecond=0) {
         const date = LocalDate.of(year, month, dayOfMonth);
         const time = LocalTime.of(hour, minute, second, nanoOfSecond);
         return new LocalDateTime(date, time);
