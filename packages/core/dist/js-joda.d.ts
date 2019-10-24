@@ -770,20 +770,15 @@ declare namespace JSJoda {
         toString(): string
     }
 
-    class IsoFields extends TemporalField {
-        static DAY_OF_QUARTER: IsoFields
-        static QUARTER_OF_YEAR: IsoFields
-        static WEEK_OF_WEEK_BASED_YEAR: IsoFields
-        static WEEK_BASED_YEAR: IsoFields
+    class IsoFields {
+        static DAY_OF_QUARTER: TemporalField
+        static QUARTER_OF_YEAR: TemporalField
+        static WEEK_OF_WEEK_BASED_YEAR: TemporalField
+        static WEEK_BASED_YEAR: TemporalField
         static WEEK_BASED_YEARS: TemporalUnit
         static QUARTER_YEARS: TemporalUnit
 
         private constructor()
-
-        isDateBased(): boolean
-        isTimeBased(): boolean
-        name(): string
-        getDisplayName(): string
     }
 
     abstract class ChronoLocalDate extends Temporal {
