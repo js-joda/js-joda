@@ -1635,7 +1635,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * This is different from the comparison in {@link compareTo},
      * but is the same approach as {@link DATE_TIME_COMPARATOR}.
      *
-     * @param {*} other - the other date-time to compare to, not null
+     * @param {LocalDateTime} other - the other date-time to compare to, not null
      * @return {boolean} true if this date-time is equal to the specified date-time
      */
     isEqual(other) {
