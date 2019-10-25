@@ -2,7 +2,7 @@ import {
   Instant,
   Duration,
   LocalDate,
-} from '../../../core'
+} from '@js-joda/core'
 import {
   Interval
 } from '../..';
