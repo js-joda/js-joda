@@ -999,16 +999,16 @@ export class Instant extends Temporal {
      *
      * The comparison is based on the time-line position of the instants.
      *
-     * @param {*} otherInstant - the other instant, null/ undefined returns false
+     * @param {*} other - the other instant, null/ undefined returns false
      * @return {boolean} true if the other instant is equal to this one
      */
-    equals(otherInstant) {
-        if(this === otherInstant){
+    equals(other) {
+        if(this === other){
             return true;
         }
-        if(otherInstant instanceof Instant){
-            return this.epochSecond() === otherInstant.epochSecond() &&
-                this.nano() === otherInstant.nano();
+        if(other instanceof Instant){
+            return this.epochSecond() === other.epochSecond() &&
+                this.nano() === other.nano();
         }
         return false;
     }

@@ -158,7 +158,7 @@ class CurrentStandardZoneRules extends ZoneRules {
     //-----------------------------------------------------------------------
     /**
      *
-     * @param other
+     * @param {*} other
      * @returns {boolean}
      */
     equals(other) {
