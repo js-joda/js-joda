@@ -3,6 +3,8 @@ Changelog
 
 ### next
 
+ * LocalDateTime.of requires at least 3 arguments #356
+ 
 ### 1.12.0
 
  * Cleanup documentation and configuration
