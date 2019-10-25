@@ -29,13 +29,13 @@ describe('js-joda LocalTime', () => {
             expect(LocalTime.of(23, 59, 59)).to.eql(LocalTime.parse('23:59:59'));
         });
 
-        it('should create a LocalTime instance for a valid time of sting values', () => {
+        it('should create a LocalTime instance for a valid time of string values', () => {
             expect(LocalTime.of('12', '0', '12')).to.be.an.instanceOf(LocalTime);
             expect(LocalTime.of('12', '0', '12')).to.eql(LocalTime.parse('12:00:12'));
             expect(LocalTime.of('23', '59', '59')).to.eql(LocalTime.parse('23:59:59'));
         });
 
-        it('should fail for a invalid times', () => {
+        it('should fail for an invalid time', () => {
             expect(() => LocalTime.of('12', '0', '60')).to.throw(Error);
             expect(() => LocalTime.of(12, 0, 60)).to.throw(Error);
             expect(() => LocalTime.of('24', '0', '0')).to.throw(Error);
