@@ -9,6 +9,7 @@ Changelog
  * Upgrade dependencies
  * Add ISO formatters definitions #358 akonior/iso-formetters
  * Improve TS declarations with no breaking change #357 InExtremaRes/ts-declarations
+ * Fixes to docu and LocalDateTime.of() according to the typescript changes #359
  
 ### 1.11.0
  
