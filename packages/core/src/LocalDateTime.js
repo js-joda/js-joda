@@ -162,9 +162,9 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      *
      * The day must be valid for the year and month, otherwise an exception will be thrown.
      *
-     * @param {number} [year=0] - the year to represent, from MIN_YEAR to MAX_YEAR
-     * @param {number} [month=0] - the month-of-year to represent, from 1 to 12 or from a Month
-     * @param {number} [dayOfMonth=0] - the day-of-month to represent, from 1 to 31
+     * @param {number} [year] - the year to represent, from MIN_YEAR to MAX_YEAR
+     * @param {number} [month] - the month-of-year to represent, from 1 to 12 or from a Month
+     * @param {number} [dayOfMonth] - the day-of-month to represent, from 1 to 31
      * @param {number} [hour=0] - the hour-of-day to represent, from 0 to 23
      * @param {number} [minute=0] - the minute-of-hour to represent, from 0 to 59
      * @param {number} [second=0] - the second-of-minute to represent, from 0 to 59
