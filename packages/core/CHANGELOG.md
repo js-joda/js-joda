@@ -3,7 +3,13 @@ Changelog
 
 ### next
 
+### 1.12.0
 
+ * Cleanup documentation and configuration
+ * Upgrade dependencies
+ * Add ISO formatters definitions #358 akonior/iso-formetters
+ * Improve TS declarations with no breaking change #357 InExtremaRes/ts-declarations
+ 
 ### 1.11.0
  
  * Added ts defs for new methods in DayOfWeek and Month #301
