@@ -1,4 +1,4 @@
-//! @version @js-joda/core - 1.11.0
+//! @version @js-joda/core - 1.12.0
 //! @copyright (c) 2015-present, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -6839,6 +6839,11 @@
       DateTimeFormatter.ISO_INSTANT = new DateTimeFormatterBuilder().parseCaseInsensitive().appendInstant().toFormatter(ResolverStyle.STRICT);
       DateTimeFormatter.ISO_OFFSET_DATE_TIME = new DateTimeFormatterBuilder().parseCaseInsensitive().append(DateTimeFormatter.ISO_LOCAL_DATE_TIME).appendOffsetId().toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
       DateTimeFormatter.ISO_ZONED_DATE_TIME = new DateTimeFormatterBuilder().append(DateTimeFormatter.ISO_OFFSET_DATE_TIME).optionalStart().appendLiteral('[').parseCaseSensitive().appendZoneId().appendLiteral(']').toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+      DateTimeFormatter.BASIC_ISO_DATE = new DateTimeFormatterBuilder().appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD).appendValue(ChronoField.MONTH_OF_YEAR, 2).appendValue(ChronoField.DAY_OF_MONTH, 2).toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+      DateTimeFormatter.ISO_OFFSET_DATE = new DateTimeFormatterBuilder().parseCaseInsensitive().append(DateTimeFormatter.ISO_LOCAL_DATE).appendOffsetId().toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+      DateTimeFormatter.ISO_OFFSET_TIME = new DateTimeFormatterBuilder().parseCaseInsensitive().append(DateTimeFormatter.ISO_LOCAL_TIME).appendOffsetId().toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+      DateTimeFormatter.ISO_ORDINAL_DATE = new DateTimeFormatterBuilder().appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD).appendLiteral('-').appendValue(ChronoField.DAY_OF_YEAR).toFormatter(ResolverStyle.STRICT);
+      DateTimeFormatter.ISO_WEEK_DATE = new DateTimeFormatterBuilder().appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD).appendLiteral('-W').appendValue(ChronoField.ALIGNED_WEEK_OF_YEAR).appendLiteral('-').appendValue(ChronoField.DAY_OF_WEEK).toFormatter(ResolverStyle.STRICT);
       DateTimeFormatter.PARSED_EXCESS_DAYS = createTemporalQuery('PARSED_EXCESS_DAYS', function (temporal) {
         if (temporal instanceof DateTimeBuilder) {
           return temporal.excessDays;
@@ -7935,13 +7940,13 @@
         return formatter.format(this);
       };
 
-      _proto.equals = function equals(otherYear) {
-        if (this === otherYear) {
+      _proto.equals = function equals(other) {
+        if (this === other) {
           return true;
         }
 
-        if (otherYear instanceof Year) {
-          return this.value() === otherYear.value();
+        if (other instanceof Year) {
+          return this.value() === other.value();
         }
 
         return false;
@@ -9798,13 +9803,13 @@
         return this.compareTo(other) === 0;
       };
 
-      _proto.equals = function equals(otherDate) {
-        if (this === otherDate) {
+      _proto.equals = function equals(other) {
+        if (this === other) {
           return true;
         }
 
-        if (otherDate instanceof LocalDate) {
-          return this._compareTo0(otherDate) === 0;
+        if (other instanceof LocalDate) {
+          return this._compareTo0(other) === 0;
         }
 
         return false;
@@ -9952,7 +9957,7 @@
       };
 
       LocalDateTime.of = function of() {
-        if (arguments.length === 2 && (arguments[0] instanceof LocalDate || arguments[1] instanceof LocalTime)) {
+        if (arguments.length <= 2) {
           return LocalDateTime.ofDateAndTime.apply(this, arguments);
         } else {
           return LocalDateTime.ofNumbers.apply(this, arguments);
@@ -9960,18 +9965,6 @@
       };
 
       LocalDateTime.ofNumbers = function ofNumbers(year, month, dayOfMonth, hour, minute, second, nanoOfSecond) {
-        if (year === void 0) {
-          year = 0;
-        }
-
-        if (month === void 0) {
-          month = 0;
-        }
-
-        if (dayOfMonth === void 0) {
-          dayOfMonth = 0;
-        }
-
         if (hour === void 0) {
           hour = 0;
         }
@@ -11695,13 +11688,13 @@
         return this.compareTo(otherInstant) < 0;
       };
 
-      _proto.equals = function equals(otherInstant) {
-        if (this === otherInstant) {
+      _proto.equals = function equals(other) {
+        if (this === other) {
           return true;
         }
 
-        if (otherInstant instanceof Instant) {
-          return this.epochSecond() === otherInstant.epochSecond() && this.nano() === otherInstant.nano();
+        if (other instanceof Instant) {
+          return this.epochSecond() === other.epochSecond() && this.nano() === other.nano();
         }
 
         return false;

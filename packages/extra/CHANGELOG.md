@@ -3,6 +3,10 @@
 
 ### next
 
+### 0.4.0
+
+ * Improve TS declarations with no breaking change #357 InExtremaRes/ts-declarations
+
 ### 0.3.0
 
 * Add TypeScript declarations for extras package #339

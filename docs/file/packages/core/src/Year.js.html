@@ -1073,15 +1073,15 @@ export class Year extends Temporal {
      *
      * The comparison is based on the value
      *
-     * @param {*} otherYear - the other year, null returns false
+     * @param {*} other - the other year, null returns false
      * @return {boolean} true if the other duration is equal to this one
      */
-    equals(otherYear) {
-        if (this === otherYear) {
+    equals(other) {
+        if (this === other) {
             return true;
         }
-        if (otherYear instanceof Year) {
-            return this.value() === otherYear.value();
+        if (other instanceof Year) {
+            return this.value() === other.value();
         }
         return false;
     }

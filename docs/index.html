@@ -916,7 +916,7 @@ var dt = LocalDateTime.parse(&quot;2012-12-24T12:00&quot;);
 dt.plus(Duration.ofHours(10).plusMinutes(30)).toString(); // &apos;2012-12-24T22:30&apos;
 dt.minus(Duration.ofHours(12).multipliedBy(10)).toString(); // &apos;2012-12-19T12:00&apos;
 
-// calculate the durations between to time-based temporals
+// calculate the duration between two time-based values
 var dt1 = LocalDateTime.parse(&quot;2012-12-24T12:00&quot;);
 
 Duration.between(dt1, dt1.plusHours(10)).toString(); // &apos;PT10H&apos;</code>

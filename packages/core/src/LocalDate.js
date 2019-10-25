@@ -1643,15 +1643,15 @@ export class LocalDate extends ChronoLocalDate{
      *
      * Only objects of type LocalDate are compared, other types return false.
      *
-     * @param {*} otherDate - the object to check, null returns false
+     * @param {*} other - the object to check, null returns false
      * @return {boolean} true if this is equal to the other date
      */
-    equals(otherDate) {
-        if (this === otherDate) {
+    equals(other) {
+        if (this === other) {
             return true;
         }
-        if (otherDate instanceof LocalDate) {
-            return this._compareTo0(otherDate) === 0;
+        if (other instanceof LocalDate) {
+            return this._compareTo0(other) === 0;
         }
         return false;
     }
