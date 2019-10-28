@@ -463,24 +463,6 @@ export class Year extends Temporal {
     }
 
     //-----------------------------------------------------------------------
-    /**
-     * function overloading for {@link YearMonth.with}
-     *
-     * if called with 2 arguments and first argument is an instance of TemporalField, then {@link Year.withFieldValue} is executed,
-
-     * otherwise {@link Year.withAdjuster} is executed,
-     *
-     * @param {!(TemporalAdjuster|TemporalField|Number)} adjusterOrFieldOrNumber
-     * @param {?number} value nullable only of first argument is an instance of TemporalAdjuster
-     * @returns {Year}
-     */
-    with(adjusterOrFieldOrNumber, value) {
-        if (arguments.length === 2 && adjusterOrFieldOrNumber instanceof TemporalField) {
-            return this.withFieldValue(adjusterOrFieldOrNumber, value);
-        } else {
-            return this.withAdjuster(adjusterOrFieldOrNumber);
-        }
-    }
 
     /**
      * Returns an adjusted copy of this year.
@@ -563,25 +545,6 @@ export class Year extends Temporal {
     }
 
     /**
-     * function overloading for {@link Year.plus}
-     *
-     * if called with 1 arguments, then {@link Year.plusAmount} is executed.
-     *
-     * Otherwise {@link Year.plusAmountToAddUnit} is executed.
-     *
-     * @param {!(TemporalAmount|number)} amountOrNumber
-     * @param {?TemporalUnit} unit nullable only if first argument is an instance of TemporalAmount
-     * @returns {Year}
-     */
-    plus(amountOrNumber, unit) {
-        if (arguments.length === 1) {
-            return this.plusAmount(amountOrNumber);
-        } else {
-            return this.plusAmountToAddUnit(amountOrNumber, unit);
-        }
-    }
-
-    /**
      * Returns a copy of this year with the specified period added.
      *
      * This method returns a new year based on this year with the specified period added.
@@ -610,7 +573,7 @@ export class Year extends Temporal {
      * @throws DateTimeException if the addition cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
-    plusAmountToAddUnit(amountToAdd, unit) {
+    plusAmountUnit(amountToAdd, unit) {
         requireNonNull(amountToAdd, 'amountToAdd');
         requireNonNull(unit, 'unit');
         requireInstance(unit, TemporalUnit, 'unit');
@@ -644,24 +607,6 @@ export class Year extends Temporal {
     }
 
     //-----------------------------------------------------------------------
-    /**
-     * function overloading for {@link Year.minus}
-     *
-     * if called with 1 argument, then {@link Year.minusAmount} is executed.
-     *
-     * Otherwise {@link Year.minusAmountToSubtractUnit} is executed.
-     *
-     * @param {!(TemporalAmount|number)} amountOrNumber
-     * @param {?TemporalUnit} unit
-     * @returns {Year}
-     */
-    minus(amountOrNumber, unit) {
-        if (arguments.length === 1) {
-            return this.minusAmount(amountOrNumber);
-        } else {
-            return this.minusAmountToSubtractUnit(amountOrNumber, unit);
-        }
-    }
 
     /**
      * Returns a copy of this year with the specified period subtracted.
@@ -692,7 +637,7 @@ export class Year extends Temporal {
      * @throws DateTimeException if the subtraction cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
-    minusAmountToSubtractUnit(amountToSubtract, unit) {
+    minusAmountUnit(amountToSubtract, unit) {
         requireNonNull(amountToSubtract, 'amountToSubtract');
         requireNonNull(unit, 'unit');
         requireInstance(unit, TemporalUnit, 'unit');

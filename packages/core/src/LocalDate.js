@@ -617,27 +617,6 @@ export class LocalDate extends ChronoLocalDate{
     }
 
     /**
-     * function overloading for the {@link LocalDate.with} method.
-     *
-     * calling "with" with one (or less) argument, assumes that the argument is an TemporalAdjuster
-     * and {@link LocalDate.withTemporalAdjuster} is called.
-     *
-     * Otherwise a TemporalField and newValue argument is expected and
-     * {@link LocalDate.withFieldAndValue} is called.
-     *
-     * @param {!(TemporalAdjuster|TemporalField)} fieldOrAdjuster
-     * @param {number} newValue - required if first argument is a TemporalField
-     * @return {LocalDate} the new LocalDate with the newValue set.
-     */
-    with(fieldOrAdjuster, newValue){
-        if(arguments.length < 2){
-            return this.withTemporalAdjuster(fieldOrAdjuster);
-        } else {
-            return this.withFieldAndValue(fieldOrAdjuster, newValue);
-        }
-    }
-
-    /**
      * Returns an adjusted copy of this date.
      *
      * This returns a new {@link LocalDate}, based on this one, with the date adjusted.
@@ -670,7 +649,7 @@ export class LocalDate extends ChronoLocalDate{
      * @throws {DateTimeException} if the adjustment cannot be made
      * @throws {ArithmeticException} if numeric overflow occurs
      */
-    withTemporalAdjuster(adjuster) {
+    withAdjuster(adjuster) {
         requireNonNull(adjuster, 'adjuster');
         // optimizations
         if (adjuster instanceof LocalDate) {
@@ -780,7 +759,7 @@ export class LocalDate extends ChronoLocalDate{
      * @throws {DateTimeException} if the field cannot be set
      * @throws {ArithmeticException} if numeric overflow occurs
      */
-    withFieldAndValue(field, newValue) {
+    withFieldValue(field, newValue) {
         assert(field != null, 'field', NullPointerException);
         if (field instanceof ChronoField) {
             const f = field;
@@ -872,40 +851,20 @@ export class LocalDate extends ChronoLocalDate{
     }
 
     /**
-     * function overloading for plus
-     *
-     * called with 1 (or less) arguments, p1 is expected to be a TemporalAmount and {@link LocalDate.plus1}
-     * is called.
-     *
-     * Otherwise {@link LocalDate.plus2} is called.
-     *
-     * @param {!(TemporalAmount|number)} p1
-     * @param {TemporalUnit} p2 - required if called with 2 arguments
-     * @return {LocalDate}
-     */
-    plus(p1, p2){
-        if(arguments.length < 2){
-            return this.plus1(p1);
-        } else {
-            return this.plus2(p1, p2);
-        }
-    }
-
-    /**
      * Returns a copy of this date with the specified period added.
      *
      * This method returns a new date based on this date with the specified period added.
      * The amount is typically {@link Period} but may be any other type implementing
      * the {@link TemporalAmount} interface.
      * The calculation is delegated to the specified adjuster, which typically calls
-     * back to {@link LocalDate.plus2}.
+     * back to {@link LocalDate.plusAmountUnit}.
      *
      * @param {!TemporalAmount} amount - the amount to add, not null
      * @return {LocalDate} a {@link LocalDate} based on this date with the addition made, not null
      * @throws {DateTimeException} if the addition cannot be made
      * @throws {ArithmeticException} if numeric overflow occurs
      */
-    plus1(amount) {
+    plusAmount(amount) {
         requireNonNull(amount, 'amount');
         return amount.addTo(this);
     }
@@ -923,7 +882,7 @@ export class LocalDate extends ChronoLocalDate{
      * @return {LocalDate} a {@link LocalDate} based on this date with the specified period added, not null
      * @throws {DateTimeException} if the unit cannot be added to this type
      */
-    plus2(amountToAdd, unit) {
+    plusAmountUnit(amountToAdd, unit) {
         requireNonNull(amountToAdd, 'amountToAdd');
         requireNonNull(unit, 'unit');
         if (unit instanceof ChronoUnit) {
@@ -1035,26 +994,6 @@ export class LocalDate extends ChronoLocalDate{
     }
 
     /**
-      * function overloading for minus
-      *
-      * called with 1 (or less) arguments, p1 is expected to be a TemporalAmount and {@link LocalDate.minus1}
-      * is called.
-      *
-      * Otherwise {@link LocalDate.minus2} is called.
-      *
-      * @param {!(TemporalAmount|number)} p1
-      * @param {TemporalUnit} p2 - required if called with 2 arguments
-      * @return {LocalDate}
-      */
-    minus(p1, p2){
-        if(arguments.length < 2){
-            return this.minus1(p1);
-        } else {
-            return this.minus2(p1, p2);
-        }
-    }
-
-    /**
      * Returns a copy of this date with the specified period subtracted.
      *
      * This method returns a new date based on this date with the specified period subtracted.
@@ -1068,7 +1007,7 @@ export class LocalDate extends ChronoLocalDate{
      * @throws {DateTimeException} if the subtraction cannot be made
      * @throws {ArithmeticException} if numeric overflow occurs
      */
-    minus1(amount) {
+    minusAmount(amount) {
         requireNonNull(amount, 'amount');
         return amount.subtractFrom(this);
     }
@@ -1086,10 +1025,10 @@ export class LocalDate extends ChronoLocalDate{
      * @return {LocalDate} a {@link LocalDate} based on this date with the specified period subtracted, not null
      * @throws {DateTimeException} if the unit cannot be added to this type
      */
-    minus2(amountToSubtract, unit) {
+    minusAmountUnit(amountToSubtract, unit) {
         requireNonNull(amountToSubtract, 'amountToSubtract');
         requireNonNull(unit, 'unit');
-        return this.plus2(-1 * amountToSubtract, unit);
+        return this.plusAmountUnit(-1 * amountToSubtract, unit);
     }
 
     /**
