@@ -11,7 +11,7 @@ import {assert, requireNonNull, requireInstance} from './assert';
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
 import {IllegalArgumentException} from './errors';
-import {Temporal} from './temporal/Temporal';
+import {TemporalAccessor} from './temporal/TemporalAccessor';
 import {TemporalQueries} from './temporal/TemporalQueries';
 import {createTemporalQuery} from './temporal/TemporalQuery';
 
@@ -27,7 +27,7 @@ import {createTemporalQuery} from './temporal/TemporalQuery';
  * DayOfWeek.SUNDAY
  *
  */
-export class DayOfWeek extends Temporal {
+export class DayOfWeek extends TemporalAccessor {
 
     /**
      *

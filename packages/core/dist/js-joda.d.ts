@@ -38,7 +38,7 @@ declare namespace JSJoda {
         abstract equals(other: any): boolean        
     }
 
-    class DayOfWeek extends Temporal {
+    class DayOfWeek extends TemporalAccessor {
         static MONDAY: DayOfWeek
         static TUESDAY: DayOfWeek
         static WEDNESDAY: DayOfWeek
@@ -444,7 +444,7 @@ declare namespace JSJoda {
 
         isBefore(other: LocalTime): boolean
 
-        isSupported(fieldOrUnit: ChronoField|ChronoUnit): boolean
+        isSupported(fieldOrUnit: TemporalField|TemporalUnit): boolean
 
         minus(amount: TemporalAmount): LocalTime
         minus(amountToSubtract: number, unit: ChronoUnit): LocalTime
@@ -532,7 +532,7 @@ declare namespace JSJoda {
         static verifyInt(value: number): void
     }
 
-    class Month extends Temporal {
+    class Month extends TemporalAccessor {
         static JANUARY: Month
         static FEBRUARY: Month
         static MARCH: Month
@@ -595,7 +595,7 @@ declare namespace JSJoda {
         value(): number
     }
 
-    class MonthDay extends Temporal {
+    class MonthDay extends TemporalAccessor {
         static from(temporal: TemporalAccessor): MonthDay
 
         static now(arg1?: ZoneId|Clock): MonthDay
@@ -1301,7 +1301,7 @@ declare namespace JSJoda {
         withYear(year: number): YearMonth
         withMonth(month: number): YearMonth
 
-        isSupported(fieldOrUnit: TemporalField|ChronoUnit): boolean
+        isSupported(fieldOrUnit: TemporalField|TemporalUnit): boolean
 
         year(): number
 
