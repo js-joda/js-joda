@@ -11,9 +11,17 @@ declare namespace JSJoda {
     abstract class Temporal extends TemporalAccessor {
       isSupported(unit: TemporalUnit): boolean
 
+      minus(amountToSubtract: number, unit: TemporalUnit): Temporal
+
+      minus(amount: TemporalAmount): Temporal
+
       plus(amountToAdd: number, unit: TemporalUnit): Temporal
 
-      until(endExclusive: Temporal, unit: TemporalUnit): number
+      plus(amount: TemporalAmount): Temporal
+
+      until(endTemporal: Temporal, unit: TemporalUnit): number
+
+      with(adjuster: TemporalAdjuster): Temporal
 
       with(field: TemporalField, newValue: number): Temporal
     }

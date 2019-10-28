@@ -17,6 +17,8 @@ import {
     Period,
     ResolverStyle,
     SignStyle,
+    Temporal,
+    TemporalAdjuster,
     TemporalAdjusters,
     Year,
     YearMonth,
@@ -700,3 +702,29 @@ function test_Clock() {
  * Don't let TypeScript infer the type, give it explicitly.
  */
 declare function expectType<T>(v: T): T;
+
+function test_Temporal() {
+  const temporal: Temporal = Year.now();
+
+  temporal.isSupported(ChronoUnit.YEARS);
+
+  temporal.minus(4, ChronoUnit.YEARS);
+  temporal.minus(Period.ofYears(4));
+
+  temporal.plus(4, ChronoUnit.YEARS);
+  temporal.plus(Period.ofYears(4));
+
+  temporal.until(Year.of(2020), ChronoUnit.YEARS);
+
+  const nextYear: TemporalAdjuster = {
+    adjustInto(temporal: Temporal): Temporal {
+      if (temporal.isSupported(ChronoUnit.YEARS)) {
+        return temporal.plus(1, ChronoUnit.YEARS);
+      }
+      throw new Error('unsupported')
+    }
+  }
+
+  temporal.with(nextYear);
+  temporal.with(ChronoField.YEAR, 2020);
+}
