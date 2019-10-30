@@ -593,23 +593,6 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     }
 
     //-----------------------------------------------------------------------
-    /**
-     * function overloading for {@link LocalDateTime.with}
-     *
-     * if called with 1 argument, {@link LocalDateTime.withTemporalAdjuster} is applied,
-     * otherwise {@link LocalDateTime.with2}.
-     *
-     * @param {!(TemporalAdjuster|TemporalField)} adjusterOrField
-     * @param {number} newValue - only require if first argument is a TemporalField
-     * @returns {LocalDateTime}
-     */
-    with(adjusterOrField, newValue){
-        if(arguments.length === 1){
-            return this.withTemporalAdjuster(adjusterOrField);
-        } else {
-            return this.with2(adjusterOrField, newValue);
-        }
-    }
 
     /**
      * Returns an adjusted copy of this date-time.
@@ -653,7 +636,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @throws {DateTimeException} if the adjustment cannot be made
      * @throws {ArithmeticException} if numeric overflow occurs
      */
-    withTemporalAdjuster(adjuster) {
+    withAdjuster(adjuster) {
         requireNonNull(adjuster, 'adjuster');
         // optimizations
         if (adjuster instanceof LocalDate) {
@@ -699,7 +682,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @throws {DateTimeException} if the field cannot be set
      * @throws {ArithmeticException} if numeric overflow occurs
      */
-    with2(field, newValue) {
+    withFieldValue(field, newValue) {
         requireNonNull(field, 'field');
         if (field instanceof ChronoField) {
             if (field.isTimeBased()) {
@@ -855,23 +838,6 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     }
 
     //-----------------------------------------------------------------------
-    /**
-     * function overloading for {@link LocalDateTime.plus}
-     *
-     * if called with 1 argument {@link LocalDateTime.plusTemporalAmount} is applied,
-     * otherwise {@link LocalDateTime.plus2}
-     *
-     * @param {!(TemporalAmount|number)} amount
-     * @param {TemporalUnit} unit
-     * @returns {LocalDateTime}
-     */
-    plus(amount, unit){
-        if(arguments.length === 1){
-            return this.plusTemporalAmount(amount);
-        } else {
-            return this.plus2(amount, unit);
-        }
-    }
 
     /**
      * Returns a copy of this date-time with the specified period added.
@@ -889,7 +855,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @throws {DateTimeException} if the addition cannot be made
      * @throws {ArithmeticException} if numeric overflow occurs
      */
-    plusTemporalAmount(amount) {
+    plusAmount(amount) {
         requireNonNull(amount, 'amount');
         return amount.addTo(this);
     }
@@ -909,7 +875,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the specified period added, not null
      * @throws {DateTimeException} if the unit cannot be added to this type
      */
-    plus2(amountToAdd, unit) {
+    plusAmountUnit(amountToAdd, unit) {
         requireNonNull(unit, 'unit');
         if (unit instanceof ChronoUnit) {
             switch (unit) {
@@ -1069,23 +1035,6 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     }
 
     //-----------------------------------------------------------------------
-    /**
-     * function overloading for {@link LocalDateTime.minus}
-     *
-     * if called with 1 argument {@link LocalDateTime.minusTemporalAmount} is applied,
-     * otherwise {@link LocalDateTime.minus2}
-     *
-     * @param {!(TemporalAmount|number)} amount
-     * @param {TemporalUnit} unit
-     * @returns {LocalDateTime}
-     */
-    minus(amount, unit){
-        if(arguments.length === 1){
-            return this.minusTemporalAmount(amount);
-        } else {
-            return this.minus2(amount, unit);
-        }
-    }
 
     /**
      * Returns a copy of this date-time with the specified period subtracted.
@@ -1103,7 +1052,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @throws {DateTimeException} if the subtraction cannot be made
      * @throws {ArithmeticException} if numeric overflow occurs
      */
-    minusTemporalAmount(amount) {
+    minusAmount(amount) {
         requireNonNull(amount, 'amount');
         return amount.subtractFrom(this);
     }
@@ -1123,9 +1072,9 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the specified period subtracted, not null
      * @throws {DateTimeException} if the unit cannot be added to this type
      */
-    minus2(amountToSubtract, unit) {
+    minusAmountUnit(amountToSubtract, unit) {
         requireNonNull(unit, 'unit');
-        return this.plus2(-1 * amountToSubtract, unit);
+        return this.plusAmountUnit(-1 * amountToSubtract, unit);
     }
 
     //-----------------------------------------------------------------------

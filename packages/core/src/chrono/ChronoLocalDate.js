@@ -10,7 +10,7 @@ import {ChronoField} from '../temporal/ChronoField';
 import {ChronoUnit} from '../temporal/ChronoUnit';
 import {DateTimeFormatter} from '../format/DateTimeFormatter';
 import {TemporalQueries} from '../temporal/TemporalQueries';
-import {Temporal} from '../temporal/Temporal';
+import {DefaultInterfaceTemporal} from '../temporal/DefaultInterfaceTemporal';
 
 import {LocalDate} from '../LocalDate';
 
@@ -180,7 +180,7 @@ import {LocalDate} from '../LocalDate';
  * In JDK 8, this is an interface with default methods.
  * Since there are no default methods in JDK 7, an abstract class is used.
  */
-export class ChronoLocalDate extends Temporal {
+export class ChronoLocalDate extends DefaultInterfaceTemporal {
 
     isSupported(fieldOrUnit) {
         if (fieldOrUnit instanceof ChronoField) {

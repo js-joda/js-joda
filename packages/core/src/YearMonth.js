@@ -689,24 +689,6 @@ export class YearMonth extends Temporal {
     }
 
     //-----------------------------------------------------------------------
-    /**
-     * function overloading for {@link YearMonth.plus}
-     *
-     * if called with 1 arguments, then {@link YearMonth.plusAmount} is executed.
-     *
-     * Otherwise {@link YearMonth.plusAmountUnit} is executed.
-     *
-     * @param {!(TemporalAmount|number)} amountOrNumber
-     * @param {?TemporalUnit} unit nullable only if first argument is an instance of TemporalAmount
-     * @returns {YearMonth}
-     */
-    plus(amountOrNumber, unit) {
-        if (arguments.length === 1) {
-            return this.plusAmount(amountOrNumber);
-        } else {
-            return this.plusAmountUnit(amountOrNumber, unit);
-        }
-    }
 
     /**
      * Returns a copy of this year-month with the specified period added.
@@ -792,24 +774,6 @@ export class YearMonth extends Temporal {
     }
 
     //-----------------------------------------------------------------------
-    /**
-     * function overloading for {@link YearMonth.minus}
-     *
-     * if called with 1 arguments, then {@link YearMonth.minusAmount} is executed.
-     *
-     * Otherwise {@link YearMonth.minusAmountUnit} is executed.
-     *
-     * @param {!(TemporalAmount|number)} amountOrNumber
-     * @param {?TemporalUnit} unit
-     * @returns {YearMonth}
-     */
-    minus(amountOrNumber, unit) {
-        if (arguments.length === 1) {
-            return this.minusAmount(amountOrNumber);
-        } else {
-            return this.minusAmountUnit(amountOrNumber, unit);
-        }
-    }
 
     /**
      * Returns a copy of this year-month with the specified period subtracted.

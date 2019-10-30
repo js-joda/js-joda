@@ -463,24 +463,6 @@ export class Year extends Temporal {
     }
 
     //-----------------------------------------------------------------------
-    /**
-     * function overloading for {@link YearMonth.with}
-     *
-     * if called with 2 arguments and first argument is an instance of TemporalField, then {@link Year.withFieldValue} is executed,
-
-     * otherwise {@link Year.withAdjuster} is executed,
-     *
-     * @param {!(TemporalAdjuster|TemporalField|Number)} adjusterOrFieldOrNumber
-     * @param {?number} value nullable only of first argument is an instance of TemporalAdjuster
-     * @returns {Year}
-     */
-    with(adjusterOrFieldOrNumber, value) {
-        if (arguments.length === 2 && adjusterOrFieldOrNumber instanceof TemporalField) {
-            return this.withFieldValue(adjusterOrFieldOrNumber, value);
-        } else {
-            return this.withAdjuster(adjusterOrFieldOrNumber);
-        }
-    }
 
     /**
      * Returns an adjusted copy of this year.
@@ -563,25 +545,6 @@ export class Year extends Temporal {
     }
 
     /**
-     * function overloading for {@link Year.plus}
-     *
-     * if called with 1 arguments, then {@link Year.plusAmount} is executed.
-     *
-     * Otherwise {@link Year.plusAmountToAddUnit} is executed.
-     *
-     * @param {!(TemporalAmount|number)} amountOrNumber
-     * @param {?TemporalUnit} unit nullable only if first argument is an instance of TemporalAmount
-     * @returns {Year}
-     */
-    plus(amountOrNumber, unit) {
-        if (arguments.length === 1) {
-            return this.plusAmount(amountOrNumber);
-        } else {
-            return this.plusAmountToAddUnit(amountOrNumber, unit);
-        }
-    }
-
-    /**
      * Returns a copy of this year with the specified period added.
      *
      * This method returns a new year based on this year with the specified period added.
@@ -610,7 +573,7 @@ export class Year extends Temporal {
      * @throws DateTimeException if the addition cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
-    plusAmountToAddUnit(amountToAdd, unit) {
+    plusAmountUnit(amountToAdd, unit) {
         requireNonNull(amountToAdd, 'amountToAdd');
         requireNonNull(unit, 'unit');
         requireInstance(unit, TemporalUnit, 'unit');
@@ -644,24 +607,6 @@ export class Year extends Temporal {
     }
 
     //-----------------------------------------------------------------------
-    /**
-     * function overloading for {@link Year.minus}
-     *
-     * if called with 1 argument, then {@link Year.minusAmount} is executed.
-     *
-     * Otherwise {@link Year.minusAmountToSubtractUnit} is executed.
-     *
-     * @param {!(TemporalAmount|number)} amountOrNumber
-     * @param {?TemporalUnit} unit
-     * @returns {Year}
-     */
-    minus(amountOrNumber, unit) {
-        if (arguments.length === 1) {
-            return this.minusAmount(amountOrNumber);
-        } else {
-            return this.minusAmountToSubtractUnit(amountOrNumber, unit);
-        }
-    }
 
     /**
      * Returns a copy of this year with the specified period subtracted.
@@ -692,7 +637,7 @@ export class Year extends Temporal {
      * @throws DateTimeException if the subtraction cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
-    minusAmountToSubtractUnit(amountToSubtract, unit) {
+    minusAmountUnit(amountToSubtract, unit) {
         requireNonNull(amountToSubtract, 'amountToSubtract');
         requireNonNull(unit, 'unit');
         requireInstance(unit, TemporalUnit, 'unit');
@@ -979,6 +924,77 @@ export class Year extends Temporal {
      */
     toJSON() {
         return this.toString();
+    }
+
+    /**
+     * Calculates the amount of time until another temporal in terms of the specified unit.
+     * This calculates the amount of time between two temporal objects in terms of a single {@link TemporalUnit}. The start and end points are this and the specified temporal. The end point is converted to be of the same type as the start point if different. The result will be negative if the end is before the start. For example, the amount in hours between two temporal objects can be calculated using `startTime.until(endTime, HOURS)`.
+     *
+     * The calculation returns a whole number, representing the number of complete units between the two temporals. For example, the amount in hours between the times 11:30 and 13:29 will only be one hour as it is one minute short of two hours.
+     *
+     * There are two equivalent ways of using this method. The first is to invoke this method directly. The second is to use `TemporalUnit.between(Temporal, Temporal)`:
+     *
+     * <pre>
+     *    // these two lines are equivalent
+     *    temporal = start.until(end, unit);
+     *    temporal = unit.between(start, end);
+     * </pre>
+     *
+     * The choice should be made based on which makes the code more readable.
+     * For example, this method allows the number of days between two dates to be calculated:
+     *
+     * <pre>
+     *   daysBetween = start.until(end, DAYS);
+     *   // or alternatively
+     *   daysBetween = DAYS.between(start, end);
+     * </pre>
+     *
+     * ### Implementation Requirements:
+     * Implementations must begin by checking to ensure that the input temporal object is of the same observable type as the implementation. They must then perform the calculation for all instances of {@link ChronoUnit}. An {@link UnsupportedTemporalTypeException} must be thrown for {@link ChronoUnit} instances that are unsupported.
+     * If the unit is not a {@link ChronoUnit}, then the result of this method is obtained by invoking `TemporalUnit.between(Temporal, Temporal)` passing this as the first argument and the converted input temporal as the second argument.
+     *
+     * In summary, implementations must behave in a manner equivalent to this pseudo-code:
+     *
+     * <pre>
+     *   // convert the end temporal to the same type as this class
+     *   if (unit instanceof ChronoUnit) {
+     *     // if unit is supported, then calculate and return result
+     *     // else throw UnsupportedTemporalTypeException for unsupported units
+     *   }
+     *   return unit.between(this, convertedEndTemporal);
+     * </pre>
+     *
+     * Note that the unit's between method must only be invoked if the two temporal objects have exactly the same type evaluated by `getClass()`.
+     *
+     * Implementations must ensure that no observable state is altered when this read-only method is invoked.
+     *
+     * @param {Temporal} endExclusive - the end temporal, exclusive, converted to be of the same type as this object, not null
+     * @param {TemporalUnit} unit - the unit to measure the amount in, not null
+     * @return {number} the amount of time between this temporal object and the specified one in terms of the unit; positive if the specified object is later than this one, negative if it is earlier than this one
+     * @throws DateTimeException - if the amount cannot be calculated, or the end temporal cannot be converted to the same type as this temporal
+     * @throws UnsupportedTemporalTypeException - if the unit is not supported
+     * @throws ArithmeticException - if numeric overflow occurs
+     */
+    until(endExclusive, unit) {
+        const end = Year.from(endExclusive);
+
+        if (unit instanceof ChronoUnit) {
+            const yearsUntil = end.value() - this.value();
+            switch (unit) {
+                case ChronoUnit.YEARS:
+                    return yearsUntil;
+                case ChronoUnit.DECADES:
+                    return MathUtil.intDiv(yearsUntil, 10);
+                case ChronoUnit.CENTURIES:
+                    return MathUtil.intDiv(yearsUntil, 100);
+                case ChronoUnit.MILLENNIA:
+                    return MathUtil.intDiv(yearsUntil, 1000);
+                case ChronoUnit.ERAS:
+                    return end.getLong(ChronoField.ERA) - this.getLong(ChronoField.ERA);
+            }
+            throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+        }
+        return unit.between(this, end);
     }
 }
 

@@ -14,7 +14,7 @@ import {ResolverStyle} from './ResolverStyle';
 import {IsoChronology} from '../chrono/IsoChronology';
 import {ChronoLocalDate} from '../chrono/ChronoLocalDate';
 import {ChronoField} from '../temporal/ChronoField';
-import {Temporal} from '../temporal/Temporal';
+import {TemporalAccessor} from '../temporal/TemporalAccessor';
 import {TemporalQueries} from '../temporal/TemporalQueries';
 
 import {LocalTime} from '../LocalTime';
@@ -36,7 +36,7 @@ import {ZoneOffset} from '../ZoneOffset';
  *
  *   @private
  */
-export class DateTimeBuilder extends Temporal {
+export class DateTimeBuilder extends TemporalAccessor {
 
     /**
      * Creates a new instance of the builder with a single field-value.
