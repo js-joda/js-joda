@@ -189,22 +189,21 @@ describe('js-joda LocalTime', () => {
             expect(testTime.with(field, 1)).to.eql('Test Value');
         });
         
-        // directly use the "overloaded" function to make sure we test the correct one :)
         it('should fail if field is null', () => {
             expect(() => {
-                testTime.withFieldValue(null, 1);
+                testTime.with(null, 1);
             }).to.throw(NullPointerException);
         });
         
         it('should fail for unsupported ChronoField', () => {
             expect(() => {
-                testTime.withFieldValue(ChronoField.DAY_OF_MONTH, 1);
+                testTime.with(ChronoField.DAY_OF_MONTH, 1);
             }).to.throw(UnsupportedTemporalTypeException);
         });
         
         it('should fail if field is not a TemporalField', () => {
             expect(() => {
-                testTime.withFieldValue({}, 1);
+                testTime.with({}, 1);
             }).to.throw(IllegalArgumentException);
         });
         
