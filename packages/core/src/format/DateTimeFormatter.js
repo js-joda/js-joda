@@ -704,9 +704,9 @@ export function _init() {
         .toFormatter(ResolverStyle.STRICT);
 
     // TODO:
-    //  ISO_DATE - https://docs.oracle.com/javase/10/docs/api/java/time/format/DateTimeFormatter.html#ISO_DATE
-    //  ISO_TIME - https://docs.oracle.com/javase/10/docs/api/java/time/format/DateTimeFormatter.html#ISO_TIME
-    //  ISO_DATE_TIME - https://docs.oracle.com/javase/10/docs/api/java/time/format/DateTimeFormatter.html#ISO_DATE_TIME
+    //  ISO_DATE - https://www.threeten.org/threetenbp/apidocs/org/threeten/bp/format/DateTimeFormatter.html#ISO_DATE
+    //  ISO_TIME - https://www.threeten.org/threetenbp/apidocs/org/threeten/bp/format/DateTimeFormatter.html#ISO_TIME
+    //  ISO_DATE_TIME - https://www.threeten.org/threetenbp/apidocs/org/threeten/bp/format/DateTimeFormatter.html#ISO_DATE_TIME
 
     DateTimeFormatter.PARSED_EXCESS_DAYS = createTemporalQuery('PARSED_EXCESS_DAYS', (temporal) => {
         if (temporal instanceof DateTimeBuilder) {
