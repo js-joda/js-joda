@@ -976,7 +976,7 @@ export abstract class ChronoZonedDateTime extends Temporal {
     isAfter(other: ChronoZonedDateTime): boolean;
     isBefore(other: ChronoZonedDateTime): boolean;
     isEqual(other: ChronoZonedDateTime): boolean;
-    query(query: any): any;
+    query<R>(query: TemporalQuery<R>): R;
     toEpochSecond(): number;
     toInstant(): Instant;
 }
@@ -1005,7 +1005,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     hashCode(): number;
     hour(): number;
     isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean;
-    minus(): ZonedDateTime;
+    minus(amount: TemporalAmount): ZonedDateTime;
     minus(amountToSubtract: number, unit: TemporalUnit): ZonedDateTime;
     minusDays(days: number): ZonedDateTime;
     minusHours(hours: number): ZonedDateTime;
@@ -1021,7 +1021,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     monthValue(): number;
     nano(): number;
     offset(): ZoneOffset;
-    plus(): ZonedDateTime;
+    plus(amount: TemporalAmount): ZonedDateTime;
     plus(amountToAdd: number, unit: TemporalUnit): ZonedDateTime;
     plusDays(days: number): ZonedDateTime;
     plusHours(hours: number): ZonedDateTime;

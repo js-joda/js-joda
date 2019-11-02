@@ -440,6 +440,9 @@ function test_ZonedDateTime() {
     zdt.plusWeeks(2);
 
     zdt.plusHours(2 * 7 * 24);
+
+    zdt.plus(Duration.ofDays(1));
+    zdt.minus(Duration.ofDays(1));
 }
 
 function test_ZoneOffsetTransition() {
