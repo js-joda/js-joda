@@ -1,6 +1,6 @@
 {
   "name": "@js-joda/timezone",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "iana tzdb timezone bindings for js-joda",
   "typings": "dist/js-joda-timezone.d.ts",
   "main": "dist/js-joda-timezone.js",
@@ -66,7 +66,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^3.0.5",
     "mocha": "^6.0.2",
-    "moment-timezone": "^0.5.23",
+    "moment-timezone": "^0.5.27",
     "phantomjs-prebuilt": "^2.1.16",
     "typescript": "^3.3.3333",
     "uglifyjs-webpack-plugin": "^2.1.2",

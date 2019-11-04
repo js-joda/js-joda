@@ -18,7 +18,7 @@ import { MomentZoneRulesProvider } from '../src/MomentZoneRulesProvider';
 describe('MomentZoneRules', () => {
     const OFFSET_MFIVE = ZoneOffset.ofHours(-5);
     const OFFSET_MFOUR = ZoneOffset.ofHours(-4);
-    const OFFSET_LMT_LONDON = ZoneOffset.ofHoursMinutesSeconds(0,-1, -15);
+    // const OFFSET_LMT_LONDON = ZoneOffset.ofHoursMinutesSeconds(0,-1, -15);
     const OFFSET_ZERO = ZoneOffset.ofHours(0);
     const OFFSET_PONE = ZoneOffset.ofHours(1);
     const OFFSET_PTWO = ZoneOffset.ofHours(2);
@@ -72,7 +72,7 @@ describe('MomentZoneRules', () => {
         });
 
         it('Europe/London', () => {
-            assertEquals(europeLondon.offset(createInstant(1800, 1, 1, 0, 0, ZoneOffset.UTC)), OFFSET_LMT_LONDON);
+            assertEquals(europeLondon.offset(createInstant(1800, 1, 1, 0, 0, ZoneOffset.UTC)), OFFSET_ZERO);
             assertEquals(europeLondon.offset(createInstant(2008, 1, 1, 0, 0, ZoneOffset.UTC)), OFFSET_ZERO);
             assertEquals(europeLondon.offset(createInstant(2008, 4, 1, 0, 0, ZoneOffset.UTC)), OFFSET_PONE);
             assertEquals(europeLondon.offset(createInstant(2008, 11, 1, 0, 0, ZoneOffset.UTC)), OFFSET_ZERO);
@@ -105,7 +105,7 @@ describe('MomentZoneRules', () => {
         });
 
         it('Europe/London', () => {
-            assertEquals(europeLondon.offset(createLocalDateTime(1800, 1, 1, 0, 0)), OFFSET_LMT_LONDON);
+            assertEquals(europeLondon.offset(createLocalDateTime(1800, 1, 1, 0, 0)), OFFSET_ZERO);
             assertEquals(europeLondon.offset(createLocalDateTime(2008, 1, 1, 0, 0)), OFFSET_ZERO);
             assertEquals(europeLondon.offset(createLocalDateTime(2008, 4, 1, 0, 0)), OFFSET_PONE);
             assertEquals(europeLondon.offset(createLocalDateTime(2008, 11, 1, 0, 0)), OFFSET_ZERO);
