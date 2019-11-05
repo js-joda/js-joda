@@ -30,6 +30,7 @@ import {
     DateTimeParseException,
     ZoneOffsetTransitionRule,
     TemporalQueries,
+    TemporalUnit,
 } from '../../'
 
 // used below
@@ -737,19 +738,13 @@ function test_TemporalQuery() {
     const chronology = temporal1.query(TemporalQueries.chronology());
 
     const unit = temporal2.query(TemporalQueries.precision());
-    if (unit) {
-        temporal1.plus(1, unit);
-    }
+    expectType<TemporalUnit | null>(unit);
 
     const localDate = temporal3.query(TemporalQueries.localDate());
-    if (localDate) {
-        localDate.atStartOfDay();
-    }
+    expectType<LocalDate | null>(localDate);
 
     const zoneId = temporal4.query(TemporalQueries.zoneId());
-    if (zoneId) {
-        temporal3.atZone(zoneId);
-    }
+    expectType<ZoneId | null>(zoneId);
 
     TemporalQueries.localTime().queryFrom(Month.APRIL);
     TemporalQueries.localTime().queryFrom(Year.now());
