@@ -695,6 +695,7 @@ function test_Month() {
 
 function test_Clock() {
     const clock = Clock.systemUTC();
+    const clock2 = Clock.fixed(Instant.now(), ZoneId.UTC);
 
     expectType<ZoneId>(clock.zone());
     expectType<Clock>(clock.withZone(ZoneId.UTC));
