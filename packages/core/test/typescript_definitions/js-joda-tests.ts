@@ -29,6 +29,7 @@ import {
     ZoneId,
     DateTimeParseException,
     ZoneOffsetTransitionRule,
+    TemporalQueries,
 } from '../../'
 
 // used below
@@ -701,12 +702,6 @@ function test_Clock() {
     expectType<Clock>(clock.withZone(ZoneId.UTC));
 }
 
-/**
- * Use this to check if an expression is of type T.
- * Don't let TypeScript infer the type, give it explicitly.
- */
-declare function expectType<T>(v: T): T;
-
 function test_Temporal() {
   const temporal: Temporal = Year.now();
 
@@ -732,3 +727,40 @@ function test_Temporal() {
   temporal.with(nextYear);
   temporal.with(ChronoField.YEAR, 2020);
 }
+
+function test_TemporalQuery() {
+    const temporal1: Temporal = Instant.now();
+    const temporal2: Instant = Instant.now();
+    const temporal3: LocalDateTime = LocalDateTime.now();
+    const temporal4: ZonedDateTime = ZonedDateTime.now();
+
+    const chronology = temporal1.query(TemporalQueries.chronology());
+
+    const unit = temporal2.query(TemporalQueries.precision());
+    if (unit) {
+        temporal1.plus(1, unit);
+    }
+
+    const localDate = temporal3.query(TemporalQueries.localDate());
+    if (localDate) {
+        localDate.atStartOfDay();
+    }
+
+    const zoneId = temporal4.query(TemporalQueries.zoneId());
+    if (zoneId) {
+        temporal3.atZone(zoneId);
+    }
+
+    TemporalQueries.localTime().queryFrom(Month.APRIL);
+    TemporalQueries.localTime().queryFrom(Year.now());
+
+    const fmt = DateTimeFormatter.ofPattern('');
+    fmt.parse('', TemporalQueries.localDate())
+
+}
+
+/**
+ * Use this to check if an expression is of type T.
+ * Don't let TypeScript infer the type, give it explicitly.
+ */
+declare function expectType<T>(v: T): T;
