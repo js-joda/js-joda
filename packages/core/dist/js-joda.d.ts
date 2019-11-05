@@ -62,6 +62,8 @@ export class DayOfWeek extends TemporalAccessor {
     static SATURDAY: DayOfWeek;
     static SUNDAY: DayOfWeek;
 
+    static FROM: TemporalQuery<DayOfWeek>;
+
     static from(temporal: TemporalAccessor): DayOfWeek;
     static of(dayOfWeek: number): DayOfWeek;
     static valueOf(name: string): DayOfWeek;
@@ -156,6 +158,8 @@ export class Instant extends Temporal {
     static MAX: Instant;
     static MIN_SECONDS: Instant;
     static MAX_SECONDS: Instant;
+
+    static FROM: TemporalQuery<Instant>;
 
     static from(temporal: TemporalAccessor): Instant;
     static now(clock?: Clock): Instant;
@@ -288,6 +292,8 @@ export class LocalTime extends Temporal {
     static NANOS_PER_HOUR: number;
     static NANOS_PER_DAY: number;
 
+    static FROM: TemporalQuery<LocalDate>;
+
     static from(temporal: TemporalAccessor): LocalTime;
     static now(clockOrZone?: Clock | ZoneId): LocalTime;
     static of(hour?: number, minute?: number, second?: number, nanoOfSecond?: number): LocalTime;
@@ -385,6 +391,8 @@ export class Month extends TemporalAccessor {
 }
 
 export class MonthDay extends TemporalAccessor {
+    static FROM: TemporalQuery<LocalDate>;
+
     static from(temporal: TemporalAccessor): MonthDay;
     static now(zoneIdOrClock?: ZoneId | Clock): MonthDay;
     static of(month: Month | number, dayOfMonth: number): MonthDay;
@@ -544,6 +552,8 @@ export class LocalDate extends ChronoLocalDate {
     static MAX: LocalDate;
     static EPOCH_0: LocalDate;
 
+    static FROM: TemporalQuery<LocalDate>;
+
     static from(temporal: TemporalAccessor): LocalDate;
     static now(clockOrZone?: Clock | ZoneId): LocalDate;
     static of(year: number, month: Month | number, dayOfMonth: number): LocalDate;
@@ -618,6 +628,8 @@ export abstract class ChronoLocalDateTime extends Temporal {
 export class LocalDateTime extends ChronoLocalDateTime {
     static MIN: LocalDateTime;
     static MAX: LocalDateTime;
+
+    static FROM: TemporalQuery<LocalDateTime>;
 
     static from(temporal: TemporalAccessor): LocalDateTime;
     static now(clockOrZone?: Clock | ZoneId): LocalDateTime;
@@ -761,13 +773,13 @@ export namespace TemporalAdjusters {
 }
 
 export namespace TemporalQueries {
-    function chronology(): TemporalQuery<Chronology>;
-    function localDate(): TemporalQuery<LocalDate>;
-    function localTime(): TemporalQuery<LocalTime>;
-    function offset(): TemporalQuery<ZoneOffset>;
-    function precision(): TemporalQuery<TemporalUnit>;
-    function zone(): TemporalQuery<ZoneId>;
-    function zoneId(): TemporalQuery<ZoneId>;
+    function chronology(): TemporalQuery<Chronology | null>;
+    function localDate(): TemporalQuery<LocalDate | null>;
+    function localTime(): TemporalQuery<LocalTime | null>;
+    function offset(): TemporalQuery<ZoneOffset | null>;
+    function precision(): TemporalQuery<TemporalUnit | null>;
+    function zone(): TemporalQuery<ZoneId | null>;
+    function zoneId(): TemporalQuery<ZoneId | null>;
 }
 
 export class ValueRange {
@@ -795,6 +807,8 @@ export class ValueRange {
 export class Year extends Temporal {
     static MIN_VALUE: number;
     static MAX_VALUE: number;
+
+    static FROM: TemporalQuery<LocalDate>;
 
     static from(temporal: TemporalAccessor): Year;
     static isLeap(year: number): boolean;
@@ -826,6 +840,8 @@ export class Year extends Temporal {
 }
 
 export class YearMonth extends Temporal {
+    static FROM: TemporalQuery<LocalDate>;
+
     static from(temporal: TemporalAccessor): YearMonth;
     static now(zoneIdOrClock?: ZoneId | Clock): YearMonth;
     static of(year: number, monthOrNumber: Month | number): YearMonth;
@@ -982,6 +998,8 @@ export abstract class ChronoZonedDateTime extends Temporal {
 }
 
 export class ZonedDateTime extends ChronoZonedDateTime {
+    static FROM: TemporalQuery<LocalDate>;
+
     static from(temporal: TemporalAccessor): ZonedDateTime;
     static now(clockOrZone?: Clock | ZoneId): ZonedDateTime;
     static of(localDateTime: LocalDateTime, zone: ZoneId): ZonedDateTime;

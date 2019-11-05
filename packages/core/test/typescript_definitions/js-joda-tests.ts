@@ -756,7 +756,15 @@ function test_TemporalQuery() {
 
     const fmt = DateTimeFormatter.ofPattern('');
     fmt.parse('', TemporalQueries.localDate())
-
+    fmt.parse('', DayOfWeek.FROM);
+    fmt.parse('', Instant.FROM);
+    fmt.parse('', LocalDate.FROM);
+    fmt.parse('', LocalDateTime.FROM);
+    fmt.parse('', LocalTime.FROM);
+    fmt.parse('', MonthDay.FROM);
+    fmt.parse('', Year.FROM);
+    fmt.parse('', YearMonth.FROM);
+    fmt.parse('', ZonedDateTime.FROM);
 }
 
 /**
