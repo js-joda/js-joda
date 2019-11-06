@@ -29,6 +29,8 @@ import {
     ZoneId,
     DateTimeParseException,
     ZoneOffsetTransitionRule,
+    TemporalQueries,
+    TemporalUnit,
 } from '../../'
 
 // used below
@@ -440,6 +442,9 @@ function test_ZonedDateTime() {
     zdt.plusWeeks(2);
 
     zdt.plusHours(2 * 7 * 24);
+
+    zdt.plus(Duration.ofDays(1));
+    zdt.minus(Duration.ofDays(1));
 }
 
 function test_ZoneOffsetTransition() {
@@ -692,16 +697,11 @@ function test_Month() {
 
 function test_Clock() {
     const clock = Clock.systemUTC();
+    const clock2 = Clock.fixed(Instant.now(), ZoneId.UTC);
 
     expectType<ZoneId>(clock.zone());
     expectType<Clock>(clock.withZone(ZoneId.UTC));
 }
-
-/**
- * Use this to check if an expression is of type T.
- * Don't let TypeScript infer the type, give it explicitly.
- */
-declare function expectType<T>(v: T): T;
 
 function test_Temporal() {
   const temporal: Temporal = Year.now();
@@ -728,3 +728,42 @@ function test_Temporal() {
   temporal.with(nextYear);
   temporal.with(ChronoField.YEAR, 2020);
 }
+
+function test_TemporalQuery() {
+    const temporal1: Temporal = Instant.now();
+    const temporal2: Instant = Instant.now();
+    const temporal3: LocalDateTime = LocalDateTime.now();
+    const temporal4: ZonedDateTime = ZonedDateTime.now();
+
+    const chronology = temporal1.query(TemporalQueries.chronology());
+
+    const unit = temporal2.query(TemporalQueries.precision());
+    expectType<TemporalUnit | null>(unit);
+
+    const localDate = temporal3.query(TemporalQueries.localDate());
+    expectType<LocalDate | null>(localDate);
+
+    const zoneId = temporal4.query(TemporalQueries.zoneId());
+    expectType<ZoneId | null>(zoneId);
+
+    TemporalQueries.localTime().queryFrom(Month.APRIL);
+    TemporalQueries.localTime().queryFrom(Year.now());
+
+    const fmt = DateTimeFormatter.ofPattern('');
+    fmt.parse('', TemporalQueries.localDate())
+    fmt.parse('', DayOfWeek.FROM);
+    fmt.parse('', Instant.FROM);
+    fmt.parse('', LocalDate.FROM);
+    fmt.parse('', LocalDateTime.FROM);
+    fmt.parse('', LocalTime.FROM);
+    fmt.parse('', MonthDay.FROM);
+    fmt.parse('', Year.FROM);
+    fmt.parse('', YearMonth.FROM);
+    fmt.parse('', ZonedDateTime.FROM);
+}
+
+/**
+ * Use this to check if an expression is of type T.
+ * Don't let TypeScript infer the type, give it explicitly.
+ */
+declare function expectType<T>(v: T): T;
