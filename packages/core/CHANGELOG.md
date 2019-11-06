@@ -3,6 +3,14 @@ Changelog
 
 ### next
 
+### 2.0.0
+
+This is a major release because some 'internal' methods were hidden from the typescript definitions
+and were renamed in the javascript code. 
+Resolve those conflicts by using the 'public shorthand' methods, like instead of using `with*()` use `with(...)`. 
+
+ * Improve of the TS declarations #353 from InExtremaRes
+ * Add missing methods to `Temporal` interface #361 from thrucker
  * LocalDateTime.of requires at least 3 arguments #356
  
 ### 1.12.0
