@@ -200,7 +200,6 @@ export class Instant extends Temporal {
     until(endExclusive: Temporal, unit: TemporalUnit): number;
     with(adjuster: TemporalAdjuster): Instant;
     with(field: TemporalField, newValue: number): Instant;
-    withTemporalAdjuster(adjuster: TemporalAdjuster): Instant;
 }
 
 export class ResolverStyle {
@@ -345,7 +344,6 @@ export class LocalTime extends Temporal {
     withMinute(minute: number): LocalTime;
     withNano(nanoOfSecond: number): LocalTime;
     withSecond(second: number): LocalTime;
-    withTemporalAdjuster(adjuster: TemporalAdjuster): LocalTime;
 }
 
 export class Month extends TemporalAccessor {
@@ -566,7 +564,6 @@ export class LocalDate extends ChronoLocalDate {
 
     atStartOfDay(): LocalDateTime;
     atStartOfDay(zone: ZoneId): ZonedDateTime;
-    atStartOfDayWithZone(zone: ZoneId): ZonedDateTime;
     atTime(time: LocalTime): LocalDateTime;
     atTime(hour: number, minute: number, second?: number, nanoOfSecond?: number): LocalDateTime;
     chronology(): Chronology;
@@ -611,9 +608,7 @@ export class LocalDate extends ChronoLocalDate {
     with(adjuster: TemporalAdjuster): LocalDate;
     withDayOfMonth(dayOfMonth: number): LocalDate;
     withDayOfYear(dayOfYear: number): LocalDate;
-    withFieldAndValue(field: TemporalField, newValue: number): LocalDate;
     withMonth(month: Month | number): LocalDate;
-    withTemporalAdjuster(adjuster: TemporalAdjuster): LocalDate;
     withYear(year: number): LocalDate;
     year(): number;
 }
@@ -702,7 +697,6 @@ export class LocalDateTime extends ChronoLocalDateTime {
     withMonth(month: number | Month): LocalDateTime;
     withNano(nanoOfSecond: number): LocalDateTime;
     withSecond(second: number): LocalDateTime;
-    withTemporalAdjuster(adjuster: TemporalAdjuster): LocalDateTime;
     withYear(year: number): LocalDateTime;
     year(): number;
 }
@@ -1070,7 +1064,6 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     withMonth(month: number): ZonedDateTime;
     withNano(nanoOfSecond: number): ZonedDateTime;
     withSecond(second: number): ZonedDateTime;
-    withTemporalAdjuster(adjuster: TemporalAdjuster): ZonedDateTime;
     withYear(year: number): ZonedDateTime;
     withZoneSameInstant(zone: ZoneId): ZonedDateTime;
     withZoneSameLocal(zone: ZoneId): ZonedDateTime;
