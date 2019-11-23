@@ -1,6 +1,6 @@
 {
   "name": "@js-joda/locale",
-  "version": "3.0.0+34.0.0",
+  "version": "3.0.1+34.0.0",
   "description": "plugin for locale functionality for js-joda",
   "repository": {
     "type": "git",
