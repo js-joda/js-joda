@@ -3993,13 +3993,13 @@ var WeekFields = function () {
     }
   }, {
     key: "equals",
-    value: function equals(object) {
-      if (this === object) {
+    value: function equals(other) {
+      if (this === other) {
         return true;
       }
 
-      if (object instanceof WeekFields) {
-        return this.hashCode() === object.hashCode();
+      if (other instanceof WeekFields) {
+        return this.hashCode() === other.hashCode();
       }
 
       return false;
