@@ -6,12 +6,12 @@
     "build-test-coverage-report": "./build-test-coverage-report.sh"
   },
   "devDependencies": {
-    "coveralls": "^3.0.4",
+    "coveralls": "^3.0.8",
     "esdoc": "^1.1.0",
     "esdoc-standard-plugin": "^1.0.0",
-    "eslint": "^6.0.1",
+    "eslint": "^6.7.0",
     "eslint-config-js-joda": "^1.0.0",
-    "lerna": "^3.13.1",
+    "lerna": "^3.19.0",
     "nyc": "^14.1.1"
   },
   "dependencies": {}
