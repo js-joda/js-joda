@@ -109,8 +109,8 @@ describe('@js-joda/locale TextPrinterTest', () => {
                 [ChronoField.AMPM_OF_DAY, TextStyle.FULL, 0, 'AM'],
                 [ChronoField.AMPM_OF_DAY, TextStyle.FULL, 1, 'PM'],
 
-                [ChronoField.AMPM_OF_DAY, TextStyle.NARROW, 0, 'a'],
-                [ChronoField.AMPM_OF_DAY, TextStyle.NARROW, 1, 'p'],
+                [ChronoField.AMPM_OF_DAY, TextStyle.NARROW, 0, 'AM'],
+                [ChronoField.AMPM_OF_DAY, TextStyle.NARROW, 1, 'PM'],
 
                 [ChronoField.AMPM_OF_DAY, TextStyle.SHORT, 0, 'AM'],
                 [ChronoField.AMPM_OF_DAY, TextStyle.SHORT, 1, 'PM'],
