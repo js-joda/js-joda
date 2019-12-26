@@ -76,6 +76,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html">DefaultInterfaceTemporal</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
@@ -1532,10 +1533,10 @@ described by <span>getId</span>.</p>
   <div data-ice="description"><p>Adjusts the specified temporal object to have the same offset as this object.</p>
 <p>This returns a temporal object of the same observable type as the input
 with the offset changed to be the same as this.</p>
-<p>The adjustment is equivalent to using <span>Temporal#with</span>
+<p>The adjustment is equivalent to using <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-with">Temporal#with</a></span>
 passing <span>ChronoField#OFFSET_SECONDS</span> as the field.</p>
 <p>In most cases, it is clearer to reverse the calling pattern by using
-<span>Temporal#with</span>:</p>
+<span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-with">Temporal#with</a></span>:</p>
 <p><pre>
   // these two lines are equivalent, but the second approach is recommended
   temporal = thisOffset.adjustInto(temporal);

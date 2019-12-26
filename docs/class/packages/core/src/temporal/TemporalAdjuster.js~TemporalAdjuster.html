@@ -76,6 +76,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html">DefaultInterfaceTemporal</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
@@ -155,13 +156,13 @@ Examples might be an adjuster that sets the date avoiding weekends, or one that
 sets the date to the last day of the month.</p>
 <p>There are two equivalent ways of using a <span><a href="class/packages/core/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span>.
 The first is to invoke the method on this interface directly.
-The second is to use <span>Temporal#with</span>:</p>
+The second is to use <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-with">Temporal#with</a></span>:</p>
 <p><pre>
   // these two lines are equivalent, but the second approach is recommended
   temporal = thisAdjuster.adjustInto(temporal);
   temporal = temporal.with(thisAdjuster);
 </pre>
-It is recommended to use the second approach, <span><a href="class/packages/core/src/Instant.js~Instant.html#instance-method-with">with</a></span>,
+It is recommended to use the second approach, <span><a href="class/packages/core/src/MonthDay.js~MonthDay.html#instance-method-with">with</a></span>,
 as it is a lot clearer to read in code.</p>
 <p>See <span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span> for a standard set of adjusters, including finding the
 last day of the month.
@@ -255,13 +256,13 @@ Examples might be an adjuster that sets the date avoiding weekends, or one that
 sets the date to the last day of the month.</p>
 <p>There are two equivalent ways of using this method.
 The first is to invoke this method directly.
-The second is to use <span>Temporal#with</span>:</p>
+The second is to use <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-with">Temporal#with</a></span>:</p>
 <p><pre>
   // these two lines are equivalent, but the second approach is recommended
   temporal = thisAdjuster.adjustInto(temporal);
   temporal = temporal.with(thisAdjuster);
 </pre>
-It is recommended to use the second approach, <span><a href="class/packages/core/src/Instant.js~Instant.html#instance-method-with">with</a></span>,
+It is recommended to use the second approach, <span><a href="class/packages/core/src/MonthDay.js~MonthDay.html#instance-method-with">with</a></span>,
 as it is a lot clearer to read in code.</p>
 <h3 id="specification-for-implementors">Specification for implementors</h3><p>The implementation must take the input object and adjust it.
 The implementation defines the logic of the adjustment and is responsible for

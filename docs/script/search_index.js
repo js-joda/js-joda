@@ -96,6 +96,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "@js-joda/root/packages/core/src/temporal/defaultinterfacetemporal.js~defaultinterfacetemporal",
+    "class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html",
+    "<span>DefaultInterfaceTemporal</span> <span class=\"search-result-import-path\">@js-joda/root/packages/core/src/temporal/DefaultInterfaceTemporal.js</span>",
+    "class"
+  ],
+  [
     "@js-joda/root/packages/core/src/duration.js~duration",
     "class/packages/core/src/Duration.js~Duration.html",
     "<span>Duration</span> <span class=\"search-result-import-path\">@js-joda/root/packages/core/src/Duration.js</span>",
@@ -1128,21 +1134,15 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "packages/core/src/instant.js~instant#minus",
-    "class/packages/core/src/Instant.js~Instant.html#instance-method-minus",
-    "packages/core/src/Instant.js~Instant#minus",
+    "packages/core/src/instant.js~instant#minusamount",
+    "class/packages/core/src/Instant.js~Instant.html#instance-method-minusAmount",
+    "packages/core/src/Instant.js~Instant#minusAmount",
     "method"
   ],
   [
-    "packages/core/src/instant.js~instant#minus1",
-    "class/packages/core/src/Instant.js~Instant.html#instance-method-minus1",
-    "packages/core/src/Instant.js~Instant#minus1",
-    "method"
-  ],
-  [
-    "packages/core/src/instant.js~instant#minus2",
-    "class/packages/core/src/Instant.js~Instant.html#instance-method-minus2",
-    "packages/core/src/Instant.js~Instant#minus2",
+    "packages/core/src/instant.js~instant#minusamountunit",
+    "class/packages/core/src/Instant.js~Instant.html#instance-method-minusAmountUnit",
+    "packages/core/src/Instant.js~Instant#minusAmountUnit",
     "method"
   ],
   [
@@ -1170,21 +1170,15 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "packages/core/src/instant.js~instant#plus",
-    "class/packages/core/src/Instant.js~Instant.html#instance-method-plus",
-    "packages/core/src/Instant.js~Instant#plus",
+    "packages/core/src/instant.js~instant#plusamount",
+    "class/packages/core/src/Instant.js~Instant.html#instance-method-plusAmount",
+    "packages/core/src/Instant.js~Instant#plusAmount",
     "method"
   ],
   [
-    "packages/core/src/instant.js~instant#plus1",
-    "class/packages/core/src/Instant.js~Instant.html#instance-method-plus1",
-    "packages/core/src/Instant.js~Instant#plus1",
-    "method"
-  ],
-  [
-    "packages/core/src/instant.js~instant#plus2",
-    "class/packages/core/src/Instant.js~Instant.html#instance-method-plus2",
-    "packages/core/src/Instant.js~Instant#plus2",
+    "packages/core/src/instant.js~instant#plusamountunit",
+    "class/packages/core/src/Instant.js~Instant.html#instance-method-plusAmountUnit",
+    "packages/core/src/Instant.js~Instant#plusAmountUnit",
     "method"
   ],
   [
@@ -1248,21 +1242,15 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "packages/core/src/instant.js~instant#with",
-    "class/packages/core/src/Instant.js~Instant.html#instance-method-with",
-    "packages/core/src/Instant.js~Instant#with",
+    "packages/core/src/instant.js~instant#withadjuster",
+    "class/packages/core/src/Instant.js~Instant.html#instance-method-withAdjuster",
+    "packages/core/src/Instant.js~Instant#withAdjuster",
     "method"
   ],
   [
-    "packages/core/src/instant.js~instant#with2",
-    "class/packages/core/src/Instant.js~Instant.html#instance-method-with2",
-    "packages/core/src/Instant.js~Instant#with2",
-    "method"
-  ],
-  [
-    "packages/core/src/instant.js~instant#withtemporaladjuster",
-    "class/packages/core/src/Instant.js~Instant.html#instance-method-withTemporalAdjuster",
-    "packages/core/src/Instant.js~Instant#withTemporalAdjuster",
+    "packages/core/src/instant.js~instant#withfieldvalue",
+    "class/packages/core/src/Instant.js~Instant.html#instance-method-withFieldValue",
+    "packages/core/src/Instant.js~Instant#withFieldValue",
     "method"
   ],
   [
@@ -1440,21 +1428,15 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "packages/core/src/localdate.js~localdate#minus",
-    "class/packages/core/src/LocalDate.js~LocalDate.html#instance-method-minus",
-    "packages/core/src/LocalDate.js~LocalDate#minus",
+    "packages/core/src/localdate.js~localdate#minusamount",
+    "class/packages/core/src/LocalDate.js~LocalDate.html#instance-method-minusAmount",
+    "packages/core/src/LocalDate.js~LocalDate#minusAmount",
     "method"
   ],
   [
-    "packages/core/src/localdate.js~localdate#minus1",
-    "class/packages/core/src/LocalDate.js~LocalDate.html#instance-method-minus1",
-    "packages/core/src/LocalDate.js~LocalDate#minus1",
-    "method"
-  ],
-  [
-    "packages/core/src/localdate.js~localdate#minus2",
-    "class/packages/core/src/LocalDate.js~LocalDate.html#instance-method-minus2",
-    "packages/core/src/LocalDate.js~LocalDate#minus2",
+    "packages/core/src/localdate.js~localdate#minusamountunit",
+    "class/packages/core/src/LocalDate.js~LocalDate.html#instance-method-minusAmountUnit",
+    "packages/core/src/LocalDate.js~LocalDate#minusAmountUnit",
     "method"
   ],
   [
@@ -1494,21 +1476,15 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "packages/core/src/localdate.js~localdate#plus",
-    "class/packages/core/src/LocalDate.js~LocalDate.html#instance-method-plus",
-    "packages/core/src/LocalDate.js~LocalDate#plus",
+    "packages/core/src/localdate.js~localdate#plusamount",
+    "class/packages/core/src/LocalDate.js~LocalDate.html#instance-method-plusAmount",
+    "packages/core/src/LocalDate.js~LocalDate#plusAmount",
     "method"
   ],
   [
-    "packages/core/src/localdate.js~localdate#plus1",
-    "class/packages/core/src/LocalDate.js~LocalDate.html#instance-method-plus1",
-    "packages/core/src/LocalDate.js~LocalDate#plus1",
-    "method"
-  ],
-  [
-    "packages/core/src/localdate.js~localdate#plus2",
-    "class/packages/core/src/LocalDate.js~LocalDate.html#instance-method-plus2",
-    "packages/core/src/LocalDate.js~LocalDate#plus2",
+    "packages/core/src/localdate.js~localdate#plusamountunit",
+    "class/packages/core/src/LocalDate.js~LocalDate.html#instance-method-plusAmountUnit",
+    "packages/core/src/LocalDate.js~LocalDate#plusAmountUnit",
     "method"
   ],
   [
@@ -1584,9 +1560,9 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "packages/core/src/localdate.js~localdate#with",
-    "class/packages/core/src/LocalDate.js~LocalDate.html#instance-method-with",
-    "packages/core/src/LocalDate.js~LocalDate#with",
+    "packages/core/src/localdate.js~localdate#withadjuster",
+    "class/packages/core/src/LocalDate.js~LocalDate.html#instance-method-withAdjuster",
+    "packages/core/src/LocalDate.js~LocalDate#withAdjuster",
     "method"
   ],
   [
@@ -1602,21 +1578,15 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "packages/core/src/localdate.js~localdate#withfieldandvalue",
-    "class/packages/core/src/LocalDate.js~LocalDate.html#instance-method-withFieldAndValue",
-    "packages/core/src/LocalDate.js~LocalDate#withFieldAndValue",
+    "packages/core/src/localdate.js~localdate#withfieldvalue",
+    "class/packages/core/src/LocalDate.js~LocalDate.html#instance-method-withFieldValue",
+    "packages/core/src/LocalDate.js~LocalDate#withFieldValue",
     "method"
   ],
   [
     "packages/core/src/localdate.js~localdate#withmonth",
     "class/packages/core/src/LocalDate.js~LocalDate.html#instance-method-withMonth",
     "packages/core/src/LocalDate.js~LocalDate#withMonth",
-    "method"
-  ],
-  [
-    "packages/core/src/localdate.js~localdate#withtemporaladjuster",
-    "class/packages/core/src/LocalDate.js~LocalDate.html#instance-method-withTemporalAdjuster",
-    "packages/core/src/LocalDate.js~LocalDate#withTemporalAdjuster",
     "method"
   ],
   [
@@ -1776,15 +1746,15 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "packages/core/src/localdatetime.js~localdatetime#minus",
-    "class/packages/core/src/LocalDateTime.js~LocalDateTime.html#instance-method-minus",
-    "packages/core/src/LocalDateTime.js~LocalDateTime#minus",
+    "packages/core/src/localdatetime.js~localdatetime#minusamount",
+    "class/packages/core/src/LocalDateTime.js~LocalDateTime.html#instance-method-minusAmount",
+    "packages/core/src/LocalDateTime.js~LocalDateTime#minusAmount",
     "method"
   ],
   [
-    "packages/core/src/localdatetime.js~localdatetime#minus2",
-    "class/packages/core/src/LocalDateTime.js~LocalDateTime.html#instance-method-minus2",
-    "packages/core/src/LocalDateTime.js~LocalDateTime#minus2",
+    "packages/core/src/localdatetime.js~localdatetime#minusamountunit",
+    "class/packages/core/src/LocalDateTime.js~LocalDateTime.html#instance-method-minusAmountUnit",
+    "packages/core/src/LocalDateTime.js~LocalDateTime#minusAmountUnit",
     "method"
   ],
   [
@@ -1824,12 +1794,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "packages/core/src/localdatetime.js~localdatetime#minustemporalamount",
-    "class/packages/core/src/LocalDateTime.js~LocalDateTime.html#instance-method-minusTemporalAmount",
-    "packages/core/src/LocalDateTime.js~LocalDateTime#minusTemporalAmount",
-    "method"
-  ],
-  [
     "packages/core/src/localdatetime.js~localdatetime#minusweeks",
     "class/packages/core/src/LocalDateTime.js~LocalDateTime.html#instance-method-minusWeeks",
     "packages/core/src/LocalDateTime.js~LocalDateTime#minusWeeks",
@@ -1866,15 +1830,15 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "packages/core/src/localdatetime.js~localdatetime#plus",
-    "class/packages/core/src/LocalDateTime.js~LocalDateTime.html#instance-method-plus",
-    "packages/core/src/LocalDateTime.js~LocalDateTime#plus",
+    "packages/core/src/localdatetime.js~localdatetime#plusamount",
+    "class/packages/core/src/LocalDateTime.js~LocalDateTime.html#instance-method-plusAmount",
+    "packages/core/src/LocalDateTime.js~LocalDateTime#plusAmount",
     "method"
   ],
   [
-    "packages/core/src/localdatetime.js~localdatetime#plus2",
-    "class/packages/core/src/LocalDateTime.js~LocalDateTime.html#instance-method-plus2",
-    "packages/core/src/LocalDateTime.js~LocalDateTime#plus2",
+    "packages/core/src/localdatetime.js~localdatetime#plusamountunit",
+    "class/packages/core/src/LocalDateTime.js~LocalDateTime.html#instance-method-plusAmountUnit",
+    "packages/core/src/LocalDateTime.js~LocalDateTime#plusAmountUnit",
     "method"
   ],
   [
@@ -1911,12 +1875,6 @@ window.esdocSearchIndex = [
     "packages/core/src/localdatetime.js~localdatetime#plusseconds",
     "class/packages/core/src/LocalDateTime.js~LocalDateTime.html#instance-method-plusSeconds",
     "packages/core/src/LocalDateTime.js~LocalDateTime#plusSeconds",
-    "method"
-  ],
-  [
-    "packages/core/src/localdatetime.js~localdatetime#plustemporalamount",
-    "class/packages/core/src/LocalDateTime.js~LocalDateTime.html#instance-method-plusTemporalAmount",
-    "packages/core/src/LocalDateTime.js~LocalDateTime#plusTemporalAmount",
     "method"
   ],
   [
@@ -1986,15 +1944,9 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "packages/core/src/localdatetime.js~localdatetime#with",
-    "class/packages/core/src/LocalDateTime.js~LocalDateTime.html#instance-method-with",
-    "packages/core/src/LocalDateTime.js~LocalDateTime#with",
-    "method"
-  ],
-  [
-    "packages/core/src/localdatetime.js~localdatetime#with2",
-    "class/packages/core/src/LocalDateTime.js~LocalDateTime.html#instance-method-with2",
-    "packages/core/src/LocalDateTime.js~LocalDateTime#with2",
+    "packages/core/src/localdatetime.js~localdatetime#withadjuster",
+    "class/packages/core/src/LocalDateTime.js~LocalDateTime.html#instance-method-withAdjuster",
+    "packages/core/src/LocalDateTime.js~LocalDateTime#withAdjuster",
     "method"
   ],
   [
@@ -2007,6 +1959,12 @@ window.esdocSearchIndex = [
     "packages/core/src/localdatetime.js~localdatetime#withdayofyear",
     "class/packages/core/src/LocalDateTime.js~LocalDateTime.html#instance-method-withDayOfYear",
     "packages/core/src/LocalDateTime.js~LocalDateTime#withDayOfYear",
+    "method"
+  ],
+  [
+    "packages/core/src/localdatetime.js~localdatetime#withfieldvalue",
+    "class/packages/core/src/LocalDateTime.js~LocalDateTime.html#instance-method-withFieldValue",
+    "packages/core/src/LocalDateTime.js~LocalDateTime#withFieldValue",
     "method"
   ],
   [
@@ -2037,12 +1995,6 @@ window.esdocSearchIndex = [
     "packages/core/src/localdatetime.js~localdatetime#withsecond",
     "class/packages/core/src/LocalDateTime.js~LocalDateTime.html#instance-method-withSecond",
     "packages/core/src/LocalDateTime.js~LocalDateTime#withSecond",
-    "method"
-  ],
-  [
-    "packages/core/src/localdatetime.js~localdatetime#withtemporaladjuster",
-    "class/packages/core/src/LocalDateTime.js~LocalDateTime.html#instance-method-withTemporalAdjuster",
-    "packages/core/src/LocalDateTime.js~LocalDateTime#withTemporalAdjuster",
     "method"
   ],
   [
@@ -2184,21 +2136,15 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "packages/core/src/localtime.js~localtime#minus",
-    "class/packages/core/src/LocalTime.js~LocalTime.html#instance-method-minus",
-    "packages/core/src/LocalTime.js~LocalTime#minus",
+    "packages/core/src/localtime.js~localtime#minusamount",
+    "class/packages/core/src/LocalTime.js~LocalTime.html#instance-method-minusAmount",
+    "packages/core/src/LocalTime.js~LocalTime#minusAmount",
     "method"
   ],
   [
-    "packages/core/src/localtime.js~localtime#minus1",
-    "class/packages/core/src/LocalTime.js~LocalTime.html#instance-method-minus1",
-    "packages/core/src/LocalTime.js~LocalTime#minus1",
-    "method"
-  ],
-  [
-    "packages/core/src/localtime.js~localtime#minus2",
-    "class/packages/core/src/LocalTime.js~LocalTime.html#instance-method-minus2",
-    "packages/core/src/LocalTime.js~LocalTime#minus2",
+    "packages/core/src/localtime.js~localtime#minusamountunit",
+    "class/packages/core/src/LocalTime.js~LocalTime.html#instance-method-minusAmountUnit",
+    "packages/core/src/LocalTime.js~LocalTime#minusAmountUnit",
     "method"
   ],
   [
@@ -2238,21 +2184,15 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "packages/core/src/localtime.js~localtime#plus",
-    "class/packages/core/src/LocalTime.js~LocalTime.html#instance-method-plus",
-    "packages/core/src/LocalTime.js~LocalTime#plus",
+    "packages/core/src/localtime.js~localtime#plusamount",
+    "class/packages/core/src/LocalTime.js~LocalTime.html#instance-method-plusAmount",
+    "packages/core/src/LocalTime.js~LocalTime#plusAmount",
     "method"
   ],
   [
-    "packages/core/src/localtime.js~localtime#plus1",
-    "class/packages/core/src/LocalTime.js~LocalTime.html#instance-method-plus1",
-    "packages/core/src/LocalTime.js~LocalTime#plus1",
-    "method"
-  ],
-  [
-    "packages/core/src/localtime.js~localtime#plus2",
-    "class/packages/core/src/LocalTime.js~LocalTime.html#instance-method-plus2",
-    "packages/core/src/LocalTime.js~LocalTime#plus2",
+    "packages/core/src/localtime.js~localtime#plusamountunit",
+    "class/packages/core/src/LocalTime.js~LocalTime.html#instance-method-plusAmountUnit",
+    "packages/core/src/LocalTime.js~LocalTime#plusAmountUnit",
     "method"
   ],
   [
@@ -2334,15 +2274,15 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "packages/core/src/localtime.js~localtime#with",
-    "class/packages/core/src/LocalTime.js~LocalTime.html#instance-method-with",
-    "packages/core/src/LocalTime.js~LocalTime#with",
+    "packages/core/src/localtime.js~localtime#withadjuster",
+    "class/packages/core/src/LocalTime.js~LocalTime.html#instance-method-withAdjuster",
+    "packages/core/src/LocalTime.js~LocalTime#withAdjuster",
     "method"
   ],
   [
-    "packages/core/src/localtime.js~localtime#with2",
-    "class/packages/core/src/LocalTime.js~LocalTime.html#instance-method-with2",
-    "packages/core/src/LocalTime.js~LocalTime#with2",
+    "packages/core/src/localtime.js~localtime#withfieldvalue",
+    "class/packages/core/src/LocalTime.js~LocalTime.html#instance-method-withFieldValue",
+    "packages/core/src/LocalTime.js~LocalTime#withFieldValue",
     "method"
   ],
   [
@@ -2367,12 +2307,6 @@ window.esdocSearchIndex = [
     "packages/core/src/localtime.js~localtime#withsecond",
     "class/packages/core/src/LocalTime.js~LocalTime.html#instance-method-withSecond",
     "packages/core/src/LocalTime.js~LocalTime#withSecond",
-    "method"
-  ],
-  [
-    "packages/core/src/localtime.js~localtime#withtemporaladjuster",
-    "class/packages/core/src/LocalTime.js~LocalTime.html#instance-method-withTemporalAdjuster",
-    "packages/core/src/LocalTime.js~LocalTime#withTemporalAdjuster",
     "method"
   ],
   [
@@ -3228,21 +3162,15 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "packages/core/src/year.js~year#minus",
-    "class/packages/core/src/Year.js~Year.html#instance-method-minus",
-    "packages/core/src/Year.js~Year#minus",
-    "method"
-  ],
-  [
     "packages/core/src/year.js~year#minusamount",
     "class/packages/core/src/Year.js~Year.html#instance-method-minusAmount",
     "packages/core/src/Year.js~Year#minusAmount",
     "method"
   ],
   [
-    "packages/core/src/year.js~year#minusamounttosubtractunit",
-    "class/packages/core/src/Year.js~Year.html#instance-method-minusAmountToSubtractUnit",
-    "packages/core/src/Year.js~Year#minusAmountToSubtractUnit",
+    "packages/core/src/year.js~year#minusamountunit",
+    "class/packages/core/src/Year.js~Year.html#instance-method-minusAmountUnit",
+    "packages/core/src/Year.js~Year#minusAmountUnit",
     "method"
   ],
   [
@@ -3252,21 +3180,15 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "packages/core/src/year.js~year#plus",
-    "class/packages/core/src/Year.js~Year.html#instance-method-plus",
-    "packages/core/src/Year.js~Year#plus",
-    "method"
-  ],
-  [
     "packages/core/src/year.js~year#plusamount",
     "class/packages/core/src/Year.js~Year.html#instance-method-plusAmount",
     "packages/core/src/Year.js~Year#plusAmount",
     "method"
   ],
   [
-    "packages/core/src/year.js~year#plusamounttoaddunit",
-    "class/packages/core/src/Year.js~Year.html#instance-method-plusAmountToAddUnit",
-    "packages/core/src/Year.js~Year#plusAmountToAddUnit",
+    "packages/core/src/year.js~year#plusamountunit",
+    "class/packages/core/src/Year.js~Year.html#instance-method-plusAmountUnit",
+    "packages/core/src/Year.js~Year#plusAmountUnit",
     "method"
   ],
   [
@@ -3300,15 +3222,15 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "packages/core/src/year.js~year#value",
-    "class/packages/core/src/Year.js~Year.html#instance-method-value",
-    "packages/core/src/Year.js~Year#value",
+    "packages/core/src/year.js~year#until",
+    "class/packages/core/src/Year.js~Year.html#instance-method-until",
+    "packages/core/src/Year.js~Year#until",
     "method"
   ],
   [
-    "packages/core/src/year.js~year#with",
-    "class/packages/core/src/Year.js~Year.html#instance-method-with",
-    "packages/core/src/Year.js~Year#with",
+    "packages/core/src/year.js~year#value",
+    "class/packages/core/src/Year.js~Year.html#instance-method-value",
+    "packages/core/src/Year.js~Year#value",
     "method"
   ],
   [
@@ -3498,12 +3420,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "packages/core/src/yearmonth.js~yearmonth#minus",
-    "class/packages/core/src/YearMonth.js~YearMonth.html#instance-method-minus",
-    "packages/core/src/YearMonth.js~YearMonth#minus",
-    "method"
-  ],
-  [
     "packages/core/src/yearmonth.js~yearmonth#minusamount",
     "class/packages/core/src/YearMonth.js~YearMonth.html#instance-method-minusAmount",
     "packages/core/src/YearMonth.js~YearMonth#minusAmount",
@@ -3537,12 +3453,6 @@ window.esdocSearchIndex = [
     "packages/core/src/yearmonth.js~yearmonth#monthvalue",
     "class/packages/core/src/YearMonth.js~YearMonth.html#instance-method-monthValue",
     "packages/core/src/YearMonth.js~YearMonth#monthValue",
-    "method"
-  ],
-  [
-    "packages/core/src/yearmonth.js~yearmonth#plus",
-    "class/packages/core/src/YearMonth.js~YearMonth.html#instance-method-plus",
-    "packages/core/src/YearMonth.js~YearMonth#plus",
     "method"
   ],
   [
@@ -3990,15 +3900,15 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "packages/core/src/zoneddatetime.js~zoneddatetime#minus",
-    "class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minus",
-    "packages/core/src/ZonedDateTime.js~ZonedDateTime#minus",
+    "packages/core/src/zoneddatetime.js~zoneddatetime#minusamount",
+    "class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minusAmount",
+    "packages/core/src/ZonedDateTime.js~ZonedDateTime#minusAmount",
     "method"
   ],
   [
-    "packages/core/src/zoneddatetime.js~zoneddatetime#minus2",
-    "class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minus2",
-    "packages/core/src/ZonedDateTime.js~ZonedDateTime#minus2",
+    "packages/core/src/zoneddatetime.js~zoneddatetime#minusamountunit",
+    "class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minusAmountUnit",
+    "packages/core/src/ZonedDateTime.js~ZonedDateTime#minusAmountUnit",
     "method"
   ],
   [
@@ -4035,12 +3945,6 @@ window.esdocSearchIndex = [
     "packages/core/src/zoneddatetime.js~zoneddatetime#minusseconds",
     "class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minusSeconds",
     "packages/core/src/ZonedDateTime.js~ZonedDateTime#minusSeconds",
-    "method"
-  ],
-  [
-    "packages/core/src/zoneddatetime.js~zoneddatetime#minustemporalamount",
-    "class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-minusTemporalAmount",
-    "packages/core/src/ZonedDateTime.js~ZonedDateTime#minusTemporalAmount",
     "method"
   ],
   [
@@ -4086,15 +3990,15 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "packages/core/src/zoneddatetime.js~zoneddatetime#plus",
-    "class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plus",
-    "packages/core/src/ZonedDateTime.js~ZonedDateTime#plus",
+    "packages/core/src/zoneddatetime.js~zoneddatetime#plusamount",
+    "class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plusAmount",
+    "packages/core/src/ZonedDateTime.js~ZonedDateTime#plusAmount",
     "method"
   ],
   [
-    "packages/core/src/zoneddatetime.js~zoneddatetime#plus2",
-    "class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plus2",
-    "packages/core/src/ZonedDateTime.js~ZonedDateTime#plus2",
+    "packages/core/src/zoneddatetime.js~zoneddatetime#plusamountunit",
+    "class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plusAmountUnit",
+    "packages/core/src/ZonedDateTime.js~ZonedDateTime#plusAmountUnit",
     "method"
   ],
   [
@@ -4131,12 +4035,6 @@ window.esdocSearchIndex = [
     "packages/core/src/zoneddatetime.js~zoneddatetime#plusseconds",
     "class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plusSeconds",
     "packages/core/src/ZonedDateTime.js~ZonedDateTime#plusSeconds",
-    "method"
-  ],
-  [
-    "packages/core/src/zoneddatetime.js~zoneddatetime#plustemporalamount",
-    "class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-plusTemporalAmount",
-    "packages/core/src/ZonedDateTime.js~ZonedDateTime#plusTemporalAmount",
     "method"
   ],
   [
@@ -4212,15 +4110,9 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "packages/core/src/zoneddatetime.js~zoneddatetime#with",
-    "class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-with",
-    "packages/core/src/ZonedDateTime.js~ZonedDateTime#with",
-    "method"
-  ],
-  [
-    "packages/core/src/zoneddatetime.js~zoneddatetime#with2",
-    "class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-with2",
-    "packages/core/src/ZonedDateTime.js~ZonedDateTime#with2",
+    "packages/core/src/zoneddatetime.js~zoneddatetime#withadjuster",
+    "class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withAdjuster",
+    "packages/core/src/ZonedDateTime.js~ZonedDateTime#withAdjuster",
     "method"
   ],
   [
@@ -4239,6 +4131,12 @@ window.esdocSearchIndex = [
     "packages/core/src/zoneddatetime.js~zoneddatetime#withearlieroffsetatoverlap",
     "class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withEarlierOffsetAtOverlap",
     "packages/core/src/ZonedDateTime.js~ZonedDateTime#withEarlierOffsetAtOverlap",
+    "method"
+  ],
+  [
+    "packages/core/src/zoneddatetime.js~zoneddatetime#withfieldvalue",
+    "class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withFieldValue",
+    "packages/core/src/ZonedDateTime.js~ZonedDateTime#withFieldValue",
     "method"
   ],
   [
@@ -4281,12 +4179,6 @@ window.esdocSearchIndex = [
     "packages/core/src/zoneddatetime.js~zoneddatetime#withsecond",
     "class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withSecond",
     "packages/core/src/ZonedDateTime.js~ZonedDateTime#withSecond",
-    "method"
-  ],
-  [
-    "packages/core/src/zoneddatetime.js~zoneddatetime#withtemporaladjuster",
-    "class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-withTemporalAdjuster",
-    "packages/core/src/ZonedDateTime.js~ZonedDateTime#withTemporalAdjuster",
     "method"
   ],
   [
@@ -5202,6 +5094,36 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "packages/core/src/temporal/defaultinterfacetemporal.js",
+    "file/packages/core/src/temporal/DefaultInterfaceTemporal.js.html",
+    "packages/core/src/temporal/DefaultInterfaceTemporal.js",
+    "file"
+  ],
+  [
+    "packages/core/src/temporal/defaultinterfacetemporal.js~defaultinterfacetemporal#minusamount",
+    "class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html#instance-method-minusAmount",
+    "packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal#minusAmount",
+    "method"
+  ],
+  [
+    "packages/core/src/temporal/defaultinterfacetemporal.js~defaultinterfacetemporal#minusamountunit",
+    "class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html#instance-method-minusAmountUnit",
+    "packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal#minusAmountUnit",
+    "method"
+  ],
+  [
+    "packages/core/src/temporal/defaultinterfacetemporal.js~defaultinterfacetemporal#plusamount",
+    "class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html#instance-method-plusAmount",
+    "packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal#plusAmount",
+    "method"
+  ],
+  [
+    "packages/core/src/temporal/defaultinterfacetemporal.js~defaultinterfacetemporal#withadjuster",
+    "class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html#instance-method-withAdjuster",
+    "packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal#withAdjuster",
+    "method"
+  ],
+  [
     "packages/core/src/temporal/isofields.js",
     "file/packages/core/src/temporal/IsoFields.js.html",
     "packages/core/src/temporal/IsoFields.js",
@@ -5218,6 +5140,72 @@ window.esdocSearchIndex = [
     "file/packages/core/src/temporal/Temporal.js.html",
     "packages/core/src/temporal/Temporal.js",
     "file"
+  ],
+  [
+    "packages/core/src/temporal/temporal.js~temporal#issupported",
+    "class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-isSupported",
+    "packages/core/src/temporal/Temporal.js~Temporal#isSupported",
+    "method"
+  ],
+  [
+    "packages/core/src/temporal/temporal.js~temporal#minus",
+    "class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-minus",
+    "packages/core/src/temporal/Temporal.js~Temporal#minus",
+    "method"
+  ],
+  [
+    "packages/core/src/temporal/temporal.js~temporal#minusamount",
+    "class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-minusAmount",
+    "packages/core/src/temporal/Temporal.js~Temporal#minusAmount",
+    "method"
+  ],
+  [
+    "packages/core/src/temporal/temporal.js~temporal#minusamountunit",
+    "class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-minusAmountUnit",
+    "packages/core/src/temporal/Temporal.js~Temporal#minusAmountUnit",
+    "method"
+  ],
+  [
+    "packages/core/src/temporal/temporal.js~temporal#plus",
+    "class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-plus",
+    "packages/core/src/temporal/Temporal.js~Temporal#plus",
+    "method"
+  ],
+  [
+    "packages/core/src/temporal/temporal.js~temporal#plusamount",
+    "class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-plusAmount",
+    "packages/core/src/temporal/Temporal.js~Temporal#plusAmount",
+    "method"
+  ],
+  [
+    "packages/core/src/temporal/temporal.js~temporal#plusamountunit",
+    "class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-plusAmountUnit",
+    "packages/core/src/temporal/Temporal.js~Temporal#plusAmountUnit",
+    "method"
+  ],
+  [
+    "packages/core/src/temporal/temporal.js~temporal#until",
+    "class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-until",
+    "packages/core/src/temporal/Temporal.js~Temporal#until",
+    "method"
+  ],
+  [
+    "packages/core/src/temporal/temporal.js~temporal#with",
+    "class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-with",
+    "packages/core/src/temporal/Temporal.js~Temporal#with",
+    "method"
+  ],
+  [
+    "packages/core/src/temporal/temporal.js~temporal#withadjuster",
+    "class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-withAdjuster",
+    "packages/core/src/temporal/Temporal.js~Temporal#withAdjuster",
+    "method"
+  ],
+  [
+    "packages/core/src/temporal/temporal.js~temporal#withfieldvalue",
+    "class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-withFieldValue",
+    "packages/core/src/temporal/Temporal.js~Temporal#withFieldValue",
+    "method"
   ],
   [
     "packages/core/src/temporal/temporalaccessor.js",

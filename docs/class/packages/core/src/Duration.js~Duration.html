@@ -76,6 +76,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html">DefaultInterfaceTemporal</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
@@ -1854,7 +1855,7 @@ based representation, such as <span>PT8H6M12.345S</span>.</p>
   <div data-ice="description"><p>Obtains an instance of <span><a href="class/packages/core/src/Duration.js~Duration.html">Duration</a></span> representing the duration between two instants.</p>
 <p>Obtains a <span><a href="class/packages/core/src/Duration.js~Duration.html">Duration</a></span> representing the duration between two instants.
 This calculates the duration between two temporal objects of the same type.
-The difference in seconds is calculated using <span>Temporal#until</span>.
+The difference in seconds is calculated using <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-until">Temporal#until</a></span>.
 The difference in nanoseconds is calculated using by querying the
 <span>ChronoField#NANO_OF_SECOND</span> field.</p>
 <p>The result of this method can be a negative period if the end is before the start.
@@ -2873,7 +2874,7 @@ For example, <span>PT-1.3S</span> will be returned as <span>PT1.3S</span>.</p>
 <p>This returns a temporal object of the same observable type as the input
 with this duration added.</p>
 <p>In most cases, it is clearer to reverse the calling pattern by using
-<span>Temporal#plus</span>.</p>
+<span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-plus">Temporal#plus</a></span>.</p>
 <p><pre>
   // these two lines are equivalent, but the second approach is recommended
   dateTime = thisDuration.addTo(dateTime);
@@ -5392,7 +5393,7 @@ A duration of -1 nanosecond is stored as -1 seconds plus 999,999,999 nanoseconds
 <p>This returns a temporal object of the same observable type as the input
 with this duration subtracted.</p>
 <p>In most cases, it is clearer to reverse the calling pattern by using
-<span>Temporal#minus</span>.</p>
+<span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-minus">Temporal#minus</a></span>.</p>
 <p><pre>
   // these two lines are equivalent, but the second approach is recommended
   dateTime = thisDuration.subtractFrom(dateTime);

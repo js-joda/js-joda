@@ -76,6 +76,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html">DefaultInterfaceTemporal</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
@@ -812,24 +813,6 @@ export class YearMonth extends Temporal {
     }
 
     //-----------------------------------------------------------------------
-    /**
-     * function overloading for {@link YearMonth.plus}
-     *
-     * if called with 1 arguments, then {@link YearMonth.plusAmount} is executed.
-     *
-     * Otherwise {@link YearMonth.plusAmountUnit} is executed.
-     *
-     * @param {!(TemporalAmount|number)} amountOrNumber
-     * @param {?TemporalUnit} unit nullable only if first argument is an instance of TemporalAmount
-     * @returns {YearMonth}
-     */
-    plus(amountOrNumber, unit) {
-        if (arguments.length === 1) {
-            return this.plusAmount(amountOrNumber);
-        } else {
-            return this.plusAmountUnit(amountOrNumber, unit);
-        }
-    }
 
     /**
      * Returns a copy of this year-month with the specified period added.
@@ -915,24 +898,6 @@ export class YearMonth extends Temporal {
     }
 
     //-----------------------------------------------------------------------
-    /**
-     * function overloading for {@link YearMonth.minus}
-     *
-     * if called with 1 arguments, then {@link YearMonth.minusAmount} is executed.
-     *
-     * Otherwise {@link YearMonth.minusAmountUnit} is executed.
-     *
-     * @param {!(TemporalAmount|number)} amountOrNumber
-     * @param {?TemporalUnit} unit
-     * @returns {YearMonth}
-     */
-    minus(amountOrNumber, unit) {
-        if (arguments.length === 1) {
-            return this.minusAmount(amountOrNumber);
-        } else {
-            return this.minusAmountUnit(amountOrNumber, unit);
-        }
-    }
 
     /**
      * Returns a copy of this year-month with the specified period subtracted.

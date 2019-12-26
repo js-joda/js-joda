@@ -76,6 +76,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html">DefaultInterfaceTemporal</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
@@ -753,13 +754,13 @@ instance representing &quot;days&quot;, passing the date and the period &quot;3&
 The period to be added may be negative, which is equivalent to subtraction.</p>
 <p>There are two equivalent ways of using this method.
 The first is to invoke this method directly.
-The second is to use <span>Temporal#plus</span>:</p>
+The second is to use <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-plus">Temporal#plus</a></span>:</p>
 <p><pre>
   // these two lines are equivalent, but the second approach is recommended
   temporal = thisUnit.addTo(temporal);
   temporal = temporal.plus(thisUnit);
 </pre>
-It is recommended to use the second approach, <span><a href="class/packages/core/src/LocalTime.js~LocalTime.html#instance-method-plus">plus</a></span>,
+It is recommended to use the second approach, <span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html#instance-method-plus">plus</a></span>,
 as it is a lot clearer to read in code.</p>
 <p>Implementations should perform any queries or calculations using the units
 available in <span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span> or the fields available in <span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>.
@@ -878,7 +879,7 @@ For example, the amount in hours between the times 11:30 and 13:29
 will only be one hour as it is one minute short of two hours.</p>
 <p>There are two equivalent ways of using this method.
 The first is to invoke this method directly.
-The second is to use <span>Temporal#until</span>:</p>
+The second is to use <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-until">Temporal#until</a></span>:</p>
 <p><pre>
   // these two lines are equivalent
   between = thisUnit.between(start, end);
@@ -1260,7 +1261,7 @@ daylight saving time and months have different lengths.</p>
 <p>This checks that the implementing date-time can add/subtract this unit.
 This can be used to avoid throwing an exception.</p>
 <p>This default implementation derives the value using
-<span>Temporal#plus</span>.</p>
+<span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-plus">Temporal#plus</a></span>.</p>
 </div>
 
   <div data-ice="override"><h4>Override:</h4><span><a href="class/packages/core/src/temporal/TemporalUnit.js~TemporalUnit.html#instance-method-isSupportedBy">TemporalUnit#isSupportedBy</a></span></div>

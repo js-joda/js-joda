@@ -76,6 +76,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html">DefaultInterfaceTemporal</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
@@ -161,13 +162,13 @@ one is clearer (assuming that there is a static import of this class):</p>
 </pre>
 There are two equivalent ways of using a <span><a href="class/packages/core/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span>.
 The first is to invoke the method on the interface directly.
-The second is to use <span>Temporal#with</span>:</p>
+The second is to use <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-with">Temporal#with</a></span>:</p>
 <p><pre>
   // these two lines are equivalent, but the second approach is recommended
   dateTime = adjuster.adjustInto(dateTime);
   dateTime = dateTime.with(adjuster);
 </pre>
-It is recommended to use the second approach, <span><a href="class/packages/core/src/Instant.js~Instant.html#instance-method-with">with</a></span>,
+It is recommended to use the second approach, <span><a href="class/packages/core/src/MonthDay.js~MonthDay.html#instance-method-with">with</a></span>,
 as it is a lot clearer to read in code.</p>
 <h3 id="specification-for-implementors">Specification for implementors</h3><p>This is a thread-safe utility class.
 All returned adjusters are immutable and thread-safe.</p>

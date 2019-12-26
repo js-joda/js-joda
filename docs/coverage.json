@@ -1,7 +1,7 @@
 {
-  "coverage": "69.61%",
-  "expectCount": 1705,
-  "actualCount": 1187,
+  "coverage": "69.5%",
+  "expectCount": 1702,
+  "actualCount": 1183,
   "files": {
     "packages/core/src/Clock.js": {
       "expectCount": 39,
@@ -64,45 +64,45 @@
       ]
     },
     "packages/core/src/Instant.js": {
-      "expectCount": 50,
-      "actualCount": 46,
+      "expectCount": 47,
+      "actualCount": 43,
       "undocumentLines": [
         23,
         254,
         255,
-        1045
+        1002
       ]
     },
     "packages/core/src/LocalDate.js": {
-      "expectCount": 77,
-      "actualCount": 72,
+      "expectCount": 74,
+      "actualCount": 69,
       "undocumentLines": [
-        285,
-        286,
-        287,
-        1163,
-        1733
+        289,
+        290,
+        291,
+        1106,
+        1676
       ]
     },
     "packages/core/src/LocalDateTime.js": {
-      "expectCount": 81,
-      "actualCount": 78,
+      "expectCount": 78,
+      "actualCount": 75,
       "undocumentLines": [
         306,
         307,
-        1718
+        1667
       ]
     },
     "packages/core/src/LocalTime.js": {
-      "expectCount": 61,
-      "actualCount": 55,
+      "expectCount": 58,
+      "actualCount": 52,
       "undocumentLines": [
         285,
         286,
         287,
         288,
         299,
-        1388
+        1335
       ]
     },
     "packages/core/src/MathUtil.js": {
@@ -129,9 +129,9 @@
       "expectCount": 37,
       "actualCount": 34,
       "undocumentLines": [
+        285,
         286,
-        287,
-        720
+        719
       ]
     },
     "packages/core/src/Period.js": {
@@ -151,12 +151,12 @@
       "undocumentLines": []
     },
     "packages/core/src/Year.js": {
-      "expectCount": 49,
-      "actualCount": 46,
+      "expectCount": 47,
+      "actualCount": 44,
       "undocumentLines": [
         79,
         342,
-        987
+        1003
       ]
     },
     "packages/core/src/YearConstants.js": {
@@ -167,14 +167,14 @@
       ]
     },
     "packages/core/src/YearMonth.js": {
-      "expectCount": 58,
-      "actualCount": 53,
+      "expectCount": 56,
+      "actualCount": 51,
       "undocumentLines": [
         266,
         267,
         323,
         427,
-        1143
+        1107
       ]
     },
     "packages/core/src/ZoneId.js": {
@@ -213,12 +213,12 @@
       ]
     },
     "packages/core/src/ZonedDateTime.js": {
-      "expectCount": 90,
-      "actualCount": 87,
+      "expectCount": 87,
+      "actualCount": 84,
       "undocumentLines": [
         454,
         463,
-        2044
+        2005
       ]
     },
     "packages/core/src/_init.js": {
@@ -632,6 +632,13 @@
         354
       ]
     },
+    "packages/core/src/temporal/DefaultInterfaceTemporal.js": {
+      "expectCount": 5,
+      "actualCount": 4,
+      "undocumentLines": [
+        8
+      ]
+    },
     "packages/core/src/temporal/IsoFields.js": {
       "expectCount": 71,
       "actualCount": 55,
@@ -663,8 +670,8 @@
       ]
     },
     "packages/core/src/temporal/Temporal.js": {
-      "expectCount": 1,
-      "actualCount": 1,
+      "expectCount": 12,
+      "actualCount": 12,
       "undocumentLines": []
     },
     "packages/core/src/temporal/TemporalAccessor.js": {

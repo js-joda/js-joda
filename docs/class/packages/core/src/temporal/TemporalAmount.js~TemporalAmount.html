@@ -76,6 +76,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html">DefaultInterfaceTemporal</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/IsoFields.js~IsoFields.html">IsoFields</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
@@ -337,13 +338,13 @@ around instances of concrete types, such as <span><a href="class/packages/core/s
 encapsulated in the implementing class.</p>
 <p>There are two equivalent ways of using this method.
 The first is to invoke this method directly.
-The second is to use <span>Temporal#plus</span>:</p>
+The second is to use <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-plus">Temporal#plus</a></span>:</p>
 <p><pre>
   // These two lines are equivalent, but the second approach is recommended
   dateTime = amount.addTo(dateTime);
   dateTime = dateTime.plus(adder);
 </pre>
-It is recommended to use the second approach, <span><a href="class/packages/core/src/LocalTime.js~LocalTime.html#instance-method-plus">plus</a></span>,
+It is recommended to use the second approach, <span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html#instance-method-plus">plus</a></span>,
 as it is a lot clearer to read in code.</p>
 </div>
 
@@ -534,13 +535,13 @@ for each unit listed in <span>getUnits</span>.</p>
 encapsulated in the implementing class.</p>
 <p>There are two equivalent ways of using this method.
 The first is to invoke this method directly.
-The second is to use <span>Temporal#minus</span>:</p>
+The second is to use <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-minus">Temporal#minus</a></span>:</p>
 <p><pre>
   // these two lines are equivalent, but the second approach is recommended
   dateTime = amount.subtractFrom(dateTime);
   dateTime = dateTime.minus(amount);
 </pre>
-It is recommended to use the second approach, <span><a href="class/packages/core/src/LocalTime.js~LocalTime.html#instance-method-minus">minus</a></span>,
+It is recommended to use the second approach, <span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html#instance-method-minus">minus</a></span>,
 as it is a lot clearer to read in code.</p>
 </div>
 
