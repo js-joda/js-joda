@@ -47,7 +47,7 @@
   "peerDependencies": {
     "cldr-data": "*",
     "cldrjs": "^0.5.1",
-    "@js-joda/core": "^1.12.0",
+    "@js-joda/core": ">=1.11.0",
     "@js-joda/timezone": "^2.2.0"
   },
   "devDependencies": {
@@ -56,7 +56,7 @@
     "@babel/polyfill": "^7.7.0",
     "@babel/preset-env": "^7.7.4",
     "@babel/register": "^7.7.4",
-    "@js-joda/core": "^1.12.0",
+    "@js-joda/core": ">=1.11.0",
     "@js-joda/timezone": "^2.2.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-add-module-exports": "^1.0.2",

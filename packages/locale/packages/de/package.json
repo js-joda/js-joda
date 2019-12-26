@@ -23,8 +23,8 @@
     },
     "homepage": "https://github.com/js-joda/js-joda-locale#readme",
     "peerDependencies": {
-        "@js-joda/core": "^1.11.0",
-        "@js-joda/timezone": "^2.1.1"
+        "@js-joda/core": ">=1.11.0",
+        "@js-joda/timezone": "^2.2.0"
     },
     "dependencies": {},
     "devDependencies": {}
