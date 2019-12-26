@@ -1,4 +1,4 @@
-//! @version @js-joda/core - 1.12.0
+//! @version @js-joda/core - 2.0.0
 //! @copyright (c) 2015-present, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -132,6 +132,7 @@ function abstractMethodFail(methodName) {
 }
 
 var assert$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
     assert: assert,
     requireNonNull: requireNonNull,
     requireInstance: requireInstance,
@@ -1389,16 +1390,6 @@ var TemporalAccessor = function () {
   return TemporalAccessor;
 }();
 
-var Temporal = function (_TemporalAccessor) {
-  _inheritsLoose(Temporal, _TemporalAccessor);
-
-  function Temporal() {
-    return _TemporalAccessor.apply(this, arguments) || this;
-  }
-
-  return Temporal;
-}(TemporalAccessor);
-
 var TemporalQuery = function (_Enum) {
   _inheritsLoose(TemporalQuery, _Enum);
 
@@ -1429,13 +1420,13 @@ function createTemporalQuery(name, queryFromFunction) {
   return new ExtendedTemporalQuery(name);
 }
 
-var DayOfWeek = function (_Temporal) {
-  _inheritsLoose(DayOfWeek, _Temporal);
+var DayOfWeek = function (_TemporalAccessor) {
+  _inheritsLoose(DayOfWeek, _TemporalAccessor);
 
   function DayOfWeek(ordinal, name) {
     var _this;
 
-    _this = _Temporal.call(this) || this;
+    _this = _TemporalAccessor.call(this) || this;
     _this._ordinal = ordinal;
     _this._name = name;
     return _this;
@@ -1581,7 +1572,7 @@ var DayOfWeek = function (_Temporal) {
   };
 
   return DayOfWeek;
-}(Temporal);
+}(TemporalAccessor);
 var ENUMS;
 function _init$4() {
   DayOfWeek.MONDAY = new DayOfWeek(0, 'MONDAY');
@@ -1597,13 +1588,13 @@ function _init$4() {
   ENUMS = [DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY, DayOfWeek.SATURDAY, DayOfWeek.SUNDAY];
 }
 
-var Month = function (_Temporal) {
-  _inheritsLoose(Month, _Temporal);
+var Month = function (_TemporalAccessor) {
+  _inheritsLoose(Month, _TemporalAccessor);
 
   function Month(value, name) {
     var _this;
 
-    _this = _Temporal.call(this) || this;
+    _this = _TemporalAccessor.call(this) || this;
     _this._value = MathUtil.safeToInt(value);
     _this._name = name;
     return _this;
@@ -1793,7 +1784,7 @@ var Month = function (_Temporal) {
       return ChronoUnit.MONTHS;
     }
 
-    return _Temporal.prototype.query.call(this, _query);
+    return _TemporalAccessor.prototype.query.call(this, _query);
   };
 
   _proto.toString = function toString() {
@@ -1894,7 +1885,7 @@ var Month = function (_Temporal) {
   };
 
   return Month;
-}(Temporal);
+}(TemporalAccessor);
 var MONTHS;
 function _init$5() {
   Month.JANUARY = new Month(1, 'JANUARY');
@@ -2399,11 +2390,133 @@ ResolverStyle.STRICT = new ResolverStyle('STRICT');
 ResolverStyle.SMART = new ResolverStyle('SMART');
 ResolverStyle.LENIENT = new ResolverStyle('LENIENT');
 
-var ChronoLocalDate = function (_Temporal) {
-  _inheritsLoose(ChronoLocalDate, _Temporal);
+/*
+ * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+ * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
+var TemporalAdjuster = function () {
+  function TemporalAdjuster() {}
+
+  var _proto = TemporalAdjuster.prototype;
+
+  _proto.adjustInto = function adjustInto(temporal) {
+    abstractMethodFail('adjustInto');
+  };
+
+  return TemporalAdjuster;
+}();
+
+var Temporal = function (_TemporalAccessor) {
+  _inheritsLoose(Temporal, _TemporalAccessor);
+
+  function Temporal() {
+    return _TemporalAccessor.apply(this, arguments) || this;
+  }
+
+  var _proto = Temporal.prototype;
+
+  _proto.isSupported = function isSupported(unit) {
+    abstractMethodFail('isSupported');
+  };
+
+  _proto.minus = function minus(p1, p2) {
+    if (arguments.length < 2) {
+      return this.minusAmount(p1);
+    } else {
+      return this.minusAmountUnit(p1, p2);
+    }
+  };
+
+  _proto.minusAmount = function minusAmount(amount) {
+    abstractMethodFail('minusAmount');
+  };
+
+  _proto.minusAmountUnit = function minusAmountUnit(amountToSubtract, unit) {
+    abstractMethodFail('minusAmountUnit');
+  };
+
+  _proto.plus = function plus(p1, p2) {
+    if (arguments.length < 2) {
+      return this.plusAmount(p1);
+    } else {
+      return this.plusAmountUnit(p1, p2);
+    }
+  };
+
+  _proto.plusAmount = function plusAmount(amount) {
+    abstractMethodFail('plusAmount');
+  };
+
+  _proto.plusAmountUnit = function plusAmountUnit(amountToAdd, unit) {
+    abstractMethodFail('plusAmountUnit');
+  };
+
+  _proto.until = function until(endTemporal, unit) {
+    abstractMethodFail('until');
+  };
+
+  _proto.with = function _with(p1, p2) {
+    if (arguments.length < 2) {
+      return this.withAdjuster(p1);
+    } else {
+      return this.withFieldValue(p1, p2);
+    }
+  };
+
+  _proto.withAdjuster = function withAdjuster(adjuster) {
+    abstractMethodFail('withAdjuster');
+  };
+
+  _proto.withFieldValue = function withFieldValue(field, newValue) {
+    abstractMethodFail('withFieldValue');
+  };
+
+  return Temporal;
+}(TemporalAccessor);
+
+var DefaultInterfaceTemporal = function (_Temporal) {
+  _inheritsLoose(DefaultInterfaceTemporal, _Temporal);
+
+  function DefaultInterfaceTemporal() {
+    return _Temporal.apply(this, arguments) || this;
+  }
+
+  var _proto = DefaultInterfaceTemporal.prototype;
+
+  _proto.withAdjuster = function withAdjuster(adjuster) {
+    requireNonNull(adjuster, 'adjuster');
+    requireInstance(adjuster, TemporalAdjuster, 'adjuster');
+    return adjuster.adjustInto(this);
+  };
+
+  _proto.plusAmount = function plusAmount(amount) {
+    requireNonNull(amount, 'amount');
+    requireInstance(amount, TemporalAmount, 'amount');
+    return amount.addTo(this);
+  };
+
+  _proto.minusAmount = function minusAmount(amount) {
+    requireNonNull(amount, 'amount');
+    requireInstance(amount, TemporalAmount, 'amount');
+    return amount.subtractFrom(this);
+  };
+
+  _proto.minusAmountUnit = function minusAmountUnit(amountToSubtract, unit) {
+    requireNonNull(amountToSubtract, 'amountToSubtract');
+    requireNonNull(unit, 'unit');
+    requireInstance(unit, TemporalUnit, 'unit');
+    return amountToSubtract === MIN_SAFE_INTEGER ? this.plusAmountUnit(MAX_SAFE_INTEGER, unit).plusAmountUnit(1, unit) : this.plusAmount(-amountToSubtract, unit);
+  };
+
+  return DefaultInterfaceTemporal;
+}(Temporal);
+
+var ChronoLocalDate = function (_DefaultInterfaceTemp) {
+  _inheritsLoose(ChronoLocalDate, _DefaultInterfaceTemp);
 
   function ChronoLocalDate() {
-    return _Temporal.apply(this, arguments) || this;
+    return _DefaultInterfaceTemp.apply(this, arguments) || this;
   }
 
   var _proto = ChronoLocalDate.prototype;
@@ -2429,7 +2542,7 @@ var ChronoLocalDate = function (_Temporal) {
       return null;
     }
 
-    return _Temporal.prototype.query.call(this, _query);
+    return _DefaultInterfaceTemp.prototype.query.call(this, _query);
   };
 
   _proto.adjustInto = function adjustInto(temporal) {
@@ -2443,7 +2556,7 @@ var ChronoLocalDate = function (_Temporal) {
   };
 
   return ChronoLocalDate;
-}(Temporal);
+}(DefaultInterfaceTemporal);
 
 /*
  * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -2988,8 +3101,8 @@ function _init$7() {
   ZoneOffset.MAX = ZoneOffset.ofTotalSeconds(ZoneOffset.MAX_SECONDS);
 }
 
-var DateTimeBuilder = function (_Temporal) {
-  _inheritsLoose(DateTimeBuilder, _Temporal);
+var DateTimeBuilder = function (_TemporalAccessor) {
+  _inheritsLoose(DateTimeBuilder, _TemporalAccessor);
 
   DateTimeBuilder.create = function create(field, value) {
     var dtb = new DateTimeBuilder();
@@ -3002,7 +3115,7 @@ var DateTimeBuilder = function (_Temporal) {
   function DateTimeBuilder() {
     var _this;
 
-    _this = _Temporal.call(this) || this;
+    _this = _TemporalAccessor.call(this) || this;
     _this.fieldValues = new EnumMap();
     _this.chrono = null;
     _this.zone = null;
@@ -3417,7 +3530,7 @@ var DateTimeBuilder = function (_Temporal) {
   };
 
   return DateTimeBuilder;
-}(Temporal);
+}(TemporalAccessor);
 
 var DateTimeParseContext = function () {
   function DateTimeParseContext() {
@@ -6854,8 +6967,8 @@ function _init$a() {
   });
 }
 
-var MonthDay = function (_Temporal) {
-  _inheritsLoose(MonthDay, _Temporal);
+var MonthDay = function (_TemporalAccessor) {
+  _inheritsLoose(MonthDay, _TemporalAccessor);
 
   MonthDay.now = function now(zoneIdOrClock) {
     if (arguments.length === 0) {
@@ -6944,7 +7057,7 @@ var MonthDay = function (_Temporal) {
   function MonthDay(month, dayOfMonth) {
     var _this;
 
-    _this = _Temporal.call(this) || this;
+    _this = _TemporalAccessor.call(this) || this;
     _this._month = MathUtil.safeToInt(month);
     _this._day = MathUtil.safeToInt(dayOfMonth);
     return _this;
@@ -6979,7 +7092,7 @@ var MonthDay = function (_Temporal) {
       return ValueRange.of(1, this.month().minLength(), this.month().maxLength());
     }
 
-    return _Temporal.prototype.range.call(this, field);
+    return _TemporalAccessor.prototype.range.call(this, field);
   };
 
   _proto.get = function get(field) {
@@ -7039,7 +7152,7 @@ var MonthDay = function (_Temporal) {
       return IsoChronology.INSTANCE;
     }
 
-    return _Temporal.prototype.query.call(this, _query);
+    return _TemporalAccessor.prototype.query.call(this, _query);
   };
 
   _proto.adjustInto = function adjustInto(temporal) {
@@ -7104,7 +7217,7 @@ var MonthDay = function (_Temporal) {
   };
 
   return MonthDay;
-}(Temporal);
+}(TemporalAccessor);
 var PARSER;
 function _init$b() {
   PARSER = new DateTimeFormatterBuilder().appendLiteral('--').appendValue(ChronoField.MONTH_OF_YEAR, 2).appendLiteral('-').appendValue(ChronoField.DAY_OF_MONTH, 2).toFormatter();
@@ -7368,14 +7481,6 @@ var YearMonth = function (_Temporal) {
     return this.withYearMonth(this._year, month);
   };
 
-  _proto.plus = function plus(amountOrNumber, unit) {
-    if (arguments.length === 1) {
-      return this.plusAmount(amountOrNumber);
-    } else {
-      return this.plusAmountUnit(amountOrNumber, unit);
-    }
-  };
-
   _proto.plusAmount = function plusAmount(amount) {
     requireNonNull(amount, 'amount');
     requireInstance(amount, TemporalAmount, 'amount');
@@ -7432,14 +7537,6 @@ var YearMonth = function (_Temporal) {
     var newYear = ChronoField.YEAR.checkValidIntValue(MathUtil.floorDiv(calcMonths, 12));
     var newMonth = MathUtil.floorMod(calcMonths, 12) + 1;
     return this.withYearMonth(newYear, newMonth);
-  };
-
-  _proto.minus = function minus(amountOrNumber, unit) {
-    if (arguments.length === 1) {
-      return this.minusAmount(amountOrNumber);
-    } else {
-      return this.minusAmountUnit(amountOrNumber, unit);
-    }
   };
 
   _proto.minusAmount = function minusAmount(amount) {
@@ -7740,14 +7837,6 @@ var Year = function (_Temporal) {
     return Year.isLeap(this._year);
   };
 
-  _proto.with = function _with(adjusterOrFieldOrNumber, value) {
-    if (arguments.length === 2 && adjusterOrFieldOrNumber instanceof TemporalField) {
-      return this.withFieldValue(adjusterOrFieldOrNumber, value);
-    } else {
-      return this.withAdjuster(adjusterOrFieldOrNumber);
-    }
-  };
-
   _proto.withAdjuster = function withAdjuster(adjuster) {
     requireNonNull(adjuster, 'adjuster');
     return adjuster.adjustInto(this);
@@ -7777,21 +7866,13 @@ var Year = function (_Temporal) {
     return field.adjustInto(this, newValue);
   };
 
-  _proto.plus = function plus(amountOrNumber, unit) {
-    if (arguments.length === 1) {
-      return this.plusAmount(amountOrNumber);
-    } else {
-      return this.plusAmountToAddUnit(amountOrNumber, unit);
-    }
-  };
-
   _proto.plusAmount = function plusAmount(amount) {
     requireNonNull(amount, 'amount');
     requireInstance(amount, TemporalAmount, 'amount');
     return amount.addTo(this);
   };
 
-  _proto.plusAmountToAddUnit = function plusAmountToAddUnit(amountToAdd, unit) {
+  _proto.plusAmountUnit = function plusAmountUnit(amountToAdd, unit) {
     requireNonNull(amountToAdd, 'amountToAdd');
     requireNonNull(unit, 'unit');
     requireInstance(unit, TemporalUnit, 'unit');
@@ -7828,21 +7909,13 @@ var Year = function (_Temporal) {
     return Year.of(ChronoField.YEAR.checkValidIntValue(MathUtil.safeAdd(this._year, yearsToAdd)));
   };
 
-  _proto.minus = function minus(amountOrNumber, unit) {
-    if (arguments.length === 1) {
-      return this.minusAmount(amountOrNumber);
-    } else {
-      return this.minusAmountToSubtractUnit(amountOrNumber, unit);
-    }
-  };
-
   _proto.minusAmount = function minusAmount(amount) {
     requireNonNull(amount, 'amount');
     requireInstance(amount, TemporalAmount, 'amount');
     return amount.subtractFrom(this);
   };
 
-  _proto.minusAmountToSubtractUnit = function minusAmountToSubtractUnit(amountToSubtract, unit) {
+  _proto.minusAmountUnit = function minusAmountUnit(amountToSubtract, unit) {
     requireNonNull(amountToSubtract, 'amountToSubtract');
     requireNonNull(unit, 'unit');
     requireInstance(unit, TemporalUnit, 'unit');
@@ -7954,6 +8027,35 @@ var Year = function (_Temporal) {
     return this.toString();
   };
 
+  _proto.until = function until(endExclusive, unit) {
+    var end = Year.from(endExclusive);
+
+    if (unit instanceof ChronoUnit) {
+      var yearsUntil = end.value() - this.value();
+
+      switch (unit) {
+        case ChronoUnit.YEARS:
+          return yearsUntil;
+
+        case ChronoUnit.DECADES:
+          return MathUtil.intDiv(yearsUntil, 10);
+
+        case ChronoUnit.CENTURIES:
+          return MathUtil.intDiv(yearsUntil, 100);
+
+        case ChronoUnit.MILLENNIA:
+          return MathUtil.intDiv(yearsUntil, 1000);
+
+        case ChronoUnit.ERAS:
+          return end.getLong(ChronoField.ERA) - this.getLong(ChronoField.ERA);
+      }
+
+      throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+    }
+
+    return unit.between(this, end);
+  };
+
   return Year;
 }(Temporal);
 var PARSER$2;
@@ -7965,23 +8067,6 @@ function _init$d() {
     return Year.from(temporal);
   });
 }
-
-/*
- * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
- * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
- * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
- */
-var TemporalAdjuster = function () {
-  function TemporalAdjuster() {}
-
-  var _proto = TemporalAdjuster.prototype;
-
-  _proto.adjustInto = function adjustInto(temporal) {
-    abstractMethodFail('adjustInto');
-  };
-
-  return TemporalAdjuster;
-}();
 
 var TemporalAdjusters = function () {
   function TemporalAdjusters() {}
@@ -8338,11 +8423,11 @@ function _init$e() {
   IsoChronology.INSTANCE = new IsoChronology('IsoChronology');
 }
 
-var ChronoZonedDateTime = function (_Temporal) {
-  _inheritsLoose(ChronoZonedDateTime, _Temporal);
+var ChronoZonedDateTime = function (_DefaultInterfaceTemp) {
+  _inheritsLoose(ChronoZonedDateTime, _DefaultInterfaceTemp);
 
   function ChronoZonedDateTime() {
-    return _Temporal.apply(this, arguments) || this;
+    return _DefaultInterfaceTemp.apply(this, arguments) || this;
   }
 
   var _proto = ChronoZonedDateTime.prototype;
@@ -8362,7 +8447,7 @@ var ChronoZonedDateTime = function (_Temporal) {
       return this.toLocalTime();
     }
 
-    return _Temporal.prototype.query.call(this, _query);
+    return _DefaultInterfaceTemp.prototype.query.call(this, _query);
   };
 
   _proto.format = function format(formatter) {
@@ -8432,7 +8517,7 @@ var ChronoZonedDateTime = function (_Temporal) {
   };
 
   return ChronoZonedDateTime;
-}(Temporal);
+}(DefaultInterfaceTemporal);
 
 function strcmp(a, b) {
   if (a < b) {
@@ -8782,15 +8867,7 @@ var ZonedDateTime = function (_ChronoZonedDateTime) {
     return this._dateTime.nano();
   };
 
-  _proto.with = function _with() {
-    if (arguments.length === 1) {
-      return this.withTemporalAdjuster.apply(this, arguments);
-    } else {
-      return this.with2.apply(this, arguments);
-    }
-  };
-
-  _proto.withTemporalAdjuster = function withTemporalAdjuster(adjuster) {
+  _proto.withAdjuster = function withAdjuster(adjuster) {
     if (adjuster instanceof LocalDate) {
       return this._resolveLocal(LocalDateTime.of(adjuster, this._dateTime.toLocalTime()));
     } else if (adjuster instanceof LocalTime) {
@@ -8808,7 +8885,7 @@ var ZonedDateTime = function (_ChronoZonedDateTime) {
     return adjuster.adjustInto(this);
   };
 
-  _proto.with2 = function with2(field, newValue) {
+  _proto.withFieldValue = function withFieldValue(field, newValue) {
     if (field instanceof ChronoField) {
       switch (field) {
         case ChronoField.INSTANT_SECONDS:
@@ -8863,20 +8940,12 @@ var ZonedDateTime = function (_ChronoZonedDateTime) {
     return this._resolveLocal(this._dateTime.truncatedTo(unit));
   };
 
-  _proto.plus = function plus() {
-    if (arguments.length === 1) {
-      return this.plusTemporalAmount.apply(this, arguments);
-    } else {
-      return this.plus2.apply(this, arguments);
-    }
-  };
-
-  _proto.plusTemporalAmount = function plusTemporalAmount(amount) {
+  _proto.plusAmount = function plusAmount(amount) {
     requireNonNull(amount);
     return amount.addTo(this);
   };
 
-  _proto.plus2 = function plus2(amountToAdd, unit) {
+  _proto.plusAmountUnit = function plusAmountUnit(amountToAdd, unit) {
     if (unit instanceof ChronoUnit) {
       if (unit.isDateBased()) {
         return this._resolveLocal(this._dateTime.plus(amountToAdd, unit));
@@ -8921,21 +8990,13 @@ var ZonedDateTime = function (_ChronoZonedDateTime) {
     return this._resolveInstant(this._dateTime.plusNanos(nanos));
   };
 
-  _proto.minus = function minus() {
-    if (arguments.length === 1) {
-      return this.minusTemporalAmount.apply(this, arguments);
-    } else {
-      return this.minus2.apply(this, arguments);
-    }
-  };
-
-  _proto.minusTemporalAmount = function minusTemporalAmount(amount) {
+  _proto.minusAmount = function minusAmount(amount) {
     requireNonNull(amount, 'amount');
     return amount.subtractFrom(this);
   };
 
-  _proto.minus2 = function minus2(amountToSubtract, unit) {
-    return this.plus2(-1 * amountToSubtract, unit);
+  _proto.minusAmountUnit = function minusAmountUnit(amountToSubtract, unit) {
+    return this.plusAmountUnit(-1 * amountToSubtract, unit);
   };
 
   _proto.minusYears = function minusYears(years) {
@@ -9182,6 +9243,9 @@ var LocalDate = function (_ChronoLocalDate) {
     var _this;
 
     _this = _ChronoLocalDate.call(this) || this;
+    requireNonNull(year, 'year');
+    requireNonNull(month, 'month');
+    requireNonNull(dayOfMonth, 'dayOfMonth');
 
     if (month instanceof Month) {
       month = month.value();
@@ -9375,15 +9439,7 @@ var LocalDate = function (_ChronoLocalDate) {
     return this.isLeapYear() ? 366 : 365;
   };
 
-  _proto.with = function _with(fieldOrAdjuster, newValue) {
-    if (arguments.length < 2) {
-      return this.withTemporalAdjuster(fieldOrAdjuster);
-    } else {
-      return this.withFieldAndValue(fieldOrAdjuster, newValue);
-    }
-  };
-
-  _proto.withTemporalAdjuster = function withTemporalAdjuster(adjuster) {
+  _proto.withAdjuster = function withAdjuster(adjuster) {
     requireNonNull(adjuster, 'adjuster');
 
     if (adjuster instanceof LocalDate) {
@@ -9394,7 +9450,7 @@ var LocalDate = function (_ChronoLocalDate) {
     return adjuster.adjustInto(this);
   };
 
-  _proto.withFieldAndValue = function withFieldAndValue(field, newValue) {
+  _proto.withFieldValue = function withFieldValue(field, newValue) {
     assert(field != null, 'field', NullPointerException);
 
     if (field instanceof ChronoField) {
@@ -9484,20 +9540,12 @@ var LocalDate = function (_ChronoLocalDate) {
     return LocalDate.ofYearDay(this._year, dayOfYear);
   };
 
-  _proto.plus = function plus(p1, p2) {
-    if (arguments.length < 2) {
-      return this.plus1(p1);
-    } else {
-      return this.plus2(p1, p2);
-    }
-  };
-
-  _proto.plus1 = function plus1(amount) {
+  _proto.plusAmount = function plusAmount(amount) {
     requireNonNull(amount, 'amount');
     return amount.addTo(this);
   };
 
-  _proto.plus2 = function plus2(amountToAdd, unit) {
+  _proto.plusAmountUnit = function plusAmountUnit(amountToAdd, unit) {
     requireNonNull(amountToAdd, 'amountToAdd');
     requireNonNull(unit, 'unit');
 
@@ -9568,23 +9616,15 @@ var LocalDate = function (_ChronoLocalDate) {
     return LocalDate.ofEpochDay(mjDay);
   };
 
-  _proto.minus = function minus(p1, p2) {
-    if (arguments.length < 2) {
-      return this.minus1(p1);
-    } else {
-      return this.minus2(p1, p2);
-    }
-  };
-
-  _proto.minus1 = function minus1(amount) {
+  _proto.minusAmount = function minusAmount(amount) {
     requireNonNull(amount, 'amount');
     return amount.subtractFrom(this);
   };
 
-  _proto.minus2 = function minus2(amountToSubtract, unit) {
+  _proto.minusAmountUnit = function minusAmountUnit(amountToSubtract, unit) {
     requireNonNull(amountToSubtract, 'amountToSubtract');
     requireNonNull(unit, 'unit');
-    return this.plus2(-1 * amountToSubtract, unit);
+    return this.plusAmountUnit(-1 * amountToSubtract, unit);
   };
 
   _proto.minusYears = function minusYears(yearsToSubtract) {
@@ -9873,11 +9913,11 @@ function _init$g() {
   });
 }
 
-var ChronoLocalDateTime = function (_Temporal) {
-  _inheritsLoose(ChronoLocalDateTime, _Temporal);
+var ChronoLocalDateTime = function (_DefaultInterfaceTemp) {
+  _inheritsLoose(ChronoLocalDateTime, _DefaultInterfaceTemp);
 
   function ChronoLocalDateTime() {
-    return _Temporal.apply(this, arguments) || this;
+    return _DefaultInterfaceTemp.apply(this, arguments) || this;
   }
 
   var _proto = ChronoLocalDateTime.prototype;
@@ -9899,7 +9939,7 @@ var ChronoLocalDateTime = function (_Temporal) {
       return null;
     }
 
-    return _Temporal.prototype.query.call(this, _query);
+    return _DefaultInterfaceTemp.prototype.query.call(this, _query);
   };
 
   _proto.adjustInto = function adjustInto(temporal) {
@@ -9920,7 +9960,7 @@ var ChronoLocalDateTime = function (_Temporal) {
   };
 
   return ChronoLocalDateTime;
-}(Temporal);
+}(DefaultInterfaceTemporal);
 
 var LocalDateTime = function (_ChronoLocalDateTime) {
   _inheritsLoose(LocalDateTime, _ChronoLocalDateTime);
@@ -10145,15 +10185,7 @@ var LocalDateTime = function (_ChronoLocalDateTime) {
     return this._time.nano();
   };
 
-  _proto.with = function _with(adjusterOrField, newValue) {
-    if (arguments.length === 1) {
-      return this.withTemporalAdjuster(adjusterOrField);
-    } else {
-      return this.with2(adjusterOrField, newValue);
-    }
-  };
-
-  _proto.withTemporalAdjuster = function withTemporalAdjuster(adjuster) {
+  _proto.withAdjuster = function withAdjuster(adjuster) {
     requireNonNull(adjuster, 'adjuster');
 
     if (adjuster instanceof LocalDate) {
@@ -10168,7 +10200,7 @@ var LocalDateTime = function (_ChronoLocalDateTime) {
     return adjuster.adjustInto(this);
   };
 
-  _proto.with2 = function with2(field, newValue) {
+  _proto.withFieldValue = function withFieldValue(field, newValue) {
     requireNonNull(field, 'field');
 
     if (field instanceof ChronoField) {
@@ -10226,20 +10258,12 @@ var LocalDateTime = function (_ChronoLocalDateTime) {
     return this._withDateTime(this._date, this._time.truncatedTo(unit));
   };
 
-  _proto.plus = function plus(amount, unit) {
-    if (arguments.length === 1) {
-      return this.plusTemporalAmount(amount);
-    } else {
-      return this.plus2(amount, unit);
-    }
-  };
-
-  _proto.plusTemporalAmount = function plusTemporalAmount(amount) {
+  _proto.plusAmount = function plusAmount(amount) {
     requireNonNull(amount, 'amount');
     return amount.addTo(this);
   };
 
-  _proto.plus2 = function plus2(amountToAdd, unit) {
+  _proto.plusAmountUnit = function plusAmountUnit(amountToAdd, unit) {
     requireNonNull(unit, 'unit');
 
     if (unit instanceof ChronoUnit) {
@@ -10312,22 +10336,14 @@ var LocalDateTime = function (_ChronoLocalDateTime) {
     return this._plusWithOverflow(this._date, 0, 0, 0, nanos, 1);
   };
 
-  _proto.minus = function minus(amount, unit) {
-    if (arguments.length === 1) {
-      return this.minusTemporalAmount(amount);
-    } else {
-      return this.minus2(amount, unit);
-    }
-  };
-
-  _proto.minusTemporalAmount = function minusTemporalAmount(amount) {
+  _proto.minusAmount = function minusAmount(amount) {
     requireNonNull(amount, 'amount');
     return amount.subtractFrom(this);
   };
 
-  _proto.minus2 = function minus2(amountToSubtract, unit) {
+  _proto.minusAmountUnit = function minusAmountUnit(amountToSubtract, unit) {
     requireNonNull(unit, 'unit');
-    return this.plus2(-1 * amountToSubtract, unit);
+    return this.plusAmountUnit(-1 * amountToSubtract, unit);
   };
 
   _proto.minusYears = function minusYears(years) {
@@ -10795,15 +10811,7 @@ var LocalTime = function (_Temporal) {
     return this._nano;
   };
 
-  _proto.with = function _with(adjusterOrField, newValue) {
-    if (arguments.length < 2) {
-      return this.withTemporalAdjuster(adjusterOrField);
-    } else {
-      return this.with2(adjusterOrField, newValue);
-    }
-  };
-
-  _proto.withTemporalAdjuster = function withTemporalAdjuster(adjuster) {
+  _proto.withAdjuster = function withAdjuster(adjuster) {
     requireNonNull(adjuster, 'adjuster');
 
     if (adjuster instanceof LocalTime) {
@@ -10814,7 +10822,7 @@ var LocalTime = function (_Temporal) {
     return adjuster.adjustInto(this);
   };
 
-  _proto.with2 = function with2(field, newValue) {
+  _proto.withFieldValue = function withFieldValue(field, newValue) {
     requireNonNull(field, 'field');
     requireInstance(field, TemporalField, 'field');
 
@@ -10945,20 +10953,12 @@ var LocalTime = function (_Temporal) {
     return LocalTime.ofNanoOfDay(MathUtil.intDiv(nod, dur) * dur);
   };
 
-  _proto.plus = function plus(amount, unit) {
-    if (arguments.length < 2) {
-      return this.plus1(amount);
-    } else {
-      return this.plus2(amount, unit);
-    }
-  };
-
-  _proto.plus1 = function plus1(amount) {
+  _proto.plusAmount = function plusAmount(amount) {
     requireNonNull(amount, 'amount');
     return amount.addTo(this);
   };
 
-  _proto.plus2 = function plus2(amountToAdd, unit) {
+  _proto.plusAmountUnit = function plusAmountUnit(amountToAdd, unit) {
     requireNonNull(unit, 'unit');
 
     if (unit instanceof ChronoUnit) {
@@ -11054,22 +11054,14 @@ var LocalTime = function (_Temporal) {
     return new LocalTime(newHour, newMinute, newSecond, newNano);
   };
 
-  _proto.minus = function minus(amount, unit) {
-    if (arguments.length < 2) {
-      return this.minus1(amount);
-    } else {
-      return this.minus2(amount, unit);
-    }
-  };
-
-  _proto.minus1 = function minus1(amount) {
+  _proto.minusAmount = function minusAmount(amount) {
     requireNonNull(amount, 'amount');
     return amount.subtractFrom(this);
   };
 
-  _proto.minus2 = function minus2(amountToSubtract, unit) {
+  _proto.minusAmountUnit = function minusAmountUnit(amountToSubtract, unit) {
     requireNonNull(unit, 'unit');
-    return this.plus2(-1 * amountToSubtract, unit);
+    return this.plusAmountUnit(-1 * amountToSubtract, unit);
   };
 
   _proto.minusHours = function minusHours(hoursToSubtract) {
@@ -11403,20 +11395,12 @@ var Instant = function (_Temporal) {
     return this._nanos;
   };
 
-  _proto.with = function _with(adjusterOrField, newValue) {
-    if (arguments.length === 1) {
-      return this.withTemporalAdjuster(adjusterOrField);
-    } else {
-      return this.with2(adjusterOrField, newValue);
-    }
-  };
-
-  _proto.withTemporalAdjuster = function withTemporalAdjuster(adjuster) {
+  _proto.withAdjuster = function withAdjuster(adjuster) {
     requireNonNull(adjuster, 'adjuster');
     return adjuster.adjustInto(this);
   };
 
-  _proto.with2 = function with2(field, newValue) {
+  _proto.withFieldValue = function withFieldValue(field, newValue) {
     requireNonNull(field, 'field');
 
     if (field instanceof ChronoField) {
@@ -11474,20 +11458,12 @@ var Instant = function (_Temporal) {
     return this.plusNanos(result - nod);
   };
 
-  _proto.plus = function plus(amount, unit) {
-    if (arguments.length === 1) {
-      return this.plus1(amount);
-    } else {
-      return this.plus2(amount, unit);
-    }
-  };
-
-  _proto.plus1 = function plus1(amount) {
+  _proto.plusAmount = function plusAmount(amount) {
     requireNonNull(amount, 'amount');
     return amount.addTo(this);
   };
 
-  _proto.plus2 = function plus2(amountToAdd, unit) {
+  _proto.plusAmountUnit = function plusAmountUnit(amountToAdd, unit) {
     requireNonNull(amountToAdd, 'amountToAdd');
     requireNonNull(unit, 'unit');
     requireInstance(unit, TemporalUnit);
@@ -11548,21 +11524,13 @@ var Instant = function (_Temporal) {
     return Instant.ofEpochSecond(epochSec, nanoAdjustment);
   };
 
-  _proto.minus = function minus(amount, unit) {
-    if (arguments.length === 1) {
-      return this.minus1(amount);
-    } else {
-      return this.minus2(amount, unit);
-    }
-  };
-
-  _proto.minus1 = function minus1(amount) {
+  _proto.minusAmount = function minusAmount(amount) {
     requireNonNull(amount, 'amount');
     return amount.subtractFrom(this);
   };
 
-  _proto.minus2 = function minus2(amountToSubtract, unit) {
-    return this.plus2(-1 * amountToSubtract, unit);
+  _proto.minusAmountUnit = function minusAmountUnit(amountToSubtract, unit) {
+    return this.plusAmountUnit(-1 * amountToSubtract, unit);
   };
 
   _proto.minusSeconds = function minusSeconds(secondsToSubtract) {
