@@ -1091,6 +1091,8 @@ export interface Locale {
 }
 
 export abstract class IsoChronology {
+    static INSTANCE: IsoChronology;
+
     static isLeapYear(prolepticYear: number): boolean;
 
     private constructor();
