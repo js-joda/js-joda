@@ -76,7 +76,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
         const _months =  MathUtil.safeToInt(months);
         const _days = MathUtil.safeToInt(days);
 
-        if((_years | _months | _days) === 0){
+        if( _years === 0 && _months === 0 && _days === 0 ){
             if (!Period.ZERO) {
                 this._years = _years;
                 this._months =  _months;
