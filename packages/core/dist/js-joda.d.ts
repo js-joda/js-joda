@@ -103,7 +103,7 @@ export class Duration extends TemporalAmount {
     static ofMillis(millis: number): Duration;
     static ofMinutes(minutes: number): Duration;
     static ofNanos(nanos: number): Duration;
-    static ofSeconds(seconds: number): Duration;
+    static ofSeconds(seconds: number, nanoAdjustment?: number): Duration;
     static parse(text: string): Duration;
 
     private constructor();
