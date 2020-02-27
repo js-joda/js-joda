@@ -514,6 +514,8 @@ function test_Period() {
 }
 
 function test_Duration() {
+    Duration.ofSeconds(32).toString();
+    Duration.ofSeconds(32, 500000000).toString();
 
     Duration.ofHours(10).toString();
 
