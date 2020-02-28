@@ -3,6 +3,14 @@
 
 ### next
 
+### 3.1.1
+
+* add fr-FR, sv, sv-SE locales to prebuilt packages
+
+### 3.1.0
+
+* update dependencies, update cldr-data to 36.0.0 for prebuilt packages
+
 ### 3.0.0
 
 * Switch to latest @js-joda/core and @js-joda/timezone peer dependencies
