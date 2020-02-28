@@ -24,12 +24,23 @@
         "fr": [
             "fr.*"
         ],
+        "fr-fr": [
+            "fr",
+            "fr-FR"
+        ],
         "it": [
             "it.*"
         ],
         "it-it": [
             "it",
             "it-IT"
+        ],
+        "sv": [
+            "sv.*"
+        ],
+        "sv-se": [
+            "sv",
+            "sv-SE"
         ],
         "zh": [
             "zh.*"
