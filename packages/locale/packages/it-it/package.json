@@ -1,6 +1,6 @@
 {
     "name": "@js-joda/locale_it-it",
-    "version": "3.1.0+36.0.0",
+    "version": "3.1.1+36.0.0",
     "description": "prebuilt js-joda locale package for locales: it,it-IT",
     "repository": {
         "type": "git",
