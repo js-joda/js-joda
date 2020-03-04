@@ -42,6 +42,7 @@ export abstract class Temporal extends TemporalAccessor {
 
 export abstract class Clock {
     static fixed(fixedInstant: Instant, zoneId: ZoneId): Clock;
+    static offset(baseClock: Clock, offsetDuration: Duration): Clock;
     static system(zone: ZoneId): Clock;
     static systemDefaultZone(): Clock;
     static systemUTC(): Clock;
