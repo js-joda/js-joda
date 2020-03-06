@@ -699,10 +699,13 @@ function test_Month() {
 
 function test_Clock() {
     const clock = Clock.systemUTC();
-    const clock2 = Clock.fixed(Instant.now(), ZoneId.UTC);
+    const fixed = Clock.fixed(Instant.now(), ZoneId.UTC);
+    const offset = Clock.offset(clock, Duration.ofHours(1));
 
     expectType<ZoneId>(clock.zone());
     expectType<Clock>(clock.withZone(ZoneId.UTC));
+    expectType<Clock>(fixed);
+    expectType<Clock>(offset);
 }
 
 function test_Temporal() {
