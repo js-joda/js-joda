@@ -266,7 +266,7 @@ export class DateTimeFormatterBuilder {
     parseCaseSensitive(): DateTimeFormatterBuilder;
     parseLenient(): DateTimeFormatterBuilder;
     parseStrict(): DateTimeFormatterBuilder;
-    toFormatter(resolverStyle: ResolverStyle): DateTimeFormatter;
+    toFormatter(resolverStyle?: ResolverStyle): DateTimeFormatter;
 }
 
 // TODO: js-joda doesn't have Chronology yet. Methods like `LocalDate.chronology()`
