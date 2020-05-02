@@ -672,6 +672,9 @@ function test_DateTimeFormatterBuilder() {
         .appendPattern("yyyy-MM-dd HH:mm:ss")
         .appendFraction(ChronoField.MICRO_OF_SECOND, 0, 6, true)
         .toFormatter(ResolverStyle.LENIENT);
+    const formatter5: DateTimeFormatter = new DateTimeFormatterBuilder()
+        .appendPattern("yyyy-MM-dd HH:mm:ss")
+        .toFormatter();
 }
 
 function test_DateTimeParseException() {
