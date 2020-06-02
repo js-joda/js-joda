@@ -1,0 +1,31 @@
+name: js-joda-build-and-test
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:node12.16.1-chrome80-ff73
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: npx lerna link
+      - run: npx lerna bootstrap --no-ci
+      - run: npx lerna run --stream build-dist;
+      - run: npx lerna run --stream build-all;
+      - run: npm run build-esdoc;
+      - run: npx lerna run --stream lint;
+      - run: npx lerna run --stream test;
+      - run: npx lerna run --stream test-coverage;
+      - run: npx lerna run --stream test-ts-definitions;
+      - run: npx lerna run --stream test-browser;
+      - run: BROWSER=chrome npx lerna run --stream test-cypress;
+      - run: BROWSER=firefox npx lerna run --stream test-cypress;
+
+

@@ -3,6 +3,7 @@ test
 
 # Node dependency directory
 node_modules
+cypress
 
 # npm
 npm-debug.log

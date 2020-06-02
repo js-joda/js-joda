@@ -1,0 +1,5 @@
+{
+  "integrationFolder":"test",
+  "testFiles":"**/*Test.js",
+  "video": false
+}

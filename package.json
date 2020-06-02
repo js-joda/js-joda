@@ -7,6 +7,7 @@
   },
   "devDependencies": {
     "coveralls": "^3.0.8",
+    "cypress": "^4.7.0",
     "esdoc": "^1.1.0",
     "esdoc-standard-plugin": "^1.0.0",
     "eslint": "^6.7.0",
