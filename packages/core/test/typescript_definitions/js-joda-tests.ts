@@ -735,6 +735,17 @@ function test_Temporal() {
 
   temporal.with(nextYear);
   temporal.with(ChronoField.YEAR, 2020);
+
+  temporal.with(DayOfWeek.MONDAY);
+  temporal.with(Instant.now());
+  temporal.with(LocalDate.now());
+  temporal.with(LocalDateTime.now());
+  temporal.with(LocalTime.now());
+  temporal.with(Month.FEBRUARY);
+  temporal.with(MonthDay.now());
+  temporal.with(Year.now());
+  temporal.with(YearMonth.now());
+  temporal.with(ZoneOffset.ofHours(1));
 }
 
 function test_TemporalQuery() {
