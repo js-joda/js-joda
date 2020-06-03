@@ -54,7 +54,7 @@ export abstract class Clock {
     abstract equals(other: any): boolean;
 }
 
-export class DayOfWeek extends TemporalAccessor {
+export class DayOfWeek extends TemporalAccessor implements TemporalAdjuster {
     static MONDAY: DayOfWeek;
     static TUESDAY: DayOfWeek;
     static WEDNESDAY: DayOfWeek;
@@ -72,7 +72,7 @@ export class DayOfWeek extends TemporalAccessor {
 
     private constructor();
 
-    adjustInto(temporal: TemporalAdjuster): this;
+    adjustInto(temporal: Temporal): Temporal;
     compareTo(other: DayOfWeek): number;
     equals(other: any): boolean;
     getDisplayName(style: TextStyle, locale: Locale): string;
@@ -153,7 +153,7 @@ export class Duration extends TemporalAmount {
     withSeconds(seconds: number): Duration;
 }
 
-export class Instant extends Temporal {
+export class Instant extends Temporal implements TemporalAdjuster {
     static EPOCH: Instant;
     static MIN: Instant;
     static MAX: Instant;
@@ -274,7 +274,7 @@ export class DateTimeFormatterBuilder {
 // for now. Change this if Chronology is added.
 export type Chronology = IsoChronology;
 
-export class LocalTime extends Temporal {
+export class LocalTime extends Temporal implements TemporalAdjuster {
     static MIN: LocalTime;
     static MAX: LocalTime;
     static MIDNIGHT: LocalTime;
@@ -304,7 +304,7 @@ export class LocalTime extends Temporal {
 
     private constructor();
 
-    adjustInto(temporal: TemporalAdjuster): Temporal;
+    adjustInto(temporal: Temporal): Temporal;
     atDate(date: LocalDate): LocalDateTime;
     compareTo(other: LocalTime): number;
     equals(other: any): boolean;
@@ -347,7 +347,7 @@ export class LocalTime extends Temporal {
     withSecond(second: number): LocalTime;
 }
 
-export class Month extends TemporalAccessor {
+export class Month extends TemporalAccessor implements TemporalAdjuster {
     static JANUARY: Month;
     static FEBRUARY: Month;
     static MARCH: Month;
@@ -389,7 +389,7 @@ export class Month extends TemporalAccessor {
     value(): number;
 }
 
-export class MonthDay extends TemporalAccessor {
+export class MonthDay extends TemporalAccessor implements TemporalAdjuster {
     static FROM: TemporalQuery<LocalDate>;
 
     static from(temporal: TemporalAccessor): MonthDay;
@@ -540,13 +540,13 @@ export class ChronoUnit extends TemporalUnit {
     toString(): string;
 }
 
-export abstract class ChronoLocalDate extends Temporal {
-    adjustInto(temporal: TemporalAdjuster): this;
+export abstract class ChronoLocalDate extends Temporal implements TemporalAdjuster {
+    adjustInto(temporal: Temporal): Temporal;
     format(formatter: DateTimeFormatter): string;
     isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean;
 }
 
-export class LocalDate extends ChronoLocalDate {
+export class LocalDate extends ChronoLocalDate  implements TemporalAdjuster {
     static MIN: LocalDate;
     static MAX: LocalDate;
     static EPOCH_0: LocalDate;
@@ -614,14 +614,14 @@ export class LocalDate extends ChronoLocalDate {
     year(): number;
 }
 
-export abstract class ChronoLocalDateTime extends Temporal {
-    adjustInto(temporal: TemporalAdjuster): ChronoLocalDate;
+export abstract class ChronoLocalDateTime extends Temporal implements TemporalAdjuster {
+    adjustInto(temporal: Temporal): Temporal;
     chronology(): Chronology;
     toEpochSecond(offset: ZoneOffset): number;
     toInstant(offset: ZoneOffset): Instant;
 }
 
-export class LocalDateTime extends ChronoLocalDateTime {
+export class LocalDateTime extends ChronoLocalDateTime implements TemporalAdjuster {
     static MIN: LocalDateTime;
     static MAX: LocalDateTime;
 
@@ -638,7 +638,6 @@ export class LocalDateTime extends ChronoLocalDateTime {
 
     private constructor();
 
-    adjustInto(temporal: TemporalAdjuster): LocalDateTime;
     atZone(zone: ZoneId): ZonedDateTime;
     compareTo(other: LocalDateTime): number;
     dayOfMonth(): number;
@@ -799,7 +798,7 @@ export class ValueRange {
     toString(): string;
 }
 
-export class Year extends Temporal {
+export class Year extends Temporal implements TemporalAdjuster {
     static MIN_VALUE: number;
     static MAX_VALUE: number;
 
@@ -813,6 +812,7 @@ export class Year extends Temporal {
 
     private constructor();
 
+    adjustInto(temporal: Temporal): Temporal;
     atDay(dayOfYear: number): LocalDate;
     atMonth(month: Month | number): YearMonth;
     atMonthDay(monthDay: MonthDay): LocalDate;
@@ -834,7 +834,7 @@ export class Year extends Temporal {
     with(field: TemporalField, newValue: number): Year;
 }
 
-export class YearMonth extends Temporal {
+export class YearMonth extends Temporal implements TemporalAdjuster {
     static FROM: TemporalQuery<LocalDate>;
 
     static from(temporal: TemporalAccessor): YearMonth;
@@ -844,6 +844,7 @@ export class YearMonth extends Temporal {
 
     private constructor();
 
+    adjustInto(temporal: Temporal): Temporal;
     minus(amount: TemporalAmount): YearMonth;
     minus(amountToSubtract: number, unit: TemporalUnit): YearMonth;
     minusYears(yearsToSubtract: number): YearMonth;
@@ -894,7 +895,7 @@ export abstract class ZoneId {
     toString(): string;
 }
 
-export class ZoneOffset extends ZoneId {
+export class ZoneOffset extends ZoneId implements TemporalAdjuster {
     static MAX_SECONDS: ZoneOffset;
     static UTC: ZoneOffset;
     static MIN: ZoneOffset;
