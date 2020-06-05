@@ -117,9 +117,12 @@ export class Duration extends TemporalAmount {
     get(unit: TemporalUnit): number;
     isNegative(): boolean;
     isZero(): boolean;
-    minus(durationOrNumber: Duration | number, unit: ChronoUnit): Duration;
+    minus(duration: Duration): Duration;
+    minus(amount: number, unit: ChronoUnit): Duration;
+    // TODO: Internal. Remove in next major version.
     minusAmountUnit(amountToSubtract: number, unit: TemporalUnit): Duration;
     minusDays(daysToSubtract: number): Duration;
+    // TODO: Internal. Remove in next major version.
     minusDuration(duration: Duration): Duration;
     minusHours(hoursToSubtract: number): Duration;
     minusMillis(millisToSubtract: number): Duration;
@@ -129,9 +132,12 @@ export class Duration extends TemporalAmount {
     multipliedBy(multiplicand: number): Duration;
     nano(): number;
     negated(): Duration;
-    plus(durationOrNumber: Duration | number, unitOrNumber: TemporalUnit | number): Duration;
+    plus(duration: Duration): Duration;
+    plus(amount: number, unit: ChronoUnit): Duration;
+    // TODO: Internal. Remove in next major version.
     plusAmountUnit(amountToAdd: number, unit: TemporalUnit): Duration;
     plusDays(daysToAdd: number): Duration;
+    // TODO: Internal. Remove in next major version.
     plusDuration(duration: Duration): Duration;
     plusHours(hoursToAdd: number): Duration;
     plusMillis(millisToAdd: number): Duration;
@@ -292,7 +298,7 @@ export class LocalTime extends Temporal implements TemporalAdjuster {
     static NANOS_PER_HOUR: number;
     static NANOS_PER_DAY: number;
 
-    static FROM: TemporalQuery<LocalDate>;
+    static FROM: TemporalQuery<LocalTime>;
 
     static from(temporal: TemporalAccessor): LocalTime;
     static now(clockOrZone?: Clock | ZoneId): LocalTime;
@@ -390,7 +396,7 @@ export class Month extends TemporalAccessor implements TemporalAdjuster {
 }
 
 export class MonthDay extends TemporalAccessor implements TemporalAdjuster {
-    static FROM: TemporalQuery<LocalDate>;
+    static FROM: TemporalQuery<MonthDay>;
 
     static from(temporal: TemporalAccessor): MonthDay;
     static now(zoneIdOrClock?: ZoneId | Clock): MonthDay;
@@ -802,7 +808,7 @@ export class Year extends Temporal implements TemporalAdjuster {
     static MIN_VALUE: number;
     static MAX_VALUE: number;
 
-    static FROM: TemporalQuery<LocalDate>;
+    static FROM: TemporalQuery<Year>;
 
     static from(temporal: TemporalAccessor): Year;
     static isLeap(year: number): boolean;
@@ -835,7 +841,7 @@ export class Year extends Temporal implements TemporalAdjuster {
 }
 
 export class YearMonth extends Temporal implements TemporalAdjuster {
-    static FROM: TemporalQuery<LocalDate>;
+    static FROM: TemporalQuery<YearMonth>;
 
     static from(temporal: TemporalAccessor): YearMonth;
     static now(zoneIdOrClock?: ZoneId | Clock): YearMonth;
@@ -994,7 +1000,7 @@ export abstract class ChronoZonedDateTime extends Temporal {
 }
 
 export class ZonedDateTime extends ChronoZonedDateTime {
-    static FROM: TemporalQuery<LocalDate>;
+    static FROM: TemporalQuery<ZonedDateTime>;
 
     static from(temporal: TemporalAccessor): ZonedDateTime;
     static now(clockOrZone?: Clock | ZoneId): ZonedDateTime;
@@ -1027,6 +1033,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     minusMonths(months: number): ZonedDateTime;
     minusNanos(nanos: number): ZonedDateTime;
     minusSeconds(seconds: number): ZonedDateTime;
+    // TODO: Internal. Remove in next major version.
     minusTemporalAmount(amount: TemporalAmount): ZonedDateTime;
     minusWeeks(weeks: number): ZonedDateTime;
     minusYears(years: number): ZonedDateTime;
@@ -1043,6 +1050,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     plusMonths(months: number): ZonedDateTime;
     plusNanos(nanos: number): ZonedDateTime;
     plusSeconds(seconds: number): ZonedDateTime;
+    // TODO: Internal. Remove in next major version.
     plusTemporalAmount(amount: TemporalAmount): ZonedDateTime;
     plusWeeks(weeks: number): ZonedDateTime;
     plusYears(years: number): ZonedDateTime;
@@ -1060,8 +1068,10 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     with(field: TemporalField, newValue: number): ZonedDateTime;
     withDayOfMonth(dayOfMonth: number): ZonedDateTime;
     withDayOfYear(dayOfYear: number): ZonedDateTime;
+    withEarlierOffsetAtOverlap(): ZonedDateTime;
     withFixedOffsetZone(): ZonedDateTime;
     withHour(hour: number): ZonedDateTime;
+    withLaterOffsetAtOverlap(): ZonedDateTime;
     withMinute(minute: number): ZonedDateTime;
     withMonth(month: number): ZonedDateTime;
     withNano(nanoOfSecond: number): ZonedDateTime;

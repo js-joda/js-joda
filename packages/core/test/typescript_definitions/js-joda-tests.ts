@@ -162,6 +162,8 @@ function test_LocalDate() {
     d.with(TemporalAdjusters.next(DayOfWeek.SATURDAY));
     d.with(TemporalAdjusters.lastInMonth(DayOfWeek.SATURDAY));
     d.with(TemporalAdjusters.firstInMonth(DayOfWeek.SATURDAY));
+
+    expectType<LocalDate>(d1.query(LocalDate.FROM));
 }
 
 function test_Instant() {
@@ -257,6 +259,8 @@ function test_LocalTime() {
     t = LocalTime.ofInstant(Instant.ofEpochMilli(new Date().getTime()));
     t = LocalTime.from(nativeJs(new Date()));
     t = LocalTime.from(nativeJs(moment()));
+
+    expectType<LocalTime>(t1.query(LocalTime.FROM));
 }
 
 function test_LocalDateTime() {
@@ -404,6 +408,8 @@ function test_LocalDateTime() {
     dt = LocalDateTime.ofInstant(Instant.ofEpochMilli(new Date().getTime()));
     dt = LocalDateTime.from(nativeJs(new Date()));
     dt = LocalDateTime.from(nativeJs(moment()));
+
+    expectType<LocalDateTime>(dt.query(LocalDateTime.FROM));
 }
 
 function test_ZonedDateTime() {
@@ -429,22 +435,23 @@ function test_ZonedDateTime() {
     ZonedDateTime.ofLocal(LocalDateTime.now(), ZoneId.SYSTEM, null)
     ZonedDateTime.ofLocal(LocalDateTime.now(), ZoneId.UTC, ZoneOffset.UTC)
 
-    var d = LocalDate.of(2016, 3, 18);
-    var zdt = d.atTime(LocalTime.NOON).atZone(ZoneId.of('UTC-05:00'));
+    var zdt = LocalDate.of(2016, 3, 18)
+        .atTime(LocalTime.NOON)
+        .atZone(ZoneId.of("UTC-05:00"));
 
     zdt.withZoneSameLocal(ZoneId.UTC);
-
     zdt.withZoneSameInstant(ZoneId.UTC);
 
-
-    var zdt = ZonedDateTime.now();
-
     zdt.plusWeeks(2);
-
     zdt.plusHours(2 * 7 * 24);
-
     zdt.plus(Duration.ofDays(1));
     zdt.minus(Duration.ofDays(1));
+    zdt.minus(5, ChronoUnit.WEEKS);
+
+    expectType<ZonedDateTime>(zdt.withEarlierOffsetAtOverlap());
+    expectType<ZonedDateTime>(zdt.withLaterOffsetAtOverlap());
+
+    expectType<ZonedDateTime>(zdt.query(ZonedDateTime.FROM));
 }
 
 function test_ZoneOffsetTransition() {
@@ -529,6 +536,12 @@ function test_Duration() {
     var dt1 = LocalDateTime.parse('2012-12-24T12:00');
 
     Duration.between(dt1, dt1.plusHours(10)).toString();
+
+    const dur = Duration.ofSeconds(1);
+    expectType<Duration>(dur.minus(Duration.ofNanos(1)));
+    expectType<Duration>(dur.minus(1, ChronoUnit.NANOS));
+    expectType<Duration>(dur.plus(Duration.ofNanos(1)));
+    expectType<Duration>(dur.plus(1, ChronoUnit.NANOS));
 }
 
 function test_Year() {
@@ -555,6 +568,8 @@ function test_Year() {
     year.minusYears(3);
 
     year.with(ChronoField.YEAR, 2015);
+
+    expectType<Year>(year.query(Year.FROM));
 }
 
 function test_YearMonth() {
@@ -594,34 +609,24 @@ function test_YearMonth() {
     ym.isSupported(ChronoUnit.YEARS);
 
     ym.year();
-
     ym.monthValue();
-
     ym.month();
-
     ym.isLeapYear();
-
     ym.isValidDay();
-
     ym.lengthOfMonth();
-
     ym.lengthOfYear();
-
     ym.atDay(10);
-
     ym.atEndOfMonth();
-
     ym.compareTo(YearMonth.of(2017, 20));
-
     ym.isAfter(YearMonth.of(2017, 20));
-
     ym.isBefore(YearMonth.of(2017, 20));
-
     ym.equals(YearMonth.of(2017, 20));
 
     ym.toJSON();
 
     ym.format(DateTimeFormatter.ofPattern('yyyy-MM'));
+
+    expectType<YearMonth>(ym.query(YearMonth.FROM));
 }
 
 function test_DateTimeFormatter() {
@@ -698,6 +703,12 @@ function test_Month() {
     expectType<boolean>(Month.OCTOBER.equals(Month.NOVEMBER));
 
     expectType<Month>(Month.valueOf('FEBRUARY'));
+}
+
+function test_MonthDay() {
+    const md = MonthDay.now();
+    
+    expectType<MonthDay>(md.query(MonthDay.FROM));
 }
 
 function test_Clock() {
