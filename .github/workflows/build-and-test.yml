@@ -24,7 +24,7 @@ jobs:
       - run: npx lerna run --stream test;
       - run: npx lerna run --stream test-coverage;
       - run: npx lerna run --stream test-ts-definitions;
-      - run: npx lerna run --stream test-browser;
+#      - run: npx lerna run --stream test-browser;
       - run: BROWSER=chrome npx lerna run --stream test-cypress;
       - run: BROWSER=firefox npx lerna run --stream test-cypress;
 
