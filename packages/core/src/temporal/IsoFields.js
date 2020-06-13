@@ -138,8 +138,7 @@ import {ResolverStyle} from '../format/ResolverStyle';
  * For the ISO calendar system, it is equal to 3 months.
  * The estimated duration of a quarter-year is one quarter of 365.2425 days.
  */
-export class IsoFields {
-}
+export const IsoFields = {};
 
 //-----------------------------------------------------------------------
 

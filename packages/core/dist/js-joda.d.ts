@@ -427,12 +427,42 @@ export class MonthDay extends TemporalAccessor implements TemporalAdjuster {
     withMonth(month: number): MonthDay;
 }
 
+/**
+ * A field of date-time, such as month-of-year or hour-of-minute.
+ */
 export abstract class TemporalField {
+    /** Checks if this field is supported by the temporal object. */
+    abstract isSupportedBy(temporal: TemporalAccessor): boolean;
+    /** Checks if this field represents a component of a date. */
     abstract isDateBased(): boolean;
+    /** Checks if this field represents a component of a time. */
     abstract isTimeBased(): boolean;
+    /** Gets the unit that the field is measured in. */
+    abstract baseUnit(): TemporalUnit;
+    /** Gets the range that the field is bound by. */
+    abstract rangeUnit(): TemporalUnit;
+    /** Gets the range of valid values for the field. */
+    abstract range(): ValueRange;
+    /** 
+     * Get the range of valid values for this field using the temporal object to
+     * refine the result.
+     */
+    abstract rangeRefinedBy(temporal: TemporalAccessor): ValueRange;
+    /** Gets the value of this field from the specified temporal object. */
+    abstract getFrom(temporal: TemporalAccessor): number;
+    /** Returns a copy of the specified temporal object with the value of this field set. */
+    abstract adjustInto<R extends Temporal>(temporal: R, newValue: number): R;
     abstract name(): string;
+    abstract displayName(/* TODO: locale */): string;
+    abstract equals(other: any): boolean;
 }
 
+/**
+ A standard set of fields.
+ *
+ * This set of fields provide field-based access to manipulate a date, time or date-time.
+ * The standard set of fields can be extended by implementing {@link TemporalField}.
+ */
 export class ChronoField extends TemporalField {
     static NANO_OF_SECOND: ChronoField;
     static NANO_OF_DAY: ChronoField;
@@ -467,9 +497,15 @@ export class ChronoField extends TemporalField {
 
     private constructor();
 
-    baseUnit(): number;
+    isSupportedBy(temporal: TemporalAccessor): boolean;
+    baseUnit(): TemporalUnit;
+    /** Checks that the specified value is valid for this field. */
+    checkValidValue(value: number): number;
+    /**
+     * Checks that the specified value is valid for this field and
+     * is within the range of a safe integer.
+     */
     checkValidIntValue(value: number): number;
-    checkValidValue(value: number): any;
     displayName(): string;
     equals(other: any): boolean;
     getFrom(temporal: TemporalAccessor): number;
@@ -478,31 +514,22 @@ export class ChronoField extends TemporalField {
     name(): string;
     range(): ValueRange;
     rangeRefinedBy(temporal: TemporalAccessor): ValueRange;
-    rangeUnit(): number;
+    rangeUnit(): TemporalUnit;
+    adjustInto<R extends Temporal>(temporal: R, newValue: number): R;
     toString(): string;
 }
 
+/**
+ * Fields and units specific to the ISO-8601 calendar system,
+ * including quarter-of-year and week-based-year.
+ */
 export namespace IsoFields {
-    // TODO: Get rid of this class and typed all constants as TemporalField once
-    // the base class is ready and fixed (getDisplayName)
-    class Field extends TemporalField {
-        private constructor();
-
-        isDateBased(): boolean;
-        isTimeBased(): boolean;
-        name(): string;
-        getDisplayName(): string;
-    }
-
-    export const DAY_OF_QUARTER: Field;
-    export const QUARTER_OF_YEAR: Field;
-    export const WEEK_OF_WEEK_BASED_YEAR: Field;
-    export const WEEK_BASED_YEAR: Field;
+    export const DAY_OF_QUARTER: TemporalField;
+    export const QUARTER_OF_YEAR: TemporalField;
+    export const WEEK_OF_WEEK_BASED_YEAR: TemporalField;
+    export const WEEK_BASED_YEAR: TemporalField;
     export const WEEK_BASED_YEARS: TemporalUnit;
     export const QUARTER_YEARS: TemporalUnit;
-
-    // This allows non-exported types, otherwise everyting is exported
-    export {};
 }
 
 export abstract class TemporalUnit {
@@ -552,7 +579,7 @@ export abstract class ChronoLocalDate extends Temporal implements TemporalAdjust
     isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean;
 }
 
-export class LocalDate extends ChronoLocalDate  implements TemporalAdjuster {
+export class LocalDate extends ChronoLocalDate implements TemporalAdjuster {
     static MIN: LocalDate;
     static MAX: LocalDate;
     static EPOCH_0: LocalDate;

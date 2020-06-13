@@ -92,6 +92,7 @@ export class ChronoField extends TemporalField {
      *
      * @param {String} fieldName
      * @return {ChronoField | null}
+     * @private
      */
     static byName(fieldName) {
         for (const prop in ChronoField) {
@@ -106,8 +107,8 @@ export class ChronoField extends TemporalField {
     /**
      *
      * @param {!string} name
-     * @param {!number} baseUnit
-     * @param {!number} rangeUnit
+     * @param {!TemporalUnit} baseUnit
+     * @param {!TemporalUnit} rangeUnit
      * @param {!ValueRange} range
      * @private
      */
@@ -129,7 +130,7 @@ export class ChronoField extends TemporalField {
 
     /**
      *
-     * @returns {!number}
+     * @returns {!TemporalUnit}
      */
     baseUnit(){
         return this._baseUnit;
@@ -137,7 +138,7 @@ export class ChronoField extends TemporalField {
 
     /**
      *
-     * @returns {!number}
+     * @returns {!TemporalUnit}
      */
     rangeUnit(){
         return this._rangeUnit;
@@ -294,6 +295,24 @@ export class ChronoField extends TemporalField {
     equals(other){
         return this === other;
     }
+
+    /**
+     *
+     * @param {Temporal} temporal
+     * @param {number} newValue
+     * @returns {temporal}
+     */
+    adjustInto(temporal, newValue) {
+        return temporal.with(this, newValue);
+    }
+
+    /**
+     * @param {TemporalAccesor} temporal  the temporal object to query, not null
+     * @return {boolean} true if the date-time can be queried for this field, false if not
+     */
+    isSupportedBy(temporal) {
+        return temporal.isSupported(this);
+    }
 }
 
 export function _init() {
@@ -359,4 +378,3 @@ export function _init() {
     ChronoField.OFFSET_SECONDS = new ChronoField('OffsetSeconds', ChronoUnit.SECONDS, ChronoUnit.FOREVER, ValueRange.of(-18 * 3600, 18 * 3600));
 
 }
-
