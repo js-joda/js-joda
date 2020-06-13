@@ -53,7 +53,7 @@ export class MockFieldNoValue extends TemporalField {
         throw new DateTimeException('Mock');
     }
 
-    getDisplayName() {
+    displayName() {
         return 'Mock';
     }
 

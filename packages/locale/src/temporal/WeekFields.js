@@ -470,7 +470,7 @@ export class ComputedDayOfField {
         return ValueRange.of(1, weekIndexOfFirstWeekNextYear - 1);
     }
 
-    getDisplayName(locale) {
+    displayName(locale) {
         requireNonNull(locale, 'locale');
         if (this._rangeUnit === ChronoUnit.YEARS) {  // week-of-year
             return 'Week';

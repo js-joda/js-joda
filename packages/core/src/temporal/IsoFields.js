@@ -252,7 +252,7 @@ class Field extends TemporalField{
      *
      * @returns {string}
      */
-    getDisplayName(/*locale*/) {
+    displayName(/*locale*/) {
         return this.toString();
     }
 
@@ -615,7 +615,7 @@ class WEEK_OF_WEEK_BASED_YEAR_FIELD extends Field {
      *
      * @returns {string}
      */
-    getDisplayName() {
+    displayName() {
         return 'Week';
     }
 
