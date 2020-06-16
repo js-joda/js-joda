@@ -31,6 +31,12 @@ import {
     ZoneOffsetTransitionRule,
     TemporalQueries,
     TemporalUnit,
+    ArithmeticException,
+    IllegalArgumentException,
+    IllegalStateException,
+    NullPointerException,
+    DateTimeException,
+    UnsupportedTemporalTypeException,
 } from '../../'
 
 // used below
@@ -682,10 +688,6 @@ function test_DateTimeFormatterBuilder() {
         .toFormatter();
 }
 
-function test_DateTimeParseException() {
-    new DateTimeParseException();
-}
-
 function test_ZoneId() {
     var zoneId = ZoneId.SYSTEM;
 
@@ -790,6 +792,45 @@ function test_TemporalQuery() {
     fmt.parse('', Year.FROM);
     fmt.parse('', YearMonth.FROM);
     fmt.parse('', ZonedDateTime.FROM);
+}
+
+
+function test_exceptions() {
+    try {
+        // imagine a not-so-good code that throws...
+    } catch (error) {
+        if (error instanceof ArithmeticException) {
+            expectType<string>(error.message);
+        }
+        else if (error instanceof IllegalArgumentException) {
+            expectType<string>(error.message);
+        }
+        else if (error instanceof IllegalStateException) {
+            expectType<string>(error.message);
+        }
+        else if (error instanceof NullPointerException) {
+            expectType<string>(error.message);
+        }
+        else if (error instanceof DateTimeException) {
+            expectType<string>(error.message);
+        }
+        else if (error instanceof UnsupportedTemporalTypeException) {
+            expectType<string>(error.message);
+            // notice this is assignable to DateTimeException since is
+            // a subtype.
+            expectType<DateTimeException>(error);
+        }
+        else if (error instanceof DateTimeParseException) {
+            expectType<string>(error.message);
+            expectType<string>(error.parsedString());
+            expectType<number>(error.errorIndex());
+        }
+    }
+
+    const e1 = new DateTimeException('message');
+    const e2 = new DateTimeParseException('message', 'text', 0, e1);
+    new DateTimeException();
+    new DateTimeParseException();
 }
 
 /**
