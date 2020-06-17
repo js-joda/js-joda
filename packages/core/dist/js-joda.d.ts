@@ -1124,18 +1124,29 @@ export function convert(
 
 export function use(plugin: Function): any;
 
-export class DateTimeParseException extends Error {
-    constructor(message?: string);
-}
-
 export class ZoneRulesProvider {
     static getRules(zoneId: string): ZoneRules;
     static getAvailableZoneIds(): string[];
 }
 
 export class DateTimeException extends Error {
-    constructor(message?: string);
+    constructor(message?: string, cause?: Error);
 }
+
+export class UnsupportedTemporalTypeException extends DateTimeException {}
+
+export class DateTimeParseException extends Error {
+    constructor(message?: string, text?: string, index?: number, cause?: Error);
+
+    parsedString(): string;
+    errorIndex(): number;
+}
+
+export class ArithmeticException extends Error {}
+export class IllegalArgumentException extends Error {}
+export class IllegalStateException extends Error {}
+export class NullPointerException extends Error {}
+
 
 export const __esModule: true;
 export as namespace JSJoda;

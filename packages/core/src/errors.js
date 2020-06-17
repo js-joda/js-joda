@@ -4,8 +4,8 @@
  */
 
 function createErrorType(name, init, superErrorClass = Error) {
-    function E(message) {
-        if (!Error.captureStackTrace){
+    function JsJodaException(message) {
+        if (!Error.captureStackTrace) {
             this.stack = (new Error()).stack;
         } else {
             Error.captureStackTrace(this, this.constructor);
@@ -16,10 +16,10 @@ function createErrorType(name, init, superErrorClass = Error) {
             return `${this.name}: ${this.message}`;
         };
     }
-    E.prototype = new superErrorClass();
-    E.prototype.name = name;
-    E.prototype.constructor = E;
-    return E;
+    JsJodaException.prototype = Object.create(superErrorClass.prototype);
+    JsJodaException.prototype.name = name;
+    JsJodaException.prototype.constructor = JsJodaException;
+    return JsJodaException;
 }
 
 export const DateTimeException = createErrorType('DateTimeException', messageWithCause);
