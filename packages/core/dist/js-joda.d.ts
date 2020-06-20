@@ -75,7 +75,7 @@ export class DayOfWeek extends TemporalAccessor implements TemporalAdjuster {
     adjustInto(temporal: Temporal): Temporal;
     compareTo(other: DayOfWeek): number;
     equals(other: any): boolean;
-    getDisplayName(style: TextStyle, locale: Locale): string;
+    displayName(style: TextStyle, locale: Locale): string;
     getLong(field: TemporalField): number;
     isSupported(field: TemporalField): boolean;
     minus(days: number): DayOfWeek;
@@ -380,7 +380,7 @@ export class Month extends TemporalAccessor implements TemporalAdjuster {
     firstDayOfYear(leapYear: boolean): number;
     firstMonthOfQuarter(): Month;
     get(field: TemporalField): number;
-    getDisplayName(style: TextStyle, locale: Locale): string;
+    displayName(style: TextStyle, locale: Locale): string;
     getLong(field: TemporalField): number;
     isSupported(field: TemporalField): boolean;
     length(leapYear: boolean): number;
