@@ -782,37 +782,121 @@ export namespace IsoFields {
 }
 
 export abstract class TemporalUnit {
+    /** Returns a copy of the specified temporal object with the specified period added. */
     abstract addTo<T extends Temporal>(temporal: T, amount: number): T;
+    /**
+     * Calculates the period in terms of this unit between two temporal objects of the same type.
+     * 
+     * Returns the period between temporal1 and temporal2 in terms of this unit; a positive number
+     * if `temporal2` is later than `temporal1`, negative if earlier.
+     */
     abstract between(temporal1: Temporal, temporal2: Temporal): number;
+    /** Gets the duration of this unit, which may be an estimate. */
     abstract duration(): Duration;
+    /** Checks if this unit is date-based. */
     abstract isDateBased(): boolean;
+    /** Checks if the duration of the unit is an estimate. */
     abstract isDurationEstimated(): boolean;
+    /** Checks if this unit is supported by the specified temporal object. */
     abstract isSupportedBy(temporal: Temporal): boolean;
+    /** Checks if this unit is time-based. */
     abstract isTimeBased(): boolean;
 }
 
 export class ChronoUnit extends TemporalUnit {
+    /**
+     * Unit that represents the concept of a nanosecond, the smallest supported unit
+     * of time. For the ISO calendar system, it is equal to the 1,000,000,000th part of the second unit.
+     */
     static NANOS: ChronoUnit;
+    /**
+     * Unit that represents the concept of a microsecond. For the ISO calendar
+     * system, it is equal to the 1,000,000th part of the second unit.
+     */
     static MICROS: ChronoUnit;
+    /**
+     * Unit that represents the concept of a millisecond. For the ISO calendar
+     * system, it is equal to the 1000th part of the second unit.
+     */
     static MILLIS: ChronoUnit;
+    /**
+     * Unit that represents the concept of a second. For the ISO calendar system,
+     * it is equal to the second in the SI system of units, except around a leap-second.
+     */
     static SECONDS: ChronoUnit;
+    /**
+     * Unit that represents the concept of a minute. For the ISO calendar system,
+     * it is equal to 60 seconds.
+     */
     static MINUTES: ChronoUnit;
+    /**
+     * Unit that represents the concept of an hour. For the ISO calendar system,
+     * it is equal to 60 minutes.
+     */
     static HOURS: ChronoUnit;
+    /**
+     * Unit that represents the concept of half a day, as used in AM/PM. For
+     * the ISO calendar system, it is equal to 12 hours.
+     */
     static HALF_DAYS: ChronoUnit;
+    /**
+     * Unit that represents the concept of a day. For the ISO calendar system, it
+     * is the standard day from midnight to midnight. The estimated duration of a day is 24 Hours.
+     */
     static DAYS: ChronoUnit;
+    /**
+     * Unit that represents the concept of a week. For the ISO calendar system,
+     * it is equal to 7 Days.
+     */
     static WEEKS: ChronoUnit;
+    /**
+     * Unit that represents the concept of a month. For the ISO calendar system,
+     * the length of the month varies by month-of-year. The estimated duration of a month is
+     * one twelfth of 365.2425 Days.
+     */
     static MONTHS: ChronoUnit;
+    /**
+     * Unit that represents the concept of a year. For the ISO calendar system, it
+     * is equal to 12 months. The estimated duration of a year is 365.2425 Days.
+     */
     static YEARS: ChronoUnit;
+    /**
+     * Unit that represents the concept of a decade. For the ISO calendar system,
+     * it is equal to 10 years.
+     */
     static DECADES: ChronoUnit;
+    /**
+     * Unit that represents the concept of a century. For the ISO calendar
+     * system, it is equal to 100 years.
+     */
     static CENTURIES: ChronoUnit;
+    /**
+     * Unit that represents the concept of a millennium. For the ISO calendar
+     * system, it is equal to 1,000 years.
+     */
     static MILLENNIA: ChronoUnit;
+    /**
+     * Unit that represents the concept of an era. The ISO calendar system doesn't
+     * have eras thus it is impossible to add an era to a date or date-time. The estimated duration
+     * of the era is artificially defined as 1,000,000,000 Years.
+     */
     static ERAS: ChronoUnit;
+    /**
+     * Artificial unit that represents the concept of forever. This is primarily
+     * used with {@link TemporalField} to represent unbounded fields such as the year or era. The
+     * estimated duration of the era is artificially defined as the largest duration supported by
+     * {@link Duration}.
+     */
     static FOREVER: ChronoUnit;
 
     private constructor();
 
     addTo<T extends Temporal>(temporal: T, amount: number): T;
     between(temporal1: Temporal, temporal2: Temporal): number;
+    /**
+     * Compares this ChronoUnit to the specified {@link TemporalUnit}.
+     * The comparison is based on the total length of the durations.
+     */
     compareTo(other: TemporalUnit): number;
     duration(): Duration;
     isDateBased(): boolean;
