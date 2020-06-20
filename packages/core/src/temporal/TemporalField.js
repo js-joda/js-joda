@@ -27,7 +27,7 @@ export class TemporalField {
     /**
      * Checks if this field represents a component of a date.
      *
-     * @return {boolean} true if it is a component of a date
+     * @return {boolean} `true` if it is a component of a date, `false` otherwise.
      */
     isDateBased() {
         abstractMethodFail('isDateBased');
@@ -36,7 +36,7 @@ export class TemporalField {
     /**
      * Checks if this field represents a component of a time.
      *
-     * @return {boolean} true if it is a component of a time
+     * @return {boolean} `true` if it is a component of a time, `false` otherwise.
      */
     isTimeBased() {
         abstractMethodFail('isTimeBased');
@@ -49,7 +49,7 @@ export class TemporalField {
      * For example, in the field 'MonthOfYear', the unit is 'Months'.
      * See also {@link rangeUnit}.
      *
-     * @returns {!TemporalUnit}
+     * @return {TemporalUnit} the period unit defining the base unit of the field.
      */
     baseUnit() {
         abstractMethodFail('baseUnit');
@@ -65,7 +65,7 @@ export class TemporalField {
      * The range is never null. For example, the 'Year' field is shorthand for
      * 'YearOfForever'. It therefore has a unit of 'Years' and a range of 'Forever'.
      *
-     * @return {TemporalUnit} the period unit defining the range of the field, not null
+     * @return {TemporalUnit} the period unit defining the range of the field.
      */
     rangeUnit() {
         abstractMethodFail('rangeUnit');
@@ -82,7 +82,7 @@ export class TemporalField {
      * and it is important not to read too much into them. For example, there
      * could be values within the range that are invalid for the field.
      *
-     * @returns {!ValueRange} the range of valid values for the field, not null
+     * @return {ValueRange} the range of valid values for the field.
      */
     range() {
         abstractMethodFail('range');
@@ -114,9 +114,10 @@ export class TemporalField {
      * available in {@link ChronoField}.
      * If the field is not supported a {@link DateTimeException} must be thrown.
      *
-     * @param {!TemporalAccessor} temporal - the temporal object used to refine the result, not null
-     * @return {ValueRange} the range of valid values for this field, not null
-     * @throws {DateTimeException} if the range for the field cannot be obtained
+     * @param {!TemporalAccessor} temporal the temporal object used to refine the result.
+     * @return {ValueRange} the range of valid values for this field.
+     * @throws {DateTimeException} if the range for the field cannot be obtained.
+     * 
      */
     // eslint-disable-next-line no-unused-vars
     rangeRefinedBy(temporal) {
@@ -142,9 +143,9 @@ export class TemporalField {
      * available in {@link ChronoField}.
      * If the field is not supported a {@link DateTimeException} must be thrown.
      *
-     * @param {TemporalAccesor} temporal the temporal object to query, not null
-     * @return {!number} the value of this field, not null
-     * @throws {DateTimeException} if a value for the field cannot be obtained
+     * @param {!TemporalAccesor} temporal the temporal object to query.
+     * @return {number} the value of this field.
+     * @throws {DateTimeException} if a value for the field cannot be obtained.
      */
     // eslint-disable-next-line no-unused-vars
     getFrom(temporal) {
@@ -184,10 +185,10 @@ export class TemporalField {
      * Instead, an adjusted copy of the original must be returned.
      * This provides equivalent, safe behavior for immutable and mutable implementations.
      *
-     * @param {!Temporal} temporal the temporal object to adjust, not null
-     * @param {!number} newValue the new value of the field
-     * @return {!Temporal} the adjusted temporal object, not null
-     * @throws {DateTimeException} if the field cannot be set
+     * @param {!Temporal} temporal the temporal object to adjust.
+     * @param {!number} newValue the new value of the field.
+     * @return {Temporal} the adjusted temporal object.
+     * @throws {DateTimeException} if the field cannot be set.
      */
     // eslint-disable-next-line no-unused-vars
     adjustInto(temporal, newValue) {
@@ -214,8 +215,8 @@ export class TemporalField {
      * Implementations should determine whether they are supported using the fields
      * available in {@link ChronoField}.
      *
-     * @param {TemporalAccesor} temporal  the temporal object to query, not null
-     * @return {boolean} true if the date-time can be queried for this field, false if not
+     * @param {!TemporalAccesor} temporal the temporal object to query.
+     * @return {boolean} `true` if the date-time can be queried for this field, `false` if not.
      */
     // eslint-disable-next-line no-unused-vars
     isSupportedBy(temporal) {
@@ -223,15 +224,13 @@ export class TemporalField {
     }
 
     /**
-     *
-     * @returns {string}
+     * @return {string}
      */
     displayName(/* TODO: locale */) {
         abstractMethodFail('displayName');
     }
 
     /**
-    *
     * @param {*} other
     * @returns {boolean}
     */
@@ -241,7 +240,6 @@ export class TemporalField {
     }
 
     /**
-     *
      * @returns {string}
      */
     name() {
