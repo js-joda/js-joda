@@ -29,4 +29,29 @@ describe('js-joda ChronoField', () => {
             expect(ChronoField.INSTANT_SECONDS.isSupportedBy(temporal)).to.equal(false);
         });
     });
+
+    describe('checkValidValue', () => {
+        it('should return the given value if valid', () => {
+            const fields = allChronoFields();
+
+            for (const field of fields) {
+                const value = field.range().largestMinimum();
+
+                expect(field.checkValidValue(value)).to.eq(value);
+            }
+        });
+    });
 });
+
+function allChronoFields() {
+    const fields = [];
+    for (const key in ChronoField) {
+        if (
+            Object.prototype.hasOwnProperty.call(ChronoField, key) &&
+            ChronoField[key] instanceof ChronoField
+        ) {
+            fields.push(ChronoField[key]);
+        }
+    }
+    return fields;
+}
