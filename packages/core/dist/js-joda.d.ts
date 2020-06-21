@@ -1150,13 +1150,13 @@ export class ValueRange {
     private constructor();
 
     checkValidIntValue(value: number, field: TemporalField): number;
-    checkValidValue(value: number, field: TemporalField): any;
+    checkValidValue(value: number, field: TemporalField): number;
     equals(other: any): boolean;
     hashCode(): number;
     isFixed(): boolean;
     isIntValue(): boolean;
     isValidIntValue(value: number): boolean;
-    isValidValue(value: any): boolean;
+    isValidValue(value: number): boolean;
     largestMinimum(): number;
     maximum(): number;
     minimum(): number;
