@@ -288,7 +288,7 @@ export class ChronoField extends TemporalField {
      * @returns {number} the value that was passed in.
      */
     checkValidValue(value) {
-        return this.range().checkValidValue(value, this.name());
+        return this.range().checkValidValue(value, this);
     }
 
     /**
