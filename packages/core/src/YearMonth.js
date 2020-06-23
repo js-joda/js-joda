@@ -408,7 +408,7 @@ export class YearMonth extends Temporal {
      * @throws DateTimeException if a value for the field cannot be obtained
      * @throws ArithmeticException if numeric overflow occurs
      */
-    getLong( field) {
+    getLong(field) {
         requireNonNull(field, 'field');
         requireInstance(field, TemporalField, 'field');
         if (field instanceof ChronoField) {
@@ -542,12 +542,13 @@ export class YearMonth extends Temporal {
      * @returns {YearMonth}
      */
     with(adjusterOrFieldOrNumber, value) {
+        if (arguments.length === 2 && typeof adjusterOrFieldOrNumber === 'number') {
+            return this.withYearMonth(adjusterOrFieldOrNumber, value);
+        }
         if (arguments.length === 1) {
             return this.withAdjuster(adjusterOrFieldOrNumber);
-        } else if (arguments.length === 2 && adjusterOrFieldOrNumber instanceof TemporalField){
-            return this.withFieldValue(adjusterOrFieldOrNumber, value);
         } else {
-            return this.withYearMonth(adjusterOrFieldOrNumber, value);
+            return this.withFieldValue(adjusterOrFieldOrNumber, value);
         }
     }
 
