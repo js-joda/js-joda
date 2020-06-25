@@ -245,7 +245,7 @@ export class Year extends Temporal {
      */
     static parseText(text) {
         requireNonNull(text, 'text');
-        return Year.parse(text, PARSER);
+        return Year.parse(text, Year.PARSER);
     }
 
     /**
@@ -258,7 +258,7 @@ export class Year extends Temporal {
      * @return {Year} the parsed year, not null
      * @throws DateTimeParseException if the text cannot be parsed
      */
-    static parseTextFormatter(text, formatter = PARSER) {
+    static parseTextFormatter(text, formatter = Year.PARSER) {
         requireNonNull(text, 'text');
         requireNonNull(formatter, 'formatter');
         requireInstance(formatter, DateTimeFormatter, 'formatter');
@@ -996,20 +996,9 @@ export class Year extends Temporal {
         }
         return unit.between(this, end);
     }
-}
 
-let PARSER;
-
-export function _init() {
-
-    Year.MIN_VALUE = YearConstants.MIN_VALUE;
-    Year.MAX_VALUE = YearConstants.MAX_VALUE;
-
-    PARSER = new DateTimeFormatterBuilder()
-        .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
-        .toFormatter();
-
-    Year.FROM = createTemporalQuery('Year.FROM', (temporal) => {
-        return Year.from(temporal);
-    });
+    static get MIN_VALUE() { delete Year.MIN_VALUE; Year.MIN_VALUE =  YearConstants.MIN_VALUE; return Year.MIN_VALUE;}
+    static get MAX_VALUE() {delete Year.MAX_VALUE; Year.MAX_VALUE =  YearConstants.MAX_VALUE; return Year.MAX_VALUE;}
+    static get PARSER() {delete Year.PARSER; Year.PARSER =  new DateTimeFormatterBuilder().appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD).toFormatter(); return Year.PARSER;}
+    static get FROM (){ delete Year.FROM; Year.FROM = createTemporalQuery('Year.FROM', (temporal) => {return Year.from(temporal);}); return Year.FROM;}
 }

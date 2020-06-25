@@ -228,8 +228,8 @@ export class IsoChronology extends Enum{
         return LocalDate.from(temporal);
     }
 
-}
-
-export function _init() {
-    IsoChronology.INSTANCE = new IsoChronology('IsoChronology');
+    static get INSTANCE() {
+      delete IsoChronology.INSTANCE;
+      IsoChronology.INSTANCE = new IsoChronology('IsoChronology'); 
+      return IsoChronology.INSTANCE;}
 }

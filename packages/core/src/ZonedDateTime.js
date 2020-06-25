@@ -113,13 +113,13 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * if called with 3 args and the first arg is an instance of LocalDate {@link ZonedDateTime.of3} is called,
      * otherwise {@link ZonedDateTime.of8} is called.
      */
-    static of(){
-        if(arguments.length <= 2){
-            return ZonedDateTime.of2.apply(this, arguments);
-        } else if (arguments.length === 3 && arguments[0] instanceof LocalDate){
-            return ZonedDateTime.of3.apply(this, arguments);
+    static of(a,b,c,d,e,f,g,h){
+        if(c == undefined){
+            return ZonedDateTime.of2(a,b);
+        } else if (a instanceof LocalDate){
+            return ZonedDateTime.of3(a,b,c);
         } else {
-            return ZonedDateTime.of8.apply(this, arguments);
+            return ZonedDateTime.of8(a,b,c,d,e,f,g,h);
         }
     }
     /**
@@ -283,11 +283,11 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * if called with 2 args {@link ZonedDateTime.ofInstant2} is called
      * otherwise {@link ZonedDateTime.ofInstant3}.
      */
-    static ofInstant(){
-        if (arguments.length === 2){
-            return ZonedDateTime.ofInstant2.apply(this, arguments);
+    static ofInstant(a,b,c){
+        if (c === undefined){
+            return ZonedDateTime.ofInstant2(a,b);
         } else {
-            return ZonedDateTime.ofInstant3.apply(this, arguments);
+            return ZonedDateTime.ofInstant3(a,b,c);
         }
     }
     /**
@@ -1998,10 +1998,8 @@ export class ZonedDateTime extends ChronoZonedDateTime {
         return super.format(formatter);
     }
 
-}
 
-export function _init(){
-    ZonedDateTime.FROM = createTemporalQuery('ZonedDateTime.FROM', (temporal) => {
+    static get FROM() { delete ZonedDateTime.FROM; ZonedDateTime.FROM = createTemporalQuery('ZonedDateTime.FROM', (temporal) => {
         return ZonedDateTime.from(temporal);
-    });
+    }); return ZonedDateTime.FROM; }
 }

@@ -167,7 +167,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
             nos += LocalTime.NANOS_PER_SECOND;
             secs--;
         }
-        return this._create(secs, nos);
+        return Duration._create(secs, nos);
     }
 
     //-----------------------------------------------------------------------
@@ -262,7 +262,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
                 // ignore and only use seconds
             }
         }
-        return this.ofSeconds(secs, nanos);
+        return Duration.ofSeconds(secs, nanos);
     }
 
     //-----------------------------------------------------------------------
@@ -1195,11 +1195,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         return this.toString();
     }
 
-}
 
-export function _init() {
     /**
      * Constant for a duration of zero.
      */
-    Duration.ZERO = new Duration(0, 0);
+    static get ZERO() {delete Duration.ZERO; Duration.ZERO = new Duration(0, 0);
+                        return Duration.ZERO;}
 }

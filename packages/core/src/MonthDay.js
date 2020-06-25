@@ -85,7 +85,7 @@ export class MonthDay extends TemporalAccessor {
      * @return {MonthDay} the current month-day using the system clock and default time-zone, not null
      */
     static now0() {
-        return this.nowClock(Clock.systemDefaultZone());
+        return MonthDay.nowClock(Clock.systemDefaultZone());
     }
 
     /**
@@ -102,7 +102,7 @@ export class MonthDay extends TemporalAccessor {
      */
     static nowZoneId(zone) {
         requireNonNull(zone, 'zone');
-        return this.nowClock(Clock.system(zone));
+        return MonthDay.nowClock(Clock.system(zone));
     }
 
     /**
@@ -252,7 +252,7 @@ export class MonthDay extends TemporalAccessor {
      * @throws DateTimeParseException if the text cannot be parsed
      */
     static parseString(text) {
-        return MonthDay.parseStringFormatter(text, PARSER);
+        return MonthDay.parseStringFormatter(text, MonthDay.PARSER);
     }
 
     /**
@@ -712,19 +712,17 @@ export class MonthDay extends TemporalAccessor {
         return formatter.format(this);
     }
 
-}
 
-let PARSER;
-
-export function _init() {
-    PARSER = new DateTimeFormatterBuilder()
+    static get PARSER() { delete  MonthDay.PARSER; MonthDay.PARSER =  new DateTimeFormatterBuilder()
         .appendLiteral('--')
         .appendValue(ChronoField.MONTH_OF_YEAR, 2)
         .appendLiteral('-')
         .appendValue(ChronoField.DAY_OF_MONTH, 2)
         .toFormatter();
+    return MonthDay.PARSER;
+        }
 
-    MonthDay.FROM = createTemporalQuery('MonthDay.FROM', (temporal) => {
+    static get FROM() {delete MonthDay.FROM; MonthDay.FROM =  createTemporalQuery('MonthDay.FROM', (temporal) => {
         return MonthDay.from(temporal);
-    });
+    }); return MonthDay.FROM;}
 }

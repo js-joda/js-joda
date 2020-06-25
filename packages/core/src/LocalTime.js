@@ -1329,86 +1329,91 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
         requireNonNull(formatter, 'formatter');
         return formatter.format(this);
     }
-}
 
-export function _init() {
     /**
      * Constants for the local time of each hour.
      */
+    static get HOURS() { 
+       delete LocalTime.HOURS;
     LocalTime.HOURS = [];
     for (let hour = 0; hour < 24; hour++) {
         LocalTime.of(hour, 0, 0, 0);
+    }
+    return LocalTime.HOURS;
     }
 
     /**
      * The minimum supported {@link LocalTime}, '00:00'.
      * This is the time of midnight at the start of the day.
      */
-    LocalTime.MIN = LocalTime.HOURS[0];
+    static get MIN() {delete LocalTime.MIN; LocalTime.MIN = LocalTime.HOURS[0];; return LocalTime.MIN;} 
     /**
      * The maximum supported {@link LocalTime}, '23:59:59.999999999'.
      * This is the time just before midnight at the end of the day.
      */
-    LocalTime.MAX = new LocalTime(23, 59, 59, 999999999);
+    static get MAX() {delete LocalTime.MAX; LocalTime.MAX = new LocalTime(23, 59, 59, 999999999);; return LocalTime.MAX;} 
     /**
      * The time of midnight at the start of the day, '00:00'.
      */
-    LocalTime.MIDNIGHT = LocalTime.HOURS[0];
+    static get MIDNIGHT() {delete LocalTime.MIDNIGHT; LocalTime.MIDNIGHT = LocalTime.HOURS[0];; return LocalTime.MIDNIGHT;} 
     /**
      * The time of noon in the middle of the day, '12:00'.
      */
-    LocalTime.NOON = LocalTime.HOURS[12];
+    static get NOON() {delete LocalTime.NOON; LocalTime.NOON = LocalTime.HOURS[12];; return LocalTime.NOON;} 
 
-    LocalTime.FROM = createTemporalQuery('LocalTime.FROM', (temporal) => {
+    static get FROM() {delete LocalTime.FROM; LocalTime.FROM = createTemporalQuery('LocalTime.FROM', (temporal) => { 
         return LocalTime.from(temporal);
     });
-}
+    return LocalTime.FROM;}
+
 
 /**
  * Hours per day.
  */
-LocalTime.HOURS_PER_DAY = 24;
+static get HOURS_PER_DAY() {delete LocalTime.HOURS_PER_DAY; LocalTime.HOURS_PER_DAY = 24;; return LocalTime.HOURS_PER_DAY;} 
 /**
  * Minutes per hour.
  */
-LocalTime.MINUTES_PER_HOUR = 60;
+static get MINUTES_PER_HOUR() {delete LocalTime.MINUTES_PER_HOUR; LocalTime.MINUTES_PER_HOUR = 60;; return LocalTime.MINUTES_PER_HOUR;} 
 /**
  * Minutes per day.
  */
-LocalTime.MINUTES_PER_DAY = LocalTime.MINUTES_PER_HOUR * LocalTime.HOURS_PER_DAY;
+static get MINUTES_PER_DAY() {delete LocalTime.MINUTES_PER_DAY; LocalTime.MINUTES_PER_DAY = LocalTime.MINUTES_PER_HOUR * LocalTime.HOURS_PER_DAY;; return LocalTime.MINUTES_PER_DAY;} 
 /**
  * Seconds per minute.
  */
-LocalTime.SECONDS_PER_MINUTE = 60;
+static get SECONDS_PER_MINUTE() {delete LocalTime.SECONDS_PER_MINUTE; LocalTime.SECONDS_PER_MINUTE = 60;; return LocalTime.SECONDS_PER_MINUTE;} 
 /**
  * Seconds per hour.
  */
-LocalTime.SECONDS_PER_HOUR = LocalTime.SECONDS_PER_MINUTE * LocalTime.MINUTES_PER_HOUR;
+static get SECONDS_PER_HOUR() {delete LocalTime.SECONDS_PER_HOUR; LocalTime.SECONDS_PER_HOUR = LocalTime.SECONDS_PER_MINUTE * LocalTime.MINUTES_PER_HOUR;; return LocalTime.SECONDS_PER_HOUR;} 
 /**
  * Seconds per day.
  */
-LocalTime.SECONDS_PER_DAY = LocalTime.SECONDS_PER_HOUR * LocalTime.HOURS_PER_DAY;
+static get SECONDS_PER_DAY() {delete LocalTime.SECONDS_PER_DAY; LocalTime.SECONDS_PER_DAY = LocalTime.SECONDS_PER_HOUR * LocalTime.HOURS_PER_DAY;; return LocalTime.SECONDS_PER_DAY;} 
 /**
  * Milliseconds per day.
  */
-LocalTime.MILLIS_PER_DAY = LocalTime.SECONDS_PER_DAY * 1000;
+static get MILLIS_PER_DAY() {delete LocalTime.MILLIS_PER_DAY; LocalTime.MILLIS_PER_DAY = LocalTime.SECONDS_PER_DAY * 1000;; return LocalTime.MILLIS_PER_DAY;} 
 /**
  * Microseconds per day.
  */
-LocalTime.MICROS_PER_DAY = LocalTime.SECONDS_PER_DAY * 1000000;
+static get MICROS_PER_DAY() {delete LocalTime.MICROS_PER_DAY; LocalTime.MICROS_PER_DAY = LocalTime.SECONDS_PER_DAY * 1000000;; return LocalTime.MICROS_PER_DAY;} 
 /**
  * Nanos per second.
  */
-LocalTime.NANOS_PER_SECOND = 1000000000;
+static get NANOS_PER_SECOND() {delete LocalTime.NANOS_PER_SECOND; LocalTime.NANOS_PER_SECOND = 1000000000;; return LocalTime.NANOS_PER_SECOND;} 
 /**
  * Nanos per minute.
  */
-LocalTime.NANOS_PER_MINUTE = LocalTime.NANOS_PER_SECOND * LocalTime.SECONDS_PER_MINUTE;
+static get NANOS_PER_MINUTE() {delete LocalTime.NANOS_PER_MINUTE; LocalTime.NANOS_PER_MINUTE = LocalTime.NANOS_PER_SECOND * LocalTime.SECONDS_PER_MINUTE;; return LocalTime.NANOS_PER_MINUTE;} 
 /**
  * Nanos per hour.
  */
-LocalTime.NANOS_PER_HOUR = LocalTime.NANOS_PER_MINUTE * LocalTime.MINUTES_PER_HOUR;
+static get NANOS_PER_HOUR() {delete LocalTime.NANOS_PER_HOUR; LocalTime.NANOS_PER_HOUR = LocalTime.NANOS_PER_MINUTE * LocalTime.MINUTES_PER_HOUR;; return LocalTime.NANOS_PER_HOUR;} 
 /**
  * Nanos per day.
  */
-LocalTime.NANOS_PER_DAY = LocalTime.NANOS_PER_HOUR * LocalTime.HOURS_PER_DAY;
+static get NANOS_PER_DAY() {delete LocalTime.NANOS_PER_DAY; LocalTime.NANOS_PER_DAY = LocalTime.NANOS_PER_HOUR * LocalTime.HOURS_PER_DAY;; return LocalTime.NANOS_PER_DAY;} 
+
+}

@@ -6,14 +6,14 @@
 import {expect} from 'chai';
 import {assertEquals} from './testUtils';
 
-import './_init';
+//import './_init';
 
-import {ChronoUnit} from '../src/temporal/ChronoUnit';
-import {ArithmeticException, DateTimeException, DateTimeParseException, NullPointerException, UnsupportedTemporalTypeException} from '../src/errors';
-import {IsoChronology} from '../src/chrono/IsoChronology';
-import {MathUtil} from '../src/MathUtil';
-import {Period} from '../src/Period';
-import {TemporalAmount} from '../src/temporal/TemporalAmount';
+import {ChronoUnit} from '../src/jsjodamodule';
+import {ArithmeticException, DateTimeException, DateTimeParseException, NullPointerException, UnsupportedTemporalTypeException} from '../src/jsjodamodule';
+import {IsoChronology} from '../src/jsjodamodule';
+import {MathUtil} from '../src/jsjodamodule';
+import {Period} from '../src/jsjodamodule';
+import {TemporalAmount} from '../src/jsjodamodule';
 
 /* these are not covered by the threetenbp ported tests */
 describe('js-joda Period', () => {

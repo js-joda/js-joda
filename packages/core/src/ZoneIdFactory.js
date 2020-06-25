@@ -32,7 +32,7 @@ export class ZoneIdFactory {
      * @return {ZoneId} the zone ID, not null
      */
     static systemDefault() {
-        return SYSTEM_DEFAULT_ZONE_ID_INSTANCE;
+        return ZoneIdFactory.SYSTEM_DEFAULT_ZONE_ID_INSTANCE;
     }
 
     /**
@@ -180,22 +180,16 @@ export class ZoneIdFactory {
         }
         return obj;
     }
-}
 
-let SYSTEM_DEFAULT_ZONE_ID_INSTANCE = null;
-
-export function _init(){
-    SYSTEM_DEFAULT_ZONE_ID_INSTANCE = new SystemDefaultZoneId();
+    static get SYSTEM_DEFAULT_ZONE_ID_INSTANCE() { 
+        delete ZoneIdFactory.SYSTEM_DEFAULT_ZONE_ID_INSTANCE; 
+        ZoneIdFactory.SYSTEM_DEFAULT_ZONE_ID_INSTANCE =  new SystemDefaultZoneId();
+        return ZoneIdFactory.SYSTEM_DEFAULT_ZONE_ID_INSTANCE;
+    }
 
     // a bit magic to stay a bit more to the threeten bp impl.
-    ZoneId.systemDefault = ZoneIdFactory.systemDefault;
-    ZoneId.getAvailableZoneIds = ZoneIdFactory.getAvailableZoneIds;
-    ZoneId.of = ZoneIdFactory.of;
-    ZoneId.ofOffset = ZoneIdFactory.ofOffset;
-    ZoneId.from = ZoneIdFactory.from;
-    ZoneOffset.from = ZoneIdFactory.from;
+    
 
     // short cut
-    ZoneId.SYSTEM = SYSTEM_DEFAULT_ZONE_ID_INSTANCE;
-    ZoneId.UTC = ZoneOffset.ofTotalSeconds(0);
+    
 }

@@ -998,15 +998,11 @@ export class Instant extends Temporal {
     toJSON() {
         return this.toString();
     }
-}
 
-export function _init() {
-    Instant.MIN_SECONDS = -31619119219200; // -1000000-01-01T00:00:00Z
-    Instant.MAX_SECONDS = 31494816403199; // +1000000-12-31T23:59:59.999999999Z
-    Instant.EPOCH = new Instant(0, 0);
-    Instant.MIN = Instant.ofEpochSecond(Instant.MIN_SECONDS, 0);
-    Instant.MAX = Instant.ofEpochSecond(Instant.MAX_SECONDS, 999999999);
-    Instant.FROM = createTemporalQuery('Instant.FROM', (temporal) => {
-        return Instant.from(temporal);
-    });
+    static get MIN_SECONDS() { return -31619119219200;} // -1000000-01-01T00:00:00Z
+    static get MAX_SECONDS() { return 31494816403199;} // +1000000-12-31T23:59:59.999999999Z
+    static get EPOCH() {delete Instant.EPOCH; Instant.EPOCH = new Instant(0, 0);    return Instant.EPOCH; }
+    static get MIN() {delete Instant.MIN; Instant.MIN = Instant.ofEpochSecond(Instant.MIN_SECONDS, 0);  return Instant.MIN; }
+    static get MAX() {delete Instant.MAX; Instant.MAX = Instant.ofEpochSecond(Instant.MAX_SECONDS, 999999999); return Instant.MAX; }
+    static get FROM() {delete Instant.FROM; Instant.FROM = createTemporalQuery('Instant.FROM', (temporal) => {return Instant.from(temporal);});            return Instant.FROM; }
 }

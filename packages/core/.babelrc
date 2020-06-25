@@ -1,4 +1,8 @@
 {
+ "plugins": [
+    ["transform-class-properties", { "spec": true }],
+    "transform-es5-property-mutators"
+  ],
   "presets": [
     ["@babel/preset-env", {
       "modules": false,
