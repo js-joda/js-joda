@@ -84,33 +84,7 @@ describe('js-joda YearMonth', () => {
         });
         
     });
-    
-    describe('with(Year, Month)', () => {
-        it('should set the given values', () => {
-            const test = YearMonth.of(2015, 12);
-            expect(test.with(2016, 1)).to.eql(YearMonth.of(2016, 1));
-        });
-        
-        it('should return the same object if values are not changed', () => {
-            const test = YearMonth.of(2016, 1);
-            expect(test.with(2016, 1)).to.equal(test);
-        });
-        
-        it('should fail if year is null', () => {
-            expect(() => {
-                const test = YearMonth.of(2016, 1);
-                test.with(null, 1);
-            }).to.throw(NullPointerException);
-        });
-        
-        it('should fail if month is null', () => {
-            expect(() => {
-                const test = YearMonth.of(2016, 1);
-                test.with(2016, null);
-            }).to.throw(NullPointerException);
-        });
-    });
-    
+
     describe('with(TemporalField, value)', () => {
         it('should set the given values', () => {
             const test = YearMonth.of(2015, 12);
