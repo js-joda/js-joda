@@ -37,11 +37,11 @@ describe('js-joda DayOfWeek', () => {
         });
     });
     
-    describe('getDisplayName', () => {
+    describe('displayName', () => {
         
         it('should throw an IllegalArgumentException', () => {
             expect(() => {
-                DayOfWeek.MONDAY.getDisplayName();
+                DayOfWeek.MONDAY.displayName();
             }).to.throw(IllegalArgumentException);
         });
         

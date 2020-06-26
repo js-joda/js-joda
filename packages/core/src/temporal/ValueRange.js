@@ -115,6 +115,7 @@ export class ValueRange {
             }
             return assert(false, msg, DateTimeException);
         }
+        return value;
     }
 
     /**

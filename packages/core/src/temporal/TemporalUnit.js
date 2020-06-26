@@ -32,14 +32,14 @@ export class TemporalUnit {
      *
      * All units return a duration measured in standard nanoseconds from this method.
      * The duration will be positive and non-zero.
-     * For example, an hour has a duration of `60 * 60 * 1,000,000,000ns`.
+     * For example, an hour has a duration of `60 * 60 * 1,000,000,000 ns`.
      *
      * Some units may return an accurate duration while others return an estimate.
      * For example, days have an estimated duration due to the possibility of
      * daylight saving time changes.
      * To determine if the duration is an estimate, use {@link isDurationEstimated}.
      *
-     * @return {Duration} the duration of this unit, which may be an estimate, not null
+     * @return {Duration} the duration of this unit, which may be an estimate.
      */
     duration() {
         abstractMethodFail('duration');
@@ -54,7 +54,7 @@ export class TemporalUnit {
      * This method returns true if the duration is an estimate and false if it is
      * accurate. Note that accurate/estimated ignores leap seconds.
      *
-     * @return {boolean} true if the duration is estimated, false if accurate
+     * @return {boolean} `true` if the duration is estimated, `false` if accurate.
      */
     isDurationEstimated() {
         abstractMethodFail('isDurationEstimated');
@@ -63,7 +63,7 @@ export class TemporalUnit {
     /**
      * Checks if this unit is date-based.
      *
-     * @return {boolean} true if date-based
+     * @return {boolean} `true` if date unit, `false` if a time unit.
      */
     isDateBased() {
         abstractMethodFail('isDateBased');
@@ -72,7 +72,7 @@ export class TemporalUnit {
     /**
      * Checks if this unit is time-based.
      *
-     * @return {boolean} true if time-based
+     * @return {boolean} `true` if time unit, `false` if a date unit.
      */
     isTimeBased() {
         abstractMethodFail('isTimeBased');
@@ -85,8 +85,8 @@ export class TemporalUnit {
      * This checks that the implementing date-time can add/subtract this unit.
      * This can be used to avoid throwing an exception.
      *
-     * @param {Temporal} temporal  the temporal object to check, not null
-     * @return {boolean} true if the unit is supported
+     * @param {!Temporal} temporal the temporal object to check.
+     * @return {boolean} `true` if the unit is supported.
      */
     // eslint-disable-next-line no-unused-vars
     isSupportedBy(temporal) {
@@ -120,10 +120,10 @@ export class TemporalUnit {
      * Instead, an adjusted copy of the original must be returned.
      * This provides equivalent, safe behavior for immutable and mutable implementations.
      *
-     * @param {Temporal} dateTime  the temporal object to adjust, not null
-     * @param {number} periodToAdd  the period of this unit to add, positive or negative
-     * @return {Temporal} the adjusted temporal object, not null
-     * @throws DateTimeException if the period cannot be added
+     * @param {!Temporal} dateTime the temporal object to adjust.
+     * @param {number} periodToAdd the period of this unit to add, positive or negative.
+     * @return {Temporal} the adjusted temporal object.
+     * @throws DateTimeException if the period cannot be added.
      */
     // eslint-disable-next-line no-unused-vars
     addTo(dateTime, periodToAdd) {
@@ -141,7 +141,7 @@ export class TemporalUnit {
      * using {@link HOURS.between}.
      *
      * The calculation returns a whole number, representing the number of complete units between the two temporals.
-     * For example, the period in hours between the times 11:30 and 13:29 will only b
+     * For example, the period in hours between the times 11:30 and 13:29 will only be
      * one hour as it is one minute short of two hours.
      *
      * There are two equivalent ways of using this method.
@@ -162,19 +162,18 @@ export class TemporalUnit {
      * </pre>
      * Implementations should perform any queries or calculations using the units available in
      * {@link ChronoUnit} or the fields available in {@link ChronoField}.
-     * If the unit is not supported a DateTimeException must be thrown.
+     * If the unit is not supported a {@link DateTimeException} must be thrown.
      * Implementations must not alter the specified temporal objects.
      *
-     * @param {Temporal} temporal1  the base temporal object, not null
-     * @param {Temporal} temporal2  the other temporal object, not null
+     * @param {!Temporal} temporal1 the base temporal object.
+     * @param {!Temporal} temporal2 the other temporal object.
      * @return {number} the period between temporal1 and temporal2 in terms of this unit;
-     *  positive if temporal2 is later than temporal1, negative if earlier
-     * @throws DateTimeException if the period cannot be calculated
-     * @throws ArithmeticException if numeric overflow occurs
+     *  positive if temporal2 is later than temporal1, negative if earlier.
+     * @throws DateTimeException if the period cannot be calculated.
+     * @throws ArithmeticException if numeric overflow occurs.
      */
     // eslint-disable-next-line no-unused-vars
     between(temporal1, temporal2) {
         abstractMethodFail('between');
     }
-
 }

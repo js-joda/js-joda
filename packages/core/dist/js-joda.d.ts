@@ -75,7 +75,7 @@ export class DayOfWeek extends TemporalAccessor implements TemporalAdjuster {
     adjustInto(temporal: Temporal): Temporal;
     compareTo(other: DayOfWeek): number;
     equals(other: any): boolean;
-    getDisplayName(style: TextStyle, locale: Locale): string;
+    displayName(style: TextStyle, locale: Locale): string;
     getLong(field: TemporalField): number;
     isSupported(field: TemporalField): boolean;
     minus(days: number): DayOfWeek;
@@ -380,7 +380,7 @@ export class Month extends TemporalAccessor implements TemporalAdjuster {
     firstDayOfYear(leapYear: boolean): number;
     firstMonthOfQuarter(): Month;
     get(field: TemporalField): number;
-    getDisplayName(style: TextStyle, locale: Locale): string;
+    displayName(style: TextStyle, locale: Locale): string;
     getLong(field: TemporalField): number;
     isSupported(field: TemporalField): boolean;
     length(leapYear: boolean): number;
@@ -427,49 +427,296 @@ export class MonthDay extends TemporalAccessor implements TemporalAdjuster {
     withMonth(month: number): MonthDay;
 }
 
+/**
+ * A field of date-time, such as month-of-year or hour-of-minute.
+ */
 export abstract class TemporalField {
+    /** Checks if this field is supported by the temporal object. */
+    abstract isSupportedBy(temporal: TemporalAccessor): boolean;
+    /** Checks if this field represents a component of a date. */
     abstract isDateBased(): boolean;
+    /** Checks if this field represents a component of a time. */
     abstract isTimeBased(): boolean;
+    /** Gets the unit that the field is measured in. */
+    abstract baseUnit(): TemporalUnit;
+    /** Gets the range that the field is bound by. */
+    abstract rangeUnit(): TemporalUnit;
+    /** Gets the range of valid values for the field. */
+    abstract range(): ValueRange;
+    /** 
+     * Get the range of valid values for this field using the temporal object to
+     * refine the result.
+     */
+    abstract rangeRefinedBy(temporal: TemporalAccessor): ValueRange;
+    /** Gets the value of this field from the specified temporal object. */
+    abstract getFrom(temporal: TemporalAccessor): number;
+    /** Returns a copy of the specified temporal object with the value of this field set. */
+    abstract adjustInto<R extends Temporal>(temporal: R, newValue: number): R;
     abstract name(): string;
+    abstract displayName(/* TODO: locale */): string;
+    abstract equals(other: any): boolean;
 }
 
+/**
+ A standard set of fields.
+ *
+ * This set of fields provide field-based access to manipulate a date, time or date-time.
+ * The standard set of fields can be extended by implementing {@link TemporalField}.
+ */
 export class ChronoField extends TemporalField {
-    static NANO_OF_SECOND: ChronoField;
-    static NANO_OF_DAY: ChronoField;
-    static MICRO_OF_SECOND: ChronoField;
-    static MICRO_OF_DAY: ChronoField;
-    static MILLI_OF_SECOND: ChronoField;
-    static MILLI_OF_DAY: ChronoField;
-    static SECOND_OF_MINUTE: ChronoField;
-    static SECOND_OF_DAY: ChronoField;
-    static MINUTE_OF_HOUR: ChronoField;
-    static MINUTE_OF_DAY: ChronoField;
-    static HOUR_OF_AMPM: ChronoField;
-    static CLOCK_HOUR_OF_AMPM: ChronoField;
-    static HOUR_OF_DAY: ChronoField;
-    static CLOCK_HOUR_OF_DAY: ChronoField;
-    static AMPM_OF_DAY: ChronoField;
-    static DAY_OF_WEEK: ChronoField;
+    /**
+     * This represents concept of the count of
+     * days within the period of a week where the weeks are aligned to the start of the month.
+     * This field is typically used with `ALIGNED_WEEK_OF_MONTH`.
+     */
     static ALIGNED_DAY_OF_WEEK_IN_MONTH: ChronoField;
+    /**
+     * This represents concept of the count of days
+     * within the period of a week where the weeks are aligned to the start of the year.
+     * This field is typically used with `ALIGNED_WEEK_OF_YEAR`.
+     */
     static ALIGNED_DAY_OF_WEEK_IN_YEAR: ChronoField;
-    static DAY_OF_MONTH: ChronoField;
-    static DAY_OF_YEAR: ChronoField;
-    static EPOCH_DAY: ChronoField;
+    /**
+     * This represents concept of the count of weeks within
+     * the period of a month where the weeks are aligned to the start of the month. This field
+     * is typically used with `ALIGNED_DAY_OF_WEEK_IN_MONTH`.
+     */
     static ALIGNED_WEEK_OF_MONTH: ChronoField;
+    /**
+     * his represents concept of the count of weeks within
+     * the period of a year where the weeks are aligned to the start of the year. This field
+     * is typically used with `ALIGNED_DAY_OF_WEEK_IN_YEAR`.
+     */
     static ALIGNED_WEEK_OF_YEAR: ChronoField;
-    static MONTH_OF_YEAR: ChronoField;
-    static PROLEPTIC_MONTH: ChronoField;
-    static YEAR_OF_ERA: ChronoField;
-    static YEAR: ChronoField;
+    /**
+     * This counts the AM/PM within the day, from 0 (AM) to 1 (PM).
+     */
+    static AMPM_OF_DAY: ChronoField;
+    /**
+     * This counts the hour within the AM/PM, from 1 to 12.
+     * This is the hour that would be observed on a standard 12-hour analog wall clock.
+     */
+    static CLOCK_HOUR_OF_AMPM: ChronoField;
+    /**
+     * This counts the hour within the AM/PM, from 1 to 24.
+     * This is the hour that would be observed on a 24-hour analog wall clock.
+     */
+    static CLOCK_HOUR_OF_DAY: ChronoField;
+    /**
+     * This represents the concept of the day within the month.
+     * In the default ISO calendar system, this has values from 1 to 31 in most months.
+     * April, June, September, November have days from 1 to 30, while February has days from
+     * 1 to 28, or 29 in a leap year.
+     */
+    static DAY_OF_MONTH: ChronoField;
+    /**
+     * This represents the standard concept of the day of the week.
+     * In the default ISO calendar system, this has values from Monday (1) to Sunday (7).
+     * The {@link DayOfWeek} class can be used to interpret the result.
+     */
+    static DAY_OF_WEEK: ChronoField;
+    /**
+     * This represents the concept of the day within the year.
+     * In the default ISO calendar system, this has values from 1 to 365 in standard years and
+     * 1 to 366 in leap years.
+     */
+    static DAY_OF_YEAR: ChronoField;
+    /**
+     * This field is the sequential count of days where
+     * 1970-01-01 (ISO) is zero. Note that this uses the local time-line, ignoring offset and
+     * time-zone.
+     */
+    static EPOCH_DAY: ChronoField;
+    /**
+     * This represents the concept of the era, which is the largest
+     * division of the time-line. This field is typically used with `YEAR_OF_ERA`.
+     * 
+     * In the default ISO calendar system, there are two eras defined, 'BCE' and 'CE'. The era
+     * 'CE' is the one currently in use and year-of-era runs from 1 to the maximum value.
+     * The era 'BCE' is the previous era, and the year-of-era runs backwards.
+     */
     static ERA: ChronoField;
+    /**
+     * This counts the hour within the AM/PM, from 0 to 11.
+     * This is the hour that would be observed on a standard 12-hour digital clock.
+     */
+    static HOUR_OF_AMPM: ChronoField;
+    /**
+     * This counts the hour within the day, from 0 to 23. This is
+     * the hour that would be observed on a standard 24-hour digital clock.
+     */
+    static HOUR_OF_DAY: ChronoField;
+    /**
+     * This represents the concept of the sequential count of
+     * seconds where `1970-01-01T00:00Z` (ISO) is zero. This field may be used with `NANO_OF_DAY`
+     * to represent the fraction of the day.
+     * 
+     * An Instant represents an instantaneous point on the time-line. On their own they have
+     * no elements which allow a local date-time to be obtained. Only when paired with an offset
+     * or time-zone can the local date or time be found. This field allows the seconds part of
+     * the instant to be queried.
+     */
     static INSTANT_SECONDS: ChronoField;
+    /**
+     * This counts the microsecond within the day, from `0` to
+     * `(24 * 60 * 60 * 1_000_000) - 1`.
+     * 
+     * This field is used to represent the micro-of-day handling any fraction of the second.
+     * Implementations of {@link TemporalAccessor} should provide a value for this field if they
+     * can return a value for `SECOND_OF_DAY` filling unknown precision with zero.
+     * 
+     * When this field is used for setting a value, it should behave in the same way as
+     * setting `NANO_OF_DAY` with the value multiplied by 1,000.
+     */
+    static MICRO_OF_DAY: ChronoField;
+    /**
+     * This counts the microsecond within the second, from 0 to 999,999.
+     * 
+     * This field is used to represent the micro-of-second handling any fraction of the second.
+     * Implementations of {@link TemporalAccessor} should provide a value for this field if they
+     * can return a value for `SECOND_OF_MINUTE`, `SECOND_OF_DAY` or `INSTANT_SECONDS` filling
+     * unknown precision with zero.
+     */
+    static MICRO_OF_SECOND: ChronoField;
+    /**
+     * This counts the millisecond within the day, from 0 to
+     * `(24 * 60 * 60 * 1,000) - 1`.
+     * 
+     * This field is used to represent the milli-of-day handling any fraction of the second.
+     * Implementations of {@link TemporalAccessor} should provide a value for this field if they
+     * can return a value for `SECOND_OF_DAY` filling unknown precision with zero.
+     * 
+     * When this field is used for setting a value, it should behave in the same way as
+     * setting `NANO_OF_DAY` with the value multiplied by 1,000,000.
+     */
+    static MILLI_OF_DAY: ChronoField;
+    /**
+     * This counts the millisecond within the second, from 0 to
+     * 999.
+     * 
+     * This field is used to represent the milli-of-second handling any fraction of the second.
+     * Implementations of {@link TemporalAccessor} should provide a value for this field if they can
+     * return a value for `SECOND_OF_MINUTE`, `SECOND_OF_DAY` or `INSTANT_SECONDS` filling unknown
+     * precision with zero.
+     * 
+     * When this field is used for setting a value, it should behave in the same way as
+     * setting `NANO_OF_SECOND` with the value multiplied by 1,000,000.
+     */
+    static MILLI_OF_SECOND: ChronoField;
+    /**
+     * This counts the minute within the day, from 0 to `(24 * 60) - 1`.
+     */
+    static MINUTE_OF_DAY: ChronoField;
+    /**
+     * This counts the minute within the hour, from 0 to 59.
+     */
+    static MINUTE_OF_HOUR: ChronoField;
+    /**
+     * The month-of-year, such as March. This represents the concept
+     * of the month within the year. In the default ISO calendar system, this has values from
+     * January (1) to December (12).
+     */
+    static MONTH_OF_YEAR: ChronoField;
+    /**
+     * This counts the nanosecond within the day, from 0 to
+     * `(24 * 60 * 60 * 1,000,000,000) - 1`.
+     * 
+     * This field is used to represent the nano-of-day handling any fraction of the second.
+     * Implementations of {@link TemporalAccessor} should provide a value for this field if they
+     * can return a value for `SECOND_OF_DAY` filling unknown precision with zero.
+     */
+    static NANO_OF_DAY: ChronoField;
+    /**
+     * This counts the nanosecond within the second, from 0
+     * to 999,999,999.
+     * 
+     * This field is used to represent the nano-of-second handling any fraction of the second.
+     * Implementations of {@link TemporalAccessor} should provide a value for this field if they
+     * can return a value for `SECOND_OF_MINUTE`, `SECOND_OF_DAY` or `INSTANT_SECONDS` filling
+     * unknown precision with zero.
+     * 
+     * When this field is used for setting a value, it should set as much precision as the
+     * object stores, using integer division to remove excess precision. For example, if the
+     * {@link TemporalAccessor} stores time to millisecond precision, then the nano-of-second must
+     * be divided by 1,000,000 before replacing the milli-of-second.
+     */
+    static NANO_OF_SECOND: ChronoField;
+    /**
+     * This represents the concept of the offset in seconds of
+     * local time from UTC/Greenwich.
+     * 
+     * A {@link ZoneOffset} represents the period of time that local time differs from
+     * UTC/Greenwich. This is usually a fixed number of hours and minutes. It is equivalent to
+     * the total amount of the offset in seconds. For example, during the winter Paris has an
+     * offset of +01:00, which is 3600 seconds.
+     */
     static OFFSET_SECONDS: ChronoField;
+    /**
+     * The proleptic-month, which counts months sequentially
+     * from year 0.
+     * 
+     * The first month in year zero has the value zero. The value increase for later months
+     * and decrease for earlier ones. Note that this uses the local time-line, ignoring offset
+     * and time-zone.
+     */
+    static PROLEPTIC_MONTH: ChronoField;
+    /**
+     * This counts the second within the day, from 0 to
+     * (24 * 60 * 60) - 1.
+     */
+    static SECOND_OF_DAY: ChronoField;
+    /**
+     * This counts the second within the minute, from 0 to 59.
+     */
+    static SECOND_OF_MINUTE: ChronoField;
+    /**
+     * The proleptic year, such as 2012. This represents the concept of
+     * the year, counting sequentially and using negative numbers. The proleptic year is not
+     * interpreted in terms of the era.
+     * 
+     * The standard mental model for a date is based on three concepts - year, month and day.
+     * These map onto the `YEAR`, `MONTH_OF_YEAR` and `DAY_OF_MONTH` fields. Note that there is no
+     * reference to eras. The full model for a date requires four concepts - era, year, month and
+     * day. These map onto the `ERA`, `YEAR_OF_ERA`, `MONTH_OF_YEAR` and `DAY_OF_MONTH` fields.
+     * Whether this field or `YEAR_OF_ERA` is used depends on which mental model is being used.
+     */
+    static YEAR: ChronoField;
+    /**
+     * This represents the concept of the year within the era. This
+     * field is typically used with `ERA`. The standard mental model for a date is based on three
+     * concepts - year, month and day. These map onto the `YEAR`, `MONTH_OF_YEAR` and
+     * `DAY_OF_MONTH` fields. Note that there is no reference to eras. The full model for a date
+     * requires four concepts - era, year, month and day. These map onto the `ERA`, `YEAR_OF_ERA`,
+     * `MONTH_OF_YEAR` and `DAY_OF_MONTH` fields. Whether this field or `YEAR` is used depends on
+     * which mental model is being used.
+     * 
+     * In the default ISO calendar system, there are two eras defined, 'BCE' and 'CE'.
+     * The era 'CE' is the one currently in use and year-of-era runs from 1 to the maximum value.
+     * The era 'BCE' is the previous era, and the year-of-era runs backwards.
+     * 
+     * For example, subtracting a year each time yield the following:
+     * - year-proleptic 2 = 'CE' year-of-era 2
+     * - year-proleptic 1 = 'CE' year-of-era 1
+     * - year-proleptic 0 = 'BCE' year-of-era 1
+     * - year-proleptic -1 = 'BCE' year-of-era 2
+     * 
+     * Note that the ISO-8601 standard does not actually define eras. Note also that the
+     * ISO eras do not align with the well-known AD/BC eras due to the change between the Julian
+     * and Gregorian calendar systems.
+     */
+    static YEAR_OF_ERA: ChronoField;
 
     private constructor();
 
-    baseUnit(): number;
+    isSupportedBy(temporal: TemporalAccessor): boolean;
+    baseUnit(): TemporalUnit;
+    /** Checks that the specified value is valid for this field. */
+    checkValidValue(value: number): number;
+    /**
+     * Checks that the specified value is valid for this field and
+     * is within the range of a safe integer.
+     */
     checkValidIntValue(value: number): number;
-    checkValidValue(value: number): any;
     displayName(): string;
     equals(other: any): boolean;
     getFrom(temporal: TemporalAccessor): number;
@@ -478,65 +725,178 @@ export class ChronoField extends TemporalField {
     name(): string;
     range(): ValueRange;
     rangeRefinedBy(temporal: TemporalAccessor): ValueRange;
-    rangeUnit(): number;
+    rangeUnit(): TemporalUnit;
+    adjustInto<R extends Temporal>(temporal: R, newValue: number): R;
     toString(): string;
 }
 
+/**
+ * Fields and units specific to the ISO-8601 calendar system,
+ * including quarter-of-year and week-based-year.
+ */
 export namespace IsoFields {
-    // TODO: Get rid of this class and typed all constants as TemporalField once
-    // the base class is ready and fixed (getDisplayName)
-    class Field extends TemporalField {
-        private constructor();
-
-        isDateBased(): boolean;
-        isTimeBased(): boolean;
-        name(): string;
-        getDisplayName(): string;
-    }
-
-    export const DAY_OF_QUARTER: Field;
-    export const QUARTER_OF_YEAR: Field;
-    export const WEEK_OF_WEEK_BASED_YEAR: Field;
-    export const WEEK_BASED_YEAR: Field;
+    /**
+     * This field allows the day-of-quarter value to be queried and set. The day-of-quarter has
+     * values from 1 to 90 in Q1 of a standard year, from 1 to 91 in Q1 of a leap year, from
+     * 1 to 91 in Q2 and from 1 to 92 in Q3 and Q4.
+     * 
+     * The day-of-quarter can only be calculated if the day-of-year, month-of-year and year are available.
+     * 
+     * When setting this field, the value is allowed to be partially lenient, taking any value from
+     * 1 to 92. If the quarter has less than 92 days, then day 92, and potentially day 91, is in
+     * the following quarter.
+     */
+    export const DAY_OF_QUARTER: TemporalField;
+    /**
+     * This field allows the quarter-of-year value to be queried and set. The quarter-of-year has
+     * values from 1 to 4.
+     * 
+     * The day-of-quarter can only be calculated if the month-of-year is available.
+     */
+    export const QUARTER_OF_YEAR: TemporalField;
+    /**
+     * The field that represents the week-of-week-based-year.
+     */
+    export const WEEK_OF_WEEK_BASED_YEAR: TemporalField;
+    /**
+     * The field that represents the week-based-year.
+     */
+    export const WEEK_BASED_YEAR: TemporalField;
+    /**
+     * The unit that represents week-based-years for the purpose of addition and subtraction.
+     * 
+     * This allows a number of week-based-years to be added to, or subtracted from, a date.
+     * The unit is equal to either 52 or 53 weeks. The estimated duration of a week-based-year is
+     * the same as that of a standard ISO year at 365.2425 Days.
+     * 
+     * The rules for addition add the number of week-based-years to the existing value for the
+     * week-based-year field. If the resulting week-based-year only has 52 weeks, then the date
+     * will be in week 1 of the following week-based-year.
+     */
     export const WEEK_BASED_YEARS: TemporalUnit;
+    /**
+     * Unit that represents the concept of a quarter-year. For the ISO calendar system, it is equal
+     * to 3 months. The estimated duration of a quarter-year is one quarter of 365.2425 days.
+     */
     export const QUARTER_YEARS: TemporalUnit;
-
-    // This allows non-exported types, otherwise everyting is exported
-    export {};
 }
 
 export abstract class TemporalUnit {
+    /** Returns a copy of the specified temporal object with the specified period added. */
     abstract addTo<T extends Temporal>(temporal: T, amount: number): T;
+    /**
+     * Calculates the period in terms of this unit between two temporal objects of the same type.
+     * 
+     * Returns the period between temporal1 and temporal2 in terms of this unit; a positive number
+     * if `temporal2` is later than `temporal1`, negative if earlier.
+     */
     abstract between(temporal1: Temporal, temporal2: Temporal): number;
+    /** Gets the duration of this unit, which may be an estimate. */
     abstract duration(): Duration;
+    /** Checks if this unit is date-based. */
     abstract isDateBased(): boolean;
+    /** Checks if the duration of the unit is an estimate. */
     abstract isDurationEstimated(): boolean;
+    /** Checks if this unit is supported by the specified temporal object. */
     abstract isSupportedBy(temporal: Temporal): boolean;
+    /** Checks if this unit is time-based. */
     abstract isTimeBased(): boolean;
 }
 
 export class ChronoUnit extends TemporalUnit {
+    /**
+     * Unit that represents the concept of a nanosecond, the smallest supported unit
+     * of time. For the ISO calendar system, it is equal to the 1,000,000,000th part of the second unit.
+     */
     static NANOS: ChronoUnit;
+    /**
+     * Unit that represents the concept of a microsecond. For the ISO calendar
+     * system, it is equal to the 1,000,000th part of the second unit.
+     */
     static MICROS: ChronoUnit;
+    /**
+     * Unit that represents the concept of a millisecond. For the ISO calendar
+     * system, it is equal to the 1000th part of the second unit.
+     */
     static MILLIS: ChronoUnit;
+    /**
+     * Unit that represents the concept of a second. For the ISO calendar system,
+     * it is equal to the second in the SI system of units, except around a leap-second.
+     */
     static SECONDS: ChronoUnit;
+    /**
+     * Unit that represents the concept of a minute. For the ISO calendar system,
+     * it is equal to 60 seconds.
+     */
     static MINUTES: ChronoUnit;
+    /**
+     * Unit that represents the concept of an hour. For the ISO calendar system,
+     * it is equal to 60 minutes.
+     */
     static HOURS: ChronoUnit;
+    /**
+     * Unit that represents the concept of half a day, as used in AM/PM. For
+     * the ISO calendar system, it is equal to 12 hours.
+     */
     static HALF_DAYS: ChronoUnit;
+    /**
+     * Unit that represents the concept of a day. For the ISO calendar system, it
+     * is the standard day from midnight to midnight. The estimated duration of a day is 24 Hours.
+     */
     static DAYS: ChronoUnit;
+    /**
+     * Unit that represents the concept of a week. For the ISO calendar system,
+     * it is equal to 7 Days.
+     */
     static WEEKS: ChronoUnit;
+    /**
+     * Unit that represents the concept of a month. For the ISO calendar system,
+     * the length of the month varies by month-of-year. The estimated duration of a month is
+     * one twelfth of 365.2425 Days.
+     */
     static MONTHS: ChronoUnit;
+    /**
+     * Unit that represents the concept of a year. For the ISO calendar system, it
+     * is equal to 12 months. The estimated duration of a year is 365.2425 Days.
+     */
     static YEARS: ChronoUnit;
+    /**
+     * Unit that represents the concept of a decade. For the ISO calendar system,
+     * it is equal to 10 years.
+     */
     static DECADES: ChronoUnit;
+    /**
+     * Unit that represents the concept of a century. For the ISO calendar
+     * system, it is equal to 100 years.
+     */
     static CENTURIES: ChronoUnit;
+    /**
+     * Unit that represents the concept of a millennium. For the ISO calendar
+     * system, it is equal to 1,000 years.
+     */
     static MILLENNIA: ChronoUnit;
+    /**
+     * Unit that represents the concept of an era. The ISO calendar system doesn't
+     * have eras thus it is impossible to add an era to a date or date-time. The estimated duration
+     * of the era is artificially defined as 1,000,000,000 Years.
+     */
     static ERAS: ChronoUnit;
+    /**
+     * Artificial unit that represents the concept of forever. This is primarily
+     * used with {@link TemporalField} to represent unbounded fields such as the year or era. The
+     * estimated duration of the era is artificially defined as the largest duration supported by
+     * {@link Duration}.
+     */
     static FOREVER: ChronoUnit;
 
     private constructor();
 
     addTo<T extends Temporal>(temporal: T, amount: number): T;
     between(temporal1: Temporal, temporal2: Temporal): number;
+    /**
+     * Compares this ChronoUnit to the specified {@link TemporalUnit}.
+     * The comparison is based on the total length of the durations.
+     */
     compareTo(other: TemporalUnit): number;
     duration(): Duration;
     isDateBased(): boolean;
@@ -552,7 +912,7 @@ export abstract class ChronoLocalDate extends Temporal implements TemporalAdjust
     isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean;
 }
 
-export class LocalDate extends ChronoLocalDate  implements TemporalAdjuster {
+export class LocalDate extends ChronoLocalDate implements TemporalAdjuster {
     static MIN: LocalDate;
     static MAX: LocalDate;
     static EPOCH_0: LocalDate;
@@ -790,13 +1150,13 @@ export class ValueRange {
     private constructor();
 
     checkValidIntValue(value: number, field: TemporalField): number;
-    checkValidValue(value: number, field: TemporalField): any;
+    checkValidValue(value: number, field: TemporalField): number;
     equals(other: any): boolean;
     hashCode(): number;
     isFixed(): boolean;
     isIntValue(): boolean;
     isValidIntValue(value: number): boolean;
-    isValidValue(value: any): boolean;
+    isValidValue(value: number): boolean;
     largestMinimum(): number;
     maximum(): number;
     minimum(): number;

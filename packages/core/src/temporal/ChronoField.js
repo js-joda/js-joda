@@ -22,68 +22,189 @@ import {YearConstants} from '../YearConstants';
  * just with slightly different rules.
  * The documentation of each field explains how it operates.
  *
- * ### Static properties of Class {@link ChronoField}
+ * ### Static properties:
  *
- * ChronoField.NANO_OF_SECOND
- *
- * ChronoField.NANO_OF_DAY
- *
- * ChronoField.MICRO_OF_SECOND
- *
- * ChronoField.MICRO_OF_DAY
- *
- * ChronoField.MILLI_OF_SECOND
- *
- * ChronoField.MILLI_OF_DAY
- *
- * ChronoField.SECOND_OF_MINUTE
- *
- * ChronoField.SECOND_OF_DAY
- *
- * ChronoField.MINUTE_OF_HOUR
- *
- * ChronoField.MINUTE_OF_DAY
- *
- * ChronoField.HOUR_OF_AMPM
- *
- * ChronoField.CLOCK_HOUR_OF_AMPM
- *
- * ChronoField.HOUR_OF_DAY
- *
- * ChronoField.CLOCK_HOUR_OF_DAY
- *
- * ChronoField.AMPM_OF_DAY
- *
- * ChronoField.DAY_OF_WEEK
- *
- * ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH
- *
- * ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR
- *
- * ChronoField.DAY_OF_MONTH
- *
- * ChronoField.DAY_OF_YEAR
- *
- * ChronoField.EPOCH_DAY
- *
- * ChronoField.ALIGNED_WEEK_OF_MONTH
- *
- * ChronoField.ALIGNED_WEEK_OF_YEAR
- *
- * ChronoField.MONTH_OF_YEAR
- *
- * ChronoField.PROLEPTIC_MONTH
- *
- * ChronoField.YEAR_OF_ERA
- *
- * ChronoField.YEAR
- *
- * ChronoField.ERA
- *
- * ChronoField.INSTANT_SECONDS
- *
- * ChronoField.OFFSET_SECONDS
- *
+ * - `ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH`: This represents concept of the count of
+ * days within the period of a week where the weeks are aligned to the start of the month.
+ * This field is typically used with `ALIGNED_WEEK_OF_MONTH`.
+ * 
+ * - `ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR`: This represents concept of the count of days
+ * within the period of a week where the weeks are aligned to the start of the year.
+ * This field is typically used with `ALIGNED_WEEK_OF_YEAR`.
+ * 
+ * - `ChronoField.ALIGNED_WEEK_OF_MONTH`: This represents concept of the count of weeks within
+ * the period of a month where the weeks are aligned to the start of the month. This field
+ * is typically used with `ALIGNED_DAY_OF_WEEK_IN_MONTH`.
+ * 
+ * - `ChronoField.ALIGNED_WEEK_OF_YEAR`: This represents concept of the count of weeks within
+ * the period of a year where the weeks are aligned to the start of the year. This field
+ * is typically used with `ALIGNED_DAY_OF_WEEK_IN_YEAR`.
+ * 
+ * - `ChronoField.AMPM_OF_DAY`: This counts the AM/PM within the day, from 0 (AM) to 1 (PM).
+ * 
+ * - `ChronoField.CLOCK_HOUR_OF_AMPM`: This counts the hour within the AM/PM, from 1 to 12.
+ * This is the hour that would be observed on a standard 12-hour analog wall clock.
+ * 
+ * - `ChronoField.CLOCK_HOUR_OF_DAY`: This counts the hour within the AM/PM, from 1 to 24.
+ * This is the hour that would be observed on a 24-hour analog wall clock.
+ * 
+ * - `ChronoField.DAY_OF_MONTH`: This represents the concept of the day within the month.
+ * In the default ISO calendar system, this has values from 1 to 31 in most months.
+ * April, June, September, November have days from 1 to 30, while February has days from
+ * 1 to 28, or 29 in a leap year.
+ * 
+ * - `ChronoField.DAY_OF_WEEK`: This represents the standard concept of the day of the week.
+ * In the default ISO calendar system, this has values from Monday (1) to Sunday (7).
+ * The {@link DayOfWeek} class can be used to interpret the result.
+ * 
+ * - `ChronoField.DAY_OF_YEAR`: This represents the concept of the day within the year.
+ * In the default ISO calendar system, this has values from 1 to 365 in standard years and
+ * 1 to 366 in leap years.
+ * 
+ * - `ChronoField.EPOCH_DAY`: This field is the sequential count of days where
+ * 1970-01-01 (ISO) is zero. Note that this uses the local time-line, ignoring offset and
+ * time-zone.
+ * 
+ * - `ChronoField.ERA`: This represents the concept of the era, which is the largest
+ * division of the time-line. This field is typically used with `YEAR_OF_ERA`.
+ * 
+ *     In the default ISO calendar system, there are two eras defined, 'BCE' and 'CE'. The era
+ * 'CE' is the one currently in use and year-of-era runs from 1 to the maximum value.
+ * The era 'BCE' is the previous era, and the year-of-era runs backwards.
+ * 
+ * - `ChronoField.HOUR_OF_AMPM`: This counts the hour within the AM/PM, from 0 to 11.
+ * This is the hour that would be observed on a standard 12-hour digital clock.
+ * 
+ * - `ChronoField.HOUR_OF_DAY`: This counts the hour within the day, from 0 to 23. This is
+ * the hour that would be observed on a standard 24-hour digital clock.
+ * 
+ * - `ChronoField.INSTANT_SECONDS`: This represents the concept of the sequential count of
+ * seconds where 1970-01-01T00:00Z (ISO) is zero. This field may be used with `NANO_OF_DAY`
+ * to represent the fraction of the day.
+ * 
+ *     An Instant represents an instantaneous point on the time-line. On their own they have
+ * no elements which allow a local date-time to be obtained. Only when paired with an offset
+ * or time-zone can the local date or time be found. This field allows the seconds part of
+ * the instant to be queried.
+ * 
+ * - `ChronoField.MICRO_OF_DAY`: This counts the microsecond within the day, from 0 to
+ * (24 * 60 * 60 * 1,000,000) - 1.
+ * 
+ *     This field is used to represent the micro-of-day handling any fraction of the second.
+ * Implementations of {@link TemporalAccessor} should provide a value for this field if they
+ * can return a value for `SECOND_OF_DAY` filling unknown precision with zero.
+ * 
+ *     When this field is used for setting a value, it should behave in the same way as
+ * setting `NANO_OF_DAY` with the value multiplied by 1,000.
+ * 
+ * - `ChronoField.MICRO_OF_SECOND`: This counts the microsecond within the second, from 0
+ * to 999,999.
+ * 
+ *     This field is used to represent the micro-of-second handling any fraction of the second.
+ * Implementations of {@link TemporalAccessor} should provide a value for this field if they
+ * can return a value for `SECOND_OF_MINUTE`, `SECOND_OF_DAY` or `INSTANT_SECONDS` filling
+ * unknown precision with zero.
+ * 
+ * - `ChronoField.MILLI_OF_DAY`: This counts the millisecond within the day, from 0 to
+ * (24 * 60 * 60 * 1,000) - 1.
+ * 
+ *     This field is used to represent the milli-of-day handling any fraction of the second.
+ * Implementations of {@link TemporalAccessor} should provide a value for this field if they
+ * can return a value for `SECOND_OF_DAY` filling unknown precision with zero.
+ * 
+ *     When this field is used for setting a value, it should behave in the same way as
+ * setting `NANO_OF_DAY` with the value multiplied by 1,000,000.
+ * 
+ * - `ChronoField.MILLI_OF_SECOND`: This counts the millisecond within the second, from 0 to
+ * 999.
+ * 
+ *     This field is used to represent the milli-of-second handling any fraction of the second.
+ * Implementations of {@link TemporalAccessor} should provide a value for this field if they can
+ * return a value for `SECOND_OF_MINUTE`, `SECOND_OF_DAY` or `INSTANT_SECONDS` filling unknown
+ * precision with zero.
+ * 
+ *     When this field is used for setting a value, it should behave in the same way as
+ * setting `NANO_OF_SECOND` with the value multiplied by 1,000,000.
+ * 
+ * - `ChronoField.MINUTE_OF_DAY`: This counts the minute within the day, from 0 to (24 * 60) - 1.
+ * 
+ * - `ChronoField.MINUTE_OF_HOUR`: This counts the minute within the hour, from 0 to 59.
+ * 
+ * - `ChronoField.MONTH_OF_YEAR`: The month-of-year, such as March. This represents the concept
+ * of the month within the year. In the default ISO calendar system, this has values from
+ * January (1) to December (12).
+ * 
+ * - `ChronoField.NANO_OF_DAY`: This counts the nanosecond within the day, from 0 to
+ * (24 * 60 * 60 * 1,000,000,000) - 1.
+ * 
+ *     This field is used to represent the nano-of-day handling any fraction of the second.
+ * Implementations of {@link TemporalAccessor} should provide a value for this field if they
+ * can return a value for `SECOND_OF_DAY` filling unknown precision with zero.
+ * 
+ * - `ChronoField.NANO_OF_SECOND`: This counts the nanosecond within the second, from 0
+ * to 999,999,999.
+ * 
+ *     This field is used to represent the nano-of-second handling any fraction of the second.
+ * Implementations of {@link TemporalAccessor} should provide a value for this field if they
+ * can return a value for `SECOND_OF_MINUTE`, `SECOND_OF_DAY` or `INSTANT_SECONDS` filling
+ * unknown precision with zero.
+ * 
+ *     When this field is used for setting a value, it should set as much precision as the
+ * object stores, using integer division to remove excess precision. For example, if the
+ * {@link TemporalAccessor} stores time to millisecond precision, then the nano-of-second must
+ * be divided by 1,000,000 before replacing the milli-of-second.
+ * 
+ * - `ChronoField.OFFSET_SECONDS`: This represents the concept of the offset in seconds of
+ * local time from UTC/Greenwich.
+ * 
+ *     A {@link ZoneOffset} represents the period of time that local time differs from
+ * UTC/Greenwich. This is usually a fixed number of hours and minutes. It is equivalent to
+ * the total amount of the offset in seconds. For example, during the winter Paris has an
+ * offset of +01:00, which is 3600 seconds.
+ * 
+ * - `ChronoField.PROLEPTIC_MONTH`: The proleptic-month, which counts months sequentially
+ * from year 0.
+ * 
+ *     The first month in year zero has the value zero. The value increase for later months
+ * and decrease for earlier ones. Note that this uses the local time-line, ignoring offset
+ * and time-zone.
+ * 
+ * - `ChronoField.SECOND_OF_DAY`: This counts the second within the day, from 0 to
+ * (24 * 60 * 60) - 1.
+ * 
+ * - `ChronoField.SECOND_OF_MINUTE`: This counts the second within the minute, from 0 to 59.
+ * 
+ * - `ChronoField.YEAR`: The proleptic year, such as 2012. This represents the concept of
+ * the year, counting sequentially and using negative numbers. The proleptic year is not
+ * interpreted in terms of the era.
+ * 
+ *     The standard mental model for a date is based on three concepts - year, month and day.
+ * These map onto the `YEAR`, `MONTH_OF_YEAR` and `DAY_OF_MONTH` fields. Note that there is no
+ * reference to eras. The full model for a date requires four concepts - era, year, month and
+ * day. These map onto the `ERA`, `YEAR_OF_ERA`, `MONTH_OF_YEAR` and `DAY_OF_MONTH` fields.
+ * Whether this field or `YEAR_OF_ERA` is used depends on which mental model is being used.
+ * 
+ * - `ChronoField.YEAR_OF_ERA`: This represents the concept of the year within the era. This
+ * field is typically used with `ERA`. The standard mental model for a date is based on three
+ * concepts - year, month and day. These map onto the `YEAR`, `MONTH_OF_YEAR` and
+ * `DAY_OF_MONTH` fields. Note that there is no reference to eras. The full model for a date
+ * requires four concepts - era, year, month and day. These map onto the `ERA`, `YEAR_OF_ERA`,
+ * `MONTH_OF_YEAR` and `DAY_OF_MONTH` fields. Whether this field or `YEAR` is used depends on
+ * which mental model is being used.
+ * 
+ *     In the default ISO calendar system, there are two eras defined, 'BCE' and 'CE'.
+ * The era 'CE' is the one currently in use and year-of-era runs from 1 to the maximum value.
+ * The era 'BCE' is the previous era, and the year-of-era runs backwards.
+ * 
+ *     For example, subtracting a year each time yield the following:
+ *    - year-proleptic 2 = 'CE' year-of-era 2
+ *    - year-proleptic 1 = 'CE' year-of-era 1
+ *    - year-proleptic 0 = 'BCE' year-of-era 1
+ *    - year-proleptic -1 = 'BCE' year-of-era 2
+ * 
+ *     Note that the ISO-8601 standard does not actually define eras. Note also that the
+ * ISO eras do not align with the well-known AD/BC eras due to the change between the Julian
+ * and Gregorian calendar systems.
  */
 export class ChronoField extends TemporalField {
 
@@ -92,6 +213,7 @@ export class ChronoField extends TemporalField {
      *
      * @param {String} fieldName
      * @return {ChronoField | null}
+     * @private
      */
     static byName(fieldName) {
         for (const prop in ChronoField) {
@@ -106,8 +228,8 @@ export class ChronoField extends TemporalField {
     /**
      *
      * @param {!string} name
-     * @param {!number} baseUnit
-     * @param {!number} rangeUnit
+     * @param {!TemporalUnit} baseUnit
+     * @param {!TemporalUnit} rangeUnit
      * @param {!ValueRange} range
      * @private
      */
@@ -120,39 +242,34 @@ export class ChronoField extends TemporalField {
     }
 
     /**
-     *
-     * @returns {string}
+     * @return {string}
      */
     name(){
         return this._name;
     }
 
     /**
-     *
-     * @returns {!number}
+     * @return {TemporalUnit} the period unit defining the base unit of the field.
      */
     baseUnit(){
         return this._baseUnit;
     }
 
     /**
-     *
-     * @returns {!number}
+     * @return {TemporalUnit} the period unit defining the range of the field.
      */
     rangeUnit(){
         return this._rangeUnit;
     }
 
     /**
-     *
-     * @returns {!ValueRange}
+     * @return {ValueRange} the range of valid values for the field.
      */
     range(){
         return this._range;
     }
 
     /**
-     *
      * @returns {string}
      */
     displayName(){
@@ -160,18 +277,38 @@ export class ChronoField extends TemporalField {
     }
 
     /**
+     * Checks that the specified value is valid for this field.
      *
-     * @param {number} value
-     * @returns {*}
+     * This validates that the value is within the outer range of valid values
+     * returned by {@link range}.
+     *
+     * This method checks against the range of the field in the ISO-8601 calendar system.
+     *
+     * @param {!number} value the value to check.
+     * @returns {number} the value that was passed in.
      */
     checkValidValue(value) {
-        return this.range().checkValidValue(value, this.name());
+        return this.range().checkValidValue(value, this);
     }
 
     /**
-     * Checks if this field represents a component of a date.
+     * Checks that the specified value is valid and fits in an `int`.
      *
-     * @return {boolean} true if it is a component of a date
+     * This validates that the value is within the outer range of valid values
+     * returned by {@link range}.
+     * It also checks that all valid values are within the bounds of an `int`.
+     *
+     * This method checks against the range of the field in the ISO-8601 calendar system.
+     *
+     * @param {number} value the value to check.
+     * @return {number} the value that was passed in.
+     */
+    checkValidIntValue(value) {
+        return this.range().checkValidIntValue(value, this);
+    }
+
+    /**
+     * @return {boolean} `true` if it is a component of a date, `false` otherwise.
      */
     isDateBased() {
         const dateBased =
@@ -192,9 +329,7 @@ export class ChronoField extends TemporalField {
     }
 
     /**
-     * Checks if this field represents a component of a time.
-     *
-     * @return {boolean} true if it is a component of a time
+     * @return {boolean} `true` if it is a component of a time, `false` otherwise.
      */
     isTimeBased() {
         const timeBased =
@@ -217,69 +352,26 @@ export class ChronoField extends TemporalField {
     }
 
     /**
-     * Get the range of valid values for this field using the temporal object to
-     * refine the result.
-     *
-     * This uses the temporal object to find the range of valid values for the field.
-     * This is similar to {@link range}, however this method refines the result
-     * using the temporal. For example, if the field is {@link DAY_OF_MONTH} the
-     * {@link range} method is not accurate as there are four possible month lengths,
-     * 28, 29, 30 and 31 days. Using this method with a date allows the range to be
-     * accurate, returning just one of those four options.
-     *
-     * There are two equivalent ways of using this method.
-     * The first is to invoke this method directly.
-     * The second is to use {@link TemporalAccessor#range}:
-     * <pre>
-     *   // these two lines are equivalent, but the second approach is recommended
-     *   temporal = thisField.rangeRefinedBy(temporal);
-     *   temporal = temporal.range(thisField);
-     * </pre>
-     * It is recommended to use the second approach, {@link range},
-     * as it is a lot clearer to read in code.
-     *
-     * Implementations should perform any queries or calculations using the fields
-     * available in {@link ChronoField}.
-     * If the field is not supported a {@link DateTimeException} must be thrown.
-     *
-     * @param {!TemporalAccessor} temporal - the temporal object used to refine the result, not null
-     * @return {ValueRange} the range of valid values for this field, not null
-     * @throws DateTimeException if the range for the field cannot be obtained
+     * @param {!TemporalAccessor} temporal the temporal object used to refine the result.
+     * @return {ValueRange} the range of valid values for this field.
+     * @throws {DateTimeException} if the range for the field cannot be obtained.
      */
     rangeRefinedBy(temporal) {
         return temporal.range(this);
     }
 
-    /**
-     * Checks that the specified value is valid and fits in an `int`.
-     *
-     * This validates that the value is within the outer range of valid values
-     * returned by {@link range}.
-     * It also checks that all valid values are within the bounds of an `int`.
-     *
-     * This method checks against the range of the field in the ISO-8601 calendar system.
-     * This range may be incorrect for other calendar systems.
-     * Use {@link Chronology#range} to access the correct range
-     * for a different calendar system.
-     *
-     * @param {number} value - the value to check
-     * @return {number} the value that was passed in
-     */
-    checkValidIntValue(value) {
-        return this.range().checkValidIntValue(value, this);
-    }
+    
 
     /**
-     *
-     * @param {TemporalAccessor} temporal
-     * @returns {number}
+     * @param {!TemporalAccesor} temporal the temporal object to query.
+     * @return {number} the value of this field.
+     * @throws {DateTimeException} if a value for the field cannot be obtained.
      */
     getFrom(temporal) {
         return temporal.getLong(this);
     }
 
     /**
-     *
      * @returns {string}
      */
     toString(){
@@ -287,12 +379,29 @@ export class ChronoField extends TemporalField {
     }
 
     /**
-     *
      * @param {*} other
      * @returns {boolean}
      */
     equals(other){
         return this === other;
+    }
+
+    /**
+     * @param {!Temporal} temporal the temporal object to adjust.
+     * @param {!number} newValue the new value of the field.
+     * @return {Temporal} the adjusted temporal object.
+     * @throws {DateTimeException} if the field cannot be set.
+     */
+    adjustInto(temporal, newValue) {
+        return temporal.with(this, newValue);
+    }
+
+    /**
+     * @param {!TemporalAccesor} temporal the temporal object to query.
+     * @return {boolean} `true` if the date-time can be queried for this field, `false` if not.
+     */
+    isSupportedBy(temporal) {
+        return temporal.isSupported(this);
     }
 }
 
@@ -359,4 +468,3 @@ export function _init() {
     ChronoField.OFFSET_SECONDS = new ChronoField('OffsetSeconds', ChronoUnit.SECONDS, ChronoUnit.FOREVER, ValueRange.of(-18 * 3600, 18 * 3600));
 
 }
-

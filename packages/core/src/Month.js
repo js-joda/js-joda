@@ -87,7 +87,7 @@ export class Month extends TemporalAccessor {
      * @return {string} the text value of the day-of-week, not null
      */
     // eslint-disable-next-line no-unused-vars
-    getDisplayName(style, locale) {
+    displayName(style, locale) {
         // TODO:
         throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
     }
