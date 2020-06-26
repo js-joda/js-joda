@@ -609,7 +609,6 @@ function test_YearMonth() {
 
     ym.with(TemporalAdjusters.firstDayOfMonth());
     ym.with(ChronoField.YEAR, 2018);
-    ym.withYearMonth(2018, 11);
     ym.withYear(2018);
     ym.withMonth(11);
 

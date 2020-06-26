@@ -1221,7 +1221,6 @@ export class YearMonth extends Temporal implements TemporalAdjuster {
     plusMonths(monthsToAdd: number): YearMonth;
     with(adjuster: TemporalAdjuster): YearMonth;
     with(field: TemporalField, value: number): YearMonth;
-    withYearMonth(newYear: number, newMonth: number): YearMonth;
     withYear(year: number): YearMonth;
     withMonth(month: number): YearMonth;
     isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean;
