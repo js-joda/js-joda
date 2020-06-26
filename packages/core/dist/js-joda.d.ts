@@ -122,11 +122,7 @@ export class Duration extends TemporalAmount {
     isZero(): boolean;
     minus(duration: Duration): Duration;
     minus(amount: number, unit: ChronoUnit): Duration;
-    // TODO: Internal. Remove in next major version.
-    minusAmountUnit(amountToSubtract: number, unit: TemporalUnit): Duration;
     minusDays(daysToSubtract: number): Duration;
-    // TODO: Internal. Remove in next major version.
-    minusDuration(duration: Duration): Duration;
     minusHours(hoursToSubtract: number): Duration;
     minusMillis(millisToSubtract: number): Duration;
     minusMinutes(minutesToSubtract: number): Duration;
@@ -137,11 +133,7 @@ export class Duration extends TemporalAmount {
     negated(): Duration;
     plus(duration: Duration): Duration;
     plus(amount: number, unit: ChronoUnit): Duration;
-    // TODO: Internal. Remove in next major version.
-    plusAmountUnit(amountToAdd: number, unit: TemporalUnit): Duration;
     plusDays(daysToAdd: number): Duration;
-    // TODO: Internal. Remove in next major version.
-    plusDuration(duration: Duration): Duration;
     plusHours(hoursToAdd: number): Duration;
     plusMillis(millisToAdd: number): Duration;
     plusMinutes(minutesToAdd: number): Duration;
@@ -1394,8 +1386,6 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     plusMonths(months: number): ZonedDateTime;
     plusNanos(nanos: number): ZonedDateTime;
     plusSeconds(seconds: number): ZonedDateTime;
-    // TODO: Internal. Remove in next major version.
-    plusTemporalAmount(amount: TemporalAmount): ZonedDateTime;
     plusWeeks(weeks: number): ZonedDateTime;
     plusYears(years: number): ZonedDateTime;
     range(field: TemporalField): ValueRange;
