@@ -86,13 +86,7 @@ function test_LocalDate() {
     d.plusYears(1).isLeapYear();
     d.toEpochDay();
     d.lengthOfMonth();
-    d.range(ChronoField.DAY_OF_MONTH);
     d.lengthOfYear();
-    d.range(ChronoField.DAY_OF_YEAR);
-    d.get(ChronoField.ALIGNED_WEEK_OF_YEAR);
-    d.get(ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH);
-    d.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);
-
     d.isoWeekOfWeekyear();
     d.isoWeekyear();
 
@@ -103,28 +97,31 @@ function test_LocalDate() {
     d.get(IsoFields.DAY_OF_QUARTER);
     d.with(IsoFields.QUARTER_OF_YEAR, 3).with(IsoFields.DAY_OF_QUARTER, 15);
 
+    expectType<boolean>(d.isSupported(ChronoField.DAY_OF_MONTH));
+    expectType<boolean>(d.isSupported(ChronoUnit.DAYS));
+
     d = LocalDate.parse('2016-02-23');
-    d.plusDays(366);
-    d.minusDays(366);
-    d.plusMonths(12);
-    d.minusMonths(12);
-    d.plusWeeks(4);
-    d.minusWeeks(4);
-    d.plusYears(1);
-    d.minusYears(1);
-    d.plus(3, ChronoUnit.DECADES);
-    d.minus(3, ChronoUnit.DECADES);
-    d.plus(Period.ofMonths(3).plusDays(3));
-    d.minus(Period.ofMonths(3).plusDays(3));
+    expectType<LocalDate>(d.plusDays(366));
+    expectType<LocalDate>(d.minusDays(366));
+    expectType<LocalDate>(d.plusMonths(12));
+    expectType<LocalDate>(d.minusMonths(12));
+    expectType<LocalDate>(d.plusWeeks(4));
+    expectType<LocalDate>(d.minusWeeks(4));
+    expectType<LocalDate>(d.plusYears(1));
+    expectType<LocalDate>(d.minusYears(1));
+    expectType<LocalDate>(d.plus(3, ChronoUnit.DECADES));
+    expectType<LocalDate>(d.minus(3, ChronoUnit.DECADES));
+    expectType<LocalDate>(d.plus(Period.ofMonths(3).plusDays(3)));
+    expectType<LocalDate>(d.minus(Period.ofMonths(3).plusDays(3)));
 
     d = LocalDate.parse('2016-12-24');
-    d.withDayOfMonth(1);
-    d.withMonth(1).withDayOfMonth(1);
-    d.withMonth(Month.NOVEMBER).withDayOfMonth(1);
-    d.withYear(1);
+    expectType<LocalDate>(d.withDayOfMonth(1));
+    expectType<LocalDate>(d.withMonth(1).withDayOfMonth(1));
+    expectType<LocalDate>(d.withMonth(Month.NOVEMBER).withDayOfMonth(1));
+    expectType<LocalDate>(d.withYear(1));
+    expectType<LocalDate>(d.withDayOfYear(42));
+    expectType<LocalDate>(d.with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, 52));
     LocalDate.now().plusMonths(1).withDayOfMonth(1).minusDays(1);
-    d.withDayOfYear(42);
-    d.with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, 52);
 
     let d1 = LocalDate.parse('2016-12-24');
     let d2 = d1.plusDays(2);
@@ -163,15 +160,16 @@ function test_LocalDate() {
     d = LocalDate.from(nativeJs(moment()));
 
     d = LocalDate.parse('2016-12-24');
-    d.with(TemporalAdjusters.firstDayOfMonth());
-    d.with(TemporalAdjusters.lastDayOfMonth());
-    d.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
-    d.with(TemporalAdjusters.nextOrSame(DayOfWeek.SATURDAY));
-    d.with(TemporalAdjusters.next(DayOfWeek.SATURDAY));
-    d.with(TemporalAdjusters.lastInMonth(DayOfWeek.SATURDAY));
-    d.with(TemporalAdjusters.firstInMonth(DayOfWeek.SATURDAY));
+    expectType<LocalDate>(d.with(TemporalAdjusters.firstDayOfMonth()));
+    expectType<LocalDate>(d.with(TemporalAdjusters.lastDayOfMonth()));
+    expectType<LocalDate>(d.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY)));
+    expectType<LocalDate>(d.with(TemporalAdjusters.nextOrSame(DayOfWeek.SATURDAY)));
+    expectType<LocalDate>(d.with(TemporalAdjusters.next(DayOfWeek.SATURDAY)));
+    expectType<LocalDate>(d.with(TemporalAdjusters.lastInMonth(DayOfWeek.SATURDAY)));
+    expectType<LocalDate>(d.with(TemporalAdjusters.firstInMonth(DayOfWeek.SATURDAY)));
 
-    expectType<LocalDate>(d1.query(LocalDate.FROM));
+    expectType<LocalDate | null>(d1.query(LocalDate.FROM));
+    expectType<LocalTime | null>(d1.query(TemporalQueries.localTime()));
 }
 
 function test_Instant() {
@@ -179,6 +177,21 @@ function test_Instant() {
 
     i.toString();
     i.toJSON();
+
+    expectType<number>(i.get(ChronoField.INSTANT_SECONDS));
+    expectType<boolean>(i.isSupported(ChronoField.INSTANT_SECONDS));
+    expectType<boolean>(i.isSupported(ChronoUnit.SECONDS));
+    expectType<ValueRange>(i.range(ChronoField.MICRO_OF_SECOND));
+    expectType<Instant>(i.minus(5, ChronoUnit.DAYS));
+    expectType<Instant>(i.plus(5, ChronoUnit.DAYS));
+    expectType<Instant>(i.minus(Duration.ofHours(3)));
+    expectType<Instant>(i.plus(Duration.ofHours(3)));
+    expectType<Instant>(i.with(Instant.EPOCH));
+    expectType<Instant>(i.with(IsoFields.DAY_OF_QUARTER, 10));
+    expectType<number>(i.until(Instant.now(), ChronoUnit.SECONDS));
+
+    expectType<Instant | null>(i.query(Instant.FROM));
+    expectType<LocalDate | null>(i.query(TemporalQueries.localDate()));
 }
 
 function test_LocalTime() {
@@ -201,24 +214,29 @@ function test_LocalTime() {
     t.minute();
     t.second();
     t.nano();
-    t.get(ChronoField.SECOND_OF_DAY);
-    t.get(ChronoField.MILLI_OF_SECOND);
-    t.get(ChronoField.HOUR_OF_AMPM);
 
     t = LocalTime.parse('11:55:42');
-    t.plusHours(12);
-    t.minusHours(12);
-    t.plusMinutes(30);
-    t.minusMinutes(30);
-    t.plusSeconds(30);
-    t.minusSeconds(30);
-    t.plusNanos(1000000);
-    t.minusNanos(1000000);
-    t.plus(1, ChronoUnit.NANOS);
-    t.plus(1, ChronoUnit.MILLIS);
-    t.plus(1, ChronoUnit.HALF_DAYS);
-    t.plus(Duration.ofMinutes(15));
-    t.minus(Duration.ofMinutes(15));
+    expectType<LocalTime>(t.plusHours(12));
+    expectType<LocalTime>(t.minusHours(12));
+    expectType<LocalTime>(t.plusMinutes(30));
+    expectType<LocalTime>(t.minusMinutes(30));
+    expectType<LocalTime>(t.plusSeconds(30));
+    expectType<LocalTime>(t.minusSeconds(30));
+    expectType<LocalTime>(t.plusNanos(1000000));
+    expectType<LocalTime>(t.minusNanos(1000000));
+
+    expectType<number>(t.get(ChronoField.MINUTE_OF_DAY));
+    expectType<number>(t.get(IsoFields.DAY_OF_QUARTER));
+    expectType<boolean>(t.isSupported(ChronoField.HOUR_OF_DAY));
+    expectType<boolean>(t.isSupported(ChronoUnit.SECONDS));
+    expectType<ValueRange>(t.range(ChronoField.MICRO_OF_SECOND));
+    expectType<LocalTime>(t.minus(5, ChronoUnit.DAYS));
+    expectType<LocalTime>(t.plus(5, ChronoUnit.DAYS));
+    expectType<LocalTime>(t.minus(Duration.ofHours(3)));
+    expectType<LocalTime>(t.plus(Duration.ofHours(3)));
+    expectType<LocalTime>(t.with(LocalTime.MIDNIGHT));
+    expectType<LocalTime>(t.with(IsoFields.DAY_OF_QUARTER, 10));
+    expectType<number>(t.until(LocalTime.now(), ChronoUnit.SECONDS));
 
     t = LocalTime.parse('11:55:42');
     t.withHour(1);
@@ -268,7 +286,8 @@ function test_LocalTime() {
     t = LocalTime.from(nativeJs(new Date()));
     t = LocalTime.from(nativeJs(moment()));
 
-    expectType<LocalTime>(t1.query(LocalTime.FROM));
+    expectType<LocalTime | null>(t1.query(LocalTime.FROM));
+    expectType<LocalDate | null>(t1.query(TemporalQueries.localDate()));
 }
 
 function test_LocalDateTime() {
@@ -306,19 +325,21 @@ function test_LocalDateTime() {
     dt.toLocalDate();
     dt.toLocalTime();
     dt.toLocalDate().lengthOfMonth();
-    dt.range(ChronoField.DAY_OF_MONTH);
-
     dt.toLocalDate().lengthOfYear();
-    dt.range(ChronoField.DAY_OF_YEAR);
-
-    dt.get(ChronoField.ALIGNED_WEEK_OF_YEAR);
-
-    dt.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);
     dt.toLocalDate().isoWeekOfWeekyear();
-    dt.get(ChronoField.SECOND_OF_DAY);
-    dt.get(ChronoField.MILLI_OF_SECOND);
-    dt.get(ChronoField.HOUR_OF_AMPM);
 
+    expectType<number>(dt.get(ChronoField.HOUR_OF_DAY));
+    expectType<number>(dt.get(IsoFields.DAY_OF_QUARTER));
+    expectType<boolean>(dt.isSupported(ChronoField.HOUR_OF_DAY));
+    expectType<boolean>(dt.isSupported(ChronoUnit.SECONDS));
+    expectType<ValueRange>(dt.range(ChronoField.MICRO_OF_SECOND));
+    expectType<LocalDateTime>(dt.minus(5, ChronoUnit.DAYS));
+    expectType<LocalDateTime>(dt.plus(5, ChronoUnit.DAYS));
+    expectType<LocalDateTime>(dt.minus(Duration.ofHours(3)));
+    expectType<LocalDateTime>(dt.plus(Duration.ofHours(3)));
+    expectType<LocalDateTime>(dt.with(LocalDateTime.MAX));
+    expectType<LocalDateTime>(dt.with(IsoFields.DAY_OF_QUARTER, 10));
+    expectType<number>(dt.until(LocalDateTime.now(), ChronoUnit.SECONDS));
 
     dt = LocalDateTime.parse('2016-02-26T23:55:42.123');
     dt.plusDays(366);
@@ -350,10 +371,6 @@ function test_LocalDateTime() {
 
     dt.plusNanos(1000000);
     dt.minusNanos(1000000);
-
-    dt.plus(1, ChronoUnit.NANOS);
-    dt.plus(1, ChronoUnit.MILLIS);
-    dt.plus(1, ChronoUnit.HALF_DAYS);
 
     dt.plus(Duration.ofHours(30).plusMinutes(45));
     dt.minus(Duration.ofHours(30).plusMinutes(45));
@@ -417,7 +434,8 @@ function test_LocalDateTime() {
     dt = LocalDateTime.from(nativeJs(new Date()));
     dt = LocalDateTime.from(nativeJs(moment()));
 
-    expectType<LocalDateTime>(dt.query(LocalDateTime.FROM));
+    expectType<LocalDateTime | null>(dt.query(LocalDateTime.FROM));
+    expectType<LocalDate | null>(dt.query(TemporalQueries.localDate()));
 }
 
 function test_ZonedDateTime() {
@@ -452,14 +470,25 @@ function test_ZonedDateTime() {
 
     zdt.plusWeeks(2);
     zdt.plusHours(2 * 7 * 24);
-    zdt.plus(Duration.ofDays(1));
-    zdt.minus(Duration.ofDays(1));
-    zdt.minus(5, ChronoUnit.WEEKS);
+
+    expectType<number>(zdt.get(ChronoField.YEAR));
+    expectType<number>(zdt.get(IsoFields.DAY_OF_QUARTER));
+    expectType<boolean>(zdt.isSupported(ChronoField.YEAR));
+    expectType<boolean>(zdt.isSupported(ChronoUnit.SECONDS));
+    expectType<ValueRange>(zdt.range(ChronoField.MICRO_OF_SECOND));
+    expectType<ZonedDateTime>(zdt.minus(5, ChronoUnit.DAYS));
+    expectType<ZonedDateTime>(zdt.plus(5, ChronoUnit.DAYS));
+    expectType<ZonedDateTime>(zdt.minus(Duration.ofHours(3)));
+    expectType<ZonedDateTime>(zdt.plus(Duration.ofHours(3)));
+    expectType<ZonedDateTime>(zdt.with(TemporalAdjusters.firstDayOfMonth()));
+    expectType<ZonedDateTime>(zdt.with(IsoFields.DAY_OF_QUARTER, 10));
+    expectType<number>(zdt.until(ZonedDateTime.now(), ChronoUnit.SECONDS));
 
     expectType<ZonedDateTime>(zdt.withEarlierOffsetAtOverlap());
     expectType<ZonedDateTime>(zdt.withLaterOffsetAtOverlap());
 
-    expectType<ZonedDateTime>(zdt.query(ZonedDateTime.FROM));
+    expectType<ZonedDateTime | null>(zdt.query(ZonedDateTime.FROM));
+    expectType<LocalDate | null>(zdt.query(TemporalQueries.localDate()));
 }
 
 function test_ZoneOffsetTransition() {
@@ -555,6 +584,18 @@ function test_Duration() {
 function test_Year() {
     const year = Year.now();
 
+    expectType<number>(year.get(ChronoField.INSTANT_SECONDS));
+    expectType<boolean>(year.isSupported(ChronoField.INSTANT_SECONDS));
+    expectType<boolean>(year.isSupported(ChronoUnit.SECONDS));
+    expectType<ValueRange>(year.range(ChronoField.MICRO_OF_SECOND));
+    expectType<Year>(year.minus(5, ChronoUnit.DAYS));
+    expectType<Year>(year.plus(5, ChronoUnit.DAYS));
+    expectType<Year>(year.minus(Duration.ofHours(3)));
+    expectType<Year>(year.plus(Duration.ofHours(3)));
+    expectType<Year>(year.with(YearMonth.now()));
+    expectType<Year>(year.with(IsoFields.DAY_OF_QUARTER, 10));
+    expectType<number>(year.until(Year.now(), ChronoUnit.SECONDS));
+
     expectType<LocalDate>(year.atDay(2));
     expectType<YearMonth>(year.atMonth(5));
     expectType<YearMonth>(year.atMonth(Month.DECEMBER));
@@ -565,7 +606,7 @@ function test_Year() {
     expectType<boolean>(year.isLeap());
     expectType<boolean>(year.isValidMonthDay(MonthDay.of(2, 29)));
     expectType<number>(year.compareTo(Year.of(2020)));
-    
+
     expectType<number>(year.length());
 
     year.plus(Period.ofYears(2));
@@ -577,7 +618,8 @@ function test_Year() {
 
     year.with(ChronoField.YEAR, 2015);
 
-    expectType<Year>(year.query(Year.FROM));
+    expectType<Year | null>(year.query(Year.FROM));
+    expectType<LocalDate | null>(year.query(TemporalQueries.localDate()));
 }
 
 function test_YearMonth() {
@@ -597,23 +639,29 @@ function test_YearMonth() {
     var duration = Duration.of(10, ChronoUnit.MONTHS);
     var ym = YearMonth.of(2017, 10);
 
-    ym.minus(duration);
-    ym.minus(10, ChronoUnit.DAYS);
     ym.minusYears(10);
     ym.minusMonths(10);
 
-    ym.plus(duration);
-    ym.plus(10, ChronoUnit.DAYS);
     ym.plusYears(10);
     ym.plusMonths(10);
 
-    ym.with(TemporalAdjusters.firstDayOfMonth());
-    ym.with(ChronoField.YEAR, 2018);
     ym.withYear(2018);
     ym.withMonth(11);
 
     ym.isSupported(ChronoField.YEAR);
     ym.isSupported(ChronoUnit.YEARS);
+
+    expectType<number>(ym.get(ChronoField.INSTANT_SECONDS));
+    expectType<boolean>(ym.isSupported(ChronoField.INSTANT_SECONDS));
+    expectType<boolean>(ym.isSupported(ChronoUnit.SECONDS));
+    expectType<ValueRange>(ym.range(ChronoField.MICRO_OF_SECOND));
+    expectType<YearMonth>(ym.minus(5, ChronoUnit.DAYS));
+    expectType<YearMonth>(ym.plus(5, ChronoUnit.DAYS));
+    expectType<YearMonth>(ym.minus(Duration.ofHours(3)));
+    expectType<YearMonth>(ym.plus(Duration.ofHours(3)));
+    expectType<YearMonth>(ym.with(Year.now()));
+    expectType<YearMonth>(ym.with(IsoFields.DAY_OF_QUARTER, 10));
+    expectType<number>(ym.until(YearMonth.now(), ChronoUnit.SECONDS));
 
     ym.year();
     ym.monthValue();
@@ -633,7 +681,8 @@ function test_YearMonth() {
 
     ym.format(DateTimeFormatter.ofPattern('yyyy-MM'));
 
-    expectType<YearMonth>(ym.query(YearMonth.FROM));
+    expectType<YearMonth | null>(ym.query(YearMonth.FROM));
+    expectType<LocalDate | null>(ym.query(TemporalQueries.localDate()));
 }
 
 function test_DateTimeFormatter() {
@@ -696,6 +745,11 @@ function test_ZoneId() {
 }
 
 function test_DayOfWeek() {
+    const dow = DayOfWeek.SUNDAY;
+    expectType<number>(dow.get(ChronoField.MONTH_OF_YEAR));
+    expectType<boolean>(dow.isSupported(ChronoField.MONTH_OF_YEAR));
+    expectType<ValueRange>(dow.range(ChronoField.MONTH_OF_YEAR));
+
     expectType<number>(DayOfWeek.MONDAY.compareTo(DayOfWeek.WEDNESDAY));
 }
 
@@ -705,13 +759,25 @@ function test_Month() {
     expectType<number>(Month.SEPTEMBER.compareTo(Month.DECEMBER));
     expectType<boolean>(Month.OCTOBER.equals(Month.NOVEMBER));
 
+    const m = Month.DECEMBER;
+    expectType<number>(m.get(ChronoField.MONTH_OF_YEAR));
+    expectType<boolean>(m.isSupported(ChronoField.MONTH_OF_YEAR));
+    expectType<ValueRange>(m.range(ChronoField.MONTH_OF_YEAR));
+
     expectType<Month>(Month.valueOf('FEBRUARY'));
+    expectType<LocalDate | null>(m.query(TemporalQueries.localDate()));
 }
 
 function test_MonthDay() {
     const md = MonthDay.now();
-    
-    expectType<MonthDay>(md.query(MonthDay.FROM));
+
+    expectType<number>(md.get(ChronoField.MONTH_OF_YEAR));
+    expectType<number>(md.get(IsoFields.QUARTER_OF_YEAR));
+    expectType<boolean>(md.isSupported(ChronoField.MONTH_OF_YEAR));
+    expectType<ValueRange>(md.range(ChronoField.MONTH_OF_YEAR));
+
+    expectType<MonthDay | null>(md.query(MonthDay.FROM));
+    expectType<LocalDate | null>(md.query(TemporalQueries.localDate()));
 }
 
 function test_Clock() {
@@ -726,40 +792,40 @@ function test_Clock() {
 }
 
 function test_Temporal() {
-  const temporal: Temporal = Year.now();
+    const temporal: Temporal = Year.now();
 
-  temporal.isSupported(ChronoUnit.YEARS);
+    temporal.isSupported(ChronoUnit.YEARS);
 
-  temporal.minus(4, ChronoUnit.YEARS);
-  temporal.minus(Period.ofYears(4));
+    temporal.minus(4, ChronoUnit.YEARS);
+    temporal.minus(Period.ofYears(4));
 
-  temporal.plus(4, ChronoUnit.YEARS);
-  temporal.plus(Period.ofYears(4));
+    temporal.plus(4, ChronoUnit.YEARS);
+    temporal.plus(Period.ofYears(4));
 
-  temporal.until(Year.of(2020), ChronoUnit.YEARS);
+    temporal.until(Year.of(2020), ChronoUnit.YEARS);
 
-  const nextYear: TemporalAdjuster = {
-    adjustInto(temporal: Temporal): Temporal {
-      if (temporal.isSupported(ChronoUnit.YEARS)) {
-        return temporal.plus(1, ChronoUnit.YEARS);
-      }
-      throw new Error('unsupported')
+    const nextYear: TemporalAdjuster = {
+        adjustInto(temporal: Temporal): Temporal {
+            if (temporal.isSupported(ChronoUnit.YEARS)) {
+                return temporal.plus(1, ChronoUnit.YEARS);
+            }
+            throw new Error('unsupported')
+        }
     }
-  }
 
-  temporal.with(nextYear);
-  temporal.with(ChronoField.YEAR, 2020);
+    temporal.with(nextYear);
+    temporal.with(ChronoField.YEAR, 2020);
 
-  temporal.with(DayOfWeek.MONDAY);
-  temporal.with(Instant.now());
-  temporal.with(LocalDate.now());
-  temporal.with(LocalDateTime.now());
-  temporal.with(LocalTime.now());
-  temporal.with(Month.FEBRUARY);
-  temporal.with(MonthDay.now());
-  temporal.with(Year.now());
-  temporal.with(YearMonth.now());
-  temporal.with(ZoneOffset.ofHours(1));
+    temporal.with(DayOfWeek.MONDAY);
+    temporal.with(Instant.now());
+    temporal.with(LocalDate.now());
+    temporal.with(LocalDateTime.now());
+    temporal.with(LocalTime.now());
+    temporal.with(Month.FEBRUARY);
+    temporal.with(MonthDay.now());
+    temporal.with(Year.now());
+    temporal.with(YearMonth.now());
+    temporal.with(ZoneOffset.ofHours(1));
 }
 
 function test_TemporalQuery() {

@@ -25,19 +25,22 @@ export abstract class TemporalQuery<R> {
 
 export abstract class TemporalAccessor {
     get(field: TemporalField): number;
-    query<R>(query: TemporalQuery<R>): R;
+    query<R>(query: TemporalQuery<R>): R | null;
     range(field: TemporalField): ValueRange;
+    abstract getLong(field: TemporalField): number;
+    abstract isSupported(field: TemporalField): boolean;
 }
 
 export abstract class Temporal extends TemporalAccessor {
-    isSupported(unit: TemporalUnit): boolean;
-    minus(amountToSubtract: number, unit: TemporalUnit): Temporal;
-    minus(amount: TemporalAmount): Temporal;
-    plus(amountToAdd: number, unit: TemporalUnit): Temporal;
-    plus(amount: TemporalAmount): Temporal;
-    until(endTemporal: Temporal, unit: TemporalUnit): number;
-    with(adjuster: TemporalAdjuster): Temporal;
-    with(field: TemporalField, newValue: number): Temporal;
+    abstract isSupported(field: TemporalField): boolean;
+    abstract isSupported(unit: TemporalUnit): boolean;
+    abstract minus(amountToSubtract: number, unit: TemporalUnit): Temporal;
+    abstract minus(amount: TemporalAmount): Temporal;
+    abstract plus(amountToAdd: number, unit: TemporalUnit): Temporal;
+    abstract plus(amount: TemporalAmount): Temporal;
+    abstract until(endTemporal: Temporal, unit: TemporalUnit): number;
+    abstract with(adjuster: TemporalAdjuster): Temporal;
+    abstract with(field: TemporalField, newValue: number): Temporal;
 }
 
 export abstract class Clock {
@@ -181,7 +184,6 @@ export class Instant extends Temporal implements TemporalAdjuster {
     compareTo(otherInstant: Instant): number;
     epochSecond(): number;
     equals(other: any): boolean;
-    get(field: TemporalField): number;
     getLong(field: TemporalField): number;
     hashCode(): number;
     isAfter(otherInstant: Instant): boolean;
@@ -198,8 +200,6 @@ export class Instant extends Temporal implements TemporalAdjuster {
     plusMillis(millisToAdd: number): Instant;
     plusNanos(nanosToAdd: number): Instant;
     plusSeconds(secondsToAdd: number): Instant;
-    query<R>(query: TemporalQuery<R>): R;
-    range(field: TemporalField): ValueRange;
     toEpochMilli(): number;
     toJSON(): string;
     toString(): string;
@@ -315,7 +315,6 @@ export class LocalTime extends Temporal implements TemporalAdjuster {
     compareTo(other: LocalTime): number;
     equals(other: any): boolean;
     format(formatter: DateTimeFormatter): string;
-    get(field: ChronoField): number;
     getLong(field: ChronoField): number;
     hashCode(): number;
     hour(): number;
@@ -323,7 +322,7 @@ export class LocalTime extends Temporal implements TemporalAdjuster {
     isBefore(other: LocalTime): boolean;
     isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean;
     minus(amount: TemporalAmount): LocalTime;
-    minus(amountToSubtract: number, unit: ChronoUnit): LocalTime;
+    minus(amountToSubtract: number, unit: TemporalUnit): LocalTime;
     minusHours(hoursToSubtract: number): LocalTime;
     minusMinutes(minutesToSubtract: number): LocalTime;
     minusNanos(nanosToSubtract: number): LocalTime;
@@ -336,15 +335,13 @@ export class LocalTime extends Temporal implements TemporalAdjuster {
     plusMinutes(minutesToAdd: number): LocalTime;
     plusNanos(nanosToAdd: number): LocalTime;
     plusSeconds(secondstoAdd: number): LocalTime;
-    query<R>(query: TemporalQuery<R>): R;
-    range(field: ChronoField): ValueRange;
     second(): number;
     toJSON(): string;
     toNanoOfDay(): number;
     toSecondOfDay(): number;
     toString(): string;
     truncatedTo(unit: ChronoUnit): LocalTime;
-    until(endExclusive: TemporalAccessor, unit: TemporalUnit): number;
+    until(endExclusive: Temporal, unit: TemporalUnit): number;
     with(adjuster: TemporalAdjuster): LocalTime;
     with(field: TemporalField, newValue: number): LocalTime;
     withHour(hour: number): LocalTime;
@@ -379,7 +376,6 @@ export class Month extends TemporalAccessor implements TemporalAdjuster {
     equals(other: any): boolean;
     firstDayOfYear(leapYear: boolean): number;
     firstMonthOfQuarter(): Month;
-    get(field: TemporalField): number;
     displayName(style: TextStyle, locale: Locale): string;
     getLong(field: TemporalField): number;
     isSupported(field: TemporalField): boolean;
@@ -390,7 +386,6 @@ export class Month extends TemporalAccessor implements TemporalAdjuster {
     name(): string;
     ordinal(): number;
     plus(months: number): Month;
-    query<R>(query: TemporalQuery<R>): R;
     toString(): string;
     value(): number;
 }
@@ -411,7 +406,6 @@ export class MonthDay extends TemporalAccessor implements TemporalAdjuster {
     dayOfMonth(): number;
     equals(other: any): boolean;
     format(formatter: DateTimeFormatter): string;
-    get(field: TemporalField): number;
     getLong(field: TemporalField): number;
     isAfter(other: MonthDay): boolean;
     isBefore(other: MonthDay): boolean;
@@ -419,8 +413,6 @@ export class MonthDay extends TemporalAccessor implements TemporalAdjuster {
     isValidYear(year: number): boolean;
     month(): Month;
     monthValue(): number;
-    query<R>(query: TemporalQuery<R>): R;
-    range(field: TemporalField): ValueRange;
     toString(): string;
     with(month: Month): MonthDay;
     withDayOfMonth(dayOfMonth: number): MonthDay;
@@ -939,15 +931,15 @@ export class LocalDate extends ChronoLocalDate implements TemporalAdjuster {
     dayOfWeek(): DayOfWeek;
     dayOfYear(): number;
     equals(other: any): boolean;
-    get(field: TemporalField): number;
     getLong(field: TemporalField): number;
     hashCode(): number;
     isAfter(other: LocalDate): boolean;
     isBefore(other: LocalDate): boolean;
     isEqual(other: LocalDate): boolean;
     isLeapYear(): boolean;
-    isoWeekOfWeekyear(): number; //implemented in IsoFields.js
-    isoWeekyear(): number; //implemented in IsoFields.js
+    isoWeekOfWeekyear(): number;
+    isoWeekyear(): number;
+    isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean;
     lengthOfMonth(): number;
     lengthOfYear(): number;
     minus(amount: TemporalAmount): LocalDate;
@@ -964,15 +956,13 @@ export class LocalDate extends ChronoLocalDate implements TemporalAdjuster {
     plusMonths(monthsToAdd: number): LocalDate;
     plusWeeks(weeksToAdd: number): LocalDate;
     plusYears(yearsToAdd: number): LocalDate;
-    query<R>(query: TemporalQuery<R>): R;
-    range(field: TemporalField): ValueRange;
     toEpochDay(): number;
     toJSON(): string;
     toString(): string;
     until(endDate: TemporalAccessor): Period;
-    until(endExclusive: TemporalAccessor, unit: TemporalUnit): number;
-    with(fieldOrAdjuster: TemporalField, newValue: Number): LocalDate;
+    until(endExclusive: Temporal, unit: TemporalUnit): number;
     with(adjuster: TemporalAdjuster): LocalDate;
+    with(field: TemporalField, newValue: number): LocalDate;
     withDayOfMonth(dayOfMonth: number): LocalDate;
     withDayOfYear(dayOfYear: number): LocalDate;
     withMonth(month: Month | number): LocalDate;
@@ -1011,7 +1001,6 @@ export class LocalDateTime extends ChronoLocalDateTime implements TemporalAdjust
     dayOfYear(): number;
     equals(other: any): boolean;
     format(formatter: DateTimeFormatter): string;
-    get(field: TemporalField): number;
     getLong(field: TemporalField): number;
     hashCode(): number;
     hour(): number;
@@ -1027,7 +1016,6 @@ export class LocalDateTime extends ChronoLocalDateTime implements TemporalAdjust
     minusMonths(months: number): LocalDateTime;
     minusNanos(nanos: number): LocalDateTime;
     minusSeconds(seconds: number): LocalDateTime;
-    minusTemporalAmount(amount: TemporalAmount): LocalDateTime;
     minusWeeks(weeks: number): LocalDateTime;
     minusYears(years: number): LocalDateTime;
     minute(): number;
@@ -1042,11 +1030,8 @@ export class LocalDateTime extends ChronoLocalDateTime implements TemporalAdjust
     plusMonths(months: number): LocalDateTime;
     plusNanos(nanos: number): LocalDateTime;
     plusSeconds(seconds: number): LocalDateTime;
-    plusTemporalAmount(amount: TemporalAmount): LocalDateTime;
     plusWeeks(weeks: number): LocalDateTime;
     plusYears(years: number): LocalDateTime;
-    query<R>(query: TemporalQuery<R>): R;
-    range(field: TemporalField): ValueRange;
     second(): number;
     toJSON(): string;
     toLocalDate(): LocalDate;
@@ -1184,17 +1169,20 @@ export class Year extends Temporal implements TemporalAdjuster {
     atMonthDay(monthDay: MonthDay): LocalDate;
     compareTo(other: Year): number;
     equals(other: any): boolean;
+    getLong(field: TemporalField): number;
     isAfter(other: Year): boolean;
     isBefore(other: Year): boolean;
     isLeap(): boolean;
+    isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean;
     isValidMonthDay(monthDay: MonthDay): boolean;
     length(): number;
-    plus(amount: TemporalAmount): Year;
-    plus(amountToAdd: number, unit: TemporalUnit): Year;
-    plusYears(yearsToAdd: number): Year;
     minus(amount: TemporalAmount): Year;
     minus(amountToSubtract: number, unit: TemporalUnit): Year;
     minusYears(yearsToSubtract: number): Year;
+    plus(amount: TemporalAmount): Year;
+    plus(amountToAdd: number, unit: TemporalUnit): Year;
+    plusYears(yearsToAdd: number): Year;
+    until(endExclusive: Temporal, unit: TemporalUnit): number;
     value(): number;
     with(adjuster: TemporalAdjuster): Year;
     with(field: TemporalField, newValue: number): Year;
@@ -1211,34 +1199,36 @@ export class YearMonth extends Temporal implements TemporalAdjuster {
     private constructor();
 
     adjustInto(temporal: Temporal): Temporal;
-    minus(amount: TemporalAmount): YearMonth;
-    minus(amountToSubtract: number, unit: TemporalUnit): YearMonth;
-    minusYears(yearsToSubtract: number): YearMonth;
-    minusMonths(monthsToSubtract: number): YearMonth;
-    plus(amount: TemporalAmount): YearMonth;
-    plus(amountToAdd: number, unit: TemporalUnit): YearMonth;
-    plusYears(yearsToAdd: number): YearMonth;
-    plusMonths(monthsToAdd: number): YearMonth;
-    with(adjuster: TemporalAdjuster): YearMonth;
-    with(field: TemporalField, value: number): YearMonth;
-    withYear(year: number): YearMonth;
-    withMonth(month: number): YearMonth;
-    isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean;
-    year(): number;
-    monthValue(): number;
-    month(): Month;
-    isLeapYear(): boolean;
-    isValidDay(): boolean;
-    lengthOfMonth(): number;
-    lengthOfYear(): number;
     atDay(dayOfMonth: number): LocalDate;
     atEndOfMonth(): LocalDate;
     compareTo(other: YearMonth): number;
+    equals(other: any): boolean;
+    format(formatter: DateTimeFormatter): string;
+    getLong(field: TemporalField): number;
     isAfter(other: YearMonth): boolean;
     isBefore(other: YearMonth): boolean;
-    equals(other: any): boolean;
+    isLeapYear(): boolean;
+    isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean;
+    isValidDay(): boolean;
+    lengthOfMonth(): number;
+    lengthOfYear(): number;
+    minus(amount: TemporalAmount): YearMonth;
+    minus(amountToSubtract: number, unit: TemporalUnit): YearMonth;
+    minusMonths(monthsToSubtract: number): YearMonth;
+    minusYears(yearsToSubtract: number): YearMonth;
+    month(): Month;
+    monthValue(): number;
+    plus(amount: TemporalAmount): YearMonth;
+    plus(amountToAdd: number, unit: TemporalUnit): YearMonth;
+    plusMonths(monthsToAdd: number): YearMonth;
+    plusYears(yearsToAdd: number): YearMonth;
     toJSON(): string;
-    format(formatter: DateTimeFormatter): string;
+    until(endExclusive: Temporal, unit: TemporalUnit): number;
+    with(adjuster: TemporalAdjuster): YearMonth;
+    with(field: TemporalField, newValue: number): YearMonth;
+    withMonth(month: number): YearMonth;
+    withYear(year: number): YearMonth;
+    year(): number;
 }
 
 export abstract class ZoneId {
@@ -1282,7 +1272,6 @@ export class ZoneOffset extends ZoneId implements TemporalAdjuster {
     getLong(field: TemporalField): number;
     hashCode(): number;
     id(): string;
-    query<R>(query: TemporalQuery<R>): R;
     rules(): ZoneRules;
     toString(): string;
     totalSeconds(): number;
@@ -1353,7 +1342,6 @@ export abstract class ChronoZonedDateTime extends Temporal {
     isAfter(other: ChronoZonedDateTime): boolean;
     isBefore(other: ChronoZonedDateTime): boolean;
     isEqual(other: ChronoZonedDateTime): boolean;
-    query<R>(query: TemporalQuery<R>): R;
     toEpochSecond(): number;
     toInstant(): Instant;
 }
@@ -1379,7 +1367,6 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     dayOfYear(): number;
     equals(other: any): boolean;
     format(formatter: DateTimeFormatter): string;
-    get(field: TemporalField): number;
     getLong(field: TemporalField): number;
     hashCode(): number;
     hour(): number;
@@ -1392,8 +1379,6 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     minusMonths(months: number): ZonedDateTime;
     minusNanos(nanos: number): ZonedDateTime;
     minusSeconds(seconds: number): ZonedDateTime;
-    // TODO: Internal. Remove in next major version.
-    minusTemporalAmount(amount: TemporalAmount): ZonedDateTime;
     minusWeeks(weeks: number): ZonedDateTime;
     minusYears(years: number): ZonedDateTime;
     minute(): number;
@@ -1413,7 +1398,6 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     plusTemporalAmount(amount: TemporalAmount): ZonedDateTime;
     plusWeeks(weeks: number): ZonedDateTime;
     plusYears(years: number): ZonedDateTime;
-    query<R>(query: TemporalQuery<R>): R;
     range(field: TemporalField): ValueRange;
     second(): number;
     toJSON(): string;
@@ -1505,7 +1489,6 @@ export class ArithmeticException extends Error {}
 export class IllegalArgumentException extends Error {}
 export class IllegalStateException extends Error {}
 export class NullPointerException extends Error {}
-
 
 export const __esModule: true;
 export as namespace JSJoda;
