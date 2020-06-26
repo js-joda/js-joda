@@ -85,6 +85,7 @@ export class DayOfWeek extends TemporalAccessor implements TemporalAdjuster {
     name(): string;
     ordinal(): number;
     plus(days: number): DayOfWeek;
+    toJSON(): string;
     toString(): string;
     value(): number;
 }
@@ -207,6 +208,10 @@ export class ResolverStyle {
     static LENIENT: ResolverStyle;
 
     private constructor();
+
+    equals(other: any): boolean;
+    toJSON(): string;
+    toString(): string;
 }
 
 export class SignStyle {
@@ -215,6 +220,12 @@ export class SignStyle {
     static ALWAYS: SignStyle;
     static EXCEEDS_PAD: SignStyle;
     static NOT_NEGATIVE: SignStyle;
+
+    private constructor();
+
+    equals(other: any): boolean;
+    toJSON(): string;
+    toString(): string;
 }
 
 export class DateTimeFormatter {
@@ -329,6 +340,7 @@ export class LocalTime extends Temporal implements TemporalAdjuster {
     plusSeconds(secondstoAdd: number): LocalTime;
     second(): number;
     toJSON(): string;
+    toString(): string;
     toNanoOfDay(): number;
     toSecondOfDay(): number;
     toString(): string;
@@ -378,6 +390,7 @@ export class Month extends TemporalAccessor implements TemporalAdjuster {
     name(): string;
     ordinal(): number;
     plus(months: number): Month;
+    toJSON(): string;
     toString(): string;
     value(): number;
 }
@@ -405,6 +418,7 @@ export class MonthDay extends TemporalAccessor implements TemporalAdjuster {
     isValidYear(year: number): boolean;
     month(): Month;
     monthValue(): number;
+    toJSON(): string;
     toString(): string;
     with(month: Month): MonthDay;
     withDayOfMonth(dayOfMonth: number): MonthDay;
@@ -1174,6 +1188,8 @@ export class Year extends Temporal implements TemporalAdjuster {
     plus(amount: TemporalAmount): Year;
     plus(amountToAdd: number, unit: TemporalUnit): Year;
     plusYears(yearsToAdd: number): Year;
+    toJSON(): string;
+    toString(): string;
     until(endExclusive: Temporal, unit: TemporalUnit): number;
     value(): number;
     with(adjuster: TemporalAdjuster): Year;
@@ -1239,6 +1255,7 @@ export abstract class ZoneId {
     abstract id(): string;
     normalized(): ZoneId;
     abstract rules(): ZoneRules;
+    toJSON(): string;
     toString(): string;
 }
 
@@ -1429,6 +1446,10 @@ export class TextStyle {
     asNormal(): TextStyle;
     asStandalone(): TextStyle;
     isStandalone(): boolean;
+
+    equals(other: any): boolean;
+    toJSON(): string;
+    toString(): string;
 }
 
 export interface Locale {

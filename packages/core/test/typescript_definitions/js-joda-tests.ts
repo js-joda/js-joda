@@ -38,7 +38,9 @@ import {
     DateTimeException,
     UnsupportedTemporalTypeException,
     TemporalField,
-    ValueRange
+    ValueRange,
+    ZoneRegion,
+    TextStyle
 } from '../../'
 
 // used below
@@ -74,7 +76,6 @@ function test_LocalDate() {
 
     let d = LocalDate.parse('2016-12-24');
 
-    d.toString();
     d.dayOfMonth();
     d.month();
     d.monthValue();
@@ -89,6 +90,9 @@ function test_LocalDate() {
     d.lengthOfYear();
     d.isoWeekOfWeekyear();
     d.isoWeekyear();
+
+    expectType<string>(d.toString());
+    expectType<string>(d.toJSON());
 
     LocalDate.of(2017, 1, 1).isoWeekOfWeekyear();
     LocalDate.of(2017, 1, 1).isoWeekyear();
@@ -208,12 +212,13 @@ function test_LocalTime() {
 
     let t = LocalTime.parse('23:55:42.123');
 
-    t.toString();
-
     t.hour();
     t.minute();
     t.second();
     t.nano();
+
+    expectType<string>(t.toString());
+    expectType<string>(t.toJSON());
 
     t = LocalTime.parse('11:55:42');
     expectType<LocalTime>(t.plusHours(12));
@@ -306,8 +311,6 @@ function test_LocalDateTime() {
 
     let dt: LocalDateTime = LocalDateTime.parse('2016-02-26T23:55:42.123');
 
-    dt.toString();
-
     dt.year();
     dt.month();
     dt.monthValue();
@@ -327,6 +330,9 @@ function test_LocalDateTime() {
     dt.toLocalDate().lengthOfMonth();
     dt.toLocalDate().lengthOfYear();
     dt.toLocalDate().isoWeekOfWeekyear();
+
+    expectType<string>(dt.toString());
+    expectType<string>(dt.toJSON());
 
     expectType<number>(dt.get(ChronoField.HOUR_OF_DAY));
     expectType<number>(dt.get(IsoFields.DAY_OF_QUARTER));
@@ -489,6 +495,9 @@ function test_ZonedDateTime() {
 
     expectType<ZonedDateTime | null>(zdt.query(ZonedDateTime.FROM));
     expectType<LocalDate | null>(zdt.query(TemporalQueries.localDate()));
+
+    expectType<string>(zdt.toString());
+    expectType<string>(zdt.toJSON());
 }
 
 function test_ZoneOffsetTransition() {
@@ -554,6 +563,9 @@ function test_Period() {
     LocalDate.parse('2012-01-31').plus(p);
     LocalDateTime.parse('2012-05-31T12:00').plus(p);
 
+    expectType<string>(p.toString());
+    expectType<string>(p.toJSON());
+
     Period.between(LocalDate.parse('2012-06-30'), LocalDate.parse('2012-08-31'));
 }
 
@@ -595,6 +607,9 @@ function test_Year() {
     expectType<Year>(year.with(YearMonth.now()));
     expectType<Year>(year.with(IsoFields.DAY_OF_QUARTER, 10));
     expectType<number>(year.until(Year.now(), ChronoUnit.SECONDS));
+
+    expectType<string>(year.toString());
+    expectType<string>(year.toJSON());
 
     expectType<LocalDate>(year.atDay(2));
     expectType<YearMonth>(year.atMonth(5));
@@ -677,7 +692,8 @@ function test_YearMonth() {
     ym.isBefore(YearMonth.of(2017, 20));
     ym.equals(YearMonth.of(2017, 20));
 
-    ym.toJSON();
+    expectType<string>(ym.toString());
+    expectType<string>(ym.toJSON());
 
     ym.format(DateTimeFormatter.ofPattern('yyyy-MM'));
 
@@ -742,6 +758,27 @@ function test_ZoneId() {
     var zoneId = ZoneId.SYSTEM;
 
     zoneId.id();
+
+    expectType<string>(zoneId.toString());
+    expectType<string>(zoneId.toJSON());
+}
+
+function test_ZoneOffset() {
+    var zoff = ZoneOffset.UTC;
+
+    zoff.id();
+
+    expectType<string>(zoff.toString());
+    expectType<string>(zoff.toJSON());
+}
+
+function test_ZoneRegion() {
+    var zreg = ZoneRegion.UTC;
+
+    zreg.id();
+
+    expectType<string>(zreg.toString());
+    expectType<string>(zreg.toJSON());
 }
 
 function test_DayOfWeek() {
@@ -751,6 +788,9 @@ function test_DayOfWeek() {
     expectType<ValueRange>(dow.range(ChronoField.MONTH_OF_YEAR));
 
     expectType<number>(DayOfWeek.MONDAY.compareTo(DayOfWeek.WEDNESDAY));
+    
+    expectType<string>(DayOfWeek.WEDNESDAY.toString());
+    expectType<string>(DayOfWeek.WEDNESDAY.toJSON());
 }
 
 function test_Month() {
@@ -758,6 +798,9 @@ function test_Month() {
     expectType<string>(Month.MARCH.name());
     expectType<number>(Month.SEPTEMBER.compareTo(Month.DECEMBER));
     expectType<boolean>(Month.OCTOBER.equals(Month.NOVEMBER));
+
+    expectType<string>(Month.JUNE.toString());
+    expectType<string>(Month.JUNE.toJSON());
 
     const m = Month.DECEMBER;
     expectType<number>(m.get(ChronoField.MONTH_OF_YEAR));
@@ -775,6 +818,9 @@ function test_MonthDay() {
     expectType<number>(md.get(IsoFields.QUARTER_OF_YEAR));
     expectType<boolean>(md.isSupported(ChronoField.MONTH_OF_YEAR));
     expectType<ValueRange>(md.range(ChronoField.MONTH_OF_YEAR));
+
+    expectType<string>(md.toString());
+    expectType<string>(md.toJSON());
 
     expectType<MonthDay | null>(md.query(MonthDay.FROM));
     expectType<LocalDate | null>(md.query(TemporalQueries.localDate()));
@@ -911,6 +957,39 @@ function test_TemporalField() {
     expectType<ValueRange>(field.rangeRefinedBy(LocalDate.now()));
     expectType<boolean>(field.isSupportedBy(LocalDate.now()));
     expectType<LocalDate>(field.adjustInto(LocalDate.now(), 1));
+}
+
+function test_ResolverStyle() {
+    const rs = ResolverStyle.STRICT;
+
+    rs.equals(ResolverStyle.LENIENT);
+    
+    expectType<string>(rs.toString());
+    expectType<string>(rs.toJSON());
+    
+}
+
+function test_SignStyle() {
+    const ss = SignStyle.NEVER;
+
+    ss.equals(SignStyle.NOT_NEGATIVE);
+
+    expectType<string>(ss.toString());
+    expectType<string>(ss.toJSON());
+    
+}
+
+function test_TextStyle() {
+    const ts = TextStyle.FULL;
+
+    ts.equals(TextStyle.NARROW);
+
+    expectType<string>(ts.toString());
+    expectType<string>(ts.toJSON());
+    
+    expectType<TextStyle>(ts.asNormal())
+    expectType<TextStyle>(ts.asStandalone())
+    expectType<boolean>(ts.isStandalone())
 }
 
 /**
