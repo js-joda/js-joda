@@ -99,20 +99,20 @@ describe('org.threeten.bp.TestMonth', () => {
         });
     });
 
-    describe.skip('getDisplayName()', () => {
-        it('test_ggetDisplayName', () => {
+    describe.skip('displayName()', () => {
+        it('test_displayName', () => {
             //eslint-disable-next-line no-undef
-            expect(Month.JANUARY.getDisplayName(TextStyle.SHORT, Locale.US)).to.eql('Jan');
+            expect(Month.JANUARY.displayName(TextStyle.SHORT, Locale.US)).to.eql('Jan');
         });
-        it('test_getDisplayName_nullStyle', () => {
+        it('test_displayName_nullStyle', () => {
             expect(() => {
                 //eslint-disable-next-line no-undef
-                Month.JANUARY.getDisplayName(null, Locale.US);
+                Month.JANUARY.displayName(null, Locale.US);
             }).to.throw(DateTimeException); //NullPointerException in JDK
         });
-        it('test_getDisplayName_nullLocale', () => {
+        it('test_displayName_nullLocale', () => {
             expect(() => {
-                Month.JANUARY.getDisplayName(TextStyle.FULL, null);
+                Month.JANUARY.displayName(TextStyle.FULL, null);
             }).to.throw(DateTimeException); //NullPointerException in JDK
         });
     });
@@ -391,4 +391,3 @@ describe('org.threeten.bp.TestMonth', () => {
     });                                  
 
 });
-

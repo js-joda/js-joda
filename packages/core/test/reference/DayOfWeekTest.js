@@ -94,23 +94,23 @@ describe('org.threeten.bp.TestDayOfWeek', () => {
     
     });
     
-    describe.skip('getDisplayName()', function () {
+    describe.skip('displayName()', function () {
         // TODO: skipped because it needs locale support
-        it('test_getDisplayName', () => {
+        it('test_displayName', () => {
             // eslint-disable-next-line no-undef
-            assertEquals(DayOfWeek.MONDAY.getDisplayName(TextStyle.SHORT, Locale.US), 'Mon');
+            assertEquals(DayOfWeek.MONDAY.displayName(TextStyle.SHORT, Locale.US), 'Mon');
         });
         
-        it('test_getDisplayName_nullStyle', () => {
+        it('test_displayName_nullStyle', () => {
             expect(() => {
                 // eslint-disable-next-line no-undef
-                DayOfWeek.MONDAY.getDisplayName(null, Locale.US);
+                DayOfWeek.MONDAY.displayName(null, Locale.US);
             }).to.throw(NullPointerException);
         });
         
-        it('test_getDisplayName_nullLocale', () => {
+        it('test_displayName_nullLocale', () => {
             expect(() => {
-                DayOfWeek.MONDAY.getDisplayName(TextStyle.FULL, null);
+                DayOfWeek.MONDAY.displayName(TextStyle.FULL, null);
             }).to.throw(NullPointerException);
         });
     });

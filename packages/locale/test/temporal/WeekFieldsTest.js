@@ -97,9 +97,9 @@ describe('@js-joda/locale WeekFields', () => {
             }, false);
         });
 
-        it('getDisplayName', () => {
+        it('displayName', () => {
             dataProviderTest(data, (field, baseUnit, rangeUnit, range, isDateBased, isTimeBased, displayName) => {
-                assertEquals(field.getDisplayName(Locale.US), displayName);
+                assertEquals(field.displayName(Locale.US), displayName);
             }, false);
         });
 

@@ -37,6 +37,8 @@ import {
     NullPointerException,
     DateTimeException,
     UnsupportedTemporalTypeException,
+    TemporalField,
+    ValueRange
 } from '../../'
 
 // used below
@@ -830,6 +832,19 @@ function test_exceptions() {
     const e2 = new DateTimeParseException('message', 'text', 0, e1);
     new DateTimeException();
     new DateTimeParseException();
+}
+
+function test_TemporalField() {
+    const field: TemporalField = IsoFields.DAY_OF_QUARTER;
+
+    expectType<TemporalUnit>(field.baseUnit());
+    expectType<number>(field.getFrom(LocalTime.now()));
+    expectType<boolean>(field.isDateBased());
+    expectType<boolean>(field.isTimeBased());
+    expectType<ValueRange>(field.range());
+    expectType<ValueRange>(field.rangeRefinedBy(LocalDate.now()));
+    expectType<boolean>(field.isSupportedBy(LocalDate.now()));
+    expectType<LocalDate>(field.adjustInto(LocalDate.now(), 1));
 }
 
 /**
