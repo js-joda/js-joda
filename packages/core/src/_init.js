@@ -12,6 +12,8 @@ import {_init as LocalTimeInit} from './LocalTime';
 import {_init as LocalDateTimeInit} from './LocalDateTime';
 import {_init as MonthInit} from './Month';
 import {_init as MonthDayInit} from './MonthDay';
+import {_init as OffsetDateTimeInit} from './OffsetDateTime';
+import {_init as OffsetTimeInit} from './OffsetTime';
 import {_init as PeriodInit} from './Period';
 import {_init as YearInit} from './Year';
 import {_init as YearConstantsInit} from './YearConstants';
@@ -59,6 +61,8 @@ function init() {
     IsoChronologyInit();
     DateTimeFormatterInit();
     DateTimeFormatterBuilderInit();
+    OffsetDateTimeInit();
+    OffsetTimeInit();
 }
 
 init();

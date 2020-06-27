@@ -18,11 +18,14 @@ import {Duration} from '../../src/Duration';
 import {Instant} from '../../src/Instant';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {MathUtil} from '../../src/MathUtil';
+import {OffsetDateTime} from '../../src/OffsetDateTime';
 import {ZoneOffset} from '../../src/ZoneOffset';
+import {ZonedDateTime} from '../../src/ZonedDateTime';
 
 import {ChronoField} from '../../src/temporal/ChronoField';
 import {ChronoUnit} from '../../src/temporal/ChronoUnit';
 import {TemporalQueries} from '../../src/temporal/TemporalQueries';
+import {CurrentStandardZoneEuropeParis} from '../zone/CurrentStandardZone';
 
 const MIN_SECOND = Instant.MIN.epochSecond();
 const MAX_SECOND = Instant.MAX.epochSecond();
@@ -30,6 +33,8 @@ const MAX_SECOND = Instant.MAX.epochSecond();
 describe('org.threeten.bp.TestInstant', () => {
 
     const TEST_12345_123456789 = Instant.ofEpochSecond(12345, 123456789);
+    const OFFSET_PTWO = ZoneOffset.ofHours(2);
+    const ZONE_PARIS = new CurrentStandardZoneEuropeParis();
 
     function check(instant, epochSecs, nos) {
         expect(instant.epochSecond()).to.equal(epochSecs);
@@ -318,9 +323,9 @@ describe('org.threeten.bp.TestInstant', () => {
                 [Instant.ofEpochSecond(10), Instant.MAX, Instant.ofEpochSecond(10), null],
 
                 [Instant.ofEpochSecond(10, 200), LocalDateTime.of(1970, 1, 1, 0, 0, 20).toInstant(ZoneOffset.UTC), Instant.ofEpochSecond(10, 200), null],
-                //[Instant.ofEpochSecond(10, 200), OffsetDateTime.of(1970, 1, 1, 0, 0, 20, 10, ZoneOffset.UTC), OffsetDateTime.of(1970, 1, 1, 0, 0, 10, 200, ZoneOffset.UTC), null],
-                //[Instant.ofEpochSecond(10, 200), OffsetDateTime.of(1970, 1, 1, 0, 0, 20, 10, OFFSET_PTWO), OffsetDateTime.of(1970, 1, 1, 2, 0, 10, 200, OFFSET_PTWO), null],
-                //[Instant.ofEpochSecond(10, 200), ZonedDateTime.of(1970, 1, 1, 0, 0, 20, 10, ZONE_PARIS), ZonedDateTime.of(1970, 1, 1, 1, 0, 10, 200, ZONE_PARIS), null],
+                [Instant.ofEpochSecond(10, 200), OffsetDateTime.of(1970, 1, 1, 0, 0, 20, 10, ZoneOffset.UTC), OffsetDateTime.of(1970, 1, 1, 0, 0, 10, 200, ZoneOffset.UTC), null],
+                [Instant.ofEpochSecond(10, 200), OffsetDateTime.of(1970, 1, 1, 0, 0, 20, 10, OFFSET_PTWO), OffsetDateTime.of(1970, 1, 1, 2, 0, 10, 200, OFFSET_PTWO), null],
+                [Instant.ofEpochSecond(10, 200), ZonedDateTime.of(1970, 1, 1, 0, 0, 20, 10, ZONE_PARIS), ZonedDateTime.of(1970, 1, 1, 1, 0, 10, 200, ZONE_PARIS), null],
 
                 [Instant.ofEpochSecond(10, 200), LocalDateTime.of(1970, 1, 1, 0, 0, 20), null, DateTimeException],
                 [Instant.ofEpochSecond(10, 200), null, null, NullPointerException]
