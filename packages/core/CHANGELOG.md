@@ -1,7 +1,36 @@
 Changelog
 =========
 
-### next
+### 3.0.0 (upcoming)
+
+This is a major release because of these following minor/ breaking cleanups:
+
+* Renamed method getDisplayName to displayName for
+   * WeekFields 
+   * DayOfWeek
+   * Month
+   * IsoFields
+* Removed duplicate function YearMonth.with(number, number)
+   * YearMonth.with(year, month), use YearMonth.of() instead
+   * YearMonth.withYearMonth(year, month), use YearMonth.of() instead
+
+All updates:
+
+ * Duration#(minus|plus) should accept TemporalUnit, not just ChronoUnit #417 by exoego
+ * TS types refactor part 1 #415 by InExtremaRes
+ * Remove YearMonth#with that takes (number, number) #412 by InExtremaRes
+ * Fixes and cleanups to TemporalFields and TemporalUnits #408 by InExtremaRes
+ * Switch to travis-ci.com #409 by pithu
+ * Error base name changed to "JsJodaException" and exceptions exposed in TS #407 by InExtremaRes
+ * Some fixes to TS declarations #404 by InExtremaRes
+ * remove android saucelabs test setup #403 by pithu
+ * Fix TS declarations of some TemporalAdjuster implementations (like DayOfWeak) #402 by InExtremaRes
+ * Fixed types of DateTimeFormatterBuilder.prototype.toFormatter to allow zero arguments  #388 by InExtremaRes
+ * Add missing types for Clock.offset() #387 by InExtremaRes  
+ * Added missing nanoAdjustment to Duration.ofSeconds static method #383 by jseter
+ * changed bitwise or to logical or #379 by bowersj 
+ * Add Typescript for IsoChronology.INSTANCE #373 by cranberyxl 
+ * Remove `withTemporalAdjuster` and others non-public methods from TS declaration #363 by InExtremaRes
 
 ### 2.0.0
 
