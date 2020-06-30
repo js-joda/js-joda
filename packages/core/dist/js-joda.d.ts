@@ -118,7 +118,7 @@ export class Duration extends TemporalAmount {
     isNegative(): boolean;
     isZero(): boolean;
     minus(duration: Duration): Duration;
-    minus(amount: number, unit: ChronoUnit): Duration;
+    minus(amount: number, unit: TemporalUnit): Duration;
     // TODO: Internal. Remove in next major version.
     minusAmountUnit(amountToSubtract: number, unit: TemporalUnit): Duration;
     minusDays(daysToSubtract: number): Duration;
@@ -133,7 +133,7 @@ export class Duration extends TemporalAmount {
     nano(): number;
     negated(): Duration;
     plus(duration: Duration): Duration;
-    plus(amount: number, unit: ChronoUnit): Duration;
+    plus(amount: number, unit: TemporalUnit): Duration;
     // TODO: Internal. Remove in next major version.
     plusAmountUnit(amountToAdd: number, unit: TemporalUnit): Duration;
     plusDays(daysToAdd: number): Duration;

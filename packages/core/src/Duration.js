@@ -720,7 +720,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * Otherwise {@link Duration.minusAmountUnit} is executed.
      *
      * @param {!(Duration|number)} durationOrNumber
-     * @param {?ChronoUnit} unit
+     * @param {?TemporalUnit} unit
      * @return {Duration}
      */
     minus(durationOrNumber, unit) {
