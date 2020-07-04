@@ -3,9 +3,6 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-import cldrData from 'cldr-data';
-import Cldr from 'cldrjs';
-
 import {
     _ as jodaInternal,
     TextStyle,
@@ -14,6 +11,8 @@ import {
     ZoneOffset,
     ZoneRulesProvider,
 } from '@js-joda/core';
+
+import {getOrCreateCldrInstance, getOrCreateMapZones, loadCldrData} from './CldrCache';
 
 const { assert: { requireNonNull, requireInstance } } = jodaInternal;
 
@@ -25,6 +24,18 @@ const LENGTH_COMPARATOR = (str1, str2) => {
     }
     return cmp;
 };
+
+/**
+ * Cache for `_cachedResolveZoneIdText`.
+ * 
+ * Its basic structure is:
+ * Map { cldrInstance: zoneId }
+ * Obj { zoneId: style}
+ * Obj { style: type}
+ * Obj { type: resolvedZoneIdText}
+ */
+const resolveZoneIdTextCache = new Map();
+
 /**
  * Prints or parses a zone ID.
  */
@@ -35,11 +46,34 @@ export default class CldrZoneTextPrinterParser {
         requireNonNull(textStyle, 'textStyle');
         requireInstance(textStyle, TextStyle, 'textStyle');
         this._textStyle = textStyle;
-        Cldr.load(cldrData('supplemental/likelySubtags.json'));
-        Cldr.load(cldrData('supplemental/metaZones.json'));
+        loadCldrData('supplemental/likelySubtags.json');
+        loadCldrData('supplemental/metaZones.json');
     }
 
-    _resolveZoneIdText(cldr, zoneId, style, type, mapZones) {
+    _cachedResolveZoneIdText(cldr, zoneId, style, type) {
+        if (!resolveZoneIdTextCache.has(cldr)) {
+            resolveZoneIdTextCache.set(cldr, {});
+        }
+
+        const zoneIdToStyle = resolveZoneIdTextCache.get(cldr);
+        if (zoneIdToStyle[zoneId] == null) {
+            zoneIdToStyle[zoneId] = {};
+        }
+
+        const styleToType = zoneIdToStyle[zoneId];
+        if (styleToType[style] == null) {
+            styleToType[style] = {};
+        }
+
+        const typeToResolvedZoneIdText = styleToType[style];
+        if (typeToResolvedZoneIdText[type] == null) {
+            typeToResolvedZoneIdText[type] = this._resolveZoneIdText(cldr, zoneId, style, type);
+        }
+
+        return typeToResolvedZoneIdText[type];
+    }
+
+    _resolveZoneIdText(cldr, zoneId, style, type) {
         const zoneData = cldr.main(`dates/timeZoneNames/zone/${zoneId}/${style}/${type}`);
         if (zoneData) {
             return zoneData;
@@ -61,6 +95,7 @@ export default class CldrZoneTextPrinterParser {
                     if (metaZoneData) {
                         return metaZoneData;
                     } else {
+                        const mapZones = getOrCreateMapZones(cldr);
                         // find preferred Zone and resolve again
                         const preferredZone = mapZones[metazone][cldr.attributes.territory];
                         if (preferredZone) {
@@ -105,20 +140,10 @@ export default class CldrZoneTextPrinterParser {
         }*/
         const tzType = hasDaylightSupport ? (daylight ? 'daylight' : 'standard') : 'generic';
         const tzstyle = (this._textStyle.asNormal() === TextStyle.FULL ? 'long' : 'short');
-        Cldr.load(cldrData(`main/${context.locale().localeString()}/timeZoneNames.json`));
-        const cldr = new Cldr(context.locale().localeString());
-        const mapZones = {};
+        loadCldrData(`main/${context.locale().localeString()}/timeZoneNames.json`);
+        const cldr = getOrCreateCldrInstance(context.locale().localeString());
 
-        cldr.get('supplemental/metaZones/metazones').forEach((metaZone) => {
-            if (metaZone.mapZone) {
-                if (!mapZones[metaZone.mapZone._other]) {
-                    mapZones[metaZone.mapZone._other] = {};
-                }
-                mapZones[metaZone.mapZone._other][metaZone.mapZone._territory] = metaZone.mapZone._type;
-            }
-        });
-
-        const text = this._resolveZoneIdText(cldr, zone.id(), tzstyle, tzType, mapZones);
+        const text = this._cachedResolveZoneIdText(cldr, zone.id(), tzstyle, tzType);
         if (text) {
             buf.append(text);
         } else {
@@ -130,31 +155,22 @@ export default class CldrZoneTextPrinterParser {
 
     parse(context, text, position) {
         const ids = {};
-        Cldr.load(cldrData(`main/${context.locale().localeString()}/timeZoneNames.json`));
-        const cldr = new Cldr(context.locale().localeString());
-        const mapZones = {};
+        loadCldrData(`main/${context.locale().localeString()}/timeZoneNames.json`);
+        const cldr = getOrCreateCldrInstance(context.locale().localeString());
 
-        cldr.get('supplemental/metaZones/metazones').forEach((metaZone) => {
-            if (metaZone.mapZone) {
-                if (!mapZones[metaZone.mapZone._other]) {
-                    mapZones[metaZone.mapZone._other] = {};
-                }
-                mapZones[metaZone.mapZone._other][metaZone.mapZone._territory] = metaZone.mapZone._type;
-            }
-        });
         for (const id of ZoneRulesProvider.getAvailableZoneIds()) {
             ids[id] = id;
             const tzstyle = (this._textStyle.asNormal() === TextStyle.FULL ? 'long' : 'short');
 
-            const genericText = this._resolveZoneIdText(cldr, id, tzstyle, 'generic', mapZones);
+            const genericText = this._cachedResolveZoneIdText(cldr, id, tzstyle, 'generic');
             if (genericText) {
                 ids[genericText] = id;
             }
-            const standardText = this._resolveZoneIdText(cldr, id, tzstyle, 'standard', mapZones);
+            const standardText = this._cachedResolveZoneIdText(cldr, id, tzstyle, 'standard');
             if (standardText) {
                 ids[standardText] = id;
             }
-            const daylightText = this._resolveZoneIdText(cldr, id, tzstyle, 'daylight', mapZones);
+            const daylightText = this._cachedResolveZoneIdText(cldr, id, tzstyle, 'daylight');
             if (daylightText) {
                 ids[daylightText] = id;
             }
