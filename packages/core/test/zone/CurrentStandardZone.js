@@ -282,3 +282,28 @@ export class CurrentStandardZoneAsiaGaza extends CurrentStandardZone{
 
 }
 
+
+export class CurrentStandardZoneEuropeParis extends CurrentStandardZone{
+    constructor(){
+        super(
+            'Pseudo/Europe/Paris',
+            ZoneOffset.ofHours(1),
+            ZoneOffset.ofHours(2),
+            (year) => {
+                return this.lastSundayOfMonthAtStartOfDay(year, Month.MARCH).plusHours(2);
+            },
+            (year) => {
+                return this.lastSundayOfMonthAtStartOfDay(year, Month.OCTOBER).plusHours(3);
+            }
+        );
+    }
+
+    lastSundayOfMonthAtStartOfDay(year, month){
+        return LocalDate
+            .of(year, 1, 1)
+            .withMonth(month)
+            .with(TemporalAdjusters.lastInMonth(DayOfWeek.SUNDAY))
+            .atStartOfDay();
+    }
+
+}
