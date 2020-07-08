@@ -7,6 +7,7 @@
     "url": "https://github.com/js-joda/js-joda.git"
   },
   "main": "dist/js-joda-locale.js",
+  "typings": "dist/js-joda-locale.d.ts",
   "scripts": {
     "version": "npm run build-all",
     "test": "./node_modules/.bin/mocha --timeout 5000 --require @babel/register ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js test/pluginTest_mochaOnly.js",
