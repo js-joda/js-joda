@@ -20,6 +20,8 @@ import {DateTimeFormatter} from './format/DateTimeFormatter';
 
 import {Clock} from './Clock';
 import {DayOfWeek} from './DayOfWeek';
+import {OffsetDateTime} from './OffsetDateTime';
+import {OffsetTime} from './OffsetTime';
 import {Month} from './Month';
 import {Period} from './Period';
 import {YearConstants} from './YearConstants';
@@ -1316,7 +1318,7 @@ export class LocalDate extends ChronoLocalDate{
      * if called with 1 argument {@link LocalDate.atTime1} is called
      * otherwise {@link LocalDate.atTime4}
      *
-     * @return {LocalDateTime} the local date-time formed from this date and the specified params
+     * @return {LocalDateTime|OffsetDateTime} the local date-time formed from this date and the specified params
      */
     atTime(){
         if(arguments.length===1){
@@ -1333,10 +1335,18 @@ export class LocalDate extends ChronoLocalDate{
      * All possible combinations of date and time are valid.
      *
      * @param {LocalTime} time - the time to combine with, not null
-     * @return {LocalDateTime} the local date-time formed from this date and the specified time, not null
+     * @return {LocalDateTime|OffsetDateTime} the date-time formed from this date and the specified time, not null
      */
     atTime1(time) {
-        return LocalDateTime.of(this, time);
+        requireNonNull(time, 'time');
+        if (time instanceof LocalTime) {
+            return LocalDateTime.of(this, time);
+        } else if (time instanceof OffsetTime) {
+            return this._atTimeOffsetTime(time);
+        } else {
+            throw new IllegalArgumentException('time must be an instance of LocalTime or OffsetTime' +
+                (time && time.constructor && time.constructor.name ? ', but is ' + time.constructor.name : ''));
+        }
     }
 
     /**
@@ -1367,11 +1377,9 @@ export class LocalDate extends ChronoLocalDate{
      * @param {OffsetTime} time - the time to combine with, not null
      * @return {OffsetDateTime} the offset date-time formed from this date and the specified time, not null
      */
-    /*
     _atTimeOffsetTime(time) { // atTime(offsetTime)
-        return OffsetDateTime.of(LocalDateTime.of(this, time.toLocalTime()), time.getOffset());
+        return OffsetDateTime.of(LocalDateTime.of(this, time.toLocalTime()), time.offset());
     }
-*/
 
     /**
      * Combines this date with the time of midnight to create a {@link LocalDateTime}

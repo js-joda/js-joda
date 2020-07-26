@@ -3,6 +3,10 @@ Changelog
 
 ### next
 
+### 2.3.0
+
+ * updated to iana tzdb 2020a 
+
 ### 2.2.1
 
  * Update js-joda peer dependency

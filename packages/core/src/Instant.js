@@ -11,6 +11,7 @@ import {Clock} from './Clock';
 import {LocalTime} from './LocalTime';
 import {ZonedDateTime} from './ZonedDateTime';
 import {MathUtil} from './MathUtil';
+import {OffsetDateTime} from './OffsetDateTime';
 
 import {Temporal} from './temporal/Temporal';
 import {ChronoField} from './temporal/ChronoField';
@@ -863,9 +864,9 @@ export class Instant extends Temporal {
      * @return {OffsetDateTime} the offset date-time formed from this instant and the specified offset, not null
      * @throws DateTimeException if the result exceeds the supported range
      */
-    //atOffset(offset) {
-    //    return OffsetDateTime.ofInstant(this, offset);
-    //}
+    atOffset(offset) {
+        return OffsetDateTime.ofInstant(this, offset);
+    }
 
     /**
      * Combines this instant with a time-zone to create a {@link ZonedDateTime}.

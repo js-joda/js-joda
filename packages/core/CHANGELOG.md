@@ -1,7 +1,10 @@
 Changelog
 =========
 
-### 3.0.0 (upcoming)
+### next (upcoming)
+
+
+### 3.0.0
 
 This is a major release because of these following minor/ breaking cleanups:
 
@@ -16,6 +19,9 @@ This is a major release because of these following minor/ breaking cleanups:
 
 All updates:
 
+ * Implement OffsetTime and OffsetDateTim #416 by exoego
+ * TS types reorganized and documentation added #418 by InExtremaRes
+ * Fix isBrowserTest check #419 by pithu
  * Duration#(minus|plus) should accept TemporalUnit, not just ChronoUnit #417 by exoego
  * TS types refactor part 1 #415 by InExtremaRes
  * Remove YearMonth#with that takes (number, number) #412 by InExtremaRes

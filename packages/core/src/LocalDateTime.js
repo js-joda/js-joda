@@ -12,6 +12,7 @@ import {Clock} from './Clock';
 import {Instant} from './Instant';
 import {LocalDate} from './LocalDate';
 import {LocalTime} from './LocalTime';
+import {OffsetDateTime} from './OffsetDateTime';
 import {ZonedDateTime} from './ZonedDateTime';
 import {ZoneId} from './ZoneId';
 import {ZoneOffset} from './ZoneOffset';
@@ -1414,11 +1415,9 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @param {ZoneOffset} offset  the offset to combine with, not null
      * @return {OffsetDateTime} the offset date-time formed from this date-time and the specified offset, not null
      */
-    /*
     atOffset(offset) {
         return OffsetDateTime.of(this, offset);
     }
-*/
 
     /**
      * Combines this date-time with a time-zone to create a {@link ZonedDateTime}.

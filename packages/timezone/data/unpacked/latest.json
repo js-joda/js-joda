@@ -1,5 +1,5 @@
 {
-  "version": "2019c",
+  "version": "2020a",
   "zones": [
     {
       "name": "Africa/Abidjan",
@@ -15,7 +15,19 @@
         16.1333,
         0
       ],
-      "population": 4800000
+      "population": 4800000,
+      "countries": [
+        "CI",
+        "BF",
+        "GM",
+        "GN",
+        "ML",
+        "MR",
+        "SH",
+        "SL",
+        "SN",
+        "TG"
+      ]
     },
     {
       "name": "Africa/Accra",
@@ -169,7 +181,10 @@
         -20,
         0
       ],
-      "population": 4145000
+      "population": 4145000,
+      "countries": [
+        "GH"
+      ]
     },
     {
       "name": "Africa/Addis_Ababa",
@@ -194,7 +209,10 @@
         -165,
         -180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "ET"
+      ]
     },
     {
       "name": "Africa/Algiers",
@@ -306,7 +324,10 @@
         0,
         -60
       ],
-      "population": 2590000
+      "population": 2590000,
+      "countries": [
+        "DZ"
+      ]
     },
     {
       "name": "Africa/Asmara",
@@ -331,7 +352,10 @@
         -165,
         -180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "ER"
+      ]
     },
     {
       "name": "Africa/Asmera",
@@ -356,7 +380,8 @@
         -165,
         -180
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Africa/Bamako",
@@ -372,7 +397,10 @@
         16.1333,
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "ML"
+      ]
     },
     {
       "name": "Africa/Bangui",
@@ -388,7 +416,10 @@
         -13.6,
         -60
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "CF"
+      ]
     },
     {
       "name": "Africa/Banjul",
@@ -404,7 +435,10 @@
         16.1333,
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "GM"
+      ]
     },
     {
       "name": "Africa/Bissau",
@@ -423,7 +457,10 @@
         60,
         0
       ],
-      "population": 387909
+      "population": 387909,
+      "countries": [
+        "GW"
+      ]
     },
     {
       "name": "Africa/Blantyre",
@@ -439,7 +476,10 @@
         -130.3333,
         -120
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "MW"
+      ]
     },
     {
       "name": "Africa/Brazzaville",
@@ -455,7 +495,10 @@
         -13.6,
         -60
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "CG"
+      ]
     },
     {
       "name": "Africa/Bujumbura",
@@ -471,7 +514,10 @@
         -130.3333,
         -120
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "BI"
+      ]
     },
     {
       "name": "Africa/Cairo",
@@ -862,7 +908,10 @@
         -180,
         -120
       ],
-      "population": 15071000
+      "population": 15071000,
+      "countries": [
+        "EG"
+      ]
     },
     {
       "name": "Africa/Casablanca",
@@ -1021,7 +1070,7 @@
         1557021600000,
         1560045600000,
         1587261600000,
-        1590285600000,
+        1590890400000,
         1618106400000,
         1621130400000,
         1648346400000,
@@ -1037,7 +1086,7 @@
         1801965600000,
         1804989600000,
         1832205600000,
-        1835229600000,
+        1835834400000,
         1863050400000,
         1866074400000,
         1893290400000,
@@ -1053,7 +1102,7 @@
         2046304800000,
         2049933600000,
         2077149600000,
-        2080173600000,
+        2080778400000,
         2107994400000,
         2111018400000,
         2138234400000,
@@ -1157,7 +1206,10 @@
         0,
         -60
       ],
-      "population": 3211000
+      "population": 3211000,
+      "countries": [
+        "MA"
+      ]
     },
     {
       "name": "Africa/Ceuta",
@@ -1545,7 +1597,10 @@
         -120,
         -60
       ],
-      "population": 84963
+      "population": 84963,
+      "countries": [
+        "ES"
+      ]
     },
     {
       "name": "Africa/Conakry",
@@ -1561,7 +1616,10 @@
         16.1333,
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "GN"
+      ]
     },
     {
       "name": "Africa/Dakar",
@@ -1577,7 +1635,10 @@
         16.1333,
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "SN"
+      ]
     },
     {
       "name": "Africa/Dar_es_Salaam",
@@ -1602,7 +1663,10 @@
         -165,
         -180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "TZ"
+      ]
     },
     {
       "name": "Africa/Djibouti",
@@ -1627,7 +1691,10 @@
         -165,
         -180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "DJ"
+      ]
     },
     {
       "name": "Africa/Douala",
@@ -1643,7 +1710,10 @@
         -13.6,
         -60
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "CM"
+      ]
     },
     {
       "name": "Africa/El_Aaiun",
@@ -1780,7 +1850,7 @@
         1557021600000,
         1560045600000,
         1587261600000,
-        1590285600000,
+        1590890400000,
         1618106400000,
         1621130400000,
         1648346400000,
@@ -1796,7 +1866,7 @@
         1801965600000,
         1804989600000,
         1832205600000,
-        1835229600000,
+        1835834400000,
         1863050400000,
         1866074400000,
         1893290400000,
@@ -1812,7 +1882,7 @@
         2046304800000,
         2049933600000,
         2077149600000,
-        2080173600000,
+        2080778400000,
         2107994400000,
         2111018400000,
         2138234400000,
@@ -1905,7 +1975,10 @@
         0,
         -60
       ],
-      "population": 196331
+      "population": 196331,
+      "countries": [
+        "EH"
+      ]
     },
     {
       "name": "Africa/Freetown",
@@ -1921,7 +1994,10 @@
         16.1333,
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "SL"
+      ]
     },
     {
       "name": "Africa/Gaborone",
@@ -1937,7 +2013,10 @@
         -130.3333,
         -120
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "BW"
+      ]
     },
     {
       "name": "Africa/Harare",
@@ -1953,7 +2032,10 @@
         -130.3333,
         -120
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "ZW"
+      ]
     },
     {
       "name": "Africa/Johannesburg",
@@ -1981,7 +2063,12 @@
         -180,
         -120
       ],
-      "population": 8432000
+      "population": 8432000,
+      "countries": [
+        "ZA",
+        "LS",
+        "SZ"
+      ]
     },
     {
       "name": "Africa/Juba",
@@ -2096,7 +2183,10 @@
         -120,
         -180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "SS"
+      ]
     },
     {
       "name": "Africa/Kampala",
@@ -2121,7 +2211,10 @@
         -165,
         -180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "UG"
+      ]
     },
     {
       "name": "Africa/Khartoum",
@@ -2239,7 +2332,10 @@
         -180,
         -120
       ],
-      "population": 5125000
+      "population": 5125000,
+      "countries": [
+        "SD"
+      ]
     },
     {
       "name": "Africa/Kigali",
@@ -2255,7 +2351,10 @@
         -130.3333,
         -120
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "RW"
+      ]
     },
     {
       "name": "Africa/Kinshasa",
@@ -2271,7 +2370,10 @@
         -13.6,
         -60
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "CD"
+      ]
     },
     {
       "name": "Africa/Lagos",
@@ -2287,7 +2389,19 @@
         -13.6,
         -60
       ],
-      "population": 17060307
+      "population": 17060307,
+      "countries": [
+        "NG",
+        "AO",
+        "BJ",
+        "CD",
+        "CF",
+        "CG",
+        "CM",
+        "GA",
+        "GQ",
+        "NE"
+      ]
     },
     {
       "name": "Africa/Libreville",
@@ -2303,7 +2417,10 @@
         -13.6,
         -60
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "GA"
+      ]
     },
     {
       "name": "Africa/Lome",
@@ -2319,7 +2436,10 @@
         16.1333,
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "TG"
+      ]
     },
     {
       "name": "Africa/Luanda",
@@ -2335,7 +2455,10 @@
         -13.6,
         -60
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "AO"
+      ]
     },
     {
       "name": "Africa/Lubumbashi",
@@ -2351,7 +2474,10 @@
         -130.3333,
         -120
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "CD"
+      ]
     },
     {
       "name": "Africa/Lusaka",
@@ -2367,7 +2493,10 @@
         -130.3333,
         -120
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "ZM"
+      ]
     },
     {
       "name": "Africa/Malabo",
@@ -2383,7 +2512,10 @@
         -13.6,
         -60
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "GQ"
+      ]
     },
     {
       "name": "Africa/Maputo",
@@ -2399,7 +2531,17 @@
         -130.3333,
         -120
       ],
-      "population": 2615000
+      "population": 2615000,
+      "countries": [
+        "MZ",
+        "BI",
+        "BW",
+        "CD",
+        "MW",
+        "RW",
+        "ZM",
+        "ZW"
+      ]
     },
     {
       "name": "Africa/Maseru",
@@ -2427,7 +2569,10 @@
         -180,
         -120
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "LS"
+      ]
     },
     {
       "name": "Africa/Mbabane",
@@ -2455,7 +2600,10 @@
         -180,
         -120
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "SZ"
+      ]
     },
     {
       "name": "Africa/Mogadishu",
@@ -2480,7 +2628,10 @@
         -165,
         -180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "SO"
+      ]
     },
     {
       "name": "Africa/Monrovia",
@@ -2499,7 +2650,10 @@
         44.5,
         0
       ],
-      "population": 1100000
+      "population": 1100000,
+      "countries": [
+        "LR"
+      ]
     },
     {
       "name": "Africa/Nairobi",
@@ -2524,7 +2678,19 @@
         -165,
         -180
       ],
-      "population": 4738000
+      "population": 4738000,
+      "countries": [
+        "KE",
+        "DJ",
+        "ER",
+        "ET",
+        "KM",
+        "MG",
+        "SO",
+        "TZ",
+        "UG",
+        "YT"
+      ]
     },
     {
       "name": "Africa/Ndjamena",
@@ -2546,7 +2712,10 @@
         -120,
         -60
       ],
-      "population": 1260000
+      "population": 1260000,
+      "countries": [
+        "TD"
+      ]
     },
     {
       "name": "Africa/Niamey",
@@ -2562,7 +2731,10 @@
         -13.6,
         -60
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "NE"
+      ]
     },
     {
       "name": "Africa/Nouakchott",
@@ -2578,7 +2750,10 @@
         16.1333,
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "MR"
+      ]
     },
     {
       "name": "Africa/Ouagadougou",
@@ -2594,7 +2769,10 @@
         16.1333,
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "BF"
+      ]
     },
     {
       "name": "Africa/Porto-Novo",
@@ -2610,7 +2788,10 @@
         -13.6,
         -60
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "BJ"
+      ]
     },
     {
       "name": "Africa/Sao_Tome",
@@ -2632,7 +2813,10 @@
         -60,
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "ST"
+      ]
     },
     {
       "name": "Africa/Timbuktu",
@@ -2648,7 +2832,8 @@
         16.1333,
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Africa/Tripoli",
@@ -2757,7 +2942,10 @@
         -120,
         -120
       ],
-      "population": 1110000
+      "population": 1110000,
+      "countries": [
+        "LY"
+      ]
     },
     {
       "name": "Africa/Tunis",
@@ -2869,7 +3057,10 @@
         -120,
         -60
       ],
-      "population": 1990000
+      "population": 1990000,
+      "countries": [
+        "TN"
+      ]
     },
     {
       "name": "Africa/Windhoek",
@@ -3038,7 +3229,10 @@
         -60,
         -120
       ],
-      "population": 322500
+      "population": 322500,
+      "countries": [
+        "NA"
+      ]
     },
     {
       "name": "America/Adak",
@@ -3480,7 +3674,10 @@
         540,
         600
       ],
-      "population": 326
+      "population": 326,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/Anchorage",
@@ -3922,7 +4119,10 @@
         480,
         540
       ],
-      "population": 300950
+      "population": 300950,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/Anguilla",
@@ -3938,7 +4138,10 @@
         246.0667,
         240
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "AI"
+      ]
     },
     {
       "name": "America/Antigua",
@@ -3954,7 +4157,10 @@
         246.0667,
         240
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "AG"
+      ]
     },
     {
       "name": "America/Araguaina",
@@ -4120,7 +4326,10 @@
         120,
         180
       ],
-      "population": 142925
+      "population": 142925,
+      "countries": [
+        "BR"
+      ]
     },
     {
       "name": "America/Argentina/Buenos_Aires",
@@ -4307,7 +4516,10 @@
         120,
         180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "AR"
+      ]
     },
     {
       "name": "America/Argentina/Catamarca",
@@ -4494,7 +4706,10 @@
         120,
         180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "AR"
+      ]
     },
     {
       "name": "America/Argentina/ComodRivadavia",
@@ -4681,7 +4896,8 @@
         120,
         180
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "America/Argentina/Cordoba",
@@ -4868,7 +5084,10 @@
         120,
         180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "AR"
+      ]
     },
     {
       "name": "America/Argentina/Jujuy",
@@ -5049,7 +5268,10 @@
         120,
         180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "AR"
+      ]
     },
     {
       "name": "America/Argentina/La_Rioja",
@@ -5239,7 +5461,10 @@
         120,
         180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "AR"
+      ]
     },
     {
       "name": "America/Argentina/Mendoza",
@@ -5426,7 +5651,10 @@
         120,
         180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "AR"
+      ]
     },
     {
       "name": "America/Argentina/Rio_Gallegos",
@@ -5613,7 +5841,10 @@
         120,
         180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "AR"
+      ]
     },
     {
       "name": "America/Argentina/Salta",
@@ -5794,7 +6025,10 @@
         120,
         180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "AR"
+      ]
     },
     {
       "name": "America/Argentina/San_Juan",
@@ -5984,7 +6218,10 @@
         120,
         180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "AR"
+      ]
     },
     {
       "name": "America/Argentina/San_Luis",
@@ -6174,7 +6411,10 @@
         240,
         180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "AR"
+      ]
     },
     {
       "name": "America/Argentina/Tucuman",
@@ -6367,7 +6607,10 @@
         120,
         180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "AR"
+      ]
     },
     {
       "name": "America/Argentina/Ushuaia",
@@ -6554,7 +6797,10 @@
         120,
         180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "AR"
+      ]
     },
     {
       "name": "America/Aruba",
@@ -6573,7 +6819,10 @@
         270,
         240
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "AW"
+      ]
     },
     {
       "name": "America/Asuncion",
@@ -6970,7 +7219,10 @@
         240,
         180
       ],
-      "population": 2827000
+      "population": 2827000,
+      "countries": [
+        "PY"
+      ]
     },
     {
       "name": "America/Atikokan",
@@ -7001,7 +7253,10 @@
         300,
         300
       ],
-      "population": 2787
+      "population": 2787,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Atka",
@@ -7443,7 +7698,8 @@
         540,
         600
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "America/Bahia_Banderas",
@@ -7735,7 +7991,10 @@
         300,
         360
       ],
-      "population": 83739
+      "population": 83739,
+      "countries": [
+        "MX"
+      ]
     },
     {
       "name": "America/Bahia",
@@ -7931,7 +8190,10 @@
         120,
         180
       ],
-      "population": 2675000
+      "population": 2675000,
+      "countries": [
+        "BR"
+      ]
     },
     {
       "name": "America/Barbados",
@@ -7974,7 +8236,10 @@
         180,
         240
       ],
-      "population": 284644
+      "population": 284644,
+      "countries": [
+        "BB"
+      ]
     },
     {
       "name": "America/Belem",
@@ -8074,7 +8339,10 @@
         120,
         180
       ],
-      "population": 1979000
+      "population": 1979000,
+      "countries": [
+        "BR"
+      ]
     },
     {
       "name": "America/Belize",
@@ -8252,7 +8520,10 @@
         300,
         360
       ],
-      "population": 57169
+      "population": 57169,
+      "countries": [
+        "BZ"
+      ]
     },
     {
       "name": "America/Blanc-Sablon",
@@ -8280,7 +8551,10 @@
         180,
         240
       ],
-      "population": 1118
+      "population": 1118,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Boa_Vista",
@@ -8392,7 +8666,10 @@
         180,
         240
       ],
-      "population": 6233
+      "population": 6233,
+      "countries": [
+        "BR"
+      ]
     },
     {
       "name": "America/Bogota",
@@ -8414,7 +8691,10 @@
         240,
         300
       ],
-      "population": 8991000
+      "population": 8991000,
+      "countries": [
+        "CO"
+      ]
     },
     {
       "name": "America/Boise",
@@ -8877,7 +9157,10 @@
         360,
         420
       ],
-      "population": 214237
+      "population": 214237,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/Buenos_Aires",
@@ -9064,7 +9347,8 @@
         120,
         180
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "America/Cambridge_Bay",
@@ -9446,7 +9730,10 @@
         360,
         420
       ],
-      "population": 1477
+      "population": 1477,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Campo_Grande",
@@ -9732,7 +10019,10 @@
         180,
         240
       ],
-      "population": 774202
+      "population": 774202,
+      "countries": [
+        "BR"
+      ]
     },
     {
       "name": "America/Cancun",
@@ -9871,7 +10161,10 @@
         360,
         300
       ],
-      "population": 628306
+      "population": 628306,
+      "countries": [
+        "MX"
+      ]
     },
     {
       "name": "America/Caracas",
@@ -9896,7 +10189,10 @@
         270,
         240
       ],
-      "population": 2861000
+      "population": 2861000,
+      "countries": [
+        "VE"
+      ]
     },
     {
       "name": "America/Catamarca",
@@ -10083,7 +10379,8 @@
         120,
         180
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "America/Cayenne",
@@ -10102,7 +10399,10 @@
         240,
         180
       ],
-      "population": 58004
+      "population": 58004,
+      "countries": [
+        "GF"
+      ]
     },
     {
       "name": "America/Cayman",
@@ -10118,7 +10418,10 @@
         319.6,
         300
       ],
-      "population": 58435
+      "population": 58435,
+      "countries": [
+        "KY"
+      ]
     },
     {
       "name": "America/Chicago",
@@ -10836,7 +11139,10 @@
         300,
         360
       ],
-      "population": 9156000
+      "population": 9156000,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/Chihuahua",
@@ -11119,7 +11425,10 @@
         360,
         420
       ],
-      "population": 809232
+      "population": 809232,
+      "countries": [
+        "MX"
+      ]
     },
     {
       "name": "America/Coral_Harbour",
@@ -11150,7 +11459,8 @@
         300,
         300
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "America/Cordoba",
@@ -11337,7 +11647,8 @@
         120,
         180
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "America/Costa_Rica",
@@ -11377,7 +11688,10 @@
         300,
         360
       ],
-      "population": 1170000
+      "population": 1170000,
+      "countries": [
+        "CR"
+      ]
     },
     {
       "name": "America/Creston",
@@ -11396,7 +11710,10 @@
         480,
         420
       ],
-      "population": 5306
+      "population": 5306,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Cuiaba",
@@ -11676,7 +11993,10 @@
         180,
         240
       ],
-      "population": 542861
+      "population": 542861,
+      "countries": [
+        "BR"
+      ]
     },
     {
       "name": "America/Curacao",
@@ -11695,7 +12015,13 @@
         270,
         240
       ],
-      "population": 153500
+      "population": 153500,
+      "countries": [
+        "CW",
+        "AW",
+        "BQ",
+        "SX"
+      ]
     },
     {
       "name": "America/Danmarkshavn",
@@ -11810,7 +12136,10 @@
         180,
         0
       ],
-      "population": 8
+      "population": 8,
+      "countries": [
+        "GL"
+      ]
     },
     {
       "name": "America/Dawson_Creek",
@@ -11994,7 +12323,10 @@
         420,
         420
       ],
-      "population": 11583
+      "population": 11583,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Dawson",
@@ -12090,42 +12422,7 @@
         "PST",
         "PDT",
         "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST"
+        "MST"
       ],
       "untils": [
         -1632056400000,
@@ -12219,41 +12516,6 @@
         1552212000000,
         1572771600000,
         1583661600000,
-        1604221200000,
-        1615716000000,
-        1636275600000,
-        1647165600000,
-        1667725200000,
-        1678615200000,
-        1699174800000,
-        1710064800000,
-        1730624400000,
-        1741514400000,
-        1762074000000,
-        1772964000000,
-        1793523600000,
-        1805018400000,
-        1825578000000,
-        1836468000000,
-        1857027600000,
-        1867917600000,
-        1888477200000,
-        1899367200000,
-        1919926800000,
-        1930816800000,
-        1951376400000,
-        1962871200000,
-        1983430800000,
-        1994320800000,
-        2014880400000,
-        2025770400000,
-        2046330000000,
-        2057220000000,
-        2077779600000,
-        2088669600000,
-        2109229200000,
-        2120119200000,
-        2140678800000,
         null
       ],
       "offsets": [
@@ -12348,44 +12610,12 @@
         480,
         420,
         480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480
+        420
       ],
-      "population": 1319
+      "population": 1319,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Denver",
@@ -12869,7 +13099,10 @@
         360,
         420
       ],
-      "population": 2559000
+      "population": 2559000,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/Detroit",
@@ -13305,7 +13538,10 @@
         240,
         300
       ],
-      "population": 3672000
+      "population": 3672000,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/Dominica",
@@ -13321,7 +13557,10 @@
         246.0667,
         240
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "DM"
+      ]
     },
     {
       "name": "America/Edmonton",
@@ -13784,7 +14023,10 @@
         360,
         420
       ],
-      "population": 1040000
+      "population": 1040000,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Eirunepe",
@@ -13896,7 +14138,10 @@
         240,
         300
       ],
-      "population": 30901
+      "population": 30901,
+      "countries": [
+        "BR"
+      ]
     },
     {
       "name": "America/El_Salvador",
@@ -13924,7 +14169,10 @@
         300,
         360
       ],
-      "population": 1100000
+      "population": 1100000,
+      "countries": [
+        "SV"
+      ]
     },
     {
       "name": "America/Ensenada",
@@ -14384,7 +14632,8 @@
         420,
         480
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "America/Fort_Nelson",
@@ -14823,7 +15072,10 @@
         480,
         420
       ],
-      "population": 3902
+      "population": 3902,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Fort_Wayne",
@@ -15130,7 +15382,8 @@
         240,
         300
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "America/Fortaleza",
@@ -15260,7 +15513,10 @@
         120,
         180
       ],
-      "population": 3401000
+      "population": 3401000,
+      "countries": [
+        "BR"
+      ]
     },
     {
       "name": "America/Glace_Bay",
@@ -15693,7 +15949,10 @@
         180,
         240
       ],
-      "population": 19076
+      "population": 19076,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Godthab",
@@ -16057,7 +16316,8 @@
         120,
         180
       ],
-      "population": 16583
+      "population": 16583,
+      "countries": []
     },
     {
       "name": "America/Goose_Bay",
@@ -16679,7 +16939,10 @@
         180,
         240
       ],
-      "population": 7552
+      "population": 7552,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Grand_Turk",
@@ -17037,7 +17300,10 @@
         240,
         300
       ],
-      "population": 3720
+      "population": 3720,
+      "countries": [
+        "TC"
+      ]
     },
     {
       "name": "America/Grenada",
@@ -17053,7 +17319,10 @@
         246.0667,
         240
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "GD"
+      ]
     },
     {
       "name": "America/Guadeloupe",
@@ -17069,7 +17338,10 @@
         246.0667,
         240
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "GP"
+      ]
     },
     {
       "name": "America/Guatemala",
@@ -17109,7 +17381,10 @@
         300,
         360
       ],
-      "population": 1289000
+      "population": 1289000,
+      "countries": [
+        "GT"
+      ]
     },
     {
       "name": "America/Guayaquil",
@@ -17131,7 +17406,10 @@
         240,
         300
       ],
-      "population": 2700000
+      "population": 2700000,
+      "countries": [
+        "EC"
+      ]
     },
     {
       "name": "America/Guyana",
@@ -17153,7 +17431,10 @@
         180,
         240
       ],
-      "population": 799613
+      "population": 799613,
+      "countries": [
+        "GY"
+      ]
     },
     {
       "name": "America/Halifax",
@@ -17850,7 +18131,10 @@
         180,
         240
       ],
-      "population": 390095
+      "population": 390095,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Havana",
@@ -18328,7 +18612,10 @@
         240,
         300
       ],
-      "population": 2130000
+      "population": 2130000,
+      "countries": [
+        "CU"
+      ]
     },
     {
       "name": "America/Hermosillo",
@@ -18386,7 +18673,10 @@
         360,
         420
       ],
-      "population": 641791
+      "population": 641791,
+      "countries": [
+        "MX"
+      ]
     },
     {
       "name": "America/Indiana/Indianapolis",
@@ -18693,7 +18983,10 @@
         240,
         300
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/Indiana/Knox",
@@ -19165,7 +19458,10 @@
         300,
         360
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/Indiana/Marengo",
@@ -19484,7 +19780,10 @@
         240,
         300
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/Indiana/Petersburg",
@@ -19842,7 +20141,10 @@
         240,
         300
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/Indiana/Tell_City",
@@ -20146,7 +20448,10 @@
         300,
         360
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/Indiana/Vevay",
@@ -20399,7 +20704,10 @@
         240,
         300
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/Indiana/Vincennes",
@@ -20712,7 +21020,10 @@
         240,
         300
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/Indiana/Winamac",
@@ -21043,7 +21354,10 @@
         240,
         300
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/Indianapolis",
@@ -21350,7 +21664,8 @@
         240,
         300
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "America/Inuvik",
@@ -21723,7 +22038,10 @@
         360,
         420
       ],
-      "population": 3463
+      "population": 3463,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Iqaluit",
@@ -22099,7 +22417,10 @@
         240,
         300
       ],
-      "population": 6699
+      "population": 6699,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Jamaica",
@@ -22175,7 +22496,10 @@
         240,
         300
       ],
-      "population": 937700
+      "population": 937700,
+      "countries": [
+        "JM"
+      ]
     },
     {
       "name": "America/Jujuy",
@@ -22356,7 +22680,8 @@
         120,
         180
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "America/Juneau",
@@ -22795,7 +23120,10 @@
         480,
         540
       ],
-      "population": 32660
+      "population": 32660,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/Kentucky/Louisville",
@@ -23339,7 +23667,10 @@
         240,
         300
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/Kentucky/Monticello",
@@ -23793,7 +24124,10 @@
         240,
         300
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/Knox_IN",
@@ -24265,7 +24599,8 @@
         300,
         360
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "America/Kralendijk",
@@ -24284,7 +24619,10 @@
         270,
         240
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "BQ"
+      ]
     },
     {
       "name": "America/La_Paz",
@@ -24303,7 +24641,10 @@
         212.6,
         240
       ],
-      "population": 1907000
+      "population": 1907000,
+      "countries": [
+        "BO"
+      ]
     },
     {
       "name": "America/Lima",
@@ -24361,7 +24702,10 @@
         240,
         300
       ],
-      "population": 10750000
+      "population": 10750000,
+      "countries": [
+        "PE"
+      ]
     },
     {
       "name": "America/Los_Angeles",
@@ -24929,7 +25273,10 @@
         420,
         480
       ],
-      "population": 15058000
+      "population": 15058000,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/Louisville",
@@ -25473,7 +25820,8 @@
         240,
         300
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "America/Lower_Princes",
@@ -25492,7 +25840,10 @@
         270,
         240
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "SX"
+      ]
     },
     {
       "name": "America/Maceio",
@@ -25628,7 +25979,10 @@
         120,
         180
       ],
-      "population": 932078
+      "population": 932078,
+      "countries": [
+        "BR"
+      ]
     },
     {
       "name": "America/Managua",
@@ -25686,7 +26040,10 @@
         300,
         360
       ],
-      "population": 2223000
+      "population": 2223000,
+      "countries": [
+        "NI"
+      ]
     },
     {
       "name": "America/Manaus",
@@ -25792,7 +26149,10 @@
         180,
         240
       ],
-      "population": 1893000
+      "population": 1893000,
+      "countries": [
+        "BR"
+      ]
     },
     {
       "name": "America/Marigot",
@@ -25808,7 +26168,10 @@
         246.0667,
         240
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "MF"
+      ]
     },
     {
       "name": "America/Martinique",
@@ -25830,7 +26193,10 @@
         180,
         240
       ],
-      "population": 386486
+      "population": 386486,
+      "countries": [
+        "MQ"
+      ]
     },
     {
       "name": "America/Matamoros",
@@ -26104,7 +26470,10 @@
         300,
         360
       ],
-      "population": 449815
+      "population": 449815,
+      "countries": [
+        "MX"
+      ]
     },
     {
       "name": "America/Mazatlan",
@@ -26396,7 +26765,10 @@
         360,
         420
       ],
-      "population": 438434
+      "population": 438434,
+      "countries": [
+        "MX"
+      ]
     },
     {
       "name": "America/Mendoza",
@@ -26583,7 +26955,8 @@
         120,
         180
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "America/Menominee",
@@ -27022,7 +27395,10 @@
         300,
         360
       ],
-      "population": 8494
+      "population": 8494,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/Merida",
@@ -27296,7 +27672,10 @@
         300,
         360
       ],
-      "population": 1111000
+      "population": 1111000,
+      "countries": [
+        "MX"
+      ]
     },
     {
       "name": "America/Metlakatla",
@@ -27546,7 +27925,10 @@
         480,
         540
       ],
-      "population": 1375
+      "population": 1375,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/Mexico_City",
@@ -27853,7 +28235,10 @@
         300,
         360
       ],
-      "population": 20063000
+      "population": 20063000,
+      "countries": [
+        "MX"
+      ]
     },
     {
       "name": "America/Miquelon",
@@ -28178,7 +28563,10 @@
         120,
         180
       ],
-      "population": 6080
+      "population": 6080,
+      "countries": [
+        "PM"
+      ]
     },
     {
       "name": "America/Moncton",
@@ -28809,7 +29197,10 @@
         180,
         240
       ],
-      "population": 64128
+      "population": 64128,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Monterrey",
@@ -29083,7 +29474,10 @@
         300,
         360
       ],
-      "population": 4083000
+      "population": 4083000,
+      "countries": [
+        "MX"
+      ]
     },
     {
       "name": "America/Montevideo",
@@ -29354,7 +29748,10 @@
         120,
         180
       ],
-      "population": 1700000
+      "population": 1700000,
+      "countries": [
+        "UY"
+      ]
     },
     {
       "name": "America/Montreal",
@@ -30063,7 +30460,8 @@
         240,
         300
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "America/Montserrat",
@@ -30079,7 +30477,10 @@
         246.0667,
         240
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "MS"
+      ]
     },
     {
       "name": "America/Nassau",
@@ -30539,7 +30940,10 @@
         240,
         300
       ],
-      "population": 244400
+      "population": 244400,
+      "countries": [
+        "BS"
+      ]
     },
     {
       "name": "America/New_York",
@@ -31257,7 +31661,10 @@
         240,
         300
       ],
-      "population": 20630000
+      "population": 20630000,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/Nipigon",
@@ -31672,7 +32079,10 @@
         240,
         300
       ],
-      "population": 1631
+      "population": 1631,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Nome",
@@ -32114,7 +32524,10 @@
         480,
         540
       ],
-      "population": 3797
+      "population": 3797,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/Noronha",
@@ -32244,7 +32657,10 @@
         60,
         120
       ],
-      "population": 3012
+      "population": 3012,
+      "countries": [
+        "BR"
+      ]
     },
     {
       "name": "America/North_Dakota/Beulah",
@@ -32704,7 +33120,10 @@
         300,
         360
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/North_Dakota/Center",
@@ -33164,7 +33583,10 @@
         300,
         360
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/North_Dakota/New_Salem",
@@ -33624,7 +34046,377 @@
         300,
         360
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "US"
+      ]
+    },
+    {
+      "name": "America/Nuuk",
+      "abbrs": [
+        "LMT",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03",
+        "-02",
+        "-03"
+      ],
+      "untils": [
+        -1686083584000,
+        323845200000,
+        338950800000,
+        354675600000,
+        370400400000,
+        386125200000,
+        401850000000,
+        417574800000,
+        433299600000,
+        449024400000,
+        465354000000,
+        481078800000,
+        496803600000,
+        512528400000,
+        528253200000,
+        543978000000,
+        559702800000,
+        575427600000,
+        591152400000,
+        606877200000,
+        622602000000,
+        638326800000,
+        654656400000,
+        670381200000,
+        686106000000,
+        701830800000,
+        717555600000,
+        733280400000,
+        749005200000,
+        764730000000,
+        780454800000,
+        796179600000,
+        811904400000,
+        828234000000,
+        846378000000,
+        859683600000,
+        877827600000,
+        891133200000,
+        909277200000,
+        922582800000,
+        941331600000,
+        954032400000,
+        972781200000,
+        985482000000,
+        1004230800000,
+        1017536400000,
+        1035680400000,
+        1048986000000,
+        1067130000000,
+        1080435600000,
+        1099184400000,
+        1111885200000,
+        1130634000000,
+        1143334800000,
+        1162083600000,
+        1174784400000,
+        1193533200000,
+        1206838800000,
+        1224982800000,
+        1238288400000,
+        1256432400000,
+        1269738000000,
+        1288486800000,
+        1301187600000,
+        1319936400000,
+        1332637200000,
+        1351386000000,
+        1364691600000,
+        1382835600000,
+        1396141200000,
+        1414285200000,
+        1427590800000,
+        1445734800000,
+        1459040400000,
+        1477789200000,
+        1490490000000,
+        1509238800000,
+        1521939600000,
+        1540688400000,
+        1553994000000,
+        1572138000000,
+        1585443600000,
+        1603587600000,
+        1616893200000,
+        1635642000000,
+        1648342800000,
+        1667091600000,
+        1679792400000,
+        1698541200000,
+        1711846800000,
+        1729990800000,
+        1743296400000,
+        1761440400000,
+        1774746000000,
+        1792890000000,
+        1806195600000,
+        1824944400000,
+        1837645200000,
+        1856394000000,
+        1869094800000,
+        1887843600000,
+        1901149200000,
+        1919293200000,
+        1932598800000,
+        1950742800000,
+        1964048400000,
+        1982797200000,
+        1995498000000,
+        2014246800000,
+        2026947600000,
+        2045696400000,
+        2058397200000,
+        2077146000000,
+        2090451600000,
+        2108595600000,
+        2121901200000,
+        2140045200000,
+        null
+      ],
+      "offsets": [
+        206.9333,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180,
+        120,
+        180
+      ],
+      "population": 0,
+      "countries": [
+        "GL"
+      ]
     },
     {
       "name": "America/Ojinaga",
@@ -33907,7 +34699,10 @@
         360,
         420
       ],
-      "population": 22744
+      "population": 22744,
+      "countries": [
+        "MX"
+      ]
     },
     {
       "name": "America/Panama",
@@ -33923,7 +34718,11 @@
         319.6,
         300
       ],
-      "population": 1498000
+      "population": 1498000,
+      "countries": [
+        "PA",
+        "KY"
+      ]
     },
     {
       "name": "America/Pangnirtung",
@@ -34302,7 +35101,10 @@
         240,
         300
       ],
-      "population": 1425
+      "population": 1425,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Paramaribo",
@@ -34327,7 +35129,10 @@
         210,
         180
       ],
-      "population": 243556
+      "population": 243556,
+      "countries": [
+        "SR"
+      ]
     },
     {
       "name": "America/Phoenix",
@@ -34370,7 +35175,10 @@
         360,
         420
       ],
-      "population": 4194000
+      "population": 4194000,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/Port_of_Spain",
@@ -34386,7 +35194,23 @@
         246.0667,
         240
       ],
-      "population": 43396
+      "population": 43396,
+      "countries": [
+        "TT",
+        "AG",
+        "AI",
+        "BL",
+        "DM",
+        "GD",
+        "GP",
+        "KN",
+        "LC",
+        "MF",
+        "MS",
+        "VC",
+        "VG",
+        "VI"
+      ]
     },
     {
       "name": "America/Port-au-Prince",
@@ -34654,7 +35478,10 @@
         240,
         300
       ],
-      "population": 2332000
+      "population": 2332000,
+      "countries": [
+        "HT"
+      ]
     },
     {
       "name": "America/Porto_Acre",
@@ -34760,7 +35587,8 @@
         240,
         300
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "America/Porto_Velho",
@@ -34860,7 +35688,10 @@
         180,
         240
       ],
-      "population": 369259
+      "population": 369259,
+      "countries": [
+        "BR"
+      ]
     },
     {
       "name": "America/Puerto_Rico",
@@ -34882,7 +35713,10 @@
         180,
         240
       ],
-      "population": 2350126
+      "population": 2350126,
+      "countries": [
+        "PR"
+      ]
     },
     {
       "name": "America/Punta_Arenas",
@@ -35237,7 +36071,10 @@
         240,
         180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "CL"
+      ]
     },
     {
       "name": "America/Rainy_River",
@@ -35652,7 +36489,10 @@
         300,
         360
       ],
-      "population": 842
+      "population": 842,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Rankin_Inlet",
@@ -36022,7 +36862,10 @@
         300,
         360
       ],
-      "population": 2577
+      "population": 2577,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Recife",
@@ -36152,7 +36995,10 @@
         120,
         180
       ],
-      "population": 3347000
+      "population": 3347000,
+      "countries": [
+        "BR"
+      ]
     },
     {
       "name": "America/Regina",
@@ -36324,7 +37170,10 @@
         420,
         360
       ],
-      "population": 193100
+      "population": 193100,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Resolute",
@@ -36694,7 +37543,10 @@
         300,
         360
       ],
-      "population": 229
+      "population": 229,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Rio_Branco",
@@ -36800,7 +37652,10 @@
         240,
         300
       ],
-      "population": 308545
+      "population": 308545,
+      "countries": [
+        "BR"
+      ]
     },
     {
       "name": "America/Rosario",
@@ -36987,7 +37842,8 @@
         120,
         180
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "America/Santa_Isabel",
@@ -37447,7 +38303,8 @@
         420,
         480
       ],
-      "population": 23389
+      "population": 23389,
+      "countries": []
     },
     {
       "name": "America/Santarem",
@@ -37550,7 +38407,10 @@
         240,
         180
       ],
-      "population": 205711
+      "population": 205711,
+      "countries": [
+        "BR"
+      ]
     },
     {
       "name": "America/Santiago",
@@ -38037,7 +38897,10 @@
         240,
         180
       ],
-      "population": 6225000
+      "population": 6225000,
+      "countries": [
+        "CL"
+      ]
     },
     {
       "name": "America/Santo_Domingo",
@@ -38098,7 +38961,10 @@
         300,
         240
       ],
-      "population": 2925000
+      "population": 2925000,
+      "countries": [
+        "DO"
+      ]
     },
     {
       "name": "America/Sao_Paulo",
@@ -38384,7 +39250,10 @@
         120,
         180
       ],
-      "population": 20365000
+      "population": 20365000,
+      "countries": [
+        "BR"
+      ]
     },
     {
       "name": "America/Scoresbysund",
@@ -38748,7 +39617,10 @@
         0,
         60
       ],
-      "population": 452
+      "population": 452,
+      "countries": [
+        "GL"
+      ]
     },
     {
       "name": "America/Shiprock",
@@ -39232,7 +40104,8 @@
         360,
         420
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "America/Sitka",
@@ -39671,7 +40544,10 @@
         480,
         540
       ],
-      "population": 9020
+      "population": 9020,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/St_Barthelemy",
@@ -39687,7 +40563,10 @@
         246.0667,
         240
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "BL"
+      ]
     },
     {
       "name": "America/St_Johns",
@@ -40414,7 +41293,10 @@
         150,
         210
       ],
-      "population": 106172
+      "population": 106172,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/St_Kitts",
@@ -40430,7 +41312,10 @@
         246.0667,
         240
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "KN"
+      ]
     },
     {
       "name": "America/St_Lucia",
@@ -40446,7 +41331,10 @@
         246.0667,
         240
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "LC"
+      ]
     },
     {
       "name": "America/St_Thomas",
@@ -40462,7 +41350,10 @@
         246.0667,
         240
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "VI"
+      ]
     },
     {
       "name": "America/St_Vincent",
@@ -40478,7 +41369,10 @@
         246.0667,
         240
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "VC"
+      ]
     },
     {
       "name": "America/Swift_Current",
@@ -40560,7 +41454,10 @@
         420,
         360
       ],
-      "population": 15503
+      "population": 15503,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Tegucigalpa",
@@ -40594,7 +41491,10 @@
         300,
         360
       ],
-      "population": 1120000
+      "population": 1120000,
+      "countries": [
+        "HN"
+      ]
     },
     {
       "name": "America/Thule",
@@ -40892,7 +41792,10 @@
         180,
         240
       ],
-      "population": 656
+      "population": 656,
+      "countries": [
+        "GL"
+      ]
     },
     {
       "name": "America/Thunder_Bay",
@@ -41319,7 +42222,10 @@
         240,
         300
       ],
-      "population": 109140
+      "population": 109140,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Tijuana",
@@ -41779,7 +42685,10 @@
         420,
         480
       ],
-      "population": 1968000
+      "population": 1968000,
+      "countries": [
+        "MX"
+      ]
     },
     {
       "name": "America/Toronto",
@@ -42488,7 +43397,10 @@
         240,
         300
       ],
-      "population": 6456000
+      "population": 6456000,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Tortola",
@@ -42504,7 +43416,10 @@
         246.0667,
         240
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "VG"
+      ]
     },
     {
       "name": "America/Vancouver",
@@ -43084,7 +43999,10 @@
         420,
         480
       ],
-      "population": 2313000
+      "population": 2313000,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Virgin",
@@ -43100,7 +44018,8 @@
         246.0667,
         240
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "America/Whitehorse",
@@ -43196,42 +44115,7 @@
         "PST",
         "PDT",
         "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST"
+        "MST"
       ],
       "untils": [
         -1632056400000,
@@ -43325,41 +44209,6 @@
         1552212000000,
         1572771600000,
         1583661600000,
-        1604221200000,
-        1615716000000,
-        1636275600000,
-        1647165600000,
-        1667725200000,
-        1678615200000,
-        1699174800000,
-        1710064800000,
-        1730624400000,
-        1741514400000,
-        1762074000000,
-        1772964000000,
-        1793523600000,
-        1805018400000,
-        1825578000000,
-        1836468000000,
-        1857027600000,
-        1867917600000,
-        1888477200000,
-        1899367200000,
-        1919926800000,
-        1930816800000,
-        1951376400000,
-        1962871200000,
-        1983430800000,
-        1994320800000,
-        2014880400000,
-        2025770400000,
-        2046330000000,
-        2057220000000,
-        2077779600000,
-        2088669600000,
-        2109229200000,
-        2120119200000,
-        2140678800000,
         null
       ],
       "offsets": [
@@ -43454,44 +44303,12 @@
         480,
         420,
         480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480
+        420
       ],
-      "population": 23276
+      "population": 23276,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Winnipeg",
@@ -44059,7 +44876,10 @@
         300,
         360
       ],
-      "population": 663615
+      "population": 663615,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "America/Yakutat",
@@ -44498,7 +45318,10 @@
         480,
         540
       ],
-      "population": 642
+      "population": 642,
+      "countries": [
+        "US"
+      ]
     },
     {
       "name": "America/Yellowknife",
@@ -44877,7 +45700,10 @@
         360,
         420
       ],
-      "population": 19234
+      "population": 19234,
+      "countries": [
+        "CA"
+      ]
     },
     {
       "name": "Antarctica/Casey",
@@ -44911,7 +45737,10 @@
         -660,
         -480
       ],
-      "population": 10
+      "population": 10,
+      "countries": [
+        "AQ"
+      ]
     },
     {
       "name": "Antarctica/Davis",
@@ -44945,7 +45774,10 @@
         -300,
         -420
       ],
-      "population": 70
+      "population": 70,
+      "countries": [
+        "AQ"
+      ]
     },
     {
       "name": "Antarctica/DumontDUrville",
@@ -44967,7 +45799,10 @@
         0,
         -600
       ],
-      "population": 80
+      "population": 80,
+      "countries": [
+        "AQ"
+      ]
     },
     {
       "name": "Antarctica/Macquarie",
@@ -45250,7 +46085,10 @@
         -660,
         -660
       ],
-      "population": 1
+      "population": 1,
+      "countries": [
+        "AU"
+      ]
     },
     {
       "name": "Antarctica/Mawson",
@@ -45269,7 +46107,10 @@
         -360,
         -300
       ],
-      "population": 60
+      "population": 60,
+      "countries": [
+        "AQ"
+      ]
     },
     {
       "name": "Antarctica/McMurdo",
@@ -45744,7 +46585,10 @@
         -720,
         -780
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "AQ"
+      ]
     },
     {
       "name": "Antarctica/Palmer",
@@ -46000,7 +46844,10 @@
         240,
         180
       ],
-      "population": 40
+      "population": 40,
+      "countries": [
+        "AQ"
+      ]
     },
     {
       "name": "Antarctica/Rothera",
@@ -46016,7 +46863,10 @@
         0,
         180
       ],
-      "population": 130
+      "population": 130,
+      "countries": [
+        "AQ"
+      ]
     },
     {
       "name": "Antarctica/South_Pole",
@@ -46491,7 +47341,8 @@
         -720,
         -780
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Antarctica/Syowa",
@@ -46507,7 +47358,10 @@
         0,
         -180
       ],
-      "population": 20
+      "population": 20,
+      "countries": [
+        "AQ"
+      ]
     },
     {
       "name": "Antarctica/Troll",
@@ -46721,7 +47575,10 @@
         -120,
         0
       ],
-      "population": 40
+      "population": 40,
+      "countries": [
+        "AQ"
+      ]
     },
     {
       "name": "Antarctica/Vostok",
@@ -46737,7 +47594,10 @@
         0,
         -360
       ],
-      "population": 25
+      "population": 25,
+      "countries": [
+        "AQ"
+      ]
     },
     {
       "name": "Arctic/Longyearbyen",
@@ -47170,7 +48030,10 @@
         -120,
         -60
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "SJ"
+      ]
     },
     {
       "name": "Asia/Aden",
@@ -47186,7 +48049,10 @@
         -186.8667,
         -180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "YE"
+      ]
     },
     {
       "name": "Asia/Almaty",
@@ -47349,7 +48215,10 @@
         -420,
         -360
       ],
-      "population": 1500000
+      "population": 1500000,
+      "countries": [
+        "KZ"
+      ]
     },
     {
       "name": "Asia/Amman",
@@ -47713,7 +48582,10 @@
         -180,
         -120
       ],
-      "population": 2468000
+      "population": 2468000,
+      "countries": [
+        "JO"
+      ]
     },
     {
       "name": "Asia/Anadyr",
@@ -47909,7 +48781,10 @@
         -660,
         -720
       ],
-      "population": 13045
+      "population": 13045,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Asia/Aqtau",
@@ -48063,7 +48938,10 @@
         -240,
         -300
       ],
-      "population": 152227
+      "population": 152227,
+      "countries": [
+        "KZ"
+      ]
     },
     {
       "name": "Asia/Aqtobe",
@@ -48220,7 +49098,10 @@
         -360,
         -300
       ],
-      "population": 273599
+      "population": 273599,
+      "countries": [
+        "KZ"
+      ]
     },
     {
       "name": "Asia/Ashgabat",
@@ -48305,7 +49186,10 @@
         -240,
         -300
       ],
-      "population": 407000
+      "population": 407000,
+      "countries": [
+        "TM"
+      ]
     },
     {
       "name": "Asia/Ashkhabad",
@@ -48390,7 +49274,8 @@
         -240,
         -300
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Asia/Atyrau",
@@ -48541,7 +49426,10 @@
         -240,
         -300
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "KZ"
+      ]
     },
     {
       "name": "Asia/Baghdad",
@@ -48713,7 +49601,10 @@
         -240,
         -180
       ],
-      "population": 6625000
+      "population": 6625000,
+      "countries": [
+        "IQ"
+      ]
     },
     {
       "name": "Asia/Bahrain",
@@ -48732,7 +49623,10 @@
         -240,
         -180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "BH"
+      ]
     },
     {
       "name": "Asia/Baku",
@@ -48937,7 +49831,10 @@
         -300,
         -240
       ],
-      "population": 2661000
+      "population": 2661000,
+      "countries": [
+        "AZ"
+      ]
     },
     {
       "name": "Asia/Bangkok",
@@ -48953,7 +49850,13 @@
         -402.0667,
         -420
       ],
-      "population": 14998000
+      "population": 14998000,
+      "countries": [
+        "TH",
+        "KH",
+        "LA",
+        "VN"
+      ]
     },
     {
       "name": "Asia/Barnaul",
@@ -49164,7 +50067,10 @@
         -360,
         -420
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Asia/Beirut",
@@ -49597,7 +50503,10 @@
         -180,
         -120
       ],
-      "population": 2200000
+      "population": 2200000,
+      "countries": [
+        "LB"
+      ]
     },
     {
       "name": "Asia/Bishkek",
@@ -49760,7 +50669,10 @@
         -300,
         -360
       ],
-      "population": 870663
+      "population": 870663,
+      "countries": [
+        "KG"
+      ]
     },
     {
       "name": "Asia/Brunei",
@@ -49779,7 +50691,10 @@
         -450,
         -480
       ],
-      "population": 417784
+      "population": 417784,
+      "countries": [
+        "BN"
+      ]
     },
     {
       "name": "Asia/Calcutta",
@@ -49807,7 +50722,8 @@
         -390,
         -330
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Asia/Chita",
@@ -50015,7 +50931,10 @@
         -480,
         -540
       ],
-      "population": 329391
+      "population": 329391,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Asia/Choibalsan",
@@ -50181,7 +51100,10 @@
         -540,
         -480
       ],
-      "population": 38150
+      "population": 38150,
+      "countries": [
+        "MN"
+      ]
     },
     {
       "name": "Asia/Chongqing",
@@ -50212,9 +51134,13 @@
         "CDT",
         "CST",
         "CDT",
+        "CST",
+        "CDT",
         "CST"
       ],
       "untils": [
+        -1600675200000,
+        -1585904400000,
         -933667200000,
         -922093200000,
         -908870400000,
@@ -50270,9 +51196,12 @@
         -540,
         -480,
         -540,
+        -480,
+        -540,
         -480
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Asia/Chungking",
@@ -50303,9 +51232,13 @@
         "CDT",
         "CST",
         "CDT",
+        "CST",
+        "CDT",
         "CST"
       ],
       "untils": [
+        -1600675200000,
+        -1585904400000,
         -933667200000,
         -922093200000,
         -908870400000,
@@ -50361,9 +51294,12 @@
         -540,
         -480,
         -540,
+        -480,
+        -540,
         -480
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Asia/Colombo",
@@ -50397,7 +51333,10 @@
         -360,
         -330
       ],
-      "population": 2180000
+      "population": 2180000,
+      "countries": [
+        "LK"
+      ]
     },
     {
       "name": "Asia/Dacca",
@@ -50428,7 +51367,8 @@
         -420,
         -360
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Asia/Damascus",
@@ -50894,7 +51834,10 @@
         -180,
         -120
       ],
-      "population": 2560000
+      "population": 2560000,
+      "countries": [
+        "SY"
+      ]
     },
     {
       "name": "Asia/Dhaka",
@@ -50925,7 +51868,10 @@
         -420,
         -360
       ],
-      "population": 15669000
+      "population": 15669000,
+      "countries": [
+        "BD"
+      ]
     },
     {
       "name": "Asia/Dili",
@@ -50950,7 +51896,10 @@
         -480,
         -540
       ],
-      "population": 193563
+      "population": 193563,
+      "countries": [
+        "TL"
+      ]
     },
     {
       "name": "Asia/Dubai",
@@ -50966,7 +51915,11 @@
         -221.2,
         -240
       ],
-      "population": 3933000
+      "population": 3933000,
+      "countries": [
+        "AE",
+        "OM"
+      ]
     },
     {
       "name": "Asia/Dushanbe",
@@ -51048,7 +52001,10 @@
         -360,
         -300
       ],
-      "population": 756143
+      "population": 756143,
+      "countries": [
+        "TJ"
+      ]
     },
     {
       "name": "Asia/Famagusta",
@@ -51439,7 +52395,10 @@
         -180,
         -120
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "CY"
+      ]
     },
     {
       "name": "Asia/Gaza",
@@ -51893,7 +52852,10 @@
         -180,
         -120
       ],
-      "population": 1816000
+      "population": 1816000,
+      "countries": [
+        "PS"
+      ]
     },
     {
       "name": "Asia/Harbin",
@@ -51924,9 +52886,13 @@
         "CDT",
         "CST",
         "CDT",
+        "CST",
+        "CDT",
         "CST"
       ],
       "untils": [
+        -1600675200000,
+        -1585904400000,
         -933667200000,
         -922093200000,
         -908870400000,
@@ -51982,9 +52948,12 @@
         -540,
         -480,
         -540,
+        -480,
+        -540,
         -480
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Asia/Hebron",
@@ -52444,7 +53413,10 @@
         -180,
         -120
       ],
-      "population": 250000
+      "population": 250000,
+      "countries": [
+        "PS"
+      ]
     },
     {
       "name": "Asia/Ho_Chi_Minh",
@@ -52484,7 +53456,10 @@
         -480,
         -420
       ],
-      "population": 8957000
+      "population": 8957000,
+      "countries": [
+        "VN"
+      ]
     },
     {
       "name": "Asia/Hong_Kong",
@@ -52704,7 +53679,10 @@
         -540,
         -480
       ],
-      "population": 7275000
+      "population": 7275000,
+      "countries": [
+        "HK"
+      ]
     },
     {
       "name": "Asia/Hovd",
@@ -52867,7 +53845,10 @@
         -480,
         -420
       ],
-      "population": 81479
+      "population": 81479,
+      "countries": [
+        "MN"
+      ]
     },
     {
       "name": "Asia/Irkutsk",
@@ -53072,7 +54053,10 @@
         -540,
         -480
       ],
-      "population": 601993
+      "population": 601993,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Asia/Istanbul",
@@ -53427,7 +54411,8 @@
         -180,
         -180
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Asia/Jakarta",
@@ -53461,7 +54446,10 @@
         -450,
         -420
       ],
-      "population": 30539000
+      "population": 30539000,
+      "countries": [
+        "ID"
+      ]
     },
     {
       "name": "Asia/Jayapura",
@@ -53483,7 +54471,10 @@
         -570,
         -540
       ],
-      "population": 256705
+      "population": 256705,
+      "countries": [
+        "ID"
+      ]
     },
     {
       "name": "Asia/Jerusalem",
@@ -53934,7 +54925,10 @@
         -180,
         -120
       ],
-      "population": 809112
+      "population": 809112,
+      "countries": [
+        "IL"
+      ]
     },
     {
       "name": "Asia/Kabul",
@@ -53950,7 +54944,10 @@
         -240,
         -270
       ],
-      "population": 4635000
+      "population": 4635000,
+      "countries": [
+        "AF"
+      ]
     },
     {
       "name": "Asia/Kamchatka",
@@ -54149,7 +55146,10 @@
         -660,
         -720
       ],
-      "population": 179526
+      "population": 179526,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Asia/Karachi",
@@ -54195,7 +55195,10 @@
         -360,
         -300
       ],
-      "population": 23500000
+      "population": 23500000,
+      "countries": [
+        "PK"
+      ]
     },
     {
       "name": "Asia/Kashgar",
@@ -54211,7 +55214,8 @@
         -350.3333,
         -360
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Asia/Kathmandu",
@@ -54230,7 +55234,10 @@
         -330,
         -345
       ],
-      "population": 1180000
+      "population": 1180000,
+      "countries": [
+        "NP"
+      ]
     },
     {
       "name": "Asia/Katmandu",
@@ -54249,7 +55256,8 @@
         -330,
         -345
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Asia/Khandyga",
@@ -54460,7 +55468,10 @@
         -600,
         -540
       ],
-      "population": 6638
+      "population": 6638,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Asia/Kolkata",
@@ -54488,7 +55499,10 @@
         -390,
         -330
       ],
-      "population": 14667000
+      "population": 14667000,
+      "countries": [
+        "IN"
+      ]
     },
     {
       "name": "Asia/Krasnoyarsk",
@@ -54693,7 +55707,10 @@
         -480,
         -420
       ],
-      "population": 1007000
+      "population": 1007000,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Asia/Kuala_Lumpur",
@@ -54724,7 +55741,10 @@
         -450,
         -480
       ],
-      "population": 7088000
+      "population": 7088000,
+      "countries": [
+        "MY"
+      ]
     },
     {
       "name": "Asia/Kuching",
@@ -54791,7 +55811,10 @@
         -540,
         -480
       ],
-      "population": 134317
+      "population": 134317,
+      "countries": [
+        "MY"
+      ]
     },
     {
       "name": "Asia/Kuwait",
@@ -54807,7 +55830,10 @@
         -186.8667,
         -180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "KW"
+      ]
     },
     {
       "name": "Asia/Macao",
@@ -55033,7 +56059,8 @@
         -540,
         -480
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Asia/Macau",
@@ -55259,7 +56286,10 @@
         -540,
         -480
       ],
-      "population": 566375
+      "population": 566375,
+      "countries": [
+        "MO"
+      ]
     },
     {
       "name": "Asia/Magadan",
@@ -55467,7 +56497,10 @@
         -600,
         -660
       ],
-      "population": 95263
+      "population": 95263,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Asia/Makassar",
@@ -55492,7 +56525,10 @@
         -540,
         -480
       ],
-      "population": 1484000
+      "population": 1484000,
+      "countries": [
+        "ID"
+      ]
     },
     {
       "name": "Asia/Manila",
@@ -55529,7 +56565,10 @@
         -540,
         -480
       ],
-      "population": 24123000
+      "population": 24123000,
+      "countries": [
+        "PH"
+      ]
     },
     {
       "name": "Asia/Muscat",
@@ -55545,7 +56584,10 @@
         -221.2,
         -240
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "OM"
+      ]
     },
     {
       "name": "Asia/Nicosia",
@@ -55939,7 +56981,10 @@
         -180,
         -120
       ],
-      "population": 321816
+      "population": 321816,
+      "countries": [
+        "CY"
+      ]
     },
     {
       "name": "Asia/Novokuznetsk",
@@ -56138,7 +57183,10 @@
         -360,
         -420
       ],
-      "population": 549383
+      "population": 549383,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Asia/Novosibirsk",
@@ -56349,7 +57397,10 @@
         -360,
         -420
       ],
-      "population": 1486000
+      "population": 1486000,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Asia/Omsk",
@@ -56554,7 +57605,10 @@
         -420,
         -360
       ],
-      "population": 1154000
+      "population": 1154000,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Asia/Oral",
@@ -56705,7 +57759,10 @@
         -240,
         -300
       ],
-      "population": 271900
+      "population": 271900,
+      "countries": [
+        "KZ"
+      ]
     },
     {
       "name": "Asia/Phnom_Penh",
@@ -56721,7 +57778,10 @@
         -402.0667,
         -420
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "KH"
+      ]
     },
     {
       "name": "Asia/Pontianak",
@@ -56758,7 +57818,10 @@
         -480,
         -420
       ],
-      "population": 234021
+      "population": 234021,
+      "countries": [
+        "ID"
+      ]
     },
     {
       "name": "Asia/Pyongyang",
@@ -56786,7 +57849,10 @@
         -510,
         -540
       ],
-      "population": 2850000
+      "population": 2850000,
+      "countries": [
+        "KP"
+      ]
     },
     {
       "name": "Asia/Qatar",
@@ -56805,7 +57871,11 @@
         -240,
         -180
       ],
-      "population": 956460
+      "population": 956460,
+      "countries": [
+        "QA",
+        "BH"
+      ]
     },
     {
       "name": "Asia/Qostanay",
@@ -56959,7 +58029,10 @@
         -300,
         -360
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "KZ"
+      ]
     },
     {
       "name": "Asia/Qyzylorda",
@@ -57110,7 +58183,10 @@
         -360,
         -300
       ],
-      "population": 727990
+      "population": 727990,
+      "countries": [
+        "KZ"
+      ]
     },
     {
       "name": "Asia/Rangoon",
@@ -57132,7 +58208,8 @@
         -540,
         -390
       ],
-      "population": 4800000
+      "population": 4800000,
+      "countries": []
     },
     {
       "name": "Asia/Riyadh",
@@ -57148,7 +58225,12 @@
         -186.8667,
         -180
       ],
-      "population": 5666000
+      "population": 5666000,
+      "countries": [
+        "SA",
+        "KW",
+        "YE"
+      ]
     },
     {
       "name": "Asia/Saigon",
@@ -57188,7 +58270,8 @@
         -480,
         -420
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Asia/Sakhalin",
@@ -57393,7 +58476,10 @@
         -600,
         -660
       ],
-      "population": 580000
+      "population": 580000,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Asia/Samarkand",
@@ -57472,7 +58558,10 @@
         -360,
         -300
       ],
-      "population": 361339
+      "population": 361339,
+      "countries": [
+        "UZ"
+      ]
     },
     {
       "name": "Asia/Seoul",
@@ -57572,7 +58661,10 @@
         -600,
         -540
       ],
-      "population": 23480000
+      "population": 23480000,
+      "countries": [
+        "KR"
+      ]
     },
     {
       "name": "Asia/Shanghai",
@@ -57603,9 +58695,13 @@
         "CDT",
         "CST",
         "CDT",
+        "CST",
+        "CDT",
         "CST"
       ],
       "untils": [
+        -1600675200000,
+        -1585904400000,
         -933667200000,
         -922093200000,
         -908870400000,
@@ -57661,9 +58757,14 @@
         -540,
         -480,
         -540,
+        -480,
+        -540,
         -480
       ],
-      "population": 23416000
+      "population": 23416000,
+      "countries": [
+        "CN"
+      ]
     },
     {
       "name": "Asia/Singapore",
@@ -57694,7 +58795,10 @@
         -450,
         -480
       ],
-      "population": 5624000
+      "population": 5624000,
+      "countries": [
+        "SG"
+      ]
     },
     {
       "name": "Asia/Srednekolymsk",
@@ -57899,7 +59003,10 @@
         -720,
         -660
       ],
-      "population": 3525
+      "population": 3525,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Asia/Taipei",
@@ -58032,7 +59139,10 @@
         -540,
         -480
       ],
-      "population": 7438000
+      "population": 7438000,
+      "countries": [
+        "TW"
+      ]
     },
     {
       "name": "Asia/Tashkent",
@@ -58114,7 +59224,10 @@
         -360,
         -300
       ],
-      "population": 2250000
+      "population": 2250000,
+      "countries": [
+        "UZ"
+      ]
     },
     {
       "name": "Asia/Tbilisi",
@@ -58271,7 +59384,10 @@
         -180,
         -240
       ],
-      "population": 1125000
+      "population": 1125000,
+      "countries": [
+        "GE"
+      ]
     },
     {
       "name": "Asia/Tehran",
@@ -58584,7 +59700,10 @@
         -270,
         -210
       ],
-      "population": 13532000
+      "population": 13532000,
+      "countries": [
+        "IR"
+      ]
     },
     {
       "name": "Asia/Tel_Aviv",
@@ -59035,7 +60154,8 @@
         -180,
         -120
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Asia/Thimbu",
@@ -59054,7 +60174,8 @@
         -330,
         -360
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Asia/Thimphu",
@@ -59073,7 +60194,10 @@
         -330,
         -360
       ],
-      "population": 79185
+      "population": 79185,
+      "countries": [
+        "BT"
+      ]
     },
     {
       "name": "Asia/Tokyo",
@@ -59110,7 +60234,10 @@
         -600,
         -540
       ],
-      "population": 37843000
+      "population": 37843000,
+      "countries": [
+        "JP"
+      ]
     },
     {
       "name": "Asia/Tomsk",
@@ -59321,7 +60448,10 @@
         -360,
         -420
       ],
-      "population": 1047394
+      "population": 1047394,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Asia/Ujung_Pandang",
@@ -59346,7 +60476,8 @@
         -540,
         -480
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Asia/Ulaanbaatar",
@@ -59509,7 +60640,10 @@
         -540,
         -480
       ],
-      "population": 1237000
+      "population": 1237000,
+      "countries": [
+        "MN"
+      ]
     },
     {
       "name": "Asia/Ulan_Bator",
@@ -59672,7 +60806,8 @@
         -540,
         -480
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Asia/Urumqi",
@@ -59688,7 +60823,10 @@
         -350.3333,
         -360
       ],
-      "population": 3184000
+      "population": 3184000,
+      "countries": [
+        "CN"
+      ]
     },
     {
       "name": "Asia/Ust-Nera",
@@ -59896,7 +61034,10 @@
         -660,
         -600
       ],
-      "population": 6463
+      "population": 6463,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Asia/Vientiane",
@@ -59912,7 +61053,10 @@
         -402.0667,
         -420
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "LA"
+      ]
     },
     {
       "name": "Asia/Vladivostok",
@@ -60117,7 +61261,10 @@
         -660,
         -600
       ],
-      "population": 598927
+      "population": 598927,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Asia/Yakutsk",
@@ -60322,7 +61469,10 @@
         -600,
         -540
       ],
-      "population": 282419
+      "population": 282419,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Asia/Yangon",
@@ -60344,7 +61494,10 @@
         -540,
         -390
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "MM"
+      ]
     },
     {
       "name": "Asia/Yekaterinburg",
@@ -60552,7 +61705,10 @@
         -360,
         -300
       ],
-      "population": 1361000
+      "population": 1361000,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Asia/Yerevan",
@@ -60745,7 +61901,10 @@
         -300,
         -240
       ],
-      "population": 1274000
+      "population": 1274000,
+      "countries": [
+        "AM"
+      ]
     },
     {
       "name": "Atlantic/Azores",
@@ -61418,7 +62577,10 @@
         0,
         60
       ],
-      "population": 245746
+      "population": 245746,
+      "countries": [
+        "PT"
+      ]
     },
     {
       "name": "Atlantic/Bermuda",
@@ -61818,7 +62980,10 @@
         180,
         240
       ],
-      "population": 65024
+      "population": 65024,
+      "countries": [
+        "BM"
+      ]
     },
     {
       "name": "Atlantic/Canary",
@@ -62185,7 +63350,10 @@
         -60,
         0
       ],
-      "population": 538000
+      "population": 538000,
+      "countries": [
+        "ES"
+      ]
     },
     {
       "name": "Atlantic/Cape_Verde",
@@ -62210,7 +63378,10 @@
         120,
         60
       ],
-      "population": 498897
+      "population": 498897,
+      "countries": [
+        "CV"
+      ]
     },
     {
       "name": "Atlantic/Faeroe",
@@ -62568,7 +63739,8 @@
         -60,
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Atlantic/Faroe",
@@ -62926,7 +64098,10 @@
         -60,
         0
       ],
-      "population": 49469
+      "population": 49469,
+      "countries": [
+        "FO"
+      ]
     },
     {
       "name": "Atlantic/Jan_Mayen",
@@ -63359,7 +64534,8 @@
         -120,
         -60
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Atlantic/Madeira",
@@ -64032,7 +65208,10 @@
         -60,
         0
       ],
-      "population": 267785
+      "population": 267785,
+      "countries": [
+        "PT"
+      ]
     },
     {
       "name": "Atlantic/Reykjavik",
@@ -64249,7 +65428,10 @@
         60,
         0
       ],
-      "population": 119289
+      "population": 119289,
+      "countries": [
+        "IS"
+      ]
     },
     {
       "name": "Atlantic/South_Georgia",
@@ -64262,7 +65444,10 @@
       "offsets": [
         120
       ],
-      "population": 30
+      "population": 30,
+      "countries": [
+        "GS"
+      ]
     },
     {
       "name": "Atlantic/St_Helena",
@@ -64278,7 +65463,10 @@
         16.1333,
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "SH"
+      ]
     },
     {
       "name": "Atlantic/Stanley",
@@ -64495,7 +65683,10 @@
         240,
         180
       ],
-      "population": 2121
+      "population": 2121,
+      "countries": [
+        "FK"
+      ]
     },
     {
       "name": "Australia/ACT",
@@ -64931,7 +66122,8 @@
         -600,
         -660
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Australia/Adelaide",
@@ -65367,7 +66559,10 @@
         -570,
         -630
       ],
-      "population": 1140000
+      "population": 1140000,
+      "countries": [
+        "AU"
+      ]
     },
     {
       "name": "Australia/Brisbane",
@@ -65428,7 +66623,10 @@
         -660,
         -600
       ],
-      "population": 1999000
+      "population": 1999000,
+      "countries": [
+        "AU"
+      ]
     },
     {
       "name": "Australia/Broken_Hill",
@@ -65864,7 +67062,10 @@
         -570,
         -630
       ],
-      "population": 18430
+      "population": 18430,
+      "countries": [
+        "AU"
+      ]
     },
     {
       "name": "Australia/Canberra",
@@ -66300,7 +67501,8 @@
         -600,
         -660
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Australia/Currie",
@@ -66736,7 +67938,10 @@
         -600,
         -660
       ],
-      "population": 746
+      "population": 746,
+      "countries": [
+        "AU"
+      ]
     },
     {
       "name": "Australia/Darwin",
@@ -66773,7 +67978,10 @@
         -630,
         -570
       ],
-      "population": 116215
+      "population": 116215,
+      "countries": [
+        "AU"
+      ]
     },
     {
       "name": "Australia/Eucla",
@@ -66840,7 +68048,10 @@
         -585,
         -525
       ],
-      "population": 368
+      "population": 368,
+      "countries": [
+        "AU"
+      ]
     },
     {
       "name": "Australia/Hobart",
@@ -67300,7 +68511,10 @@
         -600,
         -660
       ],
-      "population": 205557
+      "population": 205557,
+      "countries": [
+        "AU"
+      ]
     },
     {
       "name": "Australia/LHI",
@@ -67655,7 +68869,8 @@
         -630,
         -660
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Australia/Lindeman",
@@ -67728,7 +68943,10 @@
         -660,
         -600
       ],
-      "population": 10
+      "population": 10,
+      "countries": [
+        "AU"
+      ]
     },
     {
       "name": "Australia/Lord_Howe",
@@ -68083,7 +69301,10 @@
         -630,
         -660
       ],
-      "population": 347
+      "population": 347,
+      "countries": [
+        "AU"
+      ]
     },
     {
       "name": "Australia/Melbourne",
@@ -68519,7 +69740,10 @@
         -600,
         -660
       ],
-      "population": 3906000
+      "population": 3906000,
+      "countries": [
+        "AU"
+      ]
     },
     {
       "name": "Australia/North",
@@ -68556,7 +69780,8 @@
         -630,
         -570
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Australia/NSW",
@@ -68992,7 +70217,8 @@
         -600,
         -660
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Australia/Perth",
@@ -69059,7 +70285,10 @@
         -540,
         -480
       ],
-      "population": 1751000
+      "population": 1751000,
+      "countries": [
+        "AU"
+      ]
     },
     {
       "name": "Australia/Queensland",
@@ -69120,7 +70349,8 @@
         -660,
         -600
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Australia/South",
@@ -69556,7 +70786,8 @@
         -570,
         -630
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Australia/Sydney",
@@ -69992,7 +71223,10 @@
         -600,
         -660
       ],
-      "population": 4036000
+      "population": 4036000,
+      "countries": [
+        "AU"
+      ]
     },
     {
       "name": "Australia/Tasmania",
@@ -70452,7 +71686,8 @@
         -600,
         -660
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Australia/Victoria",
@@ -70888,7 +72123,8 @@
         -600,
         -660
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Australia/West",
@@ -70955,7 +72191,8 @@
         -540,
         -480
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Australia/Yancowinna",
@@ -71391,7 +72628,8 @@
         -570,
         -630
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Brazil/Acre",
@@ -71497,7 +72735,8 @@
         240,
         300
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Brazil/DeNoronha",
@@ -71627,7 +72866,8 @@
         60,
         120
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Brazil/East",
@@ -71913,7 +73153,8 @@
         120,
         180
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Brazil/West",
@@ -72019,7 +73260,8 @@
         180,
         240
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Canada/Atlantic",
@@ -72716,7 +73958,8 @@
         180,
         240
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Canada/Central",
@@ -73284,7 +74527,8 @@
         300,
         360
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Canada/Eastern",
@@ -73993,7 +75237,8 @@
         240,
         300
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Canada/Mountain",
@@ -74456,7 +75701,8 @@
         360,
         420
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Canada/Newfoundland",
@@ -75183,7 +76429,8 @@
         150,
         210
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Canada/Pacific",
@@ -75763,7 +77010,8 @@
         420,
         480
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Canada/Saskatchewan",
@@ -75935,7 +77183,8 @@
         420,
         360
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Canada/Yukon",
@@ -76031,42 +77280,7 @@
         "PST",
         "PDT",
         "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST",
-        "PDT",
-        "PST"
+        "MST"
       ],
       "untils": [
         -1632056400000,
@@ -76160,41 +77374,6 @@
         1552212000000,
         1572771600000,
         1583661600000,
-        1604221200000,
-        1615716000000,
-        1636275600000,
-        1647165600000,
-        1667725200000,
-        1678615200000,
-        1699174800000,
-        1710064800000,
-        1730624400000,
-        1741514400000,
-        1762074000000,
-        1772964000000,
-        1793523600000,
-        1805018400000,
-        1825578000000,
-        1836468000000,
-        1857027600000,
-        1867917600000,
-        1888477200000,
-        1899367200000,
-        1919926800000,
-        1930816800000,
-        1951376400000,
-        1962871200000,
-        1983430800000,
-        1994320800000,
-        2014880400000,
-        2025770400000,
-        2046330000000,
-        2057220000000,
-        2077779600000,
-        2088669600000,
-        2109229200000,
-        2120119200000,
-        2140678800000,
         null
       ],
       "offsets": [
@@ -76289,44 +77468,10 @@
         480,
         420,
         480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480,
-        420,
-        480
+        420
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "CET",
@@ -76747,7 +77892,8 @@
         -120,
         -60
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Chile/Continental",
@@ -77234,7 +78380,8 @@
         240,
         180
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Chile/EasterIsland",
@@ -77658,7 +78805,8 @@
         360,
         300
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "CST6CDT",
@@ -78118,7 +79266,8 @@
         300,
         360
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Cuba",
@@ -78596,7 +79745,8 @@
         240,
         300
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "EET",
@@ -78975,7 +80125,8 @@
         -180,
         -120
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Egypt",
@@ -79366,7 +80517,8 @@
         -180,
         -120
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Eire",
@@ -80057,7 +81209,8 @@
         -60,
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "EST",
@@ -80070,7 +81223,8 @@
       "offsets": [
         300
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "EST5EDT",
@@ -80530,7 +81684,8 @@
         240,
         300
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT-0",
@@ -80543,7 +81698,8 @@
       "offsets": [
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT-1",
@@ -80556,7 +81712,8 @@
       "offsets": [
         -60
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT-10",
@@ -80569,7 +81726,8 @@
       "offsets": [
         -600
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT-11",
@@ -80582,7 +81740,8 @@
       "offsets": [
         -660
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT-12",
@@ -80595,7 +81754,8 @@
       "offsets": [
         -720
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT-13",
@@ -80608,7 +81768,8 @@
       "offsets": [
         -780
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT-14",
@@ -80621,7 +81782,8 @@
       "offsets": [
         -840
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT-2",
@@ -80634,7 +81796,8 @@
       "offsets": [
         -120
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT-3",
@@ -80647,7 +81810,8 @@
       "offsets": [
         -180
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT-4",
@@ -80660,7 +81824,8 @@
       "offsets": [
         -240
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT-5",
@@ -80673,7 +81838,8 @@
       "offsets": [
         -300
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT-6",
@@ -80686,7 +81852,8 @@
       "offsets": [
         -360
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT-7",
@@ -80699,7 +81866,8 @@
       "offsets": [
         -420
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT-8",
@@ -80712,7 +81880,8 @@
       "offsets": [
         -480
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT-9",
@@ -80725,7 +81894,8 @@
       "offsets": [
         -540
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT",
@@ -80738,7 +81908,8 @@
       "offsets": [
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT+0",
@@ -80751,7 +81922,8 @@
       "offsets": [
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT+1",
@@ -80764,7 +81936,8 @@
       "offsets": [
         60
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT+10",
@@ -80777,7 +81950,8 @@
       "offsets": [
         600
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT+11",
@@ -80790,7 +81964,8 @@
       "offsets": [
         660
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT+12",
@@ -80803,7 +81978,8 @@
       "offsets": [
         720
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT+2",
@@ -80816,7 +81992,8 @@
       "offsets": [
         120
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT+3",
@@ -80829,7 +82006,8 @@
       "offsets": [
         180
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT+4",
@@ -80842,7 +82020,8 @@
       "offsets": [
         240
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT+5",
@@ -80855,7 +82034,8 @@
       "offsets": [
         300
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT+6",
@@ -80868,7 +82048,8 @@
       "offsets": [
         360
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT+7",
@@ -80881,7 +82062,8 @@
       "offsets": [
         420
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT+8",
@@ -80894,7 +82076,8 @@
       "offsets": [
         480
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT+9",
@@ -80907,7 +82090,8 @@
       "offsets": [
         540
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/GMT0",
@@ -80920,7 +82104,8 @@
       "offsets": [
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/Greenwich",
@@ -80933,7 +82118,8 @@
       "offsets": [
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/UCT",
@@ -80946,7 +82132,8 @@
       "offsets": [
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/Universal",
@@ -80959,7 +82146,8 @@
       "offsets": [
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/UTC",
@@ -80972,7 +82160,8 @@
       "offsets": [
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Etc/Zulu",
@@ -80985,7 +82174,8 @@
       "offsets": [
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Europe/Amsterdam",
@@ -81535,7 +82725,10 @@
         -120,
         -60
       ],
-      "population": 1624000
+      "population": 1624000,
+      "countries": [
+        "NL"
+      ]
     },
     {
       "name": "Europe/Andorra",
@@ -81869,7 +83062,10 @@
         -120,
         -60
       ],
-      "population": 79218
+      "population": 79218,
+      "countries": [
+        "AD"
+      ]
     },
     {
       "name": "Europe/Astrakhan",
@@ -82068,7 +83264,10 @@
         -180,
         -240
       ],
-      "population": 1010073
+      "population": 1010073,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Europe/Athens",
@@ -82492,7 +83691,10 @@
         -180,
         -120
       ],
-      "population": 3484000
+      "population": 3484000,
+      "countries": [
+        "GR"
+      ]
     },
     {
       "name": "Europe/Belfast",
@@ -83225,7 +84427,8 @@
         -60,
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Europe/Belgrade",
@@ -83592,7 +84795,15 @@
         -120,
         -60
       ],
-      "population": 1180000
+      "population": 1180000,
+      "countries": [
+        "RS",
+        "BA",
+        "HR",
+        "ME",
+        "MK",
+        "SI"
+      ]
     },
     {
       "name": "Europe/Berlin",
@@ -84031,7 +85242,10 @@
         -120,
         -60
       ],
-      "population": 4069000
+      "population": 4069000,
+      "countries": [
+        "DE"
+      ]
     },
     {
       "name": "Europe/Bratislava",
@@ -84470,7 +85684,10 @@
         -120,
         -60
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "SK"
+      ]
     },
     {
       "name": "Europe/Brussels",
@@ -85032,7 +86249,10 @@
         -120,
         -60
       ],
-      "population": 2089000
+      "population": 2089000,
+      "countries": [
+        "BE"
+      ]
     },
     {
       "name": "Europe/Bucharest",
@@ -85450,7 +86670,10 @@
         -180,
         -120
       ],
-      "population": 1860000
+      "population": 1860000,
+      "countries": [
+        "RO"
+      ]
     },
     {
       "name": "Europe/Budapest",
@@ -85913,7 +87136,10 @@
         -120,
         -60
       ],
-      "population": 1710000
+      "population": 1710000,
+      "countries": [
+        "HU"
+      ]
     },
     {
       "name": "Europe/Busingen",
@@ -86280,7 +87506,10 @@
         -120,
         -60
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "DE"
+      ]
     },
     {
       "name": "Europe/Chisinau",
@@ -86713,7 +87942,10 @@
         -180,
         -120
       ],
-      "population": 669694
+      "population": 669694,
+      "countries": [
+        "MD"
+      ]
     },
     {
       "name": "Europe/Copenhagen",
@@ -87122,7 +88354,10 @@
         -120,
         -60
       ],
-      "population": 1248000
+      "population": 1248000,
+      "countries": [
+        "DK"
+      ]
     },
     {
       "name": "Europe/Dublin",
@@ -87813,7 +89048,10 @@
         -60,
         0
       ],
-      "population": 1160000
+      "population": 1160000,
+      "countries": [
+        "IE"
+      ]
     },
     {
       "name": "Europe/Gibraltar",
@@ -88417,7 +89655,10 @@
         -120,
         -60
       ],
-      "population": 30001
+      "population": 30001,
+      "countries": [
+        "GI"
+      ]
     },
     {
       "name": "Europe/Guernsey",
@@ -89150,7 +90391,10 @@
         -60,
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "GG"
+      ]
     },
     {
       "name": "Europe/Helsinki",
@@ -89514,7 +90758,11 @@
         -180,
         -120
       ],
-      "population": 1208000
+      "population": 1208000,
+      "countries": [
+        "FI",
+        "AX"
+      ]
     },
     {
       "name": "Europe/Isle_of_Man",
@@ -90247,7 +91495,10 @@
         -60,
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "IM"
+      ]
     },
     {
       "name": "Europe/Istanbul",
@@ -90602,7 +91853,10 @@
         -180,
         -180
       ],
-      "population": 13287000
+      "population": 13287000,
+      "countries": [
+        "TR"
+      ]
     },
     {
       "name": "Europe/Jersey",
@@ -91335,7 +92589,10 @@
         -60,
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "JE"
+      ]
     },
     {
       "name": "Europe/Kaliningrad",
@@ -91585,7 +92842,10 @@
         -180,
         -120
       ],
-      "population": 437456
+      "population": 437456,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Europe/Kiev",
@@ -91958,7 +93218,10 @@
         -180,
         -120
       ],
-      "population": 3375000
+      "population": 3375000,
+      "countries": [
+        "UA"
+      ]
     },
     {
       "name": "Europe/Kirov",
@@ -92154,7 +93417,10 @@
         -240,
         -180
       ],
-      "population": 480594
+      "population": 480594,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Europe/Lisbon",
@@ -92830,7 +94096,10 @@
         -60,
         0
       ],
-      "population": 2666000
+      "population": 2666000,
+      "countries": [
+        "PT"
+      ]
     },
     {
       "name": "Europe/Ljubljana",
@@ -93197,7 +94466,10 @@
         -120,
         -60
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "SI"
+      ]
     },
     {
       "name": "Europe/London",
@@ -93930,7 +95202,13 @@
         -60,
         0
       ],
-      "population": 10236000
+      "population": 10236000,
+      "countries": [
+        "GB",
+        "GG",
+        "IM",
+        "JE"
+      ]
     },
     {
       "name": "Europe/Luxembourg",
@@ -94492,7 +95770,10 @@
         -120,
         -60
       ],
-      "population": 543202
+      "population": 543202,
+      "countries": [
+        "LU"
+      ]
     },
     {
       "name": "Europe/Madrid",
@@ -94988,7 +96269,10 @@
         -120,
         -60
       ],
-      "population": 6171000
+      "population": 6171000,
+      "countries": [
+        "ES"
+      ]
     },
     {
       "name": "Europe/Malta",
@@ -95505,7 +96789,10 @@
         -120,
         -60
       ],
-      "population": 423282
+      "population": 423282,
+      "countries": [
+        "MT"
+      ]
     },
     {
       "name": "Europe/Mariehamn",
@@ -95869,7 +97156,10 @@
         -180,
         -120
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "AX"
+      ]
     },
     {
       "name": "Europe/Minsk",
@@ -96083,7 +97373,10 @@
         -120,
         -180
       ],
-      "population": 1910000
+      "population": 1910000,
+      "countries": [
+        "BY"
+      ]
     },
     {
       "name": "Europe/Monaco",
@@ -96648,7 +97941,10 @@
         -120,
         -60
       ],
-      "population": 37831
+      "population": 37831,
+      "countries": [
+        "MC"
+      ]
     },
     {
       "name": "Europe/Moscow",
@@ -96892,7 +98188,10 @@
         -240,
         -180
       ],
-      "population": 16170000
+      "population": 16170000,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Europe/Nicosia",
@@ -97286,7 +98585,8 @@
         -180,
         -120
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Europe/Oslo",
@@ -97719,7 +99019,11 @@
         -120,
         -60
       ],
-      "population": 618683
+      "population": 618683,
+      "countries": [
+        "NO",
+        "SJ"
+      ]
     },
     {
       "name": "Europe/Paris",
@@ -98281,7 +99585,10 @@
         -120,
         -60
       ],
-      "population": 10858000
+      "population": 10858000,
+      "countries": [
+        "FR"
+      ]
     },
     {
       "name": "Europe/Podgorica",
@@ -98648,7 +99955,10 @@
         -120,
         -60
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "ME"
+      ]
     },
     {
       "name": "Europe/Prague",
@@ -99087,7 +100397,11 @@
         -120,
         -60
       ],
-      "population": 1310000
+      "population": 1310000,
+      "countries": [
+        "CZ",
+        "SK"
+      ]
     },
     {
       "name": "Europe/Riga",
@@ -99475,7 +100789,10 @@
         -180,
         -120
       ],
-      "population": 643615
+      "population": 643615,
+      "countries": [
+        "LV"
+      ]
     },
     {
       "name": "Europe/Rome",
@@ -99992,7 +101309,12 @@
         -120,
         -60
       ],
-      "population": 3906000
+      "population": 3906000,
+      "countries": [
+        "IT",
+        "SM",
+        "VA"
+      ]
     },
     {
       "name": "Europe/Samara",
@@ -100185,7 +101507,10 @@
         -180,
         -240
       ],
-      "population": 1162000
+      "population": 1162000,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Europe/San_Marino",
@@ -100702,7 +102027,10 @@
         -120,
         -60
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "SM"
+      ]
     },
     {
       "name": "Europe/Sarajevo",
@@ -101069,7 +102397,10 @@
         -120,
         -60
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "BA"
+      ]
     },
     {
       "name": "Europe/Saratov",
@@ -101268,7 +102599,10 @@
         -180,
         -240
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Europe/Simferopol",
@@ -101503,7 +102837,11 @@
         -240,
         -180
       ],
-      "population": 331936
+      "population": 331936,
+      "countries": [
+        "RU",
+        "UA"
+      ]
     },
     {
       "name": "Europe/Skopje",
@@ -101870,7 +103208,10 @@
         -120,
         -60
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "MK"
+      ]
     },
     {
       "name": "Europe/Sofia",
@@ -102255,7 +103596,10 @@
         -180,
         -120
       ],
-      "population": 1195000
+      "population": 1195000,
+      "countries": [
+        "BG"
+      ]
     },
     {
       "name": "Europe/Stockholm",
@@ -102622,7 +103966,10 @@
         -120,
         -60
       ],
-      "population": 1484000
+      "population": 1484000,
+      "countries": [
+        "SE"
+      ]
     },
     {
       "name": "Europe/Tallinn",
@@ -103001,7 +104348,10 @@
         -180,
         -120
       ],
-      "population": 407947
+      "population": 407947,
+      "countries": [
+        "EE"
+      ]
     },
     {
       "name": "Europe/Tirane",
@@ -103413,7 +104763,10 @@
         -120,
         -60
       ],
-      "population": 418495
+      "population": 418495,
+      "countries": [
+        "AL"
+      ]
     },
     {
       "name": "Europe/Tiraspol",
@@ -103846,7 +105199,8 @@
         -180,
         -120
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Europe/Ulyanovsk",
@@ -104051,7 +105405,10 @@
         -180,
         -240
       ],
-      "population": 1292799
+      "population": 1292799,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Europe/Uzhgorod",
@@ -104421,7 +105778,10 @@
         -180,
         -120
       ],
-      "population": 114789
+      "population": 114789,
+      "countries": [
+        "UA"
+      ]
     },
     {
       "name": "Europe/Vaduz",
@@ -104788,7 +106148,10 @@
         -120,
         -60
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "LI"
+      ]
     },
     {
       "name": "Europe/Vatican",
@@ -105305,7 +106668,10 @@
         -120,
         -60
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "VA"
+      ]
     },
     {
       "name": "Europe/Vienna",
@@ -105732,7 +107098,10 @@
         -120,
         -60
       ],
-      "population": 1763000
+      "population": 1763000,
+      "countries": [
+        "AT"
+      ]
     },
     {
       "name": "Europe/Vilnius",
@@ -106102,7 +107471,10 @@
         -180,
         -120
       ],
-      "population": 535216
+      "population": 535216,
+      "countries": [
+        "LT"
+      ]
     },
     {
       "name": "Europe/Volgograd",
@@ -106301,7 +107673,10 @@
         -180,
         -240
       ],
-      "population": 1019000
+      "population": 1019000,
+      "countries": [
+        "RU"
+      ]
     },
     {
       "name": "Europe/Warsaw",
@@ -106806,7 +108181,10 @@
         -120,
         -60
       ],
-      "population": 1720000
+      "population": 1720000,
+      "countries": [
+        "PL"
+      ]
     },
     {
       "name": "Europe/Zagreb",
@@ -107173,7 +108551,10 @@
         -120,
         -60
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "HR"
+      ]
     },
     {
       "name": "Europe/Zaporozhye",
@@ -107549,7 +108930,10 @@
         -180,
         -120
       ],
-      "population": 766736
+      "population": 766736,
+      "countries": [
+        "UA"
+      ]
     },
     {
       "name": "Europe/Zurich",
@@ -107916,7 +109300,12 @@
         -120,
         -60
       ],
-      "population": 378884
+      "population": 378884,
+      "countries": [
+        "CH",
+        "DE",
+        "LI"
+      ]
     },
     {
       "name": "GB-Eire",
@@ -108649,7 +110038,8 @@
         -60,
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "GB",
@@ -109382,7 +110772,8 @@
         -60,
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "GMT-0",
@@ -109395,7 +110786,8 @@
       "offsets": [
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "GMT",
@@ -109408,7 +110800,8 @@
       "offsets": [
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "GMT+0",
@@ -109421,7 +110814,8 @@
       "offsets": [
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "GMT0",
@@ -109434,7 +110828,8 @@
       "offsets": [
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Greenwich",
@@ -109447,7 +110842,8 @@
       "offsets": [
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Hongkong",
@@ -109667,7 +111063,8 @@
         -540,
         -480
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "HST",
@@ -109680,7 +111077,8 @@
       "offsets": [
         600
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Iceland",
@@ -109897,7 +111295,8 @@
         60,
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Indian/Antananarivo",
@@ -109922,7 +111321,10 @@
         -165,
         -180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "MG"
+      ]
     },
     {
       "name": "Indian/Chagos",
@@ -109941,7 +111343,10 @@
         -300,
         -360
       ],
-      "population": 3000
+      "population": 3000,
+      "countries": [
+        "IO"
+      ]
     },
     {
       "name": "Indian/Christmas",
@@ -109954,7 +111359,10 @@
       "offsets": [
         -420
       ],
-      "population": 2072
+      "population": 2072,
+      "countries": [
+        "CX"
+      ]
     },
     {
       "name": "Indian/Cocos",
@@ -109967,7 +111375,10 @@
       "offsets": [
         -390
       ],
-      "population": 596
+      "population": 596,
+      "countries": [
+        "CC"
+      ]
     },
     {
       "name": "Indian/Comoro",
@@ -109992,7 +111403,10 @@
         -165,
         -180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "KM"
+      ]
     },
     {
       "name": "Indian/Kerguelen",
@@ -110008,7 +111422,10 @@
         0,
         -300
       ],
-      "population": 130
+      "population": 130,
+      "countries": [
+        "TF"
+      ]
     },
     {
       "name": "Indian/Mahe",
@@ -110024,7 +111441,10 @@
         -221.8,
         -240
       ],
-      "population": 78539
+      "population": 78539,
+      "countries": [
+        "SC"
+      ]
     },
     {
       "name": "Indian/Maldives",
@@ -110040,7 +111460,10 @@
         -294,
         -300
       ],
-      "population": 345023
+      "population": 345023,
+      "countries": [
+        "MV"
+      ]
     },
     {
       "name": "Indian/Mauritius",
@@ -110068,7 +111491,10 @@
         -300,
         -240
       ],
-      "population": 148001
+      "population": 148001,
+      "countries": [
+        "MU"
+      ]
     },
     {
       "name": "Indian/Mayotte",
@@ -110093,7 +111519,10 @@
         -165,
         -180
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "YT"
+      ]
     },
     {
       "name": "Indian/Reunion",
@@ -110109,7 +111538,11 @@
         -221.8667,
         -240
       ],
-      "population": 843617
+      "population": 843617,
+      "countries": [
+        "RE",
+        "TF"
+      ]
     },
     {
       "name": "Iran",
@@ -110422,7 +111855,8 @@
         -270,
         -210
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Israel",
@@ -110873,7 +112307,8 @@
         -180,
         -120
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Jamaica",
@@ -110949,7 +112384,8 @@
         240,
         300
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Japan",
@@ -110986,7 +112422,8 @@
         -600,
         -540
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Kwajalein",
@@ -111014,7 +112451,8 @@
         720,
         -720
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Libya",
@@ -111123,7 +112561,8 @@
         -120,
         -120
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "MET",
@@ -111544,7 +112983,8 @@
         -120,
         -60
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Mexico/BajaNorte",
@@ -112004,7 +113444,8 @@
         420,
         480
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Mexico/BajaSur",
@@ -112296,7 +113737,8 @@
         360,
         420
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Mexico/General",
@@ -112603,7 +114045,8 @@
         300,
         360
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "MST",
@@ -112616,7 +114059,8 @@
       "offsets": [
         420
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "MST7MDT",
@@ -113076,7 +114520,8 @@
         360,
         420
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Navajo",
@@ -113560,7 +115005,8 @@
         360,
         420
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "NZ-CHAT",
@@ -113957,7 +115403,8 @@
         -765,
         -825
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "NZ",
@@ -114432,7 +115879,8 @@
         -720,
         -780
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Pacific/Apia",
@@ -114619,7 +116067,10 @@
         -780,
         -840
       ],
-      "population": 36735
+      "population": 36735,
+      "countries": [
+        "WS"
+      ]
     },
     {
       "name": "Pacific/Auckland",
@@ -115094,7 +116545,11 @@
         -720,
         -780
       ],
-      "population": 1356000
+      "population": 1356000,
+      "countries": [
+        "NZ",
+        "AQ"
+      ]
     },
     {
       "name": "Pacific/Bougainville",
@@ -115116,7 +116571,10 @@
         -600,
         -660
       ],
-      "population": 175160
+      "population": 175160,
+      "countries": [
+        "PG"
+      ]
     },
     {
       "name": "Pacific/Chatham",
@@ -115513,7 +116971,10 @@
         -765,
         -825
       ],
-      "population": 600
+      "population": 600,
+      "countries": [
+        "NZ"
+      ]
     },
     {
       "name": "Pacific/Chuuk",
@@ -115538,7 +116999,10 @@
         -540,
         -600
       ],
-      "population": 48654
+      "population": 48654,
+      "countries": [
+        "FM"
+      ]
     },
     {
       "name": "Pacific/Easter",
@@ -115962,7 +117426,10 @@
         360,
         300
       ],
-      "population": 3000
+      "population": 3000,
+      "countries": [
+        "CL"
+      ]
     },
     {
       "name": "Pacific/Efate",
@@ -116038,7 +117505,10 @@
         -720,
         -660
       ],
-      "population": 65829
+      "population": 65829,
+      "countries": [
+        "VU"
+      ]
     },
     {
       "name": "Pacific/Enderbury",
@@ -116057,7 +117527,10 @@
         660,
         -780
       ],
-      "population": 1
+      "population": 1,
+      "countries": [
+        "KI"
+      ]
     },
     {
       "name": "Pacific/Fakaofo",
@@ -116073,7 +117546,10 @@
         660,
         -780
       ],
-      "population": 483
+      "population": 483,
+      "countries": [
+        "TK"
+      ]
     },
     {
       "name": "Pacific/Fiji",
@@ -116275,7 +117751,10 @@
         -780,
         -720
       ],
-      "population": 881065
+      "population": 881065,
+      "countries": [
+        "FJ"
+      ]
     },
     {
       "name": "Pacific/Funafuti",
@@ -116288,7 +117767,10 @@
       "offsets": [
         -720
       ],
-      "population": 4492
+      "population": 4492,
+      "countries": [
+        "TV"
+      ]
     },
     {
       "name": "Pacific/Galapagos",
@@ -116313,7 +117795,10 @@
         300,
         360
       ],
-      "population": 25000
+      "population": 25000,
+      "countries": [
+        "EC"
+      ]
     },
     {
       "name": "Pacific/Gambier",
@@ -116329,7 +117814,10 @@
         539.8,
         540
       ],
-      "population": 125
+      "population": 125,
+      "countries": [
+        "PF"
+      ]
     },
     {
       "name": "Pacific/Guadalcanal",
@@ -116345,7 +117833,10 @@
         -639.8,
         -660
       ],
-      "population": 109382
+      "population": 109382,
+      "countries": [
+        "SB"
+      ]
     },
     {
       "name": "Pacific/Guam",
@@ -116415,7 +117906,11 @@
         -600,
         -600
       ],
-      "population": 165124
+      "population": 165124,
+      "countries": [
+        "GU",
+        "MP"
+      ]
     },
     {
       "name": "Pacific/Honolulu",
@@ -116446,7 +117941,11 @@
         630,
         600
       ],
-      "population": 374658
+      "population": 374658,
+      "countries": [
+        "US",
+        "UM"
+      ]
     },
     {
       "name": "Pacific/Johnston",
@@ -116477,7 +117976,8 @@
         630,
         600
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Pacific/Kiritimati",
@@ -116496,7 +117996,10 @@
         600,
         -840
       ],
-      "population": 5115
+      "population": 5115,
+      "countries": [
+        "KI"
+      ]
     },
     {
       "name": "Pacific/Kosrae",
@@ -116530,7 +118033,10 @@
         -720,
         -660
       ],
-      "population": 6616
+      "population": 6616,
+      "countries": [
+        "FM"
+      ]
     },
     {
       "name": "Pacific/Kwajalein",
@@ -116558,7 +118064,10 @@
         720,
         -720
       ],
-      "population": 13500
+      "population": 13500,
+      "countries": [
+        "MH"
+      ]
     },
     {
       "name": "Pacific/Majuro",
@@ -116589,7 +118098,10 @@
         -660,
         -720
       ],
-      "population": 27797
+      "population": 27797,
+      "countries": [
+        "MH"
+      ]
     },
     {
       "name": "Pacific/Marquesas",
@@ -116605,7 +118117,10 @@
         558,
         570
       ],
-      "population": 8632
+      "population": 8632,
+      "countries": [
+        "PF"
+      ]
     },
     {
       "name": "Pacific/Midway",
@@ -116621,7 +118136,10 @@
         682.8,
         660
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "UM"
+      ]
     },
     {
       "name": "Pacific/Nauru",
@@ -116646,7 +118164,10 @@
         -690,
         -720
       ],
-      "population": 10084
+      "population": 10084,
+      "countries": [
+        "NR"
+      ]
     },
     {
       "name": "Pacific/Niue",
@@ -116665,7 +118186,10 @@
         690,
         660
       ],
-      "population": 1190
+      "population": 1190,
+      "countries": [
+        "NU"
+      ]
     },
     {
       "name": "Pacific/Norfolk",
@@ -116801,7 +118325,10 @@
         -660,
         -720
       ],
-      "population": 246139
+      "population": 246139,
+      "countries": [
+        "NF"
+      ]
     },
     {
       "name": "Pacific/Noumea",
@@ -116835,7 +118362,10 @@
         -720,
         -660
       ],
-      "population": 97579
+      "population": 97579,
+      "countries": [
+        "NC"
+      ]
     },
     {
       "name": "Pacific/Pago_Pago",
@@ -116851,7 +118381,11 @@
         682.8,
         660
       ],
-      "population": 3656
+      "population": 3656,
+      "countries": [
+        "AS",
+        "UM"
+      ]
     },
     {
       "name": "Pacific/Palau",
@@ -116864,7 +118398,10 @@
       "offsets": [
         -540
       ],
-      "population": 20918
+      "population": 20918,
+      "countries": [
+        "PW"
+      ]
     },
     {
       "name": "Pacific/Pitcairn",
@@ -116880,7 +118417,10 @@
         510,
         480
       ],
-      "population": 56
+      "population": 56,
+      "countries": [
+        "PN"
+      ]
     },
     {
       "name": "Pacific/Pohnpei",
@@ -116908,7 +118448,10 @@
         -540,
         -660
       ],
-      "population": 34000
+      "population": 34000,
+      "countries": [
+        "FM"
+      ]
     },
     {
       "name": "Pacific/Ponape",
@@ -116936,7 +118479,8 @@
         -540,
         -660
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Pacific/Port_Moresby",
@@ -116949,7 +118493,10 @@
       "offsets": [
         -600
       ],
-      "population": 254158
+      "population": 254158,
+      "countries": [
+        "PG"
+      ]
     },
     {
       "name": "Pacific/Rarotonga",
@@ -117040,7 +118587,10 @@
         570,
         600
       ],
-      "population": 13095
+      "population": 13095,
+      "countries": [
+        "CK"
+      ]
     },
     {
       "name": "Pacific/Saipan",
@@ -117110,7 +118660,10 @@
         -600,
         -600
       ],
-      "population": 0
+      "population": 0,
+      "countries": [
+        "MP"
+      ]
     },
     {
       "name": "Pacific/Samoa",
@@ -117126,7 +118679,8 @@
         682.8,
         660
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Pacific/Tahiti",
@@ -117142,7 +118696,10 @@
         598.2667,
         600
       ],
-      "population": 178133
+      "population": 178133,
+      "countries": [
+        "PF"
+      ]
     },
     {
       "name": "Pacific/Tarawa",
@@ -117155,7 +118712,10 @@
       "offsets": [
         -720
       ],
-      "population": 28802
+      "population": 28802,
+      "countries": [
+        "KI"
+      ]
     },
     {
       "name": "Pacific/Tongatapu",
@@ -117195,7 +118755,10 @@
         -840,
         -780
       ],
-      "population": 75416
+      "population": 75416,
+      "countries": [
+        "TO"
+      ]
     },
     {
       "name": "Pacific/Truk",
@@ -117220,7 +118783,8 @@
         -540,
         -600
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Pacific/Wake",
@@ -117233,7 +118797,10 @@
       "offsets": [
         -720
       ],
-      "population": 15500
+      "population": 15500,
+      "countries": [
+        "UM"
+      ]
     },
     {
       "name": "Pacific/Wallis",
@@ -117246,7 +118813,10 @@
       "offsets": [
         -720
       ],
-      "population": 94
+      "population": 94,
+      "countries": [
+        "WF"
+      ]
     },
     {
       "name": "Pacific/Yap",
@@ -117271,7 +118841,8 @@
         -540,
         -600
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Poland",
@@ -117776,7 +119347,8 @@
         -120,
         -60
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Portugal",
@@ -118452,7 +120024,8 @@
         -60,
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "PRC",
@@ -118483,9 +120056,13 @@
         "CDT",
         "CST",
         "CDT",
+        "CST",
+        "CDT",
         "CST"
       ],
       "untils": [
+        -1600675200000,
+        -1585904400000,
         -933667200000,
         -922093200000,
         -908870400000,
@@ -118541,9 +120118,12 @@
         -540,
         -480,
         -540,
+        -480,
+        -540,
         -480
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "PST8PDT",
@@ -119003,7 +120583,8 @@
         420,
         480
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "ROC",
@@ -119136,7 +120717,8 @@
         -540,
         -480
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "ROK",
@@ -119236,7 +120818,8 @@
         -600,
         -540
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Singapore",
@@ -119267,7 +120850,8 @@
         -450,
         -480
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Turkey",
@@ -119622,7 +121206,8 @@
         -180,
         -180
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "UCT",
@@ -119635,7 +121220,8 @@
       "offsets": [
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Universal",
@@ -119648,7 +121234,8 @@
       "offsets": [
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "US/Alaska",
@@ -120090,7 +121677,8 @@
         480,
         540
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "US/Aleutian",
@@ -120532,7 +122120,8 @@
         540,
         600
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "US/Arizona",
@@ -120575,7 +122164,8 @@
         360,
         420
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "US/Central",
@@ -121293,7 +122883,8 @@
         300,
         360
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "US/East-Indiana",
@@ -121600,7 +123191,8 @@
         240,
         300
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "US/Eastern",
@@ -122318,7 +123910,8 @@
         240,
         300
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "US/Hawaii",
@@ -122349,7 +123942,8 @@
         630,
         600
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "US/Indiana-Starke",
@@ -122821,7 +124415,8 @@
         300,
         360
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "US/Michigan",
@@ -123257,7 +124852,8 @@
         240,
         300
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "US/Mountain",
@@ -123741,7 +125337,8 @@
         360,
         420
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "US/Pacific-New",
@@ -124309,7 +125906,8 @@
         420,
         480
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "US/Pacific",
@@ -124877,7 +126475,8 @@
         420,
         480
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "US/Samoa",
@@ -124893,7 +126492,8 @@
         682.8,
         660
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "UTC",
@@ -124906,7 +126506,8 @@
       "offsets": [
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "W-SU",
@@ -125150,7 +126751,8 @@
         -240,
         -180
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "WET",
@@ -125529,7 +127131,8 @@
         -60,
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     },
     {
       "name": "Zulu",
@@ -125542,8 +127145,1752 @@
       "offsets": [
         0
       ],
-      "population": 0
+      "population": 0,
+      "countries": []
     }
   ],
-  "links": []
+  "links": [],
+  "countries": [
+    {
+      "name": "AD",
+      "zones": [
+        "Europe/Andorra"
+      ]
+    },
+    {
+      "name": "AE",
+      "zones": [
+        "Asia/Dubai"
+      ]
+    },
+    {
+      "name": "AF",
+      "zones": [
+        "Asia/Kabul"
+      ]
+    },
+    {
+      "name": "AG",
+      "zones": [
+        "America/Port_of_Spain",
+        "America/Antigua"
+      ]
+    },
+    {
+      "name": "AI",
+      "zones": [
+        "America/Port_of_Spain",
+        "America/Anguilla"
+      ]
+    },
+    {
+      "name": "AL",
+      "zones": [
+        "Europe/Tirane"
+      ]
+    },
+    {
+      "name": "AM",
+      "zones": [
+        "Asia/Yerevan"
+      ]
+    },
+    {
+      "name": "AO",
+      "zones": [
+        "Africa/Lagos",
+        "Africa/Luanda"
+      ]
+    },
+    {
+      "name": "AQ",
+      "zones": [
+        "Antarctica/Casey",
+        "Antarctica/Davis",
+        "Antarctica/DumontDUrville",
+        "Antarctica/Mawson",
+        "Antarctica/Palmer",
+        "Antarctica/Rothera",
+        "Antarctica/Syowa",
+        "Antarctica/Troll",
+        "Antarctica/Vostok",
+        "Pacific/Auckland",
+        "Antarctica/McMurdo"
+      ]
+    },
+    {
+      "name": "AR",
+      "zones": [
+        "America/Argentina/Buenos_Aires",
+        "America/Argentina/Cordoba",
+        "America/Argentina/Salta",
+        "America/Argentina/Jujuy",
+        "America/Argentina/Tucuman",
+        "America/Argentina/Catamarca",
+        "America/Argentina/La_Rioja",
+        "America/Argentina/San_Juan",
+        "America/Argentina/Mendoza",
+        "America/Argentina/San_Luis",
+        "America/Argentina/Rio_Gallegos",
+        "America/Argentina/Ushuaia"
+      ]
+    },
+    {
+      "name": "AS",
+      "zones": [
+        "Pacific/Pago_Pago"
+      ]
+    },
+    {
+      "name": "AT",
+      "zones": [
+        "Europe/Vienna"
+      ]
+    },
+    {
+      "name": "AU",
+      "zones": [
+        "Australia/Lord_Howe",
+        "Antarctica/Macquarie",
+        "Australia/Hobart",
+        "Australia/Currie",
+        "Australia/Melbourne",
+        "Australia/Sydney",
+        "Australia/Broken_Hill",
+        "Australia/Brisbane",
+        "Australia/Lindeman",
+        "Australia/Adelaide",
+        "Australia/Darwin",
+        "Australia/Perth",
+        "Australia/Eucla"
+      ]
+    },
+    {
+      "name": "AW",
+      "zones": [
+        "America/Curacao",
+        "America/Aruba"
+      ]
+    },
+    {
+      "name": "AX",
+      "zones": [
+        "Europe/Helsinki",
+        "Europe/Mariehamn"
+      ]
+    },
+    {
+      "name": "AZ",
+      "zones": [
+        "Asia/Baku"
+      ]
+    },
+    {
+      "name": "BA",
+      "zones": [
+        "Europe/Belgrade",
+        "Europe/Sarajevo"
+      ]
+    },
+    {
+      "name": "BB",
+      "zones": [
+        "America/Barbados"
+      ]
+    },
+    {
+      "name": "BD",
+      "zones": [
+        "Asia/Dhaka"
+      ]
+    },
+    {
+      "name": "BE",
+      "zones": [
+        "Europe/Brussels"
+      ]
+    },
+    {
+      "name": "BF",
+      "zones": [
+        "Africa/Abidjan",
+        "Africa/Ouagadougou"
+      ]
+    },
+    {
+      "name": "BG",
+      "zones": [
+        "Europe/Sofia"
+      ]
+    },
+    {
+      "name": "BH",
+      "zones": [
+        "Asia/Qatar",
+        "Asia/Bahrain"
+      ]
+    },
+    {
+      "name": "BI",
+      "zones": [
+        "Africa/Maputo",
+        "Africa/Bujumbura"
+      ]
+    },
+    {
+      "name": "BJ",
+      "zones": [
+        "Africa/Lagos",
+        "Africa/Porto-Novo"
+      ]
+    },
+    {
+      "name": "BL",
+      "zones": [
+        "America/Port_of_Spain",
+        "America/St_Barthelemy"
+      ]
+    },
+    {
+      "name": "BM",
+      "zones": [
+        "Atlantic/Bermuda"
+      ]
+    },
+    {
+      "name": "BN",
+      "zones": [
+        "Asia/Brunei"
+      ]
+    },
+    {
+      "name": "BO",
+      "zones": [
+        "America/La_Paz"
+      ]
+    },
+    {
+      "name": "BQ",
+      "zones": [
+        "America/Curacao",
+        "America/Kralendijk"
+      ]
+    },
+    {
+      "name": "BR",
+      "zones": [
+        "America/Noronha",
+        "America/Belem",
+        "America/Fortaleza",
+        "America/Recife",
+        "America/Araguaina",
+        "America/Maceio",
+        "America/Bahia",
+        "America/Sao_Paulo",
+        "America/Campo_Grande",
+        "America/Cuiaba",
+        "America/Santarem",
+        "America/Porto_Velho",
+        "America/Boa_Vista",
+        "America/Manaus",
+        "America/Eirunepe",
+        "America/Rio_Branco"
+      ]
+    },
+    {
+      "name": "BS",
+      "zones": [
+        "America/Nassau"
+      ]
+    },
+    {
+      "name": "BT",
+      "zones": [
+        "Asia/Thimphu"
+      ]
+    },
+    {
+      "name": "BW",
+      "zones": [
+        "Africa/Maputo",
+        "Africa/Gaborone"
+      ]
+    },
+    {
+      "name": "BY",
+      "zones": [
+        "Europe/Minsk"
+      ]
+    },
+    {
+      "name": "BZ",
+      "zones": [
+        "America/Belize"
+      ]
+    },
+    {
+      "name": "CA",
+      "zones": [
+        "America/St_Johns",
+        "America/Halifax",
+        "America/Glace_Bay",
+        "America/Moncton",
+        "America/Goose_Bay",
+        "America/Blanc-Sablon",
+        "America/Toronto",
+        "America/Nipigon",
+        "America/Thunder_Bay",
+        "America/Iqaluit",
+        "America/Pangnirtung",
+        "America/Atikokan",
+        "America/Winnipeg",
+        "America/Rainy_River",
+        "America/Resolute",
+        "America/Rankin_Inlet",
+        "America/Regina",
+        "America/Swift_Current",
+        "America/Edmonton",
+        "America/Cambridge_Bay",
+        "America/Yellowknife",
+        "America/Inuvik",
+        "America/Creston",
+        "America/Dawson_Creek",
+        "America/Fort_Nelson",
+        "America/Vancouver",
+        "America/Whitehorse",
+        "America/Dawson"
+      ]
+    },
+    {
+      "name": "CC",
+      "zones": [
+        "Indian/Cocos"
+      ]
+    },
+    {
+      "name": "CD",
+      "zones": [
+        "Africa/Maputo",
+        "Africa/Lagos",
+        "Africa/Kinshasa",
+        "Africa/Lubumbashi"
+      ]
+    },
+    {
+      "name": "CF",
+      "zones": [
+        "Africa/Lagos",
+        "Africa/Bangui"
+      ]
+    },
+    {
+      "name": "CG",
+      "zones": [
+        "Africa/Lagos",
+        "Africa/Brazzaville"
+      ]
+    },
+    {
+      "name": "CH",
+      "zones": [
+        "Europe/Zurich"
+      ]
+    },
+    {
+      "name": "CI",
+      "zones": [
+        "Africa/Abidjan"
+      ]
+    },
+    {
+      "name": "CK",
+      "zones": [
+        "Pacific/Rarotonga"
+      ]
+    },
+    {
+      "name": "CL",
+      "zones": [
+        "America/Santiago",
+        "America/Punta_Arenas",
+        "Pacific/Easter"
+      ]
+    },
+    {
+      "name": "CM",
+      "zones": [
+        "Africa/Lagos",
+        "Africa/Douala"
+      ]
+    },
+    {
+      "name": "CN",
+      "zones": [
+        "Asia/Shanghai",
+        "Asia/Urumqi"
+      ]
+    },
+    {
+      "name": "CO",
+      "zones": [
+        "America/Bogota"
+      ]
+    },
+    {
+      "name": "CR",
+      "zones": [
+        "America/Costa_Rica"
+      ]
+    },
+    {
+      "name": "CU",
+      "zones": [
+        "America/Havana"
+      ]
+    },
+    {
+      "name": "CV",
+      "zones": [
+        "Atlantic/Cape_Verde"
+      ]
+    },
+    {
+      "name": "CW",
+      "zones": [
+        "America/Curacao"
+      ]
+    },
+    {
+      "name": "CX",
+      "zones": [
+        "Indian/Christmas"
+      ]
+    },
+    {
+      "name": "CY",
+      "zones": [
+        "Asia/Nicosia",
+        "Asia/Famagusta"
+      ]
+    },
+    {
+      "name": "CZ",
+      "zones": [
+        "Europe/Prague"
+      ]
+    },
+    {
+      "name": "DE",
+      "zones": [
+        "Europe/Zurich",
+        "Europe/Berlin",
+        "Europe/Busingen"
+      ]
+    },
+    {
+      "name": "DJ",
+      "zones": [
+        "Africa/Nairobi",
+        "Africa/Djibouti"
+      ]
+    },
+    {
+      "name": "DK",
+      "zones": [
+        "Europe/Copenhagen"
+      ]
+    },
+    {
+      "name": "DM",
+      "zones": [
+        "America/Port_of_Spain",
+        "America/Dominica"
+      ]
+    },
+    {
+      "name": "DO",
+      "zones": [
+        "America/Santo_Domingo"
+      ]
+    },
+    {
+      "name": "DZ",
+      "zones": [
+        "Africa/Algiers"
+      ]
+    },
+    {
+      "name": "EC",
+      "zones": [
+        "America/Guayaquil",
+        "Pacific/Galapagos"
+      ]
+    },
+    {
+      "name": "EE",
+      "zones": [
+        "Europe/Tallinn"
+      ]
+    },
+    {
+      "name": "EG",
+      "zones": [
+        "Africa/Cairo"
+      ]
+    },
+    {
+      "name": "EH",
+      "zones": [
+        "Africa/El_Aaiun"
+      ]
+    },
+    {
+      "name": "ER",
+      "zones": [
+        "Africa/Nairobi",
+        "Africa/Asmara"
+      ]
+    },
+    {
+      "name": "ES",
+      "zones": [
+        "Europe/Madrid",
+        "Africa/Ceuta",
+        "Atlantic/Canary"
+      ]
+    },
+    {
+      "name": "ET",
+      "zones": [
+        "Africa/Nairobi",
+        "Africa/Addis_Ababa"
+      ]
+    },
+    {
+      "name": "FI",
+      "zones": [
+        "Europe/Helsinki"
+      ]
+    },
+    {
+      "name": "FJ",
+      "zones": [
+        "Pacific/Fiji"
+      ]
+    },
+    {
+      "name": "FK",
+      "zones": [
+        "Atlantic/Stanley"
+      ]
+    },
+    {
+      "name": "FM",
+      "zones": [
+        "Pacific/Chuuk",
+        "Pacific/Pohnpei",
+        "Pacific/Kosrae"
+      ]
+    },
+    {
+      "name": "FO",
+      "zones": [
+        "Atlantic/Faroe"
+      ]
+    },
+    {
+      "name": "FR",
+      "zones": [
+        "Europe/Paris"
+      ]
+    },
+    {
+      "name": "GA",
+      "zones": [
+        "Africa/Lagos",
+        "Africa/Libreville"
+      ]
+    },
+    {
+      "name": "GB",
+      "zones": [
+        "Europe/London"
+      ]
+    },
+    {
+      "name": "GD",
+      "zones": [
+        "America/Port_of_Spain",
+        "America/Grenada"
+      ]
+    },
+    {
+      "name": "GE",
+      "zones": [
+        "Asia/Tbilisi"
+      ]
+    },
+    {
+      "name": "GF",
+      "zones": [
+        "America/Cayenne"
+      ]
+    },
+    {
+      "name": "GG",
+      "zones": [
+        "Europe/London",
+        "Europe/Guernsey"
+      ]
+    },
+    {
+      "name": "GH",
+      "zones": [
+        "Africa/Accra"
+      ]
+    },
+    {
+      "name": "GI",
+      "zones": [
+        "Europe/Gibraltar"
+      ]
+    },
+    {
+      "name": "GL",
+      "zones": [
+        "America/Nuuk",
+        "America/Danmarkshavn",
+        "America/Scoresbysund",
+        "America/Thule"
+      ]
+    },
+    {
+      "name": "GM",
+      "zones": [
+        "Africa/Abidjan",
+        "Africa/Banjul"
+      ]
+    },
+    {
+      "name": "GN",
+      "zones": [
+        "Africa/Abidjan",
+        "Africa/Conakry"
+      ]
+    },
+    {
+      "name": "GP",
+      "zones": [
+        "America/Port_of_Spain",
+        "America/Guadeloupe"
+      ]
+    },
+    {
+      "name": "GQ",
+      "zones": [
+        "Africa/Lagos",
+        "Africa/Malabo"
+      ]
+    },
+    {
+      "name": "GR",
+      "zones": [
+        "Europe/Athens"
+      ]
+    },
+    {
+      "name": "GS",
+      "zones": [
+        "Atlantic/South_Georgia"
+      ]
+    },
+    {
+      "name": "GT",
+      "zones": [
+        "America/Guatemala"
+      ]
+    },
+    {
+      "name": "GU",
+      "zones": [
+        "Pacific/Guam"
+      ]
+    },
+    {
+      "name": "GW",
+      "zones": [
+        "Africa/Bissau"
+      ]
+    },
+    {
+      "name": "GY",
+      "zones": [
+        "America/Guyana"
+      ]
+    },
+    {
+      "name": "HK",
+      "zones": [
+        "Asia/Hong_Kong"
+      ]
+    },
+    {
+      "name": "HN",
+      "zones": [
+        "America/Tegucigalpa"
+      ]
+    },
+    {
+      "name": "HR",
+      "zones": [
+        "Europe/Belgrade",
+        "Europe/Zagreb"
+      ]
+    },
+    {
+      "name": "HT",
+      "zones": [
+        "America/Port-au-Prince"
+      ]
+    },
+    {
+      "name": "HU",
+      "zones": [
+        "Europe/Budapest"
+      ]
+    },
+    {
+      "name": "ID",
+      "zones": [
+        "Asia/Jakarta",
+        "Asia/Pontianak",
+        "Asia/Makassar",
+        "Asia/Jayapura"
+      ]
+    },
+    {
+      "name": "IE",
+      "zones": [
+        "Europe/Dublin"
+      ]
+    },
+    {
+      "name": "IL",
+      "zones": [
+        "Asia/Jerusalem"
+      ]
+    },
+    {
+      "name": "IM",
+      "zones": [
+        "Europe/London",
+        "Europe/Isle_of_Man"
+      ]
+    },
+    {
+      "name": "IN",
+      "zones": [
+        "Asia/Kolkata"
+      ]
+    },
+    {
+      "name": "IO",
+      "zones": [
+        "Indian/Chagos"
+      ]
+    },
+    {
+      "name": "IQ",
+      "zones": [
+        "Asia/Baghdad"
+      ]
+    },
+    {
+      "name": "IR",
+      "zones": [
+        "Asia/Tehran"
+      ]
+    },
+    {
+      "name": "IS",
+      "zones": [
+        "Atlantic/Reykjavik"
+      ]
+    },
+    {
+      "name": "IT",
+      "zones": [
+        "Europe/Rome"
+      ]
+    },
+    {
+      "name": "JE",
+      "zones": [
+        "Europe/London",
+        "Europe/Jersey"
+      ]
+    },
+    {
+      "name": "JM",
+      "zones": [
+        "America/Jamaica"
+      ]
+    },
+    {
+      "name": "JO",
+      "zones": [
+        "Asia/Amman"
+      ]
+    },
+    {
+      "name": "JP",
+      "zones": [
+        "Asia/Tokyo"
+      ]
+    },
+    {
+      "name": "KE",
+      "zones": [
+        "Africa/Nairobi"
+      ]
+    },
+    {
+      "name": "KG",
+      "zones": [
+        "Asia/Bishkek"
+      ]
+    },
+    {
+      "name": "KH",
+      "zones": [
+        "Asia/Bangkok",
+        "Asia/Phnom_Penh"
+      ]
+    },
+    {
+      "name": "KI",
+      "zones": [
+        "Pacific/Tarawa",
+        "Pacific/Enderbury",
+        "Pacific/Kiritimati"
+      ]
+    },
+    {
+      "name": "KM",
+      "zones": [
+        "Africa/Nairobi",
+        "Indian/Comoro"
+      ]
+    },
+    {
+      "name": "KN",
+      "zones": [
+        "America/Port_of_Spain",
+        "America/St_Kitts"
+      ]
+    },
+    {
+      "name": "KP",
+      "zones": [
+        "Asia/Pyongyang"
+      ]
+    },
+    {
+      "name": "KR",
+      "zones": [
+        "Asia/Seoul"
+      ]
+    },
+    {
+      "name": "KW",
+      "zones": [
+        "Asia/Riyadh",
+        "Asia/Kuwait"
+      ]
+    },
+    {
+      "name": "KY",
+      "zones": [
+        "America/Panama",
+        "America/Cayman"
+      ]
+    },
+    {
+      "name": "KZ",
+      "zones": [
+        "Asia/Almaty",
+        "Asia/Qyzylorda",
+        "Asia/Qostanay",
+        "Asia/Aqtobe",
+        "Asia/Aqtau",
+        "Asia/Atyrau",
+        "Asia/Oral"
+      ]
+    },
+    {
+      "name": "LA",
+      "zones": [
+        "Asia/Bangkok",
+        "Asia/Vientiane"
+      ]
+    },
+    {
+      "name": "LB",
+      "zones": [
+        "Asia/Beirut"
+      ]
+    },
+    {
+      "name": "LC",
+      "zones": [
+        "America/Port_of_Spain",
+        "America/St_Lucia"
+      ]
+    },
+    {
+      "name": "LI",
+      "zones": [
+        "Europe/Zurich",
+        "Europe/Vaduz"
+      ]
+    },
+    {
+      "name": "LK",
+      "zones": [
+        "Asia/Colombo"
+      ]
+    },
+    {
+      "name": "LR",
+      "zones": [
+        "Africa/Monrovia"
+      ]
+    },
+    {
+      "name": "LS",
+      "zones": [
+        "Africa/Johannesburg",
+        "Africa/Maseru"
+      ]
+    },
+    {
+      "name": "LT",
+      "zones": [
+        "Europe/Vilnius"
+      ]
+    },
+    {
+      "name": "LU",
+      "zones": [
+        "Europe/Luxembourg"
+      ]
+    },
+    {
+      "name": "LV",
+      "zones": [
+        "Europe/Riga"
+      ]
+    },
+    {
+      "name": "LY",
+      "zones": [
+        "Africa/Tripoli"
+      ]
+    },
+    {
+      "name": "MA",
+      "zones": [
+        "Africa/Casablanca"
+      ]
+    },
+    {
+      "name": "MC",
+      "zones": [
+        "Europe/Monaco"
+      ]
+    },
+    {
+      "name": "MD",
+      "zones": [
+        "Europe/Chisinau"
+      ]
+    },
+    {
+      "name": "ME",
+      "zones": [
+        "Europe/Belgrade",
+        "Europe/Podgorica"
+      ]
+    },
+    {
+      "name": "MF",
+      "zones": [
+        "America/Port_of_Spain",
+        "America/Marigot"
+      ]
+    },
+    {
+      "name": "MG",
+      "zones": [
+        "Africa/Nairobi",
+        "Indian/Antananarivo"
+      ]
+    },
+    {
+      "name": "MH",
+      "zones": [
+        "Pacific/Majuro",
+        "Pacific/Kwajalein"
+      ]
+    },
+    {
+      "name": "MK",
+      "zones": [
+        "Europe/Belgrade",
+        "Europe/Skopje"
+      ]
+    },
+    {
+      "name": "ML",
+      "zones": [
+        "Africa/Abidjan",
+        "Africa/Bamako"
+      ]
+    },
+    {
+      "name": "MM",
+      "zones": [
+        "Asia/Yangon"
+      ]
+    },
+    {
+      "name": "MN",
+      "zones": [
+        "Asia/Ulaanbaatar",
+        "Asia/Hovd",
+        "Asia/Choibalsan"
+      ]
+    },
+    {
+      "name": "MO",
+      "zones": [
+        "Asia/Macau"
+      ]
+    },
+    {
+      "name": "MP",
+      "zones": [
+        "Pacific/Guam",
+        "Pacific/Saipan"
+      ]
+    },
+    {
+      "name": "MQ",
+      "zones": [
+        "America/Martinique"
+      ]
+    },
+    {
+      "name": "MR",
+      "zones": [
+        "Africa/Abidjan",
+        "Africa/Nouakchott"
+      ]
+    },
+    {
+      "name": "MS",
+      "zones": [
+        "America/Port_of_Spain",
+        "America/Montserrat"
+      ]
+    },
+    {
+      "name": "MT",
+      "zones": [
+        "Europe/Malta"
+      ]
+    },
+    {
+      "name": "MU",
+      "zones": [
+        "Indian/Mauritius"
+      ]
+    },
+    {
+      "name": "MV",
+      "zones": [
+        "Indian/Maldives"
+      ]
+    },
+    {
+      "name": "MW",
+      "zones": [
+        "Africa/Maputo",
+        "Africa/Blantyre"
+      ]
+    },
+    {
+      "name": "MX",
+      "zones": [
+        "America/Mexico_City",
+        "America/Cancun",
+        "America/Merida",
+        "America/Monterrey",
+        "America/Matamoros",
+        "America/Mazatlan",
+        "America/Chihuahua",
+        "America/Ojinaga",
+        "America/Hermosillo",
+        "America/Tijuana",
+        "America/Bahia_Banderas"
+      ]
+    },
+    {
+      "name": "MY",
+      "zones": [
+        "Asia/Kuala_Lumpur",
+        "Asia/Kuching"
+      ]
+    },
+    {
+      "name": "MZ",
+      "zones": [
+        "Africa/Maputo"
+      ]
+    },
+    {
+      "name": "NA",
+      "zones": [
+        "Africa/Windhoek"
+      ]
+    },
+    {
+      "name": "NC",
+      "zones": [
+        "Pacific/Noumea"
+      ]
+    },
+    {
+      "name": "NE",
+      "zones": [
+        "Africa/Lagos",
+        "Africa/Niamey"
+      ]
+    },
+    {
+      "name": "NF",
+      "zones": [
+        "Pacific/Norfolk"
+      ]
+    },
+    {
+      "name": "NG",
+      "zones": [
+        "Africa/Lagos"
+      ]
+    },
+    {
+      "name": "NI",
+      "zones": [
+        "America/Managua"
+      ]
+    },
+    {
+      "name": "NL",
+      "zones": [
+        "Europe/Amsterdam"
+      ]
+    },
+    {
+      "name": "NO",
+      "zones": [
+        "Europe/Oslo"
+      ]
+    },
+    {
+      "name": "NP",
+      "zones": [
+        "Asia/Kathmandu"
+      ]
+    },
+    {
+      "name": "NR",
+      "zones": [
+        "Pacific/Nauru"
+      ]
+    },
+    {
+      "name": "NU",
+      "zones": [
+        "Pacific/Niue"
+      ]
+    },
+    {
+      "name": "NZ",
+      "zones": [
+        "Pacific/Auckland",
+        "Pacific/Chatham"
+      ]
+    },
+    {
+      "name": "OM",
+      "zones": [
+        "Asia/Dubai",
+        "Asia/Muscat"
+      ]
+    },
+    {
+      "name": "PA",
+      "zones": [
+        "America/Panama"
+      ]
+    },
+    {
+      "name": "PE",
+      "zones": [
+        "America/Lima"
+      ]
+    },
+    {
+      "name": "PF",
+      "zones": [
+        "Pacific/Tahiti",
+        "Pacific/Marquesas",
+        "Pacific/Gambier"
+      ]
+    },
+    {
+      "name": "PG",
+      "zones": [
+        "Pacific/Port_Moresby",
+        "Pacific/Bougainville"
+      ]
+    },
+    {
+      "name": "PH",
+      "zones": [
+        "Asia/Manila"
+      ]
+    },
+    {
+      "name": "PK",
+      "zones": [
+        "Asia/Karachi"
+      ]
+    },
+    {
+      "name": "PL",
+      "zones": [
+        "Europe/Warsaw"
+      ]
+    },
+    {
+      "name": "PM",
+      "zones": [
+        "America/Miquelon"
+      ]
+    },
+    {
+      "name": "PN",
+      "zones": [
+        "Pacific/Pitcairn"
+      ]
+    },
+    {
+      "name": "PR",
+      "zones": [
+        "America/Puerto_Rico"
+      ]
+    },
+    {
+      "name": "PS",
+      "zones": [
+        "Asia/Gaza",
+        "Asia/Hebron"
+      ]
+    },
+    {
+      "name": "PT",
+      "zones": [
+        "Europe/Lisbon",
+        "Atlantic/Madeira",
+        "Atlantic/Azores"
+      ]
+    },
+    {
+      "name": "PW",
+      "zones": [
+        "Pacific/Palau"
+      ]
+    },
+    {
+      "name": "PY",
+      "zones": [
+        "America/Asuncion"
+      ]
+    },
+    {
+      "name": "QA",
+      "zones": [
+        "Asia/Qatar"
+      ]
+    },
+    {
+      "name": "RE",
+      "zones": [
+        "Indian/Reunion"
+      ]
+    },
+    {
+      "name": "RO",
+      "zones": [
+        "Europe/Bucharest"
+      ]
+    },
+    {
+      "name": "RS",
+      "zones": [
+        "Europe/Belgrade"
+      ]
+    },
+    {
+      "name": "RU",
+      "zones": [
+        "Europe/Kaliningrad",
+        "Europe/Moscow",
+        "Europe/Simferopol",
+        "Europe/Kirov",
+        "Europe/Astrakhan",
+        "Europe/Volgograd",
+        "Europe/Saratov",
+        "Europe/Ulyanovsk",
+        "Europe/Samara",
+        "Asia/Yekaterinburg",
+        "Asia/Omsk",
+        "Asia/Novosibirsk",
+        "Asia/Barnaul",
+        "Asia/Tomsk",
+        "Asia/Novokuznetsk",
+        "Asia/Krasnoyarsk",
+        "Asia/Irkutsk",
+        "Asia/Chita",
+        "Asia/Yakutsk",
+        "Asia/Khandyga",
+        "Asia/Vladivostok",
+        "Asia/Ust-Nera",
+        "Asia/Magadan",
+        "Asia/Sakhalin",
+        "Asia/Srednekolymsk",
+        "Asia/Kamchatka",
+        "Asia/Anadyr"
+      ]
+    },
+    {
+      "name": "RW",
+      "zones": [
+        "Africa/Maputo",
+        "Africa/Kigali"
+      ]
+    },
+    {
+      "name": "SA",
+      "zones": [
+        "Asia/Riyadh"
+      ]
+    },
+    {
+      "name": "SB",
+      "zones": [
+        "Pacific/Guadalcanal"
+      ]
+    },
+    {
+      "name": "SC",
+      "zones": [
+        "Indian/Mahe"
+      ]
+    },
+    {
+      "name": "SD",
+      "zones": [
+        "Africa/Khartoum"
+      ]
+    },
+    {
+      "name": "SE",
+      "zones": [
+        "Europe/Stockholm"
+      ]
+    },
+    {
+      "name": "SG",
+      "zones": [
+        "Asia/Singapore"
+      ]
+    },
+    {
+      "name": "SH",
+      "zones": [
+        "Africa/Abidjan",
+        "Atlantic/St_Helena"
+      ]
+    },
+    {
+      "name": "SI",
+      "zones": [
+        "Europe/Belgrade",
+        "Europe/Ljubljana"
+      ]
+    },
+    {
+      "name": "SJ",
+      "zones": [
+        "Europe/Oslo",
+        "Arctic/Longyearbyen"
+      ]
+    },
+    {
+      "name": "SK",
+      "zones": [
+        "Europe/Prague",
+        "Europe/Bratislava"
+      ]
+    },
+    {
+      "name": "SL",
+      "zones": [
+        "Africa/Abidjan",
+        "Africa/Freetown"
+      ]
+    },
+    {
+      "name": "SM",
+      "zones": [
+        "Europe/Rome",
+        "Europe/San_Marino"
+      ]
+    },
+    {
+      "name": "SN",
+      "zones": [
+        "Africa/Abidjan",
+        "Africa/Dakar"
+      ]
+    },
+    {
+      "name": "SO",
+      "zones": [
+        "Africa/Nairobi",
+        "Africa/Mogadishu"
+      ]
+    },
+    {
+      "name": "SR",
+      "zones": [
+        "America/Paramaribo"
+      ]
+    },
+    {
+      "name": "SS",
+      "zones": [
+        "Africa/Juba"
+      ]
+    },
+    {
+      "name": "ST",
+      "zones": [
+        "Africa/Sao_Tome"
+      ]
+    },
+    {
+      "name": "SV",
+      "zones": [
+        "America/El_Salvador"
+      ]
+    },
+    {
+      "name": "SX",
+      "zones": [
+        "America/Curacao",
+        "America/Lower_Princes"
+      ]
+    },
+    {
+      "name": "SY",
+      "zones": [
+        "Asia/Damascus"
+      ]
+    },
+    {
+      "name": "SZ",
+      "zones": [
+        "Africa/Johannesburg",
+        "Africa/Mbabane"
+      ]
+    },
+    {
+      "name": "TC",
+      "zones": [
+        "America/Grand_Turk"
+      ]
+    },
+    {
+      "name": "TD",
+      "zones": [
+        "Africa/Ndjamena"
+      ]
+    },
+    {
+      "name": "TF",
+      "zones": [
+        "Indian/Reunion",
+        "Indian/Kerguelen"
+      ]
+    },
+    {
+      "name": "TG",
+      "zones": [
+        "Africa/Abidjan",
+        "Africa/Lome"
+      ]
+    },
+    {
+      "name": "TH",
+      "zones": [
+        "Asia/Bangkok"
+      ]
+    },
+    {
+      "name": "TJ",
+      "zones": [
+        "Asia/Dushanbe"
+      ]
+    },
+    {
+      "name": "TK",
+      "zones": [
+        "Pacific/Fakaofo"
+      ]
+    },
+    {
+      "name": "TL",
+      "zones": [
+        "Asia/Dili"
+      ]
+    },
+    {
+      "name": "TM",
+      "zones": [
+        "Asia/Ashgabat"
+      ]
+    },
+    {
+      "name": "TN",
+      "zones": [
+        "Africa/Tunis"
+      ]
+    },
+    {
+      "name": "TO",
+      "zones": [
+        "Pacific/Tongatapu"
+      ]
+    },
+    {
+      "name": "TR",
+      "zones": [
+        "Europe/Istanbul"
+      ]
+    },
+    {
+      "name": "TT",
+      "zones": [
+        "America/Port_of_Spain"
+      ]
+    },
+    {
+      "name": "TV",
+      "zones": [
+        "Pacific/Funafuti"
+      ]
+    },
+    {
+      "name": "TW",
+      "zones": [
+        "Asia/Taipei"
+      ]
+    },
+    {
+      "name": "TZ",
+      "zones": [
+        "Africa/Nairobi",
+        "Africa/Dar_es_Salaam"
+      ]
+    },
+    {
+      "name": "UA",
+      "zones": [
+        "Europe/Simferopol",
+        "Europe/Kiev",
+        "Europe/Uzhgorod",
+        "Europe/Zaporozhye"
+      ]
+    },
+    {
+      "name": "UG",
+      "zones": [
+        "Africa/Nairobi",
+        "Africa/Kampala"
+      ]
+    },
+    {
+      "name": "UM",
+      "zones": [
+        "Pacific/Pago_Pago",
+        "Pacific/Wake",
+        "Pacific/Honolulu",
+        "Pacific/Midway"
+      ]
+    },
+    {
+      "name": "US",
+      "zones": [
+        "America/New_York",
+        "America/Detroit",
+        "America/Kentucky/Louisville",
+        "America/Kentucky/Monticello",
+        "America/Indiana/Indianapolis",
+        "America/Indiana/Vincennes",
+        "America/Indiana/Winamac",
+        "America/Indiana/Marengo",
+        "America/Indiana/Petersburg",
+        "America/Indiana/Vevay",
+        "America/Chicago",
+        "America/Indiana/Tell_City",
+        "America/Indiana/Knox",
+        "America/Menominee",
+        "America/North_Dakota/Center",
+        "America/North_Dakota/New_Salem",
+        "America/North_Dakota/Beulah",
+        "America/Denver",
+        "America/Boise",
+        "America/Phoenix",
+        "America/Los_Angeles",
+        "America/Anchorage",
+        "America/Juneau",
+        "America/Sitka",
+        "America/Metlakatla",
+        "America/Yakutat",
+        "America/Nome",
+        "America/Adak",
+        "Pacific/Honolulu"
+      ]
+    },
+    {
+      "name": "UY",
+      "zones": [
+        "America/Montevideo"
+      ]
+    },
+    {
+      "name": "UZ",
+      "zones": [
+        "Asia/Samarkand",
+        "Asia/Tashkent"
+      ]
+    },
+    {
+      "name": "VA",
+      "zones": [
+        "Europe/Rome",
+        "Europe/Vatican"
+      ]
+    },
+    {
+      "name": "VC",
+      "zones": [
+        "America/Port_of_Spain",
+        "America/St_Vincent"
+      ]
+    },
+    {
+      "name": "VE",
+      "zones": [
+        "America/Caracas"
+      ]
+    },
+    {
+      "name": "VG",
+      "zones": [
+        "America/Port_of_Spain",
+        "America/Tortola"
+      ]
+    },
+    {
+      "name": "VI",
+      "zones": [
+        "America/Port_of_Spain",
+        "America/St_Thomas"
+      ]
+    },
+    {
+      "name": "VN",
+      "zones": [
+        "Asia/Bangkok",
+        "Asia/Ho_Chi_Minh"
+      ]
+    },
+    {
+      "name": "VU",
+      "zones": [
+        "Pacific/Efate"
+      ]
+    },
+    {
+      "name": "WF",
+      "zones": [
+        "Pacific/Wallis"
+      ]
+    },
+    {
+      "name": "WS",
+      "zones": [
+        "Pacific/Apia"
+      ]
+    },
+    {
+      "name": "YE",
+      "zones": [
+        "Asia/Riyadh",
+        "Asia/Aden"
+      ]
+    },
+    {
+      "name": "YT",
+      "zones": [
+        "Africa/Nairobi",
+        "Indian/Mayotte"
+      ]
+    },
+    {
+      "name": "ZA",
+      "zones": [
+        "Africa/Johannesburg"
+      ]
+    },
+    {
+      "name": "ZM",
+      "zones": [
+        "Africa/Maputo",
+        "Africa/Lusaka"
+      ]
+    },
+    {
+      "name": "ZW",
+      "zones": [
+        "Africa/Maputo",
+        "Africa/Harare"
+      ]
+    }
+  ]
 }
