@@ -29,12 +29,12 @@ const LENGTH_COMPARATOR = (str1, str2) => {
  * Cache for `_cachedResolveZoneIdText`.
  * 
  * Its basic structure is:
- * Map { cldrInstance: zoneId }
+ * Obj { locale: zoneId }
  * Obj { zoneId: style}
  * Obj { style: type}
  * Obj { type: resolvedZoneIdText}
  */
-const resolveZoneIdTextCache = new Map();
+const resolveZoneIdTextCache = {};
 
 /**
  * Prints or parses a zone ID.
@@ -51,11 +51,11 @@ export default class CldrZoneTextPrinterParser {
     }
 
     _cachedResolveZoneIdText(cldr, zoneId, style, type) {
-        if (!resolveZoneIdTextCache.has(cldr)) {
-            resolveZoneIdTextCache.set(cldr, {});
+        if (resolveZoneIdTextCache[cldr.locale] == null) {
+            resolveZoneIdTextCache[cldr.locale] = {};
         }
 
-        const zoneIdToStyle = resolveZoneIdTextCache.get(cldr);
+        const zoneIdToStyle = resolveZoneIdTextCache[cldr.locale];
         if (zoneIdToStyle[zoneId] == null) {
             zoneIdToStyle[zoneId] = {};
         }
@@ -100,13 +100,13 @@ export default class CldrZoneTextPrinterParser {
                         const preferredZone = mapZones[metazone][cldr.attributes.territory];
                         if (preferredZone) {
                             if (preferredZone !== zoneId) {
-                                return this._resolveZoneIdText(cldr, preferredZone, style, type, mapZones);
+                                return this._cachedResolveZoneIdText(cldr, preferredZone, style, type);
                             }
                         } else {
                             // find golden Zone and resolve again
                             const goldenZone = mapZones[metazone]['001'];
                             if (goldenZone !== zoneId) {
-                                return this._resolveZoneIdText(cldr, goldenZone, style, type, mapZones);
+                                return this._cachedResolveZoneIdText(cldr, goldenZone, style, type);
                             }
                         }
                     }

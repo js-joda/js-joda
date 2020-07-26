@@ -26,16 +26,17 @@ export const getOrCreateCldrInstance = (locale) => {
     if (localeToCldrInstanceCache[locale] == null) {
         localeToCldrInstanceCache[locale] = new Cldr(locale);
     }
+
     return localeToCldrInstanceCache[locale];
 };
 
-const cldrInstanceToMapZonesCache = new Map();
+const localeToMapZonesCache = {};
 /**
-* Returns a map zones object for a cldr instance.
-* Memoized, so a given cldr instance will always return the exact same object.
+* Returns a map zones object for a Cldr instance.
+* Memoized, so for any given Cldr instance locale, the same object will be returned.
 */
 export const getOrCreateMapZones = (cldr) => {
-    if (!cldrInstanceToMapZonesCache.has(cldr)) {
+    if (localeToMapZonesCache[cldr.locale] == null) {
         const mapZones = {};
 
         cldr.get('supplemental/metaZones/metazones').forEach((metaZone) => {
@@ -47,8 +48,8 @@ export const getOrCreateMapZones = (cldr) => {
             }
         });
 
-        cldrInstanceToMapZonesCache.set(cldr, mapZones);
+        localeToMapZonesCache[cldr.locale] = mapZones;
     }
 
-    return cldrInstanceToMapZonesCache.get(cldr);
+    return localeToMapZonesCache[cldr.locale];
 };
