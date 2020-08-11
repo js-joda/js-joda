@@ -1,4 +1,4 @@
-//! @version @js-joda/core - 3.0.0
+//! @version @js-joda/core - 3.1.0
 //! @copyright (c) 2015-present, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -617,7 +617,7 @@ var Duration = function (_TemporalAmount) {
       nanoAdjustment = 0;
     }
 
-    if ((seconds | nanoAdjustment) === 0) {
+    if (seconds === 0 && nanoAdjustment === 0) {
       return Duration.ZERO;
     }
 
@@ -641,7 +641,7 @@ var Duration = function (_TemporalAmount) {
   };
 
   _proto.isZero = function isZero() {
-    return (this._seconds | this._nanos) === 0;
+    return this._seconds === 0 && this._nanos === 0;
   };
 
   _proto.isNegative = function isNegative() {
@@ -746,7 +746,7 @@ var Duration = function (_TemporalAmount) {
     requireNonNull(secondsToAdd, 'secondsToAdd');
     requireNonNull(nanosToAdd, 'nanosToAdd');
 
-    if ((secondsToAdd | nanosToAdd) === 0) {
+    if (secondsToAdd === 0 && nanosToAdd === 0) {
       return this;
     }
 
@@ -11135,7 +11135,7 @@ var LocalDateTime = function (_ChronoLocalDateTime) {
   var _proto = LocalDateTime.prototype;
 
   _proto._withDateTime = function _withDateTime(newDate, newTime) {
-    if (this._date === newDate && this._time === newTime) {
+    if (this._date.equals(newDate) && this._time.equals(newTime)) {
       return this;
     }
 
@@ -11412,7 +11412,7 @@ var LocalDateTime = function (_ChronoLocalDateTime) {
   };
 
   _proto._plusWithOverflow = function _plusWithOverflow(newDate, hours, minutes, seconds, nanos, sign) {
-    if ((hours | minutes | seconds | nanos) === 0) {
+    if (hours === 0 && minutes === 0 && seconds === 0 && nanos === 0) {
       return this._withDateTime(newDate, this._time);
     }
 
@@ -11721,7 +11721,7 @@ var LocalTime = function (_Temporal) {
 
     LocalTime._validate(_hour, _minute, _second, _nanoOfSecond);
 
-    if ((_minute | _second | _nanoOfSecond) === 0) {
+    if (_minute === 0 && _second === 0 && _nanoOfSecond === 0) {
       if (!LocalTime.HOURS[_hour]) {
         _this._hour = _hour;
         _this._minute = _minute;
@@ -12551,7 +12551,7 @@ var Instant = function (_Temporal) {
   };
 
   _proto._plus = function _plus(secondsToAdd, nanosToAdd) {
-    if ((secondsToAdd | nanosToAdd) === 0) {
+    if (secondsToAdd === 0 && nanosToAdd === 0) {
       return this;
     }
 
