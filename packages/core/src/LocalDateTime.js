@@ -317,7 +317,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @return {LocalDateTime} the date-time, not null
      */
     _withDateTime(newDate, newTime) {
-        if (this._date === newDate && this._time === newTime) {
+        if (this._date.equals(newDate) && this._time.equals(newTime)) {
             return this;
         }
         return new LocalDateTime(newDate, newTime);
@@ -1232,7 +1232,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      */
     _plusWithOverflow(newDate, hours, minutes, seconds, nanos, sign) {
         // 9223372036854775808 long, 2147483648 int
-        if ((hours | minutes | seconds | nanos) === 0) {
+        if (hours === 0 && minutes === 0 && seconds === 0 && nanos === 0) {
             return this._withDateTime(newDate, this._time);
         }
         let totDays = MathUtil.intDiv(nanos, LocalTime.NANOS_PER_DAY) +             //   max/24*60*60*1B
