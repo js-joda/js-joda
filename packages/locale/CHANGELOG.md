@@ -3,6 +3,10 @@
 
 ### next
 
+### 3.2.0 
+
+* cache cldr operations #420 by @JKillian
+
 ### 3.1.1
 
 * add fr-FR, sv, sv-SE locales to prebuilt packages
