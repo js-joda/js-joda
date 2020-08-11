@@ -624,7 +624,7 @@ export class Instant extends Temporal {
      * @throws DateTimeException if the result exceeds the maximum or minimum instant
      */
     _plus(secondsToAdd, nanosToAdd) {
-        if ((secondsToAdd | nanosToAdd) === 0) {
+        if (secondsToAdd === 0 && nanosToAdd === 0) {
             return this;
         }
         let epochSec = this._seconds + secondsToAdd;

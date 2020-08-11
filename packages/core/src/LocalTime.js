@@ -280,7 +280,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
         const _second = MathUtil.safeToInt(second);
         const _nanoOfSecond = MathUtil.safeToInt(nanoOfSecond);
         LocalTime._validate(_hour, _minute, _second, _nanoOfSecond);
-        if ((_minute | _second | _nanoOfSecond) === 0) {
+        if (_minute === 0 && _second === 0 && _nanoOfSecond === 0) {
             if (!LocalTime.HOURS[_hour]) {
                 this._hour = _hour;
                 this._minute = _minute;
