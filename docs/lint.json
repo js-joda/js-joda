@@ -148,6 +148,216 @@
     ]
   },
   {
+    "name": "OffsetDateTime#atZoneSameInstant",
+    "filePath": "packages/core/src/OffsetDateTime.js",
+    "lines": [
+      {
+        "lineNumber": 160,
+        "line": "    /**"
+      },
+      {
+        "lineNumber": 161,
+        "line": "     * @param {ZoneId}zone"
+      },
+      {
+        "lineNumber": 162,
+        "line": "     * @return {ZonedDateTime}"
+      },
+      {
+        "lineNumber": 163,
+        "line": "     */"
+      },
+      {
+        "lineNumber": 164,
+        "line": "    atZoneSameInstant(zone) {"
+      }
+    ],
+    "codeParams": [
+      "zone"
+    ],
+    "docParams": [
+      "{ZoneId}zone"
+    ]
+  },
+  {
+    "name": "OffsetTime.ofNumbers",
+    "filePath": "packages/core/src/OffsetTime.js",
+    "lines": [
+      {
+        "lineNumber": 72,
+        "line": "    /**"
+      },
+      {
+        "lineNumber": 73,
+        "line": "     * @param {int}hour"
+      },
+      {
+        "lineNumber": 74,
+        "line": "     * @param {int}minute"
+      },
+      {
+        "lineNumber": 75,
+        "line": "     * @param {int}second"
+      },
+      {
+        "lineNumber": 76,
+        "line": "     * @param {int}nanoOfSecond"
+      },
+      {
+        "lineNumber": 77,
+        "line": "     * @param {ZoneOffset}offset"
+      },
+      {
+        "lineNumber": 78,
+        "line": "     * @return {OffsetTime}"
+      },
+      {
+        "lineNumber": 79,
+        "line": "     */"
+      },
+      {
+        "lineNumber": 80,
+        "line": "    static ofNumbers(hour, minute, second, nanoOfSecond, offset) {"
+      }
+    ],
+    "codeParams": [
+      "hour",
+      "minute",
+      "second",
+      "nanoOfSecond",
+      "offset"
+    ],
+    "docParams": [
+      "{int}hour",
+      "{int}minute",
+      "{int}second",
+      "{int}nanoOfSecond",
+      "{ZoneOffset}offset"
+    ]
+  },
+  {
+    "name": "OffsetTime.ofTimeAndOffset",
+    "filePath": "packages/core/src/OffsetTime.js",
+    "lines": [
+      {
+        "lineNumber": 85,
+        "line": "    /**"
+      },
+      {
+        "lineNumber": 86,
+        "line": "     * @param {LocalTime}time"
+      },
+      {
+        "lineNumber": 87,
+        "line": "     * @param {ZoneOffset}offset"
+      },
+      {
+        "lineNumber": 88,
+        "line": "     * @return {OffsetTime}"
+      },
+      {
+        "lineNumber": 89,
+        "line": "     */"
+      },
+      {
+        "lineNumber": 90,
+        "line": "    static ofTimeAndOffset(time, offset) {"
+      }
+    ],
+    "codeParams": [
+      "time",
+      "offset"
+    ],
+    "docParams": [
+      "{LocalTime}time",
+      "{ZoneOffset}offset"
+    ]
+  },
+  {
+    "name": "OffsetTime#_withLocalTimeOffset",
+    "filePath": "packages/core/src/OffsetTime.js",
+    "lines": [
+      {
+        "lineNumber": 532,
+        "line": "    /**"
+      },
+      {
+        "lineNumber": 533,
+        "line": "     * @private"
+      },
+      {
+        "lineNumber": 534,
+        "line": "     * @param {LocalTime}time"
+      },
+      {
+        "lineNumber": 535,
+        "line": "     * @param {ZoneOffset}offset"
+      },
+      {
+        "lineNumber": 536,
+        "line": "     * @return {OffsetTime}"
+      },
+      {
+        "lineNumber": 537,
+        "line": "     */"
+      },
+      {
+        "lineNumber": 538,
+        "line": "    _withLocalTimeOffset(time, offset) {"
+      }
+    ],
+    "codeParams": [
+      "time",
+      "offset"
+    ],
+    "docParams": [
+      "{LocalTime}time",
+      "{ZoneOffset}offset"
+    ]
+  },
+  {
+    "name": "ChronoUnit#addTo",
+    "filePath": "packages/core/src/temporal/ChronoUnit.js",
+    "lines": [
+      {
+        "lineNumber": 154,
+        "line": "    /**"
+      },
+      {
+        "lineNumber": 155,
+        "line": "     * @param {!Temporal} dateTime the temporal object to adjust."
+      },
+      {
+        "lineNumber": 156,
+        "line": "     * @param {number} periodToAdd the period of this unit to add, positive or negative."
+      },
+      {
+        "lineNumber": 157,
+        "line": "     * @return {Temporal} the adjusted temporal object."
+      },
+      {
+        "lineNumber": 158,
+        "line": "     * @throws DateTimeException if the period cannot be added."
+      },
+      {
+        "lineNumber": 159,
+        "line": "     */"
+      },
+      {
+        "lineNumber": 160,
+        "line": "    addTo(temporal, amount) {"
+      }
+    ],
+    "codeParams": [
+      "temporal",
+      "amount"
+    ],
+    "docParams": [
+      "dateTime",
+      "periodToAdd"
+    ]
+  },
+  {
     "name": "plug",
     "filePath": "packages/extra/src/plug.js",
     "lines": [
