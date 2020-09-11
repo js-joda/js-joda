@@ -718,6 +718,14 @@ export class OffsetDateTime extends DefaultInterfaceTemporal{
     }
 
     /**
+     *
+     * @return {string} same as {@link LocalDateTime.toString}
+     */
+    toJSON() {
+        return this.toString();
+    }
+
+    /**
      * @param {DateTimeFormatter} formatter
      * @return {string}
      */

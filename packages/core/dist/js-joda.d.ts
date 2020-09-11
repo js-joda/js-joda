@@ -1261,6 +1261,7 @@ export class LocalDateTime extends ChronoLocalDateTime implements TemporalAdjust
 
     private constructor();
 
+    atOffset(offset: ZoneOffset): OffsetDateTime;
     atZone(zone: ZoneId): ZonedDateTime;
     compareTo(other: LocalDateTime): number;
     dayOfMonth(): number;
@@ -1572,6 +1573,8 @@ export class YearMonth extends Temporal implements TemporalAdjuster {
  * unpredictable results and should be avoided. The `equals` method should be used for comparisons.
  */
 export class OffsetDateTime {
+    static FROM: TemporalQuery<OffsetDateTime>;
+
     static from(temporal: TemporalAccessor): OffsetDateTime
     static now(clockOrZone?: Clock | ZoneId): OffsetDateTime;
     static of(dateTime: LocalDateTime, offset: ZoneOffset): OffsetDateTime;
@@ -1606,50 +1609,51 @@ export class OffsetDateTime {
     isBefore(other: OffsetDateTime): boolean
     isEqual(other: OffsetDateTime): boolean
     isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean
-    minus(amountToSubtract: number, unit: TemporalUnit): ZonedDateTime
-    minus(amountToSubtract: TemporalAmount): ZonedDateTime
-    minusDays(days: number): ZonedDateTime
-    minusHours(hours: number): ZonedDateTime
-    minusMinutes(minutes: number): ZonedDateTime
-    minusMonths(months: number): ZonedDateTime
-    minusNanos(nanos: number): ZonedDateTime
-    minusSeconds(seconds: number): ZonedDateTime
-    minusWeeks(weeks: number): ZonedDateTime
-    minusYears(years: number): ZonedDateTime
-    plus(amountToAdd: number, unit: TemporalUnit): ZonedDateTime
-    plus(amountToAdd: TemporalAmount): ZonedDateTime
-    plusDays(days: number): ZonedDateTime
-    plusHours(hours: number): ZonedDateTime
-    plusMinutes(minutes: number): ZonedDateTime
-    plusMonths(months: number): ZonedDateTime
-    plusNanos(nanos: number): ZonedDateTime
-    plusSeconds(seconds: number): ZonedDateTime
-    plusWeeks(weeks: number): ZonedDateTime
-    plusYears(years: number): ZonedDateTime
+    minus(amountToSubtract: number, unit: TemporalUnit): OffsetDateTime
+    minus(amountToSubtract: TemporalAmount): OffsetDateTime
+    minusDays(days: number): OffsetDateTime
+    minusHours(hours: number): OffsetDateTime
+    minusMinutes(minutes: number): OffsetDateTime
+    minusMonths(months: number): OffsetDateTime
+    minusNanos(nanos: number): OffsetDateTime
+    minusSeconds(seconds: number): OffsetDateTime
+    minusWeeks(weeks: number): OffsetDateTime
+    minusYears(years: number): OffsetDateTime
+    plus(amountToAdd: number, unit: TemporalUnit): OffsetDateTime
+    plus(amountToAdd: TemporalAmount): OffsetDateTime
+    plusDays(days: number): OffsetDateTime
+    plusHours(hours: number): OffsetDateTime
+    plusMinutes(minutes: number): OffsetDateTime
+    plusMonths(months: number): OffsetDateTime
+    plusNanos(nanos: number): OffsetDateTime
+    plusSeconds(seconds: number): OffsetDateTime
+    plusWeeks(weeks: number): OffsetDateTime
+    plusYears(years: number): OffsetDateTime
     query<T>(query: TemporalQuery<T>): T
     range(field: TemporalField): ValueRange
     toEpochSecond(): number
+    toJSON(): string;
     toInstant(): Instant
     toLocalDate(): LocalDate
     toLocalDateTime(): LocalDateTime
     toLocalTime(): LocalTime
     toOffsetTime(): OffsetTime
     toString(): string
-    toZonedDateTime(): ZonedDateTime
-    truncatedTo(unit: TemporalUnit): ZonedDateTime
+    toOffsetDateTime(): OffsetDateTime
+    truncatedTo(unit: TemporalUnit): OffsetDateTime
     until(endExclusive: Temporal, unit: TemporalUnit): number
-    with(adjuster: TemporalAdjuster): ZonedDateTime
-    with(field: TemporalField, newValue: number): ZonedDateTime
-    withDayOfMonth(dayOfMonth: number): ZonedDateTime
-    withDayOfYear(dayOfYear: number): ZonedDateTime
-    withHour(hour: number): ZonedDateTime
-    withMinute(minute: number): ZonedDateTime
-    withMonth(month: number): ZonedDateTime
-    withNano(nanoOfSecond: number): ZonedDateTime
-    withOffsetSameInstant(offset: ZoneOffset): ZonedDateTime
-    withOffsetSameLocal(offset: ZoneOffset): ZonedDateTime
-    withSecond(second: number): ZonedDateTime
-    withYear(year: number): ZonedDateTime
+    with(adjuster: TemporalAdjuster): OffsetDateTime
+    with(field: TemporalField, newValue: number): OffsetDateTime
+    withDayOfMonth(dayOfMonth: number): OffsetDateTime
+    withDayOfYear(dayOfYear: number): OffsetDateTime
+    withHour(hour: number): OffsetDateTime
+    withMinute(minute: number): OffsetDateTime
+    withMonth(month: number): OffsetDateTime
+    withNano(nanoOfSecond: number): OffsetDateTime
+    withOffsetSameInstant(offset: ZoneOffset): OffsetDateTime
+    withOffsetSameLocal(offset: ZoneOffset): OffsetDateTime
+    withSecond(second: number): OffsetDateTime
+    withYear(year: number): OffsetDateTime
 }
 
 /**
@@ -1665,6 +1669,8 @@ export class OffsetDateTime {
  * unpredictable results and should be avoided. The `equals` method should be used for comparisons.
  */
 export class OffsetTime {
+    static FROM: TemporalQuery<OffsetTime>;
+
     static from(temporal: TemporalAccessor): OffsetTime
     static now(clockOrZone?: Clock | ZoneId): OffsetTime;
     static of(time: LocalTime, offset: ZoneOffset): OffsetTime;
@@ -1706,6 +1712,7 @@ export class OffsetTime {
     query<T>(query: TemporalQuery<T>): T
     range(field: TemporalField): ValueRange
     toEpochSecond(date: LocalDate): number
+    toJSON(): string;
     toLocalTime(): LocalTime
     toString(): string
     truncatedTo(unit: TemporalUnit): OffsetTime
