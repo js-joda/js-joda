@@ -104,10 +104,10 @@ it('OffsetDateTime', () => {
 
     OffsetDateTime.now(ZoneId.of('UTC-05:00')).toString();
 
-    OffsetDateTime.parse('2016-03-18T12:38:23.561+01:00[SYSTEM]');
+    OffsetDateTime.parse('2016-03-18T12:38:23.561+01:00');
     OffsetDateTime.parse('2016-03-18T12:38:23.561+01:00');
     OffsetDateTime.parse('2016-03-18T11:38:23.561Z');
-    OffsetDateTime.parse('2016-03-18T06:38:23.561-05:00[UTC-05:00]');
+    OffsetDateTime.parse('2016-03-18T06:38:23.561-05:00');
     LocalDate.parse('2012-06-06').atStartOfDay().atZone(ZoneId.SYSTEM);
     OffsetDateTime.of(LocalDateTime.parse('2012-06-06T00:00'), ZoneOffset.UTC);
     OffsetDateTime.of(LocalDate.parse('2012-06-06'), LocalTime.MIDNIGHT, ZoneOffset.UTC);
@@ -117,6 +117,17 @@ it('OffsetDateTime', () => {
     var odt = LocalDate.of(2016, 3, 18)
         .atTime(LocalTime.NOON)
         .atOffset(ZoneOffset.UTC);
+
+    odt.year();
+    odt.month();
+    odt.monthValue();
+    odt.dayOfYear();
+    odt.dayOfMonth();
+    odt.dayOfWeek();
+    odt.hour();
+    odt.minute();
+    odt.second();
+    odt.nano();
 
     odt.withOffsetSameInstant(ZoneOffset.UTC);
     odt.withOffsetSameLocal(ZoneOffset.UTC);
@@ -147,67 +158,67 @@ it('OffsetDateTime', () => {
 it('OffsetTime', () => {
     OffsetTime.now();
     OffsetTime.now(ZoneOffset.UTC);
-    OffsetTime.parse('09:42');
-    OffsetTime.parse('09:42:42');
-    OffsetTime.parse('09:42:42.123');
-    OffsetTime.parse('09:42:42.123456789');
+    OffsetTime.parse('09:42Z');
+    OffsetTime.parse('09:42:42Z');
+    OffsetTime.parse('09:42:42.123Z');
+    OffsetTime.parse('09:42:42.123456789Z');
     OffsetTime.of(23, 55, 42, 123000000, ZoneOffset.UTC);
 
     OffsetDateTime.ofInstant(Instant.now(), ZoneId.SYSTEM);
 
-    let t = OffsetTime.parse('23:55:42.123');
+    let ot = OffsetTime.parse('23:55:42.123Z');
 
-    t.getHour();
-    t.getMinute();
-    t.getSecond();
-    t.getNano();
+    ot.hour();
+    ot.minute();
+    ot.second();
+    ot.nano();
 
-    expectType<string>(t.toString());
-    expectType<string>(t.toJSON());
+    expectType<string>(ot.toString());
+    expectType<string>(ot.toJSON());
 
-    t = OffsetTime.parse('11:55:42');
-    expectType<OffsetTime>(t.plusHours(12));
-    expectType<OffsetTime>(t.minusHours(12));
-    expectType<OffsetTime>(t.plusMinutes(30));
-    expectType<OffsetTime>(t.minusMinutes(30));
-    expectType<OffsetTime>(t.plusSeconds(30));
-    expectType<OffsetTime>(t.minusSeconds(30));
-    expectType<OffsetTime>(t.plusNanos(1000000));
-    expectType<OffsetTime>(t.minusNanos(1000000));
+    ot = OffsetTime.parse('11:55:42Z');
+    expectType<OffsetTime>(ot.plusHours(12));
+    expectType<OffsetTime>(ot.minusHours(12));
+    expectType<OffsetTime>(ot.plusMinutes(30));
+    expectType<OffsetTime>(ot.minusMinutes(30));
+    expectType<OffsetTime>(ot.plusSeconds(30));
+    expectType<OffsetTime>(ot.minusSeconds(30));
+    expectType<OffsetTime>(ot.plusNanos(1000000));
+    expectType<OffsetTime>(ot.minusNanos(1000000));
 
-    expectType<number>(t.get(ChronoField.MINUTE_OF_DAY));
-    expectType<boolean>(t.isSupported(ChronoField.HOUR_OF_DAY));
-    expectType<boolean>(t.isSupported(ChronoUnit.SECONDS));
-    expectType<ValueRange>(t.range(ChronoField.MICRO_OF_SECOND));
-    expectType<OffsetTime>(t.minus(5, ChronoUnit.HOURS));
-    expectType<OffsetTime>(t.plus(5, ChronoUnit.HOURS));
-    expectType<OffsetTime>(t.minus(Duration.ofHours(3)));
-    expectType<OffsetTime>(t.plus(Duration.ofHours(3)));
-    expectType<OffsetTime>(t.with(ChronoField.SECOND_OF_DAY, 10));
-    expectType<number>(t.until(OffsetTime.now(), ChronoUnit.SECONDS));
+    expectType<number>(ot.get(ChronoField.MINUTE_OF_DAY));
+    expectType<boolean>(ot.isSupported(ChronoField.HOUR_OF_DAY));
+    expectType<boolean>(ot.isSupported(ChronoUnit.SECONDS));
+    expectType<ValueRange>(ot.range(ChronoField.MICRO_OF_SECOND));
+    expectType<OffsetTime>(ot.minus(5, ChronoUnit.HOURS));
+    expectType<OffsetTime>(ot.plus(5, ChronoUnit.HOURS));
+    expectType<OffsetTime>(ot.minus(Duration.ofHours(3)));
+    expectType<OffsetTime>(ot.plus(Duration.ofHours(3)));
+    expectType<OffsetTime>(ot.with(ChronoField.SECOND_OF_DAY, 10));
+    expectType<number>(ot.until(OffsetTime.now(), ChronoUnit.SECONDS));
 
-    t = OffsetTime.parse('11:55:42');
-    t.withHour(1);
-    t.withMinute(1);
-    t.withSecond(1);
-    t.with(ChronoField.MILLI_OF_SECOND, 51);
+    ot = OffsetTime.parse('11:55:42Z');
+    ot.withHour(1);
+    ot.withMinute(1);
+    ot.withSecond(1);
+    ot.with(ChronoField.MILLI_OF_SECOND, 51);
     let nextEvenSecond = {
         adjustInto: function (t: OffsetTime) {
-            return t.getSecond() % 2 === 0 ? t.plusSeconds(2) : t.plusSeconds(1);
+            return t.second() % 2 === 0 ? t.plusSeconds(2) : t.plusSeconds(1);
         }
     };
-    t.with(nextEvenSecond);
-    t.plusSeconds(1).with(nextEvenSecond);
+    ot.with(nextEvenSecond);
+    ot.plusSeconds(1).with(nextEvenSecond);
 
-    t = OffsetTime.parse('23:55:42.123');
+    ot = OffsetTime.parse('23:55:42.123Z');
 
-    t.truncatedTo(ChronoUnit.SECONDS);
-    t.truncatedTo(ChronoUnit.MINUTES);
-    t.truncatedTo(ChronoUnit.HOURS);
-    t.truncatedTo(ChronoUnit.HALF_DAYS);
-    t.truncatedTo(ChronoUnit.DAYS);
+    ot.truncatedTo(ChronoUnit.SECONDS);
+    ot.truncatedTo(ChronoUnit.MINUTES);
+    ot.truncatedTo(ChronoUnit.HOURS);
+    ot.truncatedTo(ChronoUnit.HALF_DAYS);
+    ot.truncatedTo(ChronoUnit.DAYS);
 
-    let t1 = OffsetTime.parse('11:55:42');
+    let t1 = OffsetTime.parse('11:55:42Z');
     let t2 = t1.plusHours(2);
 
     t1.isAfter(t2);
@@ -224,13 +235,11 @@ it('OffsetTime', () => {
     t2.hashCode();
     t1.hashCode() !== t2.hashCode();
 
-    t1 = OffsetTime.parse('11:00');
+    t1 = OffsetTime.parse('11:00Z');
     t2 = t1.plusHours(2).plusMinutes(42).plusSeconds(12);
     t1.until(t2, ChronoUnit.HOURS);
     t1.until(t2, ChronoUnit.MINUTES);
     t1.until(t2, ChronoUnit.SECONDS);
-
-    t = OffsetTime.from(nativeJs(new Date()));
 
     expectType<OffsetTime | null>(t1.query(OffsetTime.FROM));
     expectType<LocalDate | null>(t1.query(TemporalQueries.localDate()));

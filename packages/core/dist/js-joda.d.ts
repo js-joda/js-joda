@@ -1592,18 +1592,18 @@ export class OffsetDateTime {
     equals(obj: any): boolean
     format(formatter: DateTimeFormatter): string
     get(field: TemporalField): number
-    getDayOfMonth(): number
-    getDayOfWeek(): DayOfWeek
-    getDayOfYear(): number
-    getHour(): number
+    dayOfMonth(): number
+    dayOfWeek(): DayOfWeek
+    dayOfYear(): number
+    hour(): number
     getLong(field: TemporalField): number
-    getMinute(): number
-    getMonth(): Month
-    getMonthValue(): number
-    getNano(): number
-    getOffset(): ZoneOffset
-    getSecond(): number
-    getYear(): number
+    minute(): number
+    month(): Month
+    monthValue(): number
+    nano(): number
+    offset(): ZoneOffset
+    second(): number
+    year(): number
     hashCode(): number
     isAfter(other: OffsetDateTime): boolean
     isBefore(other: OffsetDateTime): boolean
@@ -1686,12 +1686,12 @@ export class OffsetTime {
     equals(other: any): boolean
     format(formatter: DateTimeFormatter): string
     get(field: TemporalField): number
-    getHour(): number
+    hour(): number
     getLong(field: TemporalField): number
-    getMinute(): number
-    getNano(): number
-    getOffset(): ZoneOffset
-    getSecond(): number
+    minute(): number
+    nano(): number
+    offset(): ZoneOffset
+    second(): number
     hashCode(): number
     isAfter(other: OffsetTime): boolean
     isBefore(other: OffsetTime): boolean

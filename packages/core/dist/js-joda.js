@@ -8892,6 +8892,10 @@
         return this._time.toString() + this._offset.toString();
       };
 
+      _proto.toJSON = function toJSON() {
+        return this.toString();
+      };
+
       return OffsetTime;
     }(DefaultInterfaceTemporal);
     function _init$f() {
@@ -10124,6 +10128,10 @@
 
       _proto.toString = function toString() {
         return this._dateTime.toString() + this._offset.toString();
+      };
+
+      _proto.toJSON = function toJSON() {
+        return this.toString();
       };
 
       _proto.format = function format(formatter) {
