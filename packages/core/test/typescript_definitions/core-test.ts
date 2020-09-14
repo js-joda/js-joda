@@ -146,6 +146,8 @@ it('OffsetDateTime', () => {
     expectType<OffsetDateTime>(odt.plus(5, ChronoUnit.DAYS));
     expectType<OffsetDateTime>(odt.minus(Duration.ofHours(3)));
     expectType<OffsetDateTime>(odt.plus(Duration.ofHours(3)));
+    expectType<OffsetDateTime>(odt.with(TemporalAdjusters.firstDayOfMonth()));
+    expectType<OffsetDateTime>(odt.with(IsoFields.DAY_OF_QUARTER, 10));
     expectType<number>(odt.until(OffsetDateTime.now(), ChronoUnit.SECONDS));
 
     expectType<OffsetDateTime | null>(odt.query(OffsetDateTime.FROM));
@@ -194,12 +196,21 @@ it('OffsetTime', () => {
     expectType<OffsetTime>(ot.plus(5, ChronoUnit.HOURS));
     expectType<OffsetTime>(ot.minus(Duration.ofHours(3)));
     expectType<OffsetTime>(ot.plus(Duration.ofHours(3)));
+    expectType<OffsetTime>(ot.with(ChronoField.SECOND_OF_DAY, 10));
     expectType<number>(ot.until(OffsetTime.now(), ChronoUnit.SECONDS));
 
     ot = OffsetTime.parse('11:55:42Z');
     ot.withHour(1);
     ot.withMinute(1);
     ot.withSecond(1);
+    ot.with(ChronoField.MILLI_OF_SECOND, 51);
+    let nextEvenSecond = {
+        adjustInto: function (t: OffsetTime) {
+            return t.second() % 2 === 0 ? t.plusSeconds(2) : t.plusSeconds(1);
+        }
+    };
+    ot.with(nextEvenSecond);
+    ot.plusSeconds(1).with(nextEvenSecond);
 
     ot = OffsetTime.parse('23:55:42.123Z');
 

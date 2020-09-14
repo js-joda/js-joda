@@ -19,7 +19,7 @@ import {DateTimeException, IllegalArgumentException} from './errors';
 import {createTemporalQuery} from './temporal/TemporalQuery';
 import {requireInstance, requireNonNull} from './assert';
 
-export class OffsetDateTime extends DefaultInterfaceTemporal{
+export class OffsetDateTime extends DefaultInterfaceTemporal {
     /**
      * @param {TemporaroAccessor} temporal
      * @return {OffsetDateTime}

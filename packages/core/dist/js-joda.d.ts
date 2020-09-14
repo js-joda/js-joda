@@ -1643,6 +1643,8 @@ export class OffsetDateTime extends Temporal implements TemporalAdjuster {
     toString(): string
     truncatedTo(unit: TemporalUnit): OffsetDateTime
     until(endExclusive: Temporal, unit: TemporalUnit): number
+    with(adjuster: TemporalAdjuster): OffsetDateTime
+    with(field: TemporalField, newValue: number): OffsetDateTime
     withDayOfMonth(dayOfMonth: number): OffsetDateTime
     withDayOfYear(dayOfYear: number): OffsetDateTime
     withHour(hour: number): OffsetDateTime
@@ -1718,6 +1720,8 @@ export class OffsetTime extends Temporal implements TemporalAdjuster {
     toString(): string
     truncatedTo(unit: TemporalUnit): OffsetTime
     until(endExclusive: Temporal, unit: TemporalUnit): number
+    with(adjuster: TemporalAdjuster): OffsetTime
+    with(field: TemporalField, newValue: number): OffsetTime
     withHour(hour: number): OffsetTime
     withMinute(minute: number): OffsetTime
     withNano(nanoOfSecond: number): OffsetTime
