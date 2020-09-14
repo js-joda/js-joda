@@ -1572,7 +1572,9 @@ export class YearMonth extends Temporal implements TemporalAdjuster {
  * (`==`), identity hash code, or synchronization) on instances of `OffsetDateTime` may have
  * unpredictable results and should be avoided. The `equals` method should be used for comparisons.
  */
-export class OffsetDateTime {
+export class OffsetDateTime extends Temporal implements TemporalAdjuster {
+    static MIN: OffsetDateTime;
+    static MAX: OffsetDateTime;
     static FROM: TemporalQuery<OffsetDateTime>;
 
     static from(temporal: TemporalAccessor): OffsetDateTime
@@ -1639,11 +1641,8 @@ export class OffsetDateTime {
     toLocalTime(): LocalTime
     toOffsetTime(): OffsetTime
     toString(): string
-    toOffsetDateTime(): OffsetDateTime
     truncatedTo(unit: TemporalUnit): OffsetDateTime
     until(endExclusive: Temporal, unit: TemporalUnit): number
-    with(adjuster: TemporalAdjuster): OffsetDateTime
-    with(field: TemporalField, newValue: number): OffsetDateTime
     withDayOfMonth(dayOfMonth: number): OffsetDateTime
     withDayOfYear(dayOfYear: number): OffsetDateTime
     withHour(hour: number): OffsetDateTime
@@ -1668,7 +1667,9 @@ export class OffsetDateTime {
  * (`==`), identity hash code, or synchronization) on instances of `OffsetTime` may have
  * unpredictable results and should be avoided. The `equals` method should be used for comparisons.
  */
-export class OffsetTime {
+export class OffsetTime extends Temporal implements TemporalAdjuster {
+    static MIN: OffsetTime;
+    static MAX: OffsetTime;
     static FROM: TemporalQuery<OffsetTime>;
 
     static from(temporal: TemporalAccessor): OffsetTime
@@ -1680,7 +1681,7 @@ export class OffsetTime {
 
     private constructor();
 
-    adjustInto(temporal: TemporalAdjuster): TemporalAdjuster
+    adjustInto(temporal: Temporal): Temporal
     atDate(date: LocalDate): OffsetDateTime
     compareTo(other: OffsetTime): number
     equals(other: any): boolean
@@ -1717,8 +1718,6 @@ export class OffsetTime {
     toString(): string
     truncatedTo(unit: TemporalUnit): OffsetTime
     until(endExclusive: Temporal, unit: TemporalUnit): number
-    with(adjuster: TemporalAdjuster): OffsetTime
-    with(field: TemporalField, newValue: number): OffsetTime
     withHour(hour: number): OffsetTime
     withMinute(minute: number): OffsetTime
     withNano(nanoOfSecond: number): OffsetTime
@@ -1871,6 +1870,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     toLocalDate(): LocalDate;
     toLocalDateTime(): LocalDateTime;
     toLocalTime(): LocalTime;
+    toOffsetDateTime(): OffsetDateTime;
     toString(): string;
     truncatedTo(unit: TemporalUnit): ZonedDateTime;
     until(endExclusive: Temporal, unit: TemporalUnit): number;
