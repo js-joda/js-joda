@@ -590,6 +590,14 @@ export class OffsetTime extends DefaultInterfaceTemporal {
     toString() {
         return this._time.toString() + this._offset.toString();
     }
+
+    /**
+     *
+     * @return {string} same as {@link LocalDateTime.toString}
+     */
+    toJSON() {
+        return this.toString();
+    }
 }
 
 

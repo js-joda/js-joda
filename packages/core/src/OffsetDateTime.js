@@ -19,7 +19,7 @@ import {DateTimeException, IllegalArgumentException} from './errors';
 import {createTemporalQuery} from './temporal/TemporalQuery';
 import {requireInstance, requireNonNull} from './assert';
 
-export class OffsetDateTime extends DefaultInterfaceTemporal{
+export class OffsetDateTime extends DefaultInterfaceTemporal {
     /**
      * @param {TemporaroAccessor} temporal
      * @return {OffsetDateTime}
@@ -715,6 +715,14 @@ export class OffsetDateTime extends DefaultInterfaceTemporal{
 
     toString() {
         return this._dateTime.toString() + this._offset.toString();
+    }
+
+    /**
+     *
+     * @return {string} same as {@link LocalDateTime.toString}
+     */
+    toJSON() {
+        return this.toString();
     }
 
     /**
