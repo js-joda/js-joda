@@ -1,3 +1,9 @@
+/**
+ * @copyright (c) 2016-present, Philipp Thürwächter & Pattrick Hüper  & js-joda contributors
+ * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
+
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
 import {Clock} from './Clock';
@@ -14,6 +20,9 @@ import {ZoneOffset} from './ZoneOffset';
 import {createTemporalQuery} from './temporal/TemporalQuery';
 import {requireInstance, requireNonNull} from './assert';
 
+/**
+ * A time with an offset from UTC/Greenwich in the ISO-8601 calendar system, such as 10:15:30+01:00.
+ */
 export class OffsetTime extends DefaultInterfaceTemporal {
     /**
      * @param {!TemporalAccessor} temporal
