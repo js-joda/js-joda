@@ -1,4 +1,4 @@
-//! @version @js-joda/core - 3.1.0
+//! @version @js-joda/core - 3.2.0
 //! @copyright (c) 2015-present, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -8892,6 +8892,10 @@
         return this._time.toString() + this._offset.toString();
       };
 
+      _proto.toJSON = function toJSON() {
+        return this.toString();
+      };
+
       return OffsetTime;
     }(DefaultInterfaceTemporal);
     function _init$f() {
@@ -9551,6 +9555,10 @@
         return this._dateTime.toLocalTime();
       };
 
+      _proto.toOffsetDateTime = function toOffsetDateTime() {
+        return OffsetDateTime.of(this._dateTime, this._offset);
+      };
+
       _proto.equals = function equals(other) {
         if (this === other) {
           return true;
@@ -10124,6 +10132,10 @@
 
       _proto.toString = function toString() {
         return this._dateTime.toString() + this._offset.toString();
+      };
+
+      _proto.toJSON = function toJSON() {
+        return this.toString();
       };
 
       _proto.format = function format(formatter) {

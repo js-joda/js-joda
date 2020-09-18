@@ -3,6 +3,10 @@ Changelog
 
 ### next (upcoming)
 
+### 3.2.0
+
+* add typescript definitions for OffsetDateTime and OffsetTime #448 by jonfreedman
+ 
 ### 3.1.0
 
 * Fix bitwise or #439 by @pithu
