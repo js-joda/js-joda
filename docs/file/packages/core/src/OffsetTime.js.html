@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">packages/core/src/OffsetTime.js | js-joda</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Immutable date and time library for JavaScript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="js-joda"><meta property="twitter:description" content="Immutable date and time library for JavaScript"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/js-joda/js-joda"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src">core/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Clock.js~Clock.html">Clock</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Duration.js~Duration.html">Duration</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Enum.js~Enum.html">Enum</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalDate.js~LocalDate.html">LocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalTime.js~LocalTime.html">LocalTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/MathUtil.js~MathUtil.html">MathUtil</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Month.js~Month.html">Month</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/OffsetDateTime.js~OffsetDateTime.html">OffsetDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/OffsetTime.js~OffsetTime.html">OffsetTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Period.js~Period.html">Period</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Year.js~Year.html">Year</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/YearConstants.js~YearConstants.html">YearConstants</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/YearMonth.js~YearMonth.html">YearMonth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneId.js~ZoneId.html">ZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneRegion.js~ZoneRegion.html">ZoneRegion</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-abstractMethodFail">abstractMethodFail</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-assert">assert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bindUse">bindUse</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeParseException">DateTimeParseException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalArgumentException">IllegalArgumentException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalStateException">IllegalStateException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NullPointerException">NullPointerException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-UnsupportedTemporalTypeException">UnsupportedTemporalTypeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-use">use</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-chrono">core/src/chrono</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/IsoChronology.js~IsoChronology.html">IsoChronology</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-format">core/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html">DateTimeFormatterBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DecimalStyle.js~DecimalStyle.html">DecimalStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/SignStyle.js~SignStyle.html">SignStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html">DefaultInterfaceTemporal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ValueRange.js~ValueRange.html">ValueRange</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nativeJs">nativeJs</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createTemporalQuery">createTemporalQuery</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-IsoFields">IsoFields</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-zone">core/src/zone</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#extra-src">extra/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/Interval.js~Interval.html">Interval</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-abstractMethodFail">abstractMethodFail</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-assert">assert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireInstance">requireInstance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-requireNonNull">requireNonNull</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-plug">plug</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src">locale/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/Locale.js~Locale.html">Locale</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-plug">plug</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format">locale/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleDateTimeFormatter.js~LocaleDateTimeFormatter.html">LocaleDateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleStore.js~LocaleStore.html">LocaleStore</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createEntry">createEntry</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-cldr">locale/src/format/cldr</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js~CldrDateTimeFormatterBuilder.html">CldrDateTimeFormatterBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrZoneTextPrinterParser.js~CldrZoneTextPrinterParser.html">CldrZoneTextPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getOrCreateCldrInstance">getOrCreateCldrInstance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getOrCreateMapZones">getOrCreateMapZones</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-loadCldrData">loadCldrData</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-parser">locale/src/format/parser</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/parser/WeekFieldsPrinterParser.js~WeekFieldsPrinterParser.html">WeekFieldsPrinterParser</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-temporal">locale/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~ComputedDayOfField.html">ComputedDayOfField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-autoPlug">autoPlug</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-plug">plug</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-extendSystemDefaultZoneId">extendSystemDefaultZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">packages/core/src/OffsetTime.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * @copyright (c) 2016-present, Philipp Th&#xFC;rw&#xE4;chter &amp; Pattrick H&#xFC;per  &amp; js-joda contributors
+ * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
+
+import {ChronoField} from &apos;./temporal/ChronoField&apos;;
+import {ChronoUnit} from &apos;./temporal/ChronoUnit&apos;;
+import {Clock} from &apos;./Clock&apos;;
+import {DateTimeException, UnsupportedTemporalTypeException} from &apos;./errors&apos;;
+import {DateTimeFormatter} from &apos;./format/DateTimeFormatter&apos;;
+import {DefaultInterfaceTemporal} from &apos;./temporal/DefaultInterfaceTemporal&apos;;
+import {Instant, LocalTime} from &apos;./js-joda&apos;;
+import {MathUtil} from &apos;./MathUtil&apos;;
+import {OffsetDateTime} from &apos;./OffsetDateTime&apos;;
+import {TemporalQueries} from &apos;./temporal/TemporalQueries&apos;;
+import {ZoneId} from &apos;./ZoneId&apos;;
+import {ZoneOffset} from &apos;./ZoneOffset&apos;;
+
+import {createTemporalQuery} from &apos;./temporal/TemporalQuery&apos;;
+import {requireInstance, requireNonNull} from &apos;./assert&apos;;
+
+/**
+ * A time with an offset from UTC/Greenwich in the ISO-8601 calendar system, such as 10:15:30+01:00.
+ */
+export class OffsetTime extends DefaultInterfaceTemporal {
+    /**
+     * @param {!TemporalAccessor} temporal
+     * @return {OffsetTime}
+     */
+    static from(temporal) {
+        requireNonNull(temporal, &apos;temporal&apos;);
+        if (temporal instanceof OffsetTime) {
+            return temporal;
+        } else if (temporal instanceof OffsetDateTime) {
+            return temporal.toOffsetTime();
+        }
+        try {
+            const time = LocalTime.from(temporal);
+            const offset = ZoneOffset.from(temporal);
+            return new OffsetTime(time, offset);
+        } catch(ex) {
+            throw new DateTimeException(`Unable to obtain OffsetTime TemporalAccessor: ${temporal}, type ${temporal.constructor != null ? temporal.constructor.name : &apos;&apos;}`);
+        }
+    }
+
+    /**
+     * @param {Clock|ZoneId} clockOrZone
+     * @return {OffsetTime}
+     */
+    static now(clockOrZone) {
+        if (arguments.length === 0){
+            return OffsetTime._now(Clock.systemDefaultZone());
+        } else if (clockOrZone instanceof Clock){
+            return OffsetTime._now(clockOrZone);
+        } else {
+            return OffsetTime._now(Clock.system(clockOrZone));
+        }
+    }
+
+    /**
+     * @param {Clock} clock - the clock to use, defaults to Clock.systemDefaultZone()
+     * @return {OffsetTime} the current offset date-time, not null
+     */
+    static _now(clock) {
+        requireNonNull(clock, &apos;clock&apos;);
+        const now = clock.instant();
+        return OffsetTime.ofInstant(now, clock.zone().rules().offset(now));
+    }
+
+    /**
+     * @return {OffsetTime}
+     */
+    static of(){
+        if (arguments.length &lt;= 2) {
+            return OffsetTime.ofTimeAndOffset.apply(this, arguments);
+        } else {
+            return OffsetTime.ofNumbers.apply(this, arguments);
+        }
+    }
+
+    /**
+     * @param {int}hour
+     * @param {int}minute
+     * @param {int}second
+     * @param {int}nanoOfSecond
+     * @param {ZoneOffset}offset
+     * @return {OffsetTime}
+     */
+    static ofNumbers(hour, minute, second, nanoOfSecond, offset) {
+        const time = LocalTime.of(hour, minute, second, nanoOfSecond);
+        return new OffsetTime(time, offset);
+    }
+
+    /**
+     * @param {LocalTime}time
+     * @param {ZoneOffset}offset
+     * @return {OffsetTime}
+     */
+    static ofTimeAndOffset(time, offset) {
+        return new OffsetTime(time, offset);
+    }
+
+    /**
+     * @param {!Instant} instant
+     * @param {!ZoneId} zone
+     * @return {!OffsetTime}
+     */
+    static ofInstant( instant,  zone){
+        requireNonNull(instant, &apos;instant&apos;);
+        requireInstance(instant, Instant, &apos;instant&apos;);
+        requireNonNull(zone, &apos;zone&apos;);
+        requireInstance(zone, ZoneId, &apos;zone&apos;);
+
+        const rules = zone.rules();
+        const offset = rules.offset(instant);
+        let secsOfDay = instant.epochSecond() % LocalTime.SECONDS_PER_DAY;
+        secsOfDay = (secsOfDay + offset.totalSeconds()) % LocalTime.SECONDS_PER_DAY;
+        if (secsOfDay &lt; 0) {
+            secsOfDay += LocalTime.SECONDS_PER_DAY;
+        }
+        const time = LocalTime.ofSecondOfDay(secsOfDay, instant.nano());
+        return new OffsetTime(time, offset);
+    }
+
+    /**
+     * @param {string} text
+     * @param {DateTimeFormatter} formatter
+     * @return {OffsetTime}
+     */
+    static parse(text, formatter= DateTimeFormatter.ISO_OFFSET_TIME) {
+        requireNonNull(formatter, &apos;formatter&apos;);
+        return formatter.parse(text, OffsetTime.FROM);
+    }
+    //-----------------------------------------------------------------------
+
+    /**
+     * @param {LocalTime} time
+     * @param {ZoneOffset} offset
+     * @private
+     */
+    constructor(time, offset) {
+        super();
+        requireNonNull(time, &apos;time&apos;);
+        requireInstance(time, LocalTime, &apos;time&apos;);
+        requireNonNull(offset, &apos;offset&apos;);
+        requireInstance(offset, ZoneOffset, &apos;offset&apos;);
+        this._time = time;
+        this._offset = offset;
+    }
+
+
+    /**
+     * @param {TemporalAdjuster} temporal - the target object to be adjusted, not null
+     * @return {Temporal} the adjusted object, not null
+     * @throws {DateTimeException} if unable to make the adjustment
+     * @throws {ArithmeticException} if numeric overflow occurs
+     */
+    adjustInto(temporal) {
+        return temporal
+            .with(ChronoField.NANO_OF_DAY, this._time.toNanoOfDay())
+            .with(ChronoField.OFFSET_SECONDS, this.offset().totalSeconds());
+    }
+
+    /**
+     * @param {LocalDate} date - the date to combine with, not null
+     * @return {OffsetDateTime} the offset date-time formed from this time and the specified date, not null
+     */
+    atDate(date) {
+        return OffsetDateTime.of(date, this._time, this._offset);
+    }
+
+    /**
+     * @param {DateTimeFormatter} formatter - the formatter to use, not null
+     * @return {string} the formatted time string, not null
+     * @throws {DateTimeException} if an error occurs during printing
+     */
+    format(formatter) {
+        requireNonNull(formatter, &apos;formatter&apos;);
+        return formatter.format(this, OffsetTime.FROM);
+    }
+
+
+    /**
+     * @param {TemporalField} field - the field to get, not null
+     * @return {number} the value for the field
+     * @throws {DateTimeException} if a value for the field cannot be obtained
+     * @throws {ArithmeticException} if numeric overflow occurs
+     */
+    get(field) {
+        return super.get(field);
+    }
+
+    /**
+     * @param {TemporalField} field - the field to get, not null
+     * @return {number} the value for the field
+     * @throws {DateTimeException} if a value for the field cannot be obtained
+     * @trhows {UnsupportedTemporalTypeException}
+     * @throws {ArithmeticException} if numeric overflow occurs
+     */
+    getLong(field) {
+        if (field instanceof ChronoField) {
+            if (field === ChronoField.OFFSET_SECONDS) {
+                return this._offset.totalSeconds();
+            }
+            return this._time.getLong(field);
+        }
+        return field.getFrom(this);
+    }
+
+    /**
+     * @return {int}
+     */
+    hour() {
+        return this._time.hour();
+    }
+
+    /**
+     * @return {int}
+     */
+    minute() {
+        return this._time.minute();
+    }
+
+    /**
+     * @return {int}
+     */
+    second() {
+        return this._time.second();
+    }
+
+    /**
+     * @return {int}
+     */
+    nano() {
+        return this._time.nano();
+    }
+
+    /**
+     * @return {ZoneOffset}
+     */
+    offset() {
+        return this._offset;
+    }
+
+    /**
+     * @param {OffsetTime} other - the other time to compare to, not null
+     * @return {boolean} true if this is after the specified time
+     * @throws {NullPointerException} if `other` is null
+     */
+    isAfter(other) {
+        requireNonNull(other, &apos;other&apos;);
+        return this._toEpochNano() &gt; other._toEpochNano();
+    }
+
+    /**
+     * @param {OffsetTime} other - the other time to compare to, not null
+     * @return {boolean} true if this point is before the specified time
+     * @throws {NullPointerException} if `other` is null
+     */
+    isBefore(other) {
+        requireNonNull(other, &apos;other&apos;);
+        return this._toEpochNano() &lt; other._toEpochNano();
+    }
+
+    /**
+     * @param {OffsetTime} other - the other time to compare to, not null
+     * @return {boolean}
+     * @throws {NullPointerException} if `other` is null
+     */
+    isEqual(other) {
+        requireNonNull(other, &apos;other&apos;);
+        return this._toEpochNano() === other._toEpochNano();
+    }
+
+    /**
+     * @param {TemporalField|TemporalUnit} fieldOrUnit - the field to check, null returns false
+     * @return {boolean} true if the field is supported on this time, false if not
+     */
+    isSupported(fieldOrUnit) {
+        if (fieldOrUnit instanceof ChronoField) {
+            return fieldOrUnit.isTimeBased() || fieldOrUnit === ChronoField.OFFSET_SECONDS;
+        } else if (fieldOrUnit instanceof ChronoUnit) {
+            return fieldOrUnit.isTimeBased();
+        }
+        return fieldOrUnit != null &amp;&amp; fieldOrUnit.isSupportedBy(this);
+    }
+
+    /**
+     * @param {number} hours
+     * @return {OffsetTime}
+     */
+    minusHours(hours) {
+        return this._withLocalTimeOffset(this._time.minusHours(hours), this._offset);
+    }
+
+    /**
+     * @param {number} minutes
+     * @return {OffsetTime}
+     */
+    minusMinutes(minutes) {
+        return this._withLocalTimeOffset(this._time.minusMinutes(minutes), this._offset);
+    }
+
+    /**
+     * @param {number} seconds
+     * @return {OffsetTime}
+     */
+    minusSeconds(seconds) {
+        return this._withLocalTimeOffset(this._time.minusSeconds(seconds), this._offset);
+    }
+
+    /**
+     * @param {number} nanos
+     * @return {OffsetTime}
+     */
+    minusNanos(nanos) {
+        return this._withLocalTimeOffset(this._time.minusNanos(nanos), this._offset);
+    }
+
+    minusAmount(amount) {
+        requireNonNull(amount);
+        return amount.subtractFrom(this);
+    }
+
+    minusAmountUnit(amountToSubtract, unit) {
+        return this.plus(-1 * amountToSubtract, unit);
+    }
+
+    plusAmount(amount) {
+        requireNonNull(amount);
+        return amount.addTo(this);
+    }
+
+    /**
+     *
+     * @param amountToAdd
+     * @param unit
+     * @return {Temporal}
+     */
+    plusAmountUnit(amountToAdd, unit) {
+        if (unit instanceof ChronoUnit) {
+            return this._withLocalTimeOffset(this._time.plus(amountToAdd, unit), this._offset);
+        }
+        return unit.addTo(this, amountToAdd);
+    }
+
+    /**
+     * @param {int} hours
+     * @return {OffsetTime}
+     */
+    plusHours(hours) {
+        return this._withLocalTimeOffset(this._time.plusHours(hours), this._offset);
+    }
+
+    /**
+     * @param {int} minutes
+     * @return {OffsetTime}
+     */
+    plusMinutes(minutes) {
+        return this._withLocalTimeOffset(this._time.plusMinutes(minutes), this._offset);
+    }
+
+    /**
+     * @param {int} seconds
+     * @return {OffsetTime}
+     */
+    plusSeconds(seconds) {
+        return this._withLocalTimeOffset(this._time.plusSeconds(seconds), this._offset);
+    }
+
+    /**
+     * @param {int} nanos
+     * @return {OffsetTime}
+     */
+    plusNanos(nanos) {
+        return this._withLocalTimeOffset(this._time.plusNanos(nanos), this._offset);
+    }
+
+    /**
+     * @param {TemporalQuery} query - the query to invoke, not null
+     * @return {*} the query result, null may be returned (defined by the query)
+     * @throws {DateTimeException} if unable to query (defined by the query)
+     * @throws {ArithmeticException} if numeric overflow occurs (defined by the query)
+     */
+    query(query) {
+        requireNonNull(query, &apos;query&apos;);
+        if (query === TemporalQueries.precision()) {
+            return ChronoUnit.NANOS;
+        } else if (query === TemporalQueries.offset() || query === TemporalQueries.zone()) {
+            return this.offset();
+        } else if (query === TemporalQueries.localTime()) {
+            return this._time;
+        } else if (query === TemporalQueries.chronology() || query === TemporalQueries.localDate() || query === TemporalQueries.zoneId()) {
+            return null;
+        }
+        return super.query(query);
+    }
+
+    /**
+     * @param {TemporalField} field - the field to query the range for, not null
+     * @return {ValueRange} the range of valid values for the field, not null
+     * @throws {DateTimeException} if the range for the field cannot be obtained
+     */
+    range(field) {
+        if (field instanceof ChronoField) {
+            if (field === ChronoField.OFFSET_SECONDS) {
+                return field.range();
+            }
+            return this._time.range(field);
+        }
+        return field.rangeRefinedBy(this);
+    }
+
+    /**
+     * @return {LocalTime}
+     */
+    toLocalTime() {
+        return this._time;
+    }
+
+    /**
+     * @param {TemporalUnit} unit - the unit to truncate to, not null
+     * @return {OffsetTime} a {@link LocalTime} based on this time with the time truncated, not null
+     * @throws {DateTimeException} if unable to truncate
+     */
+    truncatedTo(unit) {
+        return this._withLocalTimeOffset(this._time.truncatedTo(unit), this._offset);
+    }
+
+    /**
+    * @param {Temporal} endExclusive - the end time, which is converted to a {@link LocalTime}, not null
+    * @param {TemporalUnit} unit - the unit to measure the period in, not null
+    * @return {number} the amount of the period between this time and the end time
+    * @throws {DateTimeException} if the period cannot be calculated
+    * @throws {ArithmeticException} if numeric overflow occurs
+    */
+    until(endExclusive, unit) {
+        requireNonNull(endExclusive, &apos;endExclusive&apos;);
+        requireNonNull(unit, &apos;unit&apos;);
+        const end = OffsetTime.from(endExclusive);
+        if (unit instanceof ChronoUnit) {
+            const nanosUntil = end._toEpochNano() - this._toEpochNano(); // no overflow
+            switch (unit) {
+                case ChronoUnit.NANOS: return nanosUntil;
+                case ChronoUnit.MICROS: return Math.floor(nanosUntil / 1000);
+                case ChronoUnit.MILLIS: return Math.floor(nanosUntil / 1000000);
+                case ChronoUnit.SECONDS: return Math.floor(nanosUntil / LocalTime.NANOS_PER_SECOND);
+                case ChronoUnit.MINUTES: return Math.floor(nanosUntil / LocalTime.NANOS_PER_MINUTE);
+                case ChronoUnit.HOURS: return Math.floor(nanosUntil / LocalTime.NANOS_PER_HOUR);
+                case ChronoUnit.HALF_DAYS: return Math.floor(nanosUntil / (12 * LocalTime.NANOS_PER_HOUR));
+            }
+            throw new UnsupportedTemporalTypeException(&apos;Unsupported unit: &apos; + unit);
+        }
+        return unit.between(this, end);
+    }
+
+    /**
+     * @param {int} hour
+     * @return {OffsetTime}
+     */
+    withHour(hour) {
+        return this._withLocalTimeOffset(this._time.withHour(hour), this._offset);
+    }
+
+    /**
+     * @param {int} minute
+     * @return {OffsetTime}
+     */
+    withMinute(minute) {
+        return this._withLocalTimeOffset(this._time.withMinute(minute), this._offset);
+    }
+
+    /**
+     * @param {int} second
+     * @return {OffsetTime}
+     */
+    withSecond(second) {
+        return this._withLocalTimeOffset(this._time.withSecond(second), this._offset);
+    }
+
+    /**
+     * @param {int} nano
+     * @return {OffsetTime}
+     */
+    withNano(nano) {
+        return this._withLocalTimeOffset(this._time.withNano(nano), this._offset);
+    }
+
+    /**
+     * @param {ZoneOffset} offset
+     * @return {OffsetTime}
+     */
+    withOffsetSameInstant(offset) {
+        requireNonNull(offset, &apos;offset&apos;);
+        if (offset.equals(this._offset)) {
+            return this;
+        }
+        const difference = offset.totalSeconds() - this._offset.totalSeconds();
+        const adjusted = this._time.plusSeconds(difference);
+        return new OffsetTime(adjusted, offset);
+    }
+
+    /**
+     * @param {ZoneOffset} offset
+     * @return {OffsetTime}
+     */
+    withOffsetSameLocal(offset) {
+        return offset != null &amp;&amp; offset.equals(this._offset) ? this : new OffsetTime(this._time, offset);
+    }
+
+    _toEpochNano() {
+        const nod = this._time.toNanoOfDay();
+        const offsetNanos = this._offset.totalSeconds() * LocalTime.NANOS_PER_SECOND;
+        return nod - offsetNanos;
+    }
+
+    withAdjuster(adjuster) {
+        requireNonNull(adjuster, &apos;adjuster&apos;);
+        // optimizations
+        if (adjuster instanceof LocalTime) {
+            return this._withLocalTimeOffset(adjuster, this._offset);
+        } else if (adjuster instanceof ZoneOffset) {
+            return this._withLocalTimeOffset(this._time, adjuster);
+        } else if (adjuster instanceof OffsetTime) {
+            return adjuster;
+        }
+        return adjuster.adjustInto(this);
+    }
+
+    withFieldValue(field, newValue) {
+        requireNonNull(field, &apos;field&apos;);
+        if (field instanceof ChronoField) {
+            if (field === ChronoField.OFFSET_SECONDS) {
+                return this._withLocalTimeOffset(this._time, ZoneOffset.ofTotalSeconds(field.checkValidIntValue(newValue)));
+            }
+            return this._withLocalTimeOffset(this._time.with(field, newValue), this._offset);
+        }
+        return field.adjustInto(this, newValue);
+    }
+
+    /**
+     * @private
+     * @param {LocalTime}time
+     * @param {ZoneOffset}offset
+     * @return {OffsetTime}
+     */
+    _withLocalTimeOffset(time, offset) {
+        if (this._time === time &amp;&amp; this._offset.equals(offset)) {
+            return this;
+        }
+        return new OffsetTime(time, offset);
+    }
+
+    //---------------------------------
+
+    /**
+     * @param {OffsetTime} other - the other time to compare to, not null
+     * @return {int} the comparator value, negative if less, positive if greater
+     * @throws {NullPointerException} if `other` is null
+     */
+    compareTo(other) {
+        requireNonNull(other, &apos;other&apos;);
+        requireInstance(other, OffsetTime, &apos;other&apos;);
+        if (this._offset.equals(other._offset)) {
+            return this._time.compareTo(other._time);
+        }
+        const compare = MathUtil.compareNumbers(this._toEpochNano(), other._toEpochNano());
+        if (compare === 0) {
+            return this._time.compareTo(other._time);
+        }
+        return compare;
+    }
+
+    /**
+     * @param {*} other - the object to check, null returns false
+     * @return {boolean} true if this is equal to the other time
+     */
+    equals(other) {
+        if (this === other) {
+            return true;
+        }
+        if (other instanceof OffsetTime) {
+            return this._time.equals(other._time) &amp;&amp; this._offset.equals(other._offset);
+        }
+        return false;
+    }
+
+    /**
+     * @return {number}
+     */
+    hashCode() {
+        return this._time.hashCode() ^ this._offset.hashCode();
+    }
+
+    /**
+     * @return {string}
+     */
+    toString() {
+        return this._time.toString() + this._offset.toString();
+    }
+
+    /**
+     *
+     * @return {string} same as {@link LocalDateTime.toString}
+     */
+    toJSON() {
+        return this.toString();
+    }
+}
+
+
+export function _init() {
+    OffsetTime.MIN = OffsetTime.ofNumbers(0, 0, 0,0, ZoneOffset.MAX);
+
+    OffsetTime.MAX = OffsetTime.ofNumbers(23, 59, 59,999999999, ZoneOffset.MIN);
+
+    OffsetTime.FROM = createTemporalQuery(&apos;OffsetTime.FROM&apos;, (temporal) =&gt; {
+        return OffsetTime.from(temporal);
+    });
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
