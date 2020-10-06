@@ -1,3 +1,9 @@
+/**
+ * @copyright (c) 2016-present, Philipp Thürwächter & Pattrick Hüper  & js-joda contributors
+ * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
+
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
 import {Clock} from './Clock';
@@ -19,7 +25,11 @@ import {DateTimeException, IllegalArgumentException} from './errors';
 import {createTemporalQuery} from './temporal/TemporalQuery';
 import {requireInstance, requireNonNull} from './assert';
 
-export class OffsetDateTime extends DefaultInterfaceTemporal{
+/**
+ * A date-time with an offset from UTC/Greenwich in the ISO-8601 calendar system,
+ * such as 2007-12-23T10:15:30+01:00.
+ */
+export class OffsetDateTime extends DefaultInterfaceTemporal {
     /**
      * @param {TemporaroAccessor} temporal
      * @return {OffsetDateTime}
@@ -715,6 +725,14 @@ export class OffsetDateTime extends DefaultInterfaceTemporal{
 
     toString() {
         return this._dateTime.toString() + this._offset.toString();
+    }
+
+    /**
+     *
+     * @return {string} same as {@link LocalDateTime.toString}
+     */
+    toJSON() {
+        return this.toString();
     }
 
     /**

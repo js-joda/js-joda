@@ -142,6 +142,7 @@ import {Instant} from &apos;./Instant&apos;;
 import {LocalDate} from &apos;./LocalDate&apos;;
 import {LocalDateTime} from &apos;./LocalDateTime&apos;;
 import {LocalTime} from &apos;./LocalTime&apos;;
+import {OffsetDateTime} from &apos;./OffsetDateTime&apos;;
 import {ZoneId} from &apos;./ZoneId&apos;;
 import {ZoneOffset} from &apos;./ZoneOffset&apos;;
 
@@ -2053,12 +2054,9 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      *
      * @return {OffsetDateTime} an offset date-time representing the same local date-time and offset, not null
      */
-    /**
-     * we will not support OffsetDateTime in the near future
-        toOffsetDateTime() {
-            return OffsetDateTime.of(this._dateTime, this._offset);
-        }
-    */
+    toOffsetDateTime() {
+        return OffsetDateTime.of(this._dateTime, this._offset);
+    }
 
     //-----------------------------------------------------------------------
     /**

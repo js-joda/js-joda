@@ -3126,6 +3126,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "packages/core/src/offsetdatetime.js~offsetdatetime#tojson",
+    "class/packages/core/src/OffsetDateTime.js~OffsetDateTime.html#instance-method-toJSON",
+    "packages/core/src/OffsetDateTime.js~OffsetDateTime#toJSON",
+    "method"
+  ],
+  [
     "packages/core/src/offsetdatetime.js~offsetdatetime#tolocaldate",
     "class/packages/core/src/OffsetDateTime.js~OffsetDateTime.html#instance-method-toLocalDate",
     "packages/core/src/OffsetDateTime.js~OffsetDateTime#toLocalDate",
@@ -3489,6 +3495,12 @@ window.esdocSearchIndex = [
     "packages/core/src/offsettime.js~offsettime#second",
     "class/packages/core/src/OffsetTime.js~OffsetTime.html#instance-method-second",
     "packages/core/src/OffsetTime.js~OffsetTime#second",
+    "method"
+  ],
+  [
+    "packages/core/src/offsettime.js~offsettime#tojson",
+    "class/packages/core/src/OffsetTime.js~OffsetTime.html#instance-method-toJSON",
+    "packages/core/src/OffsetTime.js~OffsetTime#toJSON",
     "method"
   ],
   [
@@ -4887,6 +4899,12 @@ window.esdocSearchIndex = [
     "packages/core/src/zoneddatetime.js~zoneddatetime#tolocaltime",
     "class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-toLocalTime",
     "packages/core/src/ZonedDateTime.js~ZonedDateTime#toLocalTime",
+    "method"
+  ],
+  [
+    "packages/core/src/zoneddatetime.js~zoneddatetime#tooffsetdatetime",
+    "class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-toOffsetDateTime",
+    "packages/core/src/ZonedDateTime.js~ZonedDateTime#toOffsetDateTime",
     "method"
   ],
   [

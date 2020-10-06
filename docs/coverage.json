@@ -1,7 +1,7 @@
 {
-  "coverage": "70.45%",
-  "expectCount": 1865,
-  "actualCount": 1314,
+  "coverage": "70.61%",
+  "expectCount": 1868,
+  "actualCount": 1319,
   "files": {
     "packages/core/src/Clock.js": {
       "expectCount": 39,
@@ -135,47 +135,45 @@
       ]
     },
     "packages/core/src/OffsetDateTime.js": {
-      "expectCount": 82,
-      "actualCount": 60,
+      "expectCount": 83,
+      "actualCount": 62,
       "undocumentLines": [
-        22,
-        79,
-        83,
-        88,
-        136,
-        137,
-        152,
-        177,
-        195,
-        206,
-        346,
+        89,
+        93,
+        98,
+        146,
+        147,
+        162,
+        187,
+        205,
+        216,
         356,
         366,
-        381,
-        396,
-        498,
-        503,
-        574,
-        579,
-        647,
-        716,
-        731
+        376,
+        391,
+        406,
+        508,
+        513,
+        584,
+        589,
+        657,
+        726,
+        749
       ]
     },
     "packages/core/src/OffsetTime.js": {
-      "expectCount": 58,
-      "actualCount": 48,
+      "expectCount": 59,
+      "actualCount": 50,
       "undocumentLines": [
-        17,
-        139,
-        140,
-        312,
-        317,
+        148,
+        149,
         321,
-        503,
-        509,
-        522,
-        596
+        326,
+        330,
+        512,
+        518,
+        531,
+        613
       ]
     },
     "packages/core/src/Period.js": {
@@ -257,12 +255,12 @@
       ]
     },
     "packages/core/src/ZonedDateTime.js": {
-      "expectCount": 87,
-      "actualCount": 84,
+      "expectCount": 88,
+      "actualCount": 85,
       "undocumentLines": [
-        454,
-        463,
-        2005
+        455,
+        464,
+        2003
       ]
     },
     "packages/core/src/_init.js": {

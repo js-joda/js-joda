@@ -152,23 +152,23 @@
     "filePath": "packages/core/src/OffsetDateTime.js",
     "lines": [
       {
-        "lineNumber": 160,
+        "lineNumber": 170,
         "line": "    /**"
       },
       {
-        "lineNumber": 161,
+        "lineNumber": 171,
         "line": "     * @param {ZoneId}zone"
       },
       {
-        "lineNumber": 162,
+        "lineNumber": 172,
         "line": "     * @return {ZonedDateTime}"
       },
       {
-        "lineNumber": 163,
+        "lineNumber": 173,
         "line": "     */"
       },
       {
-        "lineNumber": 164,
+        "lineNumber": 174,
         "line": "    atZoneSameInstant(zone) {"
       }
     ],
@@ -184,39 +184,39 @@
     "filePath": "packages/core/src/OffsetTime.js",
     "lines": [
       {
-        "lineNumber": 72,
+        "lineNumber": 81,
         "line": "    /**"
       },
       {
-        "lineNumber": 73,
+        "lineNumber": 82,
         "line": "     * @param {int}hour"
       },
       {
-        "lineNumber": 74,
+        "lineNumber": 83,
         "line": "     * @param {int}minute"
       },
       {
-        "lineNumber": 75,
+        "lineNumber": 84,
         "line": "     * @param {int}second"
       },
       {
-        "lineNumber": 76,
+        "lineNumber": 85,
         "line": "     * @param {int}nanoOfSecond"
       },
       {
-        "lineNumber": 77,
+        "lineNumber": 86,
         "line": "     * @param {ZoneOffset}offset"
       },
       {
-        "lineNumber": 78,
+        "lineNumber": 87,
         "line": "     * @return {OffsetTime}"
       },
       {
-        "lineNumber": 79,
+        "lineNumber": 88,
         "line": "     */"
       },
       {
-        "lineNumber": 80,
+        "lineNumber": 89,
         "line": "    static ofNumbers(hour, minute, second, nanoOfSecond, offset) {"
       }
     ],
@@ -240,27 +240,27 @@
     "filePath": "packages/core/src/OffsetTime.js",
     "lines": [
       {
-        "lineNumber": 85,
+        "lineNumber": 94,
         "line": "    /**"
       },
       {
-        "lineNumber": 86,
+        "lineNumber": 95,
         "line": "     * @param {LocalTime}time"
       },
       {
-        "lineNumber": 87,
+        "lineNumber": 96,
         "line": "     * @param {ZoneOffset}offset"
       },
       {
-        "lineNumber": 88,
+        "lineNumber": 97,
         "line": "     * @return {OffsetTime}"
       },
       {
-        "lineNumber": 89,
+        "lineNumber": 98,
         "line": "     */"
       },
       {
-        "lineNumber": 90,
+        "lineNumber": 99,
         "line": "    static ofTimeAndOffset(time, offset) {"
       }
     ],
@@ -278,31 +278,31 @@
     "filePath": "packages/core/src/OffsetTime.js",
     "lines": [
       {
-        "lineNumber": 532,
+        "lineNumber": 541,
         "line": "    /**"
       },
       {
-        "lineNumber": 533,
+        "lineNumber": 542,
         "line": "     * @private"
       },
       {
-        "lineNumber": 534,
+        "lineNumber": 543,
         "line": "     * @param {LocalTime}time"
       },
       {
-        "lineNumber": 535,
+        "lineNumber": 544,
         "line": "     * @param {ZoneOffset}offset"
       },
       {
-        "lineNumber": 536,
+        "lineNumber": 545,
         "line": "     * @return {OffsetTime}"
       },
       {
-        "lineNumber": 537,
+        "lineNumber": 546,
         "line": "     */"
       },
       {
-        "lineNumber": 538,
+        "lineNumber": 547,
         "line": "    _withLocalTimeOffset(time, offset) {"
       }
     ],
