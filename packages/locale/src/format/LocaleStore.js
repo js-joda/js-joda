@@ -50,7 +50,7 @@ export class LocaleStore {
                 const value = valueTextMap[style][key];
                 if (reverse[value] === undefined) {
                     reverse[value] = createEntry(value, Number.parseInt(key));
-                    list.push(reverse[value])
+                    list.push(reverse[value]);
                 }
             });
             list.sort(_comparator);
