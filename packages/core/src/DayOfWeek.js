@@ -11,7 +11,7 @@ import {assert, requireNonNull, requireInstance} from './assert';
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
 import {IllegalArgumentException} from './errors';
-import {Temporal} from './temporal/Temporal';
+import {TemporalAccessor} from './temporal/TemporalAccessor';
 import {TemporalQueries} from './temporal/TemporalQueries';
 import {createTemporalQuery} from './temporal/TemporalQuery';
 
@@ -27,7 +27,7 @@ import {createTemporalQuery} from './temporal/TemporalQuery';
  * DayOfWeek.SUNDAY
  *
  */
-export class DayOfWeek extends Temporal {
+export class DayOfWeek extends TemporalAccessor {
 
     /**
      *
@@ -155,7 +155,7 @@ export class DayOfWeek extends Temporal {
      * @return {string} the text value of the day-of-week, not null
      */
     // eslint-disable-next-line no-unused-vars
-    getDisplayName(style, locale) {
+    displayName(style, locale) {
         throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
         // return new DateTimeFormatterBuilder().appendText(ChronoField.DAY_OF_WEEK, style).toFormatter(locale).format(this);
     }

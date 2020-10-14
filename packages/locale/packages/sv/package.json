@@ -1,0 +1,31 @@
+{
+    "name": "@js-joda/locale_sv",
+    "version": "3.2.0+36.0.0",
+    "description": "prebuilt js-joda locale package for locales: sv.*",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/js-joda/js-joda-locale.git"
+    },
+    "main": "dist/index.js",
+    "keywords": [
+        "date",
+        "time",
+        "locale"
+    ],
+    "author": "phueper",
+    "contributors": [
+        "pithu",
+        "phueper"
+    ],
+    "license": "BSD-3-Clause",
+    "bugs": {
+        "url": "https://github.com/js-joda/js-joda-locale/issues"
+    },
+    "homepage": "https://github.com/js-joda/js-joda-locale#readme",
+    "peerDependencies": {
+        "@js-joda/core": ">=1.11.0",
+        "@js-joda/timezone": "^2.2.0"
+    },
+    "dependencies": {},
+    "devDependencies": {}
+}

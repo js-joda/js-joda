@@ -13,10 +13,12 @@ import {ChronoUnit} from '../src/temporal/ChronoUnit';
 import {Instant} from '../src/Instant';
 import {LocalTime} from '../src/LocalTime';
 import {MathUtil} from '../src/MathUtil';
+import {OffsetDateTime} from '../src/OffsetDateTime';
 import {TemporalAccessor} from '../src/temporal/TemporalAccessor';
 import {TemporalField} from '../src/temporal/TemporalField';
 import {TemporalQuery} from '../src/temporal/TemporalQuery';
 import {TemporalUnit} from '../src/temporal/TemporalUnit';
+import {ZoneOffset} from '../src/ZoneOffset';
 import {DateTimeException, NullPointerException, UnsupportedTemporalTypeException} from '../src/errors';
 
 /* these are not covered by the threetenbp ported tests */
@@ -256,6 +258,11 @@ describe('js-joda Instant', () => {
             }).to.throw(UnsupportedTemporalTypeException);
         });
     });
-    
-    
+
+    describe('atOffset', () => {
+        it('normal', () => {
+            assertEquals(testInstant.atOffset(ZoneOffset.ofHours(1)), OffsetDateTime.parse('1970-01-01T01:02:03.000000456+01:00'));
+            assertEquals(testInstant.atOffset(ZoneOffset.ofHours(5)), OffsetDateTime.parse('1970-01-01T05:02:03.000000456+05:00'));
+        });
+    });
 });

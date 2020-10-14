@@ -13,6 +13,7 @@ import {Instant} from './Instant';
 import {LocalDate} from './LocalDate';
 import {LocalDateTime} from './LocalDateTime';
 import {LocalTime} from './LocalTime';
+import {OffsetDateTime} from './OffsetDateTime';
 import {ZoneId} from './ZoneId';
 import {ZoneOffset} from './ZoneOffset';
 
@@ -975,19 +976,6 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     }
 
     //-----------------------------------------------------------------------
-    /**
-     * function overloading for {@link ZonedDateTime.with}
-     *
-     * if called with 1 argument {@link ZonedDateTime.withTemporalAdjuster} is applied
-     * otherwise {@link ZonedDateTime.with2}
-     */
-    with(){
-        if(arguments.length === 1){
-            return this.withTemporalAdjuster.apply(this, arguments);
-        } else {
-            return this.with2.apply(this, arguments);
-        }
-    }
 
     /**
      * Returns an adjusted copy of this date-time.
@@ -1041,7 +1029,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @throws DateTimeException if the adjustment cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
-    withTemporalAdjuster(adjuster) {
+    withAdjuster(adjuster) {
         // optimizations
         if (adjuster instanceof LocalDate) {
             return this._resolveLocal(LocalDateTime.of(adjuster, this._dateTime.toLocalTime()));
@@ -1110,7 +1098,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @throws UnsupportedTemporalTypeException if the field is not supported
      * @throws ArithmeticException if numeric overflow occurs
      */
-    with2(field, newValue) {
+    withFieldValue(field, newValue) {
         if (field instanceof ChronoField) {
             switch (field) {
                 case ChronoField.INSTANT_SECONDS: return ZonedDateTime._create(newValue, this.nano(), this._zone);
@@ -1336,19 +1324,6 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     }
 
     //-----------------------------------------------------------------------
-    /**
-     * function overloading for {@link ZonedDateTime.plus}
-     *
-     * if called with 1 argument {@link ZonedDateTime.plusTemporalAmount} is applied,
-     * otherwise {@link ZonedDateTime.plus2}
-     */
-    plus(){
-        if(arguments.length === 1){
-            return this.plusTemporalAmount.apply(this, arguments);
-        } else {
-            return this.plus2.apply(this, arguments);
-        }
-    }
 
     /**
      * Returns a copy of this date-time with the specified period added.
@@ -1366,7 +1341,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @throws DateTimeException if the addition cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
-    plusTemporalAmount(amount) {
+    plusAmount(amount) {
         requireNonNull(amount);
         return amount.addTo(this);
     }
@@ -1400,7 +1375,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @return {ZonedDateTime} a {@link ZonedDateTime} based on this date-time with the specified period added, not null
      * @throws DateTimeException if the unit cannot be added to this type
      */
-    plus2(amountToAdd, unit) {
+    plusAmountUnit(amountToAdd, unit) {
         if (unit instanceof ChronoUnit) {
             if (unit.isDateBased()) {
                 return this._resolveLocal(this._dateTime.plus(amountToAdd, unit));
@@ -1580,19 +1555,6 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     }
 
     //-----------------------------------------------------------------------
-    /**
-     * function overloading for {@link ZonedDateTime.minus}
-     *
-     * if called with 1 argument {@link ZonedDateTime.minusTemporalAmount} is applied,
-     * otherwise {@link ZonedDateTime.minus2}
-     */
-    minus(){
-        if(arguments.length === 1){
-            return this.minusTemporalAmount.apply(this, arguments);
-        } else {
-            return this.minus2.apply(this, arguments);
-        }
-    }
 
     /**
      * Returns a copy of this date-time with the specified period subtracted.
@@ -1610,7 +1572,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @throws DateTimeException if the subtraction cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
-    minusTemporalAmount(amount) {
+    minusAmount(amount) {
         requireNonNull(amount, 'amount');
         return amount.subtractFrom(this);
     }
@@ -1644,8 +1606,8 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @return {ZonedDateTime} a {@link ZonedDateTime} based on this date-time with the specified period subtracted, not null
      * @throws DateTimeException if the unit cannot be added to this type
      */
-    minus2(amountToSubtract, unit) {
-        return this.plus2(-1 * amountToSubtract, unit);
+    minusAmountUnit(amountToSubtract, unit) {
+        return this.plusAmountUnit(-1 * amountToSubtract, unit);
     }
 
     //-----------------------------------------------------------------------
@@ -1963,12 +1925,9 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      *
      * @return {OffsetDateTime} an offset date-time representing the same local date-time and offset, not null
      */
-    /**
-     * we will not support OffsetDateTime in the near future
-        toOffsetDateTime() {
-            return OffsetDateTime.of(this._dateTime, this._offset);
-        }
-    */
+    toOffsetDateTime() {
+        return OffsetDateTime.of(this._dateTime, this._offset);
+    }
 
     //-----------------------------------------------------------------------
     /**

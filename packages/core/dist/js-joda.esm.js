@@ -1,4 +1,4 @@
-//! @version @js-joda/core - 1.11.0
+//! @version @js-joda/core - 3.2.0
 //! @copyright (c) 2015-present, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -12,7 +12,7 @@ function createErrorType(name, init, superErrorClass) {
     superErrorClass = Error;
   }
 
-  function E(message) {
+  function JsJodaException(message) {
     if (!Error.captureStackTrace) {
       this.stack = new Error().stack;
     } else {
@@ -27,10 +27,10 @@ function createErrorType(name, init, superErrorClass) {
     };
   }
 
-  E.prototype = new superErrorClass();
-  E.prototype.name = name;
-  E.prototype.constructor = E;
-  return E;
+  JsJodaException.prototype = Object.create(superErrorClass.prototype);
+  JsJodaException.prototype.name = name;
+  JsJodaException.prototype.constructor = JsJodaException;
+  return JsJodaException;
 }
 
 var DateTimeException = createErrorType('DateTimeException', messageWithCause);
@@ -132,6 +132,7 @@ function abstractMethodFail(methodName) {
 }
 
 var assert$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
     assert: assert,
     requireNonNull: requireNonNull,
     requireInstance: requireInstance,
@@ -616,7 +617,7 @@ var Duration = function (_TemporalAmount) {
       nanoAdjustment = 0;
     }
 
-    if ((seconds | nanoAdjustment) === 0) {
+    if (seconds === 0 && nanoAdjustment === 0) {
       return Duration.ZERO;
     }
 
@@ -640,7 +641,7 @@ var Duration = function (_TemporalAmount) {
   };
 
   _proto.isZero = function isZero() {
-    return (this._seconds | this._nanos) === 0;
+    return this._seconds === 0 && this._nanos === 0;
   };
 
   _proto.isNegative = function isNegative() {
@@ -745,7 +746,7 @@ var Duration = function (_TemporalAmount) {
     requireNonNull(secondsToAdd, 'secondsToAdd');
     requireNonNull(nanosToAdd, 'nanosToAdd');
 
-    if ((secondsToAdd | nanosToAdd) === 0) {
+    if (secondsToAdd === 0 && nanosToAdd === 0) {
       return this;
     }
 
@@ -1086,7 +1087,62 @@ function _init$2() {
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
-var TemporalField = function TemporalField() {};
+
+var TemporalField = function () {
+  function TemporalField() {}
+
+  var _proto = TemporalField.prototype;
+
+  _proto.isDateBased = function isDateBased() {
+    abstractMethodFail('isDateBased');
+  };
+
+  _proto.isTimeBased = function isTimeBased() {
+    abstractMethodFail('isTimeBased');
+  };
+
+  _proto.baseUnit = function baseUnit() {
+    abstractMethodFail('baseUnit');
+  };
+
+  _proto.rangeUnit = function rangeUnit() {
+    abstractMethodFail('rangeUnit');
+  };
+
+  _proto.range = function range() {
+    abstractMethodFail('range');
+  };
+
+  _proto.rangeRefinedBy = function rangeRefinedBy(temporal) {
+    abstractMethodFail('rangeRefinedBy');
+  };
+
+  _proto.getFrom = function getFrom(temporal) {
+    abstractMethodFail('getFrom');
+  };
+
+  _proto.adjustInto = function adjustInto(temporal, newValue) {
+    abstractMethodFail('adjustInto');
+  };
+
+  _proto.isSupportedBy = function isSupportedBy(temporal) {
+    abstractMethodFail('isSupportedBy');
+  };
+
+  _proto.displayName = function displayName() {
+    abstractMethodFail('displayName');
+  };
+
+  _proto.equals = function equals(other) {
+    abstractMethodFail('equals');
+  };
+
+  _proto.name = function name() {
+    abstractMethodFail('name');
+  };
+
+  return TemporalField;
+}();
 
 /**
  * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -1142,6 +1198,8 @@ var ValueRange = function () {
 
       return assert(false, msg, DateTimeException);
     }
+
+    return value;
   };
 
   _proto.checkValidIntValue = function checkValidIntValue(value, field) {
@@ -1245,7 +1303,11 @@ var ChronoField = function (_TemporalField) {
   };
 
   _proto.checkValidValue = function checkValidValue(value) {
-    return this.range().checkValidValue(value, this.name());
+    return this.range().checkValidValue(value, this);
+  };
+
+  _proto.checkValidIntValue = function checkValidIntValue(value) {
+    return this.range().checkValidIntValue(value, this);
   };
 
   _proto.isDateBased = function isDateBased() {
@@ -1262,10 +1324,6 @@ var ChronoField = function (_TemporalField) {
     return temporal.range(this);
   };
 
-  _proto.checkValidIntValue = function checkValidIntValue(value) {
-    return this.range().checkValidIntValue(value, this);
-  };
-
   _proto.getFrom = function getFrom(temporal) {
     return temporal.getLong(this);
   };
@@ -1276,6 +1334,14 @@ var ChronoField = function (_TemporalField) {
 
   _proto.equals = function equals(other) {
     return this === other;
+  };
+
+  _proto.adjustInto = function adjustInto(temporal, newValue) {
+    return temporal.with(this, newValue);
+  };
+
+  _proto.isSupportedBy = function isSupportedBy(temporal) {
+    return temporal.isSupported(this);
   };
 
   return ChronoField;
@@ -1389,16 +1455,6 @@ var TemporalAccessor = function () {
   return TemporalAccessor;
 }();
 
-var Temporal = function (_TemporalAccessor) {
-  _inheritsLoose(Temporal, _TemporalAccessor);
-
-  function Temporal() {
-    return _TemporalAccessor.apply(this, arguments) || this;
-  }
-
-  return Temporal;
-}(TemporalAccessor);
-
 var TemporalQuery = function (_Enum) {
   _inheritsLoose(TemporalQuery, _Enum);
 
@@ -1429,13 +1485,13 @@ function createTemporalQuery(name, queryFromFunction) {
   return new ExtendedTemporalQuery(name);
 }
 
-var DayOfWeek = function (_Temporal) {
-  _inheritsLoose(DayOfWeek, _Temporal);
+var DayOfWeek = function (_TemporalAccessor) {
+  _inheritsLoose(DayOfWeek, _TemporalAccessor);
 
   function DayOfWeek(ordinal, name) {
     var _this;
 
-    _this = _Temporal.call(this) || this;
+    _this = _TemporalAccessor.call(this) || this;
     _this._ordinal = ordinal;
     _this._name = name;
     return _this;
@@ -1497,7 +1553,7 @@ var DayOfWeek = function (_Temporal) {
     return this._ordinal + 1;
   };
 
-  _proto.getDisplayName = function getDisplayName(style, locale) {
+  _proto.displayName = function displayName(style, locale) {
     throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
   };
 
@@ -1581,7 +1637,7 @@ var DayOfWeek = function (_Temporal) {
   };
 
   return DayOfWeek;
-}(Temporal);
+}(TemporalAccessor);
 var ENUMS;
 function _init$4() {
   DayOfWeek.MONDAY = new DayOfWeek(0, 'MONDAY');
@@ -1597,13 +1653,13 @@ function _init$4() {
   ENUMS = [DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY, DayOfWeek.SATURDAY, DayOfWeek.SUNDAY];
 }
 
-var Month = function (_Temporal) {
-  _inheritsLoose(Month, _Temporal);
+var Month = function (_TemporalAccessor) {
+  _inheritsLoose(Month, _TemporalAccessor);
 
   function Month(value, name) {
     var _this;
 
-    _this = _Temporal.call(this) || this;
+    _this = _TemporalAccessor.call(this) || this;
     _this._value = MathUtil.safeToInt(value);
     _this._name = name;
     return _this;
@@ -1623,7 +1679,7 @@ var Month = function (_Temporal) {
     return this._name;
   };
 
-  _proto.getDisplayName = function getDisplayName(style, locale) {
+  _proto.displayName = function displayName(style, locale) {
     throw new IllegalArgumentException('Pattern using (localized) text not implemented yet!');
   };
 
@@ -1793,7 +1849,7 @@ var Month = function (_Temporal) {
       return ChronoUnit.MONTHS;
     }
 
-    return _Temporal.prototype.query.call(this, _query);
+    return _TemporalAccessor.prototype.query.call(this, _query);
   };
 
   _proto.toString = function toString() {
@@ -1894,7 +1950,7 @@ var Month = function (_Temporal) {
   };
 
   return Month;
-}(Temporal);
+}(TemporalAccessor);
 var MONTHS;
 function _init$5() {
   Month.JANUARY = new Month(1, 'JANUARY');
@@ -1927,7 +1983,7 @@ var Period = function (_TemporalAmount) {
 
     var _days = MathUtil.safeToInt(days);
 
-    if ((_years | _months | _days) === 0) {
+    if (_years === 0 && _months === 0 && _days === 0) {
       if (!Period.ZERO) {
         _this._years = _years;
         _this._months = _months;
@@ -2399,11 +2455,133 @@ ResolverStyle.STRICT = new ResolverStyle('STRICT');
 ResolverStyle.SMART = new ResolverStyle('SMART');
 ResolverStyle.LENIENT = new ResolverStyle('LENIENT');
 
-var ChronoLocalDate = function (_Temporal) {
-  _inheritsLoose(ChronoLocalDate, _Temporal);
+/*
+ * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+ * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
+var TemporalAdjuster = function () {
+  function TemporalAdjuster() {}
+
+  var _proto = TemporalAdjuster.prototype;
+
+  _proto.adjustInto = function adjustInto(temporal) {
+    abstractMethodFail('adjustInto');
+  };
+
+  return TemporalAdjuster;
+}();
+
+var Temporal = function (_TemporalAccessor) {
+  _inheritsLoose(Temporal, _TemporalAccessor);
+
+  function Temporal() {
+    return _TemporalAccessor.apply(this, arguments) || this;
+  }
+
+  var _proto = Temporal.prototype;
+
+  _proto.isSupported = function isSupported(unit) {
+    abstractMethodFail('isSupported');
+  };
+
+  _proto.minus = function minus(p1, p2) {
+    if (arguments.length < 2) {
+      return this.minusAmount(p1);
+    } else {
+      return this.minusAmountUnit(p1, p2);
+    }
+  };
+
+  _proto.minusAmount = function minusAmount(amount) {
+    abstractMethodFail('minusAmount');
+  };
+
+  _proto.minusAmountUnit = function minusAmountUnit(amountToSubtract, unit) {
+    abstractMethodFail('minusAmountUnit');
+  };
+
+  _proto.plus = function plus(p1, p2) {
+    if (arguments.length < 2) {
+      return this.plusAmount(p1);
+    } else {
+      return this.plusAmountUnit(p1, p2);
+    }
+  };
+
+  _proto.plusAmount = function plusAmount(amount) {
+    abstractMethodFail('plusAmount');
+  };
+
+  _proto.plusAmountUnit = function plusAmountUnit(amountToAdd, unit) {
+    abstractMethodFail('plusAmountUnit');
+  };
+
+  _proto.until = function until(endTemporal, unit) {
+    abstractMethodFail('until');
+  };
+
+  _proto.with = function _with(p1, p2) {
+    if (arguments.length < 2) {
+      return this.withAdjuster(p1);
+    } else {
+      return this.withFieldValue(p1, p2);
+    }
+  };
+
+  _proto.withAdjuster = function withAdjuster(adjuster) {
+    abstractMethodFail('withAdjuster');
+  };
+
+  _proto.withFieldValue = function withFieldValue(field, newValue) {
+    abstractMethodFail('withFieldValue');
+  };
+
+  return Temporal;
+}(TemporalAccessor);
+
+var DefaultInterfaceTemporal = function (_Temporal) {
+  _inheritsLoose(DefaultInterfaceTemporal, _Temporal);
+
+  function DefaultInterfaceTemporal() {
+    return _Temporal.apply(this, arguments) || this;
+  }
+
+  var _proto = DefaultInterfaceTemporal.prototype;
+
+  _proto.withAdjuster = function withAdjuster(adjuster) {
+    requireNonNull(adjuster, 'adjuster');
+    requireInstance(adjuster, TemporalAdjuster, 'adjuster');
+    return adjuster.adjustInto(this);
+  };
+
+  _proto.plusAmount = function plusAmount(amount) {
+    requireNonNull(amount, 'amount');
+    requireInstance(amount, TemporalAmount, 'amount');
+    return amount.addTo(this);
+  };
+
+  _proto.minusAmount = function minusAmount(amount) {
+    requireNonNull(amount, 'amount');
+    requireInstance(amount, TemporalAmount, 'amount');
+    return amount.subtractFrom(this);
+  };
+
+  _proto.minusAmountUnit = function minusAmountUnit(amountToSubtract, unit) {
+    requireNonNull(amountToSubtract, 'amountToSubtract');
+    requireNonNull(unit, 'unit');
+    requireInstance(unit, TemporalUnit, 'unit');
+    return amountToSubtract === MIN_SAFE_INTEGER ? this.plusAmountUnit(MAX_SAFE_INTEGER, unit).plusAmountUnit(1, unit) : this.plusAmount(-amountToSubtract, unit);
+  };
+
+  return DefaultInterfaceTemporal;
+}(Temporal);
+
+var ChronoLocalDate = function (_DefaultInterfaceTemp) {
+  _inheritsLoose(ChronoLocalDate, _DefaultInterfaceTemp);
 
   function ChronoLocalDate() {
-    return _Temporal.apply(this, arguments) || this;
+    return _DefaultInterfaceTemp.apply(this, arguments) || this;
   }
 
   var _proto = ChronoLocalDate.prototype;
@@ -2429,7 +2607,7 @@ var ChronoLocalDate = function (_Temporal) {
       return null;
     }
 
-    return _Temporal.prototype.query.call(this, _query);
+    return _DefaultInterfaceTemp.prototype.query.call(this, _query);
   };
 
   _proto.adjustInto = function adjustInto(temporal) {
@@ -2443,7 +2621,7 @@ var ChronoLocalDate = function (_Temporal) {
   };
 
   return ChronoLocalDate;
-}(Temporal);
+}(DefaultInterfaceTemporal);
 
 /*
  * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
@@ -2988,8 +3166,8 @@ function _init$7() {
   ZoneOffset.MAX = ZoneOffset.ofTotalSeconds(ZoneOffset.MAX_SECONDS);
 }
 
-var DateTimeBuilder = function (_Temporal) {
-  _inheritsLoose(DateTimeBuilder, _Temporal);
+var DateTimeBuilder = function (_TemporalAccessor) {
+  _inheritsLoose(DateTimeBuilder, _TemporalAccessor);
 
   DateTimeBuilder.create = function create(field, value) {
     var dtb = new DateTimeBuilder();
@@ -3002,7 +3180,7 @@ var DateTimeBuilder = function (_Temporal) {
   function DateTimeBuilder() {
     var _this;
 
-    _this = _Temporal.call(this) || this;
+    _this = _TemporalAccessor.call(this) || this;
     _this.fieldValues = new EnumMap();
     _this.chrono = null;
     _this.zone = null;
@@ -3417,7 +3595,7 @@ var DateTimeBuilder = function (_Temporal) {
   };
 
   return DateTimeBuilder;
-}(Temporal);
+}(TemporalAccessor);
 
 var DateTimeParseContext = function () {
   function DateTimeParseContext() {
@@ -3736,7 +3914,7 @@ var DateTimePrintContext = function () {
   return DateTimePrintContext;
 }();
 
-var IsoFields = function IsoFields() {};
+var IsoFields = {};
 var QUARTER_DAYS = [0, 90, 181, 273, 0, 91, 182, 274];
 
 var Field = function (_TemporalField) {
@@ -3826,7 +4004,7 @@ var Field = function (_TemporalField) {
     return year;
   };
 
-  _proto.getDisplayName = function getDisplayName() {
+  _proto.displayName = function displayName() {
     return this.toString();
   };
 
@@ -4100,7 +4278,7 @@ var WEEK_OF_WEEK_BASED_YEAR_FIELD = function (_Field3) {
     return date;
   };
 
-  _proto4.getDisplayName = function getDisplayName() {
+  _proto4.displayName = function displayName() {
     return 'Week';
   };
 
@@ -6833,6 +7011,11 @@ function _init$a() {
   DateTimeFormatter.ISO_INSTANT = new DateTimeFormatterBuilder().parseCaseInsensitive().appendInstant().toFormatter(ResolverStyle.STRICT);
   DateTimeFormatter.ISO_OFFSET_DATE_TIME = new DateTimeFormatterBuilder().parseCaseInsensitive().append(DateTimeFormatter.ISO_LOCAL_DATE_TIME).appendOffsetId().toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
   DateTimeFormatter.ISO_ZONED_DATE_TIME = new DateTimeFormatterBuilder().append(DateTimeFormatter.ISO_OFFSET_DATE_TIME).optionalStart().appendLiteral('[').parseCaseSensitive().appendZoneId().appendLiteral(']').toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+  DateTimeFormatter.BASIC_ISO_DATE = new DateTimeFormatterBuilder().appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD).appendValue(ChronoField.MONTH_OF_YEAR, 2).appendValue(ChronoField.DAY_OF_MONTH, 2).toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+  DateTimeFormatter.ISO_OFFSET_DATE = new DateTimeFormatterBuilder().parseCaseInsensitive().append(DateTimeFormatter.ISO_LOCAL_DATE).appendOffsetId().toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+  DateTimeFormatter.ISO_OFFSET_TIME = new DateTimeFormatterBuilder().parseCaseInsensitive().append(DateTimeFormatter.ISO_LOCAL_TIME).appendOffsetId().toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+  DateTimeFormatter.ISO_ORDINAL_DATE = new DateTimeFormatterBuilder().appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD).appendLiteral('-').appendValue(ChronoField.DAY_OF_YEAR).toFormatter(ResolverStyle.STRICT);
+  DateTimeFormatter.ISO_WEEK_DATE = new DateTimeFormatterBuilder().appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD).appendLiteral('-W').appendValue(ChronoField.ALIGNED_WEEK_OF_YEAR).appendLiteral('-').appendValue(ChronoField.DAY_OF_WEEK).toFormatter(ResolverStyle.STRICT);
   DateTimeFormatter.PARSED_EXCESS_DAYS = createTemporalQuery('PARSED_EXCESS_DAYS', function (temporal) {
     if (temporal instanceof DateTimeBuilder) {
       return temporal.excessDays;
@@ -6849,8 +7032,8 @@ function _init$a() {
   });
 }
 
-var MonthDay = function (_Temporal) {
-  _inheritsLoose(MonthDay, _Temporal);
+var MonthDay = function (_TemporalAccessor) {
+  _inheritsLoose(MonthDay, _TemporalAccessor);
 
   MonthDay.now = function now(zoneIdOrClock) {
     if (arguments.length === 0) {
@@ -6939,7 +7122,7 @@ var MonthDay = function (_Temporal) {
   function MonthDay(month, dayOfMonth) {
     var _this;
 
-    _this = _Temporal.call(this) || this;
+    _this = _TemporalAccessor.call(this) || this;
     _this._month = MathUtil.safeToInt(month);
     _this._day = MathUtil.safeToInt(dayOfMonth);
     return _this;
@@ -6974,7 +7157,7 @@ var MonthDay = function (_Temporal) {
       return ValueRange.of(1, this.month().minLength(), this.month().maxLength());
     }
 
-    return _Temporal.prototype.range.call(this, field);
+    return _TemporalAccessor.prototype.range.call(this, field);
   };
 
   _proto.get = function get(field) {
@@ -7034,7 +7217,7 @@ var MonthDay = function (_Temporal) {
       return IsoChronology.INSTANCE;
     }
 
-    return _Temporal.prototype.query.call(this, _query);
+    return _TemporalAccessor.prototype.query.call(this, _query);
   };
 
   _proto.adjustInto = function adjustInto(temporal) {
@@ -7099,7 +7282,7 @@ var MonthDay = function (_Temporal) {
   };
 
   return MonthDay;
-}(Temporal);
+}(TemporalAccessor);
 var PARSER;
 function _init$b() {
   PARSER = new DateTimeFormatterBuilder().appendLiteral('--').appendValue(ChronoField.MONTH_OF_YEAR, 2).appendLiteral('-').appendValue(ChronoField.DAY_OF_MONTH, 2).toFormatter();
@@ -7296,25 +7479,12 @@ var YearMonth = function (_Temporal) {
     return this.isLeapYear() ? 366 : 365;
   };
 
-  _proto.with = function _with(adjusterOrFieldOrNumber, value) {
+  _proto.with = function _with(adjusterOrField, value) {
     if (arguments.length === 1) {
-      return this.withAdjuster(adjusterOrFieldOrNumber);
-    } else if (arguments.length === 2 && adjusterOrFieldOrNumber instanceof TemporalField) {
-      return this.withFieldValue(adjusterOrFieldOrNumber, value);
+      return this.withAdjuster(adjusterOrField);
     } else {
-      return this.withYearMonth(adjusterOrFieldOrNumber, value);
+      return this.withFieldValue(adjusterOrField, value);
     }
-  };
-
-  _proto.withYearMonth = function withYearMonth(newYear, newMonth) {
-    requireNonNull(newYear);
-    requireNonNull(newMonth);
-
-    if (this._year === newYear && this._month === newMonth) {
-      return this;
-    }
-
-    return new YearMonth(newYear, newMonth);
   };
 
   _proto.withAdjuster = function withAdjuster(adjuster) {
@@ -7355,20 +7525,12 @@ var YearMonth = function (_Temporal) {
 
   _proto.withYear = function withYear(year) {
     ChronoField.YEAR.checkValidValue(year);
-    return this.withYearMonth(year, this._month);
+    return new YearMonth(year, this._month);
   };
 
   _proto.withMonth = function withMonth(month) {
     ChronoField.MONTH_OF_YEAR.checkValidValue(month);
-    return this.withYearMonth(this._year, month);
-  };
-
-  _proto.plus = function plus(amountOrNumber, unit) {
-    if (arguments.length === 1) {
-      return this.plusAmount(amountOrNumber);
-    } else {
-      return this.plusAmountUnit(amountOrNumber, unit);
-    }
+    return new YearMonth(this._year, month);
   };
 
   _proto.plusAmount = function plusAmount(amount) {
@@ -7414,7 +7576,7 @@ var YearMonth = function (_Temporal) {
     }
 
     var newYear = ChronoField.YEAR.checkValidIntValue(this._year + yearsToAdd);
-    return this.withYearMonth(newYear, this._month);
+    return this.withYear(newYear);
   };
 
   _proto.plusMonths = function plusMonths(monthsToAdd) {
@@ -7426,15 +7588,7 @@ var YearMonth = function (_Temporal) {
     var calcMonths = monthCount + monthsToAdd;
     var newYear = ChronoField.YEAR.checkValidIntValue(MathUtil.floorDiv(calcMonths, 12));
     var newMonth = MathUtil.floorMod(calcMonths, 12) + 1;
-    return this.withYearMonth(newYear, newMonth);
-  };
-
-  _proto.minus = function minus(amountOrNumber, unit) {
-    if (arguments.length === 1) {
-      return this.minusAmount(amountOrNumber);
-    } else {
-      return this.minusAmountUnit(amountOrNumber, unit);
-    }
+    return new YearMonth(newYear, newMonth);
   };
 
   _proto.minusAmount = function minusAmount(amount) {
@@ -7735,14 +7889,6 @@ var Year = function (_Temporal) {
     return Year.isLeap(this._year);
   };
 
-  _proto.with = function _with(adjusterOrFieldOrNumber, value) {
-    if (arguments.length === 2 && adjusterOrFieldOrNumber instanceof TemporalField) {
-      return this.withFieldValue(adjusterOrFieldOrNumber, value);
-    } else {
-      return this.withAdjuster(adjusterOrFieldOrNumber);
-    }
-  };
-
   _proto.withAdjuster = function withAdjuster(adjuster) {
     requireNonNull(adjuster, 'adjuster');
     return adjuster.adjustInto(this);
@@ -7772,21 +7918,13 @@ var Year = function (_Temporal) {
     return field.adjustInto(this, newValue);
   };
 
-  _proto.plus = function plus(amountOrNumber, unit) {
-    if (arguments.length === 1) {
-      return this.plusAmount(amountOrNumber);
-    } else {
-      return this.plusAmountToAddUnit(amountOrNumber, unit);
-    }
-  };
-
   _proto.plusAmount = function plusAmount(amount) {
     requireNonNull(amount, 'amount');
     requireInstance(amount, TemporalAmount, 'amount');
     return amount.addTo(this);
   };
 
-  _proto.plusAmountToAddUnit = function plusAmountToAddUnit(amountToAdd, unit) {
+  _proto.plusAmountUnit = function plusAmountUnit(amountToAdd, unit) {
     requireNonNull(amountToAdd, 'amountToAdd');
     requireNonNull(unit, 'unit');
     requireInstance(unit, TemporalUnit, 'unit');
@@ -7823,21 +7961,13 @@ var Year = function (_Temporal) {
     return Year.of(ChronoField.YEAR.checkValidIntValue(MathUtil.safeAdd(this._year, yearsToAdd)));
   };
 
-  _proto.minus = function minus(amountOrNumber, unit) {
-    if (arguments.length === 1) {
-      return this.minusAmount(amountOrNumber);
-    } else {
-      return this.minusAmountToSubtractUnit(amountOrNumber, unit);
-    }
-  };
-
   _proto.minusAmount = function minusAmount(amount) {
     requireNonNull(amount, 'amount');
     requireInstance(amount, TemporalAmount, 'amount');
     return amount.subtractFrom(this);
   };
 
-  _proto.minusAmountToSubtractUnit = function minusAmountToSubtractUnit(amountToSubtract, unit) {
+  _proto.minusAmountUnit = function minusAmountUnit(amountToSubtract, unit) {
     requireNonNull(amountToSubtract, 'amountToSubtract');
     requireNonNull(unit, 'unit');
     requireInstance(unit, TemporalUnit, 'unit');
@@ -7929,13 +8059,13 @@ var Year = function (_Temporal) {
     return formatter.format(this);
   };
 
-  _proto.equals = function equals(otherYear) {
-    if (this === otherYear) {
+  _proto.equals = function equals(other) {
+    if (this === other) {
       return true;
     }
 
-    if (otherYear instanceof Year) {
-      return this.value() === otherYear.value();
+    if (other instanceof Year) {
+      return this.value() === other.value();
     }
 
     return false;
@@ -7949,6 +8079,35 @@ var Year = function (_Temporal) {
     return this.toString();
   };
 
+  _proto.until = function until(endExclusive, unit) {
+    var end = Year.from(endExclusive);
+
+    if (unit instanceof ChronoUnit) {
+      var yearsUntil = end.value() - this.value();
+
+      switch (unit) {
+        case ChronoUnit.YEARS:
+          return yearsUntil;
+
+        case ChronoUnit.DECADES:
+          return MathUtil.intDiv(yearsUntil, 10);
+
+        case ChronoUnit.CENTURIES:
+          return MathUtil.intDiv(yearsUntil, 100);
+
+        case ChronoUnit.MILLENNIA:
+          return MathUtil.intDiv(yearsUntil, 1000);
+
+        case ChronoUnit.ERAS:
+          return end.getLong(ChronoField.ERA) - this.getLong(ChronoField.ERA);
+      }
+
+      throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+    }
+
+    return unit.between(this, end);
+  };
+
   return Year;
 }(Temporal);
 var PARSER$2;
@@ -7960,23 +8119,6 @@ function _init$d() {
     return Year.from(temporal);
   });
 }
-
-/*
- * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
- * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
- * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
- */
-var TemporalAdjuster = function () {
-  function TemporalAdjuster() {}
-
-  var _proto = TemporalAdjuster.prototype;
-
-  _proto.adjustInto = function adjustInto(temporal) {
-    abstractMethodFail('adjustInto');
-  };
-
-  return TemporalAdjuster;
-}();
 
 var TemporalAdjusters = function () {
   function TemporalAdjusters() {}
@@ -8333,11 +8475,436 @@ function _init$e() {
   IsoChronology.INSTANCE = new IsoChronology('IsoChronology');
 }
 
-var ChronoZonedDateTime = function (_Temporal) {
-  _inheritsLoose(ChronoZonedDateTime, _Temporal);
+var OffsetTime = function (_DefaultInterfaceTemp) {
+  _inheritsLoose(OffsetTime, _DefaultInterfaceTemp);
+
+  OffsetTime.from = function from(temporal) {
+    requireNonNull(temporal, 'temporal');
+
+    if (temporal instanceof OffsetTime) {
+      return temporal;
+    } else if (temporal instanceof OffsetDateTime) {
+      return temporal.toOffsetTime();
+    }
+
+    try {
+      var time = LocalTime.from(temporal);
+      var offset = ZoneOffset.from(temporal);
+      return new OffsetTime(time, offset);
+    } catch (ex) {
+      throw new DateTimeException("Unable to obtain OffsetTime TemporalAccessor: " + temporal + ", type " + (temporal.constructor != null ? temporal.constructor.name : ''));
+    }
+  };
+
+  OffsetTime.now = function now(clockOrZone) {
+    if (arguments.length === 0) {
+      return OffsetTime._now(Clock.systemDefaultZone());
+    } else if (clockOrZone instanceof Clock) {
+      return OffsetTime._now(clockOrZone);
+    } else {
+      return OffsetTime._now(Clock.system(clockOrZone));
+    }
+  };
+
+  OffsetTime._now = function _now(clock) {
+    requireNonNull(clock, 'clock');
+    var now = clock.instant();
+    return OffsetTime.ofInstant(now, clock.zone().rules().offset(now));
+  };
+
+  OffsetTime.of = function of() {
+    if (arguments.length <= 2) {
+      return OffsetTime.ofTimeAndOffset.apply(this, arguments);
+    } else {
+      return OffsetTime.ofNumbers.apply(this, arguments);
+    }
+  };
+
+  OffsetTime.ofNumbers = function ofNumbers(hour, minute, second, nanoOfSecond, offset) {
+    var time = LocalTime.of(hour, minute, second, nanoOfSecond);
+    return new OffsetTime(time, offset);
+  };
+
+  OffsetTime.ofTimeAndOffset = function ofTimeAndOffset(time, offset) {
+    return new OffsetTime(time, offset);
+  };
+
+  OffsetTime.ofInstant = function ofInstant(instant, zone) {
+    requireNonNull(instant, 'instant');
+    requireInstance(instant, Instant, 'instant');
+    requireNonNull(zone, 'zone');
+    requireInstance(zone, ZoneId, 'zone');
+    var rules = zone.rules();
+    var offset = rules.offset(instant);
+    var secsOfDay = instant.epochSecond() % LocalTime.SECONDS_PER_DAY;
+    secsOfDay = (secsOfDay + offset.totalSeconds()) % LocalTime.SECONDS_PER_DAY;
+
+    if (secsOfDay < 0) {
+      secsOfDay += LocalTime.SECONDS_PER_DAY;
+    }
+
+    var time = LocalTime.ofSecondOfDay(secsOfDay, instant.nano());
+    return new OffsetTime(time, offset);
+  };
+
+  OffsetTime.parse = function parse(text, formatter) {
+    if (formatter === void 0) {
+      formatter = DateTimeFormatter.ISO_OFFSET_TIME;
+    }
+
+    requireNonNull(formatter, 'formatter');
+    return formatter.parse(text, OffsetTime.FROM);
+  };
+
+  function OffsetTime(time, offset) {
+    var _this;
+
+    _this = _DefaultInterfaceTemp.call(this) || this;
+    requireNonNull(time, 'time');
+    requireInstance(time, LocalTime, 'time');
+    requireNonNull(offset, 'offset');
+    requireInstance(offset, ZoneOffset, 'offset');
+    _this._time = time;
+    _this._offset = offset;
+    return _this;
+  }
+
+  var _proto = OffsetTime.prototype;
+
+  _proto.adjustInto = function adjustInto(temporal) {
+    return temporal.with(ChronoField.NANO_OF_DAY, this._time.toNanoOfDay()).with(ChronoField.OFFSET_SECONDS, this.offset().totalSeconds());
+  };
+
+  _proto.atDate = function atDate(date) {
+    return OffsetDateTime.of(date, this._time, this._offset);
+  };
+
+  _proto.format = function format(formatter) {
+    requireNonNull(formatter, 'formatter');
+    return formatter.format(this, OffsetTime.FROM);
+  };
+
+  _proto.get = function get(field) {
+    return _DefaultInterfaceTemp.prototype.get.call(this, field);
+  };
+
+  _proto.getLong = function getLong(field) {
+    if (field instanceof ChronoField) {
+      if (field === ChronoField.OFFSET_SECONDS) {
+        return this._offset.totalSeconds();
+      }
+
+      return this._time.getLong(field);
+    }
+
+    return field.getFrom(this);
+  };
+
+  _proto.hour = function hour() {
+    return this._time.hour();
+  };
+
+  _proto.minute = function minute() {
+    return this._time.minute();
+  };
+
+  _proto.second = function second() {
+    return this._time.second();
+  };
+
+  _proto.nano = function nano() {
+    return this._time.nano();
+  };
+
+  _proto.offset = function offset() {
+    return this._offset;
+  };
+
+  _proto.isAfter = function isAfter(other) {
+    requireNonNull(other, 'other');
+    return this._toEpochNano() > other._toEpochNano();
+  };
+
+  _proto.isBefore = function isBefore(other) {
+    requireNonNull(other, 'other');
+    return this._toEpochNano() < other._toEpochNano();
+  };
+
+  _proto.isEqual = function isEqual(other) {
+    requireNonNull(other, 'other');
+    return this._toEpochNano() === other._toEpochNano();
+  };
+
+  _proto.isSupported = function isSupported(fieldOrUnit) {
+    if (fieldOrUnit instanceof ChronoField) {
+      return fieldOrUnit.isTimeBased() || fieldOrUnit === ChronoField.OFFSET_SECONDS;
+    } else if (fieldOrUnit instanceof ChronoUnit) {
+      return fieldOrUnit.isTimeBased();
+    }
+
+    return fieldOrUnit != null && fieldOrUnit.isSupportedBy(this);
+  };
+
+  _proto.minusHours = function minusHours(hours) {
+    return this._withLocalTimeOffset(this._time.minusHours(hours), this._offset);
+  };
+
+  _proto.minusMinutes = function minusMinutes(minutes) {
+    return this._withLocalTimeOffset(this._time.minusMinutes(minutes), this._offset);
+  };
+
+  _proto.minusSeconds = function minusSeconds(seconds) {
+    return this._withLocalTimeOffset(this._time.minusSeconds(seconds), this._offset);
+  };
+
+  _proto.minusNanos = function minusNanos(nanos) {
+    return this._withLocalTimeOffset(this._time.minusNanos(nanos), this._offset);
+  };
+
+  _proto.minusAmount = function minusAmount(amount) {
+    requireNonNull(amount);
+    return amount.subtractFrom(this);
+  };
+
+  _proto.minusAmountUnit = function minusAmountUnit(amountToSubtract, unit) {
+    return this.plus(-1 * amountToSubtract, unit);
+  };
+
+  _proto.plusAmount = function plusAmount(amount) {
+    requireNonNull(amount);
+    return amount.addTo(this);
+  };
+
+  _proto.plusAmountUnit = function plusAmountUnit(amountToAdd, unit) {
+    if (unit instanceof ChronoUnit) {
+      return this._withLocalTimeOffset(this._time.plus(amountToAdd, unit), this._offset);
+    }
+
+    return unit.addTo(this, amountToAdd);
+  };
+
+  _proto.plusHours = function plusHours(hours) {
+    return this._withLocalTimeOffset(this._time.plusHours(hours), this._offset);
+  };
+
+  _proto.plusMinutes = function plusMinutes(minutes) {
+    return this._withLocalTimeOffset(this._time.plusMinutes(minutes), this._offset);
+  };
+
+  _proto.plusSeconds = function plusSeconds(seconds) {
+    return this._withLocalTimeOffset(this._time.plusSeconds(seconds), this._offset);
+  };
+
+  _proto.plusNanos = function plusNanos(nanos) {
+    return this._withLocalTimeOffset(this._time.plusNanos(nanos), this._offset);
+  };
+
+  _proto.query = function query(_query) {
+    requireNonNull(_query, 'query');
+
+    if (_query === TemporalQueries.precision()) {
+      return ChronoUnit.NANOS;
+    } else if (_query === TemporalQueries.offset() || _query === TemporalQueries.zone()) {
+      return this.offset();
+    } else if (_query === TemporalQueries.localTime()) {
+      return this._time;
+    } else if (_query === TemporalQueries.chronology() || _query === TemporalQueries.localDate() || _query === TemporalQueries.zoneId()) {
+      return null;
+    }
+
+    return _DefaultInterfaceTemp.prototype.query.call(this, _query);
+  };
+
+  _proto.range = function range(field) {
+    if (field instanceof ChronoField) {
+      if (field === ChronoField.OFFSET_SECONDS) {
+        return field.range();
+      }
+
+      return this._time.range(field);
+    }
+
+    return field.rangeRefinedBy(this);
+  };
+
+  _proto.toLocalTime = function toLocalTime() {
+    return this._time;
+  };
+
+  _proto.truncatedTo = function truncatedTo(unit) {
+    return this._withLocalTimeOffset(this._time.truncatedTo(unit), this._offset);
+  };
+
+  _proto.until = function until(endExclusive, unit) {
+    requireNonNull(endExclusive, 'endExclusive');
+    requireNonNull(unit, 'unit');
+    var end = OffsetTime.from(endExclusive);
+
+    if (unit instanceof ChronoUnit) {
+      var nanosUntil = end._toEpochNano() - this._toEpochNano();
+
+      switch (unit) {
+        case ChronoUnit.NANOS:
+          return nanosUntil;
+
+        case ChronoUnit.MICROS:
+          return Math.floor(nanosUntil / 1000);
+
+        case ChronoUnit.MILLIS:
+          return Math.floor(nanosUntil / 1000000);
+
+        case ChronoUnit.SECONDS:
+          return Math.floor(nanosUntil / LocalTime.NANOS_PER_SECOND);
+
+        case ChronoUnit.MINUTES:
+          return Math.floor(nanosUntil / LocalTime.NANOS_PER_MINUTE);
+
+        case ChronoUnit.HOURS:
+          return Math.floor(nanosUntil / LocalTime.NANOS_PER_HOUR);
+
+        case ChronoUnit.HALF_DAYS:
+          return Math.floor(nanosUntil / (12 * LocalTime.NANOS_PER_HOUR));
+      }
+
+      throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+    }
+
+    return unit.between(this, end);
+  };
+
+  _proto.withHour = function withHour(hour) {
+    return this._withLocalTimeOffset(this._time.withHour(hour), this._offset);
+  };
+
+  _proto.withMinute = function withMinute(minute) {
+    return this._withLocalTimeOffset(this._time.withMinute(minute), this._offset);
+  };
+
+  _proto.withSecond = function withSecond(second) {
+    return this._withLocalTimeOffset(this._time.withSecond(second), this._offset);
+  };
+
+  _proto.withNano = function withNano(nano) {
+    return this._withLocalTimeOffset(this._time.withNano(nano), this._offset);
+  };
+
+  _proto.withOffsetSameInstant = function withOffsetSameInstant(offset) {
+    requireNonNull(offset, 'offset');
+
+    if (offset.equals(this._offset)) {
+      return this;
+    }
+
+    var difference = offset.totalSeconds() - this._offset.totalSeconds();
+
+    var adjusted = this._time.plusSeconds(difference);
+
+    return new OffsetTime(adjusted, offset);
+  };
+
+  _proto.withOffsetSameLocal = function withOffsetSameLocal(offset) {
+    return offset != null && offset.equals(this._offset) ? this : new OffsetTime(this._time, offset);
+  };
+
+  _proto._toEpochNano = function _toEpochNano() {
+    var nod = this._time.toNanoOfDay();
+
+    var offsetNanos = this._offset.totalSeconds() * LocalTime.NANOS_PER_SECOND;
+    return nod - offsetNanos;
+  };
+
+  _proto.withAdjuster = function withAdjuster(adjuster) {
+    requireNonNull(adjuster, 'adjuster');
+
+    if (adjuster instanceof LocalTime) {
+      return this._withLocalTimeOffset(adjuster, this._offset);
+    } else if (adjuster instanceof ZoneOffset) {
+      return this._withLocalTimeOffset(this._time, adjuster);
+    } else if (adjuster instanceof OffsetTime) {
+      return adjuster;
+    }
+
+    return adjuster.adjustInto(this);
+  };
+
+  _proto.withFieldValue = function withFieldValue(field, newValue) {
+    requireNonNull(field, 'field');
+
+    if (field instanceof ChronoField) {
+      if (field === ChronoField.OFFSET_SECONDS) {
+        return this._withLocalTimeOffset(this._time, ZoneOffset.ofTotalSeconds(field.checkValidIntValue(newValue)));
+      }
+
+      return this._withLocalTimeOffset(this._time.with(field, newValue), this._offset);
+    }
+
+    return field.adjustInto(this, newValue);
+  };
+
+  _proto._withLocalTimeOffset = function _withLocalTimeOffset(time, offset) {
+    if (this._time === time && this._offset.equals(offset)) {
+      return this;
+    }
+
+    return new OffsetTime(time, offset);
+  };
+
+  _proto.compareTo = function compareTo(other) {
+    requireNonNull(other, 'other');
+    requireInstance(other, OffsetTime, 'other');
+
+    if (this._offset.equals(other._offset)) {
+      return this._time.compareTo(other._time);
+    }
+
+    var compare = MathUtil.compareNumbers(this._toEpochNano(), other._toEpochNano());
+
+    if (compare === 0) {
+      return this._time.compareTo(other._time);
+    }
+
+    return compare;
+  };
+
+  _proto.equals = function equals(other) {
+    if (this === other) {
+      return true;
+    }
+
+    if (other instanceof OffsetTime) {
+      return this._time.equals(other._time) && this._offset.equals(other._offset);
+    }
+
+    return false;
+  };
+
+  _proto.hashCode = function hashCode() {
+    return this._time.hashCode() ^ this._offset.hashCode();
+  };
+
+  _proto.toString = function toString() {
+    return this._time.toString() + this._offset.toString();
+  };
+
+  _proto.toJSON = function toJSON() {
+    return this.toString();
+  };
+
+  return OffsetTime;
+}(DefaultInterfaceTemporal);
+function _init$f() {
+  OffsetTime.MIN = OffsetTime.ofNumbers(0, 0, 0, 0, ZoneOffset.MAX);
+  OffsetTime.MAX = OffsetTime.ofNumbers(23, 59, 59, 999999999, ZoneOffset.MIN);
+  OffsetTime.FROM = createTemporalQuery('OffsetTime.FROM', function (temporal) {
+    return OffsetTime.from(temporal);
+  });
+}
+
+var ChronoZonedDateTime = function (_DefaultInterfaceTemp) {
+  _inheritsLoose(ChronoZonedDateTime, _DefaultInterfaceTemp);
 
   function ChronoZonedDateTime() {
-    return _Temporal.apply(this, arguments) || this;
+    return _DefaultInterfaceTemp.apply(this, arguments) || this;
   }
 
   var _proto = ChronoZonedDateTime.prototype;
@@ -8357,7 +8924,7 @@ var ChronoZonedDateTime = function (_Temporal) {
       return this.toLocalTime();
     }
 
-    return _Temporal.prototype.query.call(this, _query);
+    return _DefaultInterfaceTemp.prototype.query.call(this, _query);
   };
 
   _proto.format = function format(formatter) {
@@ -8427,7 +8994,7 @@ var ChronoZonedDateTime = function (_Temporal) {
   };
 
   return ChronoZonedDateTime;
-}(Temporal);
+}(DefaultInterfaceTemporal);
 
 function strcmp(a, b) {
   if (a < b) {
@@ -8777,15 +9344,7 @@ var ZonedDateTime = function (_ChronoZonedDateTime) {
     return this._dateTime.nano();
   };
 
-  _proto.with = function _with() {
-    if (arguments.length === 1) {
-      return this.withTemporalAdjuster.apply(this, arguments);
-    } else {
-      return this.with2.apply(this, arguments);
-    }
-  };
-
-  _proto.withTemporalAdjuster = function withTemporalAdjuster(adjuster) {
+  _proto.withAdjuster = function withAdjuster(adjuster) {
     if (adjuster instanceof LocalDate) {
       return this._resolveLocal(LocalDateTime.of(adjuster, this._dateTime.toLocalTime()));
     } else if (adjuster instanceof LocalTime) {
@@ -8803,7 +9362,7 @@ var ZonedDateTime = function (_ChronoZonedDateTime) {
     return adjuster.adjustInto(this);
   };
 
-  _proto.with2 = function with2(field, newValue) {
+  _proto.withFieldValue = function withFieldValue(field, newValue) {
     if (field instanceof ChronoField) {
       switch (field) {
         case ChronoField.INSTANT_SECONDS:
@@ -8858,20 +9417,12 @@ var ZonedDateTime = function (_ChronoZonedDateTime) {
     return this._resolveLocal(this._dateTime.truncatedTo(unit));
   };
 
-  _proto.plus = function plus() {
-    if (arguments.length === 1) {
-      return this.plusTemporalAmount.apply(this, arguments);
-    } else {
-      return this.plus2.apply(this, arguments);
-    }
-  };
-
-  _proto.plusTemporalAmount = function plusTemporalAmount(amount) {
+  _proto.plusAmount = function plusAmount(amount) {
     requireNonNull(amount);
     return amount.addTo(this);
   };
 
-  _proto.plus2 = function plus2(amountToAdd, unit) {
+  _proto.plusAmountUnit = function plusAmountUnit(amountToAdd, unit) {
     if (unit instanceof ChronoUnit) {
       if (unit.isDateBased()) {
         return this._resolveLocal(this._dateTime.plus(amountToAdd, unit));
@@ -8916,21 +9467,13 @@ var ZonedDateTime = function (_ChronoZonedDateTime) {
     return this._resolveInstant(this._dateTime.plusNanos(nanos));
   };
 
-  _proto.minus = function minus() {
-    if (arguments.length === 1) {
-      return this.minusTemporalAmount.apply(this, arguments);
-    } else {
-      return this.minus2.apply(this, arguments);
-    }
-  };
-
-  _proto.minusTemporalAmount = function minusTemporalAmount(amount) {
+  _proto.minusAmount = function minusAmount(amount) {
     requireNonNull(amount, 'amount');
     return amount.subtractFrom(this);
   };
 
-  _proto.minus2 = function minus2(amountToSubtract, unit) {
-    return this.plus2(-1 * amountToSubtract, unit);
+  _proto.minusAmountUnit = function minusAmountUnit(amountToSubtract, unit) {
+    return this.plusAmountUnit(-1 * amountToSubtract, unit);
   };
 
   _proto.minusYears = function minusYears(years) {
@@ -9006,6 +9549,10 @@ var ZonedDateTime = function (_ChronoZonedDateTime) {
     return this._dateTime.toLocalTime();
   };
 
+  _proto.toOffsetDateTime = function toOffsetDateTime() {
+    return OffsetDateTime.of(this._dateTime, this._offset);
+  };
+
   _proto.equals = function equals(other) {
     if (this === other) {
       return true;
@@ -9042,9 +9589,561 @@ var ZonedDateTime = function (_ChronoZonedDateTime) {
 
   return ZonedDateTime;
 }(ChronoZonedDateTime);
-function _init$f() {
+function _init$g() {
   ZonedDateTime.FROM = createTemporalQuery('ZonedDateTime.FROM', function (temporal) {
     return ZonedDateTime.from(temporal);
+  });
+}
+
+var OffsetDateTime = function (_DefaultInterfaceTemp) {
+  _inheritsLoose(OffsetDateTime, _DefaultInterfaceTemp);
+
+  OffsetDateTime.from = function from(temporal) {
+    requireNonNull(temporal, 'temporal');
+
+    if (temporal instanceof OffsetDateTime) {
+      return temporal;
+    }
+
+    try {
+      var offset = ZoneOffset.from(temporal);
+
+      try {
+        var ldt = LocalDateTime.from(temporal);
+        return OffsetDateTime.of(ldt, offset);
+      } catch (_) {
+        var instant = Instant.from(temporal);
+        return OffsetDateTime.ofInstant(instant, offset);
+      }
+    } catch (ex) {
+      throw new DateTimeException("Unable to obtain OffsetDateTime TemporalAccessor: " + temporal + ", type " + (temporal.constructor != null ? temporal.constructor.name : ''));
+    }
+  };
+
+  OffsetDateTime.now = function now(clockOrZone) {
+    if (arguments.length === 0) {
+      return OffsetDateTime.now(Clock.systemDefaultZone());
+    } else {
+      requireNonNull(clockOrZone, 'clockOrZone');
+
+      if (clockOrZone instanceof ZoneId) {
+        return OffsetDateTime.now(Clock.system(clockOrZone));
+      } else if (clockOrZone instanceof Clock) {
+        var now = clockOrZone.instant();
+        return OffsetDateTime.ofInstant(now, clockOrZone.zone().rules().offset(now));
+      } else {
+        throw new IllegalArgumentException('clockOrZone must be an instance of ZoneId or Clock');
+      }
+    }
+  };
+
+  OffsetDateTime.of = function of() {
+    if (arguments.length <= 2) {
+      return OffsetDateTime.ofDateTime.apply(this, arguments);
+    } else if (arguments.length === 3) {
+      return OffsetDateTime.ofDateAndTime.apply(this, arguments);
+    } else {
+      return OffsetDateTime.ofNumbers.apply(this, arguments);
+    }
+  };
+
+  OffsetDateTime.ofDateTime = function ofDateTime(dateTime, offset) {
+    return new OffsetDateTime(dateTime, offset);
+  };
+
+  OffsetDateTime.ofDateAndTime = function ofDateAndTime(date, time, offset) {
+    var dt = LocalDateTime.of(date, time);
+    return new OffsetDateTime(dt, offset);
+  };
+
+  OffsetDateTime.ofNumbers = function ofNumbers(year, month, dayOfMonth, hour, minute, second, nanoOfSecond, offset) {
+    if (hour === void 0) {
+      hour = 0;
+    }
+
+    if (minute === void 0) {
+      minute = 0;
+    }
+
+    if (second === void 0) {
+      second = 0;
+    }
+
+    if (nanoOfSecond === void 0) {
+      nanoOfSecond = 0;
+    }
+
+    var dt = LocalDateTime.of(year, month, dayOfMonth, hour, minute, second, nanoOfSecond);
+    return new OffsetDateTime(dt, offset);
+  };
+
+  OffsetDateTime.ofInstant = function ofInstant(instant, zone) {
+    requireNonNull(instant, 'instant');
+    requireNonNull(zone, 'zone');
+    var rules = zone.rules();
+    var offset = rules.offset(instant);
+    var ldt = LocalDateTime.ofEpochSecond(instant.epochSecond(), instant.nano(), offset);
+    return new OffsetDateTime(ldt, offset);
+  };
+
+  OffsetDateTime.parse = function parse(text, formatter) {
+    if (formatter === void 0) {
+      formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
+    }
+
+    requireNonNull(formatter, 'formatter');
+    return formatter.parse(text, OffsetDateTime.FROM);
+  };
+
+  function OffsetDateTime(dateTime, offset) {
+    var _this;
+
+    _this = _DefaultInterfaceTemp.call(this) || this;
+    requireNonNull(dateTime, 'dateTime');
+    requireInstance(dateTime, LocalDateTime, 'dateTime');
+    requireNonNull(offset, 'offset');
+    requireInstance(offset, ZoneOffset, 'offset');
+    _this._dateTime = dateTime;
+    _this._offset = offset;
+    return _this;
+  }
+
+  var _proto = OffsetDateTime.prototype;
+
+  _proto.adjustInto = function adjustInto(temporal) {
+    return temporal.with(ChronoField.EPOCH_DAY, this.toLocalDate().toEpochDay()).with(ChronoField.NANO_OF_DAY, this.toLocalTime().toNanoOfDay()).with(ChronoField.OFFSET_SECONDS, this.offset().totalSeconds());
+  };
+
+  _proto.until = function until(endExclusive, unit) {
+    var end = OffsetDateTime.from(endExclusive);
+
+    if (unit instanceof ChronoUnit) {
+      end = end.withOffsetSameInstant(this._offset);
+      return this._dateTime.until(end._dateTime, unit);
+    }
+
+    return unit.between(this, end);
+  };
+
+  _proto.atZoneSameInstant = function atZoneSameInstant(zone) {
+    return ZonedDateTime.ofInstant(this._dateTime, this._offset, zone);
+  };
+
+  _proto.atZoneSimilarLocal = function atZoneSimilarLocal(zone) {
+    return ZonedDateTime.ofLocal(this._dateTime, zone, this._offset);
+  };
+
+  _proto.query = function query(_query) {
+    requireNonNull(_query, 'query');
+
+    if (_query === TemporalQueries.chronology()) {
+      return IsoChronology.INSTANCE;
+    } else if (_query === TemporalQueries.precision()) {
+      return ChronoUnit.NANOS;
+    } else if (_query === TemporalQueries.offset() || _query === TemporalQueries.zone()) {
+      return this.offset();
+    } else if (_query === TemporalQueries.localDate()) {
+      return this.toLocalDate();
+    } else if (_query === TemporalQueries.localTime()) {
+      return this.toLocalTime();
+    } else if (_query === TemporalQueries.zoneId()) {
+      return null;
+    }
+
+    return _DefaultInterfaceTemp.prototype.query.call(this, _query);
+  };
+
+  _proto.get = function get(field) {
+    if (field instanceof ChronoField) {
+      switch (field) {
+        case ChronoField.INSTANT_SECONDS:
+          throw new DateTimeException('Field too large for an int: ' + field);
+
+        case ChronoField.OFFSET_SECONDS:
+          return this.offset().totalSeconds();
+      }
+
+      return this._dateTime.get(field);
+    }
+
+    return _DefaultInterfaceTemp.prototype.get.call(this, field);
+  };
+
+  _proto.getLong = function getLong(field) {
+    if (field instanceof ChronoField) {
+      switch (field) {
+        case ChronoField.INSTANT_SECONDS:
+          return this.toEpochSecond();
+
+        case ChronoField.OFFSET_SECONDS:
+          return this.offset().totalSeconds();
+      }
+
+      return this._dateTime.getLong(field);
+    }
+
+    return field.getFrom(this);
+  };
+
+  _proto.offset = function offset() {
+    return this._offset;
+  };
+
+  _proto.year = function year() {
+    return this._dateTime.year();
+  };
+
+  _proto.monthValue = function monthValue() {
+    return this._dateTime.monthValue();
+  };
+
+  _proto.month = function month() {
+    return this._dateTime.month();
+  };
+
+  _proto.dayOfMonth = function dayOfMonth() {
+    return this._dateTime.dayOfMonth();
+  };
+
+  _proto.dayOfYear = function dayOfYear() {
+    return this._dateTime.dayOfYear();
+  };
+
+  _proto.dayOfWeek = function dayOfWeek() {
+    return this._dateTime.dayOfWeek();
+  };
+
+  _proto.hour = function hour() {
+    return this._dateTime.hour();
+  };
+
+  _proto.minute = function minute() {
+    return this._dateTime.minute();
+  };
+
+  _proto.second = function second() {
+    return this._dateTime.second();
+  };
+
+  _proto.nano = function nano() {
+    return this._dateTime.nano();
+  };
+
+  _proto.toLocalDateTime = function toLocalDateTime() {
+    return this._dateTime;
+  };
+
+  _proto.toLocalDate = function toLocalDate() {
+    return this._dateTime.toLocalDate();
+  };
+
+  _proto.toLocalTime = function toLocalTime() {
+    return this._dateTime.toLocalTime();
+  };
+
+  _proto.toOffsetTime = function toOffsetTime() {
+    return OffsetTime.of(this._dateTime.toLocalTime(), this._offset);
+  };
+
+  _proto.toZonedDateTime = function toZonedDateTime() {
+    return ZonedDateTime.of(this._dateTime, this._offset);
+  };
+
+  _proto.toInstant = function toInstant() {
+    return this._dateTime.toInstant(this._offset);
+  };
+
+  _proto.toEpochSecond = function toEpochSecond() {
+    return this._dateTime.toEpochSecond(this._offset);
+  };
+
+  _proto.isSupported = function isSupported(fieldOrUnit) {
+    if (fieldOrUnit instanceof ChronoField) {
+      return fieldOrUnit.isDateBased() || fieldOrUnit.isTimeBased();
+    }
+
+    if (fieldOrUnit instanceof ChronoUnit) {
+      return fieldOrUnit.isDateBased() || fieldOrUnit.isTimeBased();
+    }
+
+    return fieldOrUnit != null && fieldOrUnit.isSupportedBy(this);
+  };
+
+  _proto.range = function range(field) {
+    if (field instanceof ChronoField) {
+      if (field === ChronoField.INSTANT_SECONDS || field === ChronoField.OFFSET_SECONDS) {
+        return field.range();
+      }
+
+      return this._dateTime.range(field);
+    }
+
+    return field.rangeRefinedBy(this);
+  };
+
+  _proto.withAdjuster = function withAdjuster(adjuster) {
+    requireNonNull(adjuster);
+
+    if (adjuster instanceof LocalDate || adjuster instanceof LocalTime || adjuster instanceof LocalDateTime) {
+      return this._withDateTimeOffset(this._dateTime.with(adjuster), this._offset);
+    } else if (adjuster instanceof Instant) {
+      return OffsetDateTime.ofInstant(adjuster, this._offset);
+    } else if (adjuster instanceof ZoneOffset) {
+      return this._withDateTimeOffset(this._dateTime, adjuster);
+    } else if (adjuster instanceof OffsetDateTime) {
+      return adjuster;
+    }
+
+    return adjuster.adjustInto(this);
+  };
+
+  _proto.withFieldValue = function withFieldValue(field, newValue) {
+    requireNonNull(field);
+
+    if (field instanceof ChronoField) {
+      var f = field;
+
+      switch (f) {
+        case ChronoField.INSTANT_SECONDS:
+          return OffsetDateTime.ofInstant(Instant.ofEpochSecond(newValue, this.nano()), this._offset);
+
+        case ChronoField.OFFSET_SECONDS:
+          {
+            return this._withDateTimeOffset(this._dateTime, ZoneOffset.ofTotalSeconds(f.checkValidIntValue(newValue)));
+          }
+      }
+
+      return this._withDateTimeOffset(this._dateTime.with(field, newValue), this._offset);
+    }
+
+    return field.adjustInto(this, newValue);
+  };
+
+  _proto._withDateTimeOffset = function _withDateTimeOffset(dateTime, offset) {
+    if (this._dateTime === dateTime && this._offset.equals(offset)) {
+      return this;
+    }
+
+    return new OffsetDateTime(dateTime, offset);
+  };
+
+  _proto.withYear = function withYear(year) {
+    return this._withDateTimeOffset(this._dateTime.withYear(year), this._offset);
+  };
+
+  _proto.withMonth = function withMonth(month) {
+    return this._withDateTimeOffset(this._dateTime.withMonth(month), this._offset);
+  };
+
+  _proto.withDayOfMonth = function withDayOfMonth(dayOfMonth) {
+    return this._withDateTimeOffset(this._dateTime.withDayOfMonth(dayOfMonth), this._offset);
+  };
+
+  _proto.withDayOfYear = function withDayOfYear(dayOfYear) {
+    return this._withDateTimeOffset(this._dateTime.withDayOfYear(dayOfYear), this._offset);
+  };
+
+  _proto.withHour = function withHour(hour) {
+    return this._withDateTimeOffset(this._dateTime.withHour(hour), this._offset);
+  };
+
+  _proto.withMinute = function withMinute(minute) {
+    return this._withDateTimeOffset(this._dateTime.withMinute(minute), this._offset);
+  };
+
+  _proto.withSecond = function withSecond(second) {
+    return this._withDateTimeOffset(this._dateTime.withSecond(second), this._offset);
+  };
+
+  _proto.withNano = function withNano(nanoOfSecond) {
+    return this._withDateTimeOffset(this._dateTime.withNano(nanoOfSecond), this._offset);
+  };
+
+  _proto.withOffsetSameLocal = function withOffsetSameLocal(offset) {
+    requireNonNull(offset, 'offset');
+    return this._withDateTimeOffset(this._dateTime, offset);
+  };
+
+  _proto.withOffsetSameInstant = function withOffsetSameInstant(offset) {
+    requireNonNull(offset, 'offset');
+
+    if (offset.equals(this._offset)) {
+      return this;
+    }
+
+    var difference = offset.totalSeconds() - this._offset.totalSeconds();
+
+    var adjusted = this._dateTime.plusSeconds(difference);
+
+    return new OffsetDateTime(adjusted, offset);
+  };
+
+  _proto.truncatedTo = function truncatedTo(unit) {
+    return this._withDateTimeOffset(this._dateTime.truncatedTo(unit), this._offset);
+  };
+
+  _proto.plusAmount = function plusAmount(amount) {
+    requireNonNull(amount, 'amount');
+    return amount.addTo(this);
+  };
+
+  _proto.plusAmountUnit = function plusAmountUnit(amountToAdd, unit) {
+    if (unit instanceof ChronoUnit) {
+      return this._withDateTimeOffset(this._dateTime.plus(amountToAdd, unit), this._offset);
+    }
+
+    return unit.addTo(this, amountToAdd);
+  };
+
+  _proto.plusYears = function plusYears(years) {
+    return this._withDateTimeOffset(this._dateTime.plusYears(years), this._offset);
+  };
+
+  _proto.plusMonths = function plusMonths(months) {
+    return this._withDateTimeOffset(this._dateTime.plusMonths(months), this._offset);
+  };
+
+  _proto.plusWeeks = function plusWeeks(weeks) {
+    return this._withDateTimeOffset(this._dateTime.plusWeeks(weeks), this._offset);
+  };
+
+  _proto.plusDays = function plusDays(days) {
+    return this._withDateTimeOffset(this._dateTime.plusDays(days), this._offset);
+  };
+
+  _proto.plusHours = function plusHours(hours) {
+    return this._withDateTimeOffset(this._dateTime.plusHours(hours), this._offset);
+  };
+
+  _proto.plusMinutes = function plusMinutes(minutes) {
+    return this._withDateTimeOffset(this._dateTime.plusMinutes(minutes), this._offset);
+  };
+
+  _proto.plusSeconds = function plusSeconds(seconds) {
+    return this._withDateTimeOffset(this._dateTime.plusSeconds(seconds), this._offset);
+  };
+
+  _proto.plusNanos = function plusNanos(nanos) {
+    return this._withDateTimeOffset(this._dateTime.plusNanos(nanos), this._offset);
+  };
+
+  _proto.minusAmount = function minusAmount(amount) {
+    requireNonNull(amount);
+    return amount.subtractFrom(this);
+  };
+
+  _proto.minusAmountUnit = function minusAmountUnit(amountToSubtract, unit) {
+    return this.plus(-1 * amountToSubtract, unit);
+  };
+
+  _proto.minusYears = function minusYears(years) {
+    return this._withDateTimeOffset(this._dateTime.minusYears(years), this._offset);
+  };
+
+  _proto.minusMonths = function minusMonths(months) {
+    return this._withDateTimeOffset(this._dateTime.minusMonths(months), this._offset);
+  };
+
+  _proto.minusWeeks = function minusWeeks(weeks) {
+    return this._withDateTimeOffset(this._dateTime.minusWeeks(weeks), this._offset);
+  };
+
+  _proto.minusDays = function minusDays(days) {
+    return this._withDateTimeOffset(this._dateTime.minusDays(days), this._offset);
+  };
+
+  _proto.minusHours = function minusHours(hours) {
+    return this._withDateTimeOffset(this._dateTime.minusHours(hours), this._offset);
+  };
+
+  _proto.minusMinutes = function minusMinutes(minutes) {
+    return this._withDateTimeOffset(this._dateTime.minusMinutes(minutes), this._offset);
+  };
+
+  _proto.minusSeconds = function minusSeconds(seconds) {
+    return this._withDateTimeOffset(this._dateTime.minusSeconds(seconds), this._offset);
+  };
+
+  _proto.minusNanos = function minusNanos(nanos) {
+    return this._withDateTimeOffset(this._dateTime.minusNanos(nanos), this._offset);
+  };
+
+  _proto.compareTo = function compareTo(other) {
+    requireNonNull(other, 'other');
+    requireInstance(other, OffsetDateTime, 'other');
+
+    if (this.offset().equals(other.offset())) {
+      return this.toLocalDateTime().compareTo(other.toLocalDateTime());
+    }
+
+    var cmp = MathUtil.compareNumbers(this.toEpochSecond(), other.toEpochSecond());
+
+    if (cmp === 0) {
+      cmp = this.toLocalTime().nano() - other.toLocalTime().nano();
+
+      if (cmp === 0) {
+        cmp = this.toLocalDateTime().compareTo(other.toLocalDateTime());
+      }
+    }
+
+    return cmp;
+  };
+
+  _proto.isAfter = function isAfter(other) {
+    requireNonNull(other, 'other');
+    var thisEpochSec = this.toEpochSecond();
+    var otherEpochSec = other.toEpochSecond();
+    return thisEpochSec > otherEpochSec || thisEpochSec === otherEpochSec && this.toLocalTime().nano() > other.toLocalTime().nano();
+  };
+
+  _proto.isBefore = function isBefore(other) {
+    requireNonNull(other, 'other');
+    var thisEpochSec = this.toEpochSecond();
+    var otherEpochSec = other.toEpochSecond();
+    return thisEpochSec < otherEpochSec || thisEpochSec === otherEpochSec && this.toLocalTime().nano() < other.toLocalTime().nano();
+  };
+
+  _proto.isEqual = function isEqual(other) {
+    requireNonNull(other, 'other');
+    return this.toEpochSecond() === other.toEpochSecond() && this.toLocalTime().nano() === other.toLocalTime().nano();
+  };
+
+  _proto.equals = function equals(other) {
+    if (this === other) {
+      return true;
+    }
+
+    if (other instanceof OffsetDateTime) {
+      return this._dateTime.equals(other._dateTime) && this._offset.equals(other._offset);
+    }
+
+    return false;
+  };
+
+  _proto.hashCode = function hashCode() {
+    return this._dateTime.hashCode() ^ this._offset.hashCode();
+  };
+
+  _proto.toString = function toString() {
+    return this._dateTime.toString() + this._offset.toString();
+  };
+
+  _proto.toJSON = function toJSON() {
+    return this.toString();
+  };
+
+  _proto.format = function format(formatter) {
+    requireNonNull(formatter, 'formatter');
+    return formatter.format(this);
+  };
+
+  return OffsetDateTime;
+}(DefaultInterfaceTemporal);
+function _init$h() {
+  OffsetDateTime.MIN = LocalDateTime.MIN.atOffset(ZoneOffset.MAX);
+  OffsetDateTime.MAX = LocalDateTime.MAX.atOffset(ZoneOffset.MIN);
+  OffsetDateTime.FROM = createTemporalQuery('OffsetDateTime.FROM', function (temporal) {
+    return OffsetDateTime.from(temporal);
   });
 }
 
@@ -9177,6 +10276,9 @@ var LocalDate = function (_ChronoLocalDate) {
     var _this;
 
     _this = _ChronoLocalDate.call(this) || this;
+    requireNonNull(year, 'year');
+    requireNonNull(month, 'month');
+    requireNonNull(dayOfMonth, 'dayOfMonth');
 
     if (month instanceof Month) {
       month = month.value();
@@ -9370,15 +10472,7 @@ var LocalDate = function (_ChronoLocalDate) {
     return this.isLeapYear() ? 366 : 365;
   };
 
-  _proto.with = function _with(fieldOrAdjuster, newValue) {
-    if (arguments.length < 2) {
-      return this.withTemporalAdjuster(fieldOrAdjuster);
-    } else {
-      return this.withFieldAndValue(fieldOrAdjuster, newValue);
-    }
-  };
-
-  _proto.withTemporalAdjuster = function withTemporalAdjuster(adjuster) {
+  _proto.withAdjuster = function withAdjuster(adjuster) {
     requireNonNull(adjuster, 'adjuster');
 
     if (adjuster instanceof LocalDate) {
@@ -9389,7 +10483,7 @@ var LocalDate = function (_ChronoLocalDate) {
     return adjuster.adjustInto(this);
   };
 
-  _proto.withFieldAndValue = function withFieldAndValue(field, newValue) {
+  _proto.withFieldValue = function withFieldValue(field, newValue) {
     assert(field != null, 'field', NullPointerException);
 
     if (field instanceof ChronoField) {
@@ -9479,20 +10573,12 @@ var LocalDate = function (_ChronoLocalDate) {
     return LocalDate.ofYearDay(this._year, dayOfYear);
   };
 
-  _proto.plus = function plus(p1, p2) {
-    if (arguments.length < 2) {
-      return this.plus1(p1);
-    } else {
-      return this.plus2(p1, p2);
-    }
-  };
-
-  _proto.plus1 = function plus1(amount) {
+  _proto.plusAmount = function plusAmount(amount) {
     requireNonNull(amount, 'amount');
     return amount.addTo(this);
   };
 
-  _proto.plus2 = function plus2(amountToAdd, unit) {
+  _proto.plusAmountUnit = function plusAmountUnit(amountToAdd, unit) {
     requireNonNull(amountToAdd, 'amountToAdd');
     requireNonNull(unit, 'unit');
 
@@ -9563,23 +10649,15 @@ var LocalDate = function (_ChronoLocalDate) {
     return LocalDate.ofEpochDay(mjDay);
   };
 
-  _proto.minus = function minus(p1, p2) {
-    if (arguments.length < 2) {
-      return this.minus1(p1);
-    } else {
-      return this.minus2(p1, p2);
-    }
-  };
-
-  _proto.minus1 = function minus1(amount) {
+  _proto.minusAmount = function minusAmount(amount) {
     requireNonNull(amount, 'amount');
     return amount.subtractFrom(this);
   };
 
-  _proto.minus2 = function minus2(amountToSubtract, unit) {
+  _proto.minusAmountUnit = function minusAmountUnit(amountToSubtract, unit) {
     requireNonNull(amountToSubtract, 'amountToSubtract');
     requireNonNull(unit, 'unit');
-    return this.plus2(-1 * amountToSubtract, unit);
+    return this.plusAmountUnit(-1 * amountToSubtract, unit);
   };
 
   _proto.minusYears = function minusYears(yearsToSubtract) {
@@ -9696,7 +10774,15 @@ var LocalDate = function (_ChronoLocalDate) {
   };
 
   _proto.atTime1 = function atTime1(time) {
-    return LocalDateTime.of(this, time);
+    requireNonNull(time, 'time');
+
+    if (time instanceof LocalTime) {
+      return LocalDateTime.of(this, time);
+    } else if (time instanceof OffsetTime) {
+      return this._atTimeOffsetTime(time);
+    } else {
+      throw new IllegalArgumentException('time must be an instance of LocalTime or OffsetTime' + (time && time.constructor && time.constructor.name ? ', but is ' + time.constructor.name : ''));
+    }
   };
 
   _proto.atTime4 = function atTime4(hour, minute, second, nanoOfSecond) {
@@ -9709,6 +10795,10 @@ var LocalDate = function (_ChronoLocalDate) {
     }
 
     return this.atTime1(LocalTime.of(hour, minute, second, nanoOfSecond));
+  };
+
+  _proto._atTimeOffsetTime = function _atTimeOffsetTime(time) {
+    return OffsetDateTime.of(LocalDateTime.of(this, time.toLocalTime()), time.offset());
   };
 
   _proto.atStartOfDay = function atStartOfDay(zone) {
@@ -9792,13 +10882,13 @@ var LocalDate = function (_ChronoLocalDate) {
     return this.compareTo(other) === 0;
   };
 
-  _proto.equals = function equals(otherDate) {
-    if (this === otherDate) {
+  _proto.equals = function equals(other) {
+    if (this === other) {
       return true;
     }
 
-    if (otherDate instanceof LocalDate) {
-      return this._compareTo0(otherDate) === 0;
+    if (other instanceof LocalDate) {
+      return this._compareTo0(other) === 0;
     }
 
     return false;
@@ -9859,7 +10949,7 @@ var LocalDate = function (_ChronoLocalDate) {
 
   return LocalDate;
 }(ChronoLocalDate);
-function _init$g() {
+function _init$i() {
   LocalDate.MIN = LocalDate.of(YearConstants.MIN_VALUE, 1, 1);
   LocalDate.MAX = LocalDate.of(YearConstants.MAX_VALUE, 12, 31);
   LocalDate.EPOCH_0 = LocalDate.ofEpochDay(0);
@@ -9868,11 +10958,11 @@ function _init$g() {
   });
 }
 
-var ChronoLocalDateTime = function (_Temporal) {
-  _inheritsLoose(ChronoLocalDateTime, _Temporal);
+var ChronoLocalDateTime = function (_DefaultInterfaceTemp) {
+  _inheritsLoose(ChronoLocalDateTime, _DefaultInterfaceTemp);
 
   function ChronoLocalDateTime() {
-    return _Temporal.apply(this, arguments) || this;
+    return _DefaultInterfaceTemp.apply(this, arguments) || this;
   }
 
   var _proto = ChronoLocalDateTime.prototype;
@@ -9894,7 +10984,7 @@ var ChronoLocalDateTime = function (_Temporal) {
       return null;
     }
 
-    return _Temporal.prototype.query.call(this, _query);
+    return _DefaultInterfaceTemp.prototype.query.call(this, _query);
   };
 
   _proto.adjustInto = function adjustInto(temporal) {
@@ -9915,7 +11005,7 @@ var ChronoLocalDateTime = function (_Temporal) {
   };
 
   return ChronoLocalDateTime;
-}(Temporal);
+}(DefaultInterfaceTemporal);
 
 var LocalDateTime = function (_ChronoLocalDateTime) {
   _inheritsLoose(LocalDateTime, _ChronoLocalDateTime);
@@ -9946,7 +11036,7 @@ var LocalDateTime = function (_ChronoLocalDateTime) {
   };
 
   LocalDateTime.of = function of() {
-    if (arguments.length === 2 && (arguments[0] instanceof LocalDate || arguments[1] instanceof LocalTime)) {
+    if (arguments.length <= 2) {
       return LocalDateTime.ofDateAndTime.apply(this, arguments);
     } else {
       return LocalDateTime.ofNumbers.apply(this, arguments);
@@ -9954,18 +11044,6 @@ var LocalDateTime = function (_ChronoLocalDateTime) {
   };
 
   LocalDateTime.ofNumbers = function ofNumbers(year, month, dayOfMonth, hour, minute, second, nanoOfSecond) {
-    if (year === void 0) {
-      year = 0;
-    }
-
-    if (month === void 0) {
-      month = 0;
-    }
-
-    if (dayOfMonth === void 0) {
-      dayOfMonth = 0;
-    }
-
     if (hour === void 0) {
       hour = 0;
     }
@@ -10069,7 +11147,7 @@ var LocalDateTime = function (_ChronoLocalDateTime) {
   var _proto = LocalDateTime.prototype;
 
   _proto._withDateTime = function _withDateTime(newDate, newTime) {
-    if (this._date === newDate && this._time === newTime) {
+    if (this._date.equals(newDate) && this._time.equals(newTime)) {
       return this;
     }
 
@@ -10152,15 +11230,7 @@ var LocalDateTime = function (_ChronoLocalDateTime) {
     return this._time.nano();
   };
 
-  _proto.with = function _with(adjusterOrField, newValue) {
-    if (arguments.length === 1) {
-      return this.withTemporalAdjuster(adjusterOrField);
-    } else {
-      return this.with2(adjusterOrField, newValue);
-    }
-  };
-
-  _proto.withTemporalAdjuster = function withTemporalAdjuster(adjuster) {
+  _proto.withAdjuster = function withAdjuster(adjuster) {
     requireNonNull(adjuster, 'adjuster');
 
     if (adjuster instanceof LocalDate) {
@@ -10175,7 +11245,7 @@ var LocalDateTime = function (_ChronoLocalDateTime) {
     return adjuster.adjustInto(this);
   };
 
-  _proto.with2 = function with2(field, newValue) {
+  _proto.withFieldValue = function withFieldValue(field, newValue) {
     requireNonNull(field, 'field');
 
     if (field instanceof ChronoField) {
@@ -10233,20 +11303,12 @@ var LocalDateTime = function (_ChronoLocalDateTime) {
     return this._withDateTime(this._date, this._time.truncatedTo(unit));
   };
 
-  _proto.plus = function plus(amount, unit) {
-    if (arguments.length === 1) {
-      return this.plusTemporalAmount(amount);
-    } else {
-      return this.plus2(amount, unit);
-    }
-  };
-
-  _proto.plusTemporalAmount = function plusTemporalAmount(amount) {
+  _proto.plusAmount = function plusAmount(amount) {
     requireNonNull(amount, 'amount');
     return amount.addTo(this);
   };
 
-  _proto.plus2 = function plus2(amountToAdd, unit) {
+  _proto.plusAmountUnit = function plusAmountUnit(amountToAdd, unit) {
     requireNonNull(unit, 'unit');
 
     if (unit instanceof ChronoUnit) {
@@ -10319,22 +11381,14 @@ var LocalDateTime = function (_ChronoLocalDateTime) {
     return this._plusWithOverflow(this._date, 0, 0, 0, nanos, 1);
   };
 
-  _proto.minus = function minus(amount, unit) {
-    if (arguments.length === 1) {
-      return this.minusTemporalAmount(amount);
-    } else {
-      return this.minus2(amount, unit);
-    }
-  };
-
-  _proto.minusTemporalAmount = function minusTemporalAmount(amount) {
+  _proto.minusAmount = function minusAmount(amount) {
     requireNonNull(amount, 'amount');
     return amount.subtractFrom(this);
   };
 
-  _proto.minus2 = function minus2(amountToSubtract, unit) {
+  _proto.minusAmountUnit = function minusAmountUnit(amountToSubtract, unit) {
     requireNonNull(unit, 'unit');
-    return this.plus2(-1 * amountToSubtract, unit);
+    return this.plusAmountUnit(-1 * amountToSubtract, unit);
   };
 
   _proto.minusYears = function minusYears(years) {
@@ -10370,7 +11424,7 @@ var LocalDateTime = function (_ChronoLocalDateTime) {
   };
 
   _proto._plusWithOverflow = function _plusWithOverflow(newDate, hours, minutes, seconds, nanos, sign) {
-    if ((hours | minutes | seconds | nanos) === 0) {
+    if (hours === 0 && minutes === 0 && seconds === 0 && nanos === 0) {
       return this._withDateTime(newDate, this._time);
     }
 
@@ -10470,6 +11524,10 @@ var LocalDateTime = function (_ChronoLocalDateTime) {
     return unit.between(this, end);
   };
 
+  _proto.atOffset = function atOffset(offset) {
+    return OffsetDateTime.of(this, offset);
+  };
+
   _proto.atZone = function atZone(zone) {
     return ZonedDateTime.of(this, zone);
   };
@@ -10541,7 +11599,7 @@ var LocalDateTime = function (_ChronoLocalDateTime) {
 
   return LocalDateTime;
 }(ChronoLocalDateTime);
-function _init$h() {
+function _init$j() {
   LocalDateTime.MIN = LocalDateTime.of(LocalDate.MIN, LocalTime.MIN);
   LocalDateTime.MAX = LocalDateTime.of(LocalDate.MAX, LocalTime.MAX);
   LocalDateTime.FROM = createTemporalQuery('LocalDateTime.FROM', function (temporal) {
@@ -10675,7 +11733,7 @@ var LocalTime = function (_Temporal) {
 
     LocalTime._validate(_hour, _minute, _second, _nanoOfSecond);
 
-    if ((_minute | _second | _nanoOfSecond) === 0) {
+    if (_minute === 0 && _second === 0 && _nanoOfSecond === 0) {
       if (!LocalTime.HOURS[_hour]) {
         _this._hour = _hour;
         _this._minute = _minute;
@@ -10802,15 +11860,7 @@ var LocalTime = function (_Temporal) {
     return this._nano;
   };
 
-  _proto.with = function _with(adjusterOrField, newValue) {
-    if (arguments.length < 2) {
-      return this.withTemporalAdjuster(adjusterOrField);
-    } else {
-      return this.with2(adjusterOrField, newValue);
-    }
-  };
-
-  _proto.withTemporalAdjuster = function withTemporalAdjuster(adjuster) {
+  _proto.withAdjuster = function withAdjuster(adjuster) {
     requireNonNull(adjuster, 'adjuster');
 
     if (adjuster instanceof LocalTime) {
@@ -10821,7 +11871,7 @@ var LocalTime = function (_Temporal) {
     return adjuster.adjustInto(this);
   };
 
-  _proto.with2 = function with2(field, newValue) {
+  _proto.withFieldValue = function withFieldValue(field, newValue) {
     requireNonNull(field, 'field');
     requireInstance(field, TemporalField, 'field');
 
@@ -10952,20 +12002,12 @@ var LocalTime = function (_Temporal) {
     return LocalTime.ofNanoOfDay(MathUtil.intDiv(nod, dur) * dur);
   };
 
-  _proto.plus = function plus(amount, unit) {
-    if (arguments.length < 2) {
-      return this.plus1(amount);
-    } else {
-      return this.plus2(amount, unit);
-    }
-  };
-
-  _proto.plus1 = function plus1(amount) {
+  _proto.plusAmount = function plusAmount(amount) {
     requireNonNull(amount, 'amount');
     return amount.addTo(this);
   };
 
-  _proto.plus2 = function plus2(amountToAdd, unit) {
+  _proto.plusAmountUnit = function plusAmountUnit(amountToAdd, unit) {
     requireNonNull(unit, 'unit');
 
     if (unit instanceof ChronoUnit) {
@@ -11061,22 +12103,14 @@ var LocalTime = function (_Temporal) {
     return new LocalTime(newHour, newMinute, newSecond, newNano);
   };
 
-  _proto.minus = function minus(amount, unit) {
-    if (arguments.length < 2) {
-      return this.minus1(amount);
-    } else {
-      return this.minus2(amount, unit);
-    }
-  };
-
-  _proto.minus1 = function minus1(amount) {
+  _proto.minusAmount = function minusAmount(amount) {
     requireNonNull(amount, 'amount');
     return amount.subtractFrom(this);
   };
 
-  _proto.minus2 = function minus2(amountToSubtract, unit) {
+  _proto.minusAmountUnit = function minusAmountUnit(amountToSubtract, unit) {
     requireNonNull(unit, 'unit');
-    return this.plus2(-1 * amountToSubtract, unit);
+    return this.plusAmountUnit(-1 * amountToSubtract, unit);
   };
 
   _proto.minusHours = function minusHours(hoursToSubtract) {
@@ -11258,7 +12292,7 @@ var LocalTime = function (_Temporal) {
 
   return LocalTime;
 }(Temporal);
-function _init$i() {
+function _init$k() {
   LocalTime.HOURS = [];
 
   for (var hour = 0; hour < 24; hour++) {
@@ -11410,20 +12444,12 @@ var Instant = function (_Temporal) {
     return this._nanos;
   };
 
-  _proto.with = function _with(adjusterOrField, newValue) {
-    if (arguments.length === 1) {
-      return this.withTemporalAdjuster(adjusterOrField);
-    } else {
-      return this.with2(adjusterOrField, newValue);
-    }
-  };
-
-  _proto.withTemporalAdjuster = function withTemporalAdjuster(adjuster) {
+  _proto.withAdjuster = function withAdjuster(adjuster) {
     requireNonNull(adjuster, 'adjuster');
     return adjuster.adjustInto(this);
   };
 
-  _proto.with2 = function with2(field, newValue) {
+  _proto.withFieldValue = function withFieldValue(field, newValue) {
     requireNonNull(field, 'field');
 
     if (field instanceof ChronoField) {
@@ -11481,20 +12507,12 @@ var Instant = function (_Temporal) {
     return this.plusNanos(result - nod);
   };
 
-  _proto.plus = function plus(amount, unit) {
-    if (arguments.length === 1) {
-      return this.plus1(amount);
-    } else {
-      return this.plus2(amount, unit);
-    }
-  };
-
-  _proto.plus1 = function plus1(amount) {
+  _proto.plusAmount = function plusAmount(amount) {
     requireNonNull(amount, 'amount');
     return amount.addTo(this);
   };
 
-  _proto.plus2 = function plus2(amountToAdd, unit) {
+  _proto.plusAmountUnit = function plusAmountUnit(amountToAdd, unit) {
     requireNonNull(amountToAdd, 'amountToAdd');
     requireNonNull(unit, 'unit');
     requireInstance(unit, TemporalUnit);
@@ -11545,7 +12563,7 @@ var Instant = function (_Temporal) {
   };
 
   _proto._plus = function _plus(secondsToAdd, nanosToAdd) {
-    if ((secondsToAdd | nanosToAdd) === 0) {
+    if (secondsToAdd === 0 && nanosToAdd === 0) {
       return this;
     }
 
@@ -11555,21 +12573,13 @@ var Instant = function (_Temporal) {
     return Instant.ofEpochSecond(epochSec, nanoAdjustment);
   };
 
-  _proto.minus = function minus(amount, unit) {
-    if (arguments.length === 1) {
-      return this.minus1(amount);
-    } else {
-      return this.minus2(amount, unit);
-    }
-  };
-
-  _proto.minus1 = function minus1(amount) {
+  _proto.minusAmount = function minusAmount(amount) {
     requireNonNull(amount, 'amount');
     return amount.subtractFrom(this);
   };
 
-  _proto.minus2 = function minus2(amountToSubtract, unit) {
-    return this.plus2(-1 * amountToSubtract, unit);
+  _proto.minusAmountUnit = function minusAmountUnit(amountToSubtract, unit) {
+    return this.plusAmountUnit(-1 * amountToSubtract, unit);
   };
 
   _proto.minusSeconds = function minusSeconds(secondsToSubtract) {
@@ -11660,6 +12670,10 @@ var Instant = function (_Temporal) {
     return secsDiff;
   };
 
+  _proto.atOffset = function atOffset(offset) {
+    return OffsetDateTime.ofInstant(this, offset);
+  };
+
   _proto.atZone = function atZone(zone) {
     return ZonedDateTime.ofInstant(this, zone);
   };
@@ -11689,13 +12703,13 @@ var Instant = function (_Temporal) {
     return this.compareTo(otherInstant) < 0;
   };
 
-  _proto.equals = function equals(otherInstant) {
-    if (this === otherInstant) {
+  _proto.equals = function equals(other) {
+    if (this === other) {
       return true;
     }
 
-    if (otherInstant instanceof Instant) {
-      return this.epochSecond() === otherInstant.epochSecond() && this.nano() === otherInstant.nano();
+    if (other instanceof Instant) {
+      return this.epochSecond() === other.epochSecond() && this.nano() === other.nano();
     }
 
     return false;
@@ -11715,7 +12729,7 @@ var Instant = function (_Temporal) {
 
   return Instant;
 }(Temporal);
-function _init$j() {
+function _init$l() {
   Instant.MIN_SECONDS = -31619119219200;
   Instant.MAX_SECONDS = 31494816403199;
   Instant.EPOCH = new Instant(0, 0);
@@ -12037,7 +13051,7 @@ var ZoneOffsetTransition = function () {
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
-function _init$k() {
+function _init$m() {
   TemporalQueries.ZONE_ID = createTemporalQuery('ZONE_ID', function (temporal) {
     return temporal.query(TemporalQueries.ZONE_ID);
   });
@@ -12291,7 +13305,7 @@ var ZoneIdFactory = function () {
   return ZoneIdFactory;
 }();
 var SYSTEM_DEFAULT_ZONE_ID_INSTANCE = null;
-function _init$l() {
+function _init$n() {
   SYSTEM_DEFAULT_ZONE_ID_INSTANCE = new SystemDefaultZoneId();
   ZoneId.systemDefault = ZoneIdFactory.systemDefault;
   ZoneId.getAvailableZoneIds = ZoneIdFactory.getAvailableZoneIds;
@@ -12319,24 +13333,26 @@ function init() {
   _init();
   _init$2();
   _init$3();
-  _init$i();
-  _init$8();
   _init$k();
+  _init$8();
+  _init$m();
   _init$4();
+  _init$l();
+  _init$i();
   _init$j();
-  _init$g();
-  _init$h();
   _init$d();
   _init$5();
   _init$c();
   _init$b();
   _init$6();
   _init$7();
-  _init$f();
-  _init$l();
+  _init$g();
+  _init$n();
   _init$e();
   _init$a();
   _init$9();
+  _init$h();
+  _init$f();
 }
 
 init();
@@ -12503,6 +13519,8 @@ var jsJodaExports = {
   LocalDate: LocalDate,
   LocalTime: LocalTime,
   LocalDateTime: LocalDateTime,
+  OffsetTime: OffsetTime,
+  OffsetDateTime: OffsetDateTime,
   Month: Month,
   MonthDay: MonthDay,
   Period: Period,
@@ -12543,4 +13561,4 @@ var jsJodaExports = {
 var use = bindUse(jsJodaExports);
 jsJodaExports.use = use;
 
-export { ArithmeticException, ChronoField, ChronoLocalDate, ChronoLocalDateTime, ChronoUnit, ChronoZonedDateTime, Clock, DateTimeException, DateTimeFormatter, DateTimeFormatterBuilder, DateTimeParseException, DayOfWeek, DecimalStyle, Duration, IllegalArgumentException, IllegalStateException, Instant, IsoChronology, IsoFields, LocalDate, LocalDateTime, LocalTime, Month, MonthDay, NullPointerException, Period, ResolverStyle, SignStyle, Temporal, TemporalAccessor, TemporalAdjuster, TemporalAdjusters, TemporalAmount, TemporalField, TemporalQueries, TemporalQuery, TemporalUnit, TextStyle, UnsupportedTemporalTypeException, ValueRange, Year, YearConstants, YearMonth, ZoneId, ZoneOffset, ZoneOffsetTransition, ZoneRegion, ZoneRules, ZoneRulesProvider, ZonedDateTime, _, convert, nativeJs, use };
+export { ArithmeticException, ChronoField, ChronoLocalDate, ChronoLocalDateTime, ChronoUnit, ChronoZonedDateTime, Clock, DateTimeException, DateTimeFormatter, DateTimeFormatterBuilder, DateTimeParseException, DayOfWeek, DecimalStyle, Duration, IllegalArgumentException, IllegalStateException, Instant, IsoChronology, IsoFields, LocalDate, LocalDateTime, LocalTime, Month, MonthDay, NullPointerException, OffsetDateTime, OffsetTime, Period, ResolverStyle, SignStyle, Temporal, TemporalAccessor, TemporalAdjuster, TemporalAdjusters, TemporalAmount, TemporalField, TemporalQueries, TemporalQuery, TemporalUnit, TextStyle, UnsupportedTemporalTypeException, ValueRange, Year, YearConstants, YearMonth, ZoneId, ZoneOffset, ZoneOffsetTransition, ZoneRegion, ZoneRules, ZoneRulesProvider, ZonedDateTime, _, convert, nativeJs, use };

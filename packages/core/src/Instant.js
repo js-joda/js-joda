@@ -11,6 +11,7 @@ import {Clock} from './Clock';
 import {LocalTime} from './LocalTime';
 import {ZonedDateTime} from './ZonedDateTime';
 import {MathUtil} from './MathUtil';
+import {OffsetDateTime} from './OffsetDateTime';
 
 import {Temporal} from './temporal/Temporal';
 import {ChronoField} from './temporal/ChronoField';
@@ -406,23 +407,6 @@ export class Instant extends Temporal {
 
     //-------------------------------------------------------------------------
     /**
-     * function overloading for {@link Instant.with}
-     *
-     * if called with 1 argument {@link Instant.withTemporalAdjuster} is called
-     * otherwise {@link Instant.with2}
-     *
-     * @param {!(TemporalAdjuster|TemporalField)} adjusterOrField
-     * @param {number} newValue
-     * @returns {Instant}
-     */
-    with(adjusterOrField, newValue){
-        if(arguments.length === 1){
-            return this.withTemporalAdjuster(adjusterOrField);
-        } else {
-            return this.with2(adjusterOrField, newValue);
-        }
-    }
-    /**
      * Returns an adjusted copy of this instant.
      *
      * This returns a new {@link Instant}, based on this one, with the date adjusted.
@@ -440,7 +424,7 @@ export class Instant extends Temporal {
      * @throws DateTimeException if the adjustment cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
-    withTemporalAdjuster(adjuster) {
+    withAdjuster(adjuster) {
         requireNonNull(adjuster, 'adjuster');
         return adjuster.adjustInto(this);
     }
@@ -488,7 +472,7 @@ export class Instant extends Temporal {
      * @throws DateTimeException if the field cannot be set
      * @throws ArithmeticException if numeric overflow occurs
      */
-    with2(field, newValue) {
+    withFieldValue(field, newValue) {
         requireNonNull(field, 'field');
         if (field instanceof ChronoField) {
             field.checkValidValue(newValue);
@@ -550,19 +534,6 @@ export class Instant extends Temporal {
     }
 
     //-----------------------------------------------------------------------
-    /**
-     *
-     * @param {TemporalAmount|number} amount
-     * @param {TemporalUnit} unit - only required if first param is a TemporalAmount
-     * @return {Instant}
-     */
-    plus(amount, unit){
-        if(arguments.length === 1){
-            return this.plus1(amount);
-        } else {
-            return this.plus2(amount, unit);
-        }
-    }
 
     /**
      * @param {!TemporalAmount} amount
@@ -570,7 +541,7 @@ export class Instant extends Temporal {
      * @throws DateTimeException
      * @throws ArithmeticException
      */
-    plus1(amount) {
+    plusAmount(amount) {
         requireNonNull(amount, 'amount');
         return amount.addTo(this);
     }
@@ -582,7 +553,7 @@ export class Instant extends Temporal {
      * @throws DateTimeException
      * @throws ArithmeticException
      */
-    plus2(amountToAdd, unit) {
+    plusAmountUnit(amountToAdd, unit) {
         requireNonNull(amountToAdd, 'amountToAdd');
         requireNonNull(unit, 'unit');
         requireInstance(unit, TemporalUnit);
@@ -653,7 +624,7 @@ export class Instant extends Temporal {
      * @throws DateTimeException if the result exceeds the maximum or minimum instant
      */
     _plus(secondsToAdd, nanosToAdd) {
-        if ((secondsToAdd | nanosToAdd) === 0) {
+        if (secondsToAdd === 0 && nanosToAdd === 0) {
             return this;
         }
         let epochSec = this._seconds + secondsToAdd;
@@ -663,19 +634,6 @@ export class Instant extends Temporal {
     }
 
     //-----------------------------------------------------------------------
-    /**
-     *
-     * @param {TemporalAmount|number} amount
-     * @param {TemporalUnit} unit - only required if first param is a TemporalAmount
-     * @return {Instant}
-     */
-    minus(amount, unit){
-        if(arguments.length === 1){
-            return this.minus1(amount);
-        } else {
-            return this.minus2(amount, unit);
-        }
-    }
 
     /**
      * @param {!TemporalAmount} amount
@@ -683,7 +641,7 @@ export class Instant extends Temporal {
      * @throws DateTimeException
      * @throws ArithmeticException
      */
-    minus1(amount) {
+    minusAmount(amount) {
         requireNonNull(amount, 'amount');
         return amount.subtractFrom(this);
     }
@@ -695,8 +653,8 @@ export class Instant extends Temporal {
      * @throws DateTimeException
      * @throws ArithmeticException
      */
-    minus2(amountToSubtract, unit) {
-        return this.plus2(-1 * amountToSubtract, unit);
+    minusAmountUnit(amountToSubtract, unit) {
+        return this.plusAmountUnit(-1 * amountToSubtract, unit);
     }
 
     /**
@@ -906,9 +864,9 @@ export class Instant extends Temporal {
      * @return {OffsetDateTime} the offset date-time formed from this instant and the specified offset, not null
      * @throws DateTimeException if the result exceeds the supported range
      */
-    //atOffset(offset) {
-    //    return OffsetDateTime.ofInstant(this, offset);
-    //}
+    atOffset(offset) {
+        return OffsetDateTime.ofInstant(this, offset);
+    }
 
     /**
      * Combines this instant with a time-zone to create a {@link ZonedDateTime}.
@@ -999,16 +957,16 @@ export class Instant extends Temporal {
      *
      * The comparison is based on the time-line position of the instants.
      *
-     * @param {*} otherInstant - the other instant, null/ undefined returns false
+     * @param {*} other - the other instant, null/ undefined returns false
      * @return {boolean} true if the other instant is equal to this one
      */
-    equals(otherInstant) {
-        if(this === otherInstant){
+    equals(other) {
+        if(this === other){
             return true;
         }
-        if(otherInstant instanceof Instant){
-            return this.epochSecond() === otherInstant.epochSecond() &&
-                this.nano() === otherInstant.nano();
+        if(other instanceof Instant){
+            return this.epochSecond() === other.epochSecond() &&
+                this.nano() === other.nano();
         }
         return false;
     }

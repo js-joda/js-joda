@@ -17,11 +17,11 @@ export class MockFieldNoValue extends TemporalField {
         return null;
     }
 
-    getBaseUnit() {
+    baseUnit() {
         return ChronoUnit.WEEKS;
     }
 
-    getRangeUnit() {
+    rangeUnit() {
         return ChronoUnit.MONTHS;
     }
 
@@ -53,7 +53,7 @@ export class MockFieldNoValue extends TemporalField {
         throw new DateTimeException('Mock');
     }
 
-    getDisplayName() {
+    displayName() {
         return 'Mock';
     }
 

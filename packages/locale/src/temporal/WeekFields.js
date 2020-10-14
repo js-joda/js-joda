@@ -470,7 +470,7 @@ export class ComputedDayOfField {
         return ValueRange.of(1, weekIndexOfFirstWeekNextYear - 1);
     }
 
-    getDisplayName(locale) {
+    displayName(locale) {
         requireNonNull(locale, 'locale');
         if (this._rangeUnit === ChronoUnit.YEARS) {  // week-of-year
             return 'Week';
@@ -912,20 +912,20 @@ export class WeekFields {
 
     //-----------------------------------------------------------------------
     /**
-     * Checks if this {@code WeekFields} is equal to the specified object.
+     * Checks if this {@code WeekFields} is equal to the specified other.
      * <p>
      * The comparison is based on the entire state of the rules, which is
      * the first day-of-week and minimal days.
      *
-     * @param {*} object  the other rules to compare to, null returns false
+     * @param {*} other  the other rules to compare to, null returns false
      * @return true if this is equal to the specified rules
      */
-    equals(object) {
-        if (this === object) {
+    equals(other) {
+        if (this === other) {
             return true;
         }
-        if (object instanceof WeekFields) {
-            return this.hashCode() === object.hashCode();
+        if (other instanceof WeekFields) {
+            return this.hashCode() === other.hashCode();
         }
         return false;
     }

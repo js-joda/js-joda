@@ -1,9 +1,72 @@
 Changelog
 =========
 
-### next
+### next (upcoming)
 
+### 3.2.0
 
+* add typescript definitions for OffsetDateTime and OffsetTime #448 by jonfreedman
+ 
+### 3.1.0
+
+* Fix bitwise or #439 by @pithu
+* Tests for TS declaration run with ts-node #423 by InExtremaRes
+* dependabot Bump elliptic from 6.5.2 to 6.5.3
+* dependabot Bump lodash from 4.17.15 to 4.17.19
+* dependabot Bump npm-registry-fetch from 4.0.2 to 4.0.5
+
+### 3.0.0
+
+This is a major release because of these following minor/ breaking cleanups:
+
+* Renamed method getDisplayName to displayName for
+   * WeekFields 
+   * DayOfWeek
+   * Month
+   * IsoFields
+* Removed duplicate function YearMonth.with(number, number)
+   * YearMonth.with(year, month), use YearMonth.of() instead
+   * YearMonth.withYearMonth(year, month), use YearMonth.of() instead
+
+All updates:
+
+ * Implement OffsetTime and OffsetDateTim #416 by exoego
+ * TS types reorganized and documentation added #418 by InExtremaRes
+ * Fix isBrowserTest check #419 by pithu
+ * Duration#(minus|plus) should accept TemporalUnit, not just ChronoUnit #417 by exoego
+ * TS types refactor part 1 #415 by InExtremaRes
+ * Remove YearMonth#with that takes (number, number) #412 by InExtremaRes
+ * Fixes and cleanups to TemporalFields and TemporalUnits #408 by InExtremaRes
+ * Switch to travis-ci.com #409 by pithu
+ * Error base name changed to "JsJodaException" and exceptions exposed in TS #407 by InExtremaRes
+ * Some fixes to TS declarations #404 by InExtremaRes
+ * remove android saucelabs test setup #403 by pithu
+ * Fix TS declarations of some TemporalAdjuster implementations (like DayOfWeak) #402 by InExtremaRes
+ * Fixed types of DateTimeFormatterBuilder.prototype.toFormatter to allow zero arguments  #388 by InExtremaRes
+ * Add missing types for Clock.offset() #387 by InExtremaRes  
+ * Added missing nanoAdjustment to Duration.ofSeconds static method #383 by jseter
+ * changed bitwise or to logical or #379 by bowersj 
+ * Add Typescript for IsoChronology.INSTANCE #373 by cranberyxl 
+ * Remove `withTemporalAdjuster` and others non-public methods from TS declaration #363 by InExtremaRes
+
+### 2.0.0
+
+This is a major release because some 'internal' methods were hidden from the typescript definitions
+and were renamed in the javascript code. 
+Resolve those conflicts by using the 'public shorthand' methods, like instead of using `with*()` use `with(...)`. 
+
+ * Improve of the TS declarations #353 from InExtremaRes
+ * Add missing methods to `Temporal` interface #361 from thrucker
+ * LocalDateTime.of requires at least 3 arguments #356
+ 
+### 1.12.0
+
+ * Cleanup documentation and configuration
+ * Upgrade dependencies
+ * Add ISO formatters definitions #358 akonior/iso-formetters
+ * Improve TS declarations with no breaking change #357 InExtremaRes/ts-declarations
+ * Fixes to docu and LocalDateTime.of() according to the typescript changes #359
+ 
 ### 1.11.0
  
  * Added ts defs for new methods in DayOfWeek and Month #301

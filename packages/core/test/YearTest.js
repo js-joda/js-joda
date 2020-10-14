@@ -165,19 +165,19 @@ describe('js-joda Year', () => {
         
         it('should fail if field is null', () => {
             expect(() => {
-                testYear.withFieldValue(null, 1);
+                testYear.with(null, 1);
             }).to.throw(NullPointerException);
         });
         
         it('should fail for unsupported ChronoField', () => {
             expect(() => {
-                testYear.withFieldValue(ChronoField.HOUR_OF_DAY, 1);
+                testYear.with(ChronoField.HOUR_OF_DAY, 1);
             }).to.throw(UnsupportedTemporalTypeException);
         });
         
         it('should fail if field is not a TemporalField', () => {
             expect(() => {
-                testYear.withFieldValue({}, 1);
+                testYear.with({}, 1);
             }).to.throw(IllegalArgumentException);
         });
         

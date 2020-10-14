@@ -671,6 +671,43 @@ export function _init() {
         .appendLiteral(']')
         .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
 
+    DateTimeFormatter.BASIC_ISO_DATE = new DateTimeFormatterBuilder()
+        .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
+        .appendValue(ChronoField.MONTH_OF_YEAR, 2)
+        .appendValue(ChronoField.DAY_OF_MONTH, 2)
+        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+
+    DateTimeFormatter.ISO_OFFSET_DATE = new DateTimeFormatterBuilder()
+        .parseCaseInsensitive()
+        .append(DateTimeFormatter.ISO_LOCAL_DATE)
+        .appendOffsetId()
+        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+
+    DateTimeFormatter.ISO_OFFSET_TIME = new DateTimeFormatterBuilder()
+        .parseCaseInsensitive()
+        .append(DateTimeFormatter.ISO_LOCAL_TIME)
+        .appendOffsetId()
+        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+
+    DateTimeFormatter.ISO_ORDINAL_DATE = new DateTimeFormatterBuilder()
+        .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
+        .appendLiteral('-')
+        .appendValue(ChronoField.DAY_OF_YEAR)
+        .toFormatter(ResolverStyle.STRICT);
+
+    DateTimeFormatter.ISO_WEEK_DATE = new DateTimeFormatterBuilder()
+        .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
+        .appendLiteral('-W')
+        .appendValue(ChronoField.ALIGNED_WEEK_OF_YEAR)
+        .appendLiteral('-')
+        .appendValue(ChronoField.DAY_OF_WEEK)
+        .toFormatter(ResolverStyle.STRICT);
+
+    // TODO:
+    //  ISO_DATE - https://www.threeten.org/threetenbp/apidocs/org/threeten/bp/format/DateTimeFormatter.html#ISO_DATE
+    //  ISO_TIME - https://www.threeten.org/threetenbp/apidocs/org/threeten/bp/format/DateTimeFormatter.html#ISO_TIME
+    //  ISO_DATE_TIME - https://www.threeten.org/threetenbp/apidocs/org/threeten/bp/format/DateTimeFormatter.html#ISO_DATE_TIME
+
     DateTimeFormatter.PARSED_EXCESS_DAYS = createTemporalQuery('PARSED_EXCESS_DAYS', (temporal) => {
         if (temporal instanceof DateTimeBuilder) {
             return temporal.excessDays;

@@ -22,6 +22,8 @@ import { LocalTime } from './LocalTime';
 import { LocalDateTime } from './LocalDateTime';
 import { Month } from './Month';
 import { MonthDay } from './MonthDay';
+import { OffsetDateTime } from './OffsetDateTime';
+import { OffsetTime } from './OffsetTime';
 import { Period } from './Period';
 import { Year } from './Year';
 import { YearConstants } from './YearConstants';
@@ -105,6 +107,8 @@ const jsJodaExports = {
     LocalDate,
     LocalTime,
     LocalDateTime,
+    OffsetTime,
+    OffsetDateTime,
     Month,
     MonthDay,
     Period,
@@ -167,6 +171,8 @@ export {
     LocalDateTime,
     Month,
     MonthDay,
+    OffsetTime,
+    OffsetDateTime,
     Period,
     Year,
     YearConstants,

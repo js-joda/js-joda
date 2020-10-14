@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"target": "ES6",
+		"lib": ["ES2015"],
+		"module": "CommonJS",
+		"pretty": true,
+		"noEmit": true,
+		"strict": true,
+		"noImplicitAny": true,
+		"noImplicitThis": true,
+	},
+	"files": ["js-joda-tests.ts", "core-test.ts"]
+}

@@ -14,7 +14,6 @@ import {DateTimeFormatterBuilder} from './format/DateTimeFormatterBuilder';
 import {IsoChronology} from './chrono/IsoChronology';
 import {LocalDate} from './LocalDate';
 import {Month} from './Month';
-import {Temporal} from './temporal/Temporal';
 import {TemporalAccessor} from './temporal/TemporalAccessor';
 import {TemporalQuery, createTemporalQuery} from './temporal/TemporalQuery';
 import {TemporalQueries} from './temporal/TemporalQueries';
@@ -52,7 +51,7 @@ import {ZoneId} from './ZoneId';
  *
  * This class is immutable and thread-safe.
  */
-export class MonthDay extends Temporal {
+export class MonthDay extends TemporalAccessor {
     /**
      * function overloading for {@link MonthDay.now}
      *

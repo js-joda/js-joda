@@ -1,35 +1,14 @@
-declare module JSJoda {
-  class Duration {}
-  class Instant {}
-}
+import { Instant, Duration } from '@js-joda/core';
 
-declare namespace JSJodaExtra {
-  import Duration = JSJoda.Duration;
-  import Instant = JSJoda.Instant;
-
-  class Interval {
-    static of(
-      startInstant: Instant,
-      endInstantOrDuration: Instant | Duration,
-    ): Interval;
-
-    static ofInstantInstant(
-      startInclusive: Instant,
-      endExclusive: Instant,
-    ): Interval;
-
-    static ofInstantDuration(
-      startInclusive: Instant,
-      duration: Duration,
-    ): Interval;
-
+export class Interval {
+    static of(startInclusive: Instant, endExclusive: Instant): Interval;
+    static of(startInclusive: Instant, duration: Duration): Interval;
     static parse(text: string): Interval;
 
-    constructor(startInclusive: Instant, endExclusive: Instant);
+    private constructor();
 
     start(): Instant;
     end(): Instant;
-
     isEmpty(): boolean;
     isUnboundedStart(): boolean;
     isUnboundedEnd(): boolean;
@@ -50,10 +29,10 @@ declare namespace JSJodaExtra {
     isAfterInterval(interval: Interval): boolean;
     isBeforeInterval(interval: Interval): boolean;
     toDuration(): Duration;
-    equals(obj: any): boolean;
+    equals(other: any): boolean;
     hashCode(): number;
     toString(): string;
-  }
 }
 
-export = JSJodaExtra;
+export const __esModule: true;
+export as namespace JSJodaExtra;

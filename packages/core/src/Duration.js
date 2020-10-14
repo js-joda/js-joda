@@ -398,7 +398,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * @param {Number} nanoAdjustment - the nanosecond adjustment within the second, from 0 to 999,999,999
      */
     static _createSecondsNanos(seconds = 0, nanoAdjustment = 0) {
-        if ((seconds | nanoAdjustment) === 0) {
+        if (seconds === 0 && nanoAdjustment === 0) {
             return Duration.ZERO;
         }
         return new Duration(seconds, nanoAdjustment);
@@ -442,7 +442,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * @return {boolean} true if this duration has a total length equal to zero
      */
     isZero() {
-        return (this._seconds | this._nanos) === 0;
+        return this._seconds === 0 && this._nanos === 0;
     }
 
     /**
@@ -701,7 +701,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
     plusSecondsNanos(secondsToAdd, nanosToAdd) {
         requireNonNull(secondsToAdd, 'secondsToAdd');
         requireNonNull(nanosToAdd, 'nanosToAdd');
-        if ((secondsToAdd | nanosToAdd) === 0) {
+        if (secondsToAdd === 0 && nanosToAdd === 0) {
             return this;
         }
         let epochSec = MathUtil.safeAdd(this._seconds, secondsToAdd);
@@ -720,7 +720,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * Otherwise {@link Duration.minusAmountUnit} is executed.
      *
      * @param {!(Duration|number)} durationOrNumber
-     * @param {?ChronoUnit} unit
+     * @param {?TemporalUnit} unit
      * @return {Duration}
      */
     minus(durationOrNumber, unit) {

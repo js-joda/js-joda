@@ -28,6 +28,7 @@ import {ChronoUnit} from '../../src/temporal/ChronoUnit';
 import {TemporalQueries} from '../../src/temporal/TemporalQueries';
 import {ZoneId} from '../../src/ZoneId';
 import {ZonedDateTime} from '../../src/ZonedDateTime';
+import {OffsetDateTime} from '../../src/OffsetDateTime';
 
 import {MockSimplePeriod} from './MockSimplePeriod';
 import {MockFieldNoValue} from './temporal/MockFieldNoValue';
@@ -137,6 +138,20 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
     function createDateMidnight(year, month, day) {
         return LocalDateTime.of(year, month, day, 0, 0);
     }
+
+    describe('atOffset', () => {
+        it('normal', () => {
+            const t = createDateMidnight(2020, 7, 1);
+            assertEquals(t.atOffset(ZoneOffset.UTC), OffsetDateTime.of(2020, 7, 1, 0, 0, 0, 0, ZoneOffset.UTC));
+        });
+
+        it('null', () => {
+            expect(() => {
+                const t = createDateMidnight(2020, 7, 1);
+                t.atOffset(null);
+            }).to.throw(NullPointerException);
+        });
+    });
 
     describe('now()', () => {
 
@@ -279,7 +294,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         it('factory_of_4intsMonth_nullMonth', () => {
             expect(() => {
                 LocalDateTime.of(2007, null, 15, 12, 30);
-            }).to.throw(ArithmeticException);
+            }).to.throw(NullPointerException);
         });
 
         it('factory_of_4intsMonth_dayTooLow', () => {
@@ -334,7 +349,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         it('factory_of_5intsMonth_nullMonth', () => {
             expect(() => {
                 LocalDateTime.of(2007, null, 15, 12, 30, 40);
-            }).to.throw(ArithmeticException);
+            }).to.throw(NullPointerException);
         });
 
         it('factory_of_5intsMonth_dayTooLow', () => {
@@ -400,7 +415,7 @@ describe('org.threeten.bp.TestLocalDateTime', () => {
         it('factory_of_6intsMonth_nullMonth', () => {
             expect(() => {
                 LocalDateTime.of(2007, null, 15, 12, 30, 40, 987654321);
-            }).to.throw(ArithmeticException);
+            }).to.throw(NullPointerException);
         });
 
         it('factory_of_6intsMonth_dayTooLow', () => {

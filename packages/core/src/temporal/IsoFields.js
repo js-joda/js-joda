@@ -39,9 +39,9 @@ import {ResolverStyle} from '../format/ResolverStyle';
  *
  * The complete date is expressed using three fields:
  *
- * * {@link DAY_OF_QUARTER} - the day within the quarter, from 1 to 90, 91 or 92
- * * {@link QUARTER_OF_YEAR} - the week within the week-based-year
- * * {@link ChronoField#YEAR} - the standard ISO year
+ * * `IsoFields.DAY_OF_QUARTER` - the day within the quarter, from 1 to 90, 91 or 92
+ * * `QUARTER_OF_YEAR` - the week within the week-based-year
+ * * `ChronoField.YEAR` - the standard ISO year (see {@link ChronoField})
  *
  * ### Week based years
  *
@@ -51,10 +51,10 @@ import {ResolverStyle} from '../format/ResolverStyle';
  *
  * The date is expressed using three fields:
  *
- * * {@link ChronoField#DAY_OF_WEEK} - the standard field defining the
- *   day-of-week from Monday (1) to Sunday (7)
- * * {@link WEEK_OF_WEEK_BASED_YEAR} - the week within the week-based-year
- * * {@link WEEK_BASED_YEAR} - the week-based-year
+ * * `ChronoField.DAY_OF_WEEK` - the standard field defining the
+ *   day-of-week from Monday (1) to Sunday (7) (see {@link ChronoField})
+ * * `WEEK_OF_WEEK_BASED_YEAR` - the week within the week-based-year
+ * * `WEEK_BASED_YEAR` - the week-based-year 
  *
  * The week-based-year itself is defined relative to the standard ISO proleptic year.
  * It differs from the standard year in that it always starts on a Monday.
@@ -81,11 +81,7 @@ import {ResolverStyle} from '../format/ResolverStyle';
  * * Sunday, 2009-01-04: Week 1 of week-based-year 2009
  * * Monday, 2009-01-05: Week 2 of week-based-year 2009
  *
- * ### Static properties of Class {@link IsoFields}
- *
- * IsoFields.DAY_OF_QUARTER
- *
- * The field that represents the day-of-quarter.
+ * @property {TemporalField} DAY_OF_QUARTER The field that represents the day-of-quarter.
  *
  * This field allows the day-of-quarter value to be queried and set.
  * The day-of-quarter has values from 1 to 90 in Q1 of a standard year, from 1 to 91
@@ -98,30 +94,24 @@ import {ResolverStyle} from '../format/ResolverStyle';
  * value from 1 to 92. If the quarter has less than 92 days, then day 92, and
  * potentially day 91, is in the following quarter.
  *
- * IsoFields.QUARTER_OF_YEAR
- *
- * The field that represents the quarter-of-year.
+ * @property {TemporalField} QUARTER_OF_YEAR The field that represents the quarter-of-year.
  *
  * This field allows the quarter-of-year value to be queried and set.
  * The quarter-of-year has values from 1 to 4.
  *
  * The day-of-quarter can only be calculated if the month-of-year is available.
  *
- * IsoFields.WEEK_OF_WEEK_BASED_YEAR
- *
- * The field that represents the week-of-week-based-year.
+ * @property {TemporalField} WEEK_OF_WEEK_BASED_YEAR The field that represents the
+ * week-of-week-based-year.
  *
  * This field allows the week of the week-based-year value to be queried and set.
  *
- * IsoFields.WEEK_BASED_YEAR
- *
- * The field that represents the week-based-year.
+ * @property {TemporalField} WEEK_BASED_YEAR The field that represents the week-based-year.
  *
  * This field allows the week-based-year value to be queried and set.
  *
- * IsoFields.WEEK_BASED_YEARS
- *
- * The unit that represents week-based-years for the purpose of addition and subtraction.
+ * @property {TemporalField} WEEK_BASED_YEARS The unit that represents week-based-years for
+ * the purpose of addition and subtraction.
  *
  * This allows a number of week-based-years to be added to, or subtracted from, a date.
  * The unit is equal to either 52 or 53 weeks.
@@ -132,14 +122,14 @@ import {ResolverStyle} from '../format/ResolverStyle';
  * for the week-based-year field. If the resulting week-based-year only has 52 weeks,
  * then the date will be in week 1 of the following week-based-year.
  *
- * IsoFields.QUARTER_YEARS
- *
- * Unit that represents the concept of a quarter-year.
+ * @property {TemporalField} QUARTER_YEARS Unit that represents the concept of a quarter-year.
  * For the ISO calendar system, it is equal to 3 months.
  * The estimated duration of a quarter-year is one quarter of 365.2425 days.
+ * 
+ * @typedef {Object} IsoFields
+ * @type {Object}
  */
-export class IsoFields {
-}
+export const IsoFields = {};
 
 //-----------------------------------------------------------------------
 
@@ -147,6 +137,7 @@ const QUARTER_DAYS = [0, 90, 181, 273, 0, 91, 182, 274];
 
 /**
  * Implementation of the field.
+ * @private
  */
 class Field extends TemporalField{
 
@@ -252,7 +243,7 @@ class Field extends TemporalField{
      *
      * @returns {string}
      */
-    getDisplayName(/*locale*/) {
+    displayName(/*locale*/) {
         return this.toString();
     }
 
@@ -270,7 +261,9 @@ class Field extends TemporalField{
 
 }
 
-
+/**
+ * @private
+ */
 class DAY_OF_QUARTER_FIELD extends Field {
 
     /**
@@ -407,6 +400,9 @@ class DAY_OF_QUARTER_FIELD extends Field {
     }
 }
 
+/**
+ * @private
+ */
 class QUARTER_OF_YEAR_FIELD extends Field {
 
     /**
@@ -488,6 +484,9 @@ class QUARTER_OF_YEAR_FIELD extends Field {
 
 }
 
+/**
+ * @private
+ */
 class WEEK_OF_WEEK_BASED_YEAR_FIELD extends Field {
 
     /**
@@ -615,12 +614,15 @@ class WEEK_OF_WEEK_BASED_YEAR_FIELD extends Field {
      *
      * @returns {string}
      */
-    getDisplayName() {
+    displayName() {
         return 'Week';
     }
 
 }
 
+/**
+ * @private
+ */
 class WEEK_BASED_YEAR_FIELD extends Field {
 
     /**
@@ -715,6 +717,7 @@ class WEEK_BASED_YEAR_FIELD extends Field {
 //-----------------------------------------------------------------------
 /**
  * Implementation of the period unit.
+ * @private
  */
 class Unit extends TemporalUnit {
 

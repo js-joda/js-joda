@@ -1,7 +1,8 @@
 import {
   Instant,
   Duration,
-} from '../../../core'
+  LocalDate,
+} from '@js-joda/core'
 import {
   Interval
 } from '../..';
@@ -11,13 +12,12 @@ import {
 function test_Interval() {
   const instant = Instant.now();
   const duration = Duration.ofHours(1);
-  Interval.of(instant, instant);
+
   Interval.of(instant, duration);
-  Interval.ofInstantInstant(instant, instant);
-  Interval.ofInstantDuration(instant, instant);
+
   Interval.parse('2019-08-09T20:38:43.298Z/2019-08-09T20:38:43.298Z');
 
-  const interval = new Interval(instant, instant);
+  const interval = Interval.of(instant, instant);
   interval.start();
   interval.end();
   interval.isEmpty();
@@ -45,4 +45,6 @@ function test_Interval() {
   interval.equals({});
   interval.hashCode();
   interval.toString();
+
+  LocalDate.ofInstant(interval.end());
 }

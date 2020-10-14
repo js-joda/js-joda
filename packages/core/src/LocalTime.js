@@ -280,7 +280,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
         const _second = MathUtil.safeToInt(second);
         const _nanoOfSecond = MathUtil.safeToInt(nanoOfSecond);
         LocalTime._validate(_hour, _minute, _second, _nanoOfSecond);
-        if ((_minute | _second | _nanoOfSecond) === 0) {
+        if (_minute === 0 && _second === 0 && _nanoOfSecond === 0) {
             if (!LocalTime.HOURS[_hour]) {
                 this._hour = _hour;
                 this._minute = _minute;
@@ -501,24 +501,6 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
     }
 
     /**
-     * function overloading for {@link LocalDate.with}
-     *
-     * if called with 1 (or less) arguments {@link LocalTime.withTemporalAdjuster} is called.
-     * Otherwise {@link LocalTime.with2} is called.
-     *
-     * @param {!(TemporalAdjuster|ChronoField)} adjusterOrField
-     * @param {number} newValue - only required if called with 2 arguments
-     * @return {LocalTime}
-     */
-    with(adjusterOrField, newValue){
-        if(arguments.length < 2){
-            return this.withTemporalAdjuster(adjusterOrField);
-        } else {
-            return this.with2(adjusterOrField, newValue);
-        }
-    }
-
-    /**
      * Returns an adjusted copy of this time.
      *
      * This returns a new {@link LocalTime}, based on this one, with the time adjusted.
@@ -539,7 +521,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @throws {DateTimeException} if the adjustment cannot be made
      * @throws {ArithmeticException} if numeric overflow occurs
      */
-    withTemporalAdjuster(adjuster) {
+    withAdjuster(adjuster) {
         requireNonNull(adjuster, 'adjuster');
         // optimizations
         if (adjuster instanceof LocalTime) {
@@ -629,7 +611,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @throws {DateTimeException} if the field cannot be set
      * @throws {ArithmeticException} if numeric overflow occurs
      */
-    with2(field, newValue) {
+    withFieldValue(field, newValue) {
         requireNonNull(field, 'field');
         requireInstance(field, TemporalField, 'field');
         if (field instanceof ChronoField) {
@@ -761,24 +743,6 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
     //-----------------------------------------------------------------------
 
     /**
-     * function overloading for {@link LocalDate.plus}
-     *
-     * if called with 1 (or less) arguments {@link LocalTime.plus1} is called.
-     * Otherwise {@link LocalTime.plus2} is called.
-     *
-     * @param {!(TemporalAmount|number)} amount
-     * @param {ChronoUnit} unit - only required if called with 2 arguments
-     * @return {LocalTime}
-     */
-    plus(amount, unit){
-        if(arguments.length < 2){
-            return this.plus1(amount);
-        } else {
-            return this.plus2(amount, unit);
-        }
-    }
-
-    /**
      * Returns a copy of this date with the specified period added.
      *
      * This method returns a new time based on this time with the specified period added.
@@ -794,7 +758,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @throws {DateTimeException} if the addition cannot be made
      * @throws {ArithmeticException} if numeric overflow occurs
      */
-    plus1(amount) {
+    plusAmount(amount) {
         requireNonNull(amount, 'amount');
         return amount.addTo(this);
     }
@@ -814,7 +778,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @return {LocalTime} a {@link LocalTime} based on this time with the specified period added, not null
      * @throws {DateTimeException} if the unit cannot be added to this type
      */
-    plus2(amountToAdd, unit) {
+    plusAmountUnit(amountToAdd, unit) {
         requireNonNull(unit, 'unit');
         if (unit instanceof ChronoUnit) {
             switch (unit) {
@@ -932,23 +896,6 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
     }
 
     //-----------------------------------------------------------------------
-    /**
-     * function overloading for {@link LocalDate.minus}
-     *
-     * if called with 1 (or less) arguments {@link LocalTime.minus1} is called.
-     * Otherwise {@link LocalTime.minus2} is called.
-     *
-     * @param {!(TemporalAmount|number)} amount
-     * @param {ChronoUnit} unit - only required if called with 2 arguments
-     * @return {LocalTime}
-     */
-    minus(amount, unit){
-        if(arguments.length < 2){
-            return this.minus1(amount);
-        } else {
-            return this.minus2(amount, unit);
-        }
-    }
 
     /**
      * Returns a copy of this time with the specified period subtracted.
@@ -967,7 +914,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @throws {ArithmeticException} if numeric overflow occurs
      */
 
-    minus1(amount) {
+    minusAmount(amount) {
         requireNonNull(amount, 'amount');
         return amount.subtractFrom(this);
     }
@@ -987,9 +934,9 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @return {LocalTime} a {@link LocalTime} based on this time with the specified period subtracted, not null
      * @throws {DateTimeException} if the unit cannot be added to this type
      */
-    minus2(amountToSubtract, unit) {
+    minusAmountUnit(amountToSubtract, unit) {
         requireNonNull(unit, 'unit');
-        return this.plus2(-1 * amountToSubtract, unit);
+        return this.plusAmountUnit(-1 * amountToSubtract, unit);
     }
 
     //-----------------------------------------------------------------------

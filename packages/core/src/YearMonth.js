@@ -408,7 +408,7 @@ export class YearMonth extends Temporal {
      * @throws DateTimeException if a value for the field cannot be obtained
      * @throws ArithmeticException if numeric overflow occurs
      */
-    getLong( field) {
+    getLong(field) {
         requireNonNull(field, 'field');
         requireInstance(field, TemporalField, 'field');
         if (field instanceof ChronoField) {
@@ -532,40 +532,18 @@ export class YearMonth extends Temporal {
      * function overloading for {@link YearMonth.with}
      *
      * if called with 1 argument, then {@link YearMonth.withAdjuster} is executed,
+     * otherwise {@link YearMonth.withFieldValue} is executed.
      *
-     * if called with 2 arguments and first argument is an instance of TemporalField, then {@link YearMonth.withFieldValue} is executed,
-     *
-     * otherwise {@link YearMonth.withYearMonth} is executed
-     *
-     * @param {!(TemporalAdjuster|TemporalField|Number)} adjusterOrFieldOrNumber
+     * @param {!(TemporalAdjuster|TemporalField)} adjusterOrField
      * @param {?number} value nullable only of first argument is an instance of TemporalAdjuster
      * @returns {YearMonth}
      */
-    with(adjusterOrFieldOrNumber, value) {
+    with(adjusterOrField, value) {
         if (arguments.length === 1) {
-            return this.withAdjuster(adjusterOrFieldOrNumber);
-        } else if (arguments.length === 2 && adjusterOrFieldOrNumber instanceof TemporalField){
-            return this.withFieldValue(adjusterOrFieldOrNumber, value);
+            return this.withAdjuster(adjusterOrField);
         } else {
-            return this.withYearMonth(adjusterOrFieldOrNumber, value);
+            return this.withFieldValue(adjusterOrField, value);
         }
-    }
-
-    /**
-     * Returns a copy of this year-month with the new year and month, checking
-     * to see if a new object is in fact required.
-     *
-     * @param {number} newYear  the year to represent, validated from MIN_YEAR to MAX_YEAR
-     * @param {number} newMonth  the month-of-year to represent, validated not null
-     * @return the year-month, not null
-     */
-    withYearMonth(newYear, newMonth) {
-        requireNonNull(newYear);
-        requireNonNull(newMonth);
-        if (this._year === newYear && this._month === newMonth) {
-            return this;
-        }
-        return new YearMonth(newYear, newMonth);
     }
 
     /**
@@ -671,7 +649,7 @@ export class YearMonth extends Temporal {
      */
     withYear(year) {
         ChronoField.YEAR.checkValidValue(year);
-        return this.withYearMonth(year, this._month);
+        return new YearMonth(year, this._month);
     }
 
     /**
@@ -685,28 +663,10 @@ export class YearMonth extends Temporal {
      */
     withMonth(month) {
         ChronoField.MONTH_OF_YEAR.checkValidValue(month);
-        return this.withYearMonth(this._year, month);
+        return new YearMonth(this._year, month);
     }
 
     //-----------------------------------------------------------------------
-    /**
-     * function overloading for {@link YearMonth.plus}
-     *
-     * if called with 1 arguments, then {@link YearMonth.plusAmount} is executed.
-     *
-     * Otherwise {@link YearMonth.plusAmountUnit} is executed.
-     *
-     * @param {!(TemporalAmount|number)} amountOrNumber
-     * @param {?TemporalUnit} unit nullable only if first argument is an instance of TemporalAmount
-     * @returns {YearMonth}
-     */
-    plus(amountOrNumber, unit) {
-        if (arguments.length === 1) {
-            return this.plusAmount(amountOrNumber);
-        } else {
-            return this.plusAmountUnit(amountOrNumber, unit);
-        }
-    }
 
     /**
      * Returns a copy of this year-month with the specified period added.
@@ -768,7 +728,7 @@ export class YearMonth extends Temporal {
             return this;
         }
         const newYear = ChronoField.YEAR.checkValidIntValue(this._year + yearsToAdd);  // safe overflow
-        return this.withYearMonth(newYear, this._month);
+        return this.withYear(newYear);
     }
 
     /**
@@ -788,28 +748,10 @@ export class YearMonth extends Temporal {
         const calcMonths = monthCount + monthsToAdd;
         const newYear = ChronoField.YEAR.checkValidIntValue(MathUtil.floorDiv(calcMonths, 12));
         const newMonth = MathUtil.floorMod(calcMonths, 12) + 1;
-        return this.withYearMonth(newYear, newMonth);
+        return new YearMonth(newYear, newMonth);
     }
 
     //-----------------------------------------------------------------------
-    /**
-     * function overloading for {@link YearMonth.minus}
-     *
-     * if called with 1 arguments, then {@link YearMonth.minusAmount} is executed.
-     *
-     * Otherwise {@link YearMonth.minusAmountUnit} is executed.
-     *
-     * @param {!(TemporalAmount|number)} amountOrNumber
-     * @param {?TemporalUnit} unit
-     * @returns {YearMonth}
-     */
-    minus(amountOrNumber, unit) {
-        if (arguments.length === 1) {
-            return this.minusAmount(amountOrNumber);
-        } else {
-            return this.minusAmountUnit(amountOrNumber, unit);
-        }
-    }
 
     /**
      * Returns a copy of this year-month with the specified period subtracted.

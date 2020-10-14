@@ -24,6 +24,8 @@ import {LocalDate} from '../../src/LocalDate';
 import {LocalTime} from '../../src/LocalTime';
 import {LocalDateTime} from '../../src/LocalDateTime';
 import {Month} from '../../src/Month';
+import {OffsetDateTime} from '../../src/OffsetDateTime';
+import {OffsetTime} from '../../src/OffsetTime';
 import {Period} from '../../src/Period';
 import {Year} from '../../src/Year';
 import {ZoneOffset} from '../../src/ZoneOffset';
@@ -256,7 +258,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
         it('factory_of_intsMonth_nullMonth', () => {
             expect(() => {
                 LocalDate.of(2007, null, 30);
-            }).to.throw(ArithmeticException); /* NullPointerException in JDK */
+            }).to.throw(NullPointerException);
         });
 
         it('factory_of_intsMonth_yearTooLow', () => {
@@ -1601,6 +1603,19 @@ describe('org.threeten.bp.TestLocalDate', () => {
                 const t = LocalDate.of(2008, 6, 30);
                 t.atTime(null);
             }).to.throw(NullPointerException);
+        });
+
+        it('test_atTime_OffsetTime', () => {
+            const t = LocalDate.of(2008, 6, 30);
+            const ot = OffsetTime.of(12, 34, 56, 789, ZoneOffset.ofHours(3));
+            assertEquals(t.atTime(ot), OffsetDateTime.of(2008, 6, 30, 12, 34, 56, 789, ZoneOffset.ofHours(3)));
+        });
+
+        it('test_atTime_illegal', () => {
+            expect(() => {
+                const t = LocalDate.of(2008, 6, 30);
+                t.atTime('string');
+            }).to.throw(IllegalArgumentException);
         });
 
         it('test_atTime_int_int', () => {

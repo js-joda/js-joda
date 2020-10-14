@@ -15,6 +15,7 @@ import {Duration} from '../../src/Duration';
 import {LocalTime} from '../../src/LocalTime';
 import {LocalDate} from '../../src/LocalDate';
 import {LocalDateTime} from '../../src/LocalDateTime';
+import {OffsetTime} from '../../src/OffsetTime';
 import {ZonedDateTime} from '../../src/ZonedDateTime';
 import {ZoneOffset} from '../../src/ZoneOffset';
 
@@ -366,7 +367,7 @@ describe('org.threeten.bp.TestZoneOffset', () => {
     describe('from(TemporalAccessor)', () => {
 
         it('test_factory_TemporalAccessor', () => {
-            // assertEquals(ZoneOffset.from(OffsetTime.of(LocalTime.of(12, 30), ZoneOffset.ofHours(6))), ZoneOffset.ofHours(6));
+            assertEquals(ZoneOffset.from(OffsetTime.of(LocalTime.of(12, 30), ZoneOffset.ofHours(6))), ZoneOffset.ofHours(6));
             assertEquals(ZoneOffset.from(ZonedDateTime.of(LocalDateTime.of(LocalDate.of(2007, 7, 15),
                 LocalTime.of(17, 30)), ZoneOffset.ofHours(2))), ZoneOffset.ofHours(2));
         });

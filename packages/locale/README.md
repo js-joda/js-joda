@@ -31,9 +31,12 @@ The current list of available prebuilt locales is:
 - [en-US](https://www.npmjs.com/package/@js-joda/locale_en-us)
 - [es (i.e. es-*)](https://www.npmjs.com/package/@js-joda/locale_es)
 - [fr (i.e. fr-*)](https://www.npmjs.com/package/@js-joda/locale_fr)
+- [fr-FR](https://www.npmjs.com/package/@js-joda/locale_fr-fr)
 - [hi (i.e. hi-*)](https://www.npmjs.com/package/@js-joda/locale_hi)
 - [it (i.e. it-*)](https://www.npmjs.com/package/@js-joda/locale_it)
 - [it-IT](https://www.npmjs.com/package/@js-joda/locale_it-it)
+- [sv (i.e. sv-*)](https://www.npmjs.com/package/@js-joda/locale_sv)
+- [sv-SE](https://www.npmjs.com/package/@js-joda/locale_sv-se)
 - [zh (i.e. zh-*)](https://www.npmjs.com/package/@js-joda/locale_zh)
 
 this list could be extended relatively easily if needed, as long as data is available in cldr-data
