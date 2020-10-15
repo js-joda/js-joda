@@ -11,6 +11,8 @@ import { ResolverStyle } from '../../src/format/ResolverStyle';
 import { NullPointerException } from '../../src/errors';
 import { LocalDateTime } from '../../src/LocalDateTime';
 import { ZoneOffset } from '../../src/ZoneOffset';
+import { LocalDate } from "../../src/LocalDate";
+import { LocalTime } from "../../src/LocalTime";
 
 /* these tests are not copied from threetenbp, but js-joda tests to increase coverage */
 describe('js-joda DateTimeFormatterTest', () => {
@@ -35,7 +37,7 @@ describe('js-joda DateTimeFormatterTest', () => {
     });
 
     describe('ISO formatters', () => {
-        const dateTime = LocalDateTime.parse('2018-04-28T12:34').atZone(ZoneOffset.ofHours(2));
+        const zonedDateTime = LocalDateTime.parse('2018-04-28T12:34').atZone(ZoneOffset.ofHours(2));
 
         it('should properly use BASIC_ISO_DATE format', () => {
             checkFormat(DateTimeFormatter.BASIC_ISO_DATE, '20180428');
@@ -82,10 +84,52 @@ describe('js-joda DateTimeFormatterTest', () => {
             checkFormat(DateTimeFormatter.ISO_INSTANT, '2018-04-28T10:34:00Z');
         });
 
-        // TODO: ISO_DATE, ISO_TIME, ISO_DATE_TIME
+        describe('should properly use ISO_DATE format for', () => {
+            it('LocalDate', () => {
+                checkFormat(DateTimeFormatter.ISO_DATE, '2018-04-28', LocalDate.of(2018, 4, 28));
+            });
+            it('LocalDateTime', () => {
+                checkFormat(DateTimeFormatter.ISO_DATE, '2018-04-28', LocalDateTime.parse("2018-04-28T12:34"));
+            });
+            it('ZonedDateTime', () => {
+                checkFormat(DateTimeFormatter.ISO_DATE, '2018-04-28+02:00');
+            });
+            it('ZonedDateTime at UTC', () => {
+                checkFormat(DateTimeFormatter.ISO_DATE, '2018-04-28Z', LocalDateTime.parse("2018-04-28T12:34").atZone(ZoneOffset.UTC));
+            });
+        })
 
-        function checkFormat(forrmatter, expectedResult) {
-            expect(dateTime.format(forrmatter)).to.eql(expectedResult);
+        describe('should properly use ISO_TIME format for', () => {
+            it('LocalTime', () => {
+                checkFormat(DateTimeFormatter.ISO_TIME, '12:34:56', LocalTime.of(12, 34, 56));
+            });
+            it('LocalDateTime', () => {
+                checkFormat(DateTimeFormatter.ISO_TIME, '12:34:00', LocalDateTime.parse("2018-04-28T12:34"));
+            });
+            it('ZonedDateTime', () => {
+                checkFormat(DateTimeFormatter.ISO_TIME, '12:34:00+02:00');
+            });
+            it('ZonedDateTime at UTC', () => {
+                checkFormat(DateTimeFormatter.ISO_TIME, '12:34:00Z', LocalDateTime.parse("2018-04-28T12:34").atZone(ZoneOffset.UTC));
+            });
+        })
+
+        describe('should properly use ISO_DATE_TIME format for', () => {
+            it('LocalDateTime', () => {
+                checkFormat(DateTimeFormatter.ISO_DATE_TIME, '2018-04-28T12:34:00', LocalDateTime.parse("2018-04-28T12:34"));
+            });
+            it('ZonedDateTime', () => {
+                checkFormat(DateTimeFormatter.ISO_DATE_TIME, '2018-04-28T12:34:00+02:00');
+            });
+            it('ZonedDateTime at UTC', () => {
+                checkFormat(DateTimeFormatter.ISO_DATE_TIME, '2018-04-28T12:34:00Z', LocalDateTime.parse("2018-04-28T12:34").atZone(ZoneOffset.UTC));
+            });
+        })
+
+        // TODO: RFC_1123_DATE_TIME
+
+        function checkFormat(formatter, expectedResult, dateTime = zonedDateTime) {
+            expect(dateTime.format(formatter)).to.eql(expectedResult);
         }
     });
 });
