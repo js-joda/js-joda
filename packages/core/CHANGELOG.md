@@ -3,6 +3,17 @@ Changelog
 
 ### next (upcoming)
 
+### 3.2.0
+
+* add typescript definitions for OffsetDateTime and OffsetTime #448 by jonfreedman
+ 
+### 3.1.0
+
+* Fix bitwise or #439 by @pithu
+* Tests for TS declaration run with ts-node #423 by InExtremaRes
+* dependabot Bump elliptic from 6.5.2 to 6.5.3
+* dependabot Bump lodash from 4.17.15 to 4.17.19
+* dependabot Bump npm-registry-fetch from 4.0.2 to 4.0.5
 
 ### 3.0.0
 

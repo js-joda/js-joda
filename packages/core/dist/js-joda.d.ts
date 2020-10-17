@@ -1261,6 +1261,7 @@ export class LocalDateTime extends ChronoLocalDateTime implements TemporalAdjust
 
     private constructor();
 
+    atOffset(offset: ZoneOffset): OffsetDateTime;
     atZone(zone: ZoneId): ZonedDateTime;
     compareTo(other: LocalDateTime): number;
     dayOfMonth(): number;
@@ -1550,6 +1551,186 @@ export class YearMonth extends Temporal implements TemporalAdjuster {
 }
 
 /**
+ * A date-time with an offset from UTC/Greenwich in the ISO-8601 calendar system, such as
+ * `2007-12-03T10:15:30+01:00`.
+ *
+ * `OffsetDateTime` is an immutable representation of a date-time with an offset. This class stores
+ * all date and time fields, to a precision of nanoseconds, as well as the offset from
+ * UTC/Greenwich. For example, the value "2nd October 2007 at 13:45:30.123456789 +02:00" can be
+ * stored in an `OffsetDateTime`.
+ *
+ * `OffsetDateTime`, `ZonedDateTime` and `Instant` all store an instant on the time-line to
+ * nanosecond precision. `Instant` is the simplest, simply representing the instant. `OffsetDateTime`
+ * adds to the instant the offset from UTC/Greenwich, which allows the local date-time to be obtained.
+ * `ZonedDateTime` adds full time-zone rules.
+ *
+ * It is intended that `ZonedDateTime` or `Instant` is used to model data in simpler applications. This
+ * class may be used when modeling date-time concepts in more detail, or when communicating to a
+ * database or in a network protocol.
+ *
+ * This is a value-based class; use of identity-sensitive operations (including reference equality
+ * (`==`), identity hash code, or synchronization) on instances of `OffsetDateTime` may have
+ * unpredictable results and should be avoided. The `equals` method should be used for comparisons.
+ */
+export class OffsetDateTime extends Temporal implements TemporalAdjuster {
+    static MIN: OffsetDateTime;
+    static MAX: OffsetDateTime;
+    static FROM: TemporalQuery<OffsetDateTime>;
+
+    static from(temporal: TemporalAccessor): OffsetDateTime
+    static now(clockOrZone?: Clock | ZoneId): OffsetDateTime;
+    static of(dateTime: LocalDateTime, offset: ZoneOffset): OffsetDateTime;
+    static of(date: LocalDate, time: LocalTime, offset: ZoneOffset): OffsetDateTime;
+    static of(year: number, month: number, day: number, hour: number, minute: number, second: number, nanoOfSecond: number, offset: ZoneOffset): OffsetDateTime;
+    static ofInstant(instant: Instant, zone: ZoneId): OffsetDateTime;
+    static parse(text: string, formatter?: DateTimeFormatter): OffsetDateTime;
+
+    private constructor();
+
+    adjustInto(temporal: Temporal): Temporal
+    atZoneSameInstant(zone: ZoneId): ZonedDateTime
+    atZoneSimilarLocal(zone: ZoneId): ZonedDateTime
+    compareTo(other: OffsetDateTime): number
+    equals(obj: any): boolean
+    format(formatter: DateTimeFormatter): string
+    get(field: TemporalField): number
+    dayOfMonth(): number
+    dayOfWeek(): DayOfWeek
+    dayOfYear(): number
+    hour(): number
+    getLong(field: TemporalField): number
+    minute(): number
+    month(): Month
+    monthValue(): number
+    nano(): number
+    offset(): ZoneOffset
+    second(): number
+    year(): number
+    hashCode(): number
+    isAfter(other: OffsetDateTime): boolean
+    isBefore(other: OffsetDateTime): boolean
+    isEqual(other: OffsetDateTime): boolean
+    isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean
+    minus(amountToSubtract: number, unit: TemporalUnit): OffsetDateTime
+    minus(amountToSubtract: TemporalAmount): OffsetDateTime
+    minusDays(days: number): OffsetDateTime
+    minusHours(hours: number): OffsetDateTime
+    minusMinutes(minutes: number): OffsetDateTime
+    minusMonths(months: number): OffsetDateTime
+    minusNanos(nanos: number): OffsetDateTime
+    minusSeconds(seconds: number): OffsetDateTime
+    minusWeeks(weeks: number): OffsetDateTime
+    minusYears(years: number): OffsetDateTime
+    plus(amountToAdd: number, unit: TemporalUnit): OffsetDateTime
+    plus(amountToAdd: TemporalAmount): OffsetDateTime
+    plusDays(days: number): OffsetDateTime
+    plusHours(hours: number): OffsetDateTime
+    plusMinutes(minutes: number): OffsetDateTime
+    plusMonths(months: number): OffsetDateTime
+    plusNanos(nanos: number): OffsetDateTime
+    plusSeconds(seconds: number): OffsetDateTime
+    plusWeeks(weeks: number): OffsetDateTime
+    plusYears(years: number): OffsetDateTime
+    query<T>(query: TemporalQuery<T>): T
+    range(field: TemporalField): ValueRange
+    toEpochSecond(): number
+    toJSON(): string;
+    toInstant(): Instant
+    toLocalDate(): LocalDate
+    toLocalDateTime(): LocalDateTime
+    toLocalTime(): LocalTime
+    toOffsetTime(): OffsetTime
+    toString(): string
+    truncatedTo(unit: TemporalUnit): OffsetDateTime
+    until(endExclusive: Temporal, unit: TemporalUnit): number
+    with(adjuster: TemporalAdjuster): OffsetDateTime
+    with(field: TemporalField, newValue: number): OffsetDateTime
+    withDayOfMonth(dayOfMonth: number): OffsetDateTime
+    withDayOfYear(dayOfYear: number): OffsetDateTime
+    withHour(hour: number): OffsetDateTime
+    withMinute(minute: number): OffsetDateTime
+    withMonth(month: number): OffsetDateTime
+    withNano(nanoOfSecond: number): OffsetDateTime
+    withOffsetSameInstant(offset: ZoneOffset): OffsetDateTime
+    withOffsetSameLocal(offset: ZoneOffset): OffsetDateTime
+    withSecond(second: number): OffsetDateTime
+    withYear(year: number): OffsetDateTime
+}
+
+/**
+ * A time with an offset from UTC/Greenwich in the ISO-8601 calendar system, such as `10:15:30+01:00`.
+ *
+ * `OffsetTime` is an immutable date-time object that represents a time, often viewed as
+ * hour-minute-second-offset. This class stores all time fields, to a precision of nanoseconds, as
+ * well as a zone offset. For example, the value "13:45:30.123456789+02:00" can be stored in an
+ * `OffsetTime`.
+ *
+ * This is a value-based class; use of identity-sensitive operations (including reference equality
+ * (`==`), identity hash code, or synchronization) on instances of `OffsetTime` may have
+ * unpredictable results and should be avoided. The `equals` method should be used for comparisons.
+ */
+export class OffsetTime extends Temporal implements TemporalAdjuster {
+    static MIN: OffsetTime;
+    static MAX: OffsetTime;
+    static FROM: TemporalQuery<OffsetTime>;
+
+    static from(temporal: TemporalAccessor): OffsetTime
+    static now(clockOrZone?: Clock | ZoneId): OffsetTime;
+    static of(time: LocalTime, offset: ZoneOffset): OffsetTime;
+    static of(hour: number, minute: number, second: number, nanoOfSecond: number, offset: ZoneOffset): OffsetTime;
+    static ofInstant(instant: Instant, zone: ZoneId): OffsetTime;
+    static parse(text: string, formatter?: DateTimeFormatter): OffsetTime;
+
+    private constructor();
+
+    adjustInto(temporal: Temporal): Temporal
+    atDate(date: LocalDate): OffsetDateTime
+    compareTo(other: OffsetTime): number
+    equals(other: any): boolean
+    format(formatter: DateTimeFormatter): string
+    get(field: TemporalField): number
+    hour(): number
+    getLong(field: TemporalField): number
+    minute(): number
+    nano(): number
+    offset(): ZoneOffset
+    second(): number
+    hashCode(): number
+    isAfter(other: OffsetTime): boolean
+    isBefore(other: OffsetTime): boolean
+    isEqual(other: OffsetTime): boolean
+    isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean
+    minus(amountToSubtract: number, unit: TemporalUnit): OffsetTime
+    minus(amountToSubtract: TemporalAmount): OffsetTime
+    minusHours(hours: number): OffsetTime
+    minusMinutes(minutes: number): OffsetTime
+    minusNanos(nanos: number): OffsetTime
+    minusSeconds(seconds: number): OffsetTime
+    plus(amountToAdd: number, unit: TemporalUnit): OffsetTime
+    plus(amountToAdd: TemporalAmount): OffsetTime
+    plusHours(hours: number): OffsetTime
+    plusMinutes(minutes: number): OffsetTime
+    plusNanos(nanos: number): OffsetTime
+    plusSeconds(seconds: number): OffsetTime
+    query<T>(query: TemporalQuery<T>): T
+    range(field: TemporalField): ValueRange
+    toEpochSecond(date: LocalDate): number
+    toJSON(): string;
+    toLocalTime(): LocalTime
+    toString(): string
+    truncatedTo(unit: TemporalUnit): OffsetTime
+    until(endExclusive: Temporal, unit: TemporalUnit): number
+    with(adjuster: TemporalAdjuster): OffsetTime
+    with(field: TemporalField, newValue: number): OffsetTime
+    withHour(hour: number): OffsetTime
+    withMinute(minute: number): OffsetTime
+    withNano(nanoOfSecond: number): OffsetTime
+    withOffsetSameInstant(offset: ZoneOffset): OffsetTime
+    withOffsetSameLocal(offset: ZoneOffset): OffsetTime
+    withSecond(second: number): OffsetTime
+}
+
+/**
  * A date-time with a time-zone in the ISO-8601 calendar system, such as
  * `2007-12-23T10:15:30+01:00 Europe/Paris`.
  *
@@ -1693,6 +1874,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     toLocalDate(): LocalDate;
     toLocalDateTime(): LocalDateTime;
     toLocalTime(): LocalTime;
+    toOffsetDateTime(): OffsetDateTime;
     toString(): string;
     truncatedTo(unit: TemporalUnit): ZonedDateTime;
     until(endExclusive: Temporal, unit: TemporalUnit): number;

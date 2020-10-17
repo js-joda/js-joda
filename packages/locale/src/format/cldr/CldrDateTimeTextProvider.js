@@ -6,9 +6,9 @@
 import { ChronoField, IsoFields, TextStyle } from '@js-joda/core';
 
 import cldrData from 'cldr-data';
-import Cldr from 'cldrjs';
 
 import {LocaleStore, createEntry} from '../LocaleStore';
+import {getOrCreateCldrInstance, loadCldrData} from './CldrCache';
 
 /**
  * The Service Provider Implementation to obtain date-time text for a field.
@@ -21,7 +21,7 @@ export default class CldrDateTimeTextProvider {
 
     constructor() {
         this._cache = {};
-        Cldr.load(cldrData('supplemental/likelySubtags.json'));
+        loadCldrData('supplemental/likelySubtags.json');
     }
 
     //-----------------------------------------------------------------------
@@ -64,8 +64,8 @@ export default class CldrDateTimeTextProvider {
     }
 
     _createStore(field, locale) {
-        Cldr.load(cldrData(`main/${locale.localeString()}/ca-gregorian.json`));
-        const cldr = new Cldr(locale.localeString());
+        loadCldrData(`main/${locale.localeString()}/ca-gregorian.json`);
+        const cldr = getOrCreateCldrInstance(locale.localeString());
         if (field === ChronoField.MONTH_OF_YEAR) {
             const monthsData = cldr.main('dates/calendars/gregorian/months/format');
             const styleMap = {};

@@ -1,4 +1,4 @@
-//! @version @js-joda/locale - 3.1.1+36.0.0
+//! @version @js-joda/locale - 3.2.1+36.0.0
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -2159,6 +2159,64 @@ var LocaleStore = function () {
 
 /***/ }),
 
+/***/ "./src/format/cldr/CldrCache.js":
+/*!**************************************!*\
+  !*** ./src/format/cldr/CldrCache.js ***!
+  \**************************************/
+/*! exports provided: loadCldrData, getOrCreateCldrInstance, getOrCreateMapZones */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadCldrData", function() { return loadCldrData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getOrCreateCldrInstance", function() { return getOrCreateCldrInstance; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getOrCreateMapZones", function() { return getOrCreateMapZones; });
+/* harmony import */ var cldr_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! cldr-data */ "./utils/load_cldrData.prebuilt.js");
+/* harmony import */ var cldr_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(cldr_data__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var cldrjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! cldrjs */ "./node_modules/cldrjs/dist/node_main.js");
+/* harmony import */ var cldrjs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(cldrjs__WEBPACK_IMPORTED_MODULE_1__);
+/*
+* @copyright (c) 2020, Philipp Thuerwaechter & Pattrick Hueper
+* @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
+*/
+
+
+var cldrDataLoaded = new Set();
+var loadCldrData = function loadCldrData(path) {
+  if (!cldrDataLoaded.has(path)) {
+    cldrjs__WEBPACK_IMPORTED_MODULE_1___default.a.load(cldr_data__WEBPACK_IMPORTED_MODULE_0___default()(path));
+    cldrDataLoaded.add(path);
+  }
+};
+var localeToCldrInstanceCache = {};
+var getOrCreateCldrInstance = function getOrCreateCldrInstance(locale) {
+  if (localeToCldrInstanceCache[locale] == null) {
+    localeToCldrInstanceCache[locale] = new cldrjs__WEBPACK_IMPORTED_MODULE_1___default.a(locale);
+  }
+
+  return localeToCldrInstanceCache[locale];
+};
+var localeToMapZonesCache = {};
+var getOrCreateMapZones = function getOrCreateMapZones(cldr) {
+  if (localeToMapZonesCache[cldr.locale] == null) {
+    var mapZones = {};
+    cldr.get('supplemental/metaZones/metazones').forEach(function (metaZone) {
+      if (metaZone.mapZone) {
+        if (!mapZones[metaZone.mapZone._other]) {
+          mapZones[metaZone.mapZone._other] = {};
+        }
+
+        mapZones[metaZone.mapZone._other][metaZone.mapZone._territory] = metaZone.mapZone._type;
+      }
+    });
+    localeToMapZonesCache[cldr.locale] = mapZones;
+  }
+
+  return localeToMapZonesCache[cldr.locale];
+};
+
+/***/ }),
+
 /***/ "./src/format/cldr/CldrDateTimeFormatterBuilder.js":
 /*!*********************************************************!*\
   !*** ./src/format/cldr/CldrDateTimeFormatterBuilder.js ***!
@@ -2324,9 +2382,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var cldr_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! cldr-data */ "./utils/load_cldrData.prebuilt.js");
 /* harmony import */ var cldr_data__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(cldr_data__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var cldrjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! cldrjs */ "./node_modules/cldrjs/dist/node_main.js");
-/* harmony import */ var cldrjs__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(cldrjs__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _LocaleStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../LocaleStore */ "./src/format/LocaleStore.js");
+/* harmony import */ var _LocaleStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../LocaleStore */ "./src/format/LocaleStore.js");
+/* harmony import */ var _CldrCache__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CldrCache */ "./src/format/cldr/CldrCache.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -2347,7 +2404,7 @@ var CldrDateTimeTextProvider = function () {
     _classCallCheck(this, CldrDateTimeTextProvider);
 
     this._cache = {};
-    cldrjs__WEBPACK_IMPORTED_MODULE_2___default.a.load(cldr_data__WEBPACK_IMPORTED_MODULE_1___default()('supplemental/likelySubtags.json'));
+    Object(_CldrCache__WEBPACK_IMPORTED_MODULE_3__["loadCldrData"])('supplemental/likelySubtags.json');
   }
 
   _createClass(CldrDateTimeTextProvider, [{
@@ -2364,7 +2421,7 @@ var CldrDateTimeTextProvider = function () {
     value: function getText(field, value, style, locale) {
       var store = this._findStore(field, locale);
 
-      if (store instanceof _LocaleStore__WEBPACK_IMPORTED_MODULE_3__["LocaleStore"]) {
+      if (store instanceof _LocaleStore__WEBPACK_IMPORTED_MODULE_2__["LocaleStore"]) {
         return store.getText(value, style);
       }
 
@@ -2375,7 +2432,7 @@ var CldrDateTimeTextProvider = function () {
     value: function getTextIterator(field, style, locale) {
       var store = this._findStore(field, locale);
 
-      if (store instanceof _LocaleStore__WEBPACK_IMPORTED_MODULE_3__["LocaleStore"]) {
+      if (store instanceof _LocaleStore__WEBPACK_IMPORTED_MODULE_2__["LocaleStore"]) {
         return store.getTextIterator(style);
       }
 
@@ -2384,7 +2441,7 @@ var CldrDateTimeTextProvider = function () {
   }, {
     key: "_findStore",
     value: function _findStore(field, locale) {
-      var key = Object(_LocaleStore__WEBPACK_IMPORTED_MODULE_3__["createEntry"])(field, locale);
+      var key = Object(_LocaleStore__WEBPACK_IMPORTED_MODULE_2__["createEntry"])(field, locale);
       var store = this._cache[key];
 
       if (store === undefined) {
@@ -2397,8 +2454,8 @@ var CldrDateTimeTextProvider = function () {
   }, {
     key: "_createStore",
     value: function _createStore(field, locale) {
-      cldrjs__WEBPACK_IMPORTED_MODULE_2___default.a.load(cldr_data__WEBPACK_IMPORTED_MODULE_1___default()("main/".concat(locale.localeString(), "/ca-gregorian.json")));
-      var cldr = new cldrjs__WEBPACK_IMPORTED_MODULE_2___default.a(locale.localeString());
+      Object(_CldrCache__WEBPACK_IMPORTED_MODULE_3__["loadCldrData"])("main/".concat(locale.localeString(), "/ca-gregorian.json"));
+      var cldr = Object(_CldrCache__WEBPACK_IMPORTED_MODULE_3__["getOrCreateCldrInstance"])(locale.localeString());
 
       if (field === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].MONTH_OF_YEAR) {
         var monthsData = cldr.main('dates/calendars/gregorian/months/format');
@@ -2553,7 +2610,7 @@ var CldrDateTimeTextProvider = function () {
         valueTextMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW_STANDALONE] = valueTextMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW];
       }
 
-      return new _LocaleStore__WEBPACK_IMPORTED_MODULE_3__["LocaleStore"](valueTextMap);
+      return new _LocaleStore__WEBPACK_IMPORTED_MODULE_2__["LocaleStore"](valueTextMap);
     }
   }]);
 
@@ -2574,12 +2631,9 @@ var CldrDateTimeTextProvider = function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CldrZoneTextPrinterParser; });
-/* harmony import */ var cldr_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! cldr-data */ "./utils/load_cldrData.prebuilt.js");
-/* harmony import */ var cldr_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(cldr_data__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var cldrjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! cldrjs */ "./node_modules/cldrjs/dist/node_main.js");
-/* harmony import */ var cldrjs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(cldrjs__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @js-joda/core */ "@js-joda/core");
-/* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_js_joda_core__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @js-joda/core */ "@js-joda/core");
+/* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _CldrCache__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CldrCache */ "./src/format/cldr/CldrCache.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -2592,8 +2646,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
  */
 
 
-
-var _jodaInternal$assert = _js_joda_core__WEBPACK_IMPORTED_MODULE_2__["_"].assert,
+var _jodaInternal$assert = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["_"].assert,
     requireNonNull = _jodaInternal$assert.requireNonNull,
     requireInstance = _jodaInternal$assert.requireInstance;
 
@@ -2607,20 +2660,49 @@ var LENGTH_COMPARATOR = function LENGTH_COMPARATOR(str1, str2) {
   return cmp;
 };
 
+var resolveZoneIdTextCache = {};
+
 var CldrZoneTextPrinterParser = function () {
   function CldrZoneTextPrinterParser(textStyle) {
     _classCallCheck(this, CldrZoneTextPrinterParser);
 
     requireNonNull(textStyle, 'textStyle');
-    requireInstance(textStyle, _js_joda_core__WEBPACK_IMPORTED_MODULE_2__["TextStyle"], 'textStyle');
+    requireInstance(textStyle, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"], 'textStyle');
     this._textStyle = textStyle;
-    cldrjs__WEBPACK_IMPORTED_MODULE_1___default.a.load(cldr_data__WEBPACK_IMPORTED_MODULE_0___default()('supplemental/likelySubtags.json'));
-    cldrjs__WEBPACK_IMPORTED_MODULE_1___default.a.load(cldr_data__WEBPACK_IMPORTED_MODULE_0___default()('supplemental/metaZones.json'));
+    Object(_CldrCache__WEBPACK_IMPORTED_MODULE_1__["loadCldrData"])('supplemental/likelySubtags.json');
+    Object(_CldrCache__WEBPACK_IMPORTED_MODULE_1__["loadCldrData"])('supplemental/metaZones.json');
   }
 
   _createClass(CldrZoneTextPrinterParser, [{
+    key: "_cachedResolveZoneIdText",
+    value: function _cachedResolveZoneIdText(cldr, zoneId, style, type) {
+      if (resolveZoneIdTextCache[cldr.locale] == null) {
+        resolveZoneIdTextCache[cldr.locale] = {};
+      }
+
+      var zoneIdToStyle = resolveZoneIdTextCache[cldr.locale];
+
+      if (zoneIdToStyle[zoneId] == null) {
+        zoneIdToStyle[zoneId] = {};
+      }
+
+      var styleToType = zoneIdToStyle[zoneId];
+
+      if (styleToType[style] == null) {
+        styleToType[style] = {};
+      }
+
+      var typeToResolvedZoneIdText = styleToType[style];
+
+      if (typeToResolvedZoneIdText[type] == null) {
+        typeToResolvedZoneIdText[type] = this._resolveZoneIdText(cldr, zoneId, style, type);
+      }
+
+      return typeToResolvedZoneIdText[type];
+    }
+  }, {
     key: "_resolveZoneIdText",
-    value: function _resolveZoneIdText(cldr, zoneId, style, type, mapZones) {
+    value: function _resolveZoneIdText(cldr, zoneId, style, type) {
       var zoneData = cldr.main("dates/timeZoneNames/zone/".concat(zoneId, "/").concat(style, "/").concat(type));
 
       if (zoneData) {
@@ -2644,17 +2726,18 @@ var CldrZoneTextPrinterParser = function () {
             if (metaZoneData) {
               return metaZoneData;
             } else {
+              var mapZones = Object(_CldrCache__WEBPACK_IMPORTED_MODULE_1__["getOrCreateMapZones"])(cldr);
               var preferredZone = mapZones[metazone][cldr.attributes.territory];
 
               if (preferredZone) {
                 if (preferredZone !== zoneId) {
-                  return this._resolveZoneIdText(cldr, preferredZone, style, type, mapZones);
+                  return this._cachedResolveZoneIdText(cldr, preferredZone, style, type);
                 }
               } else {
                 var goldenZone = mapZones[metazone]['001'];
 
                 if (goldenZone !== zoneId) {
-                  return this._resolveZoneIdText(cldr, goldenZone, style, type, mapZones);
+                  return this._cachedResolveZoneIdText(cldr, goldenZone, style, type);
                 }
               }
             }
@@ -2665,13 +2748,13 @@ var CldrZoneTextPrinterParser = function () {
   }, {
     key: "print",
     value: function print(context, buf) {
-      var zone = context.getValueQuery(_js_joda_core__WEBPACK_IMPORTED_MODULE_2__["TemporalQueries"].zoneId());
+      var zone = context.getValueQuery(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TemporalQueries"].zoneId());
 
       if (zone == null) {
         return false;
       }
 
-      if (zone.normalized() instanceof _js_joda_core__WEBPACK_IMPORTED_MODULE_2__["ZoneOffset"]) {
+      if (zone.normalized() instanceof _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneOffset"]) {
         buf.append(zone.id());
         return true;
       }
@@ -2679,21 +2762,11 @@ var CldrZoneTextPrinterParser = function () {
       var daylight = false;
       var hasDaylightSupport = false;
       var tzType = hasDaylightSupport ? daylight ? 'daylight' : 'standard' : 'generic';
-      var tzstyle = this._textStyle.asNormal() === _js_joda_core__WEBPACK_IMPORTED_MODULE_2__["TextStyle"].FULL ? 'long' : 'short';
-      cldrjs__WEBPACK_IMPORTED_MODULE_1___default.a.load(cldr_data__WEBPACK_IMPORTED_MODULE_0___default()("main/".concat(context.locale().localeString(), "/timeZoneNames.json")));
-      var cldr = new cldrjs__WEBPACK_IMPORTED_MODULE_1___default.a(context.locale().localeString());
-      var mapZones = {};
-      cldr.get('supplemental/metaZones/metazones').forEach(function (metaZone) {
-        if (metaZone.mapZone) {
-          if (!mapZones[metaZone.mapZone._other]) {
-            mapZones[metaZone.mapZone._other] = {};
-          }
+      var tzstyle = this._textStyle.asNormal() === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL ? 'long' : 'short';
+      Object(_CldrCache__WEBPACK_IMPORTED_MODULE_1__["loadCldrData"])("main/".concat(context.locale().localeString(), "/timeZoneNames.json"));
+      var cldr = Object(_CldrCache__WEBPACK_IMPORTED_MODULE_1__["getOrCreateCldrInstance"])(context.locale().localeString());
 
-          mapZones[metaZone.mapZone._other][metaZone.mapZone._territory] = metaZone.mapZone._type;
-        }
-      });
-
-      var text = this._resolveZoneIdText(cldr, zone.id(), tzstyle, tzType, mapZones);
+      var text = this._cachedResolveZoneIdText(cldr, zone.id(), tzstyle, tzType);
 
       if (text) {
         buf.append(text);
@@ -2707,41 +2780,31 @@ var CldrZoneTextPrinterParser = function () {
     key: "parse",
     value: function parse(context, text, position) {
       var ids = {};
-      cldrjs__WEBPACK_IMPORTED_MODULE_1___default.a.load(cldr_data__WEBPACK_IMPORTED_MODULE_0___default()("main/".concat(context.locale().localeString(), "/timeZoneNames.json")));
-      var cldr = new cldrjs__WEBPACK_IMPORTED_MODULE_1___default.a(context.locale().localeString());
-      var mapZones = {};
-      cldr.get('supplemental/metaZones/metazones').forEach(function (metaZone) {
-        if (metaZone.mapZone) {
-          if (!mapZones[metaZone.mapZone._other]) {
-            mapZones[metaZone.mapZone._other] = {};
-          }
-
-          mapZones[metaZone.mapZone._other][metaZone.mapZone._territory] = metaZone.mapZone._type;
-        }
-      });
+      Object(_CldrCache__WEBPACK_IMPORTED_MODULE_1__["loadCldrData"])("main/".concat(context.locale().localeString(), "/timeZoneNames.json"));
+      var cldr = Object(_CldrCache__WEBPACK_IMPORTED_MODULE_1__["getOrCreateCldrInstance"])(context.locale().localeString());
       var _iteratorNormalCompletion = true;
       var _didIteratorError = false;
       var _iteratorError = undefined;
 
       try {
-        for (var _iterator = _js_joda_core__WEBPACK_IMPORTED_MODULE_2__["ZoneRulesProvider"].getAvailableZoneIds()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        for (var _iterator = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneRulesProvider"].getAvailableZoneIds()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
           var id = _step.value;
           ids[id] = id;
-          var tzstyle = this._textStyle.asNormal() === _js_joda_core__WEBPACK_IMPORTED_MODULE_2__["TextStyle"].FULL ? 'long' : 'short';
+          var tzstyle = this._textStyle.asNormal() === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL ? 'long' : 'short';
 
-          var genericText = this._resolveZoneIdText(cldr, id, tzstyle, 'generic', mapZones);
+          var genericText = this._cachedResolveZoneIdText(cldr, id, tzstyle, 'generic');
 
           if (genericText) {
             ids[genericText] = id;
           }
 
-          var standardText = this._resolveZoneIdText(cldr, id, tzstyle, 'standard', mapZones);
+          var standardText = this._cachedResolveZoneIdText(cldr, id, tzstyle, 'standard');
 
           if (standardText) {
             ids[standardText] = id;
           }
 
-          var daylightText = this._resolveZoneIdText(cldr, id, tzstyle, 'daylight', mapZones);
+          var daylightText = this._cachedResolveZoneIdText(cldr, id, tzstyle, 'daylight');
 
           if (daylightText) {
             ids[daylightText] = id;
@@ -2772,7 +2835,7 @@ var CldrZoneTextPrinterParser = function () {
           var name = _step2.value;
 
           if (context.subSequenceEquals(text, position, name, 0, name.length)) {
-            context.setParsedZone(_js_joda_core__WEBPACK_IMPORTED_MODULE_2__["ZoneId"].of(ids[name]));
+            context.setParsedZone(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneId"].of(ids[name]));
             return position + name.length;
           }
         }
@@ -3858,8 +3921,8 @@ var ComputedDayOfField = function () {
       return _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ValueRange"].of(1, weekIndexOfFirstWeekNextYear - 1);
     }
   }, {
-    key: "getDisplayName",
-    value: function getDisplayName(locale) {
+    key: "displayName",
+    value: function displayName(locale) {
       requireNonNull(locale, 'locale');
 
       if (this._rangeUnit === _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoUnit"].YEARS) {
