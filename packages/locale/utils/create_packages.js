@@ -32,6 +32,9 @@ const yargs = yargsPkg
             description: 'output debug infos'
         },
     })
+    .parserConfiguration({
+        'camel-case-expansion': false
+    })
     .wrap(Math.min(120, yargsPkg.terminalWidth()))
     .help();
 
@@ -76,7 +79,8 @@ const packageTemplate = {
     devDependencies: {}
 };
 
-const readmeTemplate = fs.readFileSync(path.resolve(__dirname, 'README_package.template.md'), 'utf8');
+const readmeTemplate = fs.readFileSync(path.resolve(__dirname, 'README_package.template.md'),
+    'utf8');
 const readmeLocaleRegex = /{{locale}}/g;
 
 // TODO: build minified (DIST_MIN=1) package?? in dist/index.min.js?
