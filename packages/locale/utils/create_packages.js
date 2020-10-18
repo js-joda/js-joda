@@ -92,7 +92,7 @@ Object.keys(argv.packages).forEach((packageName) => {
     if (!fs.existsSync(packageDir)) {
         fs.mkdirSync(packageDir);
     }
-    const distDir = path.resolve(argv.packagesDir, packageName, 'dist')
+    const distDir = path.resolve(argv.packagesDir, packageName, 'dist');
     if (!fs.existsSync(distDir)) {
         fs.mkdirSync(distDir);
     }
@@ -105,7 +105,7 @@ Object.keys(argv.packages).forEach((packageName) => {
     fs.writeFileSync(path.resolve(packageDir, 'README.md'),
         readmeTemplate.replace(readmeLocaleRegex, argv.packages[packageName].join(',')));
     fs.copyFileSync(path.resolve(__dirname, '..', 'dist', 'js-joda-locale.d.ts'),
-        path.resolve(packageDir, 'dist', 'js-joda-locale.d.ts'))
+        path.resolve(packageDir, 'dist', 'js-joda-locale.d.ts'));
     const nodeArgs = [
         './utils/build_package.js',
         '-o', `${path.resolve(packageDir, 'dist')}`,
