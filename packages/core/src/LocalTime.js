@@ -12,6 +12,7 @@ import {DateTimeException, UnsupportedTemporalTypeException, IllegalArgumentExce
 import {Clock} from './Clock';
 import {LocalDateTime} from './LocalDateTime';
 import {ZoneId} from './ZoneId';
+import {OffsetTime} from './OffsetTime';
 
 import {DateTimeFormatter} from './format/DateTimeFormatter';
 
@@ -1148,11 +1149,9 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @param {OffsetTime} offset - the offset to combine with, not null
      * @return {OffsetTime} the offset time formed from this time and the specified offset, not null
      */
-    /*
     atOffset(offset) {
         return OffsetTime.of(this, offset);
     }
-*/
 
     //-----------------------------------------------------------------------
     /**

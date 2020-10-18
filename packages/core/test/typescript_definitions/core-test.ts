@@ -450,6 +450,9 @@ it('LocalTime', () => {
 
     expectType<LocalTime | null>(t1.query(LocalTime.FROM));
     expectType<LocalDate | null>(t1.query(TemporalQueries.localDate()));
+
+    expectType<OffsetTime>(t.atOffset(ZoneOffset.MIN));
+    expectType<LocalDateTime>(t.atDate(LocalDate.now()));
 });
 
 it('LocalDateTime', () => {

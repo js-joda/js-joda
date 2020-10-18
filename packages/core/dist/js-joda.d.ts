@@ -1353,6 +1353,7 @@ export class LocalTime extends Temporal implements TemporalAdjuster {
 
     adjustInto(temporal: Temporal): Temporal;
     atDate(date: LocalDate): LocalDateTime;
+    atOffset(offset: ZoneOffset): OffsetTime;
     compareTo(other: LocalTime): number;
     equals(other: any): boolean;
     format(formatter: DateTimeFormatter): string;
