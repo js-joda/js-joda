@@ -266,15 +266,7 @@ export abstract class TemporalAccessor {
  * discussion of the issues.
  */
 export abstract class Temporal extends TemporalAccessor {
-    abstract isSupported(field: TemporalField): boolean;
-    /**
-     * Checks if the specified unit is supported.
-     *
-     * This checks if the date-time can be queried for the specified unit. If false, then calling
-     * the plus and minus methods will throw an exception.
-     */
-    abstract isSupported(unit: TemporalUnit): boolean;
-    abstract minus(amountToSubtract: number, unit: TemporalUnit): Temporal;
+    minus(amountToSubtract: number, unit: TemporalUnit): Temporal;
     /**
      * Returns an object of the same type as this object with an amount subtracted.
      *
@@ -291,8 +283,8 @@ export abstract class Temporal extends TemporalAccessor {
      *
      * Note that calling plus followed by minus is not guaranteed to return the same date-time.
      */
-    abstract minus(amount: TemporalAmount): Temporal;
-    abstract plus(amountToAdd: number, unit: TemporalUnit): Temporal;
+    minus(amount: TemporalAmount): Temporal;
+    plus(amountToAdd: number, unit: TemporalUnit): Temporal;
     /**
      * Returns an object of the same type as this object with an amount added.
      *
@@ -309,7 +301,49 @@ export abstract class Temporal extends TemporalAccessor {
      *
      * Note that calling plus followed by minus is not guaranteed to return the same date-time.
      */
-    abstract plus(amount: TemporalAmount): Temporal;
+    plus(amount: TemporalAmount): Temporal;
+    /**
+     * Returns an adjusted object of the same type as this object with the adjustment made.
+     *
+     * This adjusts this date-time according to the rules of the specified adjuster. A simple
+     * adjuster might simply set the one of the fields, such as the year field. A more complex
+     * adjuster might set the date to the last day of the month. A selection of common adjustments
+     * is provided in `TemporalAdjusters`. These include finding the "last day of the month" and
+     * "next Wednesday". The adjuster is responsible for handling special cases, such as the
+     * varying lengths of month and leap years.
+     *
+     * Some example code indicating how and why this method is used:
+     * ```
+     * date = date.with(Month.JULY);        // most key classes implement TemporalAdjuster
+     * date = date.with(lastDayOfMonth());  // static import from TemporalAdjusters
+     * date = date.with(next(WEDNESDAY));   // static import from TemporalAdjusters and DayOfWeek
+     * ```
+     */
+    with(adjuster: TemporalAdjuster): Temporal;
+    /**
+     * Returns an object of the same type as this object with the specified field altered.
+     *
+     * This returns a new object based on this one with the value for the specified field changed.
+     * For example, on a `LocalDate`, this could be used to set the year, month or day-of-month.
+     * The returned object will have the same observable type as this object.
+     *
+     * In some cases, changing a field is not fully defined. For example, if the target object is
+     * a date representing the 31st January, then changing the month to February would be unclear.
+     * In cases like this, the field is responsible for resolving the result. Typically it will
+     * choose the previous valid date, which would be the last valid day of February in this
+     * example.
+     */
+    with(field: TemporalField, newValue: number): Temporal;
+
+    abstract isSupported(field: TemporalField): boolean;
+    /**
+     * Checks if the specified unit is supported.
+     *
+     * This checks if the date-time can be queried for the specified unit. If false, then calling
+     * the plus and minus methods will throw an exception.
+     */
+    abstract isSupported(unit: TemporalUnit): boolean;
+
     /**
      * Calculates the period between this temporal and another temporal in terms of the
      * specified unit.
@@ -341,38 +375,13 @@ export abstract class Temporal extends TemporalAccessor {
      * ```
      */
     abstract until(endTemporal: Temporal, unit: TemporalUnit): number;
-    /**
-     * Returns an adjusted object of the same type as this object with the adjustment made.
-     *
-     * This adjusts this date-time according to the rules of the specified adjuster. A simple
-     * adjuster might simply set the one of the fields, such as the year field. A more complex
-     * adjuster might set the date to the last day of the month. A selection of common adjustments
-     * is provided in `TemporalAdjusters`. These include finding the "last day of the month" and
-     * "next Wednesday". The adjuster is responsible for handling special cases, such as the
-     * varying lengths of month and leap years.
-     *
-     * Some example code indicating how and why this method is used:
-     * ```
-     * date = date.with(Month.JULY);        // most key classes implement TemporalAdjuster
-     * date = date.with(lastDayOfMonth());  // static import from TemporalAdjusters
-     * date = date.with(next(WEDNESDAY));   // static import from TemporalAdjusters and DayOfWeek
-     * ```
-     */
-    abstract with(adjuster: TemporalAdjuster): Temporal;
-    /**
-     * Returns an object of the same type as this object with the specified field altered.
-     *
-     * This returns a new object based on this one with the value for the specified field changed.
-     * For example, on a `LocalDate`, this could be used to set the year, month or day-of-month.
-     * The returned object will have the same observable type as this object.
-     *
-     * In some cases, changing a field is not fully defined. For example, if the target object is
-     * a date representing the 31st January, then changing the month to February would be unclear.
-     * In cases like this, the field is responsible for resolving the result. Typically it will
-     * choose the previous valid date, which would be the last valid day of February in this
-     * example.
-     */
-    abstract with(field: TemporalField, newValue: number): Temporal;
+
+    protected abstract _minusUnit(amountToSubtract: number, unit: TemporalUnit): Temporal;
+    protected abstract _minusAmount(amount: TemporalAmount): Temporal;
+    protected abstract _plusUnit(amountToAdd: number, unit: TemporalUnit): Temporal;
+    protected abstract _plusAmount(amount: TemporalAmount): Temporal;
+    protected abstract _withAdjuster(adjuster: TemporalAdjuster): Temporal;
+    protected abstract _withField(field: TemporalField, newValue: number): Temporal;
 }
 
 /**
@@ -1177,6 +1186,13 @@ export class Instant extends Temporal implements TemporalAdjuster {
     until(endExclusive: Temporal, unit: TemporalUnit): number;
     with(adjuster: TemporalAdjuster): Instant;
     with(field: TemporalField, newValue: number): Instant;
+
+    protected _minusUnit(amountToSubtract: number, unit: TemporalUnit): Instant;
+    protected _minusAmount(amount: TemporalAmount): Instant;
+    protected _plusUnit(amountToAdd: number, unit: TemporalUnit): Instant;
+    protected _plusAmount(amount: TemporalAmount): Instant;
+    protected _withAdjuster(adjuster: TemporalAdjuster): Instant;
+    protected _withField(field: TemporalField, newValue: number): Instant;
 }
 
 export class LocalDate extends ChronoLocalDate implements TemporalAdjuster {
@@ -1244,6 +1260,13 @@ export class LocalDate extends ChronoLocalDate implements TemporalAdjuster {
     withMonth(month: Month | number): LocalDate;
     withYear(year: number): LocalDate;
     year(): number;
+
+    protected _minusUnit(amountToSubtract: number, unit: TemporalUnit): LocalDate;
+    protected _minusAmount(amount: TemporalAmount): LocalDate;
+    protected _plusUnit(amountToAdd: number, unit: TemporalUnit): LocalDate;
+    protected _plusAmount(amount: TemporalAmount): LocalDate;
+    protected _withAdjuster(adjuster: TemporalAdjuster): LocalDate;
+    protected _withField(field: TemporalField, newValue: number): LocalDate;
 }
 
 export class LocalDateTime extends ChronoLocalDateTime implements TemporalAdjuster {
@@ -1320,6 +1343,13 @@ export class LocalDateTime extends ChronoLocalDateTime implements TemporalAdjust
     withSecond(second: number): LocalDateTime;
     withYear(year: number): LocalDateTime;
     year(): number;
+
+    protected _minusUnit(amountToSubtract: number, unit: TemporalUnit): LocalDateTime;
+    protected _minusAmount(amount: TemporalAmount): LocalDateTime;
+    protected _plusUnit(amountToAdd: number, unit: TemporalUnit): LocalDateTime;
+    protected _plusAmount(amount: TemporalAmount): LocalDateTime;
+    protected _withAdjuster(adjuster: TemporalAdjuster): LocalDateTime;
+    protected _withField(field: TemporalField, newValue: number): LocalDateTime;
 }
 
 export class LocalTime extends Temporal implements TemporalAdjuster {
@@ -1392,6 +1422,13 @@ export class LocalTime extends Temporal implements TemporalAdjuster {
     withMinute(minute: number): LocalTime;
     withNano(nanoOfSecond: number): LocalTime;
     withSecond(second: number): LocalTime;
+
+    protected _minusUnit(amountToSubtract: number, unit: TemporalUnit): LocalTime;
+    protected _minusAmount(amount: TemporalAmount): LocalTime;
+    protected _plusUnit(amountToAdd: number, unit: TemporalUnit): LocalTime;
+    protected _plusAmount(amount: TemporalAmount): LocalTime;
+    protected _withAdjuster(adjuster: TemporalAdjuster): LocalTime;
+    protected _withField(field: TemporalField, newValue: number): LocalTime;
 }
 
 export class MonthDay extends TemporalAccessor implements TemporalAdjuster {
@@ -1508,6 +1545,13 @@ export class Year extends Temporal implements TemporalAdjuster {
     value(): number;
     with(adjuster: TemporalAdjuster): Year;
     with(field: TemporalField, newValue: number): Year;
+
+    protected _minusUnit(amountToSubtract: number, unit: TemporalUnit): Year;
+    protected _minusAmount(amount: TemporalAmount): Year;
+    protected _plusUnit(amountToAdd: number, unit: TemporalUnit): Year;
+    protected _plusAmount(amount: TemporalAmount): Year;
+    protected _withAdjuster(adjuster: TemporalAdjuster): Year;
+    protected _withField(field: TemporalField, newValue: number): Year;
 }
 
 export class YearMonth extends Temporal implements TemporalAdjuster {
@@ -1551,6 +1595,13 @@ export class YearMonth extends Temporal implements TemporalAdjuster {
     withMonth(month: number): YearMonth;
     withYear(year: number): YearMonth;
     year(): number;
+
+    protected _minusUnit(amountToSubtract: number, unit: TemporalUnit): YearMonth;
+    protected _minusAmount(amount: TemporalAmount): YearMonth;
+    protected _plusUnit(amountToAdd: number, unit: TemporalUnit): YearMonth;
+    protected _plusAmount(amount: TemporalAmount): YearMonth;
+    protected _withAdjuster(adjuster: TemporalAdjuster): YearMonth;
+    protected _withField(field: TemporalField, newValue: number): YearMonth;
 }
 
 /**
@@ -1655,6 +1706,13 @@ export class OffsetDateTime extends Temporal implements TemporalAdjuster {
     withSecond(second: number): OffsetDateTime;
     withYear(year: number): OffsetDateTime;
     year(): number;
+
+    protected _minusUnit(amountToSubtract: number, unit: TemporalUnit): OffsetDateTime;
+    protected _minusAmount(amount: TemporalAmount): OffsetDateTime;
+    protected _plusUnit(amountToAdd: number, unit: TemporalUnit): OffsetDateTime;
+    protected _plusAmount(amount: TemporalAmount): OffsetDateTime;
+    protected _withAdjuster(adjuster: TemporalAdjuster): OffsetDateTime;
+    protected _withField(field: TemporalField, newValue: number): OffsetDateTime;
 }
 
 /**
@@ -1725,6 +1783,13 @@ export class OffsetTime extends Temporal implements TemporalAdjuster {
     withOffsetSameInstant(offset: ZoneOffset): OffsetTime;
     withOffsetSameLocal(offset: ZoneOffset): OffsetTime;
     withSecond(second: number): OffsetTime;
+
+    protected _minusUnit(amountToSubtract: number, unit: TemporalUnit): OffsetTime;
+    protected _minusAmount(amount: TemporalAmount): OffsetTime;
+    protected _plusUnit(amountToAdd: number, unit: TemporalUnit): OffsetTime;
+    protected _plusAmount(amount: TemporalAmount): OffsetTime;
+    protected _withAdjuster(adjuster: TemporalAdjuster): OffsetTime;
+    protected _withField(field: TemporalField, newValue: number): OffsetTime;
 }
 
 /**
@@ -1945,6 +2010,13 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     withZoneSameLocal(zone: ZoneId): ZonedDateTime;
     year(): number;
     zone(): ZoneId;
+
+    protected _minusUnit(amountToSubtract: number, unit: TemporalUnit): ZonedDateTime;
+    protected _minusAmount(amount: TemporalAmount): ZonedDateTime;
+    protected _plusUnit(amountToAdd: number, unit: TemporalUnit): ZonedDateTime;
+    protected _plusAmount(amount: TemporalAmount): ZonedDateTime;
+    protected _withAdjuster(adjuster: TemporalAdjuster): ZonedDateTime;
+    protected _withField(field: TemporalField, newValue: number): ZonedDateTime;
 }
 
 export abstract class ZoneId {

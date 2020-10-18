@@ -782,7 +782,7 @@ describe('org.threeten.bp.TestDuration', () => {
             });
         });
 
-        describe('plusAmountUnit()', () => {
+        describe('plus(amount, unit)', () => {
             it('plus_longTemporalUnit_seconds', () => {
                 let t = Duration.ofSeconds(1);
                 t = t.plus(1, ChronoUnit.SECONDS);

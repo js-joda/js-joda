@@ -522,7 +522,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @throws {DateTimeException} if the adjustment cannot be made
      * @throws {ArithmeticException} if numeric overflow occurs
      */
-    withAdjuster(adjuster) {
+    _withAdjuster(adjuster) {
         requireNonNull(adjuster, 'adjuster');
         // optimizations
         if (adjuster instanceof LocalTime) {
@@ -612,7 +612,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @throws {DateTimeException} if the field cannot be set
      * @throws {ArithmeticException} if numeric overflow occurs
      */
-    withFieldValue(field, newValue) {
+    _withField(field, newValue) {
         requireNonNull(field, 'field');
         requireInstance(field, TemporalField, 'field');
         if (field instanceof ChronoField) {
@@ -759,7 +759,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @throws {DateTimeException} if the addition cannot be made
      * @throws {ArithmeticException} if numeric overflow occurs
      */
-    plusAmount(amount) {
+    _plusAmount(amount) {
         requireNonNull(amount, 'amount');
         return amount.addTo(this);
     }
@@ -779,7 +779,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @return {LocalTime} a {@link LocalTime} based on this time with the specified period added, not null
      * @throws {DateTimeException} if the unit cannot be added to this type
      */
-    plusAmountUnit(amountToAdd, unit) {
+    _plusUnit(amountToAdd, unit) {
         requireNonNull(unit, 'unit');
         if (unit instanceof ChronoUnit) {
             switch (unit) {
@@ -915,7 +915,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @throws {ArithmeticException} if numeric overflow occurs
      */
 
-    minusAmount(amount) {
+    _minusAmount(amount) {
         requireNonNull(amount, 'amount');
         return amount.subtractFrom(this);
     }
@@ -935,9 +935,9 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @return {LocalTime} a {@link LocalTime} based on this time with the specified period subtracted, not null
      * @throws {DateTimeException} if the unit cannot be added to this type
      */
-    minusAmountUnit(amountToSubtract, unit) {
+    _minusUnit(amountToSubtract, unit) {
         requireNonNull(unit, 'unit');
-        return this.plusAmountUnit(-1 * amountToSubtract, unit);
+        return this._plusUnit(-1 * amountToSubtract, unit);
     }
 
     //-----------------------------------------------------------------------

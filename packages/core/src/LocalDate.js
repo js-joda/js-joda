@@ -651,7 +651,7 @@ export class LocalDate extends ChronoLocalDate{
      * @throws {DateTimeException} if the adjustment cannot be made
      * @throws {ArithmeticException} if numeric overflow occurs
      */
-    withAdjuster(adjuster) {
+    _withAdjuster(adjuster) {
         requireNonNull(adjuster, 'adjuster');
         // optimizations
         if (adjuster instanceof LocalDate) {
@@ -761,7 +761,7 @@ export class LocalDate extends ChronoLocalDate{
      * @throws {DateTimeException} if the field cannot be set
      * @throws {ArithmeticException} if numeric overflow occurs
      */
-    withFieldValue(field, newValue) {
+    _withField(field, newValue) {
         assert(field != null, 'field', NullPointerException);
         if (field instanceof ChronoField) {
             const f = field;
@@ -866,7 +866,7 @@ export class LocalDate extends ChronoLocalDate{
      * @throws {DateTimeException} if the addition cannot be made
      * @throws {ArithmeticException} if numeric overflow occurs
      */
-    plusAmount(amount) {
+    _plusAmount(amount) {
         requireNonNull(amount, 'amount');
         return amount.addTo(this);
     }
@@ -884,7 +884,7 @@ export class LocalDate extends ChronoLocalDate{
      * @return {LocalDate} a {@link LocalDate} based on this date with the specified period added, not null
      * @throws {DateTimeException} if the unit cannot be added to this type
      */
-    plusAmountUnit(amountToAdd, unit) {
+    _plusUnit(amountToAdd, unit) {
         requireNonNull(amountToAdd, 'amountToAdd');
         requireNonNull(unit, 'unit');
         if (unit instanceof ChronoUnit) {
@@ -1009,7 +1009,7 @@ export class LocalDate extends ChronoLocalDate{
      * @throws {DateTimeException} if the subtraction cannot be made
      * @throws {ArithmeticException} if numeric overflow occurs
      */
-    minusAmount(amount) {
+    _minusAmount(amount) {
         requireNonNull(amount, 'amount');
         return amount.subtractFrom(this);
     }
@@ -1027,10 +1027,10 @@ export class LocalDate extends ChronoLocalDate{
      * @return {LocalDate} a {@link LocalDate} based on this date with the specified period subtracted, not null
      * @throws {DateTimeException} if the unit cannot be added to this type
      */
-    minusAmountUnit(amountToSubtract, unit) {
+    _minusUnit(amountToSubtract, unit) {
         requireNonNull(amountToSubtract, 'amountToSubtract');
         requireNonNull(unit, 'unit');
-        return this.plusAmountUnit(-1 * amountToSubtract, unit);
+        return this._plusUnit(-1 * amountToSubtract, unit);
     }
 
     /**

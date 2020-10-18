@@ -72,11 +72,11 @@ export class Temporal extends TemporalAccessor {
 
      * Implementations must not alter this object.
 
-     * @param {TemporalUnit} unit - the unit to check, null returns false
+     * @param {TemporalUnit} fieldOrUnit - the unit to check, null returns false
      * @return {boolean} true if this date-time can be queried for the unit, false if not
      */
     // eslint-disable-next-line no-unused-vars
-    isSupported(unit) {
+    isSupported(fieldOrUnit) {
         abstractMethodFail('isSupported');
     }
 
@@ -87,16 +87,16 @@ export class Temporal extends TemporalAccessor {
      *
      * Otherwise {@link Temporal.minusAmountUnit} is called.
      *
-     * @param {!(TemporalAmount|number)} p1
-     * @param {TemporalUnit} p2
+     * @param {!(TemporalAmount|number)} amount
+     * @param {TemporalUnit} unit
      * @return {Temporal}
      */
     // eslint-disable-next-line no-unused-vars
-    minus(p1, p2) {
+    minus(amount, unit) {
         if (arguments.length < 2) {
-            return this.minusAmount(p1);
+            return this._minusAmount(amount);
         } else {
-            return this.minusAmountUnit(p1, p2);
+            return this._minusUnit(amount, unit);
         }
     }
 
@@ -126,8 +126,8 @@ export class Temporal extends TemporalAccessor {
      * @throws ArithmeticException - if numeric overflow occurs
      */
     // eslint-disable-next-line no-unused-vars
-    minusAmount(amount) {
-        abstractMethodFail('minusAmount');
+    _minusAmount(amount) {
+        abstractMethodFail('_minusAmount');
     }
 
     /**
@@ -149,8 +149,8 @@ export class Temporal extends TemporalAccessor {
      * @throws ArithmeticException - if numeric overflow occurs
      */
     // eslint-disable-next-line no-unused-vars
-    minusAmountUnit(amountToSubtract, unit) {
-        abstractMethodFail('minusAmountUnit');
+    _minusUnit(amountToSubtract, unit) {
+        abstractMethodFail('_minusUnit');
     }
 
     /**
@@ -160,16 +160,16 @@ export class Temporal extends TemporalAccessor {
      *
      * Otherwise {@link Temporal.plusAmountUnit} is called.
      *
-     * @param {!(TemporalAmount|number)} p1
-     * @param {TemporalUnit} p2
+     * @param {!(TemporalAmount|number)} amount
+     * @param {TemporalUnit} unit
      * @return {Temporal}
      */
     // eslint-disable-next-line no-unused-vars
-    plus(p1, p2) {
+    plus(amount, unit) {
         if (arguments.length < 2) {
-            return this.plusAmount(p1);
+            return this._plusAmount(amount);
         } else {
-            return this.plusAmountUnit(p1, p2);
+            return this._plusUnit(amount, unit);
         }
     }
 
@@ -196,8 +196,8 @@ export class Temporal extends TemporalAccessor {
      * @throws ArithmeticException - if numeric overflow occurs
      */
     // eslint-disable-next-line no-unused-vars
-    plusAmount(amount) {
-        abstractMethodFail('plusAmount');
+    _plusAmount(amount) {
+        abstractMethodFail('_plusAmount');
     }
 
     /**
@@ -221,8 +221,8 @@ export class Temporal extends TemporalAccessor {
      * @throws ArithmeticException - if numeric overflow occurs
      */
     // eslint-disable-next-line no-unused-vars
-    plusAmountUnit(amountToAdd, unit) {
-        abstractMethodFail('plusAmountUnit');
+    _plusUnit(amountToAdd, unit) {
+        abstractMethodFail('_plusUnit');
     }
 
     /**
@@ -283,16 +283,16 @@ export class Temporal extends TemporalAccessor {
      *
      * Otherwise {@link Temporal.withFieldValue} is called.
      *
-     * @param {!(TemporalAdjuster|TemporalField)} p1
-     * @param {number} p2
+     * @param {!(TemporalAdjuster|TemporalField)} adjusterOrField
+     * @param {number} newValue
      * @return {Temporal}
      */
     // eslint-disable-next-line no-unused-vars
-    with(p1, p2) {
+    with(adjusterOrField, newValue) {
         if (arguments.length < 2) {
-            return this.withAdjuster(p1);
+            return this._withAdjuster(adjusterOrField);
         } else {
-            return this.withFieldValue(p1, p2);
+            return this._withField(adjusterOrField, newValue);
         }
     }
 
@@ -317,8 +317,8 @@ export class Temporal extends TemporalAccessor {
      * @throws ArithmeticException - if numeric overflow occurs
      */
     // eslint-disable-next-line no-unused-vars
-    withAdjuster(adjuster) {
-        abstractMethodFail('withAdjuster');
+    _withAdjuster(adjuster) {
+        abstractMethodFail('_withAdjuster');
     }
 
     /**
@@ -340,7 +340,7 @@ export class Temporal extends TemporalAccessor {
      * @throws ArithmeticException - if numeric overflow occurs
      */
     // eslint-disable-next-line no-unused-vars
-    withFieldValue(field, newValue) {
-        abstractMethodFail('withFieldValue');
+    _withField(field, newValue) {
+        abstractMethodFail('_withField');
     }
 }

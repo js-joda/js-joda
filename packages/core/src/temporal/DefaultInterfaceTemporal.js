@@ -26,7 +26,7 @@ export class DefaultInterfaceTemporal extends Temporal {
      * @throws DateTimeException - if unable to make the adjustment
      * @throws ArithmeticException - if numeric overflow occurs
      */
-    withAdjuster(adjuster) {
+    _withAdjuster(adjuster) {
         requireNonNull(adjuster, 'adjuster');
         requireInstance(adjuster, TemporalAdjuster, 'adjuster');
         return adjuster.adjustInto(this);
@@ -54,7 +54,7 @@ export class DefaultInterfaceTemporal extends Temporal {
      * @throws DateTimeException - if the addition cannot be made
      * @throws ArithmeticException - if numeric overflow occurs
      */
-    plusAmount(amount) {
+    _plusAmount(amount) {
         requireNonNull(amount, 'amount');
         requireInstance(amount, TemporalAmount, 'amount');
         return amount.addTo(this);
@@ -85,7 +85,7 @@ export class DefaultInterfaceTemporal extends Temporal {
      * @throws DateTimeException - if the subtraction cannot be made
      * @throws ArithmeticException - if numeric overflow occurs
      */
-    minusAmount(amount) {
+    _minusAmount(amount) {
         requireNonNull(amount, 'amount');
         requireInstance(amount, TemporalAmount, 'amount');
         return amount.subtractFrom(this);
@@ -109,10 +109,10 @@ export class DefaultInterfaceTemporal extends Temporal {
      * @throws DateTimeException - if the unit cannot be subtracted
      * @throws ArithmeticException - if numeric overflow occurs
      */
-    minusAmountUnit(amountToSubtract, unit) {
+    _minusUnit(amountToSubtract, unit) {
         requireNonNull(amountToSubtract, 'amountToSubtract');
         requireNonNull(unit, 'unit');
         requireInstance(unit, TemporalUnit, 'unit');
-        return (amountToSubtract === MIN_SAFE_INTEGER ? this.plusAmountUnit(MAX_SAFE_INTEGER, unit).plusAmountUnit(1, unit) : this.plusAmount(-amountToSubtract, unit));
+        return (amountToSubtract === MIN_SAFE_INTEGER ? this._plusUnit(MAX_SAFE_INTEGER, unit)._plusUnit(1, unit) : this._plusAmount(-amountToSubtract, unit));
     }
 }

@@ -482,7 +482,7 @@ export class Year extends Temporal {
      * @throws DateTimeException if the adjustment cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
-    withAdjuster(adjuster) {
+    _withAdjuster(adjuster) {
         requireNonNull(adjuster, 'adjuster');
         return adjuster.adjustInto(this);
     }
@@ -526,7 +526,7 @@ export class Year extends Temporal {
      * @throws DateTimeException if the field cannot be set
      * @throws ArithmeticException if numeric overflow occurs
      */
-    withFieldValue(field, newValue) {
+    _withField(field, newValue) {
         requireNonNull(field, 'field');
         requireInstance(field, TemporalField, 'field');
         if (field instanceof ChronoField) {
@@ -560,7 +560,7 @@ export class Year extends Temporal {
      * @throws DateTimeException if the addition cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
-    plusAmount(amount) {
+    _plusAmount(amount) {
         requireNonNull(amount, 'amount');
         requireInstance(amount, TemporalAmount, 'amount');
         return amount.addTo(this);
@@ -573,7 +573,7 @@ export class Year extends Temporal {
      * @throws DateTimeException if the addition cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
-    plusAmountUnit(amountToAdd, unit) {
+    _plusUnit(amountToAdd, unit) {
         requireNonNull(amountToAdd, 'amountToAdd');
         requireNonNull(unit, 'unit');
         requireInstance(unit, TemporalUnit, 'unit');
@@ -624,7 +624,7 @@ export class Year extends Temporal {
      * @throws DateTimeException if the subtraction cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
-    minusAmount(amount) {
+    _minusAmount(amount) {
         requireNonNull(amount, 'amount');
         requireInstance(amount, TemporalAmount, 'amount');
         return amount.subtractFrom(this);
@@ -637,7 +637,7 @@ export class Year extends Temporal {
      * @throws DateTimeException if the subtraction cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
-    minusAmountUnit(amountToSubtract, unit) {
+    _minusUnit(amountToSubtract, unit) {
         requireNonNull(amountToSubtract, 'amountToSubtract');
         requireNonNull(unit, 'unit');
         requireInstance(unit, TemporalUnit, 'unit');

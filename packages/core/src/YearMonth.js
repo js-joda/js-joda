@@ -540,9 +540,9 @@ export class YearMonth extends Temporal {
      */
     with(adjusterOrField, value) {
         if (arguments.length === 1) {
-            return this.withAdjuster(adjusterOrField);
+            return this._withAdjuster(adjusterOrField);
         } else {
-            return this.withFieldValue(adjusterOrField, value);
+            return this._withField(adjusterOrField, value);
         }
     }
 
@@ -568,7 +568,7 @@ export class YearMonth extends Temporal {
      * @throws DateTimeException if the adjustment cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
-    withAdjuster(adjuster) {
+    _withAdjuster(adjuster) {
         requireNonNull(adjuster, 'adjuster');
         return adjuster.adjustInto(this);
     }
@@ -619,7 +619,7 @@ export class YearMonth extends Temporal {
      * @throws DateTimeException if the field cannot be set
      * @throws ArithmeticException if numeric overflow occurs
      */
-    withFieldValue(field, newValue) {
+    _withField(field, newValue) {
         requireNonNull(field, 'field');
         requireInstance(field, TemporalField, 'field');
         if (field instanceof ChronoField) {
@@ -684,7 +684,7 @@ export class YearMonth extends Temporal {
      * @throws DateTimeException if the addition cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
-    plusAmount(amount) {
+    _plusAmount(amount) {
         requireNonNull(amount, 'amount');
         requireInstance(amount, TemporalAmount, 'amount');
         return amount.addTo(this);
@@ -697,7 +697,7 @@ export class YearMonth extends Temporal {
      * @throws DateTimeException if the addition cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
-    plusAmountUnit(amountToAdd, unit) {
+    _plusUnit(amountToAdd, unit) {
         requireNonNull(unit, 'unit');
         requireInstance(unit, TemporalUnit, 'unit');
         if (unit instanceof ChronoUnit) {
@@ -769,7 +769,7 @@ export class YearMonth extends Temporal {
      * @throws DateTimeException if the subtraction cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
-    minusAmount(amount) {
+    _minusAmount(amount) {
         requireNonNull(amount, 'amount');
         return amount.subtractFrom(this);
     }
@@ -781,8 +781,8 @@ export class YearMonth extends Temporal {
      * @throws DateTimeException if the subtraction cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
-    minusAmountUnit(amountToSubtract, unit) {
-        return (amountToSubtract === MathUtil.MIN_SAFE_INTEGER ? this.plusAmountUnit(MathUtil.MAX_SAFE_INTEGER, unit).plusAmountUnit(1, unit) : this.plusAmountUnit(-amountToSubtract, unit));
+    _minusUnit(amountToSubtract, unit) {
+        return (amountToSubtract === MathUtil.MIN_SAFE_INTEGER ? this._plusUnit(MathUtil.MAX_SAFE_INTEGER, unit)._plusUnit(1, unit) : this._plusUnit(-amountToSubtract, unit));
     }
 
     /**

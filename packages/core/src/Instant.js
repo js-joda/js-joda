@@ -424,7 +424,7 @@ export class Instant extends Temporal {
      * @throws DateTimeException if the adjustment cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
-    withAdjuster(adjuster) {
+    _withAdjuster(adjuster) {
         requireNonNull(adjuster, 'adjuster');
         return adjuster.adjustInto(this);
     }
@@ -472,7 +472,7 @@ export class Instant extends Temporal {
      * @throws DateTimeException if the field cannot be set
      * @throws ArithmeticException if numeric overflow occurs
      */
-    withFieldValue(field, newValue) {
+    _withField(field, newValue) {
         requireNonNull(field, 'field');
         if (field instanceof ChronoField) {
             field.checkValidValue(newValue);
@@ -541,7 +541,7 @@ export class Instant extends Temporal {
      * @throws DateTimeException
      * @throws ArithmeticException
      */
-    plusAmount(amount) {
+    _plusAmount(amount) {
         requireNonNull(amount, 'amount');
         return amount.addTo(this);
     }
@@ -553,7 +553,7 @@ export class Instant extends Temporal {
      * @throws DateTimeException
      * @throws ArithmeticException
      */
-    plusAmountUnit(amountToAdd, unit) {
+    _plusUnit(amountToAdd, unit) {
         requireNonNull(amountToAdd, 'amountToAdd');
         requireNonNull(unit, 'unit');
         requireInstance(unit, TemporalUnit);
@@ -641,7 +641,7 @@ export class Instant extends Temporal {
      * @throws DateTimeException
      * @throws ArithmeticException
      */
-    minusAmount(amount) {
+    _minusAmount(amount) {
         requireNonNull(amount, 'amount');
         return amount.subtractFrom(this);
     }
@@ -653,8 +653,8 @@ export class Instant extends Temporal {
      * @throws DateTimeException
      * @throws ArithmeticException
      */
-    minusAmountUnit(amountToSubtract, unit) {
-        return this.plusAmountUnit(-1 * amountToSubtract, unit);
+    _minusUnit(amountToSubtract, unit) {
+        return this._plusUnit(-1 * amountToSubtract, unit);
     }
 
     /**
