@@ -1158,14 +1158,14 @@ export class Instant extends Temporal implements TemporalAdjuster {
     isAfter(otherInstant: Instant): boolean;
     isBefore(otherInstant: Instant): boolean;
     isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean;
-    minus(amount: TemporalAmount): Instant;
     minus(amountToSubtract: number, unit: TemporalUnit): Instant;
+    minus(amount: TemporalAmount): Instant;
     minusMillis(millisToSubtract: number): Instant;
     minusNanos(nanosToSubtract: number): Instant;
     minusSeconds(secondsToSubtract: number): Instant;
     nano(): number;
-    plus(amount: TemporalAmount): Instant;
     plus(amountToAdd: number, unit: TemporalUnit): Instant;
+    plus(amount: TemporalAmount): Instant;
     plusMillis(millisToAdd: number): Instant;
     plusNanos(nanosToAdd: number): Instant;
     plusSeconds(secondsToAdd: number): Instant;
@@ -1216,16 +1216,16 @@ export class LocalDate extends ChronoLocalDate implements TemporalAdjuster {
     isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean;
     lengthOfMonth(): number;
     lengthOfYear(): number;
-    minus(amount: TemporalAmount): LocalDate;
     minus(amountToSubtract: number, unit: TemporalUnit): LocalDate;
+    minus(amount: TemporalAmount): LocalDate;
     minusDays(daysToSubtract: number): LocalDate;
     minusMonths(monthsToSubtract: number): LocalDate;
     minusWeeks(weeksToSubtract: number): LocalDate;
     minusYears(yearsToSubtract: number): LocalDate;
     month(): Month;
     monthValue(): number;
-    plus(amount: TemporalAmount): LocalDate;
     plus(amountToAdd: number, unit: TemporalUnit): LocalDate;
+    plus(amount: TemporalAmount): LocalDate;
     plusDays(daysToAdd: number): LocalDate;
     plusMonths(monthsToAdd: number): LocalDate;
     plusWeeks(weeksToAdd: number): LocalDate;
@@ -1276,8 +1276,8 @@ export class LocalDateTime extends ChronoLocalDateTime implements TemporalAdjust
     isBefore(other: LocalDateTime): boolean;
     isEqual(other: LocalDateTime): boolean;
     isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean;
-    minus(amount: TemporalAmount): LocalDateTime;
     minus(amountToSubtract: number, unit: TemporalUnit): LocalDateTime;
+    minus(amount: TemporalAmount): LocalDateTime;
     minusDays(days: number): LocalDateTime;
     minusHours(hours: number): LocalDateTime;
     minusMinutes(minutes: number): LocalDateTime;
@@ -1290,8 +1290,8 @@ export class LocalDateTime extends ChronoLocalDateTime implements TemporalAdjust
     month(): Month;
     monthValue(): number;
     nano(): number;
-    plus(amount: TemporalAmount): LocalDateTime;
     plus(amountToAdd: number, unit: TemporalUnit): LocalDateTime;
+    plus(amount: TemporalAmount): LocalDateTime;
     plusDays(days: number): LocalDateTime;
     plusHours(hours: number): LocalDateTime;
     plusMinutes(minutes: number): LocalDateTime;
@@ -1361,16 +1361,16 @@ export class LocalTime extends Temporal implements TemporalAdjuster {
     isAfter(other: LocalTime): boolean;
     isBefore(other: LocalTime): boolean;
     isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean;
-    minus(amount: TemporalAmount): LocalTime;
     minus(amountToSubtract: number, unit: TemporalUnit): LocalTime;
+    minus(amount: TemporalAmount): LocalTime;
     minusHours(hoursToSubtract: number): LocalTime;
     minusMinutes(minutesToSubtract: number): LocalTime;
     minusNanos(nanosToSubtract: number): LocalTime;
     minusSeconds(secondsToSubtract: number): LocalTime;
     minute(): number;
     nano(): number;
-    plus(amount: TemporalAmount): LocalTime;
     plus(amountToAdd: number, unit: TemporalUnit): LocalTime;
+    plus(amount: TemporalAmount): LocalTime;
     plusHours(hoursToAdd: number): LocalTime;
     plusMinutes(minutesToAdd: number): LocalTime;
     plusNanos(nanosToAdd: number): LocalTime;
@@ -1493,11 +1493,11 @@ export class Year extends Temporal implements TemporalAdjuster {
     isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean;
     isValidMonthDay(monthDay: MonthDay): boolean;
     length(): number;
-    minus(amount: TemporalAmount): Year;
     minus(amountToSubtract: number, unit: TemporalUnit): Year;
+    minus(amount: TemporalAmount): Year;
     minusYears(yearsToSubtract: number): Year;
-    plus(amount: TemporalAmount): Year;
     plus(amountToAdd: number, unit: TemporalUnit): Year;
+    plus(amount: TemporalAmount): Year;
     plusYears(yearsToAdd: number): Year;
     toJSON(): string;
     toString(): string;
@@ -1531,14 +1531,14 @@ export class YearMonth extends Temporal implements TemporalAdjuster {
     isValidDay(): boolean;
     lengthOfMonth(): number;
     lengthOfYear(): number;
-    minus(amount: TemporalAmount): YearMonth;
     minus(amountToSubtract: number, unit: TemporalUnit): YearMonth;
+    minus(amount: TemporalAmount): YearMonth;
     minusMonths(monthsToSubtract: number): YearMonth;
     minusYears(yearsToSubtract: number): YearMonth;
     month(): Month;
     monthValue(): number;
-    plus(amount: TemporalAmount): YearMonth;
     plus(amountToAdd: number, unit: TemporalUnit): YearMonth;
+    plus(amount: TemporalAmount): YearMonth;
     plusMonths(monthsToAdd: number): YearMonth;
     plusYears(yearsToAdd: number): YearMonth;
     toJSON(): string;
@@ -1587,74 +1587,71 @@ export class OffsetDateTime extends Temporal implements TemporalAdjuster {
 
     private constructor();
 
-    adjustInto(temporal: Temporal): Temporal
-    atZoneSameInstant(zone: ZoneId): ZonedDateTime
-    atZoneSimilarLocal(zone: ZoneId): ZonedDateTime
-    compareTo(other: OffsetDateTime): number
-    equals(obj: any): boolean
-    format(formatter: DateTimeFormatter): string
-    get(field: TemporalField): number
-    dayOfMonth(): number
-    dayOfWeek(): DayOfWeek
-    dayOfYear(): number
-    hour(): number
-    getLong(field: TemporalField): number
-    minute(): number
-    month(): Month
-    monthValue(): number
-    nano(): number
-    offset(): ZoneOffset
-    second(): number
-    year(): number
-    hashCode(): number
-    isAfter(other: OffsetDateTime): boolean
-    isBefore(other: OffsetDateTime): boolean
-    isEqual(other: OffsetDateTime): boolean
-    isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean
-    minus(amountToSubtract: number, unit: TemporalUnit): OffsetDateTime
-    minus(amountToSubtract: TemporalAmount): OffsetDateTime
-    minusDays(days: number): OffsetDateTime
-    minusHours(hours: number): OffsetDateTime
-    minusMinutes(minutes: number): OffsetDateTime
-    minusMonths(months: number): OffsetDateTime
-    minusNanos(nanos: number): OffsetDateTime
-    minusSeconds(seconds: number): OffsetDateTime
-    minusWeeks(weeks: number): OffsetDateTime
-    minusYears(years: number): OffsetDateTime
-    plus(amountToAdd: number, unit: TemporalUnit): OffsetDateTime
-    plus(amountToAdd: TemporalAmount): OffsetDateTime
-    plusDays(days: number): OffsetDateTime
-    plusHours(hours: number): OffsetDateTime
-    plusMinutes(minutes: number): OffsetDateTime
-    plusMonths(months: number): OffsetDateTime
-    plusNanos(nanos: number): OffsetDateTime
-    plusSeconds(seconds: number): OffsetDateTime
-    plusWeeks(weeks: number): OffsetDateTime
-    plusYears(years: number): OffsetDateTime
-    query<T>(query: TemporalQuery<T>): T
-    range(field: TemporalField): ValueRange
-    toEpochSecond(): number
+    adjustInto(temporal: Temporal): Temporal;
+    atZoneSameInstant(zone: ZoneId): ZonedDateTime;
+    atZoneSimilarLocal(zone: ZoneId): ZonedDateTime;
+    compareTo(other: OffsetDateTime): number;
+    dayOfMonth(): number;
+    dayOfWeek(): DayOfWeek;
+    dayOfYear(): number;
+    equals(obj: any): boolean;
+    format(formatter: DateTimeFormatter): string;
+    getLong(field: TemporalField): number;
+    hashCode(): number;
+    hour(): number;
+    isAfter(other: OffsetDateTime): boolean;
+    isBefore(other: OffsetDateTime): boolean;
+    isEqual(other: OffsetDateTime): boolean;
+    isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean;
+    minus(amountToSubtract: number, unit: TemporalUnit): OffsetDateTime;
+    minus(amount: TemporalAmount): OffsetDateTime;
+    minusDays(days: number): OffsetDateTime;
+    minusHours(hours: number): OffsetDateTime;
+    minusMinutes(minutes: number): OffsetDateTime;
+    minusMonths(months: number): OffsetDateTime;
+    minusNanos(nanos: number): OffsetDateTime;
+    minusSeconds(seconds: number): OffsetDateTime;
+    minusWeeks(weeks: number): OffsetDateTime;
+    minusYears(years: number): OffsetDateTime;
+    minute(): number;
+    month(): Month;
+    monthValue(): number;
+    nano(): number;
+    offset(): ZoneOffset;
+    plus(amountToAdd: number, unit: TemporalUnit): OffsetDateTime;
+    plus(amount: TemporalAmount): OffsetDateTime;
+    plusDays(days: number): OffsetDateTime;
+    plusHours(hours: number): OffsetDateTime;
+    plusMinutes(minutes: number): OffsetDateTime;
+    plusMonths(months: number): OffsetDateTime;
+    plusNanos(nanos: number): OffsetDateTime;
+    plusSeconds(seconds: number): OffsetDateTime;
+    plusWeeks(weeks: number): OffsetDateTime;
+    plusYears(years: number): OffsetDateTime;
+    second(): number;
+    toEpochSecond(): number;
+    toInstant(): Instant;
     toJSON(): string;
-    toInstant(): Instant
-    toLocalDate(): LocalDate
-    toLocalDateTime(): LocalDateTime
-    toLocalTime(): LocalTime
-    toOffsetTime(): OffsetTime
-    toString(): string
-    truncatedTo(unit: TemporalUnit): OffsetDateTime
-    until(endExclusive: Temporal, unit: TemporalUnit): number
-    with(adjuster: TemporalAdjuster): OffsetDateTime
-    with(field: TemporalField, newValue: number): OffsetDateTime
-    withDayOfMonth(dayOfMonth: number): OffsetDateTime
-    withDayOfYear(dayOfYear: number): OffsetDateTime
-    withHour(hour: number): OffsetDateTime
-    withMinute(minute: number): OffsetDateTime
-    withMonth(month: number): OffsetDateTime
-    withNano(nanoOfSecond: number): OffsetDateTime
-    withOffsetSameInstant(offset: ZoneOffset): OffsetDateTime
-    withOffsetSameLocal(offset: ZoneOffset): OffsetDateTime
-    withSecond(second: number): OffsetDateTime
-    withYear(year: number): OffsetDateTime
+    toLocalDate(): LocalDate;
+    toLocalDateTime(): LocalDateTime;
+    toLocalTime(): LocalTime;
+    toOffsetTime(): OffsetTime;
+    toString(): string;
+    truncatedTo(unit: TemporalUnit): OffsetDateTime;
+    until(endExclusive: Temporal, unit: TemporalUnit): number;
+    with(adjuster: TemporalAdjuster): OffsetDateTime;
+    with(field: TemporalField, newValue: number): OffsetDateTime;
+    withDayOfMonth(dayOfMonth: number): OffsetDateTime;
+    withDayOfYear(dayOfYear: number): OffsetDateTime;
+    withHour(hour: number): OffsetDateTime;
+    withMinute(minute: number): OffsetDateTime;
+    withMonth(month: number): OffsetDateTime;
+    withNano(nanoOfSecond: number): OffsetDateTime;
+    withOffsetSameInstant(offset: ZoneOffset): OffsetDateTime;
+    withOffsetSameLocal(offset: ZoneOffset): OffsetDateTime;
+    withSecond(second: number): OffsetDateTime;
+    withYear(year: number): OffsetDateTime;
+    year(): number;
 }
 
 /**
@@ -1683,51 +1680,48 @@ export class OffsetTime extends Temporal implements TemporalAdjuster {
 
     private constructor();
 
-    adjustInto(temporal: Temporal): Temporal
-    atDate(date: LocalDate): OffsetDateTime
-    compareTo(other: OffsetTime): number
-    equals(other: any): boolean
-    format(formatter: DateTimeFormatter): string
-    get(field: TemporalField): number
-    hour(): number
-    getLong(field: TemporalField): number
-    minute(): number
-    nano(): number
-    offset(): ZoneOffset
-    second(): number
-    hashCode(): number
-    isAfter(other: OffsetTime): boolean
-    isBefore(other: OffsetTime): boolean
-    isEqual(other: OffsetTime): boolean
-    isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean
-    minus(amountToSubtract: number, unit: TemporalUnit): OffsetTime
-    minus(amountToSubtract: TemporalAmount): OffsetTime
-    minusHours(hours: number): OffsetTime
-    minusMinutes(minutes: number): OffsetTime
-    minusNanos(nanos: number): OffsetTime
-    minusSeconds(seconds: number): OffsetTime
-    plus(amountToAdd: number, unit: TemporalUnit): OffsetTime
-    plus(amountToAdd: TemporalAmount): OffsetTime
-    plusHours(hours: number): OffsetTime
-    plusMinutes(minutes: number): OffsetTime
-    plusNanos(nanos: number): OffsetTime
-    plusSeconds(seconds: number): OffsetTime
-    query<T>(query: TemporalQuery<T>): T
-    range(field: TemporalField): ValueRange
-    toEpochSecond(date: LocalDate): number
+    adjustInto(temporal: Temporal): Temporal;
+    atDate(date: LocalDate): OffsetDateTime;
+    compareTo(other: OffsetTime): number;
+    equals(other: any): boolean;
+    format(formatter: DateTimeFormatter): string;
+    getLong(field: TemporalField): number;
+    hashCode(): number;
+    hour(): number;
+    isAfter(other: OffsetTime): boolean;
+    isBefore(other: OffsetTime): boolean;
+    isEqual(other: OffsetTime): boolean;
+    isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean;
+    minus(amountToSubtract: number, unit: TemporalUnit): OffsetTime;
+    minus(amount: TemporalAmount): OffsetTime;
+    minusHours(hours: number): OffsetTime;
+    minusMinutes(minutes: number): OffsetTime;
+    minusNanos(nanos: number): OffsetTime;
+    minusSeconds(seconds: number): OffsetTime;
+    minute(): number;
+    nano(): number;
+    offset(): ZoneOffset;
+    plus(amountToAdd: number, unit: TemporalUnit): OffsetTime;
+    plus(amount: TemporalAmount): OffsetTime;
+    plusHours(hours: number): OffsetTime;
+    plusMinutes(minutes: number): OffsetTime;
+    plusNanos(nanos: number): OffsetTime;
+    plusSeconds(seconds: number): OffsetTime;
+    second(): number;
+    toEpochSecond(date: LocalDate): number;
     toJSON(): string;
-    toLocalTime(): LocalTime
-    toString(): string
-    truncatedTo(unit: TemporalUnit): OffsetTime
-    until(endExclusive: Temporal, unit: TemporalUnit): number
-    with(adjuster: TemporalAdjuster): OffsetTime
-    with(field: TemporalField, newValue: number): OffsetTime
-    withHour(hour: number): OffsetTime
-    withMinute(minute: number): OffsetTime
-    withNano(nanoOfSecond: number): OffsetTime
-    withOffsetSameInstant(offset: ZoneOffset): OffsetTime
-    withOffsetSameLocal(offset: ZoneOffset): OffsetTime
-    withSecond(second: number): OffsetTime
+    toLocalTime(): LocalTime;
+    toString(): string;
+    truncatedTo(unit: TemporalUnit): OffsetTime;
+    until(endExclusive: Temporal, unit: TemporalUnit): number;
+    with(adjuster: TemporalAdjuster): OffsetTime;
+    with(field: TemporalField, newValue: number): OffsetTime;
+    withHour(hour: number): OffsetTime;
+    withMinute(minute: number): OffsetTime;
+    withNano(nanoOfSecond: number): OffsetTime;
+    withOffsetSameInstant(offset: ZoneOffset): OffsetTime;
+    withOffsetSameLocal(offset: ZoneOffset): OffsetTime;
+    withSecond(second: number): OffsetTime;
 }
 
 /**
@@ -1837,14 +1831,12 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     dayOfMonth(): number;
     dayOfWeek(): DayOfWeek;
     dayOfYear(): number;
-    equals(other: any): boolean;
-    format(formatter: DateTimeFormatter): string;
     getLong(field: TemporalField): number;
     hashCode(): number;
     hour(): number;
     isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean;
-    minus(amount: TemporalAmount): ZonedDateTime;
     minus(amountToSubtract: number, unit: TemporalUnit): ZonedDateTime;
+    minus(amount: TemporalAmount): ZonedDateTime;
     minusDays(days: number): ZonedDateTime;
     minusHours(hours: number): ZonedDateTime;
     minusMinutes(minutes: number): ZonedDateTime;
@@ -1858,8 +1850,8 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     monthValue(): number;
     nano(): number;
     offset(): ZoneOffset;
-    plus(amount: TemporalAmount): ZonedDateTime;
     plus(amountToAdd: number, unit: TemporalUnit): ZonedDateTime;
+    plus(amount: TemporalAmount): ZonedDateTime;
     plusDays(days: number): ZonedDateTime;
     plusHours(hours: number): ZonedDateTime;
     plusMinutes(minutes: number): ZonedDateTime;
