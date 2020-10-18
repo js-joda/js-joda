@@ -35,6 +35,7 @@ The current list of available prebuilt locales is:
 - [hi (i.e. hi-*)](https://www.npmjs.com/package/@js-joda/locale_hi)
 - [it (i.e. it-*)](https://www.npmjs.com/package/@js-joda/locale_it)
 - [it-IT](https://www.npmjs.com/package/@js-joda/locale_it-it)
+- [ro (i.e. ro-*)](https://www.npmjs.com/package/@js-joda/locale_ro)
 - [sv (i.e. sv-*)](https://www.npmjs.com/package/@js-joda/locale_sv)
 - [sv-SE](https://www.npmjs.com/package/@js-joda/locale_sv-se)
 - [zh (i.e. zh-*)](https://www.npmjs.com/package/@js-joda/locale_zh)

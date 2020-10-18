@@ -3,6 +3,11 @@
 
 ### next
 
+### 3.2.1
+
+* add ro locales to prebuilt packages
+* update dependencies
+
 ### 3.2.0 
 
 * cache cldr operations #420 by @JKillian
