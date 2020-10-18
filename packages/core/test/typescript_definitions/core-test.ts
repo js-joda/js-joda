@@ -598,6 +598,9 @@ it('LocalDateTime', () => {
 
     expectType<LocalDateTime | null>(dt.query(LocalDateTime.FROM));
     expectType<LocalDate | null>(dt.query(TemporalQueries.localDate()));
+
+    expectType<OffsetDateTime>(dt.atOffset(ZoneOffset.MIN));
+    expectType<ZonedDateTime>(dt.atZone(ZoneId.UTC));
 });
 
 it('Instant', () => {
@@ -620,6 +623,9 @@ it('Instant', () => {
 
     expectType<Instant | null>(i.query(Instant.FROM));
     expectType<LocalDate | null>(i.query(TemporalQueries.localDate()));
+
+    expectType<OffsetDateTime>(i.atOffset(ZoneOffset.MAX));
+    expectType<ZonedDateTime>(i.atZone(ZoneId.UTC));
 });
 
 it('Year', () => {

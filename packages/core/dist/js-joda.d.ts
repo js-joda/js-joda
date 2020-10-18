@@ -1149,6 +1149,7 @@ export class Instant extends Temporal implements TemporalAdjuster {
     private constructor();
 
     adjustInto(temporal: Temporal): Temporal;
+    atOffset(offset: ZoneOffset): OffsetDateTime;
     atZone(zone: ZoneId): ZonedDateTime;
     compareTo(otherInstant: Instant): number;
     epochSecond(): number;
