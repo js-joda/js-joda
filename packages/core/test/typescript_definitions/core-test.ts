@@ -355,6 +355,9 @@ it('LocalDate', () => {
 
     expectType<LocalDate | null>(d1.query(LocalDate.FROM));
     expectType<LocalTime | null>(d1.query(TemporalQueries.localTime()));
+
+    expectType<LocalDateTime>(d1.atTime(LocalTime.now()));
+    expectType<OffsetDateTime>(d1.atTime(OffsetTime.now()));
 });
 
 it('LocalTime', () => {

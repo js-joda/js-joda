@@ -1200,6 +1200,7 @@ export class LocalDate extends ChronoLocalDate implements TemporalAdjuster {
     atStartOfDay(zone: ZoneId): ZonedDateTime;
     atTime(hour: number, minute: number, second?: number, nanoOfSecond?: number): LocalDateTime;
     atTime(time: LocalTime): LocalDateTime;
+    atTime(time: OffsetTime): OffsetDateTime;
     chronology(): Chronology;
     compareTo(other: LocalDate): number;
     dayOfMonth(): number;
