@@ -200,6 +200,8 @@ function _init() {
   Locale.FRANCE = new Locale('fr', 'FR', 'fr');
   Locale.GERMAN = new Locale('de');
   Locale.GERMANY = new Locale('de', 'DE', 'de');
+  Locale.KO = new Locale("ko");
+  Locale.KOREAN = new Locale("ko", "KR", "ko");
 }
 
 /***/ }),
