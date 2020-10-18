@@ -1,6 +1,6 @@
 {
     "name": "@js-joda/locale_sv-se",
-    "version": "3.2.1+36.0.0",
+    "version": "3.2.2+36.0.0",
     "description": "prebuilt js-joda locale package for locales: sv,sv-SE",
     "repository": {
         "type": "git",
