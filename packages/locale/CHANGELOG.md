@@ -3,6 +3,10 @@
 
 ### next
 
+### 3.2.2
+
+* fix es5 issues
+
 ### 3.2.1
 
 * add ro locales to prebuilt packages
