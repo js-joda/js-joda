@@ -657,8 +657,7 @@ export class LocalDate extends ChronoLocalDate{
         if (adjuster instanceof LocalDate) {
             return adjuster;
         }
-        assert(typeof adjuster.adjustInto === 'function', 'adjuster', IllegalArgumentException);
-        return adjuster.adjustInto(this);
+        return super._withAdjuster(adjuster);
     }
 
     /**
@@ -856,25 +855,6 @@ export class LocalDate extends ChronoLocalDate{
      * Returns a copy of this date with the specified period added.
      *
      * This method returns a new date based on this date with the specified period added.
-     * The amount is typically {@link Period} but may be any other type implementing
-     * the {@link TemporalAmount} interface.
-     * The calculation is delegated to the specified adjuster, which typically calls
-     * back to {@link LocalDate.plusAmountUnit}.
-     *
-     * @param {!TemporalAmount} amount - the amount to add, not null
-     * @return {LocalDate} a {@link LocalDate} based on this date with the addition made, not null
-     * @throws {DateTimeException} if the addition cannot be made
-     * @throws {ArithmeticException} if numeric overflow occurs
-     */
-    _plusAmount(amount) {
-        requireNonNull(amount, 'amount');
-        return amount.addTo(this);
-    }
-
-    /**
-     * Returns a copy of this date with the specified period added.
-     *
-     * This method returns a new date based on this date with the specified period added.
      * This can be used to add any period that is defined by a unit, for example to add years, months or days.
      * The unit is responsible for the details of the calculation, including the resolution
      * of any edge cases in the calculation.
@@ -993,25 +973,6 @@ export class LocalDate extends ChronoLocalDate{
         }
         const mjDay = MathUtil.safeAdd(this.toEpochDay(), daysToAdd);
         return LocalDate.ofEpochDay(mjDay);
-    }
-
-    /**
-     * Returns a copy of this date with the specified period subtracted.
-     *
-     * This method returns a new date based on this date with the specified period subtracted.
-     * The amount is typically {@link Period} but may be any other type implementing
-     * the {@link TemporalAmount} interface.
-     * The calculation is delegated to the specified adjuster, which typically calls
-     * back to {@link minus}.
-     *
-     * @param {!TemporalAmount} amount - the amount to subtract, not null
-     * @return {LocalDate} a {@link LocalDate} based on this date with the subtraction made, not null
-     * @throws {DateTimeException} if the subtraction cannot be made
-     * @throws {ArithmeticException} if numeric overflow occurs
-     */
-    _minusAmount(amount) {
-        requireNonNull(amount, 'amount');
-        return amount.subtractFrom(this);
     }
 
     /**

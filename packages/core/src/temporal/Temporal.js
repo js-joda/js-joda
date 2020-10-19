@@ -4,8 +4,12 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
+import {assert, abstractMethodFail, requireInstance, requireNonNull} from '../assert';
+import {IllegalArgumentException} from '../errors';
+import {MAX_SAFE_INTEGER, MIN_SAFE_INTEGER} from '../MathUtil';
 import {TemporalAccessor} from './TemporalAccessor';
-import { abstractMethodFail } from '../assert';
+import {TemporalAmount} from './TemporalAmount';
+import {TemporalUnit} from './TemporalUnit';
 
 /**
  * Framework-level interface defining read-write access to a temporal object,
@@ -91,7 +95,6 @@ export class Temporal extends TemporalAccessor {
      * @param {TemporalUnit} unit
      * @return {Temporal}
      */
-    // eslint-disable-next-line no-unused-vars
     minus(amount, unit) {
         if (arguments.length < 2) {
             return this._minusAmount(amount);
@@ -125,9 +128,10 @@ export class Temporal extends TemporalAccessor {
      * @throws DateTimeException - if the subtraction cannot be made
      * @throws ArithmeticException - if numeric overflow occurs
      */
-    // eslint-disable-next-line no-unused-vars
     _minusAmount(amount) {
-        abstractMethodFail('_minusAmount');
+        requireNonNull(amount, 'amount');
+        requireInstance(amount, TemporalAmount, 'amount');
+        return amount.subtractFrom(this);
     }
 
     /**
@@ -148,9 +152,13 @@ export class Temporal extends TemporalAccessor {
      * @throws DateTimeException - if the unit cannot be subtracted
      * @throws ArithmeticException - if numeric overflow occurs
      */
-    // eslint-disable-next-line no-unused-vars
     _minusUnit(amountToSubtract, unit) {
-        abstractMethodFail('_minusUnit');
+        requireNonNull(amountToSubtract, 'amountToSubtract');
+        requireNonNull(unit, 'unit');
+        requireInstance(unit, TemporalUnit, 'unit');
+        return (amountToSubtract === MIN_SAFE_INTEGER
+            ? this._plusUnit(MAX_SAFE_INTEGER, unit)._plusUnit(1, unit)
+            : this._plusUnit(-amountToSubtract, unit));
     }
 
     /**
@@ -164,7 +172,6 @@ export class Temporal extends TemporalAccessor {
      * @param {TemporalUnit} unit
      * @return {Temporal}
      */
-    // eslint-disable-next-line no-unused-vars
     plus(amount, unit) {
         if (arguments.length < 2) {
             return this._plusAmount(amount);
@@ -195,9 +202,10 @@ export class Temporal extends TemporalAccessor {
      * @throws DateTimeException - if the addition cannot be made
      * @throws ArithmeticException - if numeric overflow occurs
      */
-    // eslint-disable-next-line no-unused-vars
     _plusAmount(amount) {
-        abstractMethodFail('_plusAmount');
+        requireNonNull(amount, 'amount');
+        requireInstance(amount, TemporalAmount, 'amount');
+        return amount.addTo(this);
     }
 
     /**
@@ -222,6 +230,9 @@ export class Temporal extends TemporalAccessor {
      */
     // eslint-disable-next-line no-unused-vars
     _plusUnit(amountToAdd, unit) {
+        requireNonNull(amountToAdd, 'amountToAdd');
+        requireNonNull(unit, 'unit');
+        requireInstance(unit, TemporalUnit, 'unit');
         abstractMethodFail('_plusUnit');
     }
 
@@ -287,7 +298,6 @@ export class Temporal extends TemporalAccessor {
      * @param {number} newValue
      * @return {Temporal}
      */
-    // eslint-disable-next-line no-unused-vars
     with(adjusterOrField, newValue) {
         if (arguments.length < 2) {
             return this._withAdjuster(adjusterOrField);
@@ -316,9 +326,12 @@ export class Temporal extends TemporalAccessor {
      * @throws DateTimeException - if unable to make the adjustment
      * @throws ArithmeticException - if numeric overflow occurs
      */
-    // eslint-disable-next-line no-unused-vars
     _withAdjuster(adjuster) {
-        abstractMethodFail('_withAdjuster');
+        requireNonNull(adjuster, 'adjuster');
+        assert(typeof adjuster.adjustInto === 'function',
+            'adjuster must be a TemporalAdjuster',
+            IllegalArgumentException);
+        return adjuster.adjustInto(this);
     }
 
     /**

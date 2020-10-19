@@ -6,10 +6,10 @@
 
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
+import {Temporal} from './temporal/Temporal';
 import {Clock} from './Clock';
 import {DateTimeException, UnsupportedTemporalTypeException} from './errors';
 import {DateTimeFormatter} from './format/DateTimeFormatter';
-import {DefaultInterfaceTemporal} from './temporal/DefaultInterfaceTemporal';
 import {Instant, LocalTime} from './js-joda';
 import {MathUtil} from './MathUtil';
 import {OffsetDateTime} from './OffsetDateTime';
@@ -23,7 +23,7 @@ import {requireInstance, requireNonNull} from './assert';
 /**
  * A time with an offset from UTC/Greenwich in the ISO-8601 calendar system, such as 10:15:30+01:00.
  */
-export class OffsetTime extends DefaultInterfaceTemporal {
+export class OffsetTime extends Temporal {
     /**
      * @param {!TemporalAccessor} temporal
      * @return {OffsetTime}

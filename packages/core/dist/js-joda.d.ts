@@ -376,11 +376,12 @@ export abstract class Temporal extends TemporalAccessor {
      */
     abstract until(endTemporal: Temporal, unit: TemporalUnit): number;
 
-    protected abstract _minusUnit(amountToSubtract: number, unit: TemporalUnit): Temporal;
-    protected abstract _minusAmount(amount: TemporalAmount): Temporal;
+    protected _minusUnit(amountToSubtract: number, unit: TemporalUnit): Temporal;
+    protected _minusAmount(amount: TemporalAmount): Temporal;
+    protected _plusAmount(amount: TemporalAmount): Temporal;
+    protected _withAdjuster(adjuster: TemporalAdjuster): Temporal;
+
     protected abstract _plusUnit(amountToAdd: number, unit: TemporalUnit): Temporal;
-    protected abstract _plusAmount(amount: TemporalAmount): Temporal;
-    protected abstract _withAdjuster(adjuster: TemporalAdjuster): Temporal;
     protected abstract _withField(field: TemporalField, newValue: number): Temporal;
 }
 

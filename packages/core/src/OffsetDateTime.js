@@ -6,9 +6,9 @@
 
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
+import {Temporal} from './temporal/Temporal';
 import {Clock} from './Clock';
 import {DateTimeFormatter} from './format/DateTimeFormatter';
-import {DefaultInterfaceTemporal} from './temporal/DefaultInterfaceTemporal';
 import {Instant} from './Instant';
 import {IsoChronology} from './chrono/IsoChronology';
 import {LocalDateTime} from './LocalDateTime';
@@ -29,7 +29,7 @@ import {requireInstance, requireNonNull} from './assert';
  * A date-time with an offset from UTC/Greenwich in the ISO-8601 calendar system,
  * such as 2007-12-23T10:15:30+01:00.
  */
-export class OffsetDateTime extends DefaultInterfaceTemporal {
+export class OffsetDateTime extends Temporal {
     /**
      * @param {TemporaroAccessor} temporal
      * @return {OffsetDateTime}

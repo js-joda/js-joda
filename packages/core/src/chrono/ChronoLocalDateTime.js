@@ -12,7 +12,7 @@ import {Instant} from '../Instant';
 import {ZoneOffset} from '../ZoneOffset';
 import {ChronoUnit} from '../temporal/ChronoUnit';
 import {ChronoField} from '../temporal/ChronoField';
-import {DefaultInterfaceTemporal} from '../temporal/DefaultInterfaceTemporal';
+import {Temporal} from '../temporal/Temporal';
 import {TemporalQueries} from '../temporal/TemporalQueries';
 
 /**
@@ -49,7 +49,7 @@ import {TemporalQueries} from '../temporal/TemporalQueries';
  *
  * @param D the date type
  */
-export class ChronoLocalDateTime extends DefaultInterfaceTemporal {
+export class ChronoLocalDateTime extends Temporal {
     /* <D extends ChronoLocalDate>
         extends DefaultInterfaceTemporal
         implements Temporal, TemporalAdjuster, Comparable<ChronoLocalDateTime<?>> */
