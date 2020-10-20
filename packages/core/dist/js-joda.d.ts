@@ -2023,7 +2023,6 @@ export class DayOfWeek extends TemporalAccessor implements TemporalAdjuster {
     adjustInto(temporal: Temporal): Temporal;
     compareTo(other: DayOfWeek): number;
     equals(other: any): boolean;
-    displayName(style: TextStyle, locale: Locale): string;
     getLong(field: TemporalField): number;
     isSupported(field: TemporalField): boolean;
     minus(days: number): DayOfWeek;
@@ -2061,7 +2060,6 @@ export class Month extends TemporalAccessor implements TemporalAdjuster {
     equals(other: any): boolean;
     firstDayOfYear(leapYear: boolean): number;
     firstMonthOfQuarter(): Month;
-    displayName(style: TextStyle, locale: Locale): string;
     getLong(field: TemporalField): number;
     isSupported(field: TemporalField): boolean;
     length(leapYear: boolean): number;
@@ -2097,13 +2095,11 @@ export class DateTimeFormatter {
     chronology(): Chronology | null;
     decimalStyle(): DecimalStyle;
     format(temporal: TemporalAccessor): string;
-    locale(): any;
     parse(text: string): TemporalAccessor;
     parse<T>(text: string, query: TemporalQuery<T>): T;
     parseUnresolved(text: string, position: ParsePosition): TemporalAccessor;
     toString(): string;
     withChronology(chrono: Chronology): DateTimeFormatter;
-    withLocale(locale: Locale): DateTimeFormatter;
     withResolverStyle(resolverStyle: ResolverStyle): DateTimeFormatter;
 }
 
@@ -2404,10 +2400,6 @@ export abstract class ChronoZonedDateTime extends Temporal {
 // ----------------------------------------------------------------------------
 //   SUPPORT
 // ----------------------------------------------------------------------------
-
-export interface Locale {
-    // TODO: Not implemented yet
-}
 
 export function nativeJs(date: Date | any, zone?: ZoneId): TemporalAccessor;
 

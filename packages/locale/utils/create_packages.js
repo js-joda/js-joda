@@ -56,6 +56,7 @@ const packageTemplate = {
         url: 'https://github.com/js-joda/js-joda-locale.git'
     },
     main: 'dist/index.js',
+    typings: 'dist/js-joda-locale.d.ts',
     keywords: [
         'date',
         'time',
@@ -91,6 +92,10 @@ Object.keys(argv.packages).forEach((packageName) => {
     if (!fs.existsSync(packageDir)) {
         fs.mkdirSync(packageDir);
     }
+    const distDir = path.resolve(argv.packagesDir, packageName, 'dist');
+    if (!fs.existsSync(distDir)) {
+        fs.mkdirSync(distDir);
+    }
     // create package.json
     packageTemplate.version = mainPackageJSON.version;
     packageTemplate.name = `@js-joda/locale_${packageName}`;
@@ -99,6 +104,8 @@ Object.keys(argv.packages).forEach((packageName) => {
         JSON.stringify(packageTemplate, null, 4));
     fs.writeFileSync(path.resolve(packageDir, 'README.md'),
         readmeTemplate.replace(readmeLocaleRegex, argv.packages[packageName].join(',')));
+    fs.copyFileSync(path.resolve(__dirname, '..', 'dist', 'js-joda-locale.d.ts'),
+        path.resolve(packageDir, 'dist', 'js-joda-locale.d.ts'));
     const nodeArgs = [
         './utils/build_package.js',
         '-o', `${path.resolve(packageDir, 'dist')}`,
