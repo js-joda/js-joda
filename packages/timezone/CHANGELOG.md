@@ -3,6 +3,10 @@ Changelog
 
 ### next
 
+### 2.4.0
+
+ * updated to iana tzdb 2020c 
+ 
 ### 2.3.0
 
  * updated to iana tzdb 2020a 
