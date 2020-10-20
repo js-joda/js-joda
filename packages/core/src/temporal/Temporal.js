@@ -230,9 +230,6 @@ export class Temporal extends TemporalAccessor {
      */
     // eslint-disable-next-line no-unused-vars
     _plusUnit(amountToAdd, unit) {
-        requireNonNull(amountToAdd, 'amountToAdd');
-        requireNonNull(unit, 'unit');
-        requireInstance(unit, TemporalUnit, 'unit');
         abstractMethodFail('_plusUnit');
     }
 
