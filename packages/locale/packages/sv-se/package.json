@@ -7,6 +7,7 @@
         "url": "https://github.com/js-joda/js-joda-locale.git"
     },
     "main": "dist/index.js",
+    "typings": "dist/js-joda-locale.d.ts",
     "keywords": [
         "date",
         "time",
