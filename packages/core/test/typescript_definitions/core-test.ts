@@ -355,6 +355,9 @@ it('LocalDate', () => {
 
     expectType<LocalDate | null>(d1.query(LocalDate.FROM));
     expectType<LocalTime | null>(d1.query(TemporalQueries.localTime()));
+
+    expectType<LocalDateTime>(d1.atTime(LocalTime.now()));
+    expectType<OffsetDateTime>(d1.atTime(OffsetTime.now()));
 });
 
 it('LocalTime', () => {
@@ -450,6 +453,9 @@ it('LocalTime', () => {
 
     expectType<LocalTime | null>(t1.query(LocalTime.FROM));
     expectType<LocalDate | null>(t1.query(TemporalQueries.localDate()));
+
+    expectType<OffsetTime>(t.atOffset(ZoneOffset.MIN));
+    expectType<LocalDateTime>(t.atDate(LocalDate.now()));
 });
 
 it('LocalDateTime', () => {
@@ -598,6 +604,9 @@ it('LocalDateTime', () => {
 
     expectType<LocalDateTime | null>(dt.query(LocalDateTime.FROM));
     expectType<LocalDate | null>(dt.query(TemporalQueries.localDate()));
+
+    expectType<OffsetDateTime>(dt.atOffset(ZoneOffset.MIN));
+    expectType<ZonedDateTime>(dt.atZone(ZoneId.UTC));
 });
 
 it('Instant', () => {
@@ -620,6 +629,9 @@ it('Instant', () => {
 
     expectType<Instant | null>(i.query(Instant.FROM));
     expectType<LocalDate | null>(i.query(TemporalQueries.localDate()));
+
+    expectType<OffsetDateTime>(i.atOffset(ZoneOffset.MAX));
+    expectType<ZonedDateTime>(i.atZone(ZoneId.UTC));
 });
 
 it('Year', () => {
