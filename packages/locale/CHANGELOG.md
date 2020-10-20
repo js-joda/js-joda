@@ -1,7 +1,11 @@
 @js-joda/locale Changelog
 =========
 
-### next
+### 4.0.0 next (upcoming)
+
+This is a major release because of breaking changes:
+
+* added TS Typings to locale packages
 
 ### 3.2.2
 

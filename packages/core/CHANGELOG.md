@@ -1,7 +1,12 @@
 Changelog
 =========
 
-### next (upcoming)
+### 4.0.0 next (upcoming)
+
+This is a major release because of breaking changes:
+
+* cleanup TS Typings
+* remove TS definitions from core, moved to locale TS definitions
 
 ### 3.2.0
 
