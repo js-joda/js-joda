@@ -717,10 +717,9 @@ export function _init() {
         .optionalStart()
         .appendOffsetId()
         .optionalEnd()
-        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
+        .toFormatter(ResolverStyle.STRICT);
 
     DateTimeFormatter.ISO_DATE_TIME = new DateTimeFormatterBuilder()
-        .parseCaseInsensitive()
         .append(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
         .optionalStart()
         .appendOffsetId()

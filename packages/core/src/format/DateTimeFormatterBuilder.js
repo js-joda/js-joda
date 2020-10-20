@@ -557,7 +557,7 @@ export class DateTimeFormatterBuilder {
      * Appends the zone offset, such as '+01:00', to the formatter.
      *
      * This appends an instruction to print/parse the offset ID to the builder.
-     * This is equivalent to calling `appendOffset("+HH:MM:ss", "Z")`.
+     * This is equivalent to calling `appendOffset("HH:MM:ss", "Z")`.
      *
      * @return {DateTimeFormatterBuilder} this, for chaining, not null
      */
