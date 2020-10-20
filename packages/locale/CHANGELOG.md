@@ -5,7 +5,7 @@
 
 This is a major release because of breaking changes:
 
-* added TS Typings to locale packages
+* added TS Typings to locale packages in #389 by @InExtremaRes
 
 ### 3.2.2
 
