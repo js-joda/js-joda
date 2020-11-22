@@ -1,5 +1,5 @@
 {
-	"version": "2020c",
+	"version": "2020d",
 	"zones": [
 		"Africa/Abidjan|GMT|0|0||48e5",
 		"Africa/Nairobi|EAT|-30|0||47e5",
@@ -77,7 +77,7 @@
 		"Asia/Dili|+09|-90|0||19e4",
 		"Asia/Dubai|+04|-40|0||39e5",
 		"Asia/Famagusta|EET EEST +03|-20 -30 -30|0101010101201010101010|1GNB0 1qM0 11A0 1o00 11A0 1o00 11A0 1o00 11A0 15U0 2Ks0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0",
-		"Asia/Gaza|EET EEST|-20 -30|01010101010101010101010|1GPy0 1a00 1fA0 1cL0 1cN0 1nX0 1210 1nz0 1220 1qL0 WN0 1qL0 WN0 1qL0 11c0 1oo0 11c0 1rc0 Wo0 1rc0 Wo0 1rc0|18e5",
+		"Asia/Gaza|EET EEST|-20 -30|01010101010101010101010|1GPy0 1a00 1fA0 1cL0 1cN0 1nX0 1210 1nA0 1210 1qL0 WN0 1qL0 WN0 1qL0 11c0 1on0 11B0 1o00 11A0 1qM0 WM0 1qM0|18e5",
 		"Asia/Hong_Kong|HKT|-80|0||73e5",
 		"Asia/Hovd|+07 +08|-70 -80|01010|1O8H0 1cJ0 1cP0 1cJ0|81e3",
 		"Asia/Irkutsk|+09 +08|-90 -80|01|1N7t0|60e4",
