@@ -224,15 +224,14 @@ describe('js-joda Instant', () => {
     
     describe('until', () => {
         it('should return result for the next day values', () => {
-            const testInstantNextDay = instant.plus(1, ChronoUnit.DAYS);
-            assertEquals(instant.until(testInstantNextDay, ChronoUnit.NANOS), LocalTime.NANOS_PER_DAY);
-            assertEquals(instant.until(testInstantNextDay, ChronoUnit.MICROS), LocalTime.MICROS_PER_DAY);
-            assertEquals(instant.until(testInstantNextDay, ChronoUnit.MILLIS), LocalTime.MILLIS_PER_DAY);
-            assertEquals(instant.until(testInstantNextDay, ChronoUnit.SECONDS), LocalTime.SECONDS_PER_DAY);
-            assertEquals(instant.until(testInstantNextDay, ChronoUnit.MINUTES), LocalTime.MINUTES_PER_DAY);
-            assertEquals(instant.until(testInstantNextDay, ChronoUnit.HOURS), LocalTime.HOURS_PER_DAY);
-            assertEquals(instant.until(testInstantNextDay, ChronoUnit.HALF_DAYS), 2);
-            assertEquals(instant.until(testInstantNextDay, ChronoUnit.DAYS), 1);
+            assertEquals(instant.until(instantNextDay, ChronoUnit.NANOS), LocalTime.NANOS_PER_DAY);
+            assertEquals(instant.until(instantNextDay, ChronoUnit.MICROS), LocalTime.MICROS_PER_DAY);
+            assertEquals(instant.until(instantNextDay, ChronoUnit.MILLIS), LocalTime.MILLIS_PER_DAY);
+            assertEquals(instant.until(instantNextDay, ChronoUnit.SECONDS), LocalTime.SECONDS_PER_DAY);
+            assertEquals(instant.until(instantNextDay, ChronoUnit.MINUTES), LocalTime.MINUTES_PER_DAY);
+            assertEquals(instant.until(instantNextDay, ChronoUnit.HOURS), LocalTime.HOURS_PER_DAY);
+            assertEquals(instant.until(instantNextDay, ChronoUnit.HALF_DAYS), 2);
+            assertEquals(instant.until(instantNextDay, ChronoUnit.DAYS), 1);
         });
 
 
