@@ -12,6 +12,7 @@ import {ChronoField} from '../src/temporal/ChronoField';
 import {ChronoUnit} from '../src/temporal/ChronoUnit';
 import {Instant} from '../src/Instant';
 import {LocalTime} from '../src/LocalTime';
+import {LocalDateTime} from '../src/LocalDateTime';
 import {MathUtil} from '../src/MathUtil';
 import {OffsetDateTime} from '../src/OffsetDateTime';
 import {TemporalAccessor} from '../src/temporal/TemporalAccessor';
@@ -23,8 +24,10 @@ import {DateTimeException, NullPointerException, UnsupportedTemporalTypeExceptio
 
 /* these are not covered by the threetenbp ported tests */
 describe('js-joda Instant', () => {
-    const testInstant = new Instant(123, 456);
-    
+    const instant = Instant.EPOCH.plusSeconds(123).plusNanos(456);
+    const instantNextDay = instant.plus(1, ChronoUnit.DAYS);
+
+
     describe('from(TemporalAccessor)', () => {
         
         it('should fail if TemporalAccessor throws an exception', () => {
@@ -60,35 +63,35 @@ describe('js-joda Instant', () => {
     describe('isSupported', () => {
         
         it('should return true for supported ChronoFields', () => {
-            expect(testInstant.isSupported(ChronoField.INSTANT_SECONDS)).to.be.true;
-            expect(testInstant.isSupported(ChronoField.NANO_OF_SECOND)).to.be.true;
-            expect(testInstant.isSupported(ChronoField.MICRO_OF_SECOND)).to.be.true;
-            expect(testInstant.isSupported(ChronoField.MILLI_OF_SECOND)).to.be.true;
+            expect(instant.isSupported(ChronoField.INSTANT_SECONDS)).to.be.true;
+            expect(instant.isSupported(ChronoField.NANO_OF_SECOND)).to.be.true;
+            expect(instant.isSupported(ChronoField.MICRO_OF_SECOND)).to.be.true;
+            expect(instant.isSupported(ChronoField.MILLI_OF_SECOND)).to.be.true;
         });
         
         it('should return true for supported ChronoUnits', () => {
-            expect(testInstant.isSupported(ChronoUnit.NANOS)).to.be.true;
-            expect(testInstant.isSupported(ChronoUnit.MICROS)).to.be.true;
-            expect(testInstant.isSupported(ChronoUnit.MILLIS)).to.be.true;
-            expect(testInstant.isSupported(ChronoUnit.SECONDS)).to.be.true;
-            expect(testInstant.isSupported(ChronoUnit.MINUTES)).to.be.true;
-            expect(testInstant.isSupported(ChronoUnit.HOURS)).to.be.true;
-            expect(testInstant.isSupported(ChronoUnit.HALF_DAYS)).to.be.true;
-            expect(testInstant.isSupported(ChronoUnit.DAYS)).to.be.true;
+            expect(instant.isSupported(ChronoUnit.NANOS)).to.be.true;
+            expect(instant.isSupported(ChronoUnit.MICROS)).to.be.true;
+            expect(instant.isSupported(ChronoUnit.MILLIS)).to.be.true;
+            expect(instant.isSupported(ChronoUnit.SECONDS)).to.be.true;
+            expect(instant.isSupported(ChronoUnit.MINUTES)).to.be.true;
+            expect(instant.isSupported(ChronoUnit.HOURS)).to.be.true;
+            expect(instant.isSupported(ChronoUnit.HALF_DAYS)).to.be.true;
+            expect(instant.isSupported(ChronoUnit.DAYS)).to.be.true;
         });
         
         it('should return false for unsupported ChronoUnits', () => {
-            expect(testInstant.isSupported(ChronoUnit.HOUR_OF_DAY)).to.be.false;
-            expect(testInstant.isSupported(ChronoUnit.DAY_OF_YEAR)).to.be.false;
-            expect(testInstant.isSupported(ChronoUnit.MONTHS)).to.be.false;
-            expect(testInstant.isSupported(null)).to.be.false;
+            expect(instant.isSupported(ChronoUnit.HOUR_OF_DAY)).to.be.false;
+            expect(instant.isSupported(ChronoUnit.DAY_OF_YEAR)).to.be.false;
+            expect(instant.isSupported(ChronoUnit.MONTHS)).to.be.false;
+            expect(instant.isSupported(null)).to.be.false;
         });
         
         it('should return false for unsupported ChronoFields', () => {
-            expect(testInstant.isSupported(ChronoField.HOUR_OF_DAY)).to.be.false;
-            expect(testInstant.isSupported(ChronoField.DAY_OF_YEAR)).to.be.false;
-            expect(testInstant.isSupported(ChronoField.MONTH_OF_YEAR)).to.be.false;
-            expect(testInstant.isSupported(null)).to.be.false;
+            expect(instant.isSupported(ChronoField.HOUR_OF_DAY)).to.be.false;
+            expect(instant.isSupported(ChronoField.DAY_OF_YEAR)).to.be.false;
+            expect(instant.isSupported(ChronoField.MONTH_OF_YEAR)).to.be.false;
+            expect(instant.isSupported(null)).to.be.false;
         });
         
         it('should return corresponding value of isSupportedBy for TemporalFields', () => {
@@ -96,12 +99,12 @@ describe('js-joda Instant', () => {
             field.isSupportedBy = () => {
                 return false;
             };
-            expect(testInstant.isSupported(field)).to.be.false;
+            expect(instant.isSupported(field)).to.be.false;
             field = new TemporalField();
             field.isSupportedBy = () => {
                 return true;
             };
-            expect(testInstant.isSupported(field)).to.be.true;
+            expect(instant.isSupported(field)).to.be.true;
         });
         
         it('should return corresponding value of isSupportedBy for TemporalUnits', () => {
@@ -109,22 +112,22 @@ describe('js-joda Instant', () => {
             unit.isSupportedBy = () => {
                 return false;
             };
-            expect(testInstant.isSupported(unit)).to.be.false;
+            expect(instant.isSupported(unit)).to.be.false;
             unit = new TemporalField();
             unit.isSupportedBy = () => {
                 return true;
             };
-            expect(testInstant.isSupported(unit)).to.be.true;
+            expect(instant.isSupported(unit)).to.be.true;
         });
         
     });
     
     describe('range', () => {
         it('should return the range of the corresponding field', () => {
-            assertEquals(testInstant.range(ChronoField.INSTANT_SECONDS), ChronoField.INSTANT_SECONDS.range());
-            assertEquals(testInstant.range(ChronoField.NANO_OF_SECOND), ChronoField.NANO_OF_SECOND.range());
-            assertEquals(testInstant.range(ChronoField.MICRO_OF_SECOND), ChronoField.MICRO_OF_SECOND.range());
-            assertEquals(testInstant.range(ChronoField.MILLI_OF_SECOND), ChronoField.MILLI_OF_SECOND.range());
+            assertEquals(instant.range(ChronoField.INSTANT_SECONDS), ChronoField.INSTANT_SECONDS.range());
+            assertEquals(instant.range(ChronoField.NANO_OF_SECOND), ChronoField.NANO_OF_SECOND.range());
+            assertEquals(instant.range(ChronoField.MICRO_OF_SECOND), ChronoField.MICRO_OF_SECOND.range());
+            assertEquals(instant.range(ChronoField.MILLI_OF_SECOND), ChronoField.MILLI_OF_SECOND.range());
         });
         
         it('should return corresponding value of rangeRefinedBy for TemporalField', () => {
@@ -132,12 +135,12 @@ describe('js-joda Instant', () => {
             field.rangeRefinedBy = () => {
                 return 'Test Value';
             };
-            expect(testInstant.range(field)).to.eql('Test Value');
+            expect(instant.range(field)).to.eql('Test Value');
         });
         
         it('should throw exception for unsupported ChronoFields', () => {
             expect(() => {
-                testInstant.range(ChronoField.DAY_OF_MONTH);
+                instant.range(ChronoField.DAY_OF_MONTH);
             }).to.throw(UnsupportedTemporalTypeException);
         });
         
@@ -149,12 +152,12 @@ describe('js-joda Instant', () => {
             field.getFrom = () => {
                 return 'Test Value';
             };
-            expect(testInstant.getLong(field)).to.eql('Test Value');
+            expect(instant.getLong(field)).to.eql('Test Value');
         });
         
         it('should throw exception for unsupported ChronoFields', () => {
             expect(() => {
-                testInstant.getLong(ChronoField.DAY_OF_MONTH);
+                instant.getLong(ChronoField.DAY_OF_MONTH);
             }).to.throw(UnsupportedTemporalTypeException);
         });
         
@@ -166,7 +169,7 @@ describe('js-joda Instant', () => {
             field.adjustInto = () => {
                 return 'Test Value';
             };
-            expect(testInstant.with(field, 1)).to.eql('Test Value');
+            expect(instant.with(field, 1)).to.eql('Test Value');
         });
     });
     
@@ -174,11 +177,11 @@ describe('js-joda Instant', () => {
         it('should add the given values', () => {
             // plus(amount, TemporalUnit)
             // only test the units not already tested in the reference tests!
-            assertEquals(testInstant.plus(1, ChronoUnit.MICROS), Instant.ofEpochSecond(testInstant.epochSecond(), testInstant.nano() + 1000));
-            assertEquals(testInstant.plus(1, ChronoUnit.MILLIS), Instant.ofEpochSecond(testInstant.epochSecond(), testInstant.nano() + 1000000));
-            assertEquals(testInstant.plus(1, ChronoUnit.MINUTES), Instant.ofEpochSecond(testInstant.epochSecond() + LocalTime.SECONDS_PER_MINUTE, testInstant.nano()));
-            assertEquals(testInstant.plus(1, ChronoUnit.HOURS), Instant.ofEpochSecond(testInstant.epochSecond() + LocalTime.SECONDS_PER_HOUR, testInstant.nano()));
-            assertEquals(testInstant.plus(1, ChronoUnit.HALF_DAYS), Instant.ofEpochSecond(testInstant.epochSecond() + LocalTime.SECONDS_PER_DAY / 2, testInstant.nano()));
+            assertEquals(instant.plus(1, ChronoUnit.MICROS), Instant.ofEpochSecond(instant.epochSecond(), instant.nano() + 1000));
+            assertEquals(instant.plus(1, ChronoUnit.MILLIS), Instant.ofEpochSecond(instant.epochSecond(), instant.nano() + 1000000));
+            assertEquals(instant.plus(1, ChronoUnit.MINUTES), Instant.ofEpochSecond(instant.epochSecond() + LocalTime.SECONDS_PER_MINUTE, instant.nano()));
+            assertEquals(instant.plus(1, ChronoUnit.HOURS), Instant.ofEpochSecond(instant.epochSecond() + LocalTime.SECONDS_PER_HOUR, instant.nano()));
+            assertEquals(instant.plus(1, ChronoUnit.HALF_DAYS), Instant.ofEpochSecond(instant.epochSecond() + LocalTime.SECONDS_PER_DAY / 2, instant.nano()));
         });
         
         it('should return corresponding value of addTo for TemporalUnit', () => {
@@ -186,24 +189,24 @@ describe('js-joda Instant', () => {
             unit.addTo = () => {
                 return 'Test Value';
             };
-            expect(testInstant.plus(1, unit)).to.eql('Test Value');
+            expect(instant.plus(1, unit)).to.eql('Test Value');
         });
         
         it('should fail if first argument is null', () => {
             expect(() => {
-                testInstant.plus(null);
+                instant.plus(null);
             }).to.throw(NullPointerException);
         });
         
         it('should fail if second argument is null', () => {
             expect(() => {
-                testInstant.plus(1, null);
+                instant.plus(1, null);
             }).to.throw(NullPointerException);
         });
         
         it('should fail for unsupported ChronoUnit', () => {
             expect(() => {
-                testInstant.plus(1, ChronoUnit.MONTHS);
+                instant.plus(1, ChronoUnit.MONTHS);
             }).to.throw(UnsupportedTemporalTypeException);
         });
     });
@@ -215,54 +218,87 @@ describe('js-joda Instant', () => {
             query.queryFrom = () => {
                 return 'Test Value';
             };
-            expect(testInstant.query(query)).to.eql('Test Value');
+            expect(instant.query(query)).to.eql('Test Value');
         });
     });
     
     describe('until', () => {
-        const end = testInstant.plus(1, ChronoUnit.DAYS);
-        it('should return result for the given values', () => {
-            assertEquals(testInstant.until(end, ChronoUnit.NANOS), LocalTime.NANOS_PER_DAY);
-            assertEquals(testInstant.until(end, ChronoUnit.MICROS), LocalTime.MICROS_PER_DAY);
-            assertEquals(testInstant.until(end, ChronoUnit.MILLIS), LocalTime.MILLIS_PER_DAY);
-            assertEquals(testInstant.until(end, ChronoUnit.SECONDS), LocalTime.SECONDS_PER_DAY);
-            assertEquals(testInstant.until(end, ChronoUnit.MINUTES), LocalTime.MINUTES_PER_DAY);
-            assertEquals(testInstant.until(end, ChronoUnit.HOURS), LocalTime.HOURS_PER_DAY);
-            assertEquals(testInstant.until(end, ChronoUnit.HALF_DAYS), 2);
-            assertEquals(testInstant.until(end, ChronoUnit.DAYS), 1);
+        it('should return result for the next day values', () => {
+            const testInstantNextDay = instant.plus(1, ChronoUnit.DAYS);
+            assertEquals(instant.until(testInstantNextDay, ChronoUnit.NANOS), LocalTime.NANOS_PER_DAY);
+            assertEquals(instant.until(testInstantNextDay, ChronoUnit.MICROS), LocalTime.MICROS_PER_DAY);
+            assertEquals(instant.until(testInstantNextDay, ChronoUnit.MILLIS), LocalTime.MILLIS_PER_DAY);
+            assertEquals(instant.until(testInstantNextDay, ChronoUnit.SECONDS), LocalTime.SECONDS_PER_DAY);
+            assertEquals(instant.until(testInstantNextDay, ChronoUnit.MINUTES), LocalTime.MINUTES_PER_DAY);
+            assertEquals(instant.until(testInstantNextDay, ChronoUnit.HOURS), LocalTime.HOURS_PER_DAY);
+            assertEquals(instant.until(testInstantNextDay, ChronoUnit.HALF_DAYS), 2);
+            assertEquals(instant.until(testInstantNextDay, ChronoUnit.DAYS), 1);
         });
-        
+
+
+        it('should return results for a date 42 days after', () => {
+            const diffNanos = 42 * LocalTime.NANOS_PER_DAY
+                + 4 * LocalTime.NANOS_PER_HOUR  + 43 * LocalTime.NANOS_PER_MINUTE
+                + 44 * LocalTime.NANOS_PER_SECOND + 45 * 1000000 + 46 * 1000 + 47;
+            const end = instant.plusNanos(diffNanos);
+            assertEquals(instant.until(end, ChronoUnit.DAYS), MathUtil.intDiv(diffNanos, LocalTime.NANOS_PER_DAY));
+            assertEquals(instant.until(end, ChronoUnit.HOURS), MathUtil.intDiv(diffNanos, LocalTime.NANOS_PER_HOUR));
+            assertEquals(instant.until(end, ChronoUnit.MINUTES), MathUtil.intDiv(diffNanos, LocalTime.NANOS_PER_MINUTE));
+            assertEquals(instant.until(end, ChronoUnit.SECONDS), MathUtil.intDiv(diffNanos, LocalTime.NANOS_PER_SECOND));
+            assertEquals(instant.until(end, ChronoUnit.MILLIS), MathUtil.intDiv(diffNanos, 1000000));
+            assertEquals(instant.until(end, ChronoUnit.MICROS), MathUtil.intDiv(diffNanos, 1000));
+            assertEquals(instant.until(end, ChronoUnit.NANOS), diffNanos);
+        });
+
+        it('should return result for a date 200 years after', () => {
+            const end = LocalDateTime.ofInstant(instant)
+                .plusYears(200)
+                .plusDays(42)
+                .plusHours(7)
+                .plusMinutes(43)
+                .plusSeconds(44)
+                .plusNanos(47 * 1000000 + 48 * 1000)
+                .toInstant(ZoneOffset.UTC);
+            const diffMillis = instant.until(end, ChronoUnit.MILLIS);
+            assertEquals(instant.until(end, ChronoUnit.DAYS), MathUtil.intDiv(diffMillis, LocalTime.MILLIS_PER_DAY));
+            assertEquals(instant.until(end, ChronoUnit.HOURS), MathUtil.intDiv(diffMillis, LocalTime.SECONDS_PER_HOUR * 1000));
+            assertEquals(instant.until(end, ChronoUnit.MINUTES), MathUtil.intDiv(diffMillis, LocalTime.SECONDS_PER_MINUTE * 1000));
+            assertEquals(instant.until(end, ChronoUnit.SECONDS), MathUtil.intDiv(diffMillis, 1000));
+            assertEquals(diffMillis, 6315093824047);
+            assertEquals(instant.until(end, ChronoUnit.MICROS), diffMillis * 1000 + 48);
+        });
+
         it('should return corresponding value of addTo for TemporalUnit', () => {
             const unit = new TemporalUnit();
             unit.between = () => {
                 return 'Test Value';
             };
-            expect(testInstant.until(end, unit)).to.eql('Test Value');
+            expect(instant.until(instantNextDay, unit)).to.eql('Test Value');
         });
         
         it('should fail if first argument is null', () => {
             expect(() => {
-                testInstant.until(null, ChronoUnit.YEARS);
+                instant.until(null, ChronoUnit.YEARS);
             }).to.throw(NullPointerException);
         });
         
         it('should fail if second argument is null', () => {
             expect(() => {
-                testInstant.until(end, null);
+                instant.until(instantNextDay, null);
             }).to.throw(NullPointerException);
         });
         
         it('should fail for unsupported ChronoUnit', () => {
             expect(() => {
-                testInstant.until(end, ChronoUnit.YEARS);
+                instant.until(instantNextDay, ChronoUnit.YEARS);
             }).to.throw(UnsupportedTemporalTypeException);
         });
     });
 
     describe('atOffset', () => {
         it('normal', () => {
-            assertEquals(testInstant.atOffset(ZoneOffset.ofHours(1)), OffsetDateTime.parse('1970-01-01T01:02:03.000000456+01:00'));
-            assertEquals(testInstant.atOffset(ZoneOffset.ofHours(5)), OffsetDateTime.parse('1970-01-01T05:02:03.000000456+05:00'));
+            assertEquals(instant.atOffset(ZoneOffset.ofHours(1)), OffsetDateTime.parse('1970-01-01T01:02:03.000000456+01:00'));
+            assertEquals(instant.atOffset(ZoneOffset.ofHours(5)), OffsetDateTime.parse('1970-01-01T05:02:03.000000456+05:00'));
         });
     });
 });
