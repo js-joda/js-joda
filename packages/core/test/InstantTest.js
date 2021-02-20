@@ -251,7 +251,7 @@ describe('js-joda Instant', () => {
         });
 
         it('should return result for a date 200 years after', () => {
-            const end = LocalDateTime.ofInstant(instant)
+            const end = LocalDateTime.ofInstant(instant, ZoneOffset.UTC)
                 .plusYears(200)
                 .plusDays(42)
                 .plusHours(7)
@@ -264,7 +264,7 @@ describe('js-joda Instant', () => {
             assertEquals(instant.until(end, ChronoUnit.HOURS), MathUtil.intDiv(diffMillis, LocalTime.SECONDS_PER_HOUR * 1000));
             assertEquals(instant.until(end, ChronoUnit.MINUTES), MathUtil.intDiv(diffMillis, LocalTime.SECONDS_PER_MINUTE * 1000));
             assertEquals(instant.until(end, ChronoUnit.SECONDS), MathUtil.intDiv(diffMillis, 1000));
-            assertEquals(diffMillis, 6315093824047);
+            assertEquals(diffMillis, 6315090224047);
             assertEquals(instant.until(end, ChronoUnit.MICROS), diffMillis * 1000 + 48);
         });
 
