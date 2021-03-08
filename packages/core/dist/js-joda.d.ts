@@ -2085,6 +2085,7 @@ export class DateTimeFormatter {
     static ISO_LOCAL_DATE_TIME: DateTimeFormatter;
     static ISO_INSTANT: DateTimeFormatter;
     static ISO_OFFSET_DATE_TIME: DateTimeFormatter;
+    static ISO_OFFSET_TIME: DateTimeFormatter;
     static ISO_ZONED_DATE_TIME: DateTimeFormatter;
 
     static ofPattern(pattern: string): DateTimeFormatter;
