@@ -1029,7 +1029,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @throws DateTimeException if the adjustment cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
-    withAdjuster(adjuster) {
+    _withAdjuster(adjuster) {
         // optimizations
         if (adjuster instanceof LocalDate) {
             return this._resolveLocal(LocalDateTime.of(adjuster, this._dateTime.toLocalTime()));
@@ -1043,8 +1043,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
         } else if (adjuster instanceof ZoneOffset) {
             return this._resolveOffset(adjuster);
         }
-        requireNonNull(adjuster, 'adjuster');
-        return adjuster.adjustInto(this);
+        return super._withAdjuster(adjuster);
     }
 
     /**
@@ -1098,7 +1097,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @throws UnsupportedTemporalTypeException if the field is not supported
      * @throws ArithmeticException if numeric overflow occurs
      */
-    withFieldValue(field, newValue) {
+    _withField(field, newValue) {
         if (field instanceof ChronoField) {
             switch (field) {
                 case ChronoField.INSTANT_SECONDS: return ZonedDateTime._create(newValue, this.nano(), this._zone);
@@ -1328,27 +1327,6 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     /**
      * Returns a copy of this date-time with the specified period added.
      *
-     * This method returns a new date-time based on this time with the specified period added.
-     * The amount is typically {@link Period} but may be any other type implementing
-     * the {@link TemporalAmount} interface.
-     * The calculation is delegated to the specified adjuster, which typically calls
-     * back to {@link plus}.
-     *
-     * This instance is immutable and unaffected by this method call.
-     *
-     * @param {!TemporalAmount} amount - the amount to add, not null
-     * @return {ZonedDateTime} a {@link ZonedDateTime} based on this date-time with the addition made, not null
-     * @throws DateTimeException if the addition cannot be made
-     * @throws ArithmeticException if numeric overflow occurs
-     */
-    plusAmount(amount) {
-        requireNonNull(amount);
-        return amount.addTo(this);
-    }
-
-    /**
-     * Returns a copy of this date-time with the specified period added.
-     *
      * This method returns a new date-time based on this date-time with the specified period added.
      * This can be used to add any period that is defined by a unit, for example to add years, months or days.
      * The unit is responsible for the details of the calculation, including the resolution
@@ -1375,7 +1353,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @return {ZonedDateTime} a {@link ZonedDateTime} based on this date-time with the specified period added, not null
      * @throws DateTimeException if the unit cannot be added to this type
      */
-    plusAmountUnit(amountToAdd, unit) {
+    _plusUnit(amountToAdd, unit) {
         if (unit instanceof ChronoUnit) {
             if (unit.isDateBased()) {
                 return this._resolveLocal(this._dateTime.plus(amountToAdd, unit));
@@ -1559,27 +1537,6 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     /**
      * Returns a copy of this date-time with the specified period subtracted.
      *
-     * This method returns a new date-time based on this time with the specified period subtracted.
-     * The amount is typically {@link Period} but may be any other type implementing
-     * the {@link TemporalAmount} interface.
-     * The calculation is delegated to the specified adjuster, which typically calls
-     * back to {@link minus}.
-     *
-     * This instance is immutable and unaffected by this method call.
-     *
-     * @param {TemporalAmount} amount - the amount to subtract, not null
-     * @return {ZonedDateTime} a {@link ZonedDateTime} based on this date-time with the subtraction made, not null
-     * @throws DateTimeException if the subtraction cannot be made
-     * @throws ArithmeticException if numeric overflow occurs
-     */
-    minusAmount(amount) {
-        requireNonNull(amount, 'amount');
-        return amount.subtractFrom(this);
-    }
-
-    /**
-     * Returns a copy of this date-time with the specified period subtracted.
-     *
      * This method returns a new date-time based on this date-time with the specified period subtracted.
      * This can be used to subtract any period that is defined by a unit, for example to subtract years, months or days.
      * The unit is responsible for the details of the calculation, including the resolution
@@ -1606,8 +1563,8 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      * @return {ZonedDateTime} a {@link ZonedDateTime} based on this date-time with the specified period subtracted, not null
      * @throws DateTimeException if the unit cannot be added to this type
      */
-    minusAmountUnit(amountToSubtract, unit) {
-        return this.plusAmountUnit(-1 * amountToSubtract, unit);
+    _minusUnit(amountToSubtract, unit) {
+        return this._plusUnit(-1 * amountToSubtract, unit);
     }
 
     //-----------------------------------------------------------------------

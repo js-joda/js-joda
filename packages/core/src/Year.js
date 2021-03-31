@@ -20,7 +20,6 @@ import {MonthDay} from './MonthDay';
 import {SignStyle} from './format/SignStyle';
 import {Temporal} from './temporal/Temporal';
 import {TemporalAccessor} from './temporal/TemporalAccessor';
-import {TemporalAmount} from './temporal/TemporalAmount';
 import {TemporalField} from './temporal/TemporalField';
 import {TemporalQueries} from './temporal/TemporalQueries';
 import {TemporalQuery, createTemporalQuery} from './temporal/TemporalQuery';
@@ -465,29 +464,6 @@ export class Year extends Temporal {
     //-----------------------------------------------------------------------
 
     /**
-     * Returns an adjusted copy of this year.
-     *
-     * This returns a new {@link Year}, based on this one, with the year adjusted.
-     * The adjustment takes place using the specified adjuster strategy object.
-     * Read the documentation of the adjuster to understand what adjustment will be made.
-     *
-     * The result of this method is obtained by invoking the
-     * {@link TemporalAdjuster#adjustInto} method on the
-     * specified adjuster passing `this` as the argument.
-     *
-     * This instance is immutable and unaffected by this method call.
-     *
-     * @param {TemporalAdjuster} adjuster the adjuster to use, not null
-     * @returns {Year} based on `this` with the adjustment made, not null
-     * @throws DateTimeException if the adjustment cannot be made
-     * @throws ArithmeticException if numeric overflow occurs
-     */
-    withAdjuster(adjuster) {
-        requireNonNull(adjuster, 'adjuster');
-        return adjuster.adjustInto(this);
-    }
-
-    /**
      * Returns a copy of this year with the specified field set to a new value.
      *
      * This returns a new {@link Year}, based on this one, with the value
@@ -526,7 +502,7 @@ export class Year extends Temporal {
      * @throws DateTimeException if the field cannot be set
      * @throws ArithmeticException if numeric overflow occurs
      */
-    withFieldValue(field, newValue) {
+    _withField(field, newValue) {
         requireNonNull(field, 'field');
         requireInstance(field, TemporalField, 'field');
         if (field instanceof ChronoField) {
@@ -545,35 +521,13 @@ export class Year extends Temporal {
     }
 
     /**
-     * Returns a copy of this year with the specified period added.
-     *
-     * This method returns a new year based on this year with the specified period added.
-     * The adder is typically {@link Period} but may be any other type implementing
-     * the {@link TemporalAmount} interface.
-     * The calculation is delegated to the specified adjuster, which typically calls
-     * back to {@link plus}.
-     *
-     * This instance is immutable and unaffected by this method call.
-     *
-     * @param {TemporalAmount} amount  the amount to add, not null
-     * @return {Year} based on this year with the addition made, not null
-     * @throws DateTimeException if the addition cannot be made
-     * @throws ArithmeticException if numeric overflow occurs
-     */
-    plusAmount(amount) {
-        requireNonNull(amount, 'amount');
-        requireInstance(amount, TemporalAmount, 'amount');
-        return amount.addTo(this);
-    }
-
-    /**
      * @param {number} amountToAdd
      * @param {TemporalUnit} unit
      * @return {Year} based on this year with the addition made, not null
      * @throws DateTimeException if the addition cannot be made
      * @throws ArithmeticException if numeric overflow occurs
      */
-    plusAmountUnit(amountToAdd, unit) {
+    _plusUnit(amountToAdd, unit) {
         requireNonNull(amountToAdd, 'amountToAdd');
         requireNonNull(unit, 'unit');
         requireInstance(unit, TemporalUnit, 'unit');
@@ -607,42 +561,6 @@ export class Year extends Temporal {
     }
 
     //-----------------------------------------------------------------------
-
-    /**
-     * Returns a copy of this year with the specified period subtracted.
-     *
-     * This method returns a new year based on this year with the specified period subtracted.
-     * The subtractor is typically {@link Period} but may be any other type implementing
-     * the {@link TemporalAmount} interface.
-     * The calculation is delegated to the specified adjuster, which typically calls
-     * back to {@link minus}.
-     *
-     * This instance is immutable and unaffected by this method call.
-     *
-     * @param {TemporalAmount} amount  the amount to subtract, not null
-     * @return {Year} based on this year with the subtraction made, not null
-     * @throws DateTimeException if the subtraction cannot be made
-     * @throws ArithmeticException if numeric overflow occurs
-     */
-    minusAmount(amount) {
-        requireNonNull(amount, 'amount');
-        requireInstance(amount, TemporalAmount, 'amount');
-        return amount.subtractFrom(this);
-    }
-
-    /**
-     * @param {number} amountToSubtract  the amount to subtract, not null
-     * @param {TemporalUnit} unit
-     * @return {Year} based on this year with the subtraction made, not null
-     * @throws DateTimeException if the subtraction cannot be made
-     * @throws ArithmeticException if numeric overflow occurs
-     */
-    minusAmountUnit(amountToSubtract, unit) {
-        requireNonNull(amountToSubtract, 'amountToSubtract');
-        requireNonNull(unit, 'unit');
-        requireInstance(unit, TemporalUnit, 'unit');
-        return (amountToSubtract === MathUtil.MIN_SAFE_INTEGER ? this.plus(MathUtil.MAX_SAFE_INTEGER, unit).plus(1, unit) : this.plus(-amountToSubtract, unit));
-    }
 
     /**
      * Returns a copy of this year with the specified number of years subtracted.

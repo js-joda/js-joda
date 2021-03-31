@@ -5,8 +5,8 @@
  */
 
 import {MathUtil} from './MathUtil';
-import {assert, requireNonNull, requireInstance} from './assert';
-import {DateTimeException, UnsupportedTemporalTypeException, IllegalArgumentException} from './errors';
+import {requireNonNull, requireInstance} from './assert';
+import {DateTimeException, UnsupportedTemporalTypeException} from './errors';
 
 import {Clock} from './Clock';
 import {Instant} from './Instant';
@@ -637,7 +637,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @throws {DateTimeException} if the adjustment cannot be made
      * @throws {ArithmeticException} if numeric overflow occurs
      */
-    withAdjuster(adjuster) {
+    _withAdjuster(adjuster) {
         requireNonNull(adjuster, 'adjuster');
         // optimizations
         if (adjuster instanceof LocalDate) {
@@ -647,8 +647,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
         } else if (adjuster instanceof LocalDateTime) {
             return adjuster;
         }
-        assert(typeof adjuster.adjustInto === 'function', 'adjuster', IllegalArgumentException);
-        return adjuster.adjustInto(this);
+        return super._withAdjuster(adjuster);
     }
 
     /**
@@ -683,7 +682,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @throws {DateTimeException} if the field cannot be set
      * @throws {ArithmeticException} if numeric overflow occurs
      */
-    withFieldValue(field, newValue) {
+    _withField(field, newValue) {
         requireNonNull(field, 'field');
         if (field instanceof ChronoField) {
             if (field.isTimeBased()) {
@@ -843,27 +842,6 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     /**
      * Returns a copy of this date-time with the specified period added.
      *
-     * This method returns a new date-time based on this time with the specified period added.
-     * The amount is typically {@link Period} but may be any other type implementing
-     * the {@link TemporalAmount} interface.
-     * The calculation is delegated to the specified adjuster, which typically calls
-     * back to {@link plus}.
-     *
-     * This instance is immutable and unaffected by this method call.
-     *
-     * @param {TemporalAmount} amount - the amount to add, not null
-     * @return {LocalDateTime} based on this date-time with the addition made, not null
-     * @throws {DateTimeException} if the addition cannot be made
-     * @throws {ArithmeticException} if numeric overflow occurs
-     */
-    plusAmount(amount) {
-        requireNonNull(amount, 'amount');
-        return amount.addTo(this);
-    }
-
-    /**
-     * Returns a copy of this date-time with the specified period added.
-     *
      * This method returns a new date-time based on this date-time with the specified period added.
      * This can be used to add any period that is defined by a unit, for example to add years, months or days.
      * The unit is responsible for the details of the calculation, including the resolution
@@ -876,7 +854,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the specified period added, not null
      * @throws {DateTimeException} if the unit cannot be added to this type
      */
-    plusAmountUnit(amountToAdd, unit) {
+    _plusUnit(amountToAdd, unit) {
         requireNonNull(unit, 'unit');
         if (unit instanceof ChronoUnit) {
             switch (unit) {
@@ -1040,27 +1018,6 @@ implements Temporal, TemporalAdjuster, Serializable */ {
     /**
      * Returns a copy of this date-time with the specified period subtracted.
      *
-     * This method returns a new date-time based on this time with the specified period subtracted.
-     * The amount is typically {@link Period} but may be any other type implementing
-     * the {@link TemporalAmount} interface.
-     * The calculation is delegated to the specified adjuster, which typically calls
-     * back to {@link minus}.
-     *
-     * This instance is immutable and unaffected by this method call.
-     *
-     * @param {TemporalAmount} amount - the amount to subtract, not null
-     * @return {LocalDateTime} based on this date-time with the subtraction made, not null
-     * @throws {DateTimeException} if the subtraction cannot be made
-     * @throws {ArithmeticException} if numeric overflow occurs
-     */
-    minusAmount(amount) {
-        requireNonNull(amount, 'amount');
-        return amount.subtractFrom(this);
-    }
-
-    /**
-     * Returns a copy of this date-time with the specified period subtracted.
-     *
      * This method returns a new date-time based on this date-time with the specified period subtracted.
      * This can be used to subtract any period that is defined by a unit, for example to subtract years, months or days.
      * The unit is responsible for the details of the calculation, including the resolution
@@ -1073,9 +1030,9 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @return {LocalDateTime} a {@link LocalDateTime} based on this date-time with the specified period subtracted, not null
      * @throws {DateTimeException} if the unit cannot be added to this type
      */
-    minusAmountUnit(amountToSubtract, unit) {
+    _minusUnit(amountToSubtract, unit) {
         requireNonNull(unit, 'unit');
-        return this.plusAmountUnit(-1 * amountToSubtract, unit);
+        return this._plusUnit(-1 * amountToSubtract, unit);
     }
 
     //-----------------------------------------------------------------------

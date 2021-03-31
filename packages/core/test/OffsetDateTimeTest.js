@@ -190,7 +190,7 @@ describe('js-joda OffsetDateTime', () => {
         });
     });
 
-    describe('plusAmountUnit', () => {
+    describe('plus(amount,unit)', () => {
         it('should support custom unit', () => {
             class CustomUnit extends TemporalUnit {
                 addTo(dateTime, periodToAdd) {
@@ -198,7 +198,7 @@ describe('js-joda OffsetDateTime', () => {
                 }
             }
             const odt = OffsetDateTime.parse('2025-01-02T03:04:06.7+08:00');
-            expect(odt.plusAmountUnit(1, new CustomUnit()).dayOfMonth()).to.equal(3);
+            expect(odt.plus(1, new CustomUnit()).dayOfMonth()).to.equal(3);
         });
     });
 

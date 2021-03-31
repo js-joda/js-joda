@@ -73,7 +73,7 @@ describe('js-joda OffsetTime', () => {
         });
     });
 
-    describe('plusAmountUnit', () => {
+    describe('plus(amount, unit)', () => {
         it('should support custom unit', () => {
             class CustomUnit extends TemporalUnit{
                 isSupportedBy(){
