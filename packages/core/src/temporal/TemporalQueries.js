@@ -220,4 +220,95 @@ export class TemporalQueries {
     static localTime() {
         return TemporalQueries.LOCAL_TIME;
     }
+    
+        /**
+         * A strict query for the {@link ZoneId}.
+         */
+    static get ZONE_ID() {
+      delete TemporalQueries.ZONE_ID;
+      TemporalQueries.ZONE_ID = createTemporalQuery('ZONE_ID', (temporal) => {
+            return temporal.query(TemporalQueries.ZONE_ID);
+        });
+        return TemporalQueries.ZONE_ID;
+        }
+    
+        /**
+         * A query for the {@link Chronology}.
+         */
+        static get CHRONO() {
+          delete TemporalQueries.CHRONO;
+        TemporalQueries.CHRONO =  createTemporalQuery('CHRONO', (temporal) => {
+            return temporal.query(TemporalQueries.CHRONO);
+        });
+        return TemporalQueries.CHRONO;
+        }
+    
+        /**
+         * A query for the smallest supported unit.
+         */
+        static get PRECISION(){
+         delete TemporalQueries.PRECISION;
+        TemporalQueries.PRECISION = createTemporalQuery('PRECISION', (temporal) => {
+            return temporal.query(TemporalQueries.PRECISION);
+        });
+        return TemporalQueries.PRECISION;
+        }
+    
+        //-----------------------------------------------------------------------
+        /**
+         * A query for {@link ZoneOffset} returning null if not found.
+         */
+        static get OFFSET() {
+         delete TemporalQueries.OFFSET;
+         TemporalQueries.OFFSET = createTemporalQuery('OFFSET', (temporal) => {
+        
+            if (temporal.isSupported(ChronoField.OFFSET_SECONDS)) {
+                return ZoneOffset.ofTotalSeconds(temporal.get(ChronoField.OFFSET_SECONDS));
+            }
+            return null;
+        });
+        return TemporalQueries.OFFSET;
+        }
+    
+        /**
+         * A lenient query for the {@link ZoneId}, falling back to the {@link ZoneOffset}.
+         */
+        static get ZONE() {
+         delete TemporalQueries.ZONE;
+         TemporalQueries.ZONE = createTemporalQuery('ZONE', (temporal) => {
+            const zone = temporal.query(TemporalQueries.ZONE_ID);
+            return (zone != null ? zone : temporal.query(TemporalQueries.OFFSET));
+        });
+        return TemporalQueries.ZONE;
+        }
+    
+        /**
+         * A query for {@link LocalDate} returning null if not found.
+         */
+        static get LOCAL_DATE() {
+         delete TemporalQueries.LOCAL_DATE;
+         TemporalQueries.LOCAL_DATE = createTemporalQuery('LOCAL_DATE', (temporal) => {
+            if (temporal.isSupported(ChronoField.EPOCH_DAY)) {
+                return LocalDate.ofEpochDay(temporal.getLong(ChronoField.EPOCH_DAY));
+            }
+            return null;
+        });
+        return TemporalQueries.LOCAL_DATE;
+        }
+    
+        /**
+         * A query for {@link LocalTime} returning null if not found.
+         */
+        static get LOCAL_TIME() {
+         delete TemporalQueries.LOCAL_TIME;
+         TemporalQueries.LOCAL_TIME = createTemporalQuery('LOCAL_TIME', (temporal) => {
+            if (temporal.isSupported(ChronoField.NANO_OF_DAY)) {
+                return LocalTime.ofNanoOfDay(temporal.getLong(ChronoField.NANO_OF_DAY));
+            }
+            return null;
+        });
+        return TemporalQueries.LOCAL_TIME;
+        }
+    
+
 }

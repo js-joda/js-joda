@@ -23,13 +23,13 @@ const ID_CACHE = {};
  *
  * ### Static properties of Class {@link LocalDate}
  *
- * ZoneOffset.MAX_SECONDS = 18 * LocalTime.SECONDS_PER_HOUR;
+ * static get MAX_SECONDS() { return 18 * LocalTime.SECONDS_PER_HOUR;
  *
- * ZoneOffset.UTC = ZoneOffset.ofTotalSeconds(0);
+ * static get UTC() { return ZoneOffset.ofTotalSeconds(0);
  *
- * ZoneOffset.MIN = ZoneOffset.ofTotalSeconds(-ZoneOffset.MAX_SECONDS);
+ * static get MIN() { return ZoneOffset.ofTotalSeconds(-ZoneOffset.MAX_SECONDS);
  *
- * ZoneOffset.MAX = ZoneOffset.ofTotalSeconds(ZoneOffset.MAX_SECONDS);
+ * static get MAX() { return ZoneOffset.ofTotalSeconds(ZoneOffset.MAX_SECONDS);
  *
  */
 export class ZoneOffset extends ZoneId {
@@ -476,11 +476,10 @@ export class ZoneOffset extends ZoneId {
     toString(){
         return this._id;
     }
-}
 
-export function _init() {
-    ZoneOffset.MAX_SECONDS = 18 * LocalTime.SECONDS_PER_HOUR;
-    ZoneOffset.UTC = ZoneOffset.ofTotalSeconds(0);
-    ZoneOffset.MIN = ZoneOffset.ofTotalSeconds(-ZoneOffset.MAX_SECONDS);
-    ZoneOffset.MAX = ZoneOffset.ofTotalSeconds(ZoneOffset.MAX_SECONDS);
+    static get MAX_SECONDS() { delete ZoneOffset.MAX_SECONDS; ZoneOffset.MAX_SECONDS = 18 * LocalTime.SECONDS_PER_HOUR; return ZoneOffset.MAX_SECONDS; }
+    static get UTC() { delete ZoneOffset.UTC; ZoneOffset.UTC = ZoneOffset.ofTotalSeconds(0); return ZoneOffset.UTC; }
+    static get MIN() { delete ZoneOffset.MIN; ZoneOffset.MIN = ZoneOffset.ofTotalSeconds(-ZoneOffset.MAX_SECONDS); return ZoneOffset.MIN; }
+    static get MAX() { delete ZoneOffset.MAX; ZoneOffset.MAX = ZoneOffset.ofTotalSeconds(ZoneOffset.MAX_SECONDS); return ZoneOffset.MAX; }
+    static get from() {return ZoneIdFactory.from;}
 }

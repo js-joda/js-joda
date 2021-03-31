@@ -1385,6 +1385,18 @@ export class DateTimeFormatterBuilder {
         const pp = new CompositePrinterParser(this._printerParsers, false);
         return new DateTimeFormatter(pp, null, DecimalStyle.STANDARD, resolverStyle, null, null, null);
     }
+    
+    //static get CharLiteralPrinterParser() { return StringLiteralPrinterParser; }
+        static get CompositePrinterParser() { return CompositePrinterParser; }
+        static get PadPrinterParserDecorator() { return PadPrinterParserDecorator; }
+        static get SettingsParser() { return SettingsParser; }
+        static get StringLiteralPrinterParser() { return StringLiteralPrinterParser; }
+        static get CharLiteralPrinterParser() { return CharLiteralPrinterParser; }
+        static get NumberPrinterParser() { return NumberPrinterParser; }
+        static get ReducedPrinterParser() { return ReducedPrinterParser; }
+        static get FractionPrinterParser() { return FractionPrinterParser; }
+        static get OffsetIdPrinterParser() { return OffsetIdPrinterParser; }
+        static get ZoneIdPrinterParser() { return ZoneIdPrinterParser; }
 
 }
 
@@ -1525,21 +1537,5 @@ class InstantPrinterParser  {
     toString() {
         return 'Instant()';
     }
-}
 
-
-export function _init() {
-    ReducedPrinterParser.BASE_DATE = LocalDate.of(2000, 1, 1);
-
-    DateTimeFormatterBuilder.CompositePrinterParser = CompositePrinterParser;
-    DateTimeFormatterBuilder.PadPrinterParserDecorator = PadPrinterParserDecorator;
-    DateTimeFormatterBuilder.SettingsParser = SettingsParser;
-    DateTimeFormatterBuilder.CharLiteralPrinterParser = StringLiteralPrinterParser;
-    DateTimeFormatterBuilder.StringLiteralPrinterParser = StringLiteralPrinterParser;
-    DateTimeFormatterBuilder.CharLiteralPrinterParser = CharLiteralPrinterParser;
-    DateTimeFormatterBuilder.NumberPrinterParser = NumberPrinterParser;
-    DateTimeFormatterBuilder.ReducedPrinterParser = ReducedPrinterParser;
-    DateTimeFormatterBuilder.FractionPrinterParser = FractionPrinterParser;
-    DateTimeFormatterBuilder.OffsetIdPrinterParser = OffsetIdPrinterParser;
-    DateTimeFormatterBuilder.ZoneIdPrinterParser = ZoneIdPrinterParser;
 }

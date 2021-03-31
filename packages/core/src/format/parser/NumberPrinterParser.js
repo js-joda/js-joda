@@ -363,5 +363,7 @@ export class ReducedPrinterParser extends NumberPrinterParser {
     toString() {
         return 'ReducedValue(' + this._field + ',' + this._minWidth + ',' + this._maxWidth + ',' + (this._baseDate != null ? this._baseDate : this._baseValue) + ')';
     }
+    
+    static get BASE_DATE() {delete ReducedPrinterParser.BASE_DATE; ReducedPrinterParser.BASE_DATE = LocalDate.of(2000, 1, 1); return ReducedPrinterParser.BASE_DATE; }
 }
 

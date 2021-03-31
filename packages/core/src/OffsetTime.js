@@ -607,15 +607,12 @@ export class OffsetTime extends DefaultInterfaceTemporal {
     toJSON() {
         return this.toString();
     }
-}
 
+    static get MIN () {return  OffsetTime.ofNumbers(0, 0, 0,0, ZoneOffset.MAX);}
 
-export function _init() {
-    OffsetTime.MIN = OffsetTime.ofNumbers(0, 0, 0,0, ZoneOffset.MAX);
+    static get MAX () {return  OffsetTime.ofNumbers(23, 59, 59,999999999, ZoneOffset.MIN);}
 
-    OffsetTime.MAX = OffsetTime.ofNumbers(23, 59, 59,999999999, ZoneOffset.MIN);
-
-    OffsetTime.FROM = createTemporalQuery('OffsetTime.FROM', (temporal) => {
-        return OffsetTime.from(temporal);
-    });
+    static get FROM() {return  createTemporalQuery('OffsetTime.FROM', (temporal) => {
+                                      return OffsetTime.from(temporal);
+                                  });}
 }

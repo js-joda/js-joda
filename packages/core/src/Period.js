@@ -923,11 +923,9 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
     toJSON() {
         return this.toString();
     }
-}
 
-export function _init() {
     /**
      * A constant for a period of zero.
      */
-    Period.ofDays(0);
+    static get ZERO() {delete Period.ZERO; Period.ZERO = Period.ofDays(0); return Period.ZERO;}
 }

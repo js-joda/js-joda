@@ -743,15 +743,16 @@ export class OffsetDateTime extends DefaultInterfaceTemporal {
         requireNonNull(formatter, 'formatter');
         return formatter.format(this);
     }
+    
+    static get MIN () { return  LocalDateTime.MIN.atOffset(ZoneOffset.MAX); }
+    
+    static get MAX () {return LocalDateTime.MAX.atOffset(ZoneOffset.MIN);} 
+    
+    static get FROM() {return  createTemporalQuery('OffsetDateTime.FROM', (temporal) => {
+                                          return OffsetDateTime.from(temporal);
+                                      });}
 }
 
 
-export function _init() {
-    OffsetDateTime.MIN = LocalDateTime.MIN.atOffset(ZoneOffset.MAX);
+    
 
-    OffsetDateTime.MAX = LocalDateTime.MAX.atOffset(ZoneOffset.MIN);
-
-    OffsetDateTime.FROM = createTemporalQuery('OffsetDateTime.FROM', (temporal) => {
-        return OffsetDateTime.from(temporal);
-    });
-}

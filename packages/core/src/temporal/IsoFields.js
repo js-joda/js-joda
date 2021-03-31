@@ -129,7 +129,14 @@ import {ResolverStyle} from '../format/ResolverStyle';
  * @typedef {Object} IsoFields
  * @type {Object}
  */
-export const IsoFields = {};
+export class IsoFields {
+    static get DAY_OF_QUARTER() {delete IsoFields.DAY_OF_QUARTER; IsoFields.DAY_OF_QUARTER = new DAY_OF_QUARTER_FIELD(); return IsoFields.DAY_OF_QUARTER; }
+    static get QUARTER_OF_YEAR() {delete IsoFields.QUARTER_OF_YEAR; IsoFields.QUARTER_OF_YEAR = new QUARTER_OF_YEAR_FIELD(); return IsoFields.QUARTER_OF_YEAR; }
+    static get WEEK_OF_WEEK_BASED_YEAR() {delete IsoFields.WEEK_OF_WEEK_BASED_YEAR; IsoFields.WEEK_OF_WEEK_BASED_YEAR = new WEEK_OF_WEEK_BASED_YEAR_FIELD(); return IsoFields.WEEK_OF_WEEK_BASED_YEAR; }
+    static get WEEK_BASED_YEAR() {delete IsoFields.WEEK_BASED_YEAR; IsoFields.WEEK_BASED_YEAR = new WEEK_BASED_YEAR_FIELD(); return IsoFields.WEEK_BASED_YEAR; }
+    static get WEEK_BASED_YEARS() {delete IsoFields.WEEK_BASED_YEARS; IsoFields.WEEK_BASED_YEARS = new Unit('WeekBasedYears', Duration.ofSeconds(31556952)); return IsoFields.WEEK_BASED_YEARS; }
+    static get QUARTER_YEARS() {delete IsoFields.QUARTER_YEARS; IsoFields.QUARTER_YEARS = new Unit('QuarterYears', Duration.ofSeconds(31556952 / 4)); return IsoFields.QUARTER_YEARS; }
+}
 
 //-----------------------------------------------------------------------
 
@@ -287,7 +294,7 @@ class DAY_OF_QUARTER_FIELD extends Field {
      * @returns {TemporalUnit}
      */
     rangeUnit() {
-        return QUARTER_YEARS;
+        return IsoFields.QUARTER_YEARS;
     }
 
     /**
@@ -318,7 +325,7 @@ class DAY_OF_QUARTER_FIELD extends Field {
         if (temporal.isSupported(this) === false) {
             throw new UnsupportedTemporalTypeException('Unsupported field: DayOfQuarter');
         }
-        const qoy = temporal.getLong(QUARTER_OF_YEAR);
+        const qoy = temporal.getLong(IsoFields.QUARTER_OF_YEAR);
         if (qoy === 1) {
             const year = temporal.getLong(ChronoField.YEAR);
             return (IsoChronology.isLeapYear(year) ? ValueRange.of(1, 91) : ValueRange.of(1, 90));
@@ -366,12 +373,12 @@ class DAY_OF_QUARTER_FIELD extends Field {
      */
     resolve(fieldValues, partialTemporal, resolverStyle) {
         const yearLong = fieldValues.get(ChronoField.YEAR);
-        const qoyLong = fieldValues.get(QUARTER_OF_YEAR);
+        const qoyLong = fieldValues.get(IsoFields.QUARTER_OF_YEAR);
         if (yearLong == null || qoyLong == null) {
             return null;
         }
         const y = ChronoField.YEAR.checkValidIntValue(yearLong);
-        const doq = fieldValues.get(DAY_OF_QUARTER);
+        const doq = fieldValues.get(IsoFields.DAY_OF_QUARTER);
         let date;
         if (resolverStyle === ResolverStyle.LENIENT) {
             const qoy = qoyLong;
@@ -379,7 +386,7 @@ class DAY_OF_QUARTER_FIELD extends Field {
             date = date.plusMonths(MathUtil.safeMultiply(MathUtil.safeSubtract(qoy, 1), 3));
             date = date.plusDays(MathUtil.safeSubtract(doq, 1));
         } else {
-            const qoy = QUARTER_OF_YEAR.range().checkValidIntValue(qoyLong, QUARTER_OF_YEAR);
+            const qoy = IsoFields.QUARTER_OF_YEAR.range().checkValidIntValue(qoyLong, IsoFields.QUARTER_OF_YEAR);
             if (resolverStyle === ResolverStyle.STRICT) {
                 let max = 92;
                 if (qoy === 1) {
@@ -395,7 +402,7 @@ class DAY_OF_QUARTER_FIELD extends Field {
         }
         fieldValues.remove(this);
         fieldValues.remove(ChronoField.YEAR);
-        fieldValues.remove(QUARTER_OF_YEAR);
+        fieldValues.remove(IsoFields.QUARTER_OF_YEAR);
         return date;
     }
 }
@@ -418,7 +425,7 @@ class QUARTER_OF_YEAR_FIELD extends Field {
      * @returns {TemporalUnit}
      */
     baseUnit() {
-        return QUARTER_YEARS;
+        return IsoFields.QUARTER_YEARS;
     }
 
     /**
@@ -510,7 +517,7 @@ class WEEK_OF_WEEK_BASED_YEAR_FIELD extends Field {
      * @returns {TemporalUnit}
      */
     rangeUnit() {
-        return WEEK_BASED_YEARS;
+        return IsoFields.WEEK_BASED_YEARS;
     }
 
     /**
@@ -574,13 +581,13 @@ class WEEK_OF_WEEK_BASED_YEAR_FIELD extends Field {
      * @returns {ValueRange}
      */
     resolve(fieldValues, partialTemporal, resolverStyle) {
-        const wbyLong = fieldValues.get(WEEK_BASED_YEAR);
+        const wbyLong = fieldValues.get(IsoFields.WEEK_BASED_YEAR);
         const dowLong = fieldValues.get(ChronoField.DAY_OF_WEEK);
         if (wbyLong == null || dowLong == null) {
             return null;
         }
-        const wby = WEEK_BASED_YEAR.range().checkValidIntValue(wbyLong, WEEK_BASED_YEAR);
-        const wowby = fieldValues.get(WEEK_OF_WEEK_BASED_YEAR);
+        const wby = IsoFields.WEEK_BASED_YEAR.range().checkValidIntValue(wbyLong, IsoFields.WEEK_BASED_YEAR);
+        const wowby = fieldValues.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);
         let date;
         if (resolverStyle === ResolverStyle.LENIENT) {
             let dow = dowLong;
@@ -605,7 +612,7 @@ class WEEK_OF_WEEK_BASED_YEAR_FIELD extends Field {
             date = LocalDate.of(wby, 1, 4).plusWeeks(wowby - 1).with(ChronoField.DAY_OF_WEEK, dow);
         }
         fieldValues.remove(this);
-        fieldValues.remove(WEEK_BASED_YEAR);
+        fieldValues.remove(IsoFields.WEEK_BASED_YEAR);
         fieldValues.remove(ChronoField.DAY_OF_WEEK);
         return date;
     }
@@ -638,7 +645,7 @@ class WEEK_BASED_YEAR_FIELD extends Field {
      * @returns {TemporalUnit}
      */
     baseUnit() {
-        return WEEK_BASED_YEARS;
+        return IsoFields.WEEK_BASED_YEARS;
     }
 
     /**
@@ -699,7 +706,7 @@ class WEEK_BASED_YEAR_FIELD extends Field {
         if (this.isSupportedBy(temporal) === false) {
             throw new UnsupportedTemporalTypeException('Unsupported field: WeekBasedYear');
         }
-        const newWby = this.range().checkValidIntValue(newValue, WEEK_BASED_YEAR);  // strict check
+        const newWby = this.range().checkValidIntValue(newValue, IsoFields.WEEK_BASED_YEAR);  // strict check
         const date = LocalDate.from(temporal);
         const dow = date.get(ChronoField.DAY_OF_WEEK);
         let week = Field._getWeek(date);
@@ -782,11 +789,11 @@ class Unit extends TemporalUnit {
      */
     addTo(temporal, periodToAdd) {
         switch(this) {
-            case WEEK_BASED_YEARS: {
-                const added = MathUtil.safeAdd(temporal.get(WEEK_BASED_YEAR), periodToAdd);
-                return temporal.with(WEEK_BASED_YEAR, added);
+            case IsoFields.WEEK_BASED_YEARS: {
+                const added = MathUtil.safeAdd(temporal.get(IsoFields.WEEK_BASED_YEAR), periodToAdd);
+                return temporal.with(IsoFields.WEEK_BASED_YEAR, added);
             }
-            case QUARTER_YEARS:
+            case IsoFields.QUARTER_YEARS:
                 // no overflow (256 is multiple of 4)
                 return temporal.plus(MathUtil.intDiv(periodToAdd, 256), ChronoUnit.YEARS).plus(MathUtil.intMod(periodToAdd, 256) * 3, ChronoUnit.MONTHS);
             default:
@@ -802,9 +809,9 @@ class Unit extends TemporalUnit {
      */
     between(temporal1, temporal2) {
         switch(this) {
-            case WEEK_BASED_YEARS:
-                return MathUtil.safeSubtract(temporal2.getLong(WEEK_BASED_YEAR), temporal1.getLong(WEEK_BASED_YEAR));
-            case QUARTER_YEARS:
+            case IsoFields.WEEK_BASED_YEARS:
+                return MathUtil.safeSubtract(temporal2.getLong(IsoFields.WEEK_BASED_YEAR), temporal1.getLong(IsoFields.WEEK_BASED_YEAR));
+            case IsoFields.QUARTER_YEARS:
                 return MathUtil.intDiv(temporal1.until(temporal2, ChronoUnit.MONTHS), 3);
             default:
                 throw new IllegalStateException('Unreachable');
@@ -812,34 +819,13 @@ class Unit extends TemporalUnit {
     }
 
     toString() {
-        return name;
+        return this._name;
     }
+
+    
 }
 
-let DAY_OF_QUARTER = null;
-let QUARTER_OF_YEAR = null;
-let WEEK_OF_WEEK_BASED_YEAR = null;
-let WEEK_BASED_YEAR = null;
-let WEEK_BASED_YEARS = null;
-let QUARTER_YEARS = null;
-
-export function _init() {
-    DAY_OF_QUARTER = new DAY_OF_QUARTER_FIELD();
-    QUARTER_OF_YEAR = new QUARTER_OF_YEAR_FIELD();
-    WEEK_OF_WEEK_BASED_YEAR = new WEEK_OF_WEEK_BASED_YEAR_FIELD();
-    WEEK_BASED_YEAR = new WEEK_BASED_YEAR_FIELD();
-
-    WEEK_BASED_YEARS = new Unit('WeekBasedYears', Duration.ofSeconds(31556952));
-    QUARTER_YEARS = new Unit('QuarterYears', Duration.ofSeconds(31556952 / 4));
-
-    IsoFields.DAY_OF_QUARTER = DAY_OF_QUARTER;
-    IsoFields.QUARTER_OF_YEAR = QUARTER_OF_YEAR;
-    IsoFields.WEEK_OF_WEEK_BASED_YEAR = WEEK_OF_WEEK_BASED_YEAR;
-    IsoFields.WEEK_BASED_YEAR = WEEK_BASED_YEAR;
-    IsoFields.WEEK_BASED_YEARS = WEEK_BASED_YEARS;
-    IsoFields.QUARTER_YEARS = QUARTER_YEARS;
-
-    // this differs from threeten, but for ease of use we bring back good old joda time functionality
+// this differs from threeten, but for ease of use we bring back good old joda time functionality
     /**
      * the week of the week based year as defined by the ISO8601 Standard with a Monday-based week
      *
@@ -856,4 +842,3 @@ export function _init() {
     LocalDate.prototype.isoWeekyear = function () {
         return this.get(IsoFields.WEEK_BASED_YEAR);
     };
-}

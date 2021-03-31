@@ -11,9 +11,6 @@ import {MathUtil} from '../../MathUtil';
 import {ChronoField} from '../../temporal/ChronoField';
 
 //-----------------------------------------------------------------------
-const PATTERNS = [
-    '+HH', '+HHmm', '+HH:mm', '+HHMM', '+HH:MM', '+HHMMss', '+HH:MM:ss', '+HHMMSS', '+HH:MM:SS'
-];
 /**
  * Prints or parses an offset ID.
  * @private
@@ -38,8 +35,8 @@ export class OffsetIdPrinterParser  {
      * @return {number}
      */
     _checkPattern(pattern) {
-        for (let i = 0; i < PATTERNS.length; i++) {
-            if (PATTERNS[i] === pattern) {
+        for (let i = 0; i < OffsetIdPrinterParser.PATTERNS.length; i++) {
+            if (OffsetIdPrinterParser.PATTERNS[i] === pattern) {
                 return i;
             }
         }
@@ -169,9 +166,18 @@ export class OffsetIdPrinterParser  {
 
     toString() {
         const converted = this.noOffsetText.replace('\'', '\'\'');
-        return 'Offset(' + PATTERNS[this.type] + ',\'' + converted + '\')';
+        return 'Offset(' + OffsetIdPrinterParser.PATTERNS[this.type] + ',\'' + converted + '\')';
     }
+    
+static get INSTANCE_ID(){
+ delete OffsetIdPrinterParser.INSTANCE_ID;
+ OffsetIdPrinterParser.INSTANCE_ID = new OffsetIdPrinterParser('Z', '+HH:MM:ss');
+ return OffsetIdPrinterParser.INSTANCE_ID;
 }
-OffsetIdPrinterParser.INSTANCE_ID = new OffsetIdPrinterParser('Z', '+HH:MM:ss');
-OffsetIdPrinterParser.PATTERNS = PATTERNS;
 
+
+}
+
+OffsetIdPrinterParser.PATTERNS = [
+    '+HH', '+HHmm', '+HH:mm', '+HHMM', '+HH:MM', '+HHMMss', '+HH:MM:ss', '+HHMMSS', '+HH:MM:SS'
+];

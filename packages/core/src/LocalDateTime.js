@@ -150,11 +150,11 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      *
      * @returns {LocalDateTime}
      */
-    static of(){
-        if (arguments.length <= 2){
-            return LocalDateTime.ofDateAndTime.apply(this, arguments);
+    static of(a,b,c,d,e,f,g){
+        if (c == undefined){
+            return LocalDateTime.ofDateAndTime(a,b);
         } else {
-            return LocalDateTime.ofNumbers.apply(this, arguments);
+            return LocalDateTime.ofNumbers(a,b,c,d,e,f,g);
         }
     }
     /**
@@ -1661,16 +1661,13 @@ implements Temporal, TemporalAdjuster, Serializable */ {
         return formatter.format(this);
     }
 
-}
-
-export function _init(){
     /**
      * The minimum supported {@link LocalDateTime}, '-999999999-01-01T00:00:00'.
      * This is the local date-time of midnight at the start of the minimum date.
      * This combines {@link LocalDate#MIN} and {@link LocalTime#MIN}.
      * This could be used by an application as a 'far past' date-time.
      */
-    LocalDateTime.MIN = LocalDateTime.of(LocalDate.MIN, LocalTime.MIN);
+    static get MIN() {delete LocalDateTime.MIN; LocalDateTime.MIN = LocalDateTime.of(LocalDate.MIN, LocalTime.MIN); return LocalDateTime.MIN;}
 
     /**
      * The maximum supported {@link LocalDateTime}, '+999999999-12-31T23:59:59.999999999'.
@@ -1678,9 +1675,9 @@ export function _init(){
      * This combines {@link LocalDate#MAX} and {@link LocalTime#MAX}.
      * This could be used by an application as a 'far future' date-time.
      */
-    LocalDateTime.MAX = LocalDateTime.of(LocalDate.MAX, LocalTime.MAX);
+    static get MAX() {delete LocalDateTime.MAX; LocalDateTime.MAX = LocalDateTime.of(LocalDate.MAX, LocalTime.MAX); return LocalDateTime.MAX;}
 
-    LocalDateTime.FROM = createTemporalQuery('LocalDateTime.FROM', (temporal) => {
+    static get FROM() { delete LocalDateTime.FROM; LocalDateTime.FROM = createTemporalQuery('LocalDateTime.FROM', (temporal) => {
         return LocalDateTime.from(temporal);
-    });
+    }); return LocalDateTime.FROM;}
 }

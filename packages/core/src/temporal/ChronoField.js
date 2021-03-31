@@ -385,6 +385,8 @@ export class ChronoField extends TemporalField {
     equals(other){
         return this === other;
     }
+    
+    
 
     /**
      * @param {!Temporal} temporal the temporal object to adjust.
@@ -403,68 +405,65 @@ export class ChronoField extends TemporalField {
     isSupportedBy(temporal) {
         return temporal.isSupported(this);
     }
-}
 
-export function _init() {
+    static get NANO_OF_SECOND() { delete ChronoField.NANO_OF_SECOND; ChronoField.NANO_OF_SECOND = new ChronoField('NanoOfSecond', ChronoUnit.NANOS, ChronoUnit.SECONDS, ValueRange.of(0, 999999999));; return ChronoField.NANO_OF_SECOND;} 
 
-    ChronoField.NANO_OF_SECOND = new ChronoField('NanoOfSecond', ChronoUnit.NANOS, ChronoUnit.SECONDS, ValueRange.of(0, 999999999));
+    static get NANO_OF_DAY() { delete ChronoField.NANO_OF_DAY; ChronoField.NANO_OF_DAY = new ChronoField('NanoOfDay', ChronoUnit.NANOS, ChronoUnit.DAYS, ValueRange.of(0, 86400 * 1000000000 - 1));; return ChronoField.NANO_OF_DAY;} 
 
-    ChronoField.NANO_OF_DAY = new ChronoField('NanoOfDay', ChronoUnit.NANOS, ChronoUnit.DAYS, ValueRange.of(0, 86400 * 1000000000 - 1));
+    static get MICRO_OF_SECOND() { delete ChronoField.MICRO_OF_SECOND; ChronoField.MICRO_OF_SECOND = new ChronoField('MicroOfSecond', ChronoUnit.MICROS, ChronoUnit.SECONDS, ValueRange.of(0, 999999));; return ChronoField.MICRO_OF_SECOND;} 
 
-    ChronoField.MICRO_OF_SECOND = new ChronoField('MicroOfSecond', ChronoUnit.MICROS, ChronoUnit.SECONDS, ValueRange.of(0, 999999));
+    static get MICRO_OF_DAY() { delete ChronoField.MICRO_OF_DAY; ChronoField.MICRO_OF_DAY = new ChronoField('MicroOfDay', ChronoUnit.MICROS, ChronoUnit.DAYS, ValueRange.of(0, 86400 * 1000000 - 1));; return ChronoField.MICRO_OF_DAY;} 
 
-    ChronoField.MICRO_OF_DAY = new ChronoField('MicroOfDay', ChronoUnit.MICROS, ChronoUnit.DAYS, ValueRange.of(0, 86400 * 1000000 - 1));
+    static get MILLI_OF_SECOND() { delete ChronoField.MILLI_OF_SECOND; ChronoField.MILLI_OF_SECOND = new ChronoField('MilliOfSecond', ChronoUnit.MILLIS, ChronoUnit.SECONDS, ValueRange.of(0, 999));; return ChronoField.MILLI_OF_SECOND;} 
 
-    ChronoField.MILLI_OF_SECOND = new ChronoField('MilliOfSecond', ChronoUnit.MILLIS, ChronoUnit.SECONDS, ValueRange.of(0, 999));
+    static get MILLI_OF_DAY() { delete ChronoField.MILLI_OF_DAY; ChronoField.MILLI_OF_DAY = new ChronoField('MilliOfDay', ChronoUnit.MILLIS, ChronoUnit.DAYS, ValueRange.of(0, 86400 * 1000 - 1));; return ChronoField.MILLI_OF_DAY;} 
 
-    ChronoField.MILLI_OF_DAY = new ChronoField('MilliOfDay', ChronoUnit.MILLIS, ChronoUnit.DAYS, ValueRange.of(0, 86400 * 1000 - 1));
+    static get SECOND_OF_MINUTE() { delete ChronoField.SECOND_OF_MINUTE; ChronoField.SECOND_OF_MINUTE = new ChronoField('SecondOfMinute', ChronoUnit.SECONDS, ChronoUnit.MINUTES, ValueRange.of(0, 59));; return ChronoField.SECOND_OF_MINUTE;} 
 
-    ChronoField.SECOND_OF_MINUTE = new ChronoField('SecondOfMinute', ChronoUnit.SECONDS, ChronoUnit.MINUTES, ValueRange.of(0, 59));
+    static get SECOND_OF_DAY() { delete ChronoField.SECOND_OF_DAY; ChronoField.SECOND_OF_DAY = new ChronoField('SecondOfDay', ChronoUnit.SECONDS, ChronoUnit.DAYS, ValueRange.of(0, 86400 - 1));; return ChronoField.SECOND_OF_DAY;} 
 
-    ChronoField.SECOND_OF_DAY = new ChronoField('SecondOfDay', ChronoUnit.SECONDS, ChronoUnit.DAYS, ValueRange.of(0, 86400 - 1));
+    static get MINUTE_OF_HOUR() { delete ChronoField.MINUTE_OF_HOUR; ChronoField.MINUTE_OF_HOUR = new ChronoField('MinuteOfHour', ChronoUnit.MINUTES, ChronoUnit.HOURS, ValueRange.of(0, 59));; return ChronoField.MINUTE_OF_HOUR;} 
 
-    ChronoField.MINUTE_OF_HOUR = new ChronoField('MinuteOfHour', ChronoUnit.MINUTES, ChronoUnit.HOURS, ValueRange.of(0, 59));
+    static get MINUTE_OF_DAY() { delete ChronoField.MINUTE_OF_DAY; ChronoField.MINUTE_OF_DAY = new ChronoField('MinuteOfDay', ChronoUnit.MINUTES, ChronoUnit.DAYS, ValueRange.of(0, (24 * 60) - 1));; return ChronoField.MINUTE_OF_DAY;} 
 
-    ChronoField.MINUTE_OF_DAY = new ChronoField('MinuteOfDay', ChronoUnit.MINUTES, ChronoUnit.DAYS, ValueRange.of(0, (24 * 60) - 1));
+    static get HOUR_OF_AMPM() { delete ChronoField.HOUR_OF_AMPM; ChronoField.HOUR_OF_AMPM = new ChronoField('HourOfAmPm', ChronoUnit.HOURS, ChronoUnit.HALF_DAYS, ValueRange.of(0, 11));; return ChronoField.HOUR_OF_AMPM;} 
 
-    ChronoField.HOUR_OF_AMPM = new ChronoField('HourOfAmPm', ChronoUnit.HOURS, ChronoUnit.HALF_DAYS, ValueRange.of(0, 11));
+    static get CLOCK_HOUR_OF_AMPM() { delete ChronoField.CLOCK_HOUR_OF_AMPM; ChronoField.CLOCK_HOUR_OF_AMPM = new ChronoField('ClockHourOfAmPm', ChronoUnit.HOURS, ChronoUnit.HALF_DAYS, ValueRange.of(1, 12));; return ChronoField.CLOCK_HOUR_OF_AMPM;} 
 
-    ChronoField.CLOCK_HOUR_OF_AMPM = new ChronoField('ClockHourOfAmPm', ChronoUnit.HOURS, ChronoUnit.HALF_DAYS, ValueRange.of(1, 12));
+    static get HOUR_OF_DAY() { delete ChronoField.HOUR_OF_DAY; ChronoField.HOUR_OF_DAY = new ChronoField('HourOfDay', ChronoUnit.HOURS, ChronoUnit.DAYS, ValueRange.of(0, 23));; return ChronoField.HOUR_OF_DAY;} 
 
-    ChronoField.HOUR_OF_DAY = new ChronoField('HourOfDay', ChronoUnit.HOURS, ChronoUnit.DAYS, ValueRange.of(0, 23));
+    static get CLOCK_HOUR_OF_DAY() { delete ChronoField.CLOCK_HOUR_OF_DAY; ChronoField.CLOCK_HOUR_OF_DAY = new ChronoField('ClockHourOfDay', ChronoUnit.HOURS, ChronoUnit.DAYS, ValueRange.of(1, 24));; return ChronoField.CLOCK_HOUR_OF_DAY;} 
 
-    ChronoField.CLOCK_HOUR_OF_DAY = new ChronoField('ClockHourOfDay', ChronoUnit.HOURS, ChronoUnit.DAYS, ValueRange.of(1, 24));
+    static get AMPM_OF_DAY() { delete ChronoField.AMPM_OF_DAY; ChronoField.AMPM_OF_DAY = new ChronoField('AmPmOfDay', ChronoUnit.HALF_DAYS, ChronoUnit.DAYS, ValueRange.of(0, 1));; return ChronoField.AMPM_OF_DAY;} 
 
-    ChronoField.AMPM_OF_DAY = new ChronoField('AmPmOfDay', ChronoUnit.HALF_DAYS, ChronoUnit.DAYS, ValueRange.of(0, 1));
+    static get DAY_OF_WEEK() { delete ChronoField.DAY_OF_WEEK; ChronoField.DAY_OF_WEEK = new ChronoField('DayOfWeek', ChronoUnit.DAYS, ChronoUnit.WEEKS, ValueRange.of(1, 7));; return ChronoField.DAY_OF_WEEK;} 
 
-    ChronoField.DAY_OF_WEEK = new ChronoField('DayOfWeek', ChronoUnit.DAYS, ChronoUnit.WEEKS, ValueRange.of(1, 7));
+    static get ALIGNED_DAY_OF_WEEK_IN_MONTH() { delete ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH; ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH = new ChronoField('AlignedDayOfWeekInMonth', ChronoUnit.DAYS, ChronoUnit.WEEKS, ValueRange.of(1, 7));; return ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH;} 
 
-    ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH = new ChronoField('AlignedDayOfWeekInMonth', ChronoUnit.DAYS, ChronoUnit.WEEKS, ValueRange.of(1, 7));
+    static get ALIGNED_DAY_OF_WEEK_IN_YEAR() { delete ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR; ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR = new ChronoField('AlignedDayOfWeekInYear', ChronoUnit.DAYS, ChronoUnit.WEEKS, ValueRange.of(1, 7));; return ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR;} 
 
-    ChronoField.ALIGNED_DAY_OF_WEEK_IN_YEAR = new ChronoField('AlignedDayOfWeekInYear', ChronoUnit.DAYS, ChronoUnit.WEEKS, ValueRange.of(1, 7));
+    static get DAY_OF_MONTH() { delete ChronoField.DAY_OF_MONTH; ChronoField.DAY_OF_MONTH = new ChronoField('DayOfMonth', ChronoUnit.DAYS, ChronoUnit.MONTHS, ValueRange.of(1, 28, 31), 'day');; return ChronoField.DAY_OF_MONTH;} 
 
-    ChronoField.DAY_OF_MONTH = new ChronoField('DayOfMonth', ChronoUnit.DAYS, ChronoUnit.MONTHS, ValueRange.of(1, 28, 31), 'day');
+    static get DAY_OF_YEAR() { delete ChronoField.DAY_OF_YEAR; ChronoField.DAY_OF_YEAR = new ChronoField('DayOfYear', ChronoUnit.DAYS, ChronoUnit.YEARS, ValueRange.of(1, 365, 366));; return ChronoField.DAY_OF_YEAR;} 
 
-    ChronoField.DAY_OF_YEAR = new ChronoField('DayOfYear', ChronoUnit.DAYS, ChronoUnit.YEARS, ValueRange.of(1, 365, 366));
+    static get EPOCH_DAY() { delete ChronoField.EPOCH_DAY; ChronoField.EPOCH_DAY = new ChronoField('EpochDay', ChronoUnit.DAYS, ChronoUnit.FOREVER, ValueRange.of(Math.floor(YearConstants.MIN_VALUE * 365.25), Math.floor(YearConstants.MAX_VALUE * 365.25)));; return ChronoField.EPOCH_DAY;} 
 
-    ChronoField.EPOCH_DAY = new ChronoField('EpochDay', ChronoUnit.DAYS, ChronoUnit.FOREVER, ValueRange.of(Math.floor(YearConstants.MIN_VALUE * 365.25), Math.floor(YearConstants.MAX_VALUE * 365.25)));
+    static get ALIGNED_WEEK_OF_MONTH() { delete ChronoField.ALIGNED_WEEK_OF_MONTH; ChronoField.ALIGNED_WEEK_OF_MONTH = new ChronoField('AlignedWeekOfMonth', ChronoUnit.WEEKS, ChronoUnit.MONTHS, ValueRange.of(1, 4, 5));; return ChronoField.ALIGNED_WEEK_OF_MONTH;} 
 
-    ChronoField.ALIGNED_WEEK_OF_MONTH = new ChronoField('AlignedWeekOfMonth', ChronoUnit.WEEKS, ChronoUnit.MONTHS, ValueRange.of(1, 4, 5));
+    static get ALIGNED_WEEK_OF_YEAR() { delete ChronoField.ALIGNED_WEEK_OF_YEAR; ChronoField.ALIGNED_WEEK_OF_YEAR = new ChronoField('AlignedWeekOfYear', ChronoUnit.WEEKS, ChronoUnit.YEARS, ValueRange.of(1, 53));; return ChronoField.ALIGNED_WEEK_OF_YEAR;} 
 
-    ChronoField.ALIGNED_WEEK_OF_YEAR = new ChronoField('AlignedWeekOfYear', ChronoUnit.WEEKS, ChronoUnit.YEARS, ValueRange.of(1, 53));
+    static get MONTH_OF_YEAR() { delete ChronoField.MONTH_OF_YEAR; ChronoField.MONTH_OF_YEAR = new ChronoField('MonthOfYear', ChronoUnit.MONTHS, ChronoUnit.YEARS, ValueRange.of(1, 12), 'month');; return ChronoField.MONTH_OF_YEAR;} 
 
-    ChronoField.MONTH_OF_YEAR = new ChronoField('MonthOfYear', ChronoUnit.MONTHS, ChronoUnit.YEARS, ValueRange.of(1, 12), 'month');
+    static get PROLEPTIC_MONTH() { delete ChronoField.PROLEPTIC_MONTH; ChronoField.PROLEPTIC_MONTH = new ChronoField('ProlepticMonth', ChronoUnit.MONTHS, ChronoUnit.FOREVER, ValueRange.of(YearConstants.MIN_VALUE * 12, YearConstants.MAX_VALUE * 12 + 11));; return ChronoField.PROLEPTIC_MONTH;} 
 
-    ChronoField.PROLEPTIC_MONTH = new ChronoField('ProlepticMonth', ChronoUnit.MONTHS, ChronoUnit.FOREVER, ValueRange.of(YearConstants.MIN_VALUE * 12, YearConstants.MAX_VALUE * 12 + 11));
+    static get YEAR_OF_ERA() { delete ChronoField.YEAR_OF_ERA; ChronoField.YEAR_OF_ERA = new ChronoField('YearOfEra', ChronoUnit.YEARS, ChronoUnit.FOREVER, ValueRange.of(1, YearConstants.MAX_VALUE, YearConstants.MAX_VALUE + 1));; return ChronoField.YEAR_OF_ERA;} 
 
-    ChronoField.YEAR_OF_ERA = new ChronoField('YearOfEra', ChronoUnit.YEARS, ChronoUnit.FOREVER, ValueRange.of(1, YearConstants.MAX_VALUE, YearConstants.MAX_VALUE + 1));
+    static get YEAR() { delete ChronoField.YEAR; ChronoField.YEAR = new ChronoField('Year', ChronoUnit.YEARS, ChronoUnit.FOREVER, ValueRange.of(YearConstants.MIN_VALUE, YearConstants.MAX_VALUE), 'year');; return ChronoField.YEAR;} 
 
-    ChronoField.YEAR = new ChronoField('Year', ChronoUnit.YEARS, ChronoUnit.FOREVER, ValueRange.of(YearConstants.MIN_VALUE, YearConstants.MAX_VALUE), 'year');
+    static get ERA() { delete ChronoField.ERA; ChronoField.ERA = new ChronoField('Era', ChronoUnit.ERAS, ChronoUnit.FOREVER, ValueRange.of(0, 1));; return ChronoField.ERA;} 
 
-    ChronoField.ERA = new ChronoField('Era', ChronoUnit.ERAS, ChronoUnit.FOREVER, ValueRange.of(0, 1));
+    static get INSTANT_SECONDS() { delete ChronoField.INSTANT_SECONDS; ChronoField.INSTANT_SECONDS = new ChronoField('InstantSeconds', ChronoUnit.SECONDS, ChronoUnit.FOREVER, ValueRange.of(MIN_SAFE_INTEGER, MAX_SAFE_INTEGER));; return ChronoField.INSTANT_SECONDS;} 
 
-    ChronoField.INSTANT_SECONDS = new ChronoField('InstantSeconds', ChronoUnit.SECONDS, ChronoUnit.FOREVER, ValueRange.of(MIN_SAFE_INTEGER, MAX_SAFE_INTEGER));
-
-    ChronoField.OFFSET_SECONDS = new ChronoField('OffsetSeconds', ChronoUnit.SECONDS, ChronoUnit.FOREVER, ValueRange.of(-18 * 3600, 18 * 3600));
+    static get OFFSET_SECONDS() { delete ChronoField.OFFSET_SECONDS; ChronoField.OFFSET_SECONDS = new ChronoField('OffsetSeconds', ChronoUnit.SECONDS, ChronoUnit.FOREVER, ValueRange.of(-18 * 3600, 18 * 3600));; return ChronoField.OFFSET_SECONDS;} 
 
 }

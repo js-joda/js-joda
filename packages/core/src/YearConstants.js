@@ -7,10 +7,11 @@
  * attempt to avoid dependency cycles... define all constants here and they could be used
  * so instead of using e.g. Year.MAX_VALUE we could use YearConstants.MAX_VALUE to avoid the cycle
  */
-export class YearConstants {}
+export class YearConstants {
+    
+}
 
-export function _init() {
-    /**
+/**
      * The minimum supported year
      */
     YearConstants.MIN_VALUE = -999999;
@@ -18,4 +19,3 @@ export function _init() {
      * The maximum supported year
      */
     YearConstants.MAX_VALUE = 999999;
-}

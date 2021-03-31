@@ -513,8 +513,8 @@ export class Month extends TemporalAccessor {
      */
     static valueOf(name) {
         let ordinal = 0;
-        for(ordinal; ordinal < MONTHS.length; ordinal++){
-            if(MONTHS[ordinal].name() === name){
+        for(ordinal; ordinal < Month.MONTHS.length; ordinal++){
+            if(Month.MONTHS[ordinal].name() === name){
                 break;
             }
         }
@@ -527,7 +527,7 @@ export class Month extends TemporalAccessor {
      * @return {Month[]}
      */
     static values(){
-        return MONTHS.slice();
+        return Month.MONTHS.slice();
     }
 
     /**
@@ -539,7 +539,7 @@ export class Month extends TemporalAccessor {
         if (month < 1 || month > 12) {
             assert(false, 'Invalid value for MonthOfYear: ' + month, DateTimeException);
         }
-        return MONTHS[month-1];
+        return Month.MONTHS[month-1];
     }
 
     /**
@@ -575,26 +575,23 @@ export class Month extends TemporalAccessor {
                     temporal + ' of type ' + (temporal && temporal.constructor != null ? temporal.constructor.name : ''), ex);
         }
     }
-}
 
-let MONTHS;
 
-export function _init() {
-    Month.JANUARY = new Month(1, 'JANUARY');
-    Month.FEBRUARY = new Month(2, 'FEBRUARY');
-    Month.MARCH = new Month(3, 'MARCH');
-    Month.APRIL = new Month(4, 'APRIL');
-    Month.MAY = new Month(5, 'MAY');
-    Month.JUNE = new Month(6, 'JUNE');
-    Month.JULY = new Month(7, 'JULY');
-    Month.AUGUST = new Month(8, 'AUGUST');
-    Month.SEPTEMBER = new Month(9, 'SEPTEMBER');
-    Month.OCTOBER = new Month(10, 'OCTOBER');
-    Month.NOVEMBER = new Month(11, 'NOVEMBER');
-    Month.DECEMBER = new Month(12, 'DECEMBER');
+    static get JANUARY () { delete Month.JANUARY; Month.JANUARY =  new Month(1, 'JANUARY'); return Month.JANUARY; }
+    static get FEBRUARY () { delete Month.FEBRUARY; Month.FEBRUARY =  new Month(2, 'FEBRUARY'); return Month.FEBRUARY; }
+    static get MARCH () { delete Month.MARCH; Month.MARCH =  new Month(3, 'MARCH'); return Month.MARCH; }
+    static get APRIL () { delete Month.APRIL; Month.APRIL =  new Month(4, 'APRIL'); return Month.APRIL; }
+    static get MAY () { delete Month.MAY; Month.MAY =  new Month(5, 'MAY'); return Month.MAY; }
+    static get JUNE () { delete Month.JUNE; Month.JUNE =  new Month(6, 'JUNE'); return Month.JUNE; }
+    static get JULY () { delete Month.JULY; Month.JULY =  new Month(7, 'JULY'); return Month.JULY; }
+    static get AUGUST () { delete Month.AUGUST; Month.AUGUST =  new Month(8, 'AUGUST'); return Month.AUGUST; }
+    static get SEPTEMBER () { delete Month.SEPTEMBER; Month.SEPTEMBER =  new Month(9, 'SEPTEMBER'); return Month.SEPTEMBER; }
+    static get OCTOBER () { delete Month.OCTOBER; Month.OCTOBER =  new Month(10, 'OCTOBER'); return Month.OCTOBER; }
+    static get NOVEMBER () { delete Month.NOVEMBER; Month.NOVEMBER =  new Month(11, 'NOVEMBER'); return Month.NOVEMBER; }
+    static get DECEMBER () { delete Month.DECEMBER; Month.DECEMBER =  new Month(12, 'DECEMBER'); return Month.DECEMBER; }
 
-    MONTHS = [
+    static get MONTHS() {return [
         Month.JANUARY, Month.FEBRUARY, Month.MARCH, Month.APRIL, Month.MAY, Month.JUNE,
         Month.JULY, Month.AUGUST, Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER
-    ];
+    ];}
 }
