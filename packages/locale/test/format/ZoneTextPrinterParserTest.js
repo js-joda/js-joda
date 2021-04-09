@@ -69,6 +69,8 @@ describe('@js-joda/locale CldrZoneTextPrinterParser', () => {
             [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'America/Los_Angeles', Locale.GERMAN, TextStyle.FULL, 'Nordamerikanische Westküstenzeit'],
             [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'America/Los_Angeles', Locale.GERMAN, TextStyle.SHORT, 'America/Los_Angeles'],
 
+            [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'Asia/Tokyo', Locale.JAPAN, TextStyle.FULL, '日本時間'],
+            [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'Asia/Tokyo', Locale.JAPAN, TextStyle.SHORT, 'JST'],
         ];
 
         it('test_print_parse_zones', () => {

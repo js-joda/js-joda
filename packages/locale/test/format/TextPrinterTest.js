@@ -150,6 +150,54 @@ describe('@js-joda/locale TextPrinterTest', () => {
                 assertEquals(buf.toString(), expected);
             }, false);
         });
+
+        it('test_print JA', () => {
+            const provider_data = [
+
+                [ChronoField.AMPM_OF_DAY, TextStyle.FULL, 0, '午前'],
+                [ChronoField.AMPM_OF_DAY, TextStyle.FULL, 1, '午後'],
+
+                [ChronoField.AMPM_OF_DAY, TextStyle.NARROW, 0, '午前'],
+                [ChronoField.AMPM_OF_DAY, TextStyle.NARROW, 1, '午後'],
+
+                [ChronoField.AMPM_OF_DAY, TextStyle.SHORT, 0, '午前'],
+                [ChronoField.AMPM_OF_DAY, TextStyle.SHORT, 1, '午後'],
+
+                [ChronoField.ERA, TextStyle.FULL, 0, '紀元前'],
+                [ChronoField.ERA, TextStyle.FULL, 1, '西暦'],
+
+                [ChronoField.ERA, TextStyle.NARROW, 0, 'BC'],
+                [ChronoField.ERA, TextStyle.NARROW, 1, 'AD'],
+
+                [ChronoField.ERA, TextStyle.SHORT, 0, '紀元前'],
+                [ChronoField.ERA, TextStyle.SHORT, 1, '西暦'],
+
+                [IsoFields.QUARTER_OF_YEAR, TextStyle.FULL, 1, '第1四半期'],
+                [IsoFields.QUARTER_OF_YEAR, TextStyle.FULL, 2, '第2四半期'],
+                [IsoFields.QUARTER_OF_YEAR, TextStyle.FULL, 3, '第3四半期'],
+                [IsoFields.QUARTER_OF_YEAR, TextStyle.FULL, 4, '第4四半期'],
+
+                [IsoFields.QUARTER_OF_YEAR, TextStyle.NARROW, 1, '1'],
+                [IsoFields.QUARTER_OF_YEAR, TextStyle.NARROW, 2, '2'],
+                [IsoFields.QUARTER_OF_YEAR, TextStyle.NARROW, 3, '3'],
+                [IsoFields.QUARTER_OF_YEAR, TextStyle.NARROW, 4, '4'],
+
+                [IsoFields.QUARTER_OF_YEAR, TextStyle.SHORT, 1, 'Q1'],
+                [IsoFields.QUARTER_OF_YEAR, TextStyle.SHORT, 2, 'Q2'],
+                [IsoFields.QUARTER_OF_YEAR, TextStyle.SHORT, 3, 'Q3'],
+                [IsoFields.QUARTER_OF_YEAR, TextStyle.SHORT, 4, 'Q4'],
+
+            ];
+
+            dataProviderTest(provider_data, (field, style, value, expected) => {
+                buf = new StringBuilder();
+                printContext.setLocale(Locale.JAPAN);
+                printContext.setDateTime(new MockFieldValue(field, value));
+                const pp = new TextPrinterParser(field, style, PROVIDER);
+                pp.print(printContext, buf);
+                assertEquals(buf.toString(), expected);
+            }, false);
+        });
     });
 
 });
