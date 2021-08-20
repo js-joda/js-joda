@@ -46,8 +46,7 @@ describe('@js-joda/locale WeekFieldsPrinterParser', () => {
             [LocalDate.of(2017, 1, 1), Locale.UK, 'e', 2, '07', dayOfWeekField, 7],
             [LocalDate.of(2017, 1, 1), Locale.GERMANY, 'e', 1, '7', dayOfWeekField, 7],
             [LocalDate.of(2017, 1, 1), Locale.GERMANY, 'e', 2, '07', dayOfWeekField, 7],
-            [LocalDate.of(2017, 1, 1), Locale.KOREAN, 'e', 1, '1', dayOfWeekField, 1],
-            [LocalDate.of(2017, 1, 1), Locale.KO, 'e', 2, '07', dayOfWeekField, 7],
+            [LocalDate.of(2017, 1, 1), Locale.KOREAN, 'e', 2, '07', dayOfWeekField, 7],
 
             [LocalDate.of(2017, 1, 1), Locale.ENGLISH, 'c', 1, '7', dayOfWeekField, 7],
             [LocalDate.of(2017, 1, 1), Locale.ENGLISH, 'c', 2, '07', dayOfWeekField, 7],

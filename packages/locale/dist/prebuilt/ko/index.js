@@ -237,17 +237,17 @@ module.exports = JSON.parse("{\"supplemental\":{\"version\":{\"_unicodeVersion\"
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * CLDR JavaScript Library v0.5.1
+ * CLDR JavaScript Library v0.5.4
  * http://jquery.com/
  *
  * Copyright 2013 Rafael Xavier de Souza
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2019-01-21T13:43Z
+ * Date: 2020-10-22T15:56Z
  */
 /*!
- * CLDR JavaScript Library v0.5.1 2019-01-21T13:43Z MIT license © Rafael Xavier
+ * CLDR JavaScript Library v0.5.4 2020-10-22T15:56Z MIT license © Rafael Xavier
  * http://git.io/h4lmVg
  */
 (function( root, factory ) {
@@ -529,10 +529,14 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
 			availableBundleMapQueue = Cldr._availableBundleMapQueue;
 
 		if ( availableBundleMapQueue.length ) {
-			arrayForEach( availableBundleMapQueue, function( bundle ) {
+			arrayForEach( availableBundleMapQueue, function( bundle, i ) {
 				var existing, maxBundle, minBundle, subtags;
 				subtags = coreSubtags( bundle );
 				maxBundle = coreLikelySubtags( Cldr, cldr, subtags );
+				if ( maxBundle === undefined ) {
+					availableBundleMapQueue.splice( i, 1 );
+					throw new Error( "Could not find likelySubtags for " + bundle );
+				}
 				minBundle = coreRemoveLikelySubtags( Cldr, cldr, maxBundle );
 				minBundle = minBundle.join( Cldr.localeSep );
 				existing = availableBundleMap[ minBundle ];
@@ -928,17 +932,17 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * CLDR JavaScript Library v0.5.1
+ * CLDR JavaScript Library v0.5.4
  * http://jquery.com/
  *
  * Copyright 2013 Rafael Xavier de Souza
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2019-01-21T13:43Z
+ * Date: 2020-10-22T15:56Z
  */
 /*!
- * CLDR JavaScript Library v0.5.1 2019-01-21T13:43Z MIT license © Rafael Xavier
+ * CLDR JavaScript Library v0.5.4 2020-10-22T15:56Z MIT license © Rafael Xavier
  * http://git.io/h4lmVg
  */
 (function( factory ) {
@@ -1521,17 +1525,17 @@ EventEmitter = (function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * CLDR JavaScript Library v0.5.1
+ * CLDR JavaScript Library v0.5.4
  * http://jquery.com/
  *
  * Copyright 2013 Rafael Xavier de Souza
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2019-01-21T13:43Z
+ * Date: 2020-10-22T15:56Z
  */
 /*!
- * CLDR JavaScript Library v0.5.1 2019-01-21T13:43Z MIT license © Rafael Xavier
+ * CLDR JavaScript Library v0.5.4 2020-10-22T15:56Z MIT license © Rafael Xavier
  * http://git.io/h4lmVg
  */
 (function( factory ) {
@@ -1630,17 +1634,17 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * CLDR JavaScript Library v0.5.1
+ * CLDR JavaScript Library v0.5.4
  * http://jquery.com/
  *
  * Copyright 2013 Rafael Xavier de Souza
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2019-01-21T13:43Z
+ * Date: 2020-10-22T15:56Z
  */
 /*!
- * CLDR JavaScript Library v0.5.1 2019-01-21T13:43Z MIT license © Rafael Xavier
+ * CLDR JavaScript Library v0.5.4 2020-10-22T15:56Z MIT license © Rafael Xavier
  * http://git.io/h4lmVg
  */
 (function( factory ) {
@@ -1802,17 +1806,17 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
- * CLDR JavaScript Library v0.5.1
+ * CLDR JavaScript Library v0.5.4
  * http://jquery.com/
  *
  * Copyright 2013 Rafael Xavier de Souza
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2019-01-21T13:43Z
+ * Date: 2020-10-22T15:56Z
  */
 /*!
- * CLDR JavaScript Library v0.5.1 2019-01-21T13:43Z MIT license © Rafael Xavier
+ * CLDR JavaScript Library v0.5.4 2020-10-22T15:56Z MIT license © Rafael Xavier
  * http://git.io/h4lmVg
  */
 
@@ -1926,8 +1930,7 @@ function _init() {
   Locale.FRANCE = new Locale('fr', 'FR', 'fr');
   Locale.GERMAN = new Locale('de');
   Locale.GERMANY = new Locale('de', 'DE', 'de');
-  Locale.KO = new Locale("ko");
-  Locale.KOREAN = new Locale("ko", "KR", "ko");
+  Locale.KOREAN = new Locale('ko');
 }
 
 /***/ }),

@@ -71,7 +71,6 @@ describe('@js-joda/locale CldrZoneTextPrinterParser', () => {
 
             [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'Asia/Seoul', Locale.KOREAN, TextStyle.FULL, '대한민국 시간'],
             [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'Asia/Seoul', Locale.KOREAN, TextStyle.SHORT, 'Asia/Seoul'],
-
         ];
 
         it('test_print_parse_zones', () => {
