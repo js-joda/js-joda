@@ -1,12 +1,13 @@
 {
     "name": "@js-joda/locale_it",
-    "version": "3.2.0+36.0.0",
+    "version": "3.2.2+36.0.0",
     "description": "prebuilt js-joda locale package for locales: it.*",
     "repository": {
         "type": "git",
         "url": "https://github.com/js-joda/js-joda-locale.git"
     },
     "main": "dist/index.js",
+    "typings": "dist/js-joda-locale.d.ts",
     "keywords": [
         "date",
         "time",
@@ -23,8 +24,8 @@
     },
     "homepage": "https://github.com/js-joda/js-joda-locale#readme",
     "peerDependencies": {
-        "@js-joda/core": ">=1.11.0",
-        "@js-joda/timezone": "^2.2.0"
+        "@js-joda/core": ">=3.2.0",
+        "@js-joda/timezone": "^2.3.0"
     },
     "dependencies": {},
     "devDependencies": {}

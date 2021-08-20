@@ -61,6 +61,9 @@ let yargs = yargsPkg
             description: 'output debug infos'
         },
     })
+    .parserConfiguration({
+        'camel-case-expansion': false
+    })
     .wrap(Math.min(120, yargsPkg.terminalWidth()))
     .help();
 

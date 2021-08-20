@@ -11,6 +11,8 @@ import './_init';
 import {ChronoField} from '../src/temporal/ChronoField';
 import {ChronoUnit} from '../src/temporal/ChronoUnit';
 import {LocalTime} from '../src/LocalTime';
+import {ZoneOffset} from '../src/ZoneOffset';
+import {OffsetTime} from '../src/OffsetTime';
 import {TemporalAdjuster} from '../src/temporal/TemporalAdjuster';
 import {TemporalField} from '../src/temporal/TemporalField';
 import {TemporalQuery} from '../src/temporal/TemporalQuery';
@@ -298,5 +300,18 @@ describe('js-joda LocalTime', () => {
             expect(testTime.adjustInto(adjuster)).to.eql('Test Value');
         });
     });
-    
+
+    describe('atOffset', () => {
+        it('should return OffsetTime for valid offset', () => {
+            expect(
+                testTime.atOffset(ZoneOffset.UTC)
+            ).to.eql(OffsetTime.of(1, 1, 1, 1, ZoneOffset.UTC));
+        });
+
+        it('should fail if offset is null', () => {
+            expect(() => {
+                testTime.atOffset(null);
+            }).to.throw(NullPointerException);
+        });
+    });
 });

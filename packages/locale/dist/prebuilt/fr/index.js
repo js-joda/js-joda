@@ -1,4 +1,4 @@
-//! @version @js-joda/locale - 3.2.0+36.0.0
+//! @version @js-joda/locale - 3.2.2+36.0.0
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -3131,14 +3131,15 @@ var LocaleStore = function () {
     var allList = [];
     Object.keys(valueTextMap).forEach(function (style) {
       var reverse = {};
+      var list = [];
       Object.keys(valueTextMap[style]).forEach(function (key) {
         var value = valueTextMap[style][key];
 
         if (reverse[value] === undefined) {
           reverse[value] = createEntry(value, Number.parseInt(key));
+          list.push(reverse[value]);
         }
       });
-      var list = Object.values(reverse);
       list.sort(_comparator);
       map[style] = list;
       allList = allList.concat(list);
@@ -3614,7 +3615,7 @@ var CldrDateTimeTextProvider = function () {
       valueTextMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL_STANDALONE] = valueTextMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL];
       valueTextMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].SHORT_STANDALONE] = valueTextMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].SHORT];
 
-      if (Object.keys(valueTextMap).includes(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW) && !Object.keys(valueTextMap).includes(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW_STANDALONE)) {
+      if (Object.keys(valueTextMap).indexOf(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW) > -1 && Object.keys(valueTextMap).indexOf(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW_STANDALONE) === -1) {
         valueTextMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW_STANDALONE] = valueTextMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW];
       }
 

@@ -1,0 +1,32 @@
+{
+    "name": "@js-joda/locale_ro",
+    "version": "3.2.2+36.0.0",
+    "description": "prebuilt js-joda locale package for locales: ro,ro.*",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/js-joda/js-joda-locale.git"
+    },
+    "main": "dist/index.js",
+    "typings": "dist/js-joda-locale.d.ts",
+    "keywords": [
+        "date",
+        "time",
+        "locale"
+    ],
+    "author": "phueper",
+    "contributors": [
+        "pithu",
+        "phueper"
+    ],
+    "license": "BSD-3-Clause",
+    "bugs": {
+        "url": "https://github.com/js-joda/js-joda-locale/issues"
+    },
+    "homepage": "https://github.com/js-joda/js-joda-locale#readme",
+    "peerDependencies": {
+        "@js-joda/core": ">=3.2.0",
+        "@js-joda/timezone": "^2.3.0"
+    },
+    "dependencies": {},
+    "devDependencies": {}
+}

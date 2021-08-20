@@ -35,6 +35,7 @@ import {
     ValueRange,
     TextStyle,
     TemporalAccessor,
+    TemporalAmount,
 } from '../../'
 
 it('ZonedDateTime', () => {
@@ -93,6 +94,12 @@ it('ZonedDateTime', () => {
 
     expectType<string>(zdt.toString());
     expectType<string>(zdt.toJSON());
+
+    // .equals is a type predicate
+    const temp: Temporal = ZonedDateTime.parse(zdt.toString());
+    if (zdt.equals(temp)) {
+        expectType<ZonedDateTime>(temp);
+    }
 });
 
 it('OffsetDateTime', () => {
@@ -155,6 +162,12 @@ it('OffsetDateTime', () => {
 
     expectType<string>(odt.toString());
     expectType<string>(odt.toJSON());
+
+    // .equals is a type predicate
+    const temp: Temporal = OffsetDateTime.parse(odt.toString());
+    if (odt.equals(temp)) {
+        expectType<OffsetDateTime>(temp);
+    }
 });
 
 it('OffsetTime', () => {
@@ -245,6 +258,12 @@ it('OffsetTime', () => {
 
     expectType<OffsetTime | null>(t1.query(OffsetTime.FROM));
     expectType<LocalDate | null>(t1.query(TemporalQueries.localDate()));
+
+    // .equals is a type predicate
+    const temp: Temporal = OffsetTime.parse(ot.toString());
+    if (ot.equals(temp)) {
+        expectType<OffsetTime>(temp);
+    }
 });
 
 it('LocalDate', () => {
@@ -355,6 +374,15 @@ it('LocalDate', () => {
 
     expectType<LocalDate | null>(d1.query(LocalDate.FROM));
     expectType<LocalTime | null>(d1.query(TemporalQueries.localTime()));
+
+    expectType<LocalDateTime>(d1.atTime(LocalTime.now()));
+    expectType<OffsetDateTime>(d1.atTime(OffsetTime.now()));
+
+    // .equals is a type predicate
+    const temp: Temporal = LocalDate.parse(d.toString());
+    if (d.equals(temp)) {
+        expectType<LocalDate>(temp);
+    }
 });
 
 it('LocalTime', () => {
@@ -450,6 +478,15 @@ it('LocalTime', () => {
 
     expectType<LocalTime | null>(t1.query(LocalTime.FROM));
     expectType<LocalDate | null>(t1.query(TemporalQueries.localDate()));
+
+    expectType<OffsetTime>(t.atOffset(ZoneOffset.MIN));
+    expectType<LocalDateTime>(t.atDate(LocalDate.now()));
+
+    // .equals is a type predicate
+    const temp: Temporal = LocalTime.parse(t.toString());
+    if (t.equals(temp)) {
+        expectType<LocalTime>(temp);
+    }
 });
 
 it('LocalDateTime', () => {
@@ -598,6 +635,15 @@ it('LocalDateTime', () => {
 
     expectType<LocalDateTime | null>(dt.query(LocalDateTime.FROM));
     expectType<LocalDate | null>(dt.query(TemporalQueries.localDate()));
+
+    expectType<OffsetDateTime>(dt.atOffset(ZoneOffset.MIN));
+    expectType<ZonedDateTime>(dt.atZone(ZoneId.UTC));
+
+    // .equals is a type predicate
+    const temp: Temporal = LocalDateTime.parse(dt.toString());
+    if (dt.equals(temp)) {
+        expectType<LocalDateTime>(temp);
+    }
 });
 
 it('Instant', () => {
@@ -620,6 +666,15 @@ it('Instant', () => {
 
     expectType<Instant | null>(i.query(Instant.FROM));
     expectType<LocalDate | null>(i.query(TemporalQueries.localDate()));
+
+    expectType<OffsetDateTime>(i.atOffset(ZoneOffset.MAX));
+    expectType<ZonedDateTime>(i.atZone(ZoneId.UTC));
+
+    // .equals is a type predicate
+    const temp: Temporal = Instant.parse(i.toString());
+    if (i.equals(temp)) {
+        expectType<Instant>(temp);
+    }
 });
 
 it('Year', () => {
@@ -664,6 +719,12 @@ it('Year', () => {
 
     expectType<Year | null>(year.query(Year.FROM));
     expectType<LocalDate | null>(year.query(TemporalQueries.localDate()));
+
+    // .equals is a type predicate
+    const temp: Temporal = Year.parse(year.toString());
+    if (year.equals(temp)) {
+        expectType<Year>(temp);
+    }
 });
 
 it('YearMonth', () => {
@@ -727,6 +788,12 @@ it('YearMonth', () => {
 
     expectType<YearMonth | null>(ym.query(YearMonth.FROM));
     expectType<LocalDate | null>(ym.query(TemporalQueries.localDate()));
+
+    // .equals is a type predicate
+    const temp: Temporal = YearMonth.parse(ym.toString());
+    if (ym.equals(temp)) {
+        expectType<YearMonth>(temp);
+    }
 });
 
 it('DayOfWeek', () => {
@@ -772,6 +839,12 @@ it('MonthDay', () => {
 
     expectType<MonthDay | null>(md.query(MonthDay.FROM));
     expectType<LocalDate | null>(md.query(TemporalQueries.localDate()));
+
+    // .equals is a type predicate
+    const temp: TemporalAccessor = MonthDay.parse(md.toString());
+    if (md.equals(temp)) {
+        expectType<MonthDay>(temp);
+    }
 });
 
 it('Period', () => {
@@ -796,6 +869,12 @@ it('Period', () => {
     expectType<string>(p.toJSON());
 
     Period.between(LocalDate.parse('2012-06-30'), LocalDate.parse('2012-08-31'));
+
+    // .equals is a type predicate
+    const temp: TemporalAmount = Period.parse(p.toString());
+    if (p.equals(temp)) {
+        expectType<Period>(temp);
+    }
 });
 
 it('Duration', () => {
@@ -820,6 +899,12 @@ it('Duration', () => {
     expectType<Duration>(dur.minus(1, ChronoUnit.NANOS));
     expectType<Duration>(dur.plus(Duration.ofNanos(1)));
     expectType<Duration>(dur.plus(1, ChronoUnit.NANOS));
+
+    // .equals is a type predicate
+    const temp: TemporalAmount = Duration.parse(dur.toString());
+    if (dur.equals(temp)) {
+        expectType<Duration>(temp);
+    }
 });
 
 it('DateTimeFormatter', () => {

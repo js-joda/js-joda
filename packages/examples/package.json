@@ -6,6 +6,7 @@
   "scripts": {
     "test": "./test/run-node-samples.sh"
   },
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/js-joda/js-joda.git"
