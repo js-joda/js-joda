@@ -124,9 +124,6 @@ see the plugin [@js-joda/locale](//github.com/js-joda/js-joda/tree/master/packag
 - Reduce library size by removing redundant code, especially by refactoring code for formatting/ parsing dates.
 - Increase test coverage (ongoing task)
 - Cleanup documentation (ongoing task)
-- Improve static factory API design and make it more JavaScript style. One idea is to remove static factory methods like parse, from, of and unify it to one factory method per domain. E.g. localDate(isoDate: string), localDate(year: number, month: number, dayOfMonth: number)
-- Merge methods get and getLong (difference between `int` and `long` values makes no sense with JavaScript)
-- Simplify temporal adjusters (amount, etc) by using functions instead of classes or objects
 
 ## Contributing
 
