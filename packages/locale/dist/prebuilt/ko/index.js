@@ -1,4 +1,4 @@
-//! @version @js-joda/locale - 3.2.0+36.0.0
+//! @version @js-joda/locale - 3.2.2+36.0.0
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -237,17 +237,17 @@ module.exports = JSON.parse("{\"supplemental\":{\"version\":{\"_unicodeVersion\"
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * CLDR JavaScript Library v0.5.4
+ * CLDR JavaScript Library v0.5.1
  * http://jquery.com/
  *
  * Copyright 2013 Rafael Xavier de Souza
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2020-10-22T15:56Z
+ * Date: 2019-01-21T13:43Z
  */
 /*!
- * CLDR JavaScript Library v0.5.4 2020-10-22T15:56Z MIT license © Rafael Xavier
+ * CLDR JavaScript Library v0.5.1 2019-01-21T13:43Z MIT license © Rafael Xavier
  * http://git.io/h4lmVg
  */
 (function( root, factory ) {
@@ -529,14 +529,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
 			availableBundleMapQueue = Cldr._availableBundleMapQueue;
 
 		if ( availableBundleMapQueue.length ) {
-			arrayForEach( availableBundleMapQueue, function( bundle, i ) {
+			arrayForEach( availableBundleMapQueue, function( bundle ) {
 				var existing, maxBundle, minBundle, subtags;
 				subtags = coreSubtags( bundle );
 				maxBundle = coreLikelySubtags( Cldr, cldr, subtags );
-				if ( maxBundle === undefined ) {
-					availableBundleMapQueue.splice( i, 1 );
-					throw new Error( "Could not find likelySubtags for " + bundle );
-				}
 				minBundle = coreRemoveLikelySubtags( Cldr, cldr, maxBundle );
 				minBundle = minBundle.join( Cldr.localeSep );
 				existing = availableBundleMap[ minBundle ];
@@ -932,17 +928,17 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * CLDR JavaScript Library v0.5.4
+ * CLDR JavaScript Library v0.5.1
  * http://jquery.com/
  *
  * Copyright 2013 Rafael Xavier de Souza
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2020-10-22T15:56Z
+ * Date: 2019-01-21T13:43Z
  */
 /*!
- * CLDR JavaScript Library v0.5.4 2020-10-22T15:56Z MIT license © Rafael Xavier
+ * CLDR JavaScript Library v0.5.1 2019-01-21T13:43Z MIT license © Rafael Xavier
  * http://git.io/h4lmVg
  */
 (function( factory ) {
@@ -1525,17 +1521,17 @@ EventEmitter = (function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * CLDR JavaScript Library v0.5.4
+ * CLDR JavaScript Library v0.5.1
  * http://jquery.com/
  *
  * Copyright 2013 Rafael Xavier de Souza
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2020-10-22T15:56Z
+ * Date: 2019-01-21T13:43Z
  */
 /*!
- * CLDR JavaScript Library v0.5.4 2020-10-22T15:56Z MIT license © Rafael Xavier
+ * CLDR JavaScript Library v0.5.1 2019-01-21T13:43Z MIT license © Rafael Xavier
  * http://git.io/h4lmVg
  */
 (function( factory ) {
@@ -1634,17 +1630,17 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * CLDR JavaScript Library v0.5.4
+ * CLDR JavaScript Library v0.5.1
  * http://jquery.com/
  *
  * Copyright 2013 Rafael Xavier de Souza
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2020-10-22T15:56Z
+ * Date: 2019-01-21T13:43Z
  */
 /*!
- * CLDR JavaScript Library v0.5.4 2020-10-22T15:56Z MIT license © Rafael Xavier
+ * CLDR JavaScript Library v0.5.1 2019-01-21T13:43Z MIT license © Rafael Xavier
  * http://git.io/h4lmVg
  */
 (function( factory ) {
@@ -1806,17 +1802,17 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
- * CLDR JavaScript Library v0.5.4
+ * CLDR JavaScript Library v0.5.1
  * http://jquery.com/
  *
  * Copyright 2013 Rafael Xavier de Souza
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2020-10-22T15:56Z
+ * Date: 2019-01-21T13:43Z
  */
 /*!
- * CLDR JavaScript Library v0.5.4 2020-10-22T15:56Z MIT license © Rafael Xavier
+ * CLDR JavaScript Library v0.5.1 2019-01-21T13:43Z MIT license © Rafael Xavier
  * http://git.io/h4lmVg
  */
 
@@ -2080,14 +2076,15 @@ var LocaleStore = function () {
     var allList = [];
     Object.keys(valueTextMap).forEach(function (style) {
       var reverse = {};
+      var list = [];
       Object.keys(valueTextMap[style]).forEach(function (key) {
         var value = valueTextMap[style][key];
 
         if (reverse[value] === undefined) {
           reverse[value] = createEntry(value, Number.parseInt(key));
+          list.push(reverse[value]);
         }
       });
-      var list = Object.values(reverse);
       list.sort(_comparator);
       map[style] = list;
       allList = allList.concat(list);
@@ -2563,7 +2560,7 @@ var CldrDateTimeTextProvider = function () {
       valueTextMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL_STANDALONE] = valueTextMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].FULL];
       valueTextMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].SHORT_STANDALONE] = valueTextMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].SHORT];
 
-      if (Object.keys(valueTextMap).includes(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW) && !Object.keys(valueTextMap).includes(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW_STANDALONE)) {
+      if (Object.keys(valueTextMap).indexOf(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW) > -1 && Object.keys(valueTextMap).indexOf(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW_STANDALONE) === -1) {
         valueTextMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW_STANDALONE] = valueTextMap[_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"].NARROW];
       }
 
