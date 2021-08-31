@@ -16,7 +16,7 @@ import {
 
 import '@js-joda/timezone';
 
-import { assertEquals, dataProviderTest } from '../testUtils';
+import { assertEquals, dataProviderTest, isBrowserTestRunner } from '../testUtils';
 
 import '../_init';
 
@@ -144,6 +144,55 @@ describe('@js-joda/locale TextPrinterTest', () => {
             dataProviderTest(provider_data, (field, style, value, expected) => {
                 buf = new StringBuilder();
                 printContext.setLocale(Locale.GERMAN);
+                printContext.setDateTime(new MockFieldValue(field, value));
+                const pp = new TextPrinterParser(field, style, PROVIDER);
+                pp.print(printContext, buf);
+                assertEquals(buf.toString(), expected);
+            }, false);
+        });
+
+        const _it = isBrowserTestRunner() ? it.skip : it;
+        _it('test_print KO', () => {
+            const provider_data = [
+
+                [ChronoField.AMPM_OF_DAY, TextStyle.FULL, 0, '오전'],
+                [ChronoField.AMPM_OF_DAY, TextStyle.FULL, 1, '오후'],
+
+                [ChronoField.AMPM_OF_DAY, TextStyle.NARROW, 0, 'AM'],
+                [ChronoField.AMPM_OF_DAY, TextStyle.NARROW, 1, 'PM'],
+
+                [ChronoField.AMPM_OF_DAY, TextStyle.SHORT, 0, 'AM'],
+                [ChronoField.AMPM_OF_DAY, TextStyle.SHORT, 1, 'PM'],
+
+                [ChronoField.ERA, TextStyle.FULL, 0, '기원전'],
+                [ChronoField.ERA, TextStyle.FULL, 1, '서기'],
+
+                [ChronoField.ERA, TextStyle.NARROW, 0, 'BC'],
+                [ChronoField.ERA, TextStyle.NARROW, 1, 'AD'],
+
+                [ChronoField.ERA, TextStyle.SHORT, 0, 'BC'],
+                [ChronoField.ERA, TextStyle.SHORT, 1, 'AD'],
+
+                [IsoFields.QUARTER_OF_YEAR, TextStyle.FULL, 1, '제 1/4분기'],
+                [IsoFields.QUARTER_OF_YEAR, TextStyle.FULL, 2, '제 2/4분기'],
+                [IsoFields.QUARTER_OF_YEAR, TextStyle.FULL, 3, '제 3/4분기'],
+                [IsoFields.QUARTER_OF_YEAR, TextStyle.FULL, 4, '제 4/4분기'],
+
+                [IsoFields.QUARTER_OF_YEAR, TextStyle.NARROW, 1, '1'],
+                [IsoFields.QUARTER_OF_YEAR, TextStyle.NARROW, 2, '2'],
+                [IsoFields.QUARTER_OF_YEAR, TextStyle.NARROW, 3, '3'],
+                [IsoFields.QUARTER_OF_YEAR, TextStyle.NARROW, 4, '4'],
+
+                [IsoFields.QUARTER_OF_YEAR, TextStyle.SHORT, 1, '1분기'],
+                [IsoFields.QUARTER_OF_YEAR, TextStyle.SHORT, 2, '2분기'],
+                [IsoFields.QUARTER_OF_YEAR, TextStyle.SHORT, 3, '3분기'],
+                [IsoFields.QUARTER_OF_YEAR, TextStyle.SHORT, 4, '4분기'],
+
+            ];
+
+            dataProviderTest(provider_data, (field, style, value, expected) => {
+                buf = new StringBuilder();
+                printContext.setLocale(Locale.KOREAN);
                 printContext.setDateTime(new MockFieldValue(field, value));
                 const pp = new TextPrinterParser(field, style, PROVIDER);
                 pp.print(printContext, buf);
