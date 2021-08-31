@@ -9,6 +9,7 @@ This is a major release because of breaking changes:
 * remove TS definitions from core, moved to locale TS definitions in #389 by @InExtremaRes
 * make .equals a type predicate in the TS typings in #457 by @InExtremaRes
 * add some ISO formatters in #455 by @akonior
+* several dependabot updates
 
 ### 3.2.0
 
