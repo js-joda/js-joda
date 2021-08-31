@@ -16,7 +16,7 @@ import {
 
 import '@js-joda/timezone';
 
-import { assertEquals, dataProviderTest } from '../testUtils';
+import { assertEquals, dataProviderTest, isBrowserTestRunner } from '../testUtils';
 
 import '../_init';
 
@@ -151,7 +151,8 @@ describe('@js-joda/locale TextPrinterTest', () => {
             }, false);
         });
 
-        it('test_print KO', () => {
+        const _it = isBrowserTestRunner() ? it.skip : it;
+        _it('test_print KO', () => {
             const provider_data = [
 
                 [ChronoField.AMPM_OF_DAY, TextStyle.FULL, 0, '오전'],
