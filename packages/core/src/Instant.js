@@ -762,7 +762,7 @@ export class Instant extends Temporal {
         if (unit instanceof ChronoUnit) {
             switch (unit) {
                 case ChronoUnit.NANOS: return this._nanosUntil(end);
-                case ChronoUnit.MICROS: return MathUtil.intDiv(this._nanosUntil(end), 1000);
+                case ChronoUnit.MICROS: return this._microsUntil(end);
                 case ChronoUnit.MILLIS: return MathUtil.safeSubtract(end.toEpochMilli(), this.toEpochMilli());
                 case ChronoUnit.SECONDS: return this._secondsUntil(end);
                 case ChronoUnit.MINUTES: return MathUtil.intDiv(this._secondsUntil(end), LocalTime.SECONDS_PER_MINUTE);
@@ -773,6 +773,18 @@ export class Instant extends Temporal {
             throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
         }
         return unit.between(this, end);
+    }
+
+    /**
+     *
+     * @param {Temporal} end
+     * @returns {number}
+     * @private
+     */
+    _microsUntil(end) {
+        const secsDiff = MathUtil.safeSubtract(end.epochSecond(), this.epochSecond());
+        const totalMicros = MathUtil.safeMultiply(secsDiff, 1000000);
+        return MathUtil.safeAdd(totalMicros, MathUtil.intDiv(end.nano() - this.nano(), 1000));
     }
 
     /**
