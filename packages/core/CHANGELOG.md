@@ -6,6 +6,7 @@ Changelog
 This is a major release because of breaking changes:
 
 * cleanup TS Typings in #456 by @InExtremaRes
+* cleanup private methods and Temporal class in #460 by @InExtremaRes
 * remove TS definitions from core, moved to locale TS definitions in #389 by @InExtremaRes
 * make .equals a type predicate in the TS typings in #457 by @InExtremaRes
 * add some ISO formatters in #455 by @akonior
