@@ -6,6 +6,9 @@
 This is a major release because of breaking changes:
 
 * added TS Typings to locale packages in #389 by @InExtremaRes
+* added Korean locale browser support in #529 by @leejaycoke
+* added Japanese locale browser support in #491 by @ty-v1
+* several dependency updates
 
 ### 3.2.2
 
