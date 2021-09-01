@@ -1,7 +1,9 @@
 @js-joda/locale Changelog
 =========
 
-### 4.0.0 next (upcoming)
+### next (upcoming)
+
+### 4.0.0 
 
 This is a major release because of breaking changes:
 
