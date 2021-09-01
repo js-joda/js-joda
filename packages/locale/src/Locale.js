@@ -62,6 +62,7 @@ export function _init() {
     Locale.FRANCE = new Locale('fr', 'FR', 'fr'); // default in cldr-data, no fr-FR
     Locale.GERMAN = new Locale('de');
     Locale.GERMANY = new Locale('de', 'DE', 'de'); // default in cldr-data, no de-DE
+    Locale.KOREAN = new Locale('ko');
     Locale.JAPANESE = new Locale('ja', 'JP');
     Locale.JAPAN = new Locale('ja', 'JP', 'ja');
 }
