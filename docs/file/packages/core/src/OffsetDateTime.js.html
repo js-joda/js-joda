@@ -78,7 +78,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html">DefaultInterfaceTemporal</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span></span></li>
@@ -135,9 +134,9 @@
 
 import {ChronoField} from &apos;./temporal/ChronoField&apos;;
 import {ChronoUnit} from &apos;./temporal/ChronoUnit&apos;;
+import {Temporal} from &apos;./temporal/Temporal&apos;;
 import {Clock} from &apos;./Clock&apos;;
 import {DateTimeFormatter} from &apos;./format/DateTimeFormatter&apos;;
-import {DefaultInterfaceTemporal} from &apos;./temporal/DefaultInterfaceTemporal&apos;;
 import {Instant} from &apos;./Instant&apos;;
 import {IsoChronology} from &apos;./chrono/IsoChronology&apos;;
 import {LocalDateTime} from &apos;./LocalDateTime&apos;;
@@ -158,7 +157,7 @@ import {requireInstance, requireNonNull} from &apos;./assert&apos;;
  * A date-time with an offset from UTC/Greenwich in the ISO-8601 calendar system,
  * such as 2007-12-23T10:15:30+01:00.
  */
-export class OffsetDateTime extends DefaultInterfaceTemporal {
+export class OffsetDateTime extends Temporal {
     /**
      * @param {TemporaroAccessor} temporal
      * @return {OffsetDateTime}
@@ -502,7 +501,7 @@ export class OffsetDateTime extends DefaultInterfaceTemporal {
         return field.rangeRefinedBy(this);
     }
 
-    withAdjuster(adjuster) {
+    _withAdjuster(adjuster) {
         requireNonNull(adjuster);
         // optimizations
         if (adjuster instanceof LocalDate || adjuster instanceof LocalTime || adjuster instanceof LocalDateTime) {
@@ -517,7 +516,7 @@ export class OffsetDateTime extends DefaultInterfaceTemporal {
         return adjuster.adjustInto(this);
     }
 
-    withFieldValue(field, newValue) {
+    _withField(field, newValue) {
         requireNonNull(field);
         if (field instanceof ChronoField) {
             const f = field;
@@ -634,12 +633,12 @@ export class OffsetDateTime extends DefaultInterfaceTemporal {
         return this._withDateTimeOffset(this._dateTime.truncatedTo(unit), this._offset);
     }
 
-    plusAmount(amount) {
+    _plusAmount(amount) {
         requireNonNull(amount, &apos;amount&apos;);
         return amount.addTo(this);
     }
 
-    plusAmountUnit(amountToAdd, unit) {
+    _plusUnit(amountToAdd, unit) {
         if (unit instanceof ChronoUnit) {
             return this._withDateTimeOffset(this._dateTime.plus(amountToAdd, unit), this._offset);
         }
@@ -710,12 +709,12 @@ export class OffsetDateTime extends DefaultInterfaceTemporal {
         return this._withDateTimeOffset(this._dateTime.plusNanos(nanos), this._offset);
     }
 
-    minusAmount(amount) {
+    _minusAmount(amount) {
         requireNonNull(amount);
         return amount.subtractFrom(this);
     }
 
-    minusAmountUnit(amountToSubtract, unit) {
+    _minusUnit(amountToSubtract, unit) {
         return this.plus(-1 * amountToSubtract, unit);
     }
 

@@ -78,7 +78,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html">DefaultInterfaceTemporal</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span></span></li>
@@ -134,6 +133,7 @@
  */
 
 import {UnsupportedTemporalTypeException} from &apos;../errors&apos;;
+import {abstractMethodFail} from &apos;../assert&apos;;
 
 import {ChronoField} from &apos;./ChronoField&apos;;
 import {TemporalQueries} from &apos;./TemporalQueries&apos;;
@@ -212,6 +212,11 @@ export class TemporalAccessor {
         return this.range(field).checkValidIntValue(this.getLong(field), field);
     }
 
+    // eslint-disable-next-line no-unused-vars
+    getLong(field) {
+        abstractMethodFail(&apos;getLong&apos;);
+    }
+
     /**
      * Gets the range of valid values for the specified field.
      *
@@ -251,6 +256,10 @@ export class TemporalAccessor {
         return field.rangeRefinedBy(this);
     }
 
+    // eslint-disable-next-line no-unused-vars
+    isSupported(field) {
+        abstractMethodFail(&apos;isSupported&apos;);
+    }
 }
 </code></pre>
 

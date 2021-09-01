@@ -78,7 +78,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html">DefaultInterfaceTemporal</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span></span></li>
@@ -1334,7 +1333,7 @@ See also <span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoFi
   
   <div data-ice="description"><p>Checks that the specified value is valid and fits in an <code>int</code>.</p>
 <p>This validates that the value is within the outer range of valid values
-returned by <span><a href="class/packages/core/src/OffsetTime.js~OffsetTime.html#instance-method-range">range</a></span>.
+returned by <span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html#instance-method-range">range</a></span>.
 It also checks that all valid values are within the bounds of an <code>int</code>.</p>
 <p>This method checks against the range of the field in the ISO-8601 calendar system.</p>
 </div>
@@ -1412,7 +1411,7 @@ It also checks that all valid values are within the bounds of an <code>int</code
   
   <div data-ice="description"><p>Checks that the specified value is valid for this field.</p>
 <p>This validates that the value is within the outer range of valid values
-returned by <span><a href="class/packages/core/src/OffsetTime.js~OffsetTime.html#instance-method-range">range</a></span>.</p>
+returned by <span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html#instance-method-range">range</a></span>.</p>
 <p>This method checks against the range of the field in the ISO-8601 calendar system.</p>
 </div>
 
@@ -1774,7 +1773,7 @@ If the field is not supported a <span><a href="variable/index.html#static-variab
 If this returns false, the the temporal cannot be queried for this field.</p>
 <p>There are two equivalent ways of using this method.
 The first is to invoke this method directly.
-The second is to use <span>TemporalAccessor#isSupported</span>:</p>
+The second is to use <span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html#instance-method-isSupported">TemporalAccessor#isSupported</a></span>:</p>
 <p><pre>
   // these two lines are equivalent, but the second approach is recommended
   temporal = thisField.isSupportedBy(temporal);
@@ -2035,9 +2034,9 @@ could be values within the range that are invalid for the field.</p>
   <div data-ice="description"><p>Get the range of valid values for this field using the temporal object to
 refine the result.</p>
 <p>This uses the temporal object to find the range of valid values for the field.
-This is similar to <span><a href="class/packages/core/src/OffsetTime.js~OffsetTime.html#instance-method-range">range</a></span>, however this method refines the result
+This is similar to <span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html#instance-method-range">range</a></span>, however this method refines the result
 using the temporal. For example, if the field is <span>DAY_OF_MONTH</span> the
-<span><a href="class/packages/core/src/OffsetTime.js~OffsetTime.html#instance-method-range">range</a></span> method is not accurate as there are four possible month lengths,
+<span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html#instance-method-range">range</a></span> method is not accurate as there are four possible month lengths,
 28, 29, 30 and 31 days. Using this method with a date allows the range to be
 accurate, returning just one of those four options.</p>
 <p>There are two equivalent ways of using this method.
@@ -2048,7 +2047,7 @@ The second is to use <span><a href="class/packages/core/src/temporal/TemporalAcc
   temporal = thisField.rangeRefinedBy(temporal);
   temporal = temporal.range(thisField);
 </pre>
-It is recommended to use the second approach, <span><a href="class/packages/core/src/OffsetTime.js~OffsetTime.html#instance-method-range">range</a></span>,
+It is recommended to use the second approach, <span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html#instance-method-range">range</a></span>,
 as it is a lot clearer to read in code.</p>
 <p>Implementations should perform any queries or calculations using the fields
 available in <span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span>.

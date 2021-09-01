@@ -78,7 +78,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html">DefaultInterfaceTemporal</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span></span></li>
@@ -791,6 +790,62 @@ delegates to toString()</p>
         
         <div data-ice="description"><p>Gets the value of the specified field as an <code>int</code>.</p>
 </div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html#instance-method-getLong">getLong</a></span></span><span class="code" data-ice="signature">(field: <span>*</span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html#instance-method-isSupported">isSupported</a></span></span><span class="code" data-ice="signature">(field: <span>*</span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
       </div>
     </td>
     <td>
@@ -1670,7 +1725,7 @@ passing <code>this</code> as the argument. Whether the value can be obtained,
 and what the value represents, is determined by the field.</p>
 </div>
 
-  
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html#instance-method-getLong">TemporalAccessor#getLong</a></span></div>
 
   <div data-ice="properties"><div data-ice="properties">
   <h4 data-ice="title">Params:</h4>
@@ -1760,8 +1815,8 @@ and what the value represents, is determined by the field.</p>
   
   <div data-ice="description"><p>Checks if the specified field is supported.</p>
 <p>This checks if this day-of-week can be queried for the specified field.
-If false, then calling the <span><a href="class/packages/core/src/OffsetTime.js~OffsetTime.html#instance-method-range">range</a></span> and
-<span><a href="class/packages/core/src/OffsetDateTime.js~OffsetDateTime.html#instance-method-get">get</a></span> methods will throw an exception.</p>
+If false, then calling the <span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html#instance-method-range">range</a></span> and
+<span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html#instance-method-get">get</a></span> methods will throw an exception.</p>
 <p>If the field is <span>ChronoField#DAY_OF_WEEK</span> then
 this method returns true.
 All other <span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span> instances will return false.</p>
@@ -1771,7 +1826,7 @@ passing <code>this</code> as the argument.
 Whether the field is supported is determined by the field.</p>
 </div>
 
-  
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html#instance-method-isSupported">TemporalAccessor#isSupported</a></span></div>
 
   <div data-ice="properties"><div data-ice="properties">
   <h4 data-ice="title">Params:</h4>

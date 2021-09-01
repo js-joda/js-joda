@@ -78,7 +78,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html">DefaultInterfaceTemporal</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span></span></li>
@@ -157,7 +156,7 @@
 <p>This class provides common implementations of <span><a href="class/packages/core/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>.
 These queries are primarily used as optimizations, allowing the internals
 of other objects to be extracted effectively. Note that application code
-can also use the <span><a href="class/packages/core/src/MonthDay.js~MonthDay.html#static-method-from">from</a></span> method on most temporal
+can also use the <span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html#static-method-from">from</a></span> method on most temporal
 objects as a method reference matching the query interface, such as
 <span>LocalDate::from</span> and <span>ZoneId::from</span>.</p>
 <p>There are two equivalent ways of using a <span><a href="class/packages/core/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>.
@@ -168,7 +167,7 @@ The second is to use <span><a href="class/packages/core/src/temporal/TemporalAcc
   dateTime = query.queryFrom(dateTime);
   dateTime = dateTime.query(query);
 </pre>
-It is recommended to use the second approach, <span><a href="class/packages/core/src/OffsetTime.js~OffsetTime.html#instance-method-query">query</a></span>,
+It is recommended to use the second approach, <span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html#instance-method-query">query</a></span>,
 as it is a lot clearer to read in code.</p>
 </div>
   

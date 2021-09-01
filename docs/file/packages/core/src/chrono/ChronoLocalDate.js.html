@@ -78,7 +78,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html">DefaultInterfaceTemporal</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span></span></li>
@@ -139,7 +138,7 @@ import {ChronoField} from &apos;../temporal/ChronoField&apos;;
 import {ChronoUnit} from &apos;../temporal/ChronoUnit&apos;;
 import {DateTimeFormatter} from &apos;../format/DateTimeFormatter&apos;;
 import {TemporalQueries} from &apos;../temporal/TemporalQueries&apos;;
-import {DefaultInterfaceTemporal} from &apos;../temporal/DefaultInterfaceTemporal&apos;;
+import {Temporal} from &apos;../temporal/Temporal&apos;;
 
 import {LocalDate} from &apos;../LocalDate&apos;;
 
@@ -309,7 +308,7 @@ import {LocalDate} from &apos;../LocalDate&apos;;
  * In JDK 8, this is an interface with default methods.
  * Since there are no default methods in JDK 7, an abstract class is used.
  */
-export class ChronoLocalDate extends DefaultInterfaceTemporal {
+export class ChronoLocalDate extends Temporal {
 
     isSupported(fieldOrUnit) {
         if (fieldOrUnit instanceof ChronoField) {

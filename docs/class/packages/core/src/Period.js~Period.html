@@ -78,7 +78,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html">DefaultInterfaceTemporal</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span></span></li>
@@ -2128,7 +2127,7 @@ The months and days units will be zero.</p>
   
   
   <div data-ice="description"><p>Obtains a <span><a href="class/packages/core/src/Period.js~Period.html">Period</a></span> from a text string such as <span>PnYnMnD</span>.</p>
-<p>This will parse the string produced by <span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html#instance-method-toString">toString</a></span> which is
+<p>This will parse the string produced by <span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html#instance-method-toString">toString</a></span> which is
 based on the ISO-8601 period formats <span>PnYnMnD</span> and <span>PnW</span>.</p>
 <p>The string starts with an optional sign, denoted by the ASCII negative
 or positive symbol. If negative, the whole period is negated.
@@ -2818,7 +2817,7 @@ Requesting an unsupported unit will throw an exception.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this period with the specified amount subtracted.</p>
-<p>This input amount is converted to a <span><a href="class/packages/core/src/Period.js~Period.html">Period</a></span> using <span><a href="class/packages/core/src/MonthDay.js~MonthDay.html#static-method-from">from</a></span>.
+<p>This input amount is converted to a <span><a href="class/packages/core/src/Period.js~Period.html">Period</a></span> using <span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html#static-method-from">from</a></span>.
 This operates separately on the years, months and days.</p>
 <p>For example, &apos;1 year, 6 months and 3 days&apos; minus &apos;2 years, 2 months and 2 days&apos;
 returns &apos;-1 years, 4 months and 1 day&apos;.</p>
@@ -3477,7 +3476,7 @@ For example, a period of &apos;1 year and -25 months&apos; will be normalized to
   
   
   <div data-ice="description"><p>Returns a copy of this period with the specified amount added.</p>
-<p>This input amount is converted to a <span><a href="class/packages/core/src/Period.js~Period.html">Period</a></span> using <span><a href="class/packages/core/src/MonthDay.js~MonthDay.html#static-method-from">from</a></span>.
+<p>This input amount is converted to a <span><a href="class/packages/core/src/Period.js~Period.html">Period</a></span> using <span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html#static-method-from">from</a></span>.
 This operates separately on the years, months and days.</p>
 <p>For example, &apos;1 year, 6 months and 3 days&apos; plus &apos;2 years, 2 months and 2 days&apos;
 returns &apos;3 years, 8 months and 5 days&apos;.</p>

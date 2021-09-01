@@ -78,7 +78,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html">DefaultInterfaceTemporal</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span></span></li>
@@ -133,8 +132,12 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
+import {assert, abstractMethodFail, requireInstance, requireNonNull} from &apos;../assert&apos;;
+import {IllegalArgumentException} from &apos;../errors&apos;;
+import {MAX_SAFE_INTEGER, MIN_SAFE_INTEGER} from &apos;../MathUtil&apos;;
 import {TemporalAccessor} from &apos;./TemporalAccessor&apos;;
-import { abstractMethodFail } from &apos;../assert&apos;;
+import {TemporalAmount} from &apos;./TemporalAmount&apos;;
+import {TemporalUnit} from &apos;./TemporalUnit&apos;;
 
 /**
  * Framework-level interface defining read-write access to a temporal object,
@@ -201,11 +204,11 @@ export class Temporal extends TemporalAccessor {
 
      * Implementations must not alter this object.
 
-     * @param {TemporalUnit} unit - the unit to check, null returns false
+     * @param {TemporalUnit} fieldOrUnit - the unit to check, null returns false
      * @return {boolean} true if this date-time can be queried for the unit, false if not
      */
     // eslint-disable-next-line no-unused-vars
-    isSupported(unit) {
+    isSupported(fieldOrUnit) {
         abstractMethodFail(&apos;isSupported&apos;);
     }
 
@@ -216,16 +219,15 @@ export class Temporal extends TemporalAccessor {
      *
      * Otherwise {@link Temporal.minusAmountUnit} is called.
      *
-     * @param {!(TemporalAmount|number)} p1
-     * @param {TemporalUnit} p2
+     * @param {!(TemporalAmount|number)} amount
+     * @param {TemporalUnit} unit
      * @return {Temporal}
      */
-    // eslint-disable-next-line no-unused-vars
-    minus(p1, p2) {
+    minus(amount, unit) {
         if (arguments.length &lt; 2) {
-            return this.minusAmount(p1);
+            return this._minusAmount(amount);
         } else {
-            return this.minusAmountUnit(p1, p2);
+            return this._minusUnit(amount, unit);
         }
     }
 
@@ -254,9 +256,10 @@ export class Temporal extends TemporalAccessor {
      * @throws DateTimeException - if the subtraction cannot be made
      * @throws ArithmeticException - if numeric overflow occurs
      */
-    // eslint-disable-next-line no-unused-vars
-    minusAmount(amount) {
-        abstractMethodFail(&apos;minusAmount&apos;);
+    _minusAmount(amount) {
+        requireNonNull(amount, &apos;amount&apos;);
+        requireInstance(amount, TemporalAmount, &apos;amount&apos;);
+        return amount.subtractFrom(this);
     }
 
     /**
@@ -277,9 +280,13 @@ export class Temporal extends TemporalAccessor {
      * @throws DateTimeException - if the unit cannot be subtracted
      * @throws ArithmeticException - if numeric overflow occurs
      */
-    // eslint-disable-next-line no-unused-vars
-    minusAmountUnit(amountToSubtract, unit) {
-        abstractMethodFail(&apos;minusAmountUnit&apos;);
+    _minusUnit(amountToSubtract, unit) {
+        requireNonNull(amountToSubtract, &apos;amountToSubtract&apos;);
+        requireNonNull(unit, &apos;unit&apos;);
+        requireInstance(unit, TemporalUnit, &apos;unit&apos;);
+        return (amountToSubtract === MIN_SAFE_INTEGER
+            ? this._plusUnit(MAX_SAFE_INTEGER, unit)._plusUnit(1, unit)
+            : this._plusUnit(-amountToSubtract, unit));
     }
 
     /**
@@ -289,16 +296,15 @@ export class Temporal extends TemporalAccessor {
      *
      * Otherwise {@link Temporal.plusAmountUnit} is called.
      *
-     * @param {!(TemporalAmount|number)} p1
-     * @param {TemporalUnit} p2
+     * @param {!(TemporalAmount|number)} amount
+     * @param {TemporalUnit} unit
      * @return {Temporal}
      */
-    // eslint-disable-next-line no-unused-vars
-    plus(p1, p2) {
+    plus(amount, unit) {
         if (arguments.length &lt; 2) {
-            return this.plusAmount(p1);
+            return this._plusAmount(amount);
         } else {
-            return this.plusAmountUnit(p1, p2);
+            return this._plusUnit(amount, unit);
         }
     }
 
@@ -324,9 +330,10 @@ export class Temporal extends TemporalAccessor {
      * @throws DateTimeException - if the addition cannot be made
      * @throws ArithmeticException - if numeric overflow occurs
      */
-    // eslint-disable-next-line no-unused-vars
-    plusAmount(amount) {
-        abstractMethodFail(&apos;plusAmount&apos;);
+    _plusAmount(amount) {
+        requireNonNull(amount, &apos;amount&apos;);
+        requireInstance(amount, TemporalAmount, &apos;amount&apos;);
+        return amount.addTo(this);
     }
 
     /**
@@ -350,8 +357,8 @@ export class Temporal extends TemporalAccessor {
      * @throws ArithmeticException - if numeric overflow occurs
      */
     // eslint-disable-next-line no-unused-vars
-    plusAmountUnit(amountToAdd, unit) {
-        abstractMethodFail(&apos;plusAmountUnit&apos;);
+    _plusUnit(amountToAdd, unit) {
+        abstractMethodFail(&apos;_plusUnit&apos;);
     }
 
     /**
@@ -412,16 +419,15 @@ export class Temporal extends TemporalAccessor {
      *
      * Otherwise {@link Temporal.withFieldValue} is called.
      *
-     * @param {!(TemporalAdjuster|TemporalField)} p1
-     * @param {number} p2
+     * @param {!(TemporalAdjuster|TemporalField)} adjusterOrField
+     * @param {number} newValue
      * @return {Temporal}
      */
-    // eslint-disable-next-line no-unused-vars
-    with(p1, p2) {
+    with(adjusterOrField, newValue) {
         if (arguments.length &lt; 2) {
-            return this.withAdjuster(p1);
+            return this._withAdjuster(adjusterOrField);
         } else {
-            return this.withFieldValue(p1, p2);
+            return this._withField(adjusterOrField, newValue);
         }
     }
 
@@ -445,9 +451,12 @@ export class Temporal extends TemporalAccessor {
      * @throws DateTimeException - if unable to make the adjustment
      * @throws ArithmeticException - if numeric overflow occurs
      */
-    // eslint-disable-next-line no-unused-vars
-    withAdjuster(adjuster) {
-        abstractMethodFail(&apos;withAdjuster&apos;);
+    _withAdjuster(adjuster) {
+        requireNonNull(adjuster, &apos;adjuster&apos;);
+        assert(typeof adjuster.adjustInto === &apos;function&apos;,
+            &apos;adjuster must be a TemporalAdjuster&apos;,
+            IllegalArgumentException);
+        return adjuster.adjustInto(this);
     }
 
     /**
@@ -469,8 +478,8 @@ export class Temporal extends TemporalAccessor {
      * @throws ArithmeticException - if numeric overflow occurs
      */
     // eslint-disable-next-line no-unused-vars
-    withFieldValue(field, newValue) {
-        abstractMethodFail(&apos;withFieldValue&apos;);
+    _withField(field, newValue) {
+        abstractMethodFail(&apos;_withField&apos;);
     }
 }
 </code></pre>

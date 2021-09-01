@@ -78,7 +78,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html">DefaultInterfaceTemporal</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span></span></li>
@@ -143,7 +142,7 @@
 
   
   
-  <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span> &#x2192; <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span> &#x2192; <span><a href="class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html">DefaultInterfaceTemporal</a></span> &#x2192; ChronoLocalDate</div></div>
+  <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span> &#x2192; <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span> &#x2192; ChronoLocalDate</div></div>
   <div class="flat-list" data-ice="directSubclass"><h4>Direct Subclass:</h4><div><span><a href="class/packages/core/src/LocalDate.js~LocalDate.html">LocalDate</a></span></div></div>
   
   
@@ -462,6 +461,62 @@ Since there are no default methods in JDK 7, an abstract class is used.</p>
           
           
           
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html#instance-method-getLong">getLong</a></span></span><span class="code" data-ice="signature">(field: <span>*</span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html#instance-method-isSupported">isSupported</a></span></span><span class="code" data-ice="signature">(field: <span>*</span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
           <span class="code" data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html#instance-method-query">query</a></span></span><span class="code" data-ice="signature">(query: <span><a href="class/packages/core/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span>): <span>*</span></span>
         </p>
       </div>
@@ -527,7 +582,7 @@ Since there are no default methods in JDK 7, an abstract class is used.</p>
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-isSupported">isSupported</a></span></span><span class="code" data-ice="signature">(unit: <span><a href="class/packages/core/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span>boolean</span></span>
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-isSupported">isSupported</a></span></span><span class="code" data-ice="signature">(fieldOrUnit: <span><a href="class/packages/core/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span>boolean</span></span>
         </p>
       </div>
       <div>
@@ -556,7 +611,7 @@ Since there are no default methods in JDK 7, an abstract class is used.</p>
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-minus">minus</a></span></span><span class="code" data-ice="signature">(p1: <span><a href="class/packages/core/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span> | <span>number</span>, p2: <span><a href="class/packages/core/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-minus">minus</a></span></span><span class="code" data-ice="signature">(amount: <span><a href="class/packages/core/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span> | <span>number</span>, unit: <span><a href="class/packages/core/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span>
         </p>
       </div>
       <div>
@@ -585,129 +640,13 @@ Since there are no default methods in JDK 7, an abstract class is used.</p>
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-minusAmount">minusAmount</a></span></span><span class="code" data-ice="signature">(amount: <span><a href="class/packages/core/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span>): <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Returns an object of the same type as this object with an amount subtracted.</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-minusAmountUnit">minusAmountUnit</a></span></span><span class="code" data-ice="signature">(amountToSubtract: <span>number</span>, unit: <span><a href="class/packages/core/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Returns an object of the same type as this object with the specified period subtracted.</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-plus">plus</a></span></span><span class="code" data-ice="signature">(p1: <span><a href="class/packages/core/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span> | <span>number</span>, p2: <span><a href="class/packages/core/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-plus">plus</a></span></span><span class="code" data-ice="signature">(amount: <span><a href="class/packages/core/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span> | <span>number</span>, unit: <span><a href="class/packages/core/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span>
         </p>
       </div>
       <div>
         
         
         <div data-ice="description"><p>function overloading for <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-plus">Temporal.plus</a></span></p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-plusAmount">plusAmount</a></span></span><span class="code" data-ice="signature">(amount: <span><a href="class/packages/core/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span>): <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Returns an object of the same type as this object with an amount added.</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-plusAmountUnit">plusAmountUnit</a></span></span><span class="code" data-ice="signature">(amountToAdd: <span>number</span>, unit: <span><a href="class/packages/core/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Returns an object of the same type as this object with the specified period added.</p>
 </div>
       </div>
     </td>
@@ -759,194 +698,13 @@ Since there are no default methods in JDK 7, an abstract class is used.</p>
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-with">with</a></span></span><span class="code" data-ice="signature">(p1: <span><a href="class/packages/core/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span> | <span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>, p2: <span>number</span>): <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-with">with</a></span></span><span class="code" data-ice="signature">(adjusterOrField: <span><a href="class/packages/core/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span> | <span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>, newValue: <span>number</span>): <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span>
         </p>
       </div>
       <div>
         
         
         <div data-ice="description"><p>function overloading for <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-with">Temporal.with</a></span></p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-withAdjuster">withAdjuster</a></span></span><span class="code" data-ice="signature">(adjuster: <span><a href="class/packages/core/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span>): <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Returns an adjusted object of the same type as this object with the adjustment made.</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html#instance-method-withFieldValue">withFieldValue</a></span></span><span class="code" data-ice="signature">(field: <span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span>, newValue: <span>number</span>): <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Returns an object of the same type as this object with the specified field altered.</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-</tbody>
-</table>
-
-<table class="summary" data-ice="summary">
-  <thead><tr><td data-ice="title" colspan="3"><span class="toggle closed"></span> From class <span><a href="class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html">DefaultInterfaceTemporal</a></span></td></tr></thead>
-  <tbody>
-  
-  <tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html#instance-method-minusAmount">minusAmount</a></span></span><span class="code" data-ice="signature">(amount: <span><a href="class/packages/core/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span>): <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Returns an object of the same type as this object with an amount subtracted.</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html#instance-method-minusAmountUnit">minusAmountUnit</a></span></span><span class="code" data-ice="signature">(amountToSubtract: <span>number</span>, unit: <span><a href="class/packages/core/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span>): <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Returns an object of the same type as this object with the specified period subtracted.</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html#instance-method-plusAmount">plusAmount</a></span></span><span class="code" data-ice="signature">(amount: <span><a href="class/packages/core/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span>): <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Returns an object of the same type as this object with an amount added.</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/packages/core/src/temporal/DefaultInterfaceTemporal.js~DefaultInterfaceTemporal.html#instance-method-withAdjuster">withAdjuster</a></span></span><span class="code" data-ice="signature">(adjuster: <span><a href="class/packages/core/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span>): <span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Returns an adjusted object of the same type as this object with the adjustment made.</p>
 </div>
       </div>
     </td>
