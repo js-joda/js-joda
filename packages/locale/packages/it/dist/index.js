@@ -1975,6 +1975,8 @@ function _init() {
   Locale.GERMAN = new Locale('de');
   Locale.GERMANY = new Locale('de', 'DE', 'de');
   Locale.KOREAN = new Locale('ko');
+  Locale.JAPANESE = new Locale('ja', 'JP');
+  Locale.JAPAN = new Locale('ja', 'JP', 'ja');
 }
 
 /***/ }),
