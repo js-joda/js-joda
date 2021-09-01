@@ -6,9 +6,9 @@
 
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
+import {Temporal} from './temporal/Temporal';
 import {Clock} from './Clock';
 import {DateTimeFormatter} from './format/DateTimeFormatter';
-import {DefaultInterfaceTemporal} from './temporal/DefaultInterfaceTemporal';
 import {Instant} from './Instant';
 import {IsoChronology} from './chrono/IsoChronology';
 import {LocalDateTime} from './LocalDateTime';
@@ -29,7 +29,7 @@ import {requireInstance, requireNonNull} from './assert';
  * A date-time with an offset from UTC/Greenwich in the ISO-8601 calendar system,
  * such as 2007-12-23T10:15:30+01:00.
  */
-export class OffsetDateTime extends DefaultInterfaceTemporal {
+export class OffsetDateTime extends Temporal {
     /**
      * @param {TemporaroAccessor} temporal
      * @return {OffsetDateTime}
@@ -373,7 +373,7 @@ export class OffsetDateTime extends DefaultInterfaceTemporal {
         return field.rangeRefinedBy(this);
     }
 
-    withAdjuster(adjuster) {
+    _withAdjuster(adjuster) {
         requireNonNull(adjuster);
         // optimizations
         if (adjuster instanceof LocalDate || adjuster instanceof LocalTime || adjuster instanceof LocalDateTime) {
@@ -388,7 +388,7 @@ export class OffsetDateTime extends DefaultInterfaceTemporal {
         return adjuster.adjustInto(this);
     }
 
-    withFieldValue(field, newValue) {
+    _withField(field, newValue) {
         requireNonNull(field);
         if (field instanceof ChronoField) {
             const f = field;
@@ -505,12 +505,12 @@ export class OffsetDateTime extends DefaultInterfaceTemporal {
         return this._withDateTimeOffset(this._dateTime.truncatedTo(unit), this._offset);
     }
 
-    plusAmount(amount) {
+    _plusAmount(amount) {
         requireNonNull(amount, 'amount');
         return amount.addTo(this);
     }
 
-    plusAmountUnit(amountToAdd, unit) {
+    _plusUnit(amountToAdd, unit) {
         if (unit instanceof ChronoUnit) {
             return this._withDateTimeOffset(this._dateTime.plus(amountToAdd, unit), this._offset);
         }
@@ -581,12 +581,12 @@ export class OffsetDateTime extends DefaultInterfaceTemporal {
         return this._withDateTimeOffset(this._dateTime.plusNanos(nanos), this._offset);
     }
 
-    minusAmount(amount) {
+    _minusAmount(amount) {
         requireNonNull(amount);
         return amount.subtractFrom(this);
     }
 
-    minusAmountUnit(amountToSubtract, unit) {
+    _minusUnit(amountToSubtract, unit) {
         return this.plus(-1 * amountToSubtract, unit);
     }
 

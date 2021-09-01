@@ -6,10 +6,10 @@
 
 import {ChronoField} from './temporal/ChronoField';
 import {ChronoUnit} from './temporal/ChronoUnit';
+import {Temporal} from './temporal/Temporal';
 import {Clock} from './Clock';
 import {DateTimeException, UnsupportedTemporalTypeException} from './errors';
 import {DateTimeFormatter} from './format/DateTimeFormatter';
-import {DefaultInterfaceTemporal} from './temporal/DefaultInterfaceTemporal';
 import {Instant, LocalTime} from './js-joda';
 import {MathUtil} from './MathUtil';
 import {OffsetDateTime} from './OffsetDateTime';
@@ -23,7 +23,7 @@ import {requireInstance, requireNonNull} from './assert';
 /**
  * A time with an offset from UTC/Greenwich in the ISO-8601 calendar system, such as 10:15:30+01:00.
  */
-export class OffsetTime extends DefaultInterfaceTemporal {
+export class OffsetTime extends Temporal {
     /**
      * @param {!TemporalAccessor} temporal
      * @return {OffsetTime}
@@ -318,16 +318,16 @@ export class OffsetTime extends DefaultInterfaceTemporal {
         return this._withLocalTimeOffset(this._time.minusNanos(nanos), this._offset);
     }
 
-    minusAmount(amount) {
+    _minusAmount(amount) {
         requireNonNull(amount);
         return amount.subtractFrom(this);
     }
 
-    minusAmountUnit(amountToSubtract, unit) {
+    _minusUnit(amountToSubtract, unit) {
         return this.plus(-1 * amountToSubtract, unit);
     }
 
-    plusAmount(amount) {
+    _plusAmount(amount) {
         requireNonNull(amount);
         return amount.addTo(this);
     }
@@ -338,7 +338,7 @@ export class OffsetTime extends DefaultInterfaceTemporal {
      * @param unit
      * @return {Temporal}
      */
-    plusAmountUnit(amountToAdd, unit) {
+    _plusUnit(amountToAdd, unit) {
         if (unit instanceof ChronoUnit) {
             return this._withLocalTimeOffset(this._time.plus(amountToAdd, unit), this._offset);
         }
@@ -515,7 +515,7 @@ export class OffsetTime extends DefaultInterfaceTemporal {
         return nod - offsetNanos;
     }
 
-    withAdjuster(adjuster) {
+    _withAdjuster(adjuster) {
         requireNonNull(adjuster, 'adjuster');
         // optimizations
         if (adjuster instanceof LocalTime) {
@@ -528,7 +528,7 @@ export class OffsetTime extends DefaultInterfaceTemporal {
         return adjuster.adjustInto(this);
     }
 
-    withFieldValue(field, newValue) {
+    _withField(field, newValue) {
         requireNonNull(field, 'field');
         if (field instanceof ChronoField) {
             if (field === ChronoField.OFFSET_SECONDS) {

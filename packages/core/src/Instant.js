@@ -405,30 +405,7 @@ export class Instant extends Temporal {
         return this._nanos;
     }
 
-    //-------------------------------------------------------------------------
-    /**
-     * Returns an adjusted copy of this instant.
-     *
-     * This returns a new {@link Instant}, based on this one, with the date adjusted.
-     * The adjustment takes place using the specified adjuster strategy object.
-     * Read the documentation of the adjuster to understand what adjustment will be made.
-     *
-     * The result of this method is obtained by invoking the
-     * {@link TemporalAdjuster#adjustInto} method on the
-     * specified adjuster passing `this` as the argument.
-     *
-     * This instance is immutable and unaffected by this method call.
-     *
-     * @param {!TemporalAdjuster} adjuster - the adjuster to use, not null
-     * @return {Instant} an {@link Instant} based on `this` with the adjustment made, not null
-     * @throws DateTimeException if the adjustment cannot be made
-     * @throws ArithmeticException if numeric overflow occurs
-     */
-    withAdjuster(adjuster) {
-        requireNonNull(adjuster, 'adjuster');
-        return adjuster.adjustInto(this);
-    }
-
+    //-----------------------------------------------------------------------
     /**
      * Returns a copy of this instant with the specified field set to a new value.
      *
@@ -472,7 +449,7 @@ export class Instant extends Temporal {
      * @throws DateTimeException if the field cannot be set
      * @throws ArithmeticException if numeric overflow occurs
      */
-    withFieldValue(field, newValue) {
+    _withField(field, newValue) {
         requireNonNull(field, 'field');
         if (field instanceof ChronoField) {
             field.checkValidValue(newValue);
@@ -534,18 +511,6 @@ export class Instant extends Temporal {
     }
 
     //-----------------------------------------------------------------------
-
-    /**
-     * @param {!TemporalAmount} amount
-     * @return {Instant}
-     * @throws DateTimeException
-     * @throws ArithmeticException
-     */
-    plusAmount(amount) {
-        requireNonNull(amount, 'amount');
-        return amount.addTo(this);
-    }
-
     /**
      * @param {!number} amountToAdd
      * @param {!TemporalUnit} unit
@@ -553,7 +518,7 @@ export class Instant extends Temporal {
      * @throws DateTimeException
      * @throws ArithmeticException
      */
-    plusAmountUnit(amountToAdd, unit) {
+    _plusUnit(amountToAdd, unit) {
         requireNonNull(amountToAdd, 'amountToAdd');
         requireNonNull(unit, 'unit');
         requireInstance(unit, TemporalUnit);
@@ -636,25 +601,14 @@ export class Instant extends Temporal {
     //-----------------------------------------------------------------------
 
     /**
-     * @param {!TemporalAmount} amount
-     * @return {Instant}
-     * @throws DateTimeException
-     * @throws ArithmeticException
-     */
-    minusAmount(amount) {
-        requireNonNull(amount, 'amount');
-        return amount.subtractFrom(this);
-    }
-
-    /**
      * @param {!number} amountToSubtract
      * @param {!TemporalUnit} unit
      * @return {Instant}
      * @throws DateTimeException
      * @throws ArithmeticException
      */
-    minusAmountUnit(amountToSubtract, unit) {
-        return this.plusAmountUnit(-1 * amountToSubtract, unit);
+    _minusUnit(amountToSubtract, unit) {
+        return this._plusUnit(-1 * amountToSubtract, unit);
     }
 
     /**

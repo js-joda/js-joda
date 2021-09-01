@@ -6,8 +6,8 @@
 
 
 import {MathUtil} from './MathUtil';
-import {assert, requireNonNull, requireInstance} from './assert';
-import {DateTimeException, UnsupportedTemporalTypeException, IllegalArgumentException} from './errors';
+import {requireNonNull, requireInstance} from './assert';
+import {DateTimeException, UnsupportedTemporalTypeException} from './errors';
 
 import {Clock} from './Clock';
 import {LocalDateTime} from './LocalDateTime';
@@ -522,14 +522,13 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @throws {DateTimeException} if the adjustment cannot be made
      * @throws {ArithmeticException} if numeric overflow occurs
      */
-    withAdjuster(adjuster) {
+    _withAdjuster(adjuster) {
         requireNonNull(adjuster, 'adjuster');
         // optimizations
         if (adjuster instanceof LocalTime) {
             return adjuster;
         }
-        assert(typeof adjuster.adjustInto === 'function', 'adjuster', IllegalArgumentException);
-        return adjuster.adjustInto(this);
+        return super._withAdjuster(adjuster);
     }
 
     /**
@@ -612,7 +611,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @throws {DateTimeException} if the field cannot be set
      * @throws {ArithmeticException} if numeric overflow occurs
      */
-    withFieldValue(field, newValue) {
+    _withField(field, newValue) {
         requireNonNull(field, 'field');
         requireInstance(field, TemporalField, 'field');
         if (field instanceof ChronoField) {
@@ -744,27 +743,6 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
     //-----------------------------------------------------------------------
 
     /**
-     * Returns a copy of this date with the specified period added.
-     *
-     * This method returns a new time based on this time with the specified period added.
-     * The amount is typically {@link Period} but may be any other type implementing
-     * the {@link TemporalAmount} interface.
-     * The calculation is delegated to the specified adjuster, which typically calls
-     * back to {@link plus}.
-     *
-     * This instance is immutable and unaffected by this method call.
-     *
-     * @param {TemporalAmount} amount - the amount to add, not null
-     * @return {LocalTime} a {@link LocalTime} based on this time with the addition made, not null
-     * @throws {DateTimeException} if the addition cannot be made
-     * @throws {ArithmeticException} if numeric overflow occurs
-     */
-    plusAmount(amount) {
-        requireNonNull(amount, 'amount');
-        return amount.addTo(this);
-    }
-
-    /**
      * Returns a copy of this time with the specified period added.
      *
      * This method returns a new time based on this time with the specified period added.
@@ -779,7 +757,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @return {LocalTime} a {@link LocalTime} based on this time with the specified period added, not null
      * @throws {DateTimeException} if the unit cannot be added to this type
      */
-    plusAmountUnit(amountToAdd, unit) {
+    _plusUnit(amountToAdd, unit) {
         requireNonNull(unit, 'unit');
         if (unit instanceof ChronoUnit) {
             switch (unit) {
@@ -902,28 +880,6 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * Returns a copy of this time with the specified period subtracted.
      *
      * This method returns a new time based on this time with the specified period subtracted.
-     * The amount is typically {@link Period} but may be any other type implementing
-     * the {@link TemporalAmount} interface.
-     * The calculation is delegated to the specified adjuster, which typically calls
-     * back to {@link minus}.
-     *
-     * This instance is immutable and unaffected by this method call.
-     *
-     * @param {TemporalAmount} amount - the amount to subtract, not null
-     * @return {LocalTime} a {@link LocalTime} based on this time with the subtraction made, not null
-     * @throws {DateTimeException} if the subtraction cannot be made
-     * @throws {ArithmeticException} if numeric overflow occurs
-     */
-
-    minusAmount(amount) {
-        requireNonNull(amount, 'amount');
-        return amount.subtractFrom(this);
-    }
-
-    /**
-     * Returns a copy of this time with the specified period subtracted.
-     *
-     * This method returns a new time based on this time with the specified period subtracted.
      * This can be used to subtract any period that is defined by a unit, for example to subtract hours, minutes or seconds.
      * The unit is responsible for the details of the calculation, including the resolution
      * of any edge cases in the calculation.
@@ -935,9 +891,9 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
      * @return {LocalTime} a {@link LocalTime} based on this time with the specified period subtracted, not null
      * @throws {DateTimeException} if the unit cannot be added to this type
      */
-    minusAmountUnit(amountToSubtract, unit) {
+    _minusUnit(amountToSubtract, unit) {
         requireNonNull(unit, 'unit');
-        return this.plusAmountUnit(-1 * amountToSubtract, unit);
+        return this._plusUnit(-1 * amountToSubtract, unit);
     }
 
     //-----------------------------------------------------------------------

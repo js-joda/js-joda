@@ -5,6 +5,7 @@
  */
 
 import {UnsupportedTemporalTypeException} from '../errors';
+import {abstractMethodFail} from '../assert';
 
 import {ChronoField} from './ChronoField';
 import {TemporalQueries} from './TemporalQueries';
@@ -83,6 +84,11 @@ export class TemporalAccessor {
         return this.range(field).checkValidIntValue(this.getLong(field), field);
     }
 
+    // eslint-disable-next-line no-unused-vars
+    getLong(field) {
+        abstractMethodFail('getLong');
+    }
+
     /**
      * Gets the range of valid values for the specified field.
      *
@@ -122,4 +128,8 @@ export class TemporalAccessor {
         return field.rangeRefinedBy(this);
     }
 
+    // eslint-disable-next-line no-unused-vars
+    isSupported(field) {
+        abstractMethodFail('isSupported');
+    }
 }
