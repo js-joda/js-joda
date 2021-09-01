@@ -1290,12 +1290,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "packages/core/src/localdate.js~localdate#atstartofdaywithzone",
-    "class/packages/core/src/LocalDate.js~LocalDate.html#instance-method-atStartOfDayWithZone",
-    "packages/core/src/LocalDate.js~LocalDate#atStartOfDayWithZone",
-    "method"
-  ],
-  [
     "packages/core/src/localdate.js~localdate#attime",
     "class/packages/core/src/LocalDate.js~LocalDate.html#instance-method-atTime",
     "packages/core/src/LocalDate.js~LocalDate#atTime",

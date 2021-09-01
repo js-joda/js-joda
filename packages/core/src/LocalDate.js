@@ -1349,12 +1349,29 @@ export class LocalDate extends ChronoLocalDate{
      * This returns a {@link LocalDateTime} formed from this date at the time of
      * midnight, 00:00, at the start of this date.
      *
-     * @param {ZoneId} zone - if zone is not null @see {@link LocalDate.atStartOfDayWithZone}
+     * If zone is not null, this returns a {@link ZonedDateTime} formed from this date at the
+     * specified zone, with the time set to be the earliest valid time according
+     * to the rules in the time-zone.
+     *
+     * Time-zone rules, such as daylight savings, mean that not every local date-time
+     * is valid for the specified zone, thus the local date-time may not be midnight.
+     *
+     * In most cases, there is only one valid offset for a local date-time.
+     * In the case of an overlap, there are two valid offsets, and the earlier one is used,
+     * corresponding to the first occurrence of midnight on the date.
+     * In the case of a gap, the zoned date-time will represent the instant just after the gap.
+     *
+     * If the zone ID is a {@link ZoneOffset}, then the result always has a time of midnight.
+     *
+     * To convert to a specific time in a given time-zone call {@link atTime}
+     * followed by {@link LocalDateTime#atZone}.
+     *
+     * @param {ZoneId} zone - optional ZoneId or ZoneOffset
      * @return {LocalDateTime|ZonedDateTime} the local date-time of midnight at the start of this date, not null
      */
     atStartOfDay(zone) {
         if(zone != null){
-            return this.atStartOfDayWithZone(zone);
+            return this._atStartOfDayWithZone(zone);
         } else {
             return LocalDateTime.of(this, LocalTime.MIDNIGHT);
         }
@@ -1384,7 +1401,7 @@ export class LocalDate extends ChronoLocalDate{
      * @param {!ZoneId} zone - the zone ID to use, not null
      * @return {ZonedDateTime} the zoned date-time formed from this date and the earliest valid time for the zone, not null
      */
-    atStartOfDayWithZone(zone) {
+    _atStartOfDayWithZone(zone) {
         requireNonNull(zone, 'zone');
         let ldt = this.atTime(LocalTime.MIDNIGHT);
         // need to handle case where there is a gap from 11:30 to 00:30

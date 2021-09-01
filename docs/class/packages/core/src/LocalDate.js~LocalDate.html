@@ -481,36 +481,6 @@ at the start of this date.</p>
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/packages/core/src/LocalDate.js~LocalDate.html#instance-method-atStartOfDayWithZone">atStartOfDayWithZone</a></span></span><span class="code" data-ice="signature">(zone: <span><a href="class/packages/core/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Combines this date with a time-zone to create a <span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>
-at the start of the day</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
           <span class="code" data-ice="name"><span><a href="class/packages/core/src/LocalDate.js~LocalDate.html#instance-method-atTime">atTime</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/packages/core/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> | <span><a href="class/packages/core/src/OffsetDateTime.js~OffsetDateTime.html">OffsetDateTime</a></span></span>
         </p>
       </div>
@@ -2929,7 +2899,7 @@ passing <span>ChronoField.EPOCH_DAY</span> as the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/LocalDate.js.html#lineNumber1355">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/LocalDate.js.html#lineNumber1372">source</a></span></span>
     </span>
   </h3>
 
@@ -2940,82 +2910,7 @@ passing <span>ChronoField.EPOCH_DAY</span> as the field.</p>
 at the start of this date.</p>
 <p>This returns a <span><a href="class/packages/core/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> formed from this date at the time of
 midnight, 00:00, at the start of this date.</p>
-</div>
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">zone</td>
-      <td data-ice="type" class="code"><span><a href="class/packages/core/src/ZoneId.js~ZoneId.html">ZoneId</a></span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"><p>if zone is not null @see <span><a href="class/packages/core/src/LocalDate.js~LocalDate.html#instance-method-atStartOfDayWithZone">LocalDate.atStartOfDayWithZone</a></span></p>
-</td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tbody>
-        <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="class/packages/core/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> | <span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-          <td class="return-desc" data-ice="returnDescription"><p>the local date-time of midnight at the start of this date, not null</p>
-</td>
-        </tr>
-      </tbody>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-atStartOfDayWithZone">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">atStartOfDayWithZone</span><span class="code" data-ice="signature">(zone: <span><a href="class/packages/core/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/packages/core/src/LocalDate.js.html#lineNumber1387">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>Combines this date with a time-zone to create a <span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>
-at the start of the day</p>
-<p>This returns a <span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> formed from this date at the
+<p>If zone is not null, this returns a <span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span> formed from this date at the
 specified zone, with the time set to be the earliest valid time according
 to the rules in the time-zone.</p>
 <p>Time-zone rules, such as daylight savings, mean that not every local date-time
@@ -3042,8 +2937,8 @@ followed by <span><a href="class/packages/core/src/LocalDateTime.js~LocalDateTim
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">zone</td>
       <td data-ice="type" class="code"><span><a href="class/packages/core/src/ZoneId.js~ZoneId.html">ZoneId</a></span></td>
-      <td data-ice="appendix"><ul><li>nullable: false</li></ul></td>
-      <td data-ice="description"><p>the zone ID to use, not null</p>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>optional ZoneId or ZoneOffset</p>
 </td>
     </tr>
 </tbody>
@@ -3056,8 +2951,8 @@ followed by <span><a href="class/packages/core/src/LocalDateTime.js~LocalDateTim
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
-          <td class="return-desc" data-ice="returnDescription"><p>the zoned date-time formed from this date and the earliest valid time for the zone, not null</p>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/packages/core/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span> | <span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the local date-time of midnight at the start of this date, not null</p>
 </td>
         </tr>
       </tbody>
@@ -3402,7 +3297,7 @@ system, in which today&apos;s rules for leap years are applied for all time.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/LocalDate.js.html#lineNumber1445">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/LocalDate.js.html#lineNumber1462">source</a></span></span>
     </span>
   </h3>
 
@@ -3659,7 +3554,7 @@ This includes textual names of the values.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/LocalDate.js.html#lineNumber1557">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/LocalDate.js.html#lineNumber1574">source</a></span></span>
     </span>
   </h3>
 
@@ -3735,7 +3630,7 @@ This includes textual names of the values.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/LocalDate.js.html#lineNumber1638">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/LocalDate.js.html#lineNumber1655">source</a></span></span>
     </span>
   </h3>
 
@@ -3998,7 +3893,7 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/LocalDate.js.html#lineNumber1572">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/LocalDate.js.html#lineNumber1589">source</a></span></span>
     </span>
   </h3>
 
@@ -4055,7 +3950,7 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/LocalDate.js.html#lineNumber1490">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/LocalDate.js.html#lineNumber1507">source</a></span></span>
     </span>
   </h3>
 
@@ -4144,7 +4039,7 @@ but is the same approach as <span>DATE_COMPARATOR</span>.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/LocalDate.js.html#lineNumber1516">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/LocalDate.js.html#lineNumber1533">source</a></span></span>
     </span>
   </h3>
 
@@ -4233,7 +4128,7 @@ but is the same approach as <span>DATE_COMPARATOR</span>.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/LocalDate.js.html#lineNumber1542">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/LocalDate.js.html#lineNumber1559">source</a></span></span>
     </span>
   </h3>
 
@@ -5636,7 +5531,7 @@ Whether the range can be obtained is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/LocalDate.js.html#lineNumber1410">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/LocalDate.js.html#lineNumber1427">source</a></span></span>
     </span>
   </h3>
 
@@ -5695,7 +5590,7 @@ This definition is the same for all chronologies, enabling conversion.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/LocalDate.js.html#lineNumber1627">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/LocalDate.js.html#lineNumber1644">source</a></span></span>
     </span>
   </h3>
 
@@ -5751,7 +5646,7 @@ This definition is the same for all chronologies, enabling conversion.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/LocalDate.js.html#lineNumber1585">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/LocalDate.js.html#lineNumber1602">source</a></span></span>
     </span>
   </h3>
 
