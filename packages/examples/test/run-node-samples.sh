@@ -7,6 +7,7 @@ node ./examples/node/node-modules-04.js
 node ./examples/node/node-modules-05.js
 node ./examples/node/node-modules-06.js
 node ./examples/node/node-modules-07.js
+node ./examples/node/node-modules-07-ko.js
 
 node ./examples/node/es6-index.js
 
