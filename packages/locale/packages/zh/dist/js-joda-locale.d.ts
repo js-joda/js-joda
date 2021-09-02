@@ -19,6 +19,9 @@ export namespace Locale {
     const FRANCE: Locale;
     const GERMAN: Locale;
     const GERMANY: Locale;
+    const KOREAN: Locale;
+    const JAPANESE: Locale;
+    const JAPAN: Locale;
 }
 
 import * as core from '@js-joda/core';

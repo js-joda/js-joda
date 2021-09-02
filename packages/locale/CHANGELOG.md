@@ -3,6 +3,10 @@
 
 ### next (upcoming)
 
+### 4.0.1
+
+* Add new Locales to prebuilt packages #543 by @pithu
+
 ### 4.0.0 
 
 Even this is a major release, it should not break anything. 
