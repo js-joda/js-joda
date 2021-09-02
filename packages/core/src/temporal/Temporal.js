@@ -6,7 +6,6 @@
 
 import {assert, abstractMethodFail, requireInstance, requireNonNull} from '../assert';
 import {IllegalArgumentException} from '../errors';
-import {MAX_SAFE_INTEGER, MIN_SAFE_INTEGER} from '../MathUtil';
 import {TemporalAccessor} from './TemporalAccessor';
 import {TemporalAmount} from './TemporalAmount';
 import {TemporalUnit} from './TemporalUnit';
@@ -156,9 +155,7 @@ export class Temporal extends TemporalAccessor {
         requireNonNull(amountToSubtract, 'amountToSubtract');
         requireNonNull(unit, 'unit');
         requireInstance(unit, TemporalUnit, 'unit');
-        return (amountToSubtract === MIN_SAFE_INTEGER
-            ? this._plusUnit(MAX_SAFE_INTEGER, unit)._plusUnit(1, unit)
-            : this._plusUnit(-amountToSubtract, unit));
+        return this._plusUnit(-amountToSubtract, unit);
     }
 
     /**
