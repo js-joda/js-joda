@@ -22,6 +22,13 @@ export namespace Locale {
     const KOREAN: Locale;
     const JAPANESE: Locale;
     const JAPAN: Locale;
+    const ITALIAN: Locale;
+    const ITALY: Locale;
+    const CHINESE: Locale;
+    const ROMANIAN: Locale;
+    const SWEDISH: Locale;
+    const SWEDEN: Locale;
+    const HINDI: Locale;
 }
 
 import * as core from '@js-joda/core';
