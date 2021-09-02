@@ -156,9 +156,7 @@ export class Temporal extends TemporalAccessor {
         requireNonNull(amountToSubtract, 'amountToSubtract');
         requireNonNull(unit, 'unit');
         requireInstance(unit, TemporalUnit, 'unit');
-        return (amountToSubtract === MIN_SAFE_INTEGER
-            ? this._plusUnit(MAX_SAFE_INTEGER, unit)._plusUnit(1, unit)
-            : this._plusUnit(-amountToSubtract, unit));
+        return this._plusUnit(-amountToSubtract, unit);
     }
 
     /**
