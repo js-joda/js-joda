@@ -6,7 +6,6 @@
 
 import {assert, abstractMethodFail, requireInstance, requireNonNull} from '../assert';
 import {IllegalArgumentException} from '../errors';
-import {MAX_SAFE_INTEGER, MIN_SAFE_INTEGER} from '../MathUtil';
 import {TemporalAccessor} from './TemporalAccessor';
 import {TemporalAmount} from './TemporalAmount';
 import {TemporalUnit} from './TemporalUnit';
