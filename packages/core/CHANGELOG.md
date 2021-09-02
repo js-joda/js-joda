@@ -5,7 +5,12 @@ Changelog
 
 ### 4.0.0 
 
-This is a major release because of breaking changes:
+Even this is a major release, there are no real breaking changes.
+The release contains typescript definition cleanup and some 
+"private" methods have been prefixed with "_". These methods are intended for internal use only.
+
+If you used the threeten API in the intended way, there shouldn't be any breaking changes. 
+If you used internal methods before, there is an replacement eg instead of `minusAmountUnit` use `minus`.
 
 * cleanup TS Typings in #456 by @InExtremaRes
 * cleanup private methods and Temporal class in #460 by @InExtremaRes

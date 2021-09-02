@@ -5,7 +5,9 @@
 
 ### 4.0.0 
 
-This is a major release because of breaking changes:
+Even this is a major release, it should not break anything. 
+Main changes are typescript definition reorganisation for the Locale class 
+and some added prebuilt Locale packages for browser usage.
 
 * added TS Typings to locale packages in #389 by @InExtremaRes
 * added Korean locale browser support in #529 by @leejaycoke
