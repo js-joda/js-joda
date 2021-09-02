@@ -3,6 +3,8 @@ Changelog
 
 ### next (upcoming)
 
+* Remove edge case handling for Temporal.minus #542 by @pithu
+
 ### 4.0.0 
 
 Even this is a major release, there are no real breaking changes.
