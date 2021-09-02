@@ -8,6 +8,7 @@ import {Period} from '../../src/Period';
 import {ChronoField} from '../../src/temporal/ChronoField';
 import {TemporalField} from '../../src/temporal/TemporalField';
 import {UnsupportedTemporalTypeException} from '../../src/errors';
+import {MathUtil} from '../../src/MathUtil';
 
 // NOTE: This is an incomplete implementation!
 class BasicYearMock extends Temporal {
@@ -62,14 +63,14 @@ describe('js-joda Temporal', () => {
             expect(new BasicYearMock(8).equals(result)).to.equal(true);
         });
 
-        /*it('should subtract MIN_SAFE_INTEGER of a given value', () => {
+        it('should subtract MIN_SAFE_INTEGER of a given value', () => {
             const result = new BasicYearMock(0)
-                .minus(Number.MIN_SAFE_INTEGER, ChronoUnit.YEARS);
+                .minus(MathUtil.MIN_SAFE_INTEGER, ChronoUnit.YEARS);
 
-            console.log(result, new BasicYearMock(Number.MAX_SAFE_INTEGER));
+            console.log(result, new BasicYearMock(MathUtil.MAX_SAFE_INTEGER));
 
-            expect(new BasicYearMock(Number.MAX_SAFE_INTEGER).equals(result)).to.equal(true);
-        });*/
+            expect(new BasicYearMock(MathUtil.MAX_SAFE_INTEGER).equals(result)).to.equal(true);
+        });
     });
 
     describe('plus', () => {
