@@ -111,4 +111,10 @@ describe('js-joda Temporal', () => {
             expect(new BasicYearMock(2).equals(result)).to.equal(true);
         });
     });
+
+    describe('valueOf', () => {
+        it('should throw an exception', () => {
+            expect(()=> new BasicYearMock(1).valueOf()).to.throw(TypeError);
+        });
+    });
 });

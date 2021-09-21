@@ -350,4 +350,14 @@ export class Temporal extends TemporalAccessor {
     _withField(field, newValue) {
         abstractMethodFail('_withField');
     }
+
+    valueOf() {
+        throw new TypeError(
+            'Conversion to a primitive type is not allowed. ' +
+            'If you are trying to compare using operators `<`, `=`, etc., ' +
+            'please use the methods `equals()`, `compareTo()` or the one ' +
+            'that better suite your use case. If you are trying to convert to ' +
+            'string use the `toString()` or `format()` methods instead.'
+        );
+    }
 }

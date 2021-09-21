@@ -245,4 +245,13 @@ describe('Using a LocalDate instance', () => {
         });
     });
 
+    describe('when coercing to a primitive', () => {
+        it('should throw an exception', () => {
+            const oneDay = LocalDate.now(Clock.systemUTC());
+            const otherDay = oneDay.plusDays(1);
+
+            expect(() => oneDay < otherDay).to.throw(TypeError);
+            expect(() => +oneDay).to.throw(TypeError);
+        });
+    });
 });

@@ -1424,7 +1424,7 @@ class InstantPrinterParser  {
             if (hi > 0) {
                 buf.append('+').append(hi);
             }
-            buf.append(ldt);
+            buf.append(ldt.toString());
             if (ldt.second() === 0) {
                 buf.append(':00');
             }
@@ -1435,7 +1435,7 @@ class InstantPrinterParser  {
             const lo = MathUtil.intMod(zeroSecs, SECONDS_PER_10000_YEARS);
             const ldt = LocalDateTime.ofEpochSecond(lo - SECONDS_0000_TO_1970, 0, ZoneOffset.UTC);
             const pos = buf.length();
-            buf.append(ldt);
+            buf.append(ldt.toString());
             if (ldt.second() === 0) {
                 buf.append(':00');
             }
