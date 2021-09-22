@@ -1103,7 +1103,7 @@ export class Duration extends TemporalAmount {
     addTo<T extends Temporal>(temporal: T): T;
     compareTo(otherDuration: Duration): number;
     dividedBy(divisor: number): Duration;
-    equals(other: any): other is Duration;
+    equals(other: any): boolean;
     get(unit: TemporalUnit): number;
     isNegative(): boolean;
     isZero(): boolean;
@@ -1163,7 +1163,7 @@ export class Instant extends Temporal implements TemporalAdjuster {
     atZone(zone: ZoneId): ZonedDateTime;
     compareTo(otherInstant: Instant): number;
     epochSecond(): number;
-    equals(other: any): other is Instant;
+    equals(other: any): boolean;
     getLong(field: TemporalField): number;
     hashCode(): number;
     isAfter(otherInstant: Instant): boolean;
@@ -1223,7 +1223,7 @@ export class LocalDate extends ChronoLocalDate implements TemporalAdjuster {
     dayOfMonth(): number;
     dayOfWeek(): DayOfWeek;
     dayOfYear(): number;
-    equals(other: any): other is LocalDate;
+    equals(other: any): boolean;
     getLong(field: TemporalField): number;
     hashCode(): number;
     isAfter(other: LocalDate): boolean;
@@ -1293,7 +1293,7 @@ export class LocalDateTime extends ChronoLocalDateTime implements TemporalAdjust
     dayOfMonth(): number;
     dayOfWeek(): DayOfWeek;
     dayOfYear(): number;
-    equals(other: any): other is LocalDateTime;
+    equals(other: any): boolean;
     format(formatter: DateTimeFormatter): string;
     getLong(field: TemporalField): number;
     hashCode(): number;
@@ -1387,7 +1387,7 @@ export class LocalTime extends Temporal implements TemporalAdjuster {
     atDate(date: LocalDate): LocalDateTime;
     atOffset(offset: ZoneOffset): OffsetTime;
     compareTo(other: LocalTime): number;
-    equals(other: any): other is LocalTime;
+    equals(other: any): boolean;
     format(formatter: DateTimeFormatter): string;
     getLong(field: ChronoField): number;
     hashCode(): number;
@@ -1446,7 +1446,7 @@ export class MonthDay extends TemporalAccessor implements TemporalAdjuster {
     atYear(year: number): LocalDate;
     compareTo(other: MonthDay): number;
     dayOfMonth(): number;
-    equals(other: any): other is MonthDay;
+    equals(other: any): boolean;
     format(formatter: DateTimeFormatter): string;
     getLong(field: TemporalField): number;
     isAfter(other: MonthDay): boolean;
@@ -1479,7 +1479,7 @@ export class Period extends TemporalAmount {
     addTo<T extends Temporal>(temporal: T): T;
     chronology(): IsoChronology;
     days(): number;
-    equals(other: any): other is Period;
+    equals(other: any): boolean;
     get(unit: TemporalUnit): number;
     hashCode(): number;
     isNegative(): boolean;
@@ -1526,7 +1526,7 @@ export class Year extends Temporal implements TemporalAdjuster {
     atMonth(month: Month | number): YearMonth;
     atMonthDay(monthDay: MonthDay): LocalDate;
     compareTo(other: Year): number;
-    equals(other: any): other is Year;
+    equals(other: any): boolean;
     getLong(field: TemporalField): number;
     isAfter(other: Year): boolean;
     isBefore(other: Year): boolean;
@@ -1569,7 +1569,7 @@ export class YearMonth extends Temporal implements TemporalAdjuster {
     atDay(dayOfMonth: number): LocalDate;
     atEndOfMonth(): LocalDate;
     compareTo(other: YearMonth): number;
-    equals(other: any): other is YearMonth;
+    equals(other: any): boolean;
     format(formatter: DateTimeFormatter): string;
     getLong(field: TemporalField): number;
     isAfter(other: YearMonth): boolean;
@@ -1649,7 +1649,7 @@ export class OffsetDateTime extends Temporal implements TemporalAdjuster {
     dayOfMonth(): number;
     dayOfWeek(): DayOfWeek;
     dayOfYear(): number;
-    equals(other: any): other is OffsetDateTime;
+    equals(other: any): boolean;
     format(formatter: DateTimeFormatter): string;
     getLong(field: TemporalField): number;
     hashCode(): number;
@@ -1745,7 +1745,7 @@ export class OffsetTime extends Temporal implements TemporalAdjuster {
     adjustInto(temporal: Temporal): Temporal;
     atDate(date: LocalDate): OffsetDateTime;
     compareTo(other: OffsetTime): number;
-    equals(other: any): other is OffsetTime;
+    equals(other: any): boolean;
     format(formatter: DateTimeFormatter): string;
     getLong(field: TemporalField): number;
     hashCode(): number;
@@ -1900,7 +1900,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     dayOfMonth(): number;
     dayOfWeek(): DayOfWeek;
     dayOfYear(): number;
-    equals(other: any): other is ZonedDateTime;
+    equals(other: any): boolean;
     getLong(field: TemporalField): number;
     hashCode(): number;
     hour(): number;
