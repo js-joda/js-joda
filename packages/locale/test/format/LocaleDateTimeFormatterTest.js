@@ -26,7 +26,6 @@ describe('LocaleDateTimeFormatter', () => {
             const df = DateTimeFormatter.ofPattern('EEE, dd MMM yyyy HH:mm:ss z').withLocale(Locale.ENGLISH);
             const z = ZonedDateTime.parse('Tue, 05 Oct 2021 17:08:24 GMT', df);
             expect(z.format(df)).to.equal('Tue, 05 Oct 2021 17:08:24 GMT');
-            // FIXME
             expect(z.zone().id()).to.equal('GMT');
             expect(z.toString()).to.equal('2021-10-05T17:08:24Z[GMT]');
         });
