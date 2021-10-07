@@ -167,15 +167,15 @@ export default class CldrZoneTextPrinterParser {
             const tzstyle = (this._textStyle.asNormal() === TextStyle.FULL ? 'long' : 'short');
 
             const genericText = this._cachedResolveZoneIdText(cldr, id, tzstyle, 'generic');
-            if (genericText && ids[genericText] == null) {
+            if (genericText) {
                 ids[genericText] = id;
             }
             const standardText = this._cachedResolveZoneIdText(cldr, id, tzstyle, 'standard');
-            if (standardText && ids[standardText] == null) {
+            if (standardText) {
                 ids[standardText] = id;
             }
             const daylightText = this._cachedResolveZoneIdText(cldr, id, tzstyle, 'daylight');
-            if (daylightText && ids[daylightText] == null) {
+            if (daylightText) {
                 ids[daylightText] = id;
             }
         }
@@ -186,7 +186,14 @@ export default class CldrZoneTextPrinterParser {
         return this._zoneIdsLocales[localString];
     }
 
+    // That's a very poor implementation, there are missing bug fixes and functionality from threeten and jdk
     parse(context, text, position) {
+        for (const name of ['UTC', 'GMT']) {
+            if (context.subSequenceEquals(text, position, name, 0, name.length)) {
+                context.setParsedZone(ZoneId.of(name));
+                return position + name.length;
+            }
+        }
         const { ids, sortedKeys } = this._resolveZoneIds(context.locale().localeString());
         for (const name of sortedKeys) {
             if (context.subSequenceEquals(text, position, name, 0, name.length)) {
