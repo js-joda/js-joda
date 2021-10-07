@@ -322,7 +322,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
             } else if (unit === ChronoUnit.DAYS) {
                 days = MathUtil.safeToInt(unitAmount);
             } else {
-                throw new DateTimeException(&apos;Unit must be Years, Months or Days, but was &apos; + unit);
+                throw new DateTimeException(`Unit must be Years, Months or Days, but was ${  unit}`);
             }
         }
         return Period.create(years, months, days);
@@ -501,7 +501,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
         if (unit === ChronoUnit.DAYS) {
             return this._days;
         }
-        throw new UnsupportedTemporalTypeException(&apos;Unsupported unit: &apos; + unit);
+        throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
     }
 
     //-----------------------------------------------------------------------
@@ -1012,13 +1012,13 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
         } else {
             let buf = &apos;P&apos;;
             if (this._years !== 0) {
-                buf += &apos;&apos; + this._years + &apos;Y&apos;;
+                buf += `${  this._years  }Y`;
             }
             if (this._months !== 0) {
-                buf += &apos;&apos; + this._months + &apos;M&apos;;
+                buf += `${  this._months  }M`;
             }
             if (this._days !== 0) {
-                buf += &apos;&apos; + this._days + &apos;D&apos;;
+                buf += `${  this._days  }D`;
             }
             return buf;
         }

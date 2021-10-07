@@ -187,11 +187,11 @@ export class NumberPrinterParser {
         }
         const value = this._getValue(context, contextValue);
         const symbols = context.symbols();
-        let str = &apos;&apos; + Math.abs(value);
+        let str = `${  Math.abs(value)}`;
         if (str.length &gt; this._maxWidth) {
-            throw new DateTimeException(&apos;Field &apos; + this._field +
-                &apos; cannot be printed as the value &apos; + value +
-                &apos; exceeds the maximum print width of &apos; + this._maxWidth);
+            throw new DateTimeException(`Field ${  this._field 
+            } cannot be printed as the value ${  value 
+            } exceeds the maximum print width of ${  this._maxWidth}`);
         }
         str = symbols.convertNumberToI18N(str);
 
@@ -214,9 +214,9 @@ export class NumberPrinterParser {
                     buf.append(symbols.negativeSign());
                     break;
                 case SignStyle.NOT_NEGATIVE:
-                    throw new DateTimeException(&apos;Field &apos; + this._field +
-                        &apos; cannot be printed as the value &apos; + value +
-                        &apos; cannot be negative according to the SignStyle&apos;);
+                    throw new DateTimeException(`Field ${  this._field 
+                    } cannot be printed as the value ${  value 
+                    } cannot be negative according to the SignStyle`);
             }
         }
         for (let i = 0; i &lt; this._minWidth - str.length; i++) {
@@ -338,12 +338,12 @@ export class NumberPrinterParser {
 
     toString() {
         if (this._minWidth === 1 &amp;&amp; this._maxWidth === MAX_WIDTH &amp;&amp; this._signStyle === SignStyle.NORMAL) {
-            return &apos;Value(&apos; + this._field + &apos;)&apos;;
+            return `Value(${  this._field  })`;
         }
         if (this._minWidth === this._maxWidth &amp;&amp; this._signStyle === SignStyle.NOT_NEGATIVE) {
-            return &apos;Value(&apos; + this._field + &apos;,&apos; + this._minWidth + &apos;)&apos;;
+            return `Value(${  this._field  },${  this._minWidth  })`;
         }
-        return &apos;Value(&apos; + this._field + &apos;,&apos; + this._minWidth + &apos;,&apos; + this._maxWidth + &apos;,&apos; + this._signStyle + &apos;)&apos;;
+        return `Value(${  this._field  },${  this._minWidth  },${  this._maxWidth  },${  this._signStyle  })`;
     }
 
 }
@@ -366,10 +366,10 @@ export class ReducedPrinterParser extends NumberPrinterParser {
     constructor(field, width, maxWidth, baseValue, baseDate) {
         super(field, width, maxWidth, SignStyle.NOT_NEGATIVE);
         if (width &lt; 1 || width &gt; 10) {
-            throw new IllegalArgumentException(&apos;The width must be from 1 to 10 inclusive but was &apos; + width);
+            throw new IllegalArgumentException(`The width must be from 1 to 10 inclusive but was ${  width}`);
         }
         if (maxWidth &lt; 1 || maxWidth &gt; 10) {
-            throw new IllegalArgumentException(&apos;The maxWidth must be from 1 to 10 inclusive but was &apos; + maxWidth);
+            throw new IllegalArgumentException(`The maxWidth must be from 1 to 10 inclusive but was ${  maxWidth}`);
         }
         if (maxWidth &lt; width) {
             throw new IllegalArgumentException(&apos;The maxWidth must be greater than the width&apos;);
@@ -469,7 +469,7 @@ export class ReducedPrinterParser extends NumberPrinterParser {
     }
 
     toString() {
-        return &apos;ReducedValue(&apos; + this._field + &apos;,&apos; + this._minWidth + &apos;,&apos; + this._maxWidth + &apos;,&apos; + (this._baseDate != null ? this._baseDate : this._baseValue) + &apos;)&apos;;
+        return `ReducedValue(${  this._field  },${  this._minWidth  },${  this._maxWidth  },${  this._baseDate != null ? this._baseDate : this._baseValue  })`;
     }
 }
 

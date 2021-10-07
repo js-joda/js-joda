@@ -267,8 +267,8 @@ export class MonthDay extends TemporalAccessor {
         requireNonNull(month, &apos;month&apos;);
         ChronoField.DAY_OF_MONTH.checkValidValue(dayOfMonth);
         if (dayOfMonth &gt; month.maxLength()) {
-            throw new DateTimeException(&apos;Illegal value for DayOfMonth field, value &apos; + dayOfMonth +
-                    &apos; is not valid for month &apos; + month.toString());
+            throw new DateTimeException(`Illegal value for DayOfMonth field, value ${  dayOfMonth 
+            } is not valid for month ${  month.toString()}`);
         }
         return new MonthDay(month.value(), dayOfMonth);
     }
@@ -325,8 +325,8 @@ export class MonthDay extends TemporalAccessor {
             }*/
             return MonthDay.of(temporal.get(ChronoField.MONTH_OF_YEAR), temporal.get(ChronoField.DAY_OF_MONTH));
         } catch (ex) {
-            throw new DateTimeException(&apos;Unable to obtain MonthDay from TemporalAccessor: &apos; +
-                    temporal + &apos;, type &apos; + (temporal &amp;&amp; temporal.constructor != null ? temporal.constructor.name : &apos;&apos;));
+            throw new DateTimeException(`Unable to obtain MonthDay from TemporalAccessor: ${ 
+                temporal  }, type ${  temporal &amp;&amp; temporal.constructor != null ? temporal.constructor.name : &apos;&apos;}`);
         }
     }
     //-----------------------------------------------------------------------
@@ -556,7 +556,7 @@ export class MonthDay extends TemporalAccessor {
                 case ChronoField.DAY_OF_MONTH: return this._day;
                 case ChronoField.MONTH_OF_YEAR: return this._month;
             }
-            throw new UnsupportedTemporalTypeException(&apos;Unsupported field: &apos; + field);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
         }
         return field.getFrom(this);
     }
@@ -789,9 +789,9 @@ export class MonthDay extends TemporalAccessor {
      * @return {String} a string representation of this month-day, not null
      */
     toString() {
-        return &apos;--&apos;
-            + (this._month &lt; 10 ? &apos;0&apos; : &apos;&apos;) + this._month
-            + (this._day &lt; 10 ? &apos;-0&apos; : &apos;-&apos;) + this._day;
+        return `--${
+            this._month &lt; 10 ? &apos;0&apos; : &apos;&apos;  }${this._month
+        }${this._day &lt; 10 ? &apos;-0&apos; : &apos;-&apos;  }${this._day}`;
     }
 
     /**

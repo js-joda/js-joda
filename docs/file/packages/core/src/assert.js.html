@@ -138,7 +138,7 @@ export function assert(assertion, msg, error) {
  */
 export function requireNonNull(value, parameterName) {
     if (value == null) {
-        throw new NullPointerException(parameterName + &apos; must not be null&apos;);
+        throw new NullPointerException(`${parameterName  } must not be null`);
     }
     return value;
 }
@@ -153,7 +153,7 @@ export function requireNonNull(value, parameterName) {
  */
 export function requireInstance(value, _class, parameterName) {
     if (!(value instanceof _class)) {
-        throw new IllegalArgumentException(parameterName + &apos; must be an instance of &apos; + (_class.name ? _class.name : _class) + (value &amp;&amp; value.constructor &amp;&amp; value.constructor.name ? &apos;, but is &apos; + value.constructor.name : &apos;&apos;));
+        throw new IllegalArgumentException(`${parameterName  } must be an instance of ${  _class.name ? _class.name : _class  }${value &amp;&amp; value.constructor &amp;&amp; value.constructor.name ? `, but is ${  value.constructor.name}` : &apos;&apos;}`);
     }
     return value;
 }
@@ -164,7 +164,7 @@ export function requireInstance(value, _class, parameterName) {
  * @param methodName
  */
 export function abstractMethodFail(methodName){
-    throw new TypeError(&apos;abstract method &quot;&apos; + methodName + &apos;&quot; is not implemented&apos;);
+    throw new TypeError(`abstract method &quot;${  methodName  }&quot; is not implemented`);
 }
 </code></pre>
 

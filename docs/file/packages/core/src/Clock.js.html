@@ -345,7 +345,7 @@ class SystemClock extends Clock {
      * @returns {string}
      */
     toString(){
-        return &apos;SystemClock[&apos; + this._zone.toString() + &apos;]&apos;;
+        return `SystemClock[${  this._zone.toString()  }]`;
     }
 
 }
@@ -432,7 +432,7 @@ class OffsetClock extends Clock {
     }
     
     toString() {
-        return &apos;OffsetClock[&apos; + this._baseClock + &apos;,&apos; + this._offset + &apos;]&apos;;
+        return `OffsetClock[${  this._baseClock  },${  this._offset  }]`;
     }
 }
 </code></pre>

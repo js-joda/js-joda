@@ -164,7 +164,7 @@ export class IsoChronology extends Enum{
         requireNonNull(field, &apos;field&apos;);
         const current = fieldValues.get(field);
         if (current != null &amp;&amp; current !== value) {
-            throw new DateTimeException(&apos;Invalid state, field: &apos; + field + &apos; &apos; + current + &apos; conflicts with &apos; + field + &apos; &apos; + value);
+            throw new DateTimeException(`Invalid state, field: ${  field  } ${  current  } conflicts with ${  field  } ${  value}`);
         }
         fieldValues.put(field, value);
     }
@@ -210,7 +210,7 @@ export class IsoChronology extends Enum{
             } else if (era === 0) {
                 this._updateResolveMap(fieldValues, ChronoField.YEAR, MathUtil.safeSubtract(1, yoeLong));
             } else {
-                throw new DateTimeException(&apos;Invalid value for era: &apos; + era);
+                throw new DateTimeException(`Invalid value for era: ${  era}`);
             }
         } else if (fieldValues.containsKey(ChronoField.ERA)) {
             ChronoField.ERA.checkValidValue(fieldValues.get(ChronoField.ERA));  // always validated

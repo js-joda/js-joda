@@ -171,7 +171,7 @@ const instant = Instant.from(nativeJs(new Date()))
 // or with momentjs object
 const instant = Instant.from(nativeJs(moment()))</code>
 </code></pre>
-<h2 id="convert-from-js-joda-temporal-to-a-date">Convert from js-joda temporal to a Date</h2><p>use method <code>convert</code> to convert a <code>LocalDate</code> | <code>LocalDateTime</code> | <code>ZonedDateTime</code> | <code>Instant</code> 
+<h2 id="convert-from-js-joda-temporal-to-a-date">Convert from js-joda temporal to a Date</h2><p>Use method <code>convert</code> to convert a <code>LocalDate</code> | <code>LocalDateTime</code> | <code>ZonedDateTime</code> | <code>Instant</code> 
 to javascript <code>Date</code>.</p>
 <pre><code class="lang-javascript"><code class="source-code prettyprint">const date = convert(ZonedDateTime.now()).toDate();</code>
 </code></pre>

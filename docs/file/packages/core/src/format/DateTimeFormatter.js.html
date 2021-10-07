@@ -610,11 +610,11 @@ export class DateTimeFormatter {
     _createError(text, ex) {
         let abbr = &apos;&apos;;
         if (text.length &gt; 64) {
-            abbr = text.substring(0, 64) + &apos;...&apos;;
+            abbr = `${text.substring(0, 64)  }...`;
         } else {
             abbr = text;
         }
-        return new DateTimeParseException(&apos;Text \&apos;&apos; + abbr + &apos;\&apos; could not be parsed: &apos; + ex.message, text, 0, ex);
+        return new DateTimeParseException(`Text &apos;${  abbr  }&apos; could not be parsed: ${  ex.message}`, text, 0, ex);
     }
 
 
@@ -637,16 +637,16 @@ export class DateTimeFormatter {
         if (result == null || pos.getErrorIndex() &gt;= 0 || (position == null &amp;&amp; pos.getIndex() &lt; text.length)) {
             let abbr = &apos;&apos;;
             if (text.length &gt; 64) {
-                abbr = text.substr(0, 64).toString() + &apos;...&apos;;
+                abbr = `${text.substr(0, 64).toString()  }...`;
             } else {
                 abbr = text;
             }
             if (pos.getErrorIndex() &gt;= 0) {
-                throw new DateTimeParseException(&apos;Text \&apos;&apos; + abbr + &apos;\&apos; could not be parsed at index &apos; +
-                        pos.getErrorIndex(), text, pos.getErrorIndex());
+                throw new DateTimeParseException(`Text &apos;${  abbr  }&apos; could not be parsed at index ${ 
+                    pos.getErrorIndex()}`, text, pos.getErrorIndex());
             } else {
-                throw new DateTimeParseException(&apos;Text \&apos;&apos; + abbr + &apos;\&apos; could not be parsed, unparsed text found at index &apos; +
-                        pos.getIndex(), text, pos.getIndex());
+                throw new DateTimeParseException(`Text &apos;${  abbr  }&apos; could not be parsed, unparsed text found at index ${ 
+                    pos.getIndex()}`, text, pos.getIndex());
             }
         }
         return result.toBuilder();

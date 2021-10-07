@@ -569,7 +569,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
             case ChronoField.CLOCK_HOUR_OF_DAY: return (this._hour === 0 ? 24 : this._hour);
             case ChronoField.AMPM_OF_DAY: return MathUtil.intDiv(this._hour, 12);
         }
-        throw new UnsupportedTemporalTypeException(&apos;Unsupported field: &apos; + field);
+        throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
     }
 
     //-----------------------------------------------------------------------
@@ -741,7 +741,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
                 case ChronoField.CLOCK_HOUR_OF_DAY: return this.withHour((newValue === 24 ? 0 : newValue));
                 case ChronoField.AMPM_OF_DAY: return this.plusHours((newValue - MathUtil.intDiv(this._hour, 12)) * 12);
             }
-            throw new UnsupportedTemporalTypeException(&apos;Unsupported field: &apos; + field);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
         }
         return field.adjustInto(this, newValue);
     }
@@ -877,7 +877,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
                 case ChronoUnit.HOURS: return this.plusHours(amountToAdd);
                 case ChronoUnit.HALF_DAYS: return this.plusHours(MathUtil.intMod(amountToAdd, 2) * 12);
             }
-            throw new UnsupportedTemporalTypeException(&apos;Unsupported unit: &apos; + unit);
+            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
         }
         return unit.addTo(this, amountToAdd);
     }
@@ -1185,7 +1185,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
                 case ChronoUnit.HOURS: return MathUtil.intDiv(nanosUntil, LocalTime.NANOS_PER_HOUR);
                 case ChronoUnit.HALF_DAYS: return MathUtil.intDiv(nanosUntil, (12 * LocalTime.NANOS_PER_HOUR));
             }
-            throw new UnsupportedTemporalTypeException(&apos;Unsupported unit: &apos; + unit);
+            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
         }
         return unit.between(this, end);
     }
@@ -1363,11 +1363,11 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
             if (nanoValue &gt; 0) {
                 buf += &apos;.&apos;;
                 if(MathUtil.intMod(nanoValue, 1000000) === 0) {
-                    buf += (&apos;&apos; + (MathUtil.intDiv(nanoValue, 1000000) + 1000)).substring(1);
+                    buf += (`${  MathUtil.intDiv(nanoValue, 1000000) + 1000}`).substring(1);
                 } else if (MathUtil.intMod(nanoValue, 1000) === 0) {
-                    buf += (&apos;&apos; + (MathUtil.intDiv(nanoValue, 1000) + 1000000)).substring(1);
+                    buf += (`${  MathUtil.intDiv(nanoValue, 1000) + 1000000}`).substring(1);
                 } else {
-                    buf += (&apos;&apos; + (nanoValue + 1000000000)).substring(1);
+                    buf += (`${  nanoValue + 1000000000}`).substring(1);
                 }
             }
         }

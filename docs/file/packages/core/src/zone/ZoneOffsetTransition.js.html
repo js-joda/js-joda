@@ -389,9 +389,9 @@ export class ZoneOffsetTransition {
      * @return {string} a string for debugging, not null
      */
     toString() {
-        return &apos;Transition[&apos; + (this.isGap() ? &apos;Gap&apos; : &apos;Overlap&apos;) +
-            &apos; at &apos; + this._transition.toString() + this._offsetBefore.toString() +
-            &apos; to &apos; + this._offsetAfter + &apos;]&apos;;
+        return `Transition[${  this.isGap() ? &apos;Gap&apos; : &apos;Overlap&apos; 
+        } at ${  this._transition.toString()  }${this._offsetBefore.toString() 
+        } to ${  this._offsetAfter  }]`;
     }
 
 }

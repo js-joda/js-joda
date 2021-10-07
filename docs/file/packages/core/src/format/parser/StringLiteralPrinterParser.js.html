@@ -141,7 +141,7 @@ export class StringLiteralPrinterParser {
 
     toString() {
         const converted = this._literal.replace(&quot;&apos;&quot;, &quot;&apos;&apos;&quot;);
-        return &apos;\&apos;&apos; + converted + &apos;\&apos;&apos;;
+        return `&apos;${  converted  }&apos;`;
     }
 }
 

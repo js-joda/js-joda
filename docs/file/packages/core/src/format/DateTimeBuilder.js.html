@@ -222,7 +222,7 @@ export class DateTimeBuilder extends TemporalAccessor {
         requireNonNull(field, &apos;field&apos;);
         const old = this.getFieldValue0(field);  // check first for better error message
         if (old != null &amp;&amp; old !== value) {
-            throw new DateTimeException(&apos;Conflict found: &apos; + field + &apos; &apos; + old + &apos; differs from &apos; + field + &apos; &apos; + value + &apos;: &apos; + this);
+            throw new DateTimeException(`Conflict found: ${  field  } ${  old  } differs from ${  field  } ${  value  }: ${  this}`);
         }
         return this._putFieldValue0(field, value);
     }
@@ -313,7 +313,7 @@ export class DateTimeBuilder extends TemporalAccessor {
                             }
                             const val2 = this.fieldValues.get(field);
                             if (val1 !== val2) {
-                                throw new DateTimeException(&apos;Conflict found: Field &apos; + field + &apos; &apos; + val1 + &apos; differs from &apos; + field + &apos; &apos; + val2 + &apos; derived from &apos; + date);
+                                throw new DateTimeException(`Conflict found: Field ${  field  } ${  val1  } differs from ${  field  } ${  val2  } derived from ${  date}`);
                             }
                         }
                     }
@@ -611,7 +611,7 @@ export class DateTimeBuilder extends TemporalAccessor {
             if (this.time != null &amp;&amp; this.time.isSupported(field)) {
                 return this.time.getLong(field);
             }
-            throw new DateTimeException(&apos;Field not found: &apos; + field);
+            throw new DateTimeException(`Field not found: ${  field}`);
         }
         return value;
     }

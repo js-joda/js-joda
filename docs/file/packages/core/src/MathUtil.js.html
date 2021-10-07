@@ -240,7 +240,7 @@ export class MathUtil {
         }
         const r = MathUtil.safeToInt(x * y);
         if (r / y !== x || (x === MIN_SAFE_INTEGER &amp;&amp; y === -1) || (y === MIN_SAFE_INTEGER &amp;&amp; x === -1)) {
-            throw new ArithmeticException(&apos;Multiplication overflows: &apos; + x + &apos; * &apos; + y);
+            throw new ArithmeticException(`Multiplication overflows: ${  x  } * ${  y}`);
         }
         return r;
     }
@@ -280,7 +280,7 @@ export class MathUtil {
             throw new ArithmeticException(`Invalid value: &apos;${value}&apos; is a float`);
         }
         if (value &gt; MAX_SAFE_INTEGER || value &lt; MIN_SAFE_INTEGER) {
-            throw new ArithmeticException(&apos;Calculation overflows an int: &apos; + value);
+            throw new ArithmeticException(`Calculation overflows an int: ${  value}`);
         }
     }
 

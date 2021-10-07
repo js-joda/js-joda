@@ -1,7 +1,7 @@
 {
   "type": "File",
   "start": 0,
-  "end": 976,
+  "end": 978,
   "loc": {
     "start": {
       "line": 1,
@@ -15,7 +15,7 @@
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 976,
+    "end": 978,
     "loc": {
       "start": {
         "line": 1,
@@ -137,7 +137,7 @@
       {
         "type": "ExportNamedDeclaration",
         "start": 274,
-        "end": 974,
+        "end": 976,
         "loc": {
           "start": {
             "line": 9,
@@ -153,7 +153,7 @@
         "declaration": {
           "type": "ClassDeclaration",
           "start": 281,
-          "end": 974,
+          "end": 976,
           "loc": {
             "start": {
               "line": 9,
@@ -185,7 +185,7 @@
           "body": {
             "type": "ClassBody",
             "start": 305,
-            "end": 974,
+            "end": 976,
             "loc": {
               "start": {
                 "line": 9,
@@ -200,7 +200,7 @@
               {
                 "type": "ClassMethod",
                 "start": 588,
-                "end": 687,
+                "end": 689,
                 "loc": {
                   "start": {
                     "line": 20,
@@ -257,7 +257,7 @@
                 "body": {
                   "type": "BlockStatement",
                   "start": 611,
-                  "end": 687,
+                  "end": 689,
                   "loc": {
                     "start": {
                       "line": 20,
@@ -272,7 +272,7 @@
                     {
                       "type": "ThrowStatement",
                       "start": 621,
-                      "end": 681,
+                      "end": 683,
                       "loc": {
                         "start": {
                           "line": 21,
@@ -280,13 +280,13 @@
                         },
                         "end": {
                           "line": 21,
-                          "column": 68
+                          "column": 70
                         }
                       },
                       "argument": {
                         "type": "NewExpression",
                         "start": 627,
-                        "end": 680,
+                        "end": 682,
                         "loc": {
                           "start": {
                             "line": 21,
@@ -294,7 +294,7 @@
                           },
                           "end": {
                             "line": 21,
-                            "column": 67
+                            "column": 69
                           }
                         },
                         "callee": {
@@ -316,9 +316,9 @@
                         },
                         "arguments": [
                           {
-                            "type": "BinaryExpression",
+                            "type": "TemplateLiteral",
                             "start": 649,
-                            "end": 679,
+                            "end": 681,
                             "loc": {
                               "start": {
                                 "line": 21,
@@ -326,47 +326,70 @@
                               },
                               "end": {
                                 "line": 21,
-                                "column": 66
+                                "column": 68
                               }
                             },
-                            "left": {
-                              "type": "StringLiteral",
-                              "start": 649,
-                              "end": 670,
-                              "loc": {
-                                "start": {
-                                  "line": 21,
-                                  "column": 36
+                            "expressions": [
+                              {
+                                "type": "Identifier",
+                                "start": 673,
+                                "end": 679,
+                                "loc": {
+                                  "start": {
+                                    "line": 21,
+                                    "column": 60
+                                  },
+                                  "end": {
+                                    "line": 21,
+                                    "column": 66
+                                  },
+                                  "identifierName": "zoneId"
                                 },
-                                "end": {
-                                  "line": 21,
-                                  "column": 57
-                                }
-                              },
-                              "extra": {
-                                "rawValue": "unsupported ZoneId:",
-                                "raw": "'unsupported ZoneId:'"
-                              },
-                              "value": "unsupported ZoneId:"
-                            },
-                            "operator": "+",
-                            "right": {
-                              "type": "Identifier",
-                              "start": 673,
-                              "end": 679,
-                              "loc": {
-                                "start": {
-                                  "line": 21,
-                                  "column": 60
+                                "name": "zoneId"
+                              }
+                            ],
+                            "quasis": [
+                              {
+                                "type": "TemplateElement",
+                                "start": 650,
+                                "end": 669,
+                                "loc": {
+                                  "start": {
+                                    "line": 21,
+                                    "column": 37
+                                  },
+                                  "end": {
+                                    "line": 21,
+                                    "column": 56
+                                  }
                                 },
-                                "end": {
-                                  "line": 21,
-                                  "column": 66
+                                "value": {
+                                  "raw": "unsupported ZoneId:",
+                                  "cooked": "unsupported ZoneId:"
                                 },
-                                "identifierName": "zoneId"
+                                "tail": false
                               },
-                              "name": "zoneId"
-                            }
+                              {
+                                "type": "TemplateElement",
+                                "start": 680,
+                                "end": 680,
+                                "loc": {
+                                  "start": {
+                                    "line": 21,
+                                    "column": 67
+                                  },
+                                  "end": {
+                                    "line": 21,
+                                    "column": 67
+                                  }
+                                },
+                                "value": {
+                                  "raw": "",
+                                  "cooked": ""
+                                },
+                                "tail": true
+                              }
+                            ]
                           }
                         ]
                       }
@@ -397,8 +420,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\n     * Gets the set of available zone IDs.\n     *\n     * These zone IDs are loaded and available for use by {@link ZoneId}.\n     *\n     * @return {string[]} a modifiable copy of the set of zone IDs, not null\n     ",
-                    "start": 694,
-                    "end": 913,
+                    "start": 696,
+                    "end": 915,
                     "loc": {
                       "start": {
                         "line": 25,
@@ -414,8 +437,8 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 918,
-                "end": 972,
+                "start": 920,
+                "end": 974,
                 "loc": {
                   "start": {
                     "line": 32,
@@ -430,8 +453,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 925,
-                  "end": 944,
+                  "start": 927,
+                  "end": 946,
                   "loc": {
                     "start": {
                       "line": 32,
@@ -453,8 +476,8 @@
                 "params": [],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 946,
-                  "end": 972,
+                  "start": 948,
+                  "end": 974,
                   "loc": {
                     "start": {
                       "line": 32,
@@ -468,8 +491,8 @@
                   "body": [
                     {
                       "type": "ReturnStatement",
-                      "start": 956,
-                      "end": 966,
+                      "start": 958,
+                      "end": 968,
                       "loc": {
                         "start": {
                           "line": 33,
@@ -482,8 +505,8 @@
                       },
                       "argument": {
                         "type": "ArrayExpression",
-                        "start": 963,
-                        "end": 965,
+                        "start": 965,
+                        "end": 967,
                         "loc": {
                           "start": {
                             "line": 33,
@@ -504,8 +527,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\n     * Gets the set of available zone IDs.\n     *\n     * These zone IDs are loaded and available for use by {@link ZoneId}.\n     *\n     * @return {string[]} a modifiable copy of the set of zone IDs, not null\n     ",
-                    "start": 694,
-                    "end": 913,
+                    "start": 696,
+                    "end": 915,
                     "loc": {
                       "start": {
                         "line": 25,
@@ -564,8 +587,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n     * Gets the set of available zone IDs.\n     *\n     * These zone IDs are loaded and available for use by {@link ZoneId}.\n     *\n     * @return {string[]} a modifiable copy of the set of zone IDs, not null\n     ",
-      "start": 694,
-      "end": 913,
+      "start": 696,
+      "end": 915,
       "loc": {
         "start": {
           "line": 25,
@@ -1163,9 +1186,34 @@
     },
     {
       "type": {
-        "label": "string",
+        "label": "`",
         "beforeExpr": false,
         "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 649,
+      "end": 650,
+      "loc": {
+        "start": {
+          "line": 21,
+          "column": 36
+        },
+        "end": {
+          "line": 21,
+          "column": 37
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "template",
+        "beforeExpr": false,
+        "startsExpr": false,
         "rightAssociative": false,
         "isLoop": false,
         "isAssign": false,
@@ -1175,43 +1223,41 @@
         "updateContext": null
       },
       "value": "unsupported ZoneId:",
-      "start": 649,
-      "end": 670,
+      "start": 650,
+      "end": 669,
       "loc": {
         "start": {
           "line": 21,
-          "column": 36
+          "column": 37
         },
         "end": {
           "line": 21,
-          "column": 57
+          "column": 56
         }
       }
     },
     {
       "type": {
-        "label": "+/-",
+        "label": "${",
         "beforeExpr": true,
         "startsExpr": true,
         "rightAssociative": false,
         "isLoop": false,
         "isAssign": false,
-        "prefix": true,
+        "prefix": false,
         "postfix": false,
-        "binop": 9,
-        "updateContext": null
+        "binop": null
       },
-      "value": "+",
-      "start": 671,
-      "end": 672,
+      "start": 669,
+      "end": 671,
       "loc": {
         "start": {
           "line": 21,
-          "column": 58
+          "column": 56
         },
         "end": {
           "line": 21,
-          "column": 59
+          "column": 58
         }
       }
     },
@@ -1243,7 +1289,7 @@
     },
     {
       "type": {
-        "label": ")",
+        "label": "}",
         "beforeExpr": false,
         "startsExpr": false,
         "rightAssociative": false,
@@ -1268,8 +1314,8 @@
     },
     {
       "type": {
-        "label": ";",
-        "beforeExpr": true,
+        "label": "template",
+        "beforeExpr": false,
         "startsExpr": false,
         "rightAssociative": false,
         "isLoop": false,
@@ -1278,6 +1324,32 @@
         "postfix": false,
         "binop": null,
         "updateContext": null
+      },
+      "value": "",
+      "start": 680,
+      "end": 680,
+      "loc": {
+        "start": {
+          "line": 21,
+          "column": 67
+        },
+        "end": {
+          "line": 21,
+          "column": 67
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "`",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
       },
       "start": 680,
       "end": 681,
@@ -1294,6 +1366,57 @@
     },
     {
       "type": {
+        "label": ")",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 681,
+      "end": 682,
+      "loc": {
+        "start": {
+          "line": 21,
+          "column": 68
+        },
+        "end": {
+          "line": 21,
+          "column": 69
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 682,
+      "end": 683,
+      "loc": {
+        "start": {
+          "line": 21,
+          "column": 69
+        },
+        "end": {
+          "line": 21,
+          "column": 70
+        }
+      }
+    },
+    {
+      "type": {
         "label": "}",
         "beforeExpr": false,
         "startsExpr": false,
@@ -1304,8 +1427,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 686,
-      "end": 687,
+      "start": 688,
+      "end": 689,
       "loc": {
         "start": {
           "line": 22,
@@ -1320,8 +1443,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n     * Gets the set of available zone IDs.\n     *\n     * These zone IDs are loaded and available for use by {@link ZoneId}.\n     *\n     * @return {string[]} a modifiable copy of the set of zone IDs, not null\n     ",
-      "start": 694,
-      "end": 913,
+      "start": 696,
+      "end": 915,
       "loc": {
         "start": {
           "line": 25,
@@ -1346,8 +1469,8 @@
         "binop": null
       },
       "value": "static",
-      "start": 918,
-      "end": 924,
+      "start": 920,
+      "end": 926,
       "loc": {
         "start": {
           "line": 32,
@@ -1372,8 +1495,8 @@
         "binop": null
       },
       "value": "getAvailableZoneIds",
-      "start": 925,
-      "end": 944,
+      "start": 927,
+      "end": 946,
       "loc": {
         "start": {
           "line": 32,
@@ -1397,8 +1520,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 944,
-      "end": 945,
+      "start": 946,
+      "end": 947,
       "loc": {
         "start": {
           "line": 32,
@@ -1422,8 +1545,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 945,
-      "end": 946,
+      "start": 947,
+      "end": 948,
       "loc": {
         "start": {
           "line": 32,
@@ -1447,8 +1570,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 946,
-      "end": 947,
+      "start": 948,
+      "end": 949,
       "loc": {
         "start": {
           "line": 32,
@@ -1475,8 +1598,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 956,
-      "end": 962,
+      "start": 958,
+      "end": 964,
       "loc": {
         "start": {
           "line": 33,
@@ -1501,8 +1624,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 963,
-      "end": 964,
+      "start": 965,
+      "end": 966,
       "loc": {
         "start": {
           "line": 33,
@@ -1527,8 +1650,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 964,
-      "end": 965,
+      "start": 966,
+      "end": 967,
       "loc": {
         "start": {
           "line": 33,
@@ -1553,8 +1676,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 965,
-      "end": 966,
+      "start": 967,
+      "end": 968,
       "loc": {
         "start": {
           "line": 33,
@@ -1578,8 +1701,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 971,
-      "end": 972,
+      "start": 973,
+      "end": 974,
       "loc": {
         "start": {
           "line": 34,
@@ -1603,8 +1726,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 973,
-      "end": 974,
+      "start": 975,
+      "end": 976,
       "loc": {
         "start": {
           "line": 35,
@@ -1629,8 +1752,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 976,
-      "end": 976,
+      "start": 978,
+      "end": 978,
       "loc": {
         "start": {
           "line": 37,

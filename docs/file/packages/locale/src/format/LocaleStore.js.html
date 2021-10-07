@@ -126,7 +126,7 @@ export const createEntry = (text, field) =&gt; {
         key: text,
         value: field,
         toString: function () {
-            return text + &apos;-&gt;&apos; + field;
+            return `${text  }-&gt;${  field}`;
         }
     };
 };

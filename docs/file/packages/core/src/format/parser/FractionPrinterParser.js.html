@@ -135,17 +135,17 @@ export class FractionPrinterParser {
     constructor(field, minWidth, maxWidth, decimalPoint) {
         requireNonNull(field, &apos;field&apos;);
         if (field.range().isFixed() === false) {
-            throw new IllegalArgumentException(&apos;Field must have a fixed set of values: &apos; + field);
+            throw new IllegalArgumentException(`Field must have a fixed set of values: ${  field}`);
         }
         if (minWidth &lt; 0 || minWidth &gt; 9) {
-            throw new IllegalArgumentException(&apos;Minimum width must be from 0 to 9 inclusive but was &apos; + minWidth);
+            throw new IllegalArgumentException(`Minimum width must be from 0 to 9 inclusive but was ${  minWidth}`);
         }
         if (maxWidth &lt; 1 || maxWidth &gt; 9) {
-            throw new IllegalArgumentException(&apos;Maximum width must be from 1 to 9 inclusive but was &apos; + maxWidth);
+            throw new IllegalArgumentException(`Maximum width must be from 1 to 9 inclusive but was ${  maxWidth}`);
         }
         if (maxWidth &lt; minWidth) {
-            throw new IllegalArgumentException(&apos;Maximum width must exceed or equal the minimum width but &apos; +
-                maxWidth + &apos; &lt; &apos; + minWidth);
+            throw new IllegalArgumentException(`Maximum width must exceed or equal the minimum width but ${ 
+                maxWidth  } &lt; ${  minWidth}`);
         }
         this.field = field;
         this.minWidth = minWidth;
@@ -240,7 +240,7 @@ export class FractionPrinterParser {
         const _range = range.maximum() - _min + 1;
         const _value = value - _min;
         const _scaled = MathUtil.intDiv((_value * 1000000000),  _range);
-        let fraction = &apos;&apos; + _scaled;
+        let fraction = `${  _scaled}`;
         while(fraction.length &lt; 9){
             fraction = zeroDigit + fraction;
         }
@@ -264,7 +264,7 @@ export class FractionPrinterParser {
 
     toString() {
         const decimal = (this.decimalPoint ? &apos;,DecimalPoint&apos; : &apos;&apos;);
-        return &apos;Fraction(&apos; + this.field + &apos;,&apos; + this.minWidth + &apos;,&apos; + this.maxWidth + decimal + &apos;)&apos;;
+        return `Fraction(${  this.field  },${  this.minWidth  },${  this.maxWidth  }${decimal  })`;
     }
 }
 

@@ -486,12 +486,12 @@ export class ZonedDateTime extends ChronoZonedDateTime {
             if (trans != null &amp;&amp; trans.isGap()) {
                 // error message says daylight savings for simplicity
                 // even though there are other kinds of gaps
-                throw new DateTimeException(&apos;LocalDateTime &apos; + localDateTime +
-                        &apos; does not exist in zone &apos; + zone +
-                        &apos; due to a gap in the local time-line, typically caused by daylight savings&apos;);
+                throw new DateTimeException(`LocalDateTime ${  localDateTime 
+                } does not exist in zone ${  zone 
+                } due to a gap in the local time-line, typically caused by daylight savings`);
             }
-            throw new DateTimeException(&apos;ZoneOffset &quot;&apos; + offset + &apos;&quot; is not valid for LocalDateTime &quot;&apos; +
-                localDateTime + &apos;&quot; in zone &quot;&apos; + zone + &apos;&quot;&apos;);
+            throw new DateTimeException(`ZoneOffset &quot;${  offset  }&quot; is not valid for LocalDateTime &quot;${ 
+                localDateTime  }&quot; in zone &quot;${  zone  }&quot;`);
         }
         return new ZonedDateTime(localDateTime, offset, zone);
     }
@@ -2039,7 +2039,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     toString() {
         let str = this._dateTime.toString() + this._offset.toString();
         if (this._offset !== this._zone) {
-            str += &apos;[&apos; + this._zone.toString() + &apos;]&apos;;
+            str += `[${  this._zone.toString()  }]`;
         }
         return str;
     }

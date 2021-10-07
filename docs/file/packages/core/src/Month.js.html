@@ -287,7 +287,7 @@ export class Month extends TemporalAccessor {
         if (field === ChronoField.MONTH_OF_YEAR) {
             return this.value();
         } else if (field instanceof ChronoField) {
-            throw new UnsupportedTemporalTypeException(&apos;Unsupported field: &apos; + field);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
         }
         return field.getFrom(this);
     }
@@ -533,7 +533,7 @@ export class Month extends TemporalAccessor {
             case Month.DECEMBER:
                 return &apos;DECEMBER&apos;;
             default:
-                return &apos;unknown Month, value: &apos; + this.value();
+                return `unknown Month, value: ${  this.value()}`;
         }
     }
 
@@ -645,7 +645,7 @@ export class Month extends TemporalAccessor {
      **/
     static of(month) {
         if (month &lt; 1 || month &gt; 12) {
-            assert(false, &apos;Invalid value for MonthOfYear: &apos; + month, DateTimeException);
+            assert(false, `Invalid value for MonthOfYear: ${  month}`, DateTimeException);
         }
         return MONTHS[month-1];
     }
@@ -679,8 +679,8 @@ export class Month extends TemporalAccessor {
             }*/
             return Month.of(temporal.get(ChronoField.MONTH_OF_YEAR));
         } catch (ex) {
-            throw new DateTimeException(&apos;Unable to obtain Month from TemporalAccessor: &apos; +
-                    temporal + &apos; of type &apos; + (temporal &amp;&amp; temporal.constructor != null ? temporal.constructor.name : &apos;&apos;), ex);
+            throw new DateTimeException(`Unable to obtain Month from TemporalAccessor: ${ 
+                temporal  } of type ${  temporal &amp;&amp; temporal.constructor != null ? temporal.constructor.name : &apos;&apos;}`, ex);
         }
     }
 }
