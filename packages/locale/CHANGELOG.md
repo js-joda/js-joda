@@ -3,6 +3,8 @@
 
 ### next (upcoming)
 
+* Fix bug with GMT timezone parsing and improve caching #550 by @pithu
+
 ### 4.0.1
 
 * Add new Locales to prebuilt packages #543 by @pithu

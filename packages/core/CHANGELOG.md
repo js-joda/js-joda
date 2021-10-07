@@ -4,6 +4,7 @@ Changelog
 ### next (upcoming)
 
 * Remove edge case handling for Temporal.minus #542 by @pithu
+* Improve docu #550 by @pithu
 
 ### 4.0.0 
 
