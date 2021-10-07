@@ -20,7 +20,7 @@ const instant = Instant.from(nativeJs(moment()))
 
 ## Convert from js-joda temporal to a Date
 
-use method `convert` to convert a `LocalDate` | `LocalDateTime` | `ZonedDateTime` | `Instant` 
+Use method `convert` to convert a `LocalDate` | `LocalDateTime` | `ZonedDateTime` | `Instant` 
 to javascript `Date`.
 
 ```javascript
