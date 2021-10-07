@@ -4,7 +4,7 @@
  */
 
 import { expect } from 'chai';
-import { DateTimeFormatter, ZonedDateTime, ZoneId } from '@js-joda/core';
+import { DateTimeFormatter, ZonedDateTime } from '@js-joda/core';
 import '@js-joda/timezone';
 
 import { Locale } from '../../src/js-joda-locale';
