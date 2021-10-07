@@ -9,17 +9,21 @@ import {LocalDate} from './LocalDate';
 import {LocalDateTime} from './LocalDateTime';
 import {ZonedDateTime} from './ZonedDateTime';
 import {ZoneId} from './ZoneId';
+import {Instant} from './Instant';
 
 class ToNativeJsConverter {
     /**
-     * @param {!(LocalDate|LocalDateTime|ZonedDateTime)} temporal - a joda temporal instance
+     * @param {!(LocalDate|LocalDateTime|ZonedDateTime|Instant)} temporal - a joda temporal instance
      * @param {ZoneId} [zone] - the zone of the temporal,
      *  the default value for LocalDate and LocalDateTime is ZoneId.systemDefault().
      */
     constructor(temporal, zone){
         let zonedDateTime;
 
-        if(temporal instanceof LocalDate) {
+        if(temporal instanceof Instant) {
+            this.instant = temporal;
+            return;
+        } else if(temporal instanceof LocalDate) {
             zone = zone == null ?  ZoneId.systemDefault() : zone;
             zonedDateTime = temporal.atStartOfDay(zone);
         } else if (temporal instanceof LocalDateTime) {

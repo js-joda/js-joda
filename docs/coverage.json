@@ -314,8 +314,8 @@
       "expectCount": 6,
       "actualCount": 4,
       "undocumentLines": [
-        13,
-        38
+        14,
+        24
       ]
     },
     "packages/core/src/errors.js": {
