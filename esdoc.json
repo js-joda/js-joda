@@ -36,6 +36,19 @@
           ]
         }
       }
+    },
+    {
+      "name": "esdoc-inject-script-plugin",
+      "option": {
+        "enable": true,
+        "scripts": [
+          "./packages/core/dist/js-joda.min.js",
+          "./packages/extra/dist/js-joda-extra.min.js",
+          "./packages/timezone/dist/js-joda-timezone.min.js",
+          "./packages/locale/dist/prebuilt/en-us/index.js",
+          "./esdoc/yato.js"
+        ]
+      }
     }
   ]
 }

@@ -19,7 +19,7 @@
 
 - js-joda comes with built-in parsers/ formatters for ISO 8601 as specified in RFC 3339, that can be easily customized.
 
-- js-joda supports **ECMAScript 5** browsers down to IE9.
+- js-joda supports **ECMAScript 5** browsers down to IE11.
 
 - js-joda is a **port of the threeten** backport, which is the base for JSR-310 implementation of the Java SE 8 java.time package. Threeten is inspired by **Joda-Time**, having similar concepts and the same author.
 
