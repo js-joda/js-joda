@@ -305,7 +305,7 @@ describe('org.threeten.bp.format.TestFractionPrinterParser', function () {
         // @Test(dataProvider='Nanos')
         function test_reverseParse_followedByNonDigit(minWidth, maxWidth, value, result){
             const pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, minWidth, maxWidth, true);
-            const newPos = pp.parse(parseContext, result + ' ', 0);
+            const newPos = pp.parse(parseContext, `${result  } `, 0);
             assertEquals(newPos, result.length);
             const expectedValue = fixParsedValue(maxWidth, value);
             assertParsed(parseContext, ChronoField.NANO_OF_SECOND, value === 0 && minWidth === 0 ? null : expectedValue);
@@ -338,7 +338,7 @@ describe('org.threeten.bp.format.TestFractionPrinterParser', function () {
         // @Test(dataProvider='Nanos')
         function test_reverseParse_preceededByNonDigit(minWidth, maxWidth, value, result){
             const pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, minWidth, maxWidth, true);
-            const newPos = pp.parse(parseContext, ' ' + result, 1);
+            const newPos = pp.parse(parseContext, ` ${  result}`, 1);
             assertEquals(newPos, result.length + 1);
             const expectedValue = fixParsedValue(maxWidth, value);
             assertParsed(parseContext, ChronoField.NANO_OF_SECOND, value === 0 && minWidth === 0 ? null :  expectedValue);

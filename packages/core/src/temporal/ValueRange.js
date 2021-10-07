@@ -34,12 +34,12 @@ export class ValueRange {
      * @private
      */
     constructor(minSmallest, minLargest, maxSmallest, maxLargest) {
-        assert(!(minSmallest > minLargest), 'Smallest minimum value \'' + minSmallest +
-            '\' must be less than largest minimum value \'' + minLargest + '\'', IllegalArgumentException);
-        assert(!(maxSmallest > maxLargest), 'Smallest maximum value \'' + maxSmallest +
-            '\' must be less than largest maximum value \'' + maxLargest + '\'', IllegalArgumentException);
-        assert(!(minLargest > maxLargest), 'Minimum value \'' + minLargest +
-            '\' must be less than maximum value \'' + maxLargest + '\'', IllegalArgumentException);
+        assert(!(minSmallest > minLargest), `Smallest minimum value '${  minSmallest 
+        }' must be less than largest minimum value '${  minLargest  }'`, IllegalArgumentException);
+        assert(!(maxSmallest > maxLargest), `Smallest maximum value '${  maxSmallest 
+        }' must be less than largest maximum value '${  maxLargest  }'`, IllegalArgumentException);
+        assert(!(minLargest > maxLargest), `Minimum value '${  minLargest 
+        }' must be less than maximum value '${  maxLargest  }'`, IllegalArgumentException);
 
         this._minSmallest = minSmallest;
         this._minLargest = minLargest;
@@ -109,9 +109,9 @@ export class ValueRange {
         let msg;
         if (!this.isValidValue(value)) {
             if (field != null) {
-                msg = ('Invalid value for ' + field + ' (valid values ' + (this.toString()) + '): ') + value;
+                msg = `Invalid value for ${  field  } (valid values ${  this.toString()  }): ${  value}`;
             } else {
-                msg = ('Invalid value (valid values ' + (this.toString()) + '): ') + value;
+                msg = `Invalid value (valid values ${  this.toString()  }): ${  value}`;
             }
             return assert(false, msg, DateTimeException);
         }
@@ -132,7 +132,7 @@ export class ValueRange {
      */
     checkValidIntValue(value, field) {
         if (this.isValidIntValue(value) === false) {
-            throw new DateTimeException('Invalid int value for ' + field + ': ' + value);
+            throw new DateTimeException(`Invalid int value for ${  field  }: ${  value}`);
         }
         return value;
     }
@@ -206,9 +206,9 @@ export class ValueRange {
      * @return {string} a string representation of this range, not null
      */
     toString() {
-        let str = this.minimum() + (this.minimum() !== this.largestMinimum() ? '/' + (this.largestMinimum()) : '');
+        let str = this.minimum() + (this.minimum() !== this.largestMinimum() ? `/${  this.largestMinimum()}` : '');
         str += ' - ';
-        str += this.smallestMaximum() + (this.smallestMaximum() !== this.maximum() ? '/' + (this.maximum()) : '');
+        str += this.smallestMaximum() + (this.smallestMaximum() !== this.maximum() ? `/${  this.maximum()}` : '');
         return str;
     }
 
@@ -251,7 +251,7 @@ export class ValueRange {
         } else if (arguments.length === 4) {
             return new ValueRange(arguments[0], arguments[1], arguments[2], arguments[3]);
         } else {
-            return assert(false, 'Invalid number of arguments ' + arguments.length, IllegalArgumentException);
+            return assert(false, `Invalid number of arguments ${  arguments.length}`, IllegalArgumentException);
         }
     }
 }

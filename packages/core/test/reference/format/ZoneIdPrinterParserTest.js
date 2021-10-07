@@ -145,12 +145,12 @@ describe('org.threeten.bp.format.TestZoneIdParser', () => {
                 init();
                 builder.appendZoneId();
                 const parsed = builder.toFormatter().parseUnresolved(text, pos);
-                assertEquals(pos.getErrorIndex(), expectedErrorIndex, 'Incorrect error index parsing: ' + text);
-                assertEquals(pos.getIndex(), expectedIndex, 'Incorrect index parsing: ' + text);
+                assertEquals(pos.getErrorIndex(), expectedErrorIndex, `Incorrect error index parsing: ${  text}`);
+                assertEquals(pos.getIndex(), expectedIndex, `Incorrect index parsing: ${  text}`);
                 if (expected != null) {
-                    assertEquals(parsed.query(TemporalQueries.zoneId()), expected, 'Incorrect zoneId parsing: ' + text);
-                    assertEquals(parsed.query(TemporalQueries.offset()), null, 'Incorrect offset parsing: ' + text);
-                    assertEquals(parsed.query(TemporalQueries.zone()), expected, 'Incorrect zone parsing: ' + text);
+                    assertEquals(parsed.query(TemporalQueries.zoneId()), expected, `Incorrect zoneId parsing: ${  text}`);
+                    assertEquals(parsed.query(TemporalQueries.offset()), null, `Incorrect offset parsing: ${  text}`);
+                    assertEquals(parsed.query(TemporalQueries.zone()), expected, `Incorrect zone parsing: ${  text}`);
                 } else {
                     assertEquals(parsed, null);
                 }

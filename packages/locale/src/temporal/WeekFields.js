@@ -480,7 +480,7 @@ export class ComputedDayOfField {
 
     //-----------------------------------------------------------------------
     toString() {
-        return this._name + '[' + this._weekDef.toString() + ']';
+        return `${this._name  }[${  this._weekDef.toString()  }]`;
     }
 }
 
@@ -946,7 +946,7 @@ export class WeekFields {
      * @return the string representation, not null
      */
     toString() {
-        return 'WeekFields[' + this._firstDayOfWeek + ',' + this._minimalDays + ']';
+        return `WeekFields[${  this._firstDayOfWeek  },${  this._minimalDays  }]`;
     }
 
 }

@@ -458,7 +458,7 @@ class Fixed extends ZoneRules{
      * @returns {string}
      */
     toString() {
-        return 'FixedRules:' + this._offset.toString();
+        return `FixedRules:${  this._offset.toString()}`;
     }
 
 }

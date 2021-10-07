@@ -189,8 +189,8 @@ describe('org.threeten.bp.temporal.TestYearMonth', () => {
             ['-1234-03', YearMonth.of(-1234, 3)],
             // ['-12345678-03', YearMonth.of(-12345678, 3)], // too smal for our Year.MIN_VALUE
 
-            ['+' + Year.MAX_VALUE + '-03', YearMonth.of(Year.MAX_VALUE, 3)],
-            [Year.MIN_VALUE + '-03', YearMonth.of(Year.MIN_VALUE, 3)]
+            [`+${  Year.MAX_VALUE  }-03`, YearMonth.of(Year.MAX_VALUE, 3)],
+            [`${Year.MIN_VALUE  }-03`, YearMonth.of(Year.MIN_VALUE, 3)]
         ];
 
         it('factory_parse_success', () => {

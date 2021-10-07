@@ -214,7 +214,7 @@ describe('org.threeten.bp.format.TestNumberPrinter', () => {
                 if (result == null) {
                     fail('Expected exception');
                 }
-                assertEquals(buf.toString(), (value < 0 ? '-' + result : result));
+                assertEquals(buf.toString(), (value < 0 ? `-${  result}` : result));
             } catch (ex) {
                 if(!(ex instanceof DateTimeException)){
                     throw ex;
@@ -242,7 +242,7 @@ describe('org.threeten.bp.format.TestNumberPrinter', () => {
                 if (result == null) {
                     fail('Expected exception');
                 }
-                assertEquals(buf.toString(), (value < 0 ? '-' + result : '+' + result));
+                assertEquals(buf.toString(), (value < 0 ? `-${  result}` : `+${  result}`));
             } catch (ex) {
                 if(!(ex instanceof DateTimeException)){
                     throw ex;
@@ -271,7 +271,7 @@ describe('org.threeten.bp.format.TestNumberPrinter', () => {
                     fail('Expected exception');
                 }
                 if (result.length > minPad || value < 0) {
-                    result = (value < 0 ? '-' + result : '+' + result);
+                    result = (value < 0 ? `-${  result}` : `+${  result}`);
                 }
                 assertEquals(buf.toString(), result);
             } catch (ex) {

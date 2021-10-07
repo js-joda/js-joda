@@ -10,7 +10,7 @@
     "esdoc": "^1.1.0",
     "esdoc-standard-plugin": "^1.0.0",
     "eslint": "^6.7.0",
-    "eslint-config-js-joda": "^1.0.0",
+    "eslint-config-js-joda": "^1.1.0",
     "lerna": "^3.19.0",
     "npm-check-updates": "^3.2.1",
     "nyc": "^14.1.1"

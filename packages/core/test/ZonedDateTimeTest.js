@@ -439,7 +439,7 @@ describe('ZonedDateTime', () => {
                     return true;
                 }
                 getLong(field){
-                    throw new this.ErrorClass(field.toString() + ' not supported');
+                    throw new this.ErrorClass(`${field.toString()  } not supported`);
                 }
             }
 

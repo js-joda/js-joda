@@ -656,7 +656,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
                 if (zone instanceof ZoneOffset) {
                     assertEquals(a.toString(), localDateTime.toString() + offset.toString());
                 } else {
-                    assertEquals(a.toString(), localDateTime.toString() + offset.toString() + '[' + zone.toString() + ']');
+                    assertEquals(a.toString(), `${localDateTime.toString() + offset.toString()  }[${  zone.toString()  }]`);
                 }
             });
 

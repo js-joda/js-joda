@@ -546,7 +546,7 @@ export class DateTimeFormatterBuilder {
      */
     appendInstant(fractionalDigits=-2) {
         if (fractionalDigits < -2 || fractionalDigits > 9) {
-            throw new IllegalArgumentException('Invalid fractional digits: ' + fractionalDigits);
+            throw new IllegalArgumentException(`Invalid fractional digits: ${  fractionalDigits}`);
         }
         this._appendInternal(new InstantPrinterParser(fractionalDigits));
         return this;
@@ -879,7 +879,7 @@ export class DateTimeFormatterBuilder {
                     }
                     if (pad === 0) {
                         throw new IllegalArgumentException(
-                            'Pad letter \'p\' must be followed by valid pad pattern: ' + pattern);
+                            `Pad letter 'p' must be followed by valid pad pattern: ${  pattern}`);
                     }
                     this.padNext(pad); // pad and continue parsing
                 }
@@ -889,7 +889,7 @@ export class DateTimeFormatterBuilder {
                     this._parseField(cur, count, field);
                 } else if (cur === 'z') {
                     if (count > 4) {
-                        throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                        throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
                     } else if (count === 4) {
                         this.appendZoneText(TextStyle.FULL);
                     } else {
@@ -897,7 +897,7 @@ export class DateTimeFormatterBuilder {
                     }
                 } else if (cur === 'V') {
                     if (count !== 2) {
-                        throw new IllegalArgumentException('Pattern letter count must be 2: ' + cur);
+                        throw new IllegalArgumentException(`Pattern letter count must be 2: ${  cur}`);
                     }
                     this.appendZoneId();
                 } else if (cur === 'Z') {
@@ -908,7 +908,7 @@ export class DateTimeFormatterBuilder {
                     } else if (count === 5) {
                         this.appendOffset('+HH:MM:ss', 'Z');
                     } else {
-                        throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                        throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
                     }
                 } else if (cur === 'O') {
                     if (count === 1) {
@@ -916,33 +916,33 @@ export class DateTimeFormatterBuilder {
                     } else if (count === 4) {
                         this.appendLocalizedOffset(TextStyle.FULL);
                     } else {
-                        throw new IllegalArgumentException('Pattern letter count must be 1 or 4: ' + cur);
+                        throw new IllegalArgumentException(`Pattern letter count must be 1 or 4: ${  cur}`);
                     }
                 } else if (cur === 'X') {
                     if (count > 5) {
-                        throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                        throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
                     }
                     this.appendOffset(OffsetIdPrinterParser.PATTERNS[count + (count === 1 ? 0 : 1)], 'Z');
                 } else if (cur === 'x') {
                     if (count > 5) {
-                        throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                        throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
                     }
                     const zero = (count === 1 ? '+00' : (count % 2 === 0 ? '+0000' : '+00:00'));
                     this.appendOffset(OffsetIdPrinterParser.PATTERNS[count + (count === 1 ? 0 : 1)], zero);
                 } else if (cur === 'W') {
                     if (count > 1) {
-                        throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                        throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
                     }
                     this.appendWeekField('W', count);
                 } else if (cur === 'w') {
                     if (count > 2) {
-                        throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                        throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
                     }
                     this.appendWeekField('w', count);
                 } else if (cur === 'Y') {
                     this.appendWeekField('Y', count);
                 } else {
-                    throw new IllegalArgumentException('Unknown pattern letter: ' + cur);
+                    throw new IllegalArgumentException(`Unknown pattern letter: ${  cur}`);
                 }
                 pos--;
 
@@ -959,7 +959,7 @@ export class DateTimeFormatterBuilder {
                     }
                 }
                 if (pos >= pattern.length) {
-                    throw new IllegalArgumentException('Pattern ends with an incomplete string literal: ' + pattern);
+                    throw new IllegalArgumentException(`Pattern ends with an incomplete string literal: ${  pattern}`);
                 }
                 const str = pattern.substring(start + 1, pos);
                 if (str.length === 0) {
@@ -978,7 +978,7 @@ export class DateTimeFormatterBuilder {
                 this.optionalEnd();
 
             } else if (cur === '{' || cur === '}' || cur === '#') {
-                throw new IllegalArgumentException('Pattern includes reserved character: \'' + cur + '\'');
+                throw new IllegalArgumentException(`Pattern includes reserved character: '${  cur  }'`);
             } else {
                 this.appendLiteral(cur);
             }
@@ -1016,7 +1016,7 @@ export class DateTimeFormatterBuilder {
                         this.appendText(field, TextStyle.NARROW);
                         break;
                     default:
-                        throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                        throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
                 }
                 break;
             case 'L':
@@ -1038,7 +1038,7 @@ export class DateTimeFormatterBuilder {
                         this.appendText(field, TextStyle.NARROW_STANDALONE);
                         break;
                     default:
-                        throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                        throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
                 }
                 break;
             case 'e':
@@ -1057,7 +1057,7 @@ export class DateTimeFormatterBuilder {
                         this.appendText(field, TextStyle.NARROW);
                         break;
                     default:
-                        throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                        throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
                 }
                 // eslint-disable-next-line no-unreachable
                 break;
@@ -1067,7 +1067,7 @@ export class DateTimeFormatterBuilder {
                         this.appendWeekField('c', count);
                         break;
                     case 2:
-                        throw new IllegalArgumentException('Invalid number of pattern letters: ' + cur);
+                        throw new IllegalArgumentException(`Invalid number of pattern letters: ${  cur}`);
                     case 3:
                         this.appendText(field, TextStyle.SHORT_STANDALONE);
                         break;
@@ -1078,7 +1078,7 @@ export class DateTimeFormatterBuilder {
                         this.appendText(field, TextStyle.NARROW_STANDALONE);
                         break;
                     default:
-                        throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                        throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
                 }
                 // eslint-disable-next-line no-unreachable
                 break;
@@ -1086,7 +1086,7 @@ export class DateTimeFormatterBuilder {
                 if (count === 1) {
                     this.appendText(field, TextStyle.SHORT);
                 } else {
-                    throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                    throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
                 }
                 // eslint-disable-next-line no-unreachable
                 break;
@@ -1105,7 +1105,7 @@ export class DateTimeFormatterBuilder {
                         this.appendText(field, TextStyle.NARROW);
                         break;
                     default:
-                        throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                        throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
                 }
                 // eslint-disable-next-line no-unreachable
                 break;
@@ -1116,7 +1116,7 @@ export class DateTimeFormatterBuilder {
                 if (count === 1) {
                     this.appendValue(field);
                 } else {
-                    throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                    throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
                 }
                 break;
             case 'd':
@@ -1131,7 +1131,7 @@ export class DateTimeFormatterBuilder {
                 } else if (count === 2) {
                     this.appendValue(field, count);
                 } else {
-                    throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                    throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
                 }
                 break;
             case 'D':
@@ -1140,7 +1140,7 @@ export class DateTimeFormatterBuilder {
                 } else if (count <= 3) {
                     this.appendValue(field, count);
                 } else {
-                    throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                    throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
                 }
                 break;
             default:
@@ -1210,7 +1210,7 @@ export class DateTimeFormatterBuilder {
      */
     _padNext2(padWidth, padChar) {
         if (padWidth < 1) {
-            throw new IllegalArgumentException('The pad width must be at least one but was ' + padWidth);
+            throw new IllegalArgumentException(`The pad width must be at least one but was ${  padWidth}`);
         }
         this._active._padNextWidth = padWidth;
         this._active._padNextChar = padChar;
@@ -1441,7 +1441,7 @@ class InstantPrinterParser  {
             }
             if (hi < 0) {
                 if (ldt.year() === -10000) {
-                    buf.replace(pos, pos + 2, '' + (hi - 1));
+                    buf.replace(pos, pos + 2, `${  hi - 1}`);
                 } else if (lo === 0) {
                     buf.insert(pos, hi);
                 } else {
@@ -1454,11 +1454,11 @@ class InstantPrinterParser  {
             if (inNano !== 0) {
                 buf.append('.');
                 if (MathUtil.intMod(inNano, 1000000) === 0) {
-                    buf.append(('' + (MathUtil.intDiv(inNano, 1000000) + 1000)).substring(1));
+                    buf.append((`${  MathUtil.intDiv(inNano, 1000000) + 1000}`).substring(1));
                 } else if (MathUtil.intMod(inNano, 1000) === 0) {
-                    buf.append(('' + (MathUtil.intDiv(inNano, 1000) + 1000000)).substring(1));
+                    buf.append((`${  MathUtil.intDiv(inNano, 1000) + 1000000}`).substring(1));
                 } else {
-                    buf.append(('' + ((inNano) + 1000000000)).substring(1));
+                    buf.append((`${  (inNano) + 1000000000}`).substring(1));
                 }
             }
         } else if (this.fractionalDigits > 0 || (this.fractionalDigits === -1 && inNano > 0)) {

@@ -376,7 +376,7 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
             for (let day = 1; day <= Month.of(month).length(false); day++) {
                 const date = createDate(year, month, day);
                 const test = TemporalAdjusters.firstInMonth(dow).adjustInto(date);
-                assertEquals(test, expected, 'day-of-month=' + day);
+                assertEquals(test, expected, `day-of-month=${  day}`);
             }
         }
 
@@ -405,7 +405,7 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
             for (let day = 1; day <= Month.of(month).length(false); day++) {
                 const date = createDate(year, month, day);
                 const test = TemporalAdjusters.lastInMonth(dow).adjustInto(date);
-                assertEquals(test, expected, 'day-of-month=' + day);
+                assertEquals(test, expected, `day-of-month=${  day}`);
             }
         }
 
@@ -432,7 +432,7 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
                         const dow = DayOfWeekValues[d];
                         const test = TemporalAdjusters.next(dow).adjustInto(date);
 
-                        assertSame(test.dayOfWeek(), dow, date + ' ' + test);
+                        assertSame(test.dayOfWeek(), dow, `${date  } ${  test}`);
 
                         if (test.year() === 2007) {
                             const dayDiff = test.dayOfYear() - date.dayOfYear();

@@ -14,5 +14,5 @@
  */
 
 module.exports = function (path) {
-    return require('../../node_modules/cldr-data/' + path);
+    return require(`../../node_modules/cldr-data/${  path}`);
 };

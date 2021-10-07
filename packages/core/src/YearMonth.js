@@ -198,8 +198,8 @@ export class YearMonth extends Temporal {
             }*/
             return YearMonth.of(temporal.get(ChronoField.YEAR), temporal.get(ChronoField.MONTH_OF_YEAR));
         } catch (ex) {
-            throw new DateTimeException('Unable to obtain YearMonth from TemporalAccessor: ' +
-                    temporal + ', type ' + (temporal && temporal.constructor != null ? temporal.constructor.name : ''));
+            throw new DateTimeException(`Unable to obtain YearMonth from TemporalAccessor: ${ 
+                temporal  }, type ${  temporal && temporal.constructor != null ? temporal.constructor.name : ''}`);
         }
     }
     //-----------------------------------------------------------------------
@@ -418,7 +418,7 @@ export class YearMonth extends Temporal {
                 case ChronoField.YEAR: return this._year;
                 case ChronoField.ERA: return (this._year < 1 ? 0 : 1);
             }
-            throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
         }
         return field.getFrom(this);
     }
@@ -604,7 +604,7 @@ export class YearMonth extends Temporal {
                 case ChronoField.YEAR: return this.withYear(newValue);
                 case ChronoField.ERA: return (this.getLong(ChronoField.ERA) === newValue ? this : this.withYear(1 - this._year));
             }
-            throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
         }
         return field.adjustInto(this, newValue);
     }
@@ -659,7 +659,7 @@ export class YearMonth extends Temporal {
                 case ChronoUnit.MILLENNIA: return this.plusYears(MathUtil.safeMultiply(amountToAdd, 1000));
                 case ChronoUnit.ERAS: return this.with(ChronoField.ERA, MathUtil.safeAdd(this.getLong(ChronoField.ERA), amountToAdd));
             }
-            throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
         }
         return unit.addTo(this, amountToAdd);
     }
@@ -857,7 +857,7 @@ export class YearMonth extends Temporal {
                 case ChronoUnit.MILLENNIA: return monthsUntil / 12000;
                 case ChronoUnit.ERAS: return end.getLong(ChronoField.ERA) - this.getLong(ChronoField.ERA);
             }
-            throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
         }
         return unit.between(this, end);
     }

@@ -18,7 +18,7 @@ export const createEntry = (text, field) => {
         key: text,
         value: field,
         toString: function () {
-            return text + '->' + field;
+            return `${text  }->${  field}`;
         }
     };
 };

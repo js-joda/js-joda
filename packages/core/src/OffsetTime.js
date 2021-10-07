@@ -450,7 +450,7 @@ export class OffsetTime extends Temporal {
                 case ChronoUnit.HOURS: return Math.floor(nanosUntil / LocalTime.NANOS_PER_HOUR);
                 case ChronoUnit.HALF_DAYS: return Math.floor(nanosUntil / (12 * LocalTime.NANOS_PER_HOUR));
             }
-            throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
         }
         return unit.between(this, end);
     }

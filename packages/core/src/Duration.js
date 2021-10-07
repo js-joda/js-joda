@@ -355,7 +355,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
             }
             return MathUtil.safeMultiply(parseFloat(parsed), multiplier);
         } catch (ex) {
-            throw new DateTimeParseException('Text cannot be parsed to a Duration: ' + errorText, text, 0, ex);
+            throw new DateTimeParseException(`Text cannot be parsed to a Duration: ${  errorText}`, text, 0, ex);
         }
     }
 
@@ -364,7 +364,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         if (parsed == null || parsed.length === 0) {
             return 0;
         }
-        parsed = (parsed + '000000000').substring(0, 9);
+        parsed = (`${parsed  }000000000`).substring(0, 9);
         return parseFloat(parsed) * negate;
     }
 
@@ -423,7 +423,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         } else if (unit === ChronoUnit.NANOS) {
             return this._nanos;
         } else {
-            throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
         }
     }
 
@@ -1151,10 +1151,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         const secs = MathUtil.intMod(this._seconds, LocalTime.SECONDS_PER_MINUTE);
         let rval = 'PT';
         if (hours !== 0) {
-            rval += hours + 'H';
+            rval += `${hours  }H`;
         }
         if (minutes !== 0) {
-            rval += minutes + 'M';
+            rval += `${minutes  }M`;
         }
         if (secs === 0 && this._nanos === 0 && rval.length > 2) {
             return rval;
@@ -1172,9 +1172,9 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
             rval += '.';
             let nanoString;
             if (secs < 0) {
-                nanoString = '' + (2 * LocalTime.NANOS_PER_SECOND - this._nanos);
+                nanoString = `${  2 * LocalTime.NANOS_PER_SECOND - this._nanos}`;
             } else {
-                nanoString = '' + (LocalTime.NANOS_PER_SECOND + this._nanos);
+                nanoString = `${  LocalTime.NANOS_PER_SECOND + this._nanos}`;
             }
             // remove the leading '1'
             nanoString = nanoString.slice(1, nanoString.length);

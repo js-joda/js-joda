@@ -92,7 +92,7 @@ describe('temporal/NativeJsTemporal.js', ()=>{
         check('2016-06-21T00:00:00');
 
         function check(isoDateString){
-            const jsDate = new Date(isoDateString + 'Z');
+            const jsDate = new Date(`${isoDateString  }Z`);
             const dtn = LocalDateTime.from(nativeJs(jsDate));
             const dtl = LocalDateTime.parse(isoDateString);
 

@@ -27,12 +27,12 @@ class BasicYearMock extends Temporal {
 
     getLong(field) {
         if (field === ChronoField.YEAR) return this._value;
-        else throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+        else throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
     }
 
     _plusUnit(amount, unit) {
         if (!this.isSupported(unit)) {
-            UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+            UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
         }
         return new BasicYearMock(this._value + amount);
     }

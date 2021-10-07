@@ -107,13 +107,13 @@ describe('zone/SystemDefaultZoneRulesTest.js', () => {
 
         function sample(ldt){
             const zone = ZoneId.systemDefault();
-            log(ldt.toString() + '\t' + zone.rules().offset(ldt).toString());
+            log(`${ldt.toString()  }\t${  zone.rules().offset(ldt).toString()}`);
 
         }
 
         function log(str){
             // console.log(str);
-            logResult += str + '\n';
+            logResult += `${str  }\n`;
         }
 
     });

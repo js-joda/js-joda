@@ -174,9 +174,9 @@ class CurrentStandardZoneRules extends ZoneRules {
      * @returns {string}
      */
     toString() {
-        return 'CurrentStandardZoneRules[' +
-            this._winterOffset.toString() + ':' +
-            this._summerOffset.toString() + ']';
+        return `CurrentStandardZoneRules[${ 
+            this._winterOffset.toString()  }:${ 
+            this._summerOffset.toString()  }]`;
     }
 
 }

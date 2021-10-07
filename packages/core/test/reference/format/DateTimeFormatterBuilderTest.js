@@ -515,7 +515,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
                 builder = new DateTimeFormatterBuilder();
                 builder.appendOffset(pattern, 'Z');
                 const f = builder.toFormatter();
-                assertEquals(f.toString(), 'Offset(' + pattern + ',\'Z\')');
+                assertEquals(f.toString(), `Offset(${  pattern  },'Z')`);
             });
         });
 

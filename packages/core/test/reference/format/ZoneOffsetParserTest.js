@@ -198,7 +198,7 @@ describe('org.threeten.bp.format.TestZoneOffsetParser', ()=>{
         dataProviderTest(provider_offsets, (pattern, parse, expected) => {
             init();
             const pp = new OffsetIdPrinterParser('Z', pattern);
-            const result = pp.parse(parseContext, parse + ':OTHER', 0);
+            const result = pp.parse(parseContext, `${parse  }:OTHER`, 0);
             assertEquals(result, parse.length);
             assertParsed(expected);
         });
@@ -210,7 +210,7 @@ describe('org.threeten.bp.format.TestZoneOffsetParser', ()=>{
         dataProviderTest(provider_offsets, (pattern, parse, expected) => {
             init();
             const pp = new OffsetIdPrinterParser('Z', pattern);
-            const result = pp.parse(parseContext, 'OTHER' + parse + ':OTHER', 5);
+            const result = pp.parse(parseContext, `OTHER${  parse  }:OTHER`, 5);
             assertEquals(result, parse.length + 5);
             assertParsed(expected);
         });
@@ -221,7 +221,7 @@ describe('org.threeten.bp.format.TestZoneOffsetParser', ()=>{
         dataProviderTest(provider_offsets, (pattern, parse, expected) => {
             init();
             const pp = new OffsetIdPrinterParser('Z', pattern);
-            const result = pp.parse(parseContext, 'OTHER' + parse, 5);
+            const result = pp.parse(parseContext, `OTHER${  parse}`, 5);
             assertEquals(result, parse.length + 5);
             assertParsed(expected);
         });
@@ -245,7 +245,7 @@ describe('org.threeten.bp.format.TestZoneOffsetParser', ()=>{
         dataProviderTest(provider_offsets, (pattern, parse, expected) => {
             init();
             const pp = new OffsetIdPrinterParser('', pattern);
-            const result = pp.parse(parseContext, parse + ':OTHER', 0);
+            const result = pp.parse(parseContext, `${parse  }:OTHER`, 0);
             assertEquals(result, parse.length);
             assertParsed(expected);
         });
@@ -257,7 +257,7 @@ describe('org.threeten.bp.format.TestZoneOffsetParser', ()=>{
         dataProviderTest(provider_offsets, (pattern, parse, expected) => {
             init();
             const pp = new OffsetIdPrinterParser('', pattern);
-            const result = pp.parse(parseContext, 'OTHER' + parse + ':OTHER', 5);
+            const result = pp.parse(parseContext, `OTHER${  parse  }:OTHER`, 5);
             assertEquals(result, parse.length + 5);
             assertParsed(expected);
         });
@@ -269,7 +269,7 @@ describe('org.threeten.bp.format.TestZoneOffsetParser', ()=>{
         dataProviderTest(provider_offsets, (pattern, parse, expected) => {
             init();
             const pp = new OffsetIdPrinterParser('', pattern);
-            const result = pp.parse(parseContext, 'OTHER' + parse, 5);
+            const result = pp.parse(parseContext, `OTHER${  parse}`, 5);
             assertEquals(result, parse.length + 5);
             assertParsed(expected);
         });
