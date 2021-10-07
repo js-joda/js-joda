@@ -1,4 +1,9 @@
-
+/**
+ * @private
+ *
+ * @param ZoneId
+ * @returns {null|*}
+ */
 function getResolvedZoneId(ZoneId) {
     try {
         const resolvedTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -9,6 +14,11 @@ function getResolvedZoneId(ZoneId) {
     return null;
 }
 
+/**
+ * @private
+ *
+ * @param ZoneId
+ */
 export default function extendSystemDefaultZoneId(ZoneId) {
     const resolvedZoneId = getResolvedZoneId(ZoneId);
 

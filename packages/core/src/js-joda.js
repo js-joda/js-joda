@@ -147,6 +147,11 @@ const jsJodaExports = {
     TextStyle,
 };
 
+/**
+ * @private
+ *
+ * @type {function(*=): *}
+ */
 const use = bindUse(jsJodaExports);
 jsJodaExports.use = use;
 

@@ -10,6 +10,12 @@
  Unpacking
  ************************************/
 
+/**
+ * @private
+ *
+ * @param charCode
+ * @returns {number}
+ */
 function charCodeToInt(charCode) {
     if (charCode > 96) {
         return charCode - 87;

@@ -121,7 +121,7 @@ export class Clock {
      * providing that the base clock is.
      *
      * @param baseClock  the base clock to add the duration to, not null
-     * @param offsetDuration  the duration to add, not null
+     * @param duration  the duration to add, not null
      * @return a clock based on the base clock with the duration added, not null
      */
     static offset(baseClock, duration) {
@@ -170,7 +170,6 @@ export class Clock {
      * to a date or time using a time-zone. This method returns a clock with
      * similar properties but using a different time-zone.
      *
-     * @param zone  the time-zone to change to, not null
      * @return a clock based on this clock with the specified time-zone, not null
      */
     withZone(){

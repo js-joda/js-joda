@@ -169,7 +169,7 @@ export class OffsetDateTime extends Temporal {
     }
 
     /**
-     * @param {ZoneId}zone
+     * @param {ZoneId} zone
      * @return {ZonedDateTime}
      */
     atZoneSameInstant(zone) {

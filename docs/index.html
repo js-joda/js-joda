@@ -117,6 +117,27 @@
     <li data-ice="manualNav" class="indent-h1" data-link="manual/formatting.html"><a href="manual/formatting.html" data-ice="link">Formatting</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/formatting.html"><a href="manual/formatting.html#formatting-with-locales" data-ice="link">Formatting with locales</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/formatting.html"><a href="manual/formatting.html#format-patterns" data-ice="link">Format patterns</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/formatting.html"><a href="manual/formatting.html#hint" data-ice="link">Hint</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/parsing.html"><a href="manual/parsing.html" data-ice="link">Parsing</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/parsing.html"><a href="manual/parsing.html#simple-parser-example" data-ice="link">Simple parser example</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/parsing.html"><a href="manual/parsing.html#http-date-parser-example" data-ice="link">http date parser example</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/parsing.html"><a href="manual/parsing.html#hint" data-ice="link">Hint</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/Locale.html"><a href="manual/Locale.html" data-ice="link">Using Local package</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/Locale.html"><a href="manual/Locale.html#motivation" data-ice="link">Motivation</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/Locale.html"><a href="manual/Locale.html#node" data-ice="link">Node</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/Locale.html"><a href="manual/Locale.html#browser" data-ice="link">Browser</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/Locale.html"><a href="manual/Locale.html#usage" data-ice="link">Usage</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/Locale.html"><a href="manual/Locale.html#links" data-ice="link">Links</a></li>
 </ul>
   </div>
 <div data-ice="manual">
@@ -126,6 +147,14 @@
 <li data-ice="manualNav" class="indent-h3" data-link="manual/customizing.html"><a href="manual/customizing.html#custom-temporal-adjuster" data-ice="link">Custom temporal adjuster</a></li>
 <li data-ice="manualNav" class="indent-h3" data-link="manual/customizing.html"><a href="manual/customizing.html#custom-temporal-fields-and-temporal-units" data-ice="link">Custom temporal fields and temporal units</a></li>
 <li data-ice="manualNav" class="indent-h3" data-link="manual/customizing.html"><a href="manual/customizing.html#custom-formatter-and-queries" data-ice="link">Custom formatter and queries</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/convert-native.html"><a href="manual/convert-native.html" data-ice="link">Convert from/ to native js</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/convert-native.html"><a href="manual/convert-native.html#convert-from-date-to-a-js-joda-temporal" data-ice="link">Convert from Date to a js-joda temporal</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/convert-native.html"><a href="manual/convert-native.html#convert-from-js-joda-temporal-to-a-date" data-ice="link">Convert from js-joda temporal to a Date</a></li>
 </ul>
   </div>
 </div>
@@ -1184,8 +1213,69 @@ jsDate.toLocaleDateString(&apos;ko-KR&apos;, options) // 2018&#xB144; 4&#xC6D4; 
 <td>reserved for future use</td>
 </tr>
 </tbody>
-</table></div>
+</table><h2>Hint</h2><p>Whenever you stumble over a <code>Cannot read property &apos;localeString&apos; of null</code> error, its probably because 
+the local for formatter is not set. 
+In that case add the locale package to your project and set the locale
+for the formatter, eg <code>DateTimeFormatter.ofPattern(&apos;eeee (d MMMM)&apos;).withLocale(Locale.FRANCE)</code>.</p></div>
         <a data-ice="link" href="manual/formatting.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>Parsing</h1><p>Parsing is similar to formatting, the same DateTimeFormatter pattern are used as for formatting.</p><p>Check <a href="./manual/./formatting.html">Formatting page</a> for a list of available patterns</p><p>js-joda build-in DateTimeFormatter parses and formats dates and times from /to ISO 8601 as specified in RFC 3339.</p><p>Customized parser can be build with the <code>DateTimeFormatter</code>.</p><h2>Simple parser example</h2><pre><code class="lang-javascript"><code class="source-code prettyprint">import { DateTimeFormatter, LocalDate } from &apos;@js-joda/core&apos;;
+
+const formatter = DateTimeFormatter.ofPattern(&apos;M/d/yyyy&apos;);
+const date = LocalDate.parse(&apos;4/28/2018&apos;);
+console.log(date.toString()); // 2018-04-28</code>
+</code></pre><h2>http date parser example</h2><p>HTTP dates as specified in RFC 7321 and return by javascript native <code>Date</code> <code>toUTCString</code> method, 
+requires the local package.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">import { DateTimeFormatter, ZonedDateTime } from &apos;@js-joda/core&apos;;
+import &apos;@js-joda/timezone&apos;
+import { Locale } from &apos;@js-joda/locale&apos;;
+
+const df = DateTimeFormatter.ofPattern(&apos;EEE, dd MMM yyyy HH:mm:ss z&apos;).withLocale(Locale.ENGLISH);
+const z = ZonedDateTime.parse(&apos;Tue, 05 Oct 2021 17:08:24 GMT&apos;, df);
+console.log(z.toString()); // 2021-10-05T17:08:24+01:00[GMT]</code>
+</code></pre><h2>Hint</h2><p>Whenever you stumble over a <code>Cannot read property &apos;localeString&apos; of null</code> error, its probably because
+the local for formatter is not set.
+In that case add the locale package to your project and set the locale
+for the formatter, eg <code>DateTimeFormatter.ofPattern(&apos;eeee (d MMMM)&apos;).withLocale(Locale.FRANCE)</code>.</p></div>
+        <a data-ice="link" href="manual/parsing.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>Using Local package</h1><h2>Motivation</h2><p>Implementation of locale specific functionality for js-joda, providing function not implemented in js-joda core</p><p>Especially this implements patterns elements to print and parse locale specific dates.</p><h2>Node</h2><p>In a node environment, the best choice is to install <code>@js-joda/locale</code> and 
+the cldr data <code>cldr-data</code> separately. With that you have support for all locales defined in the cldr project.
+The timezone package is required as soon as timezone locales come into play.</p><pre><code class="lang-shell"><code class="source-code prettyprint">    npm install @js-joda/core
+    npm install @js-joda/timezone
+    npm install cldr-data
+    npm install cldrjs
+    npm install @js-joda/locale</code>
+</code></pre><h2>Browser</h2><p>In a browser environment, to save space, the better choice is to install one of the pre-built packages
+for a certain language. 
+The pre-built packages contain the implementation and all cldr data required for that specific locale.</p><p>For more information check the <a href="https://github.com/js-joda/js-joda/blob/master/packages/locale/README.md">README.md</a>
+in the locale package.</p><pre><code class="lang-shell"><code class="source-code prettyprint">    npm install @js-joda/locale_en
+    npm install @js-joda/timezone</code>
+</code></pre><h2>Usage</h2><pre><code class="lang-javascript"><code class="source-code prettyprint">const {
+    DateTimeFormatter,
+    ZonedDateTime,
+    ZoneId,
+} = require(&apos;@js-joda/core&apos;);
+require(&apos;@js-joda/timezone&apos;);
+
+const {
+    Locale,
+} = require(&apos;@js-joda/locale_en-us&apos;);
+
+var zdt = ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, ZoneId.of(&apos;Europe/Berlin&apos;));
+console.log(&apos;en_US formatted string:&apos;, 
+    zdt.format(
+        DateTimeFormatter
+            .ofPattern(&apos;eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, \&apos;Week \&apos; ww, \&apos;Quarter \&apos; QQQ&apos;)
+            .withLocale(Locale.US)));</code>
+</code></pre><p>this will output <code>en_US formatted string: Friday January 01 2016 Anno Domini, 12:00:00 AM Central European Time, Week  01, Quarter  Q1</code></p><h2>Links</h2><p>For more information check the <a href="https://github.com/js-joda/js-joda/blob/master/packages/locale/README.md">README.md</a>
+in the locale package.</p></div>
+        <a data-ice="link" href="manual/Locale.html"></a>
       </div>
     </div>
 <div class="manual-card-wrap" data-ice="cards">
@@ -1221,6 +1311,21 @@ localDateTime = OPTIONAL_FORMATTER.parse(
 );</code>
 </code></pre></div>
         <a data-ice="link" href="manual/customizing.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>Convert from/ to native js</h1><h2>Convert from Date to a js-joda temporal</h2><p>use method <code>nativeJs</code> to convert from native javascript <code>Date</code> to a js-joda <code>Temporal</code>.</p><p>Hint: <code>nativeJs</code> accepts <code>moment</code> objects as well.</p><p>Be aware of that a moment and Date always represent a timestamp (a certain point in time with a timezone). 
+Therefore, the most reasonable convert is to an <code>Instant</code> or <code>ZonedDateTime</code>.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">import { Instant, nativeJs } from &apos;@js-joda/core&apos;;
+
+const instant = Instant.from(nativeJs(new Date()))
+
+// or with momentjs object
+const instant = Instant.from(nativeJs(moment()))</code>
+</code></pre><h2>Convert from js-joda temporal to a Date</h2><p>use method <code>convert</code> to convert a <code>LocalDate</code> | <code>LocalDateTime</code> | <code>ZonedDateTime</code> | <code>Instant</code> 
+to javascript <code>Date</code>.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">const date = convert(ZonedDateTime.now()).toDate();</code>
+</code></pre></div>
+        <a data-ice="link" href="manual/convert-native.html"></a>
       </div>
     </div>
 </div>

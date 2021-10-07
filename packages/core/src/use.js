@@ -1,4 +1,9 @@
-
+/**
+ * @private
+ *
+ * @param jsJoda
+ * @returns {function(*=): *}
+ */
 export function bindUse(jsJoda) {
     const used = [];
 

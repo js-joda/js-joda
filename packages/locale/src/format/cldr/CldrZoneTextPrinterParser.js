@@ -27,7 +27,7 @@ const LENGTH_COMPARATOR = (str1, str2) => {
 
 /**
  * Cache for `_cachedResolveZoneIdText`.
- * 
+ *
  * Its basic structure is:
  * Obj { locale: zoneId }
  * Obj { zoneId: style}
@@ -46,6 +46,7 @@ export default class CldrZoneTextPrinterParser {
         requireNonNull(textStyle, 'textStyle');
         requireInstance(textStyle, TextStyle, 'textStyle');
         this._textStyle = textStyle;
+        this._zoneIdsLocales = {};
         loadCldrData('supplemental/likelySubtags.json');
         loadCldrData('supplemental/metaZones.json');
     }
@@ -153,10 +154,13 @@ export default class CldrZoneTextPrinterParser {
         return true;
     }
 
-    parse(context, text, position) {
+    _resolveZoneIds(localString) {
+        if(this._zoneIdsLocales[localString] != null) {
+            return this._zoneIdsLocales[localString];
+        }
         const ids = {};
-        loadCldrData(`main/${context.locale().localeString()}/timeZoneNames.json`);
-        const cldr = getOrCreateCldrInstance(context.locale().localeString());
+        loadCldrData(`main/${localString}/timeZoneNames.json`);
+        const cldr = getOrCreateCldrInstance(localString);
 
         for (const id of ZoneRulesProvider.getAvailableZoneIds()) {
             ids[id] = id;
@@ -177,6 +181,20 @@ export default class CldrZoneTextPrinterParser {
         }
         // threeten is using a (sorted) TreeMap... so we need to sort the keys
         const sortedKeys = Object.keys(ids).sort(LENGTH_COMPARATOR);
+
+        this._zoneIdsLocales[localString] = { ids, sortedKeys };
+        return this._zoneIdsLocales[localString];
+    }
+
+    // That's a very poor implementation, there are missing bug fixes and functionality from threeten and jdk
+    parse(context, text, position) {
+        for (const name of ['UTC', 'GMT']) {
+            if (context.subSequenceEquals(text, position, name, 0, name.length)) {
+                context.setParsedZone(ZoneId.of(name));
+                return position + name.length;
+            }
+        }
+        const { ids, sortedKeys } = this._resolveZoneIds(context.locale().localeString());
         for (const name of sortedKeys) {
             if (context.subSequenceEquals(text, position, name, 0, name.length)) {
                 context.setParsedZone(ZoneId.of(ids[name]));

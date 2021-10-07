@@ -12,10 +12,18 @@ import {IllegalArgumentException} from '../src/errors';
 import {LocalDate} from '../src/LocalDate';
 import {LocalDateTime} from '../src/LocalDateTime';
 import {ZoneId} from '../src/ZoneId';
+import {Instant} from '../src/Instant';
 
 import {convert} from '../src/convert';
 
 describe('convert', () => {
+
+    it('should convert an Instant to a javascript Date', () => {
+        const instant = Instant.parse('2021-10-07T07:05:17.335Z');
+        const javascriptDate = convert(instant).toDate();
+        expect(javascriptDate).to.instanceof(Date);
+        expect(javascriptDate.getTime()).to.equal(new Date('2021-10-07T07:05:17.335Z').getTime());
+    });
 
     it('should convert a LocalDate to a javascript Date', () => {
         const localDate = LocalDate.parse('2016-05-26');

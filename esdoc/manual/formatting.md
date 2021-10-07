@@ -109,3 +109,11 @@ Date and time formats are specified by date and time pattern strings using [Java
 | [      | optional section start     |              |
 | ]      | optional section end       |              |
 | {}     | reserved for future use    |              |
+
+
+## Hint
+
+Whenever you stumble over a `Cannot read property 'localeString' of null` error, its probably because 
+the local for formatter is not set. 
+In that case add the locale package to your project and set the locale
+for the formatter, eg `DateTimeFormatter.ofPattern('eeee (d MMMM)').withLocale(Locale.FRANCE)`.

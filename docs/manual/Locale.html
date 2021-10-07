@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../">
+  <title data-ice="title">Manual | js-joda</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Immutable date and time library for JavaScript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="js-joda"><meta property="twitter:description" content="Immutable date and time library for JavaScript"></head>
+<body class="layout-container manual-root" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/js-joda/js-joda"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div class="manual-toc-root">
+  
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/getting-started.html"><a href="manual/getting-started.html" data-ice="link">Getting started</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/getting-started.html"><a href="manual/getting-started.html#node" data-ice="link">Node</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/getting-started.html"><a href="manual/getting-started.html#browser" data-ice="link">Browser</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/getting-started.html"><a href="manual/getting-started.html#jsfiddle" data-ice="link">JSFiddle</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/usage.html"><a href="manual/usage.html" data-ice="link">Usage</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/usage.html"><a href="manual/usage.html#method-naming-conventions" data-ice="link">Method naming conventions</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html" data-ice="link">LocalDate</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#create-a--code-localdate--code-" data-ice="link">Create a LocalDate</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#get-values-from--code-localdate--code-" data-ice="link">Get values from LocalDate</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#get-week-of-week-based-year--quarter-of-year--day-of-quarter" data-ice="link">Get week of week-based year, quarter of year, day of quarter</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#adding-to-and-subtracting-from-a--code-localdate--code-" data-ice="link">Adding to and subtracting from a LocalDate</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#alter-specific-fields-of-a-localdate" data-ice="link">Alter specific fields of a LocalDate</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#compare-one--code-localdate--code--with-another" data-ice="link">Compare one LocalDate with another</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#distance-on-the-timeline" data-ice="link">Distance on the timeline</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#converting-from-and-to-other-temporals" data-ice="link">Converting from and to other temporals</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#adjust-a-date-to-another-date" data-ice="link">Adjust a date to another date</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html" data-ice="link">LocalTime</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html#create-a--code-localtime--code--instance" data-ice="link">Create a LocalTime instance</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html#get-values-from--code-localtime--code-" data-ice="link">Get values from LocalTime</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html#adding-to--subtracting-from-a--code-localtime--code--instance" data-ice="link">Adding to/ subtracting from a LocalTime instance</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html#alter-specific-fields-of-a--code-localtime--code--instance" data-ice="link">Alter specific fields of a LocalTime instance</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html#truncate-a--code-localtime--code--instance" data-ice="link">Truncate a LocalTime instance</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html#compare--code-localtime--code--instances" data-ice="link">Compare LocalTime instances</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html#distance-between-times" data-ice="link">Distance between times</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalTime.html"><a href="manual/LocalTime.html#convert-a--code-localtime--code--from-a--code-moment--code--or-javascript--code-date--code-" data-ice="link">Convert a LocalTime from a moment or JavaScript Date</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html" data-ice="link">LocalDateTime</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html#create-a--code-localdatetime--code--instance" data-ice="link">Create a LocalDateTime instance</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html#get-values-from--code-localdatetime--code-" data-ice="link">Get values from LocalDateTime</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html#adding-to-and-subtracting-from-a--code-localdatetime--code--instance" data-ice="link">Adding to and subtracting from a LocalDateTime instance</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html#alter-specific-fields-of-a--code-localdatetime--code--instance" data-ice="link">Alter specific fields of a LocalDateTime instance</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html#truncate-a--code-localdatetime--code--instance" data-ice="link">Truncate a LocalDateTime instance</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html#compare--code-localdatetime--code--instances" data-ice="link">Compare LocalDateTime instances</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html#distance-between-two--code-localdatetime--code--instances" data-ice="link">Distance between two LocalDateTime instances</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDateTime.html"><a href="manual/LocalDateTime.html#convert-from-a--code-moment--code--or-javascript--code-date--code-" data-ice="link">Convert from a moment or JavaScript Date</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/ZonedDateTime.html"><a href="manual/ZonedDateTime.html" data-ice="link">ZonedDateTime</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/ZonedDateTime.html"><a href="manual/ZonedDateTime.html#the--code-system--code--zone-id" data-ice="link">The SYSTEM zone ID</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/ZonedDateTime.html"><a href="manual/ZonedDateTime.html#working-with-time-zones" data-ice="link">Working with time zones</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/ZonedDateTime.html"><a href="manual/ZonedDateTime.html#create-a-zoneddatetime" data-ice="link">Create a ZonedDateTime</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/ZonedDateTime.html"><a href="manual/ZonedDateTime.html#switch-time-zones" data-ice="link">Switch time zones</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/ZonedDateTime.html"><a href="manual/ZonedDateTime.html#get-and-manipulate-values-from-a--code-zoneddatetime--code-" data-ice="link">Get and manipulate values from a ZonedDateTime</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/ZonedDateTime.html"><a href="manual/ZonedDateTime.html#calculate-values-across-daylight-savings-transitions" data-ice="link">Calculate values across daylight savings transitions</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/Period.html"><a href="manual/Period.html" data-ice="link">Period</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/Duration.html"><a href="manual/Duration.html" data-ice="link">Duration</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/formatting.html"><a href="manual/formatting.html" data-ice="link">Formatting</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/formatting.html"><a href="manual/formatting.html#formatting-with-locales" data-ice="link">Formatting with locales</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/formatting.html"><a href="manual/formatting.html#format-patterns" data-ice="link">Format patterns</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/formatting.html"><a href="manual/formatting.html#hint" data-ice="link">Hint</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/parsing.html"><a href="manual/parsing.html" data-ice="link">Parsing</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/parsing.html"><a href="manual/parsing.html#simple-parser-example" data-ice="link">Simple parser example</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/parsing.html"><a href="manual/parsing.html#http-date-parser-example" data-ice="link">http date parser example</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/parsing.html"><a href="manual/parsing.html#hint" data-ice="link">Hint</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/Locale.html"><a href="manual/Locale.html" data-ice="link">Using Local package</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/Locale.html"><a href="manual/Locale.html#motivation" data-ice="link">Motivation</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/Locale.html"><a href="manual/Locale.html#node" data-ice="link">Node</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/Locale.html"><a href="manual/Locale.html#browser" data-ice="link">Browser</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/Locale.html"><a href="manual/Locale.html#usage" data-ice="link">Usage</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/Locale.html"><a href="manual/Locale.html#links" data-ice="link">Links</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/customizing.html"><a href="manual/customizing.html" data-ice="link">Customizing js-joda</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/customizing.html"><a href="manual/customizing.html#custom-temporal-adjuster" data-ice="link">Custom temporal adjuster</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/customizing.html"><a href="manual/customizing.html#custom-temporal-fields-and-temporal-units" data-ice="link">Custom temporal fields and temporal units</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/customizing.html"><a href="manual/customizing.html#custom-formatter-and-queries" data-ice="link">Custom formatter and queries</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/convert-native.html"><a href="manual/convert-native.html" data-ice="link">Convert from/ to native js</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/convert-native.html"><a href="manual/convert-native.html#convert-from-date-to-a-js-joda-temporal" data-ice="link">Convert from Date to a js-joda temporal</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/convert-native.html"><a href="manual/convert-native.html#convert-from-js-joda-temporal-to-a-date" data-ice="link">Convert from js-joda temporal to a Date</a></li>
+</ul>
+  </div>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="using-local-package">Using Local package</h1><h2 id="motivation">Motivation</h2><p>Implementation of locale specific functionality for js-joda, providing function not implemented in js-joda core</p>
+<p>Especially this implements patterns elements to print and parse locale specific dates.</p>
+<h2 id="node">Node</h2><p>In a node environment, the best choice is to install <code>@js-joda/locale</code> and 
+the cldr data <code>cldr-data</code> separately. With that you have support for all locales defined in the cldr project.
+The timezone package is required as soon as timezone locales come into play.</p>
+<pre><code class="lang-shell"><code class="source-code prettyprint">    npm install @js-joda/core
+    npm install @js-joda/timezone
+    npm install cldr-data
+    npm install cldrjs
+    npm install @js-joda/locale</code>
+</code></pre>
+<h2 id="browser">Browser</h2><p>In a browser environment, to save space, the better choice is to install one of the pre-built packages
+for a certain language. 
+The pre-built packages contain the implementation and all cldr data required for that specific locale.</p>
+<p>For more information check the <a href="https://github.com/js-joda/js-joda/blob/master/packages/locale/README.md">README.md</a>
+in the locale package.</p>
+<pre><code class="lang-shell"><code class="source-code prettyprint">    npm install @js-joda/locale_en
+    npm install @js-joda/timezone</code>
+</code></pre>
+<h2 id="usage">Usage</h2><pre><code class="lang-javascript"><code class="source-code prettyprint">const {
+    DateTimeFormatter,
+    ZonedDateTime,
+    ZoneId,
+} = require(&apos;@js-joda/core&apos;);
+require(&apos;@js-joda/timezone&apos;);
+
+const {
+    Locale,
+} = require(&apos;@js-joda/locale_en-us&apos;);
+
+var zdt = ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, ZoneId.of(&apos;Europe/Berlin&apos;));
+console.log(&apos;en_US formatted string:&apos;, 
+    zdt.format(
+        DateTimeFormatter
+            .ofPattern(&apos;eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, \&apos;Week \&apos; ww, \&apos;Quarter \&apos; QQQ&apos;)
+            .withLocale(Locale.US)));</code>
+</code></pre>
+<p>this will output <code>en_US formatted string: Friday January 01 2016 Anno Domini, 12:00:00 AM Central European Time, Week  01, Quarter  Q1</code></p>
+<h2 id="links">Links</h2><p>For more information check the <a href="https://github.com/js-joda/js-joda/blob/master/packages/locale/README.md">README.md</a>
+in the locale package.</p>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

@@ -8,9 +8,9 @@
 import './_init';
 
 /**
- * plugin Function, call using js-jodas use()
+ * @private
  *
- * @param jsJoda
+ * plugin Function, call using js-jodas use()
  */
 export default function (/* jsJoda */) {
     // assign new prop to jsJoda context is useless, because it lives only in the local context

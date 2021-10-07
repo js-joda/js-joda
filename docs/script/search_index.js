@@ -408,81 +408,9 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "@js-joda/root/packages/core/src/assert.js~abstractmethodfail",
-    "function/index.html#static-function-abstractMethodFail",
-    "<span>abstractMethodFail</span> <span class=\"search-result-import-path\">@js-joda/root/packages/core/src/assert.js</span>",
-    "function"
-  ],
-  [
-    "@js-joda/root/packages/extra/src/assert.js~abstractmethodfail",
-    "function/index.html#static-function-abstractMethodFail",
-    "<span>abstractMethodFail</span> <span class=\"search-result-import-path\">@js-joda/root/packages/extra/src/assert.js</span>",
-    "function"
-  ],
-  [
-    "@js-joda/root/packages/core/src/assert.js~assert",
-    "function/index.html#static-function-assert",
-    "<span>assert</span> <span class=\"search-result-import-path\">@js-joda/root/packages/core/src/assert.js</span>",
-    "function"
-  ],
-  [
-    "@js-joda/root/packages/extra/src/assert.js~assert",
-    "function/index.html#static-function-assert",
-    "<span>assert</span> <span class=\"search-result-import-path\">@js-joda/root/packages/extra/src/assert.js</span>",
-    "function"
-  ],
-  [
-    "@js-joda/root/packages/timezone/src/auto-plug.js~autoplug",
-    "function/index.html#static-function-autoPlug",
-    "<span>autoPlug</span> <span class=\"search-result-import-path\">@js-joda/root/packages/timezone/src/auto-plug.js</span>",
-    "function"
-  ],
-  [
-    "@js-joda/root/packages/core/src/use.js~binduse",
-    "function/index.html#static-function-bindUse",
-    "<span>bindUse</span> <span class=\"search-result-import-path\">@js-joda/root/packages/core/src/use.js</span>",
-    "function"
-  ],
-  [
     "@js-joda/root/packages/core/src/convert.js~convert",
     "function/index.html#static-function-convert",
     "<span>convert</span> <span class=\"search-result-import-path\">@js-joda/root/packages/core/src/convert.js</span>",
-    "function"
-  ],
-  [
-    "@js-joda/root/packages/locale/src/format/localestore.js~createentry",
-    "function/index.html#static-function-createEntry",
-    "<span>createEntry</span> <span class=\"search-result-import-path\">@js-joda/root/packages/locale/src/format/LocaleStore.js</span>",
-    "function"
-  ],
-  [
-    "@js-joda/root/packages/core/src/temporal/temporalquery.js~createtemporalquery",
-    "function/index.html#static-function-createTemporalQuery",
-    "<span>createTemporalQuery</span> <span class=\"search-result-import-path\">@js-joda/root/packages/core/src/temporal/TemporalQuery.js</span>",
-    "function"
-  ],
-  [
-    "@js-joda/root/packages/timezone/src/system-default-zone.js~extendsystemdefaultzoneid",
-    "function/index.html#static-function-extendSystemDefaultZoneId",
-    "<span>extendSystemDefaultZoneId</span> <span class=\"search-result-import-path\">@js-joda/root/packages/timezone/src/system-default-zone.js</span>",
-    "function"
-  ],
-  [
-    "@js-joda/root/packages/locale/src/format/cldr/cldrcache.js~getorcreatecldrinstance",
-    "function/index.html#static-function-getOrCreateCldrInstance",
-    "<span>getOrCreateCldrInstance</span> <span class=\"search-result-import-path\">@js-joda/root/packages/locale/src/format/cldr/CldrCache.js</span>",
-    "function"
-  ],
-  [
-    "@js-joda/root/packages/locale/src/format/cldr/cldrcache.js~getorcreatemapzones",
-    "function/index.html#static-function-getOrCreateMapZones",
-    "<span>getOrCreateMapZones</span> <span class=\"search-result-import-path\">@js-joda/root/packages/locale/src/format/cldr/CldrCache.js</span>",
-    "function"
-  ],
-  [
-    "@js-joda/root/packages/locale/src/format/cldr/cldrcache.js~loadcldrdata",
-    "function/index.html#static-function-loadCldrData",
-    "<span>loadCldrData</span> <span class=\"search-result-import-path\">@js-joda/root/packages/locale/src/format/cldr/CldrCache.js</span>",
     "function"
   ],
   [
@@ -492,58 +420,10 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "@js-joda/root/packages/extra/src/plug.js~plug",
-    "function/index.html#static-function-plug",
-    "<span>plug</span> <span class=\"search-result-import-path\">@js-joda/root/packages/extra/src/plug.js</span>",
-    "function"
-  ],
-  [
-    "@js-joda/root/packages/locale/src/plug.js~plug",
-    "function/index.html#static-function-plug",
-    "<span>plug</span> <span class=\"search-result-import-path\">@js-joda/root/packages/locale/src/plug.js</span>",
-    "function"
-  ],
-  [
-    "@js-joda/root/packages/timezone/src/plug.js~plug",
-    "function/index.html#static-function-plug",
-    "<span>plug</span> <span class=\"search-result-import-path\">@js-joda/root/packages/timezone/src/plug.js</span>",
-    "function"
-  ],
-  [
-    "@js-joda/root/packages/core/src/assert.js~requireinstance",
-    "function/index.html#static-function-requireInstance",
-    "<span>requireInstance</span> <span class=\"search-result-import-path\">@js-joda/root/packages/core/src/assert.js</span>",
-    "function"
-  ],
-  [
-    "@js-joda/root/packages/extra/src/assert.js~requireinstance",
-    "function/index.html#static-function-requireInstance",
-    "<span>requireInstance</span> <span class=\"search-result-import-path\">@js-joda/root/packages/extra/src/assert.js</span>",
-    "function"
-  ],
-  [
-    "@js-joda/root/packages/core/src/assert.js~requirenonnull",
-    "function/index.html#static-function-requireNonNull",
-    "<span>requireNonNull</span> <span class=\"search-result-import-path\">@js-joda/root/packages/core/src/assert.js</span>",
-    "function"
-  ],
-  [
-    "@js-joda/root/packages/extra/src/assert.js~requirenonnull",
-    "function/index.html#static-function-requireNonNull",
-    "<span>requireNonNull</span> <span class=\"search-result-import-path\">@js-joda/root/packages/extra/src/assert.js</span>",
-    "function"
-  ],
-  [
     "@js-joda/root/packages/timezone/src/unpack.js~unpack",
     "function/index.html#static-function-unpack",
     "<span>unpack</span> <span class=\"search-result-import-path\">@js-joda/root/packages/timezone/src/unpack.js</span>",
     "function"
-  ],
-  [
-    "@js-joda/root/packages/core/src/js-joda.js~use",
-    "variable/index.html#static-variable-use",
-    "<span>use</span> <span class=\"search-result-import-path\">@js-joda/root/packages/core/src/js-joda.js</span>",
-    "variable"
   ],
   [
     "packages/core/src/clock.js",
