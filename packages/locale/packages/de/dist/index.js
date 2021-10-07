@@ -1,4 +1,4 @@
-//! @version @js-joda/locale - 4.0.1+36.0.0
+//! @version @js-joda/locale - 4.1.0+36.0.0
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -2180,7 +2180,7 @@ var createEntry = function createEntry(text, field) {
     key: text,
     value: field,
     toString: function toString() {
-      return text + '->' + field;
+      return "".concat(text, "->").concat(field);
     }
   };
 };
@@ -2745,6 +2745,7 @@ var CldrZoneTextPrinterParser = function () {
     requireNonNull(textStyle, 'textStyle');
     requireInstance(textStyle, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["TextStyle"], 'textStyle');
     this._textStyle = textStyle;
+    this._zoneIdsLocales = {};
     Object(_CldrCache__WEBPACK_IMPORTED_MODULE_1__["loadCldrData"])('supplemental/likelySubtags.json');
     Object(_CldrCache__WEBPACK_IMPORTED_MODULE_1__["loadCldrData"])('supplemental/metaZones.json');
   }
@@ -2853,11 +2854,15 @@ var CldrZoneTextPrinterParser = function () {
       return true;
     }
   }, {
-    key: "parse",
-    value: function parse(context, text, position) {
+    key: "_resolveZoneIds",
+    value: function _resolveZoneIds(localString) {
+      if (this._zoneIdsLocales[localString] != null) {
+        return this._zoneIdsLocales[localString];
+      }
+
       var ids = {};
-      Object(_CldrCache__WEBPACK_IMPORTED_MODULE_1__["loadCldrData"])("main/".concat(context.locale().localeString(), "/timeZoneNames.json"));
-      var cldr = Object(_CldrCache__WEBPACK_IMPORTED_MODULE_1__["getOrCreateCldrInstance"])(context.locale().localeString());
+      Object(_CldrCache__WEBPACK_IMPORTED_MODULE_1__["loadCldrData"])("main/".concat(localString, "/timeZoneNames.json"));
+      var cldr = Object(_CldrCache__WEBPACK_IMPORTED_MODULE_1__["getOrCreateCldrInstance"])(localString);
       var _iteratorNormalCompletion = true;
       var _didIteratorError = false;
       var _iteratorError = undefined;
@@ -2902,17 +2907,39 @@ var CldrZoneTextPrinterParser = function () {
       }
 
       var sortedKeys = Object.keys(ids).sort(LENGTH_COMPARATOR);
+      this._zoneIdsLocales[localString] = {
+        ids: ids,
+        sortedKeys: sortedKeys
+      };
+      return this._zoneIdsLocales[localString];
+    }
+  }, {
+    key: "parse",
+    value: function parse(context, text, position) {
+      for (var _i = 0, _arr = ['UTC', 'GMT']; _i < _arr.length; _i++) {
+        var name = _arr[_i];
+
+        if (context.subSequenceEquals(text, position, name, 0, name.length)) {
+          context.setParsedZone(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneId"].of(name));
+          return position + name.length;
+        }
+      }
+
+      var _this$_resolveZoneIds = this._resolveZoneIds(context.locale().localeString()),
+          ids = _this$_resolveZoneIds.ids,
+          sortedKeys = _this$_resolveZoneIds.sortedKeys;
+
       var _iteratorNormalCompletion2 = true;
       var _didIteratorError2 = false;
       var _iteratorError2 = undefined;
 
       try {
         for (var _iterator2 = sortedKeys[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var name = _step2.value;
+          var _name = _step2.value;
 
-          if (context.subSequenceEquals(text, position, name, 0, name.length)) {
-            context.setParsedZone(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneId"].of(ids[name]));
-            return position + name.length;
+          if (context.subSequenceEquals(text, position, _name, 0, _name.length)) {
+            context.setParsedZone(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneId"].of(ids[_name]));
+            return position + _name.length;
           }
         }
       } catch (err) {
@@ -4010,7 +4037,7 @@ var ComputedDayOfField = function () {
   }, {
     key: "toString",
     value: function toString() {
-      return this._name + '[' + this._weekDef.toString() + ']';
+      return "".concat(this._name, "[").concat(this._weekDef.toString(), "]");
     }
   }], [{
     key: "_computeWeek",
@@ -4151,7 +4178,7 @@ var WeekFields = function () {
   }, {
     key: "toString",
     value: function toString() {
-      return 'WeekFields[' + this._firstDayOfWeek + ',' + this._minimalDays + ']';
+      return "WeekFields[".concat(this._firstDayOfWeek, ",").concat(this._minimalDays, "]");
     }
   }]);
 
@@ -4184,7 +4211,7 @@ function _init() {
  * that cldr-data is installed in parallel!
  */
 module.exports = function (cldrPath) {
-    return __webpack_require__("./node_modules/cldr-data sync recursive ^\\.\\/.*$")("./" + cldrPath);
+    return __webpack_require__("./node_modules/cldr-data sync recursive ^\\.\\/.*$")(`./${  cldrPath}`);
 };
 
 

@@ -1,4 +1,4 @@
-//! @version @js-joda/core - 4.0.0
+//! @version @js-joda/core - 4.1.0
 //! @copyright (c) 2015-present, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -55,7 +55,7 @@
       var msg = message || this.name;
 
       if (cause !== null && cause instanceof Error) {
-        msg += '\n-------\nCaused by: ' + cause.stack + '\n-------\n';
+        msg += "\n-------\nCaused by: " + cause.stack + "\n-------\n";
       }
 
       this.message = msg;
@@ -75,10 +75,10 @@
       }
 
       var msg = message || this.name;
-      msg += ': ' + text + ', at index: ' + index;
+      msg += ": " + text + ", at index: " + index;
 
       if (cause !== null && cause instanceof Error) {
-        msg += '\n-------\nCaused by: ' + cause.stack + '\n-------\n';
+        msg += "\n-------\nCaused by: " + cause.stack + "\n-------\n";
       }
 
       this.message = msg;
@@ -121,20 +121,20 @@
     }
     function requireNonNull(value, parameterName) {
       if (value == null) {
-        throw new NullPointerException(parameterName + ' must not be null');
+        throw new NullPointerException(parameterName + " must not be null");
       }
 
       return value;
     }
     function requireInstance(value, _class, parameterName) {
       if (!(value instanceof _class)) {
-        throw new IllegalArgumentException(parameterName + ' must be an instance of ' + (_class.name ? _class.name : _class) + (value && value.constructor && value.constructor.name ? ', but is ' + value.constructor.name : ''));
+        throw new IllegalArgumentException(parameterName + " must be an instance of " + (_class.name ? _class.name : _class) + (value && value.constructor && value.constructor.name ? ", but is " + value.constructor.name : ''));
       }
 
       return value;
     }
     function abstractMethodFail(methodName) {
-      throw new TypeError('abstract method "' + methodName + '" is not implemented');
+      throw new TypeError("abstract method \"" + methodName + "\" is not implemented");
     }
 
     var assert$1 = /*#__PURE__*/Object.freeze({
@@ -240,7 +240,7 @@
         var r = MathUtil.safeToInt(x * y);
 
         if (r / y !== x || x === MIN_SAFE_INTEGER && y === -1 || y === MIN_SAFE_INTEGER && x === -1) {
-          throw new ArithmeticException('Multiplication overflows: ' + x + ' * ' + y);
+          throw new ArithmeticException("Multiplication overflows: " + x + " * " + y);
         }
 
         return r;
@@ -280,7 +280,7 @@
         }
 
         if (value > MAX_SAFE_INTEGER || value < MIN_SAFE_INTEGER) {
-          throw new ArithmeticException('Calculation overflows an int: ' + value);
+          throw new ArithmeticException("Calculation overflows an int: " + value);
         }
       };
 
@@ -583,7 +583,7 @@
 
           return MathUtil.safeMultiply(parseFloat(parsed), multiplier);
         } catch (ex) {
-          throw new DateTimeParseException('Text cannot be parsed to a Duration: ' + errorText, text, 0, ex);
+          throw new DateTimeParseException("Text cannot be parsed to a Duration: " + errorText, text, 0, ex);
         }
       };
 
@@ -592,7 +592,7 @@
           return 0;
         }
 
-        parsed = (parsed + '000000000').substring(0, 9);
+        parsed = (parsed + "000000000").substring(0, 9);
         return parseFloat(parsed) * negate;
       };
 
@@ -638,7 +638,7 @@
         } else if (unit === ChronoUnit.NANOS) {
           return this._nanos;
         } else {
-          throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+          throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
         }
       };
 
@@ -940,11 +940,11 @@
         var rval = 'PT';
 
         if (hours !== 0) {
-          rval += hours + 'H';
+          rval += hours + "H";
         }
 
         if (minutes !== 0) {
-          rval += minutes + 'M';
+          rval += minutes + "M";
         }
 
         if (secs === 0 && this._nanos === 0 && rval.length > 2) {
@@ -966,9 +966,9 @@
           var nanoString;
 
           if (secs < 0) {
-            nanoString = '' + (2 * LocalTime.NANOS_PER_SECOND - this._nanos);
+            nanoString = "" + (2 * LocalTime.NANOS_PER_SECOND - this._nanos);
           } else {
-            nanoString = '' + (LocalTime.NANOS_PER_SECOND + this._nanos);
+            nanoString = "" + (LocalTime.NANOS_PER_SECOND + this._nanos);
           }
 
           nanoString = nanoString.slice(1, nanoString.length);
@@ -1157,9 +1157,9 @@
      */
     var ValueRange = function () {
       function ValueRange(minSmallest, minLargest, maxSmallest, maxLargest) {
-        assert(!(minSmallest > minLargest), 'Smallest minimum value \'' + minSmallest + '\' must be less than largest minimum value \'' + minLargest + '\'', IllegalArgumentException);
-        assert(!(maxSmallest > maxLargest), 'Smallest maximum value \'' + maxSmallest + '\' must be less than largest maximum value \'' + maxLargest + '\'', IllegalArgumentException);
-        assert(!(minLargest > maxLargest), 'Minimum value \'' + minLargest + '\' must be less than maximum value \'' + maxLargest + '\'', IllegalArgumentException);
+        assert(!(minSmallest > minLargest), "Smallest minimum value '" + minSmallest + "' must be less than largest minimum value '" + minLargest + "'", IllegalArgumentException);
+        assert(!(maxSmallest > maxLargest), "Smallest maximum value '" + maxSmallest + "' must be less than largest maximum value '" + maxLargest + "'", IllegalArgumentException);
+        assert(!(minLargest > maxLargest), "Minimum value '" + minLargest + "' must be less than maximum value '" + maxLargest + "'", IllegalArgumentException);
         this._minSmallest = minSmallest;
         this._minLargest = minLargest;
         this._maxLargest = maxLargest;
@@ -1197,9 +1197,9 @@
 
         if (!this.isValidValue(value)) {
           if (field != null) {
-            msg = 'Invalid value for ' + field + ' (valid values ' + this.toString() + '): ' + value;
+            msg = "Invalid value for " + field + " (valid values " + this.toString() + "): " + value;
           } else {
-            msg = 'Invalid value (valid values ' + this.toString() + '): ' + value;
+            msg = "Invalid value (valid values " + this.toString() + "): " + value;
           }
 
           return assert(false, msg, DateTimeException);
@@ -1210,7 +1210,7 @@
 
       _proto.checkValidIntValue = function checkValidIntValue(value, field) {
         if (this.isValidIntValue(value) === false) {
-          throw new DateTimeException('Invalid int value for ' + field + ': ' + value);
+          throw new DateTimeException("Invalid int value for " + field + ": " + value);
         }
 
         return value;
@@ -1241,9 +1241,9 @@
       };
 
       _proto.toString = function toString() {
-        var str = this.minimum() + (this.minimum() !== this.largestMinimum() ? '/' + this.largestMinimum() : '');
+        var str = this.minimum() + (this.minimum() !== this.largestMinimum() ? "/" + this.largestMinimum() : '');
         str += ' - ';
-        str += this.smallestMaximum() + (this.smallestMaximum() !== this.maximum() ? '/' + this.maximum() : '');
+        str += this.smallestMaximum() + (this.smallestMaximum() !== this.maximum() ? "/" + this.maximum() : '');
         return str;
       };
 
@@ -1255,7 +1255,7 @@
         } else if (arguments.length === 4) {
           return new ValueRange(arguments[0], arguments[1], arguments[2], arguments[3]);
         } else {
-          return assert(false, 'Invalid number of arguments ' + arguments.length, IllegalArgumentException);
+          return assert(false, "Invalid number of arguments " + arguments.length, IllegalArgumentException);
         }
       };
 
@@ -1456,7 +1456,7 @@
             return field.range();
           }
 
-          throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+          throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
 
         return field.rangeRefinedBy(this);
@@ -1539,7 +1539,7 @@
 
       DayOfWeek.of = function of(dayOfWeek) {
         if (dayOfWeek < 1 || dayOfWeek > 7) {
-          throw new DateTimeException('Invalid value for DayOfWeek: ' + dayOfWeek);
+          throw new DateTimeException("Invalid value for DayOfWeek: " + dayOfWeek);
         }
 
         return ENUMS[dayOfWeek - 1];
@@ -1556,7 +1556,7 @@
           return DayOfWeek.of(temporal.get(ChronoField.DAY_OF_WEEK));
         } catch (ex) {
           if (ex instanceof DateTimeException) {
-            throw new DateTimeException('Unable to obtain DayOfWeek from TemporalAccessor: ' + temporal + ', type ' + (temporal.constructor != null ? temporal.constructor.name : ''), ex);
+            throw new DateTimeException("Unable to obtain DayOfWeek from TemporalAccessor: " + temporal + ", type " + (temporal.constructor != null ? temporal.constructor.name : ''), ex);
           } else {
             throw ex;
           }
@@ -1583,7 +1583,7 @@
         if (field === ChronoField.DAY_OF_WEEK) {
           return field.range();
         } else if (field instanceof ChronoField) {
-          throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+          throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
 
         return field.rangeRefinedBy(this);
@@ -1601,7 +1601,7 @@
         if (field === ChronoField.DAY_OF_WEEK) {
           return this.value();
         } else if (field instanceof ChronoField) {
-          throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+          throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
 
         return field.getFrom(this);
@@ -1721,7 +1721,7 @@
         if (field === ChronoField.MONTH_OF_YEAR) {
           return this.value();
         } else if (field instanceof ChronoField) {
-          throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+          throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
 
         return field.getFrom(this);
@@ -1905,7 +1905,7 @@
             return 'DECEMBER';
 
           default:
-            return 'unknown Month, value: ' + this.value();
+            return "unknown Month, value: " + this.value();
         }
       };
 
@@ -1945,7 +1945,7 @@
 
       Month.of = function of(month) {
         if (month < 1 || month > 12) {
-          assert(false, 'Invalid value for MonthOfYear: ' + month, DateTimeException);
+          assert(false, "Invalid value for MonthOfYear: " + month, DateTimeException);
         }
 
         return MONTHS[month - 1];
@@ -1959,7 +1959,7 @@
         try {
           return Month.of(temporal.get(ChronoField.MONTH_OF_YEAR));
         } catch (ex) {
-          throw new DateTimeException('Unable to obtain Month from TemporalAccessor: ' + temporal + ' of type ' + (temporal && temporal.constructor != null ? temporal.constructor.name : ''), ex);
+          throw new DateTimeException("Unable to obtain Month from TemporalAccessor: " + temporal + " of type " + (temporal && temporal.constructor != null ? temporal.constructor.name : ''), ex);
         }
       };
 
@@ -2056,7 +2056,7 @@
           } else if (unit === ChronoUnit.DAYS) {
             days = MathUtil.safeToInt(unitAmount);
           } else {
-            throw new DateTimeException('Unit must be Years, Months or Days, but was ' + unit);
+            throw new DateTimeException("Unit must be Years, Months or Days, but was " + unit);
           }
         }
 
@@ -2148,7 +2148,7 @@
           return this._days;
         }
 
-        throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+        throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
       };
 
       _proto.isZero = function isZero() {
@@ -2333,15 +2333,15 @@
           var buf = 'P';
 
           if (this._years !== 0) {
-            buf += '' + this._years + 'Y';
+            buf += this._years + "Y";
           }
 
           if (this._months !== 0) {
-            buf += '' + this._months + 'M';
+            buf += this._months + "M";
           }
 
           if (this._days !== 0) {
-            buf += '' + this._days + 'D';
+            buf += this._days + "D";
           }
 
           return buf;
@@ -2500,7 +2500,7 @@
         requireNonNull(amountToSubtract, 'amountToSubtract');
         requireNonNull(unit, 'unit');
         requireInstance(unit, TemporalUnit, 'unit');
-        return amountToSubtract === MIN_SAFE_INTEGER ? this._plusUnit(MAX_SAFE_INTEGER, unit)._plusUnit(1, unit) : this._plusUnit(-amountToSubtract, unit);
+        return this._plusUnit(-amountToSubtract, unit);
       };
 
       _proto.plus = function plus(amount, unit) {
@@ -2641,15 +2641,15 @@
       };
 
       ZoneId.of = function of(zoneId) {
-        throw new DateTimeException('not supported operation' + zoneId);
+        throw new DateTimeException("not supported operation" + zoneId);
       };
 
       ZoneId.ofOffset = function ofOffset(prefix, offset) {
-        throw new DateTimeException('not supported operation' + prefix + offset);
+        throw new DateTimeException("not supported operation" + prefix + offset);
       };
 
       ZoneId.from = function from(temporal) {
-        throw new DateTimeException('not supported operation' + temporal);
+        throw new DateTimeException("not supported operation" + temporal);
       };
 
       var _proto = ZoneId.prototype;
@@ -2866,7 +2866,7 @@
       };
 
       _proto2.toString = function toString() {
-        return 'FixedRules:' + this._offset.toString();
+        return "FixedRules:" + this._offset.toString();
       };
 
       return Fixed;
@@ -2907,7 +2907,7 @@
           var absTotalSeconds = Math.abs(totalSeconds);
           var absHours = MathUtil.intDiv(absTotalSeconds, LocalTime.SECONDS_PER_HOUR);
           var absMinutes = MathUtil.intMod(MathUtil.intDiv(absTotalSeconds, LocalTime.SECONDS_PER_MINUTE), LocalTime.MINUTES_PER_HOUR);
-          var buf = '' + (totalSeconds < 0 ? '-' : '+') + (absHours < 10 ? '0' : '') + absHours + (absMinutes < 10 ? ':0' : ':') + absMinutes;
+          var buf = "" + (totalSeconds < 0 ? '-' : '+') + (absHours < 10 ? '0' : '') + absHours + (absMinutes < 10 ? ':0' : ':') + absMinutes;
           var absSeconds = MathUtil.intMod(absTotalSeconds, LocalTime.SECONDS_PER_MINUTE);
 
           if (absSeconds !== 0) {
@@ -2926,7 +2926,7 @@
 
       ZoneOffset._validate = function _validate(hours, minutes, seconds) {
         if (hours < -18 || hours > 18) {
-          throw new DateTimeException('Zone offset hours not in valid range: value ' + hours + ' is not in the range -18 to 18');
+          throw new DateTimeException("Zone offset hours not in valid range: value " + hours + " is not in the range -18 to 18");
         }
 
         if (hours > 0) {
@@ -2942,11 +2942,11 @@
         }
 
         if (Math.abs(minutes) > 59) {
-          throw new DateTimeException('Zone offset minutes not in valid range: abs(value) ' + Math.abs(minutes) + ' is not in the range 0 to 59');
+          throw new DateTimeException("Zone offset minutes not in valid range: abs(value) " + Math.abs(minutes) + " is not in the range 0 to 59");
         }
 
         if (Math.abs(seconds) > 59) {
-          throw new DateTimeException('Zone offset seconds not in valid range: abs(value) ' + Math.abs(seconds) + ' is not in the range 0 to 59');
+          throw new DateTimeException("Zone offset seconds not in valid range: abs(value) " + Math.abs(seconds) + " is not in the range 0 to 59");
         }
 
         if (Math.abs(hours) === 18 && (Math.abs(minutes) > 0 || Math.abs(seconds) > 0)) {
@@ -2966,7 +2966,7 @@
 
         switch (offsetId.length) {
           case 2:
-            offsetId = offsetId[0] + '0' + offsetId[1];
+            offsetId = offsetId[0] + "0" + offsetId[1];
 
           case 3:
             hours = ZoneOffset._parseNumber(offsetId, 1, false);
@@ -2999,13 +2999,13 @@
             break;
 
           default:
-            throw new DateTimeException('Invalid ID for ZoneOffset, invalid format: ' + offsetId);
+            throw new DateTimeException("Invalid ID for ZoneOffset, invalid format: " + offsetId);
         }
 
         var first = offsetId[0];
 
         if (first !== '+' && first !== '-') {
-          throw new DateTimeException('Invalid ID for ZoneOffset, plus/minus not found when expected: ' + offsetId);
+          throw new DateTimeException("Invalid ID for ZoneOffset, plus/minus not found when expected: " + offsetId);
         }
 
         if (first === '-') {
@@ -3017,14 +3017,14 @@
 
       ZoneOffset._parseNumber = function _parseNumber(offsetId, pos, precededByColon) {
         if (precededByColon && offsetId[pos - 1] !== ':') {
-          throw new DateTimeException('Invalid ID for ZoneOffset, colon not found when expected: ' + offsetId);
+          throw new DateTimeException("Invalid ID for ZoneOffset, colon not found when expected: " + offsetId);
         }
 
         var ch1 = offsetId[pos];
         var ch2 = offsetId[pos + 1];
 
         if (ch1 < '0' || ch1 > '9' || ch2 < '0' || ch2 > '9') {
-          throw new DateTimeException('Invalid ID for ZoneOffset, non numeric characters found: ' + offsetId);
+          throw new DateTimeException("Invalid ID for ZoneOffset, non numeric characters found: " + offsetId);
         }
 
         return (ch1.charCodeAt(0) - 48) * 10 + (ch2.charCodeAt(0) - 48);
@@ -3079,7 +3079,7 @@
         if (field === ChronoField.OFFSET_SECONDS) {
           return this._totalSeconds;
         } else if (field instanceof ChronoField) {
-          throw new DateTimeException('Unsupported field: ' + field);
+          throw new DateTimeException("Unsupported field: " + field);
         }
 
         return field.getFrom(this);
@@ -3171,7 +3171,7 @@
         var old = this.getFieldValue0(field);
 
         if (old != null && old !== value) {
-          throw new DateTimeException('Conflict found: ' + field + ' ' + old + ' differs from ' + field + ' ' + value + ': ' + this);
+          throw new DateTimeException("Conflict found: " + field + " " + old + " differs from " + field + " " + value + ": " + this);
         }
 
         return this._putFieldValue0(field, value);
@@ -3232,7 +3232,7 @@
                   var val2 = this.fieldValues.get(field);
 
                   if (val1 !== val2) {
-                    throw new DateTimeException('Conflict found: Field ' + field + ' ' + val1 + ' differs from ' + field + ' ' + val2 + ' derived from ' + date);
+                    throw new DateTimeException("Conflict found: Field " + field + " " + val1 + " differs from " + field + " " + val2 + " derived from " + date);
                   }
                 }
               }
@@ -3539,7 +3539,7 @@
             return this.time.getLong(field);
           }
 
-          throw new DateTimeException('Field not found: ' + field);
+          throw new DateTimeException("Field not found: " + field);
         }
 
         return value;
@@ -3846,7 +3846,7 @@
         var result = this._temporal.query(query);
 
         if (result == null && this._optional === 0) {
-          throw new DateTimeException('Unable to extract value: ' + this._temporal);
+          throw new DateTimeException("Unable to extract value: " + this._temporal);
         }
 
         return result;
@@ -4520,7 +4520,7 @@
       };
 
       _proto.toString = function toString() {
-        return 'DecimalStyle[' + this._zeroDigit + this._positiveSign + this._negativeSign + this._decimalSeparator + ']';
+        return "DecimalStyle[" + this._zeroDigit + this._positiveSign + this._negativeSign + this._decimalSeparator + "]";
       };
 
       DecimalStyle.of = function of() {
@@ -4636,7 +4636,7 @@
     var CharLiteralPrinterParser = function () {
       function CharLiteralPrinterParser(literal) {
         if (literal.length > 1) {
-          throw new IllegalArgumentException('invalid literal, too long: "' + literal + '"');
+          throw new IllegalArgumentException("invalid literal, too long: \"" + literal + "\"");
         }
 
         this._literal = literal;
@@ -4783,19 +4783,19 @@
         requireNonNull(field, 'field');
 
         if (field.range().isFixed() === false) {
-          throw new IllegalArgumentException('Field must have a fixed set of values: ' + field);
+          throw new IllegalArgumentException("Field must have a fixed set of values: " + field);
         }
 
         if (minWidth < 0 || minWidth > 9) {
-          throw new IllegalArgumentException('Minimum width must be from 0 to 9 inclusive but was ' + minWidth);
+          throw new IllegalArgumentException("Minimum width must be from 0 to 9 inclusive but was " + minWidth);
         }
 
         if (maxWidth < 1 || maxWidth > 9) {
-          throw new IllegalArgumentException('Maximum width must be from 1 to 9 inclusive but was ' + maxWidth);
+          throw new IllegalArgumentException("Maximum width must be from 1 to 9 inclusive but was " + maxWidth);
         }
 
         if (maxWidth < minWidth) {
-          throw new IllegalArgumentException('Maximum width must exceed or equal the minimum width but ' + maxWidth + ' < ' + minWidth);
+          throw new IllegalArgumentException("Maximum width must exceed or equal the minimum width but " + maxWidth + " < " + minWidth);
         }
 
         this.field = field;
@@ -4910,7 +4910,7 @@
 
         var _scaled = MathUtil.intDiv(_value * 1000000000, _range);
 
-        var fraction = '' + _scaled;
+        var fraction = "" + _scaled;
 
         while (fraction.length < 9) {
           fraction = zeroDigit + fraction;
@@ -4933,7 +4933,7 @@
 
       _proto.toString = function toString() {
         var decimal = this.decimalPoint ? ',DecimalPoint' : '';
-        return 'Fraction(' + this.field + ',' + this.minWidth + ',' + this.maxWidth + decimal + ')';
+        return "Fraction(" + this.field + "," + this.minWidth + "," + this.maxWidth + decimal + ")";
       };
 
       return FractionPrinterParser;
@@ -4998,10 +4998,10 @@
         var value = this._getValue(context, contextValue);
 
         var symbols = context.symbols();
-        var str = '' + Math.abs(value);
+        var str = "" + Math.abs(value);
 
         if (str.length > this._maxWidth) {
-          throw new DateTimeException('Field ' + this._field + ' cannot be printed as the value ' + value + ' exceeds the maximum print width of ' + this._maxWidth);
+          throw new DateTimeException("Field " + this._field + " cannot be printed as the value " + value + " exceeds the maximum print width of " + this._maxWidth);
         }
 
         str = symbols.convertNumberToI18N(str);
@@ -5028,7 +5028,7 @@
               break;
 
             case SignStyle.NOT_NEGATIVE:
-              throw new DateTimeException('Field ' + this._field + ' cannot be printed as the value ' + value + ' cannot be negative according to the SignStyle');
+              throw new DateTimeException("Field " + this._field + " cannot be printed as the value " + value + " cannot be negative according to the SignStyle");
           }
         }
 
@@ -5152,14 +5152,14 @@
 
       _proto.toString = function toString() {
         if (this._minWidth === 1 && this._maxWidth === MAX_WIDTH && this._signStyle === SignStyle.NORMAL) {
-          return 'Value(' + this._field + ')';
+          return "Value(" + this._field + ")";
         }
 
         if (this._minWidth === this._maxWidth && this._signStyle === SignStyle.NOT_NEGATIVE) {
-          return 'Value(' + this._field + ',' + this._minWidth + ')';
+          return "Value(" + this._field + "," + this._minWidth + ")";
         }
 
-        return 'Value(' + this._field + ',' + this._minWidth + ',' + this._maxWidth + ',' + this._signStyle + ')';
+        return "Value(" + this._field + "," + this._minWidth + "," + this._maxWidth + "," + this._signStyle + ")";
       };
 
       return NumberPrinterParser;
@@ -5173,11 +5173,11 @@
         _this = _NumberPrinterParser.call(this, field, width, maxWidth, SignStyle.NOT_NEGATIVE) || this;
 
         if (width < 1 || width > 10) {
-          throw new IllegalArgumentException('The width must be from 1 to 10 inclusive but was ' + width);
+          throw new IllegalArgumentException("The width must be from 1 to 10 inclusive but was " + width);
         }
 
         if (maxWidth < 1 || maxWidth > 10) {
-          throw new IllegalArgumentException('The maxWidth must be from 1 to 10 inclusive but was ' + maxWidth);
+          throw new IllegalArgumentException("The maxWidth must be from 1 to 10 inclusive but was " + maxWidth);
         }
 
         if (maxWidth < width) {
@@ -5268,7 +5268,7 @@
       };
 
       _proto2.toString = function toString() {
-        return 'ReducedValue(' + this._field + ',' + this._minWidth + ',' + this._maxWidth + ',' + (this._baseDate != null ? this._baseDate : this._baseValue) + ')';
+        return "ReducedValue(" + this._field + "," + this._minWidth + "," + this._maxWidth + "," + (this._baseDate != null ? this._baseDate : this._baseValue) + ")";
       };
 
       return ReducedPrinterParser;
@@ -5297,7 +5297,7 @@
           }
         }
 
-        throw new IllegalArgumentException('Invalid zone offset pattern: ' + pattern);
+        throw new IllegalArgumentException("Invalid zone offset pattern: " + pattern);
       };
 
       _proto.print = function print(context, buf) {
@@ -5317,14 +5317,14 @@
           var absSeconds = Math.abs(MathUtil.intMod(totalSecs, 60));
           var bufPos = buf.length();
           var output = absHours;
-          buf.append(totalSecs < 0 ? '-' : '+').appendChar(MathUtil.intDiv(absHours, 10) + '0').appendChar(MathUtil.intMod(absHours, 10) + '0');
+          buf.append(totalSecs < 0 ? '-' : '+').appendChar(MathUtil.intDiv(absHours, 10) + "0").appendChar(MathUtil.intMod(absHours, 10) + "0");
 
           if (this.type >= 3 || this.type >= 1 && absMinutes > 0) {
-            buf.append(this.type % 2 === 0 ? ':' : '').appendChar(MathUtil.intDiv(absMinutes, 10) + '0').appendChar(absMinutes % 10 + '0');
+            buf.append(this.type % 2 === 0 ? ':' : '').appendChar(MathUtil.intDiv(absMinutes, 10) + "0").appendChar(absMinutes % 10 + "0");
             output += absMinutes;
 
             if (this.type >= 7 || this.type >= 5 && absSeconds > 0) {
-              buf.append(this.type % 2 === 0 ? ':' : '').appendChar(MathUtil.intDiv(absSeconds, 10) + '0').appendChar(absSeconds % 10 + '0');
+              buf.append(this.type % 2 === 0 ? ':' : '').appendChar(MathUtil.intDiv(absSeconds, 10) + "0").appendChar(absSeconds % 10 + "0");
               output += absSeconds;
             }
           }
@@ -5415,7 +5415,7 @@
 
       _proto.toString = function toString() {
         var converted = this.noOffsetText.replace('\'', '\'\'');
-        return 'Offset(' + PATTERNS[this.type] + ',\'' + converted + '\')';
+        return "Offset(" + PATTERNS[this.type] + ",'" + converted + "')";
       };
 
       return OffsetIdPrinterParser;
@@ -5495,7 +5495,7 @@
       };
 
       _proto.toString = function toString() {
-        return "Pad(" + this._printerParser + "," + this._padWidth + (this._padChar === ' ' ? ')' : ',\'' + this._padChar + '\')');
+        return "Pad(" + this._printerParser + "," + this._padWidth + (this._padChar === ' ' ? ')' : ",'" + this._padChar + "')");
       };
 
       return PadPrinterParserDecorator;
@@ -5590,7 +5590,7 @@
       _proto.toString = function toString() {
         var converted = this._literal.replace("'", "''");
 
-        return '\'' + converted + '\'';
+        return "'" + converted + "'";
       };
 
       return StringLiteralPrinterParser;
@@ -5605,7 +5605,7 @@
       function ZoneRulesProvider() {}
 
       ZoneRulesProvider.getRules = function getRules(zoneId) {
-        throw new DateTimeException('unsupported ZoneId:' + zoneId);
+        throw new DateTimeException("unsupported ZoneId:" + zoneId);
       };
 
       ZoneRulesProvider.getAvailableZoneIds = function getAvailableZoneIds() {
@@ -6019,7 +6019,7 @@
         }
 
         if (fractionalDigits < -2 || fractionalDigits > 9) {
-          throw new IllegalArgumentException('Invalid fractional digits: ' + fractionalDigits);
+          throw new IllegalArgumentException("Invalid fractional digits: " + fractionalDigits);
         }
 
         this._appendInternal(new InstantPrinterParser(fractionalDigits));
@@ -6126,7 +6126,7 @@
               }
 
               if (pad === 0) {
-                throw new IllegalArgumentException('Pad letter \'p\' must be followed by valid pad pattern: ' + pattern);
+                throw new IllegalArgumentException("Pad letter 'p' must be followed by valid pad pattern: " + pattern);
               }
 
               this.padNext(pad);
@@ -6138,7 +6138,7 @@
               this._parseField(cur, count, field);
             } else if (cur === 'z') {
               if (count > 4) {
-                throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                throw new IllegalArgumentException("Too many pattern letters: " + cur);
               } else if (count === 4) {
                 this.appendZoneText(TextStyle.FULL);
               } else {
@@ -6146,7 +6146,7 @@
               }
             } else if (cur === 'V') {
               if (count !== 2) {
-                throw new IllegalArgumentException('Pattern letter count must be 2: ' + cur);
+                throw new IllegalArgumentException("Pattern letter count must be 2: " + cur);
               }
 
               this.appendZoneId();
@@ -6158,7 +6158,7 @@
               } else if (count === 5) {
                 this.appendOffset('+HH:MM:ss', 'Z');
               } else {
-                throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                throw new IllegalArgumentException("Too many pattern letters: " + cur);
               }
             } else if (cur === 'O') {
               if (count === 1) {
@@ -6166,37 +6166,37 @@
               } else if (count === 4) {
                 this.appendLocalizedOffset(TextStyle.FULL);
               } else {
-                throw new IllegalArgumentException('Pattern letter count must be 1 or 4: ' + cur);
+                throw new IllegalArgumentException("Pattern letter count must be 1 or 4: " + cur);
               }
             } else if (cur === 'X') {
               if (count > 5) {
-                throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                throw new IllegalArgumentException("Too many pattern letters: " + cur);
               }
 
               this.appendOffset(OffsetIdPrinterParser.PATTERNS[count + (count === 1 ? 0 : 1)], 'Z');
             } else if (cur === 'x') {
               if (count > 5) {
-                throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                throw new IllegalArgumentException("Too many pattern letters: " + cur);
               }
 
               var zero = count === 1 ? '+00' : count % 2 === 0 ? '+0000' : '+00:00';
               this.appendOffset(OffsetIdPrinterParser.PATTERNS[count + (count === 1 ? 0 : 1)], zero);
             } else if (cur === 'W') {
               if (count > 1) {
-                throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                throw new IllegalArgumentException("Too many pattern letters: " + cur);
               }
 
               this.appendWeekField('W', count);
             } else if (cur === 'w') {
               if (count > 2) {
-                throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                throw new IllegalArgumentException("Too many pattern letters: " + cur);
               }
 
               this.appendWeekField('w', count);
             } else if (cur === 'Y') {
               this.appendWeekField('Y', count);
             } else {
-              throw new IllegalArgumentException('Unknown pattern letter: ' + cur);
+              throw new IllegalArgumentException("Unknown pattern letter: " + cur);
             }
 
             pos--;
@@ -6214,7 +6214,7 @@
             }
 
             if (pos >= pattern.length) {
-              throw new IllegalArgumentException('Pattern ends with an incomplete string literal: ' + pattern);
+              throw new IllegalArgumentException("Pattern ends with an incomplete string literal: " + pattern);
             }
 
             var str = pattern.substring(_start + 1, pos);
@@ -6233,7 +6233,7 @@
 
             this.optionalEnd();
           } else if (cur === '{' || cur === '}' || cur === '#') {
-            throw new IllegalArgumentException('Pattern includes reserved character: \'' + cur + '\'');
+            throw new IllegalArgumentException("Pattern includes reserved character: '" + cur + "'");
           } else {
             this.appendLiteral(cur);
           }
@@ -6278,7 +6278,7 @@
                 break;
 
               default:
-                throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                throw new IllegalArgumentException("Too many pattern letters: " + cur);
             }
 
             break;
@@ -6307,7 +6307,7 @@
                 break;
 
               default:
-                throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                throw new IllegalArgumentException("Too many pattern letters: " + cur);
             }
 
             break;
@@ -6332,7 +6332,7 @@
                 break;
 
               default:
-                throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                throw new IllegalArgumentException("Too many pattern letters: " + cur);
             }
 
             break;
@@ -6344,7 +6344,7 @@
                 break;
 
               case 2:
-                throw new IllegalArgumentException('Invalid number of pattern letters: ' + cur);
+                throw new IllegalArgumentException("Invalid number of pattern letters: " + cur);
 
               case 3:
                 this.appendText(field, TextStyle.SHORT_STANDALONE);
@@ -6359,7 +6359,7 @@
                 break;
 
               default:
-                throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                throw new IllegalArgumentException("Too many pattern letters: " + cur);
             }
 
             break;
@@ -6368,7 +6368,7 @@
             if (count === 1) {
               this.appendText(field, TextStyle.SHORT);
             } else {
-              throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+              throw new IllegalArgumentException("Too many pattern letters: " + cur);
             }
 
             break;
@@ -6391,7 +6391,7 @@
                 break;
 
               default:
-                throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+                throw new IllegalArgumentException("Too many pattern letters: " + cur);
             }
 
             break;
@@ -6404,7 +6404,7 @@
             if (count === 1) {
               this.appendValue(field);
             } else {
-              throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+              throw new IllegalArgumentException("Too many pattern letters: " + cur);
             }
 
             break;
@@ -6421,7 +6421,7 @@
             } else if (count === 2) {
               this.appendValue(field, count);
             } else {
-              throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+              throw new IllegalArgumentException("Too many pattern letters: " + cur);
             }
 
             break;
@@ -6432,7 +6432,7 @@
             } else if (count <= 3) {
               this.appendValue(field, count);
             } else {
-              throw new IllegalArgumentException('Too many pattern letters: ' + cur);
+              throw new IllegalArgumentException("Too many pattern letters: " + cur);
             }
 
             break;
@@ -6462,7 +6462,7 @@
 
       _proto._padNext2 = function _padNext2(padWidth, padChar) {
         if (padWidth < 1) {
-          throw new IllegalArgumentException('The pad width must be at least one but was ' + padWidth);
+          throw new IllegalArgumentException("The pad width must be at least one but was " + padWidth);
         }
 
         this._active._padNextWidth = padWidth;
@@ -6625,7 +6625,7 @@
 
           if (_hi < 0) {
             if (_ldt.year() === -10000) {
-              buf.replace(pos, pos + 2, '' + (_hi - 1));
+              buf.replace(pos, pos + 2, "" + (_hi - 1));
             } else if (_lo === 0) {
               buf.insert(pos, _hi);
             } else {
@@ -6639,11 +6639,11 @@
             buf.append('.');
 
             if (MathUtil.intMod(inNano, 1000000) === 0) {
-              buf.append(('' + (MathUtil.intDiv(inNano, 1000000) + 1000)).substring(1));
+              buf.append(("" + (MathUtil.intDiv(inNano, 1000000) + 1000)).substring(1));
             } else if (MathUtil.intMod(inNano, 1000) === 0) {
-              buf.append(('' + (MathUtil.intDiv(inNano, 1000) + 1000000)).substring(1));
+              buf.append(("" + (MathUtil.intDiv(inNano, 1000) + 1000000)).substring(1));
             } else {
-              buf.append(('' + (inNano + 1000000000)).substring(1));
+              buf.append(("" + (inNano + 1000000000)).substring(1));
             }
           }
         } else if (this.fractionalDigits > 0 || this.fractionalDigits === -1 && inNano > 0) {
@@ -6909,12 +6909,12 @@
         var abbr = '';
 
         if (text.length > 64) {
-          abbr = text.substring(0, 64) + '...';
+          abbr = text.substring(0, 64) + "...";
         } else {
           abbr = text;
         }
 
-        return new DateTimeParseException('Text \'' + abbr + '\' could not be parsed: ' + ex.message, text, 0, ex);
+        return new DateTimeParseException("Text '" + abbr + "' could not be parsed: " + ex.message, text, 0, ex);
       };
 
       _proto._parseToBuilder = function _parseToBuilder(text, position) {
@@ -6926,15 +6926,15 @@
           var abbr = '';
 
           if (text.length > 64) {
-            abbr = text.substr(0, 64).toString() + '...';
+            abbr = text.substr(0, 64).toString() + "...";
           } else {
             abbr = text;
           }
 
           if (pos.getErrorIndex() >= 0) {
-            throw new DateTimeParseException('Text \'' + abbr + '\' could not be parsed at index ' + pos.getErrorIndex(), text, pos.getErrorIndex());
+            throw new DateTimeParseException("Text '" + abbr + "' could not be parsed at index " + pos.getErrorIndex(), text, pos.getErrorIndex());
           } else {
-            throw new DateTimeParseException('Text \'' + abbr + '\' could not be parsed, unparsed text found at index ' + pos.getIndex(), text, pos.getIndex());
+            throw new DateTimeParseException("Text '" + abbr + "' could not be parsed, unparsed text found at index " + pos.getIndex(), text, pos.getIndex());
           }
         }
 
@@ -7045,7 +7045,7 @@
         ChronoField.DAY_OF_MONTH.checkValidValue(dayOfMonth);
 
         if (dayOfMonth > month.maxLength()) {
-          throw new DateTimeException('Illegal value for DayOfMonth field, value ' + dayOfMonth + ' is not valid for month ' + month.toString());
+          throw new DateTimeException("Illegal value for DayOfMonth field, value " + dayOfMonth + " is not valid for month " + month.toString());
         }
 
         return new MonthDay(month.value(), dayOfMonth);
@@ -7068,7 +7068,7 @@
         try {
           return MonthDay.of(temporal.get(ChronoField.MONTH_OF_YEAR), temporal.get(ChronoField.DAY_OF_MONTH));
         } catch (ex) {
-          throw new DateTimeException('Unable to obtain MonthDay from TemporalAccessor: ' + temporal + ', type ' + (temporal && temporal.constructor != null ? temporal.constructor.name : ''));
+          throw new DateTimeException("Unable to obtain MonthDay from TemporalAccessor: " + temporal + ", type " + (temporal && temporal.constructor != null ? temporal.constructor.name : ''));
         }
       };
 
@@ -7148,7 +7148,7 @@
               return this._month;
           }
 
-          throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+          throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
 
         return field.getFrom(this);
@@ -7240,7 +7240,7 @@
       };
 
       _proto.toString = function toString() {
-        return '--' + (this._month < 10 ? '0' : '') + this._month + (this._day < 10 ? '-0' : '-') + this._day;
+        return "--" + (this._month < 10 ? '0' : '') + this._month + (this._day < 10 ? '-0' : '-') + this._day;
       };
 
       _proto.toJSON = function toJSON() {
@@ -7321,7 +7321,7 @@
         try {
           return YearMonth.of(temporal.get(ChronoField.YEAR), temporal.get(ChronoField.MONTH_OF_YEAR));
         } catch (ex) {
-          throw new DateTimeException('Unable to obtain YearMonth from TemporalAccessor: ' + temporal + ', type ' + (temporal && temporal.constructor != null ? temporal.constructor.name : ''));
+          throw new DateTimeException("Unable to obtain YearMonth from TemporalAccessor: " + temporal + ", type " + (temporal && temporal.constructor != null ? temporal.constructor.name : ''));
         }
       };
 
@@ -7413,7 +7413,7 @@
               return this._year < 1 ? 0 : 1;
           }
 
-          throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+          throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
 
         return field.getFrom(this);
@@ -7484,7 +7484,7 @@
               return this.getLong(ChronoField.ERA) === newValue ? this : this.withYear(1 - this._year);
           }
 
-          throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+          throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
 
         return field.adjustInto(this, newValue);
@@ -7525,7 +7525,7 @@
               return this.with(ChronoField.ERA, MathUtil.safeAdd(this.getLong(ChronoField.ERA), amountToAdd));
           }
 
-          throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+          throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
         }
 
         return unit.addTo(this, amountToAdd);
@@ -7611,7 +7611,7 @@
               return end.getLong(ChronoField.ERA) - this.getLong(ChronoField.ERA);
           }
 
-          throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+          throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
         }
 
         return unit.between(this, end);
@@ -7746,7 +7746,7 @@
         try {
           return Year.of(temporal.get(ChronoField.YEAR));
         } catch (ex) {
-          throw new DateTimeException('Unable to obtain Year from TemporalAccessor: ' + temporal + ', type ' + (temporal && temporal.constructor != null ? temporal.constructor.name : ''));
+          throw new DateTimeException("Unable to obtain Year from TemporalAccessor: " + temporal + ", type " + (temporal && temporal.constructor != null ? temporal.constructor.name : ''));
         }
       };
 
@@ -7806,7 +7806,7 @@
         if (this.isSupported(field)) {
           return field.range();
         } else if (field instanceof ChronoField) {
-          throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+          throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
 
         return _Temporal.prototype.range.call(this, field);
@@ -7831,7 +7831,7 @@
               return this._year < 1 ? 0 : 1;
           }
 
-          throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+          throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
 
         return field.getFrom(this);
@@ -7859,7 +7859,7 @@
               return this.getLong(ChronoField.ERA) === newValue ? this : Year.of(1 - this._year);
           }
 
-          throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+          throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
 
         return field.adjustInto(this, newValue);
@@ -7888,7 +7888,7 @@
               return this.with(ChronoField.ERA, MathUtil.safeAdd(this.getLong(ChronoField.ERA), amountToAdd));
           }
 
-          throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+          throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
         }
 
         return unit.addTo(this, amountToAdd);
@@ -8000,7 +8000,7 @@
       };
 
       _proto.toString = function toString() {
-        return '' + this._year;
+        return "" + this._year;
       };
 
       _proto.toJSON = function toJSON() {
@@ -8030,7 +8030,7 @@
               return end.getLong(ChronoField.ERA) - this.getLong(ChronoField.ERA);
           }
 
-          throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+          throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
         }
 
         return unit.between(this, end);
@@ -8263,7 +8263,7 @@
         var current = fieldValues.get(field);
 
         if (current != null && current !== value) {
-          throw new DateTimeException('Invalid state, field: ' + field + ' ' + current + ' conflicts with ' + field + ' ' + value);
+          throw new DateTimeException("Invalid state, field: " + field + " " + current + " conflicts with " + field + " " + value);
         }
 
         fieldValues.put(field, value);
@@ -8312,7 +8312,7 @@
           } else if (era === 0) {
             this._updateResolveMap(fieldValues, ChronoField.YEAR, MathUtil.safeSubtract(1, yoeLong));
           } else {
-            throw new DateTimeException('Invalid value for era: ' + era);
+            throw new DateTimeException("Invalid value for era: " + era);
           }
         } else if (fieldValues.containsKey(ChronoField.ERA)) {
           ChronoField.ERA.checkValidValue(fieldValues.get(ChronoField.ERA));
@@ -8711,7 +8711,7 @@
               return Math.floor(nanosUntil / (12 * LocalTime.NANOS_PER_HOUR));
           }
 
-          throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+          throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
         }
 
         return unit.between(this, end);
@@ -9061,10 +9061,10 @@
           var trans = rules.transition(localDateTime);
 
           if (trans != null && trans.isGap()) {
-            throw new DateTimeException('LocalDateTime ' + localDateTime + ' does not exist in zone ' + zone + ' due to a gap in the local time-line, typically caused by daylight savings');
+            throw new DateTimeException("LocalDateTime " + localDateTime + " does not exist in zone " + zone + " due to a gap in the local time-line, typically caused by daylight savings");
           }
 
-          throw new DateTimeException('ZoneOffset "' + offset + '" is not valid for LocalDateTime "' + localDateTime + '" in zone "' + zone + '"');
+          throw new DateTimeException("ZoneOffset \"" + offset + "\" is not valid for LocalDateTime \"" + localDateTime + "\" in zone \"" + zone + "\"");
         }
 
         return new ZonedDateTime(localDateTime, offset, zone);
@@ -9507,7 +9507,7 @@
         var str = this._dateTime.toString() + this._offset.toString();
 
         if (this._offset !== this._zone) {
-          str += '[' + this._zone.toString() + ']';
+          str += "[" + this._zone.toString() + "]";
         }
 
         return str;
@@ -9691,7 +9691,7 @@
         if (field instanceof ChronoField) {
           switch (field) {
             case ChronoField.INSTANT_SECONDS:
-              throw new DateTimeException('Field too large for an int: ' + field);
+              throw new DateTimeException("Field too large for an int: " + field);
 
             case ChronoField.OFFSET_SECONDS:
               return this.offset().totalSeconds();
@@ -10121,7 +10121,7 @@
         var leap = IsoChronology.isLeapYear(year);
 
         if (dayOfYear === 366 && leap === false) {
-          assert(false, 'Invalid date \'DayOfYear 366\' as \'' + year + '\' is not a leap year', DateTimeException);
+          assert(false, "Invalid date 'DayOfYear 366' as '" + year + "' is not a leap year", DateTimeException);
         }
 
         var moy = Month.of(Math.floor((dayOfYear - 1) / 31 + 1));
@@ -10250,9 +10250,9 @@
 
           if (dayOfMonth > dom) {
             if (dayOfMonth === 29) {
-              assert(false, 'Invalid date \'February 29\' as \'' + year + '\' is not a leap year', DateTimeException);
+              assert(false, "Invalid date 'February 29' as '" + year + "' is not a leap year", DateTimeException);
             } else {
-              assert(false, 'Invalid date \'' + year + '\' \'' + month + '\' \'' + dayOfMonth + '\'', DateTimeException);
+              assert(false, "Invalid date '" + year + "' '" + month + "' '" + dayOfMonth + "'", DateTimeException);
             }
           }
         }
@@ -10284,7 +10284,7 @@
             return field.range();
           }
 
-          throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+          throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
 
         return field.rangeRefinedBy(this);
@@ -10346,7 +10346,7 @@
             return this._year >= 1 ? 1 : 0;
         }
 
-        throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+        throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
       };
 
       _proto._prolepticMonth = function _prolepticMonth() {
@@ -10464,7 +10464,7 @@
               return this.getLong(ChronoField.ERA) === newValue ? this : this.withYear(1 - this._year);
           }
 
-          throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+          throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
 
         return field.adjustInto(this, newValue);
@@ -10537,7 +10537,7 @@
               return this.with(ChronoField.ERA, MathUtil.safeAdd(this.getLong(ChronoField.ERA), amountToAdd));
           }
 
-          throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+          throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
         }
 
         return unit.addTo(this, amountToAdd);
@@ -10651,7 +10651,7 @@
               return end.getLong(ChronoField.ERA) - this.getLong(ChronoField.ERA);
           }
 
-          throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+          throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
         }
 
         return unit.between(this, end);
@@ -10704,7 +10704,7 @@
         } else if (time instanceof OffsetTime) {
           return this._atTimeOffsetTime(time);
         } else {
-          throw new IllegalArgumentException('time must be an instance of LocalTime or OffsetTime' + (time && time.constructor && time.constructor.name ? ', but is ' + time.constructor.name : ''));
+          throw new IllegalArgumentException("time must be an instance of LocalTime or OffsetTime" + (time && time.constructor && time.constructor.name ? ", but is " + time.constructor.name : ''));
         }
       };
 
@@ -10833,28 +10833,28 @@
 
         if (absYear < 1000) {
           if (yearValue < 0) {
-            yearString = '-' + ('' + (yearValue - 10000)).slice(-4);
+            yearString = "-" + ("" + (yearValue - 10000)).slice(-4);
           } else {
-            yearString = ('' + (yearValue + 10000)).slice(-4);
+            yearString = ("" + (yearValue + 10000)).slice(-4);
           }
         } else {
           if (yearValue > 9999) {
-            yearString = '+' + yearValue;
+            yearString = "+" + yearValue;
           } else {
-            yearString = '' + yearValue;
+            yearString = "" + yearValue;
           }
         }
 
         if (monthValue < 10) {
-          monthString = '-0' + monthValue;
+          monthString = "-0" + monthValue;
         } else {
-          monthString = '-' + monthValue;
+          monthString = "-" + monthValue;
         }
 
         if (dayValue < 10) {
-          dayString = '-0' + dayValue;
+          dayString = "-0" + dayValue;
         } else {
-          dayString = '-' + dayValue;
+          dayString = "-" + dayValue;
         }
 
         return yearString + monthString + dayString;
@@ -11418,7 +11418,7 @@
                 return MathUtil.safeAdd(amount, MathUtil.intDiv(timeUntil, LocalTime.NANOS_PER_HOUR * 12));
             }
 
-            throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+            throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
           }
 
           var endDate = end._date;
@@ -11497,7 +11497,7 @@
       };
 
       _proto.toString = function toString() {
-        return this._date.toString() + 'T' + this._time.toString();
+        return this._date.toString() + "T" + this._time.toString();
       };
 
       _proto.toJSON = function toJSON() {
@@ -11753,7 +11753,7 @@
             return MathUtil.intDiv(this._hour, 12);
         }
 
-        throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+        throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
       };
 
       _proto.hour = function hour() {
@@ -11836,7 +11836,7 @@
               return this.plusHours((newValue - MathUtil.intDiv(this._hour, 12)) * 12);
           }
 
-          throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+          throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
 
         return field.adjustInto(this, newValue);
@@ -11940,7 +11940,7 @@
               return this.plusHours(MathUtil.intMod(amountToAdd, 2) * 12);
           }
 
-          throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+          throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
         }
 
         return unit.addTo(this, amountToAdd);
@@ -12081,7 +12081,7 @@
               return MathUtil.intDiv(nanosUntil, 12 * LocalTime.NANOS_PER_HOUR);
           }
 
-          throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+          throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
         }
 
         return unit.between(this, end);
@@ -12174,11 +12174,11 @@
             buf += '.';
 
             if (MathUtil.intMod(nanoValue, 1000000) === 0) {
-              buf += ('' + (MathUtil.intDiv(nanoValue, 1000000) + 1000)).substring(1);
+              buf += ("" + (MathUtil.intDiv(nanoValue, 1000000) + 1000)).substring(1);
             } else if (MathUtil.intMod(nanoValue, 1000) === 0) {
-              buf += ('' + (MathUtil.intDiv(nanoValue, 1000) + 1000000)).substring(1);
+              buf += ("" + (MathUtil.intDiv(nanoValue, 1000) + 1000000)).substring(1);
             } else {
-              buf += ('' + (nanoValue + 1000000000)).substring(1);
+              buf += ("" + (nanoValue + 1000000000)).substring(1);
             }
           }
         }
@@ -12259,7 +12259,7 @@
           var nanoOfSecond = temporal.get(ChronoField.NANO_OF_SECOND);
           return Instant.ofEpochSecond(instantSecs, nanoOfSecond);
         } catch (ex) {
-          throw new DateTimeException('Unable to obtain Instant from TemporalAccessor: ' + temporal + ', type ' + typeof temporal, ex);
+          throw new DateTimeException("Unable to obtain Instant from TemporalAccessor: " + temporal + ", type " + typeof temporal, ex);
         }
       };
 
@@ -12335,7 +12335,7 @@
               return this._seconds;
           }
 
-          throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+          throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
 
         return field.getFrom(this);
@@ -12376,7 +12376,7 @@
               return newValue !== this._seconds ? Instant._create(newValue, this._nanos) : this;
           }
 
-          throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+          throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
 
         return field.adjustInto(this, newValue);
@@ -12439,7 +12439,7 @@
               return this.plusSeconds(MathUtil.safeMultiply(amountToAdd, LocalTime.SECONDS_PER_DAY));
           }
 
-          throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+          throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
         }
 
         return unit.addTo(this, amountToAdd);
@@ -12535,7 +12535,7 @@
               return MathUtil.intDiv(this._secondsUntil(end), LocalTime.SECONDS_PER_DAY);
           }
 
-          throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+          throw new UnsupportedTemporalTypeException("Unsupported unit: " + unit);
         }
 
         return unit.between(this, end);
@@ -12723,7 +12723,7 @@
       };
 
       _proto2.toString = function toString() {
-        return 'SystemClock[' + this._zone.toString() + ']';
+        return "SystemClock[" + this._zone.toString() + "]";
       };
 
       return SystemClock;
@@ -12821,7 +12821,7 @@
       };
 
       _proto4.toString = function toString() {
-        return 'OffsetClock[' + this._baseClock + ',' + this._offset + ']';
+        return "OffsetClock[" + this._baseClock + "," + this._offset + "]";
       };
 
       return OffsetClock;
@@ -12936,7 +12936,7 @@
       };
 
       _proto.toString = function toString() {
-        return 'Transition[' + (this.isGap() ? 'Gap' : 'Overlap') + ' at ' + this._transition.toString() + this._offsetBefore.toString() + ' to ' + this._offsetAfter + ']';
+        return "Transition[" + (this.isGap() ? 'Gap' : 'Overlap') + " at " + this._transition.toString() + this._offsetBefore.toString() + " to " + this._offsetAfter + "]";
       };
 
       return ZoneOffsetTransition;
@@ -13130,7 +13130,7 @@
         }
 
         if (zoneId.length === 1) {
-          throw new DateTimeException('Invalid zone: ' + zoneId);
+          throw new DateTimeException("Invalid zone: " + zoneId);
         }
 
         if (StringUtil.startsWith(zoneId, '+') || StringUtil.startsWith(zoneId, '-')) {
@@ -13158,7 +13158,7 @@
             return new ZoneRegion('UT', _offset.rules());
           }
 
-          return new ZoneRegion('UT' + _offset.id(), _offset.rules());
+          return new ZoneRegion("UT" + _offset.id(), _offset.rules());
         }
 
         if (zoneId === 'SYSTEM') {
@@ -13184,7 +13184,7 @@
           return new ZoneRegion(prefix + offset.id(), offset.rules());
         }
 
-        throw new IllegalArgumentException('Invalid prefix, must be GMT, UTC or UT: ' + prefix);
+        throw new IllegalArgumentException("Invalid prefix, must be GMT, UTC or UT: " + prefix);
       };
 
       ZoneIdFactory.from = function from(temporal) {
@@ -13192,7 +13192,7 @@
         var obj = temporal.query(TemporalQueries.zone());
 
         if (obj == null) {
-          throw new DateTimeException('Unable to obtain ZoneId from TemporalAccessor: ' + temporal + ', type ' + (temporal.constructor != null ? temporal.constructor.name : ''));
+          throw new DateTimeException("Unable to obtain ZoneId from TemporalAccessor: " + temporal + ", type " + (temporal.constructor != null ? temporal.constructor.name : ''));
         }
 
         return obj;
@@ -13262,7 +13262,10 @@
       function ToNativeJsConverter(temporal, zone) {
         var zonedDateTime;
 
-        if (temporal instanceof LocalDate) {
+        if (temporal instanceof Instant) {
+          this.instant = temporal;
+          return;
+        } else if (temporal instanceof LocalDate) {
           zone = zone == null ? ZoneId.systemDefault() : zone;
           zonedDateTime = temporal.atStartOfDay(zone);
         } else if (temporal instanceof LocalDateTime) {
@@ -13275,7 +13278,7 @@
             zonedDateTime = temporal.withZoneSameInstant(zone);
           }
         } else {
-          throw new IllegalArgumentException('unsupported instance for convert operation:' + temporal);
+          throw new IllegalArgumentException("unsupported instance for convert operation:" + temporal);
         }
 
         this.instant = zonedDateTime.toInstant();
@@ -13355,7 +13358,7 @@
               return MathUtil.floorDiv(this._epochMilli, 1000);
           }
 
-          throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+          throw new UnsupportedTemporalTypeException("Unsupported field: " + field);
         }
 
         return field.getFrom(this);

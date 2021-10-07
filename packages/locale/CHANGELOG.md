@@ -3,6 +3,8 @@
 
 ### next (upcoming)
 
+### 4.1.0
+
 * Fix bug with GMT timezone parsing and improve caching #550 by @pithu
 
 ### 4.0.1
