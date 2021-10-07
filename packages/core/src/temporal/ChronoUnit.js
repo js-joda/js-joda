@@ -153,8 +153,8 @@ export class ChronoUnit extends TemporalUnit {
     }
 
     /**
-     * @param {!Temporal} dateTime the temporal object to adjust.
-     * @param {number} periodToAdd the period of this unit to add, positive or negative.
+     * @param {!Temporal} temporal the temporal object to adjust.
+     * @param {number} amount the period of this unit to add, positive or negative.
      * @return {Temporal} the adjusted temporal object.
      * @throws DateTimeException if the period cannot be added.
      */

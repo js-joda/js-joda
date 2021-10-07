@@ -1,28 +1,28 @@
 {
   "type": "File",
   "start": 0,
-  "end": 4413,
+  "end": 4428,
   "loc": {
     "start": {
       "line": 1,
       "column": 0
     },
     "end": {
-      "line": 108,
+      "line": 110,
       "column": 0
     }
   },
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 4413,
+    "end": 4428,
     "loc": {
       "start": {
         "line": 1,
         "column": 0
       },
       "end": {
-        "line": 108,
+        "line": 110,
         "column": 0
       }
     },
@@ -522,16 +522,16 @@
           "trailingComments": [
             {
               "type": "CommentBlock",
-              "value": "*\n * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function\n * as the queryFrom() function.\n * @param name for the underlying Enum\n * @param queryFromFunction\n ",
+              "value": "*\n * @private\n *\n * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function\n * as the queryFrom() function.\n * @param name for the underlying Enum\n * @param queryFromFunction\n ",
               "start": 3901,
-              "end": 4172,
+              "end": 4187,
               "loc": {
                 "start": {
                   "line": 94,
                   "column": 0
                 },
                 "end": {
-                  "line": 99,
+                  "line": 101,
                   "column": 3
                 }
               }
@@ -559,16 +559,16 @@
         "trailingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\n * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function\n * as the queryFrom() function.\n * @param name for the underlying Enum\n * @param queryFromFunction\n ",
+            "value": "*\n * @private\n *\n * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function\n * as the queryFrom() function.\n * @param name for the underlying Enum\n * @param queryFromFunction\n ",
             "start": 3901,
-            "end": 4172,
+            "end": 4187,
             "loc": {
               "start": {
                 "line": 94,
                 "column": 0
               },
               "end": {
-                "line": 99,
+                "line": 101,
                 "column": 3
               }
             }
@@ -577,15 +577,15 @@
       },
       {
         "type": "ExportNamedDeclaration",
-        "start": 4173,
-        "end": 4412,
+        "start": 4188,
+        "end": 4427,
         "loc": {
           "start": {
-            "line": 100,
+            "line": 102,
             "column": 0
           },
           "end": {
-            "line": 107,
+            "line": 109,
             "column": 1
           }
         },
@@ -593,29 +593,29 @@
         "source": null,
         "declaration": {
           "type": "FunctionDeclaration",
-          "start": 4180,
-          "end": 4412,
+          "start": 4195,
+          "end": 4427,
           "loc": {
             "start": {
-              "line": 100,
+              "line": 102,
               "column": 7
             },
             "end": {
-              "line": 107,
+              "line": 109,
               "column": 1
             }
           },
           "id": {
             "type": "Identifier",
-            "start": 4189,
-            "end": 4208,
+            "start": 4204,
+            "end": 4223,
             "loc": {
               "start": {
-                "line": 100,
+                "line": 102,
                 "column": 16
               },
               "end": {
-                "line": 100,
+                "line": 102,
                 "column": 35
               },
               "identifierName": "createTemporalQuery"
@@ -629,15 +629,15 @@
           "params": [
             {
               "type": "Identifier",
-              "start": 4209,
-              "end": 4213,
+              "start": 4224,
+              "end": 4228,
               "loc": {
                 "start": {
-                  "line": 100,
+                  "line": 102,
                   "column": 36
                 },
                 "end": {
-                  "line": 100,
+                  "line": 102,
                   "column": 40
                 },
                 "identifierName": "name"
@@ -646,15 +646,15 @@
             },
             {
               "type": "Identifier",
-              "start": 4215,
-              "end": 4232,
+              "start": 4230,
+              "end": 4247,
               "loc": {
                 "start": {
-                  "line": 100,
+                  "line": 102,
                   "column": 42
                 },
                 "end": {
-                  "line": 100,
+                  "line": 102,
                   "column": 59
                 },
                 "identifierName": "queryFromFunction"
@@ -664,44 +664,44 @@
           ],
           "body": {
             "type": "BlockStatement",
-            "start": 4234,
-            "end": 4412,
+            "start": 4249,
+            "end": 4427,
             "loc": {
               "start": {
-                "line": 100,
+                "line": 102,
                 "column": 61
               },
               "end": {
-                "line": 107,
+                "line": 109,
                 "column": 1
               }
             },
             "body": [
               {
                 "type": "ClassDeclaration",
-                "start": 4240,
-                "end": 4298,
+                "start": 4255,
+                "end": 4313,
                 "loc": {
                   "start": {
-                    "line": 101,
+                    "line": 103,
                     "column": 4
                   },
                   "end": {
-                    "line": 103,
+                    "line": 105,
                     "column": 5
                   }
                 },
                 "id": {
                   "type": "Identifier",
-                  "start": 4246,
-                  "end": 4267,
+                  "start": 4261,
+                  "end": 4282,
                   "loc": {
                     "start": {
-                      "line": 101,
+                      "line": 103,
                       "column": 10
                     },
                     "end": {
-                      "line": 101,
+                      "line": 103,
                       "column": 31
                     },
                     "identifierName": "ExtendedTemporalQuery"
@@ -710,15 +710,15 @@
                 },
                 "superClass": {
                   "type": "Identifier",
-                  "start": 4276,
-                  "end": 4289,
+                  "start": 4291,
+                  "end": 4304,
                   "loc": {
                     "start": {
-                      "line": 101,
+                      "line": 103,
                       "column": 40
                     },
                     "end": {
-                      "line": 101,
+                      "line": 103,
                       "column": 53
                     },
                     "identifierName": "TemporalQuery"
@@ -727,15 +727,15 @@
                 },
                 "body": {
                   "type": "ClassBody",
-                  "start": 4290,
-                  "end": 4298,
+                  "start": 4305,
+                  "end": 4313,
                   "loc": {
                     "start": {
-                      "line": 101,
+                      "line": 103,
                       "column": 54
                     },
                     "end": {
-                      "line": 103,
+                      "line": 105,
                       "column": 5
                     }
                   },
@@ -744,72 +744,72 @@
               },
               {
                 "type": "ExpressionStatement",
-                "start": 4304,
-                "end": 4366,
+                "start": 4319,
+                "end": 4381,
                 "loc": {
                   "start": {
-                    "line": 105,
+                    "line": 107,
                     "column": 4
                   },
                   "end": {
-                    "line": 105,
+                    "line": 107,
                     "column": 66
                   }
                 },
                 "expression": {
                   "type": "AssignmentExpression",
-                  "start": 4304,
-                  "end": 4365,
+                  "start": 4319,
+                  "end": 4380,
                   "loc": {
                     "start": {
-                      "line": 105,
+                      "line": 107,
                       "column": 4
                     },
                     "end": {
-                      "line": 105,
+                      "line": 107,
                       "column": 65
                     }
                   },
                   "operator": "=",
                   "left": {
                     "type": "MemberExpression",
-                    "start": 4304,
-                    "end": 4345,
+                    "start": 4319,
+                    "end": 4360,
                     "loc": {
                       "start": {
-                        "line": 105,
+                        "line": 107,
                         "column": 4
                       },
                       "end": {
-                        "line": 105,
+                        "line": 107,
                         "column": 45
                       }
                     },
                     "object": {
                       "type": "MemberExpression",
-                      "start": 4304,
-                      "end": 4335,
+                      "start": 4319,
+                      "end": 4350,
                       "loc": {
                         "start": {
-                          "line": 105,
+                          "line": 107,
                           "column": 4
                         },
                         "end": {
-                          "line": 105,
+                          "line": 107,
                           "column": 35
                         }
                       },
                       "object": {
                         "type": "Identifier",
-                        "start": 4304,
-                        "end": 4325,
+                        "start": 4319,
+                        "end": 4340,
                         "loc": {
                           "start": {
-                            "line": 105,
+                            "line": 107,
                             "column": 4
                           },
                           "end": {
-                            "line": 105,
+                            "line": 107,
                             "column": 25
                           },
                           "identifierName": "ExtendedTemporalQuery"
@@ -818,15 +818,15 @@
                       },
                       "property": {
                         "type": "Identifier",
-                        "start": 4326,
-                        "end": 4335,
+                        "start": 4341,
+                        "end": 4350,
                         "loc": {
                           "start": {
-                            "line": 105,
+                            "line": 107,
                             "column": 26
                           },
                           "end": {
-                            "line": 105,
+                            "line": 107,
                             "column": 35
                           },
                           "identifierName": "prototype"
@@ -837,15 +837,15 @@
                     },
                     "property": {
                       "type": "Identifier",
-                      "start": 4336,
-                      "end": 4345,
+                      "start": 4351,
+                      "end": 4360,
                       "loc": {
                         "start": {
-                          "line": 105,
+                          "line": 107,
                           "column": 36
                         },
                         "end": {
-                          "line": 105,
+                          "line": 107,
                           "column": 45
                         },
                         "identifierName": "queryFrom"
@@ -856,15 +856,15 @@
                   },
                   "right": {
                     "type": "Identifier",
-                    "start": 4348,
-                    "end": 4365,
+                    "start": 4363,
+                    "end": 4380,
                     "loc": {
                       "start": {
-                        "line": 105,
+                        "line": 107,
                         "column": 48
                       },
                       "end": {
-                        "line": 105,
+                        "line": 107,
                         "column": 65
                       },
                       "identifierName": "queryFromFunction"
@@ -875,43 +875,43 @@
               },
               {
                 "type": "ReturnStatement",
-                "start": 4371,
-                "end": 4410,
+                "start": 4386,
+                "end": 4425,
                 "loc": {
                   "start": {
-                    "line": 106,
+                    "line": 108,
                     "column": 4
                   },
                   "end": {
-                    "line": 106,
+                    "line": 108,
                     "column": 43
                   }
                 },
                 "argument": {
                   "type": "NewExpression",
-                  "start": 4378,
-                  "end": 4409,
+                  "start": 4393,
+                  "end": 4424,
                   "loc": {
                     "start": {
-                      "line": 106,
+                      "line": 108,
                       "column": 11
                     },
                     "end": {
-                      "line": 106,
+                      "line": 108,
                       "column": 42
                     }
                   },
                   "callee": {
                     "type": "Identifier",
-                    "start": 4382,
-                    "end": 4403,
+                    "start": 4397,
+                    "end": 4418,
                     "loc": {
                       "start": {
-                        "line": 106,
+                        "line": 108,
                         "column": 15
                       },
                       "end": {
-                        "line": 106,
+                        "line": 108,
                         "column": 36
                       },
                       "identifierName": "ExtendedTemporalQuery"
@@ -921,15 +921,15 @@
                   "arguments": [
                     {
                       "type": "Identifier",
-                      "start": 4404,
-                      "end": 4408,
+                      "start": 4419,
+                      "end": 4423,
                       "loc": {
                         "start": {
-                          "line": 106,
+                          "line": 108,
                           "column": 37
                         },
                         "end": {
-                          "line": 106,
+                          "line": 108,
                           "column": 41
                         },
                         "identifierName": "name"
@@ -945,16 +945,16 @@
           "leadingComments": [
             {
               "type": "CommentBlock",
-              "value": "*\n * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function\n * as the queryFrom() function.\n * @param name for the underlying Enum\n * @param queryFromFunction\n ",
+              "value": "*\n * @private\n *\n * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function\n * as the queryFrom() function.\n * @param name for the underlying Enum\n * @param queryFromFunction\n ",
               "start": 3901,
-              "end": 4172,
+              "end": 4187,
               "loc": {
                 "start": {
                   "line": 94,
                   "column": 0
                 },
                 "end": {
-                  "line": 99,
+                  "line": 101,
                   "column": 3
                 }
               }
@@ -965,16 +965,16 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\n * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function\n * as the queryFrom() function.\n * @param name for the underlying Enum\n * @param queryFromFunction\n ",
+            "value": "*\n * @private\n *\n * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function\n * as the queryFrom() function.\n * @param name for the underlying Enum\n * @param queryFromFunction\n ",
             "start": 3901,
-            "end": 4172,
+            "end": 4187,
             "loc": {
               "start": {
                 "line": 94,
                 "column": 0
               },
               "end": {
-                "line": 99,
+                "line": 101,
                 "column": 3
               }
             }
@@ -1051,16 +1051,16 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function\n * as the queryFrom() function.\n * @param name for the underlying Enum\n * @param queryFromFunction\n ",
+      "value": "*\n * @private\n *\n * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function\n * as the queryFrom() function.\n * @param name for the underlying Enum\n * @param queryFromFunction\n ",
       "start": 3901,
-      "end": 4172,
+      "end": 4187,
       "loc": {
         "start": {
           "line": 94,
           "column": 0
         },
         "end": {
-          "line": 99,
+          "line": 101,
           "column": 3
         }
       }
@@ -1966,16 +1966,16 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function\n * as the queryFrom() function.\n * @param name for the underlying Enum\n * @param queryFromFunction\n ",
+      "value": "*\n * @private\n *\n * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function\n * as the queryFrom() function.\n * @param name for the underlying Enum\n * @param queryFromFunction\n ",
       "start": 3901,
-      "end": 4172,
+      "end": 4187,
       "loc": {
         "start": {
           "line": 94,
           "column": 0
         },
         "end": {
-          "line": 99,
+          "line": 101,
           "column": 3
         }
       }
@@ -1995,15 +1995,15 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 4173,
-      "end": 4179,
+      "start": 4188,
+      "end": 4194,
       "loc": {
         "start": {
-          "line": 100,
+          "line": 102,
           "column": 0
         },
         "end": {
-          "line": 100,
+          "line": 102,
           "column": 6
         }
       }
@@ -2022,15 +2022,15 @@
         "binop": null
       },
       "value": "function",
-      "start": 4180,
-      "end": 4188,
+      "start": 4195,
+      "end": 4203,
       "loc": {
         "start": {
-          "line": 100,
+          "line": 102,
           "column": 7
         },
         "end": {
-          "line": 100,
+          "line": 102,
           "column": 15
         }
       }
@@ -2048,15 +2048,15 @@
         "binop": null
       },
       "value": "createTemporalQuery",
-      "start": 4189,
-      "end": 4208,
+      "start": 4204,
+      "end": 4223,
       "loc": {
         "start": {
-          "line": 100,
+          "line": 102,
           "column": 16
         },
         "end": {
-          "line": 100,
+          "line": 102,
           "column": 35
         }
       }
@@ -2073,15 +2073,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4208,
-      "end": 4209,
+      "start": 4223,
+      "end": 4224,
       "loc": {
         "start": {
-          "line": 100,
+          "line": 102,
           "column": 35
         },
         "end": {
-          "line": 100,
+          "line": 102,
           "column": 36
         }
       }
@@ -2099,15 +2099,15 @@
         "binop": null
       },
       "value": "name",
-      "start": 4209,
-      "end": 4213,
+      "start": 4224,
+      "end": 4228,
       "loc": {
         "start": {
-          "line": 100,
+          "line": 102,
           "column": 36
         },
         "end": {
-          "line": 100,
+          "line": 102,
           "column": 40
         }
       }
@@ -2125,15 +2125,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 4213,
-      "end": 4214,
+      "start": 4228,
+      "end": 4229,
       "loc": {
         "start": {
-          "line": 100,
+          "line": 102,
           "column": 40
         },
         "end": {
-          "line": 100,
+          "line": 102,
           "column": 41
         }
       }
@@ -2151,15 +2151,15 @@
         "binop": null
       },
       "value": "queryFromFunction",
-      "start": 4215,
-      "end": 4232,
+      "start": 4230,
+      "end": 4247,
       "loc": {
         "start": {
-          "line": 100,
+          "line": 102,
           "column": 42
         },
         "end": {
-          "line": 100,
+          "line": 102,
           "column": 59
         }
       }
@@ -2176,15 +2176,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4232,
-      "end": 4233,
+      "start": 4247,
+      "end": 4248,
       "loc": {
         "start": {
-          "line": 100,
+          "line": 102,
           "column": 59
         },
         "end": {
-          "line": 100,
+          "line": 102,
           "column": 60
         }
       }
@@ -2201,15 +2201,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4234,
-      "end": 4235,
+      "start": 4249,
+      "end": 4250,
       "loc": {
         "start": {
-          "line": 100,
+          "line": 102,
           "column": 61
         },
         "end": {
-          "line": 100,
+          "line": 102,
           "column": 62
         }
       }
@@ -2229,15 +2229,15 @@
         "updateContext": null
       },
       "value": "class",
-      "start": 4240,
-      "end": 4245,
+      "start": 4255,
+      "end": 4260,
       "loc": {
         "start": {
-          "line": 101,
+          "line": 103,
           "column": 4
         },
         "end": {
-          "line": 101,
+          "line": 103,
           "column": 9
         }
       }
@@ -2255,15 +2255,15 @@
         "binop": null
       },
       "value": "ExtendedTemporalQuery",
-      "start": 4246,
-      "end": 4267,
+      "start": 4261,
+      "end": 4282,
       "loc": {
         "start": {
-          "line": 101,
+          "line": 103,
           "column": 10
         },
         "end": {
-          "line": 101,
+          "line": 103,
           "column": 31
         }
       }
@@ -2283,15 +2283,15 @@
         "updateContext": null
       },
       "value": "extends",
-      "start": 4268,
-      "end": 4275,
+      "start": 4283,
+      "end": 4290,
       "loc": {
         "start": {
-          "line": 101,
+          "line": 103,
           "column": 32
         },
         "end": {
-          "line": 101,
+          "line": 103,
           "column": 39
         }
       }
@@ -2309,15 +2309,15 @@
         "binop": null
       },
       "value": "TemporalQuery",
-      "start": 4276,
-      "end": 4289,
+      "start": 4291,
+      "end": 4304,
       "loc": {
         "start": {
-          "line": 101,
+          "line": 103,
           "column": 40
         },
         "end": {
-          "line": 101,
+          "line": 103,
           "column": 53
         }
       }
@@ -2334,15 +2334,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4290,
-      "end": 4291,
+      "start": 4305,
+      "end": 4306,
       "loc": {
         "start": {
-          "line": 101,
+          "line": 103,
           "column": 54
         },
         "end": {
-          "line": 101,
+          "line": 103,
           "column": 55
         }
       }
@@ -2359,15 +2359,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4297,
-      "end": 4298,
+      "start": 4312,
+      "end": 4313,
       "loc": {
         "start": {
-          "line": 103,
+          "line": 105,
           "column": 4
         },
         "end": {
-          "line": 103,
+          "line": 105,
           "column": 5
         }
       }
@@ -2385,15 +2385,15 @@
         "binop": null
       },
       "value": "ExtendedTemporalQuery",
-      "start": 4304,
-      "end": 4325,
+      "start": 4319,
+      "end": 4340,
       "loc": {
         "start": {
-          "line": 105,
+          "line": 107,
           "column": 4
         },
         "end": {
-          "line": 105,
+          "line": 107,
           "column": 25
         }
       }
@@ -2411,15 +2411,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 4325,
-      "end": 4326,
+      "start": 4340,
+      "end": 4341,
       "loc": {
         "start": {
-          "line": 105,
+          "line": 107,
           "column": 25
         },
         "end": {
-          "line": 105,
+          "line": 107,
           "column": 26
         }
       }
@@ -2437,15 +2437,15 @@
         "binop": null
       },
       "value": "prototype",
-      "start": 4326,
-      "end": 4335,
+      "start": 4341,
+      "end": 4350,
       "loc": {
         "start": {
-          "line": 105,
+          "line": 107,
           "column": 26
         },
         "end": {
-          "line": 105,
+          "line": 107,
           "column": 35
         }
       }
@@ -2463,15 +2463,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 4335,
-      "end": 4336,
+      "start": 4350,
+      "end": 4351,
       "loc": {
         "start": {
-          "line": 105,
+          "line": 107,
           "column": 35
         },
         "end": {
-          "line": 105,
+          "line": 107,
           "column": 36
         }
       }
@@ -2489,15 +2489,15 @@
         "binop": null
       },
       "value": "queryFrom",
-      "start": 4336,
-      "end": 4345,
+      "start": 4351,
+      "end": 4360,
       "loc": {
         "start": {
-          "line": 105,
+          "line": 107,
           "column": 36
         },
         "end": {
-          "line": 105,
+          "line": 107,
           "column": 45
         }
       }
@@ -2516,15 +2516,15 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 4346,
-      "end": 4347,
+      "start": 4361,
+      "end": 4362,
       "loc": {
         "start": {
-          "line": 105,
+          "line": 107,
           "column": 46
         },
         "end": {
-          "line": 105,
+          "line": 107,
           "column": 47
         }
       }
@@ -2542,15 +2542,15 @@
         "binop": null
       },
       "value": "queryFromFunction",
-      "start": 4348,
-      "end": 4365,
+      "start": 4363,
+      "end": 4380,
       "loc": {
         "start": {
-          "line": 105,
+          "line": 107,
           "column": 48
         },
         "end": {
-          "line": 105,
+          "line": 107,
           "column": 65
         }
       }
@@ -2568,15 +2568,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 4365,
-      "end": 4366,
+      "start": 4380,
+      "end": 4381,
       "loc": {
         "start": {
-          "line": 105,
+          "line": 107,
           "column": 65
         },
         "end": {
-          "line": 105,
+          "line": 107,
           "column": 66
         }
       }
@@ -2596,15 +2596,15 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 4371,
-      "end": 4377,
+      "start": 4386,
+      "end": 4392,
       "loc": {
         "start": {
-          "line": 106,
+          "line": 108,
           "column": 4
         },
         "end": {
-          "line": 106,
+          "line": 108,
           "column": 10
         }
       }
@@ -2624,15 +2624,15 @@
         "updateContext": null
       },
       "value": "new",
-      "start": 4378,
-      "end": 4381,
+      "start": 4393,
+      "end": 4396,
       "loc": {
         "start": {
-          "line": 106,
+          "line": 108,
           "column": 11
         },
         "end": {
-          "line": 106,
+          "line": 108,
           "column": 14
         }
       }
@@ -2650,15 +2650,15 @@
         "binop": null
       },
       "value": "ExtendedTemporalQuery",
-      "start": 4382,
-      "end": 4403,
+      "start": 4397,
+      "end": 4418,
       "loc": {
         "start": {
-          "line": 106,
+          "line": 108,
           "column": 15
         },
         "end": {
-          "line": 106,
+          "line": 108,
           "column": 36
         }
       }
@@ -2675,15 +2675,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4403,
-      "end": 4404,
+      "start": 4418,
+      "end": 4419,
       "loc": {
         "start": {
-          "line": 106,
+          "line": 108,
           "column": 36
         },
         "end": {
-          "line": 106,
+          "line": 108,
           "column": 37
         }
       }
@@ -2701,15 +2701,15 @@
         "binop": null
       },
       "value": "name",
-      "start": 4404,
-      "end": 4408,
+      "start": 4419,
+      "end": 4423,
       "loc": {
         "start": {
-          "line": 106,
+          "line": 108,
           "column": 37
         },
         "end": {
-          "line": 106,
+          "line": 108,
           "column": 41
         }
       }
@@ -2726,15 +2726,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4408,
-      "end": 4409,
+      "start": 4423,
+      "end": 4424,
       "loc": {
         "start": {
-          "line": 106,
+          "line": 108,
           "column": 41
         },
         "end": {
-          "line": 106,
+          "line": 108,
           "column": 42
         }
       }
@@ -2752,15 +2752,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 4409,
-      "end": 4410,
+      "start": 4424,
+      "end": 4425,
       "loc": {
         "start": {
-          "line": 106,
+          "line": 108,
           "column": 42
         },
         "end": {
-          "line": 106,
+          "line": 108,
           "column": 43
         }
       }
@@ -2777,15 +2777,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 4411,
-      "end": 4412,
+      "start": 4426,
+      "end": 4427,
       "loc": {
         "start": {
-          "line": 107,
+          "line": 109,
           "column": 0
         },
         "end": {
-          "line": 107,
+          "line": 109,
           "column": 1
         }
       }
@@ -2803,15 +2803,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 4413,
-      "end": 4413,
+      "start": 4428,
+      "end": 4428,
       "loc": {
         "start": {
-          "line": 108,
+          "line": 110,
           "column": 0
         },
         "end": {
-          "line": 108,
+          "line": 110,
           "column": 0
         }
       }

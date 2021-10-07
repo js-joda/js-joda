@@ -11,6 +11,8 @@ import LocaleDateTimeFormatter from './format/LocaleDateTimeFormatter';
 import './_init';
 
 /**
+ * @private
+ *
  * plugin Function, call using js-jodas use()
  *
  * @param jsJoda

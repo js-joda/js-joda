@@ -8,6 +8,8 @@ import Cldr from 'cldrjs';
 
 const cldrDataLoaded = new Set();
 /**
+ * @private
+ *
 * Loads the Cldr data for the given path if it hasn't been loaded before.
 */
 export const loadCldrData = (path) => {
@@ -19,6 +21,8 @@ export const loadCldrData = (path) => {
 
 const localeToCldrInstanceCache = {};
 /**
+ * @private
+ *
 * Returns a Cldr instance for the given locale.
 * Memoized, so a given locale will always return the exact same cldr instance.
 */
@@ -32,6 +36,8 @@ export const getOrCreateCldrInstance = (locale) => {
 
 const localeToMapZonesCache = {};
 /**
+ * @private
+ *
 * Returns a map zones object for a Cldr instance.
 * Memoized, so for any given Cldr instance locale, the same object will be returned.
 */

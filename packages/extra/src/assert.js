@@ -4,6 +4,13 @@
  */
 import { NullPointerException, IllegalArgumentException } from '@js-joda/core';
 
+/**
+ * @private
+ *
+ * @param assertion
+ * @param msg
+ * @param error
+ */
 export function assert(assertion, msg, error) {
     if (!assertion) {
         if (error) {
@@ -15,6 +22,13 @@ export function assert(assertion, msg, error) {
     }
 }
 
+/**
+ * @private
+ *
+ * @param value
+ * @param parameterName
+ * @returns {*}
+ */
 export function requireNonNull(value, parameterName) {
     if (value == null) {
         throw new NullPointerException(`${parameterName} must not be null`);
@@ -22,6 +36,14 @@ export function requireNonNull(value, parameterName) {
     return value;
 }
 
+/**
+ * @private
+ *
+ * @param value
+ * @param _class
+ * @param parameterName
+ * @returns {_class}
+ */
 export function requireInstance(value, _class, parameterName) {
     if (!(value instanceof _class)) {
         throw new IllegalArgumentException(`${parameterName} must be an instance of ${_class.name ? _class.name : _class}${value && value.constructor && value.constructor.name ? `, but is ${value.constructor.name}` : ''}`);
@@ -29,6 +51,11 @@ export function requireInstance(value, _class, parameterName) {
     return value;
 }
 
+/**
+ * @private
+ *
+ * @param methodName
+ */
 export function abstractMethodFail(methodName) {
     throw new TypeError(`abstract method "${methodName}" is not implemented`);
 }

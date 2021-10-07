@@ -1,7 +1,7 @@
 {
   "type": "File",
   "start": 0,
-  "end": 466,
+  "end": 461,
   "loc": {
     "start": {
       "line": 1,
@@ -15,7 +15,7 @@
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 466,
+    "end": 461,
     "loc": {
       "start": {
         "line": 1,
@@ -101,9 +101,9 @@
         "trailingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\n * plugin Function, call using js-jodas use()\n *\n * @param jsJoda\n ",
+            "value": "*\n * @private\n *\n * plugin Function, call using js-jodas use()\n ",
             "start": 218,
-            "end": 291,
+            "end": 286,
             "loc": {
               "start": {
                 "line": 10,
@@ -119,8 +119,8 @@
       },
       {
         "type": "ExportDefaultDeclaration",
-        "start": 292,
-        "end": 465,
+        "start": 287,
+        "end": 460,
         "loc": {
           "start": {
             "line": 15,
@@ -133,8 +133,8 @@
         },
         "declaration": {
           "type": "FunctionDeclaration",
-          "start": 307,
-          "end": 465,
+          "start": 302,
+          "end": 460,
           "loc": {
             "start": {
               "line": 15,
@@ -152,8 +152,8 @@
           "params": [],
           "body": {
             "type": "BlockStatement",
-            "start": 331,
-            "end": 465,
+            "start": 326,
+            "end": 460,
             "loc": {
               "start": {
                 "line": 15,
@@ -170,8 +170,8 @@
               {
                 "type": "CommentBlock",
                 "value": " jsJoda ",
-                "start": 317,
-                "end": 329,
+                "start": 312,
+                "end": 324,
                 "loc": {
                   "start": {
                     "line": 15,
@@ -188,8 +188,8 @@
               {
                 "type": "CommentLine",
                 "value": " assign new prop to jsJoda context is useless, because it lives only in the local context",
-                "start": 337,
-                "end": 428,
+                "start": 332,
+                "end": 423,
                 "loc": {
                   "start": {
                     "line": 16,
@@ -204,8 +204,8 @@
               {
                 "type": "CommentLine",
                 "value": " jsJoda.Interval = Interval;",
-                "start": 433,
-                "end": 463,
+                "start": 428,
+                "end": 458,
                 "loc": {
                   "start": {
                     "line": 17,
@@ -222,9 +222,9 @@
           "leadingComments": [
             {
               "type": "CommentBlock",
-              "value": "*\n * plugin Function, call using js-jodas use()\n *\n * @param jsJoda\n ",
+              "value": "*\n * @private\n *\n * plugin Function, call using js-jodas use()\n ",
               "start": 218,
-              "end": 291,
+              "end": 286,
               "loc": {
                 "start": {
                   "line": 10,
@@ -242,9 +242,9 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\n * plugin Function, call using js-jodas use()\n *\n * @param jsJoda\n ",
+            "value": "*\n * @private\n *\n * plugin Function, call using js-jodas use()\n ",
             "start": 218,
-            "end": 291,
+            "end": 286,
             "loc": {
               "start": {
                 "line": 10,
@@ -296,9 +296,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n * plugin Function, call using js-jodas use()\n *\n * @param jsJoda\n ",
+      "value": "*\n * @private\n *\n * plugin Function, call using js-jodas use()\n ",
       "start": 218,
-      "end": 291,
+      "end": 286,
       "loc": {
         "start": {
           "line": 10,
@@ -313,8 +313,8 @@
     {
       "type": "CommentBlock",
       "value": " jsJoda ",
-      "start": 317,
-      "end": 329,
+      "start": 312,
+      "end": 324,
       "loc": {
         "start": {
           "line": 15,
@@ -329,8 +329,8 @@
     {
       "type": "CommentLine",
       "value": " assign new prop to jsJoda context is useless, because it lives only in the local context",
-      "start": 337,
-      "end": 428,
+      "start": 332,
+      "end": 423,
       "loc": {
         "start": {
           "line": 16,
@@ -345,8 +345,8 @@
     {
       "type": "CommentLine",
       "value": " jsJoda.Interval = Interval;",
-      "start": 433,
-      "end": 463,
+      "start": 428,
+      "end": 458,
       "loc": {
         "start": {
           "line": 17,
@@ -475,9 +475,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n * plugin Function, call using js-jodas use()\n *\n * @param jsJoda\n ",
+      "value": "*\n * @private\n *\n * plugin Function, call using js-jodas use()\n ",
       "start": 218,
-      "end": 291,
+      "end": 286,
       "loc": {
         "start": {
           "line": 10,
@@ -504,8 +504,8 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 292,
-      "end": 298,
+      "start": 287,
+      "end": 293,
       "loc": {
         "start": {
           "line": 15,
@@ -532,8 +532,8 @@
         "updateContext": null
       },
       "value": "default",
-      "start": 299,
-      "end": 306,
+      "start": 294,
+      "end": 301,
       "loc": {
         "start": {
           "line": 15,
@@ -559,8 +559,8 @@
         "binop": null
       },
       "value": "function",
-      "start": 307,
-      "end": 315,
+      "start": 302,
+      "end": 310,
       "loc": {
         "start": {
           "line": 15,
@@ -584,8 +584,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 316,
-      "end": 317,
+      "start": 311,
+      "end": 312,
       "loc": {
         "start": {
           "line": 15,
@@ -600,8 +600,8 @@
     {
       "type": "CommentBlock",
       "value": " jsJoda ",
-      "start": 317,
-      "end": 329,
+      "start": 312,
+      "end": 324,
       "loc": {
         "start": {
           "line": 15,
@@ -625,8 +625,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 329,
-      "end": 330,
+      "start": 324,
+      "end": 325,
       "loc": {
         "start": {
           "line": 15,
@@ -650,8 +650,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 331,
-      "end": 332,
+      "start": 326,
+      "end": 327,
       "loc": {
         "start": {
           "line": 15,
@@ -666,8 +666,8 @@
     {
       "type": "CommentLine",
       "value": " assign new prop to jsJoda context is useless, because it lives only in the local context",
-      "start": 337,
-      "end": 428,
+      "start": 332,
+      "end": 423,
       "loc": {
         "start": {
           "line": 16,
@@ -682,8 +682,8 @@
     {
       "type": "CommentLine",
       "value": " jsJoda.Interval = Interval;",
-      "start": 433,
-      "end": 463,
+      "start": 428,
+      "end": 458,
       "loc": {
         "start": {
           "line": 17,
@@ -707,8 +707,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 464,
-      "end": 465,
+      "start": 459,
+      "end": 460,
       "loc": {
         "start": {
           "line": 18,
@@ -733,8 +733,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 466,
-      "end": 466,
+      "start": 461,
+      "end": 461,
       "loc": {
         "start": {
           "line": 19,

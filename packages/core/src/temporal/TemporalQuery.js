@@ -92,6 +92,8 @@ export class TemporalQuery  extends Enum {
 }
 
 /**
+ * @private
+ *
  * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function
  * as the queryFrom() function.
  * @param name for the underlying Enum

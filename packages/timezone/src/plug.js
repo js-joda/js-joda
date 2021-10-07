@@ -6,6 +6,9 @@
 import { MomentZoneRulesProvider } from './MomentZoneRulesProvider';
 import extendSystemDefaultZoneId from './system-default-zone';
 
+/**
+ * @private
+ */
 export default function (jsJoda) {
     jsJoda.ZoneRulesProvider.getRules = MomentZoneRulesProvider.getRules;
     jsJoda.ZoneRulesProvider.getAvailableZoneIds = MomentZoneRulesProvider.getAvailableZoneIds;

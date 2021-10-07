@@ -5,6 +5,8 @@
 
 
 /**
+ * @private
+ *
  * Helper method to create an immutable entry.
  *
  * @param text  the text, not null

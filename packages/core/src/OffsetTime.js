@@ -80,11 +80,11 @@ export class OffsetTime extends Temporal {
     }
 
     /**
-     * @param {int}hour
-     * @param {int}minute
-     * @param {int}second
-     * @param {int}nanoOfSecond
-     * @param {ZoneOffset}offset
+     * @param {int} hour
+     * @param {int} minute
+     * @param {int} second
+     * @param {int} nanoOfSecond
+     * @param {ZoneOffset} offset
      * @return {OffsetTime}
      */
     static ofNumbers(hour, minute, second, nanoOfSecond, offset) {
@@ -93,8 +93,8 @@ export class OffsetTime extends Temporal {
     }
 
     /**
-     * @param {LocalTime}time
-     * @param {ZoneOffset}offset
+     * @param {LocalTime} time
+     * @param {ZoneOffset} offset
      * @return {OffsetTime}
      */
     static ofTimeAndOffset(time, offset) {
@@ -541,8 +541,8 @@ export class OffsetTime extends Temporal {
 
     /**
      * @private
-     * @param {LocalTime}time
-     * @param {ZoneOffset}offset
+     * @param {LocalTime} time
+     * @param {ZoneOffset} offset
      * @return {OffsetTime}
      */
     _withLocalTimeOffset(time, offset) {

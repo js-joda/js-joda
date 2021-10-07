@@ -7,6 +7,9 @@ import { use } from '@js-joda/core';
 
 import plug from './plug';
 
+/**
+ * @private
+ */
 export default function autoPlug() {
     use(plug);
 }
