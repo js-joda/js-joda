@@ -96,7 +96,7 @@ export class ZoneIdFactory {
             return ZoneOffset.UTC;
         }
         if (zoneId.length === 1) {
-            throw new DateTimeException('Invalid zone: ' + zoneId);
+            throw new DateTimeException(`Invalid zone: ${  zoneId}`);
         }
         if (StringUtil.startsWith(zoneId, '+') || StringUtil.startsWith(zoneId, '-')) {
             return ZoneOffset.of(zoneId);
@@ -117,7 +117,7 @@ export class ZoneIdFactory {
             if (offset.totalSeconds() === 0) {
                 return new ZoneRegion('UT', offset.rules());
             }
-            return new ZoneRegion('UT' + offset.id(), offset.rules());
+            return new ZoneRegion(`UT${  offset.id()}`, offset.rules());
         }
         // javascript special case
         if(zoneId === 'SYSTEM'){
@@ -151,7 +151,7 @@ export class ZoneIdFactory {
             }
             return new ZoneRegion(prefix + offset.id(), offset.rules());
         }
-        throw new IllegalArgumentException('Invalid prefix, must be GMT, UTC or UT: ' + prefix);
+        throw new IllegalArgumentException(`Invalid prefix, must be GMT, UTC or UT: ${  prefix}`);
     }
 
 
@@ -175,8 +175,8 @@ export class ZoneIdFactory {
         requireNonNull(temporal, 'temporal');
         const obj = temporal.query(TemporalQueries.zone());
         if (obj == null) {
-            throw new DateTimeException('Unable to obtain ZoneId from TemporalAccessor: ' +
-                    temporal + ', type ' + (temporal.constructor != null ? temporal.constructor.name : ''));
+            throw new DateTimeException(`Unable to obtain ZoneId from TemporalAccessor: ${ 
+                temporal  }, type ${  temporal.constructor != null ? temporal.constructor.name : ''}`);
         }
         return obj;
     }

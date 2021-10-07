@@ -55,7 +55,7 @@ const bannerPlugin = (withTzdbVersion, fileSuffix) =>
     );
 
 const output = {
-    path: __dirname  + '/dist',
+    path: `${__dirname}/dist`,
     libraryTarget: 'umd',
     library: 'JSJodaTimezone',
     globalObject: 'this',

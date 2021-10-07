@@ -1348,7 +1348,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
                         amount = MathUtil.safeMultiply(amount, 2);
                         return MathUtil.safeAdd(amount, MathUtil.intDiv(timeUntil, (LocalTime.NANOS_PER_HOUR * 12)));
                 }
-                throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+                throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
             }
             let endDate = end._date;
             const endTime = end._time;
@@ -1595,7 +1595,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @return {string} a string representation of this date-time, not null
      */
     toString() {
-        return this._date.toString() + 'T' + this._time.toString();
+        return `${this._date.toString()  }T${  this._time.toString()}`;
     }
 
     /**

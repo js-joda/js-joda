@@ -33,7 +33,7 @@ export class StringLiteralPrinterParser {
 
     toString() {
         const converted = this._literal.replace("'", "''");
-        return '\'' + converted + '\'';
+        return `'${  converted  }'`;
     }
 }
 

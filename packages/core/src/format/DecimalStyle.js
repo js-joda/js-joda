@@ -98,7 +98,7 @@ export class DecimalStyle {
     }
 
     toString() {
-        return 'DecimalStyle[' + this._zeroDigit + this._positiveSign + this._negativeSign + this._decimalSeparator + ']';
+        return `DecimalStyle[${  this._zeroDigit  }${this._positiveSign  }${this._negativeSign  }${this._decimalSeparator  }]`;
     }
 
     static of(){

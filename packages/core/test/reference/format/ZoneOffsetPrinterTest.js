@@ -122,7 +122,7 @@ describe('org.threeten.bp.format.TestZoneOffsetPrinter', ()=>{
             printContext.setDateTime(DateTimeBuilder.create(ChronoField.OFFSET_SECONDS, offset.totalSeconds()));
             const pp = new OffsetIdPrinterParser('NO-OFFSET', pattern);
             pp.print(printContext, buf);
-            assertEquals(buf.toString(), 'EXISTING' + expected);
+            assertEquals(buf.toString(), `EXISTING${  expected}`);
         });
     });
 
@@ -131,7 +131,7 @@ describe('org.threeten.bp.format.TestZoneOffsetPrinter', ()=>{
         dataProviderTest(provider_offsets, (pattern) => {
             init();
             const pp = new OffsetIdPrinterParser('NO-OFFSET', pattern);
-            assertEquals(pp.toString(), 'Offset(' + pattern + ',\'NO-OFFSET\')');
+            assertEquals(pp.toString(), `Offset(${  pattern  },'NO-OFFSET')`);
         });
     });
 

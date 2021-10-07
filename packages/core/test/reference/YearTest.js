@@ -144,8 +144,8 @@ describe('org.threeten.bp.temporal.TestYear', () => {
             ['-1234', Year.of(-1234)],
             // ['-12345678', Year.of(-12345678)], // too large for our Year.MIN_VALUE
 
-            ['+' + Year.MAX_VALUE, Year.of(Year.MAX_VALUE)],
-            ['' + Year.MIN_VALUE, Year.of(Year.MIN_VALUE)]
+            [`+${  Year.MAX_VALUE}`, Year.of(Year.MAX_VALUE)],
+            [`${  Year.MIN_VALUE}`, Year.of(Year.MIN_VALUE)]
         ];
 
         it('factory_parse_success', () => {
@@ -693,7 +693,7 @@ describe('org.threeten.bp.temporal.TestYear', () => {
         it('test_toString', () => {
             for (let i = -4; i <= 2104; i++) {
                 const a = Year.of(i);
-                expect(a.toString()).to.eql('' + i);
+                expect(a.toString()).to.eql(`${  i}`);
             }
         });
     });

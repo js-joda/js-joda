@@ -14,7 +14,7 @@ export class CharLiteralPrinterParser {
 
     constructor(literal) {
         if (literal.length > 1) {
-            throw new IllegalArgumentException('invalid literal, too long: "' + literal + '"');
+            throw new IllegalArgumentException(`invalid literal, too long: "${  literal  }"`);
         }
         this._literal = literal;
     }
@@ -40,7 +40,7 @@ export class CharLiteralPrinterParser {
         if (this._literal === '\'') {
             return "''";
         }
-        return "'" + this._literal + "'";
+        return `'${  this._literal  }'`;
     }
 }
 

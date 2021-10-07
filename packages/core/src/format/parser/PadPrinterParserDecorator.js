@@ -75,7 +75,7 @@ export class PadPrinterParserDecorator {
     }
 
     toString() {
-        return `Pad(${this._printerParser},${this._padWidth}${(this._padChar === ' ' ? ')' : ',\'' + this._padChar + '\')')}`;
+        return `Pad(${this._printerParser},${this._padWidth}${(this._padChar === ' ' ? ')' : `,'${  this._padChar  }')`)}`;
     }
 }
 

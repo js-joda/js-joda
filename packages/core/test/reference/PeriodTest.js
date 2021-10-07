@@ -232,8 +232,8 @@ describe('org.threeten.bp.TestPeriod', () => {
                 ['P-2D', Period.ofDays(-2)],
                 ['-P2D', Period.ofDays(-2)],
                 ['-P-2D', Period.ofDays(2)],
-                ['P' + Integer.MAX_VALUE + 'D', Period.ofDays(Integer.MAX_VALUE)],
-                ['P' + Integer.MIN_VALUE + 'D', Period.ofDays(Integer.MIN_VALUE)],
+                [`P${  Integer.MAX_VALUE  }D`, Period.ofDays(Integer.MAX_VALUE)],
+                [`P${  Integer.MIN_VALUE  }D`, Period.ofDays(Integer.MIN_VALUE)],
 
                 ['P1W', Period.ofDays(7)],
                 ['P2W', Period.ofDays(14)],
@@ -246,16 +246,16 @@ describe('org.threeten.bp.TestPeriod', () => {
                 ['P-2M', Period.ofMonths(-2)],
                 ['-P2M', Period.ofMonths(-2)],
                 ['-P-2M', Period.ofMonths(2)],
-                ['P' + Integer.MAX_VALUE + 'M', Period.ofMonths(Integer.MAX_VALUE)],
-                ['P' + Integer.MIN_VALUE + 'M', Period.ofMonths(Integer.MIN_VALUE)],
+                [`P${  Integer.MAX_VALUE  }M`, Period.ofMonths(Integer.MAX_VALUE)],
+                [`P${  Integer.MIN_VALUE  }M`, Period.ofMonths(Integer.MIN_VALUE)],
 
                 ['P1Y', Period.ofYears(1)],
                 ['P2Y', Period.ofYears(2)],
                 ['P-2Y', Period.ofYears(-2)],
                 ['-P2Y', Period.ofYears(-2)],
                 ['-P-2Y', Period.ofYears(2)],
-                ['P' + Integer.MAX_VALUE + 'Y', Period.ofYears(Integer.MAX_VALUE)],
-                ['P' + Integer.MIN_VALUE + 'Y', Period.ofYears(Integer.MIN_VALUE)],
+                [`P${  Integer.MAX_VALUE  }Y`, Period.ofYears(Integer.MAX_VALUE)],
+                [`P${  Integer.MIN_VALUE  }Y`, Period.ofYears(Integer.MIN_VALUE)],
 
                 ['P1Y2M3W4D', Period.of(1, 2, 3 * 7 + 4)]
             ];

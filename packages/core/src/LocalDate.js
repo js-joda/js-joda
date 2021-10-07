@@ -158,7 +158,7 @@ export class LocalDate extends ChronoLocalDate{
         //TODO: ChronoField.DAY_OF_YEAR.checkValidValue(dayOfYear);
         const leap = IsoChronology.isLeapYear(year);
         if (dayOfYear === 366 && leap === false) {
-            assert(false, 'Invalid date \'DayOfYear 366\' as \'' + year + '\' is not a leap year', DateTimeException);
+            assert(false, `Invalid date 'DayOfYear 366' as '${  year  }' is not a leap year`, DateTimeException);
         }
         let moy = Month.of(Math.floor((dayOfYear - 1) / 31 + 1));
         const monthEnd = moy.firstDayOfYear(leap) + moy.length(leap) - 1;
@@ -323,9 +323,9 @@ export class LocalDate extends ChronoLocalDate{
             }
             if (dayOfMonth > dom) {
                 if (dayOfMonth === 29) {
-                    assert(false, 'Invalid date \'February 29\' as \'' + year + '\' is not a leap year', DateTimeException);
+                    assert(false, `Invalid date 'February 29' as '${  year  }' is not a leap year`, DateTimeException);
                 } else {
-                    assert(false, 'Invalid date \'' + year + '\' \'' + month + '\' \'' + dayOfMonth + '\'', DateTimeException);
+                    assert(false, `Invalid date '${  year  }' '${  month  }' '${  dayOfMonth  }'`, DateTimeException);
                 }
             }
         }
@@ -405,7 +405,7 @@ export class LocalDate extends ChronoLocalDate{
                 }
                 return field.range();
             }
-            throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
         }
         return field.rangeRefinedBy(this);
     }
@@ -476,7 +476,7 @@ export class LocalDate extends ChronoLocalDate{
             case ChronoField.YEAR: return this._year;
             case ChronoField.ERA: return (this._year >= 1 ? 1 : 0);
         }
-        throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+        throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
     }
 
     /**
@@ -780,7 +780,7 @@ export class LocalDate extends ChronoLocalDate{
                 case ChronoField.YEAR: return this.withYear(newValue);
                 case ChronoField.ERA: return (this.getLong(ChronoField.ERA) === newValue ? this : this.withYear(1 - this._year));
             }
-            throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
         }
         return field.adjustInto(this, newValue);
     }
@@ -878,7 +878,7 @@ export class LocalDate extends ChronoLocalDate{
                 case ChronoUnit.MILLENNIA: return this.plusYears(MathUtil.safeMultiply(amountToAdd, 1000));
                 case ChronoUnit.ERAS: return this.with(ChronoField.ERA, MathUtil.safeAdd(this.getLong(ChronoField.ERA), amountToAdd));
             }
-            throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
         }
         return unit.addTo(this, amountToAdd);
     }
@@ -1193,7 +1193,7 @@ export class LocalDate extends ChronoLocalDate{
                 case ChronoUnit.MILLENNIA: return MathUtil.intDiv(this._monthsUntil(end), 12000);
                 case ChronoUnit.ERAS: return end.getLong(ChronoField.ERA) - this.getLong(ChronoField.ERA);
             }
-            throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
         }
         return unit.between(this, end);
     }
@@ -1305,8 +1305,8 @@ export class LocalDate extends ChronoLocalDate{
         } else if (time instanceof OffsetTime) {
             return this._atTimeOffsetTime(time);
         } else {
-            throw new IllegalArgumentException('time must be an instance of LocalTime or OffsetTime' +
-                (time && time.constructor && time.constructor.name ? ', but is ' + time.constructor.name : ''));
+            throw new IllegalArgumentException(`time must be an instance of LocalTime or OffsetTime${ 
+                time && time.constructor && time.constructor.name ? `, but is ${  time.constructor.name}` : ''}`);
         }
     }
 
@@ -1610,28 +1610,28 @@ export class LocalDate extends ChronoLocalDate{
 
         if (absYear < 1000) {
             if (yearValue < 0) {
-                yearString = '-' + ('' + (yearValue - 10000)).slice(-4);
+                yearString = `-${  (`${  yearValue - 10000}`).slice(-4)}`;
             } else {
-                yearString = ('' + (yearValue + 10000)).slice(-4);
+                yearString = (`${  yearValue + 10000}`).slice(-4);
             }
         } else {
             if (yearValue > 9999) {
-                yearString = '+' + yearValue;
+                yearString = `+${  yearValue}`;
             } else {
-                yearString = '' + yearValue;
+                yearString = `${  yearValue}`;
             }
         }
 
         if (monthValue < 10) {
-            monthString = '-0' + monthValue;
+            monthString = `-0${  monthValue}`;
         } else {
-            monthString = '-' + monthValue;
+            monthString = `-${  monthValue}`;
         }
 
         if (dayValue < 10) {
-            dayString = '-0' + dayValue;
+            dayString = `-0${  dayValue}`;
         } else {
-            dayString = '-' + dayValue;
+            dayString = `-${  dayValue}`;
         }
 
         return yearString + monthString + dayString;

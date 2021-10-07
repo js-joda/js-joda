@@ -93,7 +93,7 @@ export class DayOfWeek extends TemporalAccessor {
      */
     static of(dayOfWeek) {
         if (dayOfWeek < 1 || dayOfWeek > 7) {
-            throw new DateTimeException('Invalid value for DayOfWeek: ' + dayOfWeek);
+            throw new DateTimeException(`Invalid value for DayOfWeek: ${  dayOfWeek}`);
         }
         return ENUMS[dayOfWeek - 1];
     }
@@ -122,8 +122,8 @@ export class DayOfWeek extends TemporalAccessor {
             return DayOfWeek.of(temporal.get(ChronoField.DAY_OF_WEEK));
         } catch (ex) {
             if(ex instanceof DateTimeException) {
-                throw new DateTimeException('Unable to obtain DayOfWeek from TemporalAccessor: ' +
-                    temporal + ', type ' + (temporal.constructor != null ? temporal.constructor.name : ''), ex);
+                throw new DateTimeException(`Unable to obtain DayOfWeek from TemporalAccessor: ${ 
+                    temporal  }, type ${  temporal.constructor != null ? temporal.constructor.name : ''}`, ex);
             } else {
                 throw ex;
             }
@@ -211,7 +211,7 @@ export class DayOfWeek extends TemporalAccessor {
         if (field === ChronoField.DAY_OF_WEEK) {
             return field.range();
         } else if (field instanceof ChronoField) {
-            throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
         }
         return field.rangeRefinedBy(this);
     }
@@ -272,7 +272,7 @@ export class DayOfWeek extends TemporalAccessor {
         if (field === ChronoField.DAY_OF_WEEK) {
             return this.value();
         } else if (field instanceof ChronoField) {
-            throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
         }
         return field.getFrom(this);
     }

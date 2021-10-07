@@ -72,7 +72,7 @@ export class DateTimePrintContext{
     getValueQuery(query) {
         const result = this._temporal.query(query);
         if (result == null && this._optional === 0) {
-            throw new DateTimeException('Unable to extract value: ' + this._temporal);
+            throw new DateTimeException(`Unable to extract value: ${  this._temporal}`);
         }
         return result;
     }

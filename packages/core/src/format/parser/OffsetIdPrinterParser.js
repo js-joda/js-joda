@@ -43,7 +43,7 @@ export class OffsetIdPrinterParser  {
                 return i;
             }
         }
-        throw new IllegalArgumentException('Invalid zone offset pattern: ' + pattern);
+        throw new IllegalArgumentException(`Invalid zone offset pattern: ${  pattern}`);
     }
 
     /**
@@ -66,14 +66,14 @@ export class OffsetIdPrinterParser  {
             const bufPos = buf.length();
             let output = absHours;
             buf.append(totalSecs < 0 ? '-' : '+')
-                .appendChar((MathUtil.intDiv(absHours, 10) + '0')).appendChar(MathUtil.intMod(absHours, 10) + '0');
+                .appendChar((`${MathUtil.intDiv(absHours, 10)  }0`)).appendChar(`${MathUtil.intMod(absHours, 10)  }0`);
             if (this.type >= 3 || (this.type >= 1 && absMinutes > 0)) {
                 buf.append((this.type % 2) === 0 ? ':' : '')
-                    .appendChar((MathUtil.intDiv(absMinutes, 10) + '0')).appendChar((absMinutes % 10 + '0'));
+                    .appendChar((`${MathUtil.intDiv(absMinutes, 10)  }0`)).appendChar((`${absMinutes % 10  }0`));
                 output += absMinutes;
                 if (this.type >= 7 || (this.type >= 5 && absSeconds > 0)) {
                     buf.append((this.type % 2) === 0 ? ':' : '')
-                        .appendChar((MathUtil.intDiv(absSeconds, 10) + '0')).appendChar((absSeconds % 10 + '0'));
+                        .appendChar((`${MathUtil.intDiv(absSeconds, 10)  }0`)).appendChar((`${absSeconds % 10  }0`));
                     output += absSeconds;
                 }
             }
@@ -169,7 +169,7 @@ export class OffsetIdPrinterParser  {
 
     toString() {
         const converted = this.noOffsetText.replace('\'', '\'\'');
-        return 'Offset(' + PATTERNS[this.type] + ',\'' + converted + '\')';
+        return `Offset(${  PATTERNS[this.type]  },'${  converted  }')`;
     }
 }
 OffsetIdPrinterParser.INSTANCE_ID = new OffsetIdPrinterParser('Z', '+HH:MM:ss');

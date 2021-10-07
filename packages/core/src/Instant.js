@@ -194,8 +194,8 @@ export class Instant extends Temporal {
             const nanoOfSecond = temporal.get(ChronoField.NANO_OF_SECOND);
             return Instant.ofEpochSecond(instantSecs, nanoOfSecond);
         } catch (ex) {
-            throw new DateTimeException('Unable to obtain Instant from TemporalAccessor: ' +
-                    temporal + ', type ' + typeof temporal, ex);
+            throw new DateTimeException(`Unable to obtain Instant from TemporalAccessor: ${ 
+                temporal  }, type ${  typeof temporal}`, ex);
         }
     }
 
@@ -374,7 +374,7 @@ export class Instant extends Temporal {
                 case ChronoField.MILLI_OF_SECOND: return MathUtil.intDiv(this._nanos, NANOS_PER_MILLI);
                 case ChronoField.INSTANT_SECONDS: return this._seconds;
             }
-            throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
         }
         return field.getFrom(this);
     }
@@ -465,7 +465,7 @@ export class Instant extends Temporal {
                 case ChronoField.NANO_OF_SECOND: return (newValue !== this._nanos? Instant._create(this._seconds, newValue) : this);
                 case ChronoField.INSTANT_SECONDS: return (newValue !== this._seconds ? Instant._create(newValue, this._nanos) : this);
             }
-            throw new UnsupportedTemporalTypeException('Unsupported field: ' + field);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
         }
         return field.adjustInto(this, newValue);
     }
@@ -533,7 +533,7 @@ export class Instant extends Temporal {
                 case ChronoUnit.HALF_DAYS: return this.plusSeconds(MathUtil.safeMultiply(amountToAdd, LocalTime.SECONDS_PER_DAY / 2));
                 case ChronoUnit.DAYS: return this.plusSeconds(MathUtil.safeMultiply(amountToAdd, LocalTime.SECONDS_PER_DAY));
             }
-            throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
         }
         return unit.addTo(this, amountToAdd);
     }
@@ -770,7 +770,7 @@ export class Instant extends Temporal {
                 case ChronoUnit.HALF_DAYS: return MathUtil.intDiv(this._secondsUntil(end), (12 * LocalTime.SECONDS_PER_HOUR));
                 case ChronoUnit.DAYS: return MathUtil.intDiv(this._secondsUntil(end), LocalTime.SECONDS_PER_DAY);
             }
-            throw new UnsupportedTemporalTypeException('Unsupported unit: ' + unit);
+            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
         }
         return unit.between(this, end);
     }

@@ -95,7 +95,7 @@ describe('org.threeten.bp.TestZoneOffset', () => {
 
         it('test_factory_string_hours', () => {
             for (let i = -18; i <= 18; i++) {
-                const str = (i < 0 ? '-' : '+') + ('' + (Math.abs(i) + 100)).substring(1);
+                const str = (i < 0 ? '-' : '+') + (`${  Math.abs(i) + 100}`).substring(1);
                 const test = ZoneOffset.of(str);
                 doTestOffset(test, i, 0, 0);
             }
@@ -106,8 +106,8 @@ describe('org.threeten.bp.TestZoneOffset', () => {
                 for (let j = -59; j <= 59; j++) {
                     if ((i < 0 && j <= 0) || (i > 0 && j >= 0) || i === 0) {
                         const str = (i < 0 || j < 0 ? '-' : '+') +
-                            ('' + (Math.abs(i) + 100)).substring(1) +
-                            ('' + (Math.abs(j) + 100)).substring(1);
+                            (`${  Math.abs(i) + 100}`).substring(1) +
+                            (`${  Math.abs(j) + 100}`).substring(1);
                         const test = ZoneOffset.of(str);
                         doTestOffset(test, i, j, 0);
                     }
@@ -123,9 +123,9 @@ describe('org.threeten.bp.TestZoneOffset', () => {
             for (let i = -17; i <= 17; i++) {
                 for (let j = -59; j <= 59; j++) {
                     if ((i < 0 && j <= 0) || (i > 0 && j >= 0) || i === 0) {
-                        const str = (i < 0 || j < 0 ? '-' : '+') +
-                            ('' + (Math.abs(i) + 100)).substring(1) + ':' +
-                            ('' + (Math.abs(j) + 100)).substring(1);
+                        const str = `${(i < 0 || j < 0 ? '-' : '+') +
+                            (`${  Math.abs(i) + 100}`).substring(1)  }:${ 
+                            (`${  Math.abs(j) + 100}`).substring(1)}`;
                         const test = ZoneOffset.of(str);
                         doTestOffset(test, i, j, 0);
                     }
@@ -144,9 +144,9 @@ describe('org.threeten.bp.TestZoneOffset', () => {
                         if ((i < 0 && j <= 0 && k <= 0) || (i > 0 && j >= 0 && k >= 0) ||
                             (i === 0 && ((j < 0 && k <= 0) || (j > 0 && k >= 0) || j === 0))) {
                             const str = (i < 0 || j < 0 || k < 0 ? '-' : '+') +
-                                ('' + (Math.abs(i) + 100)).substring(1) +
-                                ('' + (Math.abs(j) + 100)).substring(1) +
-                                ('' + (Math.abs(k) + 100)).substring(1);
+                                (`${  Math.abs(i) + 100}`).substring(1) +
+                                (`${  Math.abs(j) + 100}`).substring(1) +
+                                (`${  Math.abs(k) + 100}`).substring(1);
                             const test = ZoneOffset.of(str);
                             doTestOffset(test, i, j, k);
                         }
@@ -165,10 +165,10 @@ describe('org.threeten.bp.TestZoneOffset', () => {
                     for (let k = -59; k <= 59; k+=7) {
                         if ((i < 0 && j <= 0 && k <= 0) || (i > 0 && j >= 0 && k >= 0) ||
                             (i === 0 && ((j < 0 && k <= 0) || (j > 0 && k >= 0) || j === 0))) {
-                            const str = (i < 0 || j < 0 || k < 0 ? '-' : '+') +
-                                ('' + (Math.abs(i) + 100)).substring(1) + ':' +
-                                ('' + (Math.abs(j) + 100)).substring(1) + ':' +
-                                ('' + (Math.abs(k) + 100)).substring(1);
+                            const str = `${(i < 0 || j < 0 || k < 0 ? '-' : '+') +
+                                (`${  Math.abs(i) + 100}`).substring(1)  }:${ 
+                                (`${  Math.abs(j) + 100}`).substring(1)  }:${ 
+                                (`${  Math.abs(k) + 100}`).substring(1)}`;
                             const test = ZoneOffset.of(str);
                             doTestOffset(test, i, j, k);
                         }
@@ -528,12 +528,12 @@ function doTestOffset(offset, hours, minutes, seconds) {
         id = 'Z';
     } else {
         let str = (hours < 0 || minutes < 0 || seconds < 0) ? '-' : '+';
-        str += ('' + (Math.abs(hours) + 100)).substring(1);
+        str += (`${  Math.abs(hours) + 100}`).substring(1);
         str += ':';
-        str += ('' + (Math.abs(minutes) + 100)).substring(1);
+        str += (`${  Math.abs(minutes) + 100}`).substring(1);
         if (seconds !== 0) {
             str += ':';
-            str += ('' + (Math.abs(seconds) + 100)).substring(1);
+            str += (`${  Math.abs(seconds) + 100}`).substring(1);
         }
         id = str;
     }

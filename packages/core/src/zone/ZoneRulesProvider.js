@@ -18,7 +18,7 @@ export class ZoneRulesProvider {
      * @return {ZoneRules}
      */
     static getRules(zoneId){
-        throw new DateTimeException('unsupported ZoneId:' + zoneId);
+        throw new DateTimeException(`unsupported ZoneId:${  zoneId}`);
     }
 
 
