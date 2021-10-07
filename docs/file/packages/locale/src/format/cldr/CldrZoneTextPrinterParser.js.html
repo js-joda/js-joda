@@ -8,7 +8,7 @@
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
   <script src="script/manual.js"></script>
-<meta name="description" content="Immutable date and time library for JavaScript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="js-joda"><meta property="twitter:description" content="Immutable date and time library for JavaScript"></head>
+<script src="./inject/script/0-js-joda.min.js"></script><script src="./inject/script/0-js-joda-extra.min.js"></script><script src="./inject/script/0-js-joda-timezone.min.js"></script><script src="./inject/script/0-index.js"></script><script src="./inject/script/0-yato.js"></script><meta name="description" content="Immutable date and time library for JavaScript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="js-joda"><meta property="twitter:description" content="Immutable date and time library for JavaScript"></head>
 <body class="layout-container" data-ice="rootContainer">
 
 <header>
@@ -275,15 +275,15 @@ export default class CldrZoneTextPrinterParser {
             const tzstyle = (this._textStyle.asNormal() === TextStyle.FULL ? &apos;long&apos; : &apos;short&apos;);
 
             const genericText = this._cachedResolveZoneIdText(cldr, id, tzstyle, &apos;generic&apos;);
-            if (genericText &amp;&amp; ids[genericText] == null) {
+            if (genericText) {
                 ids[genericText] = id;
             }
             const standardText = this._cachedResolveZoneIdText(cldr, id, tzstyle, &apos;standard&apos;);
-            if (standardText &amp;&amp; ids[standardText] == null) {
+            if (standardText) {
                 ids[standardText] = id;
             }
             const daylightText = this._cachedResolveZoneIdText(cldr, id, tzstyle, &apos;daylight&apos;);
-            if (daylightText &amp;&amp; ids[daylightText] == null) {
+            if (daylightText) {
                 ids[daylightText] = id;
             }
         }
@@ -294,7 +294,14 @@ export default class CldrZoneTextPrinterParser {
         return this._zoneIdsLocales[localString];
     }
 
+    // That&apos;s a very poor implementation, there are missing bug fixes and functionality from threeten and jdk
     parse(context, text, position) {
+        for (const name of [&apos;UTC&apos;, &apos;GMT&apos;]) {
+            if (context.subSequenceEquals(text, position, name, 0, name.length)) {
+                context.setParsedZone(ZoneId.of(name));
+                return position + name.length;
+            }
+        }
         const { ids, sortedKeys } = this._resolveZoneIds(context.locale().localeString());
         for (const name of sortedKeys) {
             if (context.subSequenceEquals(text, position, name, 0, name.length)) {
