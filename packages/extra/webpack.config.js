@@ -62,7 +62,7 @@ module.exports = {
     },
     plugins: [
         new webpack.BannerPlugin(
-            {banner: banner, raw: true}
+            { banner: banner, raw: true }
         )
     ],
 };

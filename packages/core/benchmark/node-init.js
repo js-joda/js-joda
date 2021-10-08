@@ -15,14 +15,14 @@ global.addSuite = function(suite){
     suite.on('cycle', function(event) {
         log(String(event.target));
     })
-    .on('start', function() {
-        log('benchmark "' + suite.name + '" is running');
-    })
-    .on('complete', function() {
-        log('Fastest is ' + this.filter('fastest').map('name'));
-        log('benchmark "' + suite.name + '" done');
-        log('');
-    })
-    .run();
+        .on('start', function() {
+            log(`benchmark "${suite.name}" is running`);
+        })
+        .on('complete', function() {
+            log(`Fastest is ${this.filter('fastest').map('name')}`);
+            log(`benchmark "${suite.name}" done`);
+            log('');
+        })
+        .run();
 };
 

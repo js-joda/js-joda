@@ -2,7 +2,7 @@
 function log(msg){
     // eslint-disable-next-line no-console
     console.log(msg);
-    document.getElementById('result').textContent += msg + '\n';
+    document.getElementById('result').textContent += `${msg}\n`;
 }
 
 const suites = [];
@@ -16,7 +16,7 @@ function next(suite){
     if(!running){
         const s = suites.shift();
         if(s!=null) {
-            s.run({'async': true});
+            s.run({ 'async': true });
             running = true;
         } else {
             log('all benchmarks done');
@@ -30,15 +30,15 @@ function addSuite(suite){
     suite.on('cycle', function(event) {
         log(String(event.target));
     })
-    .on('start', function() {
-        log('benchmark "' + suite.name + '" is running');
-    })
-    .on('complete', function() {
-        log('Fastest is ' + this.filter('fastest').map('name'));
-        log('benchmark "' + suite.name + '" done');
-        log('');
-        next();
-    });
+        .on('start', function() {
+            log(`benchmark "${suite.name}" is running`);
+        })
+        .on('complete', function() {
+            log(`Fastest is ${this.filter('fastest').map('name')}`);
+            log(`benchmark "${suite.name}" done`);
+            log('');
+            next();
+        });
 
     next(suite);
 }

@@ -26,7 +26,7 @@ const externals = {
 
 const moduleConfig = {
     rules: [{
-        use: [{loader: 'babel-loader'}],
+        use: [{ loader: 'babel-loader' }],
         resource: {
             include: [
                 path.resolve(__dirname, 'src'),
@@ -51,7 +51,7 @@ const optimization = {
 
 const bannerPlugin = (withTzdbVersion, fileSuffix) =>
     new webpack.BannerPlugin(
-        {banner: createBanner(withTzdbVersion, fileSuffix), raw: true}
+        { banner: createBanner(withTzdbVersion, fileSuffix), raw: true }
     );
 
 const output = {

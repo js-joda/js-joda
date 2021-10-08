@@ -57,7 +57,7 @@ module.exports = function(config) {
 
     config.set({
         files: [
-            {pattern: 'test/karmaWebpackTestEntry.js'}
+            { pattern: 'test/karmaWebpackTestEntry.js' }
         ],
         frameworks: [
             'mocha',
