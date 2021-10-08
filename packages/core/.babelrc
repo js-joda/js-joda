@@ -1,12 +1,13 @@
 {
   "presets": [
     ["@babel/preset-env", {
-      "modules": false,
-      "loose": true,
+      "modules": "auto",
       "targets": {
-        "browsers": [
-          "last 2 versions"
-        ]
+        "edge": "17",
+        "firefox": "60",
+        "chrome": "67",
+        "safari": "11.1",
+        "ie": "11"
       }
     }]
   ],

@@ -12,15 +12,15 @@
     "README.md"
   ],
   "scripts": {
-    "test": "./node_modules/.bin/mocha --timeout 5000 --require @babel/register ./test/*Test.js ./test/**/*Test.js",
-    "test-coverage": "NODE_ENV=test COVERAGE=1 ../../node_modules/.bin/nyc --report-dir=build/coverage --reporter=lcov --reporter html ./node_modules/.bin/mocha --timeout 5000 --require @babel/register --reporter progress ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js",
-    "test-browser": "./node_modules/.bin/karma start --reporters=dots --single-run",
+    "test": "npx mocha --timeout 5000 --require @babel/register ./test/*Test.js ./test/**/*Test.js",
+    "test-coverage": "NODE_ENV=test COVERAGE=1 npx nyc --report-dir=build/coverage --reporter=lcov --reporter html npx mocha --timeout 5000 --require @babel/register --reporter progress ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js",
+    "test-browser": "npx karma start --reporters=dots --single-run",
     "test-ts-definitions": "tsc --noImplicitAny --noEmit --pretty test/typescript_definitions/js-joda-timezone-tests.ts",
-    "test-saucelabs": "./node_modules/.bin/karma start --reporters=\"dots,saucelabs\" --browsers=\"sl_chrome,sl_ie,sl_firefox\" --single-run=true",
+    "test-saucelabs": "npx karma start --reporters=\"dots,saucelabs\" --browsers=\"sl_chrome,sl_ie,sl_firefox\" --single-run=true",
     "test-ci": "npm run build-dist && npm run test && npm run test-browser && npm run test-ts-definitions && npm run test-coverage",
-    "build-dist": "./node_modules/.bin/webpack --progress --colors --bail",
+    "build-dist": "npx webpack --progress --colors --bail",
     "transform-data": "node ./transform-data.js",
-    "lint": "../../node_modules/.bin/eslint ."
+    "lint": "npx eslint ."
   },
   "repository": {
     "type": "git",
@@ -44,39 +44,11 @@
     "@js-joda/core": ">=1.11.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.14.8",
-    "@babel/core": "^7.7.4",
-    "@babel/preset-env": "^7.7.4",
-    "@babel/register": "^7.7.4",
-    "@js-joda/core": ">=1.11.0",
-    "babel-loader": "^8.0.6",
-    "babel-plugin-istanbul": "^5.2.0",
-    "chai": "^4.2.0",
-    "copy-webpack-plugin": "^5.0.5",
-    "coveralls": "^3.1.1",
-    "eslint": "^6.7.0",
-    "json-loader": "^0.5.7",
-    "karma": "^4.4.1",
-    "karma-chai-plugins": "^0.9.0",
-    "karma-chrome-launcher": "^3.1.0",
-    "karma-firefox-launcher": "^1.2.0",
-    "karma-mocha": "^1.3.0",
-    "karma-phantomjs-launcher": "^1.0.4",
-    "karma-sauce-launcher": "^2.0.2",
-    "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^4.0.2",
-    "mocha": "^6.2.2",
-    "moment-timezone": "^0.5.27",
-    "phantomjs-prebuilt": "^2.1.16",
-    "typescript": "^3.7.2",
-    "uglifyjs-webpack-plugin": "^2.2.0",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
+    "@js-joda/core": ">=1.11.0"
   },
   "license": "BSD-3-Clause",
   "bugs": {
     "url": "https://github.com/js-joda/js-joda-timezone/issues"
   },
-  "homepage": "https://github.com/js-joda/js-joda-timezone#readme",
-  "dependencies": {}
+  "homepage": "https://github.com/js-joda/js-joda-timezone#readme"
 }

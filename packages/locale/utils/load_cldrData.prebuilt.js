@@ -1,3 +1,6 @@
+/* eslint-disable */
+// we must use es5 compatible code in this post install file
+
 /*
  * @copyright (c) 2018, Philipp Thuerwaechter & Pattrick Hueper
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
@@ -11,5 +14,5 @@
  * that cldr-data is installed in parallel!
  */
 module.exports = function (cldrPath) {
-    return require(`../node_modules/cldr-data/${cldrPath}`);
+    return require('../node_modules/cldr-data/'.concat(cldrPath));
 };
