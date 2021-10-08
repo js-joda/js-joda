@@ -4,16 +4,16 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {assertEquals, dataProviderTest} from '../../testUtils';
+import { assertEquals, dataProviderTest } from '../../testUtils';
 
 import '../../_init';
 
-import {LocalDateTime} from '../../../src/LocalDateTime';
-import {ZoneId} from '../../../src/ZoneId';
-import {ZoneOffset} from '../../../src/ZoneOffset';
-import {DateTimeFormatterBuilder} from '../../../src/format/DateTimeFormatterBuilder';
-import {ParsePosition} from '../../../src/format/ParsePosition';
-import {TemporalQueries} from '../../../src/temporal/TemporalQueries';
+import { LocalDateTime } from '../../../src/LocalDateTime';
+import { ZoneId } from '../../../src/ZoneId';
+import { ZoneOffset } from '../../../src/ZoneOffset';
+import { DateTimeFormatterBuilder } from '../../../src/format/DateTimeFormatterBuilder';
+import { ParsePosition } from '../../../src/format/ParsePosition';
+import { TemporalQueries } from '../../../src/temporal/TemporalQueries';
 import { ZoneRulesProvider } from '../../../src/zone/ZoneRulesProvider';
 
 describe('org.threeten.bp.format.TestZoneIdParser', () => {
@@ -145,12 +145,12 @@ describe('org.threeten.bp.format.TestZoneIdParser', () => {
                 init();
                 builder.appendZoneId();
                 const parsed = builder.toFormatter().parseUnresolved(text, pos);
-                assertEquals(pos.getErrorIndex(), expectedErrorIndex, `Incorrect error index parsing: ${  text}`);
-                assertEquals(pos.getIndex(), expectedIndex, `Incorrect index parsing: ${  text}`);
+                assertEquals(pos.getErrorIndex(), expectedErrorIndex, `Incorrect error index parsing: ${text}`);
+                assertEquals(pos.getIndex(), expectedIndex, `Incorrect index parsing: ${text}`);
                 if (expected != null) {
-                    assertEquals(parsed.query(TemporalQueries.zoneId()), expected, `Incorrect zoneId parsing: ${  text}`);
-                    assertEquals(parsed.query(TemporalQueries.offset()), null, `Incorrect offset parsing: ${  text}`);
-                    assertEquals(parsed.query(TemporalQueries.zone()), expected, `Incorrect zone parsing: ${  text}`);
+                    assertEquals(parsed.query(TemporalQueries.zoneId()), expected, `Incorrect zoneId parsing: ${text}`);
+                    assertEquals(parsed.query(TemporalQueries.offset()), null, `Incorrect offset parsing: ${text}`);
+                    assertEquals(parsed.query(TemporalQueries.zone()), expected, `Incorrect zone parsing: ${text}`);
                 } else {
                     assertEquals(parsed, null);
                 }

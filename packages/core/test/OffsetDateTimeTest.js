@@ -3,23 +3,23 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
+import { expect } from 'chai';
 
-import {ChronoField} from '../src/temporal/ChronoField';
-import {ChronoUnit} from '../src/temporal/ChronoUnit';
-import {createTemporalQuery} from '../src/temporal/TemporalQuery';
-import {DateTimeFormatter} from '../src/format/DateTimeFormatter';
-import {Instant} from '../src/Instant';
-import {IsoFields} from '../src/temporal/IsoFields';
-import {LocalDateTime} from '../src/LocalDateTime';
-import {LocalTime} from '../src/LocalTime';
-import {OffsetDateTime} from '../src/OffsetDateTime';
-import {TemporalField} from '../src/temporal/TemporalField';
-import {TemporalUnit} from '../src/temporal/TemporalUnit';
-import {Temporal} from '../src/temporal/Temporal';
-import {ZonedDateTime} from '../src/ZonedDateTime';
-import {ZoneId} from '../src/ZoneId';
-import {ZoneOffset} from '../src/ZoneOffset';
+import { ChronoField } from '../src/temporal/ChronoField';
+import { ChronoUnit } from '../src/temporal/ChronoUnit';
+import { createTemporalQuery } from '../src/temporal/TemporalQuery';
+import { DateTimeFormatter } from '../src/format/DateTimeFormatter';
+import { Instant } from '../src/Instant';
+import { IsoFields } from '../src/temporal/IsoFields';
+import { LocalDateTime } from '../src/LocalDateTime';
+import { LocalTime } from '../src/LocalTime';
+import { OffsetDateTime } from '../src/OffsetDateTime';
+import { TemporalField } from '../src/temporal/TemporalField';
+import { TemporalUnit } from '../src/temporal/TemporalUnit';
+import { Temporal } from '../src/temporal/Temporal';
+import { ZonedDateTime } from '../src/ZonedDateTime';
+import { ZoneId } from '../src/ZoneId';
+import { ZoneOffset } from '../src/ZoneOffset';
 import {
     DateTimeException,
     IllegalArgumentException,

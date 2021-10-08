@@ -4,7 +4,7 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {assert} from '../../assert';
+import { assert } from '../../assert';
 
 /**
  * Prints or parses a string literal.
@@ -33,7 +33,7 @@ export class StringLiteralPrinterParser {
 
     toString() {
         const converted = this._literal.replace("'", "''");
-        return `'${  converted  }'`;
+        return `'${converted}'`;
     }
 }
 

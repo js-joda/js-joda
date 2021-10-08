@@ -2,9 +2,9 @@
  * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
-import {expect} from 'chai';
-import {assert, requireNonNull, requireInstance} from '../src/assert';
-import {NullPointerException, IllegalArgumentException} from '../src/errors';
+import { expect } from 'chai';
+import { assert, requireNonNull, requireInstance } from '../src/assert';
+import { NullPointerException, IllegalArgumentException } from '../src/errors';
 
 describe('assert.js', () => {
 

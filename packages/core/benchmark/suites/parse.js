@@ -9,34 +9,34 @@ if(typeof require === 'function') { require('../node-init'); }
 
     addSuite(
         new Benchmark.Suite('parse')
-            .add('native Date ' + instantDateStr, function () {
+            .add(`native Date ${instantDateStr}`, function () {
                 const d = new Date(instantDateStr);
             })
-            .add('moment ' + instantDateStr, function () {
+            .add(`moment ${instantDateStr}`, function () {
                 const m = moment(instantDateStr);
             })
-            .add('js-joda ' + instantDateStr, function () {
+            .add(`js-joda ${instantDateStr}`, function () {
                 const i = JSJoda.Instant.parse(instantDateStr);
             })
-            .add('native Date ' + dateStr, function () {
+            .add(`native Date ${dateStr}`, function () {
                 const d = new Date(dateStr);
             })
-            .add('moment ' + dateStr, function () {
+            .add(`moment ${dateStr}`, function () {
                 const m = moment(dateStr);
             })
-            .add('js-joda ' + dateStr, function () {
+            .add(`js-joda ${dateStr}`, function () {
                 const i = JSJoda.LocalDate.parse(dateStr);
             })
-            .add('moment ' + zonedDateTimeStr, function () {
+            .add(`moment ${zonedDateTimeStr}`, function () {
                 const m = moment(zonedDateTimeStr);
             })
-            .add('js-joda ' + zonedDateTimeStr, function () {
+            .add(`js-joda ${zonedDateTimeStr}`, function () {
                 const i = JSJoda.ZonedDateTime.parse(zonedDateTimeStr);
             })
-            .add('js-joda ' + timeStr, function () {
+            .add(`js-joda ${timeStr}`, function () {
                 const i = JSJoda.LocalTime.parse(timeStr);
             })
-            .add('js-joda ' + dateTimeStr, function () {
+            .add(`js-joda ${dateTimeStr}`, function () {
                 const i = JSJoda.LocalDateTime.parse(dateTimeStr);
             })
     );

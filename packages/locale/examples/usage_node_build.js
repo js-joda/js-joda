@@ -8,7 +8,7 @@ require('@js-joda/timezone');
 
 function outputDateInDifferentLocales(zdt) {
     var { Locale } = require('./build/js-joda-locale');
-    console.log(`Times in ${  zdt.zone()}`);
+    console.log(`Times in ${zdt.zone()}`);
     console.log('');
     console.log('en_US formatted string:', zdt.format(joda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(Locale.US)));
     console.log('en_GB formatted string:', zdt.format(joda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(Locale.UK)));
@@ -27,7 +27,7 @@ try {
     var { Locale } = require('./build/js-joda-locale');
     console.log('locale', Locale);
 
-    console.log(`availableLocales:${  JSON.stringify(Locale.getAvailableLocales(), null, 4)}`);
+    console.log(`availableLocales:${JSON.stringify(Locale.getAvailableLocales(), null, 4)}`);
 
     var zdt = joda.ZonedDateTime.of(2017, 1, 1, 0, 0, 0, 0, joda.ZoneId.of('Europe/Berlin'));
     outputDateInDifferentLocales(zdt);

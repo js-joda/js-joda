@@ -4,7 +4,7 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {Enum} from '../Enum';
+import { Enum } from '../Enum';
 
 /**
  * Enumeration of different ways to resolve dates and times.

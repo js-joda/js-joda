@@ -100,7 +100,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -112,17 +111,17 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {requireNonNull} from &apos;./assert&apos;;
-import {DateTimeException, IllegalArgumentException} from &apos;./errors&apos;;
-import {StringUtil} from &apos;./StringUtil&apos;;
+import { requireNonNull } from &apos;./assert&apos;;
+import { DateTimeException, IllegalArgumentException } from &apos;./errors&apos;;
+import { StringUtil } from &apos;./StringUtil&apos;;
 
-import {ZoneOffset} from &apos;./ZoneOffset&apos;;
-import {ZoneRegion} from &apos;./ZoneRegion&apos;;
-import {ZoneId} from &apos;./ZoneId&apos;;
+import { ZoneOffset } from &apos;./ZoneOffset&apos;;
+import { ZoneRegion } from &apos;./ZoneRegion&apos;;
+import { ZoneId } from &apos;./ZoneId&apos;;
 
-import {TemporalQueries} from &apos;./temporal/TemporalQueries&apos;;
-import {SystemDefaultZoneId} from &apos;./zone/SystemDefaultZoneId&apos;;
-import {ZoneRulesProvider} from &apos;./zone/ZoneRulesProvider&apos;;
+import { TemporalQueries } from &apos;./temporal/TemporalQueries&apos;;
+import { SystemDefaultZoneId } from &apos;./zone/SystemDefaultZoneId&apos;;
+import { ZoneRulesProvider } from &apos;./zone/ZoneRulesProvider&apos;;
 
 /**
  * @see {@link ZoneId}
@@ -204,7 +203,7 @@ export class ZoneIdFactory {
             return ZoneOffset.UTC;
         }
         if (zoneId.length === 1) {
-            throw new DateTimeException(`Invalid zone: ${  zoneId}`);
+            throw new DateTimeException(`Invalid zone: ${zoneId}`);
         }
         if (StringUtil.startsWith(zoneId, &apos;+&apos;) || StringUtil.startsWith(zoneId, &apos;-&apos;)) {
             return ZoneOffset.of(zoneId);
@@ -225,7 +224,7 @@ export class ZoneIdFactory {
             if (offset.totalSeconds() === 0) {
                 return new ZoneRegion(&apos;UT&apos;, offset.rules());
             }
-            return new ZoneRegion(`UT${  offset.id()}`, offset.rules());
+            return new ZoneRegion(`UT${offset.id()}`, offset.rules());
         }
         // javascript special case
         if(zoneId === &apos;SYSTEM&apos;){
@@ -259,7 +258,7 @@ export class ZoneIdFactory {
             }
             return new ZoneRegion(prefix + offset.id(), offset.rules());
         }
-        throw new IllegalArgumentException(`Invalid prefix, must be GMT, UTC or UT: ${  prefix}`);
+        throw new IllegalArgumentException(`Invalid prefix, must be GMT, UTC or UT: ${prefix}`);
     }
 
 
@@ -284,7 +283,7 @@ export class ZoneIdFactory {
         const obj = temporal.query(TemporalQueries.zone());
         if (obj == null) {
             throw new DateTimeException(`Unable to obtain ZoneId from TemporalAccessor: ${ 
-                temporal  }, type ${  temporal.constructor != null ? temporal.constructor.name : &apos;&apos;}`);
+                temporal}, type ${temporal.constructor != null ? temporal.constructor.name : &apos;&apos;}`);
         }
         return obj;
     }

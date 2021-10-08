@@ -4,18 +4,18 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
-import {dataProviderTest} from '../testUtils';
+import { expect } from 'chai';
+import { dataProviderTest } from '../testUtils';
 
 import '../_init';
 
-import {ArithmeticException, DateTimeParseException, NullPointerException, UnsupportedTemporalTypeException} from '../../src/errors';
-import {ChronoUnit} from '../../src/temporal/ChronoUnit';
-import {Duration} from '../../src/Duration';
-import {Instant} from '../../src/Instant';
-import {MAX_SAFE_INTEGER, MIN_SAFE_INTEGER, MathUtil} from '../../src/MathUtil';
-import {TemporalAmount} from '../../src/temporal/TemporalAmount';
-import {TemporalUnit} from '../../src/temporal/TemporalUnit';
+import { ArithmeticException, DateTimeParseException, NullPointerException, UnsupportedTemporalTypeException } from '../../src/errors';
+import { ChronoUnit } from '../../src/temporal/ChronoUnit';
+import { Duration } from '../../src/Duration';
+import { Instant } from '../../src/Instant';
+import { MAX_SAFE_INTEGER, MIN_SAFE_INTEGER, MathUtil } from '../../src/MathUtil';
+import { TemporalAmount } from '../../src/temporal/TemporalAmount';
+import { TemporalUnit } from '../../src/temporal/TemporalUnit';
 
 describe('org.threeten.bp.TestDuration', () => {
     const SECONDS_PER_DAY = 86400;
@@ -341,14 +341,14 @@ describe('org.threeten.bp.TestDuration', () => {
             ['PT1S', 1, 0],
             ['PT12S', 12, 0],
             ['PT123456789S', 123456789, 0],
-            [`PT${  MAX_SAFE_INTEGER  }S`, MAX_SAFE_INTEGER, 0],
+            [`PT${MAX_SAFE_INTEGER}S`, MAX_SAFE_INTEGER, 0],
 
             ['PT+1S', 1, 0],
             ['PT+12S', 12, 0],
             ['PT-1S', -1, 0],
             ['PT-12S', -12, 0],
             ['PT-123456789S', -123456789, 0],
-            [`PT${  MIN_SAFE_INTEGER  }S`, MIN_SAFE_INTEGER, 0],
+            [`PT${MIN_SAFE_INTEGER}S`, MIN_SAFE_INTEGER, 0],
 
             ['PT0.1S', 0, 100000000],
             ['PT1.1S', 1, 100000000],
@@ -372,8 +372,8 @@ describe('org.threeten.bp.TestDuration', () => {
             ['PT-1.12345678S', -2, 1000000000 - 123456780],
             ['PT-1.123456789S', -2, 1000000000 - 123456789],
 
-            [`PT${  MAX_SAFE_INTEGER  }.123456789S`, MAX_SAFE_INTEGER, 123456789],
-            [`PT${  MIN_SAFE_INTEGER  }.000000000S`, MIN_SAFE_INTEGER, 0],
+            [`PT${MAX_SAFE_INTEGER}.123456789S`, MAX_SAFE_INTEGER, 123456789],
+            [`PT${MIN_SAFE_INTEGER}.000000000S`, MIN_SAFE_INTEGER, 0],
 
             ['PT12M', 12 * 60, 0],
             ['PT12M0.35S', 12 * 60, 350000000],
@@ -473,31 +473,31 @@ describe('org.threeten.bp.TestDuration', () => {
 
         it('factory_parse_tooBig', () => {
             expect(() => {
-                Duration.parse(`PT${  MAX_SAFE_INTEGER  }1S`);
+                Duration.parse(`PT${MAX_SAFE_INTEGER}1S`);
             }).to.throw(DateTimeParseException);
         });
 
         it('factory_parse_tooBig_overflow', () => {
             expect(() => {
-                Duration.parse(`PT1M${  MAX_SAFE_INTEGER - 1  }S`);
+                Duration.parse(`PT1M${MAX_SAFE_INTEGER - 1}S`);
             }).to.throw(DateTimeParseException);
         });
 
         it('factory_parse_tooBig_decimal', () => {
             expect(() => {
-                Duration.parse(`PT${  MAX_SAFE_INTEGER  }1.1S`);
+                Duration.parse(`PT${MAX_SAFE_INTEGER}1.1S`);
             }).to.throw(DateTimeParseException);
         });
 
         it('factory_parse_tooSmall', () => {
             expect(() => {
-                Duration.parse(`PT${  MIN_SAFE_INTEGER  }1S`);
+                Duration.parse(`PT${MIN_SAFE_INTEGER}1S`);
             }).to.throw(DateTimeParseException);
         });
 
         it('factory_parse_tooSmall_decimal', () => {
             expect(() => {
-                Duration.parse(`PT${  MIN_SAFE_INTEGER  }1.1S`);
+                Duration.parse(`PT${MIN_SAFE_INTEGER}1.1S`);
             }).to.throw(DateTimeParseException);
         });
 
@@ -2124,14 +2124,14 @@ describe('org.threeten.bp.TestDuration', () => {
             data_compareTo.forEach((valA, indexA) => {
                 data_compareTo.forEach((valB, indexB) => {
                     if (indexA < indexB) {
-                        expect(valA.compareTo(valB) < 0, `${valA  } <=> ${  valB}`).to.eql(true);
-                        expect(valA.equals(valB), `${valA  } <=> ${  valB}`).to.eql(false);
+                        expect(valA.compareTo(valB) < 0, `${valA} <=> ${valB}`).to.eql(true);
+                        expect(valA.equals(valB), `${valA} <=> ${valB}`).to.eql(false);
                     } else if (indexA > indexB) {
-                        expect(valA.compareTo(valB) > 0, `${valA  } <=> ${  valB}`).to.eql(true);
-                        expect(valA.equals(valB), `${valA  } <=> ${  valB}`).to.eql(false);
+                        expect(valA.compareTo(valB) > 0, `${valA} <=> ${valB}`).to.eql(true);
+                        expect(valA.equals(valB), `${valA} <=> ${valB}`).to.eql(false);
                     } else {
-                        expect(valA.compareTo(valB), `${valA  } <=> ${  valB}`).to.eql(0);
-                        expect(valA.equals(valB), `${valA  } <=> ${  valB}`).to.eql(true);
+                        expect(valA.compareTo(valB), `${valA} <=> ${valB}`).to.eql(0);
+                        expect(valA.equals(valB), `${valA} <=> ${valB}`).to.eql(true);
                     }
                 });
             });

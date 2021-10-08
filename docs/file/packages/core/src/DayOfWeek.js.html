@@ -100,7 +100,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -112,16 +111,16 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {DateTimeException, UnsupportedTemporalTypeException, NullPointerException} from &apos;./errors&apos;;
-import {MathUtil} from &apos;./MathUtil&apos;;
-import {assert, requireNonNull, requireInstance} from &apos;./assert&apos;;
+import { DateTimeException, UnsupportedTemporalTypeException, NullPointerException } from &apos;./errors&apos;;
+import { MathUtil } from &apos;./MathUtil&apos;;
+import { assert, requireNonNull, requireInstance } from &apos;./assert&apos;;
 
-import {ChronoField} from &apos;./temporal/ChronoField&apos;;
-import {ChronoUnit} from &apos;./temporal/ChronoUnit&apos;;
-import {IllegalArgumentException} from &apos;./errors&apos;;
-import {TemporalAccessor} from &apos;./temporal/TemporalAccessor&apos;;
-import {TemporalQueries} from &apos;./temporal/TemporalQueries&apos;;
-import {createTemporalQuery} from &apos;./temporal/TemporalQuery&apos;;
+import { ChronoField } from &apos;./temporal/ChronoField&apos;;
+import { ChronoUnit } from &apos;./temporal/ChronoUnit&apos;;
+import { IllegalArgumentException } from &apos;./errors&apos;;
+import { TemporalAccessor } from &apos;./temporal/TemporalAccessor&apos;;
+import { TemporalQueries } from &apos;./temporal/TemporalQueries&apos;;
+import { createTemporalQuery } from &apos;./temporal/TemporalQuery&apos;;
 
 /**
  * ### Static properties of Class {@link DayOfWeek}
@@ -201,7 +200,7 @@ export class DayOfWeek extends TemporalAccessor {
      */
     static of(dayOfWeek) {
         if (dayOfWeek &lt; 1 || dayOfWeek &gt; 7) {
-            throw new DateTimeException(`Invalid value for DayOfWeek: ${  dayOfWeek}`);
+            throw new DateTimeException(`Invalid value for DayOfWeek: ${dayOfWeek}`);
         }
         return ENUMS[dayOfWeek - 1];
     }
@@ -231,7 +230,7 @@ export class DayOfWeek extends TemporalAccessor {
         } catch (ex) {
             if(ex instanceof DateTimeException) {
                 throw new DateTimeException(`Unable to obtain DayOfWeek from TemporalAccessor: ${ 
-                    temporal  }, type ${  temporal.constructor != null ? temporal.constructor.name : &apos;&apos;}`, ex);
+                    temporal}, type ${temporal.constructor != null ? temporal.constructor.name : &apos;&apos;}`, ex);
             } else {
                 throw ex;
             }
@@ -319,7 +318,7 @@ export class DayOfWeek extends TemporalAccessor {
         if (field === ChronoField.DAY_OF_WEEK) {
             return field.range();
         } else if (field instanceof ChronoField) {
-            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${field}`);
         }
         return field.rangeRefinedBy(this);
     }
@@ -380,7 +379,7 @@ export class DayOfWeek extends TemporalAccessor {
         if (field === ChronoField.DAY_OF_WEEK) {
             return this.value();
         } else if (field instanceof ChronoField) {
-            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${field}`);
         }
         return field.getFrom(this);
     }

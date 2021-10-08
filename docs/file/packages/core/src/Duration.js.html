@@ -100,7 +100,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -111,16 +110,16 @@
  * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
-import {requireNonNull, requireInstance} from &apos;./assert&apos;;
-import {ArithmeticException, DateTimeParseException, UnsupportedTemporalTypeException} from &apos;./errors&apos;;
-import {MathUtil, MAX_SAFE_INTEGER, MIN_SAFE_INTEGER} from &apos;./MathUtil&apos;;
+import { requireNonNull, requireInstance } from &apos;./assert&apos;;
+import { ArithmeticException, DateTimeParseException, UnsupportedTemporalTypeException } from &apos;./errors&apos;;
+import { MathUtil, MAX_SAFE_INTEGER, MIN_SAFE_INTEGER } from &apos;./MathUtil&apos;;
 
-import {ChronoField} from &apos;./temporal/ChronoField&apos;;
-import {ChronoUnit} from &apos;./temporal/ChronoUnit&apos;;
-import {TemporalAmount} from &apos;./temporal/TemporalAmount&apos;;
-import {TemporalUnit} from &apos;./temporal/TemporalUnit&apos;;
+import { ChronoField } from &apos;./temporal/ChronoField&apos;;
+import { ChronoUnit } from &apos;./temporal/ChronoUnit&apos;;
+import { TemporalAmount } from &apos;./temporal/TemporalAmount&apos;;
+import { TemporalUnit } from &apos;./temporal/TemporalUnit&apos;;
 
-import {LocalTime} from &apos;./LocalTime&apos;;
+import { LocalTime } from &apos;./LocalTime&apos;;
 
 /**
  * A time-based amount of time, such as &apos;34.5 seconds&apos;.
@@ -463,7 +462,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
             }
             return MathUtil.safeMultiply(parseFloat(parsed), multiplier);
         } catch (ex) {
-            throw new DateTimeParseException(`Text cannot be parsed to a Duration: ${  errorText}`, text, 0, ex);
+            throw new DateTimeParseException(`Text cannot be parsed to a Duration: ${errorText}`, text, 0, ex);
         }
     }
 
@@ -472,7 +471,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         if (parsed == null || parsed.length === 0) {
             return 0;
         }
-        parsed = (`${parsed  }000000000`).substring(0, 9);
+        parsed = (`${parsed}000000000`).substring(0, 9);
         return parseFloat(parsed) * negate;
     }
 
@@ -531,7 +530,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         } else if (unit === ChronoUnit.NANOS) {
             return this._nanos;
         } else {
-            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${unit}`);
         }
     }
 
@@ -1259,10 +1258,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         const secs = MathUtil.intMod(this._seconds, LocalTime.SECONDS_PER_MINUTE);
         let rval = &apos;PT&apos;;
         if (hours !== 0) {
-            rval += `${hours  }H`;
+            rval += `${hours}H`;
         }
         if (minutes !== 0) {
-            rval += `${minutes  }M`;
+            rval += `${minutes}M`;
         }
         if (secs === 0 &amp;&amp; this._nanos === 0 &amp;&amp; rval.length &gt; 2) {
             return rval;
@@ -1280,9 +1279,9 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
             rval += &apos;.&apos;;
             let nanoString;
             if (secs &lt; 0) {
-                nanoString = `${  2 * LocalTime.NANOS_PER_SECOND - this._nanos}`;
+                nanoString = `${2 * LocalTime.NANOS_PER_SECOND - this._nanos}`;
             } else {
-                nanoString = `${  LocalTime.NANOS_PER_SECOND + this._nanos}`;
+                nanoString = `${LocalTime.NANOS_PER_SECOND + this._nanos}`;
             }
             // remove the leading &apos;1&apos;
             nanoString = nanoString.slice(1, nanoString.length);

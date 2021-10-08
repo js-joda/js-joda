@@ -4,26 +4,26 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
-import {assertEquals, fail} from '../../testUtils';
+import { expect } from 'chai';
+import { assertEquals, fail } from '../../testUtils';
 
 import '../../_init';
 
-import {DateTimeFormatterBuilder} from '../../../src/format/DateTimeFormatterBuilder';
-import {DateTimePrintContext} from '../../../src/format/DateTimePrintContext';
-import {DecimalStyle} from '../../../src/format/DecimalStyle';
-import {SignStyle} from '../../../src/format/SignStyle';
-import {StringBuilder} from '../../../src/format/StringBuilder';
-import {ChronoField} from '../../../src/temporal/ChronoField';
-import {DateTimeException} from '../../../src/errors';
-import {LocalDate} from '../../../src/LocalDate';
+import { DateTimeFormatterBuilder } from '../../../src/format/DateTimeFormatterBuilder';
+import { DateTimePrintContext } from '../../../src/format/DateTimePrintContext';
+import { DecimalStyle } from '../../../src/format/DecimalStyle';
+import { SignStyle } from '../../../src/format/SignStyle';
+import { StringBuilder } from '../../../src/format/StringBuilder';
+import { ChronoField } from '../../../src/temporal/ChronoField';
+import { DateTimeException } from '../../../src/errors';
+import { LocalDate } from '../../../src/LocalDate';
 
 const NumberPrinterParser = DateTimeFormatterBuilder.NumberPrinterParser;
 const DAY_OF_MONTH = ChronoField.DAY_OF_MONTH;
 const HOUR_OF_DAY = ChronoField.HOUR_OF_DAY;
 
-import {MockFieldValue} from '../temporal/MockFieldValue';
-import {EMPTY} from '../temporal/Empty';
+import { MockFieldValue } from '../temporal/MockFieldValue';
+import { EMPTY } from '../temporal/Empty';
 
 describe('org.threeten.bp.format.TestNumberPrinter', () => {
     let printEmptyContext, printContext;
@@ -214,7 +214,7 @@ describe('org.threeten.bp.format.TestNumberPrinter', () => {
                 if (result == null) {
                     fail('Expected exception');
                 }
-                assertEquals(buf.toString(), (value < 0 ? `-${  result}` : result));
+                assertEquals(buf.toString(), (value < 0 ? `-${result}` : result));
             } catch (ex) {
                 if(!(ex instanceof DateTimeException)){
                     throw ex;
@@ -242,7 +242,7 @@ describe('org.threeten.bp.format.TestNumberPrinter', () => {
                 if (result == null) {
                     fail('Expected exception');
                 }
-                assertEquals(buf.toString(), (value < 0 ? `-${  result}` : `+${  result}`));
+                assertEquals(buf.toString(), (value < 0 ? `-${result}` : `+${result}`));
             } catch (ex) {
                 if(!(ex instanceof DateTimeException)){
                     throw ex;
@@ -271,7 +271,7 @@ describe('org.threeten.bp.format.TestNumberPrinter', () => {
                     fail('Expected exception');
                 }
                 if (result.length > minPad || value < 0) {
-                    result = (value < 0 ? `-${  result}` : `+${  result}`);
+                    result = (value < 0 ? `-${result}` : `+${result}`);
                 }
                 assertEquals(buf.toString(), result);
             } catch (ex) {

@@ -3,13 +3,13 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {IllegalArgumentException} from './errors';
+import { IllegalArgumentException } from './errors';
 
-import {LocalDate} from './LocalDate';
-import {LocalDateTime} from './LocalDateTime';
-import {ZonedDateTime} from './ZonedDateTime';
-import {ZoneId} from './ZoneId';
-import {Instant} from './Instant';
+import { LocalDate } from './LocalDate';
+import { LocalDateTime } from './LocalDateTime';
+import { ZonedDateTime } from './ZonedDateTime';
+import { ZoneId } from './ZoneId';
+import { Instant } from './Instant';
 
 class ToNativeJsConverter {
     /**
@@ -36,7 +36,7 @@ class ToNativeJsConverter {
                 zonedDateTime = temporal.withZoneSameInstant(zone);
             }
         } else {
-            throw new IllegalArgumentException(`unsupported instance for convert operation:${  temporal}`);
+            throw new IllegalArgumentException(`unsupported instance for convert operation:${temporal}`);
         }
 
         this.instant = zonedDateTime.toInstant();

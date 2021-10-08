@@ -4,21 +4,21 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
-import {assertEquals, assertNotNull} from '../../testUtils';
+import { expect } from 'chai';
+import { assertEquals, assertNotNull } from '../../testUtils';
 
 import '../../_init';
 
-import {NullPointerException} from '../../../src/errors';
+import { NullPointerException } from '../../../src/errors';
 
-import {DayOfWeek} from '../../../src/DayOfWeek';
-import {LocalDate} from '../../../src/LocalDate';
-import {Month} from '../../../src/Month';
+import { DayOfWeek } from '../../../src/DayOfWeek';
+import { LocalDate } from '../../../src/LocalDate';
+import { Month } from '../../../src/Month';
 
-import {TemporalAdjusters} from '../../../src/temporal/TemporalAdjusters';
-import {assertSame} from '../../testUtils';
-import {assertTrue} from '../../testUtils';
-import {assertFalse} from '../../testUtils';
+import { TemporalAdjusters } from '../../../src/temporal/TemporalAdjusters';
+import { assertSame } from '../../testUtils';
+import { assertTrue } from '../../testUtils';
+import { assertFalse } from '../../testUtils';
 
 describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
     const MonthValues = Month.values();
@@ -376,7 +376,7 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
             for (let day = 1; day <= Month.of(month).length(false); day++) {
                 const date = createDate(year, month, day);
                 const test = TemporalAdjusters.firstInMonth(dow).adjustInto(date);
-                assertEquals(test, expected, `day-of-month=${  day}`);
+                assertEquals(test, expected, `day-of-month=${day}`);
             }
         }
 
@@ -405,7 +405,7 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
             for (let day = 1; day <= Month.of(month).length(false); day++) {
                 const date = createDate(year, month, day);
                 const test = TemporalAdjusters.lastInMonth(dow).adjustInto(date);
-                assertEquals(test, expected, `day-of-month=${  day}`);
+                assertEquals(test, expected, `day-of-month=${day}`);
             }
         }
 
@@ -432,7 +432,7 @@ describe('org.threeten.bp.temporal.TestTemporalAdjusters', function () {
                         const dow = DayOfWeekValues[d];
                         const test = TemporalAdjusters.next(dow).adjustInto(date);
 
-                        assertSame(test.dayOfWeek(), dow, `${date  } ${  test}`);
+                        assertSame(test.dayOfWeek(), dow, `${date} ${test}`);
 
                         if (test.year() === 2007) {
                             const dayDiff = test.dayOfYear() - date.dayOfYear();

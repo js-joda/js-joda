@@ -2,13 +2,13 @@
  * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
-import {expect} from 'chai';
-import {dataProviderTest} from '../testUtils';
+import { expect } from 'chai';
+import { dataProviderTest } from '../testUtils';
 
 import '../_init';
 
-import {DateTimeFormatterBuilder} from '../../src/format/DateTimeFormatterBuilder';
-import {IllegalArgumentException} from '../../src/errors';
+import { DateTimeFormatterBuilder } from '../../src/format/DateTimeFormatterBuilder';
+import { IllegalArgumentException } from '../../src/errors';
 
 /* these tests are not copied from threetenbp, but js-joda tests to increase coverage */
 

@@ -11,5 +11,5 @@
  * that cldr-data is installed in parallel!
  */
 module.exports = function (cldrPath) {
-    return require(`../node_modules/cldr-data/${  cldrPath}`);
+    return require(`../node_modules/cldr-data/${cldrPath}`);
 };

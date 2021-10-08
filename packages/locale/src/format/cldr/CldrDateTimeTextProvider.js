@@ -7,8 +7,8 @@ import { ChronoField, IsoFields, TextStyle } from '@js-joda/core';
 
 import cldrData from 'cldr-data';
 
-import {LocaleStore, createEntry} from '../LocaleStore';
-import {getOrCreateCldrInstance, loadCldrData} from './CldrCache';
+import { LocaleStore, createEntry } from '../LocaleStore';
+import { getOrCreateCldrInstance, loadCldrData } from './CldrCache';
 
 /**
  * The Service Provider Implementation to obtain date-time text for a field.

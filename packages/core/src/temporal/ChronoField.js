@@ -4,12 +4,12 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {MAX_SAFE_INTEGER, MIN_SAFE_INTEGER} from '../MathUtil';
+import { MAX_SAFE_INTEGER, MIN_SAFE_INTEGER } from '../MathUtil';
 
-import {ChronoUnit} from './ChronoUnit';
-import {TemporalField} from './TemporalField';
-import {ValueRange} from './ValueRange';
-import {YearConstants} from '../YearConstants';
+import { ChronoUnit } from './ChronoUnit';
+import { TemporalField } from './TemporalField';
+import { ValueRange } from './ValueRange';
+import { YearConstants } from '../YearConstants';
 
 /**
  * A standard set of fields.

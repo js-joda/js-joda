@@ -100,7 +100,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -112,33 +111,33 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {assert, requireNonNull, requireInstance} from &apos;../assert&apos;;
-import {IllegalArgumentException, IllegalStateException} from &apos;../errors&apos;;
-import {MathUtil} from &apos;../MathUtil&apos;;
+import { assert, requireNonNull, requireInstance } from &apos;../assert&apos;;
+import { IllegalArgumentException, IllegalStateException } from &apos;../errors&apos;;
+import { MathUtil } from &apos;../MathUtil&apos;;
 
-import {LocalDate} from &apos;../LocalDate&apos;;
-import {LocalDateTime} from &apos;../LocalDateTime&apos;;
-import {ZoneOffset} from &apos;../ZoneOffset&apos;;
-import {ChronoLocalDate} from &apos;../chrono/ChronoLocalDate&apos;;
-import {ChronoField} from &apos;../temporal/ChronoField&apos;;
-import {IsoFields} from &apos;../temporal/IsoFields&apos;;
-import {TemporalQueries} from &apos;../temporal/TemporalQueries&apos;;
+import { LocalDate } from &apos;../LocalDate&apos;;
+import { LocalDateTime } from &apos;../LocalDateTime&apos;;
+import { ZoneOffset } from &apos;../ZoneOffset&apos;;
+import { ChronoLocalDate } from &apos;../chrono/ChronoLocalDate&apos;;
+import { ChronoField } from &apos;../temporal/ChronoField&apos;;
+import { IsoFields } from &apos;../temporal/IsoFields&apos;;
+import { TemporalQueries } from &apos;../temporal/TemporalQueries&apos;;
 
-import {DateTimeFormatter} from &apos;./DateTimeFormatter&apos;;
-import {DecimalStyle} from &apos;./DecimalStyle&apos;;
-import {SignStyle} from &apos;./SignStyle&apos;;
-import {TextStyle} from &apos;./TextStyle&apos;;
-import {ResolverStyle} from &apos;./ResolverStyle&apos;;
+import { DateTimeFormatter } from &apos;./DateTimeFormatter&apos;;
+import { DecimalStyle } from &apos;./DecimalStyle&apos;;
+import { SignStyle } from &apos;./SignStyle&apos;;
+import { TextStyle } from &apos;./TextStyle&apos;;
+import { ResolverStyle } from &apos;./ResolverStyle&apos;;
 
-import {CharLiteralPrinterParser} from &apos;./parser/CharLiteralPrinterParser&apos;;
-import {CompositePrinterParser} from &apos;./parser/CompositePrinterParser&apos;;
-import {FractionPrinterParser} from &apos;./parser/FractionPrinterParser&apos;;
-import {NumberPrinterParser, ReducedPrinterParser} from &apos;./parser/NumberPrinterParser&apos;;
-import {OffsetIdPrinterParser} from &apos;./parser/OffsetIdPrinterParser&apos;;
-import {PadPrinterParserDecorator} from &apos;./parser/PadPrinterParserDecorator&apos;;
-import {SettingsParser} from &apos;./parser/SettingsParser&apos;;
-import {StringLiteralPrinterParser} from &apos;./parser/StringLiteralPrinterParser&apos;;
-import {ZoneIdPrinterParser} from &apos;./parser/ZoneIdPrinterParser&apos;;
+import { CharLiteralPrinterParser } from &apos;./parser/CharLiteralPrinterParser&apos;;
+import { CompositePrinterParser } from &apos;./parser/CompositePrinterParser&apos;;
+import { FractionPrinterParser } from &apos;./parser/FractionPrinterParser&apos;;
+import { NumberPrinterParser, ReducedPrinterParser } from &apos;./parser/NumberPrinterParser&apos;;
+import { OffsetIdPrinterParser } from &apos;./parser/OffsetIdPrinterParser&apos;;
+import { PadPrinterParserDecorator } from &apos;./parser/PadPrinterParserDecorator&apos;;
+import { SettingsParser } from &apos;./parser/SettingsParser&apos;;
+import { StringLiteralPrinterParser } from &apos;./parser/StringLiteralPrinterParser&apos;;
+import { ZoneIdPrinterParser } from &apos;./parser/ZoneIdPrinterParser&apos;;
 
 const MAX_WIDTH = 15; // can&apos;t parse all numbers with more then 15 digits in javascript
 
@@ -654,7 +653,7 @@ export class DateTimeFormatterBuilder {
      */
     appendInstant(fractionalDigits=-2) {
         if (fractionalDigits &lt; -2 || fractionalDigits &gt; 9) {
-            throw new IllegalArgumentException(`Invalid fractional digits: ${  fractionalDigits}`);
+            throw new IllegalArgumentException(`Invalid fractional digits: ${fractionalDigits}`);
         }
         this._appendInternal(new InstantPrinterParser(fractionalDigits));
         return this;
@@ -987,7 +986,7 @@ export class DateTimeFormatterBuilder {
                     }
                     if (pad === 0) {
                         throw new IllegalArgumentException(
-                            `Pad letter &apos;p&apos; must be followed by valid pad pattern: ${  pattern}`);
+                            `Pad letter &apos;p&apos; must be followed by valid pad pattern: ${pattern}`);
                     }
                     this.padNext(pad); // pad and continue parsing
                 }
@@ -997,7 +996,7 @@ export class DateTimeFormatterBuilder {
                     this._parseField(cur, count, field);
                 } else if (cur === &apos;z&apos;) {
                     if (count &gt; 4) {
-                        throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
+                        throw new IllegalArgumentException(`Too many pattern letters: ${cur}`);
                     } else if (count === 4) {
                         this.appendZoneText(TextStyle.FULL);
                     } else {
@@ -1005,7 +1004,7 @@ export class DateTimeFormatterBuilder {
                     }
                 } else if (cur === &apos;V&apos;) {
                     if (count !== 2) {
-                        throw new IllegalArgumentException(`Pattern letter count must be 2: ${  cur}`);
+                        throw new IllegalArgumentException(`Pattern letter count must be 2: ${cur}`);
                     }
                     this.appendZoneId();
                 } else if (cur === &apos;Z&apos;) {
@@ -1016,7 +1015,7 @@ export class DateTimeFormatterBuilder {
                     } else if (count === 5) {
                         this.appendOffset(&apos;+HH:MM:ss&apos;, &apos;Z&apos;);
                     } else {
-                        throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
+                        throw new IllegalArgumentException(`Too many pattern letters: ${cur}`);
                     }
                 } else if (cur === &apos;O&apos;) {
                     if (count === 1) {
@@ -1024,33 +1023,33 @@ export class DateTimeFormatterBuilder {
                     } else if (count === 4) {
                         this.appendLocalizedOffset(TextStyle.FULL);
                     } else {
-                        throw new IllegalArgumentException(`Pattern letter count must be 1 or 4: ${  cur}`);
+                        throw new IllegalArgumentException(`Pattern letter count must be 1 or 4: ${cur}`);
                     }
                 } else if (cur === &apos;X&apos;) {
                     if (count &gt; 5) {
-                        throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
+                        throw new IllegalArgumentException(`Too many pattern letters: ${cur}`);
                     }
                     this.appendOffset(OffsetIdPrinterParser.PATTERNS[count + (count === 1 ? 0 : 1)], &apos;Z&apos;);
                 } else if (cur === &apos;x&apos;) {
                     if (count &gt; 5) {
-                        throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
+                        throw new IllegalArgumentException(`Too many pattern letters: ${cur}`);
                     }
                     const zero = (count === 1 ? &apos;+00&apos; : (count % 2 === 0 ? &apos;+0000&apos; : &apos;+00:00&apos;));
                     this.appendOffset(OffsetIdPrinterParser.PATTERNS[count + (count === 1 ? 0 : 1)], zero);
                 } else if (cur === &apos;W&apos;) {
                     if (count &gt; 1) {
-                        throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
+                        throw new IllegalArgumentException(`Too many pattern letters: ${cur}`);
                     }
                     this.appendWeekField(&apos;W&apos;, count);
                 } else if (cur === &apos;w&apos;) {
                     if (count &gt; 2) {
-                        throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
+                        throw new IllegalArgumentException(`Too many pattern letters: ${cur}`);
                     }
                     this.appendWeekField(&apos;w&apos;, count);
                 } else if (cur === &apos;Y&apos;) {
                     this.appendWeekField(&apos;Y&apos;, count);
                 } else {
-                    throw new IllegalArgumentException(`Unknown pattern letter: ${  cur}`);
+                    throw new IllegalArgumentException(`Unknown pattern letter: ${cur}`);
                 }
                 pos--;
 
@@ -1067,7 +1066,7 @@ export class DateTimeFormatterBuilder {
                     }
                 }
                 if (pos &gt;= pattern.length) {
-                    throw new IllegalArgumentException(`Pattern ends with an incomplete string literal: ${  pattern}`);
+                    throw new IllegalArgumentException(`Pattern ends with an incomplete string literal: ${pattern}`);
                 }
                 const str = pattern.substring(start + 1, pos);
                 if (str.length === 0) {
@@ -1086,7 +1085,7 @@ export class DateTimeFormatterBuilder {
                 this.optionalEnd();
 
             } else if (cur === &apos;{&apos; || cur === &apos;}&apos; || cur === &apos;#&apos;) {
-                throw new IllegalArgumentException(`Pattern includes reserved character: &apos;${  cur  }&apos;`);
+                throw new IllegalArgumentException(`Pattern includes reserved character: &apos;${cur}&apos;`);
             } else {
                 this.appendLiteral(cur);
             }
@@ -1124,7 +1123,7 @@ export class DateTimeFormatterBuilder {
                         this.appendText(field, TextStyle.NARROW);
                         break;
                     default:
-                        throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
+                        throw new IllegalArgumentException(`Too many pattern letters: ${cur}`);
                 }
                 break;
             case &apos;L&apos;:
@@ -1146,7 +1145,7 @@ export class DateTimeFormatterBuilder {
                         this.appendText(field, TextStyle.NARROW_STANDALONE);
                         break;
                     default:
-                        throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
+                        throw new IllegalArgumentException(`Too many pattern letters: ${cur}`);
                 }
                 break;
             case &apos;e&apos;:
@@ -1165,7 +1164,7 @@ export class DateTimeFormatterBuilder {
                         this.appendText(field, TextStyle.NARROW);
                         break;
                     default:
-                        throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
+                        throw new IllegalArgumentException(`Too many pattern letters: ${cur}`);
                 }
                 // eslint-disable-next-line no-unreachable
                 break;
@@ -1175,7 +1174,7 @@ export class DateTimeFormatterBuilder {
                         this.appendWeekField(&apos;c&apos;, count);
                         break;
                     case 2:
-                        throw new IllegalArgumentException(`Invalid number of pattern letters: ${  cur}`);
+                        throw new IllegalArgumentException(`Invalid number of pattern letters: ${cur}`);
                     case 3:
                         this.appendText(field, TextStyle.SHORT_STANDALONE);
                         break;
@@ -1186,7 +1185,7 @@ export class DateTimeFormatterBuilder {
                         this.appendText(field, TextStyle.NARROW_STANDALONE);
                         break;
                     default:
-                        throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
+                        throw new IllegalArgumentException(`Too many pattern letters: ${cur}`);
                 }
                 // eslint-disable-next-line no-unreachable
                 break;
@@ -1194,7 +1193,7 @@ export class DateTimeFormatterBuilder {
                 if (count === 1) {
                     this.appendText(field, TextStyle.SHORT);
                 } else {
-                    throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
+                    throw new IllegalArgumentException(`Too many pattern letters: ${cur}`);
                 }
                 // eslint-disable-next-line no-unreachable
                 break;
@@ -1213,7 +1212,7 @@ export class DateTimeFormatterBuilder {
                         this.appendText(field, TextStyle.NARROW);
                         break;
                     default:
-                        throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
+                        throw new IllegalArgumentException(`Too many pattern letters: ${cur}`);
                 }
                 // eslint-disable-next-line no-unreachable
                 break;
@@ -1224,7 +1223,7 @@ export class DateTimeFormatterBuilder {
                 if (count === 1) {
                     this.appendValue(field);
                 } else {
-                    throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
+                    throw new IllegalArgumentException(`Too many pattern letters: ${cur}`);
                 }
                 break;
             case &apos;d&apos;:
@@ -1239,7 +1238,7 @@ export class DateTimeFormatterBuilder {
                 } else if (count === 2) {
                     this.appendValue(field, count);
                 } else {
-                    throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
+                    throw new IllegalArgumentException(`Too many pattern letters: ${cur}`);
                 }
                 break;
             case &apos;D&apos;:
@@ -1248,7 +1247,7 @@ export class DateTimeFormatterBuilder {
                 } else if (count &lt;= 3) {
                     this.appendValue(field, count);
                 } else {
-                    throw new IllegalArgumentException(`Too many pattern letters: ${  cur}`);
+                    throw new IllegalArgumentException(`Too many pattern letters: ${cur}`);
                 }
                 break;
             default:
@@ -1318,7 +1317,7 @@ export class DateTimeFormatterBuilder {
      */
     _padNext2(padWidth, padChar) {
         if (padWidth &lt; 1) {
-            throw new IllegalArgumentException(`The pad width must be at least one but was ${  padWidth}`);
+            throw new IllegalArgumentException(`The pad width must be at least one but was ${padWidth}`);
         }
         this._active._padNextWidth = padWidth;
         this._active._padNextChar = padChar;
@@ -1549,7 +1548,7 @@ class InstantPrinterParser  {
             }
             if (hi &lt; 0) {
                 if (ldt.year() === -10000) {
-                    buf.replace(pos, pos + 2, `${  hi - 1}`);
+                    buf.replace(pos, pos + 2, `${hi - 1}`);
                 } else if (lo === 0) {
                     buf.insert(pos, hi);
                 } else {
@@ -1562,11 +1561,11 @@ class InstantPrinterParser  {
             if (inNano !== 0) {
                 buf.append(&apos;.&apos;);
                 if (MathUtil.intMod(inNano, 1000000) === 0) {
-                    buf.append((`${  MathUtil.intDiv(inNano, 1000000) + 1000}`).substring(1));
+                    buf.append((`${MathUtil.intDiv(inNano, 1000000) + 1000}`).substring(1));
                 } else if (MathUtil.intMod(inNano, 1000) === 0) {
-                    buf.append((`${  MathUtil.intDiv(inNano, 1000) + 1000000}`).substring(1));
+                    buf.append((`${MathUtil.intDiv(inNano, 1000) + 1000000}`).substring(1));
                 } else {
-                    buf.append((`${  (inNano) + 1000000000}`).substring(1));
+                    buf.append((`${(inNano) + 1000000000}`).substring(1));
                 }
             }
         } else if (this.fractionalDigits &gt; 0 || (this.fractionalDigits === -1 &amp;&amp; inNano &gt; 0)) {

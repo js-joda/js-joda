@@ -4,8 +4,8 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {ChronoUnit} from '../../src/temporal/ChronoUnit';
-import {TemporalAmount} from '../../src/temporal/TemporalAmount';
+import { ChronoUnit } from '../../src/temporal/ChronoUnit';
+import { TemporalAmount } from '../../src/temporal/TemporalAmount';
 
 export class MockSimplePeriod extends TemporalAmount {
     constructor(amount, unit) {

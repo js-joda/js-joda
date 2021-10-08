@@ -1,3 +1,4 @@
 dist/*
 build/*
 tmp/*
+benchmark/node_modules/*

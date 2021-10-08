@@ -4,14 +4,14 @@
  */
 
 
-import {expect} from 'chai';
+import { expect } from 'chai';
 
 import '../_init';
 
-import {assertEquals} from '../testUtils';
+import { assertEquals } from '../testUtils';
 
-import {ZoneOffset} from '../../src/ZoneOffset';
-import {ZoneRules} from '../../src/zone/ZoneRules';
+import { ZoneOffset } from '../../src/ZoneOffset';
+import { ZoneRules } from '../../src/zone/ZoneRules';
 
 describe('zone/ZoneRules', () => {
 

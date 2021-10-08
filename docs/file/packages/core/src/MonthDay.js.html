@@ -100,7 +100,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -111,23 +110,23 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-import {requireNonNull, requireInstance} from &apos;./assert&apos;;
-import {DateTimeException, UnsupportedTemporalTypeException} from &apos;./errors&apos;;
-import {MathUtil} from &apos;./MathUtil&apos;;
+import { requireNonNull, requireInstance } from &apos;./assert&apos;;
+import { DateTimeException, UnsupportedTemporalTypeException } from &apos;./errors&apos;;
+import { MathUtil } from &apos;./MathUtil&apos;;
 
-import {ChronoField} from &apos;./temporal/ChronoField&apos;;
-import {Clock} from &apos;./Clock&apos;;
-import {DateTimeFormatter} from &apos;./format/DateTimeFormatter&apos;;
-import {DateTimeFormatterBuilder} from &apos;./format/DateTimeFormatterBuilder&apos;;
-import {IsoChronology} from &apos;./chrono/IsoChronology&apos;;
-import {LocalDate} from &apos;./LocalDate&apos;;
-import {Month} from &apos;./Month&apos;;
-import {TemporalAccessor} from &apos;./temporal/TemporalAccessor&apos;;
-import {TemporalQuery, createTemporalQuery} from &apos;./temporal/TemporalQuery&apos;;
-import {TemporalQueries} from &apos;./temporal/TemporalQueries&apos;;
-import {ValueRange} from &apos;./temporal/ValueRange&apos;;
-import {Year} from &apos;./Year&apos;;
-import {ZoneId} from &apos;./ZoneId&apos;;
+import { ChronoField } from &apos;./temporal/ChronoField&apos;;
+import { Clock } from &apos;./Clock&apos;;
+import { DateTimeFormatter } from &apos;./format/DateTimeFormatter&apos;;
+import { DateTimeFormatterBuilder } from &apos;./format/DateTimeFormatterBuilder&apos;;
+import { IsoChronology } from &apos;./chrono/IsoChronology&apos;;
+import { LocalDate } from &apos;./LocalDate&apos;;
+import { Month } from &apos;./Month&apos;;
+import { TemporalAccessor } from &apos;./temporal/TemporalAccessor&apos;;
+import { TemporalQuery, createTemporalQuery } from &apos;./temporal/TemporalQuery&apos;;
+import { TemporalQueries } from &apos;./temporal/TemporalQueries&apos;;
+import { ValueRange } from &apos;./temporal/ValueRange&apos;;
+import { Year } from &apos;./Year&apos;;
+import { ZoneId } from &apos;./ZoneId&apos;;
 
 /**
  * A month-day in the ISO-8601 calendar system, such as `--12-03`.
@@ -267,8 +266,8 @@ export class MonthDay extends TemporalAccessor {
         requireNonNull(month, &apos;month&apos;);
         ChronoField.DAY_OF_MONTH.checkValidValue(dayOfMonth);
         if (dayOfMonth &gt; month.maxLength()) {
-            throw new DateTimeException(`Illegal value for DayOfMonth field, value ${  dayOfMonth 
-            } is not valid for month ${  month.toString()}`);
+            throw new DateTimeException(`Illegal value for DayOfMonth field, value ${dayOfMonth 
+            } is not valid for month ${month.toString()}`);
         }
         return new MonthDay(month.value(), dayOfMonth);
     }
@@ -326,7 +325,7 @@ export class MonthDay extends TemporalAccessor {
             return MonthDay.of(temporal.get(ChronoField.MONTH_OF_YEAR), temporal.get(ChronoField.DAY_OF_MONTH));
         } catch (ex) {
             throw new DateTimeException(`Unable to obtain MonthDay from TemporalAccessor: ${ 
-                temporal  }, type ${  temporal &amp;&amp; temporal.constructor != null ? temporal.constructor.name : &apos;&apos;}`);
+                temporal}, type ${temporal &amp;&amp; temporal.constructor != null ? temporal.constructor.name : &apos;&apos;}`);
         }
     }
     //-----------------------------------------------------------------------
@@ -556,7 +555,7 @@ export class MonthDay extends TemporalAccessor {
                 case ChronoField.DAY_OF_MONTH: return this._day;
                 case ChronoField.MONTH_OF_YEAR: return this._month;
             }
-            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${field}`);
         }
         return field.getFrom(this);
     }
@@ -790,8 +789,8 @@ export class MonthDay extends TemporalAccessor {
      */
     toString() {
         return `--${
-            this._month &lt; 10 ? &apos;0&apos; : &apos;&apos;  }${this._month
-        }${this._day &lt; 10 ? &apos;-0&apos; : &apos;-&apos;  }${this._day}`;
+            this._month &lt; 10 ? &apos;0&apos; : &apos;&apos;}${this._month
+        }${this._day &lt; 10 ? &apos;-0&apos; : &apos;-&apos;}${this._day}`;
     }
 
     /**

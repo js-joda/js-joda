@@ -4,21 +4,21 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {ChronoField} from './temporal/ChronoField';
-import {ChronoUnit} from './temporal/ChronoUnit';
-import {Temporal} from './temporal/Temporal';
-import {Clock} from './Clock';
-import {DateTimeException, UnsupportedTemporalTypeException} from './errors';
-import {DateTimeFormatter} from './format/DateTimeFormatter';
-import {Instant, LocalTime} from './js-joda';
-import {MathUtil} from './MathUtil';
-import {OffsetDateTime} from './OffsetDateTime';
-import {TemporalQueries} from './temporal/TemporalQueries';
-import {ZoneId} from './ZoneId';
-import {ZoneOffset} from './ZoneOffset';
+import { ChronoField } from './temporal/ChronoField';
+import { ChronoUnit } from './temporal/ChronoUnit';
+import { Temporal } from './temporal/Temporal';
+import { Clock } from './Clock';
+import { DateTimeException, UnsupportedTemporalTypeException } from './errors';
+import { DateTimeFormatter } from './format/DateTimeFormatter';
+import { Instant, LocalTime } from './js-joda';
+import { MathUtil } from './MathUtil';
+import { OffsetDateTime } from './OffsetDateTime';
+import { TemporalQueries } from './temporal/TemporalQueries';
+import { ZoneId } from './ZoneId';
+import { ZoneOffset } from './ZoneOffset';
 
-import {createTemporalQuery} from './temporal/TemporalQuery';
-import {requireInstance, requireNonNull} from './assert';
+import { createTemporalQuery } from './temporal/TemporalQuery';
+import { requireInstance, requireNonNull } from './assert';
 
 /**
  * A time with an offset from UTC/Greenwich in the ISO-8601 calendar system, such as 10:15:30+01:00.
@@ -450,7 +450,7 @@ export class OffsetTime extends Temporal {
                 case ChronoUnit.HOURS: return Math.floor(nanosUntil / LocalTime.NANOS_PER_HOUR);
                 case ChronoUnit.HALF_DAYS: return Math.floor(nanosUntil / (12 * LocalTime.NANOS_PER_HOUR));
             }
-            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${unit}`);
         }
         return unit.between(this, end);
     }

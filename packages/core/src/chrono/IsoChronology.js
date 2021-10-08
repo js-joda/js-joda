@@ -4,19 +4,19 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {Enum} from '../Enum';
-import {requireNonNull} from '../assert';
-import {DateTimeException} from '../errors';
-import {MathUtil} from '../MathUtil';
+import { Enum } from '../Enum';
+import { requireNonNull } from '../assert';
+import { DateTimeException } from '../errors';
+import { MathUtil } from '../MathUtil';
 
-import {DayOfWeek} from '../DayOfWeek';
-import {LocalDate} from '../LocalDate';
-import {Month} from '../Month';
-import {Year} from '../Year';
+import { DayOfWeek } from '../DayOfWeek';
+import { LocalDate } from '../LocalDate';
+import { Month } from '../Month';
+import { Year } from '../Year';
 
-import {ChronoField} from '../temporal/ChronoField';
-import {ResolverStyle} from '../format/ResolverStyle';
-import {TemporalAdjusters} from '../temporal/TemporalAdjusters';
+import { ChronoField } from '../temporal/ChronoField';
+import { ResolverStyle } from '../format/ResolverStyle';
+import { TemporalAdjusters } from '../temporal/TemporalAdjusters';
 
 export class IsoChronology extends Enum{
     /**
@@ -56,7 +56,7 @@ export class IsoChronology extends Enum{
         requireNonNull(field, 'field');
         const current = fieldValues.get(field);
         if (current != null && current !== value) {
-            throw new DateTimeException(`Invalid state, field: ${  field  } ${  current  } conflicts with ${  field  } ${  value}`);
+            throw new DateTimeException(`Invalid state, field: ${field} ${current} conflicts with ${field} ${value}`);
         }
         fieldValues.put(field, value);
     }
@@ -102,7 +102,7 @@ export class IsoChronology extends Enum{
             } else if (era === 0) {
                 this._updateResolveMap(fieldValues, ChronoField.YEAR, MathUtil.safeSubtract(1, yoeLong));
             } else {
-                throw new DateTimeException(`Invalid value for era: ${  era}`);
+                throw new DateTimeException(`Invalid value for era: ${era}`);
             }
         } else if (fieldValues.containsKey(ChronoField.ERA)) {
             ChronoField.ERA.checkValidValue(fieldValues.get(ChronoField.ERA));  // always validated

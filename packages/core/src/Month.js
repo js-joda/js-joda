@@ -4,15 +4,15 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {assert, requireNonNull, requireInstance} from './assert';
-import {MathUtil} from './MathUtil';
+import { assert, requireNonNull, requireInstance } from './assert';
+import { MathUtil } from './MathUtil';
 
-import {ChronoField} from './temporal/ChronoField';
-import {ChronoUnit} from './temporal/ChronoUnit';
-import {DateTimeException, IllegalArgumentException, UnsupportedTemporalTypeException} from './errors';
-import {IsoChronology} from './chrono/IsoChronology';
-import {TemporalAccessor} from './temporal/TemporalAccessor';
-import {TemporalQueries} from './temporal/TemporalQueries';
+import { ChronoField } from './temporal/ChronoField';
+import { ChronoUnit } from './temporal/ChronoUnit';
+import { DateTimeException, IllegalArgumentException, UnsupportedTemporalTypeException } from './errors';
+import { IsoChronology } from './chrono/IsoChronology';
+import { TemporalAccessor } from './temporal/TemporalAccessor';
+import { TemporalQueries } from './temporal/TemporalQueries';
 
 /**
  * A month-of-year, such as 'July'.
@@ -179,7 +179,7 @@ export class Month extends TemporalAccessor {
         if (field === ChronoField.MONTH_OF_YEAR) {
             return this.value();
         } else if (field instanceof ChronoField) {
-            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${field}`);
         }
         return field.getFrom(this);
     }
@@ -425,7 +425,7 @@ export class Month extends TemporalAccessor {
             case Month.DECEMBER:
                 return 'DECEMBER';
             default:
-                return `unknown Month, value: ${  this.value()}`;
+                return `unknown Month, value: ${this.value()}`;
         }
     }
 
@@ -537,7 +537,7 @@ export class Month extends TemporalAccessor {
      **/
     static of(month) {
         if (month < 1 || month > 12) {
-            assert(false, `Invalid value for MonthOfYear: ${  month}`, DateTimeException);
+            assert(false, `Invalid value for MonthOfYear: ${month}`, DateTimeException);
         }
         return MONTHS[month-1];
     }
@@ -572,7 +572,7 @@ export class Month extends TemporalAccessor {
             return Month.of(temporal.get(ChronoField.MONTH_OF_YEAR));
         } catch (ex) {
             throw new DateTimeException(`Unable to obtain Month from TemporalAccessor: ${ 
-                temporal  } of type ${  temporal && temporal.constructor != null ? temporal.constructor.name : ''}`, ex);
+                temporal} of type ${temporal && temporal.constructor != null ? temporal.constructor.name : ''}`, ex);
         }
     }
 }

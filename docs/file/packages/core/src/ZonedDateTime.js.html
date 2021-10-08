@@ -100,7 +100,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -112,25 +111,25 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {requireNonNull} from &apos;./assert&apos;;
-import {DateTimeException, IllegalArgumentException} from &apos;./errors&apos;;
-import {MathUtil} from &apos;./MathUtil&apos;;
+import { requireNonNull } from &apos;./assert&apos;;
+import { DateTimeException, IllegalArgumentException } from &apos;./errors&apos;;
+import { MathUtil } from &apos;./MathUtil&apos;;
 
-import {Clock} from &apos;./Clock&apos;;
-import {Instant} from &apos;./Instant&apos;;
-import {LocalDate} from &apos;./LocalDate&apos;;
-import {LocalDateTime} from &apos;./LocalDateTime&apos;;
-import {LocalTime} from &apos;./LocalTime&apos;;
-import {OffsetDateTime} from &apos;./OffsetDateTime&apos;;
-import {ZoneId} from &apos;./ZoneId&apos;;
-import {ZoneOffset} from &apos;./ZoneOffset&apos;;
+import { Clock } from &apos;./Clock&apos;;
+import { Instant } from &apos;./Instant&apos;;
+import { LocalDate } from &apos;./LocalDate&apos;;
+import { LocalDateTime } from &apos;./LocalDateTime&apos;;
+import { LocalTime } from &apos;./LocalTime&apos;;
+import { OffsetDateTime } from &apos;./OffsetDateTime&apos;;
+import { ZoneId } from &apos;./ZoneId&apos;;
+import { ZoneOffset } from &apos;./ZoneOffset&apos;;
 
-import {ChronoZonedDateTime} from &apos;./chrono/ChronoZonedDateTime&apos;;
-import {DateTimeFormatter} from &apos;./format/DateTimeFormatter&apos;;
-import {ChronoField} from &apos;./temporal/ChronoField&apos;;
-import {ChronoUnit} from &apos;./temporal/ChronoUnit&apos;;
-import {createTemporalQuery} from &apos;./temporal/TemporalQuery&apos;;
-import {TemporalQueries} from &apos;./temporal/TemporalQueries&apos;;
+import { ChronoZonedDateTime } from &apos;./chrono/ChronoZonedDateTime&apos;;
+import { DateTimeFormatter } from &apos;./format/DateTimeFormatter&apos;;
+import { ChronoField } from &apos;./temporal/ChronoField&apos;;
+import { ChronoUnit } from &apos;./temporal/ChronoUnit&apos;;
+import { createTemporalQuery } from &apos;./temporal/TemporalQuery&apos;;
+import { TemporalQueries } from &apos;./temporal/TemporalQueries&apos;;
 
 /**
  * A date-time with a time-zone in the ISO-8601 calendar system,
@@ -486,12 +485,12 @@ export class ZonedDateTime extends ChronoZonedDateTime {
             if (trans != null &amp;&amp; trans.isGap()) {
                 // error message says daylight savings for simplicity
                 // even though there are other kinds of gaps
-                throw new DateTimeException(`LocalDateTime ${  localDateTime 
-                } does not exist in zone ${  zone 
+                throw new DateTimeException(`LocalDateTime ${localDateTime 
+                } does not exist in zone ${zone 
                 } due to a gap in the local time-line, typically caused by daylight savings`);
             }
-            throw new DateTimeException(`ZoneOffset &quot;${  offset  }&quot; is not valid for LocalDateTime &quot;${ 
-                localDateTime  }&quot; in zone &quot;${  zone  }&quot;`);
+            throw new DateTimeException(`ZoneOffset &quot;${offset}&quot; is not valid for LocalDateTime &quot;${ 
+                localDateTime}&quot; in zone &quot;${zone}&quot;`);
         }
         return new ZonedDateTime(localDateTime, offset, zone);
     }
@@ -2039,7 +2038,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     toString() {
         let str = this._dateTime.toString() + this._offset.toString();
         if (this._offset !== this._zone) {
-            str += `[${  this._zone.toString()  }]`;
+            str += `[${this._zone.toString()}]`;
         }
         return str;
     }

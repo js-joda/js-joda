@@ -4,9 +4,9 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {requireNonNull} from '../../assert';
-import {IllegalArgumentException} from '../../errors';
-import {MathUtil} from '../../MathUtil';
+import { requireNonNull } from '../../assert';
+import { IllegalArgumentException } from '../../errors';
+import { MathUtil } from '../../MathUtil';
 
 /**
  * TODO optimize FractionPrinterParser, fix documentation
@@ -27,17 +27,17 @@ export class FractionPrinterParser {
     constructor(field, minWidth, maxWidth, decimalPoint) {
         requireNonNull(field, 'field');
         if (field.range().isFixed() === false) {
-            throw new IllegalArgumentException(`Field must have a fixed set of values: ${  field}`);
+            throw new IllegalArgumentException(`Field must have a fixed set of values: ${field}`);
         }
         if (minWidth < 0 || minWidth > 9) {
-            throw new IllegalArgumentException(`Minimum width must be from 0 to 9 inclusive but was ${  minWidth}`);
+            throw new IllegalArgumentException(`Minimum width must be from 0 to 9 inclusive but was ${minWidth}`);
         }
         if (maxWidth < 1 || maxWidth > 9) {
-            throw new IllegalArgumentException(`Maximum width must be from 1 to 9 inclusive but was ${  maxWidth}`);
+            throw new IllegalArgumentException(`Maximum width must be from 1 to 9 inclusive but was ${maxWidth}`);
         }
         if (maxWidth < minWidth) {
             throw new IllegalArgumentException(`Maximum width must exceed or equal the minimum width but ${ 
-                maxWidth  } < ${  minWidth}`);
+                maxWidth} < ${minWidth}`);
         }
         this.field = field;
         this.minWidth = minWidth;
@@ -132,7 +132,7 @@ export class FractionPrinterParser {
         const _range = range.maximum() - _min + 1;
         const _value = value - _min;
         const _scaled = MathUtil.intDiv((_value * 1000000000),  _range);
-        let fraction = `${  _scaled}`;
+        let fraction = `${_scaled}`;
         while(fraction.length < 9){
             fraction = zeroDigit + fraction;
         }
@@ -156,7 +156,7 @@ export class FractionPrinterParser {
 
     toString() {
         const decimal = (this.decimalPoint ? ',DecimalPoint' : '');
-        return `Fraction(${  this.field  },${  this.minWidth  },${  this.maxWidth  }${decimal  })`;
+        return `Fraction(${this.field},${this.minWidth},${this.maxWidth}${decimal})`;
     }
 }
 

@@ -3,17 +3,17 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
-import {assertEquals} from './testUtils';
+import { expect } from 'chai';
+import { assertEquals } from './testUtils';
 
 import './_init';
 
-import {ChronoUnit} from '../src/temporal/ChronoUnit';
-import {ArithmeticException, DateTimeException, DateTimeParseException, NullPointerException, UnsupportedTemporalTypeException} from '../src/errors';
-import {IsoChronology} from '../src/chrono/IsoChronology';
-import {MathUtil} from '../src/MathUtil';
-import {Period} from '../src/Period';
-import {TemporalAmount} from '../src/temporal/TemporalAmount';
+import { ChronoUnit } from '../src/temporal/ChronoUnit';
+import { ArithmeticException, DateTimeException, DateTimeParseException, NullPointerException, UnsupportedTemporalTypeException } from '../src/errors';
+import { IsoChronology } from '../src/chrono/IsoChronology';
+import { MathUtil } from '../src/MathUtil';
+import { Period } from '../src/Period';
+import { TemporalAmount } from '../src/temporal/TemporalAmount';
 
 /* these are not covered by the threetenbp ported tests */
 describe('js-joda Period', () => {

@@ -100,7 +100,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -112,24 +111,24 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {assert, requireNonNull} from &apos;../assert&apos;;
+import { assert, requireNonNull } from &apos;../assert&apos;;
 
-import {DateTimeParseException, NullPointerException} from &apos;../errors&apos;;
+import { DateTimeParseException, NullPointerException } from &apos;../errors&apos;;
 
-import {Period} from &apos;../Period&apos;;
+import { Period } from &apos;../Period&apos;;
 
-import {ParsePosition} from &apos;./ParsePosition&apos;;
-import {DateTimeBuilder} from &apos;./DateTimeBuilder&apos;;
-import {DateTimeParseContext} from &apos;./DateTimeParseContext&apos;;
-import {DateTimePrintContext} from &apos;./DateTimePrintContext&apos;;
-import {DateTimeFormatterBuilder} from &apos;./DateTimeFormatterBuilder&apos;;
-import {SignStyle} from &apos;./SignStyle&apos;;
-import {StringBuilder} from &apos;./StringBuilder&apos;;
-import {ResolverStyle} from &apos;./ResolverStyle&apos;;
+import { ParsePosition } from &apos;./ParsePosition&apos;;
+import { DateTimeBuilder } from &apos;./DateTimeBuilder&apos;;
+import { DateTimeParseContext } from &apos;./DateTimeParseContext&apos;;
+import { DateTimePrintContext } from &apos;./DateTimePrintContext&apos;;
+import { DateTimeFormatterBuilder } from &apos;./DateTimeFormatterBuilder&apos;;
+import { SignStyle } from &apos;./SignStyle&apos;;
+import { StringBuilder } from &apos;./StringBuilder&apos;;
+import { ResolverStyle } from &apos;./ResolverStyle&apos;;
 
-import {IsoChronology} from &apos;../chrono/IsoChronology&apos;;
-import {ChronoField} from &apos;../temporal/ChronoField&apos;;
-import {createTemporalQuery} from &apos;../temporal/TemporalQuery&apos;;
+import { IsoChronology } from &apos;../chrono/IsoChronology&apos;;
+import { ChronoField } from &apos;../temporal/ChronoField&apos;;
+import { createTemporalQuery } from &apos;../temporal/TemporalQuery&apos;;
 
 /**
  *
@@ -610,11 +609,11 @@ export class DateTimeFormatter {
     _createError(text, ex) {
         let abbr = &apos;&apos;;
         if (text.length &gt; 64) {
-            abbr = `${text.substring(0, 64)  }...`;
+            abbr = `${text.substring(0, 64)}...`;
         } else {
             abbr = text;
         }
-        return new DateTimeParseException(`Text &apos;${  abbr  }&apos; could not be parsed: ${  ex.message}`, text, 0, ex);
+        return new DateTimeParseException(`Text &apos;${abbr}&apos; could not be parsed: ${ex.message}`, text, 0, ex);
     }
 
 
@@ -637,15 +636,15 @@ export class DateTimeFormatter {
         if (result == null || pos.getErrorIndex() &gt;= 0 || (position == null &amp;&amp; pos.getIndex() &lt; text.length)) {
             let abbr = &apos;&apos;;
             if (text.length &gt; 64) {
-                abbr = `${text.substr(0, 64).toString()  }...`;
+                abbr = `${text.substr(0, 64).toString()}...`;
             } else {
                 abbr = text;
             }
             if (pos.getErrorIndex() &gt;= 0) {
-                throw new DateTimeParseException(`Text &apos;${  abbr  }&apos; could not be parsed at index ${ 
+                throw new DateTimeParseException(`Text &apos;${abbr}&apos; could not be parsed at index ${ 
                     pos.getErrorIndex()}`, text, pos.getErrorIndex());
             } else {
-                throw new DateTimeParseException(`Text &apos;${  abbr  }&apos; could not be parsed, unparsed text found at index ${ 
+                throw new DateTimeParseException(`Text &apos;${abbr}&apos; could not be parsed, unparsed text found at index ${ 
                     pos.getIndex()}`, text, pos.getIndex());
             }
         }

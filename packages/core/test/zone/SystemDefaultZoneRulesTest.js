@@ -3,18 +3,18 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
+import { expect } from 'chai';
 
 import '../_init';
-import {assertEquals} from '../testUtils';
+import { assertEquals } from '../testUtils';
 
-import {DateTimeException} from '../../src/errors';
+import { DateTimeException } from '../../src/errors';
 
-import {LocalDateTime} from '../../src/LocalDateTime';
-import {Instant} from '../../src/Instant';
-import {ZoneId} from '../../src/ZoneId';
-import {ZoneOffset} from '../../src/ZoneOffset';
-import {SystemDefaultZoneRules} from '../../src/zone/SystemDefaultZoneRules';
+import { LocalDateTime } from '../../src/LocalDateTime';
+import { Instant } from '../../src/Instant';
+import { ZoneId } from '../../src/ZoneId';
+import { ZoneOffset } from '../../src/ZoneOffset';
+import { SystemDefaultZoneRules } from '../../src/zone/SystemDefaultZoneRules';
 
 describe('zone/SystemDefaultZoneRulesTest.js', () => {
 
@@ -107,13 +107,13 @@ describe('zone/SystemDefaultZoneRulesTest.js', () => {
 
         function sample(ldt){
             const zone = ZoneId.systemDefault();
-            log(`${ldt.toString()  }\t${  zone.rules().offset(ldt).toString()}`);
+            log(`${ldt.toString()}\t${zone.rules().offset(ldt).toString()}`);
 
         }
 
         function log(str){
             // console.log(str);
-            logResult += `${str  }\n`;
+            logResult += `${str}\n`;
         }
 
     });

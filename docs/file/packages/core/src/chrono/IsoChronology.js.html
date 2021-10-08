@@ -100,7 +100,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -112,19 +111,19 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {Enum} from &apos;../Enum&apos;;
-import {requireNonNull} from &apos;../assert&apos;;
-import {DateTimeException} from &apos;../errors&apos;;
-import {MathUtil} from &apos;../MathUtil&apos;;
+import { Enum } from &apos;../Enum&apos;;
+import { requireNonNull } from &apos;../assert&apos;;
+import { DateTimeException } from &apos;../errors&apos;;
+import { MathUtil } from &apos;../MathUtil&apos;;
 
-import {DayOfWeek} from &apos;../DayOfWeek&apos;;
-import {LocalDate} from &apos;../LocalDate&apos;;
-import {Month} from &apos;../Month&apos;;
-import {Year} from &apos;../Year&apos;;
+import { DayOfWeek } from &apos;../DayOfWeek&apos;;
+import { LocalDate } from &apos;../LocalDate&apos;;
+import { Month } from &apos;../Month&apos;;
+import { Year } from &apos;../Year&apos;;
 
-import {ChronoField} from &apos;../temporal/ChronoField&apos;;
-import {ResolverStyle} from &apos;../format/ResolverStyle&apos;;
-import {TemporalAdjusters} from &apos;../temporal/TemporalAdjusters&apos;;
+import { ChronoField } from &apos;../temporal/ChronoField&apos;;
+import { ResolverStyle } from &apos;../format/ResolverStyle&apos;;
+import { TemporalAdjusters } from &apos;../temporal/TemporalAdjusters&apos;;
 
 export class IsoChronology extends Enum{
     /**
@@ -164,7 +163,7 @@ export class IsoChronology extends Enum{
         requireNonNull(field, &apos;field&apos;);
         const current = fieldValues.get(field);
         if (current != null &amp;&amp; current !== value) {
-            throw new DateTimeException(`Invalid state, field: ${  field  } ${  current  } conflicts with ${  field  } ${  value}`);
+            throw new DateTimeException(`Invalid state, field: ${field} ${current} conflicts with ${field} ${value}`);
         }
         fieldValues.put(field, value);
     }
@@ -210,7 +209,7 @@ export class IsoChronology extends Enum{
             } else if (era === 0) {
                 this._updateResolveMap(fieldValues, ChronoField.YEAR, MathUtil.safeSubtract(1, yoeLong));
             } else {
-                throw new DateTimeException(`Invalid value for era: ${  era}`);
+                throw new DateTimeException(`Invalid value for era: ${era}`);
             }
         } else if (fieldValues.containsKey(ChronoField.ERA)) {
             ChronoField.ERA.checkValidValue(fieldValues.get(ChronoField.ERA));  // always validated

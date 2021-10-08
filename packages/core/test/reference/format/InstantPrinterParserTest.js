@@ -1,16 +1,16 @@
-import {expect} from 'chai';
-import {assertEquals, fail} from '../../testUtils';
+import { expect } from 'chai';
+import { assertEquals, fail } from '../../testUtils';
 
 import '../../_init';
 
-import {IllegalArgumentException} from '../../../src/errors';
-import {Instant} from '../../../src/Instant';
-import {LocalDateTime} from '../../../src/LocalDateTime';
-import {ZoneOffset} from '../../../src/ZoneOffset';
+import { IllegalArgumentException } from '../../../src/errors';
+import { Instant } from '../../../src/Instant';
+import { LocalDateTime } from '../../../src/LocalDateTime';
+import { ZoneOffset } from '../../../src/ZoneOffset';
 
-import {DateTimeFormatterBuilder} from '../../../src/format/DateTimeFormatterBuilder';
-import {DateTimeFormatter} from '../../../src/format/DateTimeFormatter';
-import {ResolverStyle} from '../../../src/format/ResolverStyle';
+import { DateTimeFormatterBuilder } from '../../../src/format/DateTimeFormatterBuilder';
+import { DateTimeFormatter } from '../../../src/format/DateTimeFormatter';
+import { ResolverStyle } from '../../../src/format/ResolverStyle';
 
 
 // TODO tests are missing in threeten bp, add to threeten bp somehow

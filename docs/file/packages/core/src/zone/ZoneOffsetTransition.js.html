@@ -100,7 +100,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -112,11 +111,11 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {requireNonNull} from &apos;../assert&apos;;
-import {IllegalArgumentException} from &apos;../errors&apos;;
+import { requireNonNull } from &apos;../assert&apos;;
+import { IllegalArgumentException } from &apos;../errors&apos;;
 
-import {Duration} from &apos;../Duration&apos;;
-import {LocalDateTime} from &apos;../LocalDateTime&apos;;
+import { Duration } from &apos;../Duration&apos;;
+import { LocalDateTime } from &apos;../LocalDateTime&apos;;
 
 /**
  * A transition between two offsets caused by a discontinuity in the local time-line.
@@ -389,9 +388,9 @@ export class ZoneOffsetTransition {
      * @return {string} a string for debugging, not null
      */
     toString() {
-        return `Transition[${  this.isGap() ? &apos;Gap&apos; : &apos;Overlap&apos; 
-        } at ${  this._transition.toString()  }${this._offsetBefore.toString() 
-        } to ${  this._offsetAfter  }]`;
+        return `Transition[${this.isGap() ? &apos;Gap&apos; : &apos;Overlap&apos; 
+        } at ${this._transition.toString()}${this._offsetBefore.toString() 
+        } to ${this._offsetAfter}]`;
     }
 
 }

@@ -1,7 +1,7 @@
 {
   "type": "File",
   "start": 0,
-  "end": 7742,
+  "end": 7744,
   "loc": {
     "start": {
       "line": 1,
@@ -15,7 +15,7 @@
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 7742,
+    "end": 7744,
     "loc": {
       "start": {
         "line": 1,
@@ -31,7 +31,7 @@
       {
         "type": "ImportDeclaration",
         "start": 229,
-        "end": 274,
+        "end": 276,
         "loc": {
           "start": {
             "line": 7,
@@ -39,36 +39,36 @@
           },
           "end": {
             "line": 7,
-            "column": 45
+            "column": 47
           }
         },
         "specifiers": [
           {
             "type": "ImportSpecifier",
-            "start": 237,
-            "end": 255,
+            "start": 238,
+            "end": 256,
             "loc": {
               "start": {
                 "line": 7,
-                "column": 8
+                "column": 9
               },
               "end": {
                 "line": 7,
-                "column": 26
+                "column": 27
               }
             },
             "imported": {
               "type": "Identifier",
-              "start": 237,
-              "end": 255,
+              "start": 238,
+              "end": 256,
               "loc": {
                 "start": {
                   "line": 7,
-                  "column": 8
+                  "column": 9
                 },
                 "end": {
                   "line": 7,
-                  "column": 26
+                  "column": 27
                 },
                 "identifierName": "abstractMethodFail"
               },
@@ -77,16 +77,16 @@
             },
             "local": {
               "type": "Identifier",
-              "start": 237,
-              "end": 255,
+              "start": 238,
+              "end": 256,
               "loc": {
                 "start": {
                   "line": 7,
-                  "column": 8
+                  "column": 9
                 },
                 "end": {
                   "line": 7,
-                  "column": 26
+                  "column": 27
                 },
                 "identifierName": "abstractMethodFail"
               },
@@ -97,16 +97,16 @@
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 262,
-          "end": 273,
+          "start": 264,
+          "end": 275,
           "loc": {
             "start": {
               "line": 7,
-              "column": 33
+              "column": 35
             },
             "end": {
               "line": 7,
-              "column": 44
+              "column": 46
             }
           },
           "extra": {
@@ -137,8 +137,8 @@
           {
             "type": "CommentBlock",
             "value": "*\n * A unit of date-time, such as Days or Hours.\n *\n * Measurement of time is built on units, such as years, months, days, hours, minutes and seconds.\n * Implementations of this interface represent those units.\n *\n * An instance of this interface represents the unit itself, rather than an amount of the unit.\n * See {@link Period} for a class that represents an amount in terms of the common units.\n *\n * The most commonly used units are defined in {@link ChronoUnit}.\n * Further units are supplied in {@link IsoFields}.\n * Units can also be written by application code by implementing this interface.\n *\n * The unit works using double dispatch. Client code calls methods on a date-time like\n * {@link LocalDateTime} which check if the unit is a {@link ChronoUnit}.\n * If it is, then the date-time must handle it.\n * Otherwise, the method call is re-dispatched to the matching method in this interface.\n *\n * @interface\n ",
-            "start": 276,
-            "end": 1202,
+            "start": 278,
+            "end": 1204,
             "loc": {
               "start": {
                 "line": 9,
@@ -154,8 +154,8 @@
       },
       {
         "type": "ExportNamedDeclaration",
-        "start": 1203,
-        "end": 7741,
+        "start": 1205,
+        "end": 7743,
         "loc": {
           "start": {
             "line": 29,
@@ -170,8 +170,8 @@
         "source": null,
         "declaration": {
           "type": "ClassDeclaration",
-          "start": 1210,
-          "end": 7741,
+          "start": 1212,
+          "end": 7743,
           "loc": {
             "start": {
               "line": 29,
@@ -184,8 +184,8 @@
           },
           "id": {
             "type": "Identifier",
-            "start": 1216,
-            "end": 1228,
+            "start": 1218,
+            "end": 1230,
             "loc": {
               "start": {
                 "line": 29,
@@ -203,8 +203,8 @@
           "superClass": null,
           "body": {
             "type": "ClassBody",
-            "start": 1229,
-            "end": 7741,
+            "start": 1231,
+            "end": 7743,
             "loc": {
               "start": {
                 "line": 29,
@@ -218,8 +218,8 @@
             "body": [
               {
                 "type": "ClassMethod",
-                "start": 1912,
-                "end": 1970,
+                "start": 1914,
+                "end": 1972,
                 "loc": {
                   "start": {
                     "line": 44,
@@ -234,8 +234,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 1912,
-                  "end": 1920,
+                  "start": 1914,
+                  "end": 1922,
                   "loc": {
                     "start": {
                       "line": 44,
@@ -258,8 +258,8 @@
                 "params": [],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 1923,
-                  "end": 1970,
+                  "start": 1925,
+                  "end": 1972,
                   "loc": {
                     "start": {
                       "line": 44,
@@ -273,8 +273,8 @@
                   "body": [
                     {
                       "type": "ExpressionStatement",
-                      "start": 1933,
-                      "end": 1964,
+                      "start": 1935,
+                      "end": 1966,
                       "loc": {
                         "start": {
                           "line": 45,
@@ -287,8 +287,8 @@
                       },
                       "expression": {
                         "type": "CallExpression",
-                        "start": 1933,
-                        "end": 1963,
+                        "start": 1935,
+                        "end": 1965,
                         "loc": {
                           "start": {
                             "line": 45,
@@ -301,8 +301,8 @@
                         },
                         "callee": {
                           "type": "Identifier",
-                          "start": 1933,
-                          "end": 1951,
+                          "start": 1935,
+                          "end": 1953,
                           "loc": {
                             "start": {
                               "line": 45,
@@ -319,8 +319,8 @@
                         "arguments": [
                           {
                             "type": "StringLiteral",
-                            "start": 1952,
-                            "end": 1962,
+                            "start": 1954,
+                            "end": 1964,
                             "loc": {
                               "start": {
                                 "line": 45,
@@ -348,8 +348,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\n     * Gets the duration of this unit, which may be an estimate.\n     *\n     * All units return a duration measured in standard nanoseconds from this method.\n     * The duration will be positive and non-zero.\n     * For example, an hour has a duration of `60 * 60 * 1,000,000,000 ns`.\n     *\n     * Some units may return an accurate duration while others return an estimate.\n     * For example, days have an estimated duration due to the possibility of\n     * daylight saving time changes.\n     * To determine if the duration is an estimate, use {@link isDurationEstimated}.\n     *\n     * @return {Duration} the duration of this unit, which may be an estimate.\n     ",
-                    "start": 1235,
-                    "end": 1907,
+                    "start": 1237,
+                    "end": 1909,
                     "loc": {
                       "start": {
                         "line": 30,
@@ -366,8 +366,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\n     * Checks if the duration of the unit is an estimate.\n     *\n     * All units have a duration, however the duration is not always accurate.\n     * For example, days have an estimated duration due to the possibility of\n     * daylight saving time changes.\n     * This method returns true if the duration is an estimate and false if it is\n     * accurate. Note that accurate/estimated ignores leap seconds.\n     *\n     * @return {boolean} `true` if the duration is estimated, `false` if accurate.\n     ",
-                    "start": 1976,
-                    "end": 2486,
+                    "start": 1978,
+                    "end": 2488,
                     "loc": {
                       "start": {
                         "line": 48,
@@ -383,8 +383,8 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 2491,
-                "end": 2571,
+                "start": 2493,
+                "end": 2573,
                 "loc": {
                   "start": {
                     "line": 59,
@@ -399,8 +399,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 2491,
-                  "end": 2510,
+                  "start": 2493,
+                  "end": 2512,
                   "loc": {
                     "start": {
                       "line": 59,
@@ -423,8 +423,8 @@
                 "params": [],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 2513,
-                  "end": 2571,
+                  "start": 2515,
+                  "end": 2573,
                   "loc": {
                     "start": {
                       "line": 59,
@@ -438,8 +438,8 @@
                   "body": [
                     {
                       "type": "ExpressionStatement",
-                      "start": 2523,
-                      "end": 2565,
+                      "start": 2525,
+                      "end": 2567,
                       "loc": {
                         "start": {
                           "line": 60,
@@ -452,8 +452,8 @@
                       },
                       "expression": {
                         "type": "CallExpression",
-                        "start": 2523,
-                        "end": 2564,
+                        "start": 2525,
+                        "end": 2566,
                         "loc": {
                           "start": {
                             "line": 60,
@@ -466,8 +466,8 @@
                         },
                         "callee": {
                           "type": "Identifier",
-                          "start": 2523,
-                          "end": 2541,
+                          "start": 2525,
+                          "end": 2543,
                           "loc": {
                             "start": {
                               "line": 60,
@@ -484,8 +484,8 @@
                         "arguments": [
                           {
                             "type": "StringLiteral",
-                            "start": 2542,
-                            "end": 2563,
+                            "start": 2544,
+                            "end": 2565,
                             "loc": {
                               "start": {
                                 "line": 60,
@@ -513,8 +513,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\n     * Checks if the duration of the unit is an estimate.\n     *\n     * All units have a duration, however the duration is not always accurate.\n     * For example, days have an estimated duration due to the possibility of\n     * daylight saving time changes.\n     * This method returns true if the duration is an estimate and false if it is\n     * accurate. Note that accurate/estimated ignores leap seconds.\n     *\n     * @return {boolean} `true` if the duration is estimated, `false` if accurate.\n     ",
-                    "start": 1976,
-                    "end": 2486,
+                    "start": 1978,
+                    "end": 2488,
                     "loc": {
                       "start": {
                         "line": 48,
@@ -531,8 +531,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\n     * Checks if this unit is date-based.\n     *\n     * @return {boolean} `true` if date unit, `false` if a time unit.\n     ",
-                    "start": 2577,
-                    "end": 2707,
+                    "start": 2579,
+                    "end": 2709,
                     "loc": {
                       "start": {
                         "line": 63,
@@ -548,8 +548,8 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 2712,
-                "end": 2776,
+                "start": 2714,
+                "end": 2778,
                 "loc": {
                   "start": {
                     "line": 68,
@@ -564,8 +564,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 2712,
-                  "end": 2723,
+                  "start": 2714,
+                  "end": 2725,
                   "loc": {
                     "start": {
                       "line": 68,
@@ -588,8 +588,8 @@
                 "params": [],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 2726,
-                  "end": 2776,
+                  "start": 2728,
+                  "end": 2778,
                   "loc": {
                     "start": {
                       "line": 68,
@@ -603,8 +603,8 @@
                   "body": [
                     {
                       "type": "ExpressionStatement",
-                      "start": 2736,
-                      "end": 2770,
+                      "start": 2738,
+                      "end": 2772,
                       "loc": {
                         "start": {
                           "line": 69,
@@ -617,8 +617,8 @@
                       },
                       "expression": {
                         "type": "CallExpression",
-                        "start": 2736,
-                        "end": 2769,
+                        "start": 2738,
+                        "end": 2771,
                         "loc": {
                           "start": {
                             "line": 69,
@@ -631,8 +631,8 @@
                         },
                         "callee": {
                           "type": "Identifier",
-                          "start": 2736,
-                          "end": 2754,
+                          "start": 2738,
+                          "end": 2756,
                           "loc": {
                             "start": {
                               "line": 69,
@@ -649,8 +649,8 @@
                         "arguments": [
                           {
                             "type": "StringLiteral",
-                            "start": 2755,
-                            "end": 2768,
+                            "start": 2757,
+                            "end": 2770,
                             "loc": {
                               "start": {
                                 "line": 69,
@@ -678,8 +678,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\n     * Checks if this unit is date-based.\n     *\n     * @return {boolean} `true` if date unit, `false` if a time unit.\n     ",
-                    "start": 2577,
-                    "end": 2707,
+                    "start": 2579,
+                    "end": 2709,
                     "loc": {
                       "start": {
                         "line": 63,
@@ -696,8 +696,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\n     * Checks if this unit is time-based.\n     *\n     * @return {boolean} `true` if time unit, `false` if a date unit.\n     ",
-                    "start": 2782,
-                    "end": 2912,
+                    "start": 2784,
+                    "end": 2914,
                     "loc": {
                       "start": {
                         "line": 72,
@@ -713,8 +713,8 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 2917,
-                "end": 2981,
+                "start": 2919,
+                "end": 2983,
                 "loc": {
                   "start": {
                     "line": 77,
@@ -729,8 +729,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 2917,
-                  "end": 2928,
+                  "start": 2919,
+                  "end": 2930,
                   "loc": {
                     "start": {
                       "line": 77,
@@ -753,8 +753,8 @@
                 "params": [],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 2931,
-                  "end": 2981,
+                  "start": 2933,
+                  "end": 2983,
                   "loc": {
                     "start": {
                       "line": 77,
@@ -768,8 +768,8 @@
                   "body": [
                     {
                       "type": "ExpressionStatement",
-                      "start": 2941,
-                      "end": 2975,
+                      "start": 2943,
+                      "end": 2977,
                       "loc": {
                         "start": {
                           "line": 78,
@@ -782,8 +782,8 @@
                       },
                       "expression": {
                         "type": "CallExpression",
-                        "start": 2941,
-                        "end": 2974,
+                        "start": 2943,
+                        "end": 2976,
                         "loc": {
                           "start": {
                             "line": 78,
@@ -796,8 +796,8 @@
                         },
                         "callee": {
                           "type": "Identifier",
-                          "start": 2941,
-                          "end": 2959,
+                          "start": 2943,
+                          "end": 2961,
                           "loc": {
                             "start": {
                               "line": 78,
@@ -814,8 +814,8 @@
                         "arguments": [
                           {
                             "type": "StringLiteral",
-                            "start": 2960,
-                            "end": 2973,
+                            "start": 2962,
+                            "end": 2975,
                             "loc": {
                               "start": {
                                 "line": 78,
@@ -843,8 +843,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\n     * Checks if this unit is time-based.\n     *\n     * @return {boolean} `true` if time unit, `false` if a date unit.\n     ",
-                    "start": 2782,
-                    "end": 2912,
+                    "start": 2784,
+                    "end": 2914,
                     "loc": {
                       "start": {
                         "line": 72,
@@ -861,8 +861,8 @@
                   {
                     "type": "CommentLine",
                     "value": "-----------------------------------------------------------------------",
-                    "start": 2987,
-                    "end": 3060,
+                    "start": 2989,
+                    "end": 3062,
                     "loc": {
                       "start": {
                         "line": 81,
@@ -877,8 +877,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\n     * Checks if this unit is supported by the specified temporal object.\n     *\n     * This checks that the implementing date-time can add/subtract this unit.\n     * This can be used to avoid throwing an exception.\n     *\n     * @param {!Temporal} temporal the temporal object to check.\n     * @return {boolean} `true` if the unit is supported.\n     ",
-                    "start": 3065,
-                    "end": 3422,
+                    "start": 3067,
+                    "end": 3424,
                     "loc": {
                       "start": {
                         "line": 82,
@@ -893,8 +893,8 @@
                   {
                     "type": "CommentLine",
                     "value": " eslint-disable-next-line no-unused-vars",
-                    "start": 3427,
-                    "end": 3469,
+                    "start": 3429,
+                    "end": 3471,
                     "loc": {
                       "start": {
                         "line": 91,
@@ -910,8 +910,8 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 3474,
-                "end": 3550,
+                "start": 3476,
+                "end": 3552,
                 "loc": {
                   "start": {
                     "line": 92,
@@ -926,8 +926,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 3474,
-                  "end": 3487,
+                  "start": 3476,
+                  "end": 3489,
                   "loc": {
                     "start": {
                       "line": 92,
@@ -950,8 +950,8 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 3488,
-                    "end": 3496,
+                    "start": 3490,
+                    "end": 3498,
                     "loc": {
                       "start": {
                         "line": 92,
@@ -968,8 +968,8 @@
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 3498,
-                  "end": 3550,
+                  "start": 3500,
+                  "end": 3552,
                   "loc": {
                     "start": {
                       "line": 92,
@@ -983,8 +983,8 @@
                   "body": [
                     {
                       "type": "ExpressionStatement",
-                      "start": 3508,
-                      "end": 3544,
+                      "start": 3510,
+                      "end": 3546,
                       "loc": {
                         "start": {
                           "line": 93,
@@ -997,8 +997,8 @@
                       },
                       "expression": {
                         "type": "CallExpression",
-                        "start": 3508,
-                        "end": 3543,
+                        "start": 3510,
+                        "end": 3545,
                         "loc": {
                           "start": {
                             "line": 93,
@@ -1011,8 +1011,8 @@
                         },
                         "callee": {
                           "type": "Identifier",
-                          "start": 3508,
-                          "end": 3526,
+                          "start": 3510,
+                          "end": 3528,
                           "loc": {
                             "start": {
                               "line": 93,
@@ -1029,8 +1029,8 @@
                         "arguments": [
                           {
                             "type": "StringLiteral",
-                            "start": 3527,
-                            "end": 3542,
+                            "start": 3529,
+                            "end": 3544,
                             "loc": {
                               "start": {
                                 "line": 93,
@@ -1058,8 +1058,8 @@
                   {
                     "type": "CommentLine",
                     "value": "-----------------------------------------------------------------------",
-                    "start": 2987,
-                    "end": 3060,
+                    "start": 2989,
+                    "end": 3062,
                     "loc": {
                       "start": {
                         "line": 81,
@@ -1074,8 +1074,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\n     * Checks if this unit is supported by the specified temporal object.\n     *\n     * This checks that the implementing date-time can add/subtract this unit.\n     * This can be used to avoid throwing an exception.\n     *\n     * @param {!Temporal} temporal the temporal object to check.\n     * @return {boolean} `true` if the unit is supported.\n     ",
-                    "start": 3065,
-                    "end": 3422,
+                    "start": 3067,
+                    "end": 3424,
                     "loc": {
                       "start": {
                         "line": 82,
@@ -1090,8 +1090,8 @@
                   {
                     "type": "CommentLine",
                     "value": " eslint-disable-next-line no-unused-vars",
-                    "start": 3427,
-                    "end": 3469,
+                    "start": 3429,
+                    "end": 3471,
                     "loc": {
                       "start": {
                         "line": 91,
@@ -1108,8 +1108,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\n     * Returns a copy of the specified temporal object with the specified period added.\n     *\n     * The period added is a multiple of this unit. For example, this method\n     * could be used to add \"3 days\" to a date by calling this method on the\n     * instance representing \"days\", passing the date and the period \"3\".\n     * The period to be added may be negative, which is equivalent to subtraction.\n     *\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link Temporal#plus}:\n     * <pre>\n     *   // these two lines are equivalent, but the second approach is recommended\n     *   temporal = thisUnit.doPlus(temporal);\n     *   temporal = temporal.plus(thisUnit);\n     * </pre>\n     * It is recommended to use the second approach, {@link plus},\n     * as it is a lot clearer to read in code.\n     *\n     * Implementations should perform any queries or calculations using the units\n     * available in {@link ChronoUnit} or the fields available in {@link ChronoField}.\n     * If the field is not supported a {@link DateTimeException} must be thrown.\n     *\n     * Implementations must not alter the specified temporal object.\n     * Instead, an adjusted copy of the original must be returned.\n     * This provides equivalent, safe behavior for immutable and mutable implementations.\n     *\n     * @param {!Temporal} dateTime the temporal object to adjust.\n     * @param {number} periodToAdd the period of this unit to add, positive or negative.\n     * @return {Temporal} the adjusted temporal object.\n     * @throws DateTimeException if the period cannot be added.\n     ",
-                    "start": 3556,
-                    "end": 5230,
+                    "start": 3558,
+                    "end": 5232,
                     "loc": {
                       "start": {
                         "line": 96,
@@ -1124,8 +1124,8 @@
                   {
                     "type": "CommentLine",
                     "value": " eslint-disable-next-line no-unused-vars",
-                    "start": 5235,
-                    "end": 5277,
+                    "start": 5237,
+                    "end": 5279,
                     "loc": {
                       "start": {
                         "line": 128,
@@ -1141,8 +1141,8 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 5282,
-                "end": 5355,
+                "start": 5284,
+                "end": 5357,
                 "loc": {
                   "start": {
                     "line": 129,
@@ -1157,8 +1157,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 5282,
-                  "end": 5287,
+                  "start": 5284,
+                  "end": 5289,
                   "loc": {
                     "start": {
                       "line": 129,
@@ -1181,8 +1181,8 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 5288,
-                    "end": 5296,
+                    "start": 5290,
+                    "end": 5298,
                     "loc": {
                       "start": {
                         "line": 129,
@@ -1198,8 +1198,8 @@
                   },
                   {
                     "type": "Identifier",
-                    "start": 5298,
-                    "end": 5309,
+                    "start": 5300,
+                    "end": 5311,
                     "loc": {
                       "start": {
                         "line": 129,
@@ -1216,8 +1216,8 @@
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 5311,
-                  "end": 5355,
+                  "start": 5313,
+                  "end": 5357,
                   "loc": {
                     "start": {
                       "line": 129,
@@ -1231,8 +1231,8 @@
                   "body": [
                     {
                       "type": "ExpressionStatement",
-                      "start": 5321,
-                      "end": 5349,
+                      "start": 5323,
+                      "end": 5351,
                       "loc": {
                         "start": {
                           "line": 130,
@@ -1245,8 +1245,8 @@
                       },
                       "expression": {
                         "type": "CallExpression",
-                        "start": 5321,
-                        "end": 5348,
+                        "start": 5323,
+                        "end": 5350,
                         "loc": {
                           "start": {
                             "line": 130,
@@ -1259,8 +1259,8 @@
                         },
                         "callee": {
                           "type": "Identifier",
-                          "start": 5321,
-                          "end": 5339,
+                          "start": 5323,
+                          "end": 5341,
                           "loc": {
                             "start": {
                               "line": 130,
@@ -1277,8 +1277,8 @@
                         "arguments": [
                           {
                             "type": "StringLiteral",
-                            "start": 5340,
-                            "end": 5347,
+                            "start": 5342,
+                            "end": 5349,
                             "loc": {
                               "start": {
                                 "line": 130,
@@ -1306,8 +1306,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\n     * Returns a copy of the specified temporal object with the specified period added.\n     *\n     * The period added is a multiple of this unit. For example, this method\n     * could be used to add \"3 days\" to a date by calling this method on the\n     * instance representing \"days\", passing the date and the period \"3\".\n     * The period to be added may be negative, which is equivalent to subtraction.\n     *\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link Temporal#plus}:\n     * <pre>\n     *   // these two lines are equivalent, but the second approach is recommended\n     *   temporal = thisUnit.doPlus(temporal);\n     *   temporal = temporal.plus(thisUnit);\n     * </pre>\n     * It is recommended to use the second approach, {@link plus},\n     * as it is a lot clearer to read in code.\n     *\n     * Implementations should perform any queries or calculations using the units\n     * available in {@link ChronoUnit} or the fields available in {@link ChronoField}.\n     * If the field is not supported a {@link DateTimeException} must be thrown.\n     *\n     * Implementations must not alter the specified temporal object.\n     * Instead, an adjusted copy of the original must be returned.\n     * This provides equivalent, safe behavior for immutable and mutable implementations.\n     *\n     * @param {!Temporal} dateTime the temporal object to adjust.\n     * @param {number} periodToAdd the period of this unit to add, positive or negative.\n     * @return {Temporal} the adjusted temporal object.\n     * @throws DateTimeException if the period cannot be added.\n     ",
-                    "start": 3556,
-                    "end": 5230,
+                    "start": 3558,
+                    "end": 5232,
                     "loc": {
                       "start": {
                         "line": 96,
@@ -1322,8 +1322,8 @@
                   {
                     "type": "CommentLine",
                     "value": " eslint-disable-next-line no-unused-vars",
-                    "start": 5235,
-                    "end": 5277,
+                    "start": 5237,
+                    "end": 5279,
                     "loc": {
                       "start": {
                         "line": 128,
@@ -1340,8 +1340,8 @@
                   {
                     "type": "CommentLine",
                     "value": "-----------------------------------------------------------------------",
-                    "start": 5361,
-                    "end": 5434,
+                    "start": 5363,
+                    "end": 5436,
                     "loc": {
                       "start": {
                         "line": 133,
@@ -1356,8 +1356,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\n     * Calculates the period in terms of this unit between two temporal objects of the same type.\n     *\n     * This calculates the period between two temporals in terms of this unit.\n     * The start and end points are supplied as temporal objects and must be of the same type.\n     * The result will be negative if the end is before the start.\n     * For example, the period in hours between two temporal objects can be calculated\n     * using {@link HOURS.between}.\n     *\n     * The calculation returns a whole number, representing the number of complete units between the two temporals.\n     * For example, the period in hours between the times 11:30 and 13:29 will only be\n     * one hour as it is one minute short of two hours.\n     *\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link Temporal#until}:\n     * <pre>\n     *   // these two lines are equivalent\n     *   between = thisUnit.between(start, end);\n     *   between = start.until(end, thisUnit);\n     * </pre>\n     * The choice should be made based on which makes the code more readable.\n     *\n     * For example, this method allows the number of days between two dates to be calculated:\n     * <pre>\n     *   long daysBetween = DAYS.between(start, end);\n     *   // or alternatively\n     *   long daysBetween = start.until(end, DAYS);\n     * </pre>\n     * Implementations should perform any queries or calculations using the units available in\n     * {@link ChronoUnit} or the fields available in {@link ChronoField}.\n     * If the unit is not supported a {@link DateTimeException} must be thrown.\n     * Implementations must not alter the specified temporal objects.\n     *\n     * @param {!Temporal} temporal1 the base temporal object.\n     * @param {!Temporal} temporal2 the other temporal object.\n     * @return {number} the period between temporal1 and temporal2 in terms of this unit;\n     *  positive if temporal2 is later than temporal1, negative if earlier.\n     * @throws DateTimeException if the period cannot be calculated.\n     * @throws ArithmeticException if numeric overflow occurs.\n     ",
-                    "start": 5439,
-                    "end": 7611,
+                    "start": 5441,
+                    "end": 7613,
                     "loc": {
                       "start": {
                         "line": 134,
@@ -1372,8 +1372,8 @@
                   {
                     "type": "CommentLine",
                     "value": " eslint-disable-next-line no-unused-vars",
-                    "start": 7616,
-                    "end": 7658,
+                    "start": 7618,
+                    "end": 7660,
                     "loc": {
                       "start": {
                         "line": 175,
@@ -1389,8 +1389,8 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 7663,
-                "end": 7739,
+                "start": 7665,
+                "end": 7741,
                 "loc": {
                   "start": {
                     "line": 176,
@@ -1405,8 +1405,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 7663,
-                  "end": 7670,
+                  "start": 7665,
+                  "end": 7672,
                   "loc": {
                     "start": {
                       "line": 176,
@@ -1429,8 +1429,8 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 7671,
-                    "end": 7680,
+                    "start": 7673,
+                    "end": 7682,
                     "loc": {
                       "start": {
                         "line": 176,
@@ -1446,8 +1446,8 @@
                   },
                   {
                     "type": "Identifier",
-                    "start": 7682,
-                    "end": 7691,
+                    "start": 7684,
+                    "end": 7693,
                     "loc": {
                       "start": {
                         "line": 176,
@@ -1464,8 +1464,8 @@
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 7693,
-                  "end": 7739,
+                  "start": 7695,
+                  "end": 7741,
                   "loc": {
                     "start": {
                       "line": 176,
@@ -1479,8 +1479,8 @@
                   "body": [
                     {
                       "type": "ExpressionStatement",
-                      "start": 7703,
-                      "end": 7733,
+                      "start": 7705,
+                      "end": 7735,
                       "loc": {
                         "start": {
                           "line": 177,
@@ -1493,8 +1493,8 @@
                       },
                       "expression": {
                         "type": "CallExpression",
-                        "start": 7703,
-                        "end": 7732,
+                        "start": 7705,
+                        "end": 7734,
                         "loc": {
                           "start": {
                             "line": 177,
@@ -1507,8 +1507,8 @@
                         },
                         "callee": {
                           "type": "Identifier",
-                          "start": 7703,
-                          "end": 7721,
+                          "start": 7705,
+                          "end": 7723,
                           "loc": {
                             "start": {
                               "line": 177,
@@ -1525,8 +1525,8 @@
                         "arguments": [
                           {
                             "type": "StringLiteral",
-                            "start": 7722,
-                            "end": 7731,
+                            "start": 7724,
+                            "end": 7733,
                             "loc": {
                               "start": {
                                 "line": 177,
@@ -1553,8 +1553,8 @@
                   {
                     "type": "CommentLine",
                     "value": "-----------------------------------------------------------------------",
-                    "start": 5361,
-                    "end": 5434,
+                    "start": 5363,
+                    "end": 5436,
                     "loc": {
                       "start": {
                         "line": 133,
@@ -1569,8 +1569,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\n     * Calculates the period in terms of this unit between two temporal objects of the same type.\n     *\n     * This calculates the period between two temporals in terms of this unit.\n     * The start and end points are supplied as temporal objects and must be of the same type.\n     * The result will be negative if the end is before the start.\n     * For example, the period in hours between two temporal objects can be calculated\n     * using {@link HOURS.between}.\n     *\n     * The calculation returns a whole number, representing the number of complete units between the two temporals.\n     * For example, the period in hours between the times 11:30 and 13:29 will only be\n     * one hour as it is one minute short of two hours.\n     *\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link Temporal#until}:\n     * <pre>\n     *   // these two lines are equivalent\n     *   between = thisUnit.between(start, end);\n     *   between = start.until(end, thisUnit);\n     * </pre>\n     * The choice should be made based on which makes the code more readable.\n     *\n     * For example, this method allows the number of days between two dates to be calculated:\n     * <pre>\n     *   long daysBetween = DAYS.between(start, end);\n     *   // or alternatively\n     *   long daysBetween = start.until(end, DAYS);\n     * </pre>\n     * Implementations should perform any queries or calculations using the units available in\n     * {@link ChronoUnit} or the fields available in {@link ChronoField}.\n     * If the unit is not supported a {@link DateTimeException} must be thrown.\n     * Implementations must not alter the specified temporal objects.\n     *\n     * @param {!Temporal} temporal1 the base temporal object.\n     * @param {!Temporal} temporal2 the other temporal object.\n     * @return {number} the period between temporal1 and temporal2 in terms of this unit;\n     *  positive if temporal2 is later than temporal1, negative if earlier.\n     * @throws DateTimeException if the period cannot be calculated.\n     * @throws ArithmeticException if numeric overflow occurs.\n     ",
-                    "start": 5439,
-                    "end": 7611,
+                    "start": 5441,
+                    "end": 7613,
                     "loc": {
                       "start": {
                         "line": 134,
@@ -1585,8 +1585,8 @@
                   {
                     "type": "CommentLine",
                     "value": " eslint-disable-next-line no-unused-vars",
-                    "start": 7616,
-                    "end": 7658,
+                    "start": 7618,
+                    "end": 7660,
                     "loc": {
                       "start": {
                         "line": 175,
@@ -1606,8 +1606,8 @@
             {
               "type": "CommentBlock",
               "value": "*\n * A unit of date-time, such as Days or Hours.\n *\n * Measurement of time is built on units, such as years, months, days, hours, minutes and seconds.\n * Implementations of this interface represent those units.\n *\n * An instance of this interface represents the unit itself, rather than an amount of the unit.\n * See {@link Period} for a class that represents an amount in terms of the common units.\n *\n * The most commonly used units are defined in {@link ChronoUnit}.\n * Further units are supplied in {@link IsoFields}.\n * Units can also be written by application code by implementing this interface.\n *\n * The unit works using double dispatch. Client code calls methods on a date-time like\n * {@link LocalDateTime} which check if the unit is a {@link ChronoUnit}.\n * If it is, then the date-time must handle it.\n * Otherwise, the method call is re-dispatched to the matching method in this interface.\n *\n * @interface\n ",
-              "start": 276,
-              "end": 1202,
+              "start": 278,
+              "end": 1204,
               "loc": {
                 "start": {
                   "line": 9,
@@ -1626,8 +1626,8 @@
           {
             "type": "CommentBlock",
             "value": "*\n * A unit of date-time, such as Days or Hours.\n *\n * Measurement of time is built on units, such as years, months, days, hours, minutes and seconds.\n * Implementations of this interface represent those units.\n *\n * An instance of this interface represents the unit itself, rather than an amount of the unit.\n * See {@link Period} for a class that represents an amount in terms of the common units.\n *\n * The most commonly used units are defined in {@link ChronoUnit}.\n * Further units are supplied in {@link IsoFields}.\n * Units can also be written by application code by implementing this interface.\n *\n * The unit works using double dispatch. Client code calls methods on a date-time like\n * {@link LocalDateTime} which check if the unit is a {@link ChronoUnit}.\n * If it is, then the date-time must handle it.\n * Otherwise, the method call is re-dispatched to the matching method in this interface.\n *\n * @interface\n ",
-            "start": 276,
-            "end": 1202,
+            "start": 278,
+            "end": 1204,
             "loc": {
               "start": {
                 "line": 9,
@@ -1664,8 +1664,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n * A unit of date-time, such as Days or Hours.\n *\n * Measurement of time is built on units, such as years, months, days, hours, minutes and seconds.\n * Implementations of this interface represent those units.\n *\n * An instance of this interface represents the unit itself, rather than an amount of the unit.\n * See {@link Period} for a class that represents an amount in terms of the common units.\n *\n * The most commonly used units are defined in {@link ChronoUnit}.\n * Further units are supplied in {@link IsoFields}.\n * Units can also be written by application code by implementing this interface.\n *\n * The unit works using double dispatch. Client code calls methods on a date-time like\n * {@link LocalDateTime} which check if the unit is a {@link ChronoUnit}.\n * If it is, then the date-time must handle it.\n * Otherwise, the method call is re-dispatched to the matching method in this interface.\n *\n * @interface\n ",
-      "start": 276,
-      "end": 1202,
+      "start": 278,
+      "end": 1204,
       "loc": {
         "start": {
           "line": 9,
@@ -1680,8 +1680,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n     * Gets the duration of this unit, which may be an estimate.\n     *\n     * All units return a duration measured in standard nanoseconds from this method.\n     * The duration will be positive and non-zero.\n     * For example, an hour has a duration of `60 * 60 * 1,000,000,000 ns`.\n     *\n     * Some units may return an accurate duration while others return an estimate.\n     * For example, days have an estimated duration due to the possibility of\n     * daylight saving time changes.\n     * To determine if the duration is an estimate, use {@link isDurationEstimated}.\n     *\n     * @return {Duration} the duration of this unit, which may be an estimate.\n     ",
-      "start": 1235,
-      "end": 1907,
+      "start": 1237,
+      "end": 1909,
       "loc": {
         "start": {
           "line": 30,
@@ -1696,8 +1696,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n     * Checks if the duration of the unit is an estimate.\n     *\n     * All units have a duration, however the duration is not always accurate.\n     * For example, days have an estimated duration due to the possibility of\n     * daylight saving time changes.\n     * This method returns true if the duration is an estimate and false if it is\n     * accurate. Note that accurate/estimated ignores leap seconds.\n     *\n     * @return {boolean} `true` if the duration is estimated, `false` if accurate.\n     ",
-      "start": 1976,
-      "end": 2486,
+      "start": 1978,
+      "end": 2488,
       "loc": {
         "start": {
           "line": 48,
@@ -1712,8 +1712,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n     * Checks if this unit is date-based.\n     *\n     * @return {boolean} `true` if date unit, `false` if a time unit.\n     ",
-      "start": 2577,
-      "end": 2707,
+      "start": 2579,
+      "end": 2709,
       "loc": {
         "start": {
           "line": 63,
@@ -1728,8 +1728,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n     * Checks if this unit is time-based.\n     *\n     * @return {boolean} `true` if time unit, `false` if a date unit.\n     ",
-      "start": 2782,
-      "end": 2912,
+      "start": 2784,
+      "end": 2914,
       "loc": {
         "start": {
           "line": 72,
@@ -1744,8 +1744,8 @@
     {
       "type": "CommentLine",
       "value": "-----------------------------------------------------------------------",
-      "start": 2987,
-      "end": 3060,
+      "start": 2989,
+      "end": 3062,
       "loc": {
         "start": {
           "line": 81,
@@ -1760,8 +1760,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n     * Checks if this unit is supported by the specified temporal object.\n     *\n     * This checks that the implementing date-time can add/subtract this unit.\n     * This can be used to avoid throwing an exception.\n     *\n     * @param {!Temporal} temporal the temporal object to check.\n     * @return {boolean} `true` if the unit is supported.\n     ",
-      "start": 3065,
-      "end": 3422,
+      "start": 3067,
+      "end": 3424,
       "loc": {
         "start": {
           "line": 82,
@@ -1776,8 +1776,8 @@
     {
       "type": "CommentLine",
       "value": " eslint-disable-next-line no-unused-vars",
-      "start": 3427,
-      "end": 3469,
+      "start": 3429,
+      "end": 3471,
       "loc": {
         "start": {
           "line": 91,
@@ -1792,8 +1792,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n     * Returns a copy of the specified temporal object with the specified period added.\n     *\n     * The period added is a multiple of this unit. For example, this method\n     * could be used to add \"3 days\" to a date by calling this method on the\n     * instance representing \"days\", passing the date and the period \"3\".\n     * The period to be added may be negative, which is equivalent to subtraction.\n     *\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link Temporal#plus}:\n     * <pre>\n     *   // these two lines are equivalent, but the second approach is recommended\n     *   temporal = thisUnit.doPlus(temporal);\n     *   temporal = temporal.plus(thisUnit);\n     * </pre>\n     * It is recommended to use the second approach, {@link plus},\n     * as it is a lot clearer to read in code.\n     *\n     * Implementations should perform any queries or calculations using the units\n     * available in {@link ChronoUnit} or the fields available in {@link ChronoField}.\n     * If the field is not supported a {@link DateTimeException} must be thrown.\n     *\n     * Implementations must not alter the specified temporal object.\n     * Instead, an adjusted copy of the original must be returned.\n     * This provides equivalent, safe behavior for immutable and mutable implementations.\n     *\n     * @param {!Temporal} dateTime the temporal object to adjust.\n     * @param {number} periodToAdd the period of this unit to add, positive or negative.\n     * @return {Temporal} the adjusted temporal object.\n     * @throws DateTimeException if the period cannot be added.\n     ",
-      "start": 3556,
-      "end": 5230,
+      "start": 3558,
+      "end": 5232,
       "loc": {
         "start": {
           "line": 96,
@@ -1808,8 +1808,8 @@
     {
       "type": "CommentLine",
       "value": " eslint-disable-next-line no-unused-vars",
-      "start": 5235,
-      "end": 5277,
+      "start": 5237,
+      "end": 5279,
       "loc": {
         "start": {
           "line": 128,
@@ -1824,8 +1824,8 @@
     {
       "type": "CommentLine",
       "value": "-----------------------------------------------------------------------",
-      "start": 5361,
-      "end": 5434,
+      "start": 5363,
+      "end": 5436,
       "loc": {
         "start": {
           "line": 133,
@@ -1840,8 +1840,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n     * Calculates the period in terms of this unit between two temporal objects of the same type.\n     *\n     * This calculates the period between two temporals in terms of this unit.\n     * The start and end points are supplied as temporal objects and must be of the same type.\n     * The result will be negative if the end is before the start.\n     * For example, the period in hours between two temporal objects can be calculated\n     * using {@link HOURS.between}.\n     *\n     * The calculation returns a whole number, representing the number of complete units between the two temporals.\n     * For example, the period in hours between the times 11:30 and 13:29 will only be\n     * one hour as it is one minute short of two hours.\n     *\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link Temporal#until}:\n     * <pre>\n     *   // these two lines are equivalent\n     *   between = thisUnit.between(start, end);\n     *   between = start.until(end, thisUnit);\n     * </pre>\n     * The choice should be made based on which makes the code more readable.\n     *\n     * For example, this method allows the number of days between two dates to be calculated:\n     * <pre>\n     *   long daysBetween = DAYS.between(start, end);\n     *   // or alternatively\n     *   long daysBetween = start.until(end, DAYS);\n     * </pre>\n     * Implementations should perform any queries or calculations using the units available in\n     * {@link ChronoUnit} or the fields available in {@link ChronoField}.\n     * If the unit is not supported a {@link DateTimeException} must be thrown.\n     * Implementations must not alter the specified temporal objects.\n     *\n     * @param {!Temporal} temporal1 the base temporal object.\n     * @param {!Temporal} temporal2 the other temporal object.\n     * @return {number} the period between temporal1 and temporal2 in terms of this unit;\n     *  positive if temporal2 is later than temporal1, negative if earlier.\n     * @throws DateTimeException if the period cannot be calculated.\n     * @throws ArithmeticException if numeric overflow occurs.\n     ",
-      "start": 5439,
-      "end": 7611,
+      "start": 5441,
+      "end": 7613,
       "loc": {
         "start": {
           "line": 134,
@@ -1856,8 +1856,8 @@
     {
       "type": "CommentLine",
       "value": " eslint-disable-next-line no-unused-vars",
-      "start": 7616,
-      "end": 7658,
+      "start": 7618,
+      "end": 7660,
       "loc": {
         "start": {
           "line": 175,
@@ -1953,16 +1953,16 @@
         "binop": null
       },
       "value": "abstractMethodFail",
-      "start": 237,
-      "end": 255,
+      "start": 238,
+      "end": 256,
       "loc": {
         "start": {
           "line": 7,
-          "column": 8
+          "column": 9
         },
         "end": {
           "line": 7,
-          "column": 26
+          "column": 27
         }
       }
     },
@@ -1978,16 +1978,16 @@
         "postfix": false,
         "binop": null
       },
-      "start": 255,
-      "end": 256,
+      "start": 257,
+      "end": 258,
       "loc": {
         "start": {
           "line": 7,
-          "column": 26
+          "column": 28
         },
         "end": {
           "line": 7,
-          "column": 27
+          "column": 29
         }
       }
     },
@@ -2004,16 +2004,16 @@
         "binop": null
       },
       "value": "from",
-      "start": 257,
-      "end": 261,
+      "start": 259,
+      "end": 263,
       "loc": {
         "start": {
           "line": 7,
-          "column": 28
+          "column": 30
         },
         "end": {
           "line": 7,
-          "column": 32
+          "column": 34
         }
       }
     },
@@ -2031,16 +2031,16 @@
         "updateContext": null
       },
       "value": "../assert",
-      "start": 262,
-      "end": 273,
+      "start": 264,
+      "end": 275,
       "loc": {
         "start": {
           "line": 7,
-          "column": 33
+          "column": 35
         },
         "end": {
           "line": 7,
-          "column": 44
+          "column": 46
         }
       }
     },
@@ -2057,24 +2057,24 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 273,
-      "end": 274,
+      "start": 275,
+      "end": 276,
       "loc": {
         "start": {
           "line": 7,
-          "column": 44
+          "column": 46
         },
         "end": {
           "line": 7,
-          "column": 45
+          "column": 47
         }
       }
     },
     {
       "type": "CommentBlock",
       "value": "*\n * A unit of date-time, such as Days or Hours.\n *\n * Measurement of time is built on units, such as years, months, days, hours, minutes and seconds.\n * Implementations of this interface represent those units.\n *\n * An instance of this interface represents the unit itself, rather than an amount of the unit.\n * See {@link Period} for a class that represents an amount in terms of the common units.\n *\n * The most commonly used units are defined in {@link ChronoUnit}.\n * Further units are supplied in {@link IsoFields}.\n * Units can also be written by application code by implementing this interface.\n *\n * The unit works using double dispatch. Client code calls methods on a date-time like\n * {@link LocalDateTime} which check if the unit is a {@link ChronoUnit}.\n * If it is, then the date-time must handle it.\n * Otherwise, the method call is re-dispatched to the matching method in this interface.\n *\n * @interface\n ",
-      "start": 276,
-      "end": 1202,
+      "start": 278,
+      "end": 1204,
       "loc": {
         "start": {
           "line": 9,
@@ -2101,8 +2101,8 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 1203,
-      "end": 1209,
+      "start": 1205,
+      "end": 1211,
       "loc": {
         "start": {
           "line": 29,
@@ -2129,8 +2129,8 @@
         "updateContext": null
       },
       "value": "class",
-      "start": 1210,
-      "end": 1215,
+      "start": 1212,
+      "end": 1217,
       "loc": {
         "start": {
           "line": 29,
@@ -2155,8 +2155,8 @@
         "binop": null
       },
       "value": "TemporalUnit",
-      "start": 1216,
-      "end": 1228,
+      "start": 1218,
+      "end": 1230,
       "loc": {
         "start": {
           "line": 29,
@@ -2180,8 +2180,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1229,
-      "end": 1230,
+      "start": 1231,
+      "end": 1232,
       "loc": {
         "start": {
           "line": 29,
@@ -2196,8 +2196,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n     * Gets the duration of this unit, which may be an estimate.\n     *\n     * All units return a duration measured in standard nanoseconds from this method.\n     * The duration will be positive and non-zero.\n     * For example, an hour has a duration of `60 * 60 * 1,000,000,000 ns`.\n     *\n     * Some units may return an accurate duration while others return an estimate.\n     * For example, days have an estimated duration due to the possibility of\n     * daylight saving time changes.\n     * To determine if the duration is an estimate, use {@link isDurationEstimated}.\n     *\n     * @return {Duration} the duration of this unit, which may be an estimate.\n     ",
-      "start": 1235,
-      "end": 1907,
+      "start": 1237,
+      "end": 1909,
       "loc": {
         "start": {
           "line": 30,
@@ -2222,8 +2222,8 @@
         "binop": null
       },
       "value": "duration",
-      "start": 1912,
-      "end": 1920,
+      "start": 1914,
+      "end": 1922,
       "loc": {
         "start": {
           "line": 44,
@@ -2247,8 +2247,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1920,
-      "end": 1921,
+      "start": 1922,
+      "end": 1923,
       "loc": {
         "start": {
           "line": 44,
@@ -2272,8 +2272,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1921,
-      "end": 1922,
+      "start": 1923,
+      "end": 1924,
       "loc": {
         "start": {
           "line": 44,
@@ -2297,8 +2297,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1923,
-      "end": 1924,
+      "start": 1925,
+      "end": 1926,
       "loc": {
         "start": {
           "line": 44,
@@ -2323,8 +2323,8 @@
         "binop": null
       },
       "value": "abstractMethodFail",
-      "start": 1933,
-      "end": 1951,
+      "start": 1935,
+      "end": 1953,
       "loc": {
         "start": {
           "line": 45,
@@ -2348,8 +2348,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1951,
-      "end": 1952,
+      "start": 1953,
+      "end": 1954,
       "loc": {
         "start": {
           "line": 45,
@@ -2375,8 +2375,8 @@
         "updateContext": null
       },
       "value": "duration",
-      "start": 1952,
-      "end": 1962,
+      "start": 1954,
+      "end": 1964,
       "loc": {
         "start": {
           "line": 45,
@@ -2400,8 +2400,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1962,
-      "end": 1963,
+      "start": 1964,
+      "end": 1965,
       "loc": {
         "start": {
           "line": 45,
@@ -2426,8 +2426,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 1963,
-      "end": 1964,
+      "start": 1965,
+      "end": 1966,
       "loc": {
         "start": {
           "line": 45,
@@ -2451,8 +2451,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 1969,
-      "end": 1970,
+      "start": 1971,
+      "end": 1972,
       "loc": {
         "start": {
           "line": 46,
@@ -2467,8 +2467,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n     * Checks if the duration of the unit is an estimate.\n     *\n     * All units have a duration, however the duration is not always accurate.\n     * For example, days have an estimated duration due to the possibility of\n     * daylight saving time changes.\n     * This method returns true if the duration is an estimate and false if it is\n     * accurate. Note that accurate/estimated ignores leap seconds.\n     *\n     * @return {boolean} `true` if the duration is estimated, `false` if accurate.\n     ",
-      "start": 1976,
-      "end": 2486,
+      "start": 1978,
+      "end": 2488,
       "loc": {
         "start": {
           "line": 48,
@@ -2493,8 +2493,8 @@
         "binop": null
       },
       "value": "isDurationEstimated",
-      "start": 2491,
-      "end": 2510,
+      "start": 2493,
+      "end": 2512,
       "loc": {
         "start": {
           "line": 59,
@@ -2518,8 +2518,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2510,
-      "end": 2511,
+      "start": 2512,
+      "end": 2513,
       "loc": {
         "start": {
           "line": 59,
@@ -2543,8 +2543,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2511,
-      "end": 2512,
+      "start": 2513,
+      "end": 2514,
       "loc": {
         "start": {
           "line": 59,
@@ -2568,8 +2568,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2513,
-      "end": 2514,
+      "start": 2515,
+      "end": 2516,
       "loc": {
         "start": {
           "line": 59,
@@ -2594,8 +2594,8 @@
         "binop": null
       },
       "value": "abstractMethodFail",
-      "start": 2523,
-      "end": 2541,
+      "start": 2525,
+      "end": 2543,
       "loc": {
         "start": {
           "line": 60,
@@ -2619,8 +2619,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2541,
-      "end": 2542,
+      "start": 2543,
+      "end": 2544,
       "loc": {
         "start": {
           "line": 60,
@@ -2646,8 +2646,8 @@
         "updateContext": null
       },
       "value": "isDurationEstimated",
-      "start": 2542,
-      "end": 2563,
+      "start": 2544,
+      "end": 2565,
       "loc": {
         "start": {
           "line": 60,
@@ -2671,8 +2671,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2563,
-      "end": 2564,
+      "start": 2565,
+      "end": 2566,
       "loc": {
         "start": {
           "line": 60,
@@ -2697,8 +2697,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2564,
-      "end": 2565,
+      "start": 2566,
+      "end": 2567,
       "loc": {
         "start": {
           "line": 60,
@@ -2722,8 +2722,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2570,
-      "end": 2571,
+      "start": 2572,
+      "end": 2573,
       "loc": {
         "start": {
           "line": 61,
@@ -2738,8 +2738,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n     * Checks if this unit is date-based.\n     *\n     * @return {boolean} `true` if date unit, `false` if a time unit.\n     ",
-      "start": 2577,
-      "end": 2707,
+      "start": 2579,
+      "end": 2709,
       "loc": {
         "start": {
           "line": 63,
@@ -2764,8 +2764,8 @@
         "binop": null
       },
       "value": "isDateBased",
-      "start": 2712,
-      "end": 2723,
+      "start": 2714,
+      "end": 2725,
       "loc": {
         "start": {
           "line": 68,
@@ -2789,8 +2789,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2723,
-      "end": 2724,
+      "start": 2725,
+      "end": 2726,
       "loc": {
         "start": {
           "line": 68,
@@ -2814,8 +2814,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2724,
-      "end": 2725,
+      "start": 2726,
+      "end": 2727,
       "loc": {
         "start": {
           "line": 68,
@@ -2839,8 +2839,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2726,
-      "end": 2727,
+      "start": 2728,
+      "end": 2729,
       "loc": {
         "start": {
           "line": 68,
@@ -2865,8 +2865,8 @@
         "binop": null
       },
       "value": "abstractMethodFail",
-      "start": 2736,
-      "end": 2754,
+      "start": 2738,
+      "end": 2756,
       "loc": {
         "start": {
           "line": 69,
@@ -2890,8 +2890,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2754,
-      "end": 2755,
+      "start": 2756,
+      "end": 2757,
       "loc": {
         "start": {
           "line": 69,
@@ -2917,8 +2917,8 @@
         "updateContext": null
       },
       "value": "isDateBased",
-      "start": 2755,
-      "end": 2768,
+      "start": 2757,
+      "end": 2770,
       "loc": {
         "start": {
           "line": 69,
@@ -2942,8 +2942,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2768,
-      "end": 2769,
+      "start": 2770,
+      "end": 2771,
       "loc": {
         "start": {
           "line": 69,
@@ -2968,8 +2968,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2769,
-      "end": 2770,
+      "start": 2771,
+      "end": 2772,
       "loc": {
         "start": {
           "line": 69,
@@ -2993,8 +2993,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2775,
-      "end": 2776,
+      "start": 2777,
+      "end": 2778,
       "loc": {
         "start": {
           "line": 70,
@@ -3009,8 +3009,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n     * Checks if this unit is time-based.\n     *\n     * @return {boolean} `true` if time unit, `false` if a date unit.\n     ",
-      "start": 2782,
-      "end": 2912,
+      "start": 2784,
+      "end": 2914,
       "loc": {
         "start": {
           "line": 72,
@@ -3035,8 +3035,8 @@
         "binop": null
       },
       "value": "isTimeBased",
-      "start": 2917,
-      "end": 2928,
+      "start": 2919,
+      "end": 2930,
       "loc": {
         "start": {
           "line": 77,
@@ -3060,8 +3060,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2928,
-      "end": 2929,
+      "start": 2930,
+      "end": 2931,
       "loc": {
         "start": {
           "line": 77,
@@ -3085,8 +3085,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2929,
-      "end": 2930,
+      "start": 2931,
+      "end": 2932,
       "loc": {
         "start": {
           "line": 77,
@@ -3110,8 +3110,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2931,
-      "end": 2932,
+      "start": 2933,
+      "end": 2934,
       "loc": {
         "start": {
           "line": 77,
@@ -3136,8 +3136,8 @@
         "binop": null
       },
       "value": "abstractMethodFail",
-      "start": 2941,
-      "end": 2959,
+      "start": 2943,
+      "end": 2961,
       "loc": {
         "start": {
           "line": 78,
@@ -3161,8 +3161,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2959,
-      "end": 2960,
+      "start": 2961,
+      "end": 2962,
       "loc": {
         "start": {
           "line": 78,
@@ -3188,8 +3188,8 @@
         "updateContext": null
       },
       "value": "isTimeBased",
-      "start": 2960,
-      "end": 2973,
+      "start": 2962,
+      "end": 2975,
       "loc": {
         "start": {
           "line": 78,
@@ -3213,8 +3213,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2973,
-      "end": 2974,
+      "start": 2975,
+      "end": 2976,
       "loc": {
         "start": {
           "line": 78,
@@ -3239,8 +3239,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 2974,
-      "end": 2975,
+      "start": 2976,
+      "end": 2977,
       "loc": {
         "start": {
           "line": 78,
@@ -3264,8 +3264,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 2980,
-      "end": 2981,
+      "start": 2982,
+      "end": 2983,
       "loc": {
         "start": {
           "line": 79,
@@ -3280,8 +3280,8 @@
     {
       "type": "CommentLine",
       "value": "-----------------------------------------------------------------------",
-      "start": 2987,
-      "end": 3060,
+      "start": 2989,
+      "end": 3062,
       "loc": {
         "start": {
           "line": 81,
@@ -3296,8 +3296,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n     * Checks if this unit is supported by the specified temporal object.\n     *\n     * This checks that the implementing date-time can add/subtract this unit.\n     * This can be used to avoid throwing an exception.\n     *\n     * @param {!Temporal} temporal the temporal object to check.\n     * @return {boolean} `true` if the unit is supported.\n     ",
-      "start": 3065,
-      "end": 3422,
+      "start": 3067,
+      "end": 3424,
       "loc": {
         "start": {
           "line": 82,
@@ -3312,8 +3312,8 @@
     {
       "type": "CommentLine",
       "value": " eslint-disable-next-line no-unused-vars",
-      "start": 3427,
-      "end": 3469,
+      "start": 3429,
+      "end": 3471,
       "loc": {
         "start": {
           "line": 91,
@@ -3338,8 +3338,8 @@
         "binop": null
       },
       "value": "isSupportedBy",
-      "start": 3474,
-      "end": 3487,
+      "start": 3476,
+      "end": 3489,
       "loc": {
         "start": {
           "line": 92,
@@ -3363,8 +3363,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3487,
-      "end": 3488,
+      "start": 3489,
+      "end": 3490,
       "loc": {
         "start": {
           "line": 92,
@@ -3389,8 +3389,8 @@
         "binop": null
       },
       "value": "temporal",
-      "start": 3488,
-      "end": 3496,
+      "start": 3490,
+      "end": 3498,
       "loc": {
         "start": {
           "line": 92,
@@ -3414,8 +3414,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3496,
-      "end": 3497,
+      "start": 3498,
+      "end": 3499,
       "loc": {
         "start": {
           "line": 92,
@@ -3439,8 +3439,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3498,
-      "end": 3499,
+      "start": 3500,
+      "end": 3501,
       "loc": {
         "start": {
           "line": 92,
@@ -3465,8 +3465,8 @@
         "binop": null
       },
       "value": "abstractMethodFail",
-      "start": 3508,
-      "end": 3526,
+      "start": 3510,
+      "end": 3528,
       "loc": {
         "start": {
           "line": 93,
@@ -3490,8 +3490,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3526,
-      "end": 3527,
+      "start": 3528,
+      "end": 3529,
       "loc": {
         "start": {
           "line": 93,
@@ -3517,8 +3517,8 @@
         "updateContext": null
       },
       "value": "isSupportedBy",
-      "start": 3527,
-      "end": 3542,
+      "start": 3529,
+      "end": 3544,
       "loc": {
         "start": {
           "line": 93,
@@ -3542,8 +3542,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3542,
-      "end": 3543,
+      "start": 3544,
+      "end": 3545,
       "loc": {
         "start": {
           "line": 93,
@@ -3568,8 +3568,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 3543,
-      "end": 3544,
+      "start": 3545,
+      "end": 3546,
       "loc": {
         "start": {
           "line": 93,
@@ -3593,8 +3593,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 3549,
-      "end": 3550,
+      "start": 3551,
+      "end": 3552,
       "loc": {
         "start": {
           "line": 94,
@@ -3609,8 +3609,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n     * Returns a copy of the specified temporal object with the specified period added.\n     *\n     * The period added is a multiple of this unit. For example, this method\n     * could be used to add \"3 days\" to a date by calling this method on the\n     * instance representing \"days\", passing the date and the period \"3\".\n     * The period to be added may be negative, which is equivalent to subtraction.\n     *\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link Temporal#plus}:\n     * <pre>\n     *   // these two lines are equivalent, but the second approach is recommended\n     *   temporal = thisUnit.doPlus(temporal);\n     *   temporal = temporal.plus(thisUnit);\n     * </pre>\n     * It is recommended to use the second approach, {@link plus},\n     * as it is a lot clearer to read in code.\n     *\n     * Implementations should perform any queries or calculations using the units\n     * available in {@link ChronoUnit} or the fields available in {@link ChronoField}.\n     * If the field is not supported a {@link DateTimeException} must be thrown.\n     *\n     * Implementations must not alter the specified temporal object.\n     * Instead, an adjusted copy of the original must be returned.\n     * This provides equivalent, safe behavior for immutable and mutable implementations.\n     *\n     * @param {!Temporal} dateTime the temporal object to adjust.\n     * @param {number} periodToAdd the period of this unit to add, positive or negative.\n     * @return {Temporal} the adjusted temporal object.\n     * @throws DateTimeException if the period cannot be added.\n     ",
-      "start": 3556,
-      "end": 5230,
+      "start": 3558,
+      "end": 5232,
       "loc": {
         "start": {
           "line": 96,
@@ -3625,8 +3625,8 @@
     {
       "type": "CommentLine",
       "value": " eslint-disable-next-line no-unused-vars",
-      "start": 5235,
-      "end": 5277,
+      "start": 5237,
+      "end": 5279,
       "loc": {
         "start": {
           "line": 128,
@@ -3651,8 +3651,8 @@
         "binop": null
       },
       "value": "addTo",
-      "start": 5282,
-      "end": 5287,
+      "start": 5284,
+      "end": 5289,
       "loc": {
         "start": {
           "line": 129,
@@ -3676,8 +3676,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 5287,
-      "end": 5288,
+      "start": 5289,
+      "end": 5290,
       "loc": {
         "start": {
           "line": 129,
@@ -3702,8 +3702,8 @@
         "binop": null
       },
       "value": "dateTime",
-      "start": 5288,
-      "end": 5296,
+      "start": 5290,
+      "end": 5298,
       "loc": {
         "start": {
           "line": 129,
@@ -3728,8 +3728,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 5296,
-      "end": 5297,
+      "start": 5298,
+      "end": 5299,
       "loc": {
         "start": {
           "line": 129,
@@ -3754,8 +3754,8 @@
         "binop": null
       },
       "value": "periodToAdd",
-      "start": 5298,
-      "end": 5309,
+      "start": 5300,
+      "end": 5311,
       "loc": {
         "start": {
           "line": 129,
@@ -3779,8 +3779,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 5309,
-      "end": 5310,
+      "start": 5311,
+      "end": 5312,
       "loc": {
         "start": {
           "line": 129,
@@ -3804,8 +3804,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 5311,
-      "end": 5312,
+      "start": 5313,
+      "end": 5314,
       "loc": {
         "start": {
           "line": 129,
@@ -3830,8 +3830,8 @@
         "binop": null
       },
       "value": "abstractMethodFail",
-      "start": 5321,
-      "end": 5339,
+      "start": 5323,
+      "end": 5341,
       "loc": {
         "start": {
           "line": 130,
@@ -3855,8 +3855,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 5339,
-      "end": 5340,
+      "start": 5341,
+      "end": 5342,
       "loc": {
         "start": {
           "line": 130,
@@ -3882,8 +3882,8 @@
         "updateContext": null
       },
       "value": "addTo",
-      "start": 5340,
-      "end": 5347,
+      "start": 5342,
+      "end": 5349,
       "loc": {
         "start": {
           "line": 130,
@@ -3907,8 +3907,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 5347,
-      "end": 5348,
+      "start": 5349,
+      "end": 5350,
       "loc": {
         "start": {
           "line": 130,
@@ -3933,8 +3933,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 5348,
-      "end": 5349,
+      "start": 5350,
+      "end": 5351,
       "loc": {
         "start": {
           "line": 130,
@@ -3958,8 +3958,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 5354,
-      "end": 5355,
+      "start": 5356,
+      "end": 5357,
       "loc": {
         "start": {
           "line": 131,
@@ -3974,8 +3974,8 @@
     {
       "type": "CommentLine",
       "value": "-----------------------------------------------------------------------",
-      "start": 5361,
-      "end": 5434,
+      "start": 5363,
+      "end": 5436,
       "loc": {
         "start": {
           "line": 133,
@@ -3990,8 +3990,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n     * Calculates the period in terms of this unit between two temporal objects of the same type.\n     *\n     * This calculates the period between two temporals in terms of this unit.\n     * The start and end points are supplied as temporal objects and must be of the same type.\n     * The result will be negative if the end is before the start.\n     * For example, the period in hours between two temporal objects can be calculated\n     * using {@link HOURS.between}.\n     *\n     * The calculation returns a whole number, representing the number of complete units between the two temporals.\n     * For example, the period in hours between the times 11:30 and 13:29 will only be\n     * one hour as it is one minute short of two hours.\n     *\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link Temporal#until}:\n     * <pre>\n     *   // these two lines are equivalent\n     *   between = thisUnit.between(start, end);\n     *   between = start.until(end, thisUnit);\n     * </pre>\n     * The choice should be made based on which makes the code more readable.\n     *\n     * For example, this method allows the number of days between two dates to be calculated:\n     * <pre>\n     *   long daysBetween = DAYS.between(start, end);\n     *   // or alternatively\n     *   long daysBetween = start.until(end, DAYS);\n     * </pre>\n     * Implementations should perform any queries or calculations using the units available in\n     * {@link ChronoUnit} or the fields available in {@link ChronoField}.\n     * If the unit is not supported a {@link DateTimeException} must be thrown.\n     * Implementations must not alter the specified temporal objects.\n     *\n     * @param {!Temporal} temporal1 the base temporal object.\n     * @param {!Temporal} temporal2 the other temporal object.\n     * @return {number} the period between temporal1 and temporal2 in terms of this unit;\n     *  positive if temporal2 is later than temporal1, negative if earlier.\n     * @throws DateTimeException if the period cannot be calculated.\n     * @throws ArithmeticException if numeric overflow occurs.\n     ",
-      "start": 5439,
-      "end": 7611,
+      "start": 5441,
+      "end": 7613,
       "loc": {
         "start": {
           "line": 134,
@@ -4006,8 +4006,8 @@
     {
       "type": "CommentLine",
       "value": " eslint-disable-next-line no-unused-vars",
-      "start": 7616,
-      "end": 7658,
+      "start": 7618,
+      "end": 7660,
       "loc": {
         "start": {
           "line": 175,
@@ -4032,8 +4032,8 @@
         "binop": null
       },
       "value": "between",
-      "start": 7663,
-      "end": 7670,
+      "start": 7665,
+      "end": 7672,
       "loc": {
         "start": {
           "line": 176,
@@ -4057,8 +4057,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 7670,
-      "end": 7671,
+      "start": 7672,
+      "end": 7673,
       "loc": {
         "start": {
           "line": 176,
@@ -4083,8 +4083,8 @@
         "binop": null
       },
       "value": "temporal1",
-      "start": 7671,
-      "end": 7680,
+      "start": 7673,
+      "end": 7682,
       "loc": {
         "start": {
           "line": 176,
@@ -4109,8 +4109,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 7680,
-      "end": 7681,
+      "start": 7682,
+      "end": 7683,
       "loc": {
         "start": {
           "line": 176,
@@ -4135,8 +4135,8 @@
         "binop": null
       },
       "value": "temporal2",
-      "start": 7682,
-      "end": 7691,
+      "start": 7684,
+      "end": 7693,
       "loc": {
         "start": {
           "line": 176,
@@ -4160,8 +4160,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 7691,
-      "end": 7692,
+      "start": 7693,
+      "end": 7694,
       "loc": {
         "start": {
           "line": 176,
@@ -4185,8 +4185,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 7693,
-      "end": 7694,
+      "start": 7695,
+      "end": 7696,
       "loc": {
         "start": {
           "line": 176,
@@ -4211,8 +4211,8 @@
         "binop": null
       },
       "value": "abstractMethodFail",
-      "start": 7703,
-      "end": 7721,
+      "start": 7705,
+      "end": 7723,
       "loc": {
         "start": {
           "line": 177,
@@ -4236,8 +4236,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 7721,
-      "end": 7722,
+      "start": 7723,
+      "end": 7724,
       "loc": {
         "start": {
           "line": 177,
@@ -4263,8 +4263,8 @@
         "updateContext": null
       },
       "value": "between",
-      "start": 7722,
-      "end": 7731,
+      "start": 7724,
+      "end": 7733,
       "loc": {
         "start": {
           "line": 177,
@@ -4288,8 +4288,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 7731,
-      "end": 7732,
+      "start": 7733,
+      "end": 7734,
       "loc": {
         "start": {
           "line": 177,
@@ -4314,8 +4314,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 7732,
-      "end": 7733,
+      "start": 7734,
+      "end": 7735,
       "loc": {
         "start": {
           "line": 177,
@@ -4339,8 +4339,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 7738,
-      "end": 7739,
+      "start": 7740,
+      "end": 7741,
       "loc": {
         "start": {
           "line": 178,
@@ -4364,8 +4364,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 7740,
-      "end": 7741,
+      "start": 7742,
+      "end": 7743,
       "loc": {
         "start": {
           "line": 179,
@@ -4390,8 +4390,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 7742,
-      "end": 7742,
+      "start": 7744,
+      "end": 7744,
       "loc": {
         "start": {
           "line": 180,

@@ -26,7 +26,7 @@ export class MockFieldValue {
             if (this.isSupported(field)) {
                 return field.range();
             }
-            throw new DateTimeException(`Unsupported field: ${  field}`);
+            throw new DateTimeException(`Unsupported field: ${field}`);
         }
         return field.rangeRefinedBy(this);
     }
@@ -35,7 +35,7 @@ export class MockFieldValue {
         if (this._field === field) {
             return this._value;
         }
-        throw new DateTimeException(`Unsupported field: ${  field}`);
+        throw new DateTimeException(`Unsupported field: ${field}`);
     }
 
 }

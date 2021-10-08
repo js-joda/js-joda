@@ -4,22 +4,22 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
+import { expect } from 'chai';
 
-import {Clock} from '../../src/Clock';
-import {Instant} from '../../src/Instant';
-import {ChronoField} from '../../src/temporal/ChronoField';
-import {TemporalAdjuster} from '../../src/temporal/TemporalAdjuster';
-import {ChronoUnit} from '../../src/temporal/ChronoUnit';
-import {TemporalQueries} from '../../src/temporal/TemporalQueries';
-import {LocalTime} from '../../src/LocalTime';
-import {LocalDate} from '../../src/LocalDate';
-import {Period} from '../../src/Period';
-import {LocalDateTime} from '../../src/LocalDateTime';
-import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
-import {ZoneOffset} from '../../src/ZoneOffset';
-import {OffsetTime} from '../../src/OffsetTime';
-import {ZonedDateTime} from '../../src/ZonedDateTime';
+import { Clock } from '../../src/Clock';
+import { Instant } from '../../src/Instant';
+import { ChronoField } from '../../src/temporal/ChronoField';
+import { TemporalAdjuster } from '../../src/temporal/TemporalAdjuster';
+import { ChronoUnit } from '../../src/temporal/ChronoUnit';
+import { TemporalQueries } from '../../src/temporal/TemporalQueries';
+import { LocalTime } from '../../src/LocalTime';
+import { LocalDate } from '../../src/LocalDate';
+import { Period } from '../../src/Period';
+import { LocalDateTime } from '../../src/LocalDateTime';
+import { DateTimeFormatter } from '../../src/format/DateTimeFormatter';
+import { ZoneOffset } from '../../src/ZoneOffset';
+import { OffsetTime } from '../../src/OffsetTime';
+import { ZonedDateTime } from '../../src/ZonedDateTime';
 import {
     DateTimeException,
     DateTimeParseException,
@@ -27,8 +27,8 @@ import {
     NullPointerException
 } from '../../src/errors';
 
-import {MockSimplePeriod} from './MockSimplePeriod';
-import {dataProviderTest, assertNotNull, assertEquals} from '../testUtils';
+import { MockSimplePeriod } from './MockSimplePeriod';
+import { dataProviderTest, assertNotNull, assertEquals } from '../testUtils';
 
 import '../_init';
 

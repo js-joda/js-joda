@@ -5,9 +5,9 @@
 
 import './_init';
 
-import {expect} from 'chai';
+import { expect } from 'chai';
 
-import {ZoneId} from '../src/ZoneId';
+import { ZoneId } from '../src/ZoneId';
 
 describe('ZoneId', function () {
 

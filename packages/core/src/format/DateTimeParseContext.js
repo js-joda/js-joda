@@ -4,14 +4,14 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {assert, requireNonNull} from '../assert';
+import { assert, requireNonNull } from '../assert';
 
-import {DateTimeBuilder} from './DateTimeBuilder';
-import {EnumMap} from './EnumMap';
+import { DateTimeBuilder } from './DateTimeBuilder';
+import { EnumMap } from './EnumMap';
 
-import {IsoChronology} from '../chrono/IsoChronology';
-import {Temporal} from '../temporal/Temporal';
-import {TemporalQueries} from '../temporal/TemporalQueries';
+import { IsoChronology } from '../chrono/IsoChronology';
+import { Temporal } from '../temporal/Temporal';
+import { TemporalQueries } from '../temporal/TemporalQueries';
 
 /**
  * @private

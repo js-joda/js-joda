@@ -12,7 +12,7 @@ import {
     ZoneRulesProvider,
 } from '@js-joda/core';
 
-import {getOrCreateCldrInstance, getOrCreateMapZones, loadCldrData} from './CldrCache';
+import { getOrCreateCldrInstance, getOrCreateMapZones, loadCldrData } from './CldrCache';
 
 const { assert: { requireNonNull, requireInstance } } = jodaInternal;
 

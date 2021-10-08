@@ -4,27 +4,27 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {MathUtil} from './MathUtil';
-import {requireNonNull, requireInstance} from './assert';
-import {DateTimeException, UnsupportedTemporalTypeException} from './errors';
+import { MathUtil } from './MathUtil';
+import { requireNonNull, requireInstance } from './assert';
+import { DateTimeException, UnsupportedTemporalTypeException } from './errors';
 
-import {Clock} from './Clock';
-import {Instant} from './Instant';
-import {LocalDate} from './LocalDate';
-import {LocalTime} from './LocalTime';
-import {OffsetDateTime} from './OffsetDateTime';
-import {ZonedDateTime} from './ZonedDateTime';
-import {ZoneId} from './ZoneId';
-import {ZoneOffset} from './ZoneOffset';
+import { Clock } from './Clock';
+import { Instant } from './Instant';
+import { LocalDate } from './LocalDate';
+import { LocalTime } from './LocalTime';
+import { OffsetDateTime } from './OffsetDateTime';
+import { ZonedDateTime } from './ZonedDateTime';
+import { ZoneId } from './ZoneId';
+import { ZoneOffset } from './ZoneOffset';
 
 
-import {DateTimeFormatter} from './format/DateTimeFormatter';
-import {ChronoField} from './temporal/ChronoField';
-import {ChronoUnit} from './temporal/ChronoUnit';
-import {TemporalQueries} from './temporal/TemporalQueries';
-import {createTemporalQuery} from './temporal/TemporalQuery';
+import { DateTimeFormatter } from './format/DateTimeFormatter';
+import { ChronoField } from './temporal/ChronoField';
+import { ChronoUnit } from './temporal/ChronoUnit';
+import { TemporalQueries } from './temporal/TemporalQueries';
+import { createTemporalQuery } from './temporal/TemporalQuery';
 
-import {ChronoLocalDateTime} from './chrono/ChronoLocalDateTime';
+import { ChronoLocalDateTime } from './chrono/ChronoLocalDateTime';
 
 /**
  * A date-time without a time-zone in the ISO-8601 calendar system,
@@ -1348,7 +1348,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
                         amount = MathUtil.safeMultiply(amount, 2);
                         return MathUtil.safeAdd(amount, MathUtil.intDiv(timeUntil, (LocalTime.NANOS_PER_HOUR * 12)));
                 }
-                throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
+                throw new UnsupportedTemporalTypeException(`Unsupported unit: ${unit}`);
             }
             let endDate = end._date;
             const endTime = end._time;
@@ -1595,7 +1595,7 @@ implements Temporal, TemporalAdjuster, Serializable */ {
      * @return {string} a string representation of this date-time, not null
      */
     toString() {
-        return `${this._date.toString()  }T${  this._time.toString()}`;
+        return `${this._date.toString()}T${this._time.toString()}`;
     }
 
     /**

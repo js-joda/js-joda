@@ -6,36 +6,36 @@
 
 import '../_init';
 
-import {expect} from 'chai';
-import {assertEquals, assertTrue, dataProviderTest} from '../testUtils';
-import {isCoverageTestRunner, isBrowserTestRunner} from '../testUtils';
-import {MockFieldNoValue} from './temporal/MockFieldNoValue';
-import {MockSimplePeriod} from './MockSimplePeriod';
-import {CurrentStandardZoneEuropeBerlin, CurrentStandardZoneAmericaNew_York} from '../zone/CurrentStandardZone';
+import { expect } from 'chai';
+import { assertEquals, assertTrue, dataProviderTest } from '../testUtils';
+import { isCoverageTestRunner, isBrowserTestRunner } from '../testUtils';
+import { MockFieldNoValue } from './temporal/MockFieldNoValue';
+import { MockSimplePeriod } from './MockSimplePeriod';
+import { CurrentStandardZoneEuropeBerlin, CurrentStandardZoneAmericaNew_York } from '../zone/CurrentStandardZone';
 
-import {DateTimeException, NullPointerException, DateTimeParseException} from '../../src/errors';
+import { DateTimeException, NullPointerException, DateTimeParseException } from '../../src/errors';
 
-import {Clock} from '../../src/Clock';
-import {Duration} from '../../src/Duration';
-import {Instant} from '../../src/Instant';
-import {LocalTime} from '../../src/LocalTime';
-import {LocalDate} from '../../src/LocalDate';
-import {LocalDateTime} from '../../src/LocalDateTime';
-import {Month} from '../../src/Month';
-import {MathUtil} from '../../src/MathUtil';
-import {Period} from '../../src/Period';
-import {Year} from '../../src/Year';
-import {ZonedDateTime} from '../../src/ZonedDateTime';
-import {ZoneId} from '../../src/ZoneId';
-import {ZoneOffset} from '../../src/ZoneOffset';
-import {ZoneRulesProvider} from '../../src/zone/ZoneRulesProvider';
+import { Clock } from '../../src/Clock';
+import { Duration } from '../../src/Duration';
+import { Instant } from '../../src/Instant';
+import { LocalTime } from '../../src/LocalTime';
+import { LocalDate } from '../../src/LocalDate';
+import { LocalDateTime } from '../../src/LocalDateTime';
+import { Month } from '../../src/Month';
+import { MathUtil } from '../../src/MathUtil';
+import { Period } from '../../src/Period';
+import { Year } from '../../src/Year';
+import { ZonedDateTime } from '../../src/ZonedDateTime';
+import { ZoneId } from '../../src/ZoneId';
+import { ZoneOffset } from '../../src/ZoneOffset';
+import { ZoneRulesProvider } from '../../src/zone/ZoneRulesProvider';
 
-import {IsoChronology} from '../../src/chrono/IsoChronology';
-import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
-import {ChronoField} from '../../src/temporal/ChronoField';
-import {ChronoUnit} from '../../src/temporal/ChronoUnit';
-import {TemporalAccessor} from '../../src/temporal/TemporalAccessor';
-import {TemporalQueries} from '../../src/temporal/TemporalQueries';
+import { IsoChronology } from '../../src/chrono/IsoChronology';
+import { DateTimeFormatter } from '../../src/format/DateTimeFormatter';
+import { ChronoField } from '../../src/temporal/ChronoField';
+import { ChronoUnit } from '../../src/temporal/ChronoUnit';
+import { TemporalAccessor } from '../../src/temporal/TemporalAccessor';
+import { TemporalQueries } from '../../src/temporal/TemporalQueries';
 
 describe('org.threeten.bp.TestZonedDateTime', () => {
     const OFFSET_0100 = ZoneOffset.ofHours(1);
@@ -656,7 +656,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
                 if (zone instanceof ZoneOffset) {
                     assertEquals(a.toString(), localDateTime.toString() + offset.toString());
                 } else {
-                    assertEquals(a.toString(), `${localDateTime.toString() + offset.toString()  }[${  zone.toString()  }]`);
+                    assertEquals(a.toString(), `${localDateTime.toString() + offset.toString()}[${zone.toString()}]`);
                 }
             });
 

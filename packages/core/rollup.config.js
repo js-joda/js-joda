@@ -4,7 +4,7 @@ import { uglify } from 'rollup-plugin-uglify';
 
 function createBanner(){
     const packageJson = require('./package.json');
-    const version = '//! @version ' + packageJson.name + ' - ' + packageJson.version + '\n';
+    const version = `//! @version ${packageJson.name} - ${packageJson.version}\n`;
     const preamble = fs.readFileSync('./src/license-preamble.js', 'utf8');
     return version + preamble;
 }

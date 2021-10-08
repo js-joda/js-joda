@@ -3,20 +3,20 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
-import {assertEquals} from './testUtils';
+import { expect } from 'chai';
+import { assertEquals } from './testUtils';
 
 import './_init';
 
-import {ChronoField} from '../src/temporal/ChronoField';
-import {ChronoUnit} from '../src/temporal/ChronoUnit';
-import {IllegalArgumentException, NullPointerException, UnsupportedTemporalTypeException} from '../src/errors';
-import {Period} from '../src/Period';
-import {TemporalField} from '../src/temporal/TemporalField';
-import {TemporalQuery} from '../src/temporal/TemporalQuery';
-import {TemporalUnit} from '../src/temporal/TemporalUnit';
-import {ValueRange} from '../src/temporal/ValueRange';
-import {Year} from '../src/Year';
+import { ChronoField } from '../src/temporal/ChronoField';
+import { ChronoUnit } from '../src/temporal/ChronoUnit';
+import { IllegalArgumentException, NullPointerException, UnsupportedTemporalTypeException } from '../src/errors';
+import { Period } from '../src/Period';
+import { TemporalField } from '../src/temporal/TemporalField';
+import { TemporalQuery } from '../src/temporal/TemporalQuery';
+import { TemporalUnit } from '../src/temporal/TemporalUnit';
+import { ValueRange } from '../src/temporal/ValueRange';
+import { Year } from '../src/Year';
 
 /* these are not covered by the threetenbp ported tests */
 describe('js-joda Year', () => {

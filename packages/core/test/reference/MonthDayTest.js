@@ -2,25 +2,25 @@
  * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
-import {expect} from 'chai';
+import { expect } from 'chai';
 
 import '../_init';
-import {DateTimeException, DateTimeParseException, NullPointerException} from '../../src/errors';
-import {MathUtil} from '../../src/MathUtil';
+import { DateTimeException, DateTimeParseException, NullPointerException } from '../../src/errors';
+import { MathUtil } from '../../src/MathUtil';
 
-import {Clock} from '../../src/Clock';
-import {ChronoField} from '../../src/temporal/ChronoField';
-import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
-import {IsoChronology} from '../../src/chrono/IsoChronology';
-import {LocalDate} from '../../src/LocalDate';
-import {LocalDateTime} from '../../src/LocalDateTime';
-import {LocalTime} from '../../src/LocalTime';
-import {MockFieldNoValue} from './temporal/MockFieldNoValue';
-import {Month} from '../../src/Month';
-import {MonthDay} from '../../src/MonthDay';
-import {TemporalQueries} from '../../src/temporal/TemporalQueries';
-import {ZoneId} from '../../src/ZoneId';
-import {ZoneOffset} from '../../src/ZoneOffset';
+import { Clock } from '../../src/Clock';
+import { ChronoField } from '../../src/temporal/ChronoField';
+import { DateTimeFormatter } from '../../src/format/DateTimeFormatter';
+import { IsoChronology } from '../../src/chrono/IsoChronology';
+import { LocalDate } from '../../src/LocalDate';
+import { LocalDateTime } from '../../src/LocalDateTime';
+import { LocalTime } from '../../src/LocalTime';
+import { MockFieldNoValue } from './temporal/MockFieldNoValue';
+import { Month } from '../../src/Month';
+import { MonthDay } from '../../src/MonthDay';
+import { TemporalQueries } from '../../src/temporal/TemporalQueries';
+import { ZoneId } from '../../src/ZoneId';
+import { ZoneOffset } from '../../src/ZoneOffset';
 
 describe('org.threeten.bp.TestMonthDay', () => {
     let TEST_07_15;

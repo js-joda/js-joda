@@ -4,13 +4,13 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {requireNonNull} from '../assert';
-import {IllegalStateException} from '../errors';
+import { requireNonNull } from '../assert';
+import { IllegalStateException } from '../errors';
 
-import {TemporalAdjuster} from './TemporalAdjuster';
-import {ChronoField} from '../temporal/ChronoField';
-import {ChronoUnit} from '../temporal/ChronoUnit';
-import {MathUtil} from '../MathUtil';
+import { TemporalAdjuster } from './TemporalAdjuster';
+import { ChronoField } from '../temporal/ChronoField';
+import { ChronoUnit } from '../temporal/ChronoUnit';
+import { MathUtil } from '../MathUtil';
 
 /**
  * Common implementations of {@link TemporalAdjuster}.

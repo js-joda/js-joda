@@ -2,10 +2,10 @@
  * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
-import {expect} from 'chai';
+import { expect } from 'chai';
 
-import {ArithmeticException} from '../src/errors';
-import {MAX_SAFE_INTEGER, MIN_SAFE_INTEGER, MathUtil} from '../src/MathUtil';
+import { ArithmeticException } from '../src/errors';
+import { MAX_SAFE_INTEGER, MIN_SAFE_INTEGER, MathUtil } from '../src/MathUtil';
 
 describe('MathUtil', () => {
     describe('div/ mod', () => {

@@ -4,19 +4,19 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {assertEquals} from '../../testUtils';
+import { assertEquals } from '../../testUtils';
 
 import '../../_init';
 
-import {DateTimeFormatterBuilder} from '../../../src/format/DateTimeFormatterBuilder';
-import {DateTimePrintContext} from '../../../src/format/DateTimePrintContext';
-import {DecimalStyle} from '../../../src/format/DecimalStyle';
-import {StringBuilder} from '../../../src/format/StringBuilder';
-import {LocalDate} from '../../../src/LocalDate';
+import { DateTimeFormatterBuilder } from '../../../src/format/DateTimeFormatterBuilder';
+import { DateTimePrintContext } from '../../../src/format/DateTimePrintContext';
+import { DecimalStyle } from '../../../src/format/DecimalStyle';
+import { StringBuilder } from '../../../src/format/StringBuilder';
+import { LocalDate } from '../../../src/LocalDate';
 
 const StringLiteralPrinterParser = DateTimeFormatterBuilder.StringLiteralPrinterParser;
 
-import {EMPTY} from '../temporal/Empty';
+import { EMPTY } from '../temporal/Empty';
 
 describe('org.threeten.bp.format.TestStringLiteralPrinter', () => {
     let printEmptyContext, printContext, buf;

@@ -5,14 +5,14 @@
 
 import '../_init';
 
-import {assertEquals, dataProviderTest} from '../testUtils';
+import { assertEquals, dataProviderTest } from '../testUtils';
 
-import {CurrentStandardZoneAmericaNew_York} from './CurrentStandardZone';
+import { CurrentStandardZoneAmericaNew_York } from './CurrentStandardZone';
 
-import {Instant} from '../../src/Instant';
-import {LocalDateTime} from '../../src/LocalDateTime';
-import {ZoneOffset} from '../../src/ZoneOffset';
-import {ZoneOffsetTransition} from '../../src/zone/ZoneOffsetTransition';
+import { Instant } from '../../src/Instant';
+import { LocalDateTime } from '../../src/LocalDateTime';
+import { ZoneOffset } from '../../src/ZoneOffset';
+import { ZoneOffsetTransition } from '../../src/zone/ZoneOffsetTransition';
 
 describe('CurrentZoneAmericaNewYorkTest', () => {
 

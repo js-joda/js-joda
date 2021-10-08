@@ -420,12 +420,6 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "@js-joda/root/packages/timezone/src/unpack.js~unpack",
-    "function/index.html#static-function-unpack",
-    "<span>unpack</span> <span class=\"search-result-import-path\">@js-joda/root/packages/timezone/src/unpack.js</span>",
-    "function"
-  ],
-  [
     "packages/core/src/clock.js",
     "file/packages/core/src/Clock.js.html",
     "packages/core/src/Clock.js",

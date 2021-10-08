@@ -3,16 +3,16 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
-import {assertEquals} from '../testUtils';
+import { expect } from 'chai';
+import { assertEquals } from '../testUtils';
 
 import '../_init';
 
-import {ChronoZonedDateTime} from '../../src/chrono/ChronoZonedDateTime';
-import {ZonedDateTime} from '../../src/ZonedDateTime';
-import {TemporalQueries} from '../../src/temporal/TemporalQueries';
-import {TemporalQuery} from '../../src/temporal/TemporalQuery';
-import {ZoneOffset} from '../../src/ZoneOffset';
+import { ChronoZonedDateTime } from '../../src/chrono/ChronoZonedDateTime';
+import { ZonedDateTime } from '../../src/ZonedDateTime';
+import { TemporalQueries } from '../../src/temporal/TemporalQueries';
+import { TemporalQuery } from '../../src/temporal/TemporalQuery';
+import { ZoneOffset } from '../../src/ZoneOffset';
 
 /* these are not covered by the threetenbp ported tests */
 describe('js-joda ChronoZonedDateTime', () => {

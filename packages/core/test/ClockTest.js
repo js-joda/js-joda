@@ -2,15 +2,15 @@
  * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
-import {expect} from 'chai';
+import { expect } from 'chai';
 
 import './_init';
 
-import {Clock} from '../src/Clock';
-import {Duration} from  '../src/Duration';
-import {Instant} from '../src/Instant';
-import {ZoneId} from '../src/ZoneId';
-import {CurrentStandardZoneAmericaNew_York} from './zone/CurrentStandardZone';
+import { Clock } from '../src/Clock';
+import { Duration } from  '../src/Duration';
+import { Instant } from '../src/Instant';
+import { ZoneId } from '../src/ZoneId';
+import { CurrentStandardZoneAmericaNew_York } from './zone/CurrentStandardZone';
 
 describe('Clock', () => {
     describe('should deny calling an instant method of pseudo abstract class Clock', () => {

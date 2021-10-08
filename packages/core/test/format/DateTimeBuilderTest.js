@@ -2,19 +2,19 @@
  * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
-import {expect} from 'chai';
-import {assertEquals, dataProviderTest} from '../testUtils';
+import { expect } from 'chai';
+import { assertEquals, dataProviderTest } from '../testUtils';
 
 import '../_init';
 
-import {ChronoField} from '../../src/temporal/ChronoField';
-import {DateTimeBuilder} from '../../src/format/DateTimeBuilder';
-import {DateTimeException} from '../../src/errors';
-import {IsoChronology} from '../../src/chrono/IsoChronology';
-import {LocalDate} from '../../src/LocalDate';
-import {LocalTime} from '../../src/LocalTime';
-import {ResolverStyle} from '../../src/format/ResolverStyle';
-import {TemporalQueries} from '../../src/temporal/TemporalQueries';
+import { ChronoField } from '../../src/temporal/ChronoField';
+import { DateTimeBuilder } from '../../src/format/DateTimeBuilder';
+import { DateTimeException } from '../../src/errors';
+import { IsoChronology } from '../../src/chrono/IsoChronology';
+import { LocalDate } from '../../src/LocalDate';
+import { LocalTime } from '../../src/LocalTime';
+import { ResolverStyle } from '../../src/format/ResolverStyle';
+import { TemporalQueries } from '../../src/temporal/TemporalQueries';
 
 /* these tests are not copied from threetenbp, but js-joda tests to increase coverage */
 describe('js-joda DateTimeBuilderTest', () => {

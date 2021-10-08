@@ -4,11 +4,11 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {requireNonNull} from '../assert';
-import {IllegalArgumentException} from '../errors';
+import { requireNonNull } from '../assert';
+import { IllegalArgumentException } from '../errors';
 
-import {Duration} from '../Duration';
-import {LocalDateTime} from '../LocalDateTime';
+import { Duration } from '../Duration';
+import { LocalDateTime } from '../LocalDateTime';
 
 /**
  * A transition between two offsets caused by a discontinuity in the local time-line.
@@ -281,9 +281,9 @@ export class ZoneOffsetTransition {
      * @return {string} a string for debugging, not null
      */
     toString() {
-        return `Transition[${  this.isGap() ? 'Gap' : 'Overlap' 
-        } at ${  this._transition.toString()  }${this._offsetBefore.toString() 
-        } to ${  this._offsetAfter  }]`;
+        return `Transition[${this.isGap() ? 'Gap' : 'Overlap' 
+        } at ${this._transition.toString()}${this._offsetBefore.toString() 
+        } to ${this._offsetAfter}]`;
     }
 
 }

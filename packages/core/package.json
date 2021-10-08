@@ -28,7 +28,7 @@
     "build-dist": "npx rollup -c rollup.config.js",
     "build-md-toc": "./node_modules/.bin/markdown-toc -i CheatSheet.md",
     "build-gz-check": "gzip -kf dist/js-joda.min.js && ls -alh ./dist/js-joda.min.js*",
-    "lint": "../../node_modules/.bin/eslint  ./src ./test"
+    "lint": "../../node_modules/.bin/eslint  ."
   },
   "keywords": [
     "date",

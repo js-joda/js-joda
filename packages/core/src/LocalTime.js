@@ -5,23 +5,23 @@
  */
 
 
-import {MathUtil} from './MathUtil';
-import {requireNonNull, requireInstance} from './assert';
-import {DateTimeException, UnsupportedTemporalTypeException} from './errors';
+import { MathUtil } from './MathUtil';
+import { requireNonNull, requireInstance } from './assert';
+import { DateTimeException, UnsupportedTemporalTypeException } from './errors';
 
-import {Clock} from './Clock';
-import {LocalDateTime} from './LocalDateTime';
-import {ZoneId} from './ZoneId';
-import {OffsetTime} from './OffsetTime';
+import { Clock } from './Clock';
+import { LocalDateTime } from './LocalDateTime';
+import { ZoneId } from './ZoneId';
+import { OffsetTime } from './OffsetTime';
 
-import {DateTimeFormatter} from './format/DateTimeFormatter';
+import { DateTimeFormatter } from './format/DateTimeFormatter';
 
-import {ChronoField} from './temporal/ChronoField';
-import {ChronoUnit} from './temporal/ChronoUnit';
-import {Temporal} from './temporal/Temporal';
-import {TemporalField} from './temporal/TemporalField';
-import {TemporalQueries} from './temporal/TemporalQueries';
-import {createTemporalQuery} from './temporal/TemporalQuery';
+import { ChronoField } from './temporal/ChronoField';
+import { ChronoUnit } from './temporal/ChronoUnit';
+import { Temporal } from './temporal/Temporal';
+import { TemporalField } from './temporal/TemporalField';
+import { TemporalQueries } from './temporal/TemporalQueries';
+import { createTemporalQuery } from './temporal/TemporalQuery';
 
 /**
  * A time without time-zone in the ISO-8601 calendar system,
@@ -461,7 +461,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
             case ChronoField.CLOCK_HOUR_OF_DAY: return (this._hour === 0 ? 24 : this._hour);
             case ChronoField.AMPM_OF_DAY: return MathUtil.intDiv(this._hour, 12);
         }
-        throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
+        throw new UnsupportedTemporalTypeException(`Unsupported field: ${field}`);
     }
 
     //-----------------------------------------------------------------------
@@ -633,7 +633,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
                 case ChronoField.CLOCK_HOUR_OF_DAY: return this.withHour((newValue === 24 ? 0 : newValue));
                 case ChronoField.AMPM_OF_DAY: return this.plusHours((newValue - MathUtil.intDiv(this._hour, 12)) * 12);
             }
-            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${field}`);
         }
         return field.adjustInto(this, newValue);
     }
@@ -769,7 +769,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
                 case ChronoUnit.HOURS: return this.plusHours(amountToAdd);
                 case ChronoUnit.HALF_DAYS: return this.plusHours(MathUtil.intMod(amountToAdd, 2) * 12);
             }
-            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${unit}`);
         }
         return unit.addTo(this, amountToAdd);
     }
@@ -1077,7 +1077,7 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
                 case ChronoUnit.HOURS: return MathUtil.intDiv(nanosUntil, LocalTime.NANOS_PER_HOUR);
                 case ChronoUnit.HALF_DAYS: return MathUtil.intDiv(nanosUntil, (12 * LocalTime.NANOS_PER_HOUR));
             }
-            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${unit}`);
         }
         return unit.between(this, end);
     }
@@ -1255,11 +1255,11 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
             if (nanoValue > 0) {
                 buf += '.';
                 if(MathUtil.intMod(nanoValue, 1000000) === 0) {
-                    buf += (`${  MathUtil.intDiv(nanoValue, 1000000) + 1000}`).substring(1);
+                    buf += (`${MathUtil.intDiv(nanoValue, 1000000) + 1000}`).substring(1);
                 } else if (MathUtil.intMod(nanoValue, 1000) === 0) {
-                    buf += (`${  MathUtil.intDiv(nanoValue, 1000) + 1000000}`).substring(1);
+                    buf += (`${MathUtil.intDiv(nanoValue, 1000) + 1000000}`).substring(1);
                 } else {
-                    buf += (`${  nanoValue + 1000000000}`).substring(1);
+                    buf += (`${nanoValue + 1000000000}`).substring(1);
                 }
             }
         }

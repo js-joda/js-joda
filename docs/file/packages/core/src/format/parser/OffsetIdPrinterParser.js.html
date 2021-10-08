@@ -100,7 +100,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -112,11 +111,11 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {requireNonNull} from &apos;../../assert&apos;;
-import {IllegalArgumentException} from &apos;../../errors&apos;;
-import {MathUtil} from &apos;../../MathUtil&apos;;
+import { requireNonNull } from &apos;../../assert&apos;;
+import { IllegalArgumentException } from &apos;../../errors&apos;;
+import { MathUtil } from &apos;../../MathUtil&apos;;
 
-import {ChronoField} from &apos;../../temporal/ChronoField&apos;;
+import { ChronoField } from &apos;../../temporal/ChronoField&apos;;
 
 //-----------------------------------------------------------------------
 const PATTERNS = [
@@ -151,7 +150,7 @@ export class OffsetIdPrinterParser  {
                 return i;
             }
         }
-        throw new IllegalArgumentException(`Invalid zone offset pattern: ${  pattern}`);
+        throw new IllegalArgumentException(`Invalid zone offset pattern: ${pattern}`);
     }
 
     /**
@@ -174,14 +173,14 @@ export class OffsetIdPrinterParser  {
             const bufPos = buf.length();
             let output = absHours;
             buf.append(totalSecs &lt; 0 ? &apos;-&apos; : &apos;+&apos;)
-                .appendChar((`${MathUtil.intDiv(absHours, 10)  }0`)).appendChar(`${MathUtil.intMod(absHours, 10)  }0`);
+                .appendChar((`${MathUtil.intDiv(absHours, 10)}0`)).appendChar(`${MathUtil.intMod(absHours, 10)}0`);
             if (this.type &gt;= 3 || (this.type &gt;= 1 &amp;&amp; absMinutes &gt; 0)) {
                 buf.append((this.type % 2) === 0 ? &apos;:&apos; : &apos;&apos;)
-                    .appendChar((`${MathUtil.intDiv(absMinutes, 10)  }0`)).appendChar((`${absMinutes % 10  }0`));
+                    .appendChar((`${MathUtil.intDiv(absMinutes, 10)}0`)).appendChar((`${absMinutes % 10}0`));
                 output += absMinutes;
                 if (this.type &gt;= 7 || (this.type &gt;= 5 &amp;&amp; absSeconds &gt; 0)) {
                     buf.append((this.type % 2) === 0 ? &apos;:&apos; : &apos;&apos;)
-                        .appendChar((`${MathUtil.intDiv(absSeconds, 10)  }0`)).appendChar((`${absSeconds % 10  }0`));
+                        .appendChar((`${MathUtil.intDiv(absSeconds, 10)}0`)).appendChar((`${absSeconds % 10}0`));
                     output += absSeconds;
                 }
             }
@@ -277,7 +276,7 @@ export class OffsetIdPrinterParser  {
 
     toString() {
         const converted = this.noOffsetText.replace(&apos;\&apos;&apos;, &apos;\&apos;\&apos;&apos;);
-        return `Offset(${  PATTERNS[this.type]  },&apos;${  converted  }&apos;)`;
+        return `Offset(${PATTERNS[this.type]},&apos;${converted}&apos;)`;
     }
 }
 OffsetIdPrinterParser.INSTANCE_ID = new OffsetIdPrinterParser(&apos;Z&apos;, &apos;+HH:MM:ss&apos;);

@@ -3,24 +3,24 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
-import {assertEquals} from './testUtils';
+import { expect } from 'chai';
+import { assertEquals } from './testUtils';
 
 import './_init';
 
-import {ChronoField} from '../src/temporal/ChronoField';
-import {ChronoUnit} from '../src/temporal/ChronoUnit';
-import {Instant} from '../src/Instant';
-import {LocalTime} from '../src/LocalTime';
-import {LocalDateTime} from '../src/LocalDateTime';
-import {MathUtil} from '../src/MathUtil';
-import {OffsetDateTime} from '../src/OffsetDateTime';
-import {TemporalAccessor} from '../src/temporal/TemporalAccessor';
-import {TemporalField} from '../src/temporal/TemporalField';
-import {TemporalQuery} from '../src/temporal/TemporalQuery';
-import {TemporalUnit} from '../src/temporal/TemporalUnit';
-import {ZoneOffset} from '../src/ZoneOffset';
-import {DateTimeException, NullPointerException, UnsupportedTemporalTypeException} from '../src/errors';
+import { ChronoField } from '../src/temporal/ChronoField';
+import { ChronoUnit } from '../src/temporal/ChronoUnit';
+import { Instant } from '../src/Instant';
+import { LocalTime } from '../src/LocalTime';
+import { LocalDateTime } from '../src/LocalDateTime';
+import { MathUtil } from '../src/MathUtil';
+import { OffsetDateTime } from '../src/OffsetDateTime';
+import { TemporalAccessor } from '../src/temporal/TemporalAccessor';
+import { TemporalField } from '../src/temporal/TemporalField';
+import { TemporalQuery } from '../src/temporal/TemporalQuery';
+import { TemporalUnit } from '../src/temporal/TemporalUnit';
+import { ZoneOffset } from '../src/ZoneOffset';
+import { DateTimeException, NullPointerException, UnsupportedTemporalTypeException } from '../src/errors';
 
 /* these are not covered by the threetenbp ported tests */
 describe('js-joda Instant', () => {

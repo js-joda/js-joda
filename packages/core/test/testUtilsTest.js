@@ -1,4 +1,4 @@
-import {expect, AssertionError} from 'chai';
+import { expect, AssertionError } from 'chai';
 
 import {
     assertEquals, assertSame, assertTrue, assertFalse, assertNotNull, fail

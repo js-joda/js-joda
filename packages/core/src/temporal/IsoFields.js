@@ -4,22 +4,22 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {UnsupportedTemporalTypeException, IllegalStateException} from '../errors';
+import { UnsupportedTemporalTypeException, IllegalStateException } from '../errors';
 
-import {DayOfWeek} from '../DayOfWeek';
-import {Duration} from '../Duration';
-import {MathUtil} from '../MathUtil';
-import {LocalDate} from '../LocalDate';
+import { DayOfWeek } from '../DayOfWeek';
+import { Duration } from '../Duration';
+import { MathUtil } from '../MathUtil';
+import { LocalDate } from '../LocalDate';
 
-import {ChronoField} from './ChronoField';
-import {ChronoUnit} from './ChronoUnit';
-import {TemporalField} from './TemporalField';
-import {TemporalUnit} from './TemporalUnit';
-import {ValueRange} from './ValueRange';
+import { ChronoField } from './ChronoField';
+import { ChronoUnit } from './ChronoUnit';
+import { TemporalField } from './TemporalField';
+import { TemporalUnit } from './TemporalUnit';
+import { ValueRange } from './ValueRange';
 
-import {IsoChronology} from '../chrono/IsoChronology';
+import { IsoChronology } from '../chrono/IsoChronology';
 
-import {ResolverStyle} from '../format/ResolverStyle';
+import { ResolverStyle } from '../format/ResolverStyle';
 
 /**
  * Fields and units specific to the ISO-8601 calendar system,

@@ -4,34 +4,34 @@
  */
 
 import './_init';
-import {assertEquals, dataProviderTest} from './testUtils';
+import { assertEquals, dataProviderTest } from './testUtils';
 
-import {expect} from 'chai';
+import { expect } from 'chai';
 
-import {DateTimeException, IllegalArgumentException} from '../src/errors';
+import { DateTimeException, IllegalArgumentException } from '../src/errors';
 
-import {DayOfWeek} from '../src/DayOfWeek';
-import {Instant} from '../src/Instant';
-import {LocalDate} from '../src/LocalDate';
-import {LocalDateTime} from '../src/LocalDateTime';
-import {LocalTime} from '../src/LocalTime';
-import {MathUtil} from '../src/MathUtil';
-import {Month} from '../src/Month';
-import {ZonedDateTime} from '../src/ZonedDateTime';
-import {ZoneId} from '../src/ZoneId';
-import {ZoneOffset} from '../src/ZoneOffset';
-import {ZoneRulesProvider} from '../src/zone/ZoneRulesProvider';
+import { DayOfWeek } from '../src/DayOfWeek';
+import { Instant } from '../src/Instant';
+import { LocalDate } from '../src/LocalDate';
+import { LocalDateTime } from '../src/LocalDateTime';
+import { LocalTime } from '../src/LocalTime';
+import { MathUtil } from '../src/MathUtil';
+import { Month } from '../src/Month';
+import { ZonedDateTime } from '../src/ZonedDateTime';
+import { ZoneId } from '../src/ZoneId';
+import { ZoneOffset } from '../src/ZoneOffset';
+import { ZoneRulesProvider } from '../src/zone/ZoneRulesProvider';
 
-import {ChronoField} from '../src/temporal/ChronoField';
-import {ChronoUnit} from '../src/temporal/ChronoUnit';
-import {TemporalAdjusters} from '../src/temporal/TemporalAdjusters';
-import {TemporalField} from '../src/temporal/TemporalField';
-import {TemporalUnit} from '../src/temporal/TemporalUnit';
-import {TemporalQueries} from '../src/temporal/TemporalQueries';
-import {ValueRange} from '../src/temporal/ValueRange';
+import { ChronoField } from '../src/temporal/ChronoField';
+import { ChronoUnit } from '../src/temporal/ChronoUnit';
+import { TemporalAdjusters } from '../src/temporal/TemporalAdjusters';
+import { TemporalField } from '../src/temporal/TemporalField';
+import { TemporalUnit } from '../src/temporal/TemporalUnit';
+import { TemporalQueries } from '../src/temporal/TemporalQueries';
+import { ValueRange } from '../src/temporal/ValueRange';
 
-import {CurrentStandardZoneAmericaNew_York} from './zone/CurrentStandardZone';
-import {CurrentStandardZoneEuropeBerlin} from './zone/CurrentStandardZone';
+import { CurrentStandardZoneAmericaNew_York } from './zone/CurrentStandardZone';
+import { CurrentStandardZoneEuropeBerlin } from './zone/CurrentStandardZone';
 
 /**
  * js-joda tests for use cases that are not covered in the treeten bp reference tests
@@ -439,7 +439,7 @@ describe('ZonedDateTime', () => {
                     return true;
                 }
                 getLong(field){
-                    throw new this.ErrorClass(`${field.toString()  } not supported`);
+                    throw new this.ErrorClass(`${field.toString()} not supported`);
                 }
             }
 

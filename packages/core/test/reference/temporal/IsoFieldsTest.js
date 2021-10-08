@@ -5,14 +5,14 @@
  */
 
 import '../../_init';
-import {assertEquals, dataProviderTest, isCoverageTestRunner, isBrowserTestRunner} from '../../testUtils';
+import { assertEquals, dataProviderTest, isCoverageTestRunner, isBrowserTestRunner } from '../../testUtils';
 
-import {DayOfWeek} from '../../../src/DayOfWeek';
-import {LocalDate} from '../../../src/LocalDate';
-import {ValueRange} from '../../../src/temporal/ValueRange';
+import { DayOfWeek } from '../../../src/DayOfWeek';
+import { LocalDate } from '../../../src/LocalDate';
+import { ValueRange } from '../../../src/temporal/ValueRange';
 
-import {ChronoField} from '../../../src/temporal/ChronoField';
-import {IsoFields} from '../../../src/temporal/IsoFields';
+import { ChronoField } from '../../../src/temporal/ChronoField';
+import { IsoFields } from '../../../src/temporal/IsoFields';
 
 describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
 
@@ -138,13 +138,13 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
                     wby++;
                 }
             }
-            assertEquals(IsoFields.WEEK_OF_WEEK_BASED_YEAR.rangeRefinedBy(date), ValueRange.of(1, weekLen), `Failed on ${  date  } ${  date.dayOfWeek()}`);
-            assertEquals(IsoFields.WEEK_OF_WEEK_BASED_YEAR.getFrom(date), week, `Failed on ${  date  } ${  date.dayOfWeek()}`);
-            assertEquals(date.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR), week, `Failed on ${  date  } ${  date.dayOfWeek()}`);
-            assertEquals(date.isoWeekOfWeekyear(), week, `Failed on ${  date  } ${  date.dayOfWeek()}`);
-            assertEquals(IsoFields.WEEK_BASED_YEAR.getFrom(date), wby, `Failed on ${  date  } ${  date.dayOfWeek()}`);
-            assertEquals(date.get(IsoFields.WEEK_BASED_YEAR), wby, `Failed on ${  date  } ${  date.dayOfWeek()}`);
-            assertEquals(date.isoWeekyear(), wby, `Failed on ${  date  } ${  date.dayOfWeek()}`);
+            assertEquals(IsoFields.WEEK_OF_WEEK_BASED_YEAR.rangeRefinedBy(date), ValueRange.of(1, weekLen), `Failed on ${date} ${date.dayOfWeek()}`);
+            assertEquals(IsoFields.WEEK_OF_WEEK_BASED_YEAR.getFrom(date), week, `Failed on ${date} ${date.dayOfWeek()}`);
+            assertEquals(date.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR), week, `Failed on ${date} ${date.dayOfWeek()}`);
+            assertEquals(date.isoWeekOfWeekyear(), week, `Failed on ${date} ${date.dayOfWeek()}`);
+            assertEquals(IsoFields.WEEK_BASED_YEAR.getFrom(date), wby, `Failed on ${date} ${date.dayOfWeek()}`);
+            assertEquals(date.get(IsoFields.WEEK_BASED_YEAR), wby, `Failed on ${date} ${date.dayOfWeek()}`);
+            assertEquals(date.isoWeekyear(), wby, `Failed on ${date} ${date.dayOfWeek()}`);
             date = date.plusDays(1);
         }
     });

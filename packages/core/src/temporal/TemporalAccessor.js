@@ -4,11 +4,11 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {UnsupportedTemporalTypeException} from '../errors';
-import {abstractMethodFail} from '../assert';
+import { UnsupportedTemporalTypeException } from '../errors';
+import { abstractMethodFail } from '../assert';
 
-import {ChronoField} from './ChronoField';
-import {TemporalQueries} from './TemporalQueries';
+import { ChronoField } from './ChronoField';
+import { TemporalQueries } from './TemporalQueries';
 
 export class TemporalAccessor {
     /**
@@ -123,7 +123,7 @@ export class TemporalAccessor {
             if (this.isSupported(field)) {
                 return field.range();
             }
-            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${field}`);
         }
         return field.rangeRefinedBy(this);
     }

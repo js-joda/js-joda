@@ -2,8 +2,8 @@ import { expect } from 'chai';
 
 import '../_init';
 
-import {LocalDate} from '../../src/LocalDate';
-import {ChronoField} from '../../src/temporal/ChronoField';
+import { LocalDate } from '../../src/LocalDate';
+import { ChronoField } from '../../src/temporal/ChronoField';
 
 describe('js-joda ChronoField', () => {
     describe('adjustInto', () => {

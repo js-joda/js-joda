@@ -100,7 +100,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -112,16 +111,16 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {MathUtil} from &apos;./MathUtil&apos;;
-import {requireNonNull, requireInstance} from &apos;./assert&apos;;
-import {DateTimeException, UnsupportedTemporalTypeException, ArithmeticException, DateTimeParseException} from &apos;./errors&apos;;
+import { MathUtil } from &apos;./MathUtil&apos;;
+import { requireNonNull, requireInstance } from &apos;./assert&apos;;
+import { DateTimeException, UnsupportedTemporalTypeException, ArithmeticException, DateTimeParseException } from &apos;./errors&apos;;
 
-import {IsoChronology} from &apos;./chrono/IsoChronology&apos;;
+import { IsoChronology } from &apos;./chrono/IsoChronology&apos;;
 
-import {ChronoUnit} from &apos;./temporal/ChronoUnit&apos;;
-import {TemporalAmount} from &apos;./temporal/TemporalAmount&apos;;
+import { ChronoUnit } from &apos;./temporal/ChronoUnit&apos;;
+import { TemporalAmount } from &apos;./temporal/TemporalAmount&apos;;
 
-import {LocalDate} from &apos;./LocalDate&apos;;
+import { LocalDate } from &apos;./LocalDate&apos;;
 
 /**
  * The pattern for parsing.
@@ -322,7 +321,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
             } else if (unit === ChronoUnit.DAYS) {
                 days = MathUtil.safeToInt(unitAmount);
             } else {
-                throw new DateTimeException(`Unit must be Years, Months or Days, but was ${  unit}`);
+                throw new DateTimeException(`Unit must be Years, Months or Days, but was ${unit}`);
             }
         }
         return Period.create(years, months, days);
@@ -501,7 +500,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
         if (unit === ChronoUnit.DAYS) {
             return this._days;
         }
-        throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
+        throw new UnsupportedTemporalTypeException(`Unsupported unit: ${unit}`);
     }
 
     //-----------------------------------------------------------------------
@@ -1012,13 +1011,13 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
         } else {
             let buf = &apos;P&apos;;
             if (this._years !== 0) {
-                buf += `${  this._years  }Y`;
+                buf += `${this._years}Y`;
             }
             if (this._months !== 0) {
-                buf += `${  this._months  }M`;
+                buf += `${this._months}M`;
             }
             if (this._days !== 0) {
-                buf += `${  this._days  }D`;
+                buf += `${this._days}D`;
             }
             return buf;
         }

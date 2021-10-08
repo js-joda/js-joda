@@ -4,14 +4,14 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
-import {assertEquals} from '../../testUtils';
+import { expect } from 'chai';
+import { assertEquals } from '../../testUtils';
 
 import '../../_init';
 
-import {IllegalArgumentException} from '../../../src/errors';
-import {MathUtil} from '../../../src/MathUtil';
-import {ValueRange} from '../../../src/temporal/ValueRange';
+import { IllegalArgumentException } from '../../../src/errors';
+import { MathUtil } from '../../../src/MathUtil';
+import { ValueRange } from '../../../src/temporal/ValueRange';
 
 describe('org.threeten.bp.temporal.TestValueRange', function () {
 

@@ -100,7 +100,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -111,13 +110,13 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {IllegalArgumentException} from &apos;./errors&apos;;
+import { IllegalArgumentException } from &apos;./errors&apos;;
 
-import {LocalDate} from &apos;./LocalDate&apos;;
-import {LocalDateTime} from &apos;./LocalDateTime&apos;;
-import {ZonedDateTime} from &apos;./ZonedDateTime&apos;;
-import {ZoneId} from &apos;./ZoneId&apos;;
-import {Instant} from &apos;./Instant&apos;;
+import { LocalDate } from &apos;./LocalDate&apos;;
+import { LocalDateTime } from &apos;./LocalDateTime&apos;;
+import { ZonedDateTime } from &apos;./ZonedDateTime&apos;;
+import { ZoneId } from &apos;./ZoneId&apos;;
+import { Instant } from &apos;./Instant&apos;;
 
 class ToNativeJsConverter {
     /**
@@ -144,7 +143,7 @@ class ToNativeJsConverter {
                 zonedDateTime = temporal.withZoneSameInstant(zone);
             }
         } else {
-            throw new IllegalArgumentException(`unsupported instance for convert operation:${  temporal}`);
+            throw new IllegalArgumentException(`unsupported instance for convert operation:${temporal}`);
         }
 
         this.instant = zonedDateTime.toInstant();

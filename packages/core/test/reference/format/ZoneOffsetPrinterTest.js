@@ -4,25 +4,25 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
+import { expect } from 'chai';
 
 import '../../_init';
 
-import {dataProviderTest, assertEquals} from '../../testUtils';
+import { dataProviderTest, assertEquals } from '../../testUtils';
 
-import {DateTimeException} from '../../../src/errors';
+import { DateTimeException } from '../../../src/errors';
 
-import {DateTimeBuilder} from '../../../src/format/DateTimeBuilder';
-import {DateTimeFormatterBuilder} from '../../../src/format/DateTimeFormatterBuilder';
-import {DateTimePrintContext} from '../../../src/format/DateTimePrintContext';
-import {DecimalStyle} from '../../../src/format/DecimalStyle';
-import {StringBuilder} from '../../../src/format/StringBuilder';
-import {LocalDate} from '../../../src/LocalDate';
-import {ZoneOffset} from '../../../src/ZoneOffset';
+import { DateTimeBuilder } from '../../../src/format/DateTimeBuilder';
+import { DateTimeFormatterBuilder } from '../../../src/format/DateTimeFormatterBuilder';
+import { DateTimePrintContext } from '../../../src/format/DateTimePrintContext';
+import { DecimalStyle } from '../../../src/format/DecimalStyle';
+import { StringBuilder } from '../../../src/format/StringBuilder';
+import { LocalDate } from '../../../src/LocalDate';
+import { ZoneOffset } from '../../../src/ZoneOffset';
 
-import {ChronoField} from '../../../src/temporal/ChronoField';
+import { ChronoField } from '../../../src/temporal/ChronoField';
 
-import {EMPTY} from '../temporal/Empty';
+import { EMPTY } from '../temporal/Empty';
 
 const OffsetIdPrinterParser = DateTimeFormatterBuilder.OffsetIdPrinterParser;
 
@@ -122,7 +122,7 @@ describe('org.threeten.bp.format.TestZoneOffsetPrinter', ()=>{
             printContext.setDateTime(DateTimeBuilder.create(ChronoField.OFFSET_SECONDS, offset.totalSeconds()));
             const pp = new OffsetIdPrinterParser('NO-OFFSET', pattern);
             pp.print(printContext, buf);
-            assertEquals(buf.toString(), `EXISTING${  expected}`);
+            assertEquals(buf.toString(), `EXISTING${expected}`);
         });
     });
 
@@ -131,7 +131,7 @@ describe('org.threeten.bp.format.TestZoneOffsetPrinter', ()=>{
         dataProviderTest(provider_offsets, (pattern) => {
             init();
             const pp = new OffsetIdPrinterParser('NO-OFFSET', pattern);
-            assertEquals(pp.toString(), `Offset(${  pattern  },'NO-OFFSET')`);
+            assertEquals(pp.toString(), `Offset(${pattern},'NO-OFFSET')`);
         });
     });
 

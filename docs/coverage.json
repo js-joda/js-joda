@@ -1,7 +1,7 @@
 {
-  "coverage": "70.91%",
+  "coverage": "70.97%",
   "expectCount": 1850,
-  "actualCount": 1312,
+  "actualCount": 1313,
   "files": {
     "packages/core/src/Clock.js": {
       "expectCount": 39,
@@ -1096,13 +1096,12 @@
     },
     "packages/timezone/src/unpack.js": {
       "expectCount": 6,
-      "actualCount": 1,
+      "actualCount": 2,
       "undocumentLines": [
         28,
         60,
         66,
-        74,
-        84
+        74
       ]
     }
   }

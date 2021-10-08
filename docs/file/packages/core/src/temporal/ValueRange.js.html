@@ -100,7 +100,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -112,9 +111,9 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {assert} from &apos;../assert&apos;;
-import {DateTimeException, IllegalArgumentException} from &apos;../errors&apos;;
-import {MathUtil} from &apos;../MathUtil&apos;;
+import { assert } from &apos;../assert&apos;;
+import { DateTimeException, IllegalArgumentException } from &apos;../errors&apos;;
+import { MathUtil } from &apos;../MathUtil&apos;;
 
 /**
  * The range of valid values for a date-time field.
@@ -142,12 +141,12 @@ export class ValueRange {
      * @private
      */
     constructor(minSmallest, minLargest, maxSmallest, maxLargest) {
-        assert(!(minSmallest &gt; minLargest), `Smallest minimum value &apos;${  minSmallest 
-        }&apos; must be less than largest minimum value &apos;${  minLargest  }&apos;`, IllegalArgumentException);
-        assert(!(maxSmallest &gt; maxLargest), `Smallest maximum value &apos;${  maxSmallest 
-        }&apos; must be less than largest maximum value &apos;${  maxLargest  }&apos;`, IllegalArgumentException);
-        assert(!(minLargest &gt; maxLargest), `Minimum value &apos;${  minLargest 
-        }&apos; must be less than maximum value &apos;${  maxLargest  }&apos;`, IllegalArgumentException);
+        assert(!(minSmallest &gt; minLargest), `Smallest minimum value &apos;${minSmallest 
+        }&apos; must be less than largest minimum value &apos;${minLargest}&apos;`, IllegalArgumentException);
+        assert(!(maxSmallest &gt; maxLargest), `Smallest maximum value &apos;${maxSmallest 
+        }&apos; must be less than largest maximum value &apos;${maxLargest}&apos;`, IllegalArgumentException);
+        assert(!(minLargest &gt; maxLargest), `Minimum value &apos;${minLargest 
+        }&apos; must be less than maximum value &apos;${maxLargest}&apos;`, IllegalArgumentException);
 
         this._minSmallest = minSmallest;
         this._minLargest = minLargest;
@@ -217,9 +216,9 @@ export class ValueRange {
         let msg;
         if (!this.isValidValue(value)) {
             if (field != null) {
-                msg = `Invalid value for ${  field  } (valid values ${  this.toString()  }): ${  value}`;
+                msg = `Invalid value for ${field} (valid values ${this.toString()}): ${value}`;
             } else {
-                msg = `Invalid value (valid values ${  this.toString()  }): ${  value}`;
+                msg = `Invalid value (valid values ${this.toString()}): ${value}`;
             }
             return assert(false, msg, DateTimeException);
         }
@@ -240,7 +239,7 @@ export class ValueRange {
      */
     checkValidIntValue(value, field) {
         if (this.isValidIntValue(value) === false) {
-            throw new DateTimeException(`Invalid int value for ${  field  }: ${  value}`);
+            throw new DateTimeException(`Invalid int value for ${field}: ${value}`);
         }
         return value;
     }
@@ -314,9 +313,9 @@ export class ValueRange {
      * @return {string} a string representation of this range, not null
      */
     toString() {
-        let str = this.minimum() + (this.minimum() !== this.largestMinimum() ? `/${  this.largestMinimum()}` : &apos;&apos;);
+        let str = this.minimum() + (this.minimum() !== this.largestMinimum() ? `/${this.largestMinimum()}` : &apos;&apos;);
         str += &apos; - &apos;;
-        str += this.smallestMaximum() + (this.smallestMaximum() !== this.maximum() ? `/${  this.maximum()}` : &apos;&apos;);
+        str += this.smallestMaximum() + (this.smallestMaximum() !== this.maximum() ? `/${this.maximum()}` : &apos;&apos;);
         return str;
     }
 
@@ -359,7 +358,7 @@ export class ValueRange {
         } else if (arguments.length === 4) {
             return new ValueRange(arguments[0], arguments[1], arguments[2], arguments[3]);
         } else {
-            return assert(false, `Invalid number of arguments ${  arguments.length}`, IllegalArgumentException);
+            return assert(false, `Invalid number of arguments ${arguments.length}`, IllegalArgumentException);
         }
     }
 }

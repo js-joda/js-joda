@@ -3,8 +3,8 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {SystemDefaultZoneRules} from './SystemDefaultZoneRules';
-import {ZoneId} from '../ZoneId';
+import { SystemDefaultZoneRules } from './SystemDefaultZoneRules';
+import { ZoneId } from '../ZoneId';
 
 export class SystemDefaultZoneId extends ZoneId {
 

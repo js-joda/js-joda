@@ -34,7 +34,7 @@ export class MomentZoneRulesProvider extends ZoneRulesProvider {
     static getRules(zoneId){
         const tzdbZoneInfo = zones[links[zoneId]];
         if(tzdbZoneInfo == null){
-            throw new DateTimeException(`Unknown time-zone ID: ${  zoneId}`);
+            throw new DateTimeException(`Unknown time-zone ID: ${zoneId}`);
         }
         return new MomentZoneRules(tzdbZoneInfo);
     }

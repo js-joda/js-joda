@@ -3,12 +3,12 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
+import { expect } from 'chai';
 
 import './_init';
 
-import {LocalDateTime} from '../src/LocalDateTime';
-import {NullPointerException, DateTimeException} from '../src/errors';
+import { LocalDateTime } from '../src/LocalDateTime';
+import { NullPointerException, DateTimeException } from '../src/errors';
 
 /* these are not covered by the threetenbp ported tests */
 describe('js-joda LocalDateTime', () => {

@@ -461,5 +461,5 @@ function binarySearch(array, value) {
 }
 
 function notSupported(msg){
-    throw new Error(`not supported: ${  msg}`);
+    throw new Error(`not supported: ${msg}`);
 }

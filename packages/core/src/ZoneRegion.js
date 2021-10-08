@@ -5,8 +5,8 @@
  */
 
 
-import {ZoneId} from './ZoneId';
-import {ZoneRulesProvider} from './zone/ZoneRulesProvider';
+import { ZoneId } from './ZoneId';
+import { ZoneRulesProvider } from './zone/ZoneRulesProvider';
 
 /**
  * A geographical region where the same time-zone rules apply.

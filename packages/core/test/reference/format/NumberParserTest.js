@@ -3,19 +3,19 @@
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
-import {expect} from 'chai';
+import { expect } from 'chai';
 
 import '../../_init';
 
-import {DateTimeFormatterBuilder} from '../../../src/format/DateTimeFormatterBuilder';
-import {DateTimeParseContext} from '../../../src/format/DateTimeParseContext';
-import {DecimalStyle} from '../../../src/format/DecimalStyle';
-import {SignStyle} from '../../../src/format/SignStyle';
-import {ChronoField} from '../../../src/temporal/ChronoField';
-import {TemporalQueries} from '../../../src/temporal/TemporalQueries';
-import {IsoChronology} from '../../../src/chrono/IsoChronology';
+import { DateTimeFormatterBuilder } from '../../../src/format/DateTimeFormatterBuilder';
+import { DateTimeParseContext } from '../../../src/format/DateTimeParseContext';
+import { DecimalStyle } from '../../../src/format/DecimalStyle';
+import { SignStyle } from '../../../src/format/SignStyle';
+import { ChronoField } from '../../../src/temporal/ChronoField';
+import { TemporalQueries } from '../../../src/temporal/TemporalQueries';
+import { IsoChronology } from '../../../src/chrono/IsoChronology';
 
-import {assertEquals} from '../../testUtils';
+import { assertEquals } from '../../testUtils';
 
 const NumberPrinterParser = DateTimeFormatterBuilder.NumberPrinterParser;
 const DAY_OF_MONTH = ChronoField.DAY_OF_MONTH;

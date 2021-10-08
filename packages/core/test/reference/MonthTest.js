@@ -3,19 +3,19 @@
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
-import {expect} from 'chai';
+import { expect } from 'chai';
 
 import '../_init';
 
-import {ChronoField} from '../../src/temporal/ChronoField';
-import {ChronoUnit} from '../../src/temporal/ChronoUnit';
-import {DateTimeException} from '../../src/errors';
-import {IsoChronology} from '../../src/chrono/IsoChronology';
-import {LocalDate} from '../../src/LocalDate';
-import {LocalTime} from '../../src/LocalTime';
-import {Month} from '../../src/Month';
-import {TemporalQueries} from '../../src/temporal/TemporalQueries';
-import {TextStyle} from '../../src/format/TextStyle';
+import { ChronoField } from '../../src/temporal/ChronoField';
+import { ChronoUnit } from '../../src/temporal/ChronoUnit';
+import { DateTimeException } from '../../src/errors';
+import { IsoChronology } from '../../src/chrono/IsoChronology';
+import { LocalDate } from '../../src/LocalDate';
+import { LocalTime } from '../../src/LocalTime';
+import { Month } from '../../src/Month';
+import { TemporalQueries } from '../../src/temporal/TemporalQueries';
+import { TextStyle } from '../../src/format/TextStyle';
 
 describe('org.threeten.bp.TestMonth', () => {
     const MAX_LENGTH = 12;
