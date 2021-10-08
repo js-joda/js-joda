@@ -11,8 +11,8 @@ node ./examples/node/node-modules-07-ko.js
 
 node ./examples/node/es6-index.js
 
-./node_modules/.bin/tsc ./examples/typescript/index.ts
+npx tsc ./examples/typescript/index.ts
 node ./examples/typescript/index.js
 
-./node_modules/.bin/webpack --config ./examples/webpack/webpack.config.js
+npx webpack --config ./examples/webpack/webpack.config.js
 node ./examples/webpack/webpack-bundle.js

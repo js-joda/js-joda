@@ -111,7 +111,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MomentZoneRules", function() { return MomentZoneRules; });
 /* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @js-joda/core */ "@js-joda/core");
 /* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__);
-function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 /*
  * @copyright (c) 2016-present, Philipp Thürwächter, Pattrick Hüper
@@ -351,7 +353,7 @@ function binarySearch(array, value) {
 }
 
 function notSupported(msg) {
-  throw new Error('not supported: ' + msg);
+  throw new Error("not supported: " + msg);
 }
 
 /***/ }),
@@ -370,7 +372,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _MomentZoneRules__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MomentZoneRules */ "./src/MomentZoneRules.js");
 /* harmony import */ var _unpack__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./unpack */ "./src/unpack.js");
-function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
+function _createForOfIteratorHelperLoose(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (it) return (it = it.call(o)).next.bind(it); if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; return function () { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 /*
  * @copyright (c) 2016-present, Philipp Thürwächter, Pattrick Hüper
@@ -396,7 +406,7 @@ var MomentZoneRulesProvider = function (_ZoneRulesProvider) {
     var tzdbZoneInfo = zones[links[zoneId]];
 
     if (tzdbZoneInfo == null) {
-      throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeException"]('Unknown time-zone ID: ' + zoneId);
+      throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeException"]("Unknown time-zone ID: " + zoneId);
     }
 
     return new _MomentZoneRules__WEBPACK_IMPORTED_MODULE_1__["MomentZoneRules"](tzdbZoneInfo);
@@ -418,38 +428,16 @@ var MomentZoneRulesProvider = function (_ZoneRulesProvider) {
     TZDB_DATA = packedJson;
     TZDB_VERSION = packedJson.version;
 
-    for (var _iterator = packedJson.zones, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-      var _ref;
-
-      if (_isArray) {
-        if (_i >= _iterator.length) break;
-        _ref = _iterator[_i++];
-      } else {
-        _i = _iterator.next();
-        if (_i.done) break;
-        _ref = _i.value;
-      }
-
-      var packedZoneInfo = _ref;
+    for (var _iterator = _createForOfIteratorHelperLoose(packedJson.zones), _step; !(_step = _iterator()).done;) {
+      var packedZoneInfo = _step.value;
       var tzdbZoneInfo = Object(_unpack__WEBPACK_IMPORTED_MODULE_2__["unpack"])(packedZoneInfo);
       AVAILABLE_ZONE_IDS.push(tzdbZoneInfo.name);
       zones[tzdbZoneInfo.name] = tzdbZoneInfo;
       links[tzdbZoneInfo.name] = tzdbZoneInfo.name;
     }
 
-    for (var _iterator2 = packedJson.links, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
-      var _ref2;
-
-      if (_isArray2) {
-        if (_i2 >= _iterator2.length) break;
-        _ref2 = _iterator2[_i2++];
-      } else {
-        _i2 = _iterator2.next();
-        if (_i2.done) break;
-        _ref2 = _i2.value;
-      }
-
-      var packedLink = _ref2;
+    for (var _iterator2 = _createForOfIteratorHelperLoose(packedJson.links), _step2; !(_step2 = _iterator2()).done;) {
+      var packedLink = _step2.value;
       var link = packedLink.split('|');
       AVAILABLE_ZONE_IDS.push(link[1]);
       links[link[1]] = link[0];
