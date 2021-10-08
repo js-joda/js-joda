@@ -100,7 +100,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -112,33 +111,33 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {assert, requireNonNull, requireInstance} from &apos;./assert&apos;;
+import { assert, requireNonNull, requireInstance } from &apos;./assert&apos;;
 
-import {MathUtil} from &apos;./MathUtil&apos;;
-import {DateTimeException, UnsupportedTemporalTypeException, NullPointerException, IllegalArgumentException} from &apos;./errors&apos;;
+import { MathUtil } from &apos;./MathUtil&apos;;
+import { DateTimeException, UnsupportedTemporalTypeException, NullPointerException, IllegalArgumentException } from &apos;./errors&apos;;
 
-import {IsoChronology} from &apos;./chrono/IsoChronology&apos;;
-import {ChronoField} from &apos;./temporal/ChronoField&apos;;
-import {ChronoUnit} from &apos;./temporal/ChronoUnit&apos;;
-import {ChronoLocalDate} from &apos;./chrono/ChronoLocalDate&apos;;
-import {TemporalQueries} from &apos;./temporal/TemporalQueries&apos;;
-import {createTemporalQuery} from &apos;./temporal/TemporalQuery&apos;;
-import {ValueRange} from &apos;./temporal/ValueRange&apos;;
-import {DateTimeFormatter} from &apos;./format/DateTimeFormatter&apos;;
+import { IsoChronology } from &apos;./chrono/IsoChronology&apos;;
+import { ChronoField } from &apos;./temporal/ChronoField&apos;;
+import { ChronoUnit } from &apos;./temporal/ChronoUnit&apos;;
+import { ChronoLocalDate } from &apos;./chrono/ChronoLocalDate&apos;;
+import { TemporalQueries } from &apos;./temporal/TemporalQueries&apos;;
+import { createTemporalQuery } from &apos;./temporal/TemporalQuery&apos;;
+import { ValueRange } from &apos;./temporal/ValueRange&apos;;
+import { DateTimeFormatter } from &apos;./format/DateTimeFormatter&apos;;
 
-import {Clock} from &apos;./Clock&apos;;
-import {DayOfWeek} from &apos;./DayOfWeek&apos;;
-import {OffsetDateTime} from &apos;./OffsetDateTime&apos;;
-import {OffsetTime} from &apos;./OffsetTime&apos;;
-import {Month} from &apos;./Month&apos;;
-import {Period} from &apos;./Period&apos;;
-import {YearConstants} from &apos;./YearConstants&apos;;
-import {LocalTime} from &apos;./LocalTime&apos;;
-import {LocalDateTime} from &apos;./LocalDateTime&apos;;
-import {Year} from &apos;./Year&apos;;
-import {ZoneId} from &apos;./ZoneId&apos;;
-import {ZoneOffset} from &apos;./ZoneOffset&apos;;
-import {ZonedDateTime} from &apos;./ZonedDateTime&apos;;
+import { Clock } from &apos;./Clock&apos;;
+import { DayOfWeek } from &apos;./DayOfWeek&apos;;
+import { OffsetDateTime } from &apos;./OffsetDateTime&apos;;
+import { OffsetTime } from &apos;./OffsetTime&apos;;
+import { Month } from &apos;./Month&apos;;
+import { Period } from &apos;./Period&apos;;
+import { YearConstants } from &apos;./YearConstants&apos;;
+import { LocalTime } from &apos;./LocalTime&apos;;
+import { LocalDateTime } from &apos;./LocalDateTime&apos;;
+import { Year } from &apos;./Year&apos;;
+import { ZoneId } from &apos;./ZoneId&apos;;
+import { ZoneOffset } from &apos;./ZoneOffset&apos;;
+import { ZonedDateTime } from &apos;./ZonedDateTime&apos;;
 
 /**
  * The number of days in a 400 year cycle.
@@ -266,7 +265,7 @@ export class LocalDate extends ChronoLocalDate{
         //TODO: ChronoField.DAY_OF_YEAR.checkValidValue(dayOfYear);
         const leap = IsoChronology.isLeapYear(year);
         if (dayOfYear === 366 &amp;&amp; leap === false) {
-            assert(false, `Invalid date &apos;DayOfYear 366&apos; as &apos;${  year  }&apos; is not a leap year`, DateTimeException);
+            assert(false, `Invalid date &apos;DayOfYear 366&apos; as &apos;${year}&apos; is not a leap year`, DateTimeException);
         }
         let moy = Month.of(Math.floor((dayOfYear - 1) / 31 + 1));
         const monthEnd = moy.firstDayOfYear(leap) + moy.length(leap) - 1;
@@ -431,9 +430,9 @@ export class LocalDate extends ChronoLocalDate{
             }
             if (dayOfMonth &gt; dom) {
                 if (dayOfMonth === 29) {
-                    assert(false, `Invalid date &apos;February 29&apos; as &apos;${  year  }&apos; is not a leap year`, DateTimeException);
+                    assert(false, `Invalid date &apos;February 29&apos; as &apos;${year}&apos; is not a leap year`, DateTimeException);
                 } else {
-                    assert(false, `Invalid date &apos;${  year  }&apos; &apos;${  month  }&apos; &apos;${  dayOfMonth  }&apos;`, DateTimeException);
+                    assert(false, `Invalid date &apos;${year}&apos; &apos;${month}&apos; &apos;${dayOfMonth}&apos;`, DateTimeException);
                 }
             }
         }
@@ -513,7 +512,7 @@ export class LocalDate extends ChronoLocalDate{
                 }
                 return field.range();
             }
-            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${field}`);
         }
         return field.rangeRefinedBy(this);
     }
@@ -584,7 +583,7 @@ export class LocalDate extends ChronoLocalDate{
             case ChronoField.YEAR: return this._year;
             case ChronoField.ERA: return (this._year &gt;= 1 ? 1 : 0);
         }
-        throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
+        throw new UnsupportedTemporalTypeException(`Unsupported field: ${field}`);
     }
 
     /**
@@ -888,7 +887,7 @@ export class LocalDate extends ChronoLocalDate{
                 case ChronoField.YEAR: return this.withYear(newValue);
                 case ChronoField.ERA: return (this.getLong(ChronoField.ERA) === newValue ? this : this.withYear(1 - this._year));
             }
-            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${field}`);
         }
         return field.adjustInto(this, newValue);
     }
@@ -986,7 +985,7 @@ export class LocalDate extends ChronoLocalDate{
                 case ChronoUnit.MILLENNIA: return this.plusYears(MathUtil.safeMultiply(amountToAdd, 1000));
                 case ChronoUnit.ERAS: return this.with(ChronoField.ERA, MathUtil.safeAdd(this.getLong(ChronoField.ERA), amountToAdd));
             }
-            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${unit}`);
         }
         return unit.addTo(this, amountToAdd);
     }
@@ -1301,7 +1300,7 @@ export class LocalDate extends ChronoLocalDate{
                 case ChronoUnit.MILLENNIA: return MathUtil.intDiv(this._monthsUntil(end), 12000);
                 case ChronoUnit.ERAS: return end.getLong(ChronoField.ERA) - this.getLong(ChronoField.ERA);
             }
-            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${unit}`);
         }
         return unit.between(this, end);
     }
@@ -1414,7 +1413,7 @@ export class LocalDate extends ChronoLocalDate{
             return this._atTimeOffsetTime(time);
         } else {
             throw new IllegalArgumentException(`time must be an instance of LocalTime or OffsetTime${ 
-                time &amp;&amp; time.constructor &amp;&amp; time.constructor.name ? `, but is ${  time.constructor.name}` : &apos;&apos;}`);
+                time &amp;&amp; time.constructor &amp;&amp; time.constructor.name ? `, but is ${time.constructor.name}` : &apos;&apos;}`);
         }
     }
 
@@ -1718,28 +1717,28 @@ export class LocalDate extends ChronoLocalDate{
 
         if (absYear &lt; 1000) {
             if (yearValue &lt; 0) {
-                yearString = `-${  (`${  yearValue - 10000}`).slice(-4)}`;
+                yearString = `-${(`${yearValue - 10000}`).slice(-4)}`;
             } else {
-                yearString = (`${  yearValue + 10000}`).slice(-4);
+                yearString = (`${yearValue + 10000}`).slice(-4);
             }
         } else {
             if (yearValue &gt; 9999) {
-                yearString = `+${  yearValue}`;
+                yearString = `+${yearValue}`;
             } else {
-                yearString = `${  yearValue}`;
+                yearString = `${yearValue}`;
             }
         }
 
         if (monthValue &lt; 10) {
-            monthString = `-0${  monthValue}`;
+            monthString = `-0${monthValue}`;
         } else {
-            monthString = `-${  monthValue}`;
+            monthString = `-${monthValue}`;
         }
 
         if (dayValue &lt; 10) {
-            dayString = `-0${  dayValue}`;
+            dayString = `-0${dayValue}`;
         } else {
-            dayString = `-${  dayValue}`;
+            dayString = `-${dayValue}`;
         }
 
         return yearString + monthString + dayString;

@@ -100,7 +100,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -112,21 +111,21 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {ChronoField} from &apos;./temporal/ChronoField&apos;;
-import {ChronoUnit} from &apos;./temporal/ChronoUnit&apos;;
-import {Temporal} from &apos;./temporal/Temporal&apos;;
-import {Clock} from &apos;./Clock&apos;;
-import {DateTimeException, UnsupportedTemporalTypeException} from &apos;./errors&apos;;
-import {DateTimeFormatter} from &apos;./format/DateTimeFormatter&apos;;
-import {Instant, LocalTime} from &apos;./js-joda&apos;;
-import {MathUtil} from &apos;./MathUtil&apos;;
-import {OffsetDateTime} from &apos;./OffsetDateTime&apos;;
-import {TemporalQueries} from &apos;./temporal/TemporalQueries&apos;;
-import {ZoneId} from &apos;./ZoneId&apos;;
-import {ZoneOffset} from &apos;./ZoneOffset&apos;;
+import { ChronoField } from &apos;./temporal/ChronoField&apos;;
+import { ChronoUnit } from &apos;./temporal/ChronoUnit&apos;;
+import { Temporal } from &apos;./temporal/Temporal&apos;;
+import { Clock } from &apos;./Clock&apos;;
+import { DateTimeException, UnsupportedTemporalTypeException } from &apos;./errors&apos;;
+import { DateTimeFormatter } from &apos;./format/DateTimeFormatter&apos;;
+import { Instant, LocalTime } from &apos;./js-joda&apos;;
+import { MathUtil } from &apos;./MathUtil&apos;;
+import { OffsetDateTime } from &apos;./OffsetDateTime&apos;;
+import { TemporalQueries } from &apos;./temporal/TemporalQueries&apos;;
+import { ZoneId } from &apos;./ZoneId&apos;;
+import { ZoneOffset } from &apos;./ZoneOffset&apos;;
 
-import {createTemporalQuery} from &apos;./temporal/TemporalQuery&apos;;
-import {requireInstance, requireNonNull} from &apos;./assert&apos;;
+import { createTemporalQuery } from &apos;./temporal/TemporalQuery&apos;;
+import { requireInstance, requireNonNull } from &apos;./assert&apos;;
 
 /**
  * A time with an offset from UTC/Greenwich in the ISO-8601 calendar system, such as 10:15:30+01:00.
@@ -558,7 +557,7 @@ export class OffsetTime extends Temporal {
                 case ChronoUnit.HOURS: return Math.floor(nanosUntil / LocalTime.NANOS_PER_HOUR);
                 case ChronoUnit.HALF_DAYS: return Math.floor(nanosUntil / (12 * LocalTime.NANOS_PER_HOUR));
             }
-            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${unit}`);
         }
         return unit.between(this, end);
     }

@@ -100,7 +100,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -111,18 +110,18 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {assert, requireNonNull} from &apos;../assert&apos;;
-import {UnsupportedTemporalTypeException} from &apos;../errors&apos;;
+import { assert, requireNonNull } from &apos;../assert&apos;;
+import { UnsupportedTemporalTypeException } from &apos;../errors&apos;;
 
-import {Instant} from &apos;../Instant&apos;;
-import {LocalDate} from &apos;../LocalDate&apos;;
-import {LocalTime} from &apos;../LocalTime&apos;;
-import {MathUtil} from &apos;../MathUtil&apos;;
-import {ZoneId} from &apos;../ZoneId&apos;;
+import { Instant } from &apos;../Instant&apos;;
+import { LocalDate } from &apos;../LocalDate&apos;;
+import { LocalTime } from &apos;../LocalTime&apos;;
+import { MathUtil } from &apos;../MathUtil&apos;;
+import { ZoneId } from &apos;../ZoneId&apos;;
 
-import {ChronoField} from &apos;./ChronoField&apos;;
-import {TemporalQueries} from &apos;./TemporalQueries&apos;;
-import {TemporalAccessor} from &apos;./TemporalAccessor&apos;;
+import { ChronoField } from &apos;./ChronoField&apos;;
+import { TemporalQueries } from &apos;./TemporalQueries&apos;;
+import { TemporalAccessor } from &apos;./TemporalAccessor&apos;;
 
 /**
  * A wrapper around a native javascript Date instance that
@@ -187,7 +186,7 @@ class NativeJsTemporal extends TemporalAccessor {
                 case ChronoField.NANO_OF_SECOND: return MathUtil.floorMod(this._epochMilli, 1000) * 1000000;
                 case ChronoField.INSTANT_SECONDS: return MathUtil.floorDiv(this._epochMilli, 1000);
             }
-            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${field}`);
         }
         return field.getFrom(this);
     }

@@ -100,7 +100,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -112,29 +111,29 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {DateTimeException, UnsupportedTemporalTypeException} from &apos;./errors&apos;;
-import {requireNonNull, requireInstance} from &apos;./assert&apos;;
-import {MathUtil} from &apos;./MathUtil&apos;;
+import { DateTimeException, UnsupportedTemporalTypeException } from &apos;./errors&apos;;
+import { requireNonNull, requireInstance } from &apos;./assert&apos;;
+import { MathUtil } from &apos;./MathUtil&apos;;
 
-import {ChronoField} from &apos;./temporal/ChronoField&apos;;
-import {ChronoUnit} from &apos;./temporal/ChronoUnit&apos;;
-import {Clock} from &apos;./Clock&apos;;
-import {DateTimeFormatter} from &apos;./format/DateTimeFormatter&apos;;
-import {DateTimeFormatterBuilder} from &apos;./format/DateTimeFormatterBuilder&apos;;
-import {IsoChronology} from &apos;./chrono/IsoChronology&apos;;
-import {LocalDate} from &apos;./LocalDate&apos;;
-import {Month} from &apos;./Month&apos;;
-import {MonthDay} from &apos;./MonthDay&apos;;
-import {SignStyle} from &apos;./format/SignStyle&apos;;
-import {Temporal} from &apos;./temporal/Temporal&apos;;
-import {TemporalAccessor} from &apos;./temporal/TemporalAccessor&apos;;
-import {TemporalField} from &apos;./temporal/TemporalField&apos;;
-import {TemporalQueries} from &apos;./temporal/TemporalQueries&apos;;
-import {TemporalQuery, createTemporalQuery} from &apos;./temporal/TemporalQuery&apos;;
-import {TemporalUnit} from &apos;./temporal/TemporalUnit&apos;;
-import {YearConstants} from &apos;./YearConstants&apos;;
-import {YearMonth} from &apos;./YearMonth&apos;;
-import {ZoneId} from &apos;./ZoneId&apos;;
+import { ChronoField } from &apos;./temporal/ChronoField&apos;;
+import { ChronoUnit } from &apos;./temporal/ChronoUnit&apos;;
+import { Clock } from &apos;./Clock&apos;;
+import { DateTimeFormatter } from &apos;./format/DateTimeFormatter&apos;;
+import { DateTimeFormatterBuilder } from &apos;./format/DateTimeFormatterBuilder&apos;;
+import { IsoChronology } from &apos;./chrono/IsoChronology&apos;;
+import { LocalDate } from &apos;./LocalDate&apos;;
+import { Month } from &apos;./Month&apos;;
+import { MonthDay } from &apos;./MonthDay&apos;;
+import { SignStyle } from &apos;./format/SignStyle&apos;;
+import { Temporal } from &apos;./temporal/Temporal&apos;;
+import { TemporalAccessor } from &apos;./temporal/TemporalAccessor&apos;;
+import { TemporalField } from &apos;./temporal/TemporalField&apos;;
+import { TemporalQueries } from &apos;./temporal/TemporalQueries&apos;;
+import { TemporalQuery, createTemporalQuery } from &apos;./temporal/TemporalQuery&apos;;
+import { TemporalUnit } from &apos;./temporal/TemporalUnit&apos;;
+import { YearConstants } from &apos;./YearConstants&apos;;
+import { YearMonth } from &apos;./YearMonth&apos;;
+import { ZoneId } from &apos;./ZoneId&apos;;
 
 
 /**
@@ -317,7 +316,7 @@ export class Year extends Temporal {
             return Year.of(temporal.get(ChronoField.YEAR));
         } catch (ex) {
             throw new DateTimeException(`Unable to obtain Year from TemporalAccessor: ${ 
-                temporal  }, type ${  temporal &amp;&amp; temporal.constructor != null ? temporal.constructor.name : &apos;&apos;}`);
+                temporal}, type ${temporal &amp;&amp; temporal.constructor != null ? temporal.constructor.name : &apos;&apos;}`);
         }
     }
     //-----------------------------------------------------------------------
@@ -479,7 +478,7 @@ export class Year extends Temporal {
         if (this.isSupported(field)) {
             return field.range();
         } else if (field instanceof ChronoField) {
-            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${field}`);
         }
         return super.range(field);
     }
@@ -541,7 +540,7 @@ export class Year extends Temporal {
                 case ChronoField.YEAR: return this._year;
                 case ChronoField.ERA: return (this._year &lt; 1 ? 0 : 1);
             }
-            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${field}`);
         }
         return field.getFrom(this);
     }
@@ -623,7 +622,7 @@ export class Year extends Temporal {
                 case ChronoField.ERA:
                     return (this.getLong(ChronoField.ERA) === newValue ? this : Year.of(1 - this._year));
             }
-            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${field}`);
         }
         return field.adjustInto(this, newValue);
     }
@@ -647,7 +646,7 @@ export class Year extends Temporal {
                 case ChronoUnit.MILLENNIA: return this.plusYears(MathUtil.safeMultiply(amountToAdd, 1000));
                 case ChronoUnit.ERAS: return this.with(ChronoField.ERA, MathUtil.safeAdd(this.getLong(ChronoField.ERA), amountToAdd));
             }
-            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${unit}`);
         }
         return unit.addTo(this, amountToAdd);
     }
@@ -939,7 +938,7 @@ export class Year extends Temporal {
      * @return {String} a string representation of this year, not null
      */
     toString() {
-        return `${  this._year}`;
+        return `${this._year}`;
     }
 
     /**
@@ -1018,7 +1017,7 @@ export class Year extends Temporal {
                 case ChronoUnit.ERAS:
                     return end.getLong(ChronoField.ERA) - this.getLong(ChronoField.ERA);
             }
-            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${unit}`);
         }
         return unit.between(this, end);
     }

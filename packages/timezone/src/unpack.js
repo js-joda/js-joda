@@ -81,6 +81,12 @@ function mapIndices (source, indices) {
     return out;
 }
 
+/**
+ * @private
+ *
+ * @param string
+ * @returns {{offsets: *[], abbrs: *[], name, untils: *, population: number}}
+ */
 export function unpack (string) {
     var data = string.split('|'),
         offsets = data[2].split(' '),

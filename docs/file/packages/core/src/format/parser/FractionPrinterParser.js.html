@@ -100,7 +100,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -112,9 +111,9 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {requireNonNull} from &apos;../../assert&apos;;
-import {IllegalArgumentException} from &apos;../../errors&apos;;
-import {MathUtil} from &apos;../../MathUtil&apos;;
+import { requireNonNull } from &apos;../../assert&apos;;
+import { IllegalArgumentException } from &apos;../../errors&apos;;
+import { MathUtil } from &apos;../../MathUtil&apos;;
 
 /**
  * TODO optimize FractionPrinterParser, fix documentation
@@ -135,17 +134,17 @@ export class FractionPrinterParser {
     constructor(field, minWidth, maxWidth, decimalPoint) {
         requireNonNull(field, &apos;field&apos;);
         if (field.range().isFixed() === false) {
-            throw new IllegalArgumentException(`Field must have a fixed set of values: ${  field}`);
+            throw new IllegalArgumentException(`Field must have a fixed set of values: ${field}`);
         }
         if (minWidth &lt; 0 || minWidth &gt; 9) {
-            throw new IllegalArgumentException(`Minimum width must be from 0 to 9 inclusive but was ${  minWidth}`);
+            throw new IllegalArgumentException(`Minimum width must be from 0 to 9 inclusive but was ${minWidth}`);
         }
         if (maxWidth &lt; 1 || maxWidth &gt; 9) {
-            throw new IllegalArgumentException(`Maximum width must be from 1 to 9 inclusive but was ${  maxWidth}`);
+            throw new IllegalArgumentException(`Maximum width must be from 1 to 9 inclusive but was ${maxWidth}`);
         }
         if (maxWidth &lt; minWidth) {
             throw new IllegalArgumentException(`Maximum width must exceed or equal the minimum width but ${ 
-                maxWidth  } &lt; ${  minWidth}`);
+                maxWidth} &lt; ${minWidth}`);
         }
         this.field = field;
         this.minWidth = minWidth;
@@ -240,7 +239,7 @@ export class FractionPrinterParser {
         const _range = range.maximum() - _min + 1;
         const _value = value - _min;
         const _scaled = MathUtil.intDiv((_value * 1000000000),  _range);
-        let fraction = `${  _scaled}`;
+        let fraction = `${_scaled}`;
         while(fraction.length &lt; 9){
             fraction = zeroDigit + fraction;
         }
@@ -264,7 +263,7 @@ export class FractionPrinterParser {
 
     toString() {
         const decimal = (this.decimalPoint ? &apos;,DecimalPoint&apos; : &apos;&apos;);
-        return `Fraction(${  this.field  },${  this.minWidth  },${  this.maxWidth  }${decimal  })`;
+        return `Fraction(${this.field},${this.minWidth},${this.maxWidth}${decimal})`;
     }
 }
 

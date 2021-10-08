@@ -100,7 +100,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -112,26 +111,26 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {ChronoField} from &apos;./temporal/ChronoField&apos;;
-import {ChronoUnit} from &apos;./temporal/ChronoUnit&apos;;
-import {Temporal} from &apos;./temporal/Temporal&apos;;
-import {Clock} from &apos;./Clock&apos;;
-import {DateTimeFormatter} from &apos;./format/DateTimeFormatter&apos;;
-import {Instant} from &apos;./Instant&apos;;
-import {IsoChronology} from &apos;./chrono/IsoChronology&apos;;
-import {LocalDateTime} from &apos;./LocalDateTime&apos;;
-import {LocalDate} from &apos;./LocalDate&apos;;
-import {LocalTime} from &apos;./LocalTime&apos;;
-import {MathUtil} from &apos;./MathUtil&apos;;
-import {OffsetTime} from &apos;./OffsetTime&apos;;
-import {TemporalQueries} from &apos;./temporal/TemporalQueries&apos;;
-import {ZonedDateTime} from &apos;./ZonedDateTime&apos;;
-import {ZoneId} from &apos;./ZoneId&apos;;
-import {ZoneOffset} from &apos;./ZoneOffset&apos;;
-import {DateTimeException, IllegalArgumentException} from &apos;./errors&apos;;
+import { ChronoField } from &apos;./temporal/ChronoField&apos;;
+import { ChronoUnit } from &apos;./temporal/ChronoUnit&apos;;
+import { Temporal } from &apos;./temporal/Temporal&apos;;
+import { Clock } from &apos;./Clock&apos;;
+import { DateTimeFormatter } from &apos;./format/DateTimeFormatter&apos;;
+import { Instant } from &apos;./Instant&apos;;
+import { IsoChronology } from &apos;./chrono/IsoChronology&apos;;
+import { LocalDateTime } from &apos;./LocalDateTime&apos;;
+import { LocalDate } from &apos;./LocalDate&apos;;
+import { LocalTime } from &apos;./LocalTime&apos;;
+import { MathUtil } from &apos;./MathUtil&apos;;
+import { OffsetTime } from &apos;./OffsetTime&apos;;
+import { TemporalQueries } from &apos;./temporal/TemporalQueries&apos;;
+import { ZonedDateTime } from &apos;./ZonedDateTime&apos;;
+import { ZoneId } from &apos;./ZoneId&apos;;
+import { ZoneOffset } from &apos;./ZoneOffset&apos;;
+import { DateTimeException, IllegalArgumentException } from &apos;./errors&apos;;
 
-import {createTemporalQuery} from &apos;./temporal/TemporalQuery&apos;;
-import {requireInstance, requireNonNull} from &apos;./assert&apos;;
+import { createTemporalQuery } from &apos;./temporal/TemporalQuery&apos;;
+import { requireInstance, requireNonNull } from &apos;./assert&apos;;
 
 /**
  * A date-time with an offset from UTC/Greenwich in the ISO-8601 calendar system,
@@ -313,7 +312,7 @@ export class OffsetDateTime extends Temporal {
     get(field) {
         if (field instanceof ChronoField) {
             switch (field) {
-                case ChronoField.INSTANT_SECONDS: throw new DateTimeException(`Field too large for an int: ${  field}`);
+                case ChronoField.INSTANT_SECONDS: throw new DateTimeException(`Field too large for an int: ${field}`);
                 case ChronoField.OFFSET_SECONDS: return this.offset().totalSeconds();
             }
             return this._dateTime.get(field);

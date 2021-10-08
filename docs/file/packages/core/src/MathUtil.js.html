@@ -100,7 +100,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -111,7 +110,7 @@
  * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
-import {ArithmeticException} from &apos;./errors&apos;;
+import { ArithmeticException } from &apos;./errors&apos;;
 
 export const MAX_SAFE_INTEGER = 9007199254740991;
 export const MIN_SAFE_INTEGER = -9007199254740991;
@@ -240,7 +239,7 @@ export class MathUtil {
         }
         const r = MathUtil.safeToInt(x * y);
         if (r / y !== x || (x === MIN_SAFE_INTEGER &amp;&amp; y === -1) || (y === MIN_SAFE_INTEGER &amp;&amp; x === -1)) {
-            throw new ArithmeticException(`Multiplication overflows: ${  x  } * ${  y}`);
+            throw new ArithmeticException(`Multiplication overflows: ${x} * ${y}`);
         }
         return r;
     }
@@ -280,7 +279,7 @@ export class MathUtil {
             throw new ArithmeticException(`Invalid value: &apos;${value}&apos; is a float`);
         }
         if (value &gt; MAX_SAFE_INTEGER || value &lt; MIN_SAFE_INTEGER) {
-            throw new ArithmeticException(`Calculation overflows an int: ${  value}`);
+            throw new ArithmeticException(`Calculation overflows an int: ${value}`);
         }
     }
 

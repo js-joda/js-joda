@@ -100,7 +100,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -112,17 +111,17 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {requireNonNull} from &apos;./assert&apos;;
-import {DateTimeException} from &apos;./errors&apos;;
-import {MathUtil} from &apos;./MathUtil&apos;;
+import { requireNonNull } from &apos;./assert&apos;;
+import { DateTimeException } from &apos;./errors&apos;;
+import { MathUtil } from &apos;./MathUtil&apos;;
 
-import {LocalTime} from &apos;./LocalTime&apos;;
-import {ZoneId} from &apos;./ZoneId&apos;;
+import { LocalTime } from &apos;./LocalTime&apos;;
+import { ZoneId } from &apos;./ZoneId&apos;;
 
-import {ChronoField} from &apos;./temporal/ChronoField&apos;;
-import {TemporalQueries} from &apos;./temporal/TemporalQueries&apos;;
+import { ChronoField } from &apos;./temporal/ChronoField&apos;;
+import { TemporalQueries } from &apos;./temporal/TemporalQueries&apos;;
 
-import {ZoneRules} from &apos;./zone/ZoneRules&apos;;
+import { ZoneRules } from &apos;./zone/ZoneRules&apos;;
 
 const SECONDS_CACHE = {};
 const ID_CACHE = {};
@@ -182,9 +181,9 @@ export class ZoneOffset extends ZoneId {
             const absTotalSeconds = Math.abs(totalSeconds);
             const absHours = MathUtil.intDiv(absTotalSeconds, LocalTime.SECONDS_PER_HOUR);
             const absMinutes = MathUtil.intMod(MathUtil.intDiv(absTotalSeconds, LocalTime.SECONDS_PER_MINUTE), LocalTime.MINUTES_PER_HOUR);
-            let buf = `${  totalSeconds &lt; 0 ? &apos;-&apos; : &apos;+&apos;
-            }${absHours &lt; 10 ? &apos;0&apos; : &apos;&apos;  }${absHours
-            }${absMinutes &lt; 10 ? &apos;:0&apos; : &apos;:&apos;  }${absMinutes}`;
+            let buf = `${totalSeconds &lt; 0 ? &apos;-&apos; : &apos;+&apos;
+            }${absHours &lt; 10 ? &apos;0&apos; : &apos;&apos;}${absHours
+            }${absMinutes &lt; 10 ? &apos;:0&apos; : &apos;:&apos;}${absMinutes}`;
             const absSeconds = MathUtil.intMod(absTotalSeconds, LocalTime.SECONDS_PER_MINUTE);
             if (absSeconds !== 0) {
                 buf += (absSeconds &lt; 10 ? &apos;:0&apos; : &apos;:&apos;) + (absSeconds);
@@ -214,7 +213,7 @@ export class ZoneOffset extends ZoneId {
      */
     static _validate(hours, minutes, seconds) {
         if (hours &lt; -18 || hours &gt; 18) {
-            throw new DateTimeException(`Zone offset hours not in valid range: value ${  hours 
+            throw new DateTimeException(`Zone offset hours not in valid range: value ${hours 
             } is not in the range -18 to 18`);
         }
         if (hours &gt; 0) {
@@ -230,11 +229,11 @@ export class ZoneOffset extends ZoneId {
         }
         if (Math.abs(minutes) &gt; 59) {
             throw new DateTimeException(`Zone offset minutes not in valid range: abs(value) ${ 
-                Math.abs(minutes)  } is not in the range 0 to 59`);
+                Math.abs(minutes)} is not in the range 0 to 59`);
         }
         if (Math.abs(seconds) &gt; 59) {
             throw new DateTimeException(`Zone offset seconds not in valid range: abs(value) ${ 
-                Math.abs(seconds)  } is not in the range 0 to 59`);
+                Math.abs(seconds)} is not in the range 0 to 59`);
         }
         if (Math.abs(hours) === 18 &amp;&amp; (Math.abs(minutes) &gt; 0 || Math.abs(seconds) &gt; 0)) {
             throw new DateTimeException(&apos;Zone offset not in valid range: -18:00 to +18:00&apos;);
@@ -284,7 +283,7 @@ export class ZoneOffset extends ZoneId {
         let hours, minutes, seconds;
         switch (offsetId.length) {
             case 2:
-                offsetId = `${offsetId[0]  }0${  offsetId[1]}`;  // fallthru
+                offsetId = `${offsetId[0]}0${offsetId[1]}`;  // fallthru
             // eslint-disable-next-line no-fallthrough
             case 3:
                 hours = ZoneOffset._parseNumber(offsetId, 1, false);
@@ -312,11 +311,11 @@ export class ZoneOffset extends ZoneId {
                 seconds = ZoneOffset._parseNumber(offsetId, 7, true);
                 break;
             default:
-                throw new DateTimeException(`Invalid ID for ZoneOffset, invalid format: ${  offsetId}`);
+                throw new DateTimeException(`Invalid ID for ZoneOffset, invalid format: ${offsetId}`);
         }
         const first = offsetId[0];
         if (first !== &apos;+&apos; &amp;&amp; first !== &apos;-&apos;) {
-            throw new DateTimeException(`Invalid ID for ZoneOffset, plus/minus not found when expected: ${  offsetId}`);
+            throw new DateTimeException(`Invalid ID for ZoneOffset, plus/minus not found when expected: ${offsetId}`);
         }
         if (first === &apos;-&apos;) {
             return ZoneOffset.ofHoursMinutesSeconds(-hours, -minutes, -seconds);
@@ -335,12 +334,12 @@ export class ZoneOffset extends ZoneId {
      */
     static _parseNumber(offsetId, pos, precededByColon) {
         if (precededByColon &amp;&amp; offsetId[pos - 1] !== &apos;:&apos;) {
-            throw new DateTimeException(`Invalid ID for ZoneOffset, colon not found when expected: ${  offsetId}`);
+            throw new DateTimeException(`Invalid ID for ZoneOffset, colon not found when expected: ${offsetId}`);
         }
         const ch1 = offsetId[pos];
         const ch2 = offsetId[pos + 1];
         if (ch1 &lt; &apos;0&apos; || ch1 &gt; &apos;9&apos; || ch2 &lt; &apos;0&apos; || ch2 &gt; &apos;9&apos;) {
-            throw new DateTimeException(`Invalid ID for ZoneOffset, non numeric characters found: ${  offsetId}`);
+            throw new DateTimeException(`Invalid ID for ZoneOffset, non numeric characters found: ${offsetId}`);
         }
         return (ch1.charCodeAt(0) - 48) * 10 + (ch2.charCodeAt(0) - 48);
     }
@@ -470,7 +469,7 @@ export class ZoneOffset extends ZoneId {
         if (field === ChronoField.OFFSET_SECONDS) {
             return this._totalSeconds;
         } else if (field instanceof ChronoField) {
-            throw new DateTimeException(`Unsupported field: ${  field}`);
+            throw new DateTimeException(`Unsupported field: ${field}`);
         }
         return field.getFrom(this);
     }

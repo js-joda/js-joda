@@ -100,7 +100,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -112,24 +111,24 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {requireNonNull} from &apos;../assert&apos;;
-import {DateTimeException} from &apos;../errors&apos;;
-import {MathUtil} from &apos;../MathUtil&apos;;
+import { requireNonNull } from &apos;../assert&apos;;
+import { DateTimeException } from &apos;../errors&apos;;
+import { MathUtil } from &apos;../MathUtil&apos;;
 
-import {EnumMap} from &apos;./EnumMap&apos;;
-import {ResolverStyle} from &apos;./ResolverStyle&apos;;
+import { EnumMap } from &apos;./EnumMap&apos;;
+import { ResolverStyle } from &apos;./ResolverStyle&apos;;
 
-import {IsoChronology} from &apos;../chrono/IsoChronology&apos;;
-import {ChronoLocalDate} from &apos;../chrono/ChronoLocalDate&apos;;
-import {ChronoField} from &apos;../temporal/ChronoField&apos;;
-import {TemporalAccessor} from &apos;../temporal/TemporalAccessor&apos;;
-import {TemporalQueries} from &apos;../temporal/TemporalQueries&apos;;
+import { IsoChronology } from &apos;../chrono/IsoChronology&apos;;
+import { ChronoLocalDate } from &apos;../chrono/ChronoLocalDate&apos;;
+import { ChronoField } from &apos;../temporal/ChronoField&apos;;
+import { TemporalAccessor } from &apos;../temporal/TemporalAccessor&apos;;
+import { TemporalQueries } from &apos;../temporal/TemporalQueries&apos;;
 
-import {LocalTime} from &apos;../LocalTime&apos;;
-import {LocalDate} from &apos;../LocalDate&apos;;
-import {Period} from &apos;../Period&apos;;
+import { LocalTime } from &apos;../LocalTime&apos;;
+import { LocalDate } from &apos;../LocalDate&apos;;
+import { Period } from &apos;../Period&apos;;
 
-import {ZoneOffset} from &apos;../ZoneOffset&apos;;
+import { ZoneOffset } from &apos;../ZoneOffset&apos;;
 
 /**
  * Builder that can holds date and time fields and related date and time objects.
@@ -222,7 +221,7 @@ export class DateTimeBuilder extends TemporalAccessor {
         requireNonNull(field, &apos;field&apos;);
         const old = this.getFieldValue0(field);  // check first for better error message
         if (old != null &amp;&amp; old !== value) {
-            throw new DateTimeException(`Conflict found: ${  field  } ${  old  } differs from ${  field  } ${  value  }: ${  this}`);
+            throw new DateTimeException(`Conflict found: ${field} ${old} differs from ${field} ${value}: ${this}`);
         }
         return this._putFieldValue0(field, value);
     }
@@ -313,7 +312,7 @@ export class DateTimeBuilder extends TemporalAccessor {
                             }
                             const val2 = this.fieldValues.get(field);
                             if (val1 !== val2) {
-                                throw new DateTimeException(`Conflict found: Field ${  field  } ${  val1  } differs from ${  field  } ${  val2  } derived from ${  date}`);
+                                throw new DateTimeException(`Conflict found: Field ${field} ${val1} differs from ${field} ${val2} derived from ${date}`);
                             }
                         }
                     }
@@ -611,7 +610,7 @@ export class DateTimeBuilder extends TemporalAccessor {
             if (this.time != null &amp;&amp; this.time.isSupported(field)) {
                 return this.time.getLong(field);
             }
-            throw new DateTimeException(`Field not found: ${  field}`);
+            throw new DateTimeException(`Field not found: ${field}`);
         }
         return value;
     }

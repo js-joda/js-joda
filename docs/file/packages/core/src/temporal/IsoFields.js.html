@@ -100,7 +100,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unpack">unpack</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -112,22 +111,22 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {UnsupportedTemporalTypeException, IllegalStateException} from &apos;../errors&apos;;
+import { UnsupportedTemporalTypeException, IllegalStateException } from &apos;../errors&apos;;
 
-import {DayOfWeek} from &apos;../DayOfWeek&apos;;
-import {Duration} from &apos;../Duration&apos;;
-import {MathUtil} from &apos;../MathUtil&apos;;
-import {LocalDate} from &apos;../LocalDate&apos;;
+import { DayOfWeek } from &apos;../DayOfWeek&apos;;
+import { Duration } from &apos;../Duration&apos;;
+import { MathUtil } from &apos;../MathUtil&apos;;
+import { LocalDate } from &apos;../LocalDate&apos;;
 
-import {ChronoField} from &apos;./ChronoField&apos;;
-import {ChronoUnit} from &apos;./ChronoUnit&apos;;
-import {TemporalField} from &apos;./TemporalField&apos;;
-import {TemporalUnit} from &apos;./TemporalUnit&apos;;
-import {ValueRange} from &apos;./ValueRange&apos;;
+import { ChronoField } from &apos;./ChronoField&apos;;
+import { ChronoUnit } from &apos;./ChronoUnit&apos;;
+import { TemporalField } from &apos;./TemporalField&apos;;
+import { TemporalUnit } from &apos;./TemporalUnit&apos;;
+import { ValueRange } from &apos;./ValueRange&apos;;
 
-import {IsoChronology} from &apos;../chrono/IsoChronology&apos;;
+import { IsoChronology } from &apos;../chrono/IsoChronology&apos;;
 
-import {ResolverStyle} from &apos;../format/ResolverStyle&apos;;
+import { ResolverStyle } from &apos;../format/ResolverStyle&apos;;
 
 /**
  * Fields and units specific to the ISO-8601 calendar system,
