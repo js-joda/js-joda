@@ -4,17 +4,17 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {assertEquals} from '../../testUtils';
+import { assertEquals } from '../../testUtils';
 
 import '../../_init';
 
-import {IsoChronology} from '../../../src/chrono/IsoChronology';
-import {DateTimeFormatterBuilder} from '../../../src/format/DateTimeFormatterBuilder';
-import {DateTimeParseContext} from '../../../src/format/DateTimeParseContext';
-import {DateTimePrintContext} from '../../../src/format/DateTimePrintContext';
-import {DecimalStyle} from '../../../src/format/DecimalStyle';
-import {StringBuilder} from '../../../src/format/StringBuilder';
-import {LocalDate} from '../../../src/LocalDate';
+import { IsoChronology } from '../../../src/chrono/IsoChronology';
+import { DateTimeFormatterBuilder } from '../../../src/format/DateTimeFormatterBuilder';
+import { DateTimeParseContext } from '../../../src/format/DateTimeParseContext';
+import { DateTimePrintContext } from '../../../src/format/DateTimePrintContext';
+import { DecimalStyle } from '../../../src/format/DecimalStyle';
+import { StringBuilder } from '../../../src/format/StringBuilder';
+import { LocalDate } from '../../../src/LocalDate';
 
 const SettingsParser = DateTimeFormatterBuilder.SettingsParser;
 

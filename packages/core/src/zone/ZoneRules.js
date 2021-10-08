@@ -4,10 +4,10 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {requireNonNull, abstractMethodFail} from '../assert';
+import { requireNonNull, abstractMethodFail } from '../assert';
 
-import {Duration} from '../Duration';
-import {Instant} from '../Instant';
+import { Duration } from '../Duration';
+import { Instant } from '../Instant';
 
 export class ZoneRules {
 
@@ -458,7 +458,7 @@ class Fixed extends ZoneRules{
      * @returns {string}
      */
     toString() {
-        return `FixedRules:${  this._offset.toString()}`;
+        return `FixedRules:${this._offset.toString()}`;
     }
 
 }

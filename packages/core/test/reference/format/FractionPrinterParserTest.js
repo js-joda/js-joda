@@ -4,30 +4,30 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
+import { expect } from 'chai';
 
 import '../../_init';
 
-import {assertEquals, fail} from '../../testUtils';
+import { assertEquals, fail } from '../../testUtils';
 
-import {MathUtil} from '../../../src/MathUtil';
-import {DateTimeException} from '../../../src/errors';
-import {LocalDate} from '../../../src/LocalDate';
-import {LocalTime} from '../../../src/LocalTime';
+import { MathUtil } from '../../../src/MathUtil';
+import { DateTimeException } from '../../../src/errors';
+import { LocalDate } from '../../../src/LocalDate';
+import { LocalTime } from '../../../src/LocalTime';
 
-import {ChronoField} from '../../../src/temporal/ChronoField';
+import { ChronoField } from '../../../src/temporal/ChronoField';
 
-import {DateTimeFormatterBuilder} from '../../../src/format/DateTimeFormatterBuilder';
-import {DateTimeParseContext} from '../../../src/format/DateTimeParseContext';
-import {DateTimePrintContext} from '../../../src/format/DateTimePrintContext';
-import {DecimalStyle} from '../../../src/format/DecimalStyle';
-import {StringBuilder} from '../../../src/format/StringBuilder';
-import {IsoChronology} from '../../../src/chrono/IsoChronology';
+import { DateTimeFormatterBuilder } from '../../../src/format/DateTimeFormatterBuilder';
+import { DateTimeParseContext } from '../../../src/format/DateTimeParseContext';
+import { DateTimePrintContext } from '../../../src/format/DateTimePrintContext';
+import { DecimalStyle } from '../../../src/format/DecimalStyle';
+import { StringBuilder } from '../../../src/format/StringBuilder';
+import { IsoChronology } from '../../../src/chrono/IsoChronology';
 
 const FractionPrinterParser = DateTimeFormatterBuilder.FractionPrinterParser;
 
-import {EMPTY} from '../temporal/Empty';
-import {MockFieldValue} from '../temporal/MockFieldValue';
+import { EMPTY } from '../temporal/Empty';
+import { MockFieldValue } from '../temporal/MockFieldValue';
 
 describe('org.threeten.bp.format.TestFractionPrinterParser', function () {
 
@@ -305,7 +305,7 @@ describe('org.threeten.bp.format.TestFractionPrinterParser', function () {
         // @Test(dataProvider='Nanos')
         function test_reverseParse_followedByNonDigit(minWidth, maxWidth, value, result){
             const pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, minWidth, maxWidth, true);
-            const newPos = pp.parse(parseContext, `${result  } `, 0);
+            const newPos = pp.parse(parseContext, `${result} `, 0);
             assertEquals(newPos, result.length);
             const expectedValue = fixParsedValue(maxWidth, value);
             assertParsed(parseContext, ChronoField.NANO_OF_SECOND, value === 0 && minWidth === 0 ? null : expectedValue);
@@ -338,7 +338,7 @@ describe('org.threeten.bp.format.TestFractionPrinterParser', function () {
         // @Test(dataProvider='Nanos')
         function test_reverseParse_preceededByNonDigit(minWidth, maxWidth, value, result){
             const pp = new FractionPrinterParser(ChronoField.NANO_OF_SECOND, minWidth, maxWidth, true);
-            const newPos = pp.parse(parseContext, ` ${  result}`, 1);
+            const newPos = pp.parse(parseContext, ` ${result}`, 1);
             assertEquals(newPos, result.length + 1);
             const expectedValue = fixParsedValue(maxWidth, value);
             assertParsed(parseContext, ChronoField.NANO_OF_SECOND, value === 0 && minWidth === 0 ? null :  expectedValue);

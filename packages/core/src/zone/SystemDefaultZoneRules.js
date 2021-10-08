@@ -3,9 +3,9 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {ZoneRules} from './ZoneRules';
-import {ZoneOffset} from '../ZoneOffset';
-import {DateTimeException} from '../errors';
+import { ZoneRules } from './ZoneRules';
+import { ZoneOffset } from '../ZoneOffset';
+import { DateTimeException } from '../errors';
 
 export class SystemDefaultZoneRules extends ZoneRules {
 

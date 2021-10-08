@@ -4,17 +4,17 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
-import {assertEquals, dataProviderTest} from '../testUtils';
-import {DateTimeException, NullPointerException, IllegalArgumentException} from '../../src/errors';
+import { expect } from 'chai';
+import { assertEquals, dataProviderTest } from '../testUtils';
+import { DateTimeException, NullPointerException, IllegalArgumentException } from '../../src/errors';
 
 import '../_init';
 
-import {Instant} from '../../src/Instant';
-import {LocalDateTime} from '../../src/LocalDateTime';
-import {ZoneId} from '../../src/ZoneId';
-import {ZoneIdFactory} from '../../src/ZoneIdFactory';
-import {ZoneOffset} from '../../src/ZoneOffset';
+import { Instant } from '../../src/Instant';
+import { LocalDateTime } from '../../src/LocalDateTime';
+import { ZoneId } from '../../src/ZoneId';
+import { ZoneIdFactory } from '../../src/ZoneIdFactory';
+import { ZoneOffset } from '../../src/ZoneOffset';
 
 describe('org.threeten.bp.TestZoneId', ()=>{
 
@@ -32,7 +32,7 @@ describe('org.threeten.bp.TestZoneId', ()=>{
         // @Test(dataProvider='String_UTC')
         it('test_of_string_UTC', () => {
             dataProviderTest(data_of_string_UTC, (id) => {
-                const test = ZoneId.of(`UTC${  id}`);
+                const test = ZoneId.of(`UTC${id}`);
                 assertEquals(test.id(), 'UTC');
                 assertEquals(test.normalized(), ZoneOffset.UTC);
             });
@@ -41,7 +41,7 @@ describe('org.threeten.bp.TestZoneId', ()=>{
         // @Test(dataProvider='String_UTC')
         it('test_of_string_GMT', () => {
             dataProviderTest(data_of_string_UTC, (id) => {
-                const test = ZoneId.of(`GMT${  id}`);
+                const test = ZoneId.of(`GMT${id}`);
                 assertEquals(test.id(), 'GMT');
                 assertEquals(test.normalized(), ZoneOffset.UTC);
             });
@@ -50,7 +50,7 @@ describe('org.threeten.bp.TestZoneId', ()=>{
         // @Test(dataProvider='String_UTC')
         it('test_of_string_UT', () => {
             dataProviderTest(data_of_string_UTC, (id) => {
-                const test = ZoneId.of(`UT${  id}`);
+                const test = ZoneId.of(`UT${id}`);
                 assertEquals(test.id(), 'UT');
                 assertEquals(test.normalized(), ZoneOffset.UTC);
             });
@@ -87,8 +87,8 @@ describe('org.threeten.bp.TestZoneId', ()=>{
         // @Test(dataProvider='String_Fixed')
         it('test_of_string_FixedUTC', () => {
             dataProviderTest(data_of_string_Fixed, (input, id) => {
-                const test = ZoneId.of(`UTC${  input}`);
-                assertEquals(test.id(), `UTC${  id}`);
+                const test = ZoneId.of(`UTC${input}`);
+                assertEquals(test.id(), `UTC${id}`);
                 assertEquals(test.rules().isFixedOffset(), true);
                 const offset = ZoneOffset.of(id.length === 0 ? 'Z' : id);
                 assertEquals(test.rules().offset(Instant.ofEpochSecond(0)), offset);
@@ -100,8 +100,8 @@ describe('org.threeten.bp.TestZoneId', ()=>{
         // @Test(dataProvider='String_Fixed')
         it('test_of_string_FixedGMT', () => {
             dataProviderTest(data_of_string_Fixed, (input, id) => {
-                const test = ZoneId.of(`GMT${  input}`);
-                assertEquals(test.id(), `GMT${  id}`);
+                const test = ZoneId.of(`GMT${input}`);
+                assertEquals(test.id(), `GMT${id}`);
                 assertEquals(test.rules().isFixedOffset(), true);
                 const offset = ZoneOffset.of(id.length === 0 ? 'Z' : id);
                 assertEquals(test.rules().offset(Instant.ofEpochSecond(0)), offset);
@@ -112,8 +112,8 @@ describe('org.threeten.bp.TestZoneId', ()=>{
         // @Test(dataProvider='String_Fixed')
         it('test_of_string_FixedUT', () => {
             dataProviderTest(data_of_string_Fixed, (input, id) => {
-                const test = ZoneId.of(`UT${  input}`);
-                assertEquals(test.id(), `UT${  id}`);
+                const test = ZoneId.of(`UT${input}`);
+                assertEquals(test.id(), `UT${id}`);
                 assertEquals(test.rules().isFixedOffset(), true);
                 const offset = ZoneOffset.of(id.length === 0 ? 'Z' : id);
                 assertEquals(test.rules().offset(Instant.ofEpochSecond(0)), offset);
@@ -145,7 +145,7 @@ describe('org.threeten.bp.TestZoneId', ()=>{
         it('test_of_string_UTC_invalid', () => {
             dataProviderTest(data_of_string_UTC_invalid, (id) => {
                 expect(()=>{
-                    ZoneId.of(`UTC${  id}`);
+                    ZoneId.of(`UTC${id}`);
                 }).to.throw(DateTimeException);
             });
         });
@@ -153,7 +153,7 @@ describe('org.threeten.bp.TestZoneId', ()=>{
         it('test_of_string_GMT_invalid', () => {
             dataProviderTest(data_of_string_UTC_invalid, (id) => {
                 expect(()=>{
-                    ZoneId.of(`GMT${  id}`);
+                    ZoneId.of(`GMT${id}`);
                 }).to.throw(DateTimeException);
             });
         });
@@ -241,7 +241,7 @@ describe('org.threeten.bp.TestZoneId', ()=>{
                 const zoff = ZoneOffset.of(offset);
                 const zoneId = ZoneIdFactory.ofOffset(prefix, zoff);
                 assertEquals(zoneId.rules(), ZoneOffset.ofHours(expectedHour).rules());
-                assertEquals(zoneId.id(), prefix + (expectedHour !== 0 ? zoff.id() : ''), `in correct id for : ${  prefix  }, zoff: ${  zoff}`);
+                assertEquals(zoneId.id(), prefix + (expectedHour !== 0 ? zoff.id() : ''), `in correct id for : ${prefix}, zoff: ${zoff}`);
             });
         });
 

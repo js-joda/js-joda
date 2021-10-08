@@ -4,8 +4,8 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {abstractMethodFail} from '../assert';
-import {Enum} from '../Enum';
+import { abstractMethodFail } from '../assert';
+import { Enum } from '../Enum';
 
 
 /**

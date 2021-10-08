@@ -4,21 +4,21 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
-import {assertEquals, dataProviderTest} from '../testUtils';
+import { expect } from 'chai';
+import { assertEquals, dataProviderTest } from '../testUtils';
 
 import '../_init';
 
-import {Instant} from '../../src/Instant';
-import {LocalDate} from '../../src/LocalDate';
-import {LocalTime} from '../../src/LocalTime';
-import {LocalDateTime} from '../../src/LocalDateTime';
-import {ZoneId} from '../../src/ZoneId';
-import {ZoneOffset} from '../../src/ZoneOffset';
-import {ZonedDateTime} from '../../src/ZonedDateTime';
+import { Instant } from '../../src/Instant';
+import { LocalDate } from '../../src/LocalDate';
+import { LocalTime } from '../../src/LocalTime';
+import { LocalDateTime } from '../../src/LocalDateTime';
+import { ZoneId } from '../../src/ZoneId';
+import { ZoneOffset } from '../../src/ZoneOffset';
+import { ZonedDateTime } from '../../src/ZonedDateTime';
 
-import {nativeJs} from '../../src/temporal/NativeJsTemporal';
-import {ChronoUnit} from '../../src/temporal/ChronoUnit';
+import { nativeJs } from '../../src/temporal/NativeJsTemporal';
+import { ChronoUnit } from '../../src/temporal/ChronoUnit';
 
 describe('temporal/NativeJsTemporal.js', ()=>{
 
@@ -92,7 +92,7 @@ describe('temporal/NativeJsTemporal.js', ()=>{
         check('2016-06-21T00:00:00');
 
         function check(isoDateString){
-            const jsDate = new Date(`${isoDateString  }Z`);
+            const jsDate = new Date(`${isoDateString}Z`);
             const dtn = LocalDateTime.from(nativeJs(jsDate));
             const dtl = LocalDateTime.parse(isoDateString);
 

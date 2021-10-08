@@ -4,26 +4,26 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
+import { expect } from 'chai';
 
-import {ChronoField} from '../../src/temporal/ChronoField';
-import {ChronoUnit} from '../../src/temporal/ChronoUnit';
-import {Clock} from '../../src/Clock';
-import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
-import {Duration} from '../../src/Duration';
-import {Instant} from '../../src/Instant';
-import {IsoChronology} from '../../src/chrono/IsoChronology';
-import {LocalDateTime} from '../../src/LocalDateTime';
-import {LocalDate} from '../../src/LocalDate';
-import {LocalTime} from '../../src/LocalTime';
-import {Month} from '../../src/Month';
-import {OffsetDateTime} from '../../src/OffsetDateTime';
-import {OffsetTime} from '../../src/OffsetTime';
-import {TemporalAdjuster} from '../../src/temporal/TemporalAdjuster';
-import {TemporalQueries} from '../../src/temporal/TemporalQueries';
-import {Year} from '../../src/Year';
-import {ZonedDateTime} from '../../src/ZonedDateTime';
-import {ZoneOffset} from '../../src/ZoneOffset';
+import { ChronoField } from '../../src/temporal/ChronoField';
+import { ChronoUnit } from '../../src/temporal/ChronoUnit';
+import { Clock } from '../../src/Clock';
+import { DateTimeFormatter } from '../../src/format/DateTimeFormatter';
+import { Duration } from '../../src/Duration';
+import { Instant } from '../../src/Instant';
+import { IsoChronology } from '../../src/chrono/IsoChronology';
+import { LocalDateTime } from '../../src/LocalDateTime';
+import { LocalDate } from '../../src/LocalDate';
+import { LocalTime } from '../../src/LocalTime';
+import { Month } from '../../src/Month';
+import { OffsetDateTime } from '../../src/OffsetDateTime';
+import { OffsetTime } from '../../src/OffsetTime';
+import { TemporalAdjuster } from '../../src/temporal/TemporalAdjuster';
+import { TemporalQueries } from '../../src/temporal/TemporalQueries';
+import { Year } from '../../src/Year';
+import { ZonedDateTime } from '../../src/ZonedDateTime';
+import { ZoneOffset } from '../../src/ZoneOffset';
 import {
     DateTimeException,
     DateTimeParseException,
@@ -31,9 +31,9 @@ import {
     NullPointerException
 } from '../../src/errors';
 
-import {MockSimplePeriod} from './MockSimplePeriod';
-import {dataProviderTest, assertTrue, assertEquals} from '../testUtils';
-import {CurrentStandardZoneAsiaGaza, CurrentStandardZoneEuropeParis} from '../zone/CurrentStandardZone';
+import { MockSimplePeriod } from './MockSimplePeriod';
+import { dataProviderTest, assertTrue, assertEquals } from '../testUtils';
+import { CurrentStandardZoneAsiaGaza, CurrentStandardZoneEuropeParis } from '../zone/CurrentStandardZone';
 
 import '../_init';
 

@@ -2,27 +2,27 @@
  * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
-import {expect} from 'chai';
+import { expect } from 'chai';
 
 import '../_init';
 
-import {Year} from '../../src/Year';
-import {ChronoField} from '../../src/temporal/ChronoField';
-import {ChronoUnit} from '../../src/temporal/ChronoUnit';
-import {Clock} from '../../src/Clock';
-import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
-import {IsoChronology} from '../../src/chrono/IsoChronology';
-import {LocalDate} from '../../src/LocalDate';
-import {LocalDateTime} from '../../src/LocalDateTime';
-import {LocalTime} from '../../src/LocalTime';
-import {Month} from '../../src/Month';
-import {MonthDay} from '../../src/MonthDay';
-import {NullPointerException, DateTimeException, DateTimeParseException} from '../../src/errors';
-import {MockFieldNoValue} from './temporal/MockFieldNoValue';
-import {TemporalQueries} from '../../src/temporal/TemporalQueries';
-import {YearMonth} from '../../src/YearMonth';
-import {ZoneId} from '../../src/ZoneId';
-import {ZoneOffset} from '../../src/ZoneOffset';
+import { Year } from '../../src/Year';
+import { ChronoField } from '../../src/temporal/ChronoField';
+import { ChronoUnit } from '../../src/temporal/ChronoUnit';
+import { Clock } from '../../src/Clock';
+import { DateTimeFormatter } from '../../src/format/DateTimeFormatter';
+import { IsoChronology } from '../../src/chrono/IsoChronology';
+import { LocalDate } from '../../src/LocalDate';
+import { LocalDateTime } from '../../src/LocalDateTime';
+import { LocalTime } from '../../src/LocalTime';
+import { Month } from '../../src/Month';
+import { MonthDay } from '../../src/MonthDay';
+import { NullPointerException, DateTimeException, DateTimeParseException } from '../../src/errors';
+import { MockFieldNoValue } from './temporal/MockFieldNoValue';
+import { TemporalQueries } from '../../src/temporal/TemporalQueries';
+import { YearMonth } from '../../src/YearMonth';
+import { ZoneId } from '../../src/ZoneId';
+import { ZoneOffset } from '../../src/ZoneOffset';
 
 describe('org.threeten.bp.temporal.TestYear', () => {
     const TEST_2008 = Year.of(2008);
@@ -144,8 +144,8 @@ describe('org.threeten.bp.temporal.TestYear', () => {
             ['-1234', Year.of(-1234)],
             // ['-12345678', Year.of(-12345678)], // too large for our Year.MIN_VALUE
 
-            [`+${  Year.MAX_VALUE}`, Year.of(Year.MAX_VALUE)],
-            [`${  Year.MIN_VALUE}`, Year.of(Year.MIN_VALUE)]
+            [`+${Year.MAX_VALUE}`, Year.of(Year.MAX_VALUE)],
+            [`${Year.MIN_VALUE}`, Year.of(Year.MIN_VALUE)]
         ];
 
         it('factory_parse_success', () => {
@@ -693,7 +693,7 @@ describe('org.threeten.bp.temporal.TestYear', () => {
         it('test_toString', () => {
             for (let i = -4; i <= 2104; i++) {
                 const a = Year.of(i);
-                expect(a.toString()).to.eql(`${  i}`);
+                expect(a.toString()).to.eql(`${i}`);
             }
         });
     });

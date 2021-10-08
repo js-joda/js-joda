@@ -4,20 +4,20 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
-import {assertEquals, assertSame} from '../testUtils';
+import { expect } from 'chai';
+import { assertEquals, assertSame } from '../testUtils';
 
 import '../_init';
 
-import {DateTimeException, NullPointerException} from '../../src/errors';
+import { DateTimeException, NullPointerException } from '../../src/errors';
 
-import {DayOfWeek} from '../../src/DayOfWeek';
-import {LocalDate} from '../../src/LocalDate';
-import {LocalTime} from '../../src/LocalTime';
-import {ChronoField} from '../../src/temporal/ChronoField';
-import {ChronoUnit} from '../../src/temporal/ChronoUnit';
-import {TemporalQueries} from '../../src/temporal/TemporalQueries';
-import {TextStyle} from '../../src/format/TextStyle';
+import { DayOfWeek } from '../../src/DayOfWeek';
+import { LocalDate } from '../../src/LocalDate';
+import { LocalTime } from '../../src/LocalTime';
+import { ChronoField } from '../../src/temporal/ChronoField';
+import { ChronoUnit } from '../../src/temporal/ChronoUnit';
+import { TemporalQueries } from '../../src/temporal/TemporalQueries';
+import { TextStyle } from '../../src/format/TextStyle';
 
 describe('org.threeten.bp.TestDayOfWeek', () => {
     

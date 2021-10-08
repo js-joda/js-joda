@@ -3,18 +3,18 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
+import { expect } from 'chai';
 
 import '../_init';
 
-import {assertEquals, dataProviderTest} from '../testUtils';
+import { assertEquals, dataProviderTest } from '../testUtils';
 
-import {CurrentStandardZoneEuropeBerlin} from './CurrentStandardZone';
+import { CurrentStandardZoneEuropeBerlin } from './CurrentStandardZone';
 
-import {Instant} from '../../src/Instant';
-import {LocalDateTime} from '../../src/LocalDateTime';
-import {ZoneOffset} from '../../src/ZoneOffset';
-import {ZoneOffsetTransition} from '../../src/zone/ZoneOffsetTransition';
+import { Instant } from '../../src/Instant';
+import { LocalDateTime } from '../../src/LocalDateTime';
+import { ZoneOffset } from '../../src/ZoneOffset';
+import { ZoneOffsetTransition } from '../../src/zone/ZoneOffsetTransition';
 
 describe('CurrentZoneEuropeBerlinTest', () => {
 
@@ -69,36 +69,36 @@ describe('CurrentZoneEuropeBerlinTest', () => {
 
         const testData = () => {
             return [
-                [LocalDateTime.parse('2016-12-21T00:00:00'), OFFSET_01, true ],
+                [LocalDateTime.parse('2016-12-21T00:00:00'), OFFSET_01, true],
                 [LocalDateTime.parse('2016-12-21T00:00:00'), OFFSET_02, false],
-                [LocalDateTime.parse('2016-06-21T00:00:00'), OFFSET_02, true ],
+                [LocalDateTime.parse('2016-06-21T00:00:00'), OFFSET_02, true],
                 [LocalDateTime.parse('2016-06-21T00:00:00'), OFFSET_01, false],
 
                 // gap
-                [LocalDateTime.parse('2016-03-27T01:59:59'), OFFSET_01, true ],
+                [LocalDateTime.parse('2016-03-27T01:59:59'), OFFSET_01, true],
 
-                [LocalDateTime.parse('2016-03-27T02:00:00'), OFFSET_01, false ],
-                [LocalDateTime.parse('2016-03-27T02:30:00'), OFFSET_01, false ],
+                [LocalDateTime.parse('2016-03-27T02:00:00'), OFFSET_01, false],
+                [LocalDateTime.parse('2016-03-27T02:30:00'), OFFSET_01, false],
                 [LocalDateTime.parse('2016-03-27T03:00:00'), OFFSET_01, false],
 
                 [LocalDateTime.parse('2016-03-27T02:00:00'), OFFSET_02, false],
                 [LocalDateTime.parse('2016-03-27T02:30:00'), OFFSET_02, false],
-                [LocalDateTime.parse('2016-03-27T03:00:00'), OFFSET_02, true ],
+                [LocalDateTime.parse('2016-03-27T03:00:00'), OFFSET_02, true],
 
-                [LocalDateTime.parse('2016-03-27T03:01:00'), OFFSET_02, true ],
+                [LocalDateTime.parse('2016-03-27T03:01:00'), OFFSET_02, true],
 
                 // overlap
-                [LocalDateTime.parse('2016-10-30T01:59:59'), OFFSET_02, true ],
+                [LocalDateTime.parse('2016-10-30T01:59:59'), OFFSET_02, true],
 
-                [LocalDateTime.parse('2016-10-30T02:00:00'), OFFSET_02, true ],
-                [LocalDateTime.parse('2016-10-30T02:30:00'), OFFSET_02, true ],
-                [LocalDateTime.parse('2016-10-30T03:00:00'), OFFSET_02, false ],
+                [LocalDateTime.parse('2016-10-30T02:00:00'), OFFSET_02, true],
+                [LocalDateTime.parse('2016-10-30T02:30:00'), OFFSET_02, true],
+                [LocalDateTime.parse('2016-10-30T03:00:00'), OFFSET_02, false],
 
-                [LocalDateTime.parse('2016-10-30T02:00:00'), OFFSET_01, true ],
-                [LocalDateTime.parse('2016-10-30T02:30:00'), OFFSET_01, true ],
-                [LocalDateTime.parse('2016-10-30T03:00:00'), OFFSET_01, true ],
+                [LocalDateTime.parse('2016-10-30T02:00:00'), OFFSET_01, true],
+                [LocalDateTime.parse('2016-10-30T02:30:00'), OFFSET_01, true],
+                [LocalDateTime.parse('2016-10-30T03:00:00'), OFFSET_01, true],
 
-                [LocalDateTime.parse('2016-10-30T03:01:00'), OFFSET_01, true ],
+                [LocalDateTime.parse('2016-10-30T03:01:00'), OFFSET_01, true],
             ];
         };
 

@@ -4,16 +4,16 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {MathUtil} from './MathUtil';
-import {requireNonNull, requireInstance} from './assert';
-import {DateTimeException, UnsupportedTemporalTypeException, ArithmeticException, DateTimeParseException} from './errors';
+import { MathUtil } from './MathUtil';
+import { requireNonNull, requireInstance } from './assert';
+import { DateTimeException, UnsupportedTemporalTypeException, ArithmeticException, DateTimeParseException } from './errors';
 
-import {IsoChronology} from './chrono/IsoChronology';
+import { IsoChronology } from './chrono/IsoChronology';
 
-import {ChronoUnit} from './temporal/ChronoUnit';
-import {TemporalAmount} from './temporal/TemporalAmount';
+import { ChronoUnit } from './temporal/ChronoUnit';
+import { TemporalAmount } from './temporal/TemporalAmount';
 
-import {LocalDate} from './LocalDate';
+import { LocalDate } from './LocalDate';
 
 /**
  * The pattern for parsing.
@@ -214,7 +214,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
             } else if (unit === ChronoUnit.DAYS) {
                 days = MathUtil.safeToInt(unitAmount);
             } else {
-                throw new DateTimeException(`Unit must be Years, Months or Days, but was ${  unit}`);
+                throw new DateTimeException(`Unit must be Years, Months or Days, but was ${unit}`);
             }
         }
         return Period.create(years, months, days);
@@ -393,7 +393,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
         if (unit === ChronoUnit.DAYS) {
             return this._days;
         }
-        throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
+        throw new UnsupportedTemporalTypeException(`Unsupported unit: ${unit}`);
     }
 
     //-----------------------------------------------------------------------
@@ -904,13 +904,13 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
         } else {
             let buf = 'P';
             if (this._years !== 0) {
-                buf += `${  this._years  }Y`;
+                buf += `${this._years}Y`;
             }
             if (this._months !== 0) {
-                buf += `${  this._months  }M`;
+                buf += `${this._months}M`;
             }
             if (this._days !== 0) {
-                buf += `${  this._days  }D`;
+                buf += `${this._days}D`;
             }
             return buf;
         }

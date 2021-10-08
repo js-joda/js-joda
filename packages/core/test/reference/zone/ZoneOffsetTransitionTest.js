@@ -4,19 +4,19 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
+import { expect } from 'chai';
 
 import '../../_init';
-import {assertEquals} from '../../testUtils';
+import { assertEquals } from '../../testUtils';
 
-import {IllegalArgumentException, NullPointerException} from '../../../src/errors';
+import { IllegalArgumentException, NullPointerException } from '../../../src/errors';
 
-import {Duration} from '../../../src/Duration';
-import {LocalDateTime} from '../../../src/LocalDateTime';
-import {ZoneOffset} from '../../../src/ZoneOffset';
-import {ZoneOffsetTransition} from '../../../src/zone/ZoneOffsetTransition';
+import { Duration } from '../../../src/Duration';
+import { LocalDateTime } from '../../../src/LocalDateTime';
+import { ZoneOffset } from '../../../src/ZoneOffset';
+import { ZoneOffsetTransition } from '../../../src/zone/ZoneOffsetTransition';
 
-import {ChronoUnit} from '../../../src/temporal/ChronoUnit';
+import { ChronoUnit } from '../../../src/temporal/ChronoUnit';
 
 describe('org.threeten.bp.zone.TestZoneOffsetTransition', () => {
 

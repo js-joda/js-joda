@@ -3,18 +3,18 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
+import { expect } from 'chai';
 
 import './_init';
 
-import {IllegalArgumentException} from '../src/errors';
+import { IllegalArgumentException } from '../src/errors';
 
-import {LocalDate} from '../src/LocalDate';
-import {LocalDateTime} from '../src/LocalDateTime';
-import {ZoneId} from '../src/ZoneId';
-import {Instant} from '../src/Instant';
+import { LocalDate } from '../src/LocalDate';
+import { LocalDateTime } from '../src/LocalDateTime';
+import { ZoneId } from '../src/ZoneId';
+import { Instant } from '../src/Instant';
 
-import {convert} from '../src/convert';
+import { convert } from '../src/convert';
 
 describe('convert', () => {
 

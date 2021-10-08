@@ -4,11 +4,11 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {assert, abstractMethodFail, requireInstance, requireNonNull} from '../assert';
-import {IllegalArgumentException} from '../errors';
-import {TemporalAccessor} from './TemporalAccessor';
-import {TemporalAmount} from './TemporalAmount';
-import {TemporalUnit} from './TemporalUnit';
+import { assert, abstractMethodFail, requireInstance, requireNonNull } from '../assert';
+import { IllegalArgumentException } from '../errors';
+import { TemporalAccessor } from './TemporalAccessor';
+import { TemporalAmount } from './TemporalAmount';
+import { TemporalUnit } from './TemporalUnit';
 
 /**
  * Framework-level interface defining read-write access to a temporal object,

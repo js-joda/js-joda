@@ -2,13 +2,13 @@ import { expect } from 'chai';
 
 import '../_init';
 
-import {Temporal } from '../../src/temporal/Temporal';
-import {ChronoUnit} from '../../src/temporal/ChronoUnit';
-import {Period} from '../../src/Period';
-import {ChronoField} from '../../src/temporal/ChronoField';
-import {TemporalField} from '../../src/temporal/TemporalField';
-import {UnsupportedTemporalTypeException} from '../../src/errors';
-import {MathUtil} from '../../src/MathUtil';
+import { Temporal } from '../../src/temporal/Temporal';
+import { ChronoUnit } from '../../src/temporal/ChronoUnit';
+import { Period } from '../../src/Period';
+import { ChronoField } from '../../src/temporal/ChronoField';
+import { TemporalField } from '../../src/temporal/TemporalField';
+import { UnsupportedTemporalTypeException } from '../../src/errors';
+import { MathUtil } from '../../src/MathUtil';
 
 // NOTE: This is an incomplete implementation!
 class BasicYearMock extends Temporal {
@@ -27,12 +27,12 @@ class BasicYearMock extends Temporal {
 
     getLong(field) {
         if (field === ChronoField.YEAR) return this._value;
-        else throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
+        else throw new UnsupportedTemporalTypeException(`Unsupported field: ${field}`);
     }
 
     _plusUnit(amount, unit) {
         if (!this.isSupported(unit)) {
-            UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
+            UnsupportedTemporalTypeException(`Unsupported unit: ${unit}`);
         }
         return new BasicYearMock(this._value + amount);
     }

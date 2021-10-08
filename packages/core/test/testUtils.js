@@ -2,7 +2,7 @@
  * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
-import {expect, assert} from 'chai';
+import { expect, assert } from 'chai';
 
 export function dataProviderTest(dataProvider, test, log){
     const data = typeof dataProvider === 'function' ? dataProvider() : dataProvider;

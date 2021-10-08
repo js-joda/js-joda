@@ -3,16 +3,16 @@
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
-import {expect} from 'chai';
-import {assertEquals, dataProviderTest} from '../../testUtils';
+import { expect } from 'chai';
+import { assertEquals, dataProviderTest } from '../../testUtils';
 
 import '../../_init';
 
-import {ChronoField} from '../../../src/temporal/ChronoField';
-import {DateTimeFormatterBuilder} from '../../../src/format/DateTimeFormatterBuilder';
-import {IllegalArgumentException, IllegalStateException, NullPointerException} from '../../../src/errors';
-import {ParsePosition} from '../../../src/format/ParsePosition';
-import {SignStyle} from '../../../src/format/SignStyle';
+import { ChronoField } from '../../../src/temporal/ChronoField';
+import { DateTimeFormatterBuilder } from '../../../src/format/DateTimeFormatterBuilder';
+import { IllegalArgumentException, IllegalStateException, NullPointerException } from '../../../src/errors';
+import { ParsePosition } from '../../../src/format/ParsePosition';
+import { SignStyle } from '../../../src/format/SignStyle';
 
 const DAY_OF_MONTH = ChronoField.DAY_OF_MONTH;
 
@@ -515,7 +515,7 @@ describe('org.threeten.bp.format.TestDateTimeFormatterBuilder',() => {
                 builder = new DateTimeFormatterBuilder();
                 builder.appendOffset(pattern, 'Z');
                 const f = builder.toFormatter();
-                assertEquals(f.toString(), `Offset(${  pattern  },'Z')`);
+                assertEquals(f.toString(), `Offset(${pattern},'Z')`);
             });
         });
 

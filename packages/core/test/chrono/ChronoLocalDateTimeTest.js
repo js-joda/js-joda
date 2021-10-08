@@ -3,15 +3,15 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
-import {assertEquals} from '../testUtils';
+import { expect } from 'chai';
+import { assertEquals } from '../testUtils';
 
 import '../_init';
 
-import {ChronoLocalDateTime} from '../../src/chrono/ChronoLocalDateTime';
-import {LocalDateTime} from '../../src/LocalDateTime';
-import {TemporalQueries} from '../../src/temporal/TemporalQueries';
-import {TemporalQuery} from '../../src/temporal/TemporalQuery';
+import { ChronoLocalDateTime } from '../../src/chrono/ChronoLocalDateTime';
+import { LocalDateTime } from '../../src/LocalDateTime';
+import { TemporalQueries } from '../../src/temporal/TemporalQueries';
+import { TemporalQuery } from '../../src/temporal/TemporalQuery';
 
 /* these are not covered by the threetenbp ported tests */
 describe('js-joda ChronoLocalDateTime', () => {

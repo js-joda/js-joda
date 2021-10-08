@@ -33,16 +33,16 @@ export const NullPointerException = createErrorType('NullPointerException');
 function messageWithCause(message, cause = null) {
     let msg = message || this.name;
     if (cause !== null && cause instanceof Error) {
-        msg += `\n-------\nCaused by: ${  cause.stack  }\n-------\n`;
+        msg += `\n-------\nCaused by: ${cause.stack}\n-------\n`;
     }
     this.message = msg;
 }
 
 function messageForDateTimeParseException(message, text = '', index = 0, cause = null) {
     let msg = message || this.name;
-    msg += `: ${  text  }, at index: ${  index}`;
+    msg += `: ${text}, at index: ${index}`;
     if (cause !== null && cause instanceof Error) {
-        msg += `\n-------\nCaused by: ${  cause.stack  }\n-------\n`;
+        msg += `\n-------\nCaused by: ${cause.stack}\n-------\n`;
     }
     this.message = msg;
     this.parsedString = () => {

@@ -4,28 +4,28 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
-import {assertEquals, dataProviderTest} from '../testUtils';
+import { expect } from 'chai';
+import { assertEquals, dataProviderTest } from '../testUtils';
 
 import '../_init';
 
 import {
     DateTimeException, DateTimeParseException,
-    NullPointerException, ArithmeticException, IllegalArgumentException} from '../../src/errors';
+    NullPointerException, ArithmeticException, IllegalArgumentException } from '../../src/errors';
 
-import {Clock} from '../../src/Clock';
-import {Duration} from '../../src/Duration';
-import {Instant} from '../../src/Instant';
-import {LocalDateTime} from '../../src/LocalDateTime';
-import {MathUtil} from '../../src/MathUtil';
-import {OffsetDateTime} from '../../src/OffsetDateTime';
-import {ZoneOffset} from '../../src/ZoneOffset';
-import {ZonedDateTime} from '../../src/ZonedDateTime';
+import { Clock } from '../../src/Clock';
+import { Duration } from '../../src/Duration';
+import { Instant } from '../../src/Instant';
+import { LocalDateTime } from '../../src/LocalDateTime';
+import { MathUtil } from '../../src/MathUtil';
+import { OffsetDateTime } from '../../src/OffsetDateTime';
+import { ZoneOffset } from '../../src/ZoneOffset';
+import { ZonedDateTime } from '../../src/ZonedDateTime';
 
-import {ChronoField} from '../../src/temporal/ChronoField';
-import {ChronoUnit} from '../../src/temporal/ChronoUnit';
-import {TemporalQueries} from '../../src/temporal/TemporalQueries';
-import {CurrentStandardZoneEuropeParis} from '../zone/CurrentStandardZone';
+import { ChronoField } from '../../src/temporal/ChronoField';
+import { ChronoUnit } from '../../src/temporal/ChronoUnit';
+import { TemporalQueries } from '../../src/temporal/TemporalQueries';
+import { CurrentStandardZoneEuropeParis } from '../zone/CurrentStandardZone';
 
 const MIN_SECOND = Instant.MIN.epochSecond();
 const MAX_SECOND = Instant.MAX.epochSecond();
@@ -1710,20 +1710,20 @@ describe('org.threeten.bp.TestInstant', () => {
                 for (let j = 0; j < instants.length; j++) {
                     const b = instants[j];
                     if (i < j) {
-                        assertEquals(a.compareTo(b) < 0, true, `${a  } <=> ${  b}`);
-                        assertEquals(a.isBefore(b), true, `${a  } <=> ${  b}`);
-                        assertEquals(a.isAfter(b), false, `${a  } <=> ${  b}`);
-                        assertEquals(a.equals(b), false, `${a  } <=> ${  b}`);
+                        assertEquals(a.compareTo(b) < 0, true, `${a} <=> ${b}`);
+                        assertEquals(a.isBefore(b), true, `${a} <=> ${b}`);
+                        assertEquals(a.isAfter(b), false, `${a} <=> ${b}`);
+                        assertEquals(a.equals(b), false, `${a} <=> ${b}`);
                     } else if (i > j) {
-                        assertEquals(a.compareTo(b) > 0, true, `${a  } <=> ${  b}`);
-                        assertEquals(a.isBefore(b), false, `${a  } <=> ${  b}`);
-                        assertEquals(a.isAfter(b), true, `${a  } <=> ${  b}`);
-                        assertEquals(a.equals(b), false, `${a  } <=> ${  b}`);
+                        assertEquals(a.compareTo(b) > 0, true, `${a} <=> ${b}`);
+                        assertEquals(a.isBefore(b), false, `${a} <=> ${b}`);
+                        assertEquals(a.isAfter(b), true, `${a} <=> ${b}`);
+                        assertEquals(a.equals(b), false, `${a} <=> ${b}`);
                     } else {
-                        assertEquals(a.compareTo(b), 0, `${a  } <=> ${  b}`);
-                        assertEquals(a.isBefore(b), false, `${a  } <=> ${  b}`);
-                        assertEquals(a.isAfter(b), false, `${a  } <=> ${  b}`);
-                        assertEquals(a.equals(b), true, `${a  } <=> ${  b}`);
+                        assertEquals(a.compareTo(b), 0, `${a} <=> ${b}`);
+                        assertEquals(a.isBefore(b), false, `${a} <=> ${b}`);
+                        assertEquals(a.isAfter(b), false, `${a} <=> ${b}`);
+                        assertEquals(a.equals(b), true, `${a} <=> ${b}`);
                     }
                 }
             }

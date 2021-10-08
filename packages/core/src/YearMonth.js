@@ -3,27 +3,27 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-import {requireNonNull, requireInstance} from './assert';
-import {DateTimeException, UnsupportedTemporalTypeException} from './errors';
-import {MathUtil} from './MathUtil';
+import { requireNonNull, requireInstance } from './assert';
+import { DateTimeException, UnsupportedTemporalTypeException } from './errors';
+import { MathUtil } from './MathUtil';
 
-import {ChronoField} from './temporal/ChronoField';
-import {ChronoUnit} from './temporal/ChronoUnit';
-import {Clock} from './Clock';
-import {DateTimeFormatterBuilder} from './format/DateTimeFormatterBuilder';
-import {IsoChronology} from './chrono/IsoChronology';
-import {LocalDate} from './LocalDate';
-import {Month} from './Month';
-import {SignStyle} from './format/SignStyle';
-import {Temporal} from './temporal/Temporal';
-import {TemporalField} from './temporal/TemporalField';
-import {TemporalQueries} from './temporal/TemporalQueries';
-import {TemporalQuery} from './temporal/TemporalQuery';
-import {TemporalUnit} from './temporal/TemporalUnit';
-import {createTemporalQuery} from './temporal/TemporalQuery';
-import {ValueRange} from './temporal/ValueRange';
-import {Year} from './Year';
-import {ZoneId} from './ZoneId';
+import { ChronoField } from './temporal/ChronoField';
+import { ChronoUnit } from './temporal/ChronoUnit';
+import { Clock } from './Clock';
+import { DateTimeFormatterBuilder } from './format/DateTimeFormatterBuilder';
+import { IsoChronology } from './chrono/IsoChronology';
+import { LocalDate } from './LocalDate';
+import { Month } from './Month';
+import { SignStyle } from './format/SignStyle';
+import { Temporal } from './temporal/Temporal';
+import { TemporalField } from './temporal/TemporalField';
+import { TemporalQueries } from './temporal/TemporalQueries';
+import { TemporalQuery } from './temporal/TemporalQuery';
+import { TemporalUnit } from './temporal/TemporalUnit';
+import { createTemporalQuery } from './temporal/TemporalQuery';
+import { ValueRange } from './temporal/ValueRange';
+import { Year } from './Year';
+import { ZoneId } from './ZoneId';
 
 /**
  * A year-month in the ISO-8601 calendar system, such as `2007-12`.
@@ -199,7 +199,7 @@ export class YearMonth extends Temporal {
             return YearMonth.of(temporal.get(ChronoField.YEAR), temporal.get(ChronoField.MONTH_OF_YEAR));
         } catch (ex) {
             throw new DateTimeException(`Unable to obtain YearMonth from TemporalAccessor: ${ 
-                temporal  }, type ${  temporal && temporal.constructor != null ? temporal.constructor.name : ''}`);
+                temporal}, type ${temporal && temporal.constructor != null ? temporal.constructor.name : ''}`);
         }
     }
     //-----------------------------------------------------------------------
@@ -418,7 +418,7 @@ export class YearMonth extends Temporal {
                 case ChronoField.YEAR: return this._year;
                 case ChronoField.ERA: return (this._year < 1 ? 0 : 1);
             }
-            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${field}`);
         }
         return field.getFrom(this);
     }
@@ -604,7 +604,7 @@ export class YearMonth extends Temporal {
                 case ChronoField.YEAR: return this.withYear(newValue);
                 case ChronoField.ERA: return (this.getLong(ChronoField.ERA) === newValue ? this : this.withYear(1 - this._year));
             }
-            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${field}`);
         }
         return field.adjustInto(this, newValue);
     }
@@ -659,7 +659,7 @@ export class YearMonth extends Temporal {
                 case ChronoUnit.MILLENNIA: return this.plusYears(MathUtil.safeMultiply(amountToAdd, 1000));
                 case ChronoUnit.ERAS: return this.with(ChronoField.ERA, MathUtil.safeAdd(this.getLong(ChronoField.ERA), amountToAdd));
             }
-            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${unit}`);
         }
         return unit.addTo(this, amountToAdd);
     }
@@ -857,7 +857,7 @@ export class YearMonth extends Temporal {
                 case ChronoUnit.MILLENNIA: return monthsUntil / 12000;
                 case ChronoUnit.ERAS: return end.getLong(ChronoField.ERA) - this.getLong(ChronoField.ERA);
             }
-            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${  unit}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported unit: ${unit}`);
         }
         return unit.between(this, end);
     }

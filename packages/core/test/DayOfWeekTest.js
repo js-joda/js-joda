@@ -3,18 +3,18 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
-import {assertEquals} from './testUtils';
+import { expect } from 'chai';
+import { assertEquals } from './testUtils';
 
 import './_init';
 
-import {ChronoField} from '../src/temporal/ChronoField';
-import {DayOfWeek} from '../src/DayOfWeek';
-import {IllegalArgumentException, UnsupportedTemporalTypeException} from '../src/errors';
-import {TemporalAccessor} from '../src/temporal/TemporalAccessor';
-import {TemporalField} from '../src/temporal/TemporalField';
-import {TemporalQuery} from '../src/temporal/TemporalQuery';
-import {ValueRange} from '../src/temporal/ValueRange';
+import { ChronoField } from '../src/temporal/ChronoField';
+import { DayOfWeek } from '../src/DayOfWeek';
+import { IllegalArgumentException, UnsupportedTemporalTypeException } from '../src/errors';
+import { TemporalAccessor } from '../src/temporal/TemporalAccessor';
+import { TemporalField } from '../src/temporal/TemporalField';
+import { TemporalQuery } from '../src/temporal/TemporalQuery';
+import { ValueRange } from '../src/temporal/ValueRange';
 
 /* these are not covered by the threetenbp ported tests */
 describe('js-joda DayOfWeek', () => {

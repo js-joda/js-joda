@@ -4,26 +4,26 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {ChronoField} from './temporal/ChronoField';
-import {ChronoUnit} from './temporal/ChronoUnit';
-import {Temporal} from './temporal/Temporal';
-import {Clock} from './Clock';
-import {DateTimeFormatter} from './format/DateTimeFormatter';
-import {Instant} from './Instant';
-import {IsoChronology} from './chrono/IsoChronology';
-import {LocalDateTime} from './LocalDateTime';
-import {LocalDate} from './LocalDate';
-import {LocalTime} from './LocalTime';
-import {MathUtil} from './MathUtil';
-import {OffsetTime} from './OffsetTime';
-import {TemporalQueries} from './temporal/TemporalQueries';
-import {ZonedDateTime} from './ZonedDateTime';
-import {ZoneId} from './ZoneId';
-import {ZoneOffset} from './ZoneOffset';
-import {DateTimeException, IllegalArgumentException} from './errors';
+import { ChronoField } from './temporal/ChronoField';
+import { ChronoUnit } from './temporal/ChronoUnit';
+import { Temporal } from './temporal/Temporal';
+import { Clock } from './Clock';
+import { DateTimeFormatter } from './format/DateTimeFormatter';
+import { Instant } from './Instant';
+import { IsoChronology } from './chrono/IsoChronology';
+import { LocalDateTime } from './LocalDateTime';
+import { LocalDate } from './LocalDate';
+import { LocalTime } from './LocalTime';
+import { MathUtil } from './MathUtil';
+import { OffsetTime } from './OffsetTime';
+import { TemporalQueries } from './temporal/TemporalQueries';
+import { ZonedDateTime } from './ZonedDateTime';
+import { ZoneId } from './ZoneId';
+import { ZoneOffset } from './ZoneOffset';
+import { DateTimeException, IllegalArgumentException } from './errors';
 
-import {createTemporalQuery} from './temporal/TemporalQuery';
-import {requireInstance, requireNonNull} from './assert';
+import { createTemporalQuery } from './temporal/TemporalQuery';
+import { requireInstance, requireNonNull } from './assert';
 
 /**
  * A date-time with an offset from UTC/Greenwich in the ISO-8601 calendar system,
@@ -205,7 +205,7 @@ export class OffsetDateTime extends Temporal {
     get(field) {
         if (field instanceof ChronoField) {
             switch (field) {
-                case ChronoField.INSTANT_SECONDS: throw new DateTimeException(`Field too large for an int: ${  field}`);
+                case ChronoField.INSTANT_SECONDS: throw new DateTimeException(`Field too large for an int: ${field}`);
                 case ChronoField.OFFSET_SECONDS: return this.offset().totalSeconds();
             }
             return this._dateTime.get(field);

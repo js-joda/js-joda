@@ -4,8 +4,8 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {DateTimeException} from '../../../src/errors';
-import {Temporal} from '../../../src/temporal/Temporal';
+import { DateTimeException } from '../../../src/errors';
+import { Temporal } from '../../../src/temporal/Temporal';
 
 export class EMPTY extends Temporal{
     isSupported() {

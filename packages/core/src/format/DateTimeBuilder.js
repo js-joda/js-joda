@@ -4,24 +4,24 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {requireNonNull} from '../assert';
-import {DateTimeException} from '../errors';
-import {MathUtil} from '../MathUtil';
+import { requireNonNull } from '../assert';
+import { DateTimeException } from '../errors';
+import { MathUtil } from '../MathUtil';
 
-import {EnumMap} from './EnumMap';
-import {ResolverStyle} from './ResolverStyle';
+import { EnumMap } from './EnumMap';
+import { ResolverStyle } from './ResolverStyle';
 
-import {IsoChronology} from '../chrono/IsoChronology';
-import {ChronoLocalDate} from '../chrono/ChronoLocalDate';
-import {ChronoField} from '../temporal/ChronoField';
-import {TemporalAccessor} from '../temporal/TemporalAccessor';
-import {TemporalQueries} from '../temporal/TemporalQueries';
+import { IsoChronology } from '../chrono/IsoChronology';
+import { ChronoLocalDate } from '../chrono/ChronoLocalDate';
+import { ChronoField } from '../temporal/ChronoField';
+import { TemporalAccessor } from '../temporal/TemporalAccessor';
+import { TemporalQueries } from '../temporal/TemporalQueries';
 
-import {LocalTime} from '../LocalTime';
-import {LocalDate} from '../LocalDate';
-import {Period} from '../Period';
+import { LocalTime } from '../LocalTime';
+import { LocalDate } from '../LocalDate';
+import { Period } from '../Period';
 
-import {ZoneOffset} from '../ZoneOffset';
+import { ZoneOffset } from '../ZoneOffset';
 
 /**
  * Builder that can holds date and time fields and related date and time objects.
@@ -114,7 +114,7 @@ export class DateTimeBuilder extends TemporalAccessor {
         requireNonNull(field, 'field');
         const old = this.getFieldValue0(field);  // check first for better error message
         if (old != null && old !== value) {
-            throw new DateTimeException(`Conflict found: ${  field  } ${  old  } differs from ${  field  } ${  value  }: ${  this}`);
+            throw new DateTimeException(`Conflict found: ${field} ${old} differs from ${field} ${value}: ${this}`);
         }
         return this._putFieldValue0(field, value);
     }
@@ -205,7 +205,7 @@ export class DateTimeBuilder extends TemporalAccessor {
                             }
                             const val2 = this.fieldValues.get(field);
                             if (val1 !== val2) {
-                                throw new DateTimeException(`Conflict found: Field ${  field  } ${  val1  } differs from ${  field  } ${  val2  } derived from ${  date}`);
+                                throw new DateTimeException(`Conflict found: Field ${field} ${val1} differs from ${field} ${val2} derived from ${date}`);
                             }
                         }
                     }
@@ -503,7 +503,7 @@ export class DateTimeBuilder extends TemporalAccessor {
             if (this.time != null && this.time.isSupported(field)) {
                 return this.time.getLong(field);
             }
-            throw new DateTimeException(`Field not found: ${  field}`);
+            throw new DateTimeException(`Field not found: ${field}`);
         }
         return value;
     }

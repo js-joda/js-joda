@@ -3,18 +3,18 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {assert, requireNonNull} from '../assert';
-import {UnsupportedTemporalTypeException} from '../errors';
+import { assert, requireNonNull } from '../assert';
+import { UnsupportedTemporalTypeException } from '../errors';
 
-import {Instant} from '../Instant';
-import {LocalDate} from '../LocalDate';
-import {LocalTime} from '../LocalTime';
-import {MathUtil} from '../MathUtil';
-import {ZoneId} from '../ZoneId';
+import { Instant } from '../Instant';
+import { LocalDate } from '../LocalDate';
+import { LocalTime } from '../LocalTime';
+import { MathUtil } from '../MathUtil';
+import { ZoneId } from '../ZoneId';
 
-import {ChronoField} from './ChronoField';
-import {TemporalQueries} from './TemporalQueries';
-import {TemporalAccessor} from './TemporalAccessor';
+import { ChronoField } from './ChronoField';
+import { TemporalQueries } from './TemporalQueries';
+import { TemporalAccessor } from './TemporalAccessor';
 
 /**
  * A wrapper around a native javascript Date instance that
@@ -79,7 +79,7 @@ class NativeJsTemporal extends TemporalAccessor {
                 case ChronoField.NANO_OF_SECOND: return MathUtil.floorMod(this._epochMilli, 1000) * 1000000;
                 case ChronoField.INSTANT_SECONDS: return MathUtil.floorDiv(this._epochMilli, 1000);
             }
-            throw new UnsupportedTemporalTypeException(`Unsupported field: ${  field}`);
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${field}`);
         }
         return field.getFrom(this);
     }

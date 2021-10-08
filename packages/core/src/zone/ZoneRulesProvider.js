@@ -4,7 +4,7 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {DateTimeException} from '../errors';
+import { DateTimeException } from '../errors';
 
 export class ZoneRulesProvider {
     /**
@@ -18,7 +18,7 @@ export class ZoneRulesProvider {
      * @return {ZoneRules}
      */
     static getRules(zoneId){
-        throw new DateTimeException(`unsupported ZoneId:${  zoneId}`);
+        throw new DateTimeException(`unsupported ZoneId:${zoneId}`);
     }
 
 

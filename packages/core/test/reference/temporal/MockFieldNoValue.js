@@ -4,10 +4,10 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {DateTimeException} from '../../../src/errors';
-import {ChronoUnit} from '../../../src/temporal/ChronoUnit';
-import {ValueRange} from '../../../src/temporal/ValueRange';
-import {TemporalField} from '../../../src/temporal/TemporalField';
+import { DateTimeException } from '../../../src/errors';
+import { ChronoUnit } from '../../../src/temporal/ChronoUnit';
+import { ValueRange } from '../../../src/temporal/ValueRange';
+import { TemporalField } from '../../../src/temporal/TemporalField';
 
 /**
  * Mock DateTimeField that returns null.

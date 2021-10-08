@@ -16,7 +16,7 @@ import {
 import TextPrinterParser from '../parser/TextPrinterParser';
 import CldrDateTimeTextProvider from './CldrDateTimeTextProvider';
 import CldrZoneTextPrinterParser from './CldrZoneTextPrinterParser';
-import {LocaleStore} from '../LocaleStore';
+import { LocaleStore } from '../LocaleStore';
 import LocalizedOffsetPrinterParser from '../parser/LocalizedOffsetPrinterParser';
 import WeekFieldsPrinterParser from '../parser/WeekFieldsPrinterParser';
 

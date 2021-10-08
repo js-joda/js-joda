@@ -3,28 +3,28 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
+import { expect } from 'chai';
 
 import '../_init';
 
-import {NullPointerException, DateTimeException, DateTimeParseException} from '../../src/errors';
+import { NullPointerException, DateTimeException, DateTimeParseException } from '../../src/errors';
 
-import {Clock} from '../../src/Clock';
-import {ChronoField} from '../../src/temporal/ChronoField';
-import {ChronoUnit} from '../../src/temporal/ChronoUnit';
-import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
-import {IsoChronology} from '../../src/chrono/IsoChronology';
-import {LocalDate} from '../../src/LocalDate';
-import {LocalDateTime} from '../../src/LocalDateTime';
-import {LocalTime} from '../../src/LocalTime';
-import {MathUtil} from '../../src/MathUtil';
-import {MockFieldNoValue} from './temporal/MockFieldNoValue';
-import {Month} from '../../src/Month';
-import {TemporalQueries} from '../../src/temporal/TemporalQueries';
-import {Year} from '../../src/Year';
-import {YearMonth} from '../../src/YearMonth';
-import {ZoneId} from '../../src/ZoneId';
-import {ZoneOffset} from '../../src/ZoneOffset';
+import { Clock } from '../../src/Clock';
+import { ChronoField } from '../../src/temporal/ChronoField';
+import { ChronoUnit } from '../../src/temporal/ChronoUnit';
+import { DateTimeFormatter } from '../../src/format/DateTimeFormatter';
+import { IsoChronology } from '../../src/chrono/IsoChronology';
+import { LocalDate } from '../../src/LocalDate';
+import { LocalDateTime } from '../../src/LocalDateTime';
+import { LocalTime } from '../../src/LocalTime';
+import { MathUtil } from '../../src/MathUtil';
+import { MockFieldNoValue } from './temporal/MockFieldNoValue';
+import { Month } from '../../src/Month';
+import { TemporalQueries } from '../../src/temporal/TemporalQueries';
+import { Year } from '../../src/Year';
+import { YearMonth } from '../../src/YearMonth';
+import { ZoneId } from '../../src/ZoneId';
+import { ZoneOffset } from '../../src/ZoneOffset';
 
 describe('org.threeten.bp.temporal.TestYearMonth', () => {
     const TEST_2008_06 = YearMonth.of(2008, 6);
@@ -189,8 +189,8 @@ describe('org.threeten.bp.temporal.TestYearMonth', () => {
             ['-1234-03', YearMonth.of(-1234, 3)],
             // ['-12345678-03', YearMonth.of(-12345678, 3)], // too smal for our Year.MIN_VALUE
 
-            [`+${  Year.MAX_VALUE  }-03`, YearMonth.of(Year.MAX_VALUE, 3)],
-            [`${Year.MIN_VALUE  }-03`, YearMonth.of(Year.MIN_VALUE, 3)]
+            [`+${Year.MAX_VALUE}-03`, YearMonth.of(Year.MAX_VALUE, 3)],
+            [`${Year.MIN_VALUE}-03`, YearMonth.of(Year.MIN_VALUE, 3)]
         ];
 
         it('factory_parse_success', () => {

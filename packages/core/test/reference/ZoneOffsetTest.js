@@ -4,23 +4,23 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
-import {assertEquals, assertSame, assertTrue} from '../testUtils';
+import { expect } from 'chai';
+import { assertEquals, assertSame, assertTrue } from '../testUtils';
 
 import '../_init';
 
-import {DateTimeException, NullPointerException} from '../../src/errors';
+import { DateTimeException, NullPointerException } from '../../src/errors';
 
-import {Duration} from '../../src/Duration';
-import {LocalTime} from '../../src/LocalTime';
-import {LocalDate} from '../../src/LocalDate';
-import {LocalDateTime} from '../../src/LocalDateTime';
-import {OffsetTime} from '../../src/OffsetTime';
-import {ZonedDateTime} from '../../src/ZonedDateTime';
-import {ZoneOffset} from '../../src/ZoneOffset';
+import { Duration } from '../../src/Duration';
+import { LocalTime } from '../../src/LocalTime';
+import { LocalDate } from '../../src/LocalDate';
+import { LocalDateTime } from '../../src/LocalDateTime';
+import { OffsetTime } from '../../src/OffsetTime';
+import { ZonedDateTime } from '../../src/ZonedDateTime';
+import { ZoneOffset } from '../../src/ZoneOffset';
 
-import {ChronoField} from '../../src/temporal/ChronoField';
-import {TemporalQueries} from '../../src/temporal/TemporalQueries';
+import { ChronoField } from '../../src/temporal/ChronoField';
+import { TemporalQueries } from '../../src/temporal/TemporalQueries';
 
 describe('org.threeten.bp.TestZoneOffset', () => {
 
@@ -95,7 +95,7 @@ describe('org.threeten.bp.TestZoneOffset', () => {
 
         it('test_factory_string_hours', () => {
             for (let i = -18; i <= 18; i++) {
-                const str = (i < 0 ? '-' : '+') + (`${  Math.abs(i) + 100}`).substring(1);
+                const str = (i < 0 ? '-' : '+') + (`${Math.abs(i) + 100}`).substring(1);
                 const test = ZoneOffset.of(str);
                 doTestOffset(test, i, 0, 0);
             }
@@ -106,8 +106,8 @@ describe('org.threeten.bp.TestZoneOffset', () => {
                 for (let j = -59; j <= 59; j++) {
                     if ((i < 0 && j <= 0) || (i > 0 && j >= 0) || i === 0) {
                         const str = (i < 0 || j < 0 ? '-' : '+') +
-                            (`${  Math.abs(i) + 100}`).substring(1) +
-                            (`${  Math.abs(j) + 100}`).substring(1);
+                            (`${Math.abs(i) + 100}`).substring(1) +
+                            (`${Math.abs(j) + 100}`).substring(1);
                         const test = ZoneOffset.of(str);
                         doTestOffset(test, i, j, 0);
                     }
@@ -124,8 +124,8 @@ describe('org.threeten.bp.TestZoneOffset', () => {
                 for (let j = -59; j <= 59; j++) {
                     if ((i < 0 && j <= 0) || (i > 0 && j >= 0) || i === 0) {
                         const str = `${(i < 0 || j < 0 ? '-' : '+') +
-                            (`${  Math.abs(i) + 100}`).substring(1)  }:${ 
-                            (`${  Math.abs(j) + 100}`).substring(1)}`;
+                            (`${Math.abs(i) + 100}`).substring(1)}:${ 
+                            (`${Math.abs(j) + 100}`).substring(1)}`;
                         const test = ZoneOffset.of(str);
                         doTestOffset(test, i, j, 0);
                     }
@@ -144,9 +144,9 @@ describe('org.threeten.bp.TestZoneOffset', () => {
                         if ((i < 0 && j <= 0 && k <= 0) || (i > 0 && j >= 0 && k >= 0) ||
                             (i === 0 && ((j < 0 && k <= 0) || (j > 0 && k >= 0) || j === 0))) {
                             const str = (i < 0 || j < 0 || k < 0 ? '-' : '+') +
-                                (`${  Math.abs(i) + 100}`).substring(1) +
-                                (`${  Math.abs(j) + 100}`).substring(1) +
-                                (`${  Math.abs(k) + 100}`).substring(1);
+                                (`${Math.abs(i) + 100}`).substring(1) +
+                                (`${Math.abs(j) + 100}`).substring(1) +
+                                (`${Math.abs(k) + 100}`).substring(1);
                             const test = ZoneOffset.of(str);
                             doTestOffset(test, i, j, k);
                         }
@@ -166,9 +166,9 @@ describe('org.threeten.bp.TestZoneOffset', () => {
                         if ((i < 0 && j <= 0 && k <= 0) || (i > 0 && j >= 0 && k >= 0) ||
                             (i === 0 && ((j < 0 && k <= 0) || (j > 0 && k >= 0) || j === 0))) {
                             const str = `${(i < 0 || j < 0 || k < 0 ? '-' : '+') +
-                                (`${  Math.abs(i) + 100}`).substring(1)  }:${ 
-                                (`${  Math.abs(j) + 100}`).substring(1)  }:${ 
-                                (`${  Math.abs(k) + 100}`).substring(1)}`;
+                                (`${Math.abs(i) + 100}`).substring(1)}:${ 
+                                (`${Math.abs(j) + 100}`).substring(1)}:${ 
+                                (`${Math.abs(k) + 100}`).substring(1)}`;
                             const test = ZoneOffset.of(str);
                             doTestOffset(test, i, j, k);
                         }
@@ -528,12 +528,12 @@ function doTestOffset(offset, hours, minutes, seconds) {
         id = 'Z';
     } else {
         let str = (hours < 0 || minutes < 0 || seconds < 0) ? '-' : '+';
-        str += (`${  Math.abs(hours) + 100}`).substring(1);
+        str += (`${Math.abs(hours) + 100}`).substring(1);
         str += ':';
-        str += (`${  Math.abs(minutes) + 100}`).substring(1);
+        str += (`${Math.abs(minutes) + 100}`).substring(1);
         if (seconds !== 0) {
             str += ':';
-            str += (`${  Math.abs(seconds) + 100}`).substring(1);
+            str += (`${Math.abs(seconds) + 100}`).substring(1);
         }
         id = str;
     }

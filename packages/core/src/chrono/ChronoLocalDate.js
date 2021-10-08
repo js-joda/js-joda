@@ -4,15 +4,15 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {requireNonNull, requireInstance} from '../assert';
+import { requireNonNull, requireInstance } from '../assert';
 
-import {ChronoField} from '../temporal/ChronoField';
-import {ChronoUnit} from '../temporal/ChronoUnit';
-import {DateTimeFormatter} from '../format/DateTimeFormatter';
-import {TemporalQueries} from '../temporal/TemporalQueries';
-import {Temporal} from '../temporal/Temporal';
+import { ChronoField } from '../temporal/ChronoField';
+import { ChronoUnit } from '../temporal/ChronoUnit';
+import { DateTimeFormatter } from '../format/DateTimeFormatter';
+import { TemporalQueries } from '../temporal/TemporalQueries';
+import { Temporal } from '../temporal/Temporal';
 
-import {LocalDate} from '../LocalDate';
+import { LocalDate } from '../LocalDate';
 
 /**
  * A date without time-of-day or time-zone in an arbitrary chronology, intended

@@ -3,21 +3,21 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
+import { expect } from 'chai';
 
-import {ChronoField} from '../src/temporal/ChronoField';
-import {ChronoUnit} from '../src/temporal/ChronoUnit';
-import {DateTimeException,NullPointerException, UnsupportedTemporalTypeException} from '../src/errors';
-import {IsoFields} from '../src/temporal/IsoFields';
-import {LocalDate} from '../src/LocalDate';
-import {LocalTime} from '../src/LocalTime';
-import {OffsetDateTime} from '../src/OffsetDateTime';
-import {OffsetTime} from '../src/OffsetTime';
-import {TemporalField} from '../src/js-joda';
-import {TemporalUnit} from '../src/temporal/TemporalUnit';
-import {ZoneOffset} from '../src/ZoneOffset';
+import { ChronoField } from '../src/temporal/ChronoField';
+import { ChronoUnit } from '../src/temporal/ChronoUnit';
+import { DateTimeException,NullPointerException, UnsupportedTemporalTypeException } from '../src/errors';
+import { IsoFields } from '../src/temporal/IsoFields';
+import { LocalDate } from '../src/LocalDate';
+import { LocalTime } from '../src/LocalTime';
+import { OffsetDateTime } from '../src/OffsetDateTime';
+import { OffsetTime } from '../src/OffsetTime';
+import { TemporalField } from '../src/js-joda';
+import { TemporalUnit } from '../src/temporal/TemporalUnit';
+import { ZoneOffset } from '../src/ZoneOffset';
 
-import {createTemporalQuery} from '../src/temporal/TemporalQuery';
+import { createTemporalQuery } from '../src/temporal/TemporalQuery';
 import './_init';
 
 /* these are not covered by the threetenbp ported tests */

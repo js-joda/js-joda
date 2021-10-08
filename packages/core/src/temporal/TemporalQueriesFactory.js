@@ -4,13 +4,13 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {ChronoField} from './ChronoField';
-import {createTemporalQuery} from './TemporalQuery';
-import {TemporalQueries} from './TemporalQueries';
+import { ChronoField } from './ChronoField';
+import { createTemporalQuery } from './TemporalQuery';
+import { TemporalQueries } from './TemporalQueries';
 
-import {LocalDate} from '../LocalDate';
-import {LocalTime} from '../LocalTime';
-import {ZoneOffset} from '../ZoneOffset';
+import { LocalDate } from '../LocalDate';
+import { LocalTime } from '../LocalTime';
+import { ZoneOffset } from '../ZoneOffset';
 
 
 export function _init() {

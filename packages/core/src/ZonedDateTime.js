@@ -4,25 +4,25 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {requireNonNull} from './assert';
-import {DateTimeException, IllegalArgumentException} from './errors';
-import {MathUtil} from './MathUtil';
+import { requireNonNull } from './assert';
+import { DateTimeException, IllegalArgumentException } from './errors';
+import { MathUtil } from './MathUtil';
 
-import {Clock} from './Clock';
-import {Instant} from './Instant';
-import {LocalDate} from './LocalDate';
-import {LocalDateTime} from './LocalDateTime';
-import {LocalTime} from './LocalTime';
-import {OffsetDateTime} from './OffsetDateTime';
-import {ZoneId} from './ZoneId';
-import {ZoneOffset} from './ZoneOffset';
+import { Clock } from './Clock';
+import { Instant } from './Instant';
+import { LocalDate } from './LocalDate';
+import { LocalDateTime } from './LocalDateTime';
+import { LocalTime } from './LocalTime';
+import { OffsetDateTime } from './OffsetDateTime';
+import { ZoneId } from './ZoneId';
+import { ZoneOffset } from './ZoneOffset';
 
-import {ChronoZonedDateTime} from './chrono/ChronoZonedDateTime';
-import {DateTimeFormatter} from './format/DateTimeFormatter';
-import {ChronoField} from './temporal/ChronoField';
-import {ChronoUnit} from './temporal/ChronoUnit';
-import {createTemporalQuery} from './temporal/TemporalQuery';
-import {TemporalQueries} from './temporal/TemporalQueries';
+import { ChronoZonedDateTime } from './chrono/ChronoZonedDateTime';
+import { DateTimeFormatter } from './format/DateTimeFormatter';
+import { ChronoField } from './temporal/ChronoField';
+import { ChronoUnit } from './temporal/ChronoUnit';
+import { createTemporalQuery } from './temporal/TemporalQuery';
+import { TemporalQueries } from './temporal/TemporalQueries';
 
 /**
  * A date-time with a time-zone in the ISO-8601 calendar system,
@@ -378,12 +378,12 @@ export class ZonedDateTime extends ChronoZonedDateTime {
             if (trans != null && trans.isGap()) {
                 // error message says daylight savings for simplicity
                 // even though there are other kinds of gaps
-                throw new DateTimeException(`LocalDateTime ${  localDateTime 
-                } does not exist in zone ${  zone 
+                throw new DateTimeException(`LocalDateTime ${localDateTime 
+                } does not exist in zone ${zone 
                 } due to a gap in the local time-line, typically caused by daylight savings`);
             }
-            throw new DateTimeException(`ZoneOffset "${  offset  }" is not valid for LocalDateTime "${ 
-                localDateTime  }" in zone "${  zone  }"`);
+            throw new DateTimeException(`ZoneOffset "${offset}" is not valid for LocalDateTime "${ 
+                localDateTime}" in zone "${zone}"`);
         }
         return new ZonedDateTime(localDateTime, offset, zone);
     }
@@ -1931,7 +1931,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
     toString() {
         let str = this._dateTime.toString() + this._offset.toString();
         if (this._offset !== this._zone) {
-            str += `[${  this._zone.toString()  }]`;
+            str += `[${this._zone.toString()}]`;
         }
         return str;
     }

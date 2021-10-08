@@ -4,13 +4,13 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {assert} from '../../assert';
-import {ArithmeticException, DateTimeException, IllegalArgumentException} from '../../errors';
-import {MathUtil} from '../../MathUtil';
+import { assert } from '../../assert';
+import { ArithmeticException, DateTimeException, IllegalArgumentException } from '../../errors';
+import { MathUtil } from '../../MathUtil';
 
-import {IsoChronology} from '../../chrono/IsoChronology';
+import { IsoChronology } from '../../chrono/IsoChronology';
 
-import {SignStyle} from '../SignStyle';
+import { SignStyle } from '../SignStyle';
 
 
 const MAX_WIDTH = 15; // can't parse all numbers with more then 15 digits in javascript
@@ -79,11 +79,11 @@ export class NumberPrinterParser {
         }
         const value = this._getValue(context, contextValue);
         const symbols = context.symbols();
-        let str = `${  Math.abs(value)}`;
+        let str = `${Math.abs(value)}`;
         if (str.length > this._maxWidth) {
-            throw new DateTimeException(`Field ${  this._field 
-            } cannot be printed as the value ${  value 
-            } exceeds the maximum print width of ${  this._maxWidth}`);
+            throw new DateTimeException(`Field ${this._field 
+            } cannot be printed as the value ${value 
+            } exceeds the maximum print width of ${this._maxWidth}`);
         }
         str = symbols.convertNumberToI18N(str);
 
@@ -106,8 +106,8 @@ export class NumberPrinterParser {
                     buf.append(symbols.negativeSign());
                     break;
                 case SignStyle.NOT_NEGATIVE:
-                    throw new DateTimeException(`Field ${  this._field 
-                    } cannot be printed as the value ${  value 
+                    throw new DateTimeException(`Field ${this._field 
+                    } cannot be printed as the value ${value 
                     } cannot be negative according to the SignStyle`);
             }
         }
@@ -230,12 +230,12 @@ export class NumberPrinterParser {
 
     toString() {
         if (this._minWidth === 1 && this._maxWidth === MAX_WIDTH && this._signStyle === SignStyle.NORMAL) {
-            return `Value(${  this._field  })`;
+            return `Value(${this._field})`;
         }
         if (this._minWidth === this._maxWidth && this._signStyle === SignStyle.NOT_NEGATIVE) {
-            return `Value(${  this._field  },${  this._minWidth  })`;
+            return `Value(${this._field},${this._minWidth})`;
         }
-        return `Value(${  this._field  },${  this._minWidth  },${  this._maxWidth  },${  this._signStyle  })`;
+        return `Value(${this._field},${this._minWidth},${this._maxWidth},${this._signStyle})`;
     }
 
 }
@@ -258,10 +258,10 @@ export class ReducedPrinterParser extends NumberPrinterParser {
     constructor(field, width, maxWidth, baseValue, baseDate) {
         super(field, width, maxWidth, SignStyle.NOT_NEGATIVE);
         if (width < 1 || width > 10) {
-            throw new IllegalArgumentException(`The width must be from 1 to 10 inclusive but was ${  width}`);
+            throw new IllegalArgumentException(`The width must be from 1 to 10 inclusive but was ${width}`);
         }
         if (maxWidth < 1 || maxWidth > 10) {
-            throw new IllegalArgumentException(`The maxWidth must be from 1 to 10 inclusive but was ${  maxWidth}`);
+            throw new IllegalArgumentException(`The maxWidth must be from 1 to 10 inclusive but was ${maxWidth}`);
         }
         if (maxWidth < width) {
             throw new IllegalArgumentException('The maxWidth must be greater than the width');
@@ -361,7 +361,7 @@ export class ReducedPrinterParser extends NumberPrinterParser {
     }
 
     toString() {
-        return `ReducedValue(${  this._field  },${  this._minWidth  },${  this._maxWidth  },${  this._baseDate != null ? this._baseDate : this._baseValue  })`;
+        return `ReducedValue(${this._field},${this._minWidth},${this._maxWidth},${this._baseDate != null ? this._baseDate : this._baseValue})`;
     }
 }
 

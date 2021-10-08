@@ -4,11 +4,11 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {assertEquals} from '../../testUtils';
+import { assertEquals } from '../../testUtils';
 
 import '../../_init';
 
-import {DecimalStyle} from '../../../src/format/DecimalStyle';
+import { DecimalStyle } from '../../../src/format/DecimalStyle';
 
 describe('org.threeten.bp.format.TestDecimalStyle', () => {
     it('test_STANDARD', () => {

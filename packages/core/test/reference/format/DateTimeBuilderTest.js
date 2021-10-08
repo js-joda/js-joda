@@ -3,18 +3,18 @@
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
-import {assertEquals, dataProviderTest} from '../../testUtils';
+import { assertEquals, dataProviderTest } from '../../testUtils';
 
 import '../../_init';
 
-import {ChronoField} from '../../../src/temporal/ChronoField';
-import {DateTimeBuilder} from '../../../src/format/DateTimeBuilder';
-import {DateTimeFormatter} from '../../../src/format/DateTimeFormatter';
-import {IsoChronology} from '../../../src/chrono/IsoChronology';
-import {Instant} from '../../../src/Instant';
-import {LocalDate} from '../../../src/LocalDate';
-import {ResolverStyle} from '../../../src/format/ResolverStyle';
-import {ZonedDateTime} from '../../../src/ZonedDateTime';
+import { ChronoField } from '../../../src/temporal/ChronoField';
+import { DateTimeBuilder } from '../../../src/format/DateTimeBuilder';
+import { DateTimeFormatter } from '../../../src/format/DateTimeFormatter';
+import { IsoChronology } from '../../../src/chrono/IsoChronology';
+import { Instant } from '../../../src/Instant';
+import { LocalDate } from '../../../src/LocalDate';
+import { ResolverStyle } from '../../../src/format/ResolverStyle';
+import { ZonedDateTime } from '../../../src/ZonedDateTime';
 
 describe('org.threeten.bp.format.TestDateTimeBuilderCombinations', () => {
     

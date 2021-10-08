@@ -4,18 +4,18 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {assertEquals, assertTrue, dataProviderTest} from '../../testUtils';
+import { assertEquals, assertTrue, dataProviderTest } from '../../testUtils';
 
 import '../../_init';
 
-import {ZoneOffset} from '../../../src/ZoneOffset';
+import { ZoneOffset } from '../../../src/ZoneOffset';
 
-import {DateTimeFormatterBuilder} from '../../../src/format/DateTimeFormatterBuilder';
-import {DateTimeParseContext} from '../../../src/format/DateTimeParseContext';
-import {DecimalStyle} from '../../../src/format/DecimalStyle';
-import {ChronoField} from '../../../src/temporal/ChronoField';
-import {TemporalQueries} from '../../../src/temporal/TemporalQueries';
-import {IsoChronology} from '../../../src/chrono/IsoChronology';
+import { DateTimeFormatterBuilder } from '../../../src/format/DateTimeFormatterBuilder';
+import { DateTimeParseContext } from '../../../src/format/DateTimeParseContext';
+import { DecimalStyle } from '../../../src/format/DecimalStyle';
+import { ChronoField } from '../../../src/temporal/ChronoField';
+import { TemporalQueries } from '../../../src/temporal/TemporalQueries';
+import { IsoChronology } from '../../../src/chrono/IsoChronology';
 
 
 const OffsetIdPrinterParser = DateTimeFormatterBuilder.OffsetIdPrinterParser;
@@ -198,7 +198,7 @@ describe('org.threeten.bp.format.TestZoneOffsetParser', ()=>{
         dataProviderTest(provider_offsets, (pattern, parse, expected) => {
             init();
             const pp = new OffsetIdPrinterParser('Z', pattern);
-            const result = pp.parse(parseContext, `${parse  }:OTHER`, 0);
+            const result = pp.parse(parseContext, `${parse}:OTHER`, 0);
             assertEquals(result, parse.length);
             assertParsed(expected);
         });
@@ -210,7 +210,7 @@ describe('org.threeten.bp.format.TestZoneOffsetParser', ()=>{
         dataProviderTest(provider_offsets, (pattern, parse, expected) => {
             init();
             const pp = new OffsetIdPrinterParser('Z', pattern);
-            const result = pp.parse(parseContext, `OTHER${  parse  }:OTHER`, 5);
+            const result = pp.parse(parseContext, `OTHER${parse}:OTHER`, 5);
             assertEquals(result, parse.length + 5);
             assertParsed(expected);
         });
@@ -221,7 +221,7 @@ describe('org.threeten.bp.format.TestZoneOffsetParser', ()=>{
         dataProviderTest(provider_offsets, (pattern, parse, expected) => {
             init();
             const pp = new OffsetIdPrinterParser('Z', pattern);
-            const result = pp.parse(parseContext, `OTHER${  parse}`, 5);
+            const result = pp.parse(parseContext, `OTHER${parse}`, 5);
             assertEquals(result, parse.length + 5);
             assertParsed(expected);
         });
@@ -245,7 +245,7 @@ describe('org.threeten.bp.format.TestZoneOffsetParser', ()=>{
         dataProviderTest(provider_offsets, (pattern, parse, expected) => {
             init();
             const pp = new OffsetIdPrinterParser('', pattern);
-            const result = pp.parse(parseContext, `${parse  }:OTHER`, 0);
+            const result = pp.parse(parseContext, `${parse}:OTHER`, 0);
             assertEquals(result, parse.length);
             assertParsed(expected);
         });
@@ -257,7 +257,7 @@ describe('org.threeten.bp.format.TestZoneOffsetParser', ()=>{
         dataProviderTest(provider_offsets, (pattern, parse, expected) => {
             init();
             const pp = new OffsetIdPrinterParser('', pattern);
-            const result = pp.parse(parseContext, `OTHER${  parse  }:OTHER`, 5);
+            const result = pp.parse(parseContext, `OTHER${parse}:OTHER`, 5);
             assertEquals(result, parse.length + 5);
             assertParsed(expected);
         });
@@ -269,7 +269,7 @@ describe('org.threeten.bp.format.TestZoneOffsetParser', ()=>{
         dataProviderTest(provider_offsets, (pattern, parse, expected) => {
             init();
             const pp = new OffsetIdPrinterParser('', pattern);
-            const result = pp.parse(parseContext, `OTHER${  parse}`, 5);
+            const result = pp.parse(parseContext, `OTHER${parse}`, 5);
             assertEquals(result, parse.length + 5);
             assertParsed(expected);
         });

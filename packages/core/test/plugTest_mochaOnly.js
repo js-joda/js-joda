@@ -3,10 +3,10 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {expect} from 'chai';
+import { expect } from 'chai';
 
-import {use} from '../src/js-joda';
-import {LocalDate} from '../src/js-joda';
+import { use } from '../src/js-joda';
+import { LocalDate } from '../src/js-joda';
 
 /**
  * this test is not executable with webpack because it has a reference to the webpack entry point

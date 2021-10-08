@@ -4,10 +4,10 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {abstractMethodFail, requireNonNull} from './assert';
-import {Instant} from './Instant';
-import {ZoneId} from './ZoneId';
-import {ZoneOffset} from './ZoneOffset';
+import { abstractMethodFail, requireNonNull } from './assert';
+import { Instant } from './Instant';
+import { ZoneId } from './ZoneId';
+import { ZoneOffset } from './ZoneOffset';
 
 /**
  * A clock providing access to the current instant, date and time using a time-zone.
@@ -237,7 +237,7 @@ class SystemClock extends Clock {
      * @returns {string}
      */
     toString(){
-        return `SystemClock[${  this._zone.toString()  }]`;
+        return `SystemClock[${this._zone.toString()}]`;
     }
 
 }
@@ -324,6 +324,6 @@ class OffsetClock extends Clock {
     }
     
     toString() {
-        return `OffsetClock[${  this._baseClock  },${  this._offset  }]`;
+        return `OffsetClock[${this._baseClock},${this._offset}]`;
     }
 }

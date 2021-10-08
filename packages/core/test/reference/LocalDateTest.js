@@ -3,12 +3,12 @@
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
-import {expect} from 'chai';
-import {assertEquals, assertNotNull, assertTrue, assertFalse} from '../testUtils';
+import { expect } from 'chai';
+import { assertEquals, assertNotNull, assertTrue, assertFalse } from '../testUtils';
 
 import '../_init';
 
-import {MathUtil} from '../../src/MathUtil';
+import { MathUtil } from '../../src/MathUtil';
 import {
     DateTimeException,
     DateTimeParseException,
@@ -17,30 +17,30 @@ import {
     IllegalArgumentException
 } from '../../src/errors';
 
-import {Clock} from '../../src/Clock';
-import {DayOfWeek} from '../../src/DayOfWeek';
-import {Instant} from '../../src/Instant';
-import {LocalDate} from '../../src/LocalDate';
-import {LocalTime} from '../../src/LocalTime';
-import {LocalDateTime} from '../../src/LocalDateTime';
-import {Month} from '../../src/Month';
-import {OffsetDateTime} from '../../src/OffsetDateTime';
-import {OffsetTime} from '../../src/OffsetTime';
-import {Period} from '../../src/Period';
-import {Year} from '../../src/Year';
-import {ZoneOffset} from '../../src/ZoneOffset';
-import {ZoneId} from '../../src/ZoneId';
-import {ZonedDateTime} from '../../src/ZonedDateTime';
+import { Clock } from '../../src/Clock';
+import { DayOfWeek } from '../../src/DayOfWeek';
+import { Instant } from '../../src/Instant';
+import { LocalDate } from '../../src/LocalDate';
+import { LocalTime } from '../../src/LocalTime';
+import { LocalDateTime } from '../../src/LocalDateTime';
+import { Month } from '../../src/Month';
+import { OffsetDateTime } from '../../src/OffsetDateTime';
+import { OffsetTime } from '../../src/OffsetTime';
+import { Period } from '../../src/Period';
+import { Year } from '../../src/Year';
+import { ZoneOffset } from '../../src/ZoneOffset';
+import { ZoneId } from '../../src/ZoneId';
+import { ZonedDateTime } from '../../src/ZonedDateTime';
 
-import {IsoChronology} from '../../src/chrono/IsoChronology';
-import {ChronoField} from '../../src/temporal/ChronoField';
-import {DateTimeFormatter} from '../../src/format/DateTimeFormatter';
-import {ChronoUnit} from '../../src/temporal/ChronoUnit';
-import {TemporalQueries} from '../../src/temporal/TemporalQueries';
+import { IsoChronology } from '../../src/chrono/IsoChronology';
+import { ChronoField } from '../../src/temporal/ChronoField';
+import { DateTimeFormatter } from '../../src/format/DateTimeFormatter';
+import { ChronoUnit } from '../../src/temporal/ChronoUnit';
+import { TemporalQueries } from '../../src/temporal/TemporalQueries';
 
-import {MockFieldNoValue} from './temporal/MockFieldNoValue';
+import { MockFieldNoValue } from './temporal/MockFieldNoValue';
 
-import {CurrentStandardZoneAsiaGaza} from '../zone/CurrentStandardZone';
+import { CurrentStandardZoneAsiaGaza } from '../zone/CurrentStandardZone';
 
 describe('org.threeten.bp.TestLocalDate', () => {
     let TEST_2007_07_15;
@@ -1838,20 +1838,20 @@ describe('org.threeten.bp.TestLocalDate', () => {
                 for (let j = 0; j < localDates.length; j++) {
                     const b = localDates[j];
                     if (i < j) {
-                        assertTrue(a.compareTo(b) < 0, `${a  } <=> ${  b}`);
-                        assertEquals(a.isBefore(b), true, `${a  } <=> ${  b}`);
-                        assertEquals(a.isAfter(b), false, `${a  } <=> ${  b}`);
-                        assertEquals(a.equals(b), false, `${a  } <=> ${  b}`);
+                        assertTrue(a.compareTo(b) < 0, `${a} <=> ${b}`);
+                        assertEquals(a.isBefore(b), true, `${a} <=> ${b}`);
+                        assertEquals(a.isAfter(b), false, `${a} <=> ${b}`);
+                        assertEquals(a.equals(b), false, `${a} <=> ${b}`);
                     } else if (i > j) {
-                        assertTrue(a.compareTo(b) > 0, `${a  } <=> ${  b}`);
-                        assertEquals(a.isBefore(b), false, `${a  } <=> ${  b}`);
-                        assertEquals(a.isAfter(b), true, `${a  } <=> ${  b}`);
-                        assertEquals(a.equals(b), false, `${a  } <=> ${  b}`);
+                        assertTrue(a.compareTo(b) > 0, `${a} <=> ${b}`);
+                        assertEquals(a.isBefore(b), false, `${a} <=> ${b}`);
+                        assertEquals(a.isAfter(b), true, `${a} <=> ${b}`);
+                        assertEquals(a.equals(b), false, `${a} <=> ${b}`);
                     } else {
-                        assertEquals(a.compareTo(b), 0, `${a  } <=> ${  b}`);
-                        assertEquals(a.isBefore(b), false, `${a  } <=> ${  b}`);
-                        assertEquals(a.isAfter(b), false, `${a  } <=> ${  b}`);
-                        assertEquals(a.equals(b), true, `${a  } <=> ${  b}`);
+                        assertEquals(a.compareTo(b), 0, `${a} <=> ${b}`);
+                        assertEquals(a.isBefore(b), false, `${a} <=> ${b}`);
+                        assertEquals(a.isAfter(b), false, `${a} <=> ${b}`);
+                        assertEquals(a.equals(b), true, `${a} <=> ${b}`);
                     }
                 }
             }

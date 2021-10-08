@@ -4,15 +4,15 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {ZoneOffset} from '../../ZoneOffset';
-import {ZoneId} from '../../ZoneId';
-import {ZoneRegion} from '../../ZoneRegion';
+import { ZoneOffset } from '../../ZoneOffset';
+import { ZoneId } from '../../ZoneId';
+import { ZoneRegion } from '../../ZoneRegion';
 
-import {ChronoField} from '../../temporal/ChronoField';
+import { ChronoField } from '../../temporal/ChronoField';
 
 import { ZoneRulesProvider } from '../../zone/ZoneRulesProvider';
 
-import {OffsetIdPrinterParser} from './OffsetIdPrinterParser';
+import { OffsetIdPrinterParser } from './OffsetIdPrinterParser';
 
 /**
  * Prints or parses a zone ID.

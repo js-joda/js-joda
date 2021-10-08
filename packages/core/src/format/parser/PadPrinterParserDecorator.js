@@ -4,9 +4,9 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {assert} from '../../assert';
+import { assert } from '../../assert';
 
-import {DateTimeException} from '../../errors';
+import { DateTimeException } from '../../errors';
 
 /**
  * Pads the output to a fixed width.
@@ -75,7 +75,7 @@ export class PadPrinterParserDecorator {
     }
 
     toString() {
-        return `Pad(${this._printerParser},${this._padWidth}${(this._padChar === ' ' ? ')' : `,'${  this._padChar  }')`)}`;
+        return `Pad(${this._printerParser},${this._padWidth}${(this._padChar === ' ' ? ')' : `,'${this._padChar}')`)}`;
     }
 }
 

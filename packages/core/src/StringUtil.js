@@ -3,7 +3,7 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import {MathUtil} from './MathUtil';
+import { MathUtil } from './MathUtil';
 
 /**
  * @private

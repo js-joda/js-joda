@@ -2,13 +2,13 @@
  * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
-import {expect} from 'chai';
+import { expect } from 'chai';
 
 import './_init';
 
-import {Clock} from '../src/Clock';
-import {LocalDate} from '../src/LocalDate';
-import {isCoverageTestRunner} from './testUtils';
+import { Clock } from '../src/Clock';
+import { LocalDate } from '../src/LocalDate';
+import { isCoverageTestRunner } from './testUtils';
 
 /**
  * most of this tests are obsolete, because the test cases are covered by the reference tests
