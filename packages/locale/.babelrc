@@ -1,18 +1,24 @@
 {
   "presets": [
-    [
-      "@babel/preset-env"
-    ]
-  ],
-  "plugins": [
-    "add-module-exports"
+    ["@babel/preset-env", {
+      "modules": "auto",
+      "targets": {
+        "edge": "17",
+        "firefox": "60",
+        "chrome": "67",
+        "safari": "11.1",
+        "ie": "11"
+      }
+    }]
   ],
   "comments": false,
   "env": {
     "test": {
-      "plugins": [
-        "istanbul"
-      ]
+      "presets": ["@babel/preset-env", {
+        "plugins": [
+          "istanbul"
+        ]
+      }]
     }
   }
 }

@@ -111,9 +111,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MomentZoneRules", function() { return MomentZoneRules; });
 /* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @js-joda/core */ "@js-joda/core");
 /* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__);
-function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; _setPrototypeOf(subClass, superClass); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 /*
  * @copyright (c) 2016-present, Philipp Thürwächter, Pattrick Hüper
@@ -122,188 +140,215 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
  */
 
 var MomentZoneRules = function (_ZoneRules) {
-  _inheritsLoose(MomentZoneRules, _ZoneRules);
+  _inherits(MomentZoneRules, _ZoneRules);
+
+  var _super = _createSuper(MomentZoneRules);
 
   function MomentZoneRules(tzdbInfo) {
     var _this;
 
-    _this = _ZoneRules.call(this) || this;
+    _classCallCheck(this, MomentZoneRules);
+
+    _this = _super.call(this);
     _this._tzdbInfo = tzdbInfo;
     _this._ldtUntils = new LDTUntils(_this._tzdbInfo.untils, _this._tzdbInfo.offsets);
     return _this;
   }
 
-  var _proto = MomentZoneRules.prototype;
-
-  _proto.isFixedOffset = function isFixedOffset() {
-    return this._tzdbInfo.offsets.length === 1;
-  };
-
-  _proto.offsetOfInstant = function offsetOfInstant(instant) {
-    var epochMilli = instant.toEpochMilli();
-    return this.offsetOfEpochMilli(epochMilli);
-  };
-
-  _proto.offsetOfEpochMilli = function offsetOfEpochMilli(epochMilli) {
-    var index = binarySearch(this._tzdbInfo.untils, epochMilli);
-    return _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneOffset"].ofTotalSeconds(this._offsetByIndexInSeconds(index));
-  };
-
-  _proto.offsetOfLocalDateTime = function offsetOfLocalDateTime(localDateTime) {
-    var info = this._offsetInfo(localDateTime);
-
-    if (info instanceof _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneOffsetTransition"]) {
-      return info.offsetBefore();
+  _createClass(MomentZoneRules, [{
+    key: "isFixedOffset",
+    value: function isFixedOffset() {
+      return this._tzdbInfo.offsets.length === 1;
     }
+  }, {
+    key: "offsetOfInstant",
+    value: function offsetOfInstant(instant) {
+      var epochMilli = instant.toEpochMilli();
+      return this.offsetOfEpochMilli(epochMilli);
+    }
+  }, {
+    key: "offsetOfEpochMilli",
+    value: function offsetOfEpochMilli(epochMilli) {
+      var index = binarySearch(this._tzdbInfo.untils, epochMilli);
+      return _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneOffset"].ofTotalSeconds(this._offsetByIndexInSeconds(index));
+    }
+  }, {
+    key: "offsetOfLocalDateTime",
+    value: function offsetOfLocalDateTime(localDateTime) {
+      var info = this._offsetInfo(localDateTime);
 
-    return info;
-  };
-
-  _proto._offsetInfo = function _offsetInfo(localDateTime) {
-    var index = ldtBinarySearch(this._ldtUntils, localDateTime);
-    var offsetIndex = index >> 1;
-
-    if (index % 2 === 1) {
-      var ldtBefore = this._ldtUntils.get(Math.max(index - 1, 0));
-
-      var ldtAfter = this._ldtUntils.get(Math.min(index, this._ldtUntils.size - 1));
-
-      var offsetBefore = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneOffset"].ofTotalSeconds(this._offsetByIndexInSeconds(offsetIndex));
-      var offsetAfter = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneOffset"].ofTotalSeconds(this._offsetByIndexInSeconds(Math.min(offsetIndex + 1, this._tzdbInfo.offsets.length - 1)));
-
-      if (offsetBefore.compareTo(offsetAfter) > 0) {
-        return _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneOffsetTransition"].of(ldtBefore, offsetBefore, offsetAfter);
-      } else {
-        return _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneOffsetTransition"].of(ldtAfter, offsetBefore, offsetAfter);
+      if (info instanceof _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneOffsetTransition"]) {
+        return info.offsetBefore();
       }
-    }
 
-    return _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneOffset"].ofTotalSeconds(this._offsetByIndexInSeconds(offsetIndex));
-  };
-
-  _proto._offsetByIndexInSeconds = function _offsetByIndexInSeconds(index) {
-    return -offsetInSeconds(this._tzdbInfo.offsets[index]);
-  };
-
-  _proto.validOffsets = function validOffsets(localDateTime) {
-    var info = this._offsetInfo(localDateTime);
-
-    if (info instanceof _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneOffsetTransition"]) {
-      return info.validOffsets();
-    }
-
-    return [info];
-  };
-
-  _proto.transition = function transition(localDateTime) {
-    var info = this._offsetInfo(localDateTime);
-
-    if (info instanceof _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneOffsetTransition"]) {
       return info;
     }
+  }, {
+    key: "_offsetInfo",
+    value: function _offsetInfo(localDateTime) {
+      var index = ldtBinarySearch(this._ldtUntils, localDateTime);
+      var offsetIndex = index >> 1;
 
-    return null;
-  };
+      if (index % 2 === 1) {
+        var ldtBefore = this._ldtUntils.get(Math.max(index - 1, 0));
 
-  _proto.standardOffset = function standardOffset(instant) {
-    notSupported('ZoneRules.standardOffset');
-  };
+        var ldtAfter = this._ldtUntils.get(Math.min(index, this._ldtUntils.size - 1));
 
-  _proto.daylightSavings = function daylightSavings(instant) {
-    notSupported('ZoneRules.daylightSavings');
-  };
+        var offsetBefore = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneOffset"].ofTotalSeconds(this._offsetByIndexInSeconds(offsetIndex));
+        var offsetAfter = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneOffset"].ofTotalSeconds(this._offsetByIndexInSeconds(Math.min(offsetIndex + 1, this._tzdbInfo.offsets.length - 1)));
 
-  _proto.isDaylightSavings = function isDaylightSavings(instant) {
-    notSupported('ZoneRules.isDaylightSavings');
-  };
+        if (offsetBefore.compareTo(offsetAfter) > 0) {
+          return _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneOffsetTransition"].of(ldtBefore, offsetBefore, offsetAfter);
+        } else {
+          return _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneOffsetTransition"].of(ldtAfter, offsetBefore, offsetAfter);
+        }
+      }
 
-  _proto.isValidOffset = function isValidOffset(localDateTime, offset) {
-    return this.validOffsets(localDateTime).some(function (o) {
-      return o.equals(offset);
-    });
-  };
-
-  _proto.nextTransition = function nextTransition(instant) {
-    notSupported('ZoneRules.nextTransition');
-  };
-
-  _proto.previousTransition = function previousTransition(instant) {
-    notSupported('ZoneRules.previousTransition');
-  };
-
-  _proto.transitions = function transitions() {
-    notSupported('ZoneRules.transitions');
-  };
-
-  _proto.transitionRules = function transitionRules() {
-    notSupported('ZoneRules.transitionRules');
-  };
-
-  _proto.equals = function equals(other) {
-    if (this === other) {
-      return true;
+      return _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneOffset"].ofTotalSeconds(this._offsetByIndexInSeconds(offsetIndex));
     }
-
-    if (other instanceof MomentZoneRules) {
-      return this._tzdbInfo === other._tzdbInfo;
+  }, {
+    key: "_offsetByIndexInSeconds",
+    value: function _offsetByIndexInSeconds(index) {
+      return -offsetInSeconds(this._tzdbInfo.offsets[index]);
     }
+  }, {
+    key: "validOffsets",
+    value: function validOffsets(localDateTime) {
+      var info = this._offsetInfo(localDateTime);
 
-    return false;
-  };
+      if (info instanceof _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneOffsetTransition"]) {
+        return info.validOffsets();
+      }
 
-  _proto.toString = function toString() {
-    return this._tzdbInfo.name;
-  };
+      return [info];
+    }
+  }, {
+    key: "transition",
+    value: function transition(localDateTime) {
+      var info = this._offsetInfo(localDateTime);
+
+      if (info instanceof _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneOffsetTransition"]) {
+        return info;
+      }
+
+      return null;
+    }
+  }, {
+    key: "standardOffset",
+    value: function standardOffset(instant) {
+      notSupported('ZoneRules.standardOffset');
+    }
+  }, {
+    key: "daylightSavings",
+    value: function daylightSavings(instant) {
+      notSupported('ZoneRules.daylightSavings');
+    }
+  }, {
+    key: "isDaylightSavings",
+    value: function isDaylightSavings(instant) {
+      notSupported('ZoneRules.isDaylightSavings');
+    }
+  }, {
+    key: "isValidOffset",
+    value: function isValidOffset(localDateTime, offset) {
+      return this.validOffsets(localDateTime).some(function (o) {
+        return o.equals(offset);
+      });
+    }
+  }, {
+    key: "nextTransition",
+    value: function nextTransition(instant) {
+      notSupported('ZoneRules.nextTransition');
+    }
+  }, {
+    key: "previousTransition",
+    value: function previousTransition(instant) {
+      notSupported('ZoneRules.previousTransition');
+    }
+  }, {
+    key: "transitions",
+    value: function transitions() {
+      notSupported('ZoneRules.transitions');
+    }
+  }, {
+    key: "transitionRules",
+    value: function transitionRules() {
+      notSupported('ZoneRules.transitionRules');
+    }
+  }, {
+    key: "equals",
+    value: function equals(other) {
+      if (this === other) {
+        return true;
+      }
+
+      if (other instanceof MomentZoneRules) {
+        return this._tzdbInfo === other._tzdbInfo;
+      }
+
+      return false;
+    }
+  }, {
+    key: "toString",
+    value: function toString() {
+      return this._tzdbInfo.name;
+    }
+  }]);
 
   return MomentZoneRules;
 }(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneRules"]);
 
 var LDTUntils = function () {
   function LDTUntils(_tzdbUntils, tzdbOffsets) {
+    _classCallCheck(this, LDTUntils);
+
     this._tzdbUntils = _tzdbUntils;
     this._tzdbOffsets = tzdbOffsets;
     this._ldtUntils = [];
     this.size = this._tzdbUntils.length * 2;
   }
 
-  var _proto2 = LDTUntils.prototype;
+  _createClass(LDTUntils, [{
+    key: "_generateTupple",
+    value: function _generateTupple(index) {
+      var epochMillis = this._tzdbUntils[index];
 
-  _proto2._generateTupple = function _generateTupple(index) {
-    var epochMillis = this._tzdbUntils[index];
+      if (epochMillis === Infinity) {
+        return [_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["LocalDateTime"].MAX, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["LocalDateTime"].MAX];
+      }
 
-    if (epochMillis === Infinity) {
-      return [_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["LocalDateTime"].MAX, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["LocalDateTime"].MAX];
+      var instant = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Instant"].ofEpochMilli(epochMillis);
+      var offset1 = offsetInSeconds(this._tzdbOffsets[index]);
+      var zone1 = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneOffset"].ofTotalSeconds(-offset1);
+      var ldt1 = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["LocalDateTime"].ofInstant(instant, zone1);
+      var nextIndex = Math.min(index + 1, this._tzdbOffsets.length - 1);
+      var offset2 = offsetInSeconds(this._tzdbOffsets[nextIndex]);
+      var zone2 = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneOffset"].ofTotalSeconds(-offset2);
+      var ldt2 = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["LocalDateTime"].ofInstant(instant, zone2);
+
+      if (offset1 > offset2) {
+        return [ldt1, ldt2];
+      } else {
+        return [ldt2, ldt1];
+      }
     }
+  }, {
+    key: "_getTupple",
+    value: function _getTupple(index) {
+      if (this._ldtUntils[index] == null) {
+        this._ldtUntils[index] = this._generateTupple(index);
+      }
 
-    var instant = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Instant"].ofEpochMilli(epochMillis);
-    var offset1 = offsetInSeconds(this._tzdbOffsets[index]);
-    var zone1 = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneOffset"].ofTotalSeconds(-offset1);
-    var ldt1 = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["LocalDateTime"].ofInstant(instant, zone1);
-    var nextIndex = Math.min(index + 1, this._tzdbOffsets.length - 1);
-    var offset2 = offsetInSeconds(this._tzdbOffsets[nextIndex]);
-    var zone2 = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneOffset"].ofTotalSeconds(-offset2);
-    var ldt2 = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["LocalDateTime"].ofInstant(instant, zone2);
-
-    if (offset1 > offset2) {
-      return [ldt1, ldt2];
-    } else {
-      return [ldt2, ldt1];
+      return this._ldtUntils[index];
     }
-  };
+  }, {
+    key: "get",
+    value: function get(index) {
+      var ldtTupple = this._getTupple(index >> 1);
 
-  _proto2._getTupple = function _getTupple(index) {
-    if (this._ldtUntils[index] == null) {
-      this._ldtUntils[index] = this._generateTupple(index);
+      return ldtTupple[index % 2];
     }
-
-    return this._ldtUntils[index];
-  };
-
-  _proto2.get = function get(index) {
-    var ldtTupple = this._getTupple(index >> 1);
-
-    return ldtTupple[index % 2];
-  };
+  }]);
 
   return LDTUntils;
 }();
@@ -353,7 +398,7 @@ function binarySearch(array, value) {
 }
 
 function notSupported(msg) {
-  throw new Error("not supported: " + msg);
+  throw new Error("not supported: ".concat(msg));
 }
 
 /***/ }),
@@ -372,15 +417,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _MomentZoneRules__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MomentZoneRules */ "./src/MomentZoneRules.js");
 /* harmony import */ var _unpack__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./unpack */ "./src/unpack.js");
-function _createForOfIteratorHelperLoose(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (it) return (it = it.call(o)).next.bind(it); if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; return function () { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; _setPrototypeOf(subClass, superClass); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 /*
  * @copyright (c) 2016-present, Philipp Thürwächter, Pattrick Hüper
@@ -396,53 +459,82 @@ var AVAILABLE_ZONE_IDS = [];
 var zones = {};
 var links = {};
 var MomentZoneRulesProvider = function (_ZoneRulesProvider) {
-  _inheritsLoose(MomentZoneRulesProvider, _ZoneRulesProvider);
+  _inherits(MomentZoneRulesProvider, _ZoneRulesProvider);
+
+  var _super = _createSuper(MomentZoneRulesProvider);
 
   function MomentZoneRulesProvider() {
-    return _ZoneRulesProvider.apply(this, arguments) || this;
+    _classCallCheck(this, MomentZoneRulesProvider);
+
+    return _super.apply(this, arguments);
   }
 
-  MomentZoneRulesProvider.getRules = function getRules(zoneId) {
-    var tzdbZoneInfo = zones[links[zoneId]];
+  _createClass(MomentZoneRulesProvider, null, [{
+    key: "getRules",
+    value: function getRules(zoneId) {
+      var tzdbZoneInfo = zones[links[zoneId]];
 
-    if (tzdbZoneInfo == null) {
-      throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeException"]("Unknown time-zone ID: " + zoneId);
+      if (tzdbZoneInfo == null) {
+        throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeException"]("Unknown time-zone ID: ".concat(zoneId));
+      }
+
+      return new _MomentZoneRules__WEBPACK_IMPORTED_MODULE_1__["MomentZoneRules"](tzdbZoneInfo);
     }
-
-    return new _MomentZoneRules__WEBPACK_IMPORTED_MODULE_1__["MomentZoneRules"](tzdbZoneInfo);
-  };
-
-  MomentZoneRulesProvider.getAvailableZoneIds = function getAvailableZoneIds() {
-    return AVAILABLE_ZONE_IDS;
-  };
-
-  MomentZoneRulesProvider.getVersion = function getVersion() {
-    return TZDB_VERSION;
-  };
-
-  MomentZoneRulesProvider.getTzdbData = function getTzdbData() {
-    return TZDB_DATA;
-  };
-
-  MomentZoneRulesProvider.loadTzdbData = function loadTzdbData(packedJson) {
-    TZDB_DATA = packedJson;
-    TZDB_VERSION = packedJson.version;
-
-    for (var _iterator = _createForOfIteratorHelperLoose(packedJson.zones), _step; !(_step = _iterator()).done;) {
-      var packedZoneInfo = _step.value;
-      var tzdbZoneInfo = Object(_unpack__WEBPACK_IMPORTED_MODULE_2__["unpack"])(packedZoneInfo);
-      AVAILABLE_ZONE_IDS.push(tzdbZoneInfo.name);
-      zones[tzdbZoneInfo.name] = tzdbZoneInfo;
-      links[tzdbZoneInfo.name] = tzdbZoneInfo.name;
+  }, {
+    key: "getAvailableZoneIds",
+    value: function getAvailableZoneIds() {
+      return AVAILABLE_ZONE_IDS;
     }
-
-    for (var _iterator2 = _createForOfIteratorHelperLoose(packedJson.links), _step2; !(_step2 = _iterator2()).done;) {
-      var packedLink = _step2.value;
-      var link = packedLink.split('|');
-      AVAILABLE_ZONE_IDS.push(link[1]);
-      links[link[1]] = link[0];
+  }, {
+    key: "getVersion",
+    value: function getVersion() {
+      return TZDB_VERSION;
     }
-  };
+  }, {
+    key: "getTzdbData",
+    value: function getTzdbData() {
+      return TZDB_DATA;
+    }
+  }, {
+    key: "loadTzdbData",
+    value: function loadTzdbData(packedJson) {
+      TZDB_DATA = packedJson;
+      TZDB_VERSION = packedJson.version;
+
+      var _iterator = _createForOfIteratorHelper(packedJson.zones),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var packedZoneInfo = _step.value;
+          var tzdbZoneInfo = Object(_unpack__WEBPACK_IMPORTED_MODULE_2__["unpack"])(packedZoneInfo);
+          AVAILABLE_ZONE_IDS.push(tzdbZoneInfo.name);
+          zones[tzdbZoneInfo.name] = tzdbZoneInfo;
+          links[tzdbZoneInfo.name] = tzdbZoneInfo.name;
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      var _iterator2 = _createForOfIteratorHelper(packedJson.links),
+          _step2;
+
+      try {
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var packedLink = _step2.value;
+          var link = packedLink.split('|');
+          AVAILABLE_ZONE_IDS.push(link[1]);
+          links[link[1]] = link[0];
+        }
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
+      }
+    }
+  }]);
 
   return MomentZoneRulesProvider;
 }(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZoneRulesProvider"]);

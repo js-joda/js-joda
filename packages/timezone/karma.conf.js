@@ -85,7 +85,7 @@ module.exports = function (config) {
         browserNoActivityTimeout: 4 * 60 * 1000, // default 10000
         captureTimeout: 4 * 60 * 1000, // default 60000
         reporters: ['progress'],
-        browsers: ['Chrome', 'Firefox', 'PhantomJS'],
+        browsers: ['Chrome', 'Firefox'],
         plugins: ['karma-*'],
     });
 };

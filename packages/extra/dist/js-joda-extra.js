@@ -115,6 +115,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @js-joda/core */ "@js-joda/core");
 /* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _assert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assert */ "./src/assert.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 /*
  * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
  * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
@@ -123,257 +129,288 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Interval = function () {
-  Interval.of = function of(startInstant, endInstantOrDuration) {
-    if (endInstantOrDuration instanceof _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Duration"]) {
-      return Interval.ofInstantDuration(startInstant, endInstantOrDuration);
-    } else {
-      return Interval.ofInstantInstant(startInstant, endInstantOrDuration);
-    }
-  };
-
-  Interval.ofInstantInstant = function ofInstantInstant(startInclusive, endExclusive) {
-    Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(startInclusive, 'startInclusive');
-    Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(endExclusive, 'endExclusive');
-    Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireInstance"])(startInclusive, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Instant"], 'startInclusive');
-    Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireInstance"])(endExclusive, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Instant"], 'endExclusive');
-
-    if (endExclusive.isBefore(startInclusive)) {
-      throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeException"]('End instant must on or after start instant');
-    }
-
-    return new Interval(startInclusive, endExclusive);
-  };
-
-  Interval.ofInstantDuration = function ofInstantDuration(startInclusive, duration) {
-    Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(startInclusive, 'startInclusive');
-    Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(duration, 'duration');
-    Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireInstance"])(startInclusive, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Instant"], 'startInclusive');
-    Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireInstance"])(duration, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Duration"], 'duration');
-
-    if (duration.isNegative()) {
-      throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeException"]('Duration must not be zero or negative');
-    }
-
-    return new Interval(startInclusive, startInclusive.plus(duration));
-  };
-
-  Interval.parse = function parse(text) {
-    Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(text, 'text');
-
-    if (!(typeof text === 'string')) {
-      throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["IllegalArgumentException"]("text must be a string, but is " + text.constructor.name);
-    }
-
-    for (var i = 0; i < text.length; i += 1) {
-      if (text.charAt(i) === '/') {
-        var firstChar = text.charAt(0);
-
-        if (firstChar === 'P' || firstChar === 'p') {
-          var duration = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Duration"].parse(text.substring(0, i));
-          var end = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZonedDateTime"].parse(text.substring(i + 1, text.length)).toInstant();
-          return Interval.of(end.minus(duration), end);
-        } else {
-          var start = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZonedDateTime"].parse(text.substring(0, i)).toInstant();
-
-          if (i + 1 < text.length) {
-            var c = text.charAt(i + 1);
-
-            if (c === 'P' || c === 'p') {
-              var _duration = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Duration"].parse(text.substring(i + 1, text.length));
-
-              return Interval.of(start, start.plus(_duration));
-            }
-          }
-
-          var _end = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZonedDateTime"].parse(text.substring(i + 1, text.length)).toInstant();
-
-          return Interval.of(start, _end);
-        }
-      }
-    }
-
-    throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeParseException"]('Interval cannot be parsed, no forward slash found', text, 0);
-  };
-
   function Interval(startInclusive, endExclusive) {
+    _classCallCheck(this, Interval);
+
     this._start = startInclusive;
     this._end = endExclusive;
   }
 
-  var _proto = Interval.prototype;
-
-  _proto.start = function start() {
-    return this._start;
-  };
-
-  _proto.end = function end() {
-    return this._end;
-  };
-
-  _proto.isEmpty = function isEmpty() {
-    return this._start.equals(this._end);
-  };
-
-  _proto.isUnboundedStart = function isUnboundedStart() {
-    return this._start.equals(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Instant"].MIN);
-  };
-
-  _proto.isUnboundedEnd = function isUnboundedEnd() {
-    return this._end.equals(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Instant"].MAX);
-  };
-
-  _proto.withStart = function withStart(start) {
-    return Interval.of(start, this._end);
-  };
-
-  _proto.withEnd = function withEnd(end) {
-    return Interval.of(this._start, end);
-  };
-
-  _proto.contains = function contains(instant) {
-    Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(instant, 'instant');
-    Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireInstance"])(instant, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Instant"], 'instant');
-    return this._start.compareTo(instant) <= 0 && (instant.compareTo(this._end) < 0 || this.isUnboundedEnd());
-  };
-
-  _proto.encloses = function encloses(other) {
-    Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(other, 'other');
-    Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireInstance"])(other, Interval, 'other');
-    return this._start.compareTo(other.start()) <= 0 && other.end().compareTo(this._end) <= 0;
-  };
-
-  _proto.abuts = function abuts(other) {
-    Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(other, 'other');
-    Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireInstance"])(other, Interval, 'other');
-    return !this._end.equals(other.start()) !== !this._start.equals(other.end());
-  };
-
-  _proto.isConnected = function isConnected(other) {
-    Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(other, 'other');
-    Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireInstance"])(other, Interval, 'other');
-    return this.equals(other) || this._start.compareTo(other.end()) <= 0 && other.start().compareTo(this._end) <= 0;
-  };
-
-  _proto.overlaps = function overlaps(other) {
-    Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(other, 'other');
-    Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireInstance"])(other, Interval, 'other');
-    return other.equals(this) || this._start.compareTo(other.end()) < 0 && other.start().compareTo(this._end) < 0;
-  };
-
-  _proto.intersection = function intersection(other) {
-    Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(other, 'other');
-    Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireInstance"])(other, Interval, 'other');
-
-    if (this.isConnected(other) === false) {
-      throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeException"]("Intervals do not connect: " + this + " and " + other);
+  _createClass(Interval, [{
+    key: "start",
+    value: function start() {
+      return this._start;
     }
-
-    var cmpStart = this._start.compareTo(other.start());
-
-    var cmpEnd = this._end.compareTo(other.end());
-
-    if (cmpStart >= 0 && cmpEnd <= 0) {
-      return this;
-    } else if (cmpStart <= 0 && cmpEnd >= 0) {
-      return other;
-    } else {
-      var newStart = cmpStart >= 0 ? this._start : other.start();
-      var newEnd = cmpEnd <= 0 ? this._end : other.end();
-      return Interval.of(newStart, newEnd);
+  }, {
+    key: "end",
+    value: function end() {
+      return this._end;
     }
-  };
-
-  _proto.union = function union(other) {
-    Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(other, 'other');
-    Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireInstance"])(other, Interval, 'other');
-
-    if (this.isConnected(other) === false) {
-      throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeException"]("Intervals do not connect: " + this + " and " + other);
+  }, {
+    key: "isEmpty",
+    value: function isEmpty() {
+      return this._start.equals(this._end);
     }
+  }, {
+    key: "isUnboundedStart",
+    value: function isUnboundedStart() {
+      return this._start.equals(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Instant"].MIN);
+    }
+  }, {
+    key: "isUnboundedEnd",
+    value: function isUnboundedEnd() {
+      return this._end.equals(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Instant"].MAX);
+    }
+  }, {
+    key: "withStart",
+    value: function withStart(start) {
+      return Interval.of(start, this._end);
+    }
+  }, {
+    key: "withEnd",
+    value: function withEnd(end) {
+      return Interval.of(this._start, end);
+    }
+  }, {
+    key: "contains",
+    value: function contains(instant) {
+      Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(instant, 'instant');
+      Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireInstance"])(instant, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Instant"], 'instant');
+      return this._start.compareTo(instant) <= 0 && (instant.compareTo(this._end) < 0 || this.isUnboundedEnd());
+    }
+  }, {
+    key: "encloses",
+    value: function encloses(other) {
+      Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(other, 'other');
+      Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireInstance"])(other, Interval, 'other');
+      return this._start.compareTo(other.start()) <= 0 && other.end().compareTo(this._end) <= 0;
+    }
+  }, {
+    key: "abuts",
+    value: function abuts(other) {
+      Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(other, 'other');
+      Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireInstance"])(other, Interval, 'other');
+      return !this._end.equals(other.start()) !== !this._start.equals(other.end());
+    }
+  }, {
+    key: "isConnected",
+    value: function isConnected(other) {
+      Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(other, 'other');
+      Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireInstance"])(other, Interval, 'other');
+      return this.equals(other) || this._start.compareTo(other.end()) <= 0 && other.start().compareTo(this._end) <= 0;
+    }
+  }, {
+    key: "overlaps",
+    value: function overlaps(other) {
+      Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(other, 'other');
+      Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireInstance"])(other, Interval, 'other');
+      return other.equals(this) || this._start.compareTo(other.end()) < 0 && other.start().compareTo(this._end) < 0;
+    }
+  }, {
+    key: "intersection",
+    value: function intersection(other) {
+      Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(other, 'other');
+      Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireInstance"])(other, Interval, 'other');
 
-    var cmpStart = this._start.compareTo(other.start());
+      if (this.isConnected(other) === false) {
+        throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeException"]("Intervals do not connect: ".concat(this, " and ").concat(other));
+      }
 
-    var cmpEnd = this._end.compareTo(other.end());
+      var cmpStart = this._start.compareTo(other.start());
 
-    if (cmpStart >= 0 && cmpEnd <= 0) {
-      return other;
-    } else if (cmpStart <= 0 && cmpEnd >= 0) {
-      return this;
-    } else {
+      var cmpEnd = this._end.compareTo(other.end());
+
+      if (cmpStart >= 0 && cmpEnd <= 0) {
+        return this;
+      } else if (cmpStart <= 0 && cmpEnd >= 0) {
+        return other;
+      } else {
+        var newStart = cmpStart >= 0 ? this._start : other.start();
+        var newEnd = cmpEnd <= 0 ? this._end : other.end();
+        return Interval.of(newStart, newEnd);
+      }
+    }
+  }, {
+    key: "union",
+    value: function union(other) {
+      Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(other, 'other');
+      Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireInstance"])(other, Interval, 'other');
+
+      if (this.isConnected(other) === false) {
+        throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeException"]("Intervals do not connect: ".concat(this, " and ").concat(other));
+      }
+
+      var cmpStart = this._start.compareTo(other.start());
+
+      var cmpEnd = this._end.compareTo(other.end());
+
+      if (cmpStart >= 0 && cmpEnd <= 0) {
+        return other;
+      } else if (cmpStart <= 0 && cmpEnd >= 0) {
+        return this;
+      } else {
+        var newStart = cmpStart >= 0 ? other.start() : this._start;
+        var newEnd = cmpEnd <= 0 ? other.end() : this._end;
+        return Interval.of(newStart, newEnd);
+      }
+    }
+  }, {
+    key: "span",
+    value: function span(other) {
+      Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(other, 'other');
+      Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireInstance"])(other, Interval, 'other');
+
+      var cmpStart = this._start.compareTo(other.start());
+
+      var cmpEnd = this._end.compareTo(other.end());
+
       var newStart = cmpStart >= 0 ? other.start() : this._start;
       var newEnd = cmpEnd <= 0 ? other.end() : this._end;
       return Interval.of(newStart, newEnd);
     }
-  };
-
-  _proto.span = function span(other) {
-    Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(other, 'other');
-    Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireInstance"])(other, Interval, 'other');
-
-    var cmpStart = this._start.compareTo(other.start());
-
-    var cmpEnd = this._end.compareTo(other.end());
-
-    var newStart = cmpStart >= 0 ? other.start() : this._start;
-    var newEnd = cmpEnd <= 0 ? other.end() : this._end;
-    return Interval.of(newStart, newEnd);
-  };
-
-  _proto.isAfter = function isAfter(instantOrInterval) {
-    if (instantOrInterval instanceof _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Instant"]) {
-      return this.isAfterInstant(instantOrInterval);
-    } else {
-      return this.isAfterInterval(instantOrInterval);
+  }, {
+    key: "isAfter",
+    value: function isAfter(instantOrInterval) {
+      if (instantOrInterval instanceof _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Instant"]) {
+        return this.isAfterInstant(instantOrInterval);
+      } else {
+        return this.isAfterInterval(instantOrInterval);
+      }
     }
-  };
-
-  _proto.isBefore = function isBefore(instantOrInterval) {
-    if (instantOrInterval instanceof _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Instant"]) {
-      return this.isBeforeInstant(instantOrInterval);
-    } else {
-      return this.isBeforeInterval(instantOrInterval);
+  }, {
+    key: "isBefore",
+    value: function isBefore(instantOrInterval) {
+      if (instantOrInterval instanceof _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Instant"]) {
+        return this.isBeforeInstant(instantOrInterval);
+      } else {
+        return this.isBeforeInterval(instantOrInterval);
+      }
     }
-  };
-
-  _proto.isAfterInstant = function isAfterInstant(instant) {
-    return this._start.compareTo(instant) > 0;
-  };
-
-  _proto.isBeforeInstant = function isBeforeInstant(instant) {
-    return this._end.compareTo(instant) <= 0 && this._start.compareTo(instant) < 0;
-  };
-
-  _proto.isAfterInterval = function isAfterInterval(interval) {
-    return this._start.compareTo(interval.end()) >= 0 && !interval.equals(this);
-  };
-
-  _proto.isBeforeInterval = function isBeforeInterval(interval) {
-    return this._end.compareTo(interval.start()) <= 0 && !interval.equals(this);
-  };
-
-  _proto.toDuration = function toDuration() {
-    return _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Duration"].between(this._start, this._end);
-  };
-
-  _proto.equals = function equals(obj) {
-    if (this === obj) {
-      return true;
+  }, {
+    key: "isAfterInstant",
+    value: function isAfterInstant(instant) {
+      return this._start.compareTo(instant) > 0;
     }
-
-    if (obj instanceof Interval) {
-      return this._start.equals(obj.start()) && this._end.equals(obj.end());
+  }, {
+    key: "isBeforeInstant",
+    value: function isBeforeInstant(instant) {
+      return this._end.compareTo(instant) <= 0 && this._start.compareTo(instant) < 0;
     }
+  }, {
+    key: "isAfterInterval",
+    value: function isAfterInterval(interval) {
+      return this._start.compareTo(interval.end()) >= 0 && !interval.equals(this);
+    }
+  }, {
+    key: "isBeforeInterval",
+    value: function isBeforeInterval(interval) {
+      return this._end.compareTo(interval.start()) <= 0 && !interval.equals(this);
+    }
+  }, {
+    key: "toDuration",
+    value: function toDuration() {
+      return _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Duration"].between(this._start, this._end);
+    }
+  }, {
+    key: "equals",
+    value: function equals(obj) {
+      if (this === obj) {
+        return true;
+      }
 
-    return false;
-  };
+      if (obj instanceof Interval) {
+        return this._start.equals(obj.start()) && this._end.equals(obj.end());
+      }
 
-  _proto.hashCode = function hashCode() {
-    return this._start.hashCode() ^ this._end.hashCode();
-  };
+      return false;
+    }
+  }, {
+    key: "hashCode",
+    value: function hashCode() {
+      return this._start.hashCode() ^ this._end.hashCode();
+    }
+  }, {
+    key: "toString",
+    value: function toString() {
+      return "".concat(this._start.toString(), "/").concat(this._end.toString());
+    }
+  }], [{
+    key: "of",
+    value: function of(startInstant, endInstantOrDuration) {
+      if (endInstantOrDuration instanceof _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Duration"]) {
+        return Interval.ofInstantDuration(startInstant, endInstantOrDuration);
+      } else {
+        return Interval.ofInstantInstant(startInstant, endInstantOrDuration);
+      }
+    }
+  }, {
+    key: "ofInstantInstant",
+    value: function ofInstantInstant(startInclusive, endExclusive) {
+      Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(startInclusive, 'startInclusive');
+      Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(endExclusive, 'endExclusive');
+      Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireInstance"])(startInclusive, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Instant"], 'startInclusive');
+      Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireInstance"])(endExclusive, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Instant"], 'endExclusive');
 
-  _proto.toString = function toString() {
-    return this._start.toString() + "/" + this._end.toString();
-  };
+      if (endExclusive.isBefore(startInclusive)) {
+        throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeException"]('End instant must on or after start instant');
+      }
+
+      return new Interval(startInclusive, endExclusive);
+    }
+  }, {
+    key: "ofInstantDuration",
+    value: function ofInstantDuration(startInclusive, duration) {
+      Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(startInclusive, 'startInclusive');
+      Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(duration, 'duration');
+      Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireInstance"])(startInclusive, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Instant"], 'startInclusive');
+      Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireInstance"])(duration, _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Duration"], 'duration');
+
+      if (duration.isNegative()) {
+        throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeException"]('Duration must not be zero or negative');
+      }
+
+      return new Interval(startInclusive, startInclusive.plus(duration));
+    }
+  }, {
+    key: "parse",
+    value: function parse(text) {
+      Object(_assert__WEBPACK_IMPORTED_MODULE_1__["requireNonNull"])(text, 'text');
+
+      if (!(typeof text === 'string')) {
+        throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["IllegalArgumentException"]("text must be a string, but is ".concat(text.constructor.name));
+      }
+
+      for (var i = 0; i < text.length; i += 1) {
+        if (text.charAt(i) === '/') {
+          var firstChar = text.charAt(0);
+
+          if (firstChar === 'P' || firstChar === 'p') {
+            var duration = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Duration"].parse(text.substring(0, i));
+            var end = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZonedDateTime"].parse(text.substring(i + 1, text.length)).toInstant();
+            return Interval.of(end.minus(duration), end);
+          } else {
+            var start = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZonedDateTime"].parse(text.substring(0, i)).toInstant();
+
+            if (i + 1 < text.length) {
+              var c = text.charAt(i + 1);
+
+              if (c === 'P' || c === 'p') {
+                var _duration = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["Duration"].parse(text.substring(i + 1, text.length));
+
+                return Interval.of(start, start.plus(_duration));
+              }
+            }
+
+            var _end = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ZonedDateTime"].parse(text.substring(i + 1, text.length)).toInstant();
+
+            return Interval.of(start, _end);
+          }
+        }
+      }
+
+      throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeParseException"]('Interval cannot be parsed, no forward slash found', text, 0);
+    }
+  }]);
 
   return Interval;
 }();
@@ -444,20 +481,20 @@ function assert(assertion, msg, error) {
 }
 function requireNonNull(value, parameterName) {
   if (value == null) {
-    throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["NullPointerException"](parameterName + " must not be null");
+    throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["NullPointerException"]("".concat(parameterName, " must not be null"));
   }
 
   return value;
 }
 function requireInstance(value, _class, parameterName) {
   if (!(value instanceof _class)) {
-    throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["IllegalArgumentException"](parameterName + " must be an instance of " + (_class.name ? _class.name : _class) + (value && value.constructor && value.constructor.name ? ", but is " + value.constructor.name : ''));
+    throw new _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["IllegalArgumentException"]("".concat(parameterName, " must be an instance of ").concat(_class.name ? _class.name : _class).concat(value && value.constructor && value.constructor.name ? ", but is ".concat(value.constructor.name) : ''));
   }
 
   return value;
 }
 function abstractMethodFail(methodName) {
-  throw new TypeError("abstract method \"" + methodName + "\" is not implemented");
+  throw new TypeError("abstract method \"".concat(methodName, "\" is not implemented"));
 }
 
 /***/ }),

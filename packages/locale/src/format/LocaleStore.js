@@ -51,7 +51,7 @@ export class LocaleStore {
             Object.keys(valueTextMap[style]).forEach((key) => {
                 const value = valueTextMap[style][key];
                 if (reverse[value] === undefined) {
-                    reverse[value] = createEntry(value, Number.parseInt(key));
+                    reverse[value] = createEntry(value, parseInt(key));
                     list.push(reverse[value]);
                 }
             });
