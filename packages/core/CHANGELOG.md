@@ -3,6 +3,8 @@ Changelog
 
 ### next (upcoming)
 
+* Upgrade dependencies and change @babel/preset-env targets #555 by @pithu
+
 ### 4.1.0
 
 * Remove edge case handling for Temporal.minus #542 by @pithu

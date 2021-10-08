@@ -3,6 +3,8 @@ Changelog
 
 ### next
 
+* Upgrade dependencies and change @babel/preset-env targets #555 by @pithu
+
 ### 2.6.0
 
  * updated to iana tzdb 2021a

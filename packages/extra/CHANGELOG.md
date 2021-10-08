@@ -3,6 +3,8 @@
 
 ### next
 
+* Upgrade dependencies and change @babel/preset-env targets #555 by @pithu
+
 ### 0.4.0
 
  * Improve TS declarations with no breaking change #357 InExtremaRes/ts-declarations

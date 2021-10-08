@@ -3,6 +3,8 @@
 
 ### next (upcoming)
 
+* Upgrade dependencies and change @babel/preset-env targets #555 by @pithu
+
 ### 4.1.0
 
 * Fix bug with GMT timezone parsing and improve caching #550 by @pithu
