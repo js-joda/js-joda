@@ -29,5 +29,13 @@ describe('LocaleDateTimeFormatter', () => {
             expect(z.zone().id()).to.equal('GMT');
             expect(z.toString()).to.equal('2021-10-05T17:08:24Z[GMT]');
         });
+
+        it('should format/ parse with built-in formatter RFC_1123_DATE_TIME', () => {
+            const df = DateTimeFormatter.RFC_1123_DATE_TIME;
+            const z = ZonedDateTime.parse('Tue, 05 Oct 2021 17:08:24 GMT', df);
+            expect(z.format(df)).to.equal('Tue, 05 Oct 2021 17:08:24 GMT');
+            expect(z.zone().id()).to.equal('GMT');
+            expect(z.toString()).to.equal('2021-10-05T17:08:24Z[GMT]');
+        });
     });
 });

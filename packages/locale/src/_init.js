@@ -5,6 +5,7 @@
 
 import { _init as localeInit } from './Locale';
 import { _init as weekFieldsInit } from './temporal/WeekFields';
+import { _init as dateTimeFormatterInit } from './format/LocaleDateTimeFormatter';
 
 let isInit = false;
 
@@ -18,6 +19,7 @@ function init() {
 
     localeInit();
     weekFieldsInit();
+    dateTimeFormatterInit();
 }
 
 init();

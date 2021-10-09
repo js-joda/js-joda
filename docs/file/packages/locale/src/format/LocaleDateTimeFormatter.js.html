@@ -110,9 +110,16 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-import { _ as jodaInternal, DateTimeFormatter } from &apos;@js-joda/core&apos;;
+import {
+    _ as jodaInternal,
+    DateTimeFormatter,
+    ChronoField,
+    ResolverStyle,
+    IsoChronology,
+} from &apos;@js-joda/core&apos;;
 // eslint-disable-next-line no-unused-vars
 import Locale from &apos;../Locale&apos;;
+import CldrDateTimeFormatterBuilder from &apos;./cldr/CldrDateTimeFormatterBuilder&apos;;
 
 const { assert: { requireNonNull } } = jodaInternal;
 
@@ -136,8 +143,57 @@ export default class LocaleDateTimeFormatter extends DateTimeFormatter {
         }
         return new DateTimeFormatter(this._printerParser, locale, this._decimalStyle, this._resolverStyle, this._resolverFields, this._chrono, this._zone);
     }
+}
 
+export function _init() {
+    const dow = {
+        1: &apos;Mon&apos;,
+        2: &apos;Tue&apos;,
+        3: &apos;Wed&apos;,
+        4: &apos;Thu&apos;,
+        5: &apos;Fri&apos;,
+        6: &apos;Sat&apos;,
+        7: &apos;Sun&apos;,
+    };
 
+    const moy = {
+        1: &apos;Jan&apos;,
+        2: &apos;Feb&apos;,
+        3: &apos;Mar&apos;,
+        4: &apos;Apr&apos;,
+        5: &apos;May&apos;,
+        6: &apos;Jun&apos;,
+        7: &apos;Jul&apos;,
+        8: &apos;Aug&apos;,
+        9: &apos;Sep&apos;,
+        10: &apos;Oct&apos;,
+        11: &apos;Nov&apos;,
+        12: &apos;Dec&apos;,
+    };
+
+    LocaleDateTimeFormatter.RFC_1123_DATE_TIME = new CldrDateTimeFormatterBuilder()
+        .parseCaseInsensitive()
+        .parseLenient()
+        .optionalStart()
+        .appendText(ChronoField.DAY_OF_WEEK, dow)
+        .appendLiteral(&apos;, &apos;)
+        .optionalEnd()
+        .appendValue(ChronoField.DAY_OF_MONTH, 2)
+        .appendLiteral(&apos; &apos;)
+        .appendText(ChronoField.MONTH_OF_YEAR, moy)
+        .appendLiteral(&apos; &apos;)
+        .appendValue(ChronoField.YEAR, 4)  // 2 digit year not handled
+        .appendLiteral(&apos; &apos;)
+        .appendValue(ChronoField.HOUR_OF_DAY, 2)
+        .appendLiteral(&apos;:&apos;)
+        .appendValue(ChronoField.MINUTE_OF_HOUR, 2)
+        .optionalStart()
+        .appendLiteral(&apos;:&apos;)
+        .appendValue(ChronoField.SECOND_OF_MINUTE, 2)
+        .optionalEnd()
+        .appendLiteral(&apos; &apos;)
+        .appendZoneId()
+        .toFormatter(ResolverStyle.SMART).withChronology(IsoChronology.INSTANCE);
 }
 </code></pre>
 

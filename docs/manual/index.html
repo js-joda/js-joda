@@ -114,19 +114,15 @@
 <div data-ice="manual">
     <ul class="manual-toc">
       
-    <li data-ice="manualNav" class="indent-h1" data-link="manual/formatting.html"><a href="manual/formatting.html" data-ice="link">Formatting</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/formatting.html"><a href="manual/formatting.html#formatting-with-locales" data-ice="link">Formatting with locales</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/formatting.html"><a href="manual/formatting.html#format-patterns" data-ice="link">Format patterns</a></li>
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/formatting.html"><a href="manual/formatting.html" data-ice="link">Formatting / Parsing</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/formatting.html"><a href="manual/formatting.html#formatting" data-ice="link">Formatting</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/formatting.html"><a href="manual/formatting.html#formatting-with-locales" data-ice="link">Formatting with locales</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/formatting.html"><a href="manual/formatting.html#format-patterns" data-ice="link">Format patterns</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/formatting.html"><a href="manual/formatting.html#parsing" data-ice="link">Parsing</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/formatting.html"><a href="manual/formatting.html#simple-parser-example" data-ice="link">Simple parser example</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/formatting.html"><a href="manual/formatting.html#http-date-parser-example" data-ice="link">http date parser example</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/formatting.html"><a href="manual/formatting.html#built-in-datetimeformatter" data-ice="link">Built-in DateTimeFormatter</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/formatting.html"><a href="manual/formatting.html#hint" data-ice="link">Hint</a></li>
-</ul>
-  </div>
-<div data-ice="manual">
-    <ul class="manual-toc">
-      
-    <li data-ice="manualNav" class="indent-h1" data-link="manual/parsing.html"><a href="manual/parsing.html" data-ice="link">Parsing</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/parsing.html"><a href="manual/parsing.html#simple-parser-example" data-ice="link">Simple parser example</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/parsing.html"><a href="manual/parsing.html#http-date-parser-example" data-ice="link">http date parser example</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/parsing.html"><a href="manual/parsing.html#hint" data-ice="link">Hint</a></li>
 </ul>
   </div>
 <div data-ice="manual">
@@ -161,13 +157,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="github-markdown">
-  <div class="manual-user-index" data-ice="manualUserIndex"><h1 id="immutable-date-and-time-library-for-javascript">Immutable date and time library for javascript</h1><p><a href="https://badge.fury.io/js/js-joda"><img src="https://badge.fury.io/js/js-joda.svg" alt="npm version"></a>
-<a href="https://travis-ci.org/js-joda/js-joda"><img src="https://travis-ci.org/js-joda/js-joda.svg?branch=master" alt="Build Status"></a>
+  <div class="manual-user-index" data-ice="manualUserIndex"><h1 id="immutable-date-and-time-library-for-javascript">Immutable date and time library for JavaScript</h1><p><a href="https://badge.fury.io/js/js-joda"><img src="https://badge.fury.io/js/js-joda.svg" alt="npm version"></a>
+<a href="https://app.travis-ci.com/js-joda/js-joda"><img src="https://app.travis-ci.com/js-joda/js-joda.svg?branch=master" alt="Travis Build Status"></a>
 <a href="https://saucelabs.com/u/js-joda"><img src="https://saucelabs.com/buildstatus/js-joda" alt="Sauce Test Status"></a>
 <a href="https://coveralls.io/github/js-joda/js-joda?branch=master"><img src="https://coveralls.io/repos/js-joda/js-joda/badge.svg?branch=master&amp;service=github" alt="Coverage Status"></a>
 <a href><img src="https://img.shields.io/badge/tested_with-current_node_LTS-blue.svg?style=flat" alt="Tested node version"></a>
 <a href="https://img.shields.io/npm/dm/js-joda.svg"><img src="https://img.shields.io/npm/dm/js-joda.svg" alt="Downloads/Month"></a></p>
-<p><a href="https://saucelabs.com/u/js-joda"><img src="https://saucelabs.com/browser-matrix/js-joda.svg" alt="Sauce Test Status"></a></p>
+<p><a href="https://saucelabs.com/u/js-joda"><img src="https://saucelabs.com/browser-matrix/js-joda.svg" alt="Sauce Browser Test Status"></a></p>
 <ul>
 <li><p><strong>js-joda</strong> is an <strong>immutable date and time library</strong> for JavaScript. It provides a <strong>simple, domain-driven and clean API</strong> based on the ISO calendar system, which is the de facto world calendar following the proleptic Gregorian rules.</p>
 </li>
@@ -184,27 +180,22 @@
 <li><p>js-joda is <strong>robust and stable</strong>. We ported more then 1700 test-cases with a lots of test-permutations from the threetenbp project. We run the automated karma test-suite against Firefox, Chrome, Node and phantomjs.</p>
 </li>
 </ul>
-<h2 id="why-yet-another-javascript-date-and-time-library">Why yet another javascript date and time library</h2><ul>
-<li><p>Popular javascript date libraries like moment or date-utils are wrappers around the native javascript Date object,
-providing syntactic sugar. The native Date object always consist of a date, time and a timezone part.
-In opposite to that, js-joda is a standalone date and time implementation.</p>
+<h2 id="why-yet-another-javascript-date-and-time-library-">Why yet another JavaScript date and time library?</h2><ul>
+<li><p>Popular JavaScript date libraries like <a href="https://momentjs.com/">moment</a> or <a href="https://github.com/continuouscalendar/dateutils">date-utils</a> are <strong>wrappers</strong> around the native JavaScript <code>Date</code> object, providing syntactic sugar. The native <code>Date</code> object always consist of a date, time and a timezone part. In contrast, js-joda is a <strong>standalone</strong> date and time implementation.</p>
 </li>
-<li><p>The API has a domain-driven design with classes for the different use cases, like LocalDate, ZonedDateTime or Period.
-For examples LocalDate allows to handle dates like birthdays or holidays in a clean and error-safe way,
-especially if these dates are persisted to an external server.</p>
+<li><p>The API has a <strong>domain-driven design</strong> with classes for each of the different use cases, like <code>LocalDate</code>, <code>ZonedDateTime</code> or <code>Period</code>. For example, <code>LocalDate</code> allows you to handle dates without times (like birthdays or holidays) in a clean and error-safe way, especially if these dates are persisted to an external server.</p>
 </li>
-<li><p>js-joda is immutable. Immutability aligns well with pure functions and
-with the architecture of frameworks like React and Flux.</p>
+<li><p>js-joda is <strong>immutable</strong>. Immutability aligns well with pure functions and with the architecture of frameworks like React and Flux.</p>
 </li>
 </ul>
-<h2 id="the-threeten-domain-models">The threeten domain models</h2><h3 id="dates-and-times">Dates and Times</h3><ul>
-<li><p><strong>LocalDate</strong> represents a date without a time and time-zone in the ISO-8601 calendar system, such as 2007-12-24.</p>
+<h2 id="the-threeten-domain-models">The ThreeTen domain models</h2><h3 id="dates-and-times">Dates and Times</h3><ul>
+<li><p><strong>LocalDate</strong> represents a date without a time and timezone in the ISO-8601 calendar system, such as 2007-12-24.</p>
 </li>
-<li><p><strong>LocalTime</strong> represents a time without time-zone in the ISO-8601 calendar system such as &apos;11:55:00&apos;.</p>
+<li><p><strong>LocalTime</strong> represents a time without timezone in the ISO-8601 calendar system such as &apos;11:55:00&apos;.</p>
 </li>
 <li><p><strong>LocalDateTime</strong> is a description of the date (LocalDate), as used for birthdays, combined with the local time (LocalTime) as seen on a wall clock.</p>
 </li>
-<li><p><strong>ZonedDateTime</strong> is a date-time with a time-zone in the ISO-8601 calendar system, such as 2007-12-24T16:15:30+01:00 UTC+01:00.</p>
+<li><p><strong>ZonedDateTime</strong> is a date-time with a timezone in the ISO-8601 calendar system, such as 2007-12-24T16:15:30+01:00 UTC+01:00.</p>
 </li>
 <li><p><strong>Instant</strong> is an instantaneous point on the time-line measured from the epoch of <em>1970-01-01T00:00:00Z</em> in epoch-seconds and nanosecond-of-second.</p>
 </li>
@@ -955,11 +946,11 @@ Duration.between(dt1, dt1.plusHours(10)).toString(); // &apos;PT10H&apos;</code>
     </div>
 <div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
-        <div data-ice="card"><h1>Formatting</h1><p>To format a date and/or time, create a <a href="./manual/../../class/src/format/DateTimeFormatter.js~DateTimeFormatter.html"><code>DateTimeFormatter</code></a> and pass it to the <code>.format</code> method of a <code>LocalDate</code>, <code>LocalTime</code>, <code>LocalDateTime</code>, or <code>ZonedDateTime</code> instance.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">const d = LocalDateTime.parse(&apos;2018-04-28T12:34&apos;)
+        <div data-ice="card"><h1>Formatting / Parsing</h1><h2>Formatting</h2><p>To format a date and/or time, create a <a href="./manual/../../class/src/format/DateTimeFormatter.js~DateTimeFormatter.html"><code>DateTimeFormatter</code></a> and pass it to the <code>.format</code> method of a <code>LocalDate</code>, <code>LocalTime</code>, <code>LocalDateTime</code>, or <code>ZonedDateTime</code> instance.</p><p>js-joda built-in DateTimeFormatter parses and formats dates and times from /to ISO 8601 as specified in RFC 3339.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">const d = LocalDateTime.parse(&apos;2018-04-28T12:34&apos;)
 
 d.format(DateTimeFormatter.ofPattern(&apos;M/d/yyyy&apos;)) // 4/28/2018
 d.format(DateTimeFormatter.ofPattern(&apos;HH:mm&apos;)) // 12:34</code>
-</code></pre><h2>Formatting with locales</h2><p>Non-numeric date and time formats need to know what language to use, for things like names of months and days of the week. For example, the format <code>eeee (d MMMM)</code> might return <code>Saturday (28 April)</code> in English, and <code>samedi (28 avril)</code> in French. If you try to use a locale-dependent format pattern without specifying the locale, you&apos;ll get this error message: </p><pre><code><code class="source-code prettyprint">ERROR: Pattern using (localized) text not implemented, use js-joda-locale plugin!</code>
+</code></pre><h3>Formatting with locales</h3><p>Non-numeric date and time formats need to know what language to use, for things like names of months and days of the week. For example, the format <code>eeee (d MMMM)</code> might return <code>Saturday (28 April)</code> in English, and <code>samedi (28 avril)</code> in French. If you try to use a locale-dependent format pattern without specifying the locale, you&apos;ll get this error message: </p><pre><code><code class="source-code prettyprint">ERROR: Pattern using (localized) text not implemented, use js-joda-locale plugin!</code>
 </code></pre><p>To specify a locale, you&apos;ll need to import the <a href="/js-joda/js-joda-timezone"><code>js-joda-timezone</code></a> and <a href="/js-joda/js-joda-locale"><code>js-joda-locale</code></a> plugins. The simplest way to use <code>js-joda-locale</code> is to install one of the locale-specific builds from npm:</p><ul>
 <li><a href="https://www.npmjs.com/package/@js-joda/locale_de">@js-joda/locale_de</a></li>
 <li><a href="https://www.npmjs.com/package/@js-joda/locale_de-de">@js-joda/locale_de-de</a></li>
@@ -997,7 +988,7 @@ jsDate.toLocaleDateString(&apos;en-US&apos;, options) // Saturday, April 28, 201
 jsDate.toLocaleDateString(&apos;de-DE&apos;, options) // Samstag, 28. April 2018, 12:34
 jsDate.toLocaleDateString(&apos;ar-EG&apos;, options) // &#x627;&#x644;&#x633;&#x628;&#x62A;&#x60C; &#x662;&#x668; &#x623;&#x628;&#x631;&#x64A;&#x644; &#x662;&#x660;&#x661;&#x668; &#x661;&#x662;:&#x663;&#x664; &#x645;
 jsDate.toLocaleDateString(&apos;ko-KR&apos;, options) // 2018&#xB144; 4&#xC6D4; 28&#xC77C; &#xD1A0;&#xC694;&#xC77C; &#xC624;&#xD6C4; 12:34</code>
-</code></pre><h2>Format patterns</h2><p>Date and time formats are specified by date and time pattern strings using <a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html">Java SimpleDateFormat</a> codes.</p><table>
+</code></pre><h3>Format patterns</h3><p>Date and time formats are specified by date and time pattern strings using <a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html">Java SimpleDateFormat</a> codes.</p><table>
 <thead>
 <tr>
 <th>Symbol</th>
@@ -1213,33 +1204,95 @@ jsDate.toLocaleDateString(&apos;ko-KR&apos;, options) // 2018&#xB144; 4&#xC6D4; 
 <td>reserved for future use</td>
 </tr>
 </tbody>
-</table><h2>Hint</h2><p>Whenever you stumble over a <code>Cannot read property &apos;localeString&apos; of null</code> error, its probably because 
-the local for formatter is not set. 
-In that case add the locale package to your project and set the locale
-for the formatter, eg <code>DateTimeFormatter.ofPattern(&apos;eeee (d MMMM)&apos;).withLocale(Locale.FRANCE)</code>.</p></div>
-        <a data-ice="link" href="manual/formatting.html"></a>
-      </div>
-    </div>
-<div class="manual-card-wrap" data-ice="cards">
-      <div class="manual-card">
-        <div data-ice="card"><h1>Parsing</h1><p>Parsing is similar to formatting, the same DateTimeFormatter pattern are used as for formatting.</p><p>Check <a href="./manual/./formatting.html">Formatting page</a> for a list of available patterns</p><p>js-joda build-in DateTimeFormatter parses and formats dates and times from /to ISO 8601 as specified in RFC 3339.</p><p>Customized parser can be build with the <code>DateTimeFormatter</code>.</p><h2>Simple parser example</h2><pre><code class="lang-javascript"><code class="source-code prettyprint">import { DateTimeFormatter, LocalDate } from &apos;@js-joda/core&apos;;
+</table><h2>Parsing</h2><p>Parsing is similar to formatting, the same DateTimeFormatter pattern are used as for formatting.</p><p>Customized parser can be build with the <code>DateTimeFormatter</code>.</p><h3>Simple parser example</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">import { DateTimeFormatter, LocalDate } from &apos;@js-joda/core&apos;;
 
 const formatter = DateTimeFormatter.ofPattern(&apos;M/d/yyyy&apos;);
 const date = LocalDate.parse(&apos;4/28/2018&apos;);
 console.log(date.toString()); // 2018-04-28</code>
-</code></pre><h2>http date parser example</h2><p>HTTP dates as specified in RFC 7321 and return by javascript native <code>Date</code> <code>toUTCString</code> method, 
-requires the local package.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">import { DateTimeFormatter, ZonedDateTime } from &apos;@js-joda/core&apos;;
+</code></pre><h3>http date parser example</h3><p>Example for an HTTP dates formatter as specified in RFC 7321, 
+like returned by javascript native <code>Date</code> <code>toUTCString</code> method.</p><p>This formatter requires the <code>@js-joda/locale</code> package.
+This formatter is built-in since @<a href="./manual/mailto:js-joda/locale@4.2.0">js-joda/locale@4.2.0</a> -&gt; RFC_1123_DATE_TIME</p><pre><code class="lang-javascript"><code class="source-code prettyprint">import { DateTimeFormatter, ZonedDateTime } from &apos;@js-joda/core&apos;;
 import &apos;@js-joda/timezone&apos;
 import { Locale } from &apos;@js-joda/locale&apos;;
 
 const df = DateTimeFormatter.ofPattern(&apos;EEE, dd MMM yyyy HH:mm:ss z&apos;).withLocale(Locale.ENGLISH);
 const z = ZonedDateTime.parse(&apos;Tue, 05 Oct 2021 17:08:24 GMT&apos;, df);
 console.log(z.toString()); // 2021-10-05T17:08:24+01:00[GMT]</code>
-</code></pre><h2>Hint</h2><p>Whenever you stumble over a <code>Cannot read property &apos;localeString&apos; of null</code> error, its probably because
-the local for formatter is not set.
-In that case add the locale package to your project and set the locale
-for the formatter, eg <code>DateTimeFormatter.ofPattern(&apos;eeee (d MMMM)&apos;).withLocale(Locale.FRANCE)</code>.</p></div>
-        <a data-ice="link" href="manual/parsing.html"></a>
+</code></pre><h2>Built-in DateTimeFormatter</h2><table>
+<thead>
+<tr>
+<th>Formatter</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISO_LOCAL_DATE</td>
+<td>&apos;2011-12-03&apos;</td>
+</tr>
+<tr>
+<td>ISO_LOCAL_TIME</td>
+<td>&apos;10:15:30&apos;</td>
+</tr>
+<tr>
+<td>ISO_LOCAL_DATE_TIME</td>
+<td>&apos;2011-12-03T10:15:30&apos;</td>
+</tr>
+<tr>
+<td>ISO_INSTANT</td>
+<td>&apos;2011-12-03T10:15:30Z&apos;</td>
+</tr>
+<tr>
+<td>ISO_OFFSET_DATE_TIME</td>
+<td>&apos;2011-12-03T10:15:30+01:00&apos;</td>
+</tr>
+<tr>
+<td>ISO_ZONED_DATE_TIME</td>
+<td>&apos;2011-12-03T10:15:30+01:00[Europe/Paris]&apos;</td>
+</tr>
+<tr>
+<td>BASIC_ISO_DATE</td>
+<td>&apos;20111203&apos;</td>
+</tr>
+<tr>
+<td>ISO_OFFSET_DATE</td>
+<td>&apos;2011-12-03+01:00&apos;</td>
+</tr>
+<tr>
+<td>ISO_OFFSET_TIME</td>
+<td>&apos;10:15:30+01:00&apos;</td>
+</tr>
+<tr>
+<td>ISO_ORDINAL_DATE</td>
+<td>&apos;2012-337&apos;</td>
+</tr>
+<tr>
+<td>ISO_WEEK_DATE</td>
+<td>&apos;2012-W48-6&apos;</td>
+</tr>
+<tr>
+<td>ISO_DATE</td>
+<td>&apos;2011-12-03+01:00&apos;, &apos;2011-12-03&apos;</td>
+</tr>
+<tr>
+<td>ISO_TIME</td>
+<td>&apos;10:15:30+01:00&apos;, &apos;10:15:30&apos;</td>
+</tr>
+<tr>
+<td>ISO_DATE_TIME</td>
+<td>&apos;2011-12-03T10:15:30+01:00[Europe/Paris]&apos;</td>
+</tr>
+<tr>
+<td>RFC_1123_DATE_TIME</td>
+<td>&apos;Tue, 05 Oct 2021 17:08:24 GMT&apos;<br>requires @js-joda/locale</td>
+</tr>
+</tbody>
+</table><p>Usage example for a built-in DateTimeFormatter</p><pre><code class="lang-javascript"><code class="source-code prettyprint">const localDate = LocalDate.parse(&apos;2012-12-12&apos;, DateTimeFormatter.ISO_LOCAL_DATE);
+const dateAsString = LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE);</code>
+</code></pre><h2>Hint</h2><p>Whenever you stumble over a <code>Cannot read property &apos;localeString&apos; of null</code> error, 
+its probably because the locale of the formatter is not set. </p><p>In that case add the <code>@js-joda/locale</code> package to your project and set the locale
+of the formatter, eg <code>DateTimeFormatter.ofPattern(&apos;eeee (d MMMM)&apos;).withLocale(Locale.FRANCE)</code>.</p></div>
+        <a data-ice="link" href="manual/formatting.html"></a>
       </div>
     </div>
 <div class="manual-card-wrap" data-ice="cards">

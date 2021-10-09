@@ -72,6 +72,13 @@ module.exports = function(config) {
         },
         sauceLabs: {
             testName: '@js-joda/core karma tests',
+            tags: [
+                '@js-joda/core',
+                `#${process.env.TRAVIS_PULL_REQUEST}`,
+                `${process.env.TRAVIS_PULL_REQUEST_BRANCH}`,
+                `${process.env.TRAVIS_BRANCH}`,
+            ],
+            build: process.env.TRAVIS_BUILD_NUMBER,
             recordVideo: false,
             recordScreenshots: false,
             // don't connect to saucelabs, let travis start a sauce connect proxy
