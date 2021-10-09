@@ -1,6 +1,6 @@
 {
-  "coverage": "70.97%",
-  "expectCount": 1850,
+  "coverage": "70.93%",
+  "expectCount": 1851,
   "actualCount": 1313,
   "files": {
     "packages/core/src/Clock.js": {
@@ -882,16 +882,17 @@
       "expectCount": 2,
       "actualCount": 0,
       "undocumentLines": [
-        9,
-        11
+        10,
+        12
       ]
     },
     "packages/locale/src/format/LocaleDateTimeFormatter.js": {
-      "expectCount": 3,
+      "expectCount": 4,
       "actualCount": 1,
       "undocumentLines": [
-        10,
-        12
+        17,
+        19,
+        41
       ]
     },
     "packages/locale/src/format/LocaleStore.js": {

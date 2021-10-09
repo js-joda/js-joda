@@ -30,4 +30,6 @@ export default function (jsJoda) {
             jsJoda.DateTimeFormatter.prototype[prop] = LocaleDateTimeFormatter.prototype[prop];
         }
     });
+    // copy statics manually
+    jsJoda.DateTimeFormatter.RFC_1123_DATE_TIME = LocaleDateTimeFormatter.RFC_1123_DATE_TIME;
 }

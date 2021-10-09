@@ -436,7 +436,8 @@ console.log(date.toString()); // 2018-04-28</code>
 </code></pre>
 <h3 id="http-date-parser-example">http date parser example</h3><p>Example for an HTTP dates formatter as specified in RFC 7321, 
 like returned by javascript native <code>Date</code> <code>toUTCString</code> method.</p>
-<p>This formatter requires the <code>@js-joda/locale</code> package.</p>
+<p>This formatter requires the <code>@js-joda/locale</code> package.
+This formatter is built-in since @<a href="./manual/mailto:js-joda/locale@4.2.0">js-joda/locale@4.2.0</a> -&gt; RFC_1123_DATE_TIME</p>
 <pre><code class="lang-javascript"><code class="source-code prettyprint">import { DateTimeFormatter, ZonedDateTime } from &apos;@js-joda/core&apos;;
 import &apos;@js-joda/timezone&apos;
 import { Locale } from &apos;@js-joda/locale&apos;;
@@ -508,6 +509,10 @@ console.log(z.toString()); // 2021-10-05T17:08:24+01:00[GMT]</code>
 <tr>
 <td>ISO_DATE_TIME</td>
 <td>&apos;2011-12-03T10:15:30+01:00[Europe/Paris]&apos;</td>
+</tr>
+<tr>
+<td>RFC_1123_DATE_TIME</td>
+<td>&apos;Tue, 05 Oct 2021 17:08:24 GMT&apos;<br>requires @js-joda/locale</td>
 </tr>
 </tbody>
 </table>
