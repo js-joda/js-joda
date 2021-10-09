@@ -5,6 +5,7 @@ Changelog
 
 * Upgrade dependencies #555 by @pithu
 * Change @babel/preset-env targets, fix IE11 issues #555 by @pithu
+* Improve documentation  #556 by @pithu
 
 ### 4.1.0
 
