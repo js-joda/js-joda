@@ -69,7 +69,7 @@ module.exports = function (config) {
         },
         sauceLabs: {
             testName: '@js-joda/timezone karma tests',
-            tags: ["'@js-joda/timezone", process.env.TRAVIS_PULL_REQUEST, process.env.TRAVIS_BRANCH],
+            tags: ['@js-joda/timezone', process.env.TRAVIS_PULL_REQUEST, process.env.TRAVIS_BRANCH],
             build: process.env.TRAVIS_BUILD_NUMBER,
             recordVideo: false,
             recordScreenshots: false,
