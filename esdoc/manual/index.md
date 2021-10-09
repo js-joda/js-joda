@@ -1,13 +1,13 @@
 # Immutable date and time library for JavaScript
 
 [![npm version](https://badge.fury.io/js/js-joda.svg)](https://badge.fury.io/js/js-joda)
-[![Build Status](https://travis-ci.org/js-joda/js-joda.svg?branch=master)](https://travis-ci.org/js-joda/js-joda)
+[![Travis Build Status](https://app.travis-ci.com/js-joda/js-joda.svg?branch=master)](https://app.travis-ci.com/js-joda/js-joda)
 [![Sauce Test Status](https://saucelabs.com/buildstatus/js-joda)](https://saucelabs.com/u/js-joda)
 [![Coverage Status](https://coveralls.io/repos/js-joda/js-joda/badge.svg?branch=master&service=github)](https://coveralls.io/github/js-joda/js-joda?branch=master)
 [![Tested node version](https://img.shields.io/badge/tested_with-current_node_LTS-blue.svg?style=flat)]()
 [![Downloads/Month](https://img.shields.io/npm/dm/js-joda.svg)](https://img.shields.io/npm/dm/js-joda.svg)
 
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/js-joda.svg)](https://saucelabs.com/u/js-joda)
+[![Sauce Browser Test Status](https://saucelabs.com/browser-matrix/js-joda.svg)](https://saucelabs.com/u/js-joda)
 
 - **js-joda** is an **immutable date and time library** for JavaScript. It provides a **simple, domain-driven and clean API** based on the ISO calendar system, which is the de facto world calendar following the proleptic Gregorian rules.
 
