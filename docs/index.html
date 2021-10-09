@@ -157,7 +157,7 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="github-markdown">
-  <div class="manual-user-index" data-ice="manualUserIndex"><h1 id="immutable-date-and-time-library-for-javascript">Immutable date and time library for javascript</h1><p><a href="https://badge.fury.io/js/js-joda"><img src="https://badge.fury.io/js/js-joda.svg" alt="npm version"></a>
+  <div class="manual-user-index" data-ice="manualUserIndex"><h1 id="immutable-date-and-time-library-for-javascript">Immutable date and time library for JavaScript</h1><p><a href="https://badge.fury.io/js/js-joda"><img src="https://badge.fury.io/js/js-joda.svg" alt="npm version"></a>
 <a href="https://travis-ci.org/js-joda/js-joda"><img src="https://travis-ci.org/js-joda/js-joda.svg?branch=master" alt="Build Status"></a>
 <a href="https://saucelabs.com/u/js-joda"><img src="https://saucelabs.com/buildstatus/js-joda" alt="Sauce Test Status"></a>
 <a href="https://coveralls.io/github/js-joda/js-joda?branch=master"><img src="https://coveralls.io/repos/js-joda/js-joda/badge.svg?branch=master&amp;service=github" alt="Coverage Status"></a>
@@ -180,27 +180,22 @@
 <li><p>js-joda is <strong>robust and stable</strong>. We ported more then 1700 test-cases with a lots of test-permutations from the threetenbp project. We run the automated karma test-suite against Firefox, Chrome, Node and phantomjs.</p>
 </li>
 </ul>
-<h2 id="why-yet-another-javascript-date-and-time-library">Why yet another javascript date and time library</h2><ul>
-<li><p>Popular javascript date libraries like moment or date-utils are wrappers around the native javascript Date object,
-providing syntactic sugar. The native Date object always consist of a date, time and a timezone part.
-In opposite to that, js-joda is a standalone date and time implementation.</p>
+<h2 id="why-yet-another-javascript-date-and-time-library-">Why yet another JavaScript date and time library?</h2><ul>
+<li><p>Popular JavaScript date libraries like <a href="https://momentjs.com/">moment</a> or <a href="https://github.com/continuouscalendar/dateutils">date-utils</a> are <strong>wrappers</strong> around the native JavaScript <code>Date</code> object, providing syntactic sugar. The native <code>Date</code> object always consist of a date, time and a timezone part. In contrast, js-joda is a <strong>standalone</strong> date and time implementation.</p>
 </li>
-<li><p>The API has a domain-driven design with classes for the different use cases, like LocalDate, ZonedDateTime or Period.
-For examples LocalDate allows to handle dates like birthdays or holidays in a clean and error-safe way,
-especially if these dates are persisted to an external server.</p>
+<li><p>The API has a <strong>domain-driven design</strong> with classes for each of the different use cases, like <code>LocalDate</code>, <code>ZonedDateTime</code> or <code>Period</code>. For example, <code>LocalDate</code> allows you to handle dates without times (like birthdays or holidays) in a clean and error-safe way, especially if these dates are persisted to an external server.</p>
 </li>
-<li><p>js-joda is immutable. Immutability aligns well with pure functions and
-with the architecture of frameworks like React and Flux.</p>
+<li><p>js-joda is <strong>immutable</strong>. Immutability aligns well with pure functions and with the architecture of frameworks like React and Flux.</p>
 </li>
 </ul>
-<h2 id="the-threeten-domain-models">The threeten domain models</h2><h3 id="dates-and-times">Dates and Times</h3><ul>
-<li><p><strong>LocalDate</strong> represents a date without a time and time-zone in the ISO-8601 calendar system, such as 2007-12-24.</p>
+<h2 id="the-threeten-domain-models">The ThreeTen domain models</h2><h3 id="dates-and-times">Dates and Times</h3><ul>
+<li><p><strong>LocalDate</strong> represents a date without a time and timezone in the ISO-8601 calendar system, such as 2007-12-24.</p>
 </li>
-<li><p><strong>LocalTime</strong> represents a time without time-zone in the ISO-8601 calendar system such as &apos;11:55:00&apos;.</p>
+<li><p><strong>LocalTime</strong> represents a time without timezone in the ISO-8601 calendar system such as &apos;11:55:00&apos;.</p>
 </li>
 <li><p><strong>LocalDateTime</strong> is a description of the date (LocalDate), as used for birthdays, combined with the local time (LocalTime) as seen on a wall clock.</p>
 </li>
-<li><p><strong>ZonedDateTime</strong> is a date-time with a time-zone in the ISO-8601 calendar system, such as 2007-12-24T16:15:30+01:00 UTC+01:00.</p>
+<li><p><strong>ZonedDateTime</strong> is a date-time with a timezone in the ISO-8601 calendar system, such as 2007-12-24T16:15:30+01:00 UTC+01:00.</p>
 </li>
 <li><p><strong>Instant</strong> is an instantaneous point on the time-line measured from the epoch of <em>1970-01-01T00:00:00Z</em> in epoch-seconds and nanosecond-of-second.</p>
 </li>

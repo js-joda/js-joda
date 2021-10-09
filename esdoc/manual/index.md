@@ -1,4 +1,4 @@
-# Immutable date and time library for javascript
+# Immutable date and time library for JavaScript
 
 [![npm version](https://badge.fury.io/js/js-joda.svg)](https://badge.fury.io/js/js-joda)
 [![Build Status](https://travis-ci.org/js-joda/js-joda.svg?branch=master)](https://travis-ci.org/js-joda/js-joda)
@@ -23,30 +23,25 @@
 
 - js-joda is **robust and stable**. We ported more then 1700 test-cases with a lots of test-permutations from the threetenbp project. We run the automated karma test-suite against Firefox, Chrome, Node and phantomjs.
 
-## Why yet another javascript date and time library
+## Why yet another JavaScript date and time library?
 
-- Popular javascript date libraries like moment or date-utils are wrappers around the native javascript Date object,
-  providing syntactic sugar. The native Date object always consist of a date, time and a timezone part.
-  In opposite to that, js-joda is a standalone date and time implementation.
+- Popular JavaScript date libraries like [moment](https://momentjs.com/) or [date-utils](https://github.com/continuouscalendar/dateutils) are **wrappers** around the native JavaScript `Date` object, providing syntactic sugar. The native `Date` object always consist of a date, time and a timezone part. In contrast, js-joda is a **standalone** date and time implementation.
 
-- The API has a domain-driven design with classes for the different use cases, like LocalDate, ZonedDateTime or Period.
-  For examples LocalDate allows to handle dates like birthdays or holidays in a clean and error-safe way,
-  especially if these dates are persisted to an external server.
+- The API has a **domain-driven design** with classes for each of the different use cases, like `LocalDate`, `ZonedDateTime` or `Period`. For example, `LocalDate` allows you to handle dates without times (like birthdays or holidays) in a clean and error-safe way, especially if these dates are persisted to an external server.
 
-- js-joda is immutable. Immutability aligns well with pure functions and
-  with the architecture of frameworks like React and Flux.
+- js-joda is **immutable**. Immutability aligns well with pure functions and with the architecture of frameworks like React and Flux.
 
-## The threeten domain models
+## The ThreeTen domain models
 
 ### Dates and Times
 
-- **LocalDate** represents a date without a time and time-zone in the ISO-8601 calendar system, such as 2007-12-24.
+- **LocalDate** represents a date without a time and timezone in the ISO-8601 calendar system, such as 2007-12-24.
 
-- **LocalTime** represents a time without time-zone in the ISO-8601 calendar system such as '11:55:00'.
+- **LocalTime** represents a time without timezone in the ISO-8601 calendar system such as '11:55:00'.
 
 - **LocalDateTime** is a description of the date (LocalDate), as used for birthdays, combined with the local time (LocalTime) as seen on a wall clock.
 
-- **ZonedDateTime** is a date-time with a time-zone in the ISO-8601 calendar system, such as 2007-12-24T16:15:30+01:00 UTC+01:00.
+- **ZonedDateTime** is a date-time with a timezone in the ISO-8601 calendar system, such as 2007-12-24T16:15:30+01:00 UTC+01:00.
 
 - **Instant** is an instantaneous point on the time-line measured from the epoch of _1970-01-01T00:00:00Z_ in epoch-seconds and nanosecond-of-second.
 
