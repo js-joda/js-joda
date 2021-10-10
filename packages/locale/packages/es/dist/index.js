@@ -1,4 +1,4 @@
-//! @version @js-joda/locale - 4.1.0+36.0.0
+//! @version @js-joda/locale - 4.2.0
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -2570,10 +2570,12 @@ function _init() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Locale__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Locale */ "./src/Locale.js");
 /* harmony import */ var _temporal_WeekFields__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./temporal/WeekFields */ "./src/temporal/WeekFields.js");
+/* harmony import */ var _format_LocaleDateTimeFormatter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./format/LocaleDateTimeFormatter */ "./src/format/LocaleDateTimeFormatter.js");
 /*
  * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
+
 
 
 var isInit = false;
@@ -2586,6 +2588,7 @@ function init() {
   isInit = true;
   Object(_Locale__WEBPACK_IMPORTED_MODULE_0__["_init"])();
   Object(_temporal_WeekFields__WEBPACK_IMPORTED_MODULE_1__["_init"])();
+  Object(_format_LocaleDateTimeFormatter__WEBPACK_IMPORTED_MODULE_2__["_init"])();
 }
 
 init();
@@ -2596,15 +2599,17 @@ init();
 /*!***********************************************!*\
   !*** ./src/format/LocaleDateTimeFormatter.js ***!
   \***********************************************/
-/*! exports provided: default */
+/*! exports provided: default, _init */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LocaleDateTimeFormatter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_init", function() { return _init; });
 /* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @js-joda/core */ "@js-joda/core");
 /* harmony import */ var _js_joda_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Locale__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Locale */ "./src/Locale.js");
+/* harmony import */ var _cldr_CldrDateTimeFormatterBuilder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./cldr/CldrDateTimeFormatterBuilder */ "./src/format/cldr/CldrDateTimeFormatterBuilder.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2631,6 +2636,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
  * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
+
 
 
 var requireNonNull = _js_joda_core__WEBPACK_IMPORTED_MODULE_0__["_"].assert.requireNonNull;
@@ -2663,6 +2669,32 @@ var LocaleDateTimeFormatter = function (_DateTimeFormatter) {
 }(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["DateTimeFormatter"]);
 
 
+function _init() {
+  var dow = {
+    1: 'Mon',
+    2: 'Tue',
+    3: 'Wed',
+    4: 'Thu',
+    5: 'Fri',
+    6: 'Sat',
+    7: 'Sun'
+  };
+  var moy = {
+    1: 'Jan',
+    2: 'Feb',
+    3: 'Mar',
+    4: 'Apr',
+    5: 'May',
+    6: 'Jun',
+    7: 'Jul',
+    8: 'Aug',
+    9: 'Sep',
+    10: 'Oct',
+    11: 'Nov',
+    12: 'Dec'
+  };
+  LocaleDateTimeFormatter.RFC_1123_DATE_TIME = new _cldr_CldrDateTimeFormatterBuilder__WEBPACK_IMPORTED_MODULE_2__["default"]().parseCaseInsensitive().parseLenient().optionalStart().appendText(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_WEEK, dow).appendLiteral(', ').optionalEnd().appendValue(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].DAY_OF_MONTH, 2).appendLiteral(' ').appendText(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].MONTH_OF_YEAR, moy).appendLiteral(' ').appendValue(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].YEAR, 4).appendLiteral(' ').appendValue(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].HOUR_OF_DAY, 2).appendLiteral(':').appendValue(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].MINUTE_OF_HOUR, 2).optionalStart().appendLiteral(':').appendValue(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ChronoField"].SECOND_OF_MINUTE, 2).optionalEnd().appendLiteral(' ').appendZoneId().toFormatter(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["ResolverStyle"].SMART).withChronology(_js_joda_core__WEBPACK_IMPORTED_MODULE_0__["IsoChronology"].INSTANCE);
+}
 
 /***/ }),
 
@@ -4010,6 +4042,7 @@ __webpack_require__.r(__webpack_exports__);
       jsJoda.DateTimeFormatter.prototype[prop] = _format_LocaleDateTimeFormatter__WEBPACK_IMPORTED_MODULE_1__["default"].prototype[prop];
     }
   });
+  jsJoda.DateTimeFormatter.RFC_1123_DATE_TIME = _format_LocaleDateTimeFormatter__WEBPACK_IMPORTED_MODULE_1__["default"].RFC_1123_DATE_TIME;
 });
 
 /***/ }),
