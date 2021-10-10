@@ -33,7 +33,7 @@
     "karma-sauce-launcher": "^2.0.2",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^4.0.2",
-    "lerna": "^3.19.0",
+    "lerna": "^4.0.0",
     "markdown-toc": "^1.2.0",
     "mocha": "^6.2.2",
     "moment-timezone": "^0.5.27",
