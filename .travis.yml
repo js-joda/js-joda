@@ -19,7 +19,7 @@ install:
 script:
     set -evx;
     npx lerna run --stream build-dist;
-    npx lerna run --stream build-all;
+    npx lerna run --stream build-locale-dist;
     npx lerna run --stream lint;
     npm run build-esdoc;
     npx lerna run --stream test;

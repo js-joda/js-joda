@@ -12,6 +12,7 @@
     "README.md"
   ],
   "scripts": {
+    "version": "npm run build-dist",
     "test": "npx mocha --timeout 5000 --require @babel/register ./test/*Test.js ./test/**/*Test.js",
     "test-coverage": "NODE_ENV=test COVERAGE=1 npx nyc --report-dir=build/coverage --reporter=lcov --reporter html npx mocha --timeout 5000 --require @babel/register --reporter progress ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js",
     "test-browser": "npx karma start --reporters=dots --single-run",
