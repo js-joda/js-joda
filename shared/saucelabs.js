@@ -1,4 +1,4 @@
-export const sauceLabsLaunchers = {
+const sauceLabsLaunchers = {
     sl_ie: {
         base: 'SauceLabs',
         browserName: 'internet explorer',
@@ -47,7 +47,7 @@ export const sauceLabsLaunchers = {
     },
 };
 
-export const sauceLabsMetaData = (packageName) => ({
+const sauceLabsMetaData = (packageName) => ({
     testName: `${packageName} karma tests`,
     tags: [
         packageName,
@@ -66,3 +66,8 @@ export const sauceLabsMetaData = (packageName) => ({
         logfile: 'sauce_connect.log'
     }
 });
+
+module.exports = {
+    sauceLabsLaunchers,
+    sauceLabsMetaData,
+};
