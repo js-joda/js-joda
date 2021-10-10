@@ -1,6 +1,6 @@
 {
   "name": "@js-joda/examples",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "HowTo use js-joda libraries in different environments",
   "main": "index.js",
   "scripts": {
@@ -21,11 +21,11 @@
     "@js-joda/core": ">=1.11.0"
   },
   "dependencies": {
-    "@js-joda/core": ">=4.0.0",
-    "@js-joda/extra": "^0.4.0",
-    "@js-joda/locale": "^4.0.0",
-    "@js-joda/locale_en-us": "^4.0.1",
-    "@js-joda/locale_ko": "^4.0.1",
-    "@js-joda/timezone": "^2.6.0"
+    "@js-joda/core": "^4.2.0",
+    "@js-joda/extra": "^0.5.0",
+    "@js-joda/locale": "^4.2.0",
+    "@js-joda/locale_en-us": "^4.2.0",
+    "@js-joda/locale_ko": "^4.2.0",
+    "@js-joda/timezone": "^2.7.0"
   }
 }

@@ -1,6 +1,5 @@
 /* eslint-disable */
 
-var jsJoda = JSJoda;
 for(var prop in JSJoda) { window[prop] = JSJoda[prop]; }
 for(var prop in JSJodaLocale) { window[prop] = JSJodaLocale[prop]; }
 

@@ -67,8 +67,6 @@ describe('js-joda Temporal', () => {
             const result = new BasicYearMock(0)
                 .minus(MathUtil.MIN_SAFE_INTEGER, ChronoUnit.YEARS);
 
-            console.log(result, new BasicYearMock(MathUtil.MAX_SAFE_INTEGER));
-
             expect(new BasicYearMock(MathUtil.MAX_SAFE_INTEGER).equals(result)).to.equal(true);
         });
     });

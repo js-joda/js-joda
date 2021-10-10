@@ -1,6 +1,6 @@
 {
   "name": "@js-joda/core",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "description": "a date and time library for javascript",
   "repository": {
     "type": "git",
@@ -18,12 +18,12 @@
     "README.md"
   ],
   "scripts": {
-    "prepublish": "npm run build-dist",
+    "version": "npm run build-dist",
     "test": "NODE_ENV=test npx mocha --timeout 5000 --require @babel/register ./test/*Test_mochaOnly.js ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js",
     "test-coverage": "NODE_ENV=test COVERAGE=1 npx nyc --report-dir=build/coverage --reporter=lcov --reporter html npx mocha --timeout 5000 --require @babel/register --reporter progress ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js",
     "test-browser": "npx karma start --reporters=dots --single-run",
     "test-saucelabs": "npx karma start --reporters=\"dots,saucelabs\" --browsers=\"sl_chrome,sl_ie,sl_firefox,sl_ios_simulator\" --single-run=true",
-    "test-ci": "npm run build-dist && npm run test && npm run test-browser -- --browsers \"Firefox,PhantomJS\" && npm run test-ts-definitions && npm run test-coverage",
+    "test-ci": "npm run build-dist && npm run test && npm run test-browser && npm run test-ts-definitions && npm run test-coverage",
     "test-ts-definitions": "TS_NODE_PROJECT='test/typescript_definitions/tsconfig.json' NODE_ENV=test mocha --timeout 5000 --require ts-node/register ./test/typescript_definitions/*.ts",
     "build-dist": "npx rollup -c rollup.config.js",
     "build-md-toc": "npx markdown-toc -i CheatSheet.md",
