@@ -350,14 +350,22 @@ export class Temporal extends TemporalAccessor {
     _withField(field, newValue) {
         abstractMethodFail('_withField');
     }
+}
 
-    valueOf() {
+if (Symbol && Symbol.toPrimitive) {
+    Temporal.prototype[Symbol.toPrimitive] = function (hint) {
+        // hint could be 'number', 'string' or 'default'. Only 'number'
+        // should throw and 'default' is treated as 'string'.
+        if (hint !== 'number') {
+            return this.toString();
+        }
+
         throw new TypeError(
             'Conversion to a primitive type is not allowed. ' +
             'If you are trying to compare using operators `<`, `=`, etc., ' +
-            'please use the methods `equals()`, `compareTo()` or the one ' +
-            'that better suite your use case. If you are trying to convert to ' +
-            'string use the `toString()` or `format()` methods instead.'
+            'please use the methods `equals()`, `compareTo()` or one that' +
+            'is more suitable for your use case. If you are trying to convert ' +
+            'to string use the `toString()` or `format()` methods instead.'
         );
-    }
+    };
 }

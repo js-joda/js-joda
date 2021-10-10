@@ -113,8 +113,18 @@ describe('js-joda Temporal', () => {
     });
 
     describe('valueOf', () => {
-        it('should throw an exception', () => {
-            expect(()=> new BasicYearMock(1).valueOf()).to.throw(TypeError);
+        it('should not throw an exception', () => {
+            expect(() => new BasicYearMock(1).valueOf()).not.to.throw();
+        });
+    });
+
+    describe('coercing to primitive', () => {
+        it('should throw when using Number', () => {
+            expect(() => Number(new BasicYearMock(1))).to.throw(TypeError);
+        });
+
+        it('should not throw when using String', () => {
+            expect(() => String(new BasicYearMock(1))).not.to.throw(TypeError);
         });
     });
 });

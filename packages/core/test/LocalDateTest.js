@@ -246,12 +246,21 @@ describe('Using a LocalDate instance', () => {
     });
 
     describe('when coercing to a primitive', () => {
-        it('should throw an exception', () => {
+        it('should throw an exception if used numerically', () => {
             const oneDay = LocalDate.now(Clock.systemUTC());
             const otherDay = oneDay.plusDays(1);
 
-            expect(() => oneDay < otherDay).to.throw(TypeError);
             expect(() => +oneDay).to.throw(TypeError);
+            expect(() => -oneDay).to.throw(TypeError);
+            expect(() => oneDay < otherDay).to.throw(TypeError);
+        });
+
+        it('should not throw if used in string concatenation', () => {
+            const oneDay = LocalDate.now(Clock.systemUTC());
+            const otherDay = oneDay.plusDays(1);
+
+            // eslint-disable-next-line prefer-template
+            expect(() => '' + oneDay + otherDay).not.to.throw(TypeError);
         });
     });
 });
