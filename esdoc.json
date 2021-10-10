@@ -17,7 +17,7 @@
           "repository": "https://github.com/js-joda/js-joda"
         },
         "manual": {
-          "index": "./esdoc/manual/index.md",
+          "index": "./README.md",
           "globalIndex": true,
           "files": [
             "./esdoc/manual/getting-started.md",
