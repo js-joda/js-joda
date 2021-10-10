@@ -1,5 +1,3 @@
-# @js-joda/core
-
 # Immutable date and time library for JavaScript
 
 [![npm version](https://badge.fury.io/js/%40js-joda%2Fcore.svg)](https://badge.fury.io/js/%40js-joda%2Fcore)
@@ -8,7 +6,7 @@
 [![Coverage Status](https://coveralls.io/repos/js-joda/js-joda/badge.svg?branch=master&service=github)](https://coveralls.io/github/js-joda/js-joda?branch=master)
 [![Downloads/Month](https://img.shields.io/npm/dm/%40js-joda%2Fcore.svg)](https://img.shields.io/npm/dm/%40js-joda%2Fcore.svg)
 
-[![Sauce Browser Test Status](https://saucelabs.com/browser-matrix/js-joda.svg)](https://saucelabs.com/u/js-joda)
+[![Sauce Browser Matrix](https://saucelabs.com/browser-matrix/js-joda.svg)](https://saucelabs.com/u/js-joda)
 
 ## Introduction
 
@@ -96,10 +94,47 @@ To use js-joda from a browser, download either `dist/js-joda.min.js` or `dist/js
 </script>
 ```
 
+## js-joda packages
+
+js-joda consist of four packages:
+
+|  package name | description  |  path |
+|---|---|---|
+| `@js-joda/core` | Implementation of the ThreeTen Classes and API | [/packages/core](//github.com/js-joda/js-joda/tree/master/packages/core) |
+| `@js-joda/timezone` | Implementation of timezone calculation based on the iana Time Zone Database | [/packages/timezone](//github.com/js-joda/js-joda/tree/master/packages/timezone) |
+| `@js-joda/locale` | Implementation of locale specific functionality for js-joda, especially for formatting and parsing locale specific dates | [/packages/locale](//github.com/js-joda/js-joda/tree/master/packages/locale) |
+| `@js-joda/extra` | Implementation of the ThreeTen-Extra Classes and API |[/packages/extra](//github.com/js-joda/js-joda/tree/master/packages/extra) |
+
+The [@js-joda/examples](//github.com/js-joda/js-joda/tree/master/packages/examples) package is for testing the different build artifacts in different context, like webpack, browser node, etc.
+
 ## Documentation
 
 - [js-joda Quick start guide](//js-joda.github.io/js-joda/manual/getting-started.html) Quick start guide and examples
 - [API](//js-joda.github.io/js-joda/identifiers.html) ESDoc generated API documentation
+
+## Contributing
+
+Contributions are always welcome. Before contributing please read the [code of conduct](http://contributor-covenant.org/version/1/4/) &
+search the issue tracker. We use GitHub issues. Your issue may have already been discussed or fixed. To contribute, fork js-joda, commit your changes, & send a pull request.
+
+By contributing to js-joda, you agree that your contributions will be licensed under its BSD license.
+
+Note that only pull requests and issues that match the threeten backport API will be considered. Additional requested features will be rejected.
+
+## License
+
+- `js-joda` is released under the [BSD 3-clause license](//github.com/js-joda/js-joda/blob/master/LICENSE).
+
+- `js-joda` uses the ThreeTen-Backport implementation (http://www.threeten.org/threetenbp/) as a reference base for implementation. This allows us to release js-joda under the BSD License while the OpenJDK java.time implementation is under GNU GPL+linking exception. The API of the ThreeTen-Backport is mostly identical to the official Java SE 8 API from the view of our JavaScript port.
+
+- Our implementation reference base ThreeTen-Backport (http://www.threeten.org/threetenbp/) is also released under the BSD 3-clause license
+
+- `OpenJDK` is under GNU GPL+linking exception.
+
+- The author of `Joda-Time` and the lead architect of the JSR-310 is Stephen Colebourne.
+
+The API of this project (as far as possible with JavaScript), a lot of implementation details and documentation
+are just copied but never equalled.
 
 ## Roadmap
 
@@ -125,29 +160,3 @@ see the plugin [@js-joda/locale](//github.com/js-joda/js-joda/tree/master/packag
 - Reduce library size by removing redundant code, especially by refactoring code for formatting/ parsing dates.
 - Increase test coverage (ongoing task)
 - Cleanup documentation (ongoing task)
-
-## Contributing
-
-Contributions are always welcome. Before contributing please read the [code of conduct](http://contributor-covenant.org/version/1/4/) &
-search the issue tracker. We use GitHub issues. Your issue may have already been discussed or fixed. To contribute, fork js-joda, commit your changes, & send a pull request.
-
-By contributing to js-joda, you agree that your contributions will be licensed under its BSD license.
-
-Note that only pull requests and issues that match the threeten backport API will be considered. Additional requested features will be rejected.
-
-## License
-
-- `Joda-Time` is the base for JSR-310 that became part of Java SE 8 in the java.time package. JSR-310 is a new implementation with an API 'inspired by Joda-Time' but improves on some design flaws (see http://blog.joda.org/2009/11/why-jsr-310-isn-joda-time_4941.html) `Joda-Time` is under Apache 2.0 licence.
-
-`js-joda` uses the ThreeTen-Backport implementation (http://www.threeten.org/threetenbp/) as a reference base for implementation. This allows us to release js-joda under the BSD License while the OpenJDK java.time implementation is under GNU GPL+linking exception. The API of the ThreeTen-Backport is mostly identical to the official Java SE 8 API from the view of our JavaScript port.
-
-- `js-joda` is released under the [BSD 3-clause license](//github.com/js-joda/js-joda/blob/master/LICENSE).
-
-- Our implementation reference base ThreeTen-Backport (http://www.threeten.org/threetenbp/) is also released under the BSD 3-clause license
-
-- `OpenJDK` is under GNU GPL+linking exception.
-
-- The author of `Joda-Time` and the lead architect of the JSR-310 is Stephen Colebourne.
-
-The API of this project (as far as possible with JavaScript), a lot of implementation details and documentation
-are just copied but never equalled.
