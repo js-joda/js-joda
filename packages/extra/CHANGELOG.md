@@ -3,6 +3,8 @@
 
 ### next
 
+### 0.5.0
+
 * Upgrade dependencies #555 by @pithu
 * Change @babel/preset-env targets, fix IE11 issues #555 by @pithu
 
