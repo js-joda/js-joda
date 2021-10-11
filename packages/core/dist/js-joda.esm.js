@@ -1,4 +1,4 @@
-//! @version @js-joda/core - 4.2.0
+//! @version @js-joda/core - 4.2.1
 //! @copyright (c) 2015-present, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -6768,22 +6768,22 @@ var DateTimeFormatterBuilder = function () {
   }, {
     key: "appendZoneText",
     value: function appendZoneText() {
-      throw new IllegalArgumentException('Pattern using (localized) text not implemented, use js-joda-locale plugin!');
+      throw new IllegalArgumentException('Pattern using (localized) text not implemented, use @js-joda/locale plugin!');
     }
   }, {
     key: "appendText",
     value: function appendText() {
-      throw new IllegalArgumentException('Pattern using (localized) text not implemented, use js-joda-locale plugin!');
+      throw new IllegalArgumentException('Pattern using (localized) text not implemented, use @js-joda/locale plugin!');
     }
   }, {
     key: "appendLocalizedOffset",
     value: function appendLocalizedOffset() {
-      throw new IllegalArgumentException('Pattern using (localized) text not implemented, use js-joda-locale plugin!');
+      throw new IllegalArgumentException('Pattern using (localized) text not implemented, use @js-joda/locale plugin!');
     }
   }, {
     key: "appendWeekField",
     value: function appendWeekField() {
-      throw new IllegalArgumentException('Pattern using (localized) text not implemented, use js-joda-locale plugin!');
+      throw new IllegalArgumentException('Pattern using (localized) text not implemented, use @js-joda/locale plugin!');
     }
   }, {
     key: "_parsePattern",

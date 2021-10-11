@@ -27,6 +27,10 @@ export namespace Locale {
 import * as core from '@js-joda/core';
 
 declare module '@js-joda/core' {
+    namespace DateTimeFormatter {
+        export const RFC_1123_DATE_TIME: DateTimeFormatter;
+    }
+
     export interface DateTimeFormatter {
         withLocale(locale: Locale): DateTimeFormatter;
         locale(): Locale | null;
