@@ -3,7 +3,7 @@ import {
   LocalDate,
   DateTimeFormatterBuilder,
   ChronoField,
-  TextStyle
+  TextStyle,
 } from '@js-joda/core';
 import { Locale } from '../..';
 
@@ -23,6 +23,8 @@ function test_DateTimeFormatter() {
 
   expectType<string>(LocalDate.now().format(formatter));
   expectType<Locale | null>(formatter.locale());
+
+  expectType<DateTimeFormatter>(DateTimeFormatter.RFC_1123_DATE_TIME);
 }
 
 function test_DateTimeFormatterBuilder() {
