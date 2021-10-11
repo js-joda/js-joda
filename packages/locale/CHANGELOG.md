@@ -3,6 +3,10 @@
 
 ### next (upcoming)
 
+### 4.2.1
+
+* [#560](https://github.com/js-joda/js-joda/pull/560) Add RFC_1123_DATE_TIME to locale ts definition ([@pithu](https://github.com/pithu))
+
 ### 4.2.0
 
 * Upgrade dependencies #555 by @pithu

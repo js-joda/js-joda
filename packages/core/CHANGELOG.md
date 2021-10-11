@@ -3,6 +3,10 @@ Changelog
 
 ### next (upcoming)
 
+### 4.2.1
+
+* [#559](https://github.com/js-joda/js-joda/pull/559) Fix references to deprecated single repos ([@pithu](https://github.com/pithu))
+
 ### 4.2.0
 
 * Upgrade dependencies #555 by @pithu
