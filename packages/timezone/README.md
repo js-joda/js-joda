@@ -53,8 +53,8 @@ Install joda using npm
 
 ### Browser
 
-    <script src="../dist/js-joda.js"></script>
-    <script src="../dist/js-joda-timezone.js"></script>
+    <script src="./packages/core/dist/js-joda.js"></script>
+    <script src="./packages/timezone/dist/js-joda-timezone.js"></script>
     <script>
         // copy all js-joda classes to the global scope
         for(let key in JSJoda) { this[key] = JSJoda[key]; }
@@ -76,7 +76,7 @@ Install joda using npm
     </script>
 
 ## Reducing js-joda-timezone file size
-If you don't need all the historical data that js-joda-timezone provides, you can instead use one of the reduced files ize builds:
+If you don't need all the historical data that @js-joda/timezone provides, you can instead use one of the reduced files ize builds:
 
 * `js-joda-timezone-10-year-range.js` covers +- five years from the current version's release
 * `js-joda-timezone-1970-2030.js` covers from 1970 to 2030
@@ -84,7 +84,7 @@ If you don't need all the historical data that js-joda-timezone provides, you ca
 
 To use one of these, just change your import path to the following format:
 
-    import 'js-joda-timezone/dist/js-joda-timezone-1970-2030'
+    import '@js-joda/timezone/dist/js-joda-timezone-1970-2030'
 
 ## Implementation details
 
@@ -93,7 +93,7 @@ To use one of these, just change your import path to the following format:
 
 ## License
 
-* js-joda-timezone is released under the [BSD 3-clause license](LICENSE):
+* @js-joda/timezone is released under the [BSD 3-clause license](LICENSE):
 
 * The author of joda time and the lead architect of the JSR-310 is Stephen Colebourne.
 

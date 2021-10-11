@@ -19,10 +19,10 @@ d.format(DateTimeFormatter.ofPattern('HH:mm')) // 12:34
 Non-numeric date and time formats need to know what language to use, for things like names of months and days of the week. For example, the format `eeee (d MMMM)` might return `Saturday (28 April)` in English, and `samedi (28 avril)` in French. If you try to use a locale-dependent format pattern without specifying the locale, you'll get this error message: 
 
 ```
-ERROR: Pattern using (localized) text not implemented, use js-joda-locale plugin!
+ERROR: Pattern using (localized) text not implemented, use @js-joda/locale plugin!
 ```
 
-To specify a locale, you'll need to import the [`js-joda-timezone`](/js-joda/js-joda-timezone) and [`js-joda-locale`](/js-joda/js-joda-locale) plugins. The simplest way to use `js-joda-locale` is to install one of the locale-specific builds from npm:
+To specify a locale, you'll need to import the [`@js-joda/timezone`](//github.com/js-joda/js-joda/tree/master/packages/timezone) and [`@js-joda/locale`](//github.com/js-joda/js-joda/tree/master/packages/locale) plugins. The simplest way to use `@js-joda/locale` is to install one of the locale-specific builds from npm:
 
 - [@js-joda/locale_de](https://www.npmjs.com/package/@js-joda/locale_de)
 - [@js-joda/locale_de-de](https://www.npmjs.com/package/@js-joda/locale_de-de)
@@ -38,7 +38,7 @@ To specify a locale, you'll need to import the [`js-joda-timezone`](/js-joda/js-
 You can then use localized format strings as follows.
 
 ```javascript
-import 'js-joda-timezone' // Just needs to be imported; registers itself automatically
+import '@js-joda/timezone' // Just needs to be imported; registers itself automatically
 import { Locale } from '@js-joda/locale_fr' // Get `Locale` from the prebuilt package of your choice
 import { DateTimeFormatter, LocalDateTime } from 'js-joda'
 

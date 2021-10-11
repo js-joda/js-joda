@@ -174,8 +174,8 @@ ZonedDateTime.now()
 <li>In the <code>Africa/Lagos</code> <em>time zone</em>, on the other hand, the <em>time offset</em> is <code>UTC+1</code> all year round.</li>
 </ul>
 <p>Calculations that might span time zones or daylight savings transitions need to reference the time zone, not just the offset.</p>
-<p>The <a href="https://github.com/js-joda/js-joda-timezone">js-joda-timezone</a> package provides bindings to the the <a href="https://www.iana.org/time-zones">IANA tz database</a>, making <code>joda-js</code>&apos;s calculations time zone aware. The <code>tz</code> database uses zone names like <code>Africa/Bujumbura</code>, <code>America/New_York</code>, and <code>Europe/Lisbon</code> (see the <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">full list</a>).</p>
-<p>To specify time zones using these names, you just need to <code>require</code> <a href="https://github.com/js-joda/js-joda-timezone">js-joda-timezone</a>.</p>
+<p>The <a href="//github.com/js-joda/js-joda/tree/master/packages/timezone">@js-joda/timezone</a> package provides bindings to the the <a href="https://www.iana.org/time-zones">IANA tz database</a>, making <code>joda-js</code>&apos;s calculations time zone aware. The <code>tz</code> database uses zone names like <code>Africa/Bujumbura</code>, <code>America/New_York</code>, and <code>Europe/Lisbon</code> (see the <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">full list</a>).</p>
+<p>To specify time zones using these names, you just need to <code>require</code> <a href="//github.com/js-joda/js-joda/tree/master/packages/timezone">@js-joda/timezone</a>.</p>
 <pre><code class="lang-javascript"><code class="source-code prettyprint">var jsJoda = require(&quot;@js-joda/core&quot;);
 require(&quot;@js-joda/timezone&quot;);
 
@@ -190,7 +190,7 @@ ZonedDateTime.now(ZoneOffset.UTC).toString(); // e.g. 2016-03-18T11:38:23.561Z
 // get now with a fixed offset time zone
 ZonedDateTime.now(ZoneId.of(&quot;UTC-05:00&quot;)).toString(); // e.g. 2016-03-18T06:38:23.561-05:00[UTC-05:00]
 
-// get now with a ZoneRegion (requires `js-joda-timezone`)
+// get now with a ZoneRegion (requires `@js-joda/timezone`)
 ZonedDateTime.now(ZoneId.of(&quot;Europe/Paris&quot;)).toString(); // e.g. 2017-02-04T17:01:15.846+01:00[Europe/Paris]
 
 // parse a date time with a time zone ISO String
@@ -200,7 +200,7 @@ ZonedDateTime.parse(&quot;2016-03-18T11:38:23.561Z&quot;);
 ZonedDateTime.parse(&quot;2016-03-18T06:38:23.561-05:00[UTC-05:00]&quot;);
 ZonedDateTime.parse(&quot;2017-02-04T17:01:15.846+01:00[Europe/Paris]&quot;);
 
-// create from a LocalDate(Time) (requires `js-joda-timezone`)
+// create from a LocalDate(Time) (requires `@js-joda/timezone`)
 LocalDate.parse(&quot;2012-06-06&quot;)
   .atStartOfDay()
   .atZone(ZoneId.of(&quot;Europe/Paris&quot;)); // 2012-06-06T00:00+02:00[Europe/Paris]
@@ -218,7 +218,7 @@ ZonedDateTime.of(
 ZonedDateTime.ofInstant(Instant.now(), ZoneId.SYSTEM); // current system time</code>
 </code></pre>
 <h3 id="switch-time-zones">Switch time zones</h3><blockquote>
-<p>These examples require <code>js-joda-timezone</code>.</p>
+<p>These examples require <code>@js-joda/timezone</code>.</p>
 </blockquote>
 <pre><code class="lang-javascript"><code class="source-code prettyprint">var d = LocalDate.of(2016, 3, 18);
 var zdt = d.atTime(LocalTime.NOON).atZone(ZoneId.of(&quot;America/New_York&quot;)); //2016-03-18T12:00-04:00[America/New_York]

@@ -317,7 +317,7 @@ Resolve those conflicts by using the 'public shorthand' methods, like instead of
 
 #### Add ZoneRulesProvider stub
 
-Add the ZoneRulesProvider. This should be the last step to enable js-joda for an external js-joda-timezone plugin.
+Add the ZoneRulesProvider. This should be the last step to enable js-joda for an external @js-joda/timezone plugin.
 
 #### Provide a way to extend js-joda
 
