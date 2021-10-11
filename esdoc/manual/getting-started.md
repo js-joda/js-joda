@@ -32,6 +32,10 @@ Then add it as a script tag to your page
 </script>
 ```
 
-### JSFiddle
+### Fiddle around
 
-Fiddle around with jsjoda, find a simple example setup at [https://jsfiddle.net/shto0ze6/](https://jsfiddle.net/shto0ze6/)
+Fiddle around with js-joda, here on this page in the browser developer console, 
+the latest js-joda code of all packages is always injected into this documentation.
+
+Or find a simple example setup at JSFiddle [https://jsfiddle.net/shto0ze6/](https://jsfiddle.net/shto0ze6/),
+but don't forget to update the cdnjs resources to the desired versions. 
