@@ -1,6 +1,9 @@
 {
   "name": "@js-joda/root",
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/js-joda/js-joda.git"
+  },
   "scripts": {
     "version": "npm run build-esdoc",
     "build-esdoc": "./node_modules/.bin/esdoc -c esdoc.json",
@@ -35,6 +38,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^4.0.2",
     "lerna": "^4.0.0",
+    "lerna-changelog": "^2.1.0",
     "markdown-toc": "^1.2.0",
     "mocha": "^6.2.2",
     "moment-timezone": "^0.5.27",
