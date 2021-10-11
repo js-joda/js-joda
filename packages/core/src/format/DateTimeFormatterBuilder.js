@@ -813,19 +813,19 @@ export class DateTimeFormatterBuilder {
     // empty implementations of locale functionality, be implemented/overridden by js-joda-locale
 
     appendZoneText() {
-        throw new IllegalArgumentException('Pattern using (localized) text not implemented, use js-joda-locale plugin!');
+        throw new IllegalArgumentException('Pattern using (localized) text not implemented, use @js-joda/locale plugin!');
     }
 
     appendText() {
-        throw new IllegalArgumentException('Pattern using (localized) text not implemented, use js-joda-locale plugin!');
+        throw new IllegalArgumentException('Pattern using (localized) text not implemented, use @js-joda/locale plugin!');
     }
 
     appendLocalizedOffset() {
-        throw new IllegalArgumentException('Pattern using (localized) text not implemented, use js-joda-locale plugin!');
+        throw new IllegalArgumentException('Pattern using (localized) text not implemented, use @js-joda/locale plugin!');
     }
 
     appendWeekField() {
-        throw new IllegalArgumentException('Pattern using (localized) text not implemented, use js-joda-locale plugin!');
+        throw new IllegalArgumentException('Pattern using (localized) text not implemented, use @js-joda/locale plugin!');
     }
 
     //-----------------------------------------------------------------------

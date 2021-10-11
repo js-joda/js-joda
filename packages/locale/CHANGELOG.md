@@ -65,7 +65,7 @@ and some added prebuilt Locale packages for browser usage.
 introduced new plugin concept
  * Hide `use(plug)` concept from public api.
    The function for extending js-joda is not exported anymore.
-   The code for extending js-joda `use(plug)` is not required anymore, because js-joda-locale automaticaly extends
+   The code for extending js-joda `use(plug)` is not required anymore, because @js-joda/locale automaticaly extends
    js-joda when imported.
    However, using `Locale` now requires extracting it from the `@js-joda/locale` module instead of `js-joda`
 
@@ -73,7 +73,7 @@ introduced new plugin concept
 
 * add possibility to publish locale specific packages (e.g. @js-joda/locale_de, @js-joda/locale_en-US, ...)
 
-* add prebuilt packages to main js-joda-locale package (e.g. @js-joda/locale/dist/prebuilt/de/js-joda-locale, ...)
+* add prebuilt packages to main @js-joda/locale package (e.g. @js-joda/locale/dist/prebuilt/de/js-joda-locale, ...)
 
 ### 1.0.0
 

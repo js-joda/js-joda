@@ -61,7 +61,7 @@ The cldr data is a peer dependency of this package, meaning it must be provided/
 Since the complete cldr-data package can be quite large, the examples and documentation below show ways to dynamically
 load or reduce the amount of data needed.
 
-The implementation of `@js-joda/locale` also requires `js-joda-timezone` package e.g. to parse and output timezone names and offsets
+The implementation of `@js-joda/locale` also requires `@js-joda/timezone` package e.g. to parse and output timezone names and offsets
 
 ### Node
 
@@ -75,13 +75,13 @@ Install joda using npm
     npm install @js-joda/locale
 ```
 
-To enable js-joda-locale you will only need to require it, requiring it automatically registers the locale extensions in the base `js-joda`
+To enable @js-joda/locale you will only need to require it, requiring it automatically registers the locale extensions in the base `js-joda`
 Note: the `Locale` class is exported by `@js-joda/locale` so in order to use it, you will need to extract it from there.
 
 ```javascript
 require('@js-joda/locale_<locale>')
 ```
-since `js-joda-locale` requires `js-joda-timezone` it will also need to be provided, as shown 
+since `@js-joda/locale` requires `@js-joda/timezone` it will also need to be provided, as shown 
 in the following examples
 
 ### es5
@@ -152,7 +152,7 @@ In `package.json` file define which parts of cldr-data to download and install
 ...
 ```
 (data-coverage `core` only downloads data for the most popular languages / locales, while the urls-filter defines 
-which parts of cldr-data are required for `js-joda-locale` to work)
+which parts of cldr-data are required for `@js-joda/locale` to work)
 
 In e.g. webpack.config.js, define which parts/locales of the cldr-data files should end up in the final package
 
@@ -180,7 +180,7 @@ or (as we do for our prebuilt packages) use the CldrDataIgnorePlugin, provided i
 
 ```
 where modulesDir is the absolute path to `node_modules` and `locales` is an array of locales to use as they can be defined 
-for the prebuilt packages. This will only load the absolutely required files for js-joda-locale, it is what we use internally
+for the prebuilt packages. This will only load the absolutely required files for @js-joda/locale, it is what we use internally
 for the prebuilt packages and to build packages for our karma tests as well.
 
 Depending on your usecase it might also be necessary to define a  "faked" cldr-data module that loads 
@@ -197,7 +197,7 @@ cldr-data load uses modules not available in browser (e.g. `fs`)
 
 ``` 
 
-These should be the minimum required parts for js-joda-locale 
+These should be the minimum required parts for @js-joda/locale 
 
 see the [karma.conf.js](karma.conf.js)
 
@@ -225,10 +225,10 @@ Week Information
 - `c` for localized day-of-week
 
 some of these are only partially localized, e.g. `Q` only if three or more `Q` are used, one or two `Q` also 
-work with plain `js-joda` without using `js-joda-locale`
+work with plain `@js-joda/core` without using `@js-joda/locale`
 
 ## License
 
-* js-joda-locale is released under the [BSD 3-clause license](LICENSE)
+* @js-joda/locale is released under the [BSD 3-clause license](LICENSE)
 * The author of joda time and the lead architect of the JSR-310 is Stephen Colebourne.
 

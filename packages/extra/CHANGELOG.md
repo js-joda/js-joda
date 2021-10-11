@@ -25,7 +25,7 @@
 #### public api
 
 * hide `use(plug)` from public api, that is done automatically from now on.
-* Interval must be imported from js-joda-extra, its not added to js-joda anymore. 
+* Interval must be imported from @js-joda/extra, it's not added to js-joda anymore. 
 
 ### 0.1.1
 
@@ -40,7 +40,7 @@
 
 ### 0.0.3
 
-* add and use babel-plugin-add-module-exports to get rid of having to use `.default` when `.use`ing js-joda-extra
+* add and use babel-plugin-add-module-exports to get rid of having to use `.default` when `.use`ing @js-joda/extra
 
 ### 0.0.2
 

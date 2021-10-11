@@ -293,7 +293,7 @@ are just copied but never equalled.</p>
 <li>Add IANA timezone database support to js-joda. Implement handling of daylight saving transitions, mainly in <code>ZonedDateTime</code>.</li>
 <li>For access to the IANA timezone database, the plugin <a href="//github.com/js-joda/js-joda/tree/master/packages/timezone">@js-joda/timezone</a> is required. It provides an implementation of the <a href="//js-joda.github.io/js-joda/class/packages/core/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a> and contains the iana timezone database.</li>
 </ul>
-<h3 id="milestone-3--locale-support--reached-with-v2-0-0-of-js-joda-locale-">Milestone 3: Locale support (reached with v2.0.0 of js-joda-locale)</h3><ul>
+<h3 id="milestone-3--locale-support--reached-with-v2-0-0-of--js-joda-locale-">Milestone 3: Locale support (reached with v2.0.0 of @js-joda/locale)</h3><ul>
 <li>Add locale support.</li>
 <li>Extend pattern parser/ formatter for text with locale support.</li>
 </ul>
@@ -904,7 +904,7 @@ ZonedDateTime.now()
 </code></pre><h3>Working with time zones</h3><p>A <strong>time zone</strong> and a <strong>time offset</strong> are <a href="https://en.wikipedia.org/wiki/UTC_offset#Time_zones_and_time_offsets">not the same thing</a>. Some timezones change from standard time to <a href="https://en.wikipedia.org/wiki/Daylight_saving_time">daylight savings time</a> and back every year:</p><ul>
 <li>In the <code>Europe/Berlin</code> <em>time zone</em>, the <em>time offset</em> is <code>UTC+2</code> during the summer, and <code>UTC+1</code> during the rest of the year.</li>
 <li>In the <code>Africa/Lagos</code> <em>time zone</em>, on the other hand, the <em>time offset</em> is <code>UTC+1</code> all year round.</li>
-</ul><p>Calculations that might span time zones or daylight savings transitions need to reference the time zone, not just the offset.</p><p>The <a href="https://github.com/js-joda/js-joda-timezone">js-joda-timezone</a> package provides bindings to the the <a href="https://www.iana.org/time-zones">IANA tz database</a>, making <code>joda-js</code>&apos;s calculations time zone aware. The <code>tz</code> database uses zone names like <code>Africa/Bujumbura</code>, <code>America/New_York</code>, and <code>Europe/Lisbon</code> (see the <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">full list</a>).</p><p>To specify time zones using these names, you just need to <code>require</code> <a href="https://github.com/js-joda/js-joda-timezone">js-joda-timezone</a>.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">var jsJoda = require(&quot;@js-joda/core&quot;);
+</ul><p>Calculations that might span time zones or daylight savings transitions need to reference the time zone, not just the offset.</p><p>The <a href="//github.com/js-joda/js-joda/tree/master/packages/timezone">@js-joda/timezone</a> package provides bindings to the the <a href="https://www.iana.org/time-zones">IANA tz database</a>, making <code>joda-js</code>&apos;s calculations time zone aware. The <code>tz</code> database uses zone names like <code>Africa/Bujumbura</code>, <code>America/New_York</code>, and <code>Europe/Lisbon</code> (see the <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">full list</a>).</p><p>To specify time zones using these names, you just need to <code>require</code> <a href="//github.com/js-joda/js-joda/tree/master/packages/timezone">@js-joda/timezone</a>.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">var jsJoda = require(&quot;@js-joda/core&quot;);
 require(&quot;@js-joda/timezone&quot;);
 
 var zdt = ZonedDateTime.now(ZoneId.of(&quot;Europe/Paris&quot;));</code>
@@ -917,7 +917,7 @@ ZonedDateTime.now(ZoneOffset.UTC).toString(); // e.g. 2016-03-18T11:38:23.561Z
 // get now with a fixed offset time zone
 ZonedDateTime.now(ZoneId.of(&quot;UTC-05:00&quot;)).toString(); // e.g. 2016-03-18T06:38:23.561-05:00[UTC-05:00]
 
-// get now with a ZoneRegion (requires `js-joda-timezone`)
+// get now with a ZoneRegion (requires `@js-joda/timezone`)
 ZonedDateTime.now(ZoneId.of(&quot;Europe/Paris&quot;)).toString(); // e.g. 2017-02-04T17:01:15.846+01:00[Europe/Paris]
 
 // parse a date time with a time zone ISO String
@@ -927,7 +927,7 @@ ZonedDateTime.parse(&quot;2016-03-18T11:38:23.561Z&quot;);
 ZonedDateTime.parse(&quot;2016-03-18T06:38:23.561-05:00[UTC-05:00]&quot;);
 ZonedDateTime.parse(&quot;2017-02-04T17:01:15.846+01:00[Europe/Paris]&quot;);
 
-// create from a LocalDate(Time) (requires `js-joda-timezone`)
+// create from a LocalDate(Time) (requires `@js-joda/timezone`)
 LocalDate.parse(&quot;2012-06-06&quot;)
   .atStartOfDay()
   .atZone(ZoneId.of(&quot;Europe/Paris&quot;)); // 2012-06-06T00:00+02:00[Europe/Paris]
@@ -944,7 +944,7 @@ ZonedDateTime.of(
 // create from an Instant
 ZonedDateTime.ofInstant(Instant.now(), ZoneId.SYSTEM); // current system time</code>
 </code></pre><h3>Switch time zones</h3><blockquote>
-<p>These examples require <code>js-joda-timezone</code>.</p>
+<p>These examples require <code>@js-joda/timezone</code>.</p>
 </blockquote><pre><code class="lang-javascript"><code class="source-code prettyprint">var d = LocalDate.of(2016, 3, 18);
 var zdt = d.atTime(LocalTime.NOON).atZone(ZoneId.of(&quot;America/New_York&quot;)); //2016-03-18T12:00-04:00[America/New_York]
 
@@ -1035,8 +1035,8 @@ Duration.between(dt1, dt1.plusHours(10)).toString(); // &apos;PT10H&apos;</code>
 
 d.format(DateTimeFormatter.ofPattern(&apos;M/d/yyyy&apos;)) // 4/28/2018
 d.format(DateTimeFormatter.ofPattern(&apos;HH:mm&apos;)) // 12:34</code>
-</code></pre><h3>Formatting with locales</h3><p>Non-numeric date and time formats need to know what language to use, for things like names of months and days of the week. For example, the format <code>eeee (d MMMM)</code> might return <code>Saturday (28 April)</code> in English, and <code>samedi (28 avril)</code> in French. If you try to use a locale-dependent format pattern without specifying the locale, you&apos;ll get this error message: </p><pre><code><code class="source-code prettyprint">ERROR: Pattern using (localized) text not implemented, use js-joda-locale plugin!</code>
-</code></pre><p>To specify a locale, you&apos;ll need to import the <a href="/js-joda/js-joda-timezone"><code>js-joda-timezone</code></a> and <a href="/js-joda/js-joda-locale"><code>js-joda-locale</code></a> plugins. The simplest way to use <code>js-joda-locale</code> is to install one of the locale-specific builds from npm:</p><ul>
+</code></pre><h3>Formatting with locales</h3><p>Non-numeric date and time formats need to know what language to use, for things like names of months and days of the week. For example, the format <code>eeee (d MMMM)</code> might return <code>Saturday (28 April)</code> in English, and <code>samedi (28 avril)</code> in French. If you try to use a locale-dependent format pattern without specifying the locale, you&apos;ll get this error message: </p><pre><code><code class="source-code prettyprint">ERROR: Pattern using (localized) text not implemented, use @js-joda/locale plugin!</code>
+</code></pre><p>To specify a locale, you&apos;ll need to import the <a href="//github.com/js-joda/js-joda/tree/master/packages/timezone"><code>@js-joda/timezone</code></a> and <a href="//github.com/js-joda/js-joda/tree/master/packages/locale"><code>@js-joda/locale</code></a> plugins. The simplest way to use <code>@js-joda/locale</code> is to install one of the locale-specific builds from npm:</p><ul>
 <li><a href="https://www.npmjs.com/package/@js-joda/locale_de">@js-joda/locale_de</a></li>
 <li><a href="https://www.npmjs.com/package/@js-joda/locale_de-de">@js-joda/locale_de-de</a></li>
 <li><a href="https://www.npmjs.com/package/@js-joda/locale_en">@js-joda/locale_en</a></li>
@@ -1047,7 +1047,7 @@ d.format(DateTimeFormatter.ofPattern(&apos;HH:mm&apos;)) // 12:34</code>
 <li><a href="https://www.npmjs.com/package/@js-joda/locale_it">@js-joda/locale_it</a></li>
 <li><a href="https://www.npmjs.com/package/@js-joda/locale_it-it">@js-joda/locale_it-it</a></li>
 <li><a href="https://www.npmjs.com/package/@js-joda/locale_zh">@js-joda/locale_zh</a></li>
-</ul><p>You can then use localized format strings as follows.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">import &apos;js-joda-timezone&apos; // Just needs to be imported; registers itself automatically
+</ul><p>You can then use localized format strings as follows.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">import &apos;@js-joda/timezone&apos; // Just needs to be imported; registers itself automatically
 import { Locale } from &apos;@js-joda/locale_fr&apos; // Get `Locale` from the prebuilt package of your choice
 import { DateTimeFormatter, LocalDateTime } from &apos;js-joda&apos;
 
