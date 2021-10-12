@@ -3,6 +3,10 @@ Changelog
 
 ### next
 
+### 2.8.0
+
+* [#561](https://github.com/js-joda/js-joda/pull/561) Update @js-joda/timezone to tzdb 2021c ([@pithu](https://github.com/pithu))
+
 ### 2.7.0
 
 * Upgrade dependencies #555 by @pithu
