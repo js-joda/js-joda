@@ -119,11 +119,13 @@ describe('js-joda Temporal', () => {
     });
 
     describe('coercing to primitive', () => {
-        it('should throw when using Number', () => {
+        const itNotInEs5 = typeof Symbol === 'undefined' ? it.skip : it;
+
+        itNotInEs5('should throw when using Number', () => {
             expect(() => Number(new BasicYearMock(1))).to.throw(TypeError);
         });
 
-        it('should not throw when using String', () => {
+        itNotInEs5('should not throw when using String', () => {
             expect(() => String(new BasicYearMock(1))).not.to.throw(TypeError);
         });
     });

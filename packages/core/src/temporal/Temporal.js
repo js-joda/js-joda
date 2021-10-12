@@ -352,7 +352,7 @@ export class Temporal extends TemporalAccessor {
     }
 }
 
-if (Symbol && Symbol.toPrimitive) {
+if (typeof Symbol !== 'undefined' && Symbol.toPrimitive) {
     Temporal.prototype[Symbol.toPrimitive] = function (hint) {
         // hint could be 'number', 'string' or 'default'. Only 'number'
         // should throw and 'default' is treated as 'string'.
@@ -361,11 +361,9 @@ if (Symbol && Symbol.toPrimitive) {
         }
 
         throw new TypeError(
-            'Conversion to a primitive type is not allowed. ' +
-            'If you are trying to compare using operators `<`, `=`, etc., ' +
-            'please use the methods `equals()`, `compareTo()` or one that' +
-            'is more suitable for your use case. If you are trying to convert ' +
-            'to string use the `toString()` or `format()` methods instead.'
+            'A conversion from Temporal to a number value is not allowed. ' +
+            'To compare use the methods .equals(), .compareTo(), .isBefore() ' +
+            'or one that is more suitable to your use case.'
         );
     };
 }

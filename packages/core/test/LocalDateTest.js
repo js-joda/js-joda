@@ -246,7 +246,9 @@ describe('Using a LocalDate instance', () => {
     });
 
     describe('when coercing to a primitive', () => {
-        it('should throw an exception if used numerically', () => {
+        const itNotInEs5 = typeof Symbol === 'undefined' ? it.skip : it;
+
+        itNotInEs5('should throw an exception if used numerically', () => {
             const oneDay = LocalDate.now(Clock.systemUTC());
             const otherDay = oneDay.plusDays(1);
 
@@ -255,7 +257,7 @@ describe('Using a LocalDate instance', () => {
             expect(() => oneDay < otherDay).to.throw(TypeError);
         });
 
-        it('should not throw if used in string concatenation', () => {
+        itNotInEs5('should not throw if used in string concatenation', () => {
             const oneDay = LocalDate.now(Clock.systemUTC());
             const otherDay = oneDay.plusDays(1);
 
