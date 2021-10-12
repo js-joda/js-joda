@@ -6,6 +6,16 @@
     "type": "git",
     "url": "https://github.com/js-joda/js-joda.git"
   },
+  "author": "pithu",
+  "contributors": [
+    "pithu",
+    "phueper"
+  ],
+  "homepage": "https://js-joda.github.io/js-joda",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/js-joda/js-joda/issues"
+  },
   "main": "dist/js-joda.js",
   "module": "dist/js-joda.esm.js",
   "typings": "dist/js-joda.d.ts",
@@ -38,8 +48,5 @@
   "nyc": {
     "sourceMap": false,
     "instrument": false
-  },
-  "author": "pithu",
-  "homepage": "https://js-joda.github.io/js-joda",
-  "license": "BSD-3-Clause"
+  }
 }

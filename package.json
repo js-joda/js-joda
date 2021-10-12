@@ -1,8 +1,19 @@
 {
   "name": "@js-joda/root",
+  "description": "a date and time library for javascript",
   "repository": {
     "type": "git",
     "url": "https://github.com/js-joda/js-joda.git"
+  },
+  "author": "pithu",
+  "contributors": [
+    "pithu",
+    "phueper"
+  ],
+  "homepage": "https://js-joda.github.io/js-joda",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/js-joda/js-joda/issues"
   },
   "scripts": {
     "version": "npm run build-esdoc",

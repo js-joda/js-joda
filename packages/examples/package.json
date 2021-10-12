@@ -2,21 +2,25 @@
   "name": "@js-joda/examples",
   "version": "1.1.1",
   "description": "HowTo use js-joda libraries in different environments",
-  "main": "index.js",
-  "scripts": {
-    "test": "./test/run-node-samples.sh"
-  },
-  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/js-joda/js-joda.git"
   },
   "author": "pithu",
+  "contributors": [
+    "pithu",
+    "phueper"
+  ],
+  "homepage": "https://js-joda.github.io/js-joda",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/js-joda/js-joda-examples/issues"
+    "url": "https://github.com/js-joda/js-joda/issues"
   },
-  "homepage": "https://github.com/js-joda/js-joda-examples#readme",
+  "main": "index.js",
+  "scripts": {
+    "test": "./test/run-node-samples.sh"
+  },
+  "private": true,
   "peerDependencies": {
     "@js-joda/core": ">=1.11.0"
   },

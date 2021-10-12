@@ -6,6 +6,16 @@
     "type": "git",
     "url": "https://github.com/js-joda/js-joda.git"
   },
+  "author": "phueper",
+  "contributors": [
+    "pithu",
+    "phueper"
+  ],
+  "homepage": "https://js-joda.github.io/js-joda",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/js-joda/js-joda/issues"
+  },
   "typings": "dist/js-joda-extra.d.ts",
   "main": "dist/js-joda-extra.js",
   "scripts": {
@@ -29,12 +39,6 @@
     "sourceMap": false,
     "instrument": false
   },
-  "author": "phueper",
-  "contributors": [
-    "pithu",
-    "phueper"
-  ],
-  "license": "BSD-3-Clause",
   "peerDependencies": {
     "@js-joda/core": ">=1.11.0"
   },
