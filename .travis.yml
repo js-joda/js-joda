@@ -12,29 +12,10 @@ branches:
 
 install:
   - npm install
-  - npx lerna clean -y
-  - npx lerna link
-  - npx lerna bootstrap --no-ci
 
 script:
     set -evx;
-    npx lerna run --stream build-dist;
-    npx lerna run --stream build-locale-dist;
-    npx lerna run --stream lint;
-    npm run build-esdoc;
-    npx lerna run --stream test;
-    npx lerna run --stream test-ts-definitions;
-    npx lerna run --stream test-coverage;
-    npx lerna run --stream test-saucelabs;
-
-after_success:
-    npm run build-test-coverage-report;
-    cat ./build/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js;
+    npm run foo;
 
 addons:
   sauce_connect: true
-
-notifications:
-  slack:
-    rooms:
-      - js-joda:WtVY1EJYfAiiDW3QMnAWJZe2#travis

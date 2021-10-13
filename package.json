@@ -18,7 +18,8 @@
   "scripts": {
     "version": "npm run build-esdoc",
     "build-esdoc": "./node_modules/.bin/esdoc -c esdoc.json",
-    "build-test-coverage-report": "./build-test-coverage-report.sh"
+    "build-test-coverage-report": "./build-test-coverage-report.sh",
+    "foo": "node test.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.8",
