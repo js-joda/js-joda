@@ -6,9 +6,6 @@ os:
 node_js:
   - "--lts" # use latest stable node version
 
-branches:
-  only:
-    - master
 
 install:
   - npm install
