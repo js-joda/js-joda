@@ -60,7 +60,7 @@ const sauceLabsMetaData = (packageName) => ({
     recordScreenshots: false,
     // don't connect to saucelabs, let sauce-connect start a sauce connect proxy
     startConnect: false,
-    // needed sauce-connect connection to work
+    // needed for sauce-connect connection to work
     tunnelIdentifier: 'github-action-tunnel',
     connectOptions: {
         logfile: 'sauce_connect.log'
