@@ -51,17 +51,17 @@ const sauceLabsMetaData = (packageName) => ({
     testName: `${packageName} karma tests`,
     tags: [
         packageName,
-        `#${process.env.TRAVIS_PULL_REQUEST || 'push-build'}`,
-        `${process.env.TRAVIS_PULL_REQUEST_BRANCH}`,
-        `${process.env.TRAVIS_BRANCH}`,
+        process.env.GITHUB_REF || 'branch unset',
+        process.env.GITHUB_HEAD_REF || 'target branch unset',
+        process.env.GITHUB_ACTOR || 'actor unset',
     ],
-    build: process.env.TRAVIS_BUILD_NUMBER,
+    build: `Build #${process.env.GITHUB_RUN_NUMBER}`,
     recordVideo: false,
     recordScreenshots: false,
-    // don't connect to saucelabs, let travis start a sauce connect proxy
+    // don't connect to saucelabs, let sauce-connect start a sauce connect proxy
     startConnect: false,
-    // needed for travis sauce connect connection to work
-    tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
+    // needed for sauce-connect connection to work
+    tunnelIdentifier: 'github-action-tunnel',
     connectOptions: {
         logfile: 'sauce_connect.log'
     }

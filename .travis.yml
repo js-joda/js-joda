@@ -16,23 +16,20 @@ install:
   - npx lerna link
   - npx lerna bootstrap --no-ci
 
-script:
-    set -evx;
-    npx lerna run --stream build-dist;
-    npx lerna run --stream build-locale-dist;
-    npx lerna run --stream lint;
-    npm run build-esdoc;
-    npx lerna run --stream test;
-    npx lerna run --stream test-ts-definitions;
-    npx lerna run --stream test-coverage;
-    npx lerna run --stream test-saucelabs;
+script: |
+  set -e;
+  npx lerna run --stream build-dist;
+  npx lerna run --stream build-locale-dist;
+  npx lerna run --stream lint;
+  npm run build-esdoc;
+  npx lerna run --stream test;
+  npx lerna run --stream test-ts-definitions;
+  npx lerna run --stream test-coverage;
+  npx lerna run --concurrency 1 --stream test-browser -- -- --browserNoActivityTimeout 20000;
 
 after_success:
-    npm run build-test-coverage-report;
-    cat ./build/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js;
-
-addons:
-  sauce_connect: true
+  npm run build-test-coverage-report;
+  cat ./build/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js;
 
 notifications:
   slack:
