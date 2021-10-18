@@ -41,7 +41,7 @@ jobs:
   dump-env:
     name: Dump environment and context
     runs-on: ubuntu-latest
-    if: ${{ github.event.push.ref_name == 'test-push' }}
+    if: ${{ github.event_name == 'push' }}
     steps:
       - name: dump github context
         env:
