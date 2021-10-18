@@ -14,12 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.push || github.event.pull_request.head.repo.full_name == github.repository
     steps:
-#      - name: dump github context
-#        env:
-#          GITUB_CONTEXT: ${{ toJson(github) }}
-#        run: echo "$GITUB_CONTEXT"
-#      - name: dump default env
-#        run: export
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup node 14
@@ -46,3 +40,15 @@ jobs:
         run: |
           set -e;
           npx lerna run --stream test-saucelabs;
+
+#  dump-env:
+#    name: Dump environment and context
+#    runs-on: ubuntu-latest
+#    if: ${{ false }}
+#    steps:
+#      - name: dump github context
+#        env:
+#          GITUB_CONTEXT: ${{ toJson(github) }}
+#        run: echo "$GITUB_CONTEXT"
+#      - name: dump default env
+#        run: export

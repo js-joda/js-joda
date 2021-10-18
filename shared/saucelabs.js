@@ -51,9 +51,9 @@ const sauceLabsMetaData = (packageName) => ({
     testName: `${packageName} karma tests`,
     tags: [
         packageName,
-        process.env.GITHUB_REF,
-        process.env.GITHUB_HEAD_REF,
-        process.env.GITHUB_ACTOR,
+        process.env.GITHUB_REF || 'branch unset',
+        process.env.GITHUB_HEAD_REF || 'target branch unset',
+        process.env.GITHUB_ACTOR || 'actor unset',
     ],
     build: `Build #${process.env.GITHUB_RUN_NUMBER}`,
     recordVideo: false,
