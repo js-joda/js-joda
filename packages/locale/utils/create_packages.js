@@ -104,7 +104,7 @@ Object.keys(argv.packages).forEach((packageName) => {
         JSON.stringify(packageTemplate, null, 4));
     fs.writeFileSync(path.resolve(packageDir, 'README.md'),
         readmeTemplate.replace(readmeLocaleRegex, argv.packages[packageName].join(',')));
-    fs.copyFileSync(path.resolve(__dirname, '..', 'dist', 'js-joda-locale.d.ts'),
+    fs.copyFileSync(path.resolve(__dirname, '..', 'typings', 'js-joda-locale.d.ts'),
         path.resolve(packageDir, 'dist', 'js-joda-locale.d.ts'));
     const nodeArgs = [
         './utils/build_package.js',

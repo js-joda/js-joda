@@ -17,9 +17,16 @@
     "url": "https://github.com/js-joda/js-joda/issues"
   },
   "main": "dist/js-joda-locale.js",
-  "typings": "dist/js-joda-locale.d.ts",
+  "typings": "typings/js-joda-locale.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "typings",
+    "CHANGELOG.md",
+    "README.md"
+  ],
   "scripts": {
-    "version": "npm run build-locale-dist",
+    "prepublishOnly": "npm run build-locale-dist",
     "test": "npx mocha --timeout 5000 --require @babel/register ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js test/pluginTest_mochaOnly.js",
     "test-coverage": "NODE_ENV=test COVERAGE=1 npx nyc --report-dir=build/coverage --reporter=lcov --reporter html npx mocha --timeout 5000 --require @babel/register --reporter progress ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js",
     "test-browser": "npx karma start --reporters=dots --single-run",

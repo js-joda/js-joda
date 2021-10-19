@@ -1,0 +1,106 @@
+name: js-joda build and test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build-test:
+    name: Build and test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup node 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.OS }}-node-
+      - name: Install and bootstrap
+        run: |
+          npm install;
+          npx lerna clean -y;
+          npx lerna link;
+          npx lerna bootstrap --no-ci;
+      - name: Build
+        run: |
+          set -e;
+          npx lerna run --stream build-dist;
+          npx lerna run --stream build-locale-dist;
+      - name: Test
+        run: |
+          npx lerna run --stream lint;
+          npm run build-esdoc;
+          npx lerna run --stream test;
+          npx lerna run --stream test-ts-definitions;
+          npx lerna run --stream test-coverage;
+          npx lerna run --concurrency 1 --stream test-browser -- -- --browserNoActivityTimeout 20000;
+          npm run build-test-coverage-report;
+      - name: Push coverage to coveralls
+        if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+        run: |
+          cat ./build/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js;
+
+  sauce:
+    name: Saucelabs Tests (non forked pr's only)
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup node 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.OS }}-node-
+      - name: Setup sauce connect
+        uses: saucelabs/sauce-connect-action@v1
+        with:
+          username: ${{ secrets.SAUCE_USERNAME }}
+          accessKey: ${{ secrets.SAUCE_ACCESS_KEY }}
+          tunnelIdentifier: github-action-tunnel
+          scVersion: 4.6.4
+      - name: Install and bootstrap
+        run: |
+          npm install;
+          npx lerna clean -y;
+          npx lerna link;
+          npx lerna bootstrap --no-ci;
+      - name: Build
+        run: |
+          set -e;
+          npx lerna run --stream build-dist;
+          npx lerna run --stream build-locale-dist;
+      - name: karma tests with sauce
+        env:
+          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+          SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+        run: |
+          set -e;
+          npx lerna run --stream test-saucelabs;
+
+#  dump-env:
+#    name: Dump environment and context
+#    runs-on: ubuntu-latest
+#    if: ${{ false }}
+#    steps:
+#      - name: dump github context
+#        env:
+#          GITUB_CONTEXT: ${{ toJson(github) }}
+#        run: echo "$GITUB_CONTEXT"
+#      - name: dump default env
+#        run: export

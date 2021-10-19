@@ -5,7 +5,7 @@ import {
 } from '@js-joda/core'
 import {
   Interval
-} from '../..';
+} from '../../';
 
 // See packages/core/test/typescript_definitions/js-joda-tests.ts for an explanation of these tests.
 

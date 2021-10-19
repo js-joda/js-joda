@@ -1,4 +1,5 @@
 dist/*
 build/*
 tmp/*
+typings/*
 benchmark/node_modules/*

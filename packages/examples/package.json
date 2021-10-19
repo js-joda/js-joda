@@ -24,7 +24,7 @@
   "peerDependencies": {
     "@js-joda/core": ">=1.11.0"
   },
-  "dependencies": {
+  "devDependencies": {
     "@js-joda/core": "^4.2.1",
     "@js-joda/extra": "^0.5.1",
     "@js-joda/locale": "^4.2.1",
