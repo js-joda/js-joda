@@ -44,12 +44,12 @@ jobs:
           npx lerna run --stream test-coverage;
           npx lerna run --concurrency 1 --stream test-browser -- -- --browserNoActivityTimeout 20000;
           npm run build-test-coverage-report;
-      - name: Push coverage to coveralls
+      - name: Push coverage data to coveralls
         if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
-        env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-        run: |
-          cat ./build/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js;
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.github_token }}
+          path-to-lcov: ./build/coverage/lcov.info
 
   sauce:
     name: Saucelabs Tests (non forked pr's only)
