@@ -18,6 +18,28 @@ function test_Locale() {
   expectType<boolean>(locale.equals('also compiles, but probably false'));
 }
 
+function test_Locale_const() {
+  expectType<Locale>(Locale.ENGLISH);
+  expectType<Locale>(Locale.US);
+  expectType<Locale>(Locale.UK);
+  expectType<Locale>(Locale.CANADA);
+  expectType<Locale>(Locale.FRENCH);
+  expectType<Locale>(Locale.FRANCE);
+  expectType<Locale>(Locale.GERMAN);
+  expectType<Locale>(Locale.GERMANY);
+  expectType<Locale>(Locale.KOREAN);
+  expectType<Locale>(Locale.JAPANESE);
+  expectType<Locale>(Locale.JAPAN);
+  expectType<Locale>(Locale.ITALIAN);
+  expectType<Locale>(Locale.ITALY);
+  expectType<Locale>(Locale.CHINESE);
+  expectType<Locale>(Locale.ROMANIAN);
+  expectType<Locale>(Locale.SWEDISH);
+  expectType<Locale>(Locale.SWEDEN);
+  expectType<Locale>(Locale.HINDI);
+  expectType<Locale>(Locale.RUSSIAN);
+}
+
 function test_DateTimeFormatter() {
   const formatter = DateTimeFormatter.ofPattern('MMM').withLocale(Locale.UK);
 
