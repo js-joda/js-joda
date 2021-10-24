@@ -16,6 +16,6 @@ $ git pull
 $ git add . && git reset --hard origin/master # ensure that there are no un-staged or un-commited local changes
 $ lerna run --stream test-ci # verify that the current state of the master branch is green
 # Update and commit CHANGELOG'S manually, 'npx lerna-changelog' can help
-$ lerna version --no-private --no-granular-pathspec [major | minor | patch] 
+$ lerna version --no-private [major | minor | patch] 
 $ lerna publish from-git
 ```
