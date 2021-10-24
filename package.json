@@ -16,9 +16,9 @@
     "url": "https://github.com/js-joda/js-joda/issues"
   },
   "scripts": {
-    "postpublish": "npm run build-esdoc && ./esdoc/git-push-on-change.sh",
+    "postpublish": "npm run build-esdoc && ./shared/git-push-docs-on-change.sh",
     "build-esdoc": "./node_modules/.bin/esdoc -c esdoc.json",
-    "build-test-coverage-report": "./build-test-coverage-report.sh"
+    "build-test-coverage-report": "./shared/build-test-coverage-report.sh"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.8",
@@ -56,7 +56,7 @@
     "mocha": "^6.2.2",
     "moment-timezone": "^0.5.27",
     "npm-check-updates": "^3.2.1",
-    "nyc": "^14.1.1",
+    "nyc": "^15.1.0",
     "requirejs": "^2.3.6",
     "requirejs-json": "0.0.3",
     "requirejs-text": "^2.0.15",
