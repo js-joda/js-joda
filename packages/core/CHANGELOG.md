@@ -3,6 +3,11 @@ Changelog
 
 ### next (upcoming)
 
+### 4.3.0
+
+* [#567](https://github.com/js-joda/js-joda/pull/567) Remove generated distributions files from git ([@pithu](https://github.com/pithu))
+* [#564](https://github.com/js-joda/js-joda/pull/564) Fix travis for PR's from forks ([@pithu](https://github.com/pithu))
+
 ### 4.2.1
 
 * [#559](https://github.com/js-joda/js-joda/pull/559) Fix references to deprecated single repos ([@pithu](https://github.com/pithu))

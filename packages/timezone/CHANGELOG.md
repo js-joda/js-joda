@@ -3,6 +3,11 @@ Changelog
 
 ### next
 
+### 2.9.0
+
+* [#567](https://github.com/js-joda/js-joda/pull/567) Remove generated distributions files from git ([@pithu](https://github.com/pithu))
+* [#564](https://github.com/js-joda/js-joda/pull/564) Fix travis for PR's from forks ([@pithu](https://github.com/pithu))
+
 ### 2.8.0
 
 * [#561](https://github.com/js-joda/js-joda/pull/561) Update @js-joda/timezone to tzdb 2021c ([@pithu](https://github.com/pithu))

@@ -3,6 +3,11 @@
 
 ### next (upcoming)
 
+### 4.3.0
+
+* [#567](https://github.com/js-joda/js-joda/pull/567) Remove generated distributions files from git ([@pithu](https://github.com/pithu))
+* [#564](https://github.com/js-joda/js-joda/pull/564) Fix travis for PR's from forks ([@pithu](https://github.com/pithu))
+
 ### 4.2.1
 
 * [#560](https://github.com/js-joda/js-joda/pull/560) Add RFC_1123_DATE_TIME to locale ts definition ([@pithu](https://github.com/pithu))

@@ -3,6 +3,11 @@
 
 ### next
 
+### 0.6.0
+
+* [#567](https://github.com/js-joda/js-joda/pull/567) Remove generated distributions files from git ([@pithu](https://github.com/pithu))
+* [#564](https://github.com/js-joda/js-joda/pull/564) Fix travis for PR's from forks ([@pithu](https://github.com/pithu))
+
 ### 0.5.0
 
 * Upgrade dependencies #555 by @pithu
