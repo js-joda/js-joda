@@ -1,7 +1,11 @@
 Changelog
 =========
 
-### next
+### next (upcoming)
+
+### 2.10.0
+
+* [#569](https://github.com/js-joda/js-joda/pull/569) tzdb timzone update to 2021e ([@pithu](https://github.com/pithu))
 
 ### 2.9.0
 

@@ -3,6 +3,10 @@
 
 ### next (upcoming)
 
+### 4.4.0
+
+* [#568](https://github.com/js-joda/js-joda/pull/568) Add russian locale prebuilt ([@pithu](https://github.com/pithu))
+
 ### 4.3.0
 
 * [#567](https://github.com/js-joda/js-joda/pull/567) Remove generated distributions files from git ([@pithu](https://github.com/pithu))
