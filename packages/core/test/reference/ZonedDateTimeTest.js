@@ -1652,7 +1652,7 @@ describe('org.threeten.bp.TestZonedDateTime', () => {
 
     describe('toEpochSecond()', () => {
 
-        const diff = isCoverageTestRunner() || isBrowserTestRunner() ? 179 : 7;
+        const diff = isCoverageTestRunner() || isBrowserTestRunner() ? 179 : 49;
         it('test_toEpochSecond_afterEpoch', () => {
             let ldt = LocalDateTime.of(2016, 1, 1, 0, 0).plusHours(1);
             for (let i = 0 + 1451606400; i < 100000 + 1451606400; i+=diff) {
