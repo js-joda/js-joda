@@ -540,7 +540,7 @@
 		"Etc/GMT-0|GMT-0",
 		"Etc/GMT-0|GMT0",
 		"Etc/GMT-0|Greenwich",
-		"Etc/UTC|Etc/UTC",
+		"Etc/UTC|Etc/UCT",
 		"Etc/UTC|Etc/Universal",
 		"Etc/UTC|Etc/Zulu",
 		"Etc/UTC|UCT",
