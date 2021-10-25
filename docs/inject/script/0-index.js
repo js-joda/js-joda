@@ -1,4 +1,4 @@
-//! @version @js-joda/locale - 4.3.0
+//! @version @js-joda/locale - 4.4.0
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -1907,6 +1907,14 @@ function _init() {
   Locale.KOREAN = new Locale('ko');
   Locale.JAPANESE = new Locale('ja', 'JP');
   Locale.JAPAN = new Locale('ja', 'JP', 'ja');
+  Locale.ITALIAN = new Locale('it');
+  Locale.ITALY = new Locale('it', 'IT', 'it');
+  Locale.CHINESE = new Locale('zh');
+  Locale.ROMANIAN = new Locale('ro');
+  Locale.SWEDISH = new Locale('sv');
+  Locale.SWEDEN = new Locale('sv', 'SE', 'sv');
+  Locale.HINDI = new Locale('hi');
+  Locale.RUSSIAN = new Locale('ru');
 }
 
 /***/ }),
