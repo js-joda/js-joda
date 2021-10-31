@@ -167,6 +167,27 @@ describe('js-joda Period', () => {
         });
     });
 
+    describe('when coercing to a primitive', () => {
+        const itNotInEs5 = typeof Symbol === 'undefined' ? it.skip : it;
+
+        itNotInEs5('should throw an exception if used numerically', () => {
+            const per1 = Period.ofDays(1);
+            const per2 = Period.ofMonths(1);
+
+            expect(() => +per1).to.throw(TypeError);
+            expect(() => -per1).to.throw(TypeError);
+            expect(() => per1 < per2).to.throw(TypeError);
+        });
+
+        itNotInEs5('should not throw if used in string concatenation', () => {
+            const per1 = Period.ofDays(1);
+            const per2 = Period.ofMonths(1);
+
+            // eslint-disable-next-line prefer-template
+            expect(() => '' + per1 + per2).not.to.throw(TypeError);
+        });
+    });
+
     function assertPeriod(test, y, mo, d) {
         assertEquals(test.years(), y, 'years');
         assertEquals(test.months(), mo, 'months');

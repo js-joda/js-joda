@@ -361,7 +361,7 @@ if (typeof Symbol !== 'undefined' && Symbol.toPrimitive) {
         }
 
         throw new TypeError(
-            'A conversion from Temporal to a number value is not allowed. ' +
+            'A conversion from Temporal to a number is not allowed. ' +
             'To compare use the methods .equals(), .compareTo(), .isBefore() ' +
             'or one that is more suitable to your use case.'
         );
