@@ -3,6 +3,10 @@ Changelog
 
 ### next (upcoming)
 
+#### 5.0.0 (upcoming)
+
+* [#548](https://github.com/js-joda/js-joda/pull/548) Disallowing implicit conversion of Temporal/TemporalAmount to numeric values ([@InExtremaRes](https://github.com/InExtremaRes))
+
 ### 4.3.0
 
 * [#567](https://github.com/js-joda/js-joda/pull/567) Remove generated distributions files from git ([@pithu](https://github.com/pithu))
