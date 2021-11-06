@@ -245,4 +245,24 @@ describe('Using a LocalDate instance', () => {
         });
     });
 
+    describe('when coercing to a primitive', () => {
+        const itNotInEs5 = typeof Symbol === 'undefined' ? it.skip : it;
+
+        itNotInEs5('should throw an exception if used numerically', () => {
+            const oneDay = LocalDate.now(Clock.systemUTC());
+            const otherDay = oneDay.plusDays(1);
+
+            expect(() => +oneDay).to.throw(TypeError);
+            expect(() => -oneDay).to.throw(TypeError);
+            expect(() => oneDay < otherDay).to.throw(TypeError);
+        });
+
+        itNotInEs5('should not throw if used in string concatenation', () => {
+            const oneDay = LocalDate.now(Clock.systemUTC());
+            const otherDay = oneDay.plusDays(1);
+
+            // eslint-disable-next-line prefer-template
+            expect(() => '' + oneDay + otherDay).not.to.throw(TypeError);
+        });
+    });
 });

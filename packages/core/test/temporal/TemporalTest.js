@@ -111,4 +111,22 @@ describe('js-joda Temporal', () => {
             expect(new BasicYearMock(2).equals(result)).to.equal(true);
         });
     });
+
+    describe('valueOf', () => {
+        it('should not throw an exception', () => {
+            expect(() => new BasicYearMock(1).valueOf()).not.to.throw();
+        });
+    });
+
+    describe('coercing to primitive', () => {
+        const itNotInEs5 = typeof Symbol === 'undefined' ? it.skip : it;
+
+        itNotInEs5('should throw when using Number', () => {
+            expect(() => Number(new BasicYearMock(1))).to.throw(TypeError);
+        });
+
+        itNotInEs5('should not throw when using String', () => {
+            expect(() => String(new BasicYearMock(1))).not.to.throw(TypeError);
+        });
+    });
 });
