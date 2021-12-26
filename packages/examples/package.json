@@ -30,6 +30,8 @@
     "@js-joda/locale": "^4.2.1",
     "@js-joda/locale_en-us": "^4.2.1",
     "@js-joda/locale_ko": "^4.2.1",
-    "@js-joda/timezone": "^2.7.1"
+    "@js-joda/timezone": "^2.7.1",
+    "benchmark": "^2.1.4",
+    "moment": "^2.29.1"
   }
 }
