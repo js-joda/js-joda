@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@js-joda/core": "^4.2.1",
-    "@js-joda/extra": "^0.5.1",
+    "@js-joda/extra": "^0.6.1",
     "@js-joda/locale": "^4.2.1",
     "@js-joda/locale_en-us": "^4.2.1",
     "@js-joda/locale_ko": "^4.2.1",
