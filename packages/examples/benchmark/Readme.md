@@ -1,11 +1,6 @@
 js-joda Benckmarks
 ==================
 
-
-## Install 
-
-Clone these repository, change into the directory benchmark `cd benchmark` and execute `npm install`
- 
  
 ## Run benchmarks with node
 
@@ -15,7 +10,7 @@ Clone these repository, change into the directory benchmark `cd benchmark` and e
 node runAllTests.js
 
 # run a single benchmark
-node suites/plus1ay.js
+node suites/plus1Day.js
 
 ```
 
