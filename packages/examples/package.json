@@ -25,12 +25,12 @@
     "@js-joda/core": ">=1.11.0"
   },
   "devDependencies": {
-    "@js-joda/core": "^4.2.1",
-    "@js-joda/extra": "^0.6.1",
-    "@js-joda/locale": "^4.2.1",
-    "@js-joda/locale_en-us": "^4.2.1",
-    "@js-joda/locale_ko": "^4.2.1",
-    "@js-joda/timezone": "^2.7.1",
+    "@js-joda/core": "^5.0.0",
+    "@js-joda/extra": "^0.7.0",
+    "@js-joda/locale": "^4.5.0",
+    "@js-joda/locale_en-us": "^4.5.0",
+    "@js-joda/locale_ko": "^4.5.0",
+    "@js-joda/timezone": "^2.11.0",
     "benchmark": "^2.1.4",
     "moment": "^2.29.1"
   }
