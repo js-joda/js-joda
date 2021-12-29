@@ -271,6 +271,22 @@ export class TemporalAmount {
     }
     
 }
+
+if (typeof Symbol !== &apos;undefined&apos; &amp;&amp; Symbol.toPrimitive) {
+    TemporalAmount.prototype[Symbol.toPrimitive] = function (hint) {
+        // hint could be &apos;number&apos;, &apos;string&apos; or &apos;default&apos;. Only &apos;number&apos;
+        // should throw and &apos;default&apos; is treated as &apos;string&apos;.
+        if (hint !== &apos;number&apos;) {
+            return this.toString();
+        }
+
+        throw new TypeError(
+            &apos;A conversion from TemporalAmount to a number is not allowed. &apos; +
+            &apos;To compare use the methods .equals(), .compareTo(), .isBefore() &apos; +
+            &apos;or one that is more suitable to your use case.&apos;
+        );
+    };
+}
 </code></pre>
 
 </div>
