@@ -3,8 +3,9 @@ Changelog
 
 ### next (upcoming)
 
-### 5.0.0 (upcoming)
+### 5.0.0
 
+* [#574](https://github.com/js-joda/js-joda/pull/574) Reverting babel targets for UMD ([@pithu](https://github.com/pithu))
 * [#548](https://github.com/js-joda/js-joda/pull/548) Disallowing implicit conversion of Temporal/TemporalAmount to numeric values ([@InExtremaRes](https://github.com/InExtremaRes))
 
 ### 4.3.0

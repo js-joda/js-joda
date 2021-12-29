@@ -3,6 +3,10 @@
 
 ### next
 
+### 0.7.0
+
+* [#574](https://github.com/js-joda/js-joda/pull/574) Reverting babel targets for UMD ([@pithu](https://github.com/pithu))
+
 ### 0.6.0
 
 * [#567](https://github.com/js-joda/js-joda/pull/567) Remove generated distributions files from git ([@pithu](https://github.com/pithu))

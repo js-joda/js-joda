@@ -3,6 +3,10 @@
 
 ### next (upcoming)
 
+### 4.5.0
+
+* [#574](https://github.com/js-joda/js-joda/pull/574) Reverting babel targets for UMD ([@pithu](https://github.com/pithu))
+
 ### 4.4.0
 
 * [#568](https://github.com/js-joda/js-joda/pull/568) Add russian locale prebuilt ([@pithu](https://github.com/pithu))
