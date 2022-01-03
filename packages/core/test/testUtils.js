@@ -51,12 +51,19 @@ export function fail(message=''){
     assert(false, message);
 }
 
-export function isCoverageTestRunner(){
-    return (process.env.COVERAGE != null) && process.env.COVERAGE !== 0 && process.env.COVERAGE !== '';
+export function isCoverageTestRunner() {
+    return typeof process !== 'undefined'
+        && process.env.COVERAGE != null
+        && process.env.COVERAGE !== '';
 }
 
 export function isBrowserTestRunner(){
     return typeof window !== 'undefined' && window.document != null;
+}
+
+export function isIE11Browser(){
+    return typeof navigator !== 'undefined' &&
+        (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.userAgent.indexOf('Trident/') !== -1);
 }
 
 
