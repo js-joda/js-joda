@@ -6,7 +6,7 @@
 const path = require('path');
 const fs = require('fs');
 const yargsPkg = require('yargs');
-const { execFile } = require('child_process');
+const { packages: prebuiltPackages } = require('../prebuilt-packages.json');
 
 // this file will create npm (sub-) packages, build_package is used to create a js-joda-locale bundled packages in each package dir
 
@@ -18,22 +18,15 @@ const yargs = yargsPkg
             default: path.resolve(__dirname, '../packages'),
             description: 'packages directory, where the package(s) are generated, can be absolute or relative (to cwd)'
         },
-        config: {
-            config: true,
-            description: 'path to a JSON file with config options, for a format example see build_package.default.json'
-        },
         packages: {
-            hidden: true,
-            description: 'only from config, define several packages that will be created'
+            description: 'define several packages that will be created',
+            default: prebuiltPackages,
         },
         debug: {
             boolean: true,
             default: false,
             description: 'output debug infos'
         },
-    })
-    .parserConfiguration({
-        'camel-case-expansion': false
     })
     .wrap(Math.min(120, yargsPkg.terminalWidth()))
     .help();
@@ -84,7 +77,6 @@ const readmeTemplate = fs.readFileSync(path.resolve(__dirname, 'README_package.t
     'utf8');
 const readmeLocaleRegex = /{{locale}}/g;
 
-// TODO: build minified (DIST_MIN=1) package?? in dist/index.min.js?
 Object.keys(argv.packages).forEach((packageName) => {
     // eslint-disable-next-line no-console
     console.info('creating', packageName);
@@ -106,31 +98,6 @@ Object.keys(argv.packages).forEach((packageName) => {
         readmeTemplate.replace(readmeLocaleRegex, argv.packages[packageName].join(',')));
     fs.copyFileSync(path.resolve(__dirname, '..', 'typings', 'js-joda-locale.d.ts'),
         path.resolve(packageDir, 'dist', 'js-joda-locale.d.ts'));
-    const nodeArgs = [
-        './utils/build_package.js',
-        '-o', `${path.resolve(packageDir, 'dist')}`,
-        '-m', 'node_modules',
-        '-c', 'utils/load_cldrData.prebuilt.js',
-    ];
-    argv.packages[packageName].forEach((locale) => {
-        nodeArgs.push('-l', `${locale}`);
-    });
-    execFile(
-        'node',
-        nodeArgs,
-        undefined, /* options */
-        (error, stdout, stderr) => {
-            if (error) {
-                throw error;
-            }
-            if (stdout) {
-                // eslint-disable-next-line no-console
-                console.log(`stdout output from creating '${packageName}': `, stdout);
-            }
-            if (stderr) {
-                // eslint-disable-next-line no-console
-                console.error(`stderr output from creating '${packageName}': `, stderr);
-            }
-        }
-    );
+
+    // TODO copy dist files
 });

@@ -1,0 +1,28 @@
+import likelySubtags from 'cldr-data/supplemental/likelySubtags.json';
+import metaZones from 'cldr-data/supplemental/metaZones.json';
+import weekData from 'cldr-data/supplemental/weekData.json';
+<% locales.forEach(function(locale){ -%>
+import  <%- locale.replace(/-/g, '_') _%>_cg from 'cldr-data/main/<%- locale %>/ca-gregorian.json';
+import  <%- locale.replace(/-/g, '_') _%>_tzn from 'cldr-data/main/<%- locale %>/timeZoneNames.json';
+<% }); -%>
+
+var availableLocales = {
+    availableLocales: [ '<%- locales.join("', '"); %>' ],
+};
+
+function cldrData(path) {
+    switch(path) {
+        case 'availableLocales.json': return { availableLocales: availableLocales };
+        case 'supplemental/likelySubtags.json': return likelySubtags;
+        case 'supplemental/metaZones.json': return metaZones;
+        case 'supplemental/weekData.json': return weekData;
+    <% locales.forEach(function(locale){ -%>
+        case 'main/<%- locale %>/ca-gregorian.json': return <%- locale.replace(/-/g, '_') %>_cg;
+        case 'main/<%- locale %>/timeZoneNames.json': return <%- locale.replace(/-/g, '_') %>_tzn;
+    <% }); -%>
+        default: throw new Error('cldrData: unknown path '.concat(path));
+    }
+}
+
+export default cldrData;
+

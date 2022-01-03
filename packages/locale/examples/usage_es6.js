@@ -5,7 +5,7 @@
 /* eslint-disable no-console, no-var */
 import { DateTimeFormatter, ZonedDateTime, ZoneId } from '@js-joda/core';
 import '@js-joda/timezone';
-import { Locale } from './build/js-joda-locale';
+import { Locale } from '../dist/js-joda-locale';
 
 const zdt = ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, ZoneId.of('Europe/Berlin'));
 // var zdt = joda.ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, joda.ZoneId.of('America/Chicago'));

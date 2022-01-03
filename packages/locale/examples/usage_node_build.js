@@ -7,13 +7,15 @@ var joda = require('@js-joda/core');
 require('@js-joda/timezone');
 
 function outputDateInDifferentLocales(zdt) {
-    var { Locale } = require('./build/js-joda-locale');
+    const { Locale } = require('./dist/sample');
     console.log(`Times in ${zdt.zone()}`);
     console.log('');
     console.log('en_US formatted string:', zdt.format(joda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(Locale.US)));
     console.log('en_GB formatted string:', zdt.format(joda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(Locale.UK)));
     console.log('en_CA formatted string:', zdt.format(joda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(Locale.CANADA)));
+    console.log('de formatted string:', zdt.format(joda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(Locale.GERMAN)));
     console.log('de_DE formatted string:', zdt.format(joda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(Locale.GERMANY)));
+    console.log('de_AT formatted string:', zdt.format(joda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale( new Locale('de', 'AT', 'de'))));
     console.log('fr_FR formatted string:', zdt.format(joda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(Locale.FRANCE)));
     console.log('es_ES formatted string:', zdt.format(joda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(new Locale('es', 'ES', 'es'))));
     console.log('ru_RU formatted string:', zdt.format(joda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(new Locale('ru', 'RU', 'ru'))));
@@ -24,7 +26,7 @@ function outputDateInDifferentLocales(zdt) {
 }
 
 try {
-    var { Locale } = require('./build/js-joda-locale');
+    const { Locale } = require('./dist/sample');
     console.log('locale', Locale);
 
     console.log(`availableLocales:${JSON.stringify(Locale.getAvailableLocales(), null, 4)}`);
