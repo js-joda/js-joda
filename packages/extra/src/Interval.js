@@ -4,7 +4,6 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-/* eslint-disable no-else-return */
 import { DateTimeException, DateTimeParseException, Duration, IllegalArgumentException, Instant, ZonedDateTime } from '@js-joda/core';
 
 // TODO: hm... is this a good idea?? copied from joda currently, could we add a js-joda-utils module??
