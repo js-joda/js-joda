@@ -52,8 +52,10 @@ export function fail(message=''){
     assert(false, message);
 }
 
-export function isCoverageTestRunner(){
-    return (process.env.COVERAGE != null) && process.env.COVERAGE !== 0 && process.env.COVERAGE !== '';
+export function isCoverageTestRunner() {
+    return typeof process !== 'undefined'
+        && process.env.COVERAGE != null
+        && process.env.COVERAGE !== '';
 }
 
 export function isBrowserTestRunner(){
