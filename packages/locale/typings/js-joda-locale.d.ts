@@ -16,8 +16,8 @@ export class WeekFields {
     public static ISO: WeekFields;
     public static SUNDAY_START: WeekFields;
     public static ofLocale(locale: Locale): WeekFields;
-    public static of(firstDayOrLocale: core.DayOfWeek | Locale, minDays?: number);
-    public static ofFirstDayOfWeekMinDays(firstDayOfWeek: DayOfWeek, minimalDaysInFirstWeek: number);
+    public static of(firstDayOrLocale: core.DayOfWeek | Locale, minDays?: number): WeekFields;
+    public static ofFirstDayOfWeekMinDays(firstDayOfWeek: DayOfWeek, minimalDaysInFirstWeek: number): WeekFields;
     public firstDayOfWeek(): core.DayOfWeek;
     public minimalDaysInFirstWeek(): number;
     public dayOfWeek(): core.TemporalField;
