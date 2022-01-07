@@ -63,10 +63,8 @@ function test_DateTimeFormatterBuilder() {
 
 function test_WeekFields() {
 
-  expectType<WeekFields>(WeekFields.of(DayOfWeek.MONDAY));
+  expectType<WeekFields>(WeekFields.of(DayOfWeek.MONDAY, 7));
   expectType<WeekFields>(WeekFields.of(new Locale('en')));
-  expectType<WeekFields>(WeekFields.ofLocale(new Locale('en')));
-  expectType<WeekFields>(WeekFields.ofFirstDayOfWeekMinDays(DayOfWeek.MONDAY, 7));
 
   expectType<WeekFields>(WeekFields.SUNDAY_START);
   expectType<WeekFields>(WeekFields.ISO);
@@ -78,6 +76,8 @@ function test_WeekFields() {
   expectType<TemporalField>(WeekFields.ISO.weekOfWeekBasedYear());
   expectType<TemporalField>(WeekFields.ISO.weekBasedYear());
   expectType<boolean>(WeekFields.ISO.equals("foo"));
+  expectType<number>(WeekFields.ISO.hashCode());
+  expectType<string>(WeekFields.ISO.toString());
 }
 
 /**

@@ -1,5 +1,3 @@
-import {DayOfWeek} from "@js-joda/core";
-
 export class Locale {
     public static getAvailableLocales(): string[];
 
@@ -15,9 +13,8 @@ export class Locale {
 export class WeekFields {
     public static ISO: WeekFields;
     public static SUNDAY_START: WeekFields;
-    public static ofLocale(locale: Locale): WeekFields;
-    public static of(firstDayOrLocale: core.DayOfWeek | Locale, minDays?: number): WeekFields;
-    public static ofFirstDayOfWeekMinDays(firstDayOfWeek: DayOfWeek, minimalDaysInFirstWeek: number): WeekFields;
+    public static of(locale: Locale): WeekFields;
+    public static of(firstDayOfWeek: core.DayOfWeek, minDays: number): WeekFields;
     public firstDayOfWeek(): core.DayOfWeek;
     public minimalDaysInFirstWeek(): number;
     public dayOfWeek(): core.TemporalField;
@@ -26,6 +23,8 @@ export class WeekFields {
     public weekOfWeekBasedYear(): core.TemporalField;
     public weekBasedYear(): core.TemporalField;
     public equals(other: any): boolean;
+    public hashCode(): number;
+    public toString(): string;
 }
 
 export namespace Locale {
