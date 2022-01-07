@@ -5,12 +5,11 @@
 import { use } from '@js-joda/core';
 import plug from './plug';
 import Locale from './Locale';
-import { WeekFields, ComputedDayOfField } from './temporal/WeekFields';
+import { WeekFields } from './temporal/WeekFields';
 
 use(plug);
 
 export {
     Locale,
-    WeekFields,
-    ComputedDayOfField
+    WeekFields
 };

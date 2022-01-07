@@ -4,8 +4,10 @@ import {
   DateTimeFormatterBuilder,
   ChronoField,
   TextStyle,
+  DayOfWeek,
+  TemporalField,
 } from '@js-joda/core';
-import { Locale } from '../..';
+import {Locale, WeekFields} from '../..';
 
 function test_Locale() {
   const locale = new Locale('en');
@@ -57,6 +59,25 @@ function test_DateTimeFormatterBuilder() {
     .toFormatter(TextStyle.NARROW);
 
   expectType<DateTimeFormatter>(formatter);
+}
+
+function test_WeekFields() {
+
+  expectType<WeekFields>(WeekFields.of(DayOfWeek.MONDAY));
+  expectType<WeekFields>(WeekFields.of(new Locale('en')));
+  expectType<WeekFields>(WeekFields.ofLocale(new Locale('en')));
+  expectType<WeekFields>(WeekFields.ofFirstDayOfWeekMinDays(DayOfWeek.MONDAY, 7));
+
+  expectType<WeekFields>(WeekFields.SUNDAY_START);
+  expectType<WeekFields>(WeekFields.ISO);
+  expectType<DayOfWeek>(WeekFields.ISO.firstDayOfWeek());
+  expectType<number>(WeekFields.ISO.minimalDaysInFirstWeek());
+  expectType<TemporalField>(WeekFields.ISO.dayOfWeek());
+  expectType<TemporalField>(WeekFields.ISO.weekOfMonth());
+  expectType<TemporalField>(WeekFields.ISO.weekOfYear());
+  expectType<TemporalField>(WeekFields.ISO.weekOfWeekBasedYear());
+  expectType<TemporalField>(WeekFields.ISO.weekBasedYear());
+  expectType<boolean>(WeekFields.ISO.equals("foo"));
 }
 
 /**
