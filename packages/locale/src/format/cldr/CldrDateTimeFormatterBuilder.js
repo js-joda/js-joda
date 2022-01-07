@@ -132,7 +132,7 @@ export default class CldrDateTimeFormatterBuilder extends DateTimeFormatterBuild
         requireNonNull(field, 'field');
         requireInstance(field, ChronoField, 'field');
         requireNonNull(textLookup, 'textLookup');
-        const copy = Object.assign({}, textLookup);
+        const copy = { ...textLookup };
         const map = {};
         map[TextStyle.FULL] = copy;
         const store = new LocaleStore(map);
