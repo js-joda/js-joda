@@ -18,6 +18,12 @@ const yargs = yargsPkg
             default: path.resolve(__dirname, '../packages'),
             description: 'packages directory, where the package(s) are generated, can be absolute or relative (to cwd)'
         },
+        prebuiltDir: {
+            alias: 'b',
+            string: true,
+            default: path.resolve(__dirname, '../dist/prebuilt'),
+            description: 'prebuilt directory, where the package(s) are bundled from a previous step. Can be absolute or relative (to cwd)'
+        },
         packages: {
             description: 'define several packages that will be created',
             default: prebuiltPackages,
@@ -88,6 +94,10 @@ Object.keys(argv.packages).forEach((packageName) => {
     if (!fs.existsSync(distDir)) {
         fs.mkdirSync(distDir);
     }
+    const prebuiltDir = path.resolve(argv.prebuiltDir, packageName);
+    if (!fs.existsSync(prebuiltDir)) {
+        throw new Error(`prebuilt bundle not found for package ${packageName}.\nDid you forget to run "npm run build-prebuilt" ?`);
+    }
     // create package.json
     packageTemplate.version = mainPackageJSON.version;
     packageTemplate.name = `@js-joda/locale_${packageName}`;
@@ -99,5 +109,9 @@ Object.keys(argv.packages).forEach((packageName) => {
     fs.copyFileSync(path.resolve(__dirname, '..', 'typings', 'js-joda-locale.d.ts'),
         path.resolve(packageDir, 'dist', 'js-joda-locale.d.ts'));
 
-    // TODO copy dist files
+    for (const file of ['index.js', 'index.js.map', 'index.min.js', 'index.esm.js']) {
+        fs.copyFileSync(
+            path.resolve(prebuiltDir, file),
+            path.resolve(packageDir, 'dist', file));
+    }
 });

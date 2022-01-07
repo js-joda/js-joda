@@ -6,7 +6,7 @@ const packageJson = require('./package.json');
 
 const plugins = {
     babel: babel({ babelHelpers: 'bundled' }),
-    terser: terser(),
+    terser: terser({ output: { comments: /^!/ } }),
 };
 
 const defaultConfig = {
@@ -26,38 +26,32 @@ const defaultConfig = {
     external: ['@js-joda/core', '@js-joda/timezone', 'cldrjs', 'cldr-data'],
 };
 
-const esmConfig = mergeDeepRight(defaultConfig, {
-    output: {
-        file: 'dist/js-joda-locale.esm.js',
-        format: 'es'
-    },
-});
-
-const umdConfig = mergeDeepRight(defaultConfig, {
-    output: {
-        file: 'dist/js-joda-locale.js',
-        format: 'umd',
-        name: 'JSJodaLocale',
-        sourcemap: true,
-    },
-});
-
-const browserConfig = mergeDeepRight(defaultConfig, {
-    plugins: [
-        plugins.babel,
-        plugins.terser,
-    ],
-    output: {
-        file: 'dist/js-joda-locale.min.js',
-        format: 'iife',
-        name: 'JSJodaLocale',
-    },
-});
-
 module.exports = [
-    esmConfig,
-    umdConfig,
-    browserConfig,
+    mergeDeepRight(defaultConfig, {
+        output: {
+            file: 'dist/js-joda-locale.esm.js',
+            format: 'es'
+        },
+    }),
+    mergeDeepRight(defaultConfig, {
+        output: {
+            file: 'dist/js-joda-locale.js',
+            format: 'umd',
+            name: 'JSJodaLocale',
+            sourcemap: true,
+        },
+    }),
+    mergeDeepRight(defaultConfig, {
+        plugins: [
+            plugins.babel,
+            plugins.terser,
+        ],
+        output: {
+            file: 'dist/js-joda-locale.min.js',
+            format: 'iife',
+            name: 'JSJodaLocale',
+        },
+    }),
 ];
 
 module.exports.defaultConfig = defaultConfig;

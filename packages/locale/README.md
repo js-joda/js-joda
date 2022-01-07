@@ -147,6 +147,10 @@ also see the [example](examples/usage_es6.js)
 see the [example requirejs](examples/usage_browser.html) and [example custom iife build](examples/usage_browser_build.html)
 
 ### Packaging with webpack, minimizing package size
+
+> **Update:** The following documentation is partly outdated, because we changed from `webpack` to `rollup`.
+> 
+> [rollup-examples.config.js](rollup-examples.config.js) is a good starting point to see how we bundle packages and minimize package size with rollup.
  
 Since the cldr-data files can still be quite large, it is possible to only load the files needed for your application
 

@@ -3,22 +3,20 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-const { nodeResolve } = require('@rollup/plugin-node-resolve');
 const { mergeDeepRight } = require('ramda');
 const { sauceLabsMetaData, sauceLabsLaunchers } = require('../../shared/saucelabs');
+const { buildRollupConfig } = require('./rollup-build-packages-config');
 const testGlob = require('../../shared/rollup-test-glob');
-const { defaultConfig: rollupDefaultConfig, plugins } = require('./rollup.config');
 
-const rollupConfig = mergeDeepRight(rollupDefaultConfig, {
+const defaultRollupConfig = buildRollupConfig({
+    locales: ['en', 'en-GB', 'en-CA', 'de', 'fr'],
+});
+
+const rollupConfig = mergeDeepRight(defaultRollupConfig, {
     // onwarn: () => {},
-    plugins: [
-        plugins.babel,
-        nodeResolve(),
-        testGlob(),
-    ],
+    plugins: defaultRollupConfig.plugins.concat(testGlob()),
     output: {
         format: 'iife',
-        name: 'JSJodaLocale',
         sourcemap: 'inline',
         globals: {
             'chai': 'chai',

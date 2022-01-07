@@ -40,7 +40,6 @@
     "chai": "^4.3.4",
     "cldr-data": "^36.0.0",
     "cldrjs": "^0.5.5",
-    "copy-webpack-plugin": "^10.2.0",
     "coveralls": "^3.1.1",
     "ejs": "^3.1.6",
     "esdoc": "^1.1.0",
@@ -57,7 +56,6 @@
     "karma-rollup-preprocessor": "^7.0.7",
     "karma-sauce-launcher": "^4.3.6",
     "karma-sourcemap-loader": "^0.3.8",
-    "karma-webpack": "^5.0.0",
     "lerna": "^4.0.0",
     "lerna-changelog": "^2.2.0",
     "markdown-toc": "^1.2.0",
@@ -70,8 +68,6 @@
     "rollup-plugin-terser": "^7.0.2",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.4",
-    "webpack": "^5.65.0",
-    "webpack-cli": "^4.9.1",
     "yargs": "^17.3.1"
   }
 }

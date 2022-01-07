@@ -10,6 +10,7 @@ function renderCldrDataLoader(locales) {
     const availableLocales = flatten(locales.map(
         (locale) => allLocales.filter(
             (oneOfAllLocale) => oneOfAllLocale.match(new RegExp(`^${locale}$`)))));
+
     return ejs.render(template, { locales: availableLocales });
 }
 

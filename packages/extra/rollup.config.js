@@ -1,12 +1,12 @@
 const { babel } = require('@rollup/plugin-babel');
-const { uglify } = require('rollup-plugin-uglify');
+const { terser } = require('rollup-plugin-terser');
 const { mergeDeepRight } = require('ramda');
 const { createBanner } = require('../../shared/rollup-utils');
 const packageJson = require('./package.json');
 
 const plugins = {
     babel: babel({ babelHelpers: 'bundled' }),
-    uglify: uglify({ output: { comments: /^!/ } }),
+    uglify: terser({ output: { comments: /^!/ } }),
 };
 
 const defaultConfig = {
@@ -17,42 +17,41 @@ const defaultConfig = {
     output: {
         banner: createBanner({ name: packageJson.name, version: packageJson.version }),
         name: 'JSJodaExtra',
+        globals: {
+            '@js-joda/core': 'JSJoda',
+        }
     },
     external: ['@js-joda/core'],
 };
 
-const esmConfig =  mergeDeepRight(defaultConfig, {
-    output: {
-        file: 'dist/js-joda-extra.esm.js',
-        format: 'es',
-    },
-});
-
-const umdConfig = mergeDeepRight(defaultConfig, {
-    output: {
-        file: 'dist/js-joda-extra.js',
-        format: 'umd',
-        name: 'JSJodaExtra',
-        sourcemap: true,
-    },
-});
-
-const browserConfig = mergeDeepRight(defaultConfig, {
-    plugins: [
-        plugins.babel,
-        plugins.uglify,
-    ],
-    output: {
-        file: 'dist/js-joda-extra.min.js',
-        format: 'iife',
-        name: 'JSJodaExtra'
-    },
-});
-
 module.exports = [
-    esmConfig,
-    umdConfig,
-    browserConfig,
+    mergeDeepRight(defaultConfig, {
+        output: {
+            file: 'dist/js-joda-extra.esm.js',
+            format: 'es',
+            sourcemap: true,
+        },
+    }),
+    mergeDeepRight(defaultConfig, {
+        output: {
+            file: 'dist/js-joda-extra.js',
+            format: 'umd',
+            name: 'JSJodaExtra',
+            sourcemap: true,
+        },
+    }),
+    mergeDeepRight(defaultConfig, {
+        plugins: [
+            plugins.babel,
+            plugins.uglify,
+        ],
+        output: {
+            file: 'dist/js-joda-extra.min.js',
+            format: 'iife',
+            name: 'JSJodaExtra',
+            sourcemap: false,
+        },
+    }),
 ];
 
 module.exports.plugins = plugins;

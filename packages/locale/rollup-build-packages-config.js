@@ -6,45 +6,60 @@ const commonjs = require('@rollup/plugin-commonjs');
 const renderCldrDataLoader = require('./utils/clrdr-data-render');
 const { defaultConfig, plugins } = require('./rollup.config');
 
-function buildRollupConfigs(destDir, packages) {
+function buildRollupConfig({ locales }) {
+    const cldr_data_js = renderCldrDataLoader(locales);
+    return mergeDeepRight(defaultConfig, {
+        plugins: [
+            plugins.babel,
+            virtual({
+                'cldr-data': cldr_data_js,
+            }),
+            json(),
+            nodeResolve(),
+            commonjs(),
+        ],
+        output: {
+            name: 'JSJodaLocale',
+            globals: {
+                '@js-joda/core': 'JSJoda',
+                '@js-joda/timezone': 'JSJodaTimezone',
+            },
+        },
+        external: ['@js-joda/core', '@js-joda/timezone'],
+    });
+}
+
+function buildRollupConfigs({ destDir, packages }) {
     return flatten(Object.keys(packages).map((key) => {
-        const localesInPackage =  packages[key];
-        const cldr_data_js = renderCldrDataLoader(localesInPackage);
-        const umdConfig = mergeDeepRight(defaultConfig, {
-            plugins: [
-                virtual({
-                    'cldr-data': cldr_data_js,
-                }),
-                plugins.babel,
-                json(),
-                nodeResolve(),
-                commonjs(),
-            ],
-            output: {
-                file: `${destDir}/${key}/index.js`,
-                format: 'umd',
-                name: 'JSJodaLocale',
-                sourcemap: true,
-                globals: {
-                    '@js-joda/core': 'JSJoda',
-                    '@js-joda/timezone': 'JSJodaTimezone',
+        const rollupConfig = buildRollupConfig({
+            locales: packages[key],
+        });
+
+        return [
+            mergeDeepRight(rollupConfig, {
+                output: {
+                    file: `${destDir}/${key}/index.js`,
+                    format: 'umd',
+                    sourcemap: true,
                 },
-            },
-            external: ['@js-joda/core', '@js-joda/timezone'],
-        });
-
-        const browserConfig = mergeDeepRight(umdConfig, {
-            plugins: umdConfig.plugins.concat(plugins.terser),
-            output: {
-                file: `${destDir}/${key}/index.min.js`,
-                format: 'iife',
-                name: 'JSJodaLocale',
-                sourcemap: false,
-            },
-        });
-
-        return [umdConfig, browserConfig];
+            }),
+            mergeDeepRight(rollupConfig, {
+                output: {
+                    file: `${destDir}/${key}/index.esm.js`,
+                    format: 'es',
+                    sourcemap: true,
+                },
+            }),
+            mergeDeepRight(rollupConfig, {
+                plugins: rollupConfig.plugins.concat(plugins.terser),
+                output: {
+                    file: `${destDir}/${key}/index.min.js`,
+                    format: 'iife',
+                    sourcemap: false,
+                },
+            })];
     }));
 }
 
+module.exports.buildRollupConfig = buildRollupConfig;
 module.exports.buildRollupConfigs = buildRollupConfigs;

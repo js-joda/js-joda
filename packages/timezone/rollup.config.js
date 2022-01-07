@@ -2,7 +2,8 @@ const fs = require('fs');
 const json = require('@rollup/plugin-json');
 const { babel } = require('@rollup/plugin-babel');
 const replace = require('@rollup/plugin-replace');
-const { uglify } = require('rollup-plugin-uglify');
+const { terser } = require('rollup-plugin-terser');
+const { flatten, mergeDeepRight } = require('ramda');
 const { createBanner } = require('../../shared/rollup-utils');
 const packageJson = require('./package.json');
 const tzdbLatest = require('./data/unpacked/latest');
@@ -17,7 +18,7 @@ function createBannerBySuffix(fileSuffix = ''){
 
 const plugins = {
     babel: babel({ babelHelpers: 'bundled' }),
-    uglify: uglify({ output: { comments: /^!/ } }),
+    uglify: terser({ output: { comments: /^!/ } }),
     json: json(),
     replace: (fileSuffix) => replace({
         'data/packed/latest.json': `data/packed/latest${fileSuffix}.json`,
@@ -25,20 +26,18 @@ const plugins = {
     })
 };
 
-const getDefaultConfig = (fileSuffix, prod) => ({
-    input: `./src/js-joda-timezone${isEmptySuffix(fileSuffix)? '-empty' : ''}.js`,
+const getInputFile = (fileSuffix) => `./src/js-joda-timezone${isEmptySuffix(fileSuffix)? '-empty' : ''}.js`;
+
+const getDefaultConfig = (fileSuffix) => ({
+    input: getInputFile(fileSuffix),
     plugins: [
         plugins.replace(fileSuffix),
         plugins.babel,
         plugins.json,
-        prod && plugins.uglify,
     ],
     output: {
         banner: createBannerBySuffix(fileSuffix),
-        file: `dist/js-joda-timezone${fileSuffix}${prod ? '.min' : ''}.js`,
         name: 'JSJodaTimezone',
-        format: prod ? 'iife' : 'umd',
-        sourcemap: !prod,
         globals: {
             '@js-joda/core': 'JSJoda',
         }
@@ -46,9 +45,34 @@ const getDefaultConfig = (fileSuffix, prod) => ({
     external: ['@js-joda/core'],
 });
 
-const getProductionConfig = (fileSuffix) => getDefaultConfig(fileSuffix, true);
+const buildRollupConfigurations = (fileSuffix) => {
+    const defaultConfig = getDefaultConfig(fileSuffix);
+    return [
+        mergeDeepRight(defaultConfig, {
+            output: {
+                file: `dist/js-joda-timezone${fileSuffix}.js`,
+                format: 'umd',
+                sourcemap: true,
+            }
+        }),
+        mergeDeepRight(defaultConfig, {
+            output: {
+                file: `dist/js-joda-timezone${fileSuffix}.esm.js`,
+                format: 'es',
+                sourcemap: true,
+            }
+        }),
+        mergeDeepRight(defaultConfig, {
+            plugins: defaultConfig.plugins.concat(plugins.uglify),
+            output: {
+                file: `dist/js-joda-timezone${fileSuffix}.min.js`,
+                format: 'iife',
+                sourcemap: false,
+            }
+        }),
+    ];
+};
 
-const getDevelopmentConfig = (fileSuffix) => getDefaultConfig(fileSuffix, false);
 
 // find all packed data files produced by our `transform-data.js` script
 const dataFileRegex = /^latest(.*)\.json/;
@@ -58,12 +82,8 @@ const dataFileSuffixes = fs.readdirSync('./data/packed')
     .concat('-empty');
 
 // and add a config to produce a development and prod bundle for each
-const productionConfigs = dataFileSuffixes.map(getProductionConfig);
-const developmentConfigs = dataFileSuffixes.map(getDevelopmentConfig);
+const rollupConfigurations = flatten(dataFileSuffixes.map(buildRollupConfigurations));
 
-module.exports = [
-    ...productionConfigs,
-    ...developmentConfigs,
-];
+module.exports = rollupConfigurations;
 
 module.exports.plugins = plugins;

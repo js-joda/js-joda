@@ -1,12 +1,12 @@
 const { babel } = require('@rollup/plugin-babel');
-const { uglify } = require('rollup-plugin-uglify');
+const { terser } = require('rollup-plugin-terser');
 const { mergeDeepRight } = require('ramda');
 const { createBanner } = require('../../shared/rollup-utils');
 const packageJson = require('./package.json');
 
 const plugins = {
     babel: babel({ babelHelpers: 'bundled' }),
-    uglify: uglify({ output: { comments: /^!/ } }),
+    uglify: terser({ output: { comments: /^!/ } }),
 };
 
 const defaultConfig = {
@@ -21,38 +21,34 @@ const defaultConfig = {
 
 };
 
-const esmConfig =  mergeDeepRight(defaultConfig, {
-    output: {
-        file: 'dist/js-joda.esm.js',
-        format: 'es',
-    },
-});
-
-const umdConfig = mergeDeepRight(defaultConfig, {
-    output: {
-        file: 'dist/js-joda.js',
-        format: 'umd',
-        name: 'JSJoda',
-        sourcemap: true,
-    },
-});
-
-const browserConfig = mergeDeepRight(defaultConfig, {
-    plugins: [
-        plugins.babel,
-        plugins.uglify,
-    ],
-    output: {
-        file: 'dist/js-joda.min.js',
-        format: 'iife',
-        name: 'JSJoda'
-    },
-});
-
 module.exports = [
-    esmConfig,
-    umdConfig,
-    browserConfig,
+    mergeDeepRight(defaultConfig, {
+        output: {
+            file: 'dist/js-joda.esm.js',
+            format: 'es',
+            sourcemap: true,
+        },
+    }),
+    mergeDeepRight(defaultConfig, {
+        output: {
+            file: 'dist/js-joda.js',
+            format: 'umd',
+            name: 'JSJoda',
+            sourcemap: true,
+        },
+    }),
+    mergeDeepRight(defaultConfig, {
+        plugins: [
+            plugins.babel,
+            plugins.uglify,
+        ],
+        output: {
+            file: 'dist/js-joda.min.js',
+            format: 'iife',
+            name: 'JSJoda',
+            sourcemap: false,
+        },
+    }),
 ];
 
 module.exports.plugins = plugins;
