@@ -1,3 +1,5 @@
+import * as core from '@js-joda/core';
+
 export class Locale {
     public static getAvailableLocales(): string[];
 
@@ -8,6 +10,23 @@ export class Locale {
     public localeString(): string;
     public toString(): string;
     public equals(other: any): boolean;
+}
+
+export class WeekFields {
+    public static ISO: WeekFields;
+    public static SUNDAY_START: WeekFields;
+    public static of(locale: Locale): WeekFields;
+    public static of(firstDayOfWeek: core.DayOfWeek, minDays: number): WeekFields;
+    public firstDayOfWeek(): core.DayOfWeek;
+    public minimalDaysInFirstWeek(): number;
+    public dayOfWeek(): core.TemporalField;
+    public weekOfMonth(): core.TemporalField;
+    public weekOfYear(): core.TemporalField;
+    public weekOfWeekBasedYear(): core.TemporalField;
+    public weekBasedYear(): core.TemporalField;
+    public equals(other: any): boolean;
+    public hashCode(): number;
+    public toString(): string;
 }
 
 export namespace Locale {
@@ -32,8 +51,6 @@ export namespace Locale {
     const RUSSIAN: Locale;
 }
 
-import * as core from '@js-joda/core';
-
 declare module '@js-joda/core' {
     namespace DateTimeFormatter {
         export const RFC_1123_DATE_TIME: DateTimeFormatter;
@@ -50,6 +67,7 @@ declare module '@js-joda/core' {
         appendZoneText(textStyle: core.TextStyle): DateTimeFormatterBuilder;
         appendLocalizedOffset(textStyle: core.TextStyle): DateTimeFormatterBuilder;
     }
+
 }
 
 export const __esModule: true;

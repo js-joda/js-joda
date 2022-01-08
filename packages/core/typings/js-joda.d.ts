@@ -1770,7 +1770,6 @@ export class OffsetTime extends Temporal implements TemporalAdjuster {
     plusNanos(nanos: number): OffsetTime;
     plusSeconds(seconds: number): OffsetTime;
     second(): number;
-    toEpochSecond(date: LocalDate): number;
     toJSON(): string;
     toLocalTime(): LocalTime;
     toString(): string;
