@@ -1,3 +1,5 @@
+import * as core from '@js-joda/core';
+
 export class Locale {
     public static getAvailableLocales(): string[];
 
@@ -48,8 +50,6 @@ export namespace Locale {
     const HINDI: Locale;
     const RUSSIAN: Locale;
 }
-
-import * as core from '@js-joda/core';
 
 declare module '@js-joda/core' {
     namespace DateTimeFormatter {
