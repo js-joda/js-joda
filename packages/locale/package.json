@@ -26,7 +26,7 @@
     "README.md"
   ],
   "scripts": {
-    "prepublishOnly": "npm run build-locale-dist",
+    "prepublishOnly": "npm run build-dist && npm run build-locale-dist",
     "test": "NODE_ENV=test npx mocha --timeout 5000 --require @babel/register ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js test/pluginTest_mochaOnly.js",
     "test-coverage": "NODE_ENV=test COVERAGE=1 npx nyc --report-dir=build/coverage --reporter=lcov --reporter html npx mocha --timeout 5000 --require @babel/register --reporter progress ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js",
     "test-browser": "npx karma start --reporters=dots --single-run",
