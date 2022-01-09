@@ -3,6 +3,10 @@
 
 ### next (upcoming)
 
+### 4.6.0
+
+* [#578](https://github.com/js-joda/js-joda/pull/578) WeekFields export and typings ([@StrayAlien](https://github.com/StrayAlien))
+
 ### 4.5.0
 
 * [#574](https://github.com/js-joda/js-joda/pull/574) Reverting babel targets for UMD ([@pithu](https://github.com/pithu))

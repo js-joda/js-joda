@@ -3,6 +3,10 @@ Changelog
 
 ### next (upcoming)
 
+### 5.1.0
+
+* [#578](https://github.com/js-joda/js-joda/pull/578) Cleanup typings ([@StrayAlien](https://github.com/StrayAlien))
+
 ### 5.0.0
 
 * [#574](https://github.com/js-joda/js-joda/pull/574) Reverting babel targets for UMD ([@pithu](https://github.com/pithu))
