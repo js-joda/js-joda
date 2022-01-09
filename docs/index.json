@@ -55492,7 +55492,7 @@
     "__docId__": 1871,
     "kind": "file",
     "name": "packages/locale/src/js-joda-locale.js",
-    "content": "/*\n * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper\n * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)\n */\nimport { use } from '@js-joda/core';\nimport plug from './plug';\nimport Locale from './Locale';\n\nuse(plug);\n\nexport {\n    Locale\n};\n",
+    "content": "/*\n * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper\n * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)\n */\nimport { use } from '@js-joda/core';\nimport plug from './plug';\nimport Locale from './Locale';\nimport { WeekFields } from './temporal/WeekFields';\n\nuse(plug);\n\nexport {\n    Locale,\n    WeekFields\n};\n",
     "static": true,
     "longname": "/Users/pithu/Projects/js-joda/js-joda-project/js-joda/packages/locale/src/js-joda-locale.js",
     "access": "public",

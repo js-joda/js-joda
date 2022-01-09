@@ -1,4 +1,4 @@
-//! @version @js-joda/locale - 4.5.0
+//! @version @js-joda/locale - 4.6.0
 //! @copyright (c) 2015-2016, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -3184,7 +3184,7 @@ var WeekFieldsPrinterParser = function () {
 /*!*******************************!*\
   !*** ./src/js-joda-locale.js ***!
   \*******************************/
-/*! exports provided: Locale */
+/*! exports provided: Locale, WeekFields */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3195,10 +3195,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Locale__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Locale */ "./src/Locale.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Locale", function() { return _Locale__WEBPACK_IMPORTED_MODULE_2__["default"]; });
 
+/* harmony import */ var _temporal_WeekFields__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./temporal/WeekFields */ "./src/temporal/WeekFields.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "WeekFields", function() { return _temporal_WeekFields__WEBPACK_IMPORTED_MODULE_3__["WeekFields"]; });
+
 /*
  * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
+
 
 
 
