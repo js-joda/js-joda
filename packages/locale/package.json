@@ -26,20 +26,18 @@
     "README.md"
   ],
   "scripts": {
-    "prepublishOnly": "npm run build-locale-dist",
+    "prepublishOnly": "npm run build-dist && npm run build-locale-dist",
     "test": "NODE_ENV=test npx mocha --timeout 5000 --require @babel/register ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js test/pluginTest_mochaOnly.js",
     "test-coverage": "NODE_ENV=test COVERAGE=1 npx nyc --report-dir=build/coverage --reporter=lcov --reporter html npx mocha --timeout 5000 --require @babel/register --reporter progress ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js",
     "test-browser": "npx karma start --reporters=dots --single-run",
     "test-saucelabs": "npx karma start --reporters=\"dots,saucelabs\" --browsers=\"sl_chrome,sl_ie,sl_firefox,sl_ios_simulator\" --single-run=true",
-    "test-ts-definitions": "tsc -p test/typescript_definitions",
-    "test-ci": "npm run build-dist && npm run test && npm run test-browser && npm run test-ts-definitions && npm run test-coverage",
-    "build-dist-es5": "npx babel src -d build/es5",
-    "build-dist": "npx webpack --progress --colors --bail && DIST_MIN=1 npx webpack --progress --colors --bail",
-    "build-examples": "node ./utils/build_package.js -o examples/build/js-joda-locale -m node_modules -c utils/load_cldrData.prebuilt.js -l \"en.*\" de fr es zh hi ru",
-    "build-prebuilt": "rm -rf dist/prebuilt/*;node utils/build_package.js --config build_package.prebuilt.json",
-    "build_package": "node ./utils/build_package.js",
-    "build-locale-dist": "npm run build-dist-es5 && npm run build-dist && npm run build-examples && npm run build-prebuilt && npm run create-packages",
-    "create-packages": "rm -rf packages/*;node utils/create_packages.js --config build_package.prebuilt.json",
+    "test-ts-definitions": "tsc --noImplicitAny --noEmit --pretty  test/typescript_definitions/js-joda-locale-tests.ts",
+    "test-ci": "npm run build-dist && npm run build-locale-dist && npm run test && npm run test-browser && npm run test-ts-definitions && npm run test-coverage",
+    "build-dist": "npx rollup -c rollup.config.js",
+    "build-examples": "npx rollup -c rollup-examples.config.js",
+    "build-prebuilt": "rm -rf dist/prebuilt/*; npx rollup -c rollup-prebuilt.config.js",
+    "build-locale-dist": "npm run build-examples && npm run build-prebuilt && npm run create-packages",
+    "create-packages": "rm -rf packages/*; node utils/create_packages.js",
     "lint": "npx eslint ."
   },
   "keywords": [
@@ -64,7 +62,10 @@
     "@js-joda/core": "^5.1.0",
     "@js-joda/timezone": "^2.11.1",
     "cldr-data": "^36.0.0",
-    "cldrjs": "^0.5.5"
+    "cldrjs": "^0.5.5",
+    "requirejs": "^2.3.6",
+    "requirejs-json": "0.0.3",
+    "requirejs-text": "^2.0.16"
   },
   "cldr-data-coverage": "core",
   "cldr-data-urls-filter": "(cldr-core|cldr-numbers-modern|cldr-dates-modern)"

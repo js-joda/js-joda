@@ -20,7 +20,7 @@
     "test-ts-definitions": "tsc --noImplicitAny --noEmit --pretty test/typescript_definitions/js-joda-timezone-tests.ts",
     "test-saucelabs": "npx karma start --reporters=\"dots,saucelabs\" --browsers=\"sl_chrome,sl_ie,sl_firefox\" --single-run=true",
     "test-ci": "npm run build-dist && npm run test && npm run test-browser && npm run test-ts-definitions && npm run test-coverage",
-    "build-dist": "npx webpack --progress --colors --bail",
+    "build-dist": "npx rollup -c rollup.config.js",
     "transform-data": "node ./transform-data.js",
     "lint": "npx eslint ."
   },

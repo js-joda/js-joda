@@ -32,9 +32,8 @@
     "test-browser": "npx karma start --reporters=dots --single-run",
     "test-saucelabs": "npx karma start --reporters=\"dots,saucelabs\" --browsers=\"sl_chrome,sl_ie,sl_firefox\" --single-run=true",
     "test-ci": "npm run build-dist && npm run test && npm run test-browser && npm run test-coverage && npm run test-ts-definitions",
-    "test-ts-definitions": "tsc --noImplicitAny --strict --noEmit --pretty --lib ES6 test/typescript_definitions/js-joda-extra-tests.ts",
-    "build-dist-es5": "npx babel src -d build/es5",
-    "build-dist": "npx webpack --progress --colors --bail && DIST_MIN=1 npx webpack --progress --colors --bail",
+    "test-ts-definitions": "npx tsc --noImplicitAny --strict --noEmit --pretty test/typescript_definitions/js-joda-extra-tests.ts",
+    "build-dist": "npx rollup -c rollup.config.js",
     "lint": "npx eslint ."
   },
   "keywords": [

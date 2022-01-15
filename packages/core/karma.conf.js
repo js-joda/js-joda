@@ -1,33 +1,45 @@
+/*
+ * @copyright (c) 2016, Philipp Thuerwaechter & Pattrick Hueper
+ * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
+ */
+
+const { mergeDeepRight } = require('ramda');
+const testGlob = require('../../shared/rollup-test-glob');
 const { sauceLabsLaunchers, sauceLabsMetaData } = require('../../shared/saucelabs');
+const { defaultConfig: rollupDefaultConfig, plugins } = require('./rollup.config');
 
-module.exports = function(config) {
-    const webpackConfig = require('./webpack.config.js');
-    // clear entry, for karma we use the karmaWebpackTestEntry
-    webpackConfig.entry = undefined;
-    // no sourceMaps for karma build (seems to cause problems with saucelabs runs?)
-    webpackConfig.devtool = false;
+const rollupConfig = mergeDeepRight(rollupDefaultConfig, {
+    onwarn: () => {},
+    plugins: [
+        plugins.babel,
+        testGlob(),
+    ],
+    output: {
+        format: 'iife',
+        name: 'JSJoda',
+        sourcemap: 'inline',
+    },
+});
 
+module.exports = function (config) {
     config.set({
         files: [
-            { pattern: 'test/karmaWebpackTestEntry.js' }
+            { pattern: 'test/rollup-index.js', watched: false },
         ],
         frameworks: [
             'mocha',
-            'chai'
+            'chai',
         ],
         preprocessors: {
-            'test/karmaWebpackTestEntry.js': ['webpack']
+            'test/rollup-index.js': ['rollup'],
         },
-        webpack: webpackConfig,
-        webpackMiddleware: {
-            noInfo: true
-        },
+        rollupPreprocessor: rollupConfig,
         sauceLabs: sauceLabsMetaData('@js-joda/core'),
         customLaunchers: sauceLabsLaunchers,
         browserDisconnectTimeout: 10000, // default 2000
         // browserDisconnectTolerance: 1, // default 0
-        browserNoActivityTimeout: 4 * 60 * 1000, //default 10000
-        captureTimeout: 4 * 60 * 1000, //default 60000
+        browserNoActivityTimeout: 4 * 60 * 1000, // default 10000
+        captureTimeout: 4 * 60 * 1000, // default 60000
         reporters: ['progress'],
         browsers: ['ChromeHeadless', 'FirefoxHeadless'],
         plugins: ['karma-*'],

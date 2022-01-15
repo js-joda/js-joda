@@ -2,36 +2,40 @@
  * @copyright (c) 2016-present, Philipp Thuerwaechter & Pattrick Hueper
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
-
-// eslint-disable-next-line func-names
+const { nodeResolve } = require('@rollup/plugin-node-resolve');
+const testGlob = require('../../shared/rollup-test-glob');
 const { sauceLabsMetaData, sauceLabsLaunchers } = require('../../shared/saucelabs');
-module.exports = function (config) {
-    // eslint-disable-next-line global-require
-    const webpackConfigs = require('./webpack.config.js');
-    // find the config for our main dev build
-    const webpackConfig = webpackConfigs.find(c => c.output.filename === 'js-joda-timezone.js');
-    // for the karma test runs, we don't want to have any externals,
-    // especially js-joda should be included!
-    webpackConfig.externals = undefined;
-    // clear entry, for karma we use the karmaWebpackTestEntry
-    webpackConfig.entry = undefined;
-    // no sourceMaps for karma build (seems to cause problems with saucelabs runs?)
-    webpackConfig.devtool = false;
+const { plugins } = require('./rollup.config');
 
+module.exports = function (config) {
     config.set({
         files: [
-            { pattern: 'test/karmaWebpackTestEntry.js' },
+            { pattern: 'test/rollup-index.js', watched: false },
         ],
         frameworks: [
             'mocha',
             'chai',
         ],
         preprocessors: {
-            'test/karmaWebpackTestEntry.js': ['webpack'],
+            'test/rollup-index.js': ['rollup'],
         },
-        webpack: webpackConfig,
-        webpackMiddleware: {
-            noInfo: true,
+        rollupPreprocessor: {
+            // onwarn: () => {},
+            plugins: [
+                plugins.babel,
+                plugins.json,
+                nodeResolve(),
+                testGlob(),
+            ],
+            output: {
+                format: 'iife',
+                name: 'JSJodaTimezone',
+                sourcemap: 'inline',
+                globals: {
+                    'chai': 'chai',
+                }
+            },
+            external: ['chai'],
         },
         sauceLabs: sauceLabsMetaData('@js-joda/timezone'),
         customLaunchers: sauceLabsLaunchers,

@@ -6,50 +6,53 @@ const packageJson = require('./package.json');
 
 const plugins = {
     babel: babel({ babelHelpers: 'bundled' }),
-    uglify: terser({ output: { comments: /^!/ } }),
+    terser: terser({ output: { comments: /^!/ } }),
 };
 
 const defaultConfig = {
-    input: './src/js-joda.js',
+    input: './src/js-joda-locale.js',
     plugins: [
         plugins.babel,
     ],
     output: {
         banner: createBanner({ name: packageJson.name, version: packageJson.version }),
-        name: 'JSJoda',
-    }
-
+        globals: {
+            '@js-joda/core': 'JSJoda',
+            '@js-joda/timezone': 'JSJodaTimezone',
+            'cldr-data': 'cldr-data',
+            'cldrjs': 'cldrjs',
+        },
+    },
+    external: ['@js-joda/core', '@js-joda/timezone', 'cldrjs', 'cldr-data'],
 };
 
 module.exports = [
     mergeDeepRight(defaultConfig, {
         output: {
-            file: 'dist/js-joda.esm.js',
-            format: 'es',
-            sourcemap: true,
+            file: 'dist/js-joda-locale.esm.js',
+            format: 'es'
         },
     }),
     mergeDeepRight(defaultConfig, {
         output: {
-            file: 'dist/js-joda.js',
+            file: 'dist/js-joda-locale.js',
             format: 'umd',
-            name: 'JSJoda',
+            name: 'JSJodaLocale',
             sourcemap: true,
         },
     }),
     mergeDeepRight(defaultConfig, {
         plugins: [
             plugins.babel,
-            plugins.uglify,
+            plugins.terser,
         ],
         output: {
-            file: 'dist/js-joda.min.js',
+            file: 'dist/js-joda-locale.min.js',
             format: 'iife',
-            name: 'JSJoda',
-            sourcemap: false,
+            name: 'JSJodaLocale',
         },
     }),
 ];
 
-module.exports.plugins = plugins;
 module.exports.defaultConfig = defaultConfig;
+module.exports.plugins = plugins;

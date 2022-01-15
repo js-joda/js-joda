@@ -1,5 +1,4 @@
-dist/*
 build/*
-examples/build/*
+dist/*
+examples/dist/*
 packages/*
-tmp/*

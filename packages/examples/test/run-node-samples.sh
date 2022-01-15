@@ -14,5 +14,3 @@ node ./examples/node/es6-index.js
 npx tsc ./examples/typescript/index.ts
 node ./examples/typescript/index.js
 
-npx webpack --config ./examples/webpack/webpack.config.js
-node ./examples/webpack/webpack-bundle.js

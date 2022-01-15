@@ -1,7 +1,7 @@
 module.exports = {
     'extends': 'eslint:recommended',
     'parserOptions': {
-        'ecmaVersion': 6,
+        'ecmaVersion': 2018,
         'sourceType': 'module',
         'forOf': false
     },
@@ -14,9 +14,9 @@ module.exports = {
         'no-var': 'error',
         'prefer-const': 'error',
         'prefer-template': 'error',
-        "array-bracket-spacing": ["error", "never"],
-        "object-curly-spacing": ["error", "always"],
-        "template-curly-spacing": ["error", "never"]
+        'array-bracket-spacing': ['error', 'never'],
+        'object-curly-spacing': ['error', 'always'],
+        'template-curly-spacing': ['error', 'never']
     },
     'env': {
         'es6': true,

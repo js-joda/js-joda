@@ -15,8 +15,10 @@ const {
 
 const {
     Locale,
-} = require('./build/js-joda-locale');
+} = require('../dist/js-joda-locale');
 
+console.log('locale', Locale);
+console.log(`availableLocales:${JSON.stringify(Locale.getAvailableLocales(), null, 4)}`);
 
 const zdt = ZonedDateTime.of(2016, 1, 1, 1, 2, 3, 4, ZoneId.of('Europe/Berlin'));
 const pattern = 'eeee MMMM dd yyyy GGGG, hh:mm:ss,nnnn a zzzz, \'Week \' ww, \'Quarter \' QQQ';
@@ -33,6 +35,6 @@ console.log('en_US string parsed back same Instant as original? ', Instant.from(
 console.log('en_GB formatted string:', enGBString);
 console.log('en_GB string parsed back same Instant as original? ', Instant.from(ZonedDateTime.parse(enGBString, enGBFormatter)).equals(Instant.from(zdt)));
 console.log('de_DE formatted string:', deDEString);
-console.log('en_GB string parsed back same Instant as original? ', Instant.from(ZonedDateTime.parse(deDEString, deDEFormatter)).equals(Instant.from(zdt)));
+console.log('de_DE string parsed back same Instant as original? ', Instant.from(ZonedDateTime.parse(deDEString, deDEFormatter)).equals(Instant.from(zdt)));
 console.log('fr_FR formatted string:', frFRString);
-console.log('en_GB string parsed back same Instant as original? ', Instant.from(ZonedDateTime.parse(frFRString, frFRFormatter)).equals(Instant.from(zdt)));
+console.log('fr_FR string parsed back same Instant as original? ', Instant.from(ZonedDateTime.parse(frFRString, frFRFormatter)).equals(Instant.from(zdt)));
