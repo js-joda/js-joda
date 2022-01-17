@@ -175,6 +175,37 @@ describe('org.threeten.bp.TestInstant', () => {
 
     });
 
+    describe('ofEpochMicro(long)', () => {
+
+        function provider_factory_micros_long() {
+            return [
+                [0, 0, 0],
+                [1, 0, 1000],
+                [223867574849595, 223867574, 849595000],
+                [999999, 0, 999999000],
+                [1000000, 1, 0],
+                [1000001, 1, 1000],
+                [-1, -1, 999999000],
+                [-2, -1, 999998000],
+                [-999, -1, 999001000],
+                [-1000, -1, 999000000],
+                [-1001, -1, 998999000],
+                [-1000002, -2, 999998000]
+            ];
+        }
+
+        it('factory_micros_long', function () {
+            dataProviderTest(provider_factory_micros_long, factory_micros_long);
+        });
+
+        function factory_micros_long(micros, expectedSeconds, expectedNanoOfSecond) {
+            const t = Instant.ofEpochMicro(micros);
+            assertEquals(t.epochSecond(), expectedSeconds, 'epochSecond()');
+            assertEquals(t.nano(), expectedNanoOfSecond);
+        }
+
+    });
+
     describe('parse(String)', function () {
 
         // see also parse tests under toString()
@@ -967,6 +998,112 @@ describe('org.threeten.bp.TestInstant', () => {
 
     });
 
+    describe('plusMicros', () => {
+        let dataProviderPlus;
+        beforeEach(() => {
+            dataProviderPlus = [
+                [0, 0, 0, 0, 0],
+                [0, 0, 1, 0, 1000],
+                [0, 0, 999999, 0, 999999000],
+                [0, 0, 1000000, 1, 0],
+                [0, 0, 1000001, 1, 1000],
+                [0, 0, 1999999, 1, 999999000],
+                [0, 0, 2000000, 2, 0],
+                [0, 0, -1, -1, 999999000],
+                [0, 0, -999999,  -1, 1000],
+                [0, 0, -1000000, -1, 0],
+                [0, 0, -1000001, -2, 999999000],
+                [0, 0, -1999999, -2, 1000],
+
+                [1, 0, 0, 1, 0],
+                [1, 0, 1, 1, 1000],
+                [1, 0, 999999, 1, 999999000],
+                [1, 0, 1000000,  2, 0],
+                [1, 0, 1000001,  2, 1000],
+                [1, 0, 1999999,  2, 999999000],
+                [1, 0, 2000000,  3, 0],
+                [1, 0, -1,          0, 999999000],
+                [1, 0, -999999,  0, 1000],
+                [1, 0, -1000000, 0, 0],
+                [1, 0, -1000001, -1, 999999000],
+                [1, 0, -1999999, -1, 1000],
+
+                [-1, 0, 0, -1, 0],
+                [-1, 0, 1, -1, 1000],
+                [-1, 0, 999999, -1, 999999000],
+                [-1, 0, 1000000, 0, 0],
+                [-1, 0, 1000001, 0, 1000],
+                [-1, 0, 1999999, 0, 999999000],
+                [-1, 0, 2000000,  1, 0],
+                [-1, 0, -1, -2, 999999000],
+                [-1, 0, -999999,  -2, 1000],
+                [-1, 0, -1000000, -2, 0],
+                [-1, 0, -1000001, -3, 999999000],
+                [-1, 0, -1999999, -3, 1000],
+
+                [1, 1, 0, 1, 1],
+                [1, 1, 1, 1, 1001],
+                [1, 1, 999999998, 1000, 999998001],
+                [1, 1, 999999999, 1000, 999999001],
+                [1, 1, 1000000000, 1001, 1],
+                [1, 1, 1999999998, 2000, 999998001],
+                [1, 1, 1999999999, 2000, 999999001],
+                [1, 1, 2000000000, 2001, 1],
+                [1, 1, -1, 0, 999999001],
+                [1, 1, -2, 0, 999998001],
+                [1, 1, -1000000000, -999, 1],
+                [1, 1, -1000000001, -1000, 999999001],
+                [1, 1, -1000000002, -1000, 999998001],
+                [1, 1, -2000000000, -1999, 1],
+
+                [1, 999999999, 0, 1, 999999999],
+                [1, 999999999, 1, 2, 999],
+                [1, 999999999, 999999999, 1001, 999998999],
+                [1, 999999999, 1000000000, 1001, 999999999],
+                [1, 999999999, 1000000001, 1002, 999],
+                [1, 999999999, -1, 1, 999998999],
+                [1, 999999999, -1000000000, -999, 999999999],
+                [1, 999999999, -1000000001, -999, 999998999],
+                [1, 999999999, -1999999999, -1998, 999],
+                [1, 999999999, -2000000000, -1999, 999999999],
+
+                [MAX_SECOND, 0, 999999, MAX_SECOND, 999999000],
+                [MAX_SECOND - 1, 0, 1999999, MAX_SECOND, 999999000],
+                [MIN_SECOND, 1000, -1, MIN_SECOND, 0],
+                [MIN_SECOND + 1, 1, -1000000, MIN_SECOND, 1],
+            ];
+
+        });
+
+        it('plusMicros', () => {
+            for (let i=0; i < dataProviderPlus.length; i++){
+                const plusData = dataProviderPlus[i];
+                plusMicros.apply(this, plusData);
+            }
+        });
+
+        function plusMicros(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond){
+            const instant = Instant.ofEpochSecond(seconds, nanos)
+                .plusMicros(amount);
+            expect(instant.epochSecond(), 'epochSecond').to.equal(expectedSeconds);
+            expect(instant.nano(), 'nano').to.equal(expectedNanoOfSecond);
+        }
+
+        it('plusMicros_long_overflowTooBig', () => {
+            const instant = Instant.ofEpochSecond(MAX_SECOND, 999999999);
+            expect(()=>{
+                instant.plusMicros(1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('plusMicros_long_overflowTooSmall', () => {
+            const instant = Instant.ofEpochSecond(MIN_SECOND, 0);
+            expect(()=>{
+                instant.plusMicros(-1);
+            }).to.throw(DateTimeException);
+        });
+    });
+
     describe('plusNanos', () => {
         let dataProviderPlus;
         beforeEach(() => {
@@ -1523,6 +1660,111 @@ describe('org.threeten.bp.TestInstant', () => {
             expect(() => {
                 const i = Instant.ofEpochSecond(MIN_SECOND, 0);
                 i.minusMillis(1);
+            }).to.throw(DateTimeException);
+        });
+
+    });
+
+    describe('minusMicros', function () {
+
+        function provider_minusMicros_long() {
+            return [
+                [0, 0, 0, 0, 0],
+                [0, 0, 1, -1, 999999000],
+                [0, 0, 999999, -1, 1000],
+                [0, 0, 1000000, -1, 0],
+                [0, 0, 1000001, -2, 999999000],
+                [0, 0, 1999999, -2, 1000],
+                [0, 0, 2000000, -2, 0],
+                [0, 0, -1, 0, 1000],
+                [0, 0, -999999, 0, 999999000],
+                [0, 0, -1000000, 1, 0],
+                [0, 0, -1000001, 1, 1000],
+                [0, 0, -1999999, 1, 999999000],
+
+                [1, 0, 0, 1, 0],
+                [1, 0, 1, 0, 999999000],
+                [1, 0, 999999, 0, 1000],
+                [1, 0, 1000000, 0, 0],
+                [1, 0, 1000001, -1, 999999000],
+                [1, 0, 1999999, -1, 1000],
+                [1, 0, 2000000, -1, 0],
+                [1, 0, -1, 1, 1000],
+                [1, 0, -999999, 1, 999999000],
+                [1, 0, -1000000, 2, 0],
+                [1, 0, -1000001, 2, 1000],
+                [1, 0, -1999999, 2, 999999000],
+
+                [-1, 0, 0, -1, 0],
+                [-1, 0, 1, -2, 999999000],
+                [-1, 0, 999999, -2, 1000],
+                [-1, 0, 1000000, -2, 0],
+                [-1, 0, 1000001, -3, 999999000],
+                [-1, 0, 1999999, -3, 1000],
+                [-1, 0, 2000000, -3, 0],
+                [-1, 0, -1, -1, 1000],
+                [-1, 0, -999999, -1, 999999000],
+                [-1, 0, -1000000, 0, 0],
+                [-1, 0, -1000001, 0, 1000],
+                [-1, 0, -1999999, 0, 999999000],
+
+                [1, 1, 0, 1, 1],
+                [1, 1, 1, 0, 999999001],
+                [1, 1, 999998, 0, 2001],
+                [1, 1, 999999, 0, 1001],
+                [1, 1, 1000000, 0, 1],
+                [1, 1, 1999998, -1, 2001],
+                [1, 1, 1999999, -1, 1001],
+                [1, 1, 2000000, -1, 1],
+                [1, 1, -1, 1, 1001],
+                [1, 1, -2, 1, 2001],
+                [1, 1, -1000000, 2, 1],
+                [1, 1, -1000001, 2, 1001],
+                [1, 1, -1000002, 2, 2001],
+                [1, 1, -2000000, 3, 1],
+
+                [1, 999999999, 0, 1, 999999999],
+                [1, 999999999, 1, 1, 999998999],
+                [1, 999999999, 999999, 1, 999],
+                [1, 999999999, 1000000, 0, 999999999],
+                [1, 999999999, 1000001, 0, 999998999],
+                [1, 999999999, -1, 2, 999],
+                [1, 999999999, -1000000, 2, 999999999],
+                [1, 999999999, -1000001, 3, 999],
+                [1, 999999999, -1999999, 3, 999998999],
+                [1, 999999999, -2000000, 3, 999999999],
+
+                [MAX_SECOND, 0, -999999, MAX_SECOND, 999999000],
+                [MAX_SECOND - 1, 0, -1999999, MAX_SECOND, 999999000],
+                [MIN_SECOND, 1000, 1, MIN_SECOND, 0],
+                [MIN_SECOND + 1, 1, 1000000, MIN_SECOND, 1]
+            ];
+        }
+
+        it('minusMicros_long', function () {
+            provider_minusMicros_long().forEach((data) => {
+                minusMicros_long.apply(this, data);
+            });
+        });
+
+        function minusMicros_long(seconds, nanos, amount, expectedSeconds, expectedNanoOfSecond) {
+            const i = Instant.ofEpochSecond(seconds, nanos)
+                .minusMicros(amount);
+            assertEquals(i.epochSecond(), expectedSeconds);
+            assertEquals(i.nano(), expectedNanoOfSecond);
+        }
+
+        it('minusMicros_long_overflowTooBig', () => {
+            expect(() => {
+                const i = Instant.ofEpochSecond(MAX_SECOND, 999999999);
+                i.minusMicros(-1);
+            }).to.throw(DateTimeException);
+        });
+
+        it('minusMicros_long_overflowTooSmall', () => {
+            expect(() => {
+                const i = Instant.ofEpochSecond(MIN_SECOND, 0);
+                i.minusMicros(1);
             }).to.throw(DateTimeException);
         });
 
