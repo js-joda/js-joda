@@ -173,6 +173,20 @@ export class Instant extends Temporal {
     }
 
     /**
+     * Obtains an instance of {@link Instant} using microseconds from the
+     * epoch of 1970-01-01T00:00:00Z.
+     *
+     * @param {number} epochMicro - the number of microseconds from 1970-01-01T00:00:00Z
+     * @return {Instant} an instant, not null
+     * @throws DateTimeException if the instant exceeds the maximum or minimum instant
+     */
+    static ofEpochMicro(epochMicro) {
+        const secs = MathUtil.floorDiv(epochMicro, 1000000);
+        const mos = MathUtil.floorMod(epochMicro, 1000000);
+        return Instant._create(secs, mos * 1000);
+    }
+
+    /**
      * Obtains an instance of {@link Instant} from a temporal object.
      *
      * A {@link TemporalAccessor} represents some form of date and time information.
@@ -525,7 +539,7 @@ export class Instant extends Temporal {
         if (unit instanceof ChronoUnit) {
             switch (unit) {
                 case ChronoUnit.NANOS: return this.plusNanos(amountToAdd);
-                case ChronoUnit.MICROS: return this._plus(MathUtil.intDiv(amountToAdd, 1000000), MathUtil.intMod(amountToAdd, 1000000) * 1000);
+                case ChronoUnit.MICROS: return this.plusMicros(amountToAdd);
                 case ChronoUnit.MILLIS: return this.plusMillis(amountToAdd);
                 case ChronoUnit.SECONDS: return this.plusSeconds(amountToAdd);
                 case ChronoUnit.MINUTES: return this.plusSeconds(MathUtil.safeMultiply(amountToAdd, LocalTime.SECONDS_PER_MINUTE));
@@ -576,6 +590,19 @@ export class Instant extends Temporal {
      */
     plusNanos(nanosToAdd) {
         return this._plus(0, nanosToAdd);
+    }
+
+    /**
+     * Returns a copy of this instant with the specified duration in microseconds added.
+     *
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {number} microsToAdd - the microseconds to add, positive or negative
+     * @return {Instant} an {@link Instant} based on this instant with the specified microseconds added, not null
+     * @throws DateTimeException if the result exceeds the maximum or minimum instant
+     */
+    plusMicros(microsToAdd) {
+        return this._plus(MathUtil.intDiv(microsToAdd, 1000000), MathUtil.intMod(microsToAdd, 1000000) * 1000);
     }
 
     /**
@@ -650,6 +677,20 @@ export class Instant extends Temporal {
      */
     minusNanos(nanosToSubtract) {
         return this.plusNanos(-1 * nanosToSubtract);
+    }
+
+    /**
+     * Returns a copy of this instant with the specified duration in microseconds subtracted.
+     *
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {number} microsToSubtract  the microseconds to subtract, positive or negative
+     * @return {Instant} an {@link Instant} based on this instant with the specified microseconds subtracted, not null
+     * @throws DateTimeException if the result exceeds the maximum or minimum instant
+     * @throws ArithmeticException if numeric overflow occurs
+     */
+    minusMicros(microsToSubtract) {
+        return this.plusMicros(-1 * microsToSubtract);
     }
 
     //-------------------------------------------------------------------------
