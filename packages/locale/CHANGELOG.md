@@ -1,7 +1,9 @@
 @js-joda/locale Changelog
 =========
 
-### next (upcoming)
+### Later version
+
+For later versions check the global [`CHANGELOG.md`](../../CHANGELOG.md) file in the root folder.
 
 ### 4.6.0
 

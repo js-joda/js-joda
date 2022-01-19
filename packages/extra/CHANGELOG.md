@@ -1,7 +1,9 @@
 @js-joda/extra Changelog
 =========
 
-### next
+### Later version
+
+For later versions check the global [`CHANGELOG.md`](../../CHANGELOG.md) file in the root folder.
 
 ### 0.7.0
 
