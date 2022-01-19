@@ -31,6 +31,13 @@ module.exports = [
     }),
     mergeDeepRight(defaultConfig, {
         output: {
+            file: 'dist/js-joda.cjs.js',
+            format: 'cjs',
+            sourcemap: true,
+        },
+    }),
+    mergeDeepRight(defaultConfig, {
+        output: {
             file: 'dist/js-joda.js',
             format: 'umd',
             name: 'JSJoda',
