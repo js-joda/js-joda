@@ -93,8 +93,7 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src">locale/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/Locale.js~Locale.html">Locale</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format">locale/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleDateTimeFormatter.js~LocaleDateTimeFormatter.html">LocaleDateTimeFormatter</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleStore.js~LocaleStore.html">LocaleStore</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-cldr">locale/src/format/cldr</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js~CldrDateTimeFormatterBuilder.html">CldrDateTimeFormatterBuilder</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrZoneTextPrinterParser.js~CldrZoneTextPrinterParser.html">CldrZoneTextPrinterParser</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-cldr">locale/src/format/cldr</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrZoneTextPrinterParser.js~CldrZoneTextPrinterParser.html">CldrZoneTextPrinterParser</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-parser">locale/src/format/parser</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/parser/WeekFieldsPrinterParser.js~WeekFieldsPrinterParser.html">WeekFieldsPrinterParser</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-temporal">locale/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~ComputedDayOfField.html">ComputedDayOfField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
@@ -278,6 +277,36 @@ This includes <span><a href="class/packages/core/src/Instant.js~Instant.html">In
         
         <div data-ice="description"><p>Obtains the current instant from the system clock, or if specified
 the current instant from the specified clock.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      <span data-ice="static">static</span>
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/Instant.js~Instant.html#static-method-ofEpochMicro">ofEpochMicro</a></span></span><span class="code" data-ice="signature">(epochMicro: <span>number</span>): <span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Obtains an instance of <span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span> using microseconds from the
+epoch of 1970-01-01T00:00:00Z.</p>
 </div>
       </div>
     </td>
@@ -747,6 +776,35 @@ epoch of 1970-01-01T00:00:00Z.</p>
           
           
           
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/Instant.js~Instant.html#instance-method-minusMicros">minusMicros</a></span></span><span class="code" data-ice="signature">(microsToSubtract: <span>number</span>): <span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Returns a copy of this instant with the specified duration in microseconds subtracted.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
           <span class="code" data-ice="name"><span><a href="class/packages/core/src/Instant.js~Instant.html#instance-method-minusMillis">minusMillis</a></span></span><span class="code" data-ice="signature">(millisToSubtract: <span>number</span>): <span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></span>
         </p>
       </div>
@@ -842,6 +900,35 @@ epoch of 1970-01-01T00:00:00Z.</p>
         
         <div data-ice="description"><p>Gets the number of nanoseconds, later along the time-line, from the start
 of the second.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/Instant.js~Instant.html#instance-method-plusMicros">plusMicros</a></span></span><span class="code" data-ice="signature">(microsToAdd: <span>number</span>): <span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Returns a copy of this instant with the specified duration in microseconds added.</p>
 </div>
       </div>
     </td>
@@ -1463,7 +1550,7 @@ terms of the specified unit.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber191">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber205">source</a></span></span>
     </span>
   </h3>
 
@@ -1610,6 +1697,93 @@ the current instant from the specified clock.</p>
   
 
   
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-method-ofEpochMicro">
+    <span class="access" data-ice="access">public</span>
+    <span data-ice="static">static</span>
+    
+    
+    
+    
+    <span class="code" data-ice="name">ofEpochMicro</span><span class="code" data-ice="signature">(epochMicro: <span>number</span>): <span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber183">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Obtains an instance of <span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span> using microseconds from the
+epoch of 1970-01-01T00:00:00Z.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">epochMicro</td>
+      <td data-ice="type" class="code"><span>number</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the number of microseconds from 1970-01-01T00:00:00Z</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>an instant, not null</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  <div data-ice="throwWrap">
+    <h4>Throw:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span>*</span></p></td>
+        <td data-ice="throwDesc"><p>DateTimeException if the instant exceeds the maximum or minimum instant</p>
+</td>
+      </tr>
+</tbody>
+    </table>
+  </div>
 
   
 
@@ -1814,7 +1988,7 @@ epoch of 1970-01-01T00:00:00Z.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber213">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber227">source</a></span></span>
     </span>
   </h3>
 
@@ -1908,7 +2082,7 @@ epoch of 1970-01-01T00:00:00Z.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber712">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber753">source</a></span></span>
     </span>
   </h3>
 
@@ -2014,7 +2188,7 @@ twice, passing <span>ChronoField#INSTANT_SECONDS</span> and
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber833">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber874">source</a></span></span>
     </span>
   </h3>
 
@@ -2104,7 +2278,7 @@ instant is too large to fit into an offset date-time.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber850">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber891">source</a></span></span>
     </span>
   </h3>
 
@@ -2194,7 +2368,7 @@ large to fit into a zoned date-time.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber885">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber926">source</a></span></span>
     </span>
   </h3>
 
@@ -2282,7 +2456,7 @@ It is &quot;consistent with equals&quot;, as defined by <span>Comparable</span>.
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber391">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber405">source</a></span></span>
     </span>
   </h3>
 
@@ -2342,7 +2516,7 @@ The nanosecond part of the day is returned by <span>getNanosOfSecond</span>.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber929">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber970">source</a></span></span>
     </span>
   </h3>
 
@@ -2417,7 +2591,7 @@ The nanosecond part of the day is returned by <span>getNanosOfSecond</span>.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber343">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber357">source</a></span></span>
     </span>
   </h3>
 
@@ -2521,7 +2695,7 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber369">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber383">source</a></span></span>
     </span>
   </h3>
 
@@ -2623,7 +2797,7 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber945">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber986">source</a></span></span>
     </span>
   </h3>
 
@@ -2680,7 +2854,7 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber904">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber945">source</a></span></span>
     </span>
   </h3>
 
@@ -2767,7 +2941,7 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber917">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber958">source</a></span></span>
     </span>
   </h3>
 
@@ -2854,7 +3028,7 @@ and what the value represents, is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber283">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber297">source</a></span></span>
     </span>
   </h3>
 
@@ -2932,6 +3106,98 @@ Whether the field is supported is determined by the field.</p>
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-minusMicros">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">minusMicros</span><span class="code" data-ice="signature">(microsToSubtract: <span>number</span>): <span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber692">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Returns a copy of this instant with the specified duration in microseconds subtracted.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">microsToSubtract</td>
+      <td data-ice="type" class="code"><span>number</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the microseconds to subtract, positive or negative</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>an <span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span> based on this instant with the specified microseconds subtracted, not null</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  <div data-ice="throwWrap">
+    <h4>Throw:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span>*</span></p></td>
+        <td data-ice="throwDesc"><p>DateTimeException if the result exceeds the maximum or minimum instant</p>
+</td>
+      </tr>
+<tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span>*</span></p></td>
+        <td data-ice="throwDesc"><p>ArithmeticException if numeric overflow occurs</p>
+</td>
+      </tr>
+</tbody>
+    </table>
+  </div>
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-minusMillis">
     <span class="access" data-ice="access">public</span>
     
@@ -2943,7 +3209,7 @@ Whether the field is supported is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber637">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber664">source</a></span></span>
     </span>
   </h3>
 
@@ -3035,7 +3301,7 @@ Whether the field is supported is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber651">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber678">source</a></span></span>
     </span>
   </h3>
 
@@ -3127,7 +3393,7 @@ Whether the field is supported is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber623">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber650">source</a></span></span>
     </span>
   </h3>
 
@@ -3214,7 +3480,7 @@ Whether the field is supported is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber404">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber418">source</a></span></span>
     </span>
   </h3>
 
@@ -3263,6 +3529,93 @@ the second returned by <span>getEpochSecond</span>.</p>
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-plusMicros">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">plusMicros</span><span class="code" data-ice="signature">(microsToAdd: <span>number</span>): <span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber604">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Returns a copy of this instant with the specified duration in microseconds added.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">microsToAdd</td>
+      <td data-ice="type" class="code"><span>number</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the microseconds to add, positive or negative</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>an <span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span> based on this instant with the specified microseconds added, not null</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  <div data-ice="throwWrap">
+    <h4>Throw:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span>*</span></p></td>
+        <td data-ice="throwDesc"><p>DateTimeException if the result exceeds the maximum or minimum instant</p>
+</td>
+      </tr>
+</tbody>
+    </table>
+  </div>
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-plusMillis">
     <span class="access" data-ice="access">public</span>
     
@@ -3274,7 +3627,7 @@ the second returned by <span>getEpochSecond</span>.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber564">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber578">source</a></span></span>
     </span>
   </h3>
 
@@ -3366,7 +3719,7 @@ the second returned by <span>getEpochSecond</span>.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber577">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber591">source</a></span></span>
     </span>
   </h3>
 
@@ -3453,7 +3806,7 @@ the second returned by <span>getEpochSecond</span>.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber550">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber564">source</a></span></span>
     </span>
   </h3>
 
@@ -3540,7 +3893,7 @@ the second returned by <span>getEpochSecond</span>.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber673">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber714">source</a></span></span>
     </span>
   </h3>
 
@@ -3638,7 +3991,7 @@ specified query passing <code>this</code> as the argument.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber315">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber329">source</a></span></span>
     </span>
   </h3>
 
@@ -3736,7 +4089,7 @@ Whether the range can be obtained is determined by the field.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber869">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber910">source</a></span></span>
     </span>
   </h3>
 
@@ -3811,7 +4164,7 @@ was subject to integer division by one million.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber964">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber1005">source</a></span></span>
     </span>
   </h3>
 
@@ -3867,7 +4220,7 @@ was subject to integer division by one million.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber956">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber997">source</a></span></span>
     </span>
   </h3>
 
@@ -3925,7 +4278,7 @@ was subject to integer division by one million.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber495">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber509">source</a></span></span>
     </span>
   </h3>
 
@@ -4022,7 +4375,7 @@ This includes all supplied time units on <span><a href="class/packages/core/src/
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber758">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Instant.js.html#lineNumber799">source</a></span></span>
     </span>
   </h3>
 

@@ -36,12 +36,6 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "@js-joda/root/packages/locale/src/format/cldr/cldrdatetimeformatterbuilder.js~cldrdatetimeformatterbuilder",
-    "class/packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js~CldrDateTimeFormatterBuilder.html",
-    "<span>CldrDateTimeFormatterBuilder</span> <span class=\"search-result-import-path\">@js-joda/root/packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js</span>",
-    "class"
-  ],
-  [
     "@js-joda/root/packages/locale/src/format/cldr/cldrzonetextprinterparser.js~cldrzonetextprinterparser",
     "class/packages/locale/src/format/cldr/CldrZoneTextPrinterParser.js~CldrZoneTextPrinterParser.html",
     "<span>CldrZoneTextPrinterParser</span> <span class=\"search-result-import-path\">@js-joda/root/packages/locale/src/format/cldr/CldrZoneTextPrinterParser.js</span>",
@@ -1032,6 +1026,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "packages/core/src/instant.js~instant#minusmicros",
+    "class/packages/core/src/Instant.js~Instant.html#instance-method-minusMicros",
+    "packages/core/src/Instant.js~Instant#minusMicros",
+    "method"
+  ],
+  [
     "packages/core/src/instant.js~instant#minusmillis",
     "class/packages/core/src/Instant.js~Instant.html#instance-method-minusMillis",
     "packages/core/src/Instant.js~Instant#minusMillis",
@@ -1053,6 +1053,12 @@ window.esdocSearchIndex = [
     "packages/core/src/instant.js~instant#nano",
     "class/packages/core/src/Instant.js~Instant.html#instance-method-nano",
     "packages/core/src/Instant.js~Instant#nano",
+    "method"
+  ],
+  [
+    "packages/core/src/instant.js~instant#plusmicros",
+    "class/packages/core/src/Instant.js~Instant.html#instance-method-plusMicros",
+    "packages/core/src/Instant.js~Instant#plusMicros",
     "method"
   ],
   [
@@ -1125,6 +1131,12 @@ window.esdocSearchIndex = [
     "packages/core/src/instant.js~instant.now",
     "class/packages/core/src/Instant.js~Instant.html#static-method-now",
     "packages/core/src/Instant.js~Instant.now",
+    "method"
+  ],
+  [
+    "packages/core/src/instant.js~instant.ofepochmicro",
+    "class/packages/core/src/Instant.js~Instant.html#static-method-ofEpochMicro",
+    "packages/core/src/Instant.js~Instant.ofEpochMicro",
     "method"
   ],
   [
@@ -5298,12 +5310,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "packages/core/src/license-preamble.js",
-    "file/packages/core/src/license-preamble.js.html",
-    "packages/core/src/license-preamble.js",
-    "file"
-  ],
-  [
     "packages/core/src/temporal/chronofield.js",
     "file/packages/core/src/temporal/ChronoField.js.html",
     "packages/core/src/temporal/ChronoField.js",
@@ -6540,12 +6546,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "packages/extra/src/license-preamble.js",
-    "file/packages/extra/src/license-preamble.js.html",
-    "packages/extra/src/license-preamble.js",
-    "file"
-  ],
-  [
     "packages/extra/src/plug.js",
     "file/packages/extra/src/plug.js.html",
     "packages/extra/src/plug.js",
@@ -6646,54 +6646,6 @@ window.esdocSearchIndex = [
     "file/packages/locale/src/format/cldr/CldrCache.js.html",
     "packages/locale/src/format/cldr/CldrCache.js",
     "file"
-  ],
-  [
-    "packages/locale/src/format/cldr/cldrdatetimeformatterbuilder.js",
-    "file/packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js.html",
-    "packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js",
-    "file"
-  ],
-  [
-    "packages/locale/src/format/cldr/cldrdatetimeformatterbuilder.js~cldrdatetimeformatterbuilder#appendlocalizedoffset",
-    "class/packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js~CldrDateTimeFormatterBuilder.html#instance-method-appendLocalizedOffset",
-    "packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js~CldrDateTimeFormatterBuilder#appendLocalizedOffset",
-    "method"
-  ],
-  [
-    "packages/locale/src/format/cldr/cldrdatetimeformatterbuilder.js~cldrdatetimeformatterbuilder#appendtext",
-    "class/packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js~CldrDateTimeFormatterBuilder.html#instance-method-appendText",
-    "packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js~CldrDateTimeFormatterBuilder#appendText",
-    "method"
-  ],
-  [
-    "packages/locale/src/format/cldr/cldrdatetimeformatterbuilder.js~cldrdatetimeformatterbuilder#appendtextfield",
-    "class/packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js~CldrDateTimeFormatterBuilder.html#instance-method-appendTextField",
-    "packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js~CldrDateTimeFormatterBuilder#appendTextField",
-    "method"
-  ],
-  [
-    "packages/locale/src/format/cldr/cldrdatetimeformatterbuilder.js~cldrdatetimeformatterbuilder#appendtextfieldmap",
-    "class/packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js~CldrDateTimeFormatterBuilder.html#instance-method-appendTextFieldMap",
-    "packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js~CldrDateTimeFormatterBuilder#appendTextFieldMap",
-    "method"
-  ],
-  [
-    "packages/locale/src/format/cldr/cldrdatetimeformatterbuilder.js~cldrdatetimeformatterbuilder#appendtextfieldstyle",
-    "class/packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js~CldrDateTimeFormatterBuilder.html#instance-method-appendTextFieldStyle",
-    "packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js~CldrDateTimeFormatterBuilder#appendTextFieldStyle",
-    "method"
-  ],
-  [
-    "packages/locale/src/format/cldr/cldrdatetimeformatterbuilder.js~cldrdatetimeformatterbuilder#appendweekfield",
-    "class/packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js~CldrDateTimeFormatterBuilder.html#instance-method-appendWeekField",
-    "packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js~CldrDateTimeFormatterBuilder#appendWeekField",
-    "method"
-  ],
-  [
-    "packages/locale/src/format/cldr/cldrdatetimeformatterbuilder.js~cldrdatetimeformatterbuilder#appendzonetext",
-    "class/packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js~CldrDateTimeFormatterBuilder.html#instance-method-appendZoneText",
-    "packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js~CldrDateTimeFormatterBuilder#appendZoneText",
-    "method"
   ],
   [
     "packages/locale/src/format/cldr/cldrdatetimetextprovider.js",
@@ -7143,12 +7095,6 @@ window.esdocSearchIndex = [
     "packages/timezone/src/js-joda-timezone.js",
     "file/packages/timezone/src/js-joda-timezone.js.html",
     "packages/timezone/src/js-joda-timezone.js",
-    "file"
-  ],
-  [
-    "packages/timezone/src/license-preamble.js",
-    "file/packages/timezone/src/license-preamble.js.html",
-    "packages/timezone/src/license-preamble.js",
     "file"
   ],
   [

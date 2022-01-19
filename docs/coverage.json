@@ -1,7 +1,7 @@
 {
-  "coverage": "70.93%",
-  "expectCount": 1851,
-  "actualCount": 1313,
+  "coverage": "70.94%",
+  "expectCount": 1845,
+  "actualCount": 1309,
   "files": {
     "packages/core/src/Clock.js": {
       "expectCount": 39,
@@ -64,13 +64,13 @@
       ]
     },
     "packages/core/src/Instant.js": {
-      "expectCount": 46,
-      "actualCount": 42,
+      "expectCount": 49,
+      "actualCount": 45,
       "undocumentLines": [
         24,
-        255,
-        256,
-        969
+        269,
+        270,
+        1010
       ]
     },
     "packages/core/src/LocalDate.js": {
@@ -837,9 +837,9 @@
       "expectCount": 34,
       "actualCount": 31,
       "undocumentLines": [
+        155,
         156,
-        157,
-        552
+        551
       ]
     },
     "packages/extra/src/_init.js": {
@@ -913,14 +913,6 @@
         37
       ]
     },
-    "packages/locale/src/format/cldr/CldrDateTimeFormatterBuilder.js": {
-      "expectCount": 9,
-      "actualCount": 7,
-      "undocumentLines": [
-        23,
-        151
-      ]
-    },
     "packages/locale/src/format/cldr/CldrDateTimeTextProvider.js": {
       "expectCount": 9,
       "actualCount": 1,
@@ -928,11 +920,11 @@
         22,
         23,
         28,
-        39,
-        47,
-        56,
-        66,
-        222
+        33,
+        41,
+        50,
+        60,
+        216
       ]
     },
     "packages/locale/src/format/cldr/CldrZoneTextPrinterParser.js": {
