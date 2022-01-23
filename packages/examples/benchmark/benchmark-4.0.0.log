@@ -1,0 +1,48 @@
+benchmark "parse" is running
+native Date 2015-12-24T16:30:00Z x 4,664,961 ops/sec ±0.39% (92 runs sampled)
+moment 2015-12-24T16:30:00Z x 75,696 ops/sec ±3.02% (84 runs sampled)
+js-joda 2015-12-24T16:30:00Z x 461,757 ops/sec ±0.49% (90 runs sampled)
+native Date 2015-12-24 x 6,447,587 ops/sec ±1.17% (89 runs sampled)
+moment 2015-12-24 x 163,370 ops/sec ±0.59% (94 runs sampled)
+js-joda 2015-12-24 x 443,916 ops/sec ±0.60% (98 runs sampled)
+moment 2015-12-24T16:30:00+01:00[UTC+01:00] x 692,019 ops/sec ±0.50% (96 runs sampled)
+js-joda 2015-12-24T16:30:00+01:00[UTC+01:00] x 150,778 ops/sec ±0.74% (97 runs sampled)
+js-joda 16:30:00 x 596,386 ops/sec ±0.59% (94 runs sampled)
+js-joda 2015-12-24T16:30:00 x 218,943 ops/sec ±0.47% (92 runs sampled)
+Fastest is native Date 2015-12-24
+benchmark "parse" done
+
+benchmark "now()" is running
+js-joda Instant x 8,185,573 ops/sec ±0.43% (96 runs sampled)
+js-joda LocalDateTime  x 1,359,405 ops/sec ±0.43% (97 runs sampled)
+js-joda LocalTime  x 1,998,870 ops/sec ±0.99% (98 runs sampled)
+js-joda LocalDate  x 2,005,943 ops/sec ±0.41% (98 runs sampled)
+js-joda ZonedDateTime  x 1,489,037 ops/sec ±0.41% (95 runs sampled)
+moment x 1,882,177 ops/sec ±0.50% (96 runs sampled)
+Fastest is js-joda Instant
+benchmark "now()" done
+
+benchmark "plus 1 day" is running
+js-joda x 7,076,979 ops/sec ±0.38% (96 runs sampled)
+moment x 1,065,279 ops/sec ±1.42% (95 runs sampled)
+Fastest is js-joda
+benchmark "plus 1 day" done
+
+benchmark "plusMinusDaysAndHours" is running
+js-joda x 1,683,856 ops/sec ±0.85% (95 runs sampled)
+moment x 417,505 ops/sec ±0.30% (97 runs sampled)
+Fastest is js-joda
+benchmark "plusMinusDaysAndHours" done
+
+benchmark "is leap year" is running
+js-joda x 108,978,051 ops/sec ±3.06% (82 runs sampled)
+moment x 19,300,001 ops/sec ±0.86% (93 runs sampled)
+Fastest is js-joda
+benchmark "is leap year" done
+
+benchmark "week of week year" is running
+js-joda x 13,804,528 ops/sec ±0.40% (92 runs sampled)
+moment x 360,455 ops/sec ±0.81% (97 runs sampled)
+Fastest is js-joda
+benchmark "week of week year" done
+
