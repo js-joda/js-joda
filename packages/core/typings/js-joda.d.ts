@@ -1152,6 +1152,7 @@ export class Instant extends Temporal implements TemporalAdjuster {
 
     static from(temporal: TemporalAccessor): Instant;
     static now(clock?: Clock): Instant;
+    static ofEpochMicro(epochMicro: number): Instant;
     static ofEpochMilli(epochMilli: number): Instant;
     static ofEpochSecond(epochSecond: number, nanoAdjustment?: number): Instant;
     static parse(text: string): Instant;
@@ -1171,12 +1172,14 @@ export class Instant extends Temporal implements TemporalAdjuster {
     isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean;
     minus(amountToSubtract: number, unit: TemporalUnit): Instant;
     minus(amount: TemporalAmount): Instant;
+    minusMicros(microsToSubtract: number): Instant;
     minusMillis(millisToSubtract: number): Instant;
     minusNanos(nanosToSubtract: number): Instant;
     minusSeconds(secondsToSubtract: number): Instant;
     nano(): number;
     plus(amountToAdd: number, unit: TemporalUnit): Instant;
     plus(amount: TemporalAmount): Instant;
+    plusMicros(microsToAdd: number): Instant;
     plusMillis(millisToAdd: number): Instant;
     plusNanos(nanosToAdd: number): Instant;
     plusSeconds(secondsToAdd: number): Instant;
