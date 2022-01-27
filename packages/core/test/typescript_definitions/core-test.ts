@@ -647,7 +647,11 @@ it('LocalDateTime', () => {
 });
 
 it('Instant', () => {
-    let i = Instant.parse('2019-03-24T23:32:46.488Z');
+    let i = Instant.ofEpochMicro(new Date().getTime() * 1000)
+    i.plusMicros(100)
+    i.minusMicros(200)
+
+    i = Instant.parse('2019-03-24T23:32:46.488Z');
 
     i.toString();
     i.toJSON();
