@@ -431,7 +431,7 @@ jsDate.toLocaleDateString(&apos;ko-KR&apos;, options) // 2018&#xB144; 4&#xC6D4; 
 <h3 id="simple-parser-example">Simple parser example</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">import { DateTimeFormatter, LocalDate } from &apos;@js-joda/core&apos;;
 
 const formatter = DateTimeFormatter.ofPattern(&apos;M/d/yyyy&apos;);
-const date = LocalDate.parse(&apos;4/28/2018&apos;);
+const date = LocalDate.parse(&apos;4/28/2018&apos;, formatter);
 console.log(date.toString()); // 2018-04-28</code>
 </code></pre>
 <h3 id="http-date-parser-example">http date parser example</h3><p>Example for an HTTP dates formatter as specified in RFC 7321, 
