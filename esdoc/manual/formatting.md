@@ -127,7 +127,7 @@ Customized parser can be build with the `DateTimeFormatter`.
 import { DateTimeFormatter, LocalDate } from '@js-joda/core';
 
 const formatter = DateTimeFormatter.ofPattern('M/d/yyyy');
-const date = LocalDate.parse('4/28/2018');
+const date = LocalDate.parse('4/28/2018', formatter);
 console.log(date.toString()); // 2018-04-28
 ```
 
