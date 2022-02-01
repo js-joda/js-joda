@@ -122,6 +122,7 @@ declare module "js-joda" {
         MAX_SECONDS: Instant;
         from(temporal: TemporalAccessor): Instant;
         now(clock?: Clock): Instant;
+        ofEpochMicro(epochMicro: number): Instant;
         ofEpochMilli(epochMilli: number): Instant;
         ofEpochSecond(epochSecond: number, nanoAdjustment?: number): Instant;
         parse(text: string): Instant;
@@ -137,12 +138,14 @@ declare module "js-joda" {
         isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean;
         minus(amount: TemporalAmount): Instant;
         minus(amountToSubtract: number, unit: TemporalUnit): Instant;
+        minusMicros(microsToSubtract: number): Instant;
         minusMillis(millisToSubtract: number): Instant;
         minusNanos(nanosToSubtract: number): Instant;
         minusSeconds(secondsToSubtract: number): Instant;
         nano(): number;
         plus(amount: TemporalAmount): Instant;
         plus(amountToAdd: number, unit: TemporalUnit): Instant;
+        plusMicros(microsToAdd: number): Instant;
         plusMillis(millisToAdd: number): Instant;
         plusNanos(nanosToAdd: number): Instant;
         plusSeconds(secondsToAdd: number): Instant;
