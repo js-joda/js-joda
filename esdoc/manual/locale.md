@@ -1,4 +1,4 @@
-# Using Local package
+# Using locale package
 
 ## Motivation
 
