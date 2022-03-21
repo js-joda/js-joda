@@ -29,7 +29,7 @@
             "./esdoc/manual/Period.md",
             "./esdoc/manual/Duration.md",
             "./esdoc/manual/formatting.md",
-            "./esdoc/manual/Locale.md",
+            "./esdoc/manual/locale.md",
             "./esdoc/manual/customizing.md",
             "./esdoc/manual/convert-native.md"
           ]
