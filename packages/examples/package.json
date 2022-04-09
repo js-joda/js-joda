@@ -32,6 +32,6 @@
     "@js-joda/locale_ko": "^4.7.0",
     "@js-joda/timezone": "^2.12.0",
     "benchmark": "^2.1.4",
-    "moment": "^2.29.1"
+    "moment": "^2.29.2"
   }
 }
