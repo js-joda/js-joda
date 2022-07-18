@@ -4,8 +4,6 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import { expect } from 'chai';
-
 import {
     ChronoField,
     ChronoUnit,
@@ -28,7 +26,7 @@ import {
 
 import '../_init';
 
-import { assertEquals, assertFalse, assertSame } from '../testUtils';
+import { assertEquals, assertFalse, assertSame, assertThrows } from '../testUtils';
 
 import { DayOfMonth } from '../../src/DayOfMonth';
 
@@ -117,15 +115,11 @@ describe('org.threeten.extra.TestDayOfMonth', () => {
         });
 
         it('test_of_int_tooLow', () => {
-            expect(() => {
-                DayOfMonth.of(0);
-            }).to.throw(DateTimeException);
+            assertThrows(DateTimeException, () => DayOfMonth.of(0));
         });
 
         it('test_of_int_tooHigh', () => {
-            expect(() => {
-                DayOfMonth.of(32);
-            }).to.throw(DateTimeException);
+            assertThrows(DateTimeException, () => DayOfMonth.of(32));
         });
     });
 
@@ -207,15 +201,11 @@ describe('org.threeten.extra.TestDayOfMonth', () => {
         });
 
         it('test_from_TemporalAccessor_noDerive', () => {
-            expect(() => {
-                DayOfMonth.from(LocalTime.NOON);
-            }).to.throw(DateTimeException);
+            assertThrows(DateTimeException, () => DayOfMonth.from(LocalTime.NOON));
         });
 
         it('test_from_TemporalAccessor_null', () => {
-            expect(() => {
-                DayOfMonth.from(null);
-            }).to.throw(NullPointerException);
+            assertThrows(NullPointerException, () => DayOfMonth.from(null));
         });
     });
 
@@ -269,15 +259,11 @@ describe('org.threeten.extra.TestDayOfMonth', () => {
         });
 
         it('test_range_invalidField', () => {
-            expect(() => {
-                TEST.range(ChronoField.MONTH_OF_YEAR);
-            }).to.throw(UnsupportedTemporalTypeException);
+            assertThrows(UnsupportedTemporalTypeException, () => TEST.range(ChronoField.MONTH_OF_YEAR));
         });
 
         it('test_range_null', () => {
-            expect(() => {
-                TEST.range(null);
-            }).to.throw(NullPointerException);
+            assertThrows(NullPointerException, () => TEST.range(null));
         });
     });
 
@@ -290,15 +276,11 @@ describe('org.threeten.extra.TestDayOfMonth', () => {
         });
 
         it('test_get_invalidField', () => {
-            expect(
-                () => { TEST.get(ChronoField.MONTH_OF_YEAR); }
-            ).to.throw(UnsupportedTemporalTypeException);
+            assertThrows(UnsupportedTemporalTypeException, () => TEST.get(ChronoField.MONTH_OF_YEAR));
         });
 
         it('test_get_null', () => {
-            expect(
-                () => { TEST.get(null); }
-            ).to.throw(NullPointerException);
+            assertThrows(NullPointerException, () => TEST.get(null));
         });
     });
 
@@ -315,21 +297,15 @@ describe('org.threeten.extra.TestDayOfMonth', () => {
         });
 
         it('test_getLong_invalidField', () => {
-            expect(
-                () => { TEST.getLong(ChronoField.MONTH_OF_YEAR); }
-            ).to.throw(UnsupportedTemporalTypeException);
+            assertThrows(UnsupportedTemporalTypeException, () => TEST.getLong(ChronoField.MONTH_OF_YEAR));
         });
 
         it('test_getLong_invalidField2', () => {
-            expect(
-                () => { TEST.getLong(IsoFields.DAY_OF_QUARTER); }
-            ).to.throw(UnsupportedTemporalTypeException);
+            assertThrows(UnsupportedTemporalTypeException, () => TEST.getLong(IsoFields.DAY_OF_QUARTER));
         });
 
         it('test_getLong_null', () => {
-            expect(
-                () => { TEST.getLong(null); }
-            ).to.throw(NullPointerException);
+            assertThrows(NullPointerException, () => TEST.getLong(null));
         });
     });
 
@@ -439,23 +415,17 @@ describe('org.threeten.extra.TestDayOfMonth', () => {
         it('test_adjustInto_april31', () => {
             const base = LocalDate.of(2007, 4, 1);
             const test = DayOfMonth.of(31);
-            expect(
-                () => { test.adjustInto(base); }
-            ).to.throw(DateTimeException);
+            assertThrows(DateTimeException, () => test.adjustInto(base));
         });
 
         it('test_adjustInto_february29_notLeapYear', () => {
             const base = LocalDate.of(2007, 2, 1);
             const test = DayOfMonth.of(29);
-            expect(
-                () => { test.adjustInto(base); }
-            ).to.throw(DateTimeException);
+            assertThrows(DateTimeException, () => test.adjustInto(base));
         });
 
         it('test_adjustInto_null', () => {
-            expect(
-                () => { TEST.adjustInto(null); }
-            ).to.throw(NullPointerException);
+            assertThrows(NullPointerException, () => TEST.adjustInto(null));
         });
     });
 
@@ -497,9 +467,7 @@ describe('org.threeten.extra.TestDayOfMonth', () => {
 
 
         it('test_atMonth_null', () => {
-            expect(
-                () => { TEST.atMonth(null); }
-            ).to.throw(NullPointerException);
+            assertThrows(NullPointerException, () => TEST.atMonth(null));
         });
     });
 
@@ -540,15 +508,11 @@ describe('org.threeten.extra.TestDayOfMonth', () => {
         });
 
         it('test_atMonth_tooLow', () => {
-            expect(
-                () => { TEST.atMonth(0); }
-            ).to.throw(DateTimeException);
+            assertThrows(DateTimeException, () => TEST.atMonth(0));
         });
 
         it('test_atMonth_tooHigh', () => {
-            expect(
-                () => { TEST.atMonth(13); }
-            ).to.throw(DateTimeException);
+            assertThrows(DateTimeException, () => TEST.atMonth(13));
         });
     });
 
@@ -578,9 +542,7 @@ describe('org.threeten.extra.TestDayOfMonth', () => {
         it('test_compareTo_nullDayOfMonth', () => {
             const doy = null;
             const test = DayOfMonth.of(1);
-            expect(
-                () => { test.compareTo(doy); }
-            ).to.throw(NullPointerException);
+            assertThrows(NullPointerException, () => test.compareTo(doy));
         });
     });
 

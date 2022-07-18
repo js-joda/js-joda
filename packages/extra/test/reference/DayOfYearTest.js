@@ -4,8 +4,6 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import { expect } from 'chai';
-
 import {
     ChronoField,
     ChronoUnit,
@@ -26,7 +24,7 @@ import {
 
 import '../_init';
 
-import { assertEquals } from '../testUtils';
+import { assertEquals, assertThrows } from '../testUtils';
 
 import { DayOfYear } from '../../src/DayOfYear';
 
@@ -118,15 +116,11 @@ describe('org.threeten.extra.TestDayOfYear', () => {
         });
 
         it('test_of_int_tooLow', () => {
-            expect(() => {
-                DayOfYear.of(0);
-            }).to.throw(DateTimeException);
+            assertThrows(DateTimeException, () => DayOfYear.of(0));
         });
 
         it('test_of_int_tooHigh', () => {
-            expect(() => {
-                DayOfYear.of(367);
-            }).to.throw(DateTimeException);
+            assertThrows(DateTimeException, () => DayOfYear.of(367));
         });
     });
 
@@ -160,15 +154,11 @@ describe('org.threeten.extra.TestDayOfYear', () => {
         });
 
         it('test_from_TemporalAccessor_noDerive', () => {
-            expect(() => {
-                DayOfYear.from(LocalTime.NOON);
-            }).to.throw(DateTimeException);
+            assertThrows(DateTimeException, () => DayOfYear.from(LocalTime.NOON));
         });
 
         it('test_from_TemporalAccessor_null', () => {
-            expect(() => {
-                DayOfYear.from(null);
-            }).to.throw(NullPointerException);
+            assertThrows(NullPointerException, () => DayOfYear.from(null));
         });
     });
 
@@ -221,15 +211,11 @@ describe('org.threeten.extra.TestDayOfYear', () => {
         });
 
         it('test_range_invalidField', () => {
-            expect(() => {
-                TEST.range(ChronoField.MONTH_OF_YEAR);
-            }).to.throw(UnsupportedTemporalTypeException);
+            assertThrows(UnsupportedTemporalTypeException, () => TEST.range(ChronoField.MONTH_OF_YEAR));
         });
 
         it('test_range_null', () => {
-            expect(() => {
-                TEST.range(null);
-            }).to.throw(NullPointerException);
+            assertThrows(NullPointerException, () => TEST.range(null));
         });
     });
 
@@ -242,15 +228,11 @@ describe('org.threeten.extra.TestDayOfYear', () => {
         });
 
         it('test_get_invalidField', () => {
-            expect(
-                () => { TEST.get(ChronoField.MONTH_OF_YEAR); }
-            ).to.throw(UnsupportedTemporalTypeException);
+            assertThrows(UnsupportedTemporalTypeException, () => TEST.get(ChronoField.MONTH_OF_YEAR));
         });
 
         it('test_get_null', () => {
-            expect(
-                () => { TEST.get(null); }
-            ).to.throw(NullPointerException);
+            assertThrows(NullPointerException, () => TEST.get(null));
         });
     });
 
@@ -267,21 +249,15 @@ describe('org.threeten.extra.TestDayOfYear', () => {
         });
 
         it('test_getLong_invalidField', () => {
-            expect(
-                () => { TEST.getLong(ChronoField.MONTH_OF_YEAR); }
-            ).to.throw(UnsupportedTemporalTypeException);
+            assertThrows(UnsupportedTemporalTypeException, () => TEST.getLong(ChronoField.MONTH_OF_YEAR));
         });
 
         it('test_getLong_invalidField2', () => {
-            expect(
-                () => { TEST.getLong(IsoFields.DAY_OF_QUARTER); }
-            ).to.throw(UnsupportedTemporalTypeException);
+            assertThrows(UnsupportedTemporalTypeException, () => TEST.getLong(IsoFields.DAY_OF_QUARTER));
         });
 
         it('test_getLong_null', () => {
-            expect(
-                () => { TEST.getLong(null); }
-            ).to.throw(NullPointerException);
+            assertThrows(NullPointerException, () => TEST.getLong(null));
         });
     });
 
@@ -346,18 +322,14 @@ describe('org.threeten.extra.TestDayOfYear', () => {
         it('test_adjustInto_fromStartOfYear_notLeapYear_day366', () => {
             const base = LocalDate.of(2007, 1, 1);
             const test = DayOfYear.of(LEAP_YEAR_LENGTH);
-            expect(
-                () => { test.adjustInto(base); }
-            ).to.throw(DateTimeException);
+            assertThrows(DateTimeException, () => test.adjustInto(base));
 
         });
 
         it('test_adjustInto_fromEndOfYear_notLeapYear_day366', () => {
             const base = LocalDate.of(2007, 12, 31);
             const test = DayOfYear.of(LEAP_YEAR_LENGTH);
-            expect(
-                () => { test.adjustInto(base); }
-            ).to.throw(DateTimeException);
+            assertThrows(DateTimeException, () => test.adjustInto(base));
             
         });
 
@@ -382,9 +354,7 @@ describe('org.threeten.extra.TestDayOfYear', () => {
         });
 
         it('test_adjustInto_null', () => {
-            expect(
-                () => { TEST.adjustInto(null); }
-            ).to.throw(NullPointerException);
+            assertThrows(NullPointerException, () => TEST.adjustInto(null));
         });
     });
 
@@ -403,9 +373,7 @@ describe('org.threeten.extra.TestDayOfYear', () => {
 
         it('test_atYear_fromStartOfYear_notLeapYear_day366', () => {
             const test = DayOfYear.of(LEAP_YEAR_LENGTH);
-            expect(
-                () => { test.atYear(YEAR_STANDARD); }
-            ).to.throw(DateTimeException);
+            assertThrows(DateTimeException, () => test.atYear(YEAR_STANDARD));
         });
 
         it('test_atYear_Year_leapYear', () => {
@@ -418,9 +386,7 @@ describe('org.threeten.extra.TestDayOfYear', () => {
         });
 
         it('test_atYear_Year_nullYear', () => {
-            expect(
-                () => { TEST.atYear(null); }
-            ).to.throw(NullPointerException);
+            assertThrows(NullPointerException, () => TEST.atYear(null));
         });
     });
 
@@ -439,9 +405,7 @@ describe('org.threeten.extra.TestDayOfYear', () => {
 
         it('test_atYear_int_fromStartOfYear_notLeapYear_day366', () => {
             const test = DayOfYear.of(LEAP_YEAR_LENGTH);
-            expect(
-                () => { test.atYear(2007); }
-            ).to.throw(DateTimeException);
+            assertThrows(DateTimeException, () => test.atYear(2007));
         });
 
         it('test_atYear_int_leapYear', () => {
@@ -454,9 +418,7 @@ describe('org.threeten.extra.TestDayOfYear', () => {
         });
 
         it('test_atYear_int_invalidDay', () => {
-            expect(
-                () => { TEST.atYear(Year.MIN_VALUE - 1); }
-            ).to.throw(DateTimeException);
+            assertThrows(DateTimeException, () => TEST.atYear(Year.MIN_VALUE - 1));
         });
     });
 
@@ -486,9 +448,7 @@ describe('org.threeten.extra.TestDayOfYear', () => {
         it('test_compareTo_nullDayOfYear', () => {
             const doy = null;
             const test = DayOfYear.of(1);
-            expect(
-                () => { test.compareTo(doy); }
-            ).to.throw(NullPointerException);
+            assertThrows(NullPointerException, () => test.compareTo(doy));
         });
     });
 
