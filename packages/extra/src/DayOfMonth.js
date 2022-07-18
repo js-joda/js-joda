@@ -233,7 +233,7 @@ export class DayOfMonth extends TemporalAccessor {
      * @throws {UnsupportedTemporalTypeException} if the field is not supported
      */
     range(field) {
-        requireNonNull(field, 'temporal');
+        requireNonNull(field, 'field');
         if (field === ChronoField.DAY_OF_MONTH) {
             return field.range();
         }
