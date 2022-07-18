@@ -5,7 +5,7 @@
 
 import { expect } from 'chai';
 
-import { DayOfMonth, DayOfYear, Interval } from '../src/js-joda-extra';
+import { DayOfMonth, DayOfYear, Interval, YearWeek } from '../src/js-joda-extra';
 
 describe('plugin test', () => {
     it('should export DayOfMonth', () => {
@@ -16,5 +16,8 @@ describe('plugin test', () => {
     });
     it('should export Interval', () => {
         expect(Interval).to.exist;
+    });
+    it('should export YearWeek', () => {
+        expect(YearWeek).to.exist;
     });
 });
