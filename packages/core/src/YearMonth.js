@@ -881,6 +881,7 @@ export class YearMonth extends Temporal {
      * @see #isValidDay(int)
      */
     atDay(dayOfMonth) {
+        requireNonNull(dayOfMonth, 'dayOfMonth');
         return LocalDate.of(this._year, this._month, dayOfMonth);
     }
 

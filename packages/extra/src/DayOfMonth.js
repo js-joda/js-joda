@@ -418,6 +418,7 @@ export class DayOfMonth extends TemporalAccessor {
      * @return the local date formed from this year and the specified year-month, not null
      */
     atYearMonth(yearMonth) {
+        requireNonNull(yearMonth, 'yearMonth');
         return yearMonth.atDay(Math.min(this._day, yearMonth.lengthOfMonth()));
     }
 
