@@ -12,7 +12,6 @@ import { _ as jodaInternal } from '@js-joda/core';
 
 const MathUtil = jodaInternal.MathUtil;
 
-
 /**
  * A day-of-month in the ISO-8601 calendar system.
  * 
