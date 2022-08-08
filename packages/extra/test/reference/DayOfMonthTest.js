@@ -26,7 +26,7 @@ import {
 
 import '../_init';
 
-import { assertEquals, assertFalse, assertSame, assertThrows, fail } from '../testUtils';
+import { assertEquals, assertFalse, assertSame, assertThrows } from '../testUtils';
 
 import { DayOfMonth } from '../../src/DayOfMonth';
 
