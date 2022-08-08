@@ -24,7 +24,7 @@ import {
 
 import '../_init';
 
-import { assertEquals, assertThrows } from '../testUtils';
+import { assertEquals, assertThrows, fail } from '../testUtils';
 
 import { DayOfYear } from '../../src/DayOfYear';
 
@@ -79,17 +79,11 @@ describe('org.threeten.extra.TestDayOfYear', () => {
     //-----------------------------------------------------------------------
     // now()
     //-----------------------------------------------------------------------
-    describe('now()', () => {
+    describe('now()', function(/*this*/) {
+        this.retries(100);
         it('test_now', () => {
-            let expected;
-            let actual;
-            for (let i = 0; i < 100; i++) {
-                expected = LocalDate.now().dayOfYear();
-                actual = DayOfYear.now().value();
-                if (expected === actual) {
-                    break;
-                }
-            }
+            const expected = LocalDate.now().dayOfYear();
+            const actual = DayOfYear.now().value();
             assertEquals(expected, actual);
         });
     });
@@ -97,18 +91,12 @@ describe('org.threeten.extra.TestDayOfYear', () => {
     //-----------------------------------------------------------------------
     // now(ZoneId)
     //-----------------------------------------------------------------------
-    describe('now(ZoneId)', () => {
+    describe('now(ZoneId)', function(/*this*/) {
+        this.retries(100);
         it('test_now_ZoneId', () => {
             const zone = ZoneId.of('UTC+01:02:03');
-            let expected;
-            let actual;
-            for (let i = 0; i < 100; i++) {
-                expected = LocalDate.now(zone).dayOfYear();
-                actual = DayOfYear.now(zone).value();
-                if (expected === actual) {
-                    break;
-                }
-            }
+            const expected = LocalDate.now(zone).dayOfYear();
+            const actual = DayOfYear.now(zone).value();
             assertEquals(expected, actual);
         });
     });

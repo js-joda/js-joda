@@ -26,7 +26,7 @@ import {
 
 import '../_init';
 
-import { assertEquals, assertFalse, assertSame, assertThrows } from '../testUtils';
+import { assertEquals, assertFalse, assertSame, assertThrows, fail } from '../testUtils';
 
 import { DayOfMonth } from '../../src/DayOfMonth';
 
@@ -78,17 +78,11 @@ describe('org.threeten.extra.TestDayOfMonth', () => {
     //-----------------------------------------------------------------------
     // now()
     //-----------------------------------------------------------------------
-    describe('now()', () => {
+    describe('now()', function(/*this*/) {
+        this.retries(100);
         it('test_now', () => {
-            let expected;
-            let actual;
-            for (let i = 0; i < 100; i++) {
-                expected = LocalDate.now().dayOfMonth();
-                actual = DayOfMonth.now().value();
-                if (expected === actual) {
-                    break;
-                }
-            }
+            const expected = LocalDate.now().dayOfMonth();
+            const actual = DayOfMonth.now().value();
             assertEquals(expected, actual);
         });
     });
@@ -96,18 +90,12 @@ describe('org.threeten.extra.TestDayOfMonth', () => {
     //-----------------------------------------------------------------------
     // now(ZoneId)
     //-----------------------------------------------------------------------
-    describe('now(ZoneId)', () => {
+    describe('now(ZoneId)', function(/*this*/) {
+        this.retries(100);
         it('test_now_ZoneId', () => {
             const zone = ZoneId.of('UTC+01:02:03');
-            let expected;
-            let actual;
-            for (let i = 0; i < 100; i++) {
-                expected = LocalDate.now(zone).dayOfMonth();
-                actual = DayOfMonth.now(zone).value();
-                if (expected === actual) {
-                    break;
-                }
-            }
+            const expected = LocalDate.now(zone).dayOfMonth();
+            const actual = DayOfMonth.now(zone).value();
             assertEquals(expected, actual);
         });
     });
