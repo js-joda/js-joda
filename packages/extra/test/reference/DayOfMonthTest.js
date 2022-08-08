@@ -80,11 +80,16 @@ describe('org.threeten.extra.TestDayOfMonth', () => {
     //-----------------------------------------------------------------------
     describe('now()', () => {
         it('test_now', () => {
-            let test = DayOfMonth.now();
-            if (LocalDate.now().dayOfMonth() !== test.value()) {
-                test = DayOfMonth.now();
+            let expected;
+            let actual;
+            for (let i = 0; i < 100; i++) {
+                expected = LocalDate.now().dayOfMonth();
+                actual = DayOfMonth.now().value();
+                if (expected === actual) {
+                    break;
+                }
             }
-            assertEquals(LocalDate.now().dayOfMonth(), test.value());
+            assertEquals(expected, actual);
         });
     });
 
@@ -94,11 +99,16 @@ describe('org.threeten.extra.TestDayOfMonth', () => {
     describe('now(ZoneId)', () => {
         it('test_now_ZoneId', () => {
             const zone = ZoneId.of('UTC+01:02:03');
-            let test = DayOfMonth.now(zone);
-            if (LocalDate.now(zone).dayOfMonth() !== test.value()) {
-                test = DayOfMonth.now(zone);
+            let expected;
+            let actual;
+            for (let i = 0; i < 100; i++) {
+                expected = LocalDate.now(zone).dayOfMonth();
+                actual = DayOfMonth.now(zone).value();
+                if (expected === actual) {
+                    break;
+                }
             }
-            assertEquals(LocalDate.now(zone).dayOfMonth(), test.value());
+            assertEquals(expected, actual);
         });
     });
 
