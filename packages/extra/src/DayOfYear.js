@@ -8,7 +8,9 @@ import { ChronoField, Clock, DateTimeException, IllegalArgumentException, IsoChr
 
 // TODO: hm... is this a good idea?? copied from joda currently, could we add a js-joda-utils module??
 import { requireInstance, requireNonNull } from './assert';
-import { MathUtil } from './MathUtil';
+import { _ as jodaInternal } from '@js-joda/core';
+
+const MathUtil = jodaInternal.MathUtil;
 
 /**
  * A day-of-year in the ISO-8601 calendar system.
