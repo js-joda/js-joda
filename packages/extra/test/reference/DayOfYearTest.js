@@ -80,7 +80,7 @@ describe('org.threeten.extra.TestDayOfYear', () => {
     // now()
     //-----------------------------------------------------------------------
     describe('now()', function(/*this*/) {
-        this.retries(100);
+        this.retries(1);
         it('test_now', () => {
             const expected = LocalDate.now().dayOfYear();
             const actual = DayOfYear.now().value();
@@ -92,7 +92,7 @@ describe('org.threeten.extra.TestDayOfYear', () => {
     // now(ZoneId)
     //-----------------------------------------------------------------------
     describe('now(ZoneId)', function(/*this*/) {
-        this.retries(100);
+        this.retries(1);
         it('test_now_ZoneId', () => {
             const zone = ZoneId.of('UTC+01:02:03');
             const expected = LocalDate.now(zone).dayOfYear();
