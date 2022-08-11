@@ -8,6 +8,7 @@ import { use } from '@js-joda/core';
 import { DayOfMonth } from './DayOfMonth';
 import { DayOfYear } from './DayOfYear';
 import { Interval } from './Interval';
+import { Quarter } from './Quarter';
 import { YearWeek } from './YearWeek';
 import plug from './plug';
 
@@ -17,5 +18,6 @@ export {
     DayOfMonth,
     DayOfYear,
     Interval,
+    Quarter,
     YearWeek,
 };

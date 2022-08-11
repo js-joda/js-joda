@@ -6,6 +6,7 @@
 // import { DayOfMonth } from './DayOfMonth';
 // import { DayOfYear } from './DayOfYear';
 // import { Interval } from './Interval';
+// import { Quarter } from './Quarter';
 // import { YearWeek } from './YearWeek';
 
 import './_init';
@@ -20,5 +21,6 @@ export default function (/* jsJoda */) {
     // jsJoda.DayOfMonth = DayOfMonth;
     // jsJoda.DayOfYear = DayOfYear;
     // jsJoda.Interval = Interval;
+    // jsJoda.Quarter = Quarter;
     // jsJoda.YearWeek = YearWeek;
 }

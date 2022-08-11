@@ -24,6 +24,7 @@ import {
     DayOfMonth,
     DayOfYear,
     Interval,
+    Quarter,
     YearWeek
 } from '../../';
 
@@ -117,6 +118,40 @@ function test_Interval() {
     interval.toString();
 
     LocalDate.ofInstant(interval.end());
+}
+
+function test_Quarter() {
+    const localDate = LocalDate.now();
+
+    expectType<Quarter>(Quarter.Q1);
+    expectType<Quarter>(Quarter.Q2);
+    expectType<Quarter>(Quarter.Q3);
+    expectType<Quarter>(Quarter.Q4);
+
+    expectType<Quarter>(Quarter.from(localDate));
+    expectType<Quarter>(Quarter.of(1));
+    expectType<Quarter>(Quarter.ofMonth(1));
+    expectType<Quarter>(Quarter.valueOf('Q1'));
+    expectType<Quarter[]>(Quarter.values());
+
+    const quarter = Quarter.Q1;
+
+    expectType<Temporal>(quarter.adjustInto(localDate));
+    expectType<number>(quarter.compareTo(quarter));
+    expectType<boolean>(quarter.equals(quarter));
+    expectType<Month>(quarter.firstMonth());
+    expectType<number>(quarter.get(IsoFields.QUARTER_OF_YEAR));
+    expectType<number>(quarter.getLong(IsoFields.QUARTER_OF_YEAR));
+    expectType<boolean>(quarter.isSupported(IsoFields.QUARTER_OF_YEAR));
+    expectType<number>(quarter.length(false));
+    expectType<Quarter>(quarter.minus(1));
+    expectType<string>(quarter.name());
+    expectType<number>(quarter.ordinal());
+    expectType<Quarter>(quarter.plus(1));
+    expectType<IsoChronology | null>(quarter.query(TemporalQueries.chronology()));
+    expectType<ValueRange>(quarter.range(IsoFields.QUARTER_OF_YEAR));
+    expectType<string>(quarter.toString());
+    expectType<number>(quarter.value());
 }
 
 function test_YearWeek() {
