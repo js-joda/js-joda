@@ -15,6 +15,7 @@
     "test": {
       "presets": ["@babel/preset-env", {
         "plugins": [
+          "@babel/plugin-transform-regenerator",
           "istanbul"
         ]
       }]

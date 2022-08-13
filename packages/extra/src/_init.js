@@ -7,6 +7,7 @@ import { _init as dayOfMonthInit } from './DayOfMonth';
 import { _init as dayOfYearInit } from './DayOfYear';
 import { _init as intervalInit } from './Interval';
 import { _init as quarterInit } from './Quarter';
+import { _init as yearQuarterInit } from './YearQuarter';
 import { _init as yearWeekInit } from './YearWeek';
 
 let isInit = false;
@@ -22,6 +23,7 @@ function init() {
     dayOfYearInit();
     intervalInit();
     quarterInit();
+    yearQuarterInit();
     yearWeekInit();
 }
 

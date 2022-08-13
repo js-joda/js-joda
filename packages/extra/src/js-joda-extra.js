@@ -9,6 +9,7 @@ import { DayOfMonth } from './DayOfMonth';
 import { DayOfYear } from './DayOfYear';
 import { Interval } from './Interval';
 import { Quarter } from './Quarter';
+import { YearQuarter } from './YearQuarter';
 import { YearWeek } from './YearWeek';
 import plug from './plug';
 
@@ -19,5 +20,6 @@ export {
     DayOfYear,
     Interval,
     Quarter,
+    YearQuarter,
     YearWeek,
 };

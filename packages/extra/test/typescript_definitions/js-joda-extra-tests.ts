@@ -12,19 +12,16 @@ import {
     ValueRange,
     Year,
     DateTimeFormatter,
-    DateTimeFormatterBuilder,
     IsoFields,
     DayOfWeek,
     ChronoUnit,
-    TemporalAdjusters,
-    TemporalAdjuster,
 } from '@js-joda/core'
-import { expect } from 'chai';
 import {
     DayOfMonth,
     DayOfYear,
     Interval,
     Quarter,
+    YearQuarter,
     YearWeek
 } from '../../';
 
@@ -152,6 +149,58 @@ function test_Quarter() {
     expectType<ValueRange>(quarter.range(IsoFields.QUARTER_OF_YEAR));
     expectType<string>(quarter.toString());
     expectType<number>(quarter.value());
+}
+
+function test_YearQuarter() {
+    const localDate = LocalDate.now();
+
+    expectType<YearQuarter>(YearQuarter.from(localDate));
+    expectType<YearQuarter>(YearQuarter.now());
+    expectType<YearQuarter>(YearQuarter.of(Year.of(2001), 1));
+    expectType<YearQuarter>(YearQuarter.of(2001, 1));
+    expectType<YearQuarter>(YearQuarter.parse('2001-Q1', DateTimeFormatter.ofPattern("YYYY-'Q'q")));
+
+    const yearQuarter = YearQuarter.of(2001, 1);
+
+    expectType<boolean>(yearQuarter.isSupported(IsoFields.QUARTER_OF_YEAR));
+    expectType<boolean>(yearQuarter.isSupported(IsoFields.QUARTER_YEARS));
+	expectType<ValueRange>(yearQuarter.range(IsoFields.QUARTER_OF_YEAR));
+	expectType<number>(yearQuarter.get(IsoFields.QUARTER_OF_YEAR));
+    expectType<number>(yearQuarter.getLong(IsoFields.QUARTER_OF_YEAR));
+	expectType<number>(yearQuarter.year());
+	expectType<number>(yearQuarter.quarterValue());
+	expectType<Quarter>(yearQuarter.quarter());
+	expectType<boolean>(yearQuarter.isLeapYear());
+	expectType<boolean>(yearQuarter.isValidDay(1));
+	expectType<number>(yearQuarter.lengthOfQuarter());
+	expectType<number>(yearQuarter.lengthOfYear());
+	// expectType<YearQuarter>(yearWeek.with(<TemporalAdjuster>?));
+    expectType<YearQuarter>(yearQuarter.with(ChronoField.YEAR, 2001));
+    expectType<YearQuarter>(yearQuarter.withYear(2001));
+	expectType<YearQuarter>(yearQuarter.withQuarter(1));
+	// TODO
+    // expectType<YearQuarter>(yearWeek.minus(Years.of(1)));
+	expectType<YearQuarter>(yearQuarter.plus(1, ChronoUnit.YEARS));
+	expectType<YearQuarter>(yearQuarter.plusYears(1));
+	expectType<YearQuarter>(yearQuarter.plusQuarters(1));
+	// TODO
+    // expectType<YearQuarter>(yearWeek.minus(Years.of(1)));
+	expectType<YearQuarter>(yearQuarter.minus(1, ChronoUnit.YEARS));
+	expectType<YearQuarter>(yearQuarter.minusYears(1));
+	expectType<YearQuarter>(yearQuarter.minusQuarters(1));
+	expectType<IsoChronology | null>(yearQuarter.query(TemporalQueries.chronology()));
+	expectType<Temporal>(yearQuarter.adjustInto(localDate));
+	expectType<number>(yearQuarter.until(localDate, ChronoUnit.YEARS));
+	expectType<Generator<YearQuarter>>(yearQuarter.quartersUntil(yearQuarter));
+	expectType<string>(yearQuarter.format(DateTimeFormatter.ofPattern("YYYY-'Q'q")));
+	expectType<LocalDate>(yearQuarter.atDay(1));
+	expectType<YearQuarter>(yearQuarter.atEndOfQuarter());
+	expectType<number>(yearQuarter.compareTo(yearQuarter));
+	expectType<boolean>(yearQuarter.isAfter(yearQuarter));
+	expectType<boolean>(yearQuarter.isBefore(yearQuarter));
+	expectType<boolean>(yearQuarter.equals(yearQuarter));
+	expectType<number>(yearQuarter.hashCode());
+	expectType<string>(yearQuarter.toString());
 }
 
 function test_YearWeek() {

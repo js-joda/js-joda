@@ -112,6 +112,59 @@ export class Quarter extends TemporalAccessor implements TemporalAdjuster {
 	value(): number;
 }
 
+export class YearQuarter extends Temporal {
+	static from(temporal: TemporalAccessor): YearQuarter;
+	static now(zoneIdOrClock?: ZoneId | Clock): YearQuarter;
+	static of(year: Year | number, quarter: Quarter | number): YearQuarter;
+	static parse(text: string, formatter?: DateTimeFormatter): YearQuarter;
+
+	private constructor(year: number, quarter: Quarter);
+
+	isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean
+	range(field: TemporalField): ValueRange;
+	get(field: TemporalField): number;
+	getLong(field: TemporalField): number;
+	year(): number;
+	quarterValue(): number;
+	quarter(): Quarter;
+	isLeapYear(): boolean;
+	isValidDay(dayOfQuarter: number): boolean;
+	lengthOfQuarter(): number;
+	lengthOfYear(): number;
+	with(adjuster: TemporalAdjuster): YearQuarter;
+	with(field: TemporalField, newValue: number): YearQuarter;
+	withYear(year: number): YearQuarter;
+	withQuarter(quarter: number): YearQuarter;
+	plus(amountToAdd: number, unit: TemporalUnit): YearQuarter;
+	plus(amountToAdd: TemporalAmount): YearQuarter;
+	plusYears(yearsToAdd: number): YearQuarter
+	plusQuarters(quartersToAdd: number): YearQuarter
+	minus(amountToSubtract: number, unit: TemporalUnit): YearQuarter;
+	minus(amountToSubtract: TemporalAmount): YearQuarter;
+	minusYears(yearsToSubtract: number): YearQuarter
+	minusQuarters(quartersToSubtract: number): YearQuarter
+	query<R>(query: TemporalQuery<R>): R | null;
+	adjustInto(temporal: Temporal): Temporal;
+	until(endExclusive: Temporal, unit: TemporalUnit): number;
+	quartersUntil(endExclusive: YearQuarter): Generator<YearQuarter>;
+	format(formatter: DateTimeFormatter): string;
+	atDay(dayOfQuarter: number): LocalDate
+	atEndOfQuarter(): YearQuarter;
+	compareTo(other: YearQuarter): number;
+	isAfter(other: YearQuarter): boolean
+	isBefore(other: YearQuarter): boolean
+	equals(obj: any): boolean;
+	hashCode(): number;
+	toString(): string;
+
+	protected _minusUnit(amountToSubtract: number, unit: TemporalUnit): YearQuarter;
+	protected _minusAmount(amount: TemporalAmount): YearQuarter;
+	protected _plusUnit(amountToAdd: number, unit: TemporalUnit): YearQuarter;
+	protected _plusAmount(amount: TemporalAmount): YearQuarter;
+	protected _withAdjuster(adjuster: TemporalAdjuster): YearQuarter;
+	protected _withField(field: TemporalField, newValue: number): YearQuarter;
+}
+
 export class YearWeek extends Temporal {
 	static from(temporal: TemporalAccessor): YearWeek;
 	static now(zoneIdOrClock?: ZoneId | Clock): YearWeek;
