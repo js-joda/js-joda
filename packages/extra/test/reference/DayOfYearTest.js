@@ -425,9 +425,9 @@ describe('org.threeten.extra.TestDayOfYear', () => {
     //-----------------------------------------------------------------------
     describe('compareTo()', () => {
         it('test_compareTo', () => {
-            for (let i = 1; i <= LEAP_YEAR_LENGTH; i++) {
+            for (const i of [1, LEAP_YEAR_LENGTH]) {
                 const a = DayOfYear.of(i);
-                for (let j = 1; j <= LEAP_YEAR_LENGTH; j++) {
+                for (const j of [1, LEAP_YEAR_LENGTH]) {
                     const b = DayOfYear.of(j);
                     if (i < j) {
                         assertEquals(true, a.compareTo(b) < 0);
@@ -455,9 +455,9 @@ describe('org.threeten.extra.TestDayOfYear', () => {
     //-----------------------------------------------------------------------
     describe('equals() / hashCode()', () => {
         it('test_equals', () => {
-            for (let i = 1; i <= LEAP_YEAR_LENGTH; i++) {
+            for (const i of [1, LEAP_YEAR_LENGTH]) {
                 const a = DayOfYear.of(i);
-                for (let j = 1; j <= LEAP_YEAR_LENGTH; j++) {
+                for (const j of [1, LEAP_YEAR_LENGTH]) {
                     const b = DayOfYear.of(j);
                     assertEquals(i === j, a.equals(b));
                     assertEquals(i === j, a.hashCode() === b.hashCode());

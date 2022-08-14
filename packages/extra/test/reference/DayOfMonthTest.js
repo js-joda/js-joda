@@ -519,9 +519,9 @@ describe('org.threeten.extra.TestDayOfMonth', () => {
     //-----------------------------------------------------------------------
     describe('compareTo()', () => {
         it('test_compareTo', () => {
-            for (let i = 1; i <= MAX_LENGTH; i++) {
+            for (const i of [1, MAX_LENGTH]) {
                 const a = DayOfMonth.of(i);
-                for (let j = 1; j <= MAX_LENGTH; j++) {
+                for (const j of [1, MAX_LENGTH]) {
                     const b = DayOfMonth.of(j);
                     if (i < j) {
                         assertEquals(true, a.compareTo(b) < 0);
@@ -549,9 +549,9 @@ describe('org.threeten.extra.TestDayOfMonth', () => {
     //-----------------------------------------------------------------------
     describe('equals() / hashCode()', () => {
         it('test_equals', () => {
-            for (let i = 1; i <= MAX_LENGTH; i++) {
+            for (const i of [1, MAX_LENGTH]) {
                 const a = DayOfMonth.of(i);
-                for (let j = 1; j <= MAX_LENGTH; j++) {
+                for (const j of [1, MAX_LENGTH]) {
                     const b = DayOfMonth.of(j);
                     assertEquals(i === j, a.equals(b));
                     assertEquals(i === j, a.hashCode() === b.hashCode());
