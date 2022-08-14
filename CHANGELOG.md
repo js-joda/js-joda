@@ -1,11 +1,11 @@
 Changelog
 =========
 
+## 2022-08-14 / 2
+
 ### Versions
 
 @js-joda/core v5.3.0, @js-joda/extra v0.8.1, @js-joda/locale v4.8.1, @js-joda/timezone v2.12.1
-
-## 2022-08-14 / 2
 
 #### :house: Dependency update
 * Other
