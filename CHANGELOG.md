@@ -1,6 +1,23 @@
 Changelog
 =========
 
+## Unreleased (2022-08-14)
+
+#### :rocket: Enhancement
+* `locale`
+  * [#606](https://github.com/js-joda/js-joda/pull/606) Add a prebuilt en-gb locale ([@benlondon](https://github.com/benlondon))
+  * [#599](https://github.com/js-joda/js-joda/pull/599) prebuilt packages for new locales (pl, da, el) ([@mstawick](https://github.com/mstawick))
+* `core`
+  * [#590](https://github.com/js-joda/js-joda/pull/590) Add Instant micro methods to Typescript definitions. ([@mattbishop](https://github.com/mattbishop))
+* Other
+  * [#591](https://github.com/js-joda/js-joda/pull/591) Fix formatting in simple parser example ([@kcsmnt0](https://github.com/kcsmnt0))
+
+#### :house: Dependency update
+* [#596](https://github.com/js-joda/js-joda/pull/596) Bump karma from 6.3.9 to 6.3.16 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#594](https://github.com/js-joda/js-joda/pull/594) Bump follow-redirects from 1.14.7 to 1.14.8 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#589](https://github.com/js-joda/js-joda/pull/589) Bump node-fetch from 2.6.5 to 2.6.7 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#587](https://github.com/js-joda/js-joda/pull/587) Bump log4js from 6.3.0 to 6.4.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
 ## 2022-01-19
 
 ### Versions

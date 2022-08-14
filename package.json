@@ -15,6 +15,16 @@
   "bugs": {
     "url": "https://github.com/js-joda/js-joda/issues"
   },
+  "changelog": {
+    "labels": {
+      "breaking": ":boom: Breaking Change",
+      "enhancement": ":rocket: Enhancement",
+      "bug": ":bug: Bug Fix",
+      "documentation": ":memo: Documentation",
+      "internal": ":house: Internal",
+      "dependencies": ":house: Dependency update"
+    }
+  },
   "scripts": {
     "postpublish": "npm run build-esdoc && ./shared/git-push-docs-on-change.sh",
     "build-esdoc": "./node_modules/.bin/esdoc -c esdoc.json",
