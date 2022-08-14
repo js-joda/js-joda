@@ -1,6 +1,6 @@
 {
   "name": "@js-joda/locale",
-  "version": "4.7.0",
+  "version": "4.8.0",
   "description": "plugin for locale functionality for js-joda",
   "repository": {
     "type": "git",
@@ -59,8 +59,8 @@
     "cldrjs": "^0.5.4"
   },
   "devDependencies": {
-    "@js-joda/core": "^5.2.0",
-    "@js-joda/timezone": "^2.12.0",
+    "@js-joda/core": "^5.3.0",
+    "@js-joda/timezone": "^2.12.1",
     "cldr-data": "^36.0.0",
     "cldrjs": "^0.5.5",
     "requirejs": "^2.3.6",
