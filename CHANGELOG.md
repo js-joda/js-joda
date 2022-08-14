@@ -1,6 +1,10 @@
 Changelog
 =========
 
+### Versions
+
+@js-joda/core v5.3.0, @js-joda/extra v0.8.1, @js-joda/locale v4.8.1, @js-joda/timezone v2.12.1
+
 ## 2022-08-14 / 2
 
 #### :house: Dependency update
@@ -16,7 +20,7 @@ Changelog
 
 ### Versions
 
-@js-joda/core v5.3.0, @js-joda/extra v0.8.1, @js-joda/locale v4.8.0, @js-joda/timezone v2.12.1, @js-joda/locale_da v4.8.0, @js-joda/locale_de-de v4.7.0, @js-joda/locale_de v4.7.0, @js-joda/locale_el v4.8.0, @js-joda/locale_en-gb v4.8.0, @js-joda/locale_en-us v4.7.0, @js-joda/locale_en v4.7.0, @js-joda/locale_es v4.7.0, @js-joda/locale_fr-fr v4.7.0, @js-joda/locale_fr v4.7.0, @js-joda/locale_hi v4.7.0, @js-joda/locale_it-it v4.7.0, @js-joda/locale_it v4.7.0, @js-joda/locale_ja-jp v4.7.0, @js-joda/locale_ja v4.7.0, @js-joda/locale_ko v4.7.0, @js-joda/locale_pl v4.8.0, @js-joda/locale_ro v4.7.0, @js-joda/locale_ru v4.7.0, @js-joda/locale_sv-se v4.7.0, @js-joda/locale_sv v4.7.0, @js-joda/locale_zh v4.7.0
+@js-joda/core v5.3.0, @js-joda/extra v0.8.1, @js-joda/locale v4.8.0, @js-joda/timezone v2.12.1
 
 #### :rocket: Enhancement
 * `locale`
