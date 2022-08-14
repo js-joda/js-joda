@@ -3,6 +3,8 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
+// import { DayOfMonth } from './DayOfMonth';
+// import { DayOfYear } from './DayOfYear';
 // import { Interval } from './Interval';
 
 import './_init';
@@ -14,5 +16,7 @@ import './_init';
  */
 export default function (/* jsJoda */) {
     // assign new prop to jsJoda context is useless, because it lives only in the local context
+    // jsJoda.DayOfMonth = DayOfMonth;
+    // jsJoda.DayOfYear = DayOfYear;
     // jsJoda.Interval = Interval;
 }

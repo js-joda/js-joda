@@ -1,4 +1,49 @@
-import { Instant, Duration } from '@js-joda/core';
+import { Instant, Duration, TemporalAccessor, Clock, ZoneId, TemporalField, ValueRange, TemporalQuery, Temporal, LocalDate, Year, MonthDay, YearMonth, Month } from '@js-joda/core';
+
+export class DayOfMonth extends TemporalAccessor {
+    static from(temporal: TemporalAccessor): DayOfMonth;
+    static now(zoneIdOrClock?: ZoneId | Clock): DayOfMonth;
+    static of(dayOfMonth: number): DayOfMonth;
+
+    private constructor(dayOfMonth: number);
+
+    adjustInto(temporal: Temporal): Temporal;
+    atMonth(month: number | Month): MonthDay;
+    atYearMonth(yearMonth: YearMonth): LocalDate;
+    compareTo(other: DayOfMonth): number;
+    equals(obj: any): boolean;
+    get(field: TemporalField): number;
+    getLong(field: TemporalField): number;
+    value(): number;
+    hashCode(): number;
+    isSupported(field: TemporalField): boolean;
+    isValidYearMonth(yearMonth: YearMonth): boolean;
+    query<R>(query: TemporalQuery<R>): R | null;
+    range(field: TemporalField): ValueRange;
+    toString(): string;
+}
+
+export class DayOfYear extends TemporalAccessor {
+    static from(temporal: TemporalAccessor): DayOfYear;
+    static now(zoneIdOrClock?: ZoneId | Clock): DayOfYear;
+    static of(dayOfYear: number): DayOfYear;
+
+    private constructor(dayOfYear: number);
+
+    adjustInto(temporal: Temporal): Temporal;
+    atYear(year: number | Year): LocalDate;
+    compareTo(other: DayOfYear): number;
+    equals(obj: any): boolean;
+    get(field: TemporalField): number;
+    getLong(field: TemporalField): number;
+    value(): number;
+    hashCode(): number;
+    isSupported(field: TemporalField): boolean;
+    isValidYear(year: number): boolean;
+    query<R>(query: TemporalQuery<R>): R | null;
+    range(field: TemporalField): ValueRange;
+    toString(): string;
+}
 
 export class Interval {
     static of(startInclusive: Instant, endExclusive: Instant): Interval;
