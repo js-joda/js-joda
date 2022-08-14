@@ -1,6 +1,17 @@
 Changelog
 =========
 
+## 2022-08-14 / 2
+
+#### :house: Dependency update
+* Other
+  * [#616](https://github.com/js-joda/js-joda/pull/616) Bump parse-url from 6.0.0 to 6.0.5 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#615](https://github.com/js-joda/js-joda/pull/615) Bump terser from 5.10.0 to 5.14.2 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#613](https://github.com/js-joda/js-joda/pull/613) Bump moment from 2.29.1 to 2.29.4 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#607](https://github.com/js-joda/js-joda/pull/607) Bump ejs from 3.1.6 to 3.1.7 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* `examples`
+  * [#612](https://github.com/js-joda/js-joda/pull/612) Bump moment from 2.29.1 to 2.29.4 in /packages/examples ([@dependabot[bot]](https://github.com/apps/dependabot))
+
 ## 2022-08-14
 
 ### Versions
