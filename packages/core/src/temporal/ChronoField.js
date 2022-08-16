@@ -321,7 +321,7 @@ export class ChronoField extends TemporalField {
             this === ChronoField.ALIGNED_WEEK_OF_MONTH ||
             this === ChronoField.ALIGNED_WEEK_OF_YEAR ||
             this === ChronoField.MONTH_OF_YEAR ||
-            //this === ChronoField.EPOCH_MONTH ||
+            this === ChronoField.PROLEPTIC_MONTH ||
             this === ChronoField.YEAR_OF_ERA ||
             this === ChronoField.YEAR ||
             this === ChronoField.ERA;
