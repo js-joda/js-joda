@@ -15,12 +15,18 @@ import {
     IsoFields,
     DayOfWeek,
     ChronoUnit,
+    ZoneId,
+    Clock,
+    ZoneOffset,
+    OffsetDateTime,
+    LocalTime,
 } from '@js-joda/core'
 import {
     DayOfMonth,
     DayOfYear,
     Interval,
     Quarter,
+    OffsetDate,
     YearQuarter,
     YearWeek
 } from '../../';
@@ -117,13 +123,74 @@ function test_Interval() {
     LocalDate.ofInstant(interval.end());
 }
 
+function test_OffsetDate() {
+    const instant = Instant.now();
+
+    const localDate = LocalDate.ofInstant(instant, ZoneId.systemDefault());
+    const offsetDate = OffsetDate.ofInstant(instant, ZoneId.systemDefault());
+    const offsetDateTime = OffsetDateTime.ofInstant(instant, ZoneId.systemDefault());
+
+    expectType<OffsetDate>(OffsetDate.from(localDate));
+    expectType<OffsetDate>(OffsetDate.now());
+    expectType<OffsetDate>(OffsetDate.now(ZoneId.UTC));
+    expectType<OffsetDate>(OffsetDate.now(Clock.systemUTC()));
+    expectType<OffsetDate>(OffsetDate.of(2001, 1, 1, ZoneOffset.UTC));
+    expectType<OffsetDate>(OffsetDate.of(localDate, ZoneOffset.UTC));
+    expectType<OffsetDate>(OffsetDate.ofInstant(Instant.EPOCH, ZoneId.UTC));
+    expectType<OffsetDate>(OffsetDate.parse('2001-01-01Z'));
+
+    expectType<Temporal>(offsetDate.adjustInto(offsetDateTime));
+    expectType<OffsetDateTime>(offsetDate.atTime(LocalTime.MIDNIGHT));
+    expectType<number>(offsetDate.compareTo(offsetDate));
+    expectType<boolean>(offsetDate.equals(offsetDate));
+    expectType<string>(offsetDate.format(DateTimeFormatter.ISO_LOCAL_DATE));
+    expectType<number>(offsetDate.get(ChronoField.YEAR));
+    expectType<number>(offsetDate.dayOfMonth());
+    expectType<number>(offsetDate.dayOfWeek());
+    expectType<number>(offsetDate.dayOfYear());
+    expectType<number>(offsetDate.getLong(ChronoField.YEAR));
+    expectType<Month>(offsetDate.month());
+    expectType<number>(offsetDate.monthValue());
+    expectType<ZoneOffset>(offsetDate.offset());
+    expectType<number>(offsetDate.year());
+    expectType<number>(offsetDate.hashCode());
+    expectType<boolean>(offsetDate.isAfter(offsetDate));
+    expectType<boolean>(offsetDate.isBefore(offsetDate));
+    expectType<boolean>(offsetDate.isEqual(offsetDate));
+    expectType<boolean>(offsetDate.isSupported(ChronoField.YEAR));
+    expectType<boolean>(offsetDate.isSupported(ChronoField.YEAR));
+
+    expectType<OffsetDate>(offsetDate.minus(0, ChronoUnit.YEARS));
+    //expectType<OffsetDate>(offsetDate.minus(Years.of(0)));
+    expectType<OffsetDate>(offsetDate.minusDays(0));
+    expectType<OffsetDate>(offsetDate.minusMonths(0));
+    expectType<OffsetDate>(offsetDate.minusWeeks(0));
+    expectType<OffsetDate>(offsetDate.minusYears(0));
+    expectType<OffsetDate>(offsetDate.plus(0, ChronoUnit.YEARS));
+    //expectType<OffsetDate>(offsetDate.plus(Years.of(0)));
+    expectType<OffsetDate>(offsetDate.plusDays(0));
+    expectType<OffsetDate>(offsetDate.plusMonths(0));
+    expectType<OffsetDate>(offsetDate.plusWeeks(0));
+    expectType<OffsetDate>(offsetDate.plusYears(0));
+
+    expectType<IsoChronology | null>(offsetDate.query(TemporalQueries.chronology()));
+    expectType<ValueRange>(offsetDate.range(ChronoField.DAY_OF_YEAR));
+
+    expectType<number>(offsetDate.toEpochSecond(LocalTime.MIDNIGHT));
+    expectType<LocalDate>(offsetDate.toLocalDate());
+    expectType<string>(offsetDate.toString());
+    expectType<number>(offsetDate.until(offsetDate, ChronoUnit.YEARS));
+    // expectType<YearQuarter>(offsetDate.with(<TemporalAdjuster>?));
+    expectType<OffsetDate>(offsetDate.with(ChronoField.YEAR, 1));
+    expectType<OffsetDate>(offsetDate.withDayOfMonth(1));
+    expectType<OffsetDate>(offsetDate.withDayOfYear(1));
+    expectType<OffsetDate>(offsetDate.withMonth(1));
+    expectType<OffsetDate>(offsetDate.withOffsetSameLocal(ZoneOffset.UTC));
+    expectType<OffsetDate>(offsetDate.withYear(1));
+}
+
 function test_Quarter() {
     const localDate = LocalDate.now();
-
-    expectType<Quarter>(Quarter.Q1);
-    expectType<Quarter>(Quarter.Q2);
-    expectType<Quarter>(Quarter.Q3);
-    expectType<Quarter>(Quarter.Q4);
 
     expectType<Quarter>(Quarter.from(localDate));
     expectType<Quarter>(Quarter.of(1));
@@ -164,43 +231,43 @@ function test_YearQuarter() {
 
     expectType<boolean>(yearQuarter.isSupported(IsoFields.QUARTER_OF_YEAR));
     expectType<boolean>(yearQuarter.isSupported(IsoFields.QUARTER_YEARS));
-	expectType<ValueRange>(yearQuarter.range(IsoFields.QUARTER_OF_YEAR));
-	expectType<number>(yearQuarter.get(IsoFields.QUARTER_OF_YEAR));
+    expectType<ValueRange>(yearQuarter.range(IsoFields.QUARTER_OF_YEAR));
+    expectType<number>(yearQuarter.get(IsoFields.QUARTER_OF_YEAR));
     expectType<number>(yearQuarter.getLong(IsoFields.QUARTER_OF_YEAR));
-	expectType<number>(yearQuarter.year());
-	expectType<number>(yearQuarter.quarterValue());
-	expectType<Quarter>(yearQuarter.quarter());
-	expectType<boolean>(yearQuarter.isLeapYear());
-	expectType<boolean>(yearQuarter.isValidDay(1));
-	expectType<number>(yearQuarter.lengthOfQuarter());
-	expectType<number>(yearQuarter.lengthOfYear());
-	// expectType<YearQuarter>(yearWeek.with(<TemporalAdjuster>?));
+    expectType<number>(yearQuarter.year());
+    expectType<number>(yearQuarter.quarterValue());
+    expectType<Quarter>(yearQuarter.quarter());
+    expectType<boolean>(yearQuarter.isLeapYear());
+    expectType<boolean>(yearQuarter.isValidDay(1));
+    expectType<number>(yearQuarter.lengthOfQuarter());
+    expectType<number>(yearQuarter.lengthOfYear());
+    // expectType<YearQuarter>(yearWeek.with(<TemporalAdjuster>?));
     expectType<YearQuarter>(yearQuarter.with(ChronoField.YEAR, 2001));
     expectType<YearQuarter>(yearQuarter.withYear(2001));
-	expectType<YearQuarter>(yearQuarter.withQuarter(1));
-	// TODO
+    expectType<YearQuarter>(yearQuarter.withQuarter(1));
+    // TODO
     // expectType<YearQuarter>(yearWeek.minus(Years.of(1)));
-	expectType<YearQuarter>(yearQuarter.plus(1, ChronoUnit.YEARS));
-	expectType<YearQuarter>(yearQuarter.plusYears(1));
-	expectType<YearQuarter>(yearQuarter.plusQuarters(1));
-	// TODO
+    expectType<YearQuarter>(yearQuarter.plus(1, ChronoUnit.YEARS));
+    expectType<YearQuarter>(yearQuarter.plusYears(1));
+    expectType<YearQuarter>(yearQuarter.plusQuarters(1));
+    // TODO
     // expectType<YearQuarter>(yearWeek.minus(Years.of(1)));
-	expectType<YearQuarter>(yearQuarter.minus(1, ChronoUnit.YEARS));
-	expectType<YearQuarter>(yearQuarter.minusYears(1));
-	expectType<YearQuarter>(yearQuarter.minusQuarters(1));
-	expectType<IsoChronology | null>(yearQuarter.query(TemporalQueries.chronology()));
-	expectType<Temporal>(yearQuarter.adjustInto(localDate));
-	expectType<number>(yearQuarter.until(localDate, ChronoUnit.YEARS));
-	expectType<Generator<YearQuarter>>(yearQuarter.quartersUntil(yearQuarter));
-	expectType<string>(yearQuarter.format(DateTimeFormatter.ofPattern("YYYY-'Q'q")));
-	expectType<LocalDate>(yearQuarter.atDay(1));
-	expectType<YearQuarter>(yearQuarter.atEndOfQuarter());
-	expectType<number>(yearQuarter.compareTo(yearQuarter));
-	expectType<boolean>(yearQuarter.isAfter(yearQuarter));
-	expectType<boolean>(yearQuarter.isBefore(yearQuarter));
-	expectType<boolean>(yearQuarter.equals(yearQuarter));
-	expectType<number>(yearQuarter.hashCode());
-	expectType<string>(yearQuarter.toString());
+    expectType<YearQuarter>(yearQuarter.minus(1, ChronoUnit.YEARS));
+    expectType<YearQuarter>(yearQuarter.minusYears(1));
+    expectType<YearQuarter>(yearQuarter.minusQuarters(1));
+    expectType<IsoChronology | null>(yearQuarter.query(TemporalQueries.chronology()));
+    expectType<Temporal>(yearQuarter.adjustInto(localDate));
+    expectType<number>(yearQuarter.until(localDate, ChronoUnit.YEARS));
+    expectType<Generator<YearQuarter>>(yearQuarter.quartersUntil(yearQuarter));
+    expectType<string>(yearQuarter.format(DateTimeFormatter.ofPattern("YYYY-'Q'q")));
+    expectType<LocalDate>(yearQuarter.atDay(1));
+    expectType<YearQuarter>(yearQuarter.atEndOfQuarter());
+    expectType<number>(yearQuarter.compareTo(yearQuarter));
+    expectType<boolean>(yearQuarter.isAfter(yearQuarter));
+    expectType<boolean>(yearQuarter.isBefore(yearQuarter));
+    expectType<boolean>(yearQuarter.equals(yearQuarter));
+    expectType<number>(yearQuarter.hashCode());
+    expectType<string>(yearQuarter.toString());
 }
 
 function test_YearWeek() {

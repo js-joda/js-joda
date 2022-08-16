@@ -1,4 +1,4 @@
-import { Instant, Duration, TemporalAccessor, Clock, ZoneId, TemporalField, ValueRange, TemporalQuery, Temporal, LocalDate, Year, MonthDay, YearMonth, Month, DateTimeFormatter, DayOfWeek, TemporalUnit, TemporalAmount, TemporalAdjuster, TextStyle } from '@js-joda/core';
+import { Instant, Duration, TemporalAccessor, Clock, ZoneId, TemporalField, ValueRange, TemporalQuery, Temporal, LocalDate, Year, MonthDay, YearMonth, Month, DateTimeFormatter, DayOfWeek, TemporalUnit, TemporalAmount, TemporalAdjuster, TextStyle, ZoneOffset, OffsetDateTime, LocalTime } from '@js-joda/core';
 
 export class DayOfMonth extends TemporalAccessor {
 	static from(temporal: TemporalAccessor): DayOfMonth;
@@ -77,6 +77,67 @@ export class Interval {
 	equals(other: any): boolean;
 	hashCode(): number;
 	toString(): string;
+}
+
+export class OffsetDate extends Temporal implements TemporalAdjuster {
+	static from(temporal: TemporalAccessor): OffsetDate;
+	static now(zoneIdOrClock?: ZoneId | Clock): OffsetDate;
+	static of(year: number, month: number, dayOfMonth: number, offset: ZoneOffset): OffsetDate;
+	static of(date: LocalDate, offset: ZoneOffset): OffsetDate;
+	static ofInstant(instant: Instant, zone: ZoneId): OffsetDate;
+	static parse(text: string, formatter?: DateTimeFormatter): OffsetDate;
+	adjustInto(temporal: Temporal): Temporal;
+	atTime(time: LocalTime): OffsetDateTime;
+	compareTo(other: OffsetDate): number;
+	equals(object: any): boolean
+	format(formatter: DateTimeFormatter): string;
+	get(field: TemporalField): number;
+	dayOfMonth(): number;
+	dayOfWeek(): number;
+	dayOfYear(): number;
+	getLong(field: TemporalField): number;
+	month(): Month;
+	monthValue(): number;
+	offset(): ZoneOffset;
+	year(): number;
+	hashCode(): number;
+	isAfter(other: OffsetDate): boolean;
+	isBefore(other: OffsetDate): boolean;
+	isEqual(other: OffsetDate): boolean;
+	isSupported(TemporalField): boolean;
+	isSupported(TemporalUnit): boolean;
+	minus(amountToSubtract: number, unit: TemporalUnit): OffsetDate;
+	minus(amountToSubtract: TemporalAmount): OffsetDate;
+	minusDays(days: number): OffsetDate;
+	minusMonths(months: number): OffsetDate;
+	minusWeeks(weeks: number): OffsetDate;
+	minusYears(years: number): OffsetDate;
+	plus(amountToAdd: number, unit: TemporalUnit): OffsetDate;
+	plus(amountToAdd: TemporalAmount): OffsetDate;
+	plusDays(days: number): OffsetDate;
+	plusMonths(months: number): OffsetDate;
+	plusWeeks(weeks: number): OffsetDate;
+	plusYears(years: number): OffsetDate;
+	query<R>(query: TemporalQuery<R>): R | null;
+	range(field: TemporalField): ValueRange;
+	toEpochSecond(time: LocalTime): number;
+	toLocalDate(): LocalDate;
+	toString(): string;
+	until(endExclusive: Temporal, unit: TemporalUnit): number;
+	with(adjuster: TemporalAdjuster): OffsetDate;
+	with(field: TemporalField, newValue: number): OffsetDate;
+	withDayOfMonth(dayOfMonth: number): OffsetDate;
+	withDayOfYear(dayOfYear: number): OffsetDate;
+	withMonth(month: number): OffsetDate;
+	withOffsetSameLocal(offset: ZoneOffset): OffsetDate;
+	withYear(year: number): OffsetDate;
+
+	protected _minusUnit(amountToSubtract: number, unit: TemporalUnit): OffsetDate;
+	protected _minusAmount(amount: TemporalAmount): OffsetDate;
+	protected _plusUnit(amountToAdd: number, unit: TemporalUnit): OffsetDate;
+	protected _plusAmount(amount: TemporalAmount): OffsetDate;
+	protected _withAdjuster(adjuster: TemporalAdjuster): OffsetDate;
+	protected _withField(field: TemporalField, newValue: number): OffsetDate;
 }
 
 export class Quarter extends TemporalAccessor implements TemporalAdjuster {
