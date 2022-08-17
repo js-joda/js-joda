@@ -8,6 +8,7 @@ import { use } from '@js-joda/core';
 import { DayOfMonth } from './DayOfMonth';
 import { DayOfYear } from './DayOfYear';
 import { Interval } from './Interval';
+import { LocalDateRange } from './LocalDateRange';
 import { OffsetDate } from './OffsetDate';
 import { Quarter } from './Quarter';
 import { YearQuarter } from './YearQuarter';
@@ -20,6 +21,7 @@ export {
     DayOfMonth,
     DayOfYear,
     Interval,
+    LocalDateRange,
     OffsetDate,
     Quarter,
     YearQuarter,

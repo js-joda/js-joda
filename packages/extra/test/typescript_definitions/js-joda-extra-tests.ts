@@ -20,6 +20,7 @@ import {
     ZoneOffset,
     OffsetDateTime,
     LocalTime,
+    Period,
 } from '@js-joda/core'
 import {
     DayOfMonth,
@@ -28,7 +29,8 @@ import {
     Quarter,
     OffsetDate,
     YearQuarter,
-    YearWeek
+    YearWeek,
+    LocalDateRange
 } from '../../';
 
 // See packages/core/test/typescript_definitions/js-joda-tests.ts for an explanation of these tests.
@@ -121,6 +123,48 @@ function test_Interval() {
     interval.toString();
 
     LocalDate.ofInstant(interval.end());
+}
+
+function test_LocalDateRange() {
+    const localDate = LocalDate.EPOCH_0;
+
+    expectType<LocalDateRange>(LocalDateRange.of(localDate, localDate));
+    expectType<LocalDateRange>(LocalDateRange.of(localDate, Period.ZERO));
+    expectType<LocalDateRange>(LocalDateRange.ofClosed(localDate, localDate));
+    expectType<LocalDateRange>(LocalDateRange.ofEmpty(localDate));
+    expectType<LocalDateRange>(LocalDateRange.ofUnbounded());
+    expectType<LocalDateRange>(LocalDateRange.ofUnboundedEnd(localDate));
+    expectType<LocalDateRange>(LocalDateRange.ofUnboundedStart(localDate));
+    expectType<LocalDateRange>(LocalDateRange.parse('2001-01-01/2001-01-01'));
+
+    const localDateRange = LocalDateRange.ofEmpty(localDate);
+
+    expectType<boolean>(localDateRange.abuts(localDateRange));
+    expectType<boolean>(localDateRange.contains(localDate));
+    expectType<boolean>(localDateRange.encloses(localDateRange));
+    expectType<boolean>(localDateRange.equals(localDateRange));
+    expectType<LocalDate>(localDateRange.end());
+    expectType<LocalDate>(localDateRange.endInclusive());
+    expectType<LocalDate>(localDateRange.start());
+    expectType<number>(localDateRange.hashCode());
+    expectType<LocalDateRange>(localDateRange.intersection(localDateRange));
+    expectType<boolean>(localDateRange.isAfter(localDate));
+    expectType<boolean>(localDateRange.isAfter(localDateRange));
+    expectType<boolean>(localDateRange.isBefore(localDate));
+    expectType<boolean>(localDateRange.isBefore(localDateRange));
+    expectType<boolean>(localDateRange.isConnected(localDateRange));
+    expectType<boolean>(localDateRange.isEmpty());
+    expectType<boolean>(localDateRange.isUnboundedEnd());
+    expectType<boolean>(localDateRange.isUnboundedStart());
+    expectType<number>(localDateRange.lengthInDays());
+    expectType<boolean>(localDateRange.overlaps(localDateRange));
+    expectType<LocalDateRange>(localDateRange.span(localDateRange));
+    expectType<Generator<LocalDate>>(localDateRange.stream());
+    expectType<Period>(localDateRange.toPeriod());
+    expectType<string>(localDateRange.toString());
+    expectType<LocalDateRange>(localDateRange.union(localDateRange));
+    // expectType<LocalDateRange>(localDateRange.withEnd(<TemporalAdjuster>?));
+    // expectType<LocalDateRange>(localDateRange.withStart(<TemporalAdjuster>?));
 }
 
 function test_OffsetDate() {
