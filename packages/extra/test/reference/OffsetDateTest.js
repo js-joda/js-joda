@@ -951,7 +951,7 @@ describe('org.threeten.extra.TestOffsetDate', () => {
     describe('plusWeeks()', () => {
         it('test_plusWeeks_symmetry', () => {
             for (const [reference] of data_samplePlusWeeksSymmetry) {
-                for (let weeks = 0; weeks < 365 * 8; weeks++) {
+                for (let weeks = 0; weeks < 53 * 8; weeks++) {
                     let t = reference.plusWeeks(weeks).plusWeeks(-weeks);
                     assertEquals(reference, t);
 
@@ -1036,7 +1036,7 @@ describe('org.threeten.extra.TestOffsetDate', () => {
     describe('plusDays()', () => {
         it('test_plusDays_symmetry', () => {
             for (const [reference] of data_samplePlusDaysSymmetry) {
-                for (let days = 0; days < 365 * 8; days++) {
+                for (let days = 0; days < 365 * 4; days++) {
                     let t = reference.plusDays(days).plusDays(-days);
                     assertEquals(reference, t);
 
@@ -1270,7 +1270,7 @@ describe('org.threeten.extra.TestOffsetDate', () => {
     describe('minusWeeks()', () => {
         it('data_sampleMinusWeeksSymmetry', () => {
             for (const [reference] of data_sampleMinusWeeksSymmetry) {
-                for (let weeks = 0; weeks < 365 * 8; weeks++) {
+                for (let weeks = 0; weeks < 53 * 8; weeks++) {
                     let t = reference.minusWeeks(weeks).minusWeeks(-weeks);
                     assertEquals(reference, t);
 
@@ -1355,7 +1355,7 @@ describe('org.threeten.extra.TestOffsetDate', () => {
     describe('minusDays()', () => {
         it('test_minusDays_symmetry', () => {
             for (const [reference] of data_sampleMinusDaysSymmetry) {
-                for (let days = 0; days < 365 * 8; days++) {
+                for (let days = 0; days < 365 * 4; days++) {
                     let t = reference.minusDays(days).minusDays(-days);
                     assertEquals(reference, t);
 
