@@ -29,7 +29,6 @@ import { ZoneRulesProvider } from './zone/ZoneRulesProvider';
  */
 export class ZoneRegion extends ZoneId {
     /**
-     * not yet implemented
      * @param {string} zoneId
      * @return {ZoneId}
      */
