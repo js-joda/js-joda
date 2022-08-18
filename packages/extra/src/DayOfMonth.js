@@ -331,7 +331,6 @@ export class DayOfMonth extends TemporalAccessor {
      * {@link TemporalQuery.queryFrom} method on the
      * specified query passing this as the argument.
      *
-     * @param <R> the type of the result
      * @param query  the query to invoke, not null
      * @return the query result, null may be returned (defined by the query)
      * @throws {DateTimeException} if unable to query (defined by the query)
