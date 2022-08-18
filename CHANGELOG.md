@@ -3,6 +3,10 @@ Changelog
 
 ## 2022-08-18
 
+### Versions
+
+@js-joda/core@5.3.1, @js-joda/extra@0.9.0, @js-joda/locale@4.8.2, @js-joda/timezone@2.12.2
+
 #### :rocket: Enhancement
 * `core`, `extra`
   * [#614](https://github.com/js-joda/js-joda/pull/614) add DayOfMonth and DayOfYear ([@perceptron8](https://github.com/perceptron8))
