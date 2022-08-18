@@ -851,10 +851,10 @@ export class YearMonth extends Temporal {
             const monthsUntil = end._getProlepticMonth() - this._getProlepticMonth();  // no overflow
             switch (unit) {
                 case ChronoUnit.MONTHS: return monthsUntil;
-                case ChronoUnit.YEARS: return monthsUntil / 12;
-                case ChronoUnit.DECADES: return monthsUntil / 120;
-                case ChronoUnit.CENTURIES: return monthsUntil / 1200;
-                case ChronoUnit.MILLENNIA: return monthsUntil / 12000;
+                case ChronoUnit.YEARS: return MathUtil.intDiv(monthsUntil, 12);
+                case ChronoUnit.DECADES: return MathUtil.intDiv(monthsUntil, 120);
+                case ChronoUnit.CENTURIES: return MathUtil.intDiv(monthsUntil, 1200);
+                case ChronoUnit.MILLENNIA: return MathUtil.intDiv(monthsUntil, 12000);
                 case ChronoUnit.ERAS: return end.getLong(ChronoField.ERA) - this.getLong(ChronoField.ERA);
             }
             throw new UnsupportedTemporalTypeException(`Unsupported unit: ${unit}`);

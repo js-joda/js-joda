@@ -208,9 +208,9 @@ describe('js-joda YearMonth', () => {
             const end = YearMonth.of(2016, 12);
             assertEquals(test.until(end, ChronoUnit.YEARS), 1);
             assertEquals(test.until(end, ChronoUnit.MONTHS), 12);
-            assertEquals(test.until(end, ChronoUnit.DECADES), 0.1);
-            assertEquals(test.until(end, ChronoUnit.CENTURIES), 0.01);
-            assertEquals(test.until(end, ChronoUnit.MILLENNIA), 0.001);
+            assertEquals(test.until(end, ChronoUnit.DECADES), 0);
+            assertEquals(test.until(end, ChronoUnit.CENTURIES), 0);
+            assertEquals(test.until(end, ChronoUnit.MILLENNIA), 0);
             assertEquals(test.until(end, ChronoUnit.ERAS), 0);
         });
         
