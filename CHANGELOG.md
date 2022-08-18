@@ -1,6 +1,12 @@
 Changelog
 =========
 
+## 2022-08-18
+
+#### :rocket: Enhancement
+* `core`, `extra`
+  * [#614](https://github.com/js-joda/js-joda/pull/614) add DayOfMonth and DayOfYear ([@perceptron8](https://github.com/perceptron8))
+
 ## 2022-08-14 / 2
 
 ### Versions
