@@ -240,7 +240,6 @@ export class YearQuarter extends Temporal {
      * The text is parsed using the formatter, returning a year-quarter.
      *
      * @param {string} text  the text to parse, not null
-     * @param {DateTimeFormatter} formatter  the formatter to use, not null
      * @param {DateTimeFormatter} [formatter=YearQuarter.PARSER] - the formatter to use, default is {@link YearQuarter.PARSER}
      * @throws DateTimeParseException if the text cannot be parsed
      */
@@ -897,7 +896,7 @@ export class YearQuarter extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {temporal} the target object to be adjusted, not null
+     * @param {Temporal} the target object to be adjusted, not null
      * @return {Temporal} the adjusted object, not null
      * @throws DateTimeException if unable to make the adjustment
      * @throws ArithmeticException if numeric overflow occurs

@@ -482,8 +482,8 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {} offset  the zone offset to change to, not null
-     * @return {} an `OffsetDate` based on this date with the requested offset, not null
+     * @param {ZoneOffset} offset  the zone offset to change to, not null
+     * @return {OffsetDate} an `OffsetDate` based on this date with the requested offset, not null
      */
     withOffsetSameLocal(offset) {
         requireNonNull(offset, 'offset');
@@ -675,7 +675,7 @@ export class OffsetDate extends Temporal {
      * This instance is immutable and unaffected by this method call.
      *
      * @param {TemporalField} field  the field to set in the result, not null
-     * @param {long} newValue  the new value of the field in the result
+     * @param {number} newValue  the new value of the field in the result
      * @return {OffsetDate} an `OffsetDate` based on `this` with the specified field set, not null
      * @throws DateTimeException if the field cannot be set
      * @throws UnsupportedTemporalTypeException if the field is not supported
@@ -704,7 +704,7 @@ export class OffsetDate extends Temporal {
      * This instance is immutable and unaffected by this method call.
      *
      * @param {OffsetDate} year  the year to set in the result, from MIN_YEAR to MAX_YEAR
-     * @return {int} an `OffsetDate` based on this date with the requested year, not null
+     * @return {number} an `OffsetDate` based on this date with the requested year, not null
      * @throws DateTimeException if the year value is invalid
      */
     withYear(year) {
@@ -719,7 +719,7 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {int} month  the month-of-year to set in the result, from 1 (January) to 12 (December)
+     * @param {number} month  the month-of-year to set in the result, from 1 (January) to 12 (December)
      * @return {OffsetDate} an `OffsetDate` based on this date with the requested month, not null
      * @throws DateTimeException if the month-of-year value is invalid
      */
@@ -735,7 +735,7 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {int} dayOfMonth  the day-of-month to set in the result, from 1 to 28-31
+     * @param {number} dayOfMonth  the day-of-month to set in the result, from 1 to 28-31
      * @return {OffsetDate} an `OffsetDate` based on this date with the requested day, not null
      * @throws DateTimeException if the day-of-month value is invalid,
      *  or if the day-of-month is invalid for the month-year
@@ -751,7 +751,7 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {int} dayOfYear  the day-of-year to set in the result, from 1 to 365-366
+     * @param {number} dayOfYear  the day-of-year to set in the result, from 1 to 365-366
      * @return {OffsetDate} an `OffsetDate` based on this date with the requested day, not null
      * @throws DateTimeException if the day-of-year value is invalid,
      *  or if the day-of-year is invalid for the year
@@ -778,7 +778,7 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {long} amountToAdd  the amount of the unit to add to the result, may be negative
+     * @param {number} amountToAdd  the amount of the unit to add to the result, may be negative
      * @param {TemporalUnit} unit  the unit of the amount to add, not null
      * @return {OffsetDate} an `OffsetDate` based on this date with the specified amount added, not null
      * @throws DateTimeException if the addition cannot be made
@@ -801,7 +801,7 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {long} years  the years to add, may be negative
+     * @param {number} years  the years to add, may be negative
      * @return {OffsetDate} an `OffsetDate` based on this date with the years added, not null
      * @throws DateTimeException if the result exceeds the supported date range
      */
@@ -817,8 +817,8 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {} months  the months to add, may be negative
-     * @return {} an `OffsetDate` based on this date with the months added, not null
+     * @param {number} months  the months to add, may be negative
+     * @return {OffsetDate} an `OffsetDate` based on this date with the months added, not null
      * @throws DateTimeException if the result exceeds the supported date range
      */
     plusMonths(months) {
@@ -833,7 +833,7 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {long} weeks  the weeks to add, may be negative
+     * @param {number} weeks  the weeks to add, may be negative
      * @return {OffsetDate} an `OffsetDate` based on this date with the weeks added, not null
      * @throws DateTimeException if the result exceeds the supported date range
      */
@@ -849,7 +849,7 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {long} days  the days to add, may be negative
+     * @param {number} days  the days to add, may be negative
      * @return {OffsetDate} an `OffsetDate` based on this date with the days added, not null
      * @throws DateTimeException if the result exceeds the supported date range
      */
@@ -866,7 +866,7 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {long} years  the years to subtract, may be negative
+     * @param {number} years  the years to subtract, may be negative
      * @return {OffsetDate} an `OffsetDate` based on this date with the years subtracted, not null
      * @throws DateTimeException if the result exceeds the supported date range
      */
@@ -882,7 +882,7 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {long} months  the months to subtract, may be negative
+     * @param {number} months  the months to subtract, may be negative
      * @return {OffsetDate} an `OffsetDate` based on this date with the months subtracted, not null
      * @throws DateTimeException if the result exceeds the supported date range
      */
@@ -898,7 +898,7 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {long} weeks  the weeks to subtract, may be negative
+     * @param {number} weeks  the weeks to subtract, may be negative
      * @return {OffsetDate} an `OffsetDate` based on this date with the weeks subtracted, not null
      * @throws DateTimeException if the result exceeds the supported date range
      */
@@ -914,7 +914,7 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {long} days  the days to subtract, may be negative
+     * @param {number} days  the days to subtract, may be negative
      * @return {OffsetDate} an `OffsetDate` based on this date with the days subtracted, not null
      * @throws DateTimeException if the result exceeds the supported date range
      */
@@ -1029,7 +1029,7 @@ export class OffsetDate extends Temporal {
      *
      * @param {Temporal} endExclusive  the end time, exclusive, which is converted to an `OffsetDate`, not null
      * @param {TemporalUnit} unit  the unit to measure the amount in, not null
-     * @return {long} the amount of time between this date and the end date
+     * @return {number} the amount of time between this date and the end date
      * @throws DateTimeException if the amount cannot be calculated, or the end
      *  temporal cannot be converted to an `OffsetDate`
      * @throws UnsupportedTemporalTypeException if the unit is not supported
@@ -1079,7 +1079,7 @@ export class OffsetDate extends Temporal {
     /**
      * Converts this date to midnight at the start of day in epoch seconds.
      *
-     * @return {long} the epoch seconds value
+     * @return {number} the epoch seconds value
      */
     _toEpochSecond() {
         const epochDay = this._date.toEpochDay();
@@ -1098,7 +1098,7 @@ export class OffsetDate extends Temporal {
      * are negative.
      *
      * @param {LocalTime} time the local time, not null
-     * @return {long} the number of seconds since the epoch of 1970-01-01T00:00:00Z, may be negative
+     * @return {number} the number of seconds since the epoch of 1970-01-01T00:00:00Z, may be negative
      */
     toEpochSecond(time) {
         requireNonNull(time, 'time');
@@ -1127,7 +1127,7 @@ export class OffsetDate extends Temporal {
      * use {@link ChronoField.EPOCH_DAY} as a comparator.
      *
      * @param {OffsetDate} other  the other date to compare to, not null
-     * @return {int} the comparator value, negative if less, positive if greater
+     * @return {number} the comparator value, negative if less, positive if greater
      */
     compareTo(other) {
         requireNonNull(other, 'other');
@@ -1222,7 +1222,7 @@ export class OffsetDate extends Temporal {
     /**
      * A hash code for this date.
      *
-     * @return {int} a suitable hash code
+     * @return {number} a suitable hash code
      */
     hashCode() {
         return this._date.hashCode() ^ this._offset.hashCode();

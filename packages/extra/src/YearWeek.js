@@ -238,8 +238,6 @@ export class YearWeek extends Temporal {
      * The text is parsed using the formatter, returning a year-week.
      *
      * @param text  the text to parse, not null
-     * @param formatter  the formatter to use, not null
-     * 
      * @param {DateTimeFormatter} [formatter=YearWeek.PARSER] - the formatter to use, default is
      * {@link YearWeek.PARSER}
      * 
