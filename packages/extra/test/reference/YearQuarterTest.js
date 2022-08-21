@@ -10,7 +10,6 @@ import {
     DateTimeException,
     DateTimeFormatter,
     DateTimeParseException,
-    IllegalArgumentException,
     IsoChronology,
     IsoFields,
     LocalDate,

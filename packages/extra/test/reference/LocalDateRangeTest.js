@@ -26,7 +26,6 @@ describe('org.threeten.extra.TestLocalDateRange', () => {
     const MINP2 = LocalDate.MIN.plusDays(2);
     const MINP3 = LocalDate.MIN.plusDays(3);
     const MAXM1 = LocalDate.MAX.minusDays(1);
-    const MAXM2 = LocalDate.MAX.minusDays(2);
     const DATE_2012_07_01 = LocalDate.of(2012, 7, 1);
     const DATE_2012_07_27 = LocalDate.of(2012, 7, 27);
     const DATE_2012_07_28 = LocalDate.of(2012, 7, 28);
