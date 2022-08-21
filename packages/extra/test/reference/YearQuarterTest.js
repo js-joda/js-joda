@@ -657,38 +657,6 @@ describe('org.threeten.extra.TestYearQuarter', () => {
     });
 
     //-----------------------------------------------------------------------
-    // quartersUntil(YearQuarter)
-    //-----------------------------------------------------------------------
-    describe('quartersUntil(YearQuarter)', () => {
-        it('test_quartersUntil_null', () => {
-            assertThrows(NullPointerException, () => YearQuarter.of(2012, Quarter.Q2).quartersUntil(null));
-        });
-
-        it('test_quartersUntil_IllegalArgument', () => {
-            assertThrows(IllegalArgumentException, () => YearQuarter.of(2012, Quarter.Q2).quartersUntil(YearQuarter.of(2012, Quarter.Q1)));
-        });
-
-        it('test_quartersUntil', () => {
-            assertEquals(2, [...YearQuarter.of(2012, Quarter.Q2).quartersUntil(YearQuarter.of(2012, Quarter.Q4))].length);
-            assertEquals(10, [...YearQuarter.of(2012, Quarter.Q2).quartersUntil(YearQuarter.of(2014, Quarter.Q4))].length);
-
-            const start = YearQuarter.of(2012, Quarter.Q1);
-            const end = YearQuarter.of(2013, Quarter.Q3);
-            const stream = start.quartersUntil(end);
-
-            const expects = [
-                YearQuarter.of(start.year(), Quarter.Q1),
-                YearQuarter.of(start.year(), Quarter.Q2),
-                YearQuarter.of(start.year(), Quarter.Q3),
-                YearQuarter.of(start.year(), Quarter.Q4),
-                YearQuarter.of(end.year(), Quarter.Q1),
-                YearQuarter.of(end.year(), Quarter.Q2)
-            ];
-            assertEquals(expects, [...stream]);
-        });
-    });
-
-    //-----------------------------------------------------------------------
     // format(DateTimeFormatter)
     //-----------------------------------------------------------------------
     describe('format(DateTimeFormatter)', () => {

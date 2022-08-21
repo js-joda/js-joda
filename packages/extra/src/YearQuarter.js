@@ -988,25 +988,6 @@ export class YearQuarter extends Temporal {
     }
 
     /**
-     * Returns a sequential ordered stream of year-quarter. The returned stream starts from this year-quarter
-     * (inclusive) and goes to `endExclusive` (exclusive) by an incremental step of 1 `QUARTER_YEARS`.
-     * 
-     * This instance is immutable and unaffected by this method call.
-     * 
-     * @param {YearQuarter} endExclusive  the end year-quarter, exclusive, not null
-     * @return {Generator<YearQuarter>} `Generator` for the range of `YearQuarter` values
-     * @throws IllegalArgumentException if end year-quarter is before this year-quarter
-     */
-    quartersUntil(endExclusive) {
-        requireNonNull(endExclusive, 'endExclusive');
-        requireInstance(endExclusive, YearQuarter, 'endExclusive');
-        if (endExclusive.isBefore(this)) {
-            throw new IllegalArgumentException(`${endExclusive} < ${this}`);
-        }
-        return quartersBetween(this, endExclusive);
-    }
-
-    /**
      * Formats this year-quarter using the specified formatter.
      * 
      * This year-quarter will be passed to the formatter to produce a string.
@@ -1163,13 +1144,6 @@ export class YearQuarter extends Temporal {
             }
         }
         return yearString.concat('-').concat(this._quarter);
-    }
-}
-
-function* quartersBetween(startInclusive, endExclusive) {
-    const intervalLength = startInclusive.until(endExclusive, IsoFields.QUARTER_YEARS);
-    for (let n = 0; n < intervalLength; n++) {
-        yield startInclusive.plusQuarters(n);
     }
 }
 
