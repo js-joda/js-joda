@@ -896,7 +896,7 @@ export class YearQuarter extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {Temporal} the target object to be adjusted, not null
+     * @param {Temporal} temporal  the target object to be adjusted, not null
      * @return {Temporal} the adjusted object, not null
      * @throws DateTimeException if unable to make the adjustment
      * @throws ArithmeticException if numeric overflow occurs
