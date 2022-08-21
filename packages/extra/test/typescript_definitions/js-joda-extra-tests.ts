@@ -159,7 +159,6 @@ function test_LocalDateRange() {
     expectType<number>(localDateRange.lengthInDays());
     expectType<boolean>(localDateRange.overlaps(localDateRange));
     expectType<LocalDateRange>(localDateRange.span(localDateRange));
-    expectType<Generator<LocalDate>>(localDateRange.stream());
     expectType<Period>(localDateRange.toPeriod());
     expectType<string>(localDateRange.toString());
     expectType<LocalDateRange>(localDateRange.union(localDateRange));
@@ -302,7 +301,6 @@ function test_YearQuarter() {
     expectType<IsoChronology | null>(yearQuarter.query(TemporalQueries.chronology()));
     expectType<Temporal>(yearQuarter.adjustInto(localDate));
     expectType<number>(yearQuarter.until(localDate, ChronoUnit.YEARS));
-    expectType<Generator<YearQuarter>>(yearQuarter.quartersUntil(yearQuarter));
     expectType<string>(yearQuarter.format(DateTimeFormatter.ofPattern("YYYY-'Q'q")));
     expectType<LocalDate>(yearQuarter.atDay(1));
     expectType<YearQuarter>(yearQuarter.atEndOfQuarter());

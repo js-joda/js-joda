@@ -141,8 +141,8 @@ export class OffsetDate extends Temporal implements TemporalAdjuster {
     isAfter(other: OffsetDate): boolean;
     isBefore(other: OffsetDate): boolean;
     isEqual(other: OffsetDate): boolean;
-    isSupported(TemporalField): boolean;
-    isSupported(TemporalUnit): boolean;
+    isSupported(field: TemporalField): boolean;
+    isSupported(unit: TemporalUnit): boolean;
     minus(amountToSubtract: number, unit: TemporalUnit): OffsetDate;
     minus(amountToSubtract: TemporalAmount): OffsetDate;
     minusDays(days: number): OffsetDate;
