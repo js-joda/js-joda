@@ -563,19 +563,6 @@ export class LocalDateRange {
         return LocalDateRange.of(newStart, newEnd);
     }
 
-    //-----------------------------------------------------------------------
-    /**
-     * Streams the set of dates included in the range.
-     * 
-     * This returns a stream consisting of each date in the range.
-     * The stream is ordered.
-     * 
-     * @return {Generator} the stream of dates from the start to the end
-     */
-    stream() {
-        return stream(this._start, this._end);
-    }
-
     /**
      * function overloading for {@link LocalDateRange.isAfter}
      *
@@ -744,13 +731,6 @@ export class LocalDateRange {
      */
     toString() {
         return `${this._start.toString()}/${this._end.toString()}`;
-    }
-}
-
-function* stream(start, end) {
-    const count = end.toEpochDay() - start.toEpochDay() + (end.equals(LocalDate.MAX) ? 1 : 0);
-    for (let n = 0; n < count; n++) {
-        yield start.plusDays(n);
     }
 }
 

@@ -826,34 +826,6 @@ describe('org.threeten.extra.TestLocalDateRange', () => {
     });
 
     //-----------------------------------------------------------------------
-    it('test_stream', () => {
-        const test = LocalDateRange.of(DATE_2012_07_28, DATE_2012_07_31);
-        const result = [...test.stream()];
-        assertEquals(3, result.length);
-        assertEquals(DATE_2012_07_28, result[0]);
-        assertEquals(DATE_2012_07_29, result[1]);
-        assertEquals(DATE_2012_07_30, result[2]);
-    });
-
-    it('test_stream_MIN_MINP3', () => {
-        const test = LocalDateRange.of(LocalDate.MIN, MINP3);
-        const result = [...test.stream()];
-        assertEquals(3, result.length);
-        assertEquals(LocalDate.MIN, result[0]);
-        assertEquals(MINP1, result[1]);
-        assertEquals(MINP2, result[2]);
-    });
-
-    it('test_stream_MAXM2_MAX', () => {
-        const test = LocalDateRange.of(MAXM2, LocalDate.MAX);
-        const result = [...test.stream()];
-        assertEquals(3, result.length);
-        assertEquals(MAXM2, result[0]);
-        assertEquals(MAXM1, result[1]);
-        assertEquals(LocalDate.MAX, result[2]);
-    });
-
-    //-----------------------------------------------------------------------
     const data_isBefore = [
         // before start
         [DATE_2012_07_01, DATE_2012_07_27, false],
