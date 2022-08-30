@@ -58,10 +58,14 @@ export class LocalDateRange {
         if (startInclusive instanceof LocalDate && endExclusiveOrPeriod instanceof Period) {
             return LocalDateRange._ofLocalDatePeriod(startInclusive, endExclusiveOrPeriod);
         }
-        // FIXME
-        const startInclusiveMessage = `startInclusive must be an instance of LocalDate but is ${startInclusive.constructor.name}`;
-        const endExclusiveOrPeriodMessage = `endExclusiveOrPeriod must be an instance of LocalDate or Period but is ${endExclusiveOrPeriod.constructor.name}`;
-        throw new IllegalArgumentException(`${startInclusiveMessage} and ${endExclusiveOrPeriodMessage}`);
+        const messageParts = [];
+        if (!(startInclusive instanceof LocalDate)) {
+            messageParts.push(`startInclusive must be an instance of LocalDate but is ${startInclusive.constructor.name}`);
+        }
+        if (!(endExclusiveOrPeriod instanceof LocalDate || endExclusiveOrPeriod instanceof Period)) {
+            messageParts.push(`endExclusiveOrPeriod must be an instance of LocalDate or Period but is ${endExclusiveOrPeriod.constructor.name}`);
+        }
+        throw new IllegalArgumentException(messageParts.join(' and '));
     }
 
     //-----------------------------------------------------------------------
