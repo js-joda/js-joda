@@ -97,10 +97,8 @@ export class LocalDateRange {
     start(): LocalDate;
     hashCode(): number;
     intersection(other: LocalDateRange): LocalDateRange;
-    isAfter(date: LocalDate): boolean;
-    isAfter(other: LocalDateRange): boolean;
-    isBefore(date: LocalDate): boolean;
-    isBefore(other: LocalDateRange): boolean;
+    isAfter(rangeOrDate: LocalDate | LocalDateRange): boolean;
+    isBefore(rangeOrDate: LocalDate | LocalDateRange): boolean;
     isConnected(other: LocalDateRange): boolean;
     isEmpty(): boolean;
     isUnboundedEnd(): boolean;
@@ -141,8 +139,7 @@ export class OffsetDate extends Temporal implements TemporalAdjuster {
     isAfter(other: OffsetDate): boolean;
     isBefore(other: OffsetDate): boolean;
     isEqual(other: OffsetDate): boolean;
-    isSupported(field: TemporalField): boolean;
-    isSupported(unit: TemporalUnit): boolean;
+    isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean;
     minus(amountToSubtract: number, unit: TemporalUnit): OffsetDate;
     minus(amountToSubtract: TemporalAmount): OffsetDate;
     minusDays(days: number): OffsetDate;
