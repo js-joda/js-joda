@@ -106,7 +106,6 @@ export class LocalDateRange {
     lengthInDays(): number;
     overlaps(other: LocalDateRange): boolean;
     span(other: LocalDateRange): LocalDateRange;
-    stream(): Generator<LocalDate>;
     toPeriod(): Period;
     toString(): string;
     union(other: LocalDateRange): LocalDateRange;
@@ -241,7 +240,6 @@ export class YearQuarter extends Temporal {
     query<R>(query: TemporalQuery<R>): R | null;
     adjustInto(temporal: Temporal): Temporal;
     until(endExclusive: Temporal, unit: TemporalUnit): number;
-    quartersUntil(endExclusive: YearQuarter): Generator<YearQuarter>;
     format(formatter: DateTimeFormatter): string;
     atDay(dayOfQuarter: number): LocalDate
     atEndOfQuarter(): YearQuarter;
