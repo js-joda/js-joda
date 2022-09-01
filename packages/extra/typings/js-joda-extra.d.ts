@@ -50,7 +50,7 @@ export class Interval {
     static of(startInclusive: Instant, duration: Duration): Interval;
     static parse(text: string): Interval;
 
-    private constructor();
+    private constructor(startInclusive: Instant, endExclusive: Instant);
 
     start(): Instant;
     end(): Instant;
@@ -88,6 +88,9 @@ export class LocalDateRange {
     static ofUnboundedEnd(startInclusive: LocalDate): LocalDateRange;
     static ofUnboundedStart(endExclusive: LocalDate): LocalDateRange;
     static parse(text: string): LocalDateRange;
+
+    private constructor(startInclusive: LocalDate, endExclusive: LocalDate);
+
     abuts(other: LocalDateRange): boolean;
     contains(date: LocalDate): boolean;
     encloses(other: LocalDateRange): boolean;
@@ -120,6 +123,9 @@ export class OffsetDate extends Temporal implements TemporalAdjuster {
     static of(date: LocalDate, offset: ZoneOffset): OffsetDate;
     static ofInstant(instant: Instant, zone: ZoneId): OffsetDate;
     static parse(text: string, formatter?: DateTimeFormatter): OffsetDate;
+
+    private constructor(date: LocalDate, offset: ZoneOffset);
+
     adjustInto(temporal: Temporal): Temporal;
     atTime(time: LocalTime): OffsetDateTime;
     compareTo(other: OffsetDate): number;
