@@ -80,7 +80,8 @@ If you don't need all the historical data that @js-joda/timezone provides, you c
 
 * `js-joda-timezone-10-year-range.js` covers +- five years from the current version's release
 * `js-joda-timezone-1970-2030.js` covers from 1970 to 2030
-* `js-joda-timezone-2012-2022.js` covers from 2012 to 2022
+* `js-joda-timezone-2012-2022.js` covers from 2012 to 2022 // deprecated, will be removed in future releases
+* `js-joda-timezone-2017-2027.js` covers from 2017 to 2027 
 
 To use one of these, just change your import path to the following format:
 
