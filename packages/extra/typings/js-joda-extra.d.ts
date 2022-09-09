@@ -1,4 +1,4 @@
-import { Instant, Duration, TemporalAccessor, Clock, ZoneId, TemporalField, ValueRange, TemporalQuery, Temporal, LocalDate, Year, MonthDay, YearMonth, Month, DateTimeFormatter, DayOfWeek, TemporalUnit, TemporalAmount, TemporalAdjuster, TextStyle, ZoneOffset, OffsetDateTime, LocalTime, Period } from '@js-joda/core';
+import { Instant, Duration, TemporalAccessor, Clock, ZoneId, TemporalField, ValueRange, TemporalQuery, Temporal, LocalDate, Year, MonthDay, YearMonth, Month, DateTimeFormatter, DayOfWeek, TemporalUnit, TemporalAmount, TemporalAdjuster, ZoneOffset, OffsetDateTime, LocalTime, Period } from '@js-joda/core';
 
 export class DayOfMonth extends TemporalAccessor {
     static from(temporal: TemporalAccessor): DayOfMonth;
@@ -195,7 +195,6 @@ export class Quarter extends TemporalAccessor implements TemporalAdjuster {
 
     adjustInto(temporal: Temporal): Temporal;
     compareTo(other: Quarter): number;
-    displayName(style: TextStyle, locale: Locale): string;
     equals(other: any): boolean;
     firstMonth(): Month;
     get(field: TemporalField): number;
@@ -310,9 +309,6 @@ export class YearWeek extends Temporal {
     protected _plusAmount(amount: TemporalAmount): YearWeek;
     protected _withAdjuster(adjuster: TemporalAdjuster): YearWeek;
     protected _withField(field: TemporalField, newValue: number): YearWeek;
-}
-
-declare class Locale {
 }
 
 export const __esModule: true;
