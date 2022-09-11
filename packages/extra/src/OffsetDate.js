@@ -245,6 +245,7 @@ export class OffsetDate extends Temporal {
      *
      * @param {LocalDate} date  the date to create with, not null
      * @param {ZoneOffset} offset  the zone offset to create with, not null
+     * @private
      */
     _with(date, offset) {
         if (this._date === date && this._offset.equals(offset)) {
@@ -1081,6 +1082,7 @@ export class OffsetDate extends Temporal {
      * Converts this date to midnight at the start of day in epoch seconds.
      *
      * @return {number} the epoch seconds value
+     * @private
      */
     _toEpochSecond() {
         const epochDay = this._date.toEpochDay();

@@ -270,6 +270,7 @@ export class YearQuarter extends Temporal {
      * @param {number} newYear  the year to represent, validated from MIN_YEAR to MAX_YEAR
      * @param {Quarter} newQuarter  the quarter-of-year to represent, validated not null
      * @return {YearQuarter} the year-quarter, not null
+     * @private
      */
     _with(newYear, newQuarter) {
         if (this._year === newYear && this._quarter === newQuarter) {
@@ -484,6 +485,9 @@ export class YearQuarter extends Temporal {
         return super.get(field);
     }
 
+    /**
+     * @private
+     */
     _prolepticQuarter() {
         return this._year * 4 + (this._quarter.value() - 1);
     }
