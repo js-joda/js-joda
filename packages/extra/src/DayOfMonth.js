@@ -4,7 +4,7 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import { ChronoField, Clock, DateTimeException, IllegalArgumentException, LocalDate, Month, MonthDay, TemporalAccessor, UnsupportedTemporalTypeException, ZoneId } from '@js-joda/core';
+import { ChronoField, Clock, DateTimeException, IllegalArgumentException, IsoChronology, LocalDate, Month, MonthDay, TemporalAccessor, TemporalQueries, TemporalQuery, UnsupportedTemporalTypeException, ZoneId } from '@js-joda/core';
 
 // TODO: hm... is this a good idea?? copied from joda currently, could we add a js-joda-utils module??
 import { requireInstance, requireNonNull } from './assert';
@@ -335,6 +335,7 @@ export class DayOfMonth extends TemporalAccessor {
      * @return {*} the query result, null may be returned (defined by the query)
      * @throws {DateTimeException} if unable to query (defined by the query)
      * @throws {ArithmeticException} if numeric overflow occurs (defined by the query)
+     */
     query(query) {
         requireNonNull(query, 'query');
         requireInstance(query, TemporalQuery, 'query');
