@@ -150,7 +150,7 @@ const jsJodaExports = {
 /**
  * @private
  *
- * @type {function(*=): *}
+ * @type { function(function(jsJoda: JsJoda) }
  */
 const use = bindUse(jsJodaExports);
 jsJodaExports.use = use;
