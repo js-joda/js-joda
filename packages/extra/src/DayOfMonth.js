@@ -27,25 +27,25 @@ export class DayOfMonth extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Function overloading for {@link DayOfMonth.now}:
-     * * if called with no arguments, {@link DayOfMonth.now0} is executed;
-     * * if called with an instance of {@link ZoneId}, then {@link DayOfMonth.nowZoneId} is executed;
-     * * if called with an instance of {@link Clock}, then {@link DayOfMonth.nowClock} is executed;
-     * * otherwise {@link IllegalArgumentException} is thrown.
+     * - if called with no arguments, {@link DayOfMonth._now0} is executed;
+     * - if called with an instance of {@link ZoneId}, then {@link DayOfMonth._nowZoneId} is executed;
+     * - if called with an instance of {@link Clock}, then {@link DayOfMonth._nowClock} is executed;
+     * - otherwise {@link IllegalArgumentException} is thrown.
      * 
      * @param {?(ZoneId|Clock)} zoneIdOrClock
-     * @returns {DayOfMonth}
+     * @return {DayOfMonth}
      */
     static now(zoneIdOrClock) {
         switch (arguments.length) {
             case 0:
-                return DayOfMonth.now0();
+                return DayOfMonth._now0();
             case 1:
                 requireNonNull(zoneIdOrClock, 'clockOrZone');
                 if (zoneIdOrClock instanceof ZoneId) {
-                    return DayOfMonth.nowZoneId(zoneIdOrClock);
+                    return DayOfMonth._nowZoneId(zoneIdOrClock);
                 }
                 if (zoneIdOrClock instanceof Clock) {
-                    return DayOfMonth.nowClock(zoneIdOrClock);
+                    return DayOfMonth._nowClock(zoneIdOrClock);
                 }
                 throw new IllegalArgumentException(`zoneIdOrClock must be an instance of ZoneId or Clock, but is ${zoneIdOrClock.constructor.name}`);
             default:
@@ -63,10 +63,10 @@ export class DayOfMonth extends TemporalAccessor {
      * Using this method will prevent the ability to use an alternate clock for testing
      * because the clock is hard-coded.
      *
-     * @return the current day-of-month using the system clock and default time-zone, not null
-     * @private
+     * @return {DayOfMonth} the current day-of-month using the system clock and default time-zone, not null
+     * @protected
      */
-    static now0() {
+    static _now0() {
         return this.now(Clock.systemDefaultZone());
     }
 
@@ -79,11 +79,11 @@ export class DayOfMonth extends TemporalAccessor {
      * Using this method will prevent the ability to use an alternate clock for testing
      * because the clock is hard-coded.
      *
-     * @param zone  the zone ID to use, not null
-     * @return the current day-of-month using the system clock, not null
-     * @private
+     * @param {ZoneId} zone - the zone ID to use, not null
+     * @return {DayOfMonth} the current day-of-month using the system clock, not null
+     * @protected
      */
-    static nowZoneId(zone) {
+    static _nowZoneId(zone) {
         return this.now(Clock.system(zone));
     }
 
@@ -94,11 +94,11 @@ export class DayOfMonth extends TemporalAccessor {
      * Using this method allows the use of an alternate clock for testing.
      * The alternate clock may be introduced using {@link Clock dependency injection}.
      *
-     * @param clock  the clock to use, not null
-     * @return the current day-of-month, not null
-     * @private
+     * @param {Clock} clock - the clock to use, not null
+     * @return {DayOfMonth} the current day-of-month, not null
+     * @protected
      */
-    static nowClock(clock) {
+    static _nowClock(clock) {
         const now = LocalDate.now(clock);  // called once
         return DayOfMonth.of(now.dayOfMonth());
     }
@@ -109,9 +109,9 @@ export class DayOfMonth extends TemporalAccessor {
      * 
      * A day-of-month object represents one of the 31 days of the month, from 1 to 31.
      *
-     * @param dayOfMonth  the day-of-month to represent, from 1 to 31
-     * @return the day-of-month, not null
-     * @throws DateTimeException if the day-of-month is invalid
+     * @param {number} dayOfMonth - the day-of-month to represent, from 1 to 31
+     * @return {DayOfMonth} the day-of-month, not null
+     * @throws {DateTimeException} if the day-of-month is invalid
      */
     static of(dayOfMonth) {
         if (1 <= dayOfMonth && dayOfMonth <= 31) {
@@ -136,8 +136,8 @@ export class DayOfMonth extends TemporalAccessor {
      * This method matches the signature of the functional interface {@link TemporalQuery}
      * allowing it to be used in queries via method reference, {@link DayOfMonth.from}.
      *
-     * @param temporal  the temporal object to convert, not null
-     * @return the day-of-month, not null
+     * @param {TemporalAccessor} temporal - the temporal object to convert, not null
+     * @return {DayOfMonth} the day-of-month, not null
      * @throws {DateTimeException} if unable to convert to a {@link DayOfMonth}
      */
     static from(temporal) {
@@ -160,7 +160,7 @@ export class DayOfMonth extends TemporalAccessor {
     /**
      * Constructor, previously validated.
      *
-     * @param dayOfMonth  the day-of-month to represent,  from 1 to 31.
+     * @param {number} dayOfMonth  the day-of-month to represent, - from 1 to 31.
      * @private
      */
     constructor(dayOfMonth) {
@@ -172,7 +172,7 @@ export class DayOfMonth extends TemporalAccessor {
     /**
      * Gets the day-of-month value.
      *
-     * @return the day-of-month, from 1 to 31
+     * @return {number} the day-of-month, from 1 to 31
      */
     value() {
         return this._day;
@@ -199,8 +199,8 @@ export class DayOfMonth extends TemporalAccessor {
      * passing this as the argument.
      * Whether the field is supported is determined by the field.
      *
-     * @param field  the field to check, null returns false
-     * @return true if the field is supported on this day-of-month, false if not
+     * @param {TemporalField} field - the field to check, null returns false
+     * @return {boolean} true if the field is supported on this day-of-month, false if not
      */
     isSupported(field) {
         if (field instanceof ChronoField) {
@@ -228,8 +228,8 @@ export class DayOfMonth extends TemporalAccessor {
      * passing this as the argument.
      * Whether the range can be obtained is determined by the field.
      *
-     * @param field  the field to query the range for, not null
-     * @return the range of valid values for the field, not null
+     * @param {TemporalField} field - the field to query the range for, not null
+     * @return {ValueRange} the range of valid values for the field, not null
      * @throws {DateTimeException} if the range for the field cannot be obtained
      * @throws {UnsupportedTemporalTypeException} if the field is not supported
      */
@@ -259,8 +259,8 @@ export class DayOfMonth extends TemporalAccessor {
      * passing this as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
-     * @param field  the field to get, not null
-     * @return the value for the field
+     * @param {TemporalField} field - the field to get, not null
+     * @return {number} the value for the field
      * @throws {DateTimeException} if a value for the field cannot be obtained or
      *  the value is outside the range of valid values for the field
      * @throws {UnsupportedTemporalTypeException} if the field is not supported or
@@ -272,7 +272,7 @@ export class DayOfMonth extends TemporalAccessor {
     }
 
     /**
-     * Gets the value of the specified field from this day-of-month as a {@link long}.
+     * Gets the value of the specified field from this day-of-month as a `long`.
      * 
      * This queries this day-of-month for the value for the specified field.
      * If it is not possible to return the value, because the field is not supported
@@ -288,11 +288,11 @@ export class DayOfMonth extends TemporalAccessor {
      * passing this as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
-     * @param field  the field to get, not null
-     * @return the value for the field
-     * @throws DateTimeException if a value for the field cannot be obtained
-     * @throws UnsupportedTemporalTypeException if the field is not supported
-     * @throws ArithmeticException if numeric overflow occurs
+     * @param {TemporalField} field - the field to get, not null
+     * @return {number} the value for the field
+     * @throws {DateTimeException} if a value for the field cannot be obtained
+     * @throws {UnsupportedTemporalTypeException} if the field is not supported
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
     getLong(field) {
         requireNonNull(field, 'field');
@@ -311,8 +311,8 @@ export class DayOfMonth extends TemporalAccessor {
      * This method checks whether this day and the input year and month form
      * a valid date.
      *
-     * @param yearMonth  the year month to validate, null returns false
-     * @return true if the year and month are valid for this day
+     * @param {YearMonth} yearMonth - the year month to validate, null returns false
+     * @return {boolean} true if the year and month are valid for this day
      */
     isValidYearMonth(yearMonth) {
         return yearMonth != null && yearMonth.isValidDay(this._day);
@@ -331,8 +331,8 @@ export class DayOfMonth extends TemporalAccessor {
      * {@link TemporalQuery.queryFrom} method on the
      * specified query passing this as the argument.
      *
-     * @param query  the query to invoke, not null
-     * @return the query result, null may be returned (defined by the query)
+     * @param {TemporalQuery} query - the query to invoke, not null
+     * @return {*} the query result, null may be returned (defined by the query)
      * @throws {DateTimeException} if unable to query (defined by the query)
      * @throws {ArithmeticException} if numeric overflow occurs (defined by the query)
      */
@@ -366,8 +366,8 @@ export class DayOfMonth extends TemporalAccessor {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param temporal  the target object to be adjusted, not null
-     * @return the adjusted object, not null
+     * @param {Temporal} temporal - the target object to be adjusted, not null
+     * @return {Temporal} the adjusted object, not null
      * @throws {DateTimeException} if unable to make the adjustment
      * @throws {ArithmeticException} if numeric overflow occurs
      */
@@ -394,8 +394,8 @@ export class DayOfMonth extends TemporalAccessor {
      * If this day-of-month is invalid for the month then it will be changed
      * to the last valid date for the month.
      *
-     * @param month  the month-of-year to use, from 1 (January) to 12 (December), not null
-     * @return the year-month formed from this year and the specified month, not null
+     * @param {Month | number} month - the month-of-year to use, from 1 (January) to 12 (December), not null
+     * @return {MonthDay} the year-month formed from this year and the specified month, not null
      */
     atMonth(month) {
         requireNonNull(month, 'month');
@@ -414,8 +414,8 @@ export class DayOfMonth extends TemporalAccessor {
      * If this day-of-month is invalid for the year-month then it will be changed
      * to the last valid date for the month.
      *
-     * @param yearMonth  the year-month to use, not null
-     * @return the local date formed from this year and the specified year-month, not null
+     * @param {YearMonth} yearMonth - the year-month to use, not null
+     * @return {LocalDate} the local date formed from this year and the specified year-month, not null
      */
     atYearMonth(yearMonth) {
         requireNonNull(yearMonth, 'yearMonth');
@@ -429,8 +429,8 @@ export class DayOfMonth extends TemporalAccessor {
      * The comparison is based on the value of the day.
      * It is 'consistent with equals', as defined by {@link Comparable}.
      *
-     * @param other  the other day-of-month instance, not null
-     * @return the comparator value, negative if less, positive if greater
+     * @param {DayOfMonth} other - the other day-of-month instance, not null
+     * @return {number} the comparator value, negative if less, positive if greater
      */
     compareTo(other) {
         requireNonNull(other, 'other');
@@ -442,8 +442,8 @@ export class DayOfMonth extends TemporalAccessor {
     /**
      * Checks if this day-of-month is equal to another day-of-month.
      *
-     * @param obj  the other day-of-month instance, null returns false
-     * @return true if the day-of-month is the same
+     * @param {*} obj - the other day-of-month instance, null returns false
+     * @return {boolean} true if the day-of-month is the same
      */
     equals(obj) {
         if (this === obj) {
@@ -458,7 +458,7 @@ export class DayOfMonth extends TemporalAccessor {
     /**
      * A hash code for this day-of-month.
      *
-     * @return a suitable hash code
+     * @return {number} a suitable hash code
      */
     hashCode() {
         return this._day;
@@ -468,7 +468,7 @@ export class DayOfMonth extends TemporalAccessor {
     /**
      * Outputs this day-of-month as a {@link String}.
      *
-     * @return a string representation of this day-of-month, not null
+     * @return {string} a string representation of this day-of-month, not null
      */
     toString() {
         return `DayOfMonth:${this._day}`;

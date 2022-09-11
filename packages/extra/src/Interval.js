@@ -11,14 +11,14 @@ import { requireNonNull, requireInstance } from './assert';
 
 /**
  * An immutable interval of time between two instants.
- * <p>
+ * 
  * An interval represents the time on the time-line between two {@link Instant}s.
  * The class stores the start and end instants, with the start inclusive and the end exclusive.
  * The end instant is always greater than or equal to the start instant.
- * <p>
+ * 
  * The {@link Duration} of an interval can be obtained, but is a separate concept.
  * An interval is connected to the time-line, whereas a duration is not.
- * <p>
+ * 
  * Intervals are not comparable. To compare the length of two intervals, it is
  * generally recommended to compare their durations.
  *
@@ -27,16 +27,13 @@ export class Interval {
     //-----------------------------------------------------------------------
     /**
      * function overloading for {@link Interval.of}
+     * - If called without arguments, then {@link Interval.ofInstantInstant} is executed.
+     * - If called with 1 arguments and first argument is an instance of ZoneId, then {@link Interval.ofInstantDuration} is executed.
+     * - Otherwise {@link Interval.ofInstantDuration} is executed.
      *
-     * if called without arguments, then {@link Interval.ofInstantInstant} is executed.
-
-     * if called with 1 arguments and first argument is an instance of ZoneId, then {@link Interval.ofInstantDuration} is executed.
-     *
-     * Otherwise {@link Interval.ofInstantDuration} is executed.
-     *
-     * @param {!(Instant)} startInstant
-     * @param {!(Instant|Duration)} endInstantOrDuration
-     * @returns {Interval}
+     * @param {Instant} startInstant
+     * @param {Instant|Duration} endInstantOrDuration
+     * @return {Interval}
      */
     static of(startInstant, endInstantOrDuration) {
         if (endInstantOrDuration instanceof Duration) {
@@ -47,14 +44,15 @@ export class Interval {
     }
 
     /**
-     * Obtains an instance of {@code Interval} from the start and end instant.
-     * <p>
+     * Obtains an instance of `Interval` from the start and end instant.
+     * 
      * The end instant must not be before the start instant.
      *
-     * @param {Instant} startInclusive  the start instant, inclusive, MIN_DATE treated as unbounded, not null
-     * @param {Instant} endExclusive  the end instant, exclusive, MAX_DATE treated as unbounded, not null
+     * @param {Instant} startInclusive - the start instant, inclusive, MIN_DATE treated as unbounded, not null
+     * @param {Instant} endExclusive - the end instant, exclusive, MAX_DATE treated as unbounded, not null
      * @return {Interval} the half-open interval, not null
-     * @throws DateTimeException if the end is before the start
+     * @throws {DateTimeException} if the end is before the start
+     * @protected
      */
     static ofInstantInstant(startInclusive, endExclusive) {
         requireNonNull(startInclusive, 'startInclusive');
@@ -68,17 +66,18 @@ export class Interval {
     }
 
     /**
-     * Obtains an instance of {@code Interval} from the start and a duration.
-     * <p>
+     * Obtains an instance of `Interval` from the start and a duration.
+     * 
      * The end instant is calculated as the start plus the duration.
      * The duration must not be negative.
      *
-     * @param {Instant} startInclusive  the start instant, inclusive, not null
-     * @param {Duration} duration  the duration from the start to the end, not null
+     * @param {Instant} startInclusive - the start instant, inclusive, not null
+     * @param {Duration} duration - the duration from the start to the end, not null
      * @return {Interval} the interval, not null
-     * @throws DateTimeException if the end is before the start,
+     * @throws {DateTimeException} if the end is before the start,
      *  or if the duration addition cannot be made
-     * @throws ArithmeticException if numeric overflow occurs when adding the duration
+     * @throws {ArithmeticException} if numeric overflow occurs when adding the duration
+     * @protected
      */
     static ofInstantDuration(startInclusive, duration) {
         requireNonNull(startInclusive, 'startInclusive');
@@ -94,25 +93,23 @@ export class Interval {
     //-----------------------------------------------------------------------
 
     /**
-     * Obtains an instance of {@code Interval} from a text string such as
-     * {@code 2007-12-03T10:15:30Z/2007-12-04T10:15:30Z}, where the end instant is exclusive.
-     * <p>
+     * Obtains an instance of `Interval` from a text string such as
+     * `2007-12-03T10:15:30Z/2007-12-04T10:15:30Z`, where the end instant is exclusive.
+     * 
      * The string must consist of one of the following three formats:
-     * <ul>
-     * <li>a representations of an {@link ZonedDateTime}, followed by a forward slash,
+     * - a representations of an {@link ZonedDateTime}, followed by a forward slash,
      *  followed by a representation of a {@link ZonedDateTime}
-     * <li>a representation of an {@link ZonedDateTime}, followed by a forward slash,
+     * - a representation of an {@link ZonedDateTime}, followed by a forward slash,
      *  followed by a representation of a {@link Duration}
-     * <li>a representation of a {@link Duration}, followed by a forward slash,
+     * - a representation of a {@link Duration}, followed by a forward slash,
      *  followed by a representation of an {@link ZonedDateTime}
-     * </ul>
      *
      * NOTE: in contrast to the threeten-extra base we are not using `OffsetDateTime` but `ZonedDateTime` to parse
      * the string, this does not change the format but adds the possibility to optionally specify a zone
      *
-     * @param {string} text  the text to parse, not null
+     * @param {string} text - the text to parse, not null
      * @return {Interval} the parsed interval, not null
-     * @throws DateTimeParseException if the text cannot be parsed
+     * @throws {DateTimeParseException} if the text cannot be parsed
      */
     static parse(text) {
         requireNonNull(text, 'text');
@@ -148,8 +145,8 @@ export class Interval {
     /**
      * Constructor.
      *
-     * @param {Instant} startInclusive  the start instant, inclusive, validated not null
-     * @param {Instant} endExclusive  the end instant, exclusive, validated not null
+     * @param {Instant} startInclusive - the start instant, inclusive, validated not null
+     * @param {Instant} endExclusive - the end instant, exclusive, validated not null
      * @private
      */
     constructor(startInclusive, endExclusive) {
@@ -160,7 +157,7 @@ export class Interval {
     //-----------------------------------------------------------------------
     /**
      * Gets the start of this time interval, inclusive.
-     * <p>
+     * 
      * This will return {@link Instant#MIN} if the range is unbounded at the start.
      * In this case, the range includes all dates into the far-past.
      *
@@ -172,7 +169,7 @@ export class Interval {
 
     /**
      * Gets the end of this time interval, exclusive.
-     * <p>
+     * 
      * This will return {@link Instant#MAX} if the range is unbounded at the end.
      * In this case, the range includes all dates into the far-future.
      *
@@ -185,7 +182,7 @@ export class Interval {
     //-----------------------------------------------------------------------
     /**
      * Checks if the range is empty.
-     * <p>
+     * 
      * An empty range occurs when the start date equals the inclusive end date.
      *
      * @return {boolean} true if the range is empty
@@ -216,9 +213,9 @@ export class Interval {
     /**
      * Returns a copy of this range with the specified start instant.
      *
-     * @param {Instant} start  the start instant for the new interval, not null
+     * @param {Instant} start - the start instant for the new interval, not null
      * @return {Interval} an interval with the end from this interval and the specified start
-     * @throws DateTimeException if the resulting interval has end before start
+     * @throws {DateTimeException} if the resulting interval has end before start
      */
     withStart(start) {
         return Interval.of(start, this._end);
@@ -227,9 +224,9 @@ export class Interval {
     /**
      * Returns a copy of this range with the specified end instant.
      *
-     * @param {Instant} end  the end instant for the new interval, not null
+     * @param {Instant} end - the end instant for the new interval, not null
      * @return {Interval} an interval with the start from this interval and the specified end
-     * @throws DateTimeException if the resulting interval has end before start
+     * @throws {DateTimeException} if the resulting interval has end before start
      */
     withEnd(end) {
         return Interval.of(this._start, end);
@@ -238,13 +235,13 @@ export class Interval {
     //-----------------------------------------------------------------------
     /**
      * Checks if this interval contains the specified instant.
-     * <p>
+     * 
      * This checks if the specified instant is within the bounds of this interval.
-     * If this range has an unbounded start then {@code contains(Instant#MIN)} returns true.
-     * If this range has an unbounded end then {@code contains(Instant#MAX)} returns true.
+     * If this range has an unbounded start then `contains(Instant.MIN)` returns true.
+     * If this range has an unbounded end then `contains(Instant.MAX)` returns true.
      * If this range is empty then this method always returns false.
      *
-     * @param {Instant} instant  the instant, not null
+     * @param {Instant} instant - the instant, not null
      * @return {boolean} true if this interval contains the instant
      */
     contains(instant) {
@@ -255,11 +252,11 @@ export class Interval {
 
     /**
      * Checks if this interval encloses the specified interval.
-     * <p>
+     * 
      * This checks if the bounds of the specified interval are within the bounds of this interval.
      * An empty interval encloses itself.
      *
-     * @param {Interval} other  the other interval, not null
+     * @param {Interval} other - the other interval, not null
      * @return {boolean} true if this interval contains the other interval
      */
     encloses(other) {
@@ -270,11 +267,11 @@ export class Interval {
 
     /**
      * Checks if this interval abuts the specified interval.
-     * <p>
+     * 
      * The result is true if the end of this interval is the start of the other, or vice versa.
      * An empty interval does not abut itself.
      *
-     * @param {Interval} other  the other interval, not null
+     * @param {Interval} other - the other interval, not null
      * @return {boolean} true if this interval abuts the other interval
      */
     abuts(other) {
@@ -285,13 +282,13 @@ export class Interval {
 
     /**
      * Checks if this interval is connected to the specified interval.
-     * <p>
+     * 
      * The result is true if the two intervals have an enclosed interval in common, even if that interval is empty.
      * An empty interval is connected to itself.
-     * <p>
-     * This is equivalent to {@code (overlaps(other) || abuts(other))}.
+     * 
+     * This is equivalent to `(overlaps(other) || abuts(other))`.
      *
-     * @param {Interval} other  the other interval, not null
+     * @param {Interval} other - the other interval, not null
      * @return {boolean} true if this interval is connected to the other interval
      */
     isConnected(other) {
@@ -302,13 +299,13 @@ export class Interval {
 
     /**
      * Checks if this interval overlaps the specified interval.
-     * <p>
+     * 
      * The result is true if the the two intervals share some part of the time-line.
      * An empty interval overlaps itself.
-     * <p>
-     * This is equivalent to {@code (isConnected(other) && !abuts(other))}.
+     * 
+     * This is equivalent to `(isConnected(other) && !abuts(other))`.
      *
-     * @param {Interval} other  the time interval to compare to, null means a zero length interval now
+     * @param {Interval} other - the time interval to compare to, null means a zero length interval now
      * @return {boolean} true if the time intervals overlap
      */
     overlaps(other) {
@@ -320,13 +317,13 @@ export class Interval {
     //-----------------------------------------------------------------------
     /**
      * Calculates the interval that is the intersection of this interval and the specified interval.
-     * <p>
+     * 
      * This finds the intersection of two intervals.
      * This throws an exception if the two intervals are not {@linkplain #isConnected(Interval) connected}.
      *
-     * @param {Interval} other  the other interval to check for, not null
+     * @param {Interval} other - the other interval to check for, not null
      * @return {Interval} the interval that is the intersection of the two intervals
-     * @throws DateTimeException if the intervals do not connect
+     * @throws {DateTimeException} if the intervals do not connect
      */
     intersection(other) {
         requireNonNull(other, 'other');
@@ -349,13 +346,13 @@ export class Interval {
 
     /**
      * Calculates the interval that is the union of this interval and the specified interval.
-     * <p>
+     * 
      * This finds the union of two intervals.
      * This throws an exception if the two intervals are not {@linkplain #isConnected(Interval) connected}.
      *
-     * @param {Interval} other  the other interval to check for, not null
+     * @param {Interval} other - the other interval to check for, not null
      * @return {Interval} the interval that is the union of the two intervals
-     * @throws DateTimeException if the intervals do not connect
+     * @throws {DateTimeException} if the intervals do not connect
      */
     union(other) {
         requireNonNull(other, 'other');
@@ -378,11 +375,11 @@ export class Interval {
 
     /**
      * Calculates the smallest interval that encloses this interval and the specified interval.
-     * <p>
+     * 
      * The result of this method will {@linkplain #encloses(Interval) enclose}
      * this interval and the specified interval.
      *
-     * @param {Interval} other  the other interval to check for, not null
+     * @param {Interval} other - the other interval to check for, not null
      * @return {Interval} the interval that spans the two intervals
      */
     span(other) {
@@ -397,14 +394,12 @@ export class Interval {
 
     //-------------------------------------------------------------------------
     /**
-     * function overloading for {@link Interval#isAfter}
+     * Function overloading for {@link Interval#isAfter}
+     * - If called with an Instant, then {@link Interval#isAfterInstant} is executed.
+     * - Otherwise {@link Interval#isAfterInterval} is executed.
      *
-     * if called with an Instant, then {@link Interval#isAfterInstant} is executed.
-     *
-     * Otherwise {@link Interval#isAfterInterval} is executed.
-     *
-     * @param {!(Instant|Interval)} instantOrInterval
-     * @returns {boolean}
+     * @param {Instant|Interval} instantOrInterval
+     * @return {boolean}
      */
     isAfter(instantOrInterval) {
         if (instantOrInterval instanceof Instant) {
@@ -415,14 +410,12 @@ export class Interval {
     }
 
     /**
-     * function overloading for {@link Interval#isBefore}
+     * Function overloading for {@link Interval#isBefore}
+     * - If called with an Instant, then {@link Interval#isBeforeInstant} is executed.
+     * - Otherwise {@link Interval#isBeforeInterval} is executed.
      *
-     * if called with an Instant, then {@link Interval#isBeforeInstant} is executed.
-     *
-     * Otherwise {@link Interval#isBeforeInterval} is executed.
-     *
-     * @param {!(Instant|Interval)} instantOrInterval
-     * @returns {boolean}
+     * @param {Instant|Interval} instantOrInterval
+     * @return {boolean}
      */
     isBefore(instantOrInterval) {
         if (instantOrInterval instanceof Instant) {
@@ -434,11 +427,11 @@ export class Interval {
 
     /**
      * Checks if this interval is after the specified instant.
-     * <p>
+     * 
      * The result is true if the this instant starts after the specified instant.
      * An empty interval behaves as though it is an instant for comparison purposes.
      *
-     * @param {Instant} instant  the other instant to compare to, not null
+     * @param {Instant} instant - the other instant to compare to, not null
      * @return {boolean} true if the start of this interval is after the specified instant
      */
     isAfterInstant(instant) {
@@ -447,13 +440,13 @@ export class Interval {
 
     /**
      * Checks if this interval is before the specified instant.
-     * <p>
+     * 
      * The result is true if the this instant ends before the specified instant.
      * Since intervals do not include their end points, this will return true if the
      * instant equals the end of the interval.
      * An empty interval behaves as though it is an instant for comparison purposes.
      *
-     * @param {Instant} instant  the other instant to compare to, not null
+     * @param {Instant} instant - the other instant to compare to, not null
      * @return {boolean} true if the start of this interval is before the specified instant
      */
     isBeforeInstant(instant) {
@@ -463,13 +456,13 @@ export class Interval {
     //-------------------------------------------------------------------------
     /**
      * Checks if this interval is after the specified interval.
-     * <p>
+     * 
      * The result is true if the this instant starts after the end of the specified interval.
      * Since intervals do not include their end points, this will return true if the
      * instant equals the end of the interval.
      * An empty interval behaves as though it is an instant for comparison purposes.
      *
-     * @param {Interval} interval  the other interval to compare to, not null
+     * @param {Interval} interval - the other interval to compare to, not null
      * @return {boolean} true if this instant is after the specified instant
      */
     isAfterInterval(interval) {
@@ -478,13 +471,13 @@ export class Interval {
 
     /**
      * Checks if this interval is before the specified interval.
-     * <p>
+     * 
      * The result is true if the this instant ends before the start of the specified interval.
      * Since intervals do not include their end points, this will return true if the
      * two intervals abut.
      * An empty interval behaves as though it is an instant for comparison purposes.
      *
-     * @param {Interval} interval  the other interval to compare to, not null
+     * @param {Interval} interval - the other interval to compare to, not null
      * @return {boolean} true if this instant is before the specified instant
      */
     isBeforeInterval(interval) {
@@ -494,12 +487,12 @@ export class Interval {
     //-----------------------------------------------------------------------
     /**
      * Obtains the duration of this interval.
-     * <p>
-     * An {@code Interval} is associated with two specific instants on the time-line.
-     * A {@code Duration} is simply an amount of time, separate from the time-line.
+     * 
+     * An `Interval` is associated with two specific instants on the time-line.
+     * A `Duration` is simply an amount of time, separate from the time-line.
      *
      * @return {Duration} the duration of the time interval
-     * @throws ArithmeticException if the calculation exceeds the capacity of {@code Duration}
+     * @throws {ArithmeticException} if the calculation exceeds the capacity of `Duration`
      */
     toDuration() {
         return Duration.between(this._start, this._end);
@@ -508,11 +501,11 @@ export class Interval {
     //-----------------------------------------------------------------------
     /**
      * Checks if this interval is equal to another interval.
-     * <p>
-     * Compares this {@code Interval} with another ensuring that the two instants are the same.
-     * Only objects of type {@code Interval} are compared, other types return false.
+     * 
+     * Compares this `Interval` with another ensuring that the two instants are the same.
+     * Only objects of type `Interval` are compared, other types return false.
      *
-     * @param {*} obj  the object to check, null returns false
+     * @param {*} obj - the object to check, null returns false
      * @return {boolean} true if this is equal to the other interval
      */
     equals(obj) {
@@ -537,10 +530,10 @@ export class Interval {
 
     //-----------------------------------------------------------------------
     /**
-     * Outputs this interval as a {@code String}, such as {@code 2007-12-03T10:15:30/2007-12-04T10:15:30}.
-     * <p>
+     * Outputs this interval as a `String`, such as `2007-12-03T10:15:30/2007-12-04T10:15:30`.
+     * 
      * The output will be the ISO-8601 format formed by combining the
-     * {@code toString()} methods of the two instants, separated by a forward slash.
+     * `toString()` methods of the two instants, separated by a forward slash.
      *
      * @return {string} a string representation of this instant, not null
      */

@@ -42,14 +42,13 @@ const MAXM1 = LocalDate.MAX.minusDays(1);
 export class LocalDateRange {
     /**
      * function overloading for {@link LocalDateRange.of}
-     *
-     * if called with `LocalDate` and `LocalDate`, {@link LocalDateRange._ofLocalDateLocalDate} is executed,
-     * if called with `LocalDate` and `Period`, {@link LocalDateRange._ofLocalDatePeriod} is executed,
-     * otherwise throws IllegalArgumentException.
+     * - if called with `LocalDate` and `LocalDate`, {@link LocalDateRange._ofLocalDateLocalDate} is executed,
+     * - if called with `LocalDate` and `Period`, {@link LocalDateRange._ofLocalDatePeriod} is executed,
+     * - otherwise throws IllegalArgumentException.
      *
      * @param {LocalDate} startInclusive
      * @param {LocalDate|Period} endExclusiveOrPeriod
-     * @returns {LocalDateRange}
+     * @return {LocalDateRange}
      */
     static of(startInclusive, endExclusiveOrPeriod) {
         if (startInclusive instanceof LocalDate && endExclusiveOrPeriod instanceof LocalDate) {
@@ -83,12 +82,13 @@ export class LocalDateRange {
      * The end inclusive date must not be `LocalDate.MIN` or `LocalDate.MIN.plusDays(1)`.
      * No empty range can exist at `LocalDate.MIN` or `LocalDate.MAX`.
      *
-     * @param {LocalDate} startInclusive  the inclusive start date, not null
-     * @param {LocalDate} endExclusive  the exclusive end date, not null
+     * @param {LocalDate} startInclusive - the inclusive start date, not null
+     * @param {LocalDate} endExclusive - the exclusive end date, not null
      * @return {LocalDateRange} the half-open range, not null
-     * @throws DateTimeException if the end is before the start,
+     * @throws {DateTimeException} if the end is before the start,
      *   or the start date is `LocalDate.MAX` or `LocalDate.MAX.minusDays(1)`,
      *   or the end date is `LocalDate.MIN` or `LocalDate.MIN.plusDays(1)`
+     * @protected
      */
     static _ofLocalDateLocalDate(startInclusive, endExclusive) {
         requireNonNull(startInclusive, 'startInclusive');
@@ -96,6 +96,35 @@ export class LocalDateRange {
         requireInstance(startInclusive, LocalDate, 'startInclusive');
         requireInstance(endExclusive, LocalDate, 'endExclusive');
         return new LocalDateRange(startInclusive, endExclusive);
+    }
+
+    /**
+     * Obtains an instance of `LocalDateRange` from the start and a period.
+     * 
+     * The end date is calculated as the start plus the duration.
+     * The period must not be negative.
+     * 
+     * The constant `LocalDate.MIN` can be used to indicate an unbounded far-past.
+     * 
+     * The period must not be zero or one day when the start date is `LocalDate.MIN`.
+     *
+     * @param {LocalDate} startInclusive - the inclusive start date, not null
+     * @param {Period} period - the period from the start to the end, not null
+     * @return {LocalDateRange} the range, not null
+     * @throws {DateTimeException} if the end is before the start,
+     *  or if the period addition cannot be made
+     * @throws {ArithmeticException} if numeric overflow occurs when adding the period
+     * @protected
+     */
+    static _ofLocalDatePeriod(startInclusive, period) {
+        requireNonNull(startInclusive, 'startInclusive');
+        requireNonNull(period, 'period');
+        requireInstance(startInclusive, LocalDate, 'startInclusive');
+        requireInstance(period, Period, 'period');
+        if (period.isNegative()) {
+            throw new DateTimeException('Period must not be zero or negative');
+        }
+        return new LocalDateRange(startInclusive, startInclusive.plus(period));
     }
 
     /**
@@ -111,10 +140,10 @@ export class LocalDateRange {
      * The start inclusive date must not be `LocalDate.MAX` or `LocalDate.MAX.minusDays(1)`.
      * The end inclusive date must not be `LocalDate.MIN`.
      * 
-     * @param {LocalDate} startInclusive  the inclusive start date, not null
-     * @param {LocalDate} endInclusive  the inclusive end date, not null
+     * @param {LocalDate} startInclusive - the inclusive start date, not null
+     * @param {LocalDate} endInclusive - the inclusive end date, not null
      * @return {LocalDateRange} the closed range
-     * @throws DateTimeException if the end is before the start,
+     * @throws {DateTimeException} if the end is before the start,
      *   or the start date is `LocalDate.MAX` or `LocalDate.MAX.minusDays(1)`,
      *   or the end date is `LocalDate.MIN`
      */
@@ -131,43 +160,15 @@ export class LocalDateRange {
     }
 
     /**
-     * Obtains an instance of `LocalDateRange` from the start and a period.
-     * 
-     * The end date is calculated as the start plus the duration.
-     * The period must not be negative.
-     * 
-     * The constant `LocalDate.MIN` can be used to indicate an unbounded far-past.
-     * 
-     * The period must not be zero or one day when the start date is `LocalDate.MIN`.
-     *
-     * @param {LocalDate} startInclusive  the inclusive start date, not null
-     * @param {Period} period  the period from the start to the end, not null
-     * @return {LocalDateRange} the range, not null
-     * @throws DateTimeException if the end is before the start,
-     *  or if the period addition cannot be made
-     * @throws ArithmeticException if numeric overflow occurs when adding the period
-     */
-    static _ofLocalDatePeriod(startInclusive, period) {
-        requireNonNull(startInclusive, 'startInclusive');
-        requireNonNull(period, 'period');
-        requireInstance(startInclusive, LocalDate, 'startInclusive');
-        requireInstance(period, Period, 'period');
-        if (period.isNegative()) {
-            throw new DateTimeException('Period must not be zero or negative');
-        }
-        return new LocalDateRange(startInclusive, startInclusive.plus(period));
-    }
-
-    /**
      * Obtains an empty date range located at the specified date.
      * 
      * The empty range has zero length and contains no other dates or ranges.
      * An empty range cannot be located at `LocalDate.MIN`, `LocalDate.MIN.plusDays(1)`,
      * `LocalDate.MAX` or `LocalDate.MAX.minusDays(1)`.
      *
-     * @param {LocalDate} date  the date where the empty range is located, not null
+     * @param {LocalDate} date - the date where the empty range is located, not null
      * @return {LocalDateRange} the empty range, not null
-     * @throws DateTimeException if the date is `LocalDate.MIN`, `LocalDate.MIN.plusDays(1)`,
+     * @throws {DateTimeException} if the date is `LocalDate.MIN`, `LocalDate.MIN.plusDays(1)`,
      *   `LocalDate.MAX` or `LocalDate.MAX.minusDays(1)`
      */
     static ofEmpty(date) {
@@ -191,9 +192,9 @@ export class LocalDateRange {
      * The range includes all dates from the unbounded start, denoted by `LocalDate.MIN`, to the end date.
      * The end date is exclusive and cannot be `LocalDate.MIN` or `LocalDate.MIN.plusDays(1)`.
      * 
-     * @param {LocalDate} endExclusive  the exclusive end date, `LocalDate.MAX` treated as unbounded, not null
+     * @param {LocalDate} endExclusive - the exclusive end date, `LocalDate.MAX` treated as unbounded, not null
      * @return {LocalDateRange} the range, with an unbounded start
-     * @throws DateTimeException if the end date is `LocalDate.MIN` or  `LocalDate.MIN.plusDays(1)`
+     * @throws {DateTimeException} if the end date is `LocalDate.MIN` or  `LocalDate.MIN.plusDays(1)`
      */
     static ofUnboundedStart(endExclusive) {
         requireNonNull(endExclusive, 'endExclusive');
@@ -207,9 +208,9 @@ export class LocalDateRange {
      * The range includes all dates from the start date to the unbounded end, denoted by `LocalDate.MAX`.
      * The start date is inclusive and cannot be `LocalDate.MAX` or `LocalDate.MAX.minusDays(1)`.
      * 
-     * @param {LocalDate} startInclusive  the inclusive start date, `LocalDate.MIN` treated as unbounded, not null
+     * @param {LocalDate} startInclusive - the inclusive start date, `LocalDate.MIN` treated as unbounded, not null
      * @return {LocalDateRange} the range, with an unbounded end
-     * @throws DateTimeException if the start date is `LocalDate.MAX` or `LocalDate.MAX.minusDays(1)`
+     * @throws {DateTimeException} if the start date is `LocalDate.MAX` or `LocalDate.MAX.minusDays(1)`
      */
     static ofUnboundedEnd(startInclusive) {
         return LocalDateRange.of(startInclusive, LocalDate.MAX);
@@ -230,9 +231,9 @@ export class LocalDateRange {
      *  followed by a representation of an {@link LocalDate}
      * </ul>
      *
-     * @param {string} text  the text to parse, not null
+     * @param {string} text - the text to parse, not null
      * @return {LocalDateRange} the parsed range, not null
-     * @throws DateTimeParseException if the text cannot be parsed
+     * @throws {DateTimeParseException} if the text cannot be parsed
      */
     static parse(text) {
         requireNonNull(text, 'text');
@@ -266,8 +267,8 @@ export class LocalDateRange {
     /**
      * Constructor.
      *
-     * @param {LocalDate} startInclusive  the start date, inclusive, validated not null
-     * @param {LocalDate} endExclusive  the end date, exclusive, validated not null
+     * @param {LocalDate} startInclusive - the start date, inclusive, validated not null
+     * @param {LocalDate} endExclusive - the end date, exclusive, validated not null
      * @private
      */
     constructor(startInclusive, endExclusive) {
@@ -388,9 +389,9 @@ export class LocalDateRange {
      *  range = range.withStart(date -&gt; date.minus(1, ChronoUnit.WEEKS));
      * </pre>
      * 
-     * @param {TemporalAdjuster} adjuster  the adjuster to use, not null
+     * @param {TemporalAdjuster} adjuster - the adjuster to use, not null
      * @return {LocalDateRange} a copy of this range with the start date adjusted
-     * @throws DateTimeException if the new start date is after the current end date
+     * @throws {DateTimeException} if the new start date is after the current end date
      */
     withStart(adjuster) {
         return LocalDateRange.of(this._start.with(adjuster), this._end);
@@ -408,9 +409,9 @@ export class LocalDateRange {
      *  range = range.withEnd(date -&gt; date.plus(1, ChronoUnit.WEEKS));
      * </pre>
      * 
-     * @param {TemporalAdjuster} adjuster  the adjuster to use, not null
+     * @param {TemporalAdjuster} adjuster - the adjuster to use, not null
      * @return {LocalDateRange} a copy of this range with the end date adjusted
-     * @throws DateTimeException if the new end date is before the current start date
+     * @throws {DateTimeException} if the new end date is before the current start date
      */
     withEnd(adjuster) {
         return LocalDateRange.of(this._start, this._end.with(adjuster));
@@ -425,7 +426,7 @@ export class LocalDateRange {
      * Else if this range has an unbounded start then `contains(LocalDate#MIN)` returns true.
      * Else if this range has an unbounded end then `contains(LocalDate#MAX)` returns true.
      * 
-     * @param {LocalDate} date  the date to check for, not null
+     * @param {LocalDate} date - the date to check for, not null
      * @return {boolean} true if this range contains the date
      */
     contains(date) {
@@ -439,7 +440,7 @@ export class LocalDateRange {
      * This checks if the bounds of the specified range are within the bounds of this range.
      * An empty range encloses itself.
      * 
-     * @param {LocalDateRange} other  the other range to check for, not null
+     * @param {LocalDateRange} other - the other range to check for, not null
      * @return {boolean} true if this range contains all dates in the other range
      */
     encloses(other) {
@@ -453,7 +454,7 @@ export class LocalDateRange {
      * The result is true if the end of this range is the start of the other, or vice versa.
      * An empty range does not abut itself.
      *
-     * @param {LocalDateRange} other  the other range, not null
+     * @param {LocalDateRange} other - the other range, not null
      * @return {boolean} true if this range abuts the other range
      */
     abuts(other) {
@@ -469,7 +470,7 @@ export class LocalDateRange {
      * 
      * This is equivalent to `(overlaps(other) || abuts(other))`.
      *
-     * @param {LocalDateRange} other  the other range, not null
+     * @param {LocalDateRange} other - the other range, not null
      * @return {boolean} true if this range is connected to the other range
      */
     isConnected(other) {
@@ -485,7 +486,7 @@ export class LocalDateRange {
      * 
      * This is equivalent to `(isConnected(other) && !abuts(other))`.
      *
-     * @param {LocalDateRange} other  the time range to compare to, null means a zero length range now
+     * @param {LocalDateRange} other - the time range to compare to, null means a zero length range now
      * @return {boolean} true if the time ranges overlap
      */
     overlaps(other) {
@@ -500,9 +501,9 @@ export class LocalDateRange {
      * This finds the intersection of two ranges.
      * This throws an exception if the two ranges are not {@linkplain #isConnected(LocalDateRange) connected}.
      * 
-     * @param {LocalDateRange} other  the other range to check for, not null
+     * @param {LocalDateRange} other - the other range to check for, not null
      * @return {LocalDateRange} the range that is the intersection of the two ranges
-     * @throws DateTimeException if the ranges do not connect
+     * @throws {DateTimeException} if the ranges do not connect
      */
     intersection(other) {
         requireNonNull(other, 'other');
@@ -528,9 +529,9 @@ export class LocalDateRange {
      * This finds the union of two ranges.
      * This throws an exception if the two ranges are not {@linkplain #isConnected(LocalDateRange) connected}.
      * 
-     * @param {LocalDateRange} other  the other range to check for, not null
+     * @param {LocalDateRange} other - the other range to check for, not null
      * @return {LocalDateRange} the range that is the union of the two ranges
-     * @throws DateTimeException if the ranges do not connect
+     * @throws {DateTimeException} if the ranges do not connect
      */
     union(other) {
         requireNonNull(other, 'other');
@@ -556,7 +557,7 @@ export class LocalDateRange {
      * The result of this method will {@linkplain #encloses(LocalDateRange) enclose}
      * this range and the specified range.
      * 
-     * @param {LocalDateRange} other  the other range to check for, not null
+     * @param {LocalDateRange} other - the other range to check for, not null
      * @return {LocalDateRange} the range that spans the two ranges
      */
     span(other) {
@@ -569,14 +570,13 @@ export class LocalDateRange {
     }
 
     /**
-     * function overloading for {@link LocalDateRange.isAfter}
-     *
-     * if called with `LocalDate`, {@link LocalDateRange._isAfterLocalDate} is executed,
-     * if called with `LocalDateRange`, {@link LocalDateRange._isAfterLocalDateRange} is executed,
-     * otherwise throws IllegalArgumentException.
+     * Function overloading for {@link LocalDateRange.isAfter}
+     * - if called with `LocalDate`, {@link LocalDateRange._isAfterLocalDate} is executed,
+     * - if called with `LocalDateRange`, {@link LocalDateRange._isAfterLocalDateRange} is executed,
+     * - otherwise throws IllegalArgumentException.
      *
      * @param {LocalDate|LocalDateRange} localDateOrLocalDateRange
-     * @returns {boolean}
+     * @return {boolean}
      */
     isAfter(localDateOrLocalDateRange) {
         if (localDateOrLocalDateRange instanceof LocalDate) {
@@ -589,14 +589,13 @@ export class LocalDateRange {
     }
 
     /**
-     * function overloading for {@link LocalDateRange.isBefore}
-     *
-     * if called with `LocalDate`, {@link LocalDateRange._isBeforeLocalDate} is executed,
-     * if called with `LocalDateRange`, {@link LocalDateRange._isBeforeLocalDateRange} is executed,
-     * otherwise throws IllegalArgumentException.
+     * Function overloading for {@link LocalDateRange.isBefore}
+     * - if called with `LocalDate`, {@link LocalDateRange._isBeforeLocalDate} is executed,
+     * - if called with `LocalDateRange`, {@link LocalDateRange._isBeforeLocalDateRange} is executed,
+     * - otherwise throws IllegalArgumentException.
      *
      * @param {LocalDate|LocalDateRange} localDateOrLocalDateRange
-     * @returns {boolean}
+     * @return {boolean}
      */
     isBefore(localDateOrLocalDateRange) {
         if (localDateOrLocalDateRange instanceof LocalDate) {
@@ -615,8 +614,9 @@ export class LocalDateRange {
      * The result is true if every date in this range is after the specified date.
      * An empty range behaves as though it is a date for comparison purposes.
      *
-     * @param {LocalDate} date  the other date to compare to, not null
+     * @param {LocalDate} date - the other date to compare to, not null
      * @return {boolean} true if the start of this range is after the specified date
+     * @protected
      */
     _isAfterLocalDate(date) {
         return this._start.compareTo(date) > 0;
@@ -628,8 +628,9 @@ export class LocalDateRange {
      * The result is true if every date in this range is before the specified date.
      * An empty range behaves as though it is a date for comparison purposes.
      *
-     * @param {LocalDate} date  the other date to compare to, not null
+     * @param {LocalDate} date - the other date to compare to, not null
      * @return {boolean} true if the start of this range is before the specified date
+     * @protected
      */
     _isBeforeLocalDate(date) {
         return this._end.compareTo(date) <= 0 && this._start.compareTo(date) < 0;
@@ -642,8 +643,9 @@ export class LocalDateRange {
      * The result is true if every date in this range is after every date in the specified range.
      * An empty range behaves as though it is a date for comparison purposes.
      *
-     * @param {LocalDateRange} other  the other range to compare to, not null
+     * @param {LocalDateRange} other - the other range to compare to, not null
      * @return {boolean} true if every date in this range is after every date in the other range
+     * @protected
      */
     _isAfterLocalDateRange(other) {
         return this._start.compareTo(other._end) >= 0 && !other.equals(this);
@@ -655,8 +657,9 @@ export class LocalDateRange {
      * The result is true if every date in this range is before every date in the specified range.
      * An empty range behaves as though it is a date for comparison purposes.
      *
-     * @param {LocalDateRange} range  the other range to compare to, not null
+     * @param {LocalDateRange} range - the other range to compare to, not null
      * @return {boolean} true if every date in this range is before every date in the other range
+     * @protected
      */
     _isBeforeLocalDateRange(range) {
         return this._end.compareTo(range._start) <= 0 && !range.equals(this);
@@ -685,7 +688,7 @@ export class LocalDateRange {
      * Unbounded ranges throw {@link ArithmeticException}.
      *
      * @return {Period} the period of the range
-     * @throws ArithmeticException if the calculation exceeds the capacity of `Period`,
+     * @throws {ArithmeticException} if the calculation exceeds the capacity of `Period`,
      *   or the range is unbounded
      */
     toPeriod() {
@@ -702,7 +705,7 @@ export class LocalDateRange {
      * Compares this `LocalDateRange` with another ensuring that the two dates are the same.
      * Only objects of type `LocalDateRange` are compared, other types return false.
      *
-     * @param {*} obj  the object to check, null returns false
+     * @param {*} obj - the object to check, null returns false
      * @return {boolean} true if this is equal to the other range
      */
     equals(obj) {

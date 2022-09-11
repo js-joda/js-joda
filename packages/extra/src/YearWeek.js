@@ -4,7 +4,7 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import { ChronoField, ChronoUnit, Clock, DateTimeException, DateTimeFormatterBuilder, DayOfWeek, IllegalArgumentException, IsoChronology, IsoFields, LocalDate, NullPointerException, SignStyle, Temporal, TemporalField, TemporalQueries, TemporalQuery, TemporalUnit, UnsupportedTemporalTypeException, ValueRange, Year, ZoneId } from '@js-joda/core';
+import { ChronoField, ChronoUnit, Clock, DateTimeException, DateTimeFormatter, DateTimeFormatterBuilder, DayOfWeek, IllegalArgumentException, IsoChronology, IsoFields, LocalDate, NullPointerException, SignStyle, Temporal, TemporalAdjuster, TemporalField, TemporalQueries, TemporalQuery, TemporalUnit, UnsupportedTemporalTypeException, ValueRange, Year, ZoneId } from '@js-joda/core';
 
 // TODO: hm... is this a good idea?? copied from joda currently, could we add a js-joda-utils module??
 import { assert, requireInstance, requireNonNull } from './assert';
@@ -36,25 +36,25 @@ const MathUtil = jodaInternal.MathUtil;
 export class YearWeek extends Temporal {
     /**
      * Function overloading for {@link YearWeek.now}:
-     * * if called with no arguments, {@link YearWeek.now0} is executed;
-     * * if called with an instance of {@link ZoneId}, then {@link YearWeek.nowZoneId} is executed;
-     * * if called with an instance of {@link Clock}, then {@link YearWeek.nowClock} is executed;
-     * * otherwise {@link IllegalArgumentException} is thrown.
+     * - if called with no arguments, {@link YearWeek._now0} is executed;
+     * - if called with an instance of {@link ZoneId}, then {@link YearWeek._nowZoneId} is executed;
+     * - if called with an instance of {@link Clock}, then {@link YearWeek._nowClock} is executed;
+     * - otherwise {@link IllegalArgumentException} is thrown.
      * 
      * @param {?(ZoneId|Clock)} zoneIdOrClock
-     * @returns {YearWeek}
+     * @return {YearWeek}
      */
     static now(zoneIdOrClock) {
         switch (arguments.length) {
             case 0:
-                return YearWeek.now0();
+                return YearWeek._now0();
             case 1:
                 requireNonNull(zoneIdOrClock, 'clockOrZone');
                 if (zoneIdOrClock instanceof ZoneId) {
-                    return YearWeek.nowZoneId(zoneIdOrClock);
+                    return YearWeek._nowZoneId(zoneIdOrClock);
                 }
                 if (zoneIdOrClock instanceof Clock) {
-                    return YearWeek.nowClock(zoneIdOrClock);
+                    return YearWeek._nowClock(zoneIdOrClock);
                 }
                 throw new IllegalArgumentException(`zoneIdOrClock must be an instance of ZoneId or Clock, but is ${zoneIdOrClock.constructor.name}`);
             default:
@@ -73,10 +73,10 @@ export class YearWeek extends Temporal {
      * Using this method will prevent the ability to use an alternate clock for testing
      * because the clock is hard-coded.
      *
-     * @return the current year-week using the system clock and default time-zone, not null
-     * @private
+     * @return {YearWeek} the current year-week using the system clock and default time-zone, not null
+     * @protected
      */
-    static now0() {
+    static _now0() {
         return YearWeek.now(Clock.systemDefaultZone());
     }
 
@@ -89,11 +89,11 @@ export class YearWeek extends Temporal {
      * Using this method will prevent the ability to use an alternate clock for testing
      * because the clock is hard-coded.
      *
-     * @param zone  the zone ID to use, not null
-     * @return the current year-week using the system clock, not null
-     * @private
+     * @param {ZoneId} zone - the zone ID to use, not null
+     * @return {YearWeek} the current year-week using the system clock, not null
+     * @protected
      */
-    static nowZoneId(zone) {
+    static _nowZoneId(zone) {
         return YearWeek.now(Clock.system(zone));
     }
 
@@ -104,11 +104,11 @@ export class YearWeek extends Temporal {
      * Using this method allows the use of an alternate clock for testing.
      * The alternate clock may be introduced using {@link Clock} dependency injection.
      *
-     * @param clock  the clock to use, not null
-     * @return the current year-week, not null
-     * @private
+     * @param {Clock} clock - the clock to use, not null
+     * @return {YearWeek} the current year-week, not null
+     * @protected
      */
-    static nowClock(clock) {
+    static _nowClock(clock) {
         const now = LocalDate.now(clock);  // called once
         return YearWeek.of(now.get(IsoFields.WEEK_BASED_YEAR), now.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR));
     }
@@ -116,21 +116,21 @@ export class YearWeek extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Function overloading for {@link YearWeek.of}:
-     * * if called with an instances of {@link Year} and `int`, then {@link YearWeek.ofYearWeek} is executed;
-     * * if called with an instances of number and `int`, then {@link YearWeek.ofWeekBasedYear} is executed;
-     * * otherwise {@link IllegalArgumentException} is thrown.
+     * - if called with an instances of {@link Year} and `int`, then {@link YearWeek._ofYearWeek} is executed;
+     * - if called with an instances of number and `int`, then {@link YearWeek._ofWeekBasedYear} is executed;
+     * - otherwise {@link IllegalArgumentException} is thrown.
      * 
-     * @param year  the year to represent, not null
-     * @param week  the week-of-week-based-year to represent, from 1 to 53
-     * @return the year-week, not null
+     * @param {Year|number} year - the year to represent, not null
+     * @param {number} week - the week-of-week-based-year to represent, from 1 to 53
+     * @return {YearWeek} the year-week, not null
      */
     static of(year, week) {
         MathUtil.verifyInt(week);
         if (year instanceof Year) {
-            return this.ofYearWeek(year, week);
+            return this._ofYearWeek(year, week);
         } else {
             MathUtil.verifyInt(year);
-            return this.ofWeekBasedYear(year, week);
+            return this._ofWeekBasedYear(year, week);
         }
     }
 
@@ -147,14 +147,15 @@ export class YearWeek extends Temporal {
      * Thus, `YearWeek.of(Year.of(2020), 1)` creates an object where Monday and Tuesday of the week
      * are actually the last two days of 2019.
      *
-     * @param year  the year to represent, not null
-     * @param week  the week-of-week-based-year to represent, from 1 to 53
-     * @return the year-week, not null
+     * @param {Year} year - the year to represent, not null
+     * @param {number} week - the week-of-week-based-year to represent, from 1 to 53
+     * @return {YearWeek} the year-week, not null
      * @throws {DateTimeException} if the week value is invalid
+     * @protected
      */
-    static ofYearWeek(year, week) {
+    static _ofYearWeek(year, week) {
         const weekBasedYear = year.value();
-        return this.ofWeekBasedYear(weekBasedYear, week);
+        return this._ofWeekBasedYear(weekBasedYear, week);
     }
 
     /**
@@ -163,15 +164,16 @@ export class YearWeek extends Temporal {
      * If the week is 53 and the year does not have 53 weeks, week one of the following
      * year is selected.
      *
-     * @param weekBasedYear  the week-based-year to represent, from MIN_YEAR to MAX_YEAR
-     * @param week  the week-of-week-based-year to represent, from 1 to 53
-     * @return the year-week, not null
+     * @param {number} weekBasedYear - the week-based-year to represent, from MIN_YEAR to MAX_YEAR
+     * @param {number} week - the week-of-week-based-year to represent, from 1 to 53
+     * @return {YearWeek} the year-week, not null
      * @throws {DateTimeException} if either field is invalid
+     * @protected
      */
-    static ofWeekBasedYear(weekBasedYear, week) {
+    static _ofWeekBasedYear(weekBasedYear, week) {
         IsoFields.WEEK_BASED_YEAR.range().checkValidValue(weekBasedYear, IsoFields.WEEK_BASED_YEAR);
         IsoFields.WEEK_OF_WEEK_BASED_YEAR.range().checkValidValue(week, IsoFields.WEEK_OF_WEEK_BASED_YEAR);
-        if (week === 53 && YearWeek.weekRange(weekBasedYear) < 53) {
+        if (week === 53 && YearWeek._weekRange(weekBasedYear) < 53) {
             week = 1;
             weekBasedYear++;
             IsoFields.WEEK_BASED_YEAR.range().checkValidValue(weekBasedYear, IsoFields.WEEK_BASED_YEAR);
@@ -183,7 +185,7 @@ export class YearWeek extends Temporal {
      * from IsoFields in ThreeTen-Backport
      * @private
      */
-    static weekRange(weekBasedYear) {
+    static _weekRange(weekBasedYear) {
         const date = LocalDate.of(weekBasedYear, 1, 1);
         // 53 weeks if year starts on Thursday, or Wed in a leap year
         if (date.dayOfWeek() === DayOfWeek.THURSDAY || (date.dayOfWeek() === DayOfWeek.WEDNESDAY && date.isLeapYear())) {
@@ -208,8 +210,8 @@ export class YearWeek extends Temporal {
      * This method matches the signature of the functional interface {@link TemporalQuery}
      * allowing it to be used in queries via method reference, {@link YearWeek.FROM}.
      *
-     * @param temporal  the temporal object to convert, not null
-     * @return the year-week, not null
+     * @param {Temporal} temporal - the temporal object to convert, not null
+     * @return {YearWeek} the year-week, not null
      * @throws {DateTimeException} if unable to convert to a {@link YearWeek}
      */
     static from(temporal) {
@@ -237,11 +239,11 @@ export class YearWeek extends Temporal {
      * 
      * The text is parsed using the formatter, returning a year-week.
      *
-     * @param text  the text to parse, not null
+     * @param {string} text - the text to parse, not null
      * @param {DateTimeFormatter} [formatter=YearWeek.PARSER] - the formatter to use, default is
      * {@link YearWeek.PARSER}
      * 
-     * @return the parsed year-week, not null
+     * @return {YearWeek} the parsed year-week, not null
      * @throws {DateTimeParseException} if the text cannot be parsed
      */
     static parse(text, formatter = YearWeek.PARSER) {
@@ -253,8 +255,8 @@ export class YearWeek extends Temporal {
     /**
      * Constructor.
      *
-     * @param weekBasedYear  the week-based-year to represent, validated from MIN_YEAR to MAX_YEAR
-     * @param week  the week to represent, validated
+     * @param {number} weekBasedYear - the week-based-year to represent, validated from MIN_YEAR to MAX_YEAR
+     * @param {number} week - the week to represent, validated
      * @private
      */
     constructor(weekBasedYear, week) {
@@ -265,20 +267,19 @@ export class YearWeek extends Temporal {
 
     /**
      * function overloading for {@link YearWeek.isSupported}
+     * - if called with an instance of {@link TemporalField}, then {@link YearWeek._isSupportedField} is executed,
+     * - if called with an instance of {@link TemporalUnit}, then {@link YearWeek._isSupportedUnit} is executed,
+     * - otherwise {@link IllegalArgumentException} is thrown.
      *
-     * * if called with an instance of {@link TemporalField}, then {@link YearWeek.isSupportedField} is executed,
-     * * if called with an instance of {@link TemporalUnit}, then {@link YearWeek.isSupportedUnit} is executed,
-     * * otherwise {@link IllegalArgumentException} is thrown.
-     *
-     * @param {!(TemporalField|TemporalUnit)} fieldOrUnit
-     * @returns {boolean}
+     * @param {TemporalField|TemporalUnit} fieldOrUnit
+     * @return {boolean}
      */
     isSupported(fieldOrUnit) {
         if (fieldOrUnit instanceof TemporalField) {
-            return this.isSupportedField(fieldOrUnit);
+            return this._isSupportedField(fieldOrUnit);
         }
         if (fieldOrUnit instanceof TemporalUnit) {
-            return this.isSupportedUnit(fieldOrUnit);
+            return this._isSupportedUnit(fieldOrUnit);
         }
         if (fieldOrUnit == null) {
             return false;
@@ -307,11 +308,11 @@ export class YearWeek extends Temporal {
      * passing this as the argument.
      * Whether the field is supported is determined by the field.
      *
-     * @param field  the field to check, null returns false
-     * @return true if the field is supported on this year-week, false if not
-     * @private
+     * @param {TemporalField} field - the field to check, null returns false
+     * @return {boolean} true if the field is supported on this year-week, false if not
+     * @protected
      */
-    isSupportedField(field) {
+    _isSupportedField(field) {
         if (field === IsoFields.WEEK_OF_WEEK_BASED_YEAR || field === IsoFields.WEEK_BASED_YEAR) {
             return true;
         } else if (field instanceof ChronoField) {
@@ -328,8 +329,8 @@ export class YearWeek extends Temporal {
      * {@link YearWeek.minus} minus methods will throw an exception.
      * 
      * The supported units are:
-     * * {@link ChronoUnit.WEEKS}
-     * * {@link IsoFields.WEEK_BASED_YEARS}
+     * - {@link ChronoUnit.WEEKS}
+     * - {@link IsoFields.WEEK_BASED_YEARS}
      * 
      * All other {@link ChronoUnit} instances will return false.
      * 
@@ -338,11 +339,11 @@ export class YearWeek extends Temporal {
      * passing this as the argument.
      * Whether the unit is supported is determined by the unit.
      *
-     * @param unit  the unit to check, null returns false
-     * @return true if the unit can be added/subtracted, false if not
-	 * @private
+     * @param {TemporalUnit} unit - the unit to check, null returns false
+     * @return {boolean} true if the unit can be added/subtracted, false if not
+     * @protected
      */
-    isSupportedUnit(unit) {
+    _isSupportedUnit(unit) {
         if (unit === ChronoUnit.WEEKS || unit === IsoFields.WEEK_BASED_YEARS) {
             return true;
         } else if (unit instanceof ChronoUnit) {
@@ -364,8 +365,8 @@ export class YearWeek extends Temporal {
      * {@link IsoFields.WEEK_OF_WEEK_BASED_YEAR} WEEK_OF_WEEK_BASED_YEAR fields is returned.
      * All {@link ChronoField} instances will throw an {@link UnsupportedTemporalTypeException}.
      *
-     * @param field  the field to query the range for, not null
-     * @return the range of valid values for the field, not null
+     * @param {TemporalField} field - the field to query the range for, not null
+     * @return {ValueRange} the range of valid values for the field, not null
      * @throws {DateTimeException} if the range for the field cannot be obtained
      * @throws {UnsupportedTemporalTypeException} if the field is not supported
      */
@@ -375,7 +376,7 @@ export class YearWeek extends Temporal {
             return IsoFields.WEEK_BASED_YEAR.range();
         }
         if (field === IsoFields.WEEK_OF_WEEK_BASED_YEAR) {
-            return ValueRange.of(1, YearWeek.weekRange(this._year));
+            return ValueRange.of(1, YearWeek._weekRange(this._year));
         }
         return super.range(field);
     }
@@ -392,8 +393,8 @@ export class YearWeek extends Temporal {
      * {@link IsoFields.WEEK_OF_WEEK_BASED_YEAR} WEEK_OF_WEEK_BASED_YEAR fields is returned.
      * All {@link ChronoField} instances will throw an {@link UnsupportedTemporalTypeException}.
      *
-     * @param field  the field to get, not null
-     * @return the value for the field
+     * @param {TemporalField} field - the field to get, not null
+     * @return {number} the value for the field
      * @throws {DateTimeException} if a value for the field cannot be obtained or
      *  the value is outside the range of valid values for the field
      * @throws {UnsupportedTemporalTypeException} if the field is not supported or
@@ -405,7 +406,7 @@ export class YearWeek extends Temporal {
     }
 
     /**
-     * Gets the value of the specified field from this year-week as a {@link long}.
+     * Gets the value of the specified field from this year-week as a `long`.
      * 
      * This queries this year-week for the value for the specified field.
      * If it is not possible to return the value, because the field is not supported
@@ -415,8 +416,8 @@ export class YearWeek extends Temporal {
      * {@link IsoFields.WEEK_OF_WEEK_BASED_YEAR} WEEK_OF_WEEK_BASED_YEAR fields is returned.
      * All {@link ChronoField} instances will throw an {@link UnsupportedTemporalTypeException}.
      *
-     * @param field  the field to get, not null
-     * @return the value for the field
+     * @param {TemporalField} field - the field to get, not null
+     * @return {number} the value for the field
      * @throws {DateTimeException} if a value for the field cannot be obtained
      * @throws {UnsupportedTemporalTypeException} if the field is not supported
      * @throws {ArithmeticException} if numeric overflow occurs
@@ -443,7 +444,7 @@ export class YearWeek extends Temporal {
      * 
      * Note that the ISO week-based-year does not align with the standard Gregorian/ISO calendar year.
      *
-     * @return the week-based-year
+     * @return {number} the week-based-year
      */
     year() {
         return this._year;
@@ -454,7 +455,7 @@ export class YearWeek extends Temporal {
      * 
      * This method returns the primitive `int` value for the week of the week-based-year.
      *
-     * @return the week-of-week-based-year
+     * @return {number} the week-of-week-based-year
      */
     week() {
         return this._week;
@@ -467,10 +468,10 @@ export class YearWeek extends Temporal {
      * This determines if the year has 53 weeks, returning true.
      * If false, the year has 52 weeks.
      *
-     * @return true if the year has 53 weeks, false otherwise
+     * @return {boolean} true if the year has 53 weeks, false otherwise
      */
     is53WeekYear() {
-        return YearWeek.weekRange(this._year) === 53;
+        return YearWeek._weekRange(this._year) === 53;
     }
 
     /**
@@ -478,7 +479,7 @@ export class YearWeek extends Temporal {
      * 
      * This returns the length of the year in days, either 364 or 371.
      *
-     * @return 364 if the year has 52 weeks, 371 if it has 53 weeks
+     * @return {number} 364 if the year has 52 weeks, 371 if it has 53 weeks
      */
     lengthOfYear() {
         return (this.is53WeekYear() ? 371 : 364);
@@ -498,8 +499,8 @@ export class YearWeek extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param adjuster the adjuster to use, not null
-     * @return a {@link YearWeek} based on this with the adjustment made, not null
+     * @param {TemporalAdjuster} adjuster - adjuster the adjuster to use, not null
+     * @return {YearWeek} a year-week based on this with the adjustment made, not null
      * @throws {DateTimeException} if the adjustment cannot be made
      * @throws {ArithmeticException} if numeric overflow occurs
      */
@@ -522,9 +523,8 @@ export class YearWeek extends Temporal {
      * 
      * If the field is a {@link ChronoField} then the adjustment is implemented here.
      * The supported fields behave as follows:
-	 * 
-     * * {@link WEEK_OF_WEEK_BASED_YEAR} - Returns a {@link YearWeek} with the specified week-of-year set as per {@link YearWeek.withWeek}.
-     * * {@link WEEK_BASED_YEAR} - Returns a {@link YearWeek} with the specified year set as per {@link YearWeek.withYear}.
+     * - {@link WEEK_OF_WEEK_BASED_YEAR} - Returns a {@link YearWeek} with the specified week-of-year set as per {@link YearWeek.withWeek}.
+     * - {@link WEEK_BASED_YEAR} - Returns a {@link YearWeek} with the specified year set as per {@link YearWeek.withYear}.
      * 
      * All {@link ChronoField} instances will throw an {@link UnsupportedTemporalTypeException}.
      * 
@@ -535,9 +535,9 @@ export class YearWeek extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param field  the field to set in the result, not null
-     * @param newValue  the new value of the field in the result
-     * @return a {@link YearWeek} based on this with the specified field set, not null
+     * @param {TemporalField} field - the field to set in the result, not null
+     * @param {number} newValue - the new value of the field in the result
+     * @return {YearWeek} a year-week based on this with the specified field set, not null
      * @throws {DateTimeException} if the field cannot be set
      * @throws {UnsupportedTemporalTypeException} if the field is not supported
      * @throws {ArithmeticException} if numeric overflow occurs
@@ -562,12 +562,12 @@ export class YearWeek extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param weekBasedYear  the week-based-year to set in the returned year-week
-     * @return a {@link YearWeek} based on this year-week with the requested year, not null
+     * @param {number} weekBasedYear - the week-based-year to set in the returned year-week
+     * @return {YearWeek} a year-week based on this year-week with the requested year, not null
      * @throws {DateTimeException} if the week-based-year value is invalid
      */
     withYear(weekBasedYear) {
-        if (this._week === 53 && YearWeek.weekRange(weekBasedYear) < 53) {
+        if (this._week === 53 && YearWeek._weekRange(weekBasedYear) < 53) {
             return YearWeek.of(weekBasedYear, 52);
         }
         return YearWeek.of(weekBasedYear, this._week);
@@ -582,8 +582,8 @@ export class YearWeek extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param week  the week-of-week-based-year to set in the returned year-week
-     * @return a {@link YearWeek} based on this year-week with the requested week, not null
+     * @param {number} week - the week-of-week-based-year to set in the returned year-week
+     * @return {YearWeek} a year-week based on this year-week with the requested week, not null
      * @throws {DateTimeException} if the week-of-week-based-year value is invalid
      */
     withWeek(week) {
@@ -599,9 +599,8 @@ export class YearWeek extends Temporal {
      * 
      * If the field is a {@link ChronoUnit} then the addition is implemented here.
      * The supported fields behave as follows:
-     * 
-	 * * {@link WEEKS} - Returns a {@link YearWeek} with the weeks added as per {@link YearWeek.plusWeeks}.
-     * * {@link WEEK_BASED_YEARS} - Returns a {@link YearWeek} with the years added as per {@link YearWeek.plusYears}.
+     * - {@link WEEKS} - Returns a {@link YearWeek} with the weeks added as per {@link YearWeek.plusWeeks}.
+     * - {@link WEEK_BASED_YEARS} - Returns a {@link YearWeek} with the years added as per {@link YearWeek.plusYears}.
      * 
      * All {@link ChronoUnit} instances will throw an {@link UnsupportedTemporalTypeException}.
      * 
@@ -612,9 +611,9 @@ export class YearWeek extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param amountToAdd  the amount of the unit to add to the result, may be negative
-     * @param unit  the unit of the amount to add, not null
-     * @return a {@link YearWeek} based on this year-week with the specified amount added, not null
+     * @param {number} amountToAdd - the amount of the unit to add to the result, may be negative
+     * @param {TemporalUnit} unit - the unit of the amount to add, not null
+     * @return {YearWeek} a year-week based on this year-week with the specified amount added, not null
      * @throws {DateTimeException} if the addition cannot be made
      * @throws {UnsupportedTemporalTypeException} if the unit is not supported
      * @throws {ArithmeticException} if numeric overflow occurs
@@ -638,8 +637,8 @@ export class YearWeek extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      * 
-     * @param yearsToAdd  the years to add, may be negative
-     * @return the year-week with the years added, not null
+     * @param {number} yearsToAdd - the years to add, may be negative
+     * @return {YearWeek} the year-week with the years added, not null
      */
     plusYears(yearsToAdd) {
         if (yearsToAdd === 0) {
@@ -654,8 +653,8 @@ export class YearWeek extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      * 
-     * @param weeksToAdd  the weeks to add, may be negative
-     * @return the year-week with the weeks added, not null
+     * @param {number} weeksToAdd - the weeks to add, may be negative
+     * @return {YearWeek} the year-week with the weeks added, not null
      */
     plusWeeks(weeksToAdd) {
         if (weeksToAdd === 0) {
@@ -677,9 +676,9 @@ export class YearWeek extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param amountToSubtract  the amount of the unit to subtract from the result, may be negative
-     * @param unit  the unit of the amount to subtract, not null
-     * @return a {@link YearWeek} based on this year-week with the specified amount subtracted, not null
+     * @param {number} amountToSubtract - the amount of the unit to subtract from the result, may be negative
+     * @param {TemporalUnit} unit - the unit of the amount to subtract, not null
+     * @return {YearWeek} a year-week based on this year-week with the specified amount subtracted, not null
      * @throws {DateTimeException} if the subtraction cannot be made
      * @throws {UnsupportedTemporalTypeException} if the unit is not supported
      * @throws {ArithmeticException} if numeric overflow occurs
@@ -698,8 +697,8 @@ export class YearWeek extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      * 
-     * @param yearsToSubtract  the years to subtract, may be negative
-     * @return the year-week with the years subtracted, not null
+     * @param {number} yearsToSubtract - the years to subtract, may be negative
+     * @return {YearWeek} the year-week with the years subtracted, not null
      */
     minusYears(yearsToSubtract) {
         if (yearsToSubtract === 0) {
@@ -714,8 +713,8 @@ export class YearWeek extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      * 
-     * @param weeksToSubtract  the weeks to subtract, may be negative
-     * @return the year-week with the weeks subtracted, not null
+     * @param {number} weeksToSubtract - the weeks to subtract, may be negative
+     * @return {YearWeek} the year-week with the weeks subtracted, not null
      */
     minusWeeks(weeksToSubtract) {
         if (weeksToSubtract === 0) {
@@ -738,8 +737,8 @@ export class YearWeek extends Temporal {
      * {@link TemporalQuery.queryFrom} method on the
      * specified query passing this as the argument.
      *
-     * @param query  the query to invoke, not null
-     * @return the query result, null may be returned (defined by the query)
+     * @param {TemporalQuery} query - the query to invoke, not null
+     * @return {*} the query result, null may be returned (defined by the query)
      * @throws {DateTimeException} if unable to query (defined by the query)
      * @throws {ArithmeticException} if numeric overflow occurs (defined by the query)
      */
@@ -774,8 +773,8 @@ export class YearWeek extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param temporal  the target object to be adjusted, not null
-     * @return the adjusted object, not null
+     * @param {Temporal} temporal - the target object to be adjusted, not null
+     * @return {Temporal} the adjusted object, not null
      * @throws {DateTimeException} if unable to make the adjustment
      * @throws {ArithmeticException} if numeric overflow occurs
      */
@@ -821,21 +820,20 @@ export class YearWeek extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param endExclusive  the end date, exclusive, which is converted to a {@link YearWeek}, not null
-     * @param unit  the unit to measure the amount in, not null
-     * @return the amount of time between this year-week and the end year-week
+     * @param {Temporal} endExclusive - the end date, exclusive, which is converted to a {@link YearWeek}, not null
+     * @param {TemporalUnit} unit - the unit to measure the amount in, not null
+     * @return {number} the amount of time between this year-week and the end year-week
      * @throws {DateTimeException} if the amount cannot be calculated, or the end
      *  temporal cannot be converted to a {@link YearWeek}
      * @throws {UnsupportedTemporalTypeException} if the unit is not supported
      * @throws {ArithmeticException} if numeric overflow occurs
-     * @private
      */
     until(endExclusive, unit) {
         const end = YearWeek.from(endExclusive);
         if (unit === ChronoUnit.WEEKS) {
-            return this.daysUntil(end);
+            return this._daysUntil(end);
         } else if (unit === IsoFields.WEEK_BASED_YEARS) {
-            return this.yearsUntil(end);
+            return this._yearsUntil(end);
         } else if (unit instanceof ChronoUnit) {
             throw new UnsupportedTemporalTypeException(`Unsupported unit: ${unit}`);
         }
@@ -845,7 +843,7 @@ export class YearWeek extends Temporal {
     /**
      * @private
      */
-    daysUntil(end) {
+    _daysUntil(end) {
         const startDate = this.atDay(DayOfWeek.MONDAY);
         const endDate = end.atDay(DayOfWeek.MONDAY);
         const days = endDate.toEpochDay() - startDate.toEpochDay();
@@ -855,7 +853,7 @@ export class YearWeek extends Temporal {
     /**
      * @private
      */
-    yearsUntil(end) {
+    _yearsUntil(end) {
         const yearsDiff = end._year - this._year;
         if (yearsDiff > 0 && end._week < this._week) {
             return yearsDiff - 1;
@@ -871,8 +869,8 @@ export class YearWeek extends Temporal {
      * 
      * This year-week will be passed to the formatter to produce a string.
      *
-     * @param formatter  the formatter to use, not null
-     * @return the formatted year-week string, not null
+     * @param {DateTimeFormatter} formatter - the formatter to use, not null
+     * @return {string} the formatted year-week string, not null
      * @throws {DateTimeException} if an error occurs during printing
      */
     format(formatter) {
@@ -891,8 +889,8 @@ export class YearWeek extends Temporal {
      *  LocalDate date = yearWeek.atDay(MONDAY);
      * ```
      *
-     * @param dayOfWeek  the day-of-week to use, not null
-     * @return the date formed from this year-week and the specified day, not null
+     * @param {DayOfWeek} dayOfWeek - the day-of-week to use, not null
+     * @return {LocalDate} the date formed from this year-week and the specified day, not null
      */
     atDay(dayOfWeek) {
         requireNonNull(dayOfWeek, 'dayOfWeek');
@@ -917,8 +915,8 @@ export class YearWeek extends Temporal {
      * The comparison is based first on the value of the year, then on the value of the week.
      * It is "consistent with equals", as defined by {@link Comparable}.
      *
-     * @param other  the other year-week to compare to, not null
-     * @return the comparator value, negative if less, positive if greater
+     * @param {YearWeek} other - the other year-week to compare to, not null
+     * @return {number} the comparator value, negative if less, positive if greater
      */
     compareTo(other) {
         requireNonNull(other, 'other');
@@ -933,8 +931,8 @@ export class YearWeek extends Temporal {
     /**
      * Is this year-week after the specified year-week.
      *
-     * @param other  the other year-week to compare to, not null
-     * @return true if this is after the specified year-week
+     * @param {YearWeek} other - the other year-week to compare to, not null
+     * @return {boolean} true if this is after the specified year-week
      */
     isAfter(other) {
         return this.compareTo(other) > 0;
@@ -943,8 +941,8 @@ export class YearWeek extends Temporal {
     /**
      * Is this year-week before the specified year-week.
      *
-     * @param other  the other year-week to compare to, not null
-     * @return true if this point is before the specified year-week
+     * @param {YearWeek} other - the other year-week to compare to, not null
+     * @return {boolean} true if this point is before the specified year-week
      */
     isBefore(other) {
         return this.compareTo(other) < 0;
@@ -954,8 +952,8 @@ export class YearWeek extends Temporal {
     /**
      * Checks if this year-week is equal to another year-week.
      *
-     * @param obj  the object to check, null returns false
-     * @return true if this is equal to the other year-week
+     * @param {*} obj - the object to check, null returns false
+     * @return {boolean} true if this is equal to the other year-week
      */
     equals(obj) {
         if (this === obj) {
@@ -970,7 +968,7 @@ export class YearWeek extends Temporal {
     /**
      * A hash code for this year-week.
      *
-     * @return a suitable hash code
+     * @return {number} a suitable hash code
      */
     hashCode() {
         return this._year ^ (this._week << 25);
@@ -982,7 +980,7 @@ export class YearWeek extends Temporal {
      * 
      * The output will be in the format `YYYY-'W'ww`:
      *
-     * @return a string representation of this year-week, not null
+     * @return {string} a string representation of this year-week, not null
      */
     toString() {
         let yearString;

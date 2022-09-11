@@ -34,23 +34,20 @@ export class OffsetDate extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * function overloading for {@link OffsetDate.now}
-     *
-     * if called with 0 argument {@link OffsetDate.now0} is executed,
-     *
-     * if called with 1 argument and first argument is an instance of ZoneId, then {@link OffsetDate.nowZoneId} is executed,
-     *
-     * otherwise {@link OffsetDate.nowClock} is executed
+     * - if called with 0 argument {@link OffsetDate._now0} is executed,
+     * - if called with 1 argument and first argument is an instance of ZoneId, then {@link OffsetDate._nowZoneId} is executed,
+     * - otherwise {@link OffsetDate._nowClock} is executed
      *
      * @param {?(ZoneId|Clock)} zoneIdOrClock
-     * @returns {YearQuarter}
+     * @return {YearQuarter}
      */
     static now(zoneIdOrClock) {
         if (arguments.length === 0) {
-            return OffsetDate.now0();
+            return OffsetDate._now0();
         } else if (arguments.length === 1 && zoneIdOrClock instanceof ZoneId) {
-            return OffsetDate.nowZoneId(zoneIdOrClock);
+            return OffsetDate._nowZoneId(zoneIdOrClock);
         } else {
-            return OffsetDate.nowClock(zoneIdOrClock);
+            return OffsetDate._nowClock(zoneIdOrClock);
         }
     }
 
@@ -66,8 +63,9 @@ export class OffsetDate extends Temporal {
      * because the clock is hard-coded.
      *
      * @return {OffsetDate} the current date using the system clock, not null
+     * @protected
      */
-    static now0() {
+    static _now0() {
         return OffsetDate.now(Clock.systemDefaultZone());
     }
 
@@ -81,10 +79,11 @@ export class OffsetDate extends Temporal {
      * Using this method will prevent the ability to use an alternate clock for testing
      * because the clock is hard-coded.
      *
-     * @param {ZoneId} zone  the zone ID to use, not null
+     * @param {ZoneId} zone - the zone ID to use, not null
      * @return {OffsetDate} the current date using the system clock, not null
+     * @protected
      */
-    static nowZoneId(zone) {
+    static _nowZoneId(zone) {
         return OffsetDate.now(Clock.system(zone));
     }
 
@@ -97,10 +96,11 @@ export class OffsetDate extends Temporal {
      * Using this method allows the use of an alternate clock for testing.
      * The alternate clock may be introduced using {@link Clock} dependency injection.
      *
-     * @param {Clock} clock  the clock to use, not null
+     * @param {Clock} clock - the clock to use, not null
      * @return {OffsetDate} the current date, not null
+     * @protected
      */
-    static nowClock(clock) {
+    static _nowClock(clock) {
         requireNonNull(clock, 'clock');
         const now = clock.instant();  // called once
         return OffsetDate.ofInstant(now, clock.zone().rules().offset(now));
@@ -109,17 +109,16 @@ export class OffsetDate extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * function overloading for {@link OffsetDate.of}
+     * - if called with 2 arguments {@link OffsetDate._ofLocalDateZoneOffset} is executed,
+     * - if called with 4 agruments {@link OffsetDate._ofIntIntIntZoneOffset} is executed,
+     * - otherwise throws IllegalArgumentException.
      *
-     * if called with 2 arguments {@link OffsetDate.ofLocalDateZoneOffset} is executed,
-     * if called with 4 agruments {@link YearQuarter.ofIntIntIntZoneOffset} is executed,
-     * otherwise throws IllegalArgumentException.
-     *
-     * @returns {YearQuarter}
+     * @return {YearQuarter}
      */
     static of() {
         switch (arguments.length) {
-            case 2: return OffsetDate.ofLocalDateZoneOffset(...arguments);
-            case 4: return OffsetDate.ofIntIntIntZoneOffset(...arguments);
+            case 2: return OffsetDate._ofLocalDateZoneOffset(...arguments);
+            case 4: return OffsetDate._ofIntIntIntZoneOffset(...arguments);
             default: throw new IllegalArgumentException('Illegal number of arguments');
         }
     }
@@ -127,11 +126,12 @@ export class OffsetDate extends Temporal {
     /**
      * Obtains an instance of `OffsetDate` from a local date and an offset.
      *
-     * @param {LocalDate} date  the local date, not null
-     * @param {ZoneOffset} offset  the zone offset, not null
+     * @param {LocalDate} date - the local date, not null
+     * @param {ZoneOffset} offset - the zone offset, not null
      * @return {OffsetDate} the offset date, not null
+     * @protected
      */
-    static ofLocalDateZoneOffset(date, offset) {
+    static _ofLocalDateZoneOffset(date, offset) {
         return new OffsetDate(date, offset);
     }
 
@@ -144,15 +144,16 @@ export class OffsetDate extends Temporal {
      * This method exists primarily for writing test cases.
      * Non test-code will typically use other methods to create an offset time.
      *
-     * @param {number} year  the year to represent, from MIN_YEAR to MAX_YEAR
-     * @param {number} month  the month-of-year to represent, from 1 (January) to 12 (December)
-     * @param {number} dayOfMonth  the day-of-month to represent, from 1 to 31
-     * @param {ZoneOffset} offset  the zone offset, not null
+     * @param {number} year - the year to represent, from MIN_YEAR to MAX_YEAR
+     * @param {number} month - the month-of-year to represent, from 1 (January) to 12 (December)
+     * @param {number} dayOfMonth - the day-of-month to represent, from 1 to 31
+     * @param {ZoneOffset} offset - the zone offset, not null
      * @return {OffsetDate} the offset date, not null
-     * @throws DateTimeException if the value of any field is out of range, or
+     * @throws {DateTimeException} if the value of any field is out of range, or
      *  if the day-of-month is invalid for the month-year
+     * @protected
      */
-    static ofIntIntIntZoneOffset(year, month, dayOfMonth, offset) {
+    static _ofIntIntIntZoneOffset(year, month, dayOfMonth, offset) {
         const d = LocalDate.of(year, month, dayOfMonth);
         return new OffsetDate(d, offset);
     }
@@ -166,8 +167,8 @@ export class OffsetDate extends Temporal {
      * Finding the offset from UTC/Greenwich is simple as there is only one valid
      * offset for each instant.
      *
-     * @param {Instant} instant  the instant to create the time from, not null
-     * @param {ZoneId} zone  the time-zone, which may be an offset, not null
+     * @param {Instant} instant - the instant to create the time from, not null
+     * @param {ZoneId} zone - the time-zone, which may be an offset, not null
      * @return {OffsetDate} the offset time, not null
      */
     static ofInstant(instant, zone) {
@@ -193,9 +194,9 @@ export class OffsetDate extends Temporal {
      * This method matches the signature of the functional interface {@link TemporalQuery}
      * allowing it to be used in queries via method reference, `OffsetDate.FROM`.
      *
-     * @param {TemporalAccessor} temporal  the temporal object to convert, not null
+     * @param {TemporalAccessor} temporal - the temporal object to convert, not null
      * @return {OffsetDate} the offset date, not null
-     * @throws DateTimeException if unable to convert to an `OffsetDate`
+     * @throws {DateTimeException} if unable to convert to an `OffsetDate`
      */
     static from(temporal) {
         if (temporal instanceof OffsetDate) {
@@ -216,10 +217,10 @@ export class OffsetDate extends Temporal {
      * 
      * The text is parsed using the formatter, returning a date.
      *
-     * @param {CharSequence} text  the text to parse, not null
-     * @param {DateTimeFormatter} formatter  the formatter to use, not null
+     * @param {CharSequence} text - the text to parse, not null
+     * @param {DateTimeFormatter} formatter - the formatter to use, not null
      * @return {OffsetDate} the parsed offset date, not null
-     * @throws DateTimeParseException if the text cannot be parsed
+     * @throws {DateTimeParseException} if the text cannot be parsed
      */
     static parse(text, formatter = DateTimeFormatter.ISO_OFFSET_DATE) {
         requireNonNull(formatter, 'formatter');
@@ -230,8 +231,8 @@ export class OffsetDate extends Temporal {
     /**
      * Constructor.
      *
-     * @param {LocalDate} date  the local date, not null
-     * @param {ZoneOffset} offset  the zone offset, not null
+     * @param {LocalDate} date - the local date, not null
+     * @param {ZoneOffset} offset - the zone offset, not null
      * @private
      */
     constructor(date, offset) {
@@ -243,8 +244,8 @@ export class OffsetDate extends Temporal {
     /**
      * Returns a new date based on this one, returning `this` where possible.
      *
-     * @param {LocalDate} date  the date to create with, not null
-     * @param {ZoneOffset} offset  the zone offset to create with, not null
+     * @param {LocalDate} date - the date to create with, not null
+     * @param {ZoneOffset} offset - the zone offset to create with, not null
      * @private
      */
     _with(date, offset) {
@@ -256,20 +257,19 @@ export class OffsetDate extends Temporal {
 
     /**
      * function overloading for {@link OffsetDate.isSupported}
+     * - if called with an instance of {@link TemporalField}, then {@link OffsetDate._isSupportedField} is executed,
+     * - if called with an instance of {@link TemporalUnit}, then {@link OffsetDate._isSupportedUnit} is executed,
+     * - otherwise {@link IllegalArgumentException} is thrown.
      *
-     * * if called with an instance of {@link TemporalField}, then {@link OffsetDate.isSupportedField} is executed,
-     * * if called with an instance of {@link TemporalUnit}, then {@link OffsetDate.isSupportedUnit} is executed,
-     * * otherwise {@link IllegalArgumentException} is thrown.
-     *
-     * @param {!(TemporalField|TemporalUnit)} fieldOrUnit
-     * @returns {boolean}
+     * @param {TemporalField|TemporalUnit} fieldOrUnit
+     * @return {boolean}
      */
     isSupported(fieldOrUnit) {
         if (fieldOrUnit instanceof TemporalField) {
-            return this.isSupportedField(fieldOrUnit);
+            return this._isSupportedField(fieldOrUnit);
         }
         if (fieldOrUnit instanceof TemporalUnit) {
-            return this.isSupportedUnit(fieldOrUnit);
+            return this._isSupportedUnit(fieldOrUnit);
         }
         if (fieldOrUnit == null) {
             return false;
@@ -311,10 +311,11 @@ export class OffsetDate extends Temporal {
      * passing `this` as the argument.
      * Whether the field is supported is determined by the field.
      *
-     * @param {TemporalField} field  the field to check, null returns false
+     * @param {TemporalField} field - the field to check, null returns false
      * @return {boolean} true if the field is supported on this date, false if not
+     * @protected
      */
-    isSupportedField(field) {
+    _isSupportedField(field) {
         if (field instanceof ChronoField) {
             return field.isDateBased() || field === ChronoField.OFFSET_SECONDS;
         }
@@ -347,10 +348,11 @@ export class OffsetDate extends Temporal {
      * passing `this` as the argument.
      * Whether the unit is supported is determined by the unit.
      *
-     * @param {TemporalUnit} unit  the unit to check, null returns false
-     * @return {boolena} true if the unit can be added/subtracted, false if not
+     * @param {TemporalUnit} unit - the unit to check, null returns false
+     * @return {boolean} true if the unit can be added/subtracted, false if not
+     * @protected
      */
-    isSupportedUnit(unit) {
+    _isSupportedUnit(unit) {
         if (unit instanceof ChronoUnit) {
             return unit.isDateBased();
         }
@@ -376,10 +378,10 @@ export class OffsetDate extends Temporal {
      * passing `this` as the argument.
      * Whether the range can be obtained is determined by the field.
      *
-     * @param {TemporalField} field  the field to query the range for, not null
+     * @param {TemporalField} field - the field to query the range for, not null
      * @return {ValueRange} the range of valid values for the field, not null
-     * @throws DateTimeException if the range for the field cannot be obtained
-     * @throws UnsupportedTemporalTypeException if the field is not supported
+     * @throws {DateTimeException} if the range for the field cannot be obtained
+     * @throws {UnsupportedTemporalTypeException} if the field is not supported
      */
     range(field) {
         requireNonNull(field, 'field');
@@ -412,13 +414,13 @@ export class OffsetDate extends Temporal {
      * passing `this` as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
-     * @param {TemporalField} field  the field to get, not null
+     * @param {TemporalField} field - the field to get, not null
      * @return {number} the value for the field
-     * @throws DateTimeException if a value for the field cannot be obtained or
+     * @throws {DateTimeException} if a value for the field cannot be obtained or
      *  the value is outside the range of valid values for the field
-     * @throws UnsupportedTemporalTypeException if the field is not supported or
+     * @throws {UnsupportedTemporalTypeException} if the field is not supported or
      *  the range of values exceeds an `int`
-     * @throws ArithmeticException if numeric overflow occurs
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
     get(field) {
         requireNonNull(field, 'field');
@@ -443,11 +445,11 @@ export class OffsetDate extends Temporal {
      * passing `this` as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
-     * @param {TemporalField} field  the field to get, not null
+     * @param {TemporalField} field - the field to get, not null
      * @return {number} the value for the field
-     * @throws DateTimeException if a value for the field cannot be obtained
-     * @throws UnsupportedTemporalTypeException if the field is not supported
-     * @throws ArithmeticException if numeric overflow occurs
+     * @throws {DateTimeException} if a value for the field cannot be obtained
+     * @throws {UnsupportedTemporalTypeException} if the field is not supported
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
     getLong(field) {
         requireNonNull(field, 'field');
@@ -484,7 +486,7 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {ZoneOffset} offset  the zone offset to change to, not null
+     * @param {ZoneOffset} offset - the zone offset to change to, not null
      * @return {OffsetDate} an `OffsetDate` based on this date with the requested offset, not null
      */
     withOffsetSameLocal(offset) {
@@ -626,10 +628,10 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {TemporalAdjuster} adjuster the adjuster to use, not null
+     * @param {TemporalAdjuster} adjuster - the adjuster to use, not null
      * @return {OffsetDate} an `OffsetDate` based on `this` with the adjustment made, not null
-     * @throws DateTimeException if the adjustment cannot be made
-     * @throws ArithmeticException if numeric overflow occurs
+     * @throws {DateTimeException} if the adjustment cannot be made
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
     _withAdjuster(adjuster) {
         // optimizations
@@ -676,12 +678,12 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {TemporalField} field  the field to set in the result, not null
-     * @param {number} newValue  the new value of the field in the result
+     * @param {TemporalField} field - the field to set in the result, not null
+     * @param {number} newValue - the new value of the field in the result
      * @return {OffsetDate} an `OffsetDate` based on `this` with the specified field set, not null
-     * @throws DateTimeException if the field cannot be set
-     * @throws UnsupportedTemporalTypeException if the field is not supported
-     * @throws ArithmeticException if numeric overflow occurs
+     * @throws {DateTimeException} if the field cannot be set
+     * @throws {UnsupportedTemporalTypeException} if the field is not supported
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
     _withField(field, newValue) {
         requireNonNull(field, 'field');
@@ -705,9 +707,9 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {OffsetDate} year  the year to set in the result, from MIN_YEAR to MAX_YEAR
+     * @param {OffsetDate} year - the year to set in the result, from MIN_YEAR to MAX_YEAR
      * @return {number} an `OffsetDate` based on this date with the requested year, not null
-     * @throws DateTimeException if the year value is invalid
+     * @throws {DateTimeException} if the year value is invalid
      */
     withYear(year) {
         return this._with(this._date.withYear(year), this._offset);
@@ -721,9 +723,9 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {number} month  the month-of-year to set in the result, from 1 (January) to 12 (December)
+     * @param {number} month - the month-of-year to set in the result, from 1 (January) to 12 (December)
      * @return {OffsetDate} an `OffsetDate` based on this date with the requested month, not null
-     * @throws DateTimeException if the month-of-year value is invalid
+     * @throws {DateTimeException} if the month-of-year value is invalid
      */
     withMonth(month) {
         return this._with(this._date.withMonth(month), this._offset);
@@ -737,9 +739,9 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {number} dayOfMonth  the day-of-month to set in the result, from 1 to 28-31
+     * @param {number} dayOfMonth - the day-of-month to set in the result, from 1 to 28-31
      * @return {OffsetDate} an `OffsetDate` based on this date with the requested day, not null
-     * @throws DateTimeException if the day-of-month value is invalid,
+     * @throws {DateTimeException} if the day-of-month value is invalid,
      *  or if the day-of-month is invalid for the month-year
      */
     withDayOfMonth(dayOfMonth) {
@@ -753,9 +755,9 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {number} dayOfYear  the day-of-year to set in the result, from 1 to 365-366
+     * @param {number} dayOfYear - the day-of-year to set in the result, from 1 to 365-366
      * @return {OffsetDate} an `OffsetDate` based on this date with the requested day, not null
-     * @throws DateTimeException if the day-of-year value is invalid,
+     * @throws {DateTimeException} if the day-of-year value is invalid,
      *  or if the day-of-year is invalid for the year
      */
     withDayOfYear(dayOfYear) {
@@ -780,12 +782,12 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {number} amountToAdd  the amount of the unit to add to the result, may be negative
-     * @param {TemporalUnit} unit  the unit of the amount to add, not null
+     * @param {number} amountToAdd - the amount of the unit to add to the result, may be negative
+     * @param {TemporalUnit} unit - the unit of the amount to add, not null
      * @return {OffsetDate} an `OffsetDate` based on this date with the specified amount added, not null
-     * @throws DateTimeException if the addition cannot be made
-     * @throws UnsupportedTemporalTypeException if the unit is not supported
-     * @throws ArithmeticException if numeric overflow occurs
+     * @throws {DateTimeException} if the addition cannot be made
+     * @throws {UnsupportedTemporalTypeException} if the unit is not supported
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
     _plusUnit(amountToAdd, unit) {
         if (unit instanceof ChronoUnit) {
@@ -803,9 +805,9 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {number} years  the years to add, may be negative
+     * @param {number} years - the years to add, may be negative
      * @return {OffsetDate} an `OffsetDate` based on this date with the years added, not null
-     * @throws DateTimeException if the result exceeds the supported date range
+     * @throws {DateTimeException} if the result exceeds the supported date range
      */
     plusYears(years) {
         return this._with(this._date.plusYears(years), this._offset);
@@ -819,9 +821,9 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {number} months  the months to add, may be negative
+     * @param {number} months - the months to add, may be negative
      * @return {OffsetDate} an `OffsetDate` based on this date with the months added, not null
-     * @throws DateTimeException if the result exceeds the supported date range
+     * @throws {DateTimeException} if the result exceeds the supported date range
      */
     plusMonths(months) {
         return this._with(this._date.plusMonths(months), this._offset);
@@ -835,9 +837,9 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {number} weeks  the weeks to add, may be negative
+     * @param {number} weeks - the weeks to add, may be negative
      * @return {OffsetDate} an `OffsetDate` based on this date with the weeks added, not null
-     * @throws DateTimeException if the result exceeds the supported date range
+     * @throws {DateTimeException} if the result exceeds the supported date range
      */
     plusWeeks(weeks) {
         return this._with(this._date.plusWeeks(weeks), this._offset);
@@ -851,9 +853,9 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {number} days  the days to add, may be negative
+     * @param {number} days - the days to add, may be negative
      * @return {OffsetDate} an `OffsetDate` based on this date with the days added, not null
-     * @throws DateTimeException if the result exceeds the supported date range
+     * @throws {DateTimeException} if the result exceeds the supported date range
      */
     plusDays(days) {
         return this._with(this._date.plusDays(days), this._offset);
@@ -868,9 +870,9 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {number} years  the years to subtract, may be negative
+     * @param {number} years - the years to subtract, may be negative
      * @return {OffsetDate} an `OffsetDate` based on this date with the years subtracted, not null
-     * @throws DateTimeException if the result exceeds the supported date range
+     * @throws {DateTimeException} if the result exceeds the supported date range
      */
     minusYears(years) {
         return this._with(this._date.minusYears(years), this._offset);
@@ -884,9 +886,9 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {number} months  the months to subtract, may be negative
+     * @param {number} months - the months to subtract, may be negative
      * @return {OffsetDate} an `OffsetDate` based on this date with the months subtracted, not null
-     * @throws DateTimeException if the result exceeds the supported date range
+     * @throws {DateTimeException} if the result exceeds the supported date range
      */
     minusMonths(months) {
         return this._with(this._date.minusMonths(months), this._offset);
@@ -900,9 +902,9 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {number} weeks  the weeks to subtract, may be negative
+     * @param {number} weeks - the weeks to subtract, may be negative
      * @return {OffsetDate} an `OffsetDate` based on this date with the weeks subtracted, not null
-     * @throws DateTimeException if the result exceeds the supported date range
+     * @throws {DateTimeException} if the result exceeds the supported date range
      */
     minusWeeks(weeks) {
         return this._with(this._date.minusWeeks(weeks), this._offset);
@@ -916,9 +918,9 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {number} days  the days to subtract, may be negative
+     * @param {number} days - the days to subtract, may be negative
      * @return {OffsetDate} an `OffsetDate` based on this date with the days subtracted, not null
-     * @throws DateTimeException if the result exceeds the supported date range
+     * @throws {DateTimeException} if the result exceeds the supported date range
      */
     minusDays(days) {
         return this._with(this._date.minusDays(days), this._offset);
@@ -937,10 +939,10 @@ export class OffsetDate extends Temporal {
      * {@link TemporalQuery.queryFrom} method on the
      * specified query passing `this` as the argument.
      *
-     * @param {TemporalQuery} query  the query to invoke, not null
+     * @param {TemporalQuery} query - the query to invoke, not null
      * @return {*} the query result, null may be returned (defined by the query)
-     * @throws DateTimeException if unable to query (defined by the query)
-     * @throws ArithmeticException if numeric overflow occurs (defined by the query)
+     * @throws {DateTimeException} if unable to query (defined by the query)
+     * @throws {ArithmeticException} if numeric overflow occurs (defined by the query)
      */
     query(query) {
         requireNonNull(query, 'query');
@@ -976,10 +978,10 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {Temporal} temporal  the target object to be adjusted, not null
+     * @param {Temporal} temporal - the target object to be adjusted, not null
      * @return {Temporal} the adjusted object, not null
-     * @throws DateTimeException if unable to make the adjustment
-     * @throws ArithmeticException if numeric overflow occurs
+     * @throws {DateTimeException} if unable to make the adjustment
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
     adjustInto(temporal) {
         return temporal
@@ -1029,13 +1031,13 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {Temporal} endExclusive  the end time, exclusive, which is converted to an `OffsetDate`, not null
-     * @param {TemporalUnit} unit  the unit to measure the amount in, not null
+     * @param {Temporal} endExclusive - the end time, exclusive, which is converted to an `OffsetDate`, not null
+     * @param {TemporalUnit} unit - the unit to measure the amount in, not null
      * @return {number} the amount of time between this date and the end date
-     * @throws DateTimeException if the amount cannot be calculated, or the end
+     * @throws {DateTimeException} if the amount cannot be calculated, or the end
      *  temporal cannot be converted to an `OffsetDate`
-     * @throws UnsupportedTemporalTypeException if the unit is not supported
-     * @throws ArithmeticException if numeric overflow occurs
+     * @throws {UnsupportedTemporalTypeException} if the unit is not supported
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
     until(endExclusive, unit) {
         const end = OffsetDate.from(endExclusive);
@@ -1052,9 +1054,9 @@ export class OffsetDate extends Temporal {
      * 
      * This date will be passed to the formatter to produce a string.
      *
-     * @param {DateTimeFormatter} formatter  the formatter to use, not null
+     * @param {DateTimeFormatter} formatter - the formatter to use, not null
      * @return {string} the formatted date string, not null
-     * @throws DateTimeException if an error occurs during printing
+     * @throws {DateTimeException} if an error occurs during printing
      */
     format(formatter) {
         requireNonNull(formatter, 'formatter');
@@ -1070,7 +1072,7 @@ export class OffsetDate extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {LocalTime} time  the time to combine with, not null
+     * @param {LocalTime} time - the time to combine with, not null
      * @return {OffsetDateTime} the offset date-time formed from this date and the specified time, not null
      */
     atTime(time) {
@@ -1100,7 +1102,7 @@ export class OffsetDate extends Temporal {
      * Instants on the time-line after the epoch are positive, earlier
      * are negative.
      *
-     * @param {LocalTime} time the local time, not null
+     * @param {LocalTime} time - the local time, not null
      * @return {number} the number of seconds since the epoch of 1970-01-01T00:00:00Z, may be negative
      */
     toEpochSecond(time) {
@@ -1129,7 +1131,7 @@ export class OffsetDate extends Temporal {
      * To compare the underlying local date of two `TemporalAccessor` instances,
      * use {@link ChronoField.EPOCH_DAY} as a comparator.
      *
-     * @param {OffsetDate} other  the other date to compare to, not null
+     * @param {OffsetDate} other - the other date to compare to, not null
      * @return {number} the comparator value, negative if less, positive if greater
      */
     compareTo(other) {
@@ -1154,7 +1156,7 @@ export class OffsetDate extends Temporal {
      * only compares the instant of the date. This is equivalent to using
      * `date1.toEpochSecond().isAfter(date2.toEpochSecond())`.
      *
-     * @param {OffsetDate} other  the other date to compare to, not null
+     * @param {OffsetDate} other - the other date to compare to, not null
      * @return {boolean} true if this is after the instant of the specified date
      */
     isAfter(other) {
@@ -1171,7 +1173,7 @@ export class OffsetDate extends Temporal {
      * only compares the instant of the date. This is equivalent to using
      * `date1.toEpochSecond().isBefore(date2.toEpochSecond())`.
      *
-     * @param {OffsetDate} other  the other date to compare to, not null
+     * @param {OffsetDate} other - the other date to compare to, not null
      * @return {boolean} true if this is before the instant of the specified date
      */
     isBefore(other) {
@@ -1188,7 +1190,7 @@ export class OffsetDate extends Temporal {
      * in that it only compares the instant of the date. This is equivalent to using
      * `date1.toEpochSecond().equals(date2.toEpochSecond())`.
      *
-     * @param {OffsetDate} other  the other date to compare to, not null
+     * @param {OffsetDate} other - the other date to compare to, not null
      * @return {boolean} true if the instant equals the instant of the specified date
      */
     isEqual(other) {
@@ -1208,7 +1210,7 @@ export class OffsetDate extends Temporal {
      * To compare the underlying local date of two `TemporalAccessor` instances,
      * use {@link ChronoField.EPOCH_DAY} as a comparator.
      *
-     * @param {Object} obj  the object to check, null returns false
+     * @param {Object} obj - the object to check, null returns false
      * @return {boolean} true if this is equal to the other date
      */
     equals(obj) {

@@ -37,23 +37,20 @@ export class YearQuarter extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * function overloading for {@link YearQuarter.now}
-     *
-     * if called with 0 argument {@link YearQuarter.now0} is executed,
-     *
-     * if called with 1 argument and first argument is an instance of ZoneId, then {@link YearQuarter.nowZoneId} is executed,
-     *
-     * otherwise {@link YearQuarter.nowClock} is executed
+     * - if called with 0 argument {@link YearQuarter._now0} is executed,
+     * - if called with 1 argument and first argument is an instance of ZoneId, then {@link YearQuarter._nowZoneId} is executed,
+     * - otherwise {@link YearQuarter._nowClock} is executed
      *
      * @param {?(ZoneId|Clock)} zoneIdOrClock
-     * @returns {YearQuarter}
+     * @return {YearQuarter}
      */
     static now(zoneIdOrClock) {
         if (arguments.length === 0) {
-            return YearQuarter.now0();
+            return YearQuarter._now0();
         } else if (arguments.length === 1 && zoneIdOrClock instanceof ZoneId) {
-            return YearQuarter.nowZoneId(zoneIdOrClock);
+            return YearQuarter._nowZoneId(zoneIdOrClock);
         } else {
-            return YearQuarter.nowClock(zoneIdOrClock);
+            return YearQuarter._nowClock(zoneIdOrClock);
         }
     }
 
@@ -69,13 +66,11 @@ export class YearQuarter extends Temporal {
      * because the clock is hard-coded.
      *
      * @return {YearQuarter} the current year-quarter using the system clock and default time-zone, not null
+     * @protected
      */
-    static now0() {
+    static _now0() {
         return YearQuarter.now(Clock.systemDefaultZone());
     }
-
-
-
 
     /**
      * Obtains the current year-quarter from the system clock in the specified time-zone.
@@ -86,10 +81,11 @@ export class YearQuarter extends Temporal {
      * Using this method will prevent the ability to use an alternate clock for testing
      * because the clock is hard-coded.
      *
-     * @param {ZoneId} zone  the zone ID to use, not null
+     * @param {ZoneId} zone - the zone ID to use, not null
      * @return {YearQuarter} the current year-quarter using the system clock, not null
+     * @protected
      */
-    static nowZoneId(zone) {
+    static _nowZoneId(zone) {
         return YearQuarter.now(Clock.system(zone));
     }
 
@@ -100,10 +96,10 @@ export class YearQuarter extends Temporal {
      * Using this method allows the use of an alternate clock for testing.
      * The alternate clock may be introduced using {@link Clock} dependency injection.
      *
-     * @param {Clock} clock  the clock to use, not null
+     * @param {Clock} clock - the clock to use, not null
      * @return {YearQuarter} the current year-quarter, not null
      */
-    static nowClock(clock) {
+    static _nowClock(clock) {
         const now = LocalDate.now(clock);  // called once
         return YearQuarter.of(now.getYear(), Quarter.from(now.getMonth()));
     }
@@ -111,29 +107,28 @@ export class YearQuarter extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * function overloading for {@link YearQuarter.of}
-     *
-     * if called with {Year} and {Quarter} {@link YearQuarter.ofYearQuarter} is executed,
-     * if called with {Year} and {number} {@link YearQuarter.ofYearInt} is executed,
-     * if called with {number} and {Quarter} {@link YearQuarter.ofIntQuarter} is executed,
-     * if called with {number} and {number} {@link YearQuarter.ofIntInt} is executed,
+     * - if called with {Year} and {Quarter} {@link YearQuarter._ofYearQuarter} is executed,
+     * - if called with {Year} and {number} {@link YearQuarter._ofYearInt} is executed,
+     * - if called with {number} and {Quarter} {@link YearQuarter._ofIntQuarter} is executed,
+     * - if called with {number} and {number} {@link YearQuarter._ofIntInt} is executed,
      * otherwise throws IllegalArgumentException.
      *
      * @param {Year|number} year
      * @param {Quarter|number} quarter
-     * @returns {YearQuarter}
+     * @return {YearQuarter}
      */
     static of(year, quarter) {
         if (year instanceof Year && quarter instanceof Quarter) {
-            return YearQuarter.ofYearQuarter(year, quarter);
+            return YearQuarter._ofYearQuarter(year, quarter);
         }
         if (year instanceof Year && typeof quarter === 'number') {
-            return YearQuarter.ofYearInt(year, quarter);
+            return YearQuarter._ofYearInt(year, quarter);
         }
         if (typeof year === 'number' && quarter instanceof Quarter) {
-            return YearQuarter.ofIntQuarter(year, quarter);
+            return YearQuarter._ofIntQuarter(year, quarter);
         }
         if (typeof year === 'number' && typeof quarter === 'number') {
-            return YearQuarter.ofIntInt(year, quarter);
+            return YearQuarter._ofIntInt(year, quarter);
         }
         // FIXME
         const yearMessage = `year must be an instance of Year or number but is ${year.constructor.name}`;
@@ -145,36 +140,39 @@ export class YearQuarter extends Temporal {
     /**
      * Obtains an instance of `YearQuarter` from a year and quarter.
      *
-     * @param {Year} year  the year to represent, not null
-     * @param {Quarter} quarter  the quarter-of-year to represent, not null
+     * @param {Year} year - the year to represent, not null
+     * @param {Quarter} quarter - the quarter-of-year to represent, not null
      * @return {YearQuarter} the year-quarter, not null
+     * @protected
      */
     // FIXME ambiguous name?
-    static ofYearQuarter(year, quarter) {
+    static _ofYearQuarter(year, quarter) {
         return YearQuarter.of(year.value(), quarter);
     }
 
     /**
      * Obtains an instance of `YearQuarter` from a year and quarter.
      *
-     * @param {Year} year  the year to represent, not null
-     * @param {number} quarter  the quarter-of-year to represent, from 1 to 4
+     * @param {Year} year - the year to represent, not null
+     * @param {number} quarter - the quarter-of-year to represent, from 1 to 4
      * @return {YearQuarter} the year-quarter, not null
-     * @throws DateTimeException if the quarter value is invalid
+     * @throws {DateTimeException} if the quarter value is invalid
+     * @protected
      */
-    static ofYearInt(year, quarter) {
+    static _ofYearInt(year, quarter) {
         return YearQuarter.of(year.value(), Quarter.of(quarter));
     }
 
     /**
      * Obtains an instance of `YearQuarter` from a year and quarter.
      *
-     * @param {number} year  the year to represent, from MIN_YEAR to MAX_YEAR
-     * @param {Quarter} quarter  the quarter-of-year to represent, not null
+     * @param {number} year - the year to represent, from MIN_YEAR to MAX_YEAR
+     * @param {Quarter} quarter - the quarter-of-year to represent, not null
      * @return {YearQuarter} the year-quarter, not null
-     * @throws DateTimeException if the year value is invalid
+     * @throws {DateTimeException} if the year value is invalid
+     * @protected
      */
-    static ofIntQuarter(year, quarter) {
+    static _ofIntQuarter(year, quarter) {
         ChronoField.YEAR.checkValidValue(year);
         requireNonNull(quarter, 'quarter');
         return new YearQuarter(year, quarter);
@@ -183,12 +181,13 @@ export class YearQuarter extends Temporal {
     /**
      * Obtains an instance of `YearQuarter` from a year and quarter.
      *
-     * @param {number} year  the year to represent, from MIN_YEAR to MAX_YEAR
-     * @param {number} quarter  the quarter-of-year to represent, from 1 to 4
+     * @param {number} year - the year to represent, from MIN_YEAR to MAX_YEAR
+     * @param {number} quarter - the quarter-of-year to represent, from 1 to 4
      * @return {YearQuarter} the year-quarter, not null
-     * @throws DateTimeException if either field value is invalid
+     * @throws {DateTimeException} if either field value is invalid
+     * @protected
      */
-    static ofIntInt(year, quarter) {
+    static _ofIntInt(year, quarter) {
         ChronoField.YEAR.checkValidValue(year);
         return new YearQuarter(year, Quarter.of(quarter));
     }
@@ -209,9 +208,9 @@ export class YearQuarter extends Temporal {
      * This method matches the signature of the functional interface {@link TemporalQuery}
      * allowing it to be used in queries via method reference, `YearQuarter.FROM`.
      *
-     * @param {TemporalAccessor} temporal  the temporal object to convert, not null
+     * @param {TemporalAccessor} temporal - the temporal object to convert, not null
      * @return {YearQuarter} the year-quarter, not null
-     * @throws DateTimeException if unable to convert to a `YearQuarter`
+     * @throws {DateTimeException} if unable to convert to a `YearQuarter`
      */
     static from(temporal) {
         if (temporal instanceof YearQuarter) {
@@ -239,9 +238,10 @@ export class YearQuarter extends Temporal {
      * 
      * The text is parsed using the formatter, returning a year-quarter.
      *
-     * @param {string} text  the text to parse, not null
+     * @param {string} text - the text to parse, not null
      * @param {DateTimeFormatter} [formatter=YearQuarter.PARSER] - the formatter to use, default is {@link YearQuarter.PARSER}
-     * @throws DateTimeParseException if the text cannot be parsed
+     * @return {YearQuarter} the parsed year-quarter, not null
+     * @throws {DateTimeParseException} if the text cannot be parsed
      */
     static parse(text, formatter = YearQuarter.PARSER) {
         requireNonNull(formatter, 'formatter');
@@ -253,8 +253,8 @@ export class YearQuarter extends Temporal {
     /**
      * Constructor.
      *
-     * @param {number} year  the year to represent, validated from MIN_YEAR to MAX_YEAR
-     * @param {Quarter} quarter  the quarter-of-year to represent, validated not null
+     * @param {number} year - the year to represent, validated from MIN_YEAR to MAX_YEAR
+     * @param {Quarter} quarter - the quarter-of-year to represent, validated not null
      * @private
      */
     constructor(year, quarter) {
@@ -267,8 +267,8 @@ export class YearQuarter extends Temporal {
      * Returns a copy of this year-quarter with the new year and quarter, checking
      * to see if a new object is in fact required.
      *
-     * @param {number} newYear  the year to represent, validated from MIN_YEAR to MAX_YEAR
-     * @param {Quarter} newQuarter  the quarter-of-year to represent, validated not null
+     * @param {number} newYear - the year to represent, validated from MIN_YEAR to MAX_YEAR
+     * @param {Quarter} newQuarter - the quarter-of-year to represent, validated not null
      * @return {YearQuarter} the year-quarter, not null
      * @private
      */
@@ -281,20 +281,19 @@ export class YearQuarter extends Temporal {
 
     /**
      * function overloading for {@link YearWeek.isSupported}
+     * - if called with an instance of {@link TemporalField}, then {@link YearWeek.isSupportedField} is executed,
+     * - if called with an instance of {@link TemporalUnit}, then {@link YearWeek.isSupportedUnit} is executed,
+     * - otherwise {@link IllegalArgumentException} is thrown.
      *
-     * * if called with an instance of {@link TemporalField}, then {@link YearWeek.isSupportedField} is executed,
-     * * if called with an instance of {@link TemporalUnit}, then {@link YearWeek.isSupportedUnit} is executed,
-     * * otherwise {@link IllegalArgumentException} is thrown.
-     *
-     * @param {!(TemporalField|TemporalUnit)} fieldOrUnit
-     * @returns {boolean}
+     * @param {TemporalField|TemporalUnit} fieldOrUnit
+     * @return {boolean}
      */
     isSupported(fieldOrUnit) {
         if (fieldOrUnit instanceof TemporalField) {
-            return this.isSupportedField(fieldOrUnit);
+            return this._isSupportedField(fieldOrUnit);
         }
         if (fieldOrUnit instanceof TemporalUnit) {
-            return this.isSupportedUnit(fieldOrUnit);
+            return this._isSupportedUnit(fieldOrUnit);
         }
         if (fieldOrUnit == null) {
             return false;
@@ -326,10 +325,11 @@ export class YearQuarter extends Temporal {
      * passing `this` as the argument.
      * Whether the field is supported is determined by the field.
      *
-     * @param {TemporalField} field  the field to check, null returns false
+     * @param {TemporalField} field - the field to check, null returns false
      * @return {boolean} true if the field is supported on this year-quarter, false if not
+     * @protected
      */
-    isSupportedField(field) {
+    _isSupportedField(field) {
         if (field === IsoFields.QUARTER_OF_YEAR) {
             return true;
         } else if (field instanceof ChronoField) {
@@ -362,10 +362,11 @@ export class YearQuarter extends Temporal {
      * passing `this` as the argument.
      * Whether the unit is supported is determined by the unit.
      *
-     * @param {TemporalUnit} unit  the unit to check, null returns false
+     * @param {TemporalUnit} unit - the unit to check, null returns false
      * @return {boolean} true if the unit can be added/subtracted, false if not
+     * @protected
      */
-    isSupportedUnit(unit) {
+    _isSupportedUnit(unit) {
         if (unit === IsoFields.QUARTER_YEARS) {
             return true;
         } else if (unit instanceof ChronoUnit) {
@@ -393,10 +394,10 @@ export class YearQuarter extends Temporal {
      * passing `this` as the argument.
      * Whether the range can be obtained is determined by the field.
      *
-     * @param {TemporalField} field  the field to query the range for, not null
+     * @param {TemporalField} field - the field to query the range for, not null
      * @return {ValueRange} the range of valid values for the field, not null
-     * @throws DateTimeException if the range for the field cannot be obtained
-     * @throws UnsupportedTemporalTypeException if the field is not supported
+     * @throws {DateTimeException} if the range for the field cannot be obtained
+     * @throws {UnsupportedTemporalTypeException} if the field is not supported
      */
     range(field) {
         requireNonNull(field, 'field');
@@ -428,13 +429,13 @@ export class YearQuarter extends Temporal {
      * passing `this` as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
-     * @param {TemporalField} field  the field to get, not null
+     * @param {TemporalField} field - the field to get, not null
      * @return {number} the value for the field
-     * @throws DateTimeException if a value for the field cannot be obtained or
+     * @throws {DateTimeException} if a value for the field cannot be obtained or
      *  the value is outside the range of valid values for the field
-     * @throws UnsupportedTemporalTypeException if the field is not supported or
+     * @throws {UnsupportedTemporalTypeException} if the field is not supported or
      *  the range of values exceeds an `int`
-     * @throws ArithmeticException if numeric overflow occurs
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
     get(field) {
         requireNonNull(field, 'field');
@@ -459,11 +460,11 @@ export class YearQuarter extends Temporal {
      * passing `this` as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
-     * @param {TemporalField} field  the field to get, not null
+     * @param {TemporalField} field - the field to get, not null
      * @return {number} the value for the field
-     * @throws DateTimeException if a value for the field cannot be obtained
-     * @throws UnsupportedTemporalTypeException if the field is not supported
-     * @throws ArithmeticException if numeric overflow occurs
+     * @throws {DateTimeException} if a value for the field cannot be obtained
+     * @throws {UnsupportedTemporalTypeException} if the field is not supported
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
     getLong(field) {
         requireNonNull(field, 'field');
@@ -564,7 +565,7 @@ export class YearQuarter extends Temporal {
      * This method checks whether this year and quarter and the input day form
      * a valid date.
      *
-     * @param {number} dayOfQuarter  the day-of-quarter to validate, from 1 to 92, invalid value returns false
+     * @param {number} dayOfQuarter - the day-of-quarter to validate, from 1 to 92, invalid value returns false
      * @return {boolean} true if the day is valid for this year-quarter
      */
     isValidDay(dayOfQuarter) {
@@ -596,25 +597,25 @@ export class YearQuarter extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Returns an adjusted copy of this year-quarter.
-     * <p>
+     * 
      * This returns a {@code YearQuarter} based on this one, with the year-quarter adjusted.
      * The adjustment takes place using the specified adjuster strategy object.
      * Read the documentation of the adjuster to understand what adjustment will be made.
-     * <p>
+     * 
      * A simple adjuster might simply set the one of the fields, such as the year field.
      * A more complex adjuster might set the year-quarter to the next quarter that
      * Halley's comet will pass the Earth.
-     * <p>
+     * 
      * The result of this method is obtained by invoking the
      * {@link TemporalAdjuster#adjustInto(Temporal)} method on the
      * specified adjuster passing {@code this} as the argument.
-     * <p>
+     * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param adjuster the adjuster to use, not null
-     * @return a {@code YearQuarter} based on {@code this} with the adjustment made, not null
-     * @throws DateTimeException if the adjustment cannot be made
-     * @throws ArithmeticException if numeric overflow occurs
+     * @param {TemporalAdjuster} adjuster - the adjuster to use, not null
+     * @return {YearQuarter} based on {@code this} with the adjustment made, not null
+     * @throws {DateTimeException} if the adjustment cannot be made
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
     _withAdjuster(adjuster) {
         // optimizations
@@ -660,12 +661,12 @@ export class YearQuarter extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {TemporalField} field  the field to set in the result, not null
-     * @param {number} newValue  the new value of the field in the result
+     * @param {TemporalField} field - the field to set in the result, not null
+     * @param {number} newValue - the new value of the field in the result
      * @return {YearQuarter} a `YearQuarter` based on `this` with the specified field set, not null
-     * @throws DateTimeException if the field cannot be set
-     * @throws UnsupportedTemporalTypeException if the field is not supported
-     * @throws ArithmeticException if numeric overflow occurs
+     * @throws {DateTimeException} if the field cannot be set
+     * @throws {UnsupportedTemporalTypeException} if the field is not supported
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
     _withField(field, newValue) {
         requireNonNull(field, 'field');
@@ -694,9 +695,9 @@ export class YearQuarter extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {number} year  the year to set in the returned year-quarter, from MIN_YEAR to MAX_YEAR
+     * @param {number} year - the year to set in the returned year-quarter, from MIN_YEAR to MAX_YEAR
      * @return {YearQuarter} a `YearQuarter` based on this year-quarter with the requested year, not null
-     * @throws DateTimeException if the year value is invalid
+     * @throws {DateTimeException} if the year value is invalid
      */
     withYear(year) {
         ChronoField.YEAR.checkValidValue(year);
@@ -708,9 +709,9 @@ export class YearQuarter extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {number} quarter  the quarter-of-year to set in the returned year-quarter, from 1 to 4
+     * @param {number} quarter - the quarter-of-year to set in the returned year-quarter, from 1 to 4
      * @return {YearQuarter} a `YearQuarter` based on this year-quarter with the requested quarter, not null
-     * @throws DateTimeException if the quarter-of-year value is invalid
+     * @throws {DateTimeException} if the quarter-of-year value is invalid
      */
     withQuarter(quarter) {
         IsoFields.QUARTER_OF_YEAR.range().checkValidValue(quarter, IsoFields.QUARTER_OF_YEAR);
@@ -760,12 +761,12 @@ export class YearQuarter extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {number} amountToAdd  the amount of the unit to add to the result, may be negative
-     * @param {TemporalUnit} unit  the unit of the amount to add, not null
+     * @param {number} amountToAdd - the amount of the unit to add to the result, may be negative
+     * @param {TemporalUnit} unit - the unit of the amount to add, not null
      * @return {YearQuarter} a `YearQuarter` based on this year-quarter with the specified amount added, not null
-     * @throws DateTimeException if the addition cannot be made
-     * @throws UnsupportedTemporalTypeException if the unit is not supported
-     * @throws ArithmeticException if numeric overflow occurs
+     * @throws {DateTimeException} if the addition cannot be made
+     * @throws {UnsupportedTemporalTypeException} if the unit is not supported
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
     _plusUnit(amountToAdd, unit) {
         if (unit === IsoFields.QUARTER_YEARS) {
@@ -794,9 +795,9 @@ export class YearQuarter extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {number} yearsToAdd  the years to add, may be negative
+     * @param {number} yearsToAdd - the years to add, may be negative
      * @return {YearQuarter} a `YearQuarter` based on this year-quarter with the years added, not null
-     * @throws DateTimeException if the result exceeds the supported range
+     * @throws {DateTimeException} if the result exceeds the supported range
      */
     plusYears(yearsToAdd) {
         if (yearsToAdd === 0) {
@@ -811,9 +812,9 @@ export class YearQuarter extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {number} quartersToAdd  the quarters to add, may be negative
+     * @param {number} quartersToAdd - the quarters to add, may be negative
      * @return {YearQuarter} a `YearQuarter` based on this year-quarter with the quarters added, not null
-     * @throws DateTimeException if the result exceeds the supported range
+     * @throws {DateTimeException} if the result exceeds the supported range
      */
     plusQuarters(quartersToAdd) {
         if (quartersToAdd === 0) {
@@ -831,9 +832,9 @@ export class YearQuarter extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {number} yearsToSubtract  the years to subtract, may be negative
+     * @param {number} yearsToSubtract - the years to subtract, may be negative
      * @return {YearQuarter} a `YearQuarter` based on this year-quarter with the years subtracted, not null
-     * @throws DateTimeException if the result exceeds the supported range
+     * @throws {DateTimeException} if the result exceeds the supported range
      */
     minusYears(yearsToSubtract) {
         return (yearsToSubtract === MathUtil.MIN_SAFE_INTEGER ? this.plusYears(MathUtil.MIN_SAFE_INTEGER).plusYears(1) : this.plusYears(-yearsToSubtract));
@@ -844,9 +845,9 @@ export class YearQuarter extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {number} quartersToSubtract  the quarters to subtract, may be negative
+     * @param {number} quartersToSubtract - the quarters to subtract, may be negative
      * @return {YearQuarter} a `YearQuarter` based on this year-quarter with the quarters subtracted, not null
-     * @throws DateTimeException if the result exceeds the supported range
+     * @throws {DateTimeException} if the result exceeds the supported range
      */
     minusQuarters(quartersToSubtract) {
         return (quartersToSubtract === MathUtil.MIN_SAFE_INTEGER ? this.plusQuarters(MathUtil.MIN_SAFE_INTEGER).plusQuarters(1) : this.plusQuarters(-quartersToSubtract));
@@ -866,10 +867,10 @@ export class YearQuarter extends Temporal {
      * {@link TemporalQuery.queryFrom} method on the
      * specified query passing `this` as the argument.
      *
-     * @param {TemporalQuery} query  the query to invoke, not null
+     * @param {TemporalQuery} query - the query to invoke, not null
      * @return {*} the query result, null may be returned (defined by the query)
-     * @throws DateTimeException if unable to query (defined by the query)
-     * @throws ArithmeticException if numeric overflow occurs (defined by the query)
+     * @throws {DateTimeException} if unable to query (defined by the query)
+     * @throws {ArithmeticException} if numeric overflow occurs (defined by the query)
      */
     query(query) {
         if (query === TemporalQueries.chronology()) {
@@ -901,10 +902,10 @@ export class YearQuarter extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {Temporal} temporal  the target object to be adjusted, not null
+     * @param {Temporal} temporal - the target object to be adjusted, not null
      * @return {Temporal} the adjusted object, not null
-     * @throws DateTimeException if unable to make the adjustment
-     * @throws ArithmeticException if numeric overflow occurs
+     * @throws {DateTimeException} if unable to make the adjustment
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
     adjustInto(temporal) {
         /* TODO: only IsoChronology for now
@@ -955,13 +956,13 @@ export class YearQuarter extends Temporal {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {Temporal} endExclusive the end date, exclusive, which is converted to a `YearQuarter`, not null
-     * @param {TemporalUnit} unit the unit to measure the amount in, not null
+     * @param {Temporal} endExclusive - the end date, exclusive, which is converted to a `YearQuarter`, not null
+     * @param {TemporalUnit} unit - the unit to measure the amount in, not null
      * @return {number} the amount of time between this year-quarter and the end year-quarter
-     * @throws DateTimeException if the amount cannot be calculated, or the end
+     * @throws {DateTimeException} if the amount cannot be calculated, or the end
      *  temporal cannot be converted to a `YearQuarter`
-     * @throws UnsupportedTemporalTypeException if the unit is not supported
-     * @throws ArithmeticException if numeric overflow occurs
+     * @throws {UnsupportedTemporalTypeException} if the unit is not supported
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
     until(endExclusive, unit) {
         requireNonNull(endExclusive, 'endExclusive');
@@ -997,9 +998,9 @@ export class YearQuarter extends Temporal {
      * 
      * This year-quarter will be passed to the formatter to produce a string.
      *
-     * @param {DateTimeFormatter} formatter  the formatter to use, not null
+     * @param {DateTimeFormatter} formatter - the formatter to use, not null
      * @return {string} the formatted year-quarter string, not null
-     * @throws DateTimeException if an error occurs during printing
+     * @throws {DateTimeException} if an error occurs during printing
      */
     format(formatter) {
         requireNonNull(formatter, 'formatter');
@@ -1021,7 +1022,7 @@ export class YearQuarter extends Temporal {
      *
      * @param {number} dayOfQuarter the day-of-quarter to use, from 1 to 92
      * @return {LocalDate} the date formed from this year-quarter and the specified day, not null
-     * @throws DateTimeException if the day is invalid for the year-quarter
+     * @throws {DateTimeException} if the day is invalid for the year-quarter
      * @see {@link YearQuarter.isValidDay}
      */
     atDay(dayOfQuarter) {
@@ -1061,7 +1062,7 @@ export class YearQuarter extends Temporal {
      * The comparison is based first on the value of the year, then on the value of the quarter.
      * It is 'consistent with equals', as defined by {@link Comparable}.
      *
-     * @param {YearQuarter} other  the other year-quarter to compare to, not null
+     * @param {YearQuarter} other - the other year-quarter to compare to, not null
      * @return {number} the comparator value, negative if less, positive if greater
      */
     compareTo(other) {
@@ -1077,7 +1078,7 @@ export class YearQuarter extends Temporal {
     /**
      * Is this year-quarter after the specified year-quarter.
      *
-     * @param {YearQuarter} other  the other year-quarter to compare to, not null
+     * @param {YearQuarter} other - the other year-quarter to compare to, not null
      * @return {boolean} true if this is after the specified year-quarter
      */
     isAfter(other) {
@@ -1087,7 +1088,7 @@ export class YearQuarter extends Temporal {
     /**
      * Is this year-quarter before the specified year-quarter.
      *
-     * @param {YearQuarter} other  the other year-quarter to compare to, not null
+     * @param {YearQuarter} other - the other year-quarter to compare to, not null
      * @return {boolean} true if this point is before the specified year-quarter
      */
     isBefore(other) {
@@ -1100,7 +1101,7 @@ export class YearQuarter extends Temporal {
      * 
      * The comparison is based on the time-line position of the year-quarters.
      *
-     * @param {*} obj  the object to check, null returns false
+     * @param {*} obj - the object to check, null returns false
      * @return {boolean} true if this is equal to the other year-quarter
      */
     equals(obj) {

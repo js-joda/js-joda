@@ -34,7 +34,7 @@ export class Quarter extends TemporalAccessor {
      * replacement for enum `valueOf(name)`
      * 
      * @param {string} name
-     * @returns {Quarter}
+     * @return {Quarter}
      */
     static valueOf(name) {
         requireNonNull(name, 'name');
@@ -67,9 +67,9 @@ export class Quarter extends TemporalAccessor {
      * This factory allows the enum to be obtained from the `int` value.
      * The `int` value follows the quarter, from 1 (Q1) to 4 (Q4).
      *
-     * @param {number} quarterOfYear  the quarter-of-year to represent, from 1 (Q1) to 4 (Q4)
+     * @param {number} quarterOfYear - the quarter-of-year to represent, from 1 (Q1) to 4 (Q4)
      * @return {Quarter} the quarter-of-year, not null
-     * @throws DateTimeException if the quarter-of-year is invalid
+     * @throws {DateTimeException} if the quarter-of-year is invalid
      */
     static of(quarterOfYear) {
         requireNonNull(quarterOfYear, 'quarterOfYear');
@@ -96,9 +96,9 @@ export class Quarter extends TemporalAccessor {
      * January to March are Q1, April to June are Q2, July to September are Q3
      * and October to December are Q4.
      *
-     * @param {number} monthOfYear  the month-of-year to convert from, from 1 to 12
+     * @param {number} monthOfYear - the month-of-year to convert from, from 1 to 12
      * @return {Quarter} the quarter-of-year, not null
-     * @throws DateTimeException if the month-of-year is invalid
+     * @throws {DateTimeException} if the month-of-year is invalid
      */
     static ofMonth(monthOfYear) {
         requireNonNull(monthOfYear, 'monthOfYear');
@@ -121,9 +121,9 @@ export class Quarter extends TemporalAccessor {
      * This method matches the signature of the functional interface {@link TemporalQuery}
      * allowing it to be used in queries via method reference, `Quarter.from`.
      *
-     * @param temporal  the temporal-time object to convert, not null
-     * @return the quarter-of-year, not null
-     * @throws DateTimeException if unable to convert to a `Quarter`
+     * @param {Temporal} temporal - the temporal-time object to convert, not null
+     * @return {Quarter} the quarter-of-year, not null
+     * @throws {DateTimeException} if unable to convert to a `Quarter`
      */
     static from(temporal) {
         if (temporal instanceof Quarter) {
@@ -164,7 +164,7 @@ export class Quarter extends TemporalAccessor {
      * The values are numbered following the ISO-8601 standard,
      * from 1 (Q1) to 4 (Q4).
      *
-     * @return the quarter-of-year, from 1 (Q1) to 4 (Q4)
+     * @return {number} the quarter-of-year, from 1 (Q1) to 4 (Q4)
      */
     value() {
         return this._value;
@@ -180,9 +180,9 @@ export class Quarter extends TemporalAccessor {
      * 
      * If no textual mapping is found then the {@link #getValue() numeric value} is returned.
      *
-     * @param style  the length of the text required, not null
-     * @param locale  the locale to use, not null
-     * @return the text value of the quarter-of-year, not null
+     * @param {TextStyle} style - the length of the text required, not null
+     * @param {Locale} locale - the locale to use, not null
+     * @return {string} the text value of the day-of-week, not null
      */
     // eslint-disable-next-line no-unused-vars
     displayName(style, locale) {
@@ -206,7 +206,7 @@ export class Quarter extends TemporalAccessor {
      * passing `this` as the argument.
      * Whether the field is supported is determined by the field.
      *
-     * @param {TemporalField} field  the field to check, null returns false
+     * @param {TemporalField} field - the field to check, null returns false
      * @return {boolean} true if the field is supported on this quarter-of-year, false if not
      */
     isSupported(field) {
@@ -235,10 +235,10 @@ export class Quarter extends TemporalAccessor {
      * passing `this` as the argument.
      * Whether the range can be obtained is determined by the field.
      *
-     * @param {TemporalField} field  the field to query the range for, not null
+     * @param {TemporalField} field - the field to query the range for, not null
      * @return {ValueRange} the range of valid values for the field, not null
-     * @throws DateTimeException if the range for the field cannot be obtained
-     * @throws UnsupportedTemporalTypeException if the field is not supported
+     * @throws {DateTimeException} if the range for the field cannot be obtained
+     * @throws {UnsupportedTemporalTypeException} if the field is not supported
      */
     range(field) {
         requireNonNull(field, 'field');
@@ -267,13 +267,13 @@ export class Quarter extends TemporalAccessor {
      * passing `this` as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
-     * @param {TemporalField} field  the field to get, not null
+     * @param {TemporalField} field - the field to get, not null
      * @return {number} the value for the field, within the valid range of values
-     * @throws DateTimeException if a value for the field cannot be obtained or
+     * @throws {DateTimeException} if a value for the field cannot be obtained or
      *         the value is outside the range of valid values for the field
-     * @throws UnsupportedTemporalTypeException if the field is not supported or
+     * @throws {UnsupportedTemporalTypeException} if the field is not supported or
      *         the range of values exceeds an `int`
-     * @throws ArithmeticException if numeric overflow occurs
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
     get(field) {
         requireNonNull(field, 'field');
@@ -297,11 +297,11 @@ export class Quarter extends TemporalAccessor {
      * passing `this` as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
-     * @param {TemporalField} field  the field to get, not null
+     * @param {TemporalField} field - the field to get, not null
      * @return {number} the value for the field
-     * @throws DateTimeException if a value for the field cannot be obtained
-     * @throws UnsupportedTemporalTypeException if the field is not supported
-     * @throws ArithmeticException if numeric overflow occurs
+     * @throws {DateTimeException} if a value for the field cannot be obtained
+     * @throws {UnsupportedTemporalTypeException} if the field is not supported
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
     getLong(field) {
         requireNonNull(field, 'field');
@@ -322,7 +322,7 @@ export class Quarter extends TemporalAccessor {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {number} quarters  the quarters to add, positive or negative
+     * @param {number} quarters - the quarters to add, positive or negative
      * @return {Quarter} the resulting quarter, not null
      */
     plus(quarters) {
@@ -338,7 +338,7 @@ export class Quarter extends TemporalAccessor {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param  {number} quarters  the quarters to subtract, positive or negative
+     * @param {number} quarters - the quarters to subtract, positive or negative
      * @return {Quarter} the resulting quarter, not null
      */
     minus(quarters) {
@@ -355,7 +355,7 @@ export class Quarter extends TemporalAccessor {
      * Q2 has 91 days.
      * Q3 and Q4 have 92 days.
      *
-     * @param {boolean} leapYear  true if the length is required for a leap year
+     * @param {boolean} leapYear - true if the length is required for a leap year
      * @return {number} the length of this month in days, from 90 to 92
      */
     length(leapYear) {
@@ -411,10 +411,10 @@ export class Quarter extends TemporalAccessor {
      * {@link TemporalQuery.queryFrom(TemporalAccessor)} method on the
      * specified query passing `this` as the argument.
      *
-     * @param {TemporalQuery} query  the query to invoke, not null
+     * @param {TemporalQuery} query - the query to invoke, not null
      * @return {*} the query result, null may be returned (defined by the query)
-     * @throws DateTimeException if unable to query (defined by the query)
-     * @throws ArithmeticException if numeric overflow occurs (defined by the query)
+     * @throws {DateTimeException} if unable to query (defined by the query)
+     * @throws {ArithmeticException} if numeric overflow occurs (defined by the query)
      */
     query(query) {
         requireNonNull(query, 'query');
@@ -456,10 +456,10 @@ export class Quarter extends TemporalAccessor {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param {Temporal} temporal  the target object to be adjusted, not null
+     * @param {Temporal} temporal - the target object to be adjusted, not null
      * @return {Temporal} the adjusted object, not null
-     * @throws DateTimeException if unable to make the adjustment
-     * @throws ArithmeticException if numeric overflow occurs
+     * @throws {DateTimeException} if unable to make the adjustment
+     * @throws {ArithmeticException} if numeric overflow occurs
      */
     adjustInto(temporal) {
         requireNonNull(temporal, 'temporal');
@@ -477,7 +477,7 @@ export class Quarter extends TemporalAccessor {
 
     /**
      *
-     * @returns {number}
+     * @return {number}
      */
     ordinal() {
         return this._value - 1;
@@ -485,7 +485,7 @@ export class Quarter extends TemporalAccessor {
 
     /**
      *
-     * @returns {string}
+     * @return {string}
      */
     name() {
         return this._name;
@@ -501,7 +501,7 @@ export class Quarter extends TemporalAccessor {
      * The comparison is based on the value of the Quarter.
      * It is "consistent with equals", as defined by {@link Comparable}.
      *
-     * @param {Quarter} other  the other quarter to compare to, not null
+     * @param {Quarter} other - the other quarter to compare to, not null
      * @return {number} the comparator value, negative if less, positive if greater
      */
     compareTo(other) {
@@ -525,7 +525,7 @@ export class Quarter extends TemporalAccessor {
 
     /**
      *
-     * @returns {boolean}
+     * @return {boolean}
      */
     equals(other){
         return this === other;

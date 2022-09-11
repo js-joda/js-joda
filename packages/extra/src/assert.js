@@ -27,7 +27,7 @@ export function assert(assertion, msg, error) {
  *
  * @param value
  * @param parameterName
- * @returns {*}
+ * @return {*}
  */
 export function requireNonNull(value, parameterName) {
     if (value == null) {
@@ -42,7 +42,7 @@ export function requireNonNull(value, parameterName) {
  * @param value
  * @param _class
  * @param parameterName
- * @returns {_class}
+ * @return {_class}
  */
 export function requireInstance(value, _class, parameterName) {
     if (!(value instanceof _class)) {
