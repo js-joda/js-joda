@@ -232,6 +232,7 @@ export class OffsetDate extends Temporal {
      *
      * @param {LocalDate} date  the local date, not null
      * @param {ZoneOffset} offset  the zone offset, not null
+     * @private
      */
     constructor(date, offset) {
         super();

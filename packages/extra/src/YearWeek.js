@@ -255,6 +255,7 @@ export class YearWeek extends Temporal {
      *
      * @param weekBasedYear  the week-based-year to represent, validated from MIN_YEAR to MAX_YEAR
      * @param week  the week to represent, validated
+     * @private
      */
     constructor(weekBasedYear, week) {
         super();

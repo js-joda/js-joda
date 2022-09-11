@@ -255,6 +255,7 @@ export class YearQuarter extends Temporal {
      *
      * @param {number} year  the year to represent, validated from MIN_YEAR to MAX_YEAR
      * @param {Quarter} quarter  the quarter-of-year to represent, validated not null
+     * @private
      */
     constructor(year, quarter) {
         super();

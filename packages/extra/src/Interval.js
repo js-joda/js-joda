@@ -150,6 +150,7 @@ export class Interval {
      *
      * @param {Instant} startInclusive  the start instant, inclusive, validated not null
      * @param {Instant} endExclusive  the end instant, exclusive, validated not null
+     * @private
      */
     constructor(startInclusive, endExclusive) {
         this._start = startInclusive;

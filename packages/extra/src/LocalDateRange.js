@@ -268,6 +268,7 @@ export class LocalDateRange {
      *
      * @param {LocalDate} startInclusive  the start date, inclusive, validated not null
      * @param {LocalDate} endExclusive  the end date, exclusive, validated not null
+     * @private
      */
     constructor(startInclusive, endExclusive) {
         requireNonNull(startInclusive, 'startInclusive');
