@@ -1,6 +1,6 @@
 {
     "name": "@js-joda/locale_ru",
-    "version": "4.8.1",
+    "version": "4.8.2",
     "description": "prebuilt js-joda locale package for locales: ru.*",
     "repository": {
         "type": "git",

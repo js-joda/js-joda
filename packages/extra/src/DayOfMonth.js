@@ -335,7 +335,6 @@ export class DayOfMonth extends TemporalAccessor {
      * @return {*} the query result, null may be returned (defined by the query)
      * @throws {DateTimeException} if unable to query (defined by the query)
      * @throws {ArithmeticException} if numeric overflow occurs (defined by the query)
-     */
     query(query) {
         requireNonNull(query, 'query');
         requireInstance(query, TemporalQuery, 'query');

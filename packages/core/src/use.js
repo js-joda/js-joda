@@ -2,7 +2,7 @@
  * @private
  *
  * @param jsJoda
- * @returns {function(*=): *}
+ * @returns { function(jsJoda: JsJoda) }
  */
 export function bindUse(jsJoda) {
     const used = [];

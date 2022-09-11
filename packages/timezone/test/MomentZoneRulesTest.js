@@ -72,7 +72,7 @@ describe('MomentZoneRules', () => {
         });
 
         it('Europe/London', () => {
-            assertEquals(europeLondon.offset(createInstant(1800, 1, 1, 0, 0, ZoneOffset.UTC)), OFFSET_ZERO);
+            assertEquals(europeLondon.offset(createInstant(1900, 1, 1, 0, 0, ZoneOffset.UTC)), OFFSET_ZERO);
             assertEquals(europeLondon.offset(createInstant(2008, 1, 1, 0, 0, ZoneOffset.UTC)), OFFSET_ZERO);
             assertEquals(europeLondon.offset(createInstant(2008, 4, 1, 0, 0, ZoneOffset.UTC)), OFFSET_PONE);
             assertEquals(europeLondon.offset(createInstant(2008, 11, 1, 0, 0, ZoneOffset.UTC)), OFFSET_ZERO);
@@ -105,7 +105,7 @@ describe('MomentZoneRules', () => {
         });
 
         it('Europe/London', () => {
-            assertEquals(europeLondon.offset(createLocalDateTime(1800, 1, 1, 0, 0)), OFFSET_ZERO);
+            assertEquals(europeLondon.offset(createLocalDateTime(1900, 1, 1, 0, 0)), OFFSET_ZERO);
             assertEquals(europeLondon.offset(createLocalDateTime(2008, 1, 1, 0, 0)), OFFSET_ZERO);
             assertEquals(europeLondon.offset(createLocalDateTime(2008, 4, 1, 0, 0)), OFFSET_PONE);
             assertEquals(europeLondon.offset(createLocalDateTime(2008, 11, 1, 0, 0)), OFFSET_ZERO);
