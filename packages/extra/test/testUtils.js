@@ -31,6 +31,10 @@ export function assertSame(expected, actual, message) {
     expect(expected === actual, message != null ? message : `${expected} !== ${actual}`).to.be.true;
 }
 
+export function assertNull(object, message = '') {
+    expect(object == null, message).to.be.true;
+}
+
 export function assertNotNull(object, message = '') {
     expect(object == null, message).to.be.false;
 }

@@ -6,6 +6,11 @@
 import { _init as dayOfMonthInit } from './DayOfMonth';
 import { _init as dayOfYearInit } from './DayOfYear';
 import { _init as intervalInit } from './Interval';
+import { _init as localDateRangeInit } from './LocalDateRange';
+import { _init as offsetDateInit } from './OffsetDate';
+import { _init as quarterInit } from './Quarter';
+import { _init as yearQuarterInit } from './YearQuarter';
+import { _init as yearWeekInit } from './YearWeek';
 
 let isInit = false;
 
@@ -19,6 +24,11 @@ function init() {
     dayOfMonthInit();
     dayOfYearInit();
     intervalInit();
+    localDateRangeInit();
+    offsetDateInit();
+    quarterInit();
+    yearQuarterInit();
+    yearWeekInit();
 }
 
 init();

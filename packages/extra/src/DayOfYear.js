@@ -26,25 +26,25 @@ const MathUtil = jodaInternal.MathUtil;
 export class DayOfYear extends TemporalAccessor {
     /**
      * Function overloading for {@link DayOfYear.now}:
-     * * if called with no arguments, {@link DayOfYear.now0} is executed;
-     * * if called with an instance of {@link ZoneId}, then {@link DayOfYear.nowZoneId} is executed;
-     * * if called with an instance of {@link Clock}, then {@link DayOfYear.nowClock} is executed;
-     * * otherwise {@link IllegalArgumentException} is thrown.
+     * - if called with no arguments, {@link DayOfYear._now0} is executed;
+     * - if called with an instance of {@link ZoneId}, then {@link DayOfYear._nowZoneId} is executed;
+     * - if called with an instance of {@link Clock}, then {@link DayOfYear._nowClock} is executed;
+     * - otherwise {@link IllegalArgumentException} is thrown.
      * 
      * @param {?(ZoneId|Clock)} zoneIdOrClock
-     * @returns {DayOfYear}
+     * @return {DayOfYear}
      */
     static now(zoneIdOrClock) {
         switch (arguments.length) {
             case 0:
-                return DayOfYear.now0();
+                return DayOfYear._now0();
             case 1:
                 requireNonNull(zoneIdOrClock, 'clockOrZone');
                 if (zoneIdOrClock instanceof ZoneId) {
-                    return DayOfYear.nowZoneId(zoneIdOrClock);
+                    return DayOfYear._nowZoneId(zoneIdOrClock);
                 }
                 if (zoneIdOrClock instanceof Clock) {
-                    return DayOfYear.nowClock(zoneIdOrClock);
+                    return DayOfYear._nowClock(zoneIdOrClock);
                 }
                 throw new IllegalArgumentException(`zoneIdOrClock must be an instance of ZoneId or Clock, but is ${zoneIdOrClock.constructor.name}`);
             default:
@@ -63,10 +63,10 @@ export class DayOfYear extends TemporalAccessor {
      * Using this method will prevent the ability to use an alternate clock for testing
      * because the clock is hard-coded.
      *
-     * @return the current day-of-year using the system clock and default time-zone, not null
-     * @private
+     * @return {DayOfYear} the current day-of-year using the system clock and default time-zone, not null
+     * @protected
      */
-    static now0() {
+    static _now0() {
         return DayOfYear.now(Clock.systemDefaultZone());
     }
 
@@ -79,11 +79,11 @@ export class DayOfYear extends TemporalAccessor {
      * Using this method will prevent the ability to use an alternate clock for testing
      * because the clock is hard-coded.
      *
-     * @param zone  the zone ID to use, not null
-     * @return the current day-of-year using the system clock, not null
-     * @private
+     * @param {ZoneId} zone - the zone ID to use, not null
+     * @return {DayOfYear} the current day-of-year using the system clock, not null
+     * @protected
      */
-    static nowZoneId(zone) {
+    static _nowZoneId(zone) {
         return DayOfYear.now(Clock.system(zone));
     }
 
@@ -94,11 +94,11 @@ export class DayOfYear extends TemporalAccessor {
      * Using this method allows the use of an alternate clock for testing.
      * The alternate clock may be introduced using {@link Clock} dependency injection.
      *
-     * @param clock  the clock to use, not null
-     * @return the current day-of-year, not null
-     * @private
+     * @param {Clock} clock - the clock to use, not null
+     * @return {DayOfYear} the current day-of-year, not null
+     * @protected
      */
-    static nowClock(clock) {
+    static _nowClock(clock) {
         const now = LocalDate.now(clock);  // called once
         return DayOfYear.of(now.dayOfYear());
     }
@@ -109,8 +109,8 @@ export class DayOfYear extends TemporalAccessor {
      * 
      * A day-of-year object represents one of the 366 days of the year, from 1 to 366.
      *
-     * @param dayOfYear  the day-of-year to represent, from 1 to 366
-     * @return the day-of-year, not null
+     * @param {number} dayOfYear - the day-of-year to represent, from 1 to 366
+     * @return {DayOfYear} the day-of-year, not null
      * @throws {DateTimeException} if the day-of-year is invalid
      */
     static of(dayOfYear) {
@@ -136,8 +136,8 @@ export class DayOfYear extends TemporalAccessor {
      * This method matches the signature of the functional interface {@link TemporalQuery}
      * allowing it to be used in queries via method reference, {@link DayOfYear.from}.
      *
-     * @param temporal  the temporal object to convert, not null
-     * @return the day-of-year, not null
+     * @param {Temporal} temporal - the temporal object to convert, not null
+     * @return {DayOfYear} the day-of-year, not null
      * @throws {DateTimeException} if unable to convert to a {@link DayOfYear}
      */
     static from(temporal) {
@@ -162,7 +162,7 @@ export class DayOfYear extends TemporalAccessor {
     /**
      * Constructor, previously validated.
      *
-     * @param {number} dayOfYear  the day-of-year being represented, from 1 to 366.
+     * @param {number} dayOfYear - the day-of-year being represented, from 1 to 366.
      * @private
      */
     constructor(dayOfYear) {
@@ -174,7 +174,7 @@ export class DayOfYear extends TemporalAccessor {
     /**
      * Gets the day-of-year value.
      *
-     * @return the day-of-year, from 1 to 366
+     * @return {number} the day-of-year, from 1 to 366
      */
     value() {
         return this._day;
@@ -191,8 +191,7 @@ export class DayOfYear extends TemporalAccessor {
      * 
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The supported fields are:
-     * 
-     * * {@link ChronoField.DAY_OF_YEAR}
+     * - {@link ChronoField.DAY_OF_YEAR}
      * 
      * All other {@link ChronoField} instances will return false.
      * 
@@ -201,8 +200,8 @@ export class DayOfYear extends TemporalAccessor {
      * passing this as the argument.
      * Whether the field is supported is determined by the field.
      *
-     * @param field  the field to check, null returns false
-     * @return true if the field is supported on this day-of-year, false if not
+     * @param {TemporalField} field - the field to check, null returns false
+     * @return {boolean} true if the field is supported on this day-of-year, false if not
      */
     isSupported(field) {
         if (field instanceof ChronoField) {
@@ -230,8 +229,8 @@ export class DayOfYear extends TemporalAccessor {
      * passing this as the argument.
      * Whether the range can be obtained is determined by the field.
      *
-     * @param field  the field to query the range for, not null
-     * @return the range of valid values for the field, not null
+     * @param {TemporalField} field - the field to query the range for, not null
+     * @return {ValueRange} the range of valid values for the field, not null
      * @throws {DateTimeException} if the range for the field cannot be obtained
      * @throws {UnsupportedTemporalTypeException} if the field is not supported
      */
@@ -261,8 +260,8 @@ export class DayOfYear extends TemporalAccessor {
      * passing this as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
-     * @param field  the field to get, not null
-     * @return the value for the field
+     * @param {TemporalField} field - the field to get, not null
+     * @return {number} the value for the field
      * @throws {DateTimeException} if a value for the field cannot be obtained or
      *  the value is outside the range of valid values for the field
      * @throws {UnsupportedTemporalTypeException} if the field is not supported or
@@ -290,8 +289,8 @@ export class DayOfYear extends TemporalAccessor {
      * passing this as the argument. Whether the value can be obtained,
      * and what the value represents, is determined by the field.
      *
-     * @param field  the field to get, not null
-     * @return the value for the field
+     * @param {TemporalField} field - the field to get, not null
+     * @return {number} the value for the field
      * @throws {DateTimeException} if a value for the field cannot be obtained
      * @throws {UnsupportedTemporalTypeException} if the field is not supported
      * @throws {ArithmeticException} if numeric overflow occurs
@@ -313,8 +312,8 @@ export class DayOfYear extends TemporalAccessor {
      * This method checks whether this day-of-yearand the input year form
      * a valid date. This can only return false for day-of-year 366.
      *
-     * @param year  the year to validate
-     * @return true if the year is valid for this day-of-year
+     * @param {number} year - the year to validate
+     * @return {boolean} true if the year is valid for this day-of-year
      */
     isValidYear(year) {
         return (this._day < 366 || Year.isLeap(year));
@@ -333,8 +332,8 @@ export class DayOfYear extends TemporalAccessor {
      * {@link TemporalQuery.queryFrom} method on the
      * specified query passing this as the argument.
      *
-     * @param query  the query to invoke, not null
-     * @return the query result, null may be returned (defined by the query)
+     * @param {TemporalQuery} query - the query to invoke, not null
+     * @return {*} the query result, null may be returned (defined by the query)
      * @throws {DateTimeException} if unable to query (defined by the query)
      * @throws {ArithmeticException} if numeric overflow occurs (defined by the query)
      */
@@ -368,8 +367,8 @@ export class DayOfYear extends TemporalAccessor {
      * 
      * This instance is immutable and unaffected by this method call.
      *
-     * @param temporal  the target object to be adjusted, not null
-     * @return the adjusted object, not null
+     * @param {Temporal} temporal - the target object to be adjusted, not null
+     * @return {Temporal} the adjusted object, not null
      * @throws {DateTimeException} if unable to make the adjustment
      * @throws {ArithmeticException} if numeric overflow occurs
      */
@@ -395,8 +394,8 @@ export class DayOfYear extends TemporalAccessor {
      * 
      * The day-of-year value 366 is only valid in a leap year.
      *
-     * @param year  the year to use ({@link Year} or `int`), not null
-     * @return the local date formed from this day and the specified year, not null
+     * @param {Year|number} year - the year to use ({@link Year} or `int`), not null
+     * @return {LocalDate} the local date formed from this day and the specified year, not null
      * @throws {DateTimeException} if the year is invalid or this is day 366 and the year is not a leap year
      */
     atYear(year) {
@@ -415,8 +414,8 @@ export class DayOfYear extends TemporalAccessor {
      * The comparison is based on the value of the day.
      * It is "consistent with equals", as defined by {@link Comparable}.
      *
-     * @param other  the other day-of-year instance, not null
-     * @return the comparator value, negative if less, positive if greater
+     * @param {DayOfYear} other - the other day-of-year instance, not null
+     * @return {number} the comparator value, negative if less, positive if greater
      */
     compareTo(other) {
         requireNonNull(other, 'other');
@@ -428,8 +427,8 @@ export class DayOfYear extends TemporalAccessor {
     /**
      * Checks if this day-of-year is equal to another day-of-year.
      *
-     * @param obj  the other day-of-year instance, null returns false
-     * @return true if the day-of-year is the same
+     * @param {*} obj - the other day-of-year instance, null returns false
+     * @return {boolean} true if the day-of-year is the same
      */
     equals(obj) {
         if (this === obj) {
@@ -444,7 +443,7 @@ export class DayOfYear extends TemporalAccessor {
     /**
      * A hash code for this day-of-year.
      *
-     * @return a suitable hash code
+     * @return {number} a suitable hash code
      */
     hashCode() {
         return this._day;
@@ -454,7 +453,7 @@ export class DayOfYear extends TemporalAccessor {
     /**
      * Outputs this day-of-year as a {@link String}.
      *
-     * @return a string representation of this day-of-year, not null
+     * @return {string} a string representation of this day-of-year, not null
      */
     toString() {
         return `DayOfYear:${this._day}`;

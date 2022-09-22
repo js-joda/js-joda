@@ -8,7 +8,7 @@
       "name": "esdoc-standard-plugin",
       "option": {
         "accessor": {
-          "access": ["public"],
+          "access": ["public", "protected"],
           "autoPrivate": true
         },
         "brand": {
