@@ -165,7 +165,7 @@ d.format(DateTimeFormatter.ofPattern(&apos;HH:mm&apos;)) // 12:34</code>
 </code></pre>
 <h3 id="formatting-with-locales">Formatting with locales</h3><p>Non-numeric date and time formats need to know what language to use, for things like names of months and days of the week. For example, the format <code>eeee (d MMMM)</code> might return <code>Saturday (28 April)</code> in English, and <code>samedi (28 avril)</code> in French. If you try to use a locale-dependent format pattern without specifying the locale, you&apos;ll get this error message: </p>
 <pre><code><code class="source-code prettyprint">ERROR: Pattern using (localized) text not implemented, use @js-joda/locale plugin!</code>
-</code></pre><p>To specify a locale, you&apos;ll need to import the <a href="//github.com/js-joda/js-joda/tree/master/packages/timezone"><code>@js-joda/timezone</code></a> and <a href="//github.com/js-joda/js-joda/tree/master/packages/locale"><code>@js-joda/locale</code></a> plugins. The simplest way to use <code>@js-joda/locale</code> is to install one of the locale-specific builds from npm:</p>
+</code></pre><p>To specify a locale, you&apos;ll need to import the <a href="//github.com/js-joda/js-joda/tree/main/packages/timezone"><code>@js-joda/timezone</code></a> and <a href="//github.com/js-joda/js-joda/tree/main/packages/locale"><code>@js-joda/locale</code></a> plugins. The simplest way to use <code>@js-joda/locale</code> is to install one of the locale-specific builds from npm:</p>
 <ul>
 <li><a href="https://www.npmjs.com/package/@js-joda/locale_de">@js-joda/locale_de</a></li>
 <li><a href="https://www.npmjs.com/package/@js-joda/locale_de-de">@js-joda/locale_de-de</a></li>

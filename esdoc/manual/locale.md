@@ -26,7 +26,7 @@ In a browser environment, to save space, the better choice is to install one of 
 for a certain language. 
 The pre-built packages contain the implementation and all cldr data required for that specific locale.
 
-For more information check the [README.md](https://github.com/js-joda/js-joda/blob/master/packages/locale/README.md)
+For more information check the [README.md](https://github.com/js-joda/js-joda/blob/main/packages/locale/README.md)
 in the locale package.
 
 ```shell
@@ -60,5 +60,5 @@ this will output `en_US formatted string: Friday January 01 2016 Anno Domini, 12
 
 ## Links
 
-For more information check the [README.md](https://github.com/js-joda/js-joda/blob/master/packages/locale/README.md)
+For more information check the [README.md](https://github.com/js-joda/js-joda/blob/main/packages/locale/README.md)
 in the locale package.

@@ -174,8 +174,8 @@ ZonedDateTime.now()
 <li>In the <code>Africa/Lagos</code> <em>time zone</em>, on the other hand, the <em>time offset</em> is <code>UTC+1</code> all year round.</li>
 </ul>
 <p>Calculations that might span time zones or daylight savings transitions need to reference the time zone, not just the offset.</p>
-<p>The <a href="//github.com/js-joda/js-joda/tree/master/packages/timezone">@js-joda/timezone</a> package provides bindings to the the <a href="https://www.iana.org/time-zones">IANA tz database</a>, making <code>joda-js</code>&apos;s calculations time zone aware. The <code>tz</code> database uses zone names like <code>Africa/Bujumbura</code>, <code>America/New_York</code>, and <code>Europe/Lisbon</code> (see the <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">full list</a>).</p>
-<p>To specify time zones using these names, you just need to <code>require</code> <a href="//github.com/js-joda/js-joda/tree/master/packages/timezone">@js-joda/timezone</a>.</p>
+<p>The <a href="//github.com/js-joda/js-joda/tree/main/packages/timezone">@js-joda/timezone</a> package provides bindings to the the <a href="https://www.iana.org/time-zones">IANA tz database</a>, making <code>joda-js</code>&apos;s calculations time zone aware. The <code>tz</code> database uses zone names like <code>Africa/Bujumbura</code>, <code>America/New_York</code>, and <code>Europe/Lisbon</code> (see the <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">full list</a>).</p>
+<p>To specify time zones using these names, you just need to <code>require</code> <a href="//github.com/js-joda/js-joda/tree/main/packages/timezone">@js-joda/timezone</a>.</p>
 <pre><code class="lang-javascript"><code class="source-code prettyprint">var jsJoda = require(&quot;@js-joda/core&quot;);
 require(&quot;@js-joda/timezone&quot;);
 

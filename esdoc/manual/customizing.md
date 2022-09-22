@@ -18,7 +18,7 @@ LocalDate.parse("2012-12-24").with(nextOrSameEvenDay); // '2012-12-24'
 
 ### Custom temporal fields and temporal units
 
-See the source for [temporal/IsoFields](https://github.com/js-joda/js-joda/blob/master/src/temporal/IsoFields.js) as an example how to implement custom fields and units. `IsoFields` implements fields and units for an ISO week-based year.
+See the source for [temporal/IsoFields](https://github.com/js-joda/js-joda/blob/main/src/temporal/IsoFields.js) as an example how to implement custom fields and units. `IsoFields` implements fields and units for an ISO week-based year.
 
 ### Custom formatter and queries
 

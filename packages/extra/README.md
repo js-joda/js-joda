@@ -5,10 +5,10 @@
 [![npm version](https://badge.fury.io/js/%40js-joda%2Fextra.svg)](https://badge.fury.io/js/%40js-joda%2Fextra)
 [![Travis Build Status](https://travis-ci.org/js-joda/js-joda.svg)](https://travis-ci.org/js-joda/js-joda)
 [![Sauce Test Status](https://saucelabs.com/buildstatus/js-joda)](https://saucelabs.com/u/js-joda)
-[![Coverage Status](https://coveralls.io/repos/js-joda/js-joda/badge.svg?branch=master&service=github)](https://coveralls.io/github/js-joda/js-joda?branch=master)
+[![Coverage Status](https://coveralls.io/repos/js-joda/js-joda/badge.svg?branch=main&service=github)](https://coveralls.io/github/js-joda/js-joda?branch=main)
 [![Downloads/Month](https://img.shields.io/npm/dm/%40js-joda%2Fextra.svg)](https://img.shields.io/npm/dm/%40js-joda%2Fextra.svg)
 
-[![Sauce Browser Matrix](https://saucelabs.com/browser-matrix/js-joda.svg?branch=master)](https://saucelabs.com/u/js-joda)
+[![Sauce Browser Matrix](https://saucelabs.com/browser-matrix/js-joda.svg?branch=main)](https://saucelabs.com/u/js-joda)
 
 Attempt to port https://github.com/ThreeTen/threeten-extra to https://github.com/js-joda/js-joda as a js-joda plugin.
 
