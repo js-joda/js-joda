@@ -443,12 +443,12 @@ export class OffsetTime extends Temporal {
             const nanosUntil = end._toEpochNano() - this._toEpochNano(); // no overflow
             switch (unit) {
                 case ChronoUnit.NANOS: return nanosUntil;
-                case ChronoUnit.MICROS: return Math.floor(nanosUntil / 1000);
-                case ChronoUnit.MILLIS: return Math.floor(nanosUntil / 1000000);
-                case ChronoUnit.SECONDS: return Math.floor(nanosUntil / LocalTime.NANOS_PER_SECOND);
-                case ChronoUnit.MINUTES: return Math.floor(nanosUntil / LocalTime.NANOS_PER_MINUTE);
-                case ChronoUnit.HOURS: return Math.floor(nanosUntil / LocalTime.NANOS_PER_HOUR);
-                case ChronoUnit.HALF_DAYS: return Math.floor(nanosUntil / (12 * LocalTime.NANOS_PER_HOUR));
+                case ChronoUnit.MICROS: return MathUtil.intDiv(nanosUntil, 1000);
+                case ChronoUnit.MILLIS: return MathUtil.intDiv(nanosUntil, 1000000);
+                case ChronoUnit.SECONDS: return MathUtil.intDiv(nanosUntil, LocalTime.NANOS_PER_SECOND);
+                case ChronoUnit.MINUTES: return MathUtil.intDiv(nanosUntil, LocalTime.NANOS_PER_MINUTE);
+                case ChronoUnit.HOURS: return MathUtil.intDiv(nanosUntil, LocalTime.NANOS_PER_HOUR);
+                case ChronoUnit.HALF_DAYS: return MathUtil.intDiv(nanosUntil, (12 * LocalTime.NANOS_PER_HOUR));
             }
             throw new UnsupportedTemporalTypeException(`Unsupported unit: ${unit}`);
         }
