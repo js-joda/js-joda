@@ -5,6 +5,8 @@ Changelog
 
 ### Versions
 
+@js-joda/core@5.3.2, @js-joda/extra@0.9.1, @js-joda/locale@4.8.3, @js-joda/timezone@2.13.0, @js-joda/locale_da@4.8.3
+
 #### :rocket: Enhancement
 * `timezone`
   * [#626](https://github.com/js-joda/js-joda/pull/626) Upgrade tzdb to 2022c ([@pithu](https://github.com/pithu))
