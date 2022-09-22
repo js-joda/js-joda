@@ -89,7 +89,14 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#extra-src">extra/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/Interval.js~Interval.html">Interval</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#extra-src">extra/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/DayOfMonth.js~DayOfMonth.html">DayOfMonth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/DayOfYear.js~DayOfYear.html">DayOfYear</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/Interval.js~Interval.html">Interval</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/LocalDateRange.js~LocalDateRange.html">LocalDateRange</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/OffsetDate.js~OffsetDate.html">OffsetDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/Quarter.js~Quarter.html">Quarter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/YearQuarter.js~YearQuarter.html">YearQuarter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/YearWeek.js~YearWeek.html">YearWeek</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src">locale/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/Locale.js~Locale.html">Locale</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format">locale/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleDateTimeFormatter.js~LocaleDateTimeFormatter.html">LocaleDateTimeFormatter</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleStore.js~LocaleStore.html">LocaleStore</a></span></span></li>
@@ -131,15 +138,12 @@
   
   
   <div class="description" data-ice="description"><p>An immutable interval of time between two instants.</p>
-<p></p><p>
-An interval represents the time on the time-line between two <span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span>s.
+<p>An interval represents the time on the time-line between two <span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span>s.
 The class stores the start and end instants, with the start inclusive and the end exclusive.
 The end instant is always greater than or equal to the start instant.</p>
-<p></p><p>
-The <span><a href="class/packages/core/src/Duration.js~Duration.html">Duration</a></span> of an interval can be obtained, but is a separate concept.
+<p>The <span><a href="class/packages/core/src/Duration.js~Duration.html">Duration</a></span> of an interval can be obtained, but is a separate concept.
 An interval is connected to the time-line, whereas a duration is not.</p>
-<p></p><p>
-Intervals are not comparable. To compare the length of two intervals, it is
+<p>Intervals are not comparable. To compare the length of two intervals, it is
 generally recommended to compare their durations.</p>
 </div>
   
@@ -179,64 +183,9 @@ generally recommended to compare their durations.</p>
         
         
         <div data-ice="description"><p>function overloading for <span><a href="class/packages/extra/src/Interval.js~Interval.html#static-method-of">Interval.of</a></span></p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      <span data-ice="static">static</span>
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/packages/extra/src/Interval.js~Interval.html#static-method-ofInstantDuration">ofInstantDuration</a></span></span><span class="code" data-ice="signature">(startInclusive: <span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span>, duration: <span><a href="class/packages/core/src/Duration.js~Duration.html">Duration</a></span>): <span><a href="class/packages/extra/src/Interval.js~Interval.html">Interval</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Obtains an instance of {@code Interval} from the start and a duration.</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      <span data-ice="static">static</span>
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/packages/extra/src/Interval.js~Interval.html#static-method-ofInstantInstant">ofInstantInstant</a></span></span><span class="code" data-ice="signature">(startInclusive: <span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span>, endExclusive: <span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span>): <span><a href="class/packages/extra/src/Interval.js~Interval.html">Interval</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Obtains an instance of {@code Interval} from the start and end instant.</p>
+<ul>
+<li>If called without arguments, then <span><a href="class/packages/extra/src/Interval.js~Interval.html#static-method-ofInstantInstant">Interval.ofInstantInstant</a></span> is executed.</li>
+</ul>
 </div>
       </div>
     </td>
@@ -265,8 +214,8 @@ generally recommended to compare their durations.</p>
       <div>
         
         
-        <div data-ice="description"><p>Obtains an instance of {@code Interval} from a text string such as
-{@code 2007-12-03T10:15:30Z/2007-12-04T10:15:30Z}, where the end instant is exclusive.</p>
+        <div data-ice="description"><p>Obtains an instance of <code>Interval</code> from a text string such as
+<code>2007-12-03T10:15:30Z/2007-12-04T10:15:30Z</code>, where the end instant is exclusive.</p>
 </div>
       </div>
     </td>
@@ -277,15 +226,14 @@ generally recommended to compare their durations.</p>
   </tr>
 </tbody>
 </table>
-</div>
-<div data-ice="constructorSummary"><h2>Constructor Summary</h2><table class="summary" data-ice="summary">
-  <thead><tr><td data-ice="title" colspan="3">Public Constructor</td></tr></thead>
+<table class="summary" data-ice="summary">
+  <thead><tr><td data-ice="title" colspan="3">Static Protected Methods</td></tr></thead>
   <tbody>
   
   <tr data-ice="target">
     <td>
-      <span class="access" data-ice="access">public</span>
-      
+      <span class="access" data-ice="access">protected</span>
+      <span data-ice="static">static</span>
       
       
       <span class="override" data-ice="override"></span>
@@ -296,13 +244,42 @@ generally recommended to compare their durations.</p>
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/packages/extra/src/Interval.js~Interval.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(startInclusive: <span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span>, endExclusive: <span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/packages/extra/src/Interval.js~Interval.html#static-method-ofInstantDuration">ofInstantDuration</a></span></span><span class="code" data-ice="signature">(startInclusive: <span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span>, duration: <span><a href="class/packages/core/src/Duration.js~Duration.html">Duration</a></span>): <span><a href="class/packages/extra/src/Interval.js~Interval.html">Interval</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Constructor.</p>
+        <div data-ice="description"><p>Obtains an instance of <code>Interval</code> from the start and a duration.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">protected</span>
+      <span data-ice="static">static</span>
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/extra/src/Interval.js~Interval.html#static-method-ofInstantInstant">ofInstantInstant</a></span></span><span class="code" data-ice="signature">(startInclusive: <span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span>, endExclusive: <span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span>): <span><a href="class/packages/extra/src/Interval.js~Interval.html">Interval</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Obtains an instance of <code>Interval</code> from the start and end instant.</p>
 </div>
       </div>
     </td>
@@ -314,6 +291,7 @@ generally recommended to compare their durations.</p>
 </tbody>
 </table>
 </div>
+
 
 <div data-ice="methodSummary"><h2>Method Summary</h2><table class="summary" data-ice="summary">
   <thead><tr><td data-ice="title" colspan="3">Public Methods</td></tr></thead>
@@ -542,7 +520,10 @@ generally recommended to compare their durations.</p>
       <div>
         
         
-        <div data-ice="description"><p>function overloading for <span><a href="class/packages/extra/src/Interval.js~Interval.html#instance-method-isAfter">Interval#isAfter</a></span></p>
+        <div data-ice="description"><p>Function overloading for <span><a href="class/packages/extra/src/Interval.js~Interval.html#instance-method-isAfter">Interval#isAfter</a></span></p>
+<ul>
+<li>If called with an Instant, then <span><a href="class/packages/extra/src/Interval.js~Interval.html#instance-method-isAfterInstant">Interval#isAfterInstant</a></span> is executed.</li>
+</ul>
 </div>
       </div>
     </td>
@@ -629,7 +610,10 @@ generally recommended to compare their durations.</p>
       <div>
         
         
-        <div data-ice="description"><p>function overloading for <span><a href="class/packages/extra/src/Interval.js~Interval.html#instance-method-isBefore">Interval#isBefore</a></span></p>
+        <div data-ice="description"><p>Function overloading for <span><a href="class/packages/extra/src/Interval.js~Interval.html#instance-method-isBefore">Interval#isBefore</a></span></p>
+<ul>
+<li>If called with an Instant, then <span><a href="class/packages/extra/src/Interval.js~Interval.html#instance-method-isBeforeInstant">Interval#isBeforeInstant</a></span> is executed.</li>
+</ul>
 </div>
       </div>
     </td>
@@ -948,7 +932,7 @@ generally recommended to compare their durations.</p>
       <div>
         
         
-        <div data-ice="description"><p>Outputs this interval as a {@code String}, such as {@code 2007-12-03T10:15:30/2007-12-04T10:15:30}.</p>
+        <div data-ice="description"><p>Outputs this interval as a <code>String</code>, such as <code>2007-12-03T10:15:30/2007-12-04T10:15:30</code>.</p>
 </div>
       </div>
     </td>
@@ -1065,7 +1049,7 @@ generally recommended to compare their durations.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber41">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber38">source</a></span></span>
     </span>
   </h3>
 
@@ -1073,9 +1057,11 @@ generally recommended to compare their durations.</p>
   
   
   <div data-ice="description"><p>function overloading for <span><a href="class/packages/extra/src/Interval.js~Interval.html#static-method-of">Interval.of</a></span></p>
-<p>if called without arguments, then <span><a href="class/packages/extra/src/Interval.js~Interval.html#static-method-ofInstantInstant">Interval.ofInstantInstant</a></span> is executed.</p>
-<p>if called with 1 arguments and first argument is an instance of ZoneId, then <span><a href="class/packages/extra/src/Interval.js~Interval.html#static-method-ofInstantDuration">Interval.ofInstantDuration</a></span> is executed.</p>
-<p>Otherwise <span><a href="class/packages/extra/src/Interval.js~Interval.html#static-method-ofInstantDuration">Interval.ofInstantDuration</a></span> is executed.</p>
+<ul>
+<li>If called without arguments, then <span><a href="class/packages/extra/src/Interval.js~Interval.html#static-method-ofInstantInstant">Interval.ofInstantInstant</a></span> is executed.</li>
+<li>If called with 1 arguments and first argument is an instance of ZoneId, then <span><a href="class/packages/extra/src/Interval.js~Interval.html#static-method-ofInstantDuration">Interval.ofInstantDuration</a></span> is executed.</li>
+<li>Otherwise <span><a href="class/packages/extra/src/Interval.js~Interval.html#static-method-ofInstantDuration">Interval.ofInstantDuration</a></span> is executed.</li>
+</ul>
 </div>
 
   
@@ -1091,13 +1077,13 @@ generally recommended to compare their durations.</p>
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">startInstant</td>
       <td data-ice="type" class="code"><span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></td>
-      <td data-ice="appendix"><ul><li>nullable: false</li></ul></td>
+      <td data-ice="appendix"></td>
       <td data-ice="description"></td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">endInstantOrDuration</td>
       <td data-ice="type" class="code"><span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span> | <span><a href="class/packages/core/src/Duration.js~Duration.html">Duration</a></span></td>
-      <td data-ice="appendix"><ul><li>nullable: false</li></ul></td>
+      <td data-ice="appendix"></td>
       <td data-ice="description"></td>
     </tr>
 </tbody>
@@ -1135,8 +1121,108 @@ generally recommended to compare their durations.</p>
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-method-ofInstantDuration">
+  <h3 data-ice="anchor" id="static-method-parse">
     <span class="access" data-ice="access">public</span>
+    <span data-ice="static">static</span>
+    
+    
+    
+    
+    <span class="code" data-ice="name">parse</span><span class="code" data-ice="signature">(text: <span>string</span>): <span><a href="class/packages/extra/src/Interval.js~Interval.html">Interval</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber114">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Obtains an instance of <code>Interval</code> from a text string such as
+<code>2007-12-03T10:15:30Z/2007-12-04T10:15:30Z</code>, where the end instant is exclusive.</p>
+<p>The string must consist of one of the following three formats:</p>
+<ul>
+<li>a representations of an <span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, followed by a forward slash,
+followed by a representation of a <span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></li>
+<li>a representation of an <span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, followed by a forward slash,
+followed by a representation of a <span><a href="class/packages/core/src/Duration.js~Duration.html">Duration</a></span></li>
+<li>a representation of a <span><a href="class/packages/core/src/Duration.js~Duration.html">Duration</a></span>, followed by a forward slash,
+followed by a representation of an <span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></li>
+</ul>
+<p>NOTE: in contrast to the threeten-extra base we are not using <code>OffsetDateTime</code> but <code>ZonedDateTime</code> to parse
+the string, this does not change the format but adds the possibility to optionally specify a zone</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">text</td>
+      <td data-ice="type" class="code"><span>string</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>the text to parse, not null</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/packages/extra/src/Interval.js~Interval.html">Interval</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the parsed interval, not null</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  <div data-ice="throwWrap">
+    <h4>Throw:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span><a href="variable/index.html#static-variable-DateTimeParseException">DateTimeParseException</a></span></p></td>
+        <td data-ice="throwDesc"><p>if the text cannot be parsed</p>
+</td>
+      </tr>
+</tbody>
+    </table>
+  </div>
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<h2 data-ice="title">Static Protected Methods</h2>
+
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-method-ofInstantDuration">
+    <span class="access" data-ice="access">protected</span>
     <span data-ice="static">static</span>
     
     
@@ -1146,16 +1232,15 @@ generally recommended to compare their durations.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber83">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber82">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Obtains an instance of {@code Interval} from the start and a duration.</p>
-<p></p><p>
-The end instant is calculated as the start plus the duration.
+  <div data-ice="description"><p>Obtains an instance of <code>Interval</code> from the start and a duration.</p>
+<p>The end instant is calculated as the start plus the duration.
 The duration must not be negative.</p>
 </div>
 
@@ -1213,14 +1298,14 @@ The duration must not be negative.</p>
       <tbody>
       
       <tr class="throw" data-ice="throw">
-        <td><p data-ice="throwName"><span>*</span></p></td>
-        <td data-ice="throwDesc"><p>DateTimeException if the end is before the start,
+        <td><p data-ice="throwName"><span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span></p></td>
+        <td data-ice="throwDesc"><p>if the end is before the start,
  or if the duration addition cannot be made</p>
 </td>
       </tr>
 <tr class="throw" data-ice="throw">
-        <td><p data-ice="throwName"><span>*</span></p></td>
-        <td data-ice="throwDesc"><p>ArithmeticException if numeric overflow occurs when adding the duration</p>
+        <td><p data-ice="throwName"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></p></td>
+        <td data-ice="throwDesc"><p>if numeric overflow occurs when adding the duration</p>
 </td>
       </tr>
 </tbody>
@@ -1238,7 +1323,7 @@ The duration must not be negative.</p>
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="static-method-ofInstantInstant">
-    <span class="access" data-ice="access">public</span>
+    <span class="access" data-ice="access">protected</span>
     <span data-ice="static">static</span>
     
     
@@ -1248,16 +1333,15 @@ The duration must not be negative.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber59">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber57">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Obtains an instance of {@code Interval} from the start and end instant.</p>
-<p></p><p>
-The end instant must not be before the start instant.</p>
+  <div data-ice="description"><p>Obtains an instance of <code>Interval</code> from the start and end instant.</p>
+<p>The end instant must not be before the start instant.</p>
 </div>
 
   
@@ -1314,109 +1398,8 @@ The end instant must not be before the start instant.</p>
       <tbody>
       
       <tr class="throw" data-ice="throw">
-        <td><p data-ice="throwName"><span>*</span></p></td>
-        <td data-ice="throwDesc"><p>DateTimeException if the end is before the start</p>
-</td>
-      </tr>
-</tbody>
-    </table>
-  </div>
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-method-parse">
-    <span class="access" data-ice="access">public</span>
-    <span data-ice="static">static</span>
-    
-    
-    
-    
-    <span class="code" data-ice="name">parse</span><span class="code" data-ice="signature">(text: <span>string</span>): <span><a href="class/packages/extra/src/Interval.js~Interval.html">Interval</a></span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber117">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>Obtains an instance of {@code Interval} from a text string such as
-{@code 2007-12-03T10:15:30Z/2007-12-04T10:15:30Z}, where the end instant is exclusive.</p>
-<p></p><p>
-The string must consist of one of the following three formats:</p>
-<p><ul>
-<li>a representations of an <span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, followed by a forward slash,
- followed by a representation of a <span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>
-</li><li>a representation of an <span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>, followed by a forward slash,
- followed by a representation of a <span><a href="class/packages/core/src/Duration.js~Duration.html">Duration</a></span>
-</li><li>a representation of a <span><a href="class/packages/core/src/Duration.js~Duration.html">Duration</a></span>, followed by a forward slash,
- followed by a representation of an <span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span>
-</li></ul>
-
-</p>
-<p>NOTE: in contrast to the threeten-extra base we are not using <code>OffsetDateTime</code> but <code>ZonedDateTime</code> to parse
-the string, this does not change the format but adds the possibility to optionally specify a zone</p>
-</div>
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">text</td>
-      <td data-ice="type" class="code"><span>string</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"><p>the text to parse, not null</p>
-</td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tbody>
-        <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="class/packages/extra/src/Interval.js~Interval.html">Interval</a></span></td>
-          <td class="return-desc" data-ice="returnDescription"><p>the parsed interval, not null</p>
-</td>
-        </tr>
-      </tbody>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  <div data-ice="throwWrap">
-    <h4>Throw:</h4>
-    <table>
-      <tbody>
-      
-      <tr class="throw" data-ice="throw">
-        <td><p data-ice="throwName"><span>*</span></p></td>
-        <td data-ice="throwDesc"><p>DateTimeParseException if the text cannot be parsed</p>
+        <td><p data-ice="throwName"><span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span></p></td>
+        <td data-ice="throwDesc"><p>if the end is before the start</p>
 </td>
       </tr>
 </tbody>
@@ -1433,77 +1416,7 @@ the string, this does not change the format but adds the possibility to optional
   
 </div>
 </div>
-<div data-ice="constructorDetails"><h2 data-ice="title">Public Constructors</h2>
 
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-constructor-constructor">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">(startInclusive: <span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span>, endExclusive: <span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span>)</span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber154">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>Constructor.</p>
-</div>
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">startInclusive</td>
-      <td data-ice="type" class="code"><span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"><p>the start instant, inclusive, validated not null</p>
-</td>
-    </tr>
-<tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">endExclusive</td>
-      <td data-ice="type" class="code"><span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"><p>the end instant, exclusive, validated not null</p>
-</td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-</div>
 
 <div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
@@ -1519,7 +1432,7 @@ the string, this does not change the format but adds the possibility to optional
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber279">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber277">source</a></span></span>
     </span>
   </h3>
 
@@ -1527,8 +1440,7 @@ the string, this does not change the format but adds the possibility to optional
   
   
   <div data-ice="description"><p>Checks if this interval abuts the specified interval.</p>
-<p></p><p>
-The result is true if the end of this interval is the start of the other, or vice versa.
+<p>The result is true if the end of this interval is the start of the other, or vice versa.
 An empty interval does not abut itself.</p>
 </div>
 
@@ -1596,7 +1508,7 @@ An empty interval does not abut itself.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber249">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber247">source</a></span></span>
     </span>
   </h3>
 
@@ -1604,10 +1516,9 @@ An empty interval does not abut itself.</p>
   
   
   <div data-ice="description"><p>Checks if this interval contains the specified instant.</p>
-<p></p><p>
-This checks if the specified instant is within the bounds of this interval.
-If this range has an unbounded start then {@code contains(Instant#MIN)} returns true.
-If this range has an unbounded end then {@code contains(Instant#MAX)} returns true.
+<p>This checks if the specified instant is within the bounds of this interval.
+If this range has an unbounded start then <code>contains(Instant.MIN)</code> returns true.
+If this range has an unbounded end then <code>contains(Instant.MAX)</code> returns true.
 If this range is empty then this method always returns false.</p>
 </div>
 
@@ -1675,7 +1586,7 @@ If this range is empty then this method always returns false.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber264">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber262">source</a></span></span>
     </span>
   </h3>
 
@@ -1683,8 +1594,7 @@ If this range is empty then this method always returns false.</p>
   
   
   <div data-ice="description"><p>Checks if this interval encloses the specified interval.</p>
-<p></p><p>
-This checks if the bounds of the specified interval are within the bounds of this interval.
+<p>This checks if the bounds of the specified interval are within the bounds of this interval.
 An empty interval encloses itself.</p>
 </div>
 
@@ -1752,7 +1662,7 @@ An empty interval encloses itself.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber180">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber178">source</a></span></span>
     </span>
   </h3>
 
@@ -1760,8 +1670,7 @@ An empty interval encloses itself.</p>
   
   
   <div data-ice="description"><p>Gets the end of this time interval, exclusive.</p>
-<p></p><p>
-This will return <span>Instant#MAX</span> if the range is unbounded at the end.
+<p>This will return <span>Instant#MAX</span> if the range is unbounded at the end.
 In this case, the range includes all dates into the far-future.</p>
 </div>
 
@@ -1812,7 +1721,7 @@ In this case, the range includes all dates into the far-future.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber517">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber511">source</a></span></span>
     </span>
   </h3>
 
@@ -1820,9 +1729,8 @@ In this case, the range includes all dates into the far-future.</p>
   
   
   <div data-ice="description"><p>Checks if this interval is equal to another interval.</p>
-<p></p><p>
-Compares this {@code Interval} with another ensuring that the two instants are the same.
-Only objects of type {@code Interval} are compared, other types return false.</p>
+<p>Compares this <code>Interval</code> with another ensuring that the two instants are the same.
+Only objects of type <code>Interval</code> are compared, other types return false.</p>
 </div>
 
   
@@ -1889,7 +1797,7 @@ Only objects of type {@code Interval} are compared, other types return false.</p
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber532">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber526">source</a></span></span>
     </span>
   </h3>
 
@@ -1946,7 +1854,7 @@ Only objects of type {@code Interval} are compared, other types return false.</p
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber330">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber328">source</a></span></span>
     </span>
   </h3>
 
@@ -1954,8 +1862,7 @@ Only objects of type {@code Interval} are compared, other types return false.</p
   
   
   <div data-ice="description"><p>Calculates the interval that is the intersection of this interval and the specified interval.</p>
-<p></p><p>
-This finds the intersection of two intervals.
+<p>This finds the intersection of two intervals.
 This throws an exception if the two intervals are not {@linkplain #isConnected(Interval) connected}.</p>
 </div>
 
@@ -2006,8 +1913,8 @@ This throws an exception if the two intervals are not {@linkplain #isConnected(I
       <tbody>
       
       <tr class="throw" data-ice="throw">
-        <td><p data-ice="throwName"><span>*</span></p></td>
-        <td data-ice="throwDesc"><p>DateTimeException if the intervals do not connect</p>
+        <td><p data-ice="throwName"><span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span></p></td>
+        <td data-ice="throwDesc"><p>if the intervals do not connect</p>
 </td>
       </tr>
 </tbody>
@@ -2035,16 +1942,18 @@ This throws an exception if the two intervals are not {@linkplain #isConnected(I
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber408">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber404">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>function overloading for <span><a href="class/packages/extra/src/Interval.js~Interval.html#instance-method-isAfter">Interval#isAfter</a></span></p>
-<p>if called with an Instant, then <span><a href="class/packages/extra/src/Interval.js~Interval.html#instance-method-isAfterInstant">Interval#isAfterInstant</a></span> is executed.</p>
-<p>Otherwise <span><a href="class/packages/extra/src/Interval.js~Interval.html#instance-method-isAfterInterval">Interval#isAfterInterval</a></span> is executed.</p>
+  <div data-ice="description"><p>Function overloading for <span><a href="class/packages/extra/src/Interval.js~Interval.html#instance-method-isAfter">Interval#isAfter</a></span></p>
+<ul>
+<li>If called with an Instant, then <span><a href="class/packages/extra/src/Interval.js~Interval.html#instance-method-isAfterInstant">Interval#isAfterInstant</a></span> is executed.</li>
+<li>Otherwise <span><a href="class/packages/extra/src/Interval.js~Interval.html#instance-method-isAfterInterval">Interval#isAfterInterval</a></span> is executed.</li>
+</ul>
 </div>
 
   
@@ -2060,7 +1969,7 @@ This throws an exception if the two intervals are not {@linkplain #isConnected(I
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">instantOrInterval</td>
       <td data-ice="type" class="code"><span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span> | <span><a href="class/packages/extra/src/Interval.js~Interval.html">Interval</a></span></td>
-      <td data-ice="appendix"><ul><li>nullable: false</li></ul></td>
+      <td data-ice="appendix"></td>
       <td data-ice="description"></td>
     </tr>
 </tbody>
@@ -2109,7 +2018,7 @@ This throws an exception if the two intervals are not {@linkplain #isConnected(I
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber443">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber437">source</a></span></span>
     </span>
   </h3>
 
@@ -2117,8 +2026,7 @@ This throws an exception if the two intervals are not {@linkplain #isConnected(I
   
   
   <div data-ice="description"><p>Checks if this interval is after the specified instant.</p>
-<p></p><p>
-The result is true if the this instant starts after the specified instant.
+<p>The result is true if the this instant starts after the specified instant.
 An empty interval behaves as though it is an instant for comparison purposes.</p>
 </div>
 
@@ -2186,7 +2094,7 @@ An empty interval behaves as though it is an instant for comparison purposes.</p
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber474">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber468">source</a></span></span>
     </span>
   </h3>
 
@@ -2194,8 +2102,7 @@ An empty interval behaves as though it is an instant for comparison purposes.</p
   
   
   <div data-ice="description"><p>Checks if this interval is after the specified interval.</p>
-<p></p><p>
-The result is true if the this instant starts after the end of the specified interval.
+<p>The result is true if the this instant starts after the end of the specified interval.
 Since intervals do not include their end points, this will return true if the
 instant equals the end of the interval.
 An empty interval behaves as though it is an instant for comparison purposes.</p>
@@ -2265,16 +2172,18 @@ An empty interval behaves as though it is an instant for comparison purposes.</p
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber426">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber420">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>function overloading for <span><a href="class/packages/extra/src/Interval.js~Interval.html#instance-method-isBefore">Interval#isBefore</a></span></p>
-<p>if called with an Instant, then <span><a href="class/packages/extra/src/Interval.js~Interval.html#instance-method-isBeforeInstant">Interval#isBeforeInstant</a></span> is executed.</p>
-<p>Otherwise <span><a href="class/packages/extra/src/Interval.js~Interval.html#instance-method-isBeforeInterval">Interval#isBeforeInterval</a></span> is executed.</p>
+  <div data-ice="description"><p>Function overloading for <span><a href="class/packages/extra/src/Interval.js~Interval.html#instance-method-isBefore">Interval#isBefore</a></span></p>
+<ul>
+<li>If called with an Instant, then <span><a href="class/packages/extra/src/Interval.js~Interval.html#instance-method-isBeforeInstant">Interval#isBeforeInstant</a></span> is executed.</li>
+<li>Otherwise <span><a href="class/packages/extra/src/Interval.js~Interval.html#instance-method-isBeforeInterval">Interval#isBeforeInterval</a></span> is executed.</li>
+</ul>
 </div>
 
   
@@ -2290,7 +2199,7 @@ An empty interval behaves as though it is an instant for comparison purposes.</p
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">instantOrInterval</td>
       <td data-ice="type" class="code"><span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span> | <span><a href="class/packages/extra/src/Interval.js~Interval.html">Interval</a></span></td>
-      <td data-ice="appendix"><ul><li>nullable: false</li></ul></td>
+      <td data-ice="appendix"></td>
       <td data-ice="description"></td>
     </tr>
 </tbody>
@@ -2339,7 +2248,7 @@ An empty interval behaves as though it is an instant for comparison purposes.</p
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber458">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber452">source</a></span></span>
     </span>
   </h3>
 
@@ -2347,8 +2256,7 @@ An empty interval behaves as though it is an instant for comparison purposes.</p
   
   
   <div data-ice="description"><p>Checks if this interval is before the specified instant.</p>
-<p></p><p>
-The result is true if the this instant ends before the specified instant.
+<p>The result is true if the this instant ends before the specified instant.
 Since intervals do not include their end points, this will return true if the
 instant equals the end of the interval.
 An empty interval behaves as though it is an instant for comparison purposes.</p>
@@ -2418,7 +2326,7 @@ An empty interval behaves as though it is an instant for comparison purposes.</p
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber489">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber483">source</a></span></span>
     </span>
   </h3>
 
@@ -2426,8 +2334,7 @@ An empty interval behaves as though it is an instant for comparison purposes.</p
   
   
   <div data-ice="description"><p>Checks if this interval is before the specified interval.</p>
-<p></p><p>
-The result is true if the this instant ends before the start of the specified interval.
+<p>The result is true if the this instant ends before the start of the specified interval.
 Since intervals do not include their end points, this will return true if the
 two intervals abut.
 An empty interval behaves as though it is an instant for comparison purposes.</p>
@@ -2497,7 +2404,7 @@ An empty interval behaves as though it is an instant for comparison purposes.</p
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber296">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber294">source</a></span></span>
     </span>
   </h3>
 
@@ -2505,11 +2412,9 @@ An empty interval behaves as though it is an instant for comparison purposes.</p
   
   
   <div data-ice="description"><p>Checks if this interval is connected to the specified interval.</p>
-<p></p><p>
-The result is true if the two intervals have an enclosed interval in common, even if that interval is empty.
+<p>The result is true if the two intervals have an enclosed interval in common, even if that interval is empty.
 An empty interval is connected to itself.</p>
-<p></p><p>
-This is equivalent to {@code (overlaps(other) || abuts(other))}.</p>
+<p>This is equivalent to <code>(overlaps(other) || abuts(other))</code>.</p>
 </div>
 
   
@@ -2576,7 +2481,7 @@ This is equivalent to {@code (overlaps(other) || abuts(other))}.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber192">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber190">source</a></span></span>
     </span>
   </h3>
 
@@ -2584,8 +2489,7 @@ This is equivalent to {@code (overlaps(other) || abuts(other))}.</p>
   
   
   <div data-ice="description"><p>Checks if the range is empty.</p>
-<p></p><p>
-An empty range occurs when the start date equals the inclusive end date.</p>
+<p>An empty range occurs when the start date equals the inclusive end date.</p>
 </div>
 
   
@@ -2635,7 +2539,7 @@ An empty range occurs when the start date equals the inclusive end date.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber210">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber208">source</a></span></span>
     </span>
   </h3>
 
@@ -2692,7 +2596,7 @@ An empty range occurs when the start date equals the inclusive end date.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber201">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber199">source</a></span></span>
     </span>
   </h3>
 
@@ -2749,7 +2653,7 @@ An empty range occurs when the start date equals the inclusive end date.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber313">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber311">source</a></span></span>
     </span>
   </h3>
 
@@ -2757,11 +2661,9 @@ An empty range occurs when the start date equals the inclusive end date.</p>
   
   
   <div data-ice="description"><p>Checks if this interval overlaps the specified interval.</p>
-<p></p><p>
-The result is true if the the two intervals share some part of the time-line.
+<p>The result is true if the the two intervals share some part of the time-line.
 An empty interval overlaps itself.</p>
-<p></p><p>
-This is equivalent to {@code (isConnected(other) &amp;&amp; !abuts(other))}.</p>
+<p>This is equivalent to <code>(isConnected(other) &amp;&amp; !abuts(other))</code>.</p>
 </div>
 
   
@@ -2828,7 +2730,7 @@ This is equivalent to {@code (isConnected(other) &amp;&amp; !abuts(other))}.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber387">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber385">source</a></span></span>
     </span>
   </h3>
 
@@ -2836,8 +2738,7 @@ This is equivalent to {@code (isConnected(other) &amp;&amp; !abuts(other))}.</p>
   
   
   <div data-ice="description"><p>Calculates the smallest interval that encloses this interval and the specified interval.</p>
-<p></p><p>
-The result of this method will {@linkplain #encloses(Interval) enclose}
+<p>The result of this method will {@linkplain #encloses(Interval) enclose}
 this interval and the specified interval.</p>
 </div>
 
@@ -2905,7 +2806,7 @@ this interval and the specified interval.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber168">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber166">source</a></span></span>
     </span>
   </h3>
 
@@ -2913,8 +2814,7 @@ this interval and the specified interval.</p>
   
   
   <div data-ice="description"><p>Gets the start of this time interval, inclusive.</p>
-<p></p><p>
-This will return <span>Instant#MIN</span> if the range is unbounded at the start.
+<p>This will return <span>Instant#MIN</span> if the range is unbounded at the start.
 In this case, the range includes all dates into the far-past.</p>
 </div>
 
@@ -2965,7 +2865,7 @@ In this case, the range includes all dates into the far-past.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber503">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber497">source</a></span></span>
     </span>
   </h3>
 
@@ -2973,9 +2873,8 @@ In this case, the range includes all dates into the far-past.</p>
   
   
   <div data-ice="description"><p>Obtains the duration of this interval.</p>
-<p></p><p>
-An {@code Interval} is associated with two specific instants on the time-line.
-A {@code Duration} is simply an amount of time, separate from the time-line.</p>
+<p>An <code>Interval</code> is associated with two specific instants on the time-line.
+A <code>Duration</code> is simply an amount of time, separate from the time-line.</p>
 </div>
 
   
@@ -3008,8 +2907,8 @@ A {@code Duration} is simply an amount of time, separate from the time-line.</p>
       <tbody>
       
       <tr class="throw" data-ice="throw">
-        <td><p data-ice="throwName"><span>*</span></p></td>
-        <td data-ice="throwDesc"><p>ArithmeticException if the calculation exceeds the capacity of {@code Duration}</p>
+        <td><p data-ice="throwName"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></p></td>
+        <td data-ice="throwDesc"><p>if the calculation exceeds the capacity of <code>Duration</code></p>
 </td>
       </tr>
 </tbody>
@@ -3037,17 +2936,16 @@ A {@code Duration} is simply an amount of time, separate from the time-line.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber546">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber540">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Outputs this interval as a {@code String}, such as {@code 2007-12-03T10:15:30/2007-12-04T10:15:30}.</p>
-<p></p><p>
-The output will be the ISO-8601 format formed by combining the
-{@code toString()} methods of the two instants, separated by a forward slash.</p>
+  <div data-ice="description"><p>Outputs this interval as a <code>String</code>, such as <code>2007-12-03T10:15:30/2007-12-04T10:15:30</code>.</p>
+<p>The output will be the ISO-8601 format formed by combining the
+<code>toString()</code> methods of the two instants, separated by a forward slash.</p>
 </div>
 
   
@@ -3097,7 +2995,7 @@ The output will be the ISO-8601 format formed by combining the
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber359">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber357">source</a></span></span>
     </span>
   </h3>
 
@@ -3105,8 +3003,7 @@ The output will be the ISO-8601 format formed by combining the
   
   
   <div data-ice="description"><p>Calculates the interval that is the union of this interval and the specified interval.</p>
-<p></p><p>
-This finds the union of two intervals.
+<p>This finds the union of two intervals.
 This throws an exception if the two intervals are not {@linkplain #isConnected(Interval) connected}.</p>
 </div>
 
@@ -3157,8 +3054,8 @@ This throws an exception if the two intervals are not {@linkplain #isConnected(I
       <tbody>
       
       <tr class="throw" data-ice="throw">
-        <td><p data-ice="throwName"><span>*</span></p></td>
-        <td data-ice="throwDesc"><p>DateTimeException if the intervals do not connect</p>
+        <td><p data-ice="throwName"><span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span></p></td>
+        <td data-ice="throwDesc"><p>if the intervals do not connect</p>
 </td>
       </tr>
 </tbody>
@@ -3186,7 +3083,7 @@ This throws an exception if the two intervals are not {@linkplain #isConnected(I
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber233">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber231">source</a></span></span>
     </span>
   </h3>
 
@@ -3243,8 +3140,8 @@ This throws an exception if the two intervals are not {@linkplain #isConnected(I
       <tbody>
       
       <tr class="throw" data-ice="throw">
-        <td><p data-ice="throwName"><span>*</span></p></td>
-        <td data-ice="throwDesc"><p>DateTimeException if the resulting interval has end before start</p>
+        <td><p data-ice="throwName"><span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span></p></td>
+        <td data-ice="throwDesc"><p>if the resulting interval has end before start</p>
 </td>
       </tr>
 </tbody>
@@ -3272,7 +3169,7 @@ This throws an exception if the two intervals are not {@linkplain #isConnected(I
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber222">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/extra/src/Interval.js.html#lineNumber220">source</a></span></span>
     </span>
   </h3>
 
@@ -3329,8 +3226,8 @@ This throws an exception if the two intervals are not {@linkplain #isConnected(I
       <tbody>
       
       <tr class="throw" data-ice="throw">
-        <td><p data-ice="throwName"><span>*</span></p></td>
-        <td data-ice="throwDesc"><p>DateTimeException if the resulting interval has end before start</p>
+        <td><p data-ice="throwName"><span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span></p></td>
+        <td data-ice="throwDesc"><p>if the resulting interval has end before start</p>
 </td>
       </tr>
 </tbody>

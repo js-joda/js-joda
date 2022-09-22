@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">packages/extra/src/Quarter.js | js-joda</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<script src="./inject/script/0-js-joda.min.js"></script><script src="./inject/script/0-js-joda-extra.min.js"></script><script src="./inject/script/0-js-joda-timezone.min.js"></script><script src="./inject/script/0-index.js"></script><script src="./inject/script/0-yato.js"></script><meta name="description" content="Immutable date and time library for JavaScript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="js-joda"><meta property="twitter:description" content="Immutable date and time library for JavaScript"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/js-joda/js-joda"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src">core/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Clock.js~Clock.html">Clock</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Duration.js~Duration.html">Duration</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Enum.js~Enum.html">Enum</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalDate.js~LocalDate.html">LocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalTime.js~LocalTime.html">LocalTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/MathUtil.js~MathUtil.html">MathUtil</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Month.js~Month.html">Month</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/OffsetDateTime.js~OffsetDateTime.html">OffsetDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/OffsetTime.js~OffsetTime.html">OffsetTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Period.js~Period.html">Period</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Year.js~Year.html">Year</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/YearConstants.js~YearConstants.html">YearConstants</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/YearMonth.js~YearMonth.html">YearMonth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneId.js~ZoneId.html">ZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneRegion.js~ZoneRegion.html">ZoneRegion</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeParseException">DateTimeParseException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalArgumentException">IllegalArgumentException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalStateException">IllegalStateException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NullPointerException">NullPointerException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-UnsupportedTemporalTypeException">UnsupportedTemporalTypeException</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-chrono">core/src/chrono</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/IsoChronology.js~IsoChronology.html">IsoChronology</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-format">core/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html">DateTimeFormatterBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DecimalStyle.js~DecimalStyle.html">DecimalStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/SignStyle.js~SignStyle.html">SignStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ValueRange.js~ValueRange.html">ValueRange</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nativeJs">nativeJs</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-IsoFields">IsoFields</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-zone">core/src/zone</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#extra-src">extra/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/DayOfMonth.js~DayOfMonth.html">DayOfMonth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/DayOfYear.js~DayOfYear.html">DayOfYear</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/Interval.js~Interval.html">Interval</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/LocalDateRange.js~LocalDateRange.html">LocalDateRange</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/OffsetDate.js~OffsetDate.html">OffsetDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/Quarter.js~Quarter.html">Quarter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/YearQuarter.js~YearQuarter.html">YearQuarter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/YearWeek.js~YearWeek.html">YearWeek</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src">locale/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/Locale.js~Locale.html">Locale</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format">locale/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleDateTimeFormatter.js~LocaleDateTimeFormatter.html">LocaleDateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleStore.js~LocaleStore.html">LocaleStore</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-cldr">locale/src/format/cldr</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrZoneTextPrinterParser.js~CldrZoneTextPrinterParser.html">CldrZoneTextPrinterParser</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-parser">locale/src/format/parser</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/parser/WeekFieldsPrinterParser.js~WeekFieldsPrinterParser.html">WeekFieldsPrinterParser</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-temporal">locale/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~ComputedDayOfField.html">ComputedDayOfField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">packages/extra/src/Quarter.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * @copyright (c) 2016, Philipp Th&#xFC;rw&#xE4;chter &amp; Pattrick H&#xFC;per &amp; Micha&#x142; Sobkiewicz
+ * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
+
+// TODO: hm... is this a good idea?? copied from joda currently, could we add a js-joda-utils module??
+import { requireNonNull, requireInstance } from &apos;./assert&apos;;
+import { ChronoField, DateTimeException, IllegalArgumentException, IllegalStateException, IsoChronology, IsoFields, Month, TemporalAccessor, TemporalField, TemporalQueries, TemporalQuery, UnsupportedTemporalTypeException, _ as jodaInternal } from &apos;@js-joda/core&apos;;
+
+const MathUtil = jodaInternal.MathUtil;
+
+/**
+ * A quarter-of-year, such as &apos;Q2&apos;.
+ * 
+ * `Quarter` is an enum representing the 4 quarters of the year -
+ * Q1, Q2, Q3 and Q4. These are defined as January to March, April to June,
+ * July to September and October to December.
+ * 
+ * The `int` value follows the quarter, from 1 (Q1) to 4 (Q4).
+ * It is recommended that applications use the enum rather than the `int` value
+ * to ensure code clarity.
+ * 
+ * **Do not use `ordinal()` to obtain the numeric representation of `Quarter`.
+ * Use `getValue()` instead.**
+ * 
+ * This enum represents a common concept that is found in many calendar systems.
+ * As such, this enum may be used by any calendar system that has the quarter-of-year
+ * concept defined exactly equivalent to the ISO calendar system.
+ *
+ */
+export class Quarter extends TemporalAccessor {
+    /**
+     * replacement for enum `valueOf(name)`
+     * 
+     * @param {string} name
+     * @return {Quarter}
+     */
+    static valueOf(name) {
+        requireNonNull(name, &apos;name&apos;);
+        switch (name) {
+            case &apos;Q1&apos;:
+                return Quarter.Q1;
+            case &apos;Q2&apos;:
+                return Quarter.Q2;
+            case &apos;Q3&apos;:
+                return Quarter.Q3;
+            case &apos;Q4&apos;:
+                return Quarter.Q4;
+        }
+        throw new IllegalArgumentException(`No enum constant Quarter.${name}`);
+    }
+
+    /**
+     * replacement for enum `values()`
+     * @return {Quarter[]}
+     */
+    static values() {
+        return QUARTERS.slice();
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Obtains an instance of `Quarter` from an `int` value.
+     * 
+     * `Quarter` is an enum representing the 4 quarters of the year.
+     * This factory allows the enum to be obtained from the `int` value.
+     * The `int` value follows the quarter, from 1 (Q1) to 4 (Q4).
+     *
+     * @param {number} quarterOfYear - the quarter-of-year to represent, from 1 (Q1) to 4 (Q4)
+     * @return {Quarter} the quarter-of-year, not null
+     * @throws {DateTimeException} if the quarter-of-year is invalid
+     */
+    static of(quarterOfYear) {
+        requireNonNull(quarterOfYear, &apos;quarterOfYear&apos;);
+        switch (quarterOfYear) {
+            case 1:
+                return Quarter.Q1;
+            case 2:
+                return Quarter.Q2;
+            case 3:
+                return Quarter.Q3;
+            case 4:
+                return Quarter.Q4;
+            default:
+                throw new DateTimeException(`Invalid value for Quarter: ${quarterOfYear}`);
+        }
+    }
+
+    /**
+     * Obtains an instance of `Quarter` from a month-of-year.
+     * 
+     * `Quarter` is an enum representing the 4 quarters of the year.
+     * This factory allows the enum to be obtained from the `Month` value.
+     * 
+     * January to March are Q1, April to June are Q2, July to September are Q3
+     * and October to December are Q4.
+     *
+     * @param {number} monthOfYear - the month-of-year to convert from, from 1 to 12
+     * @return {Quarter} the quarter-of-year, not null
+     * @throws {DateTimeException} if the month-of-year is invalid
+     */
+    static ofMonth(monthOfYear) {
+        requireNonNull(monthOfYear, &apos;monthOfYear&apos;);
+        ChronoField.MONTH_OF_YEAR.range().checkValidValue(monthOfYear, ChronoField.MONTH_OF_YEAR);
+        return Quarter.of(MathUtil.intDiv(monthOfYear - 1, 3) + 1);
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Obtains an instance of `Quarter` from a temporal object.
+     * 
+     * This obtains a quarter based on the specified temporal.
+     * A `TemporalAccessor` represents an arbitrary set of date and time information,
+     * which this factory converts to an instance of `Quarter`.
+     * 
+     * The conversion extracts the {@link IsoFields.QUARTER_OF_YEAR} field.
+     * The extraction is only permitted if the temporal object has an ISO
+     * chronology, or can be converted to a `LocalDate`.
+     * 
+     * This method matches the signature of the functional interface {@link TemporalQuery}
+     * allowing it to be used in queries via method reference, `Quarter.from`.
+     *
+     * @param {Temporal} temporal - the temporal-time object to convert, not null
+     * @return {Quarter} the quarter-of-year, not null
+     * @throws {DateTimeException} if unable to convert to a `Quarter`
+     */
+    static from(temporal) {
+        if (temporal instanceof Quarter) {
+            return temporal;
+        } else if (temporal instanceof Month) {
+            const month = temporal;
+            return Quarter.of(MathUtil.intDiv(month.ordinal(), 3) + 1);
+        }
+        try {
+            /* TODO: only IsoChronology for now
+            if (IsoChronology.INSTANCE.equals(Chronology.from(temporal)) == false) {
+                temporal = LocalDate.from(temporal);
+            }
+            */
+            const qoy = MathUtil.safeToInt(temporal.getLong(IsoFields.QUARTER_OF_YEAR));
+            return Quarter.of(qoy);
+        } catch (ex) {
+            throw new DateTimeException(`Unable to obtain Quarter from TemporalAccessor: ${temporal} of type ${temporal.constructor.name}`, ex);
+        }
+    }
+
+    /**
+     * 
+     * @param {number} value
+     * @param {string} name
+     * @private
+     */
+    constructor(value, name) {
+        super();
+        this._value = MathUtil.safeToInt(value);
+        this._name = name;
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Gets the quarter-of-year `int` value.
+     * 
+     * The values are numbered following the ISO-8601 standard,
+     * from 1 (Q1) to 4 (Q4).
+     *
+     * @return {number} the quarter-of-year, from 1 (Q1) to 4 (Q4)
+     */
+    value() {
+        return this._value;
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Gets the textual representation, such as &apos;Q1&apos; or &apos;4th quarter&apos;.
+     * 
+     * This returns the textual name used to identify the quarter-of-year,
+     * suitable for presentation to the user.
+     * The parameters control the style of the returned text and the locale.
+     * 
+     * If no textual mapping is found then the {@link #getValue() numeric value} is returned.
+     *
+     * @param {TextStyle} style - the length of the text required, not null
+     * @param {Locale} locale - the locale to use, not null
+     * @return {string} the text value of the day-of-week, not null
+     */
+    // eslint-disable-next-line no-unused-vars
+    displayName(style, locale) {
+        throw new IllegalArgumentException(&apos;Pattern using (localized) text not implemented yet!&apos;);
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Checks if the specified field is supported.
+     * 
+     * This checks if this quarter-of-year can be queried for the specified field.
+     * If false, then calling the {@link #range(TemporalField) range} and
+     * {@link #get(TemporalField) get} methods will throw an exception.
+     * 
+     * If the field is {@link IsoFields#QUARTER_OF_YEAR QUARTER_OF_YEAR} then
+     * this method returns true.
+     * All `ChronoField` instances will return false.
+     * 
+     * If the field is not a `ChronoField`, then the result of this method
+     * is obtained by invoking `TemporalField.isSupportedBy(TemporalAccessor)`
+     * passing `this` as the argument.
+     * Whether the field is supported is determined by the field.
+     *
+     * @param {TemporalField} field - the field to check, null returns false
+     * @return {boolean} true if the field is supported on this quarter-of-year, false if not
+     */
+    isSupported(field) {
+        if (field === IsoFields.QUARTER_OF_YEAR) {
+            return true;
+        } else if (field instanceof ChronoField) {
+            return false;
+        }
+        return field != null &amp;&amp; field.isSupportedBy(this);
+    }
+
+    /**
+     * Gets the range of valid values for the specified field.
+     * 
+     * The range object expresses the minimum and maximum valid values for a field.
+     * This quarter is used to enhance the accuracy of the returned range.
+     * If it is not possible to return the range, because the field is not supported
+     * or for some other reason, an exception is thrown.
+     * 
+     * If the field is {@link IsoFields#QUARTER_OF_YEAR QUARTER_OF_YEAR} then the
+     * range of the quarter-of-year, from 1 to 4, will be returned.
+     * All `ChronoField` instances will throw an `UnsupportedTemporalTypeException`.
+     * 
+     * If the field is not a `ChronoField`, then the result of this method
+     * is obtained by invoking `TemporalField.rangeRefinedBy(TemporalAccessor)`
+     * passing `this` as the argument.
+     * Whether the range can be obtained is determined by the field.
+     *
+     * @param {TemporalField} field - the field to query the range for, not null
+     * @return {ValueRange} the range of valid values for the field, not null
+     * @throws {DateTimeException} if the range for the field cannot be obtained
+     * @throws {UnsupportedTemporalTypeException} if the field is not supported
+     */
+    range(field) {
+        requireNonNull(field, &apos;field&apos;);
+        if (field === IsoFields.QUARTER_OF_YEAR) {
+            return field.range();
+        } else if (field instanceof ChronoField) {
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${field}`);
+        }
+        return super.range(field);
+    }
+
+    /**
+     * Gets the value of the specified field from this quarter-of-year as an `int`.
+     * 
+     * This queries this quarter for the value for the specified field.
+     * The returned value will always be within the valid range of values for the field.
+     * If it is not possible to return the value, because the field is not supported
+     * or for some other reason, an exception is thrown.
+     * 
+     * If the field is {@link IsoFields.QUARTER_OF_YEAR} then the
+     * value of the quarter-of-year, from 1 to 4, will be returned.
+     * All `ChronoField` instances will throw an `UnsupportedTemporalTypeException`.
+     * 
+     * If the field is not a `ChronoField`, then the result of this method
+     * is obtained by invoking `TemporalField.getFrom(TemporalAccessor)`
+     * passing `this` as the argument. Whether the value can be obtained,
+     * and what the value represents, is determined by the field.
+     *
+     * @param {TemporalField} field - the field to get, not null
+     * @return {number} the value for the field, within the valid range of values
+     * @throws {DateTimeException} if a value for the field cannot be obtained or
+     *         the value is outside the range of valid values for the field
+     * @throws {UnsupportedTemporalTypeException} if the field is not supported or
+     *         the range of values exceeds an `int`
+     * @throws {ArithmeticException} if numeric overflow occurs
+     */
+    get(field) {
+        requireNonNull(field, &apos;field&apos;);
+        requireInstance(field, TemporalField, &apos;field&apos;);
+        return this.range(field).checkValidIntValue(this.getLong(field), field);
+    }
+
+    /**
+     * Gets the value of the specified field from this quarter-of-year as a `long`.
+     * 
+     * This queries this quarter for the value for the specified field.
+     * If it is not possible to return the value, because the field is not supported
+     * or for some other reason, an exception is thrown.
+     * 
+     * If the field is {@link IsoFields#QUARTER_OF_YEAR QUARTER_OF_YEAR} then the
+     * value of the quarter-of-year, from 1 to 4, will be returned.
+     * All other `ChronoField` instances will throw an `UnsupportedTemporalTypeException`.
+     * 
+     * If the field is not a `ChronoField`, then the result of this method
+     * is obtained by invoking `TemporalField.getFrom(TemporalAccessor)`
+     * passing `this` as the argument. Whether the value can be obtained,
+     * and what the value represents, is determined by the field.
+     *
+     * @param {TemporalField} field - the field to get, not null
+     * @return {number} the value for the field
+     * @throws {DateTimeException} if a value for the field cannot be obtained
+     * @throws {UnsupportedTemporalTypeException} if the field is not supported
+     * @throws {ArithmeticException} if numeric overflow occurs
+     */
+    getLong(field) {
+        requireNonNull(field, &apos;field&apos;);
+        if (field === IsoFields.QUARTER_OF_YEAR) {
+            return this.value();
+        } else if (field instanceof ChronoField) {
+            throw new UnsupportedTemporalTypeException(`Unsupported field: ${field}`);
+        }
+        return field.getFrom(this);
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Returns the quarter that is the specified number of quarters after this one.
+     * 
+     * The calculation rolls around the end of the year from Q4 to Q1.
+     * The specified period may be negative.
+     * 
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {number} quarters - the quarters to add, positive or negative
+     * @return {Quarter} the resulting quarter, not null
+     */
+    plus(quarters) {
+        const amount = MathUtil.intMod(quarters, 4);
+        return QUARTERS[(this.ordinal() + amount + 4) % 4];
+    }
+
+    /**
+     * Returns the quarter that is the specified number of quarters before this one.
+     * 
+     * The calculation rolls around the start of the year from Q1 to Q4.
+     * The specified period may be negative.
+     * 
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {number} quarters - the quarters to subtract, positive or negative
+     * @return {Quarter} the resulting quarter, not null
+     */
+    minus(quarters) {
+        return this.plus(-(MathUtil.intMod(quarters, 4)));
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Gets the length of this quarter in days.
+     * 
+     * This takes a flag to determine whether to return the length for a leap year or not.
+     * 
+     * Q1 has 90 in a standard year and 91 days in a leap year.
+     * Q2 has 91 days.
+     * Q3 and Q4 have 92 days.
+     *
+     * @param {boolean} leapYear - true if the length is required for a leap year
+     * @return {number} the length of this month in days, from 90 to 92
+     */
+    length(leapYear) {
+        switch (this) {
+            case Quarter.Q1:
+                return (leapYear ? 91 : 90);
+            case Quarter.Q2:
+                return 91;
+            default:
+                return 92;
+        }
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Gets the first of the three months that this quarter refers to.
+     * 
+     * Q1 will return January.
+     * Q2 will return April.
+     * Q3 will return July.
+     * Q4 will return October.
+     * 
+     * To obtain the other two months of the quarter, simply use {@link Month#plus(long)}
+     * on the returned month.
+     *
+     * @return {Month} the first month in the quarter, not null
+     */
+    firstMonth() {
+        switch (this) {
+            case Quarter.Q1:
+                return Month.JANUARY;
+            case Quarter.Q2:
+                return Month.APRIL;
+            case Quarter.Q3:
+                return Month.JULY;
+            case Quarter.Q4:
+                return Month.OCTOBER;
+            default:
+                throw new IllegalStateException(&apos;Unreachable&apos;);
+        }
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Queries this quarter-of-year using the specified query.
+     * 
+     * This queries this quarter-of-year using the specified query strategy object.
+     * The `TemporalQuery` object defines the logic to be used to
+     * obtain the result. Read the documentation of the query to understand
+     * what the result of this method will be.
+     * 
+     * The result of this method is obtained by invoking the
+     * {@link TemporalQuery.queryFrom(TemporalAccessor)} method on the
+     * specified query passing `this` as the argument.
+     *
+     * @param {TemporalQuery} query - the query to invoke, not null
+     * @return {*} the query result, null may be returned (defined by the query)
+     * @throws {DateTimeException} if unable to query (defined by the query)
+     * @throws {ArithmeticException} if numeric overflow occurs (defined by the query)
+     */
+    query(query) {
+        requireNonNull(query, &apos;query&apos;);
+        requireInstance(query, TemporalQuery, &apos;query&apos;);
+        if (query === TemporalQueries.chronology()) {
+            return IsoChronology.INSTANCE;
+        } else if (query === TemporalQueries.precision()) {
+            return IsoFields.QUARTER_YEARS;
+        }
+        return super.query(query);
+    }
+
+    /**
+     * Adjusts the specified temporal object to have this quarter-of-year.
+     * 
+     * This returns a temporal object of the same observable type as the input
+     * with the quarter-of-year changed to be the same as this.
+     * 
+     * The adjustment is equivalent to using {@link Temporal.with}
+     * passing {@link IsoFields.QUARTER_OF_YEAR} as the field.
+     * If the specified temporal object does not use the ISO calendar system then
+     * a `DateTimeException` is thrown.
+     * 
+     * In most cases, it is clearer to reverse the calling pattern by using
+     * {@link Temporal.with}:
+     * ```
+     *   // these two lines are equivalent, but the second approach is recommended
+     *   temporal = thisQuarter.adjustInto(temporal);
+     *   temporal = temporal.with(thisQuarter);
+     * ```
+     * 
+     * For example, given a date in May, the following are output:
+     * ```
+     *   dateInMay.with(Q1);    // three months earlier
+     *   dateInMay.with(Q2);    // no change
+     *   dateInMay.with(Q3);    // three months later
+     *   dateInMay.with(Q4);    // six months later
+     * ```
+     * 
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @param {Temporal} temporal - the target object to be adjusted, not null
+     * @return {Temporal} the adjusted object, not null
+     * @throws {DateTimeException} if unable to make the adjustment
+     * @throws {ArithmeticException} if numeric overflow occurs
+     */
+    adjustInto(temporal) {
+        requireNonNull(temporal, &apos;temporal&apos;);
+        /* TODO: only IsoChronology for now
+        if (Chronology.from(temporal).equals(IsoChronology.INSTANCE) == false) {
+            throw new DateTimeException(&apos;Adjustment only supported on ISO date-time&apos;);
+        }
+        */
+        return temporal.with(IsoFields.QUARTER_OF_YEAR, this.value());
+    }
+
+    //-----------------------------------------------------------------------
+    // Enum
+    //-----------------------------------------------------------------------
+
+    /**
+     *
+     * @return {number}
+     */
+    ordinal() {
+        return this._value - 1;
+    }
+
+    /**
+     *
+     * @return {string}
+     */
+    name() {
+        return this._name;
+    }
+
+    //-----------------------------------------------------------------------
+    // Comparable
+    //-----------------------------------------------------------------------
+
+    /**
+     * Compares this Quarter to another Quarter.
+     *
+     * The comparison is based on the value of the Quarter.
+     * It is &quot;consistent with equals&quot;, as defined by {@link Comparable}.
+     *
+     * @param {Quarter} other - the other quarter to compare to, not null
+     * @return {number} the comparator value, negative if less, positive if greater
+     */
+    compareTo(other) {
+        requireNonNull(other, &apos;other&apos;);
+        requireInstance(other, Quarter, &apos;other&apos;);
+        return this._value - other._value;
+    }
+
+    //-----------------------------------------------------------------------
+    // Object
+    //-----------------------------------------------------------------------
+
+    /**
+     * Outputs this quarter as a String, such as Q1
+     *
+     * @return {string} a string representation of this quarter, not null
+     */
+    toString() {
+        return this.name();
+    }
+
+    /**
+     *
+     * @return {boolean}
+     */
+    equals(other){
+        return this === other;
+    }
+
+    /**
+     * A hash code for this quarter.
+     *
+     * @return {number} a suitable hash code
+     */
+    hashCode() {
+        return this._value;
+    }
+}
+
+let QUARTERS;
+
+export function _init() {
+    /**
+     * The singleton instance for the first quarter-of-year, from January to March.
+     * This has the numeric value of `1`.
+     */
+    Quarter.Q1 = new Quarter(1, &apos;Q1&apos;);
+    /**
+      * The singleton instance for the second quarter-of-year, from April to June.
+      * This has the numeric value of `2`.
+      */
+    Quarter.Q2 = new Quarter(2, &apos;Q2&apos;);
+    /**
+      * The singleton instance for the third quarter-of-year, from July to September.
+      * This has the numeric value of `3`.
+      */
+    Quarter.Q3 = new Quarter(3, &apos;Q3&apos;);
+    /**
+      * The singleton instance for the fourth quarter-of-year, from October to December.
+      * This has the numeric value of `4`.
+      */
+    Quarter.Q4 = new Quarter(4, &apos;Q4&apos;);
+
+    Quarter.FROM = createTemporalQuery(&apos;Quarter.FROM&apos;, (temporal) =&gt; {
+        return Quarter.from(temporal);
+    });
+
+    QUARTERS = [
+        Quarter.Q1,
+        Quarter.Q2,
+        Quarter.Q3,
+        Quarter.Q4
+    ];
+}
+
+// copied from packages/core/src/temporal/TemporalQuery.js
+function createTemporalQuery(name, queryFromFunction) {
+    class ExtendedTemporalQuery extends TemporalQuery {
+    }
+
+    ExtendedTemporalQuery.prototype.queryFrom = queryFromFunction;
+    return new ExtendedTemporalQuery(name);
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

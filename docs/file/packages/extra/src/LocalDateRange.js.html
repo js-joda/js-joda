@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">packages/extra/src/LocalDateRange.js | js-joda</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<script src="./inject/script/0-js-joda.min.js"></script><script src="./inject/script/0-js-joda-extra.min.js"></script><script src="./inject/script/0-js-joda-timezone.min.js"></script><script src="./inject/script/0-index.js"></script><script src="./inject/script/0-yato.js"></script><meta name="description" content="Immutable date and time library for JavaScript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="js-joda"><meta property="twitter:description" content="Immutable date and time library for JavaScript"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/js-joda/js-joda"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src">core/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Clock.js~Clock.html">Clock</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/DayOfWeek.js~DayOfWeek.html">DayOfWeek</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Duration.js~Duration.html">Duration</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Enum.js~Enum.html">Enum</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Instant.js~Instant.html">Instant</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalDate.js~LocalDate.html">LocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalDateTime.js~LocalDateTime.html">LocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/LocalTime.js~LocalTime.html">LocalTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/MathUtil.js~MathUtil.html">MathUtil</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Month.js~Month.html">Month</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/MonthDay.js~MonthDay.html">MonthDay</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/OffsetDateTime.js~OffsetDateTime.html">OffsetDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/OffsetTime.js~OffsetTime.html">OffsetTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Period.js~Period.html">Period</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/Year.js~Year.html">Year</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/YearConstants.js~YearConstants.html">YearConstants</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/YearMonth.js~YearMonth.html">YearMonth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneId.js~ZoneId.html">ZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneOffset.js~ZoneOffset.html">ZoneOffset</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneRegion.js~ZoneRegion.html">ZoneRegion</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeException">DateTimeException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DateTimeParseException">DateTimeParseException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalArgumentException">IllegalArgumentException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IllegalStateException">IllegalStateException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NullPointerException">NullPointerException</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-UnsupportedTemporalTypeException">UnsupportedTemporalTypeException</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-chrono">core/src/chrono</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoLocalDate.js~ChronoLocalDate.html">ChronoLocalDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoLocalDateTime.js~ChronoLocalDateTime.html">ChronoLocalDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/ChronoZonedDateTime.js~ChronoZonedDateTime.html">ChronoZonedDateTime</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/chrono/IsoChronology.js~IsoChronology.html">IsoChronology</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-format">core/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DateTimeFormatter.js~DateTimeFormatter.html">DateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html">DateTimeFormatterBuilder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/DecimalStyle.js~DecimalStyle.html">DecimalStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/ResolverStyle.js~ResolverStyle.html">ResolverStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/SignStyle.js~SignStyle.html">SignStyle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/format/TextStyle.js~TextStyle.html">TextStyle</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-temporal">core/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoField.js~ChronoField.html">ChronoField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ChronoUnit.js~ChronoUnit.html">ChronoUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAccessor.js~TemporalAccessor.html">TemporalAccessor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjusters.js~TemporalAdjusters.html">TemporalAdjusters</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQueries.js~TemporalQueries.html">TemporalQueries</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/ValueRange.js~ValueRange.html">ValueRange</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/Temporal.js~Temporal.html">Temporal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAdjuster.js~TemporalAdjuster.html">TemporalAdjuster</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalAmount.js~TemporalAmount.html">TemporalAmount</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nativeJs">nativeJs</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-IsoFields">IsoFields</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-zone">core/src/zone</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneOffsetTransition.js~ZoneOffsetTransition.html">ZoneOffsetTransition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneRules.js~ZoneRules.html">ZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html">ZoneRulesProvider</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#extra-src">extra/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/DayOfMonth.js~DayOfMonth.html">DayOfMonth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/DayOfYear.js~DayOfYear.html">DayOfYear</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/Interval.js~Interval.html">Interval</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/LocalDateRange.js~LocalDateRange.html">LocalDateRange</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/OffsetDate.js~OffsetDate.html">OffsetDate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/Quarter.js~Quarter.html">Quarter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/YearQuarter.js~YearQuarter.html">YearQuarter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/YearWeek.js~YearWeek.html">YearWeek</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src">locale/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/Locale.js~Locale.html">Locale</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format">locale/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleDateTimeFormatter.js~LocaleDateTimeFormatter.html">LocaleDateTimeFormatter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleStore.js~LocaleStore.html">LocaleStore</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-cldr">locale/src/format/cldr</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrZoneTextPrinterParser.js~CldrZoneTextPrinterParser.html">CldrZoneTextPrinterParser</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-parser">locale/src/format/parser</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/parser/WeekFieldsPrinterParser.js~WeekFieldsPrinterParser.html">WeekFieldsPrinterParser</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-temporal">locale/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~ComputedDayOfField.html">ComputedDayOfField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">packages/extra/src/LocalDateRange.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * @copyright (c) 2016, Philipp Th&#xFC;rw&#xE4;chter &amp; Pattrick H&#xFC;per &amp; Micha&#x142; Sobkiewicz
+ * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
+ * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ */
+
+import { ArithmeticException, DateTimeException, DateTimeParseException, IllegalArgumentException, LocalDate, Period } from &apos;@js-joda/core&apos;;
+
+// TODO: hm... is this a good idea?? copied from joda currently, could we add a js-joda-utils module??
+import { requireInstance, requireNonNull } from &apos;./assert&apos;;
+
+/**
+ * The day after the MIN date.
+ */
+const MINP1 = LocalDate.MIN.plusDays(1);
+/**
+ * The day before the MAX date.
+ */
+const MAXM1 = LocalDate.MAX.minusDays(1);
+
+/**
+ * A range of local dates.
+ * 
+ * A `LocalDateRange` represents a range of dates, from a start date to an end date.
+ * Instances can be constructed from either a half-open or a closed range of dates.
+ * Internally, the class stores the start and end dates, with the start inclusive and the end exclusive.
+ * The end date is always greater than or equal to the start date.
+ * 
+ * The constants `LocalDate.MIN` and `LocalDate.MAX` can be used
+ * to indicate an unbounded far-past or far-future. Note that there is no difference
+ * between a half-open and a closed range when the end is `LocalDate.MAX`.
+ * Empty ranges are allowed.
+ * 
+ * No range can end at `LocalDate.MIN` or `LocalDate.MIN.plusDays(1)`.
+ * No range can start at `LocalDate.MAX` or `LocalDate.MAX.minusDays(1)`.
+ * No empty range can exist at `LocalDate.MIN` or `LocalDate.MAX`.
+ * 
+ * Date ranges are not comparable. To compare the length of two ranges, it is
+ * generally recommended to compare the number of days they contain.
+ *
+ */
+export class LocalDateRange {
+    /**
+     * function overloading for {@link LocalDateRange.of}
+     * - if called with `LocalDate` and `LocalDate`, {@link LocalDateRange._ofLocalDateLocalDate} is executed,
+     * - if called with `LocalDate` and `Period`, {@link LocalDateRange._ofLocalDatePeriod} is executed,
+     * - otherwise throws IllegalArgumentException.
+     *
+     * @param {LocalDate} startInclusive
+     * @param {LocalDate|Period} endExclusiveOrPeriod
+     * @return {LocalDateRange}
+     */
+    static of(startInclusive, endExclusiveOrPeriod) {
+        if (startInclusive instanceof LocalDate &amp;&amp; endExclusiveOrPeriod instanceof LocalDate) {
+            return LocalDateRange._ofLocalDateLocalDate(startInclusive, endExclusiveOrPeriod);
+        }
+        if (startInclusive instanceof LocalDate &amp;&amp; endExclusiveOrPeriod instanceof Period) {
+            return LocalDateRange._ofLocalDatePeriod(startInclusive, endExclusiveOrPeriod);
+        }
+        const messageParts = [];
+        if (!(startInclusive instanceof LocalDate)) {
+            messageParts.push(`startInclusive must be an instance of LocalDate but is ${startInclusive.constructor.name}`);
+        }
+        if (!(endExclusiveOrPeriod instanceof LocalDate || endExclusiveOrPeriod instanceof Period)) {
+            messageParts.push(`endExclusiveOrPeriod must be an instance of LocalDate or Period but is ${endExclusiveOrPeriod.constructor.name}`);
+        }
+        throw new IllegalArgumentException(messageParts.join(&apos; and &apos;));
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Obtains a half-open range of dates, including the start and excluding the end.
+     * 
+     * The range includes the start date and excludes the end date, unless the end is `LocalDate.MAX`.
+     * The end date must be equal to or after the start date.
+     * This definition permits an empty range located at a specific date.
+     * 
+     * The constants `LocalDate.MIN` and `LocalDate.MAX` can be used
+     * to indicate an unbounded far-past or far-future.
+     * 
+     * The start inclusive date must not be `LocalDate.MAX` or `LocalDate.MAX.minusDays(1)`.
+     * The end inclusive date must not be `LocalDate.MIN` or `LocalDate.MIN.plusDays(1)`.
+     * No empty range can exist at `LocalDate.MIN` or `LocalDate.MAX`.
+     *
+     * @param {LocalDate} startInclusive - the inclusive start date, not null
+     * @param {LocalDate} endExclusive - the exclusive end date, not null
+     * @return {LocalDateRange} the half-open range, not null
+     * @throws {DateTimeException} if the end is before the start,
+     *   or the start date is `LocalDate.MAX` or `LocalDate.MAX.minusDays(1)`,
+     *   or the end date is `LocalDate.MIN` or `LocalDate.MIN.plusDays(1)`
+     * @protected
+     */
+    static _ofLocalDateLocalDate(startInclusive, endExclusive) {
+        requireNonNull(startInclusive, &apos;startInclusive&apos;);
+        requireNonNull(endExclusive, &apos;endExclusive&apos;);
+        requireInstance(startInclusive, LocalDate, &apos;startInclusive&apos;);
+        requireInstance(endExclusive, LocalDate, &apos;endExclusive&apos;);
+        return new LocalDateRange(startInclusive, endExclusive);
+    }
+
+    /**
+     * Obtains an instance of `LocalDateRange` from the start and a period.
+     * 
+     * The end date is calculated as the start plus the duration.
+     * The period must not be negative.
+     * 
+     * The constant `LocalDate.MIN` can be used to indicate an unbounded far-past.
+     * 
+     * The period must not be zero or one day when the start date is `LocalDate.MIN`.
+     *
+     * @param {LocalDate} startInclusive - the inclusive start date, not null
+     * @param {Period} period - the period from the start to the end, not null
+     * @return {LocalDateRange} the range, not null
+     * @throws {DateTimeException} if the end is before the start,
+     *  or if the period addition cannot be made
+     * @throws {ArithmeticException} if numeric overflow occurs when adding the period
+     * @protected
+     */
+    static _ofLocalDatePeriod(startInclusive, period) {
+        requireNonNull(startInclusive, &apos;startInclusive&apos;);
+        requireNonNull(period, &apos;period&apos;);
+        requireInstance(startInclusive, LocalDate, &apos;startInclusive&apos;);
+        requireInstance(period, Period, &apos;period&apos;);
+        if (period.isNegative()) {
+            throw new DateTimeException(&apos;Period must not be zero or negative&apos;);
+        }
+        return new LocalDateRange(startInclusive, startInclusive.plus(period));
+    }
+
+    /**
+     * Obtains a closed range of dates, including the start and end.
+     * 
+     * The range includes the start date and the end date.
+     * The end date must be equal to or after the start date.
+     * 
+     * The constants `LocalDate.MIN` and `LocalDate.MAX` can be used
+     * to indicate an unbounded far-past or far-future. In addition, an end date of
+     * `LocalDate.MAX.minusDays(1)` will also create an unbounded far-future range.
+     * 
+     * The start inclusive date must not be `LocalDate.MAX` or `LocalDate.MAX.minusDays(1)`.
+     * The end inclusive date must not be `LocalDate.MIN`.
+     * 
+     * @param {LocalDate} startInclusive - the inclusive start date, not null
+     * @param {LocalDate} endInclusive - the inclusive end date, not null
+     * @return {LocalDateRange} the closed range
+     * @throws {DateTimeException} if the end is before the start,
+     *   or the start date is `LocalDate.MAX` or `LocalDate.MAX.minusDays(1)`,
+     *   or the end date is `LocalDate.MIN`
+     */
+    static ofClosed(startInclusive, endInclusive) {
+        requireNonNull(startInclusive, &apos;startInclusive&apos;);
+        requireNonNull(endInclusive, &apos;endInclusive&apos;);
+        requireInstance(startInclusive, LocalDate, &apos;startInclusive&apos;);
+        requireInstance(endInclusive, LocalDate, &apos;endInclusive&apos;);
+        if (endInclusive.isBefore(startInclusive)) {
+            throw new DateTimeException(&apos;Start date must be on or before end date&apos;);
+        }
+        const end = (endInclusive.equals(LocalDate.MAX) ? LocalDate.MAX : endInclusive.plusDays(1));
+        return new LocalDateRange(startInclusive, end);
+    }
+
+    /**
+     * Obtains an empty date range located at the specified date.
+     * 
+     * The empty range has zero length and contains no other dates or ranges.
+     * An empty range cannot be located at `LocalDate.MIN`, `LocalDate.MIN.plusDays(1)`,
+     * `LocalDate.MAX` or `LocalDate.MAX.minusDays(1)`.
+     *
+     * @param {LocalDate} date - the date where the empty range is located, not null
+     * @return {LocalDateRange} the empty range, not null
+     * @throws {DateTimeException} if the date is `LocalDate.MIN`, `LocalDate.MIN.plusDays(1)`,
+     *   `LocalDate.MAX` or `LocalDate.MAX.minusDays(1)`
+     */
+    static ofEmpty(date) {
+        requireNonNull(date, &apos;date&apos;);
+        requireInstance(date, LocalDate, &apos;date&apos;);
+        return new LocalDateRange(date, date);
+    }
+
+    /**
+     * Obtains a range that is unbounded at the start and end.
+     * 
+     * @return {LocalDateRange} the range, with an unbounded start and unbounded end
+     */
+    static ofUnbounded() {
+        return LocalDateRange.ALL;
+    }
+
+    /**
+     * Obtains a range up to, but not including, the specified end date.
+     * 
+     * The range includes all dates from the unbounded start, denoted by `LocalDate.MIN`, to the end date.
+     * The end date is exclusive and cannot be `LocalDate.MIN` or `LocalDate.MIN.plusDays(1)`.
+     * 
+     * @param {LocalDate} endExclusive - the exclusive end date, `LocalDate.MAX` treated as unbounded, not null
+     * @return {LocalDateRange} the range, with an unbounded start
+     * @throws {DateTimeException} if the end date is `LocalDate.MIN` or  `LocalDate.MIN.plusDays(1)`
+     */
+    static ofUnboundedStart(endExclusive) {
+        requireNonNull(endExclusive, &apos;endExclusive&apos;);
+        requireInstance(endExclusive, LocalDate, &apos;endExclusive&apos;);
+        return LocalDateRange.of(LocalDate.MIN, endExclusive);
+    }
+
+    /**
+     * Obtains a range from and including the specified start date.
+     * 
+     * The range includes all dates from the start date to the unbounded end, denoted by `LocalDate.MAX`.
+     * The start date is inclusive and cannot be `LocalDate.MAX` or `LocalDate.MAX.minusDays(1)`.
+     * 
+     * @param {LocalDate} startInclusive - the inclusive start date, `LocalDate.MIN` treated as unbounded, not null
+     * @return {LocalDateRange} the range, with an unbounded end
+     * @throws {DateTimeException} if the start date is `LocalDate.MAX` or `LocalDate.MAX.minusDays(1)`
+     */
+    static ofUnboundedEnd(startInclusive) {
+        return LocalDateRange.of(startInclusive, LocalDate.MAX);
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Obtains an instance of `LocalDateRange` from a text string such as
+     * `2007-12-03/2007-12-04`, where the end date is exclusive.
+     * 
+     * The string must consist of one of the following three formats:
+     * &lt;ul&gt;
+     * &lt;li&gt;a representations of an {@link LocalDate}, followed by a forward slash,
+     *  followed by a representation of a {@link LocalDate}
+     * &lt;li&gt;a representation of an {@link LocalDate}, followed by a forward slash,
+     *  followed by a representation of a {@link Period}
+     * &lt;li&gt;a representation of a {@link Period}, followed by a forward slash,
+     *  followed by a representation of an {@link LocalDate}
+     * &lt;/ul&gt;
+     *
+     * @param {string} text - the text to parse, not null
+     * @return {LocalDateRange} the parsed range, not null
+     * @throws {DateTimeParseException} if the text cannot be parsed
+     */
+    static parse(text) {
+        requireNonNull(text, &apos;text&apos;);
+        for (let i = 0; i &lt; text.length; i++) {
+            if (text[i] === &apos;/&apos;) {
+                const firstChar = text.charAt(0);
+                if (firstChar === &apos;P&apos; || firstChar === &apos;p&apos;) {
+                    // period followed by date
+                    const duration = Period.parse(text.slice(0, i));
+                    const end = LocalDate.parse(text.slice(i + 1, text.length));
+                    return LocalDateRange.of(end.minus(duration), end);
+                } else {
+                    // date followed by date or period
+                    const start = LocalDate.parse(text.slice(0, i));
+                    if (i + 1 &lt; text.length) {
+                        const c = text[i + 1];
+                        if (c === &apos;P&apos; || c === &apos;p&apos;) {
+                            const duration = Period.parse(text.slice(i + 1, text.length));
+                            return LocalDateRange.of(start, start.plus(duration));
+                        }
+                    }
+                    const end = LocalDate.parse(text.slice(i + 1, text.length));
+                    return LocalDateRange.of(start, end);
+                }
+            }
+        }
+        throw new DateTimeParseException(&apos;LocalDateRange cannot be parsed, no forward slash found&apos;, text, 0);
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Constructor.
+     *
+     * @param {LocalDate} startInclusive - the start date, inclusive, validated not null
+     * @param {LocalDate} endExclusive - the end date, exclusive, validated not null
+     * @private
+     */
+    constructor(startInclusive, endExclusive) {
+        requireNonNull(startInclusive, &apos;startInclusive&apos;);
+        requireNonNull(endExclusive, &apos;endExclusive&apos;);
+        requireInstance(startInclusive, LocalDate, &apos;startInclusive&apos;);
+        requireInstance(endExclusive, LocalDate, &apos;endExclusive&apos;);
+        if (endExclusive.isBefore(startInclusive)) {
+            throw new DateTimeException(&apos;End date must be on or after start date&apos;);
+        }
+        if (startInclusive.equals(MAXM1)) {
+            throw new DateTimeException(&apos;Range must not start at LocalDate.MAX.minusDays(1)&apos;);
+        }
+        if (endExclusive.equals(MINP1)) {
+            throw new DateTimeException(&apos;Range must not end at LocalDate.MIN.plusDays(1)&apos;);
+        }
+        if (endExclusive.equals(LocalDate.MIN) || startInclusive.equals(LocalDate.MAX)) {
+            throw new DateTimeException(&apos;Empty range must not be at LocalDate.MIN or LocalDate.MAX&apos;);
+        }
+        this._start = startInclusive;
+        this._end = endExclusive;
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Gets the start date of this range, inclusive.
+     * 
+     * This will return `LocalDate#MIN` if the range is unbounded at the start.
+     * In this case, the range includes all dates into the far-past.
+     * 
+     * This never returns `LocalDate.MAX` or `LocalDate.MAX.minusDays(1)`.
+     *
+     * @return {LocalDate} the start date
+     */
+    start() {
+        return this._start;
+    }
+
+    /**
+     * Gets the end date of this range, exclusive.
+     * 
+     * This will return `LocalDate.MAX` if the range is unbounded at the end.
+     * In this case, the range includes all dates into the far-future.
+     * 
+     * This never returns `LocalDate.MIN` or `LocalDate.MIN.plusDays(1)`.
+     *
+     * @return {LocalDate} the end date, exclusive
+     */
+    end() {
+        return this._end;
+    }
+
+    /**
+     * Gets the end date of this range, inclusive.
+     * 
+     * This will return `LocalDate.MAX` if the range is unbounded at the end.
+     * In this case, the range includes all dates into the far-future.
+     * 
+     * This returns the date before the end date.
+     * 
+     * This never returns `LocalDate.MIN`.
+     * 
+     * @return {LocalDate} the end date, inclusive
+     */
+    endInclusive() {
+        if (this.isUnboundedEnd()) {
+            return LocalDate.MAX;
+        }
+        return this._end.minusDays(1);
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Checks if the range is empty.
+     * 
+     * An empty range occurs when the start date equals the end date.
+     * 
+     * An empty range is never unbounded.
+     * 
+     * @return {boolean} true if the range is empty
+     */
+    isEmpty() {
+        return this._start.equals(this._end);
+    }
+
+    /**
+     * Checks if the start of the range is unbounded.
+     * 
+     * An unbounded range is never empty.
+     * 
+     * @return {boolean} true if start is unbounded
+     */
+    isUnboundedStart() {
+        return this._start.equals(LocalDate.MIN);
+    }
+
+    /**
+     * Checks if the end of the range is unbounded.
+     * 
+     * An unbounded range is never empty.
+     * 
+     * @return {boolean} true if end is unbounded
+     */
+    isUnboundedEnd() {
+        return this._end.equals(LocalDate.MAX);
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Returns a copy of this range with the start date adjusted.
+     * 
+     * This returns a new instance with the start date altered.
+     * Since `LocalDate` implements `TemporalAdjuster` any
+     * local date can simply be passed in.
+     * 
+     * For example, to adjust the start to one week earlier:
+     * &lt;pre&gt;
+     *  range = range.withStart(date -&amp;gt; date.minus(1, ChronoUnit.WEEKS));
+     * &lt;/pre&gt;
+     * 
+     * @param {TemporalAdjuster} adjuster - the adjuster to use, not null
+     * @return {LocalDateRange} a copy of this range with the start date adjusted
+     * @throws {DateTimeException} if the new start date is after the current end date
+     */
+    withStart(adjuster) {
+        return LocalDateRange.of(this._start.with(adjuster), this._end);
+    }
+
+    /**
+     * Returns a copy of this range with the end date adjusted.
+     * 
+     * This returns a new instance with the exclusive end date altered.
+     * Since `LocalDate` implements `TemporalAdjuster` any
+     * local date can simply be passed in.
+     * 
+     * For example, to adjust the end to one week later:
+     * &lt;pre&gt;
+     *  range = range.withEnd(date -&amp;gt; date.plus(1, ChronoUnit.WEEKS));
+     * &lt;/pre&gt;
+     * 
+     * @param {TemporalAdjuster} adjuster - the adjuster to use, not null
+     * @return {LocalDateRange} a copy of this range with the end date adjusted
+     * @throws {DateTimeException} if the new end date is before the current start date
+     */
+    withEnd(adjuster) {
+        return LocalDateRange.of(this._start, this._end.with(adjuster));
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Checks if this range contains the specified date.
+     * 
+     * This checks if the specified date is within the bounds of this range.
+     * If this range is empty then this method always returns false.
+     * Else if this range has an unbounded start then `contains(LocalDate#MIN)` returns true.
+     * Else if this range has an unbounded end then `contains(LocalDate#MAX)` returns true.
+     * 
+     * @param {LocalDate} date - the date to check for, not null
+     * @return {boolean} true if this range contains the date
+     */
+    contains(date) {
+        requireNonNull(date, &apos;date&apos;);
+        return this._start.compareTo(date) &lt;= 0 &amp;&amp; (date.compareTo(this._end) &lt; 0 || this.isUnboundedEnd());
+    }
+
+    /**
+     * Checks if this range encloses the specified range.
+     * 
+     * This checks if the bounds of the specified range are within the bounds of this range.
+     * An empty range encloses itself.
+     * 
+     * @param {LocalDateRange} other - the other range to check for, not null
+     * @return {boolean} true if this range contains all dates in the other range
+     */
+    encloses(other) {
+        requireNonNull(other, &apos;other&apos;);
+        return this._start.compareTo(other._start) &lt;= 0 &amp;&amp; other._end.compareTo(this._end) &lt;= 0;
+    }
+
+    /**
+     * Checks if this range abuts the specified range.
+     * 
+     * The result is true if the end of this range is the start of the other, or vice versa.
+     * An empty range does not abut itself.
+     *
+     * @param {LocalDateRange} other - the other range, not null
+     * @return {boolean} true if this range abuts the other range
+     */
+    abuts(other) {
+        requireNonNull(other, &apos;other&apos;);
+        return this._end.equals(other._start) !== this._start.equals(other._end);
+    }
+
+    /**
+     * Checks if this range is connected to the specified range.
+     * 
+     * The result is true if the two ranges have an enclosed range in common, even if that range is empty.
+     * An empty range is connected to itself.
+     * 
+     * This is equivalent to `(overlaps(other) || abuts(other))`.
+     *
+     * @param {LocalDateRange} other - the other range, not null
+     * @return {boolean} true if this range is connected to the other range
+     */
+    isConnected(other) {
+        requireNonNull(other, &apos;other&apos;);
+        return this.equals(other) || (this._start.compareTo(other._end) &lt;= 0 &amp;&amp; other._start.compareTo(this._end) &lt;= 0);
+    }
+
+    /**
+     * Checks if this range overlaps the specified range.
+     * 
+     * The result is true if the two ranges share some part of the time-line.
+     * An empty range overlaps itself.
+     * 
+     * This is equivalent to `(isConnected(other) &amp;&amp; !abuts(other))`.
+     *
+     * @param {LocalDateRange} other - the time range to compare to, null means a zero length range now
+     * @return {boolean} true if the time ranges overlap
+     */
+    overlaps(other) {
+        requireNonNull(other, &apos;other&apos;);
+        return other.equals(this) || (this._start.compareTo(other._end) &lt; 0 &amp;&amp; other._start.compareTo(this._end) &lt; 0);
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Calculates the range that is the intersection of this range and the specified range.
+     * 
+     * This finds the intersection of two ranges.
+     * This throws an exception if the two ranges are not {@linkplain #isConnected(LocalDateRange) connected}.
+     * 
+     * @param {LocalDateRange} other - the other range to check for, not null
+     * @return {LocalDateRange} the range that is the intersection of the two ranges
+     * @throws {DateTimeException} if the ranges do not connect
+     */
+    intersection(other) {
+        requireNonNull(other, &apos;other&apos;);
+        if (this.isConnected(other) === false) {
+            throw new DateTimeException(`Ranges do not connect: ${this} and ${other}`);
+        }
+        const cmpStart = this._start.compareTo(other._start);
+        const cmpEnd = this._end.compareTo(other._end);
+        if (cmpStart &gt;= 0 &amp;&amp; cmpEnd &lt;= 0) {
+            return this;
+        } else if (cmpStart &lt;= 0 &amp;&amp; cmpEnd &gt;= 0) {
+            return other;
+        } else {
+            const newStart = (cmpStart &gt;= 0 ? this._start : other._start);
+            const newEnd = (cmpEnd &lt;= 0 ? this._end : other._end);
+            return LocalDateRange.of(newStart, newEnd);
+        }
+    }
+
+    /**
+     * Calculates the range that is the union of this range and the specified range.
+     * 
+     * This finds the union of two ranges.
+     * This throws an exception if the two ranges are not {@linkplain #isConnected(LocalDateRange) connected}.
+     * 
+     * @param {LocalDateRange} other - the other range to check for, not null
+     * @return {LocalDateRange} the range that is the union of the two ranges
+     * @throws {DateTimeException} if the ranges do not connect
+     */
+    union(other) {
+        requireNonNull(other, &apos;other&apos;);
+        if (this.isConnected(other) === false) {
+            throw new DateTimeException(`Ranges do not connect: ${this} and ${other}`);
+        }
+        const cmpStart = this._start.compareTo(other._start);
+        const cmpEnd = this._end.compareTo(other._end);
+        if (cmpStart &gt;= 0 &amp;&amp; cmpEnd &lt;= 0) {
+            return other;
+        } else if (cmpStart &lt;= 0 &amp;&amp; cmpEnd &gt;= 0) {
+            return this;
+        } else {
+            const newStart = (cmpStart &gt;= 0 ? other._start : this._start);
+            const newEnd = (cmpEnd &lt;= 0 ? other._end : this._end);
+            return LocalDateRange.of(newStart, newEnd);
+        }
+    }
+
+    /**
+     * Calculates the smallest range that encloses this range and the specified range.
+     * 
+     * The result of this method will {@linkplain #encloses(LocalDateRange) enclose}
+     * this range and the specified range.
+     * 
+     * @param {LocalDateRange} other - the other range to check for, not null
+     * @return {LocalDateRange} the range that spans the two ranges
+     */
+    span(other) {
+        requireNonNull(other, &apos;other&apos;);
+        const cmpStart = this._start.compareTo(other._start);
+        const cmpEnd = this._end.compareTo(other._end);
+        const newStart = (cmpStart &gt;= 0 ? other._start : this._start);
+        const newEnd = (cmpEnd &lt;= 0 ? other._end : this._end);
+        return LocalDateRange.of(newStart, newEnd);
+    }
+
+    /**
+     * Function overloading for {@link LocalDateRange.isAfter}
+     * - if called with `LocalDate`, {@link LocalDateRange._isAfterLocalDate} is executed,
+     * - if called with `LocalDateRange`, {@link LocalDateRange._isAfterLocalDateRange} is executed,
+     * - otherwise throws IllegalArgumentException.
+     *
+     * @param {LocalDate|LocalDateRange} localDateOrLocalDateRange
+     * @return {boolean}
+     */
+    isAfter(localDateOrLocalDateRange) {
+        if (localDateOrLocalDateRange instanceof LocalDate) {
+            return this._isAfterLocalDate(localDateOrLocalDateRange);
+        }
+        if (localDateOrLocalDateRange instanceof LocalDateRange) {
+            return this._isAfterLocalDateRange(localDateOrLocalDateRange);
+        }
+        throw new IllegalArgumentException(`localDateOrLocalDateRange must be an instance of LocalDate or LocalDateRange but is ${localDateOrLocalDateRange.constructor.name}`);
+    }
+
+    /**
+     * Function overloading for {@link LocalDateRange.isBefore}
+     * - if called with `LocalDate`, {@link LocalDateRange._isBeforeLocalDate} is executed,
+     * - if called with `LocalDateRange`, {@link LocalDateRange._isBeforeLocalDateRange} is executed,
+     * - otherwise throws IllegalArgumentException.
+     *
+     * @param {LocalDate|LocalDateRange} localDateOrLocalDateRange
+     * @return {boolean}
+     */
+    isBefore(localDateOrLocalDateRange) {
+        if (localDateOrLocalDateRange instanceof LocalDate) {
+            return this._isBeforeLocalDate(localDateOrLocalDateRange);
+        }
+        if (localDateOrLocalDateRange instanceof LocalDateRange) {
+            return this._isBeforeLocalDateRange(localDateOrLocalDateRange);
+        }
+        throw new IllegalArgumentException(`localDateOrLocalDateRange must be an instance of LocalDate or LocalDateRange but is ${localDateOrLocalDateRange.constructor.name}`);
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Checks if this range is after the specified date.
+     * 
+     * The result is true if every date in this range is after the specified date.
+     * An empty range behaves as though it is a date for comparison purposes.
+     *
+     * @param {LocalDate} date - the other date to compare to, not null
+     * @return {boolean} true if the start of this range is after the specified date
+     * @protected
+     */
+    _isAfterLocalDate(date) {
+        return this._start.compareTo(date) &gt; 0;
+    }
+
+    /**
+     * Checks if this range is before the specified date.
+     * 
+     * The result is true if every date in this range is before the specified date.
+     * An empty range behaves as though it is a date for comparison purposes.
+     *
+     * @param {LocalDate} date - the other date to compare to, not null
+     * @return {boolean} true if the start of this range is before the specified date
+     * @protected
+     */
+    _isBeforeLocalDate(date) {
+        return this._end.compareTo(date) &lt;= 0 &amp;&amp; this._start.compareTo(date) &lt; 0;
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Checks if this range is after the specified range.
+     * 
+     * The result is true if every date in this range is after every date in the specified range.
+     * An empty range behaves as though it is a date for comparison purposes.
+     *
+     * @param {LocalDateRange} other - the other range to compare to, not null
+     * @return {boolean} true if every date in this range is after every date in the other range
+     * @protected
+     */
+    _isAfterLocalDateRange(other) {
+        return this._start.compareTo(other._end) &gt;= 0 &amp;&amp; !other.equals(this);
+    }
+
+    /**
+     * Checks if this range is before the specified range.
+     * 
+     * The result is true if every date in this range is before every date in the specified range.
+     * An empty range behaves as though it is a date for comparison purposes.
+     *
+     * @param {LocalDateRange} range - the other range to compare to, not null
+     * @return {boolean} true if every date in this range is before every date in the other range
+     * @protected
+     */
+    _isBeforeLocalDateRange(range) {
+        return this._end.compareTo(range._start) &lt;= 0 &amp;&amp; !range.equals(this);
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Obtains the length of this range in days.
+     * 
+     * This returns the number of days between the start and end dates.
+     * Unbounded ranges return `Number.NaN`.
+     *
+     * @return {number} the length in days, Number.NaN if unbounded
+     */
+    lengthInDays() {
+        if (this.isUnboundedStart() || this.isUnboundedEnd()) {
+            return Number.NaN;
+        }
+        return this._end.toEpochDay() - this._start.toEpochDay();
+    }
+
+    /**
+     * Obtains the length of this range as a period.
+     * 
+     * This returns the {@link Period} between the start and end dates.
+     * Unbounded ranges throw {@link ArithmeticException}.
+     *
+     * @return {Period} the period of the range
+     * @throws {ArithmeticException} if the calculation exceeds the capacity of `Period`,
+     *   or the range is unbounded
+     */
+    toPeriod() {
+        if (this.isUnboundedStart() || this.isUnboundedEnd()) {
+            throw new ArithmeticException(&apos;Unbounded range cannot be converted to a Period&apos;);
+        }
+        return Period.between(this._start, this._end);
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Checks if this range is equal to another range.
+     * 
+     * Compares this `LocalDateRange` with another ensuring that the two dates are the same.
+     * Only objects of type `LocalDateRange` are compared, other types return false.
+     *
+     * @param {*} obj - the object to check, null returns false
+     * @return {boolean} true if this is equal to the other range
+     */
+    equals(obj) {
+        if (this === obj) {
+            return true;
+        }
+        if (obj instanceof LocalDateRange) {
+            const other = obj;
+            return this._start.equals(other._start) &amp;&amp; this._end.equals(other._end);
+        }
+        return false;
+    }
+
+    /**
+     * A hash code for this range.
+     *
+     * @return {number} a suitable hash code
+     */
+    hashCode() {
+        return this._start.hashCode() ^ this._end.hashCode();
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Outputs this range as a `String`, such as `2007-12-03/2007-12-04`.
+     * 
+     * The output will be the ISO-8601 format formed by combining the
+     * `toString()` methods of the two dates, separated by a forward slash.
+     *
+     * @return {string} a string representation of this date, not null
+     */
+    toString() {
+        return `${this._start.toString()}/${this._end.toString()}`;
+    }
+}
+
+export function _init() {
+    /**
+     * A range over the whole time-line.
+     */
+    LocalDateRange.ALL = new LocalDateRange(LocalDate.MIN, LocalDate.MAX);
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

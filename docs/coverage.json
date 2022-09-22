@@ -1,7 +1,7 @@
 {
-  "coverage": "70.94%",
-  "expectCount": 1845,
-  "actualCount": 1309,
+  "coverage": "73.52%",
+  "expectCount": 2134,
+  "actualCount": 1569,
   "files": {
     "packages/core/src/Clock.js": {
       "expectCount": 39,
@@ -216,7 +216,7 @@
         266,
         322,
         426,
-        1003
+        1004
       ]
     },
     "packages/core/src/ZoneId.js": {
@@ -250,8 +250,8 @@
       "expectCount": 7,
       "actualCount": 5,
       "undocumentLines": [
-        51,
-        52
+        50,
+        51
       ]
     },
     "packages/core/src/ZonedDateTime.js": {
@@ -833,21 +833,92 @@
         9
       ]
     },
+    "packages/extra/src/DayOfMonth.js": {
+      "expectCount": 25,
+      "actualCount": 22,
+      "undocumentLines": [
+        13,
+        168,
+        479
+      ]
+    },
+    "packages/extra/src/DayOfYear.js": {
+      "expectCount": 24,
+      "actualCount": 21,
+      "undocumentLines": [
+        13,
+        170,
+        463
+      ]
+    },
     "packages/extra/src/Interval.js": {
       "expectCount": 34,
       "actualCount": 31,
       "undocumentLines": [
-        155,
+        153,
+        154,
+        545
+      ]
+    },
+    "packages/extra/src/LocalDateRange.js": {
+      "expectCount": 43,
+      "actualCount": 40,
+      "undocumentLines": [
+        291,
+        292,
+        745
+      ]
+    },
+    "packages/extra/src/OffsetDate.js": {
+      "expectCount": 63,
+      "actualCount": 58,
+      "undocumentLines": [
+        13,
+        240,
+        241,
+        1249,
+        1273
+      ]
+    },
+    "packages/extra/src/Quarter.js": {
+      "expectCount": 30,
+      "actualCount": 25,
+      "undocumentLines": [
+        11,
         156,
-        551
+        157,
+        546,
+        581
+      ]
+    },
+    "packages/extra/src/YearQuarter.js": {
+      "expectCount": 54,
+      "actualCount": 49,
+      "undocumentLines": [
+        14,
+        262,
+        263,
+        1156,
+        1171
+      ]
+    },
+    "packages/extra/src/YearWeek.js": {
+      "expectCount": 50,
+      "actualCount": 45,
+      "undocumentLines": [
+        13,
+        264,
+        265,
+        1006,
+        1020
       ]
     },
     "packages/extra/src/_init.js": {
       "expectCount": 2,
       "actualCount": 0,
       "undocumentLines": [
-        8,
-        10
+        15,
+        17
       ]
     },
     "packages/extra/src/assert.js": {
