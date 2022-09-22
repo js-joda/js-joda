@@ -1,6 +1,19 @@
 Changelog
 =========
 
+## 2022-09-22 / 2
+
+### Versions
+
+
+#### :rocket: Enhancement
+* `core`, `extra`
+  * [#622](https://github.com/js-joda/js-joda/pull/622) extra types ([@perceptron8](https://github.com/perceptron8))
+
+#### :bug: Bug Fix
+* `core`
+  * [#621](https://github.com/js-joda/js-joda/pull/621) fix rounding in OffsetTime and YearMonth ([@perceptron8](https://github.com/perceptron8))
+
 ## 2022-09-22
 
 ### Versions
