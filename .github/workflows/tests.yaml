@@ -3,14 +3,14 @@ name: js-joda build and test
 on:
   push:
     branches:
-      - master
+      - main
     paths-ignore:
       - 'docs/**'
       - '**/*.md'
       - '*.md'
   pull_request:
     branches:
-      - master
+      - main
     paths-ignore:
       - 'docs/**'
       - '**/*.md'

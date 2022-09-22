@@ -167,7 +167,7 @@ var nextOrSameEvenDay = {
 LocalDateTime.parse(&quot;2012-12-23T12:00&quot;).with(nextOrSameEvenDay); // &apos;2012-12-24T12:00&apos;
 LocalDate.parse(&quot;2012-12-24&quot;).with(nextOrSameEvenDay); // &apos;2012-12-24&apos;</code>
 </code></pre>
-<h3 id="custom-temporal-fields-and-temporal-units">Custom temporal fields and temporal units</h3><p>See the source for <a href="https://github.com/js-joda/js-joda/blob/master/src/temporal/IsoFields.js">temporal/IsoFields</a> as an example how to implement custom fields and units. <code>IsoFields</code> implements fields and units for an ISO week-based year.</p>
+<h3 id="custom-temporal-fields-and-temporal-units">Custom temporal fields and temporal units</h3><p>See the source for <a href="https://github.com/js-joda/js-joda/blob/main/src/temporal/IsoFields.js">temporal/IsoFields</a> as an example how to implement custom fields and units. <code>IsoFields</code> implements fields and units for an ISO week-based year.</p>
 <h3 id="custom-formatter-and-queries">Custom formatter and queries</h3><p>The following example implements a parser for a local date with an optional local time. It returns either a <code>LocalDate</code> or a <code>LocalDateTime</code>, depending on the parsed fields.</p>
 <pre><code class="lang-javascript"><code class="source-code prettyprint">// build a custom date time formatter where the time field is optional
 var OPTIONAL_FORMATTER = DateTimeFormatter.ofPattern(

@@ -22,7 +22,7 @@ Non-numeric date and time formats need to know what language to use, for things 
 ERROR: Pattern using (localized) text not implemented, use @js-joda/locale plugin!
 ```
 
-To specify a locale, you'll need to import the [`@js-joda/timezone`](//github.com/js-joda/js-joda/tree/master/packages/timezone) and [`@js-joda/locale`](//github.com/js-joda/js-joda/tree/master/packages/locale) plugins. The simplest way to use `@js-joda/locale` is to install one of the locale-specific builds from npm:
+To specify a locale, you'll need to import the [`@js-joda/timezone`](//github.com/js-joda/js-joda/tree/main/packages/timezone) and [`@js-joda/locale`](//github.com/js-joda/js-joda/tree/main/packages/locale) plugins. The simplest way to use `@js-joda/locale` is to install one of the locale-specific builds from npm:
 
 - [@js-joda/locale_de](https://www.npmjs.com/package/@js-joda/locale_de)
 - [@js-joda/locale_de-de](https://www.npmjs.com/package/@js-joda/locale_de-de)

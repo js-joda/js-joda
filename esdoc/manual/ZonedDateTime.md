@@ -29,9 +29,9 @@ A **time zone** and a **time offset** are [not the same thing](https://en.wikipe
 
 Calculations that might span time zones or daylight savings transitions need to reference the time zone, not just the offset.
 
-The [@js-joda/timezone](//github.com/js-joda/js-joda/tree/master/packages/timezone) package provides bindings to the the [IANA tz database](https://www.iana.org/time-zones), making `joda-js`'s calculations time zone aware. The `tz` database uses zone names like `Africa/Bujumbura`, `America/New_York`, and `Europe/Lisbon` (see the [full list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)).
+The [@js-joda/timezone](//github.com/js-joda/js-joda/tree/main/packages/timezone) package provides bindings to the the [IANA tz database](https://www.iana.org/time-zones), making `joda-js`'s calculations time zone aware. The `tz` database uses zone names like `Africa/Bujumbura`, `America/New_York`, and `Europe/Lisbon` (see the [full list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)).
 
-To specify time zones using these names, you just need to `require` [@js-joda/timezone](//github.com/js-joda/js-joda/tree/master/packages/timezone).
+To specify time zones using these names, you just need to `require` [@js-joda/timezone](//github.com/js-joda/js-joda/tree/main/packages/timezone).
 
 ```javascript
 var jsJoda = require("@js-joda/core");

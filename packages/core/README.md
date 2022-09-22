@@ -1,12 +1,12 @@
 # Immutable date and time library for JavaScript
 
 [![npm version](https://badge.fury.io/js/%40js-joda%2Fcore.svg)](https://badge.fury.io/js/%40js-joda%2Fcore)
-[![Travis Build Status](https://app.travis-ci.com/js-joda/js-joda.svg?branch=master)](https://app.travis-ci.com/js-joda/js-joda)
+[![Travis Build Status](https://app.travis-ci.com/js-joda/js-joda.svg?branch=main)](https://app.travis-ci.com/js-joda/js-joda)
 [![Sauce Test Status](https://saucelabs.com/buildstatus/js-joda)](https://saucelabs.com/u/js-joda)
-[![Coverage Status](https://coveralls.io/repos/js-joda/js-joda/badge.svg?branch=master&service=github)](https://coveralls.io/github/js-joda/js-joda?branch=master)
+[![Coverage Status](https://coveralls.io/repos/js-joda/js-joda/badge.svg?branch=main&service=github)](https://coveralls.io/github/js-joda/js-joda?branch=main)
 [![Downloads/Month](https://img.shields.io/npm/dm/%40js-joda%2Fcore.svg)](https://img.shields.io/npm/dm/%40js-joda%2Fcore.svg)
 
-[![Sauce Browser Matrix](https://saucelabs.com/browser-matrix/js-joda.svg?branch=master)](https://saucelabs.com/u/js-joda)
+[![Sauce Browser Matrix](https://saucelabs.com/browser-matrix/js-joda.svg?branch=main)](https://saucelabs.com/u/js-joda)
 
 ## Introduction
 
@@ -100,12 +100,12 @@ js-joda consist of four packages:
 
 |  package name | description  |  path |
 |---|---|---|
-| `@js-joda/core` | Implementation of the ThreeTen Classes and API | [/packages/core](//github.com/js-joda/js-joda/tree/master/packages/core) |
-| `@js-joda/timezone` | Implementation of timezone calculation based on the iana Time Zone Database | [/packages/timezone](//github.com/js-joda/js-joda/tree/master/packages/timezone) |
-| `@js-joda/locale` | Implementation of locale specific functionality for js-joda, especially for formatting and parsing locale specific dates | [/packages/locale](//github.com/js-joda/js-joda/tree/master/packages/locale) |
-| `@js-joda/extra` | Implementation of the ThreeTen-Extra Classes and API |[/packages/extra](//github.com/js-joda/js-joda/tree/master/packages/extra) |
+| `@js-joda/core` | Implementation of the ThreeTen Classes and API | [/packages/core](//github.com/js-joda/js-joda/tree/main/packages/core) |
+| `@js-joda/timezone` | Implementation of timezone calculation based on the iana Time Zone Database | [/packages/timezone](//github.com/js-joda/js-joda/tree/main/packages/timezone) |
+| `@js-joda/locale` | Implementation of locale specific functionality for js-joda, especially for formatting and parsing locale specific dates | [/packages/locale](//github.com/js-joda/js-joda/tree/main/packages/locale) |
+| `@js-joda/extra` | Implementation of the ThreeTen-Extra Classes and API |[/packages/extra](//github.com/js-joda/js-joda/tree/main/packages/extra) |
 
-The [@js-joda/examples](//github.com/js-joda/js-joda/tree/master/packages/examples) package is for testing the different build artifacts in different context, like webpack, browser node, etc.
+The [@js-joda/examples](//github.com/js-joda/js-joda/tree/main/packages/examples) package is for testing the different build artifacts in different context, like webpack, browser node, etc.
 
 ## Documentation
 
@@ -123,7 +123,7 @@ Note that only pull requests and issues that match the threeten backport API wil
 
 ## License
 
-- `js-joda` is released under the [BSD 3-clause license](//github.com/js-joda/js-joda/blob/master/LICENSE).
+- `js-joda` is released under the [BSD 3-clause license](//github.com/js-joda/js-joda/blob/main/LICENSE).
 
 - `js-joda` uses the ThreeTen-Backport implementation (http://www.threeten.org/threetenbp/) as a reference base for implementation. This allows us to release js-joda under the BSD License while the OpenJDK java.time implementation is under GNU GPL+linking exception. The API of the ThreeTen-Backport is mostly identical to the official Java SE 8 API from the view of our JavaScript port.
 
@@ -146,14 +146,14 @@ are just copied but never equalled.
 ### Milestone 2: IANA timezone support (reached with version v1.2.0)
 
 - Add IANA timezone database support to js-joda. Implement handling of daylight saving transitions, mainly in `ZonedDateTime`.
-- For access to the IANA timezone database, the plugin [@js-joda/timezone](//github.com/js-joda/js-joda/tree/master/packages/timezone) is required. It provides an implementation of the [ZoneRulesProvider](//js-joda.github.io/js-joda/class/packages/core/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html) and contains the iana timezone database.
+- For access to the IANA timezone database, the plugin [@js-joda/timezone](//github.com/js-joda/js-joda/tree/main/packages/timezone) is required. It provides an implementation of the [ZoneRulesProvider](//js-joda.github.io/js-joda/class/packages/core/src/zone/ZoneRulesProvider.js~ZoneRulesProvider.html) and contains the iana timezone database.
 
 ### Milestone 3: Locale support (reached with v2.0.0 of @js-joda/locale)
 
 - Add locale support.
 - Extend pattern parser/ formatter for text with locale support.
 
-see the plugin [@js-joda/locale](//github.com/js-joda/js-joda/tree/master/packages/locale)
+see the plugin [@js-joda/locale](//github.com/js-joda/js-joda/tree/main/packages/locale)
 
 ### Future Milestones
 
