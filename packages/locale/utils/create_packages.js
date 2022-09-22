@@ -76,7 +76,10 @@ const packageTemplate = {
         '@js-joda/timezone': mainPackageJSON.peerDependencies['@js-joda/timezone'],
     },
     dependencies: {},
-    devDependencies: {}
+    devDependencies: {},
+    publishConfig: {
+        access: 'public'
+    }
 };
 
 const readmeTemplate = fs.readFileSync(path.resolve(__dirname, 'README_package.template.md'),
