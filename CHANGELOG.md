@@ -5,6 +5,7 @@ Changelog
 
 ### Versions
 
+@js-joda/core@5.4.0, @js-joda/extra@0.10.0, @js-joda/locale@4.8.4, @js-joda/timezone@2.13.1
 
 #### :rocket: Enhancement
 * `core`, `extra`
