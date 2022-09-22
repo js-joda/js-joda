@@ -1,6 +1,15 @@
 Changelog
 =========
 
+## 2022-09-22
+
+### Versions
+
+#### :rocket: Enhancement
+* `timezone`
+  * [#626](https://github.com/js-joda/js-joda/pull/626) Upgrade tzdb to 2022c ([@pithu](https://github.com/pithu))
+
+
 ## 2022-08-18
 
 ### Versions
