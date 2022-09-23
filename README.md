@@ -1,12 +1,12 @@
 # Immutable date and time library for JavaScript
 
 [![npm version](https://badge.fury.io/js/%40js-joda%2Fcore.svg)](https://badge.fury.io/js/%40js-joda%2Fcore)
-[![Travis Build Status](https://app.travis-ci.com/js-joda/js-joda.svg?branch=main)](https://app.travis-ci.com/js-joda/js-joda)
+[![GH Actions Build Status](https://github.com/js-joda/js-joda/actions/workflows/tests.yaml/badge.svg?branch=main)](https://github.com/js-joda/js-joda/actions)
 [![Sauce Test Status](https://saucelabs.com/buildstatus/js-joda)](https://saucelabs.com/u/js-joda)
 [![Coverage Status](https://coveralls.io/repos/js-joda/js-joda/badge.svg?branch=main&service=github)](https://coveralls.io/github/js-joda/js-joda?branch=main)
 [![Downloads/Month](https://img.shields.io/npm/dm/%40js-joda%2Fcore.svg)](https://img.shields.io/npm/dm/%40js-joda%2Fcore.svg)
 
-[![Sauce Browser Matrix](https://saucelabs.com/browser-matrix/js-joda.svg?branch=main)](https://saucelabs.com/u/js-joda)
+[![Sauce Browser Matrix](https://saucelabs.com/browser-matrix/js-joda.svg?branch=main&421)](https://saucelabs.com/u/js-joda)
 
 ## Introduction
 
