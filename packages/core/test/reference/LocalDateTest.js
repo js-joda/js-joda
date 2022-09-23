@@ -351,7 +351,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
         it('factory_ofYearDay_ints_yearTooLow', () => {
             expect(() => {
-                LocalDate.ofYearDay(Number.MIN_SAFE_INTEGER, 1);
+                LocalDate.ofYearDay(MathUtil.MIN_SAFE_INTEGER, 1);
             }).to.throw(DateTimeException);
         });
     });

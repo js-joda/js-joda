@@ -37,6 +37,10 @@ import { OffsetDate } from '../../src/OffsetDate';
 
 import { MockSimplePeriod } from './MockSimplePeriod';
 
+import { _ as jodaInternal } from '@js-joda/core';
+
+const MathUtil = jodaInternal.MathUtil;
+
 describe('org.threeten.extra.TestOffsetDate', () => {
     const OFFSET_PONE = ZoneOffset.ofHours(1);
     const OFFSET_PTWO = ZoneOffset.ofHours(2);
@@ -351,7 +355,7 @@ describe('org.threeten.extra.TestOffsetDate', () => {
         });
 
         it('factory_of_ints_yearTooLow', () => {
-            assertThrows(DateTimeException, () => OffsetDate.of(Number.MIN_SAFE_INTEGER, 1, 1, OFFSET_PONE));
+            assertThrows(DateTimeException, () => OffsetDate.of(MathUtil.MIN_SAFE_INTEGER, 1, 1, OFFSET_PONE));
         });
 
         it('factory_of_ints_nullOffset', () => {
@@ -860,12 +864,12 @@ describe('org.threeten.extra.TestOffsetDate', () => {
 
         it('test_plusYears_long_invalidTooLargeMaxAddMax', () => {
             const test = OffsetDate.of(Year.MAX_VALUE, 12, 1, OFFSET_PONE);
-            assertThrows(DateTimeException, () => test.plusYears(Number.MAX_SAFE_INTEGER));
+            assertThrows(DateTimeException, () => test.plusYears(MathUtil.MAX_SAFE_INTEGER));
         });
 
         it('test_plusYears_long_invalidTooLargeMaxAddMin', () => {
             const test = OffsetDate.of(Year.MAX_VALUE, 12, 1, OFFSET_PONE);
-            assertThrows(DateTimeException, () => test.plusYears(Number.MIN_SAFE_INTEGER));
+            assertThrows(DateTimeException, () => test.plusYears(MathUtil.MIN_SAFE_INTEGER));
         });
 
         it('test_plusYears_long_invalidTooSmall', () => {
@@ -932,12 +936,12 @@ describe('org.threeten.extra.TestOffsetDate', () => {
 
         it('test_plusMonths_long_invalidTooLargeMaxAddMax', () => {
             const test = OffsetDate.of(Year.MAX_VALUE, 12, 1, OFFSET_PONE);
-            assertThrows(DateTimeException, () => test.plusMonths(Number.MAX_SAFE_INTEGER));
+            assertThrows(DateTimeException, () => test.plusMonths(MathUtil.MAX_SAFE_INTEGER));
         });
 
         it('test_plusMonths_long_invalidTooLargeMaxAddMin', () => {
             const test = OffsetDate.of(Year.MAX_VALUE, 12, 1, OFFSET_PONE);
-            assertThrows(DateTimeException, () => test.plusMonths(Number.MIN_SAFE_INTEGER));
+            assertThrows(DateTimeException, () => test.plusMonths(MathUtil.MIN_SAFE_INTEGER));
         });
 
         it('test_plusMonths_long_invalidTooSmall', () => {
@@ -1022,11 +1026,11 @@ describe('org.threeten.extra.TestOffsetDate', () => {
         });
 
         it('test_plusWeeks_invalidMaxMinusMax', () => {
-            assertThrows(ArithmeticException, () => OffsetDate.of(Year.MAX_VALUE, 12, 25, OFFSET_PONE).plusWeeks(Number.MAX_SAFE_INTEGER));
+            assertThrows(ArithmeticException, () => OffsetDate.of(Year.MAX_VALUE, 12, 25, OFFSET_PONE).plusWeeks(MathUtil.MAX_SAFE_INTEGER));
         });
 
         it('test_plusWeeks_invalidMaxMinusMin', () => {
-            assertThrows(ArithmeticException, () => OffsetDate.of(Year.MAX_VALUE, 12, 25, OFFSET_PONE).plusWeeks(Number.MIN_SAFE_INTEGER));
+            assertThrows(ArithmeticException, () => OffsetDate.of(Year.MAX_VALUE, 12, 25, OFFSET_PONE).plusWeeks(MathUtil.MIN_SAFE_INTEGER));
         });
     });
 
@@ -1107,11 +1111,11 @@ describe('org.threeten.extra.TestOffsetDate', () => {
         });
 
         it('test_plusDays_overflowTooLarge', () => {
-            assertThrows(ArithmeticException, () => OffsetDate.of(Year.MAX_VALUE, 12, 31, OFFSET_PONE).plusDays(Number.MAX_SAFE_INTEGER));
+            assertThrows(ArithmeticException, () => OffsetDate.of(Year.MAX_VALUE, 12, 31, OFFSET_PONE).plusDays(MathUtil.MAX_SAFE_INTEGER));
         });
 
         it('test_plusDays_overflowTooSmall', () => {
-            assertThrows(ArithmeticException, () => OffsetDate.of(Year.MIN_VALUE, 1, 1, OFFSET_PONE).plusDays(Number.MIN_SAFE_INTEGER));
+            assertThrows(ArithmeticException, () => OffsetDate.of(Year.MIN_VALUE, 1, 1, OFFSET_PONE).plusDays(MathUtil.MIN_SAFE_INTEGER));
         });
     });
 
@@ -1179,12 +1183,12 @@ describe('org.threeten.extra.TestOffsetDate', () => {
 
         it('test_minusYears_long_invalidTooLargeMaxAddMax', () => {
             const test = OffsetDate.of(Year.MAX_VALUE, 12, 1, OFFSET_PONE);
-            assertThrows(DateTimeException, () => test.minusYears(Number.MAX_SAFE_INTEGER));
+            assertThrows(DateTimeException, () => test.minusYears(MathUtil.MAX_SAFE_INTEGER));
         });
 
         it('test_minusYears_long_invalidTooLargeMaxAddMin', () => {
             const test = OffsetDate.of(Year.MAX_VALUE, 12, 1, OFFSET_PONE);
-            assertThrows(DateTimeException, () => test.minusYears(Number.MIN_SAFE_INTEGER));
+            assertThrows(DateTimeException, () => test.minusYears(MathUtil.MIN_SAFE_INTEGER));
         });
 
         it('test_minusYears_long_invalidTooSmall', () => {
@@ -1250,12 +1254,12 @@ describe('org.threeten.extra.TestOffsetDate', () => {
 
         it('test_minusMonths_long_invalidTooLargeMaxAddMax', () => {
             const test = OffsetDate.of(Year.MAX_VALUE, 12, 1, OFFSET_PONE);
-            assertThrows(DateTimeException, () => test.minusMonths(Number.MAX_SAFE_INTEGER));
+            assertThrows(DateTimeException, () => test.minusMonths(MathUtil.MAX_SAFE_INTEGER));
         });
 
         it('test_minusMonths_long_invalidTooLargeMaxAddMin', () => {
             const test = OffsetDate.of(Year.MAX_VALUE, 12, 1, OFFSET_PONE);
-            assertThrows(DateTimeException, () => test.minusMonths(Number.MIN_SAFE_INTEGER));
+            assertThrows(DateTimeException, () => test.minusMonths(MathUtil.MIN_SAFE_INTEGER));
         });
 
         it('test_minusMonths_long_invalidTooSmall', () => {
@@ -1341,11 +1345,11 @@ describe('org.threeten.extra.TestOffsetDate', () => {
         });
 
         it('test_minusWeeks_invalidMaxMinusMax', () => {
-            assertThrows(ArithmeticException, () => OffsetDate.of(Year.MAX_VALUE, 12, 25, OFFSET_PONE).minusWeeks(Number.MAX_SAFE_INTEGER));
+            assertThrows(ArithmeticException, () => OffsetDate.of(Year.MAX_VALUE, 12, 25, OFFSET_PONE).minusWeeks(MathUtil.MAX_SAFE_INTEGER));
         });
 
         it('test_minusWeeks_invalidMaxMinusMin', () => {
-            assertThrows(ArithmeticException, () => OffsetDate.of(Year.MAX_VALUE, 12, 25, OFFSET_PONE).minusWeeks(Number.MIN_SAFE_INTEGER));
+            assertThrows(ArithmeticException, () => OffsetDate.of(Year.MAX_VALUE, 12, 25, OFFSET_PONE).minusWeeks(MathUtil.MIN_SAFE_INTEGER));
         });
     });
 
@@ -1426,11 +1430,11 @@ describe('org.threeten.extra.TestOffsetDate', () => {
         });
 
         it('test_minusDays_overflowTooLarge', () => {
-            assertThrows(ArithmeticException, () => OffsetDate.of(Year.MAX_VALUE, 12, 31, OFFSET_PONE).minusDays(Number.MIN_SAFE_INTEGER));
+            assertThrows(ArithmeticException, () => OffsetDate.of(Year.MAX_VALUE, 12, 31, OFFSET_PONE).minusDays(MathUtil.MIN_SAFE_INTEGER));
         });
 
         it('test_minusDays_overflowTooSmall', () => {
-            assertThrows(ArithmeticException, () => OffsetDate.of(Year.MIN_VALUE, 1, 1, OFFSET_PONE).minusDays(Number.MAX_SAFE_INTEGER));
+            assertThrows(ArithmeticException, () => OffsetDate.of(Year.MIN_VALUE, 1, 1, OFFSET_PONE).minusDays(MathUtil.MAX_SAFE_INTEGER));
         });
     });
 
