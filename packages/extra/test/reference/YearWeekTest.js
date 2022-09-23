@@ -425,10 +425,10 @@ describe('org.threeten.extra.TestYearWeek', () => {
     describe('compareTo()', () => {
         it('test_compareTo', () => {
             for (let year1 = -1; year1 <= 1; year1++) {
-                for (const week1 of [1, 53]) {
+                for (const week1 of [1, 52]) {
                     const a = YearWeek.of(year1, week1);
                     for (let year2 = -1; year2 <= 1; year2++) {
-                        for (const week2 of [1, 53]) {
+                        for (const week2 of [1, 52]) {
                             const b = YearWeek.of(year2, week2);
                             if (year1 < year2) {
                                 assertEquals(true, a.compareTo(b) < 0);
