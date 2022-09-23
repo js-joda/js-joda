@@ -34,6 +34,10 @@ import { assertEquals, assertFalse, assertThrows, assertTrue } from '../testUtil
 
 import { YearWeek } from '../../src/YearWeek';
 
+import { _ as jodaInternal } from '@js-joda/core';
+
+const MathUtil = jodaInternal.MathUtil;
+
 describe('org.threeten.extra.TestYearWeek', () => {
     const TEST_NON_LEAP = YearWeek.of(2014, 1);
     const TEST = YearWeek.of(2015, 1);
@@ -290,11 +294,11 @@ describe('org.threeten.extra.TestYearWeek', () => {
         });
 
         it('test_of_year_tooLow', () => {
-            assertThrows(DateTimeException, () => YearWeek.of(Number.MIN_SAFE_INTEGER, 1));
+            assertThrows(DateTimeException, () => YearWeek.of(MathUtil.MIN_SAFE_INTEGER, 1));
         });
 
         it('test_of_year_tooHigh', () => {
-            assertThrows(DateTimeException, () => YearWeek.of(Number.MAX_SAFE_INTEGER, 1));
+            assertThrows(DateTimeException, () => YearWeek.of(MathUtil.MAX_SAFE_INTEGER, 1));
         });
 
         it('test_of_invalidWeekValue', () => {
@@ -721,11 +725,11 @@ describe('org.threeten.extra.TestYearWeek', () => {
         });
 
         it('test_withYear_int_max', () => {
-            assertThrows(DateTimeException, () => TEST.withYear(Number.MAX_SAFE_INTEGER));
+            assertThrows(DateTimeException, () => TEST.withYear(MathUtil.MAX_SAFE_INTEGER));
         });
 
         it('test_withYear_int_min', () => {
-            assertThrows(DateTimeException, () => TEST.withYear(Number.MIN_SAFE_INTEGER));
+            assertThrows(DateTimeException, () => TEST.withYear(MathUtil.MIN_SAFE_INTEGER));
         });
     });
 
@@ -767,11 +771,11 @@ describe('org.threeten.extra.TestYearWeek', () => {
         });
 
         it('test_withWeek_int_max', () => {
-            assertThrows(DateTimeException, () => TEST.withWeek(Number.MAX_SAFE_INTEGER));
+            assertThrows(DateTimeException, () => TEST.withWeek(MathUtil.MAX_SAFE_INTEGER));
         });
 
         it('test_withWeek_int_min', () => {
-            assertThrows(DateTimeException, () => TEST.withWeek(Number.MIN_SAFE_INTEGER));
+            assertThrows(DateTimeException, () => TEST.withWeek(MathUtil.MIN_SAFE_INTEGER));
         });
     });
 
@@ -828,11 +832,11 @@ describe('org.threeten.extra.TestYearWeek', () => {
         });
 
         it('test_plusWeeks_max_long', () => {
-            assertThrows(ArithmeticException, () => TEST.plusWeeks(Number.MAX_SAFE_INTEGER));
+            assertThrows(ArithmeticException, () => TEST.plusWeeks(MathUtil.MAX_SAFE_INTEGER));
         });
 
         it('test_plusWeeks_min_long', () => {
-            assertThrows(ArithmeticException, () => TEST.plusWeeks(Number.MIN_SAFE_INTEGER));
+            assertThrows(ArithmeticException, () => TEST.plusWeeks(MathUtil.MIN_SAFE_INTEGER));
         });
     });
 
@@ -845,7 +849,7 @@ describe('org.threeten.extra.TestYearWeek', () => {
         });
 
         it('test_minus_overflow', () => {
-            assertThrows(ArithmeticException, () => TEST.minus(Number.MIN_SAFE_INTEGER, ChronoUnit.WEEKS));
+            assertThrows(ArithmeticException, () => TEST.minus(MathUtil.MIN_SAFE_INTEGER, ChronoUnit.WEEKS));
         });
     });
 
@@ -912,11 +916,11 @@ describe('org.threeten.extra.TestYearWeek', () => {
         });
 
         it('test_minWeeks_max_long', () => {
-            assertThrows(ArithmeticException, () => TEST.plusWeeks(Number.MAX_SAFE_INTEGER));
+            assertThrows(ArithmeticException, () => TEST.plusWeeks(MathUtil.MAX_SAFE_INTEGER));
         });
 
         it('test_minWeeks_min_long', () => {
-            assertThrows(ArithmeticException, () => TEST.plusWeeks(Number.MIN_SAFE_INTEGER));
+            assertThrows(ArithmeticException, () => TEST.plusWeeks(MathUtil.MIN_SAFE_INTEGER));
         });
     });
 

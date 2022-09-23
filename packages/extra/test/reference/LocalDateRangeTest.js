@@ -68,7 +68,7 @@ describe('org.threeten.extra.TestLocalDateRange', () => {
         assertEquals(false, test.isEmpty());
         assertEquals(true, test.isUnboundedStart());
         assertEquals(false, test.isUnboundedEnd());
-        assertEquals(true, Number.isNaN(test.lengthInDays()));
+        assertEquals(Number.POSITIVE_INFINITY, test.lengthInDays());
         assertEquals('-999999-01-01/2012-07-31', test.toString());
     });
 
@@ -80,7 +80,7 @@ describe('org.threeten.extra.TestLocalDateRange', () => {
         assertEquals(false, test.isEmpty());
         assertEquals(false, test.isUnboundedStart());
         assertEquals(true, test.isUnboundedEnd());
-        assertEquals(true, Number.isNaN(test.lengthInDays()));
+        assertEquals(Number.POSITIVE_INFINITY, test.lengthInDays());
         assertEquals('2012-07-28/+999999-12-31', test.toString());
     });
 
@@ -92,7 +92,7 @@ describe('org.threeten.extra.TestLocalDateRange', () => {
         assertEquals(false, test.isEmpty());
         assertEquals(true, test.isUnboundedStart());
         assertEquals(true, test.isUnboundedEnd());
-        assertEquals(true, Number.isNaN(test.lengthInDays()));
+        assertEquals(Number.POSITIVE_INFINITY, test.lengthInDays());
         assertEquals('-999999-01-01/+999999-12-31', test.toString());
     });
 
@@ -116,7 +116,7 @@ describe('org.threeten.extra.TestLocalDateRange', () => {
         assertEquals(false, test.isEmpty());
         assertEquals(true, test.isUnboundedStart());
         assertEquals(false, test.isUnboundedEnd());
-        assertEquals(true, Number.isNaN(test.lengthInDays()));
+        assertEquals(Number.POSITIVE_INFINITY, test.lengthInDays());
         assertEquals('-999999-01-01/-999999-01-03', test.toString());
     });
 
@@ -128,7 +128,7 @@ describe('org.threeten.extra.TestLocalDateRange', () => {
         assertEquals(false, test.isEmpty());
         assertEquals(false, test.isUnboundedStart());
         assertEquals(false, test.isUnboundedEnd());
-        //assertEquals(1, test.lengthInDays());
+        assertEquals(1, test.lengthInDays());
         assertEquals('-999999-01-02/-999999-01-03', test.toString());
     });
 
@@ -193,7 +193,7 @@ describe('org.threeten.extra.TestLocalDateRange', () => {
         assertEquals(false, test.isEmpty());
         assertEquals(true, test.isUnboundedStart());
         assertEquals(false, test.isUnboundedEnd());
-        assertEquals(true, Number.isNaN(test.lengthInDays()));
+        assertEquals(Number.POSITIVE_INFINITY, test.lengthInDays());
         assertEquals('-999999-01-01/2012-07-31', test.toString());
     });
 
@@ -205,7 +205,7 @@ describe('org.threeten.extra.TestLocalDateRange', () => {
         assertEquals(false, test.isEmpty());
         assertEquals(false, test.isUnboundedStart());
         assertEquals(true, test.isUnboundedEnd());
-        //assertEquals(Integer.MAX_VALUE, test.lengthInDays());
+        assertEquals(Number.POSITIVE_INFINITY, test.lengthInDays());
         assertEquals('2012-07-28/+999999-12-31', test.toString());
     });
 
@@ -217,7 +217,7 @@ describe('org.threeten.extra.TestLocalDateRange', () => {
         assertEquals(false, test.isEmpty());
         assertEquals(true, test.isUnboundedStart());
         assertEquals(true, test.isUnboundedEnd());
-        assertEquals(true, Number.isNaN(test.lengthInDays()));
+        assertEquals(Number.POSITIVE_INFINITY, test.lengthInDays());
         assertEquals('-999999-01-01/+999999-12-31', test.toString());
     });
 
@@ -233,7 +233,7 @@ describe('org.threeten.extra.TestLocalDateRange', () => {
         assertEquals(false, test.isEmpty());
         assertEquals(true, test.isUnboundedStart());
         assertEquals(false, test.isUnboundedEnd());
-        assertEquals(true, Number.isNaN(test.lengthInDays()));
+        assertEquals(Number.POSITIVE_INFINITY, test.lengthInDays());
         assertEquals('-999999-01-01/-999999-01-03', test.toString());
     });
 
@@ -257,7 +257,7 @@ describe('org.threeten.extra.TestLocalDateRange', () => {
         assertEquals(false, test.isEmpty());
         assertEquals(true, test.isUnboundedStart());
         assertEquals(false, test.isUnboundedEnd());
-        assertEquals(true, Number.isNaN(test.lengthInDays()));
+        assertEquals(Number.POSITIVE_INFINITY, test.lengthInDays());
         assertEquals('-999999-01-01/-999999-01-04', test.toString());
     });
 
@@ -979,9 +979,9 @@ describe('org.threeten.extra.TestLocalDateRange', () => {
         assertEquals(2, LocalDateRange.of(DATE_2012_07_27, DATE_2012_07_29).lengthInDays());
         assertEquals(1, LocalDateRange.of(DATE_2012_07_28, DATE_2012_07_29).lengthInDays());
         assertEquals(0, LocalDateRange.of(DATE_2012_07_29, DATE_2012_07_29).lengthInDays());
-        assertEquals(true, Number.isNaN(LocalDateRange.of(LocalDate.MIN, DATE_2012_07_29).lengthInDays()));
-        assertEquals(true, Number.isNaN(LocalDateRange.of(DATE_2012_07_29, LocalDate.MAX).lengthInDays()));
-        assertEquals(false, Number.isNaN(LocalDateRange.of(MINP1, MAXM1).lengthInDays()));
+        assertEquals(Number.POSITIVE_INFINITY, LocalDateRange.of(LocalDate.MIN, DATE_2012_07_29).lengthInDays());
+        assertEquals(Number.POSITIVE_INFINITY, LocalDateRange.of(DATE_2012_07_29, LocalDate.MAX).lengthInDays());
+        assertEquals(MINP1.daysUntil(MAXM1), LocalDateRange.of(MINP1, MAXM1).lengthInDays());
     });
 
     it('test_toPeriod', () => {

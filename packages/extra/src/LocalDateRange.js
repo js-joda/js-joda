@@ -670,13 +670,13 @@ export class LocalDateRange {
      * Obtains the length of this range in days.
      * 
      * This returns the number of days between the start and end dates.
-     * Unbounded ranges return `Number.NaN`.
+     * Unbounded ranges return `Number.POSITIVE_INFINITY`.
      *
-     * @return {number} the length in days, Number.NaN if unbounded
+     * @return {number} the length in days, `Number.POSITIVE_INFINITY` if unbounded
      */
     lengthInDays() {
         if (this.isUnboundedStart() || this.isUnboundedEnd()) {
-            return Number.NaN;
+            return Number.POSITIVE_INFINITY;
         }
         return this._end.toEpochDay() - this._start.toEpochDay();
     }
