@@ -1,6 +1,22 @@
 Changelog
 =========
 
+## 2022-09-30
+
+### Versions
+
+@js-joda/core@5.4.1, @js-joda/extra@0.10.1, @js-joda/locale@4.8.5, @js-joda/timezone@2.14.0
+
+#### :rocket: Enhancement
+* `timezone`
+  * [#632](https://github.com/js-joda/js-joda/pull/632) update tzdb to 2022d ([@pithu](https://github.com/pithu))
+* `core`, `extra`, `locale`, `timezone`
+  * [#628](https://github.com/js-joda/js-joda/pull/628) Rename default branch from master to main ([@pithu](https://github.com/pithu))
+
+#### :bug: Bug Fix
+* `core`, `extra`
+  * [#630](https://github.com/js-joda/js-joda/pull/630) lengthInDays(): POSITIVE_INFINITY instead of NaN if range is unbounded ([@perceptron8](https://github.com/perceptron8))
+
 ## 2022-09-22 / 2
 
 ### Versions
