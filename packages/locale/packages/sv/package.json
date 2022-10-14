@@ -4,7 +4,7 @@
     "description": "prebuilt js-joda locale package for locales: sv.*",
     "repository": {
         "type": "git",
-        "url": "https://github.com/js-joda/js-joda-locale.git"
+        "url": "https://github.com/js-joda/js-joda.git"
     },
     "main": "dist/index.js",
     "typings": "dist/js-joda-locale.d.ts",
@@ -20,9 +20,9 @@
     ],
     "license": "BSD-3-Clause",
     "bugs": {
-        "url": "https://github.com/js-joda/js-joda-locale/issues"
+        "url": "https://github.com/js-joda/js-joda/issues"
     },
-    "homepage": "https://github.com/js-joda/js-joda-locale#readme",
+    "homepage": "https://js-joda.github.io/js-joda",
     "peerDependencies": {
         "@js-joda/core": ">=3.2.0",
         "@js-joda/timezone": "^2.3.0"
