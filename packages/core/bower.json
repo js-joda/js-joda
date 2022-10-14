@@ -12,7 +12,7 @@
     "time",
     "timezone"
   ],
-  "homepage": "https://github.com/js-joda/joda-js",
+  "homepage": "https://js-joda.github.io/js-joda",
   "ignore": [
     "**/.*",
     "node_modules",
