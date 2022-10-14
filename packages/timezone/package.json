@@ -50,7 +50,7 @@
   },
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/js-joda/js-joda-timezone/issues"
+    "url": "https://github.com/js-joda/js-joda/issues"
   },
-  "homepage": "https://github.com/js-joda/js-joda-timezone#readme"
+  "homepage": "https://js-joda.github.io/js-joda"
 }

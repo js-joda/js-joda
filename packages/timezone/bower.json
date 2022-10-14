@@ -11,7 +11,7 @@
     "time",
     "timezone"
   ],
-  "homepage": "https://github.com/js-joda/js-joda-timezone",
+  "homepage": "https://js-joda.github.io/js-joda",
   "ignore": [
     "**/.*",
     "node_modules",
