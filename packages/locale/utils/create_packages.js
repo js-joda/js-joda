@@ -52,7 +52,7 @@ const packageTemplate = {
     description: '<will be overridden>',
     repository: {
         type: 'git',
-        url: 'https://github.com/js-joda/js-joda-locale.git'
+        url: 'https://github.com/js-joda/js-joda.git'
     },
     main: 'dist/index.js',
     typings: 'dist/js-joda-locale.d.ts',
@@ -68,9 +68,9 @@ const packageTemplate = {
     ],
     license: 'BSD-3-Clause',
     bugs: {
-        url: 'https://github.com/js-joda/js-joda-locale/issues'
+        url: 'https://github.com/js-joda/js-joda/issues'
     },
-    homepage: 'https://github.com/js-joda/js-joda-locale#readme',
+    homepage: 'https://js-joda.github.io/js-joda',
     peerDependencies: {
         '@js-joda/core': mainPackageJSON.peerDependencies['@js-joda/core'],
         '@js-joda/timezone': mainPackageJSON.peerDependencies['@js-joda/timezone'],
