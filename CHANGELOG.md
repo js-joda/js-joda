@@ -1,6 +1,22 @@
 Changelog
 =========
 
+## Unreleased 2022-10-18
+
+### Versions
+
+@js-joda/core@5.4.2, @js-joda/extra@0.10.2, @js-joda/locale@4.8.6, @js-joda/timezone@2.15.0
+
+#### :rocket: Enhancement
+* `locale`
+  * [#637](https://github.com/js-joda/js-joda/pull/637) update urls in locale packages ([@Inok](https://github.com/Inok))
+* `timezone`
+  * [#636](https://github.com/js-joda/js-joda/pull/636) fix urls in timezone package ([@Inok](https://github.com/Inok))
+  * [#634](https://github.com/js-joda/js-joda/pull/634) update tzdb to 2022e ([@pithu](https://github.com/pithu))
+* `core`
+  * [#635](https://github.com/js-joda/js-joda/pull/635) core - sync homepage in package.json and bower.json ([@Inok](https://github.com/Inok))
+
+
 ## 2022-09-30
 
 ### Versions
