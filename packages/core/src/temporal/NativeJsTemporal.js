@@ -1,105 +1,92 @@
 /*
- * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+ * @copyright (c) 2022, Philipp Thürwächter & Pattrick Hüper & Michał Sobkiewicz
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import { assert, requireNonNull } from '../assert';
-import { UnsupportedTemporalTypeException } from '../errors';
-
-import { Instant } from '../Instant';
-import { LocalDate } from '../LocalDate';
-import { LocalTime } from '../LocalTime';
-import { MathUtil } from '../MathUtil';
+import { requireInstance, requireNonNull } from '../assert';
+import { IllegalArgumentException } from '../errors';
+import { Instant } from '../js-joda';
 import { ZoneId } from '../ZoneId';
-
-import { ChronoField } from './ChronoField';
-import { TemporalQueries } from './TemporalQueries';
 import { TemporalAccessor } from './TemporalAccessor';
+import { TemporalField } from './TemporalField';
+import { TemporalQuery } from './TemporalQuery';
 
 /**
- * A wrapper around a native javascript Date instance that
- * implements TemporalAccessor functionality
+ * A wrapper around a javascript Date or a moment instance that implements TemporalAccessor functionality.
  */
 class NativeJsTemporal extends TemporalAccessor {
-
     /**
      * @param {!(Date|moment)} date - a javascript Date or a moment instance
-     * @param {ZoneId} [zone=ZoneId.systemDefault()] - the zone of the temporal, defaults to ZoneId.systemDefault()
+     * @param {ZoneId} [zoneId = ZoneId.systemDefault()] - the zone of the temporal, defaults to ZoneId.systemDefault()
      * @private
      */
-    constructor(date, zone=ZoneId.systemDefault()){
+    constructor(date, zone = ZoneId.systemDefault()) {
         super();
-        this._zone = zone;
-        if(date instanceof Date) {
-            this._epochMilli = date.getTime();
-            return;
-        } else if(typeof date.toDate === 'function' &&  date.toDate() instanceof Date) {
-            // it's a moment
-            this._epochMilli = date.toDate().getTime();
-            return;
+        this._date = requireNonNull(date, 'date');
+        this._zone = requireNonNull(zone, 'zone');
+        switch (date.constructor.name) {
+            case 'Date':
+                this._delegate = () => Instant.ofEpochMilli(date.getTime()).atZone(zone);
+                break;
+            case 'Moment':
+                this._delegate = () => Instant.ofEpochMilli(date.valueOf()).atZone(zone);
+                break;
+            default:
+                throw new IllegalArgumentException('date must be either a javascript date or a moment');
         }
-        assert(false, 'date must be either a javascript date or a moment');
     }
 
     /**
-     * @param {TemporalQuery} query  the query to invoke, not null
+     * @param {!TemporalQuery} query - the query to invoke, not null
      * @return {*} the query result, null may be returned (defined by the query)
      * @throws DateTimeException if unable to query
+     * @override
      */
     query(query) {
         requireNonNull(query, 'query');
-        if (query === TemporalQueries.localDate()) {
-            return LocalDate.ofInstant(Instant.ofEpochMilli(this._epochMilli), this._zone);
-        } else if(query === TemporalQueries.localTime()){
-            return LocalTime.ofInstant(Instant.ofEpochMilli(this._epochMilli), this._zone);
-        } else if(query === TemporalQueries.zone()){
-            return this._zone;
-        }
-        return super.query(query);
+        requireInstance(query, TemporalQuery, 'query');
+        return this._delegate().query(query);
     }
 
     /**
-     *
-     * @param {TemporalField} field
-     * @returns {number}
-     */
-    get(field) {
-        return this.getLong(field);
-    }
-
-    /**
-     *
      * @param {!TemporalField} field
      * @returns {number}
+     * @override
+     */
+    get(field) {
+        requireNonNull(field, 'field');
+        requireInstance(field, TemporalField, 'field');
+        return this._delegate().get(field);
+    }
+
+    /**
+     * @param {!TemporalField} field
+     * @returns {number}
+     * @override
      */
     getLong(field) {
         requireNonNull(field, 'field');
-        if (field instanceof ChronoField) {
-            switch (field) {
-                case ChronoField.NANO_OF_SECOND: return MathUtil.floorMod(this._epochMilli, 1000) * 1000000;
-                case ChronoField.INSTANT_SECONDS: return MathUtil.floorDiv(this._epochMilli, 1000);
-            }
-            throw new UnsupportedTemporalTypeException(`Unsupported field: ${field}`);
-        }
-        return field.getFrom(this);
+        requireInstance(field, TemporalField, 'field');
+        return this._delegate().getLong(field);
     }
 
     /**
-     *
-     * @param {TemporalField} field
+     * @param {!TemporalField} field
      * @returns {boolean}
+     * @override
      */
-    isSupported(field){
-        return field === ChronoField.INSTANT_SECONDS || field === ChronoField.NANO_OF_SECOND;
+    isSupported(field) {
+        requireNonNull(field, 'field');
+        requireInstance(field, TemporalField, 'field');
+        return this._delegate().isSupported(field);
     }
 }
 
 /**
- *
  * @param {!(Date|moment)} date - a javascript Date or a moment instance
- * @param {ZoneId} [zone=ZoneId.systemDefault()] - the zone of the temporal, defaults to ZoneId.systemDefault()
+ * @param {ZoneId} [zone = ZoneId.systemDefault()] - the zone of the temporal, defaults to ZoneId.systemDefault()
  * @returns {NativeJsTemporal}
  */
-export function nativeJs(date, zone){
+export function nativeJs(date, zone) {
     return new NativeJsTemporal(date, zone);
 }
