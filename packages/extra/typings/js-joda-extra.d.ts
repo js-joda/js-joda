@@ -46,8 +46,7 @@ export class DayOfYear extends TemporalAccessor {
 }
 
 export class Interval {
-    static of(startInclusive: Instant, endExclusive: Instant): Interval;
-    static of(startInclusive: Instant, duration: Duration): Interval;
+    static of(startInclusive: Instant, endExclusiveInstantOrDuration: Instant | Duration): Interval;
     static parse(text: string): Interval;
 
     private constructor(startInclusive: Instant, endExclusive: Instant);
