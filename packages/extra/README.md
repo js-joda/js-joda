@@ -16,4 +16,4 @@ Attempt to port https://github.com/ThreeTen/threeten-extra to https://github.com
 
 ### Usage ###
 
-see examples in  [examples folder](examples/) or [![on requirebin](http://requirebin.com/badge.png)](http://requirebin.com/?gist=38e66bbb34d477a698be12f097a8a9f3)
+see examples in  [examples folder](/packages/extra/examples/)
