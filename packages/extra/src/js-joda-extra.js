@@ -11,6 +11,7 @@ import { Interval } from './Interval';
 import { LocalDateRange } from './LocalDateRange';
 import { OffsetDate } from './OffsetDate';
 import { Quarter } from './Quarter';
+import { Temporals } from './Temporals';
 import { YearQuarter } from './YearQuarter';
 import { YearWeek } from './YearWeek';
 import plug from './plug';
@@ -24,6 +25,7 @@ export {
     LocalDateRange,
     OffsetDate,
     Quarter,
+    Temporals,
     YearQuarter,
     YearWeek,
 };

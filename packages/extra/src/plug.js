@@ -9,6 +9,7 @@
 // import { LocalDateRange } from './LocalDateRange';
 // import { OffsetDate } from './OffsetDate';
 // import { Quarter } from './Quarter';
+// import { Temporals } from './Temporals';
 // import { YearQuarter } from './YearQuarter';
 // import { YearWeek } from './YearWeek';
 
@@ -27,6 +28,7 @@ export default function (/* jsJoda */) {
     // jsJoda.LocalDateRange = LocalDateRange;
     // jsJoda.OffsetDate = OffsetDate;
     // jsJoda.Quarter = Quarter;
+    // jsJoda.Temporals = Temporals;
     // jsJoda.YearQuarter = YearQuarter;
     // jsJoda.YearWeek = YearWeek;
 }

@@ -59,6 +59,7 @@ import { ValueRange } from './temporal/ValueRange';
 import { DateTimeFormatter } from './format/DateTimeFormatter';
 import { DateTimeFormatterBuilder } from './format/DateTimeFormatterBuilder';
 import { DecimalStyle } from './format/DecimalStyle';
+import { ParsePosition } from './format/ParsePosition';
 import { ResolverStyle } from './format/ResolverStyle';
 import { SignStyle } from './format/SignStyle';
 import { TextStyle } from './format/TextStyle';
@@ -111,6 +112,7 @@ const jsJodaExports = {
     OffsetDateTime,
     Month,
     MonthDay,
+    ParsePosition,
     Period,
     Year,
     YearConstants,
@@ -179,6 +181,7 @@ export {
     OffsetTime,
     OffsetDateTime,
     Period,
+    ParsePosition,
     Year,
     YearConstants,
     YearMonth,
