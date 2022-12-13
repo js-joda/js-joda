@@ -22,7 +22,7 @@ import { _ as jodaInternal } from '@js-joda/core';
 
 const MathUtil = jodaInternal.MathUtil;
 
-import { assertEquals, assertFalse, assertThrows, assertTrue } from '../testUtils';
+import { assertEquals, assertNotEquals, assertThrows, assertTrue } from '../testUtils';
 
 import { Temporals } from '../../src/Temporals';
 
@@ -37,8 +37,8 @@ describe('org.threeten.extra.TestTemporals', () => {
                     const date = LocalDate.of(2007, month, i);
                     const test = Temporals.nextWorkingDay().adjustInto(date);
                     assertTrue(test.isAfter(date));
-                    assertFalse(test.dayOfWeek().equals(DayOfWeek.SATURDAY));
-                    assertFalse(test.dayOfWeek().equals(DayOfWeek.SUNDAY));
+                    assertNotEquals(DayOfWeek.SATURDAY, test.dayOfWeek());
+                    assertNotEquals(DayOfWeek.SUNDAY, test.dayOfWeek());
     
                     switch (date.dayOfWeek()) {
                         case DayOfWeek.FRIDAY:
@@ -90,13 +90,13 @@ describe('org.threeten.extra.TestTemporals', () => {
                 for (let i = 1; i <= month.length(false); i++) {
                     const date = LocalDate.of(2007, month, i);
                     const test = Temporals.nextWorkingDayOrSame().adjustInto(date);
-                    assertFalse(test.dayOfWeek().equals(DayOfWeek.SATURDAY));
-                    assertFalse(test.dayOfWeek().equals(DayOfWeek.SUNDAY));
+                    assertNotEquals(DayOfWeek.SATURDAY, test.dayOfWeek());
+                    assertNotEquals(DayOfWeek.SUNDAY, test.dayOfWeek());
     
                     switch (date.dayOfWeek()) {
                         case DayOfWeek.SATURDAY:
                         case DayOfWeek.SUNDAY:
-                            assertEquals(test.dayOfWeek(), DayOfWeek.MONDAY);
+                            assertEquals(DayOfWeek.MONDAY, test.dayOfWeek());
                             break;
                         default:
                             assertEquals(date.dayOfWeek(), test.dayOfWeek());
@@ -106,18 +106,18 @@ describe('org.threeten.extra.TestTemporals', () => {
                         const dayDiff = test.dayOfYear() - date.dayOfYear();
                         switch (date.dayOfWeek()) {
                             case DayOfWeek.SATURDAY:
-                                assertEquals(dayDiff, 2);
+                                assertEquals(2, dayDiff);
                                 break;
                             case DayOfWeek.SUNDAY:
-                                assertEquals(dayDiff, 1);
+                                assertEquals(1, dayDiff);
                                 break;
                             default:
-                                assertEquals(dayDiff, 0);
+                                assertEquals(0, dayDiff);
                         }
                     } else {
-                        assertEquals(test.year(), 2008);
-                        assertEquals(test.month(), Month.JANUARY);
-                        assertEquals(test.dayOfMonth(), 1);
+                        assertEquals(2008, test.year());
+                        assertEquals(Month.JANUARY, test.month());
+                        assertEquals(1, test.dayOfMonth());
                     }
                 }
             }
@@ -144,8 +144,8 @@ describe('org.threeten.extra.TestTemporals', () => {
                     const date = LocalDate.of(2007, month, i);
                     const test = Temporals.previousWorkingDay().adjustInto(date);
                     assertTrue(test.isBefore(date));
-                    assertFalse(test.dayOfWeek().equals(DayOfWeek.SATURDAY));
-                    assertFalse(test.dayOfWeek().equals(DayOfWeek.SUNDAY));
+                    assertNotEquals(DayOfWeek.SATURDAY, test.dayOfWeek());
+                    assertNotEquals(DayOfWeek.SUNDAY, test.dayOfWeek());
     
                     switch (date.dayOfWeek()) {
                         case DayOfWeek.MONDAY:
@@ -197,13 +197,13 @@ describe('org.threeten.extra.TestTemporals', () => {
                 for (let i = 1; i <= month.length(false); i++) {
                     const date = LocalDate.of(2007, month, i);
                     const test = Temporals.previousWorkingDayOrSame().adjustInto(date);
-                    assertFalse(test.dayOfWeek().equals(DayOfWeek.SATURDAY));
-                    assertFalse(test.dayOfWeek().equals(DayOfWeek.SUNDAY));
+                    assertNotEquals(DayOfWeek.SATURDAY, test.dayOfWeek());
+                    assertNotEquals(DayOfWeek.SUNDAY, test.dayOfWeek());
     
                     switch (date.dayOfWeek()) {
                         case DayOfWeek.SATURDAY:
                         case DayOfWeek.SUNDAY:
-                            assertEquals(test.dayOfWeek(), DayOfWeek.FRIDAY);
+                            assertEquals(DayOfWeek.FRIDAY, test.dayOfWeek());
                             break;
                         default:
                             assertEquals(date.dayOfWeek(), test.dayOfWeek());
@@ -213,18 +213,18 @@ describe('org.threeten.extra.TestTemporals', () => {
                         const dayDiff = test.dayOfYear() - date.dayOfYear();
                         switch (date.dayOfWeek()) {
                             case DayOfWeek.SATURDAY:
-                                assertEquals(dayDiff, -1);
+                                assertEquals(-1, dayDiff);
                                 break;
                             case DayOfWeek.SUNDAY:
-                                assertEquals(dayDiff, -2);
+                                assertEquals(-2, dayDiff);
                                 break;
                             default:
-                                assertEquals(dayDiff, 0);
+                                assertEquals(0, dayDiff);
                         }
                     } else {
-                        assertEquals(test.year(), 2006);
-                        assertEquals(test.month(), Month.DECEMBER);
-                        assertEquals(test.dayOfMonth(), 29);
+                        assertEquals(2006, test.year());
+                        assertEquals(Month.DECEMBER, test.month());
+                        assertEquals(29, test.dayOfMonth());
                     }
                 }
             }
