@@ -39,7 +39,7 @@ describe('org.threeten.extra.TestTemporals', () => {
                     assertTrue(test.isAfter(date));
                     assertNotEquals(DayOfWeek.SATURDAY, test.dayOfWeek());
                     assertNotEquals(DayOfWeek.SUNDAY, test.dayOfWeek());
-    
+
                     switch (date.dayOfWeek()) {
                         case DayOfWeek.FRIDAY:
                         case DayOfWeek.SATURDAY:
@@ -48,7 +48,7 @@ describe('org.threeten.extra.TestTemporals', () => {
                         default:
                             assertEquals(date.dayOfWeek().plus(1), test.dayOfWeek());
                     }
-    
+
                     if (test.year() === 2007) {
                         const dayDiff = test.dayOfYear() - date.dayOfYear();
                         switch (date.dayOfWeek()) {
@@ -92,7 +92,7 @@ describe('org.threeten.extra.TestTemporals', () => {
                     const test = Temporals.nextWorkingDayOrSame().adjustInto(date);
                     assertNotEquals(DayOfWeek.SATURDAY, test.dayOfWeek());
                     assertNotEquals(DayOfWeek.SUNDAY, test.dayOfWeek());
-    
+
                     switch (date.dayOfWeek()) {
                         case DayOfWeek.SATURDAY:
                         case DayOfWeek.SUNDAY:
@@ -101,7 +101,7 @@ describe('org.threeten.extra.TestTemporals', () => {
                         default:
                             assertEquals(date.dayOfWeek(), test.dayOfWeek());
                     }
-    
+
                     if (test.year() === 2007) {
                         const dayDiff = test.dayOfYear() - date.dayOfYear();
                         switch (date.dayOfWeek()) {
@@ -146,7 +146,7 @@ describe('org.threeten.extra.TestTemporals', () => {
                     assertTrue(test.isBefore(date));
                     assertNotEquals(DayOfWeek.SATURDAY, test.dayOfWeek());
                     assertNotEquals(DayOfWeek.SUNDAY, test.dayOfWeek());
-    
+
                     switch (date.dayOfWeek()) {
                         case DayOfWeek.MONDAY:
                         case DayOfWeek.SUNDAY:
@@ -155,7 +155,7 @@ describe('org.threeten.extra.TestTemporals', () => {
                         default:
                             assertEquals(date.dayOfWeek().minus(1), test.dayOfWeek());
                     }
-    
+
                     if (test.year() === 2007) {
                         const dayDiff = test.dayOfYear() - date.dayOfYear();
                         switch (date.dayOfWeek()) {
@@ -199,7 +199,7 @@ describe('org.threeten.extra.TestTemporals', () => {
                     const test = Temporals.previousWorkingDayOrSame().adjustInto(date);
                     assertNotEquals(DayOfWeek.SATURDAY, test.dayOfWeek());
                     assertNotEquals(DayOfWeek.SUNDAY, test.dayOfWeek());
-    
+
                     switch (date.dayOfWeek()) {
                         case DayOfWeek.SATURDAY:
                         case DayOfWeek.SUNDAY:
@@ -208,7 +208,7 @@ describe('org.threeten.extra.TestTemporals', () => {
                         default:
                             assertEquals(date.dayOfWeek(), test.dayOfWeek());
                     }
-    
+
                     if (test.year() === 2007) {
                         const dayDiff = test.dayOfYear() - date.dayOfYear();
                         switch (date.dayOfWeek()) {
