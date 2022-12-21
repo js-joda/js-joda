@@ -14,7 +14,7 @@ const sauceLabsLaunchers = {
     sl_firefox: {
         base: 'SauceLabs',
         browserName: 'firefox',
-        platform: 'Windows 10',
+        platform: 'Windows 11',
         version: 'latest'
     },
     sl_android_simulator: {
