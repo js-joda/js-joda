@@ -99,7 +99,7 @@ jobs:
           SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
         run: |
           set -e;
-          npx lerna run --stream test-saucelabs;
+          npx lerna run  --concurrency 1  --stream test-saucelabs;
 
 #  dump-env:
 #    name: Dump environment and context
