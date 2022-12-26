@@ -12,7 +12,7 @@ import { TemporalField } from './TemporalField';
 import { TemporalQuery } from './TemporalQuery';
 
 /**
- * A wrapper around a javascript Date or a moment instance that implements TemporalAccessor functionality.
+ * TemporalAccessor implementation that can be created from javascript Date or moment instance.
  */
 class NativeJsTemporal extends TemporalAccessor {
     /**
@@ -22,14 +22,14 @@ class NativeJsTemporal extends TemporalAccessor {
      */
     constructor(date, zone = ZoneId.systemDefault()) {
         super();
-        this._date = requireNonNull(date, 'date');
-        this._zone = requireNonNull(zone, 'zone');
+        requireNonNull(date, 'date');
+        requireNonNull(zone, 'zone');
         switch (date.constructor.name) {
             case 'Date':
-                this._delegate = () => Instant.ofEpochMilli(date.getTime()).atZone(zone);
+                this._delegate = Instant.ofEpochMilli(date.getTime()).atZone(zone);
                 break;
             case 'Moment':
-                this._delegate = () => Instant.ofEpochMilli(date.valueOf()).atZone(zone);
+                this._delegate = Instant.ofEpochMilli(date.valueOf()).atZone(zone);
                 break;
             default:
                 throw new IllegalArgumentException('date must be either a javascript date or a moment');
@@ -45,7 +45,7 @@ class NativeJsTemporal extends TemporalAccessor {
     query(query) {
         requireNonNull(query, 'query');
         requireInstance(query, TemporalQuery, 'query');
-        return this._delegate().query(query);
+        return this._delegate.query(query);
     }
 
     /**
@@ -56,7 +56,7 @@ class NativeJsTemporal extends TemporalAccessor {
     get(field) {
         requireNonNull(field, 'field');
         requireInstance(field, TemporalField, 'field');
-        return this._delegate().get(field);
+        return this._delegate.get(field);
     }
 
     /**
@@ -67,7 +67,7 @@ class NativeJsTemporal extends TemporalAccessor {
     getLong(field) {
         requireNonNull(field, 'field');
         requireInstance(field, TemporalField, 'field');
-        return this._delegate().getLong(field);
+        return this._delegate.getLong(field);
     }
 
     /**
@@ -78,7 +78,7 @@ class NativeJsTemporal extends TemporalAccessor {
     isSupported(field) {
         requireNonNull(field, 'field');
         requireInstance(field, TemporalField, 'field');
-        return this._delegate().isSupported(field);
+        return this._delegate.isSupported(field);
     }
 }
 
