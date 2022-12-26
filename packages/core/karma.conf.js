@@ -35,6 +35,7 @@ module.exports = function (config) {
         },
         rollupPreprocessor: rollupConfig,
         sauceLabs: sauceLabsMetaData('@js-joda/core'),
+        concurrency: 1,
         customLaunchers: sauceLabsLaunchers,
         browserDisconnectTimeout: 10000, // default 2000
         // browserDisconnectTolerance: 1, // default 0
