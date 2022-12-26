@@ -86,14 +86,16 @@ function test_DayOfYear() {
 }
 
 function test_Interval() {
+    Interval.parse("2019-08-09T20:38:43.298Z/2019-08-09T20:38:43.298Z");
+
     const instant = Instant.now();
     const duration = Duration.ofHours(1);
+    const endExclusiveOrDuration: Instant | Duration = duration;
 
     Interval.of(instant, duration);
-
-    Interval.parse('2019-08-09T20:38:43.298Z/2019-08-09T20:38:43.298Z');
-
+    Interval.of(instant, endExclusiveOrDuration);
     const interval = Interval.of(instant, instant);
+    
     interval.start();
     interval.end();
     interval.isEmpty();
