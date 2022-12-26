@@ -21,7 +21,9 @@ import {
     OffsetDateTime,
     LocalTime,
     Period,
+    TemporalAdjuster,
 } from '@js-joda/core'
+import { expect } from 'chai';
 import {
     DayOfMonth,
     DayOfYear,
@@ -30,7 +32,8 @@ import {
     OffsetDate,
     YearQuarter,
     YearWeek,
-    LocalDateRange
+    LocalDateRange,
+    Temporals
 } from '../../';
 
 // See packages/core/test/typescript_definitions/js-joda-tests.ts for an explanation of these tests.
@@ -261,6 +264,15 @@ function test_Quarter() {
     expectType<ValueRange>(quarter.range(IsoFields.QUARTER_OF_YEAR));
     expectType<string>(quarter.toString());
     expectType<number>(quarter.value());
+}
+
+function test_Temporals() {
+    expectType<TemporalAdjuster>(Temporals.nextWorkingDay());
+    expectType<TemporalAdjuster>(Temporals.nextWorkingDayOrSame());
+    expectType<TemporalAdjuster>(Temporals.previousWorkingDay());
+    expectType<TemporalAdjuster>(Temporals.previousWorkingDayOrSame());
+    expectType<LocalDate>(Temporals.parseFirstMatching('2016-09-06', LocalDate.FROM, DateTimeFormatter.ISO_LOCAL_DATE, DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+    expectType<number[]>(Temporals.convertAmount(1, ChronoUnit.HOURS, ChronoUnit.SECONDS));
 }
 
 function test_YearQuarter() {

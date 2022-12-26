@@ -27,6 +27,20 @@ export function assertEquals(expected, actual, message) {
     }
 }
 
+export function assertNotEquals(expected, actual, message) {
+    if (expected != null || actual != null) {
+        if (expected != null) {
+            if (typeof expected.equals === 'function') {
+                expect(expected.equals(actual), message != null ? message : `${expected} equals ${actual}`).to.be.false;
+            } else {
+                expect(expected, message).to.not.eql(actual);
+            }
+        } else {
+            expect(actual).to.be.not.null;
+        }
+    }
+}
+
 export function assertSame(expected, actual, message) {
     expect(expected === actual, message != null ? message : `${expected} !== ${actual}`).to.be.true;
 }

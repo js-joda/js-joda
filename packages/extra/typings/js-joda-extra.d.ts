@@ -210,6 +210,17 @@ export class Quarter extends TemporalAccessor implements TemporalAdjuster {
     value(): number;
 }
 
+export class Temporals {
+    static nextWorkingDay(): TemporalAdjuster;
+    static nextWorkingDayOrSame(): TemporalAdjuster;
+    static previousWorkingDay(): TemporalAdjuster;
+    static previousWorkingDayOrSame(): TemporalAdjuster;
+    static parseFirstMatching<T>(text: string, query: TemporalQuery<T>, ...formatters: DateTimeFormatter[]): T;
+    static convertAmount(amount: number, fromUnit: TemporalUnit, toUnit: TemporalUnit): number[];
+
+    private constructor();
+}
+
 export class YearQuarter extends Temporal {
     static from(temporal: TemporalAccessor): YearQuarter;
     static now(zoneIdOrClock?: ZoneId | Clock): YearQuarter;
