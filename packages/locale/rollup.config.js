@@ -1,5 +1,5 @@
 const { babel } = require('@rollup/plugin-babel');
-const { terser } = require('rollup-plugin-terser');
+const { terser } = require('rollup-plugin-minification');
 const { mergeDeepRight } = require('ramda');
 const { createBanner } = require('../../shared/rollup-utils');
 const packageJson = require('./package.json');

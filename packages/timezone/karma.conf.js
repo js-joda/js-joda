@@ -38,6 +38,7 @@ module.exports = function (config) {
             external: ['chai'],
         },
         sauceLabs: sauceLabsMetaData('@js-joda/timezone'),
+        concurrency: 1,
         customLaunchers: sauceLabsLaunchers,
         browserDisconnectTimeout: 10000, // default 2000
         // browserDisconnectTolerance: 1, // default 0

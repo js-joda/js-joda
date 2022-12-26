@@ -26,9 +26,6 @@ import {
     ZoneRegion,
 } from '../../'
 
-// used below
-declare function moment(): any;
-
 /* - these test function don't actually *do* anything, they are also not meant to be run
  * - they are used to test the typescript definitions / typings that we provide
  * - they are mostly copied from the CheatSheet.md file and show usage of JSJoda and wether the usage complies

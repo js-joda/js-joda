@@ -360,11 +360,10 @@ function test_YearWeek() {
     expectType<YearWeek>(yearWeek.with(IsoFields.WEEK_BASED_YEAR, 2001));
     expectType<YearWeek>(yearWeek.withWeek(1));
     expectType<YearWeek>(yearWeek.withYear(2001));
-
 }
 
 /**
  * Use this to check if an expression is of type T.
  * Don't let TypeScript infer the type, give it explicitly.
  */
- declare function expectType<T>(v: T): T;
+declare function expectType<T>(v: T): T;

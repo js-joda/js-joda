@@ -3,19 +3,20 @@ const sauceLabsLaunchers = {
         base: 'SauceLabs',
         browserName: 'internet explorer',
         platform: 'Windows 10',
-        version: 'latest'
+        browserVersion: 'latest'
     },
     sl_chrome: {
         base: 'SauceLabs',
         browserName: 'chrome',
         platform: 'Windows 10',
-        version: 'latest'
+        browserVersion: 'latest'
     },
     sl_firefox: {
         base: 'SauceLabs',
         browserName: 'firefox',
         platform: 'Windows 11',
-        version: 'latest'
+        browserVersion: 'latest',
+        'moz:debuggerAddress': true
     },
     sl_android_simulator: {
         base: 'SauceLabs',

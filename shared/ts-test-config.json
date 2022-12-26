@@ -8,6 +8,5 @@
 		"strict": true,
 		"noImplicitAny": true,
 		"noImplicitThis": true,
-	},
-	"files": ["js-joda-tests.ts", "core-test.ts"]
+	}
 }

@@ -32,7 +32,7 @@
     "test-browser": "npx karma start --reporters=dots --single-run",
     "test-saucelabs": "npx karma start --reporters=\"dots,saucelabs\" --browsers=\"sl_chrome,sl_ie,sl_firefox\" --single-run=true",
     "test-ci": "npm run build-dist && npm run test && npm run test-browser && npm run test-coverage && npm run test-ts-definitions",
-    "test-ts-definitions": "npx tsc --noImplicitAny --strict --noEmit --pretty test/typescript_definitions/js-joda-extra-tests.ts",
+    "test-ts-definitions": "TS_NODE_PROJECT='../../shared/ts-test-config.json' NODE_ENV=test mocha --timeout 5000 --require ts-node/register ./test/typescript_definitions/*.ts",
     "build-dist": "npx rollup -c rollup.config.js",
     "lint": "npx eslint ."
   },
