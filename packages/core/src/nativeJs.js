@@ -10,7 +10,7 @@ import { Instant, ZoneId } from './js-joda';
 /**
  * Creates ZonedDateTime from a javascript Date or a moment instance.
  * @param {!(Date|moment)} date - a javascript Date or a moment instance
- * @param {ZoneId} [zone = ZoneId.systemDefault()] - the zone of the temporal, defaults to ZoneId.systemDefault()
+ * @param {ZoneId} [zone = ZoneId.systemDefault()] - the zone of the returned ZonedDateTime, defaults to ZoneId.systemDefault()
  * @returns {ZonedDateTime}
  */
 export function nativeJs(date, zone = ZoneId.systemDefault()) {
