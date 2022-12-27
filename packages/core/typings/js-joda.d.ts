@@ -2478,7 +2478,7 @@ export abstract class ChronoZonedDateTime extends Temporal {
 //   SUPPORT
 // ----------------------------------------------------------------------------
 
-export function nativeJs(date: Date | any, zone?: ZoneId): TemporalAccessor;
+export function nativeJs(date: Date | any, zone?: ZoneId): ZonedDateTime;
 
 export function convert(
     temporal: LocalDate | LocalDateTime | ZonedDateTime | Instant,
