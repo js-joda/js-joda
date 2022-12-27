@@ -1,7 +1,29 @@
 Changelog
 =========
 
-## Unreleased 2022-10-18
+## 2022-12-27
+
+### Versions
+
+@js-joda/core@5.5.0, @js-joda/extra@0.11.0, @js-joda/locale@4.8.7, @js-joda/timezone@2.15.1
+
+#### :rocket: Enhancement
+* `core`, `extra`
+  * [#648](https://github.com/js-joda/js-joda/pull/648) rewrite `NativeJsTemporal` to support all common `TemporalField`s ([@perceptron8](https://github.com/perceptron8))
+  * [#657](https://github.com/js-joda/js-joda/pull/657) add extra/Temporals ([@perceptron8](https://github.com/perceptron8))
+* `timezone`
+  * [#646](https://github.com/js-joda/js-joda/pull/646) add iana tzdb 2022f data files ([@pithu](https://github.com/pithu))
+
+#### :bug: Bug Fix
+* `extra`
+  * [#654](https://github.com/js-joda/js-joda/pull/654) fix README ([@pithu](https://github.com/pithu))
+
+#### :house: Dependency update
+* `core`, `extra`, `locale`, `timezone`
+  * [#659](https://github.com/js-joda/js-joda/pull/659) upgrade npm packages (ncu -u) ([@pithu](https://github.com/pithu))
+
+
+## 2022-10-18
 
 ### Versions
 
