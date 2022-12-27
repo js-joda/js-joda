@@ -1,7 +1,7 @@
 {
-  "coverage": "73.52%",
-  "expectCount": 2134,
-  "actualCount": 1569,
+  "coverage": "73.55%",
+  "expectCount": 2140,
+  "actualCount": 1574,
   "files": {
     "packages/core/src/Clock.js": {
       "expectCount": 39,
@@ -643,9 +643,14 @@
       "expectCount": 3,
       "actualCount": 1,
       "undocumentLines": [
-        92,
-        82
+        93,
+        83
       ]
+    },
+    "packages/core/src/nativeJs.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
     },
     "packages/core/src/temporal/ChronoField.js": {
       "expectCount": 23,
@@ -684,14 +689,6 @@
         823,
         824,
         826
-      ]
-    },
-    "packages/core/src/temporal/NativeJsTemporal.js": {
-      "expectCount": 9,
-      "actualCount": 7,
-      "undocumentLines": [
-        32,
-        34
       ]
     },
     "packages/core/src/temporal/Temporal.js": {
@@ -891,6 +888,15 @@
         581
       ]
     },
+    "packages/extra/src/Temporals.js": {
+      "expectCount": 14,
+      "actualCount": 11,
+      "undocumentLines": [
+        12,
+        234,
+        236
+      ]
+    },
     "packages/extra/src/YearQuarter.js": {
       "expectCount": 54,
       "actualCount": 49,
@@ -917,8 +923,8 @@
       "expectCount": 2,
       "actualCount": 0,
       "undocumentLines": [
-        15,
-        17
+        16,
+        18
       ]
     },
     "packages/extra/src/assert.js": {

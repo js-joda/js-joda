@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../../../../">
-  <title data-ice="title">packages/core/src/temporal/TemporalQuery.js | js-joda</title>
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">packages/extra/src/Temporals.js | js-joda</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -111,115 +111,302 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">packages/core/src/temporal/TemporalQuery.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/*
- * @copyright (c) 2016, Philipp Th&#xFC;rw&#xE4;chter &amp; Pattrick H&#xFC;per
+<div class="content" data-ice="content"><h1 data-ice="title">packages/extra/src/Temporals.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * @copyright (c) 2015-present, Philipp Th&#xFC;rw&#xE4;chter &amp; Pattrick H&#xFC;per &amp; Micha&#x142; Sobkiewicz
  * @copyright (c) 2007-present, Stephen Colebourne &amp; Michael Nascimento Santos
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import { abstractMethodFail } from &apos;../assert&apos;;
-import { Enum } from &apos;../Enum&apos;;
+import { requireNonNull } from &apos;./assert&apos;;
+import { ChronoField, ChronoUnit, DateTimeException, DateTimeParseException, IsoFields, ParsePosition, TemporalAdjuster, UnsupportedTemporalTypeException } from &apos;@js-joda/core&apos;;
 
+import { _ as jodaInternal } from &apos;@js-joda/core&apos;;
+
+const MathUtil = jodaInternal.MathUtil;
 
 /**
- * Strategy for querying a temporal object.
+ * Additional utilities for working with temporal classes.
+ * 
+ * This includes:
+ * - adjusters that ignore Saturday/Sunday weekends
+ * - conversion between `TimeUnit` and `ChronoUnit`
+ * - converting an amount to another unit
  *
- * Queries are a key tool for extracting information from temporal objects.
- * They exist to externalize the process of querying, permitting different
- * approaches, as per the strategy design pattern.
- * Examples might be a query that checks if the date is the day before February 29th
- * in a leap year, or calculates the number of days to your next birthday.
- *
- * The {@link TemporalField} interface provides another mechanism for querying
- * temporal objects. That interface is limited to returning a `long`.
- * By contrast, queries can return any type.
- *
- * There are two equivalent ways of using a {@link TemporalQuery}.
- * The first is to invoke the method on this interface directly.
- * The second is to use {@link TemporalAccessor#query}:
- * &lt;pre&gt;
- *   // these two lines are equivalent, but the second approach is recommended
- *   temporal = thisQuery.queryFrom(temporal);
- *   temporal = temporal.query(thisQuery);
- * &lt;/pre&gt;
- * It is recommended to use the second approach, {@link query},
- * as it is a lot clearer to read in code.
- *
- * The most common implementations are method references, such as
- * {@link LocalDate::from} and {@link ZoneId::from}.
- * Further implementations are on {@link TemporalQueries}.
- * Queries may also be defined by applications.
- *
- * ### Specification for implementors
- *
- * This interface places no restrictions on the mutability of implementations,
- * however immutability is strongly recommended.
- *
- * @interface
  */
-export class TemporalQuery  extends Enum {
+export class Temporals {
+    //-------------------------------------------------------------------------
     /**
-     * Queries the specified temporal object.
+     * Returns an adjuster that returns the next working day, ignoring Saturday and Sunday.
+     * 
+     * Some territories have weekends that do not consist of Saturday and Sunday.
+     * No implementation is supplied to support this, however an adjuster
+     * can be easily written to do so.
      *
-     * This queries the specified temporal object to return an object using the logic
-     * encapsulated in the implementing class.
-     * Examples might be a query that checks if the date is the day before February 29th
-     * in a leap year, or calculates the number of days to your next birthday.
+     * @return {TemporalAdjuster} the next working day adjuster, not null
+     */
+    static nextWorkingDay() {
+        return Adjuster.NEXT_WORKING;
+    }
+
+    /**
+     * Returns an adjuster that returns the next working day or same day if already working day, ignoring Saturday and Sunday.
+     * 
+     * Some territories have weekends that do not consist of Saturday and Sunday.
+     * No implementation is supplied to support this, however an adjuster
+     * can be easily written to do so.
+     * 
+     * @return {TemporalAdjuster} the next working day or same adjuster, not null
+     */
+    static nextWorkingDayOrSame() {
+        return Adjuster.NEXT_WORKING_OR_SAME;
+    }
+
+    /**
+     * Returns an adjuster that returns the previous working day, ignoring Saturday and Sunday.
+     * 
+     * Some territories have weekends that do not consist of Saturday and Sunday.
+     * No implementation is supplied to support this, however an adjuster
+     * can be easily written to do so.
      *
-     * There are two equivalent ways of using this method.
-     * The first is to invoke this method directly.
-     * The second is to use {@link TemporalAccessor#query}:
-     * &lt;pre&gt;
-     *   // these two lines are equivalent, but the second approach is recommended
-     *   temporal = thisQuery.queryFrom(temporal);
-     *   temporal = temporal.query(thisQuery);
-     * &lt;/pre&gt;
-     * It is recommended to use the second approach, {@link query},
-     * as it is a lot clearer to read in code.
+     * @return {TemporalAdjuster} the previous working day adjuster, not null
+     */
+    static previousWorkingDay() {
+        return Adjuster.PREVIOUS_WORKING;
+    }
+
+    /**
+     * Returns an adjuster that returns the previous working day or same day if already working day, ignoring Saturday and Sunday.
+     * 
+     * Some territories have weekends that do not consist of Saturday and Sunday.
+     * No implementation is supplied to support this, however an adjuster
+     * can be easily written to do so.
+     * 
+     * @return {TemporalAdjuster} the previous working day or same adjuster, not null
+     */
+    static previousWorkingDayOrSame() {
+        return Adjuster.PREVIOUS_WORKING_OR_SAME;
+    }
+
+    //-------------------------------------------------------------------------
+    /**
+     * Parses the text using one of the formatters.
+     * 
+     * This will try each formatter in turn, attempting to fully parse the specified text.
+     * The temporal query is typically a method reference to a `from(TemporalAccessor)` method.
+     * For example:
+     * ```
+     *  LocalDateTime dt = Temporals.parseFirstMatching(str, LocalDateTime.FROM, fm1, fm2, fm3);
+     * ```
+     * If the parse completes without reading the entire length of the text,
+     * or a problem occurs during parsing or merging, then an exception is thrown.
      *
-     * ### Specification for implementors
+     * @param {string} text  the text to parse, not null
+     * @param {TemporalQuery} query  the query defining the type to parse to, not null
+     * @param {DateTimeFormatter[]} formatters  the formatters to try, not null
+     * @return {*} the parsed date-time, not null
+     * @throws {DateTimeParseException} if unable to parse the requested result
+     */
+    static parseFirstMatching(text, query, ...formatters) {
+        requireNonNull(text, &apos;text&apos;);
+        requireNonNull(query, &apos;query&apos;);
+        requireNonNull(formatters, &apos;formatters&apos;);
+        if (formatters.length === 0) {
+            throw new DateTimeParseException(&apos;No formatters specified&apos;, text, 0);
+        }
+        if (formatters.length === 1) {
+            return formatters[0].parse(text, query);
+        }
+        for (const formatter of formatters) {
+            try {
+                const pp = new ParsePosition(0);
+                formatter.parseUnresolved(text, pp);
+                const len = text.length;
+                if (pp.getErrorIndex() === -1 &amp;&amp; pp.getIndex() === len) {
+                    return formatter.parse(text, query);
+                }
+            } catch (ignored) {
+                // should not happen, but ignore if it does
+            }
+        }
+        throw new DateTimeParseException(`Text &apos;${text}&apos; could not be parsed`, text, 0);
+    }
+
+    //-------------------------------------------------------------------------
+    /**
+     * Converts an amount from one unit to another.
+     * 
+     * This works on the units in `ChronoUnit` and `IsoFields`.
+     * The `DAYS` and `WEEKS` units are handled as exact multiple of 24 hours.
+     * The `ERAS` and `FOREVER` units are not supported.
      *
-     * The implementation must take the input object and query it.
-     * The implementation defines the logic of the query and is responsible for
-     * documenting that logic.
-     * It may use any method on {@link TemporalAccessor} to determine the result.
-     * The input object must not be altered.
-     *
-     * The input temporal object may be in a calendar system other than ISO.
-     * Implementations may choose to document compatibility with other calendar systems,
-     * or reject non-ISO temporal objects by querying the chronology (see {@link TemporalQueries#chronology}).
-     *
-     * This method may be called from multiple threads in parallel.
-     * It must be thread-safe when invoked.
-     *
-     * @param {TemporalAccessor} temporal  the temporal object to query, not null
-     * @return the queried value, may return null to indicate not found
-     * @throws DateTimeException if unable to query
+     * @param {long} amount  the input amount in terms of the `fromUnit`
+     * @param {TemporalUnit} fromUnit  the unit to convert from, not null
+     * @param {TemporalUnit} toUnit  the unit to convert to, not null
+     * @return {long[]} the conversion array,
+     *  element 0 is the signed whole number,
+     *  element 1 is the signed remainder in terms of the input unit,
+     *  not null
+     * @throws DateTimeException if the units cannot be converted
+     * @throws UnsupportedTemporalTypeException if the units are not supported
      * @throws ArithmeticException if numeric overflow occurs
      */
-    // eslint-disable-next-line no-unused-vars
-    queryFrom(temporal){
-        abstractMethodFail(&apos;queryFrom&apos;);
+    static convertAmount(amount, fromUnit, toUnit) {
+        requireNonNull(fromUnit, &apos;fromUnit&apos;);
+        requireNonNull(toUnit, &apos;toUnit&apos;);
+        Temporals._validateUnit(fromUnit);
+        Temporals._validateUnit(toUnit);
+        if (fromUnit === toUnit) {
+            return [amount, 0];
+        }
+        // precise-based
+        if (Temporals._isPrecise(fromUnit) &amp;&amp; Temporals._isPrecise(toUnit)) {
+            const fromNanos = fromUnit.duration().toNanos();
+            const toNanos = toUnit.duration().toNanos();
+            if (fromNanos &gt; toNanos) {
+                const multiple = MathUtil.intDiv(fromNanos, toNanos);
+                return [MathUtil.safeMultiply(amount, multiple), 0];
+            } else {
+                const multiple = MathUtil.intDiv(toNanos, fromNanos);
+                return [MathUtil.intDiv(amount, multiple), MathUtil.intMod(amount, multiple)];
+            }
+        }
+        // month-based
+        const fromMonthFactor = Temporals._monthMonthFactor(fromUnit, fromUnit, toUnit);
+        const toMonthFactor = Temporals._monthMonthFactor(toUnit, fromUnit, toUnit);
+        if (fromMonthFactor &gt; toMonthFactor) {
+            const multiple = MathUtil.intDiv(fromMonthFactor, toMonthFactor);
+            return [MathUtil.safeMultiply(amount, multiple), 0];
+        } else {
+            const multiple = MathUtil.intDiv(toMonthFactor, fromMonthFactor);
+            return [MathUtil.intDiv(amount, multiple), MathUtil.intMod(amount, multiple)];
+        }
     }
 
+    /**
+     * 
+     * @param {TemporalUnit} unit
+     * @private
+     */
+    static _validateUnit(unit) {
+        if (unit instanceof ChronoUnit) {
+            if (unit === ChronoUnit.ERAS || unit === ChronoUnit.FOREVER) {
+                throw new UnsupportedTemporalTypeException(`Unsupported TemporalUnit: ${unit}`);
+            }
+        } else if (unit !== IsoFields.QUARTER_YEARS) {
+            throw new UnsupportedTemporalTypeException(`Unsupported TemporalUnit: ${unit}`);
+        }
+    }
+
+    /**
+     * 
+     * @param {TemporalUnit} unit
+     * @return {boolean}
+     * @private
+     */
+    static _isPrecise(unit) {
+        return unit instanceof ChronoUnit &amp;&amp; unit.compareTo(ChronoUnit.WEEKS) &lt;= 0;
+    }
+
+    /**
+     * 
+     * @param {TemporalUnit} unit
+     * @param {TemporalUnit} fromUnit
+     * @param {TemporalUnit} toUnit
+     * @return {int}
+     * @private
+     */
+    static _monthMonthFactor(unit, fromUnit, toUnit) {
+        if (unit instanceof ChronoUnit) {
+            switch (unit) {
+                case ChronoUnit.MONTHS:
+                    return 1;
+                case ChronoUnit.YEARS:
+                    return 12;
+                case ChronoUnit.DECADES:
+                    return 120;
+                case ChronoUnit.CENTURIES:
+                    return 1200;
+                case ChronoUnit.MILLENNIA:
+                    return 12000;
+                default:
+                    throw new DateTimeException(`Unable to convert between units: ${fromUnit} to ${toUnit}`);
+            }
+        }
+        return 3; // quarters
+    }
+
+    /**
+     * Restricted constructor.
+     * 
+     * @private
+     */
+    constructor() {
+    }
 }
 
-/**
- * @private
- *
- * Factory to create something similar to the JSR-310 {TemporalQuery} interface, takes a function and returns a new TemporalQuery object that presents that function
- * as the queryFrom() function.
- * @param name for the underlying Enum
- * @param queryFromFunction
- */
-export function createTemporalQuery(name, queryFromFunction) {
-    class ExtendedTemporalQuery extends TemporalQuery {
+const Adjuster = {};
 
-    }
+export function _init() {
+    /** Next working day adjuster. */
+    Adjuster.NEXT_WORKING = new class extends TemporalAdjuster {
+        adjustInto(temporal) {
+            const dow = temporal.get(ChronoField.DAY_OF_WEEK);
+            switch (dow) {
+                case 6:  // Saturday
+                    return temporal.plus(2, ChronoUnit.DAYS);
+                case 5:  // Friday
+                    return temporal.plus(3, ChronoUnit.DAYS);
+                default:
+                    return temporal.plus(1, ChronoUnit.DAYS);
+            }
+        }
+    };
 
-    ExtendedTemporalQuery.prototype.queryFrom = queryFromFunction;
-    return new ExtendedTemporalQuery(name);
+    /** Previous working day adjuster. */
+    Adjuster.PREVIOUS_WORKING = new class extends TemporalAdjuster {
+        adjustInto(temporal) {
+            const dow = temporal.get(ChronoField.DAY_OF_WEEK);
+            switch (dow) {
+                case 1:  // Monday
+                    return temporal.minus(3, ChronoUnit.DAYS);
+                case 7:  // Sunday
+                    return temporal.minus(2, ChronoUnit.DAYS);
+                default:
+                    return temporal.minus(1, ChronoUnit.DAYS);
+            }
+        }
+    };
+
+    /** Next working day or same adjuster. */
+    Adjuster.NEXT_WORKING_OR_SAME = new class extends TemporalAdjuster {
+        adjustInto(temporal) {
+            const dow = temporal.get(ChronoField.DAY_OF_WEEK);
+            switch (dow) {
+                case 6: // Saturday
+                    return temporal.plus(2, ChronoUnit.DAYS);
+                case 7: // Sunday
+                    return temporal.plus(1, ChronoUnit.DAYS);
+                default:
+                    return temporal;
+            }
+        }
+    };
+
+    /** Previous working day or same adjuster. */
+    Adjuster.PREVIOUS_WORKING_OR_SAME = new class extends TemporalAdjuster {
+        adjustInto(temporal) {
+            const dow = temporal.get(ChronoField.DAY_OF_WEEK);
+            switch (dow) {
+                case 6: //Saturday
+                    return temporal.minus(1, ChronoUnit.DAYS);
+                case 7:  // Sunday
+                    return temporal.minus(2, ChronoUnit.DAYS);
+                default:
+                    return temporal;
+            }
+        }
+    };
 }
 </code></pre>
 

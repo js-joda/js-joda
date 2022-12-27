@@ -51,6 +51,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneRegion.js~ZoneRegion.html">ZoneRegion</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nativeJs">nativeJs</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -82,7 +83,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nativeJs">nativeJs</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-IsoFields">IsoFields</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-zone">core/src/zone</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
@@ -95,6 +95,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/LocalDateRange.js~LocalDateRange.html">LocalDateRange</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/OffsetDate.js~OffsetDate.html">OffsetDate</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/Quarter.js~Quarter.html">Quarter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/Temporals.js~Temporals.html">Temporals</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/YearQuarter.js~YearQuarter.html">YearQuarter</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/YearWeek.js~YearWeek.html">YearWeek</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src">locale/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/Locale.js~Locale.html">Locale</a></span></span></li>
@@ -110,7 +111,7 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1>Source <img data-ice="coverageBadge" src="./badge.svg"><span data-ice="totalCoverageCount" class="total-coverage-count">1569/2134</span></h1>
+<div class="content" data-ice="content"><h1>Source <img data-ice="coverageBadge" src="./badge.svg"><span data-ice="totalCoverageCount" class="total-coverage-count">1574/2140</span></h1>
 
 <table class="files-summary" data-ice="files" data-use-coverage="true">
   <thead>
@@ -550,12 +551,20 @@
       <td style="display: none;" data-ice="updated">2022-11-04 07:00:46 (UTC)</td>
     </tr>
 <tr data-ice="file">
-      <td data-ice="filePath"><span><a href="file/packages/core/src/js-joda.js.html#errorLines=82,92">packages/core/src/js-joda.js</a></span></td>
+      <td data-ice="filePath"><span><a href="file/packages/core/src/js-joda.js.html#errorLines=83,93">packages/core/src/js-joda.js</a></span></td>
       <td data-ice="identifier" class="identifiers">-</td>
       <td class="coverage"><span data-ice="coverage">33 %</span><span data-ice="coverageCount" class="coverage-count">1/3</span></td>
-      <td style="display: none;" data-ice="size">5666 byte</td>
-      <td style="display: none;" data-ice="lines">215</td>
-      <td style="display: none;" data-ice="updated">2022-12-02 11:44:58 (UTC)</td>
+      <td style="display: none;" data-ice="size">5743 byte</td>
+      <td style="display: none;" data-ice="lines">218</td>
+      <td style="display: none;" data-ice="updated">2022-12-03 20:01:51 (UTC)</td>
+    </tr>
+<tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/packages/core/src/nativeJs.js.html">packages/core/src/nativeJs.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-nativeJs">nativeJs</a></span></td>
+      <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">1/1</span></td>
+      <td style="display: none;" data-ice="size">1113 byte</td>
+      <td style="display: none;" data-ice="lines">27</td>
+      <td style="display: none;" data-ice="updated">2022-12-03 20:01:51 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/src/temporal/ChronoField.js.html#errorLines=238,239,240,241,408">packages/core/src/temporal/ChronoField.js</a></span></td>
@@ -577,17 +586,9 @@
       <td data-ice="filePath"><span><a href="file/packages/core/src/temporal/IsoFields.js.html#errorLines=136,258,732,733,814,819,820,821,822,823,824,826">packages/core/src/temporal/IsoFields.js</a></span></td>
       <td data-ice="identifier" class="identifiers">-</td>
       <td class="coverage"><span data-ice="coverage">82 %</span><span data-ice="coverageCount" class="coverage-count">58/70</span></td>
-      <td style="display: none;" data-ice="size">24604 byte</td>
+      <td style="display: none;" data-ice="size">24610 byte</td>
       <td style="display: none;" data-ice="lines">859</td>
-      <td style="display: none;" data-ice="updated">2022-12-02 11:44:58 (UTC)</td>
-    </tr>
-<tr data-ice="file">
-      <td data-ice="filePath"><span><a href="file/packages/core/src/temporal/NativeJsTemporal.js.html#errorLines=32,34">packages/core/src/temporal/NativeJsTemporal.js</a></span></td>
-      <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-nativeJs">nativeJs</a></span></td>
-      <td class="coverage"><span data-ice="coverage">77 %</span><span data-ice="coverageCount" class="coverage-count">7/9</span></td>
-      <td style="display: none;" data-ice="size">3450 byte</td>
-      <td style="display: none;" data-ice="lines">105</td>
-      <td style="display: none;" data-ice="updated">2022-12-02 11:07:14 (UTC)</td>
+      <td style="display: none;" data-ice="updated">2022-12-03 20:01:51 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/core/src/temporal/Temporal.js.html">packages/core/src/temporal/Temporal.js</a></span></td>
@@ -774,6 +775,14 @@
       <td style="display: none;" data-ice="updated">2022-11-04 07:00:51 (UTC)</td>
     </tr>
 <tr data-ice="file">
+      <td data-ice="filePath"><span><a href="file/packages/extra/src/Temporals.js.html#errorLines=12,234,236">packages/extra/src/Temporals.js</a></span></td>
+      <td data-ice="identifier" class="identifiers"><span><a href="class/packages/extra/src/Temporals.js~Temporals.html">Temporals</a></span></td>
+      <td class="coverage"><span data-ice="coverage">78 %</span><span data-ice="coverageCount" class="coverage-count">11/14</span></td>
+      <td style="display: none;" data-ice="size">11273 byte</td>
+      <td style="display: none;" data-ice="lines">296</td>
+      <td style="display: none;" data-ice="updated">2022-12-03 20:01:51 (UTC)</td>
+    </tr>
+<tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/extra/src/YearQuarter.js.html#errorLines=1156,1171,14,262,263">packages/extra/src/YearQuarter.js</a></span></td>
       <td data-ice="identifier" class="identifiers"><span><a href="class/packages/extra/src/YearQuarter.js~YearQuarter.html">YearQuarter</a></span></td>
       <td class="coverage"><span data-ice="coverage">90 %</span><span data-ice="coverageCount" class="coverage-count">49/54</span></td>
@@ -790,12 +799,12 @@
       <td style="display: none;" data-ice="updated">2022-11-04 07:00:50 (UTC)</td>
     </tr>
 <tr data-ice="file">
-      <td data-ice="filePath"><span><a href="file/packages/extra/src/_init.js.html#errorLines=15,17">packages/extra/src/_init.js</a></span></td>
+      <td data-ice="filePath"><span><a href="file/packages/extra/src/_init.js.html#errorLines=16,18">packages/extra/src/_init.js</a></span></td>
       <td data-ice="identifier" class="identifiers">-</td>
       <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/2</span></td>
-      <td style="display: none;" data-ice="size">880 byte</td>
-      <td style="display: none;" data-ice="lines">34</td>
-      <td style="display: none;" data-ice="updated">2022-12-02 11:44:58 (UTC)</td>
+      <td style="display: none;" data-ice="size">955 byte</td>
+      <td style="display: none;" data-ice="lines">36</td>
+      <td style="display: none;" data-ice="updated">2022-12-03 20:01:51 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/extra/src/assert.js.html">packages/extra/src/assert.js</a></span></td>
@@ -809,17 +818,17 @@
       <td data-ice="filePath"><span><a href="file/packages/extra/src/js-joda-extra.js.html">packages/extra/src/js-joda-extra.js</a></span></td>
       <td data-ice="identifier" class="identifiers">-</td>
       <td class="coverage"><span data-ice="coverage">-</span></td>
-      <td style="display: none;" data-ice="size">709 byte</td>
-      <td style="display: none;" data-ice="lines">29</td>
-      <td style="display: none;" data-ice="updated">2022-12-02 11:44:58 (UTC)</td>
+      <td style="display: none;" data-ice="size">765 byte</td>
+      <td style="display: none;" data-ice="lines">31</td>
+      <td style="display: none;" data-ice="updated">2022-12-03 20:01:51 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/extra/src/plug.js.html">packages/extra/src/plug.js</a></span></td>
       <td data-ice="identifier" class="identifiers">-</td>
       <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">1/1</span></td>
-      <td style="display: none;" data-ice="size">1052 byte</td>
-      <td style="display: none;" data-ice="lines">32</td>
-      <td style="display: none;" data-ice="updated">2022-12-02 11:44:58 (UTC)</td>
+      <td style="display: none;" data-ice="size">1133 byte</td>
+      <td style="display: none;" data-ice="lines">34</td>
+      <td style="display: none;" data-ice="updated">2022-12-03 20:01:51 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/packages/locale/src/Locale.js.html#errorLines=15,16,17,18,21,25,29,40,44,55,8,9">packages/locale/src/Locale.js</a></span></td>

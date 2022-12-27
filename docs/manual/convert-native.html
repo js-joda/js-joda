@@ -156,20 +156,21 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="convert-from--to-native-js">Convert from/ to native js</h1><h2 id="convert-from-date-to-a-js-joda-temporal">Convert from Date to a js-joda temporal</h2><p>use method <code>nativeJs</code> to convert from native javascript <code>Date</code> to a js-joda <code>Temporal</code>.</p>
+<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="convert-from--to-native-js">Convert from/ to native js</h1><h2 id="convert-from-date-to-a-js-joda-temporal">Convert from Date to a js-joda temporal</h2><p>use method <code>nativeJs</code> to convert from native javascript <code>Date</code> to a js-joda <code>ZonedDateTime</code>.</p>
 <p>Hint: <code>nativeJs</code> accepts <code>moment</code> objects as well.</p>
-<p>Be aware of that a moment and Date always represent a timestamp (a certain point in time with a timezone). 
-Therefore, the most reasonable convert is to an <code>Instant</code> or <code>ZonedDateTime</code>.</p>
-<pre><code class="lang-javascript"><code class="source-code prettyprint">import { Instant, nativeJs } from &apos;@js-joda/core&apos;;
+<p>Be aware of that a Date always represent a certain point in time <em>without</em> a timezone.
+You can provide one by passing it as a second argument.
+Otherwise, <code>ZoneId.systemDefault()</code> will be used.</p>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">import { ZonedDateTime, nativeJs } from &apos;@js-joda/core&apos;;
 
-const instant = Instant.from(nativeJs(new Date()))
+const zonedDateTime = nativeJs(new Date());
 
 // or with momentjs object
-const instant = Instant.from(nativeJs(moment()))</code>
+const zonedDateTime = nativeJs(moment());</code>
 </code></pre>
 <h2 id="convert-from-js-joda-temporal-to-a-date">Convert from js-joda temporal to a Date</h2><p>Use method <code>convert</code> to convert a <code>LocalDate</code> | <code>LocalDateTime</code> | <code>ZonedDateTime</code> | <code>Instant</code> 
 to javascript <code>Date</code>.</p>
-<pre><code class="lang-javascript"><code class="source-code prettyprint">const date = convert(ZonedDateTime.now()).toDate();</code>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">const date = convert(Instant.now()).toDate();</code>
 </code></pre>
 </div>
 </div>

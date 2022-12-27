@@ -51,6 +51,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZoneRegion.js~ZoneRegion.html">ZoneRegion</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-convert">convert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nativeJs">nativeJs</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-MIN_SAFE_INTEGER">MIN_SAFE_INTEGER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ArithmeticException">ArithmeticException</a></span></span></li>
@@ -82,7 +83,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalField.js~TemporalField.html">TemporalField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalQuery.js~TemporalQuery.html">TemporalQuery</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-interface">I</span><span data-ice="name"><span><a href="class/packages/core/src/temporal/TemporalUnit.js~TemporalUnit.html">TemporalUnit</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-nativeJs">nativeJs</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-IsoFields">IsoFields</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#core-src-zone">core/src/zone</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/SystemDefaultZoneId.js~SystemDefaultZoneId.html">SystemDefaultZoneId</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/core/src/zone/SystemDefaultZoneRules.js~SystemDefaultZoneRules.html">SystemDefaultZoneRules</a></span></span></li>
@@ -95,6 +95,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/LocalDateRange.js~LocalDateRange.html">LocalDateRange</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/OffsetDate.js~OffsetDate.html">OffsetDate</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/Quarter.js~Quarter.html">Quarter</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/Temporals.js~Temporals.html">Temporals</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/YearQuarter.js~YearQuarter.html">YearQuarter</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/extra/src/YearWeek.js~YearWeek.html">YearWeek</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src">locale/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/Locale.js~Locale.html">Locale</a></span></span></li>
@@ -158,13 +159,14 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-nativeJs">nativeJs</a></span></span><span class="code" data-ice="signature">(date: <span>Date</span> | <span>moment</span>, zone: <span><a href="class/packages/core/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span>NativeJsTemporal</span></span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-nativeJs">nativeJs</a></span></span><span class="code" data-ice="signature">(date: <span>Date</span> | <span>moment</span>, zone: <span><a href="class/packages/core/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Creates ZonedDateTime from a javascript Date or a moment instance.</p>
+</div>
       </div>
     </td>
     <td>
@@ -281,18 +283,19 @@ convert(localDate).toEpochMilli()   // returns the epochMillis</code></pre>
     
     
     
-    <span class="code" data-ice="name">nativeJs</span><span class="code" data-ice="signature">(date: <span>Date</span> | <span>moment</span>, zone: <span><a href="class/packages/core/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span>NativeJsTemporal</span></span>
+    <span class="code" data-ice="name">nativeJs</span><span class="code" data-ice="signature">(date: <span>Date</span> | <span>moment</span>, zone: <span><a href="class/packages/core/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/temporal/NativeJsTemporal.js.html#lineNumber103">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/nativeJs.js.html#lineNumber16">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {nativeJs} from &apos;<span><a href="file/packages/core/src/temporal/NativeJsTemporal.js.html#lineNumber103">@js-joda/root/packages/core/src/temporal/NativeJsTemporal.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {nativeJs} from &apos;<span><a href="file/packages/core/src/nativeJs.js.html#lineNumber16">@js-joda/root/packages/core/src/nativeJs.js</a></span>&apos;</code></pre></div>
   
   
-  
+  <div data-ice="description"><p>Creates ZonedDateTime from a javascript Date or a moment instance.</p>
+</div>
 
   
 
@@ -315,8 +318,8 @@ convert(localDate).toEpochMilli()   // returns the epochMillis</code></pre>
       <td data-ice="name" class="code" data-depth="0">zone</td>
       <td data-ice="type" class="code"><span><a href="class/packages/core/src/ZoneId.js~ZoneId.html">ZoneId</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li>
-<li>default: ZoneId.systemDefault()</li></ul></td>
-      <td data-ice="description"><p>the zone of the temporal, defaults to ZoneId.systemDefault()</p>
+<li>default:  ZoneId.systemDefault()</li></ul></td>
+      <td data-ice="description"><p>the zone of the returned ZonedDateTime, defaults to ZoneId.systemDefault()</p>
 </td>
     </tr>
 </tbody>
@@ -329,7 +332,7 @@ convert(localDate).toEpochMilli()   // returns the epochMillis</code></pre>
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>NativeJsTemporal</span></td>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></td>
           
         </tr>
       </tbody>

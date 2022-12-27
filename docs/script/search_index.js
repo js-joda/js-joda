@@ -342,6 +342,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "@js-joda/root/packages/extra/src/temporals.js~temporals",
+    "class/packages/extra/src/Temporals.js~Temporals.html",
+    "<span>Temporals</span> <span class=\"search-result-import-path\">@js-joda/root/packages/extra/src/Temporals.js</span>",
+    "class"
+  ],
+  [
     "@js-joda/root/packages/core/src/format/textstyle.js~textstyle",
     "class/packages/core/src/format/TextStyle.js~TextStyle.html",
     "<span>TextStyle</span> <span class=\"search-result-import-path\">@js-joda/root/packages/core/src/format/TextStyle.js</span>",
@@ -450,9 +456,9 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "@js-joda/root/packages/core/src/temporal/nativejstemporal.js~nativejs",
+    "@js-joda/root/packages/core/src/nativejs.js~nativejs",
     "function/index.html#static-function-nativeJs",
-    "<span>nativeJs</span> <span class=\"search-result-import-path\">@js-joda/root/packages/core/src/temporal/NativeJsTemporal.js</span>",
+    "<span>nativeJs</span> <span class=\"search-result-import-path\">@js-joda/root/packages/core/src/nativeJs.js</span>",
     "function"
   ],
   [
@@ -5358,6 +5364,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "packages/core/src/nativejs.js",
+    "file/packages/core/src/nativeJs.js.html",
+    "packages/core/src/nativeJs.js",
+    "file"
+  ],
+  [
     "packages/core/src/temporal/chronofield.js",
     "file/packages/core/src/temporal/ChronoField.js.html",
     "packages/core/src/temporal/ChronoField.js",
@@ -5524,12 +5536,6 @@ window.esdocSearchIndex = [
     "typedef/index.html#static-typedef-IsoFields",
     "packages/core/src/temporal/IsoFields.js~IsoFields",
     "typedef"
-  ],
-  [
-    "packages/core/src/temporal/nativejstemporal.js",
-    "file/packages/core/src/temporal/NativeJsTemporal.js.html",
-    "packages/core/src/temporal/NativeJsTemporal.js",
-    "file"
   ],
   [
     "packages/core/src/temporal/temporal.js",
@@ -7485,6 +7491,48 @@ window.esdocSearchIndex = [
     "packages/extra/src/quarter.js~quarter.values",
     "class/packages/extra/src/Quarter.js~Quarter.html#static-method-values",
     "packages/extra/src/Quarter.js~Quarter.values",
+    "method"
+  ],
+  [
+    "packages/extra/src/temporals.js",
+    "file/packages/extra/src/Temporals.js.html",
+    "packages/extra/src/Temporals.js",
+    "file"
+  ],
+  [
+    "packages/extra/src/temporals.js~temporals.convertamount",
+    "class/packages/extra/src/Temporals.js~Temporals.html#static-method-convertAmount",
+    "packages/extra/src/Temporals.js~Temporals.convertAmount",
+    "method"
+  ],
+  [
+    "packages/extra/src/temporals.js~temporals.nextworkingday",
+    "class/packages/extra/src/Temporals.js~Temporals.html#static-method-nextWorkingDay",
+    "packages/extra/src/Temporals.js~Temporals.nextWorkingDay",
+    "method"
+  ],
+  [
+    "packages/extra/src/temporals.js~temporals.nextworkingdayorsame",
+    "class/packages/extra/src/Temporals.js~Temporals.html#static-method-nextWorkingDayOrSame",
+    "packages/extra/src/Temporals.js~Temporals.nextWorkingDayOrSame",
+    "method"
+  ],
+  [
+    "packages/extra/src/temporals.js~temporals.parsefirstmatching",
+    "class/packages/extra/src/Temporals.js~Temporals.html#static-method-parseFirstMatching",
+    "packages/extra/src/Temporals.js~Temporals.parseFirstMatching",
+    "method"
+  ],
+  [
+    "packages/extra/src/temporals.js~temporals.previousworkingday",
+    "class/packages/extra/src/Temporals.js~Temporals.html#static-method-previousWorkingDay",
+    "packages/extra/src/Temporals.js~Temporals.previousWorkingDay",
+    "method"
+  ],
+  [
+    "packages/extra/src/temporals.js~temporals.previousworkingdayorsame",
+    "class/packages/extra/src/Temporals.js~Temporals.html#static-method-previousWorkingDayOrSame",
+    "packages/extra/src/Temporals.js~Temporals.previousWorkingDayOrSame",
     "method"
   ],
   [

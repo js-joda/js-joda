@@ -10,39 +10,31 @@
 })(this, (function (exports, core) { 'use strict';
 
   function _extends() {
-    _extends = Object.assign || function (target) {
+    _extends = Object.assign ? Object.assign.bind() : function (target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
-
         for (var key in source) {
           if (Object.prototype.hasOwnProperty.call(source, key)) {
             target[key] = source[key];
           }
         }
       }
-
       return target;
     };
-
     return _extends.apply(this, arguments);
   }
-
   function _inheritsLoose(subClass, superClass) {
     subClass.prototype = Object.create(superClass.prototype);
     subClass.prototype.constructor = subClass;
-
     _setPrototypeOf(subClass, superClass);
   }
-
   function _setPrototypeOf(o, p) {
-    _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) {
       o.__proto__ = p;
       return o;
     };
-
     return _setPrototypeOf(o, p);
   }
-
   function _unsupportedIterableToArray(o, minLen) {
     if (!o) return;
     if (typeof o === "string") return _arrayLikeToArray(o, minLen);
@@ -51,19 +43,14 @@
     if (n === "Map" || n === "Set") return Array.from(o);
     if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
   }
-
   function _arrayLikeToArray(arr, len) {
     if (len == null || len > arr.length) len = arr.length;
-
     for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
-
     return arr2;
   }
-
   function _createForOfIteratorHelperLoose(o, allowArrayLike) {
     var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
     if (it) return (it = it.call(o)).next.bind(it);
-
     if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
       if (it) o = it;
       var i = 0;
@@ -77,7 +64,6 @@
         };
       };
     }
-
     throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
   }
 
@@ -87,83 +73,61 @@
       this._textStyle = textStyle;
       this._provider = provider;
     }
-
     var _proto = TextPrinterParser.prototype;
-
     _proto.field = function field() {
       return this._field;
     };
-
     _proto.textStyle = function textStyle() {
       return this._textStyle;
     };
-
     _proto.provider = function provider() {
       return this._provider;
     };
-
     _proto.print = function print(context, buf) {
       var value = context.getValue(this._field);
-
       if (value === null) {
         return false;
       }
-
       var text = this._provider.getText(this._field, value, this._textStyle, context.locale());
-
       if (text === null) {
         return this._numberPrinterParser().print(context, buf);
       }
-
       buf.append(text);
       return true;
     };
-
     _proto.parse = function parse(context, parseText, position) {
       var length = parseText.length;
-
       if (position < 0 || position > length) {
         throw new core.IllegalArgumentException("The position is invalid: " + position);
       }
-
       var style = context.isStrict() ? this._textStyle : null;
-
       var it = this._provider.getTextIterator(this._field, style, context.locale());
-
       if (it != null) {
         for (var _iterator = _createForOfIteratorHelperLoose(it), _step; !(_step = _iterator()).done;) {
           var entry = _step.value;
           var itText = entry.key;
-
           if (context.subSequenceEquals(itText, 0, parseText, position, itText.length)) {
             return context.setParsedField(this._field, entry.value, position, position + itText.length);
           }
         }
-
         if (context.isStrict()) {
           return ~position;
         }
       }
-
       return this._numberPrinterParser().parse(context, parseText, position);
     };
-
     _proto._numberPrinterParser = function _numberPrinterParser() {
       if (this._currentNumberPrinterParser == null) {
         this._currentNumberPrinterParser = new core.DateTimeFormatterBuilder.NumberPrinterParser(this._field, 1, 19, core.SignStyle.NORMAL);
       }
-
       return this._currentNumberPrinterParser;
     };
-
     _proto.toString = function toString() {
       if (this._textStyle === core.TextStyle.FULL) {
         return "Text(" + this._field + ")";
       }
-
       return "Text(" + this._field + "," + this._textStyle + ")";
     };
-
     return TextPrinterParser;
   }();
 
@@ -12322,8 +12286,7 @@
   /*
    * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
    * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
-   */
-  var createEntry = function createEntry(text, field) {
+   */var createEntry = function createEntry(text, field) {
     return {
       key: text,
       value: field,
@@ -12332,11 +12295,9 @@
       }
     };
   };
-
   var _comparator = function _comparator(obj1, obj2) {
     return obj2.key.length - obj1.key.length;
   };
-
   var LocaleStore = function () {
     function LocaleStore(valueTextMap) {
       this._valueTextMap = valueTextMap;
@@ -12347,7 +12308,6 @@
         var list = [];
         Object.keys(valueTextMap[style]).forEach(function (key) {
           var value = valueTextMap[style][key];
-
           if (reverse[value] === undefined) {
             reverse[value] = createEntry(value, parseInt(key));
             list.push(reverse[value]);
@@ -12361,25 +12321,35 @@
       allList.sort(_comparator);
       this._parsable = map;
     }
-
     var _proto = LocaleStore.prototype;
-
     _proto.getText = function getText(value, style) {
       var map = this._valueTextMap[style];
       return map != null ? map[value] : null;
     };
-
     _proto.getTextIterator = function getTextIterator(style) {
       var list = this._parsable[style];
       return list != null ? list[Symbol.iterator]() : null;
     };
-
     return LocaleStore;
   }();
 
   var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
-  var cldr = {exports: {}};
+  function getDefaultExportFromCjs (x) {
+  	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+  }
+
+  var node_mainExports = {};
+  var node_main = {
+    get exports(){ return node_mainExports; },
+    set exports(v){ node_mainExports = v; },
+  };
+
+  var cldrExports = {};
+  var cldr = {
+    get exports(){ return cldrExports; },
+    set exports(v){ cldrExports = v; },
+  };
 
   /**
    * CLDR JavaScript Library v0.5.4
@@ -12393,616 +12363,554 @@
    */
 
   (function (module) {
-  /*!
-   * CLDR JavaScript Library v0.5.4 2020-10-22T15:56Z MIT license © Rafael Xavier
-   * http://git.io/h4lmVg
-   */
-  (function (root, factory) {
-    {
-      // Node. CommonJS.
-      module.exports = factory();
-    }
-  })(commonjsGlobal, function () {
-    var arrayIsArray = Array.isArray || function (obj) {
-      return Object.prototype.toString.call(obj) === "[object Array]";
-    };
-
-    var pathNormalize = function (path, attributes) {
-      if (arrayIsArray(path)) {
-        path = path.join("/");
-      }
-
-      if (typeof path !== "string") {
-        throw new Error("invalid path \"" + path + "\"");
-      } // 1: Ignore leading slash `/`
-      // 2: Ignore leading `cldr/`
-
-
-      path = path.replace(/^\//, "")
-      /* 1 */
-      .replace(/^cldr\//, "");
-      /* 2 */
-      // Replace {attribute}'s
-
-      path = path.replace(/{[a-zA-Z]+}/g, function (name) {
-        name = name.replace(/^{([^}]*)}$/, "$1");
-        return attributes[name];
-      });
-      return path.split("/");
-    };
-
-    var arraySome = function (array, callback) {
-      var i, length;
-
-      if (array.some) {
-        return array.some(callback);
-      }
-
-      for (i = 0, length = array.length; i < length; i++) {
-        if (callback(array[i], i, array)) {
-          return true;
-        }
-      }
-
-      return false;
-    };
-    /**
-     * Return the maximized language id as defined in
-     * http://www.unicode.org/reports/tr35/#Likely_Subtags
-     * 1. Canonicalize.
-     * 1.1 Make sure the input locale is in canonical form: uses the right
-     * separator, and has the right casing.
-     * TODO Right casing? What df? It seems languages are lowercase, scripts are
-     * Capitalized, territory is uppercase. I am leaving this as an exercise to
-     * the user.
-     *
-     * 1.2 Replace any deprecated subtags with their canonical values using the
-     * <alias> data in supplemental metadata. Use the first value in the
-     * replacement list, if it exists. Language tag replacements may have multiple
-     * parts, such as "sh" ➞ "sr_Latn" or mo" ➞ "ro_MD". In such a case, the
-     * original script and/or region are retained if there is one. Thus
-     * "sh_Arab_AQ" ➞ "sr_Arab_AQ", not "sr_Latn_AQ".
-     * TODO What <alias> data?
-     *
-     * 1.3 If the tag is grandfathered (see <variable id="$grandfathered"
-     * type="choice"> in the supplemental data), then return it.
-     * TODO grandfathered?
-     *
-     * 1.4 Remove the script code 'Zzzz' and the region code 'ZZ' if they occur.
-     * 1.5 Get the components of the cleaned-up source tag (languages, scripts,
-     * and regions), plus any variants and extensions.
-     * 2. Lookup. Lookup each of the following in order, and stop on the first
-     * match:
-     * 2.1 languages_scripts_regions
-     * 2.2 languages_regions
-     * 2.3 languages_scripts
-     * 2.4 languages
-     * 2.5 und_scripts
-     * 3. Return
-     * 3.1 If there is no match, either return an error value, or the match for
-     * "und" (in APIs where a valid language tag is required).
-     * 3.2 Otherwise there is a match = languagem_scriptm_regionm
-     * 3.3 Let xr = xs if xs is not empty, and xm otherwise.
-     * 3.4 Return the language tag composed of languager _ scriptr _ regionr +
-     * variants + extensions.
-     *
-     * @subtags [Array] normalized language id subtags tuple (see init.js).
-     */
-
-
-    var coreLikelySubtags = function (Cldr, cldr, subtags, options) {
-      var match,
-          matchFound,
-          language = subtags[0],
-          script = subtags[1],
-          sep = Cldr.localeSep,
-          territory = subtags[2],
-          variants = subtags.slice(3, 4);
-      options = options || {}; // Skip if (language, script, territory) is not empty [3.3]
-
-      if (language !== "und" && script !== "Zzzz" && territory !== "ZZ") {
-        return [language, script, territory].concat(variants);
-      } // Skip if no supplemental likelySubtags data is present
-
-
-      if (typeof cldr.get("supplemental/likelySubtags") === "undefined") {
-        return;
-      } // [2]
-
-
-      matchFound = arraySome([[language, script, territory], [language, territory], [language, script], [language], ["und", script]], function (test) {
-        return match = !/\b(Zzzz|ZZ)\b/.test(test.join(sep))
-        /* [1.4] */
-        && cldr.get(["supplemental/likelySubtags", test.join(sep)]);
-      }); // [3]
-
-      if (matchFound) {
-        // [3.2 .. 3.4]
-        match = match.split(sep);
-        return [language !== "und" ? language : match[0], script !== "Zzzz" ? script : match[1], territory !== "ZZ" ? territory : match[2]].concat(variants);
-      } else if (options.force) {
-        // [3.1.2]
-        return cldr.get("supplemental/likelySubtags/und").split(sep);
-      } else {
-        // [3.1.1]
-        return;
-      }
-    };
-    /**
-     * Given a locale, remove any fields that Add Likely Subtags would add.
-     * http://www.unicode.org/reports/tr35/#Likely_Subtags
-     * 1. First get max = AddLikelySubtags(inputLocale). If an error is signaled,
-     * return it.
-     * 2. Remove the variants from max.
-     * 3. Then for trial in {language, language _ region, language _ script}. If
-     * AddLikelySubtags(trial) = max, then return trial + variants.
-     * 4. If you do not get a match, return max + variants.
-     * 
-     * @maxLanguageId [Array] maxLanguageId tuple (see init.js).
-     */
-
-
-    var coreRemoveLikelySubtags = function (Cldr, cldr, maxLanguageId) {
-      var match,
-          matchFound,
-          language = maxLanguageId[0],
-          script = maxLanguageId[1],
-          territory = maxLanguageId[2],
-          variants = maxLanguageId[3]; // [3]
-
-      matchFound = arraySome([[[language, "Zzzz", "ZZ"], [language]], [[language, "Zzzz", territory], [language, territory]], [[language, script, "ZZ"], [language, script]]], function (test) {
-        var result = coreLikelySubtags(Cldr, cldr, test[0]);
-        match = test[1];
-        return result && result[0] === maxLanguageId[0] && result[1] === maxLanguageId[1] && result[2] === maxLanguageId[2];
-      });
-
-      if (matchFound) {
-        if (variants) {
-          match.push(variants);
-        }
-
-        return match;
-      } // [4]
-
-
-      return maxLanguageId;
-    };
-    /**
-     * subtags( locale )
-     *
-     * @locale [String]
-     */
-
-
-    var coreSubtags = function (locale) {
-      var aux,
-          unicodeLanguageId,
-          subtags = [];
-      locale = locale.replace(/_/, "-"); // Unicode locale extensions.
-
-      aux = locale.split("-u-");
-
-      if (aux[1]) {
-        aux[1] = aux[1].split("-t-");
-        locale = aux[0] + (aux[1][1] ? "-t-" + aux[1][1] : "");
-        subtags[4
-        /* unicodeLocaleExtensions */
-        ] = aux[1][0];
-      } // TODO normalize transformed extensions. Currently, skipped.
-      // subtags[ x ] = locale.split( "-t-" )[ 1 ];
-
-
-      unicodeLanguageId = locale.split("-t-")[0]; // unicode_language_id = "root"
-      //   | unicode_language_subtag         
-      //     (sep unicode_script_subtag)? 
-      //     (sep unicode_region_subtag)?
-      //     (sep unicode_variant_subtag)* ;
-      //
-      // Although unicode_language_subtag = alpha{2,8}, I'm using alpha{2,3}. Because, there's no language on CLDR lengthier than 3.
-
-      aux = unicodeLanguageId.match(/^(([a-z]{2,3})(-([A-Z][a-z]{3}))?(-([A-Z]{2}|[0-9]{3}))?)((-([a-zA-Z0-9]{5,8}|[0-9][a-zA-Z0-9]{3}))*)$|^(root)$/);
-
-      if (aux === null) {
-        return ["und", "Zzzz", "ZZ"];
-      }
-
-      subtags[0
-      /* language */
-      ] = aux[10]
-      /* root */
-      || aux[2] || "und";
-      subtags[1
-      /* script */
-      ] = aux[4] || "Zzzz";
-      subtags[2
-      /* territory */
-      ] = aux[6] || "ZZ";
-
-      if (aux[7] && aux[7].length) {
-        subtags[3
-        /* variant */
-        ] = aux[7].slice(1)
-        /* remove leading "-" */
-        ;
-      } // 0: language
-      // 1: script
-      // 2: territory (aka region)
-      // 3: variant
-      // 4: unicodeLocaleExtensions
-
-
-      return subtags;
-    };
-
-    var arrayForEach = function (array, callback) {
-      var i, length;
-
-      if (array.forEach) {
-        return array.forEach(callback);
-      }
-
-      for (i = 0, length = array.length; i < length; i++) {
-        callback(array[i], i, array);
-      }
-    };
-    /**
-     * bundleLookup( minLanguageId )
-     *
-     * @Cldr [Cldr class]
-     *
-     * @cldr [Cldr instance]
-     *
-     * @minLanguageId [String] requested languageId after applied remove likely subtags.
-     */
-
-
-    var bundleLookup = function (Cldr, cldr, minLanguageId) {
-      var availableBundleMap = Cldr._availableBundleMap,
-          availableBundleMapQueue = Cldr._availableBundleMapQueue;
-
-      if (availableBundleMapQueue.length) {
-        arrayForEach(availableBundleMapQueue, function (bundle, i) {
-          var existing, maxBundle, minBundle, subtags;
-          subtags = coreSubtags(bundle);
-          maxBundle = coreLikelySubtags(Cldr, cldr, subtags);
-
-          if (maxBundle === undefined) {
-            availableBundleMapQueue.splice(i, 1);
-            throw new Error("Could not find likelySubtags for " + bundle);
-          }
-
-          minBundle = coreRemoveLikelySubtags(Cldr, cldr, maxBundle);
-          minBundle = minBundle.join(Cldr.localeSep);
-          existing = availableBundleMap[minBundle];
-
-          if (existing && existing.length < bundle.length) {
-            return;
-          }
-
-          availableBundleMap[minBundle] = bundle;
-        });
-        Cldr._availableBundleMapQueue = [];
-      }
-
-      return availableBundleMap[minLanguageId] || null;
-    };
-
-    var objectKeys = function (object) {
-      var i,
-          result = [];
-
-      if (Object.keys) {
-        return Object.keys(object);
-      }
-
-      for (i in object) {
-        result.push(i);
-      }
-
-      return result;
-    };
-
-    var createError = function (code, attributes) {
-      var error, message;
-      message = code + (attributes && JSON ? ": " + JSON.stringify(attributes) : "");
-      error = new Error(message);
-      error.code = code; // extend( error, attributes );
-
-      arrayForEach(objectKeys(attributes), function (attribute) {
-        error[attribute] = attributes[attribute];
-      });
-      return error;
-    };
-
-    var validate = function (code, check, attributes) {
-      if (!check) {
-        throw createError(code, attributes);
-      }
-    };
-
-    var validatePresence = function (value, name) {
-      validate("E_MISSING_PARAMETER", typeof value !== "undefined", {
-        name: name
-      });
-    };
-
-    var validateType = function (value, name, check, expected) {
-      validate("E_INVALID_PAR_TYPE", check, {
-        expected: expected,
-        name: name,
-        value: value
-      });
-    };
-
-    var validateTypePath = function (value, name) {
-      validateType(value, name, typeof value === "string" || arrayIsArray(value), "String or Array");
-    };
-    /**
-     * Function inspired by jQuery Core, but reduced to our use case.
-     */
-
-
-    var isPlainObject = function (obj) {
-      return obj !== null && "" + obj === "[object Object]";
-    };
-
-    var validateTypePlainObject = function (value, name) {
-      validateType(value, name, typeof value === "undefined" || isPlainObject(value), "Plain Object");
-    };
-
-    var validateTypeString = function (value, name) {
-      validateType(value, name, typeof value === "string", "a string");
-    }; // @path: normalized path
-
-
-    var resourceGet = function (data, path) {
-      var i,
-          node = data,
-          length = path.length;
-
-      for (i = 0; i < length - 1; i++) {
-        node = node[path[i]];
-
-        if (!node) {
-          return undefined;
-        }
-      }
-
-      return node[path[i]];
-    };
-    /**
-     * setAvailableBundles( Cldr, json )
-     *
-     * @Cldr [Cldr class]
-     *
-     * @json resolved/unresolved cldr data.
-     *
-     * Set available bundles queue based on passed json CLDR data. Considers a bundle as any String at /main/{bundle}.
-     */
-
-
-    var coreSetAvailableBundles = function (Cldr, json) {
-      var bundle,
-          availableBundleMapQueue = Cldr._availableBundleMapQueue,
-          main = resourceGet(json, ["main"]);
-
-      if (main) {
-        for (bundle in main) {
-          if (main.hasOwnProperty(bundle) && bundle !== "root" && availableBundleMapQueue.indexOf(bundle) === -1) {
-            availableBundleMapQueue.push(bundle);
-          }
-        }
-      }
-    };
-
-    var alwaysArray = function (somethingOrArray) {
-      return arrayIsArray(somethingOrArray) ? somethingOrArray : [somethingOrArray];
-    };
-
-    var jsonMerge = function () {
-      // Returns new deeply merged JSON.
-      //
-      // Eg.
-      // merge( { a: { b: 1, c: 2 } }, { a: { b: 3, d: 4 } } )
-      // -> { a: { b: 3, c: 2, d: 4 } }
-      //
-      // @arguments JSON's
-      // 
-      var merge = function () {
-        var destination = {},
-            sources = [].slice.call(arguments, 0);
-        arrayForEach(sources, function (source) {
-          var prop;
-
-          for (prop in source) {
-            if (prop in destination && typeof destination[prop] === "object" && !arrayIsArray(destination[prop])) {
-              // Merge Objects
-              destination[prop] = merge(destination[prop], source[prop]);
-            } else {
-              // Set new values
-              destination[prop] = source[prop];
-            }
-          }
-        });
-        return destination;
-      };
-
-      return merge;
-    }();
-    /**
-     * load( Cldr, source, jsons )
-     *
-     * @Cldr [Cldr class]
-     *
-     * @source [Object]
-     *
-     * @jsons [arguments]
-     */
-
-
-    var coreLoad = function (Cldr, source, jsons) {
-      var i, j, json;
-      validatePresence(jsons[0], "json"); // Support arbitrary parameters, e.g., `Cldr.load({...}, {...})`.
-
-      for (i = 0; i < jsons.length; i++) {
-        // Support array parameters, e.g., `Cldr.load([{...}, {...}])`.
-        json = alwaysArray(jsons[i]);
-
-        for (j = 0; j < json.length; j++) {
-          validateTypePlainObject(json[j], "json");
-          source = jsonMerge(source, json[j]);
-          coreSetAvailableBundles(Cldr, json[j]);
-        }
-      }
-
-      return source;
-    };
-
-    var itemGetResolved = function (Cldr, path, attributes) {
-      // Resolve path
-      var normalizedPath = pathNormalize(path, attributes);
-      return resourceGet(Cldr._resolved, normalizedPath);
-    };
-    /**
-     * new Cldr()
-     */
-
-
-    var Cldr = function (locale) {
-      this.init(locale);
-    }; // Build optimization hack to avoid duplicating functions across modules.
-
-
-    Cldr._alwaysArray = alwaysArray;
-    Cldr._coreLoad = coreLoad;
-    Cldr._createError = createError;
-    Cldr._itemGetResolved = itemGetResolved;
-    Cldr._jsonMerge = jsonMerge;
-    Cldr._pathNormalize = pathNormalize;
-    Cldr._resourceGet = resourceGet;
-    Cldr._validatePresence = validatePresence;
-    Cldr._validateType = validateType;
-    Cldr._validateTypePath = validateTypePath;
-    Cldr._validateTypePlainObject = validateTypePlainObject;
-    Cldr._availableBundleMap = {};
-    Cldr._availableBundleMapQueue = [];
-    Cldr._resolved = {}; // Allow user to override locale separator "-" (default) | "_". According to http://www.unicode.org/reports/tr35/#Unicode_language_identifier, both "-" and "_" are valid locale separators (eg. "en_GB", "en-GB"). According to http://unicode.org/cldr/trac/ticket/6786 its usage must be consistent throughout the data set.
-
-    Cldr.localeSep = "-";
-    /**
-     * Cldr.load( json [, json, ...] )
-     *
-     * @json [JSON] CLDR data or [Array] Array of @json's.
-     *
-     * Load resolved cldr data.
-     */
-
-    Cldr.load = function () {
-      Cldr._resolved = coreLoad(Cldr, Cldr._resolved, arguments);
-    };
-    /**
-     * .init() automatically run on instantiation/construction.
-     */
-
-
-    Cldr.prototype.init = function (locale) {
-      var attributes,
-          language,
-          maxLanguageId,
-          minLanguageId,
-          script,
-          subtags,
-          territory,
-          unicodeLocaleExtensions,
-          variant,
-          sep = Cldr.localeSep,
-          unicodeLocaleExtensionsRaw = "";
-      validatePresence(locale, "locale");
-      validateTypeString(locale, "locale");
-      subtags = coreSubtags(locale);
-
-      if (subtags.length === 5) {
-        unicodeLocaleExtensions = subtags.pop();
-        unicodeLocaleExtensionsRaw = sep + "u" + sep + unicodeLocaleExtensions; // Remove trailing null when there is unicodeLocaleExtensions but no variants.
-
-        if (!subtags[3]) {
-          subtags.pop();
-        }
-      }
-
-      variant = subtags[3]; // Normalize locale code.
-      // Get (or deduce) the "triple subtags": language, territory (also aliased as region), and script subtags.
-      // Get the variant subtags (calendar, collation, currency, etc).
-      // refs:
-      // - http://www.unicode.org/reports/tr35/#Field_Definitions
-      // - http://www.unicode.org/reports/tr35/#Language_and_Locale_IDs
-      // - http://www.unicode.org/reports/tr35/#Unicode_locale_identifier
-      // When a locale id does not specify a language, or territory (region), or script, they are obtained by Likely Subtags.
-
-      maxLanguageId = coreLikelySubtags(Cldr, this, subtags, {
-        force: true
-      }) || subtags;
-      language = maxLanguageId[0];
-      script = maxLanguageId[1];
-      territory = maxLanguageId[2];
-      minLanguageId = coreRemoveLikelySubtags(Cldr, this, maxLanguageId).join(sep); // Set attributes
-
-      this.attributes = attributes = {
-        bundle: bundleLookup(Cldr, this, minLanguageId),
-        // Unicode Language Id
-        minLanguageId: minLanguageId + unicodeLocaleExtensionsRaw,
-        maxLanguageId: maxLanguageId.join(sep) + unicodeLocaleExtensionsRaw,
-        // Unicode Language Id Subtabs
-        language: language,
-        script: script,
-        territory: territory,
-        region: territory,
-
-        /* alias */
-        variant: variant
-      }; // Unicode locale extensions.
-
-      unicodeLocaleExtensions && ("-" + unicodeLocaleExtensions).replace(/-[a-z]{3,8}|(-[a-z]{2})-([a-z]{3,8})/g, function (attribute, key, type) {
-        if (key) {
-          // Extension is in the `keyword` form.
-          attributes["u" + key] = type;
-        } else {
-          // Extension is in the `attribute` form.
-          attributes["u" + attribute] = true;
-        }
-      });
-      this.locale = locale;
-    };
-    /**
-     * .get()
-     */
-
-
-    Cldr.prototype.get = function (path) {
-      validatePresence(path, "path");
-      validateTypePath(path, "path");
-      return itemGetResolved(Cldr, path, this.attributes);
-    };
-    /**
-     * .main()
-     */
-
-
-    Cldr.prototype.main = function (path) {
-      validatePresence(path, "path");
-      validateTypePath(path, "path");
-      validate("E_MISSING_BUNDLE", this.attributes.bundle !== null, {
-        locale: this.locale
-      });
-      path = alwaysArray(path);
-      return this.get(["main/{bundle}"].concat(path));
-    };
-
-    return Cldr;
-  });
-  }(cldr));
-
-  var event = {exports: {}};
+  	/*!
+  	 * CLDR JavaScript Library v0.5.4 2020-10-22T15:56Z MIT license © Rafael Xavier
+  	 * http://git.io/h4lmVg
+  	 */
+  	(function (root, factory) {
+  	  {
+  	    // Node. CommonJS.
+  	    module.exports = factory();
+  	  }
+  	})(commonjsGlobal, function () {
+  	  var arrayIsArray = Array.isArray || function (obj) {
+  	    return Object.prototype.toString.call(obj) === "[object Array]";
+  	  };
+  	  var pathNormalize = function (path, attributes) {
+  	    if (arrayIsArray(path)) {
+  	      path = path.join("/");
+  	    }
+  	    if (typeof path !== "string") {
+  	      throw new Error("invalid path \"" + path + "\"");
+  	    }
+  	    // 1: Ignore leading slash `/`
+  	    // 2: Ignore leading `cldr/`
+  	    path = path.replace(/^\//, "") /* 1 */.replace(/^cldr\//, ""); /* 2 */
+
+  	    // Replace {attribute}'s
+  	    path = path.replace(/{[a-zA-Z]+}/g, function (name) {
+  	      name = name.replace(/^{([^}]*)}$/, "$1");
+  	      return attributes[name];
+  	    });
+  	    return path.split("/");
+  	  };
+  	  var arraySome = function (array, callback) {
+  	    var i, length;
+  	    if (array.some) {
+  	      return array.some(callback);
+  	    }
+  	    for (i = 0, length = array.length; i < length; i++) {
+  	      if (callback(array[i], i, array)) {
+  	        return true;
+  	      }
+  	    }
+  	    return false;
+  	  };
+
+  	  /**
+  	   * Return the maximized language id as defined in
+  	   * http://www.unicode.org/reports/tr35/#Likely_Subtags
+  	   * 1. Canonicalize.
+  	   * 1.1 Make sure the input locale is in canonical form: uses the right
+  	   * separator, and has the right casing.
+  	   * TODO Right casing? What df? It seems languages are lowercase, scripts are
+  	   * Capitalized, territory is uppercase. I am leaving this as an exercise to
+  	   * the user.
+  	   *
+  	   * 1.2 Replace any deprecated subtags with their canonical values using the
+  	   * <alias> data in supplemental metadata. Use the first value in the
+  	   * replacement list, if it exists. Language tag replacements may have multiple
+  	   * parts, such as "sh" ➞ "sr_Latn" or mo" ➞ "ro_MD". In such a case, the
+  	   * original script and/or region are retained if there is one. Thus
+  	   * "sh_Arab_AQ" ➞ "sr_Arab_AQ", not "sr_Latn_AQ".
+  	   * TODO What <alias> data?
+  	   *
+  	   * 1.3 If the tag is grandfathered (see <variable id="$grandfathered"
+  	   * type="choice"> in the supplemental data), then return it.
+  	   * TODO grandfathered?
+  	   *
+  	   * 1.4 Remove the script code 'Zzzz' and the region code 'ZZ' if they occur.
+  	   * 1.5 Get the components of the cleaned-up source tag (languages, scripts,
+  	   * and regions), plus any variants and extensions.
+  	   * 2. Lookup. Lookup each of the following in order, and stop on the first
+  	   * match:
+  	   * 2.1 languages_scripts_regions
+  	   * 2.2 languages_regions
+  	   * 2.3 languages_scripts
+  	   * 2.4 languages
+  	   * 2.5 und_scripts
+  	   * 3. Return
+  	   * 3.1 If there is no match, either return an error value, or the match for
+  	   * "und" (in APIs where a valid language tag is required).
+  	   * 3.2 Otherwise there is a match = languagem_scriptm_regionm
+  	   * 3.3 Let xr = xs if xs is not empty, and xm otherwise.
+  	   * 3.4 Return the language tag composed of languager _ scriptr _ regionr +
+  	   * variants + extensions.
+  	   *
+  	   * @subtags [Array] normalized language id subtags tuple (see init.js).
+  	   */
+  	  var coreLikelySubtags = function (Cldr, cldr, subtags, options) {
+  	    var match,
+  	      matchFound,
+  	      language = subtags[0],
+  	      script = subtags[1],
+  	      sep = Cldr.localeSep,
+  	      territory = subtags[2],
+  	      variants = subtags.slice(3, 4);
+  	    options = options || {};
+
+  	    // Skip if (language, script, territory) is not empty [3.3]
+  	    if (language !== "und" && script !== "Zzzz" && territory !== "ZZ") {
+  	      return [language, script, territory].concat(variants);
+  	    }
+
+  	    // Skip if no supplemental likelySubtags data is present
+  	    if (typeof cldr.get("supplemental/likelySubtags") === "undefined") {
+  	      return;
+  	    }
+
+  	    // [2]
+  	    matchFound = arraySome([[language, script, territory], [language, territory], [language, script], [language], ["und", script]], function (test) {
+  	      return match = !/\b(Zzzz|ZZ)\b/.test(test.join(sep)) /* [1.4] */ && cldr.get(["supplemental/likelySubtags", test.join(sep)]);
+  	    });
+
+  	    // [3]
+  	    if (matchFound) {
+  	      // [3.2 .. 3.4]
+  	      match = match.split(sep);
+  	      return [language !== "und" ? language : match[0], script !== "Zzzz" ? script : match[1], territory !== "ZZ" ? territory : match[2]].concat(variants);
+  	    } else if (options.force) {
+  	      // [3.1.2]
+  	      return cldr.get("supplemental/likelySubtags/und").split(sep);
+  	    } else {
+  	      // [3.1.1]
+  	      return;
+  	    }
+  	  };
+
+  	  /**
+  	   * Given a locale, remove any fields that Add Likely Subtags would add.
+  	   * http://www.unicode.org/reports/tr35/#Likely_Subtags
+  	   * 1. First get max = AddLikelySubtags(inputLocale). If an error is signaled,
+  	   * return it.
+  	   * 2. Remove the variants from max.
+  	   * 3. Then for trial in {language, language _ region, language _ script}. If
+  	   * AddLikelySubtags(trial) = max, then return trial + variants.
+  	   * 4. If you do not get a match, return max + variants.
+  	   * 
+  	   * @maxLanguageId [Array] maxLanguageId tuple (see init.js).
+  	   */
+  	  var coreRemoveLikelySubtags = function (Cldr, cldr, maxLanguageId) {
+  	    var match,
+  	      matchFound,
+  	      language = maxLanguageId[0],
+  	      script = maxLanguageId[1],
+  	      territory = maxLanguageId[2],
+  	      variants = maxLanguageId[3];
+
+  	    // [3]
+  	    matchFound = arraySome([[[language, "Zzzz", "ZZ"], [language]], [[language, "Zzzz", territory], [language, territory]], [[language, script, "ZZ"], [language, script]]], function (test) {
+  	      var result = coreLikelySubtags(Cldr, cldr, test[0]);
+  	      match = test[1];
+  	      return result && result[0] === maxLanguageId[0] && result[1] === maxLanguageId[1] && result[2] === maxLanguageId[2];
+  	    });
+  	    if (matchFound) {
+  	      if (variants) {
+  	        match.push(variants);
+  	      }
+  	      return match;
+  	    }
+
+  	    // [4]
+  	    return maxLanguageId;
+  	  };
+
+  	  /**
+  	   * subtags( locale )
+  	   *
+  	   * @locale [String]
+  	   */
+  	  var coreSubtags = function (locale) {
+  	    var aux,
+  	      unicodeLanguageId,
+  	      subtags = [];
+  	    locale = locale.replace(/_/, "-");
+
+  	    // Unicode locale extensions.
+  	    aux = locale.split("-u-");
+  	    if (aux[1]) {
+  	      aux[1] = aux[1].split("-t-");
+  	      locale = aux[0] + (aux[1][1] ? "-t-" + aux[1][1] : "");
+  	      subtags[4 /* unicodeLocaleExtensions */] = aux[1][0];
+  	    }
+
+  	    // TODO normalize transformed extensions. Currently, skipped.
+  	    // subtags[ x ] = locale.split( "-t-" )[ 1 ];
+  	    unicodeLanguageId = locale.split("-t-")[0];
+
+  	    // unicode_language_id = "root"
+  	    //   | unicode_language_subtag         
+  	    //     (sep unicode_script_subtag)? 
+  	    //     (sep unicode_region_subtag)?
+  	    //     (sep unicode_variant_subtag)* ;
+  	    //
+  	    // Although unicode_language_subtag = alpha{2,8}, I'm using alpha{2,3}. Because, there's no language on CLDR lengthier than 3.
+  	    aux = unicodeLanguageId.match(/^(([a-z]{2,3})(-([A-Z][a-z]{3}))?(-([A-Z]{2}|[0-9]{3}))?)((-([a-zA-Z0-9]{5,8}|[0-9][a-zA-Z0-9]{3}))*)$|^(root)$/);
+  	    if (aux === null) {
+  	      return ["und", "Zzzz", "ZZ"];
+  	    }
+  	    subtags[0 /* language */] = aux[10] /* root */ || aux[2] || "und";
+  	    subtags[1 /* script */] = aux[4] || "Zzzz";
+  	    subtags[2 /* territory */] = aux[6] || "ZZ";
+  	    if (aux[7] && aux[7].length) {
+  	      subtags[3 /* variant */] = aux[7].slice(1) /* remove leading "-" */;
+  	    }
+
+  	    // 0: language
+  	    // 1: script
+  	    // 2: territory (aka region)
+  	    // 3: variant
+  	    // 4: unicodeLocaleExtensions
+  	    return subtags;
+  	  };
+  	  var arrayForEach = function (array, callback) {
+  	    var i, length;
+  	    if (array.forEach) {
+  	      return array.forEach(callback);
+  	    }
+  	    for (i = 0, length = array.length; i < length; i++) {
+  	      callback(array[i], i, array);
+  	    }
+  	  };
+
+  	  /**
+  	   * bundleLookup( minLanguageId )
+  	   *
+  	   * @Cldr [Cldr class]
+  	   *
+  	   * @cldr [Cldr instance]
+  	   *
+  	   * @minLanguageId [String] requested languageId after applied remove likely subtags.
+  	   */
+  	  var bundleLookup = function (Cldr, cldr, minLanguageId) {
+  	    var availableBundleMap = Cldr._availableBundleMap,
+  	      availableBundleMapQueue = Cldr._availableBundleMapQueue;
+  	    if (availableBundleMapQueue.length) {
+  	      arrayForEach(availableBundleMapQueue, function (bundle, i) {
+  	        var existing, maxBundle, minBundle, subtags;
+  	        subtags = coreSubtags(bundle);
+  	        maxBundle = coreLikelySubtags(Cldr, cldr, subtags);
+  	        if (maxBundle === undefined) {
+  	          availableBundleMapQueue.splice(i, 1);
+  	          throw new Error("Could not find likelySubtags for " + bundle);
+  	        }
+  	        minBundle = coreRemoveLikelySubtags(Cldr, cldr, maxBundle);
+  	        minBundle = minBundle.join(Cldr.localeSep);
+  	        existing = availableBundleMap[minBundle];
+  	        if (existing && existing.length < bundle.length) {
+  	          return;
+  	        }
+  	        availableBundleMap[minBundle] = bundle;
+  	      });
+  	      Cldr._availableBundleMapQueue = [];
+  	    }
+  	    return availableBundleMap[minLanguageId] || null;
+  	  };
+  	  var objectKeys = function (object) {
+  	    var i,
+  	      result = [];
+  	    if (Object.keys) {
+  	      return Object.keys(object);
+  	    }
+  	    for (i in object) {
+  	      result.push(i);
+  	    }
+  	    return result;
+  	  };
+  	  var createError = function (code, attributes) {
+  	    var error, message;
+  	    message = code + (attributes && JSON ? ": " + JSON.stringify(attributes) : "");
+  	    error = new Error(message);
+  	    error.code = code;
+
+  	    // extend( error, attributes );
+  	    arrayForEach(objectKeys(attributes), function (attribute) {
+  	      error[attribute] = attributes[attribute];
+  	    });
+  	    return error;
+  	  };
+  	  var validate = function (code, check, attributes) {
+  	    if (!check) {
+  	      throw createError(code, attributes);
+  	    }
+  	  };
+  	  var validatePresence = function (value, name) {
+  	    validate("E_MISSING_PARAMETER", typeof value !== "undefined", {
+  	      name: name
+  	    });
+  	  };
+  	  var validateType = function (value, name, check, expected) {
+  	    validate("E_INVALID_PAR_TYPE", check, {
+  	      expected: expected,
+  	      name: name,
+  	      value: value
+  	    });
+  	  };
+  	  var validateTypePath = function (value, name) {
+  	    validateType(value, name, typeof value === "string" || arrayIsArray(value), "String or Array");
+  	  };
+
+  	  /**
+  	   * Function inspired by jQuery Core, but reduced to our use case.
+  	   */
+  	  var isPlainObject = function (obj) {
+  	    return obj !== null && "" + obj === "[object Object]";
+  	  };
+  	  var validateTypePlainObject = function (value, name) {
+  	    validateType(value, name, typeof value === "undefined" || isPlainObject(value), "Plain Object");
+  	  };
+  	  var validateTypeString = function (value, name) {
+  	    validateType(value, name, typeof value === "string", "a string");
+  	  };
+
+  	  // @path: normalized path
+  	  var resourceGet = function (data, path) {
+  	    var i,
+  	      node = data,
+  	      length = path.length;
+  	    for (i = 0; i < length - 1; i++) {
+  	      node = node[path[i]];
+  	      if (!node) {
+  	        return undefined;
+  	      }
+  	    }
+  	    return node[path[i]];
+  	  };
+
+  	  /**
+  	   * setAvailableBundles( Cldr, json )
+  	   *
+  	   * @Cldr [Cldr class]
+  	   *
+  	   * @json resolved/unresolved cldr data.
+  	   *
+  	   * Set available bundles queue based on passed json CLDR data. Considers a bundle as any String at /main/{bundle}.
+  	   */
+  	  var coreSetAvailableBundles = function (Cldr, json) {
+  	    var bundle,
+  	      availableBundleMapQueue = Cldr._availableBundleMapQueue,
+  	      main = resourceGet(json, ["main"]);
+  	    if (main) {
+  	      for (bundle in main) {
+  	        if (main.hasOwnProperty(bundle) && bundle !== "root" && availableBundleMapQueue.indexOf(bundle) === -1) {
+  	          availableBundleMapQueue.push(bundle);
+  	        }
+  	      }
+  	    }
+  	  };
+  	  var alwaysArray = function (somethingOrArray) {
+  	    return arrayIsArray(somethingOrArray) ? somethingOrArray : [somethingOrArray];
+  	  };
+  	  var jsonMerge = function () {
+  	    // Returns new deeply merged JSON.
+  	    //
+  	    // Eg.
+  	    // merge( { a: { b: 1, c: 2 } }, { a: { b: 3, d: 4 } } )
+  	    // -> { a: { b: 3, c: 2, d: 4 } }
+  	    //
+  	    // @arguments JSON's
+  	    // 
+  	    var merge = function () {
+  	      var destination = {},
+  	        sources = [].slice.call(arguments, 0);
+  	      arrayForEach(sources, function (source) {
+  	        var prop;
+  	        for (prop in source) {
+  	          if (prop in destination && typeof destination[prop] === "object" && !arrayIsArray(destination[prop])) {
+  	            // Merge Objects
+  	            destination[prop] = merge(destination[prop], source[prop]);
+  	          } else {
+  	            // Set new values
+  	            destination[prop] = source[prop];
+  	          }
+  	        }
+  	      });
+  	      return destination;
+  	    };
+  	    return merge;
+  	  }();
+
+  	  /**
+  	   * load( Cldr, source, jsons )
+  	   *
+  	   * @Cldr [Cldr class]
+  	   *
+  	   * @source [Object]
+  	   *
+  	   * @jsons [arguments]
+  	   */
+  	  var coreLoad = function (Cldr, source, jsons) {
+  	    var i, j, json;
+  	    validatePresence(jsons[0], "json");
+
+  	    // Support arbitrary parameters, e.g., `Cldr.load({...}, {...})`.
+  	    for (i = 0; i < jsons.length; i++) {
+  	      // Support array parameters, e.g., `Cldr.load([{...}, {...}])`.
+  	      json = alwaysArray(jsons[i]);
+  	      for (j = 0; j < json.length; j++) {
+  	        validateTypePlainObject(json[j], "json");
+  	        source = jsonMerge(source, json[j]);
+  	        coreSetAvailableBundles(Cldr, json[j]);
+  	      }
+  	    }
+  	    return source;
+  	  };
+  	  var itemGetResolved = function (Cldr, path, attributes) {
+  	    // Resolve path
+  	    var normalizedPath = pathNormalize(path, attributes);
+  	    return resourceGet(Cldr._resolved, normalizedPath);
+  	  };
+
+  	  /**
+  	   * new Cldr()
+  	   */
+  	  var Cldr = function (locale) {
+  	    this.init(locale);
+  	  };
+
+  	  // Build optimization hack to avoid duplicating functions across modules.
+  	  Cldr._alwaysArray = alwaysArray;
+  	  Cldr._coreLoad = coreLoad;
+  	  Cldr._createError = createError;
+  	  Cldr._itemGetResolved = itemGetResolved;
+  	  Cldr._jsonMerge = jsonMerge;
+  	  Cldr._pathNormalize = pathNormalize;
+  	  Cldr._resourceGet = resourceGet;
+  	  Cldr._validatePresence = validatePresence;
+  	  Cldr._validateType = validateType;
+  	  Cldr._validateTypePath = validateTypePath;
+  	  Cldr._validateTypePlainObject = validateTypePlainObject;
+  	  Cldr._availableBundleMap = {};
+  	  Cldr._availableBundleMapQueue = [];
+  	  Cldr._resolved = {};
+
+  	  // Allow user to override locale separator "-" (default) | "_". According to http://www.unicode.org/reports/tr35/#Unicode_language_identifier, both "-" and "_" are valid locale separators (eg. "en_GB", "en-GB"). According to http://unicode.org/cldr/trac/ticket/6786 its usage must be consistent throughout the data set.
+  	  Cldr.localeSep = "-";
+
+  	  /**
+  	   * Cldr.load( json [, json, ...] )
+  	   *
+  	   * @json [JSON] CLDR data or [Array] Array of @json's.
+  	   *
+  	   * Load resolved cldr data.
+  	   */
+  	  Cldr.load = function () {
+  	    Cldr._resolved = coreLoad(Cldr, Cldr._resolved, arguments);
+  	  };
+
+  	  /**
+  	   * .init() automatically run on instantiation/construction.
+  	   */
+  	  Cldr.prototype.init = function (locale) {
+  	    var attributes,
+  	      language,
+  	      maxLanguageId,
+  	      minLanguageId,
+  	      script,
+  	      subtags,
+  	      territory,
+  	      unicodeLocaleExtensions,
+  	      variant,
+  	      sep = Cldr.localeSep,
+  	      unicodeLocaleExtensionsRaw = "";
+  	    validatePresence(locale, "locale");
+  	    validateTypeString(locale, "locale");
+  	    subtags = coreSubtags(locale);
+  	    if (subtags.length === 5) {
+  	      unicodeLocaleExtensions = subtags.pop();
+  	      unicodeLocaleExtensionsRaw = sep + "u" + sep + unicodeLocaleExtensions;
+  	      // Remove trailing null when there is unicodeLocaleExtensions but no variants.
+  	      if (!subtags[3]) {
+  	        subtags.pop();
+  	      }
+  	    }
+  	    variant = subtags[3];
+
+  	    // Normalize locale code.
+  	    // Get (or deduce) the "triple subtags": language, territory (also aliased as region), and script subtags.
+  	    // Get the variant subtags (calendar, collation, currency, etc).
+  	    // refs:
+  	    // - http://www.unicode.org/reports/tr35/#Field_Definitions
+  	    // - http://www.unicode.org/reports/tr35/#Language_and_Locale_IDs
+  	    // - http://www.unicode.org/reports/tr35/#Unicode_locale_identifier
+
+  	    // When a locale id does not specify a language, or territory (region), or script, they are obtained by Likely Subtags.
+  	    maxLanguageId = coreLikelySubtags(Cldr, this, subtags, {
+  	      force: true
+  	    }) || subtags;
+  	    language = maxLanguageId[0];
+  	    script = maxLanguageId[1];
+  	    territory = maxLanguageId[2];
+  	    minLanguageId = coreRemoveLikelySubtags(Cldr, this, maxLanguageId).join(sep);
+
+  	    // Set attributes
+  	    this.attributes = attributes = {
+  	      bundle: bundleLookup(Cldr, this, minLanguageId),
+  	      // Unicode Language Id
+  	      minLanguageId: minLanguageId + unicodeLocaleExtensionsRaw,
+  	      maxLanguageId: maxLanguageId.join(sep) + unicodeLocaleExtensionsRaw,
+  	      // Unicode Language Id Subtabs
+  	      language: language,
+  	      script: script,
+  	      territory: territory,
+  	      region: territory,
+  	      /* alias */
+  	      variant: variant
+  	    };
+
+  	    // Unicode locale extensions.
+  	    unicodeLocaleExtensions && ("-" + unicodeLocaleExtensions).replace(/-[a-z]{3,8}|(-[a-z]{2})-([a-z]{3,8})/g, function (attribute, key, type) {
+  	      if (key) {
+  	        // Extension is in the `keyword` form.
+  	        attributes["u" + key] = type;
+  	      } else {
+  	        // Extension is in the `attribute` form.
+  	        attributes["u" + attribute] = true;
+  	      }
+  	    });
+  	    this.locale = locale;
+  	  };
+
+  	  /**
+  	   * .get()
+  	   */
+  	  Cldr.prototype.get = function (path) {
+  	    validatePresence(path, "path");
+  	    validateTypePath(path, "path");
+  	    return itemGetResolved(Cldr, path, this.attributes);
+  	  };
+
+  	  /**
+  	   * .main()
+  	   */
+  	  Cldr.prototype.main = function (path) {
+  	    validatePresence(path, "path");
+  	    validateTypePath(path, "path");
+  	    validate("E_MISSING_BUNDLE", this.attributes.bundle !== null, {
+  	      locale: this.locale
+  	    });
+  	    path = alwaysArray(path);
+  	    return this.get(["main/{bundle}"].concat(path));
+  	  };
+  	  return Cldr;
+  	});
+  } (cldr));
+
+  var eventExports = {};
+  var event = {
+    get exports(){ return eventExports; },
+    set exports(v){ eventExports = v; },
+  };
 
   /**
    * CLDR JavaScript Library v0.5.4
@@ -13016,580 +12924,529 @@
    */
 
   (function (module) {
-  /*!
-   * CLDR JavaScript Library v0.5.4 2020-10-22T15:56Z MIT license © Rafael Xavier
-   * http://git.io/h4lmVg
-   */
-  (function (factory) {
-    {
-      // Node. CommonJS.
-      module.exports = factory(cldr.exports);
-    }
-  })(function (Cldr) {
-    // Build optimization hack to avoid duplicating functions across modules.
-    var pathNormalize = Cldr._pathNormalize,
-        validatePresence = Cldr._validatePresence,
-        validateType = Cldr._validateType;
-    /*!
-     * EventEmitter v4.2.7 - git.io/ee
-     * Oliver Caldwell
-     * MIT license
-     * @preserve
-     */
-
-    var EventEmitter;
-    /* jshint ignore:start */
-
-    EventEmitter = function () {
-      /**
-       * Class for managing events.
-       * Can be extended to provide event functionality in other classes.
-       *
-       * @class EventEmitter Manages event registering and emitting.
-       */
-      function EventEmitter() {} // Shortcuts to improve speed and size
-
-
-      var proto = EventEmitter.prototype;
-      /**
-       * Finds the index of the listener for the event in it's storage array.
-       *
-       * @param {Function[]} listeners Array of listeners to search through.
-       * @param {Function} listener Method to look for.
-       * @return {Number} Index of the specified listener, -1 if not found
-       * @api private
-       */
-
-      function indexOfListener(listeners, listener) {
-        var i = listeners.length;
-
-        while (i--) {
-          if (listeners[i].listener === listener) {
-            return i;
-          }
-        }
-
-        return -1;
-      }
-      /**
-       * Alias a method while keeping the context correct, to allow for overwriting of target method.
-       *
-       * @param {String} name The name of the target method.
-       * @return {Function} The aliased method
-       * @api private
-       */
-
-
-      function alias(name) {
-        return function aliasClosure() {
-          return this[name].apply(this, arguments);
-        };
-      }
-      /**
-       * Returns the listener array for the specified event.
-       * Will initialise the event object and listener arrays if required.
-       * Will return an object if you use a regex search. The object contains keys for each matched event. So /ba[rz]/ might return an object containing bar and baz. But only if you have either defined them with defineEvent or added some listeners to them.
-       * Each property in the object response is an array of listener functions.
-       *
-       * @param {String|RegExp} evt Name of the event to return the listeners from.
-       * @return {Function[]|Object} All listener functions for the event.
-       */
-
-
-      proto.getListeners = function getListeners(evt) {
-        var events = this._getEvents();
-
-        var response;
-        var key; // Return a concatenated array of all matching events if
-        // the selector is a regular expression.
-
-        if (evt instanceof RegExp) {
-          response = {};
-
-          for (key in events) {
-            if (events.hasOwnProperty(key) && evt.test(key)) {
-              response[key] = events[key];
-            }
-          }
-        } else {
-          response = events[evt] || (events[evt] = []);
-        }
-
-        return response;
-      };
-      /**
-       * Takes a list of listener objects and flattens it into a list of listener functions.
-       *
-       * @param {Object[]} listeners Raw listener objects.
-       * @return {Function[]} Just the listener functions.
-       */
-
-
-      proto.flattenListeners = function flattenListeners(listeners) {
-        var flatListeners = [];
-        var i;
-
-        for (i = 0; i < listeners.length; i += 1) {
-          flatListeners.push(listeners[i].listener);
-        }
-
-        return flatListeners;
-      };
-      /**
-       * Fetches the requested listeners via getListeners but will always return the results inside an object. This is mainly for internal use but others may find it useful.
-       *
-       * @param {String|RegExp} evt Name of the event to return the listeners from.
-       * @return {Object} All listener functions for an event in an object.
-       */
-
-
-      proto.getListenersAsObject = function getListenersAsObject(evt) {
-        var listeners = this.getListeners(evt);
-        var response;
-
-        if (listeners instanceof Array) {
-          response = {};
-          response[evt] = listeners;
-        }
-
-        return response || listeners;
-      };
-      /**
-       * Adds a listener function to the specified event.
-       * The listener will not be added if it is a duplicate.
-       * If the listener returns true then it will be removed after it is called.
-       * If you pass a regular expression as the event name then the listener will be added to all events that match it.
-       *
-       * @param {String|RegExp} evt Name of the event to attach the listener to.
-       * @param {Function} listener Method to be called when the event is emitted. If the function returns true then it will be removed after calling.
-       * @return {Object} Current instance of EventEmitter for chaining.
-       */
-
-
-      proto.addListener = function addListener(evt, listener) {
-        var listeners = this.getListenersAsObject(evt);
-        var listenerIsWrapped = typeof listener === 'object';
-        var key;
-
-        for (key in listeners) {
-          if (listeners.hasOwnProperty(key) && indexOfListener(listeners[key], listener) === -1) {
-            listeners[key].push(listenerIsWrapped ? listener : {
-              listener: listener,
-              once: false
-            });
-          }
-        }
-
-        return this;
-      };
-      /**
-       * Alias of addListener
-       */
-
-
-      proto.on = alias('addListener');
-      /**
-       * Semi-alias of addListener. It will add a listener that will be
-       * automatically removed after it's first execution.
-       *
-       * @param {String|RegExp} evt Name of the event to attach the listener to.
-       * @param {Function} listener Method to be called when the event is emitted. If the function returns true then it will be removed after calling.
-       * @return {Object} Current instance of EventEmitter for chaining.
-       */
-
-      proto.addOnceListener = function addOnceListener(evt, listener) {
-        return this.addListener(evt, {
-          listener: listener,
-          once: true
-        });
-      };
-      /**
-       * Alias of addOnceListener.
-       */
-
-
-      proto.once = alias('addOnceListener');
-      /**
-       * Defines an event name. This is required if you want to use a regex to add a listener to multiple events at once. If you don't do this then how do you expect it to know what event to add to? Should it just add to every possible match for a regex? No. That is scary and bad.
-       * You need to tell it what event names should be matched by a regex.
-       *
-       * @param {String} evt Name of the event to create.
-       * @return {Object} Current instance of EventEmitter for chaining.
-       */
-
-      proto.defineEvent = function defineEvent(evt) {
-        this.getListeners(evt);
-        return this;
-      };
-      /**
-       * Uses defineEvent to define multiple events.
-       *
-       * @param {String[]} evts An array of event names to define.
-       * @return {Object} Current instance of EventEmitter for chaining.
-       */
-
-
-      proto.defineEvents = function defineEvents(evts) {
-        for (var i = 0; i < evts.length; i += 1) {
-          this.defineEvent(evts[i]);
-        }
-
-        return this;
-      };
-      /**
-       * Removes a listener function from the specified event.
-       * When passed a regular expression as the event name, it will remove the listener from all events that match it.
-       *
-       * @param {String|RegExp} evt Name of the event to remove the listener from.
-       * @param {Function} listener Method to remove from the event.
-       * @return {Object} Current instance of EventEmitter for chaining.
-       */
-
-
-      proto.removeListener = function removeListener(evt, listener) {
-        var listeners = this.getListenersAsObject(evt);
-        var index;
-        var key;
-
-        for (key in listeners) {
-          if (listeners.hasOwnProperty(key)) {
-            index = indexOfListener(listeners[key], listener);
-
-            if (index !== -1) {
-              listeners[key].splice(index, 1);
-            }
-          }
-        }
-
-        return this;
-      };
-      /**
-       * Alias of removeListener
-       */
-
-
-      proto.off = alias('removeListener');
-      /**
-       * Adds listeners in bulk using the manipulateListeners method.
-       * If you pass an object as the second argument you can add to multiple events at once. The object should contain key value pairs of events and listeners or listener arrays. You can also pass it an event name and an array of listeners to be added.
-       * You can also pass it a regular expression to add the array of listeners to all events that match it.
-       * Yeah, this function does quite a bit. That's probably a bad thing.
-       *
-       * @param {String|Object|RegExp} evt An event name if you will pass an array of listeners next. An object if you wish to add to multiple events at once.
-       * @param {Function[]} [listeners] An optional array of listener functions to add.
-       * @return {Object} Current instance of EventEmitter for chaining.
-       */
-
-      proto.addListeners = function addListeners(evt, listeners) {
-        // Pass through to manipulateListeners
-        return this.manipulateListeners(false, evt, listeners);
-      };
-      /**
-       * Removes listeners in bulk using the manipulateListeners method.
-       * If you pass an object as the second argument you can remove from multiple events at once. The object should contain key value pairs of events and listeners or listener arrays.
-       * You can also pass it an event name and an array of listeners to be removed.
-       * You can also pass it a regular expression to remove the listeners from all events that match it.
-       *
-       * @param {String|Object|RegExp} evt An event name if you will pass an array of listeners next. An object if you wish to remove from multiple events at once.
-       * @param {Function[]} [listeners] An optional array of listener functions to remove.
-       * @return {Object} Current instance of EventEmitter for chaining.
-       */
-
-
-      proto.removeListeners = function removeListeners(evt, listeners) {
-        // Pass through to manipulateListeners
-        return this.manipulateListeners(true, evt, listeners);
-      };
-      /**
-       * Edits listeners in bulk. The addListeners and removeListeners methods both use this to do their job. You should really use those instead, this is a little lower level.
-       * The first argument will determine if the listeners are removed (true) or added (false).
-       * If you pass an object as the second argument you can add/remove from multiple events at once. The object should contain key value pairs of events and listeners or listener arrays.
-       * You can also pass it an event name and an array of listeners to be added/removed.
-       * You can also pass it a regular expression to manipulate the listeners of all events that match it.
-       *
-       * @param {Boolean} remove True if you want to remove listeners, false if you want to add.
-       * @param {String|Object|RegExp} evt An event name if you will pass an array of listeners next. An object if you wish to add/remove from multiple events at once.
-       * @param {Function[]} [listeners] An optional array of listener functions to add/remove.
-       * @return {Object} Current instance of EventEmitter for chaining.
-       */
-
-
-      proto.manipulateListeners = function manipulateListeners(remove, evt, listeners) {
-        var i;
-        var value;
-        var single = remove ? this.removeListener : this.addListener;
-        var multiple = remove ? this.removeListeners : this.addListeners; // If evt is an object then pass each of it's properties to this method
-
-        if (typeof evt === 'object' && !(evt instanceof RegExp)) {
-          for (i in evt) {
-            if (evt.hasOwnProperty(i) && (value = evt[i])) {
-              // Pass the single listener straight through to the singular method
-              if (typeof value === 'function') {
-                single.call(this, i, value);
-              } else {
-                // Otherwise pass back to the multiple function
-                multiple.call(this, i, value);
-              }
-            }
-          }
-        } else {
-          // So evt must be a string
-          // And listeners must be an array of listeners
-          // Loop over it and pass each one to the multiple method
-          i = listeners.length;
-
-          while (i--) {
-            single.call(this, evt, listeners[i]);
-          }
-        }
-
-        return this;
-      };
-      /**
-       * Removes all listeners from a specified event.
-       * If you do not specify an event then all listeners will be removed.
-       * That means every event will be emptied.
-       * You can also pass a regex to remove all events that match it.
-       *
-       * @param {String|RegExp} [evt] Optional name of the event to remove all listeners for. Will remove from every event if not passed.
-       * @return {Object} Current instance of EventEmitter for chaining.
-       */
-
-
-      proto.removeEvent = function removeEvent(evt) {
-        var type = typeof evt;
-
-        var events = this._getEvents();
-
-        var key; // Remove different things depending on the state of evt
-
-        if (type === 'string') {
-          // Remove all listeners for the specified event
-          delete events[evt];
-        } else if (evt instanceof RegExp) {
-          // Remove all events matching the regex.
-          for (key in events) {
-            if (events.hasOwnProperty(key) && evt.test(key)) {
-              delete events[key];
-            }
-          }
-        } else {
-          // Remove all listeners in all events
-          delete this._events;
-        }
-
-        return this;
-      };
-      /**
-       * Alias of removeEvent.
-       *
-       * Added to mirror the node API.
-       */
-
-
-      proto.removeAllListeners = alias('removeEvent');
-      /**
-       * Emits an event of your choice.
-       * When emitted, every listener attached to that event will be executed.
-       * If you pass the optional argument array then those arguments will be passed to every listener upon execution.
-       * Because it uses `apply`, your array of arguments will be passed as if you wrote them out separately.
-       * So they will not arrive within the array on the other side, they will be separate.
-       * You can also pass a regular expression to emit to all events that match it.
-       *
-       * @param {String|RegExp} evt Name of the event to emit and execute listeners for.
-       * @param {Array} [args] Optional array of arguments to be passed to each listener.
-       * @return {Object} Current instance of EventEmitter for chaining.
-       */
-
-      proto.emitEvent = function emitEvent(evt, args) {
-        var listeners = this.getListenersAsObject(evt);
-        var listener;
-        var i;
-        var key;
-        var response;
-
-        for (key in listeners) {
-          if (listeners.hasOwnProperty(key)) {
-            i = listeners[key].length;
-
-            while (i--) {
-              // If the listener returns true then it shall be removed from the event
-              // The function is executed either with a basic call or an apply if there is an args array
-              listener = listeners[key][i];
-
-              if (listener.once === true) {
-                this.removeListener(evt, listener.listener);
-              }
-
-              response = listener.listener.apply(this, args || []);
-
-              if (response === this._getOnceReturnValue()) {
-                this.removeListener(evt, listener.listener);
-              }
-            }
-          }
-        }
-
-        return this;
-      };
-      /**
-       * Alias of emitEvent
-       */
-
-
-      proto.trigger = alias('emitEvent');
-      /**
-       * Subtly different from emitEvent in that it will pass its arguments on to the listeners, as opposed to taking a single array of arguments to pass on.
-       * As with emitEvent, you can pass a regex in place of the event name to emit to all events that match it.
-       *
-       * @param {String|RegExp} evt Name of the event to emit and execute listeners for.
-       * @param {...*} Optional additional arguments to be passed to each listener.
-       * @return {Object} Current instance of EventEmitter for chaining.
-       */
-
-      proto.emit = function emit(evt) {
-        var args = Array.prototype.slice.call(arguments, 1);
-        return this.emitEvent(evt, args);
-      };
-      /**
-       * Sets the current value to check against when executing listeners. If a
-       * listeners return value matches the one set here then it will be removed
-       * after execution. This value defaults to true.
-       *
-       * @param {*} value The new value to check for when executing listeners.
-       * @return {Object} Current instance of EventEmitter for chaining.
-       */
-
-
-      proto.setOnceReturnValue = function setOnceReturnValue(value) {
-        this._onceReturnValue = value;
-        return this;
-      };
-      /**
-       * Fetches the current value to check against when executing listeners. If
-       * the listeners return value matches this one then it should be removed
-       * automatically. It will return true by default.
-       *
-       * @return {*|Boolean} The current value to check for or the default, true.
-       * @api private
-       */
-
-
-      proto._getOnceReturnValue = function _getOnceReturnValue() {
-        if (this.hasOwnProperty('_onceReturnValue')) {
-          return this._onceReturnValue;
-        } else {
-          return true;
-        }
-      };
-      /**
-       * Fetches the events object and creates one if required.
-       *
-       * @return {Object} The events storage object.
-       * @api private
-       */
-
-
-      proto._getEvents = function _getEvents() {
-        return this._events || (this._events = {});
-      };
-      /**
-       * Reverts the global {@link EventEmitter} to its previous value and returns a reference to this version.
-       *
-       * @return {Function} Non conflicting EventEmitter class.
-       */
-
-
-      EventEmitter.noConflict = function noConflict() {
-        originalGlobalValue;
-        return EventEmitter;
-      };
-
-      return EventEmitter;
-    }();
-    /* jshint ignore:end */
-
-
-    var validateTypeFunction = function (value, name) {
-      validateType(value, name, typeof value === "undefined" || typeof value === "function", "Function");
-    };
-
-    var superGet,
-        superInit,
-        globalEe = new EventEmitter();
-
-    function validateTypeEvent(value, name) {
-      validateType(value, name, typeof value === "string" || value instanceof RegExp, "String or RegExp");
-    }
-
-    function validateThenCall(method, self) {
-      return function (event, listener) {
-        validatePresence(event, "event");
-        validateTypeEvent(event, "event");
-        validatePresence(listener, "listener");
-        validateTypeFunction(listener, "listener");
-        return self[method].apply(self, arguments);
-      };
-    }
-
-    function off(self) {
-      return validateThenCall("off", self);
-    }
-
-    function on(self) {
-      return validateThenCall("on", self);
-    }
-
-    function once(self) {
-      return validateThenCall("once", self);
-    }
-
-    Cldr.off = off(globalEe);
-    Cldr.on = on(globalEe);
-    Cldr.once = once(globalEe);
-    /**
-     * Overload Cldr.prototype.init().
-     */
-
-    superInit = Cldr.prototype.init;
-
-    Cldr.prototype.init = function () {
-      var ee;
-      this.ee = ee = new EventEmitter();
-      this.off = off(ee);
-      this.on = on(ee);
-      this.once = once(ee);
-      superInit.apply(this, arguments);
-    };
-    /**
-     * getOverload is encapsulated, because of cldr/unresolved. If it's loaded
-     * after cldr/event (and note it overwrites .get), it can trigger this
-     * overload again.
-     */
-
-
-    function getOverload() {
-      /**
-       * Overload Cldr.prototype.get().
-       */
-      superGet = Cldr.prototype.get;
-
-      Cldr.prototype.get = function (path) {
-        var value = superGet.apply(this, arguments);
-        path = pathNormalize(path, this.attributes).join("/");
-        globalEe.trigger("get", [path, value]);
-        this.ee.trigger("get", [path, value]);
-        return value;
-      };
-    }
-
-    Cldr._eventInit = getOverload;
-    getOverload();
-    return Cldr;
-  });
-  }(event));
-
-  var supplemental = {exports: {}};
+  	/*!
+  	 * CLDR JavaScript Library v0.5.4 2020-10-22T15:56Z MIT license © Rafael Xavier
+  	 * http://git.io/h4lmVg
+  	 */
+  	(function (factory) {
+  	  {
+  	    // Node. CommonJS.
+  	    module.exports = factory(cldrExports);
+  	  }
+  	})(function (Cldr) {
+  	  // Build optimization hack to avoid duplicating functions across modules.
+  	  var pathNormalize = Cldr._pathNormalize,
+  	    validatePresence = Cldr._validatePresence,
+  	    validateType = Cldr._validateType;
+
+  	  /*!
+  	   * EventEmitter v4.2.7 - git.io/ee
+  	   * Oliver Caldwell
+  	   * MIT license
+  	   * @preserve
+  	   */
+
+  	  var EventEmitter;
+  	  /* jshint ignore:start */
+  	  EventEmitter = function () {
+  	    /**
+  	     * Class for managing events.
+  	     * Can be extended to provide event functionality in other classes.
+  	     *
+  	     * @class EventEmitter Manages event registering and emitting.
+  	     */
+  	    function EventEmitter() {}
+
+  	    // Shortcuts to improve speed and size
+  	    var proto = EventEmitter.prototype;
+
+  	    /**
+  	     * Finds the index of the listener for the event in it's storage array.
+  	     *
+  	     * @param {Function[]} listeners Array of listeners to search through.
+  	     * @param {Function} listener Method to look for.
+  	     * @return {Number} Index of the specified listener, -1 if not found
+  	     * @api private
+  	     */
+  	    function indexOfListener(listeners, listener) {
+  	      var i = listeners.length;
+  	      while (i--) {
+  	        if (listeners[i].listener === listener) {
+  	          return i;
+  	        }
+  	      }
+  	      return -1;
+  	    }
+
+  	    /**
+  	     * Alias a method while keeping the context correct, to allow for overwriting of target method.
+  	     *
+  	     * @param {String} name The name of the target method.
+  	     * @return {Function} The aliased method
+  	     * @api private
+  	     */
+  	    function alias(name) {
+  	      return function aliasClosure() {
+  	        return this[name].apply(this, arguments);
+  	      };
+  	    }
+
+  	    /**
+  	     * Returns the listener array for the specified event.
+  	     * Will initialise the event object and listener arrays if required.
+  	     * Will return an object if you use a regex search. The object contains keys for each matched event. So /ba[rz]/ might return an object containing bar and baz. But only if you have either defined them with defineEvent or added some listeners to them.
+  	     * Each property in the object response is an array of listener functions.
+  	     *
+  	     * @param {String|RegExp} evt Name of the event to return the listeners from.
+  	     * @return {Function[]|Object} All listener functions for the event.
+  	     */
+  	    proto.getListeners = function getListeners(evt) {
+  	      var events = this._getEvents();
+  	      var response;
+  	      var key;
+
+  	      // Return a concatenated array of all matching events if
+  	      // the selector is a regular expression.
+  	      if (evt instanceof RegExp) {
+  	        response = {};
+  	        for (key in events) {
+  	          if (events.hasOwnProperty(key) && evt.test(key)) {
+  	            response[key] = events[key];
+  	          }
+  	        }
+  	      } else {
+  	        response = events[evt] || (events[evt] = []);
+  	      }
+  	      return response;
+  	    };
+
+  	    /**
+  	     * Takes a list of listener objects and flattens it into a list of listener functions.
+  	     *
+  	     * @param {Object[]} listeners Raw listener objects.
+  	     * @return {Function[]} Just the listener functions.
+  	     */
+  	    proto.flattenListeners = function flattenListeners(listeners) {
+  	      var flatListeners = [];
+  	      var i;
+  	      for (i = 0; i < listeners.length; i += 1) {
+  	        flatListeners.push(listeners[i].listener);
+  	      }
+  	      return flatListeners;
+  	    };
+
+  	    /**
+  	     * Fetches the requested listeners via getListeners but will always return the results inside an object. This is mainly for internal use but others may find it useful.
+  	     *
+  	     * @param {String|RegExp} evt Name of the event to return the listeners from.
+  	     * @return {Object} All listener functions for an event in an object.
+  	     */
+  	    proto.getListenersAsObject = function getListenersAsObject(evt) {
+  	      var listeners = this.getListeners(evt);
+  	      var response;
+  	      if (listeners instanceof Array) {
+  	        response = {};
+  	        response[evt] = listeners;
+  	      }
+  	      return response || listeners;
+  	    };
+
+  	    /**
+  	     * Adds a listener function to the specified event.
+  	     * The listener will not be added if it is a duplicate.
+  	     * If the listener returns true then it will be removed after it is called.
+  	     * If you pass a regular expression as the event name then the listener will be added to all events that match it.
+  	     *
+  	     * @param {String|RegExp} evt Name of the event to attach the listener to.
+  	     * @param {Function} listener Method to be called when the event is emitted. If the function returns true then it will be removed after calling.
+  	     * @return {Object} Current instance of EventEmitter for chaining.
+  	     */
+  	    proto.addListener = function addListener(evt, listener) {
+  	      var listeners = this.getListenersAsObject(evt);
+  	      var listenerIsWrapped = typeof listener === 'object';
+  	      var key;
+  	      for (key in listeners) {
+  	        if (listeners.hasOwnProperty(key) && indexOfListener(listeners[key], listener) === -1) {
+  	          listeners[key].push(listenerIsWrapped ? listener : {
+  	            listener: listener,
+  	            once: false
+  	          });
+  	        }
+  	      }
+  	      return this;
+  	    };
+
+  	    /**
+  	     * Alias of addListener
+  	     */
+  	    proto.on = alias('addListener');
+
+  	    /**
+  	     * Semi-alias of addListener. It will add a listener that will be
+  	     * automatically removed after it's first execution.
+  	     *
+  	     * @param {String|RegExp} evt Name of the event to attach the listener to.
+  	     * @param {Function} listener Method to be called when the event is emitted. If the function returns true then it will be removed after calling.
+  	     * @return {Object} Current instance of EventEmitter for chaining.
+  	     */
+  	    proto.addOnceListener = function addOnceListener(evt, listener) {
+  	      return this.addListener(evt, {
+  	        listener: listener,
+  	        once: true
+  	      });
+  	    };
+
+  	    /**
+  	     * Alias of addOnceListener.
+  	     */
+  	    proto.once = alias('addOnceListener');
+
+  	    /**
+  	     * Defines an event name. This is required if you want to use a regex to add a listener to multiple events at once. If you don't do this then how do you expect it to know what event to add to? Should it just add to every possible match for a regex? No. That is scary and bad.
+  	     * You need to tell it what event names should be matched by a regex.
+  	     *
+  	     * @param {String} evt Name of the event to create.
+  	     * @return {Object} Current instance of EventEmitter for chaining.
+  	     */
+  	    proto.defineEvent = function defineEvent(evt) {
+  	      this.getListeners(evt);
+  	      return this;
+  	    };
+
+  	    /**
+  	     * Uses defineEvent to define multiple events.
+  	     *
+  	     * @param {String[]} evts An array of event names to define.
+  	     * @return {Object} Current instance of EventEmitter for chaining.
+  	     */
+  	    proto.defineEvents = function defineEvents(evts) {
+  	      for (var i = 0; i < evts.length; i += 1) {
+  	        this.defineEvent(evts[i]);
+  	      }
+  	      return this;
+  	    };
+
+  	    /**
+  	     * Removes a listener function from the specified event.
+  	     * When passed a regular expression as the event name, it will remove the listener from all events that match it.
+  	     *
+  	     * @param {String|RegExp} evt Name of the event to remove the listener from.
+  	     * @param {Function} listener Method to remove from the event.
+  	     * @return {Object} Current instance of EventEmitter for chaining.
+  	     */
+  	    proto.removeListener = function removeListener(evt, listener) {
+  	      var listeners = this.getListenersAsObject(evt);
+  	      var index;
+  	      var key;
+  	      for (key in listeners) {
+  	        if (listeners.hasOwnProperty(key)) {
+  	          index = indexOfListener(listeners[key], listener);
+  	          if (index !== -1) {
+  	            listeners[key].splice(index, 1);
+  	          }
+  	        }
+  	      }
+  	      return this;
+  	    };
+
+  	    /**
+  	     * Alias of removeListener
+  	     */
+  	    proto.off = alias('removeListener');
+
+  	    /**
+  	     * Adds listeners in bulk using the manipulateListeners method.
+  	     * If you pass an object as the second argument you can add to multiple events at once. The object should contain key value pairs of events and listeners or listener arrays. You can also pass it an event name and an array of listeners to be added.
+  	     * You can also pass it a regular expression to add the array of listeners to all events that match it.
+  	     * Yeah, this function does quite a bit. That's probably a bad thing.
+  	     *
+  	     * @param {String|Object|RegExp} evt An event name if you will pass an array of listeners next. An object if you wish to add to multiple events at once.
+  	     * @param {Function[]} [listeners] An optional array of listener functions to add.
+  	     * @return {Object} Current instance of EventEmitter for chaining.
+  	     */
+  	    proto.addListeners = function addListeners(evt, listeners) {
+  	      // Pass through to manipulateListeners
+  	      return this.manipulateListeners(false, evt, listeners);
+  	    };
+
+  	    /**
+  	     * Removes listeners in bulk using the manipulateListeners method.
+  	     * If you pass an object as the second argument you can remove from multiple events at once. The object should contain key value pairs of events and listeners or listener arrays.
+  	     * You can also pass it an event name and an array of listeners to be removed.
+  	     * You can also pass it a regular expression to remove the listeners from all events that match it.
+  	     *
+  	     * @param {String|Object|RegExp} evt An event name if you will pass an array of listeners next. An object if you wish to remove from multiple events at once.
+  	     * @param {Function[]} [listeners] An optional array of listener functions to remove.
+  	     * @return {Object} Current instance of EventEmitter for chaining.
+  	     */
+  	    proto.removeListeners = function removeListeners(evt, listeners) {
+  	      // Pass through to manipulateListeners
+  	      return this.manipulateListeners(true, evt, listeners);
+  	    };
+
+  	    /**
+  	     * Edits listeners in bulk. The addListeners and removeListeners methods both use this to do their job. You should really use those instead, this is a little lower level.
+  	     * The first argument will determine if the listeners are removed (true) or added (false).
+  	     * If you pass an object as the second argument you can add/remove from multiple events at once. The object should contain key value pairs of events and listeners or listener arrays.
+  	     * You can also pass it an event name and an array of listeners to be added/removed.
+  	     * You can also pass it a regular expression to manipulate the listeners of all events that match it.
+  	     *
+  	     * @param {Boolean} remove True if you want to remove listeners, false if you want to add.
+  	     * @param {String|Object|RegExp} evt An event name if you will pass an array of listeners next. An object if you wish to add/remove from multiple events at once.
+  	     * @param {Function[]} [listeners] An optional array of listener functions to add/remove.
+  	     * @return {Object} Current instance of EventEmitter for chaining.
+  	     */
+  	    proto.manipulateListeners = function manipulateListeners(remove, evt, listeners) {
+  	      var i;
+  	      var value;
+  	      var single = remove ? this.removeListener : this.addListener;
+  	      var multiple = remove ? this.removeListeners : this.addListeners;
+
+  	      // If evt is an object then pass each of it's properties to this method
+  	      if (typeof evt === 'object' && !(evt instanceof RegExp)) {
+  	        for (i in evt) {
+  	          if (evt.hasOwnProperty(i) && (value = evt[i])) {
+  	            // Pass the single listener straight through to the singular method
+  	            if (typeof value === 'function') {
+  	              single.call(this, i, value);
+  	            } else {
+  	              // Otherwise pass back to the multiple function
+  	              multiple.call(this, i, value);
+  	            }
+  	          }
+  	        }
+  	      } else {
+  	        // So evt must be a string
+  	        // And listeners must be an array of listeners
+  	        // Loop over it and pass each one to the multiple method
+  	        i = listeners.length;
+  	        while (i--) {
+  	          single.call(this, evt, listeners[i]);
+  	        }
+  	      }
+  	      return this;
+  	    };
+
+  	    /**
+  	     * Removes all listeners from a specified event.
+  	     * If you do not specify an event then all listeners will be removed.
+  	     * That means every event will be emptied.
+  	     * You can also pass a regex to remove all events that match it.
+  	     *
+  	     * @param {String|RegExp} [evt] Optional name of the event to remove all listeners for. Will remove from every event if not passed.
+  	     * @return {Object} Current instance of EventEmitter for chaining.
+  	     */
+  	    proto.removeEvent = function removeEvent(evt) {
+  	      var type = typeof evt;
+  	      var events = this._getEvents();
+  	      var key;
+
+  	      // Remove different things depending on the state of evt
+  	      if (type === 'string') {
+  	        // Remove all listeners for the specified event
+  	        delete events[evt];
+  	      } else if (evt instanceof RegExp) {
+  	        // Remove all events matching the regex.
+  	        for (key in events) {
+  	          if (events.hasOwnProperty(key) && evt.test(key)) {
+  	            delete events[key];
+  	          }
+  	        }
+  	      } else {
+  	        // Remove all listeners in all events
+  	        delete this._events;
+  	      }
+  	      return this;
+  	    };
+
+  	    /**
+  	     * Alias of removeEvent.
+  	     *
+  	     * Added to mirror the node API.
+  	     */
+  	    proto.removeAllListeners = alias('removeEvent');
+
+  	    /**
+  	     * Emits an event of your choice.
+  	     * When emitted, every listener attached to that event will be executed.
+  	     * If you pass the optional argument array then those arguments will be passed to every listener upon execution.
+  	     * Because it uses `apply`, your array of arguments will be passed as if you wrote them out separately.
+  	     * So they will not arrive within the array on the other side, they will be separate.
+  	     * You can also pass a regular expression to emit to all events that match it.
+  	     *
+  	     * @param {String|RegExp} evt Name of the event to emit and execute listeners for.
+  	     * @param {Array} [args] Optional array of arguments to be passed to each listener.
+  	     * @return {Object} Current instance of EventEmitter for chaining.
+  	     */
+  	    proto.emitEvent = function emitEvent(evt, args) {
+  	      var listeners = this.getListenersAsObject(evt);
+  	      var listener;
+  	      var i;
+  	      var key;
+  	      var response;
+  	      for (key in listeners) {
+  	        if (listeners.hasOwnProperty(key)) {
+  	          i = listeners[key].length;
+  	          while (i--) {
+  	            // If the listener returns true then it shall be removed from the event
+  	            // The function is executed either with a basic call or an apply if there is an args array
+  	            listener = listeners[key][i];
+  	            if (listener.once === true) {
+  	              this.removeListener(evt, listener.listener);
+  	            }
+  	            response = listener.listener.apply(this, args || []);
+  	            if (response === this._getOnceReturnValue()) {
+  	              this.removeListener(evt, listener.listener);
+  	            }
+  	          }
+  	        }
+  	      }
+  	      return this;
+  	    };
+
+  	    /**
+  	     * Alias of emitEvent
+  	     */
+  	    proto.trigger = alias('emitEvent');
+
+  	    /**
+  	     * Subtly different from emitEvent in that it will pass its arguments on to the listeners, as opposed to taking a single array of arguments to pass on.
+  	     * As with emitEvent, you can pass a regex in place of the event name to emit to all events that match it.
+  	     *
+  	     * @param {String|RegExp} evt Name of the event to emit and execute listeners for.
+  	     * @param {...*} Optional additional arguments to be passed to each listener.
+  	     * @return {Object} Current instance of EventEmitter for chaining.
+  	     */
+  	    proto.emit = function emit(evt) {
+  	      var args = Array.prototype.slice.call(arguments, 1);
+  	      return this.emitEvent(evt, args);
+  	    };
+
+  	    /**
+  	     * Sets the current value to check against when executing listeners. If a
+  	     * listeners return value matches the one set here then it will be removed
+  	     * after execution. This value defaults to true.
+  	     *
+  	     * @param {*} value The new value to check for when executing listeners.
+  	     * @return {Object} Current instance of EventEmitter for chaining.
+  	     */
+  	    proto.setOnceReturnValue = function setOnceReturnValue(value) {
+  	      this._onceReturnValue = value;
+  	      return this;
+  	    };
+
+  	    /**
+  	     * Fetches the current value to check against when executing listeners. If
+  	     * the listeners return value matches this one then it should be removed
+  	     * automatically. It will return true by default.
+  	     *
+  	     * @return {*|Boolean} The current value to check for or the default, true.
+  	     * @api private
+  	     */
+  	    proto._getOnceReturnValue = function _getOnceReturnValue() {
+  	      if (this.hasOwnProperty('_onceReturnValue')) {
+  	        return this._onceReturnValue;
+  	      } else {
+  	        return true;
+  	      }
+  	    };
+
+  	    /**
+  	     * Fetches the events object and creates one if required.
+  	     *
+  	     * @return {Object} The events storage object.
+  	     * @api private
+  	     */
+  	    proto._getEvents = function _getEvents() {
+  	      return this._events || (this._events = {});
+  	    };
+
+  	    /**
+  	     * Reverts the global {@link EventEmitter} to its previous value and returns a reference to this version.
+  	     *
+  	     * @return {Function} Non conflicting EventEmitter class.
+  	     */
+  	    EventEmitter.noConflict = function noConflict() {
+  	      originalGlobalValue;
+  	      return EventEmitter;
+  	    };
+  	    return EventEmitter;
+  	  }();
+  	  /* jshint ignore:end */
+
+  	  var validateTypeFunction = function (value, name) {
+  	    validateType(value, name, typeof value === "undefined" || typeof value === "function", "Function");
+  	  };
+  	  var superGet,
+  	    superInit,
+  	    globalEe = new EventEmitter();
+  	  function validateTypeEvent(value, name) {
+  	    validateType(value, name, typeof value === "string" || value instanceof RegExp, "String or RegExp");
+  	  }
+  	  function validateThenCall(method, self) {
+  	    return function (event, listener) {
+  	      validatePresence(event, "event");
+  	      validateTypeEvent(event, "event");
+  	      validatePresence(listener, "listener");
+  	      validateTypeFunction(listener, "listener");
+  	      return self[method].apply(self, arguments);
+  	    };
+  	  }
+  	  function off(self) {
+  	    return validateThenCall("off", self);
+  	  }
+  	  function on(self) {
+  	    return validateThenCall("on", self);
+  	  }
+  	  function once(self) {
+  	    return validateThenCall("once", self);
+  	  }
+  	  Cldr.off = off(globalEe);
+  	  Cldr.on = on(globalEe);
+  	  Cldr.once = once(globalEe);
+
+  	  /**
+  	   * Overload Cldr.prototype.init().
+  	   */
+  	  superInit = Cldr.prototype.init;
+  	  Cldr.prototype.init = function () {
+  	    var ee;
+  	    this.ee = ee = new EventEmitter();
+  	    this.off = off(ee);
+  	    this.on = on(ee);
+  	    this.once = once(ee);
+  	    superInit.apply(this, arguments);
+  	  };
+
+  	  /**
+  	   * getOverload is encapsulated, because of cldr/unresolved. If it's loaded
+  	   * after cldr/event (and note it overwrites .get), it can trigger this
+  	   * overload again.
+  	   */
+  	  function getOverload() {
+  	    /**
+  	     * Overload Cldr.prototype.get().
+  	     */
+  	    superGet = Cldr.prototype.get;
+  	    Cldr.prototype.get = function (path) {
+  	      var value = superGet.apply(this, arguments);
+  	      path = pathNormalize(path, this.attributes).join("/");
+  	      globalEe.trigger("get", [path, value]);
+  	      this.ee.trigger("get", [path, value]);
+  	      return value;
+  	    };
+  	  }
+  	  Cldr._eventInit = getOverload;
+  	  getOverload();
+  	  return Cldr;
+  	});
+  } (event));
+
+  var supplementalExports = {};
+  var supplemental = {
+    get exports(){ return supplementalExports; },
+    set exports(v){ supplementalExports = v; },
+  };
 
   /**
    * CLDR JavaScript Library v0.5.4
@@ -13603,75 +13460,70 @@
    */
 
   (function (module) {
-  /*!
-   * CLDR JavaScript Library v0.5.4 2020-10-22T15:56Z MIT license © Rafael Xavier
-   * http://git.io/h4lmVg
-   */
-  (function (factory) {
-    {
-      // Node. CommonJS.
-      module.exports = factory(cldr.exports);
-    }
-  })(function (Cldr) {
-    // Build optimization hack to avoid duplicating functions across modules.
-    var alwaysArray = Cldr._alwaysArray;
+  	/*!
+  	 * CLDR JavaScript Library v0.5.4 2020-10-22T15:56Z MIT license © Rafael Xavier
+  	 * http://git.io/h4lmVg
+  	 */
+  	(function (factory) {
+  	  {
+  	    // Node. CommonJS.
+  	    module.exports = factory(cldrExports);
+  	  }
+  	})(function (Cldr) {
+  	  // Build optimization hack to avoid duplicating functions across modules.
+  	  var alwaysArray = Cldr._alwaysArray;
+  	  var supplementalMain = function (cldr) {
+  	    var prepend, supplemental;
+  	    prepend = function (prepend) {
+  	      return function (path) {
+  	        path = alwaysArray(path);
+  	        return cldr.get([prepend].concat(path));
+  	      };
+  	    };
+  	    supplemental = prepend("supplemental");
 
-    var supplementalMain = function (cldr) {
-      var prepend, supplemental;
+  	    // Week Data
+  	    // http://www.unicode.org/reports/tr35/tr35-dates.html#Week_Data
+  	    supplemental.weekData = prepend("supplemental/weekData");
+  	    supplemental.weekData.firstDay = function () {
+  	      return cldr.get("supplemental/weekData/firstDay/{territory}") || cldr.get("supplemental/weekData/firstDay/001");
+  	    };
+  	    supplemental.weekData.minDays = function () {
+  	      var minDays = cldr.get("supplemental/weekData/minDays/{territory}") || cldr.get("supplemental/weekData/minDays/001");
+  	      return parseInt(minDays, 10);
+  	    };
 
-      prepend = function (prepend) {
-        return function (path) {
-          path = alwaysArray(path);
-          return cldr.get([prepend].concat(path));
-        };
-      };
+  	    // Time Data
+  	    // http://www.unicode.org/reports/tr35/tr35-dates.html#Time_Data
+  	    supplemental.timeData = prepend("supplemental/timeData");
+  	    supplemental.timeData.allowed = function () {
+  	      return cldr.get("supplemental/timeData/{territory}/_allowed") || cldr.get("supplemental/timeData/001/_allowed");
+  	    };
+  	    supplemental.timeData.preferred = function () {
+  	      return cldr.get("supplemental/timeData/{territory}/_preferred") || cldr.get("supplemental/timeData/001/_preferred");
+  	    };
+  	    return supplemental;
+  	  };
+  	  var initSuper = Cldr.prototype.init;
 
-      supplemental = prepend("supplemental"); // Week Data
-      // http://www.unicode.org/reports/tr35/tr35-dates.html#Week_Data
+  	  /**
+  	   * .init() automatically ran on construction.
+  	   *
+  	   * Overload .init().
+  	   */
+  	  Cldr.prototype.init = function () {
+  	    initSuper.apply(this, arguments);
+  	    this.supplemental = supplementalMain(this);
+  	  };
+  	  return Cldr;
+  	});
+  } (supplemental));
 
-      supplemental.weekData = prepend("supplemental/weekData");
-
-      supplemental.weekData.firstDay = function () {
-        return cldr.get("supplemental/weekData/firstDay/{territory}") || cldr.get("supplemental/weekData/firstDay/001");
-      };
-
-      supplemental.weekData.minDays = function () {
-        var minDays = cldr.get("supplemental/weekData/minDays/{territory}") || cldr.get("supplemental/weekData/minDays/001");
-        return parseInt(minDays, 10);
-      }; // Time Data
-      // http://www.unicode.org/reports/tr35/tr35-dates.html#Time_Data
-
-
-      supplemental.timeData = prepend("supplemental/timeData");
-
-      supplemental.timeData.allowed = function () {
-        return cldr.get("supplemental/timeData/{territory}/_allowed") || cldr.get("supplemental/timeData/001/_allowed");
-      };
-
-      supplemental.timeData.preferred = function () {
-        return cldr.get("supplemental/timeData/{territory}/_preferred") || cldr.get("supplemental/timeData/001/_preferred");
-      };
-
-      return supplemental;
-    };
-
-    var initSuper = Cldr.prototype.init;
-    /**
-     * .init() automatically ran on construction.
-     *
-     * Overload .init().
-     */
-
-    Cldr.prototype.init = function () {
-      initSuper.apply(this, arguments);
-      this.supplemental = supplementalMain(this);
-    };
-
-    return Cldr;
-  });
-  }(supplemental));
-
-  var unresolved = {exports: {}};
+  var unresolvedExports = {};
+  var unresolved = {
+    get exports(){ return unresolvedExports; },
+    set exports(v){ unresolvedExports = v; },
+  };
 
   /**
    * CLDR JavaScript Library v0.5.4
@@ -13685,154 +13537,129 @@
    */
 
   (function (module) {
-  /*!
-   * CLDR JavaScript Library v0.5.4 2020-10-22T15:56Z MIT license © Rafael Xavier
-   * http://git.io/h4lmVg
-   */
-  (function (factory) {
-    {
-      // Node. CommonJS.
-      module.exports = factory(cldr.exports);
-    }
-  })(function (Cldr) {
-    // Build optimization hack to avoid duplicating functions across modules.
-    var coreLoad = Cldr._coreLoad;
-    var jsonMerge = Cldr._jsonMerge;
-    var pathNormalize = Cldr._pathNormalize;
-    var resourceGet = Cldr._resourceGet;
-    var validatePresence = Cldr._validatePresence;
-    var validateTypePath = Cldr._validateTypePath;
+  	/*!
+  	 * CLDR JavaScript Library v0.5.4 2020-10-22T15:56Z MIT license © Rafael Xavier
+  	 * http://git.io/h4lmVg
+  	 */
+  	(function (factory) {
+  	  {
+  	    // Node. CommonJS.
+  	    module.exports = factory(cldrExports);
+  	  }
+  	})(function (Cldr) {
+  	  // Build optimization hack to avoid duplicating functions across modules.
+  	  var coreLoad = Cldr._coreLoad;
+  	  var jsonMerge = Cldr._jsonMerge;
+  	  var pathNormalize = Cldr._pathNormalize;
+  	  var resourceGet = Cldr._resourceGet;
+  	  var validatePresence = Cldr._validatePresence;
+  	  var validateTypePath = Cldr._validateTypePath;
+  	  var bundleParentLookup = function (Cldr, locale) {
+  	    var normalizedPath, parent;
+  	    if (locale === "root") {
+  	      return;
+  	    }
 
-    var bundleParentLookup = function (Cldr, locale) {
-      var normalizedPath, parent;
+  	    // First, try to find parent on supplemental data.
+  	    normalizedPath = pathNormalize(["supplemental/parentLocales/parentLocale", locale]);
+  	    parent = resourceGet(Cldr._resolved, normalizedPath) || resourceGet(Cldr._raw, normalizedPath);
+  	    if (parent) {
+  	      return parent;
+  	    }
 
-      if (locale === "root") {
-        return;
-      } // First, try to find parent on supplemental data.
+  	    // Or truncate locale.
+  	    parent = locale.substr(0, locale.lastIndexOf(Cldr.localeSep));
+  	    if (!parent) {
+  	      return "root";
+  	    }
+  	    return parent;
+  	  };
 
+  	  // @path: normalized path
+  	  var resourceSet = function (data, path, value) {
+  	    var i,
+  	      node = data,
+  	      length = path.length;
+  	    for (i = 0; i < length - 1; i++) {
+  	      if (!node[path[i]]) {
+  	        node[path[i]] = {};
+  	      }
+  	      node = node[path[i]];
+  	    }
+  	    node[path[i]] = value;
+  	  };
+  	  var itemLookup = function () {
+  	    var lookup;
+  	    lookup = function (Cldr, locale, path, attributes, childLocale) {
+  	      var normalizedPath, parent, value;
 
-      normalizedPath = pathNormalize(["supplemental/parentLocales/parentLocale", locale]);
-      parent = resourceGet(Cldr._resolved, normalizedPath) || resourceGet(Cldr._raw, normalizedPath);
+  	      // 1: Finish recursion
+  	      // 2: Avoid infinite loop
+  	      if (typeof locale === "undefined" /* 1 */ || locale === childLocale /* 2 */) {
+  	        return;
+  	      }
 
-      if (parent) {
-        return parent;
-      } // Or truncate locale.
+  	      // Resolve path
+  	      normalizedPath = pathNormalize(path, attributes);
 
+  	      // Check resolved (cached) data first
+  	      // 1: Due to #16, never use the cached resolved non-leaf nodes. It may not
+  	      //    represent its leafs in its entirety.
+  	      value = resourceGet(Cldr._resolved, normalizedPath);
+  	      if (value !== undefined && typeof value !== "object" /* 1 */) {
+  	        return value;
+  	      }
 
-      parent = locale.substr(0, locale.lastIndexOf(Cldr.localeSep));
+  	      // Check raw data
+  	      value = resourceGet(Cldr._raw, normalizedPath);
+  	      if (value === undefined) {
+  	        // Or, lookup at parent locale
+  	        parent = bundleParentLookup(Cldr, locale);
+  	        value = lookup(Cldr, parent, path, jsonMerge(attributes, {
+  	          bundle: parent
+  	        }), locale);
+  	      }
+  	      if (value !== undefined) {
+  	        // Set resolved (cached)
+  	        resourceSet(Cldr._resolved, normalizedPath, value);
+  	      }
+  	      return value;
+  	    };
+  	    return lookup;
+  	  }();
+  	  Cldr._raw = {};
 
-      if (!parent) {
-        return "root";
-      }
+  	  /**
+  	   * Cldr.load( json [, json, ...] )
+  	   *
+  	   * @json [JSON] CLDR data or [Array] Array of @json's.
+  	   *
+  	   * Load resolved or unresolved cldr data.
+  	   * Overwrite Cldr.load().
+  	   */
+  	  Cldr.load = function () {
+  	    Cldr._raw = coreLoad(Cldr, Cldr._raw, arguments);
+  	  };
 
-      return parent;
-    }; // @path: normalized path
+  	  /**
+  	   * Overwrite Cldr.prototype.get().
+  	   */
+  	  Cldr.prototype.get = function (path) {
+  	    validatePresence(path, "path");
+  	    validateTypePath(path, "path");
 
+  	    // 1: use bundle as locale on item lookup for simplification purposes, because no other extended subtag is used anyway on bundle parent lookup.
+  	    // 2: during init(), this method is called, but bundle is yet not defined. Use "" as a workaround in this very specific scenario.
+  	    return itemLookup(Cldr, this.attributes && this.attributes.bundle /* 1 */ || "" /* 2 */, path, this.attributes);
+  	  };
 
-    var resourceSet = function (data, path, value) {
-      var i,
-          node = data,
-          length = path.length;
-
-      for (i = 0; i < length - 1; i++) {
-        if (!node[path[i]]) {
-          node[path[i]] = {};
-        }
-
-        node = node[path[i]];
-      }
-
-      node[path[i]] = value;
-    };
-
-    var itemLookup = function () {
-      var lookup;
-
-      lookup = function (Cldr, locale, path, attributes, childLocale) {
-        var normalizedPath, parent, value; // 1: Finish recursion
-        // 2: Avoid infinite loop
-
-        if (typeof locale === "undefined"
-        /* 1 */
-        || locale === childLocale
-        /* 2 */
-        ) {
-          return;
-        } // Resolve path
-
-
-        normalizedPath = pathNormalize(path, attributes); // Check resolved (cached) data first
-        // 1: Due to #16, never use the cached resolved non-leaf nodes. It may not
-        //    represent its leafs in its entirety.
-
-        value = resourceGet(Cldr._resolved, normalizedPath);
-
-        if (value !== undefined && typeof value !== "object"
-        /* 1 */
-        ) {
-          return value;
-        } // Check raw data
-
-
-        value = resourceGet(Cldr._raw, normalizedPath);
-
-        if (value === undefined) {
-          // Or, lookup at parent locale
-          parent = bundleParentLookup(Cldr, locale);
-          value = lookup(Cldr, parent, path, jsonMerge(attributes, {
-            bundle: parent
-          }), locale);
-        }
-
-        if (value !== undefined) {
-          // Set resolved (cached)
-          resourceSet(Cldr._resolved, normalizedPath, value);
-        }
-
-        return value;
-      };
-
-      return lookup;
-    }();
-
-    Cldr._raw = {};
-    /**
-     * Cldr.load( json [, json, ...] )
-     *
-     * @json [JSON] CLDR data or [Array] Array of @json's.
-     *
-     * Load resolved or unresolved cldr data.
-     * Overwrite Cldr.load().
-     */
-
-    Cldr.load = function () {
-      Cldr._raw = coreLoad(Cldr, Cldr._raw, arguments);
-    };
-    /**
-     * Overwrite Cldr.prototype.get().
-     */
-
-
-    Cldr.prototype.get = function (path) {
-      validatePresence(path, "path");
-      validateTypePath(path, "path"); // 1: use bundle as locale on item lookup for simplification purposes, because no other extended subtag is used anyway on bundle parent lookup.
-      // 2: during init(), this method is called, but bundle is yet not defined. Use "" as a workaround in this very specific scenario.
-
-      return itemLookup(Cldr, this.attributes && this.attributes.bundle
-      /* 1 */
-      || ""
-      /* 2 */
-      , path, this.attributes);
-    }; // In case cldr/unresolved is loaded after cldr/event, we trigger its overloads again. Because, .get is overwritten in here.
-
-
-    if (Cldr._eventInit) {
-      Cldr._eventInit();
-    }
-
-    return Cldr;
-  });
-  }(unresolved));
+  	  // In case cldr/unresolved is loaded after cldr/event, we trigger its overloads again. Because, .get is overwritten in here.
+  	  if (Cldr._eventInit) {
+  	    Cldr._eventInit();
+  	  }
+  	  return Cldr;
+  	});
+  } (unresolved));
 
   /**
    * CLDR JavaScript Library v0.5.4
@@ -13845,12 +13672,19 @@
    * Date: 2020-10-22T15:56Z
    */
 
-  /*!
-   * CLDR JavaScript Library v0.5.4 2020-10-22T15:56Z MIT license © Rafael Xavier
-   * http://git.io/h4lmVg
-   */
-  // Cldr
-  var node_main = cldr.exports; // Extent Cldr with the following modules
+  (function (module) {
+  	/*!
+  	 * CLDR JavaScript Library v0.5.4 2020-10-22T15:56Z MIT license © Rafael Xavier
+  	 * http://git.io/h4lmVg
+  	 */
+
+  	// Cldr
+  	module.exports = cldrExports;
+
+  	// Extent Cldr with the following modules
+  } (node_main));
+
+  var Cldr = /*@__PURE__*/getDefaultExportFromCjs(node_mainExports);
 
   /*
   * @copyright (c) 2020, Philipp Thuerwaechter & Pattrick Hueper
@@ -13859,16 +13693,15 @@
   var cldrDataLoaded = new Set();
   var loadCldrData = function loadCldrData(path) {
     if (!cldrDataLoaded.has(path)) {
-      node_main.load(cldrData(path));
+      Cldr.load(cldrData(path));
       cldrDataLoaded.add(path);
     }
   };
   var localeToCldrInstanceCache = {};
   var getOrCreateCldrInstance = function getOrCreateCldrInstance(locale) {
     if (localeToCldrInstanceCache[locale] == null) {
-      localeToCldrInstanceCache[locale] = new node_main(locale);
+      localeToCldrInstanceCache[locale] = new Cldr(locale);
     }
-
     return localeToCldrInstanceCache[locale];
   };
   var localeToMapZonesCache = {};
@@ -13880,13 +13713,11 @@
           if (!mapZones[metaZone.mapZone._other]) {
             mapZones[metaZone.mapZone._other] = {};
           }
-
           mapZones[metaZone.mapZone._other][metaZone.mapZone._territory] = metaZone.mapZone._type;
         }
       });
       localeToMapZonesCache[cldr.locale] = mapZones;
     }
-
     return localeToMapZonesCache[cldr.locale];
   };
 
@@ -13894,55 +13725,41 @@
    * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
    * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
    */
-
   var CldrDateTimeTextProvider = function () {
     function CldrDateTimeTextProvider() {
       this._cache = {};
       loadCldrData('supplemental/likelySubtags.json');
     }
-
     var _proto = CldrDateTimeTextProvider.prototype;
-
     _proto.getAvailableLocales = function getAvailableLocales() {
       return cldrData('availableLocales.json').availableLocales;
     };
-
     _proto.getText = function getText(field, value, style, locale) {
       var store = this._findStore(field, locale);
-
       if (store instanceof LocaleStore) {
         return store.getText(value, style);
       }
-
       return null;
     };
-
     _proto.getTextIterator = function getTextIterator(field, style, locale) {
       var store = this._findStore(field, locale);
-
       if (store instanceof LocaleStore) {
         return store.getTextIterator(style);
       }
-
       return null;
     };
-
     _proto._findStore = function _findStore(field, locale) {
       var key = createEntry(field, locale);
       var store = this._cache[key];
-
       if (store === undefined) {
         store = this._createStore(field, locale);
         this._cache[key] = store;
       }
-
       return store;
     };
-
     _proto._createStore = function _createStore(field, locale) {
       loadCldrData("main/" + locale.localeString() + "/ca-gregorian.json");
       var cldr = getOrCreateCldrInstance(locale.localeString());
-
       if (field === core.ChronoField.MONTH_OF_YEAR) {
         var monthsData = cldr.main('dates/calendars/gregorian/months/format');
         var styleMap = {};
@@ -13990,7 +13807,6 @@
         styleMap[core.TextStyle.SHORT] = data;
         return this._createLocaleStore(styleMap);
       }
-
       if (field === core.ChronoField.DAY_OF_WEEK) {
         var daysData = cldr.main('dates/calendars/gregorian/days/format');
         var _styleMap = {};
@@ -14023,7 +13839,6 @@
         _styleMap[core.TextStyle.SHORT] = _data;
         return this._createLocaleStore(_styleMap);
       }
-
       if (field === core.ChronoField.AMPM_OF_DAY) {
         var dayPeriodsData = cldr.main('dates/calendars/gregorian/dayPeriods/format');
         var _styleMap2 = {};
@@ -14041,7 +13856,6 @@
         _styleMap2[core.TextStyle.SHORT] = _data2;
         return this._createLocaleStore(_styleMap2);
       }
-
       if (field === core.ChronoField.ERA) {
         var erasData = cldr.main('dates/calendars/gregorian/eras');
         var _styleMap3 = {};
@@ -14059,7 +13873,6 @@
         _styleMap3[core.TextStyle.SHORT] = _data3;
         return this._createLocaleStore(_styleMap3);
       }
-
       if (field === core.IsoFields.QUARTER_OF_YEAR) {
         var quartersData = cldr.main('dates/calendars/gregorian/quarters/format');
         var _styleMap4 = {};
@@ -14083,40 +13896,30 @@
         _styleMap4[core.TextStyle.SHORT] = _data4;
         return this._createLocaleStore(_styleMap4);
       }
-
       return null;
     };
-
     _proto._createLocaleStore = function _createLocaleStore(valueTextMap) {
       valueTextMap[core.TextStyle.FULL_STANDALONE] = valueTextMap[core.TextStyle.FULL];
       valueTextMap[core.TextStyle.SHORT_STANDALONE] = valueTextMap[core.TextStyle.SHORT];
-
       if (Object.keys(valueTextMap).indexOf(core.TextStyle.NARROW) > -1 && Object.keys(valueTextMap).indexOf(core.TextStyle.NARROW_STANDALONE) === -1) {
         valueTextMap[core.TextStyle.NARROW_STANDALONE] = valueTextMap[core.TextStyle.NARROW];
       }
-
       return new LocaleStore(valueTextMap);
     };
-
     return CldrDateTimeTextProvider;
   }();
 
   var _jodaInternal$assert$2 = core._.assert,
-      requireNonNull$3 = _jodaInternal$assert$2.requireNonNull,
-      requireInstance$2 = _jodaInternal$assert$2.requireInstance;
-
+    requireNonNull$3 = _jodaInternal$assert$2.requireNonNull,
+    requireInstance$2 = _jodaInternal$assert$2.requireInstance;
   var LENGTH_COMPARATOR = function LENGTH_COMPARATOR(str1, str2) {
     var cmp = str2.length - str1.length;
-
     if (cmp === 0) {
       cmp = str1.localeCompare(str2);
     }
-
     return cmp;
   };
-
   var resolveZoneIdTextCache = {};
-
   var CldrZoneTextPrinterParser = function () {
     function CldrZoneTextPrinterParser(textStyle) {
       requireNonNull$3(textStyle, 'textStyle');
@@ -14126,69 +13929,52 @@
       loadCldrData('supplemental/likelySubtags.json');
       loadCldrData('supplemental/metaZones.json');
     }
-
     var _proto = CldrZoneTextPrinterParser.prototype;
-
     _proto._cachedResolveZoneIdText = function _cachedResolveZoneIdText(cldr, zoneId, style, type) {
       if (resolveZoneIdTextCache[cldr.locale] == null) {
         resolveZoneIdTextCache[cldr.locale] = {};
       }
-
       var zoneIdToStyle = resolveZoneIdTextCache[cldr.locale];
-
       if (zoneIdToStyle[zoneId] == null) {
         zoneIdToStyle[zoneId] = {};
       }
-
       var styleToType = zoneIdToStyle[zoneId];
-
       if (styleToType[style] == null) {
         styleToType[style] = {};
       }
-
       var typeToResolvedZoneIdText = styleToType[style];
-
       if (typeToResolvedZoneIdText[type] == null) {
         typeToResolvedZoneIdText[type] = this._resolveZoneIdText(cldr, zoneId, style, type);
       }
-
       return typeToResolvedZoneIdText[type];
     };
-
     _proto._resolveZoneIdText = function _resolveZoneIdText(cldr, zoneId, style, type) {
       var zoneData = cldr.main("dates/timeZoneNames/zone/" + zoneId + "/" + style + "/" + type);
-
       if (zoneData) {
         return zoneData;
       } else {
         var metazoneInfo = cldr.get("supplemental/metaZones/metazoneInfo/timezone/" + zoneId);
-
         if (metazoneInfo) {
           var metazone = metazoneInfo[metazoneInfo.length - 1]['usesMetazone']['_mzone'];
           var metaZoneData = cldr.main("dates/timeZoneNames/metazone/" + metazone + "/" + style + "/" + type);
-
           if (metaZoneData) {
             return metaZoneData;
           } else {
             metaZoneData = cldr.main("dates/timeZoneNames/metazone/" + metazone + "/" + style + "/generic");
-
             if (!metaZoneData) {
               metaZoneData = cldr.main("dates/timeZoneNames/metazone/" + metazone + "/" + style + "/standard");
             }
-
             if (metaZoneData) {
               return metaZoneData;
             } else {
               var mapZones = getOrCreateMapZones(cldr);
               var preferredZone = mapZones[metazone][cldr.attributes.territory];
-
               if (preferredZone) {
                 if (preferredZone !== zoneId) {
                   return this._cachedResolveZoneIdText(cldr, preferredZone, style, type);
                 }
               } else {
                 var goldenZone = mapZones[metazone]['001'];
-
                 if (goldenZone !== zoneId) {
                   return this._cachedResolveZoneIdText(cldr, goldenZone, style, type);
                 }
@@ -14198,14 +13984,11 @@
         }
       }
     };
-
     _proto.print = function print(context, buf) {
       var zone = context.getValueQuery(core.TemporalQueries.zoneId());
-
       if (zone == null) {
         return false;
       }
-
       if (zone.normalized() instanceof core.ZoneOffset) {
         buf.append(zone.id());
         return true;
@@ -14214,51 +13997,38 @@
       var tzstyle = this._textStyle.asNormal() === core.TextStyle.FULL ? 'long' : 'short';
       loadCldrData("main/" + context.locale().localeString() + "/timeZoneNames.json");
       var cldr = getOrCreateCldrInstance(context.locale().localeString());
-
       var text = this._cachedResolveZoneIdText(cldr, zone.id(), tzstyle, tzType);
-
       if (text) {
         buf.append(text);
       } else {
         buf.append(zone.id());
       }
-
       return true;
     };
-
     _proto._resolveZoneIds = function _resolveZoneIds(localString) {
       if (this._zoneIdsLocales[localString] != null) {
         return this._zoneIdsLocales[localString];
       }
-
       var ids = {};
       loadCldrData("main/" + localString + "/timeZoneNames.json");
       var cldr = getOrCreateCldrInstance(localString);
-
       for (var _iterator = _createForOfIteratorHelperLoose(core.ZoneRulesProvider.getAvailableZoneIds()), _step; !(_step = _iterator()).done;) {
         var id = _step.value;
         ids[id] = id;
         var tzstyle = this._textStyle.asNormal() === core.TextStyle.FULL ? 'long' : 'short';
-
         var genericText = this._cachedResolveZoneIdText(cldr, id, tzstyle, 'generic');
-
         if (genericText) {
           ids[genericText] = id;
         }
-
         var standardText = this._cachedResolveZoneIdText(cldr, id, tzstyle, 'standard');
-
         if (standardText) {
           ids[standardText] = id;
         }
-
         var daylightText = this._cachedResolveZoneIdText(cldr, id, tzstyle, 'daylight');
-
         if (daylightText) {
           ids[daylightText] = id;
         }
       }
-
       var sortedKeys = Object.keys(ids).sort(LENGTH_COMPARATOR);
       this._zoneIdsLocales[localString] = {
         ids: ids,
@@ -14266,37 +14036,29 @@
       };
       return this._zoneIdsLocales[localString];
     };
-
     _proto.parse = function parse(context, text, position) {
       for (var _i = 0, _arr = ['UTC', 'GMT']; _i < _arr.length; _i++) {
         var name = _arr[_i];
-
         if (context.subSequenceEquals(text, position, name, 0, name.length)) {
           context.setParsedZone(core.ZoneId.of(name));
           return position + name.length;
         }
       }
-
       var _this$_resolveZoneIds = this._resolveZoneIds(context.locale().localeString()),
-          ids = _this$_resolveZoneIds.ids,
-          sortedKeys = _this$_resolveZoneIds.sortedKeys;
-
+        ids = _this$_resolveZoneIds.ids,
+        sortedKeys = _this$_resolveZoneIds.sortedKeys;
       for (var _iterator2 = _createForOfIteratorHelperLoose(sortedKeys), _step2; !(_step2 = _iterator2()).done;) {
         var _name = _step2.value;
-
         if (context.subSequenceEquals(text, position, _name, 0, _name.length)) {
           context.setParsedZone(core.ZoneId.of(ids[_name]));
           return position + _name.length;
         }
       }
-
       return ~position;
     };
-
     _proto.toString = function toString() {
       return "ZoneText(" + this._textStyle + ")";
     };
-
     return CldrZoneTextPrinterParser;
   }();
 
@@ -14306,178 +14068,127 @@
    * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
    */
   var MathUtil$1 = core._.MathUtil;
-
   var LocalizedOffsetPrinterParser = function () {
     function LocalizedOffsetPrinterParser(textStyle) {
       this._textStyle = textStyle;
     }
-
     var _proto = LocalizedOffsetPrinterParser.prototype;
-
     _proto.textStyle = function textStyle() {
       return this._textStyle;
     };
-
     _proto.print = function print(context, buf) {
       var offsetSecs = context.getValue(core.ChronoField.OFFSET_SECONDS);
-
       if (offsetSecs == null) {
         return false;
       }
-
       buf.append('GMT');
-
       if (this._textStyle === core.TextStyle.FULL) {
         return new core.DateTimeFormatterBuilder.OffsetIdPrinterParser('', '+HH:MM:ss').print(context, buf);
       }
-
       var totalSecs = MathUtil$1.safeToInt(offsetSecs);
-
       if (totalSecs !== 0) {
         var absHours = Math.abs(MathUtil$1.intMod(MathUtil$1.intDiv(totalSecs, 3600), 100));
         var absMinutes = Math.abs(MathUtil$1.intMod(MathUtil$1.intDiv(totalSecs, 60), 60));
         var absSeconds = Math.abs(MathUtil$1.intMod(totalSecs, 60));
         buf.append(totalSecs < 0 ? '-' : '+').append(absHours);
-
         if (absMinutes > 0 || absSeconds > 0) {
           buf.append(':').append(MathUtil$1.intDiv(absMinutes, 10)).append(MathUtil$1.intMod(absMinutes, 10));
-
           if (absSeconds > 0) {
             buf.append(':').append(MathUtil$1.intDiv(absSeconds, 10)).append(MathUtil$1.intMod(absSeconds, 10));
           }
         }
       }
-
       return true;
     };
-
     _proto.parse = function parse(context, text, position) {
       if (context.subSequenceEquals(text, position, 'GMT', 0, 3) === false) {
         return ~position;
       }
-
       position += 3;
-
       if (this._textStyle === core.TextStyle.FULL) {
         return new core.DateTimeFormatterBuilder.OffsetIdPrinterParser('', '+HH:MM:ss').parse(context, text, position);
       }
-
       var end = text.length;
-
       if (position === end) {
         return context.setParsedField(core.ChronoField.OFFSET_SECONDS, 0, position, position);
       }
-
       var sign = text.charAt(position);
-
       if (sign !== '+' && sign !== '-') {
         return context.setParsedField(core.ChronoField.OFFSET_SECONDS, 0, position, position);
       }
-
       var negative = sign === '-' ? -1 : 1;
-
       if (position === end) {
         return ~position;
       }
-
       position++;
       var ch = text.charAt(position);
-
       if (ch < '0' || ch > '9') {
         return ~position;
       }
-
       position++;
       var hour = MathUtil$1.parseInt(ch);
-
       if (position !== end) {
         ch = text.charAt(position);
-
         if (ch >= '0' && ch <= '9') {
           hour = hour * 10 + MathUtil$1.parseInt(ch);
-
           if (hour > 23) {
             return ~position;
           }
-
           position++;
         }
       }
-
       if (position === end || text.charAt(position) !== ':') {
         var _offset = negative * 3600 * hour;
-
         return context.setParsedField(core.ChronoField.OFFSET_SECONDS, _offset, position, position);
       }
-
       position++;
-
       if (position > end - 2) {
         return ~position;
       }
-
       ch = text.charAt(position);
-
       if (ch < '0' || ch > '9') {
         return ~position;
       }
-
       position++;
       var min = MathUtil$1.parseInt(ch);
       ch = text.charAt(position);
-
       if (ch < '0' || ch > '9') {
         return ~position;
       }
-
       position++;
       min = min * 10 + MathUtil$1.parseInt(ch);
-
       if (min > 59) {
         return ~position;
       }
-
       if (position === end || text.charAt(position) !== ':') {
         var _offset2 = negative * (3600 * hour + 60 * min);
-
         return context.setParsedField(core.ChronoField.OFFSET_SECONDS, _offset2, position, position);
       }
-
       position++;
-
       if (position > end - 2) {
         return ~position;
       }
-
       ch = text.charAt(position);
-
       if (ch < '0' || ch > '9') {
         return ~position;
       }
-
       position++;
       var sec = MathUtil$1.parseInt(ch);
       ch = text.charAt(position);
-
       if (ch < '0' || ch > '9') {
         return ~position;
       }
-
       position++;
       sec = sec * 10 + MathUtil$1.parseInt(ch);
-
       if (sec > 59) {
         return ~position;
       }
-
       var offset = negative * (3600 * hour + 60 * min + sec);
       return context.setParsedField(core.ChronoField.OFFSET_SECONDS, offset, position, position);
     };
-
     _proto.toString = function toString() {
       return "LocalizedOffset(" + this._textStyle + ")";
     };
-
     return LocalizedOffsetPrinterParser;
   }();
 
@@ -14486,9 +14197,9 @@
    * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
    */
   var MathUtil = core._.MathUtil,
-      _jodaInternal$assert$1 = core._.assert,
-      requireNonNull$2 = _jodaInternal$assert$1.requireNonNull,
-      requireInstance$1 = _jodaInternal$assert$1.requireInstance;
+    _jodaInternal$assert$1 = core._.assert,
+    requireNonNull$2 = _jodaInternal$assert$1.requireNonNull,
+    requireInstance$1 = _jodaInternal$assert$1.requireInstance;
   var DAY_OF_WEEK_RANGE = core.ValueRange.of(1, 7);
   var WEEK_OF_MONTH_RANGE = core.ValueRange.of(0, 1, 4, 6);
   var WEEK_OF_YEAR_RANGE = core.ValueRange.of(0, 1, 52, 54);
@@ -14507,23 +14218,18 @@
     ComputedDayOfField.ofDayOfWeekField = function ofDayOfWeekField(weekDef) {
       return new ComputedDayOfField('DayOfWeek', weekDef, core.ChronoUnit.DAYS, core.ChronoUnit.WEEKS, DAY_OF_WEEK_RANGE);
     };
-
     ComputedDayOfField.ofWeekOfMonthField = function ofWeekOfMonthField(weekDef) {
       return new ComputedDayOfField('WeekOfMonth', weekDef, core.ChronoUnit.WEEKS, core.ChronoUnit.MONTHS, WEEK_OF_MONTH_RANGE);
     };
-
     ComputedDayOfField.ofWeekOfYearField = function ofWeekOfYearField(weekDef) {
       return new ComputedDayOfField('WeekOfYear', weekDef, core.ChronoUnit.WEEKS, core.ChronoUnit.YEARS, WEEK_OF_YEAR_RANGE);
     };
-
     ComputedDayOfField.ofWeekOfWeekBasedYearField = function ofWeekOfWeekBasedYearField(weekDef) {
       return new ComputedDayOfField('WeekOfWeekBasedYear', weekDef, core.ChronoUnit.WEEKS, core.IsoFields.WEEK_BASED_YEARS, WEEK_OF_WEEK_BASED_YEAR_RANGE);
     };
-
     ComputedDayOfField.ofWeekBasedYearField = function ofWeekBasedYearField(weekDef) {
       return new ComputedDayOfField('WeekBasedYear', weekDef, core.IsoFields.WEEK_BASED_YEARS, core.ChronoUnit.FOREVER, WEEK_BASED_YEAR_RANGE);
     };
-
     function ComputedDayOfField(name, weekDef, baseUnit, rangeUnit, range) {
       this._name = name;
       this._weekDef = weekDef;
@@ -14531,14 +14237,10 @@
       this._rangeUnit = rangeUnit;
       this._range = range;
     }
-
     var _proto = ComputedDayOfField.prototype;
-
     _proto.getFrom = function getFrom(temporal) {
       var sow = this._weekDef.firstDayOfWeek().value();
-
       var dow = this._localizedDayOfWeek(temporal, sow);
-
       if (this._rangeUnit === core.ChronoUnit.WEEKS) {
         return dow;
       } else if (this._rangeUnit === core.ChronoUnit.MONTHS) {
@@ -14553,112 +14255,79 @@
         throw new core.IllegalStateException('unreachable');
       }
     };
-
     _proto._localizedDayOfWeek = function _localizedDayOfWeek(temporal, sow) {
       var isoDow = temporal.get(core.ChronoField.DAY_OF_WEEK);
       return MathUtil.floorMod(isoDow - sow, 7) + 1;
     };
-
     _proto._localizedWeekOfMonth = function _localizedWeekOfMonth(temporal, dow) {
       var dom = temporal.get(core.ChronoField.DAY_OF_MONTH);
-
       var offset = this._startOfWeekOffset(dom, dow);
-
       return ComputedDayOfField._computeWeek(offset, dom);
     };
-
     _proto._localizedWeekOfYear = function _localizedWeekOfYear(temporal, dow) {
       var doy = temporal.get(core.ChronoField.DAY_OF_YEAR);
-
       var offset = this._startOfWeekOffset(doy, dow);
-
       return ComputedDayOfField._computeWeek(offset, doy);
     };
-
     _proto._localizedWOWBY = function _localizedWOWBY(temporal) {
       var sow = this._weekDef.firstDayOfWeek().value();
-
       var isoDow = temporal.get(core.ChronoField.DAY_OF_WEEK);
       var dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
-
       var woy = this._localizedWeekOfYear(temporal, dow);
-
       if (woy === 0) {
         var previous = core.LocalDate.from(temporal).minus(1, core.ChronoUnit.WEEKS);
         return this._localizedWeekOfYear(previous, dow) + 1;
       } else if (woy >= 53) {
         var offset = this._startOfWeekOffset(temporal.get(core.ChronoField.DAY_OF_YEAR), dow);
-
         var year = temporal.get(core.ChronoField.YEAR);
         var yearLen = core.Year.isLeap(year) ? 366 : 365;
-
         var weekIndexOfFirstWeekNextYear = ComputedDayOfField._computeWeek(offset, yearLen + this._weekDef.minimalDaysInFirstWeek());
-
         if (woy >= weekIndexOfFirstWeekNextYear) {
           return woy - (weekIndexOfFirstWeekNextYear - 1);
         }
       }
-
       return woy;
     };
-
     _proto._localizedWBY = function _localizedWBY(temporal) {
       var sow = this._weekDef.firstDayOfWeek().value();
-
       var isoDow = temporal.get(core.ChronoField.DAY_OF_WEEK);
       var dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
       var year = temporal.get(core.ChronoField.YEAR);
-
       var woy = this._localizedWeekOfYear(temporal, dow);
-
       if (woy === 0) {
         return year - 1;
       } else if (woy < 53) {
         return year;
       }
-
       var offset = this._startOfWeekOffset(temporal.get(core.ChronoField.DAY_OF_YEAR), dow);
-
       var yearLen = core.Year.isLeap(year) ? 366 : 365;
-
       var weekIndexOfFirstWeekNextYear = ComputedDayOfField._computeWeek(offset, yearLen + this._weekDef.minimalDaysInFirstWeek());
-
       if (woy >= weekIndexOfFirstWeekNextYear) {
         return year + 1;
       }
-
       return year;
     };
-
     _proto._startOfWeekOffset = function _startOfWeekOffset(day, dow) {
       var weekStart = MathUtil.floorMod(day - dow, 7);
       var offset = -weekStart;
-
       if (weekStart + 1 > this._weekDef.minimalDaysInFirstWeek()) {
         offset = 7 - weekStart;
       }
-
       return offset;
     };
-
     ComputedDayOfField._computeWeek = function _computeWeek(offset, day) {
       return MathUtil.intDiv(7 + offset + (day - 1), 7);
     };
-
     _proto.adjustInto = function adjustInto(temporal, newValue) {
       var newVal = this._range.checkValidIntValue(newValue, this);
-
       var currentVal = temporal.get(this);
-
       if (newVal === currentVal) {
         return temporal;
       }
-
       if (this._rangeUnit === core.ChronoUnit.FOREVER) {
         var baseWowby = temporal.get(this._weekDef.weekOfWeekBasedYear());
         var diffWeeks = MathUtil.roundDown((newValue - currentVal) * 52.1775);
         var result = temporal.plus(diffWeeks, core.ChronoUnit.WEEKS);
-
         if (result.get(this) > newVal) {
           var newWowby = result.get(this._weekDef.weekOfWeekBasedYear());
           result = result.minus(newWowby, core.ChronoUnit.WEEKS);
@@ -14666,140 +14335,96 @@
           if (result.get(this) < newVal) {
             result = result.plus(2, core.ChronoUnit.WEEKS);
           }
-
           var _newWowby = result.get(this._weekDef.weekOfWeekBasedYear());
-
           result = result.plus(baseWowby - _newWowby, core.ChronoUnit.WEEKS);
-
           if (result.get(this) > newVal) {
             result = result.minus(1, core.ChronoUnit.WEEKS);
           }
         }
-
         return result;
       }
-
       var delta = newVal - currentVal;
       return temporal.plus(delta, this._baseUnit);
     };
-
     _proto.resolve = function resolve(fieldValues, partialTemporal, resolverStyle) {
       var sow = this._weekDef.firstDayOfWeek().value();
-
       if (this._rangeUnit === core.ChronoUnit.WEEKS) {
         var value = fieldValues.remove(this);
-
         var localDow = this._range.checkValidIntValue(value, this);
-
         var _isoDow = MathUtil.floorMod(sow - 1 + (localDow - 1), 7) + 1;
-
         fieldValues.put(core.ChronoField.DAY_OF_WEEK, _isoDow);
         return null;
       }
-
       if (fieldValues.containsKey(core.ChronoField.DAY_OF_WEEK) === false) {
         return null;
       }
-
       if (this._rangeUnit === core.ChronoUnit.FOREVER) {
         if (fieldValues.containsKey(this._weekDef.weekOfWeekBasedYear()) === false) {
           return null;
         }
-
         var _isoDow2 = core.ChronoField.DAY_OF_WEEK.checkValidIntValue(fieldValues.get(core.ChronoField.DAY_OF_WEEK));
-
         var _dow = MathUtil.floorMod(_isoDow2 - sow, 7) + 1;
-
         var wby = this.range().checkValidIntValue(fieldValues.get(this), this);
         var date;
         var days;
-
         if (resolverStyle === core.ResolverStyle.LENIENT) {
           date = core.LocalDate.of(wby, 1, this._weekDef.minimalDaysInFirstWeek());
           var wowby = fieldValues.get(this._weekDef.weekOfWeekBasedYear());
-
           var dateDow = this._localizedDayOfWeek(date, sow);
-
           var weeks = wowby - this._localizedWeekOfYear(date, dateDow);
-
           days = weeks * 7 + (_dow - dateDow);
         } else {
           date = core.LocalDate.of(wby, 1, this._weekDef.minimalDaysInFirstWeek());
-
           var _wowby = this._weekDef.weekOfWeekBasedYear().range().checkValidIntValue(fieldValues.get(this._weekDef.weekOfWeekBasedYear()), this._weekDef.weekOfWeekBasedYear);
-
           var _dateDow = this._localizedDayOfWeek(date, sow);
-
           var _weeks = _wowby - this._localizedWeekOfYear(date, _dateDow);
-
           days = _weeks * 7 + (_dow - _dateDow);
         }
-
         date = date.plus(days, core.ChronoUnit.DAYS);
-
         if (resolverStyle === core.ResolverStyle.STRICT) {
           if (date.getLong(this) !== fieldValues.get(this)) {
             throw new core.DateTimeException('Strict mode rejected date parsed to a different year');
           }
         }
-
         fieldValues.remove(this);
         fieldValues.remove(this._weekDef.weekOfWeekBasedYear());
         fieldValues.remove(core.ChronoField.DAY_OF_WEEK);
         return date;
       }
-
       if (fieldValues.containsKey(core.ChronoField.YEAR) === false) {
         return null;
       }
-
       var isoDow = core.ChronoField.DAY_OF_WEEK.checkValidIntValue(fieldValues.get(core.ChronoField.DAY_OF_WEEK));
       var dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
       var year = core.ChronoField.YEAR.checkValidIntValue(fieldValues.get(core.ChronoField.YEAR));
-
       if (this._rangeUnit === core.ChronoUnit.MONTHS) {
         if (fieldValues.containsKey(core.ChronoField.MONTH_OF_YEAR) === false) {
           return null;
         }
-
         var _value = fieldValues.remove(this);
-
         var _date;
-
         var _days;
-
         if (resolverStyle === core.ResolverStyle.LENIENT) {
           var month = fieldValues.get(core.ChronoField.MONTH_OF_YEAR);
           _date = core.LocalDate.of(year, 1, 1);
           _date = _date.plus(month - 1, core.ChronoUnit.MONTHS);
-
           var _dateDow2 = this._localizedDayOfWeek(_date, sow);
-
           var _weeks2 = _value - this._localizedWeekOfMonth(_date, _dateDow2);
-
           _days = _weeks2 * 7 + (dow - _dateDow2);
         } else {
           var _month = core.ChronoField.MONTH_OF_YEAR.checkValidIntValue(fieldValues.get(core.ChronoField.MONTH_OF_YEAR));
-
           _date = core.LocalDate.of(year, _month, 8);
-
           var _dateDow3 = this._localizedDayOfWeek(_date, sow);
-
           var wom = this._range.checkValidIntValue(_value, this);
-
           var _weeks3 = wom - this._localizedWeekOfMonth(_date, _dateDow3);
-
           _days = _weeks3 * 7 + (dow - _dateDow3);
         }
-
         _date = _date.plus(_days, core.ChronoUnit.DAYS);
-
         if (resolverStyle === core.ResolverStyle.STRICT) {
           if (_date.getLong(core.ChronoField.MONTH_OF_YEAR) !== fieldValues.get(core.ChronoField.MONTH_OF_YEAR)) {
             throw new core.DateTimeException('Strict mode rejected date parsed to a different month');
           }
         }
-
         fieldValues.remove(this);
         fieldValues.remove(core.ChronoField.YEAR);
         fieldValues.remove(core.ChronoField.MONTH_OF_YEAR);
@@ -14807,35 +14432,24 @@
         return _date;
       } else if (this._rangeUnit === core.ChronoUnit.YEARS) {
         var _value2 = fieldValues.remove(this);
-
         var _date2 = core.LocalDate.of(year, 1, 1);
-
         var _days2;
-
         if (resolverStyle === core.ResolverStyle.LENIENT) {
           var _dateDow4 = this._localizedDayOfWeek(_date2, sow);
-
           var _weeks4 = _value2 - this._localizedWeekOfYear(_date2, _dateDow4);
-
           _days2 = _weeks4 * 7 + (dow - _dateDow4);
         } else {
           var _dateDow5 = this._localizedDayOfWeek(_date2, sow);
-
           var woy = this._range.checkValidIntValue(_value2, this);
-
           var _weeks5 = woy - this._localizedWeekOfYear(_date2, _dateDow5);
-
           _days2 = _weeks5 * 7 + (dow - _dateDow5);
         }
-
         _date2 = _date2.plus(_days2, core.ChronoUnit.DAYS);
-
         if (resolverStyle === core.ResolverStyle.STRICT) {
           if (_date2.getLong(core.ChronoField.YEAR) !== fieldValues.get(core.ChronoField.YEAR)) {
             throw new core.DateTimeException('Strict mode rejected date parsed to a different year');
           }
         }
-
         fieldValues.remove(this);
         fieldValues.remove(core.ChronoField.YEAR);
         fieldValues.remove(core.ChronoField.DAY_OF_WEEK);
@@ -14844,31 +14458,24 @@
         throw new core.IllegalStateException('unreachable');
       }
     };
-
     _proto.name = function name() {
       return this._name;
     };
-
     _proto.baseUnit = function baseUnit() {
       return this._baseUnit;
     };
-
     _proto.rangeUnit = function rangeUnit() {
       return this._rangeUnit;
     };
-
     _proto.range = function range() {
       return this._range;
     };
-
     _proto.isDateBased = function isDateBased() {
       return true;
     };
-
     _proto.isTimeBased = function isTimeBased() {
       return false;
     };
-
     _proto.isSupportedBy = function isSupportedBy(temporal) {
       if (temporal.isSupported(core.ChronoField.DAY_OF_WEEK)) {
         if (this._rangeUnit === core.ChronoUnit.WEEKS) {
@@ -14883,17 +14490,13 @@
           return temporal.isSupported(core.ChronoField.EPOCH_DAY);
         }
       }
-
       return false;
     };
-
     _proto.rangeRefinedBy = function rangeRefinedBy(temporal) {
       if (this._rangeUnit === core.ChronoUnit.WEEKS) {
         return this._range;
       }
-
       var field = null;
-
       if (this._rangeUnit === core.ChronoUnit.MONTHS) {
         field = core.ChronoField.DAY_OF_MONTH;
       } else if (this._rangeUnit === core.ChronoUnit.YEARS) {
@@ -14905,58 +14508,40 @@
       } else {
         throw new core.IllegalStateException('unreachable');
       }
-
       var sow = this._weekDef.firstDayOfWeek().value();
-
       var isoDow = temporal.get(core.ChronoField.DAY_OF_WEEK);
       var dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
-
       var offset = this._startOfWeekOffset(temporal.get(field), dow);
-
       var fieldRange = temporal.range(field);
       return core.ValueRange.of(ComputedDayOfField._computeWeek(offset, fieldRange.minimum()), ComputedDayOfField._computeWeek(offset, fieldRange.maximum()));
     };
-
     _proto._rangeWOWBY = function _rangeWOWBY(temporal) {
       var sow = this._weekDef.firstDayOfWeek().value();
-
       var isoDow = temporal.get(core.ChronoField.DAY_OF_WEEK);
       var dow = MathUtil.floorMod(isoDow - sow, 7) + 1;
-
       var woy = this._localizedWeekOfYear(temporal, dow);
-
       if (woy === 0) {
         return this._rangeWOWBY(core.IsoChronology.INSTANCE.date(temporal).minus(2, core.ChronoUnit.WEEKS));
       }
-
       var offset = this._startOfWeekOffset(temporal.get(core.ChronoField.DAY_OF_YEAR), dow);
-
       var year = temporal.get(core.ChronoField.YEAR);
       var yearLen = core.Year.isLeap(year) ? 366 : 365;
-
       var weekIndexOfFirstWeekNextYear = ComputedDayOfField._computeWeek(offset, yearLen + this._weekDef.minimalDaysInFirstWeek());
-
       if (woy >= weekIndexOfFirstWeekNextYear) {
         return this._rangeWOWBY(core.IsoChronology.INSTANCE.date(temporal).plus(2, core.ChronoUnit.WEEKS));
       }
-
       return core.ValueRange.of(1, weekIndexOfFirstWeekNextYear - 1);
     };
-
     _proto.displayName = function displayName(locale) {
       requireNonNull$2(locale, 'locale');
-
       if (this._rangeUnit === core.ChronoUnit.YEARS) {
         return 'Week';
       }
-
       return this.toString();
     };
-
     _proto.toString = function toString() {
       return this._name + "[" + this._weekDef.toString() + "]";
     };
-
     return ComputedDayOfField;
   }();
   var WeekFieldsCache = new Map();
@@ -14968,54 +14553,42 @@
         return WeekFields.ofFirstDayOfWeekMinDays(firstDayOrLocale, minDays);
       }
     };
-
     WeekFields.ofLocale = function ofLocale(locale) {
       requireNonNull$2(locale, 'locale');
-      node_main.load(cldrData('supplemental/weekData.json'));
-      var cldr = new node_main(locale.localeString());
+      Cldr.load(cldrData('supplemental/weekData.json'));
+      var cldr = new Cldr(locale.localeString());
       var worldRegion = '001';
       var weekData = cldr.get('supplemental/weekData');
-
       var dow = _weekDayMap[weekData.firstDay[locale.country()]];
-
       if (!dow) {
         dow = _weekDayMap[weekData.firstDay[worldRegion]];
       }
-
       var minDays = weekData.minDays[locale.country()];
-
       if (!minDays) {
         minDays = weekData.minDays[worldRegion];
       }
-
       return WeekFields.ofFirstDayOfWeekMinDays(dow, minDays);
     };
-
     WeekFields.ofFirstDayOfWeekMinDays = function ofFirstDayOfWeekMinDays(firstDayOfWeek, minimalDaysInFirstWeek) {
       requireNonNull$2(firstDayOfWeek, 'firstDayOfWeek');
       requireInstance$1(firstDayOfWeek, core.DayOfWeek, 'firstDayOfWeek');
       requireNonNull$2(minimalDaysInFirstWeek, 'minimalDaysInFirstWeek');
       var key = firstDayOfWeek.toString() + minimalDaysInFirstWeek;
       var rules = WeekFieldsCache.get(key);
-
       if (rules == null) {
         rules = new WeekFields(firstDayOfWeek, minimalDaysInFirstWeek);
         WeekFieldsCache.set(key, rules);
         rules = WeekFieldsCache.get(key);
       }
-
       return rules;
     };
-
     function WeekFields(firstDayOfWeek, minimalDaysInFirstWeek) {
       requireNonNull$2(firstDayOfWeek, 'firstDayOfWeek');
       requireInstance$1(firstDayOfWeek, core.DayOfWeek, 'firstDayOfWeek');
       requireNonNull$2(minimalDaysInFirstWeek, 'minimalDaysInFirstWeek');
-
       if (minimalDaysInFirstWeek < 1 || minimalDaysInFirstWeek > 7) {
         throw new core.IllegalArgumentException('Minimal number of days is invalid');
       }
-
       this._firstDayOfWeek = firstDayOfWeek;
       this._minimalDays = minimalDaysInFirstWeek;
       this._dayOfWeek = ComputedDayOfField.ofDayOfWeekField(this);
@@ -15023,59 +14596,45 @@
       this._weekOfYear = ComputedDayOfField.ofWeekOfYearField(this);
       this._weekOfWeekBasedYear = ComputedDayOfField.ofWeekOfWeekBasedYearField(this);
       this._weekBasedYear = ComputedDayOfField.ofWeekBasedYearField(this);
-      node_main.load(cldrData('supplemental/likelySubtags.json'));
+      Cldr.load(cldrData('supplemental/likelySubtags.json'));
     }
-
     var _proto2 = WeekFields.prototype;
-
     _proto2.firstDayOfWeek = function firstDayOfWeek() {
       return this._firstDayOfWeek;
     };
-
     _proto2.minimalDaysInFirstWeek = function minimalDaysInFirstWeek() {
       return this._minimalDays;
     };
-
     _proto2.dayOfWeek = function dayOfWeek() {
       return this._dayOfWeek;
     };
-
     _proto2.weekOfMonth = function weekOfMonth() {
       return this._weekOfMonth;
     };
-
     _proto2.weekOfYear = function weekOfYear() {
       return this._weekOfYear;
     };
-
     _proto2.weekOfWeekBasedYear = function weekOfWeekBasedYear() {
       return this._weekOfWeekBasedYear;
     };
-
     _proto2.weekBasedYear = function weekBasedYear() {
       return this._weekBasedYear;
     };
-
     _proto2.equals = function equals(other) {
       if (this === other) {
         return true;
       }
-
       if (other instanceof WeekFields) {
         return this.hashCode() === other.hashCode();
       }
-
       return false;
     };
-
     _proto2.hashCode = function hashCode() {
       return this._firstDayOfWeek.ordinal() * 7 + this._minimalDays;
     };
-
     _proto2.toString = function toString() {
       return "WeekFields[" + this._firstDayOfWeek + "," + this._minimalDays + "]";
     };
-
     return WeekFields;
   }();
   function _init$2() {
@@ -15088,68 +14647,50 @@
    * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
    */
   var StringBuilder = core._.StringBuilder;
-
   var WeekFieldsPrinterParser = function () {
     function WeekFieldsPrinterParser(letter, count) {
       this._letter = letter;
       this._count = count;
     }
-
     var _proto = WeekFieldsPrinterParser.prototype;
-
     _proto.print = function print(context, buf) {
       var weekFields = WeekFields.of(context.locale());
-
       var pp = this._evaluate(weekFields);
-
       return pp.print(context, buf);
     };
-
     _proto.parse = function parse(context, text, position) {
       var weekFields = WeekFields.of(context.locale());
-
       var pp = this._evaluate(weekFields);
-
       return pp.parse(context, text, position);
     };
-
     _proto._evaluate = function _evaluate(weekFields) {
       var pp = null;
-
       switch (this._letter) {
         case 'e':
           pp = new core.DateTimeFormatterBuilder.NumberPrinterParser(weekFields.dayOfWeek(), this._count, 2, core.SignStyle.NOT_NEGATIVE);
           break;
-
         case 'c':
           pp = new core.DateTimeFormatterBuilder.NumberPrinterParser(weekFields.dayOfWeek(), this._count, 2, core.SignStyle.NOT_NEGATIVE);
           break;
-
         case 'w':
           pp = new core.DateTimeFormatterBuilder.NumberPrinterParser(weekFields.weekOfWeekBasedYear(), this._count, 2, core.SignStyle.NOT_NEGATIVE);
           break;
-
         case 'W':
           pp = new core.DateTimeFormatterBuilder.NumberPrinterParser(weekFields.weekOfMonth(), 1, 2, core.SignStyle.NOT_NEGATIVE);
           break;
-
         case 'Y':
           if (this._count === 2) {
             pp = new core.DateTimeFormatterBuilder.ReducedPrinterParser(weekFields.weekBasedYear(), 2, 2, 0, core.DateTimeFormatterBuilder.ReducedPrinterParser.BASE_DATE);
           } else {
             pp = new core.DateTimeFormatterBuilder.NumberPrinterParser(weekFields.weekBasedYear(), this._count, 19, this._count < 4 ? core.SignStyle.NORMAL : core.SignStyle.EXCEEDS_PAD, -1);
           }
-
           break;
       }
-
       return pp;
     };
-
     _proto.toString = function toString() {
       var sb = new StringBuilder(30);
       sb.append('Localized(');
-
       if (this._letter === 'Y') {
         if (this._count === 1) {
           sb.append('WeekBasedYear');
@@ -15166,31 +14707,24 @@
         } else if (this._letter === 'W') {
           sb.append('WeekOfMonth');
         }
-
         sb.append(',');
         sb.append(this._count);
       }
-
       sb.append(')');
       return sb.toString();
     };
-
     return WeekFieldsPrinterParser;
   }();
 
   var _jodaInternal$assert = core._.assert,
-      requireNonNull$1 = _jodaInternal$assert.requireNonNull,
-      requireInstance = _jodaInternal$assert.requireInstance;
-
+    requireNonNull$1 = _jodaInternal$assert.requireNonNull,
+    requireInstance = _jodaInternal$assert.requireInstance;
   var CldrDateTimeFormatterBuilder = function (_DateTimeFormatterBui) {
     _inheritsLoose(CldrDateTimeFormatterBuilder, _DateTimeFormatterBui);
-
     function CldrDateTimeFormatterBuilder() {
       return _DateTimeFormatterBui.apply(this, arguments) || this;
     }
-
     var _proto = CldrDateTimeFormatterBuilder.prototype;
-
     _proto.appendText = function appendText(field, styleOrMap) {
       if (styleOrMap === undefined) {
         return this.appendTextField(field);
@@ -15200,29 +14734,22 @@
         return this.appendTextFieldMap(field, styleOrMap);
       }
     };
-
     _proto.appendTextField = function appendTextField(field) {
       return this.appendTextFieldStyle(field, core.TextStyle.FULL);
     };
-
     _proto.appendTextFieldStyle = function appendTextFieldStyle(field, textStyle) {
       requireNonNull$1(field, 'field');
       requireInstance(field, core.TemporalField, 'field');
       requireNonNull$1(textStyle, 'textStyle');
       requireInstance(textStyle, core.TextStyle, 'textStyle');
-
       this._appendInternal(new TextPrinterParser(field, textStyle, new CldrDateTimeTextProvider()));
-
       return this;
     };
-
     _proto.appendTextFieldMap = function appendTextFieldMap(field, textLookup) {
       requireNonNull$1(field, 'field');
       requireInstance(field, core.ChronoField, 'field');
       requireNonNull$1(textLookup, 'textLookup');
-
       var copy = _extends({}, textLookup);
-
       var map = {};
       map[core.TextStyle.FULL] = copy;
       var store = new LocaleStore(map);
@@ -15234,39 +14761,27 @@
           return store.getTextIterator(style);
         }
       };
-
       this._appendInternal(new TextPrinterParser(field, core.TextStyle.FULL, provider));
-
       return this;
     };
-
     _proto.appendWeekField = function appendWeekField(field, count) {
       requireNonNull$1(field, 'field');
       requireNonNull$1(count, 'count');
-
       this._appendInternal(new WeekFieldsPrinterParser(field, count));
-
       return this;
     };
-
     _proto.appendZoneText = function appendZoneText(textStyle) {
       this._appendInternal(new CldrZoneTextPrinterParser(textStyle));
-
       return this;
     };
-
     _proto.appendLocalizedOffset = function appendLocalizedOffset(textStyle) {
       requireNonNull$1(textStyle, 'textStyle');
-
       if (textStyle !== core.TextStyle.FULL && textStyle !== core.TextStyle.SHORT) {
         throw new core.IllegalArgumentException('Style must be either full or short');
       }
-
       this._appendInternal(new LocalizedOffsetPrinterParser(textStyle));
-
       return this;
     };
-
     return CldrDateTimeFormatterBuilder;
   }(core.DateTimeFormatterBuilder);
 
@@ -15274,64 +14789,50 @@
    * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
    * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
    */
-
   var Locale = function () {
     Locale.getAvailableLocales = function getAvailableLocales() {
       return new CldrDateTimeTextProvider().getAvailableLocales();
     };
-
     function Locale(language, country, localeString) {
       if (country === void 0) {
         country = '';
       }
-
       if (localeString === void 0) {
         localeString = '';
       }
-
       this._language = language;
       this._country = country;
       this._localeString = localeString;
     }
-
     var _proto = Locale.prototype;
-
     _proto.language = function language() {
       return this._language;
     };
-
     _proto.country = function country() {
       return this._country;
     };
-
     _proto.localeString = function localeString() {
       if (this._localeString.length > 0) {
         return this._localeString;
       }
-
       if (this._country.length > 0) {
         return this._language + "-" + this._country;
       } else {
         return this._language;
       }
     };
-
     _proto.toString = function toString() {
       return "Locale[" + this.localeString() + "]";
     };
-
     _proto.equals = function equals(other) {
       if (!other) {
         return false;
       }
-
       if (!(other instanceof Locale)) {
         return false;
       }
-
       return this.localeString() === other.localeString();
     };
-
     return Locale;
   }();
   function _init$1() {
@@ -15357,26 +14858,19 @@
   }
 
   var requireNonNull = core._.assert.requireNonNull;
-
   var LocaleDateTimeFormatter = function (_DateTimeFormatter) {
     _inheritsLoose(LocaleDateTimeFormatter, _DateTimeFormatter);
-
     function LocaleDateTimeFormatter() {
       return _DateTimeFormatter.apply(this, arguments) || this;
     }
-
     var _proto = LocaleDateTimeFormatter.prototype;
-
     _proto.withLocale = function withLocale(locale) {
       requireNonNull(locale, 'locale');
-
       if (locale.equals(this._locale)) {
         return this;
       }
-
       return new core.DateTimeFormatter(this._printerParser, locale, this._decimalStyle, this._resolverStyle, this._resolverFields, this._chrono, this._zone);
     };
-
     return LocaleDateTimeFormatter;
   }(core.DateTimeFormatter);
   function _init() {
@@ -15411,24 +14905,17 @@
    * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
    */
   var isInit = false;
-
   function init() {
     if (isInit) {
       return;
     }
-
     isInit = true;
     _init$1();
     _init$2();
     _init();
   }
-
   init();
 
-  /*
-   * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
-   * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
-   */
   function plug (jsJoda) {
     Object.getOwnPropertyNames(CldrDateTimeFormatterBuilder.prototype).forEach(function (prop) {
       if (prop !== 'constructor') {
@@ -15451,8 +14938,6 @@
 
   exports.Locale = Locale;
   exports.WeekFields = WeekFields;
-
-  Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
 //# sourceMappingURL=index.js.map
