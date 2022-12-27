@@ -76,7 +76,7 @@ import { StringBuilder } from './format/StringBuilder';
 import * as assert from './assert';
 
 import { convert } from './convert';
-import { nativeJs } from './temporal/NativeJsTemporal';
+import { nativeJs } from './nativeJs';
 import { bindUse } from './use';
 
 const _ = {

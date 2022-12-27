@@ -5,23 +5,24 @@
  */
 
 import { expect } from 'chai';
-import { assertEquals, assertThrows, assertTrue } from '../testUtils';
+import { assertEquals, assertFalse, assertTrue } from './testUtils';
 
-import '../_init';
+import './_init';
 
-import { Instant } from '../../src/Instant';
-import { LocalDate } from '../../src/LocalDate';
-import { LocalTime } from '../../src/LocalTime';
-import { LocalDateTime } from '../../src/LocalDateTime';
-import { ZoneId } from '../../src/ZoneId';
-import { ZoneOffset } from '../../src/ZoneOffset';
-import { ZonedDateTime } from '../../src/ZonedDateTime';
+import { nativeJs } from '../src/nativeJs';
 
-import { nativeJs } from '../../src/temporal/NativeJsTemporal';
-import { ChronoUnit } from '../../src/temporal/ChronoUnit';
-import { ChronoField, IllegalArgumentException, IsoFields } from '../../src/js-joda';
+import { Instant } from '../src/Instant';
+import { LocalDate } from '../src/LocalDate';
+import { LocalTime } from '../src/LocalTime';
+import { LocalDateTime } from '../src/LocalDateTime';
+import { ZoneId } from '../src/ZoneId';
+import { ZoneOffset } from '../src/ZoneOffset';
+import { ZonedDateTime } from '../src/ZonedDateTime';
+import { ChronoField } from '../src/temporal/ChronoField';
+import { ChronoUnit } from '../src/temporal/ChronoUnit';
+import { IsoFields } from '../src/temporal/IsoFields';
 
-describe('temporal/NativeJsTemporal.js', () => {
+describe('nativeJs', () => {
 
     it('should create a LocalDate from native js Date instance', () => {
         const jsDate = new Date('2016-02-29T00:00:00Z');
@@ -162,7 +163,7 @@ describe('temporal/NativeJsTemporal.js', () => {
         }
     });
 
-    it('should support no chrono units', () => {
+    it('should support all finite chrono units', () => {
         const temporalAccessor = nativeJs(new Date(0));
         const testData = [
             ChronoUnit.NANOS,
@@ -180,21 +181,30 @@ describe('temporal/NativeJsTemporal.js', () => {
             ChronoUnit.CENTURIES,
             ChronoUnit.MILLENNIA,
             ChronoUnit.ERAS,
-            ChronoUnit.FOREVER,
         ];
-        for (const temporalField of testData) {
-            assertThrows(IllegalArgumentException, () => temporalAccessor.isSupported(temporalField));
+        for (const chronoUnit of testData) {
+            assertTrue(temporalAccessor.isSupported(chronoUnit));
         }
     });
 
-    it('should support no iso units', () => {
+    it('should support all iso units', () => {
         const temporalAccessor = nativeJs(new Date(0));
         const testData = [
             IsoFields.WEEK_BASED_YEARS,
             IsoFields.QUARTER_YEARS,
         ];
-        for (const temporalField of testData) {
-            assertThrows(IllegalArgumentException, () => temporalAccessor.isSupported(temporalField));
+        for (const chronoUnit of testData) {
+            assertTrue(temporalAccessor.isSupported(chronoUnit));
+        }
+    });
+
+    it('should support no infinite chrono units', () => {
+        const temporalAccessor = nativeJs(new Date(0));
+        const testData = [
+            ChronoUnit.FOREVER,
+        ];
+        for (const chronoUnit of testData) {
+            assertFalse(temporalAccessor.isSupported(chronoUnit));
         }
     });
 });
