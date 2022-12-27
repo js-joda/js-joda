@@ -315,9 +315,6 @@ describe('org.threeten.extra.TestOffsetDate', () => {
     // factories
     //-----------------------------------------------------------------------
     function check(test, y, mo, d, offset) {
-        if (!LocalDate.of(y, mo, d).equals(test.toLocalDate())) {
-            console.log('???');
-        }
         assertEquals(LocalDate.of(y, mo, d), test.toLocalDate());
         assertEquals(offset, test.offset());
 

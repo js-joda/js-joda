@@ -2,20 +2,21 @@
 
 ## Convert from Date to a js-joda temporal
 
-use method `nativeJs` to convert from native javascript `Date` to a js-joda `Temporal`.
+use method `nativeJs` to convert from native javascript `Date` to a js-joda `ZonedDateTime`.
 
 Hint: `nativeJs` accepts `moment` objects as well.
 
-Be aware of that a moment and Date always represent a timestamp (a certain point in time with a timezone). 
-Therefore, the most reasonable convert is to an `Instant` or `ZonedDateTime`.
+Be aware of that a Date always represent a certain point in time _without_ a timezone.
+You can provide one by passing it as a second argument.
+Otherwise, `ZoneId.systemDefault()` will be used.
 
 ```javascript
-import { Instant, nativeJs } from '@js-joda/core';
+import { ZonedDateTime, nativeJs } from '@js-joda/core';
 
-const instant = Instant.from(nativeJs(new Date()))
+const zonedDateTime = nativeJs(new Date());
 
 // or with momentjs object
-const instant = Instant.from(nativeJs(moment()))
+const zonedDateTime = nativeJs(moment());
 ```
 
 ## Convert from js-joda temporal to a Date
@@ -24,5 +25,5 @@ Use method `convert` to convert a `LocalDate` | `LocalDateTime` | `ZonedDateTime
 to javascript `Date`.
 
 ```javascript
-const date = convert(ZonedDateTime.now()).toDate();
+const date = convert(Instant.now()).toDate();
 ```

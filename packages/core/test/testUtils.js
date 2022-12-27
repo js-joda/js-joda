@@ -47,6 +47,10 @@ export function assertFalse(condition, message='') {
     }
 }
 
+export function assertThrows(exception, expression) {
+    expect(expression).to.throw(exception);
+}
+
 export function fail(message=''){
     assert(false, message);
 }
