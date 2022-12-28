@@ -15,6 +15,7 @@ import { ZoneId } from '../src/ZoneId';
 import { Instant } from '../src/Instant';
 
 import { convert } from '../src/convert';
+import { LocalTime } from '../src/js-joda';
 
 describe('convert', () => {
 
@@ -57,6 +58,14 @@ describe('convert', () => {
         expect(javascriptDate.getTime()).to.equal(convert(localDateTime, ZoneId.UTC).toEpochMilli());
     });
 
+    it('should convert a OffsetDateTime to a javascript Date', () => {
+        const offsetDateTime = LocalDateTime.parse('2016-05-26T01:42').atOffset(ZoneId.UTC);
+        const javascriptDate = convert(offsetDateTime).toDate();
+        expect(javascriptDate).to.instanceof(Date);
+        expect(javascriptDate.getTime()).to.equal(new Date('2016-05-26T01:42:00Z').getTime());
+        expect(javascriptDate.getTime()).to.equal(convert(offsetDateTime).toEpochMilli());
+    });
+
     it('should convert a ZonedDateTime to a javascript Date', () => {
         const zonedDateTime = LocalDateTime.parse('2016-05-26T01:42').atZone(ZoneId.UTC);
         const javascriptDate = convert(zonedDateTime).toDate();
@@ -65,10 +74,12 @@ describe('convert', () => {
         expect(javascriptDate.getTime()).to.equal(convert(zonedDateTime).toEpochMilli());
     });
 
-    it('should fail if temporal is not an instance of LocalDate, LocalDateTime or ZonedDateTime', () => {
-        expect(()=>{
-            convert(new Date()).toDate();
-        }).to.throw(IllegalArgumentException);
+    it('should fail if temporal is not convertible to Instant', () => {
+        expect(() => convert(LocalTime.MIDNIGHT).toDate()).to.throw(IllegalArgumentException);
+    });
+
+    it('should fail if temporal is not an instance of Temporal', () => {
+        expect(() => convert(new Date()).toDate()).to.throw(IllegalArgumentException);
     });
 
 });

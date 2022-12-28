@@ -1,49 +1,37 @@
 /*
- * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
+ * @copyright (c) 2015-present, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
 import { IllegalArgumentException } from './errors';
 
-import { LocalDate } from './LocalDate';
-import { LocalDateTime } from './LocalDateTime';
-import { ZonedDateTime } from './ZonedDateTime';
 import { ZoneId } from './ZoneId';
 import { Instant } from './Instant';
+import { ChronoField, LocalTime, Temporal, TemporalQueries } from './js-joda';
+import { requireInstance } from './assert';
 
+/**
+ * Converts `Temporal` to `Date` or `number` of milliseconds since the epoch.
+ */
 class ToNativeJsConverter {
     /**
-     * @param {!(LocalDate|LocalDateTime|ZonedDateTime|Instant)} temporal - a joda temporal instance
-     * @param {ZoneId} [zone] - the zone of the temporal,
-     *  the default value for LocalDate and LocalDateTime is ZoneId.systemDefault().
+     * @param {!Temporal} temporal - a `Temporal` instance
+     * @param {ZoneId} [zone] - time zone used during conversion, if necessary, default to `ZoneId.systemDefault()`
      */
-    constructor(temporal, zone){
-        let zonedDateTime;
-
-        if(temporal instanceof Instant) {
-            this.instant = temporal;
-            return;
-        } else if(temporal instanceof LocalDate) {
-            zone = zone == null ?  ZoneId.systemDefault() : zone;
-            zonedDateTime = temporal.atStartOfDay(zone);
-        } else if (temporal instanceof LocalDateTime) {
-            zone = zone == null ? ZoneId.systemDefault() : zone;
-            zonedDateTime = temporal.atZone(zone);
-        } else if (temporal instanceof ZonedDateTime) {
-            if (zone == null) {
-                zonedDateTime = temporal;
-            } else {
-                zonedDateTime = temporal.withZoneSameInstant(zone);
-            }
+    constructor(temporal, zone) {
+        if (temporal.isSupported(ChronoField.INSTANT_SECONDS) && temporal.isSupported(ChronoField.NANO_OF_SECOND)) {
+            this.instant = Instant.from(temporal);
+        } else if (temporal.isSupported(ChronoField.EPOCH_DAY)) {
+            const localDate = temporal.query(TemporalQueries.localDate());
+            const localTime = temporal.query(TemporalQueries.localTime()) || LocalTime.MIDNIGHT;
+            const zoneId = temporal.query(TemporalQueries.zone()) || zone || ZoneId.systemDefault();
+            this.instant = localDate.atTime(localTime).atZone(zoneId).toInstant();
         } else {
-            throw new IllegalArgumentException(`unsupported instance for convert operation:${temporal}`);
+            throw new IllegalArgumentException(`Unable to create converter for ${temporal}`);
         }
-
-        this.instant = zonedDateTime.toInstant();
     }
 
     /**
-     *
      * @returns {Date}
      */
     toDate() {
@@ -51,7 +39,6 @@ class ToNativeJsConverter {
     }
 
     /**
-     *
      * @returns {number}
      */
     toEpochMilli() {
@@ -60,28 +47,29 @@ class ToNativeJsConverter {
 }
 
 /**
- * converts a LocalDate, LocalDateTime or ZonedDateTime to a native Javascript Date.
- *
- * In a first step the temporal is converted to an Instant by adding implicit values.
+ * Converts `Temporal` to `Date` or `number` of milliseconds since the epoch.
  * 
- * A LocalDate is implicit set to a LocalDateTime at start of day. 
- * A LocalDateTime is implicit set to a ZonedDateTime with 
- * the passed zone or if null, with the system default time zone. 
- * A ZonedDateTime is converted to an Instant, if a zone is specified the zonedDateTime is adjusted to this 
- * zone, keeping the same Instant.
- *
- * In a second step the instant is converted to a native Javascript Date
- *
- * default zone for LocalDate and LocalDateTime is ZoneId.systemDefault().
- *
+ * If conversion requires time zone, the passed `zone` will be used, default to `ZoneId.systemDefault()`.
+ * 
+ * If conversion requires local time and none is available, the time at start of the given day will be used.
+ * 
  * @example
- * convert(localDate).toDate() // returns a javascript Date
- * convert(localDate).toEpochMilli()   // returns the epochMillis
+ * convert(instant).toDate() // returns a Date
+ * convert(localDate, zone).toEpochMilli() // returns the epochMillis
  *
- * @param {!(LocalDate|LocalDateTime|ZonedDateTime)} temporal - a joda temporal instance
- * @param {ZoneId} [zone] - the zone of the temporal
- * @returns {ToNativeJsConverter}
+ * @param {!Temporal} temporal - a `Temporal` instance
+ * @param {ZoneId} [zone] - time zone used during conversion, if necessary; default to `ZoneId.systemDefault()`
+ * @returns {ToNativeJsConverter} converter producing `Date` or `number` of milliseconds since the epoch
+ * @throws IllegalArgumentException if `temporal` is not a `Temporal` or `zone` is not a `ZoneId` instance
+ * @throws IllegalArgumentException if conversion of `temporal` is not possible
  */
-export function convert(temporal, zone){
-    return new ToNativeJsConverter(temporal, zone);
+export function convert(temporal, zone) {
+    if (zone === undefined) {
+        requireInstance(temporal, Temporal, 'temporal');
+        return new ToNativeJsConverter(temporal);
+    } else {
+        requireInstance(temporal, Temporal, 'temporal');
+        requireInstance(zone, ZoneId, 'zone');
+        return new ToNativeJsConverter(temporal, zone);
+    }
 }
