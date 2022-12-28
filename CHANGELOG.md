@@ -1,6 +1,26 @@
 Changelog
 =========
 
+## 2022-12-28 / 2
+
+### Versions
+
+@js-joda/timezone@2.17.0
+
+#### :rocket: Enhancement
+* `timezone`
+  * [#661](https://github.com/js-joda/js-joda/pull/661) update tzdb 2022g ([@pithu](https://github.com/pithu))
+
+## 2022-12-28 / 1
+
+### Versions
+
+@js-joda/timezone@2.16.0
+
+#### :rocket: Enhancement
+* `timezone`
+  * [#660](https://github.com/js-joda/js-joda/pull/660) update tzdb 2022f ([@pithu](https://github.com/pithu))
+
 ## 2022-12-27
 
 ### Versions
