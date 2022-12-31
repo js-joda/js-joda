@@ -2488,6 +2488,16 @@ export function convert(
     toEpochMilli: () => number;
 };
 
+declare global {
+    interface Date {
+        toInstant(): Instant;
+    }
+
+    interface DateConstructor {
+        from(instant: Instant): Date;
+    }
+}
+
 export function use(plugin: Function): any;
 
 // ----------------------------------------------------------------------------

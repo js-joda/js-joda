@@ -159,6 +159,13 @@ function test_exceptions() {
     new DateTimeParseException();
 }
 
+function test_Date() {
+    const date = Date.from(Instant.EPOCH);
+    const instant = new Date(0).toInstant();
+    expectType<Date>(date);
+    expectType<Instant>(instant);
+}
+
 /**
  * Use this to check if an expression is of type T.
  * Don't let TypeScript infer the type, give it explicitly.

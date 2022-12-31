@@ -3,6 +3,8 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
+import './Date';
+
 import { _init as ZoneOffsetInit } from './ZoneOffset';
 import { _init as DayOfWeekInit } from './DayOfWeek';
 import { _init as DurationInit } from './Duration';
