@@ -78,6 +78,8 @@ import * as assert from './assert';
 
 import { convert } from './convert';
 import { nativeJs } from './nativeJs';
+import { Date$ } from './Date_';
+
 import { bindUse } from './use';
 
 const _ = {
@@ -94,6 +96,7 @@ const jsJodaExports = {
     _,
     convert,
     nativeJs,
+    Date$,
     ArithmeticException,
     DateTimeException,
     DateTimeParseException,
@@ -162,6 +165,7 @@ export {
     use,
     convert,
     nativeJs,
+    Date$,
     ArithmeticException,
     DateTimeException,
     DateTimeParseException,

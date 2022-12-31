@@ -2488,6 +2488,12 @@ export function convert(
     toEpochMilli: () => number;
 };
 
+export class Date$ {
+    static fromInstant(instant: Instant): Date;
+    static toInstant(date: Date): Instant;
+    private constructor();
+}
+
 export function use(plugin: Function): any;
 
 // ----------------------------------------------------------------------------
