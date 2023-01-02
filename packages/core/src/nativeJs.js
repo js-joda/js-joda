@@ -16,12 +16,10 @@ import { Instant, ZoneId } from './js-joda';
 export function nativeJs(date, zone = ZoneId.systemDefault()) {
     requireNonNull(date, 'date');
     requireNonNull(zone, 'zone');
-    switch (date.constructor.name) {
-        case 'Date':
-            return Instant.ofEpochMilli(date.getTime()).atZone(zone);
-        case 'Moment':
-            return Instant.ofEpochMilli(date.valueOf()).atZone(zone);
-        default:
-            throw new IllegalArgumentException('date must be a javascript Date or a moment instance');
+    if(date instanceof Date) {
+        return Instant.ofEpochMilli(date.getTime()).atZone(zone);
+    } else if(typeof date.toDate === 'function' &&  date.toDate() instanceof Date) {
+        return Instant.ofEpochMilli(date.valueOf()).atZone(zone);
     }
+    throw new IllegalArgumentException('date must be a javascript Date or a moment instance');
 }
