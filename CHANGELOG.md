@@ -1,6 +1,16 @@
 Changelog
 =========
 
+## 2023-01-02
+
+### Versions
+
+tbc
+
+#### :bug: Bug Fix
+* `core`
+  * [#665](https://github.com/js-joda/js-joda/pull/665) hot fix native js ([@pithu](https://github.com/pithu))
+
 ## 2022-12-28 / 2
 
 ### Versions
