@@ -5,7 +5,10 @@ Changelog
 
 ### Versions
 
-tbc
+- @js-joda/core@5.5.1
+- @js-joda/extra@0.11.1
+- @js-joda/locale@4.8.8
+- @js-joda/timezone@2.17.1
 
 #### :bug: Bug Fix
 * `core`
