@@ -1,6 +1,19 @@
 Changelog
 =========
 
+## 2023-01-07
+
+### Versions
+
+- @js-joda/core@5.5.2
+- @js-joda/extra@0.11.2
+- @js-joda/locale@4.8.9
+- @js-joda/timezone@2.17.2
+
+#### :bug: Bug Fix
+* `core`
+  * [#668](https://github.com/js-joda/js-joda/pull/668) Revert native js to previous impl ([@pithu](https://github.com/pithu))
+
 ## 2023-01-02
 
 ### Versions
