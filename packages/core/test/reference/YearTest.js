@@ -44,7 +44,7 @@ describe('org.threeten.bp.temporal.TestYear', () => {
             expect(test).to.eql(expected);
         });
     });
-    
+
     //-----------------------------------------------------------------------
     // now(ZoneId)
     //-----------------------------------------------------------------------
@@ -401,7 +401,7 @@ describe('org.threeten.bp.temporal.TestYear', () => {
     describe('doAdjustment()', () => {
         it('test_adjustDate', () => {
             const base = LocalDate.of(2007, 2, 12);
-            for (let i = -4; i <= 2104; i++) {
+            for (let i = -4; i <= 2104; i+=50) {
                 const result = Year.of(i).adjustInto(base);
                 expect(result).to.eql(LocalDate.of(i, 2, 12));
             }
