@@ -12,18 +12,18 @@ const MathUtil = jodaInternal.MathUtil;
 
 /**
  * A quarter-of-year, such as 'Q2'.
- * 
+ *
  * `Quarter` is an enum representing the 4 quarters of the year -
  * Q1, Q2, Q3 and Q4. These are defined as January to March, April to June,
  * July to September and October to December.
- * 
+ *
  * The `int` value follows the quarter, from 1 (Q1) to 4 (Q4).
  * It is recommended that applications use the enum rather than the `int` value
  * to ensure code clarity.
- * 
+ *
  * **Do not use `ordinal()` to obtain the numeric representation of `Quarter`.
  * Use `getValue()` instead.**
- * 
+ *
  * This enum represents a common concept that is found in many calendar systems.
  * As such, this enum may be used by any calendar system that has the quarter-of-year
  * concept defined exactly equivalent to the ISO calendar system.
@@ -32,7 +32,7 @@ const MathUtil = jodaInternal.MathUtil;
 export class Quarter extends TemporalAccessor {
     /**
      * replacement for enum `valueOf(name)`
-     * 
+     *
      * @param {string} name
      * @return {Quarter}
      */
@@ -62,7 +62,7 @@ export class Quarter extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Obtains an instance of `Quarter` from an `int` value.
-     * 
+     *
      * `Quarter` is an enum representing the 4 quarters of the year.
      * This factory allows the enum to be obtained from the `int` value.
      * The `int` value follows the quarter, from 1 (Q1) to 4 (Q4).
@@ -89,10 +89,10 @@ export class Quarter extends TemporalAccessor {
 
     /**
      * Obtains an instance of `Quarter` from a month-of-year.
-     * 
+     *
      * `Quarter` is an enum representing the 4 quarters of the year.
      * This factory allows the enum to be obtained from the `Month` value.
-     * 
+     *
      * January to March are Q1, April to June are Q2, July to September are Q3
      * and October to December are Q4.
      *
@@ -109,15 +109,15 @@ export class Quarter extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Obtains an instance of `Quarter` from a temporal object.
-     * 
+     *
      * This obtains a quarter based on the specified temporal.
      * A `TemporalAccessor` represents an arbitrary set of date and time information,
      * which this factory converts to an instance of `Quarter`.
-     * 
+     *
      * The conversion extracts the {@link IsoFields.QUARTER_OF_YEAR} field.
      * The extraction is only permitted if the temporal object has an ISO
      * chronology, or can be converted to a `LocalDate`.
-     * 
+     *
      * This method matches the signature of the functional interface {@link TemporalQuery}
      * allowing it to be used in queries via method reference, `Quarter.from`.
      *
@@ -141,12 +141,12 @@ export class Quarter extends TemporalAccessor {
             const qoy = MathUtil.safeToInt(temporal.getLong(IsoFields.QUARTER_OF_YEAR));
             return Quarter.of(qoy);
         } catch (ex) {
-            throw new DateTimeException(`Unable to obtain Quarter from TemporalAccessor: ${temporal} of type ${temporal.constructor.name}`, ex);
+            throw new DateTimeException(`Unable to obtain Quarter from TemporalAccessor: '${temporal}' of type '${temporal && temporal.constructor.name}'`, ex);
         }
     }
 
     /**
-     * 
+     *
      * @param {number} value
      * @param {string} name
      * @private
@@ -160,7 +160,7 @@ export class Quarter extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Gets the quarter-of-year `int` value.
-     * 
+     *
      * The values are numbered following the ISO-8601 standard,
      * from 1 (Q1) to 4 (Q4).
      *
@@ -173,11 +173,11 @@ export class Quarter extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Gets the textual representation, such as 'Q1' or '4th quarter'.
-     * 
+     *
      * This returns the textual name used to identify the quarter-of-year,
      * suitable for presentation to the user.
      * The parameters control the style of the returned text and the locale.
-     * 
+     *
      * If no textual mapping is found then the {@link #getValue() numeric value} is returned.
      *
      * @param {TextStyle} style - the length of the text required, not null
@@ -192,15 +192,15 @@ export class Quarter extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Checks if the specified field is supported.
-     * 
+     *
      * This checks if this quarter-of-year can be queried for the specified field.
      * If false, then calling the {@link #range(TemporalField) range} and
      * {@link #get(TemporalField) get} methods will throw an exception.
-     * 
+     *
      * If the field is {@link IsoFields#QUARTER_OF_YEAR QUARTER_OF_YEAR} then
      * this method returns true.
      * All `ChronoField` instances will return false.
-     * 
+     *
      * If the field is not a `ChronoField`, then the result of this method
      * is obtained by invoking `TemporalField.isSupportedBy(TemporalAccessor)`
      * passing `this` as the argument.
@@ -220,16 +220,16 @@ export class Quarter extends TemporalAccessor {
 
     /**
      * Gets the range of valid values for the specified field.
-     * 
+     *
      * The range object expresses the minimum and maximum valid values for a field.
      * This quarter is used to enhance the accuracy of the returned range.
      * If it is not possible to return the range, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * 
+     *
      * If the field is {@link IsoFields#QUARTER_OF_YEAR QUARTER_OF_YEAR} then the
      * range of the quarter-of-year, from 1 to 4, will be returned.
      * All `ChronoField` instances will throw an `UnsupportedTemporalTypeException`.
-     * 
+     *
      * If the field is not a `ChronoField`, then the result of this method
      * is obtained by invoking `TemporalField.rangeRefinedBy(TemporalAccessor)`
      * passing `this` as the argument.
@@ -252,16 +252,16 @@ export class Quarter extends TemporalAccessor {
 
     /**
      * Gets the value of the specified field from this quarter-of-year as an `int`.
-     * 
+     *
      * This queries this quarter for the value for the specified field.
      * The returned value will always be within the valid range of values for the field.
      * If it is not possible to return the value, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * 
+     *
      * If the field is {@link IsoFields.QUARTER_OF_YEAR} then the
      * value of the quarter-of-year, from 1 to 4, will be returned.
      * All `ChronoField` instances will throw an `UnsupportedTemporalTypeException`.
-     * 
+     *
      * If the field is not a `ChronoField`, then the result of this method
      * is obtained by invoking `TemporalField.getFrom(TemporalAccessor)`
      * passing `this` as the argument. Whether the value can be obtained,
@@ -283,15 +283,15 @@ export class Quarter extends TemporalAccessor {
 
     /**
      * Gets the value of the specified field from this quarter-of-year as a `long`.
-     * 
+     *
      * This queries this quarter for the value for the specified field.
      * If it is not possible to return the value, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * 
+     *
      * If the field is {@link IsoFields#QUARTER_OF_YEAR QUARTER_OF_YEAR} then the
      * value of the quarter-of-year, from 1 to 4, will be returned.
      * All other `ChronoField` instances will throw an `UnsupportedTemporalTypeException`.
-     * 
+     *
      * If the field is not a `ChronoField`, then the result of this method
      * is obtained by invoking `TemporalField.getFrom(TemporalAccessor)`
      * passing `this` as the argument. Whether the value can be obtained,
@@ -316,10 +316,10 @@ export class Quarter extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Returns the quarter that is the specified number of quarters after this one.
-     * 
+     *
      * The calculation rolls around the end of the year from Q4 to Q1.
      * The specified period may be negative.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} quarters - the quarters to add, positive or negative
@@ -332,10 +332,10 @@ export class Quarter extends TemporalAccessor {
 
     /**
      * Returns the quarter that is the specified number of quarters before this one.
-     * 
+     *
      * The calculation rolls around the start of the year from Q1 to Q4.
      * The specified period may be negative.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} quarters - the quarters to subtract, positive or negative
@@ -348,9 +348,9 @@ export class Quarter extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Gets the length of this quarter in days.
-     * 
+     *
      * This takes a flag to determine whether to return the length for a leap year or not.
-     * 
+     *
      * Q1 has 90 in a standard year and 91 days in a leap year.
      * Q2 has 91 days.
      * Q3 and Q4 have 92 days.
@@ -372,12 +372,12 @@ export class Quarter extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Gets the first of the three months that this quarter refers to.
-     * 
+     *
      * Q1 will return January.
      * Q2 will return April.
      * Q3 will return July.
      * Q4 will return October.
-     * 
+     *
      * To obtain the other two months of the quarter, simply use {@link Month#plus(long)}
      * on the returned month.
      *
@@ -401,12 +401,12 @@ export class Quarter extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Queries this quarter-of-year using the specified query.
-     * 
+     *
      * This queries this quarter-of-year using the specified query strategy object.
      * The `TemporalQuery` object defines the logic to be used to
      * obtain the result. Read the documentation of the query to understand
      * what the result of this method will be.
-     * 
+     *
      * The result of this method is obtained by invoking the
      * {@link TemporalQuery.queryFrom(TemporalAccessor)} method on the
      * specified query passing `this` as the argument.
@@ -429,15 +429,15 @@ export class Quarter extends TemporalAccessor {
 
     /**
      * Adjusts the specified temporal object to have this quarter-of-year.
-     * 
+     *
      * This returns a temporal object of the same observable type as the input
      * with the quarter-of-year changed to be the same as this.
-     * 
+     *
      * The adjustment is equivalent to using {@link Temporal.with}
      * passing {@link IsoFields.QUARTER_OF_YEAR} as the field.
      * If the specified temporal object does not use the ISO calendar system then
      * a `DateTimeException` is thrown.
-     * 
+     *
      * In most cases, it is clearer to reverse the calling pattern by using
      * {@link Temporal.with}:
      * ```
@@ -445,7 +445,7 @@ export class Quarter extends TemporalAccessor {
      *   temporal = thisQuarter.adjustInto(temporal);
      *   temporal = temporal.with(thisQuarter);
      * ```
-     * 
+     *
      * For example, given a date in May, the following are output:
      * ```
      *   dateInMay.with(Q1);    // three months earlier
@@ -453,7 +453,7 @@ export class Quarter extends TemporalAccessor {
      *   dateInMay.with(Q3);    // three months later
      *   dateInMay.with(Q4);    // six months later
      * ```
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Temporal} temporal - the target object to be adjusted, not null

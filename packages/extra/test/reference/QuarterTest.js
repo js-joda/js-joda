@@ -99,12 +99,11 @@ describe('org.threeten.extra.TestQuarter', () => {
         });
 
         it('test_from_TemporalAccessorl_invalid_noDerive', () => {
-            assertThrows(DateTimeException.class, () => Quarter.from(LocalTime.of(12, 30)));
+            assertThrows(DateTimeException, () => Quarter.from(LocalTime.of(12, 30)));
         });
 
         it('test_from_TemporalAccessor_null', () => {
-            
-            assertThrows(NullPointerException.class, () => Quarter.from(null));
+            assertThrows(DateTimeException, () => Quarter.from(null));
         });
 
         it('test_from_parse_CharSequence', () => {
@@ -163,7 +162,7 @@ describe('org.threeten.extra.TestQuarter', () => {
         });
 
         it('test_range_invalidField', () => {
-            assertThrows(UnsupportedTemporalTypeException.class, () => Quarter.Q1.range(ChronoField.MONTH_OF_YEAR));
+            assertThrows(UnsupportedTemporalTypeException, () => Quarter.Q1.range(ChronoField.MONTH_OF_YEAR));
         });
 
         it('test_range_null', () => {
@@ -183,7 +182,7 @@ describe('org.threeten.extra.TestQuarter', () => {
         });
 
         it('test_get_invalidField', () => {
-            assertThrows(UnsupportedTemporalTypeException.class, () => Quarter.Q2.get(ChronoField.MONTH_OF_YEAR));
+            assertThrows(UnsupportedTemporalTypeException, () => Quarter.Q2.get(ChronoField.MONTH_OF_YEAR));
         });
 
         it('test_get_null', () => {

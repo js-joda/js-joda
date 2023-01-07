@@ -19,7 +19,7 @@ export function nativeJs(date, zone = ZoneId.systemDefault()) {
     if(date instanceof Date) {
         return Instant.ofEpochMilli(date.getTime()).atZone(zone);
     } else if(typeof date.toDate === 'function' &&  date.toDate() instanceof Date) {
-        return Instant.ofEpochMilli(date.valueOf()).atZone(zone);
+        return Instant.ofEpochMilli(date.toDate().getTime()).atZone(zone);
     }
     throw new IllegalArgumentException('date must be a javascript Date or a moment instance');
 }
