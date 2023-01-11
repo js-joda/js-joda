@@ -12,6 +12,7 @@ import { Instant, ZoneId } from './js-joda';
  * @param {!(Date|moment)} date - a javascript Date or a moment instance
  * @param {ZoneId} [zone = ZoneId.systemDefault()] - the zone of the returned ZonedDateTime, defaults to ZoneId.systemDefault()
  * @returns {ZonedDateTime}
+ * @deprecated Use `date.toInstant()` instead.
  */
 export function nativeJs(date, zone = ZoneId.systemDefault()) {
     requireNonNull(date, 'date');

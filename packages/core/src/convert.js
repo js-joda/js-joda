@@ -81,6 +81,7 @@ class ToNativeJsConverter {
  * @param {!(LocalDate|LocalDateTime|ZonedDateTime)} temporal - a joda temporal instance
  * @param {ZoneId} [zone] - the zone of the temporal
  * @returns {ToNativeJsConverter}
+ * @deprecated Use `Date.from(Instant)` instead.
  */
 export function convert(temporal, zone){
     return new ToNativeJsConverter(temporal, zone);

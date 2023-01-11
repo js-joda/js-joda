@@ -26,7 +26,7 @@
 
 ## Why yet another JavaScript date and time library?
 
-- Popular JavaScript date libraries like [moment](https://momentjs.com/) or [date-utils](https://github.com/continuouscalendar/dateutils) are **wrappers** around the native JavaScript `Date` object, providing syntactic sugar. The native `Date` object always consist of a date, time and a timezone part. In contrast, js-joda is a **standalone** date and time implementation.
+- Popular JavaScript date libraries like [moment](https://momentjs.com/) or [date-utils](https://github.com/continuouscalendar/dateutils) are **wrappers** around the native JavaScript `Date` object, providing syntactic sugar. In contrast, js-joda is a **standalone** date and time implementation.
 
 - The API has a **domain-driven design** with classes for each of the different use cases, like `LocalDate`, `ZonedDateTime` or `Period`. For example, `LocalDate` allows you to handle dates without times (like birthdays or holidays) in a clean and error-safe way, especially if these dates are persisted to an external server.
 
@@ -36,15 +36,17 @@
 
 ### Dates and Times
 
-- **LocalDate** represents a date without a time and timezone in the ISO-8601 calendar system, such as 2007-12-24.
+- **LocalDate** represents a date without a timezone in the ISO-8601 calendar system, such as 2007-12-24.
 
-- **LocalTime** represents a time without timezone in the ISO-8601 calendar system such as '11:55:00'.
+- **LocalTime** represents a time without a timezone in the ISO-8601 calendar system, such as 16:15:30.
 
-- **LocalDateTime** is a description of the date (LocalDate), as used for birthdays, combined with the local time (LocalTime) as seen on a wall clock.
+- **LocalDateTime** represents a date-time without a timezone in the ISO-8601 calendar system, such as 2007-12-24T16:15:30.
 
-- **ZonedDateTime** is a date-time with a timezone in the ISO-8601 calendar system, such as 2007-12-24T16:15:30+01:00 UTC+01:00.
+- **OffsetDateTime** is a date-time with a offset in the ISO-8601 calendar system, such as 2007-12-24T16:15:30+01:00.
 
-- **Instant** is an instantaneous point on the time-line measured from the epoch of _1970-01-01T00:00:00Z_ in epoch-seconds and nanosecond-of-second.
+- **ZonedDateTime** is a date-time with a timezone in the ISO-8601 calendar system, such as 2007-12-24T16:15:30+01:00[Europe/London].
+
+- **Instant** is an instantaneous point on the time-line measured from the epoch (1970-01-01T00:00:00Z) in epoch-seconds and nanosecond-of-second.
 
 ### Duration and Period
 

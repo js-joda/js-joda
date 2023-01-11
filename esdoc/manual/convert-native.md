@@ -1,4 +1,10 @@
-# Convert from/ to native js
+# Convert from/to native js (deprecated)
+
+## Deprecation notice
+
+`nativeJs` and `convert` are deprecated in favor of `Date.from(instant)` and `date.toInstant()`.
+
+See the preferred way to [convert from/to Date](convert.html).
 
 ## Convert from Date to a js-joda temporal
 
