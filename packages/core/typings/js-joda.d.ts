@@ -2185,7 +2185,7 @@ export class DateTimeFormatterBuilder {
 
     append(formatter: DateTimeFormatter): DateTimeFormatterBuilder;
     appendFraction(field: TemporalField, minWidth: number, maxWidth: number, decimalPoint: boolean): DateTimeFormatterBuilder;
-    appendInstant(fractionalDigits: number): DateTimeFormatterBuilder;
+    appendInstant(fractionalDigits?: number): DateTimeFormatterBuilder;
     appendLiteral(literal: any): DateTimeFormatterBuilder;
     appendOffset(pattern: string, noOffsetText: string): DateTimeFormatterBuilder;
     appendOffsetId(): DateTimeFormatterBuilder;
