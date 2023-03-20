@@ -29,6 +29,8 @@ To specify a locale, you'll need to import the [`@js-joda/timezone`](//github.co
 - [@js-joda/locale_en](https://www.npmjs.com/package/@js-joda/locale_en)
 - [@js-joda/locale_en-us](https://www.npmjs.com/package/@js-joda/locale_en-us)
 - [@js-joda/locale_es](https://www.npmjs.com/package/@js-joda/locale_es)
+- [@js-joda/locale_fi](https://www.npmjs.com/package/@js-joda/locale_fi)
+- [@js-joda/locale_fi-fi](https://www.npmjs.com/package/@js-joda/locale_fi-fi)
 - [@js-joda/locale_fr](https://www.npmjs.com/package/@js-joda/locale_fr)
 - [@js-joda/locale_hi](https://www.npmjs.com/package/@js-joda/locale_hi)
 - [@js-joda/locale_it](https://www.npmjs.com/package/@js-joda/locale_it)
