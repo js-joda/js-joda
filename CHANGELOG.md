@@ -1,6 +1,28 @@
 Changelog
 =========
 
+## 2023-04-12
+
+### Versions
+
+- @js-joda/core@5.5.3
+- @js-joda/extra@0.11.3
+- @js-joda/locale@4.8.10
+- @js-joda/timezone@2.18.0
+
+#### :rocket: Enhancement
+* `extra`, `timezone`
+  * [#680](https://github.com/js-joda/js-joda/pull/680) update to ianna tzdb 2023c ([@pithu](https://github.com/pithu))
+
+#### :bug: Bug Fix
+* `core`
+  * [#674](https://github.com/js-joda/js-joda/pull/674) Fix optional parameter type of appendInstant method ([@alisabzevari](https://github.com/alisabzevari))
+
+#### :house: Dependency update
+* [#672](https://github.com/js-joda/js-joda/pull/672) Bump ua-parser-js from 0.7.32 to 0.7.33 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#676](https://github.com/js-joda/js-joda/pull/676) Bump webpack from 5.75.0 to 5.76.1 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#669](https://github.com/js-joda/js-joda/pull/669) Bump json5 from 1.0.1 to 1.0.2 ([@dependabot[bot]](https://github.com/apps/dependabot))
+ 
 ## 2023-01-07
 
 ### Versions
