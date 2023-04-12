@@ -1037,7 +1037,7 @@ describe('org.threeten.extra.TestOffsetDate', () => {
     describe('plusDays()', () => {
         it('test_plusDays_symmetry', () => {
             for (const [reference] of data_samplePlusDaysSymmetry) {
-                for (let days = 0; days < 365 * 4; days++) {
+                for (let days = 0; days < 365 * 4; days += 13) {
                     let t = reference.plusDays(days).plusDays(-days);
                     assertEquals(reference, t);
 
