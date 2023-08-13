@@ -17,6 +17,7 @@
     "url": "https://github.com/js-joda/js-joda/issues"
   },
   "main": "dist/js-joda-locale.js",
+  "module": "dist/js-joda-locale.esm.js",
   "typings": "typings/js-joda-locale.d.ts",
   "files": [
     "dist",

@@ -25,6 +25,7 @@
     "README.md"
   ],
   "main": "dist/js-joda-extra.js",
+  "module": "dist/js-joda-extra.esm.js",
   "scripts": {
     "prepublishOnly": "npm run build-dist",
     "test": "NODE_ENV=test npx mocha --timeout 5000 --require @babel/register ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js test/pluginTest_mochaOnly.js",
