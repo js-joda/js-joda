@@ -165,198 +165,51 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="localdatetime">LocalDateTime</h1><p>A LocalDateTime represents a date-time with <strong>no time zone</strong> in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO-8601</a> calendar system, such as &apos;2007-12-03T10:15:30&apos;.</p>
-<h3 id="create-a--code-localdatetime--code--instance">Create a <code>LocalDateTime</code> instance</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">// obtain the current date and time in the system default time zone, e.g. &apos;2016-02-26T10:29:05.743&apos;
-LocalDateTime.now();
+<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="instant">Instant</h1><p>An <code>Instant</code> is an instantaneous point on the time-line measured from the epoch of 1970-01-01T00:00:00Z in epoch-seconds and nanosecond-of-second.</p>
+<h3 id="create-an--code-instant--code-">Create an <code>Instant</code></h3><pre><code class="lang-javascript"><code class="source-code prettyprint">// Obtain the current instant from the system clock
+Instant.now();
 
-// obtain the current date and time in the UTC time zone
-LocalDateTime.now(ZoneOffset.UTC);
+// Obtain the current instant from the UTC clock
+Instant.now(Clock.systemUTC());
 
-// obtain an instance of LocalDateTime from an ISO 8601 formatted text string
-LocalDateTime.parse(&quot;2016-02-26T09:42&quot;); // &apos;2016-02-26T09:42&apos;
-LocalDateTime.parse(&quot;2016-02-26T09:42:42.123&quot;); // &apos;2016-02-26T09:42:42.123&apos;
+// Obtain an instance of Instant using microseconds from the epoch of 1970-01-01T00:00:00Z. In this example, the Saturday, August 12, 2023 2:57:21 PM GMT
+Instant.ofEpochMicro(1691852241000000);
 
-// obtain an instance of LocalDateTime from year, month, dayOfMonth, hour, minute, second and nanosecond values
-LocalDateTime.of(2016, 2, 29); // &apos;2016-02-29T00:00&apos;
-LocalDateTime.of(2016, 2, 29, 12, 55, 42); // &apos;2016-02-29T12:55:42&apos;
-LocalDateTime.of(2016, 2, 29, 12, 55, 42, 9); // &apos;2016-02-29T12:55:42.000000009&apos;
+// Obtain an instance of Instant using milliseconds from the epoch of 1970-01-01T00:00:00Z. In this example, the Saturday, August 12, 2023 2:57:21 PM GMT
+Instant.ofEpochMilli(1691852241000);
 
-// obtain an instance of LocalDateTime from epoch seconds and a ZoneOffset
-LocalDateTime.ofEpochSecond(0, ZoneOffset.UTC); // &apos;1970-01-01T00:00&apos;
-LocalDateTime.ofInstant(Instant.now()); // current local date-time
-LocalDateTime.ofInstant(Instant.now(), ZoneOffset.UTC); // current local UTC date-time</code>
+// Obtain an instance of Instant using milliseconds from a JavaScript Date object
+Instant.ofEpochMilli(new Date());
+
+// Obtain an instance of Instant using milliseconds from the epoch of 1970-01-01T00:00:00Z
+Instant.ofEpochSecond(1691926326);
+
+// Obtain an instance of Instant from a text string such as 2007-12-03T10:15:30.000Z.
+Instant.parse(&apos;2007-12-03T10:15:30.000Z&apos;);</code>
 </code></pre>
-<h3 id="get-values-from--code-localdatetime--code-">Get values from <code>LocalDateTime</code></h3><pre><code class="lang-javascript"><code class="source-code prettyprint">var dt = LocalDateTime.parse(&quot;2016-02-26T23:55:42.123&quot;);
+<h3 id="get-values-from--code-instant--code-">Get values from <code>Instant</code></h3><pre><code class="lang-javascript"><code class="source-code prettyprint">var ins = Instant.parse(&apos;2007-12-03T10:15:30.000Z&apos;)
 
-dt.toString(); // &apos;2016-02-26T23:55:42.123&apos; ISO 8601 format
+ins.toString(); // &apos;2007-12-03T10:15:30Z&apos;
+ins.epochSecond();  // 1196676930
+ins.toEpochMilli(); // 1196676930000
 
-dt.year(); // 2016
-dt.month(); // Month.FEBRUARY
-dt.monthValue(); // 2
-dt.dayOfMonth(); // 26
-dt.hour(); // 23
-dt.minute(); // 55
-dt.second(); // 42
-dt.nano(); // 123000000
-
-dt.dayOfWeek(); // DayOfWeek.FRIDAY
-dt.dayOfWeek().value(); // 5
-dt.dayOfYear(); // 57
-
-dt.toLocalDate().isLeapYear(); // true 2016 is a leap year
-
-// obtain the date and time components of the LocalDateTime
-dt.toLocalDate();
-dt.toLocalTime();
-
-// get range of month
-dt.toLocalDate().lengthOfMonth(); // 29
-dt.range(ChronoField.DAY_OF_MONTH); // ValueRange(1 - 29)
-
-// get range of year
-dt.toLocalDate().lengthOfYear(); // 366
-dt.range(ChronoField.DAY_OF_YEAR); // ValueRange(1 - 366)
-
-// get other date-based fields like the aligned week of year
-dt.get(ChronoField.ALIGNED_WEEK_OF_YEAR); // 9
-
-// get week of week-based year
-dt.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR); // 8
-dt.toLocalDate().isoWeekOfWeekyear();
-
-// get other time-based fields
-dt.get(ChronoField.SECOND_OF_DAY); // 86142
-dt.get(ChronoField.MILLI_OF_SECOND); // 123
-dt.get(ChronoField.HOUR_OF_AMPM); // 11
-// any other date or time-based ChronoField can be passed to `get`</code>
+ins.atOffset(ZoneOffset.ofHours(1)); // &apos;2007-12-03T11:15:30+01:00&apos; returns an OffsetDateTime instance 
+ins.atZone(ZoneId.UTC); // &apos;2007-12-03T10:15:30Z&apos; returns a ZonedDateTime instance</code>
 </code></pre>
-<h3 id="adding-to-and-subtracting-from-a--code-localdatetime--code--instance">Adding to and subtracting from a <code>LocalDateTime</code> instance</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">var dt = LocalDateTime.parse(&quot;2016-02-26T23:55:42.123&quot;);
+<h3 id="adding-to-and-subtracting-from-an--code-instant--code-">Adding to and subtracting from an <code>Instant</code></h3><p>Note that each of these methods returns a new <code>Instant</code> instance.</p>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">var ins = Instant.parse(&apos;2007-12-03T10:15:30.000Z&apos;) // 1196676930 in epoch seconds
 
-// add/subtract 366 days
-dt.plusDays(366); // &apos;2017-02-26T23:55:42.123&apos;
-dt.minusDays(366); // &apos;2015-02-25T23:55:42.123&apos;
+// add/subtract seconds
+ins.plusSeconds(1);  // 1196676931 or &apos;2007-12-03T10:15:31.000Z&apos;
+ins.minusSeconds(1); // 1196676929 or &apos;2007-12-03T10:15:29.000Z&apos;
 
-// add/subtract 12 months
-dt.plusMonths(12); // &apos;2017-02-26&apos;
-dt.minusMonths(12); // &apos;2015-02-26&apos;
+// add/subtract milliseconds
+ins.plusMillis(1);  // &apos;2007-12-03T10:15:30.001Z&apos;
+ins.minusMillis(1); // &apos;2007-12-03T10:15:29.999Z&apos; 
 
-// add/subtract 4 weeks
-dt.plusWeeks(4); // &apos;2016-03-25T23:55:42.123&apos;
-dt.minusWeeks(4); // &apos;2016-01-29T23:55:42.123&apos;
-
-// add/subtract 1 year to the parsed LocalDate and returns a new instance
-dt.plusYears(1); // &apos;2017-02-26T23:55:42.123&apos;
-dt.minusYears(1); // &apos;2015-02-26T23:55:42.123&apos;
-
-// add/subtract 30 years
-dt.plus(3, ChronoUnit.DECADES); // &apos;2046-02-26T23:55:42.123&apos;
-dt.minus(3, ChronoUnit.DECADES); // &apos;1986-02-26T23:55:42.123&apos;
-
-// add subtract a Period of 3 Months and 3 Days
-dt.plus(Period.ofMonths(3).plusDays(3)); // &apos;2016-05-29T23:55:42.123&apos;
-dt.minus(Period.ofMonths(3).plusDays(3)); // &apos;2015-11-23T23:55:42.123&apos;
-
-// add/subtract 12 hours
-dt.plusHours(12); // &apos;2016-02-27T11:55:42.123&apos;
-dt.minusHours(12); // &apos;2016-02-26T11:55:42.123&apos;
-
-// add/subtract 30 minutes
-dt.plusMinutes(30); // &apos;2016-02-27T00:25:42.123&apos;
-dt.minusMinutes(30); // &apos;2016-02-26T23:25:42.123&apos;
-
-// add/subtract 30 seconds
-dt.plusSeconds(30); // &apos;2016-02-26T23:56:12.123&apos;
-dt.minusSeconds(30); // &apos;2016-02-26T23:55:12.123&apos;
-
-// add/subtract 1 million nanoseconds (1 millisecond)
-dt.plusNanos(1000000); // &apos;2016-02-26T23:55:42.124&apos;
-dt.minusNanos(1000000); // &apos;2016-02-26T23:55:42.122&apos;
-
-// add/subtract a time-based unit
-dt.plus(1, ChronoUnit.MILLIS); // &apos;2016-02-26T23:55:42.124&apos;
-dt.plus(1, ChronoUnit.HALF_DAYS); // &apos;2016-02-26T11:55:42.123&apos;
-
-// add/subtract a duration of 30 hours and 45 minutes
-dt.plus(Duration.ofHours(30).plusMinutes(45)); // &apos;2016-02-28T06:40:42.123&apos;
-dt.minus(Duration.ofHours(30).plusMinutes(45)); // &apos;2016-02-25T17:10:42.123&apos;</code>
-</code></pre>
-<h3 id="alter-specific-fields-of-a--code-localdatetime--code--instance">Alter specific fields of a <code>LocalDateTime</code> instance</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">var dt = LocalDateTime.parse(&quot;2016-02-26T23:55:42.123&quot;);
-
-// set the hour of day to 1
-dt.withHour(1); // &apos;2016-02-26T01:55:42.123&apos;
-
-// set the minute of hour to 1
-dt.withMinute(1); // &apos;2016-02-26T23:01:42.123&apos;
-
-// set the second of minute to 1
-dt.withSecond(1); // &apos;2016-02-26T23:55:01.123&apos;
-
-// set the nanosecond of second to 1
-dt.withNano(0); // &apos;2016-02-26T23:55:42&apos;
-
-// set the millisecond of second to 51
-dt.with(ChronoField.MILLI_OF_SECOND, 51); // &apos;2016-02-26T23:55:42.051&apos;
-
-// set by a custom TemporalAdjuster that adjusts to the next even second
-var nextEvenSecond = {
-  adjustInto: function(t) {
-    return t.second() % 2 === 0 ? t.plusSeconds(2) : t.plusSeconds(1);
-  }
-};
-dt.with(nextEvenSecond); // &apos;2016-02-26T23:55:44.123&apos;
-dt.plusSeconds(1).with(nextEvenSecond); // &apos;2016-02-26T23:55:44.123&apos;</code>
-</code></pre>
-<h3 id="truncate-a--code-localdatetime--code--instance">Truncate a <code>LocalDateTime</code> instance</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">var dt = LocalDateTime.parse(&quot;2016-02-26T23:55:42.123&quot;);
-
-dt.truncatedTo(ChronoUnit.SECONDS); // &apos;2016-02-26T23:55:42&apos;
-dt.truncatedTo(ChronoUnit.MINUTES); // &apos;2016-02-26T23:55:00&apos;
-dt.truncatedTo(ChronoUnit.HOURS); // &apos;2016-02-26T23:00&apos;
-dt.truncatedTo(ChronoUnit.HALF_DAYS); // &apos;2016-02-26T12:00&apos;
-dt.truncatedTo(ChronoUnit.DAYS); // &apos;2016-02-26T00:00&apos;</code>
-</code></pre>
-<h3 id="compare--code-localdatetime--code--instances">Compare <code>LocalDateTime</code> instances</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">var dt1 = LocalDateTime.parse(&quot;2016-02-26T23:55:42.123&quot;);
-var dt2 = dt1.plusHours(2);
-
-dt1.isAfter(dt2); // false
-dt1.isBefore(dt2); // true
-
-dt1.equals(dt1.plusHours(0)); // true
-dt1.equals(dt1.plusHours(1)); // false
-
-dt1.compareTo(dt1) === 0; // true
-dt1.compareTo(dt2) &lt; 0; // true
-dt2.compareTo(dt1) &gt; 0; // true
-
-// Warn! hashCode is equal if in instances are equal, but might be equal for unequal instances as well
-dt1.hashCode(); // -2036645668
-dt2.hashCode(); // 1459191821
-dt1.hashCode() !== dt2.hashCode(); // true</code>
-</code></pre>
-<h3 id="distance-between-two--code-localdatetime--code--instances">Distance between two <code>LocalDateTime</code> instances</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">var dt1 = LocalDateTime.parse(&quot;2016-02-26T23:55:42.123&quot;);
-var dt2 = dt1
-  .plusYears(6)
-  .plusMonths(12)
-  .plusHours(2)
-  .plusMinutes(42)
-  .plusSeconds(12);
-
-// obtain the duration between the two dates
-dt1.until(dt2, ChronoUnit.YEARS); // 7
-dt1.until(dt2, ChronoUnit.MONTHS); // 84
-dt1.until(dt2, ChronoUnit.WEEKS); // 356
-dt1.until(dt2, ChronoUnit.DAYS); // 2557
-dt1.until(dt2, ChronoUnit.HOURS); // 61370
-dt1.until(dt2, ChronoUnit.MINUTES); // 3682242
-dt1.until(dt2, ChronoUnit.SECONDS); // 220934532</code>
-</code></pre>
-<h3 id="convert-from-a--code-moment--code--or-javascript--code-date--code-">Convert from a <code>moment</code> or JavaScript <code>Date</code></h3><pre><code class="lang-javascript"><code class="source-code prettyprint">// obtain a LocalDateTime instance from a JavaScript Date
-
-// the manual way
-var t = LocalDateTime.ofInstant(Instant.ofEpochMilli(new Date().getTime()));
-// the recommended way with the JavaScript temporal
-t = LocalDateTime.from(nativeJs(new Date()));
-// converting from a moment works the same way
-d = LocalDateTime.from(nativeJs(moment()));</code>
+// add/subtract microseconds
+ins.plusMicros(1);  // &apos;2007-12-03T10:15:30.000001Z&apos;
+ins.minusMicros(1); // &apos;2007-12-03T10:15:29.999999Z&apos;</code>
 </code></pre>
 </div>
 </div>
