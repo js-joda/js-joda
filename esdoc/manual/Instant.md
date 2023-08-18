@@ -18,7 +18,7 @@ Instant.ofEpochMicro(1691852241000000);
 Instant.ofEpochMilli(1691852241000);
 
 // Obtain an instance of Instant using milliseconds from a JavaScript Date object
-Instant.ofEpochMilli(new Date());
+Instant.ofEpochMilli(new Date().getTime());
 
 // Obtain an instance of Instant using milliseconds from the epoch of 1970-01-01T00:00:00Z
 Instant.ofEpochSecond(1691926326);
@@ -27,7 +27,7 @@ Instant.ofEpochSecond(1691926326);
 Instant.parse('2007-12-03T10:15:30.000Z');
 ```
 
-### Get values from `Instant`
+### Parsing and converting an `Instant`
 
 ```javascript
 var ins = Instant.parse('2007-12-03T10:15:30.000Z')
