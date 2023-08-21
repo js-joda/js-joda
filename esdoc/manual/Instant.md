@@ -8,9 +8,6 @@ An `Instant` is an instantaneous point on the time-line measured from the epoch 
 // Obtain the current instant from the system clock
 Instant.now();
 
-// Obtain the current instant from the UTC clock
-Instant.now(Clock.systemUTC());
-
 // Obtain an instance of Instant using microseconds from the epoch of 1970-01-01T00:00:00Z. In this example, the Saturday, August 12, 2023 2:57:21 PM GMT
 Instant.ofEpochMicro(1691852241000000);
 
