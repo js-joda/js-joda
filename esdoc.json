@@ -28,6 +28,7 @@
             "./esdoc/manual/ZonedDateTime.md",
             "./esdoc/manual/Period.md",
             "./esdoc/manual/Duration.md",
+            "./esdoc/manual/Instant.md",
             "./esdoc/manual/formatting.md",
             "./esdoc/manual/Locale.md",
             "./esdoc/manual/customizing.md",
