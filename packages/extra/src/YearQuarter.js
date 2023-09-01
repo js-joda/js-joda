@@ -15,15 +15,15 @@ const MathUtil = jodaInternal.MathUtil;
 
 /**
  * A year-quarter in the ISO-8601 calendar system, such as `2007-Q2`.
- * 
+ *
  * `YearQuarter` is an immutable date-time object that represents the combination
  * of a year and quarter. Any field that can be derived from a year and quarter can be obtained.
  * A quarter is defined by {@link Quarter} and {@link Month.firstMonthOfQuarter} - Q1, Q2, Q3 and Q4.
  * Q1 is January to March, Q2 is April to June, Q3 is July to September and Q4 is October to December.
- * 
+ *
  * This class does not store or represent a day, time or time-zone.
  * For example, the value '2nd quarter 2007' can be stored in a `YearQuarter`.
- * 
+ *
  * The ISO-8601 calendar system is the modern civil calendar system used today
  * in most of the world. It is equivalent to the proleptic Gregorian calendar
  * system, in which today's rules for leap years are applied for all time.
@@ -41,7 +41,7 @@ export class YearQuarter extends Temporal {
      * - if called with 1 argument and first argument is an instance of ZoneId, then {@link YearQuarter._nowZoneId} is executed,
      * - otherwise {@link YearQuarter._nowClock} is executed
      *
-     * @param {?(ZoneId|Clock)} zoneIdOrClock
+     * @param {ZoneId|Clock} [zoneIdOrClock=Clock.systemDefaultZone()]
      * @return {YearQuarter}
      */
     static now(zoneIdOrClock) {
@@ -57,11 +57,11 @@ export class YearQuarter extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Obtains the current year-quarter from the system clock in the default time-zone.
-     * 
+     *
      * This will query the {@link Clock.systemDefaultZone} system clock in the default
      * time-zone to obtain the current year-quarter.
      * The zone and offset will be set based on the time-zone in the clock.
-     * 
+     *
      * Using this method will prevent the ability to use an alternate clock for testing
      * because the clock is hard-coded.
      *
@@ -74,10 +74,10 @@ export class YearQuarter extends Temporal {
 
     /**
      * Obtains the current year-quarter from the system clock in the specified time-zone.
-     * 
+     *
      * This will query the {@link Clock.system} to obtain the current year-quarter.
      * Specifying the time-zone avoids dependence on the default time-zone.
-     * 
+     *
      * Using this method will prevent the ability to use an alternate clock for testing
      * because the clock is hard-coded.
      *
@@ -91,7 +91,7 @@ export class YearQuarter extends Temporal {
 
     /**
      * Obtains the current year-quarter from the specified clock.
-     * 
+     *
      * This will query the specified clock to obtain the current year-quarter.
      * Using this method allows the use of an alternate clock for testing.
      * The alternate clock may be introduced using {@link Clock} dependency injection.
@@ -101,7 +101,7 @@ export class YearQuarter extends Temporal {
      */
     static _nowClock(clock) {
         const now = LocalDate.now(clock);  // called once
-        return YearQuarter.of(now.getYear(), Quarter.from(now.getMonth()));
+        return YearQuarter.of(now.year(), Quarter.from(now.month()));
     }
 
     //-----------------------------------------------------------------------
@@ -195,16 +195,16 @@ export class YearQuarter extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Obtains an instance of `YearQuarter` from a temporal object.
-     * 
+     *
      * This obtains a year-quarter based on the specified temporal.
      * A `TemporalAccessor` represents an arbitrary set of date and time information,
      * which this factory converts to an instance of `YearQuarter`.
-     * 
+     *
      * The conversion extracts the {@link ChronoField.YEAR} and
      * {@link IsoFields.QUARTER_OF_YEAR} fields.
      * The extraction is only permitted if the temporal object has an ISO
      * chronology, or can be converted to a `LocalDate`.
-     * 
+     *
      * This method matches the signature of the functional interface {@link TemporalQuery}
      * allowing it to be used in queries via method reference, `YearQuarter.FROM`.
      *
@@ -235,7 +235,7 @@ export class YearQuarter extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Obtains an instance of `YearQuarter` from a text string using a specific formatter.
-     * 
+     *
      * The text is parsed using the formatter, returning a year-quarter.
      *
      * @param {string} text - the text to parse, not null
@@ -304,22 +304,22 @@ export class YearQuarter extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Checks if the specified field is supported.
-     * 
+     *
      * This checks if this year-quarter can be queried for the specified field.
      * If false, then calling the {@link YearQuarter.range},
      * {@link YearQuarter.get} and {@link YearQuarter.with}
      * methods will throw an exception.
-     * 
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The supported fields are:
-     * 
+     *
      * - `QUARTER_OF_YEAR`
      * - `YEAR_OF_ERA`
      * - `YEAR`
      * - `ERA`
-     * 
+     *
      * All other `ChronoField` instances will return false.
-     * 
+     *
      * If the field is not a `ChronoField`, then the result of this method
      * is obtained by invoking `TemporalField.isSupportedBy(TemporalAccessor)`
      * passing `this` as the argument.
@@ -340,23 +340,23 @@ export class YearQuarter extends Temporal {
 
     /**
      * Checks if the specified unit is supported.
-     * 
+     *
      * This checks if the specified unit can be added to, or subtracted from, this year-quarter.
      * If false, then calling the {@link YearQuarter.plus} and
      * {@link YearQuarter.minus} methods will throw an exception.
-     * 
+     *
      * If the unit is a {@link ChronoUnit} then the query is implemented here.
      * The supported units are:
-     * 
+     *
      * - `QUARTER_YEARS`
      * - `YEARS`
      * - `DECADES`
      * - `CENTURIES`
      * - `MILLENNIA`
      * - `ERAS`
-     * 
+     *
      * All other `ChronoUnit` instances will return false.
-     * 
+     *
      * If the unit is not a `ChronoUnit`, then the result of this method
      * is obtained by invoking `TemporalUnit.isSupportedBy(Temporal)`
      * passing `this` as the argument.
@@ -378,17 +378,17 @@ export class YearQuarter extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Gets the range of valid values for the specified field.
-     * 
+     *
      * The range object expresses the minimum and maximum valid values for a field.
      * This year-quarter is used to enhance the accuracy of the returned range.
      * If it is not possible to return the range, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * 
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The {@link YearQuarter.isSupported} supported fields will return
      * appropriate range instances.
      * All other `ChronoField` instances will throw an `UnsupportedTemporalTypeException`.
-     * 
+     *
      * If the field is not a `ChronoField`, then the result of this method
      * is obtained by invoking `TemporalField.rangeRefinedBy(TemporalAccessor)`
      * passing `this` as the argument.
@@ -413,17 +413,17 @@ export class YearQuarter extends Temporal {
 
     /**
      * Gets the value of the specified field from this year-quarter as an `int`.
-     * 
+     *
      * This queries this year-quarter for the value for the specified field.
      * The returned value will always be within the valid range of values for the field.
      * If it is not possible to return the value, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * 
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The {@link YearQuarter.isSupported} supported fields will return valid
      * values based on this year-quarter,.
      * All other `ChronoField` instances will throw an `UnsupportedTemporalTypeException`.
-     * 
+     *
      * If the field is not a `ChronoField`, then the result of this method
      * is obtained by invoking `TemporalField.getFrom(TemporalAccessor)`
      * passing `this` as the argument. Whether the value can be obtained,
@@ -445,16 +445,16 @@ export class YearQuarter extends Temporal {
 
     /**
      * Gets the value of the specified field from this year-quarter as a `long`.
-     * 
+     *
      * This queries this year-quarter for the value for the specified field.
      * If it is not possible to return the value, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * 
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The {@link YearQuarter.isSupported} supported fields will return valid
      * values based on this year-quarter.
      * All other `ChronoField` instances will throw an `UnsupportedTemporalTypeException`.
-     * 
+     *
      * If the field is not a `ChronoField`, then the result of this method
      * is obtained by invoking `TemporalField.getFrom(TemporalAccessor)`
      * passing `this` as the argument. Whether the value can be obtained,
@@ -496,9 +496,9 @@ export class YearQuarter extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Gets the year field.
-     * 
+     *
      * This method returns the primitive `int` value for the year.
-     * 
+     *
      * The year returned by this method is proleptic as per `get(YEAR)`.
      *
      * @return {number} the year, from MIN_YEAR to MAX_YEAR
@@ -509,7 +509,7 @@ export class YearQuarter extends Temporal {
 
     /**
      * Gets the quarter-of-year field from 1 to 4.
-     * 
+     *
      * This method returns the quarter as an `int` from 1 to 4.
      * Application code is frequently clearer if the enum {@link Quarter}
      * is used by calling {@link YearQuarter.getQuarter}.
@@ -523,7 +523,7 @@ export class YearQuarter extends Temporal {
 
     /**
      * Gets the quarter-of-year field using the `Quarter` enum.
-     * 
+     *
      * This method returns the enum {@link Quarter} for the quarter.
      * This avoids confusion as to what `int` values mean.
      * If you need access to the primitive `int` value then the enum
@@ -540,16 +540,16 @@ export class YearQuarter extends Temporal {
     /**
      * Checks if the year is a leap year, according to the ISO proleptic
      * calendar system rules.
-     * 
+     *
      * This method applies the current rules for leap years across the whole time-line.
      * In general, a year is a leap year if it is divisible by four without
      * remainder. However, years divisible by 100, are not leap years, with
      * the exception of years divisible by 400 which are.
-     * 
+     *
      * For example, 1904 is a leap year it is divisible by 4.
      * 1900 was not a leap year as it is divisible by 100, however 2000 was a
      * leap year as it is divisible by 400.
-     * 
+     *
      * The calculation is proleptic - applying the same rules into the far future and far past.
      * This is historically inaccurate, but is correct for the ISO-8601 standard.
      *
@@ -561,7 +561,7 @@ export class YearQuarter extends Temporal {
 
     /**
      * Checks if the day-of-quarter is valid for this year-quarter.
-     * 
+     *
      * This method checks whether this year and quarter and the input day form
      * a valid date.
      *
@@ -574,7 +574,7 @@ export class YearQuarter extends Temporal {
 
     /**
      * Returns the length of the quarter, taking account of the year.
-     * 
+     *
      * This returns the length of the quarter in days.
      *
      * @return {number} the length of the quarter in days, from 90 to 92
@@ -585,7 +585,7 @@ export class YearQuarter extends Temporal {
 
     /**
      * Returns the length of the year.
-     * 
+     *
      * This returns the length of the year in days, either 365 or 366.
      *
      * @return {number} 366 if the year is leap, 365 otherwise
@@ -597,19 +597,19 @@ export class YearQuarter extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Returns an adjusted copy of this year-quarter.
-     * 
+     *
      * This returns a {@code YearQuarter} based on this one, with the year-quarter adjusted.
      * The adjustment takes place using the specified adjuster strategy object.
      * Read the documentation of the adjuster to understand what adjustment will be made.
-     * 
+     *
      * A simple adjuster might simply set the one of the fields, such as the year field.
      * A more complex adjuster might set the year-quarter to the next quarter that
      * Halley's comet will pass the Earth.
-     * 
+     *
      * The result of this method is obtained by invoking the
      * {@link TemporalAdjuster#adjustInto(Temporal)} method on the
      * specified adjuster passing {@code this} as the argument.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {TemporalAdjuster} adjuster - the adjuster to use, not null
@@ -627,13 +627,13 @@ export class YearQuarter extends Temporal {
 
     /**
      * Returns a copy of this year-quarter with the specified field set to a new value.
-     * 
+     *
      * This returns a `YearQuarter` based on this one, with the value
      * for the specified field changed.
      * This can be used to change any supported field, such as the year or quarter.
      * If it is not possible to set the value, because the field is not supported or for
      * some other reason, an exception is thrown.
-     * 
+     *
      * If the field is a {@link ChronoField} then the adjustment is implemented here.
      * The supported fields behave as follows:
      * - `QUARTER_OF_YEAR` -
@@ -648,17 +648,17 @@ export class YearQuarter extends Temporal {
      * - `ERA` -
      *  Returns a `YearQuarter` with the specified era.
      *  The quarter and year-of-era will be unchanged.
-     * 
+     *
      * In all cases, if the new value is outside the valid range of values for the field
      * then a `DateTimeException` will be thrown.
-     * 
+     *
      * All other `ChronoField` instances will throw an `UnsupportedTemporalTypeException`.
-     * 
+     *
      * If the field is not a `ChronoField`, then the result of this method
      * is obtained by invoking `TemporalField.adjustInto(Temporal, long)`
      * passing `this` as the argument. In this case, the field determines
      * whether and how to adjust the instant.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {TemporalField} field - the field to set in the result, not null
@@ -692,7 +692,7 @@ export class YearQuarter extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Returns a copy of this `YearQuarter` with the year altered.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} year - the year to set in the returned year-quarter, from MIN_YEAR to MAX_YEAR
@@ -706,7 +706,7 @@ export class YearQuarter extends Temporal {
 
     /**
      * Returns a copy of this `YearQuarter` with the quarter-of-year altered.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} quarter - the quarter-of-year to set in the returned year-quarter, from 1 to 4
@@ -720,14 +720,14 @@ export class YearQuarter extends Temporal {
 
     /**
      * Returns a copy of this year-quarter with the specified amount added.
-     * 
+     *
      * This returns a `YearQuarter` based on this one, with the amount
      * in terms of the unit added. If it is not possible to add the amount, because the
      * unit is not supported or for some other reason, an exception is thrown.
-     * 
+     *
      * If the field is a {@link ChronoUnit} then the addition is implemented here.
      * The supported fields behave as follows:
-     * 
+     *
      * - `QUARTER_YEARS` -
      *  Returns a `YearQuarter` with the specified number of quarters added.
      *  This is equivalent to {@link YearQuarter.plusQuarters}.
@@ -751,14 +751,14 @@ export class YearQuarter extends Temporal {
      *  Only two eras are supported so the amount must be one, zero or minus one.
      *  If the amount is non-zero then the year is changed such that the year-of-era
      *  is unchanged.
-     * 
+     *
      * All other `ChronoUnit` instances will throw an `UnsupportedTemporalTypeException`.
-     * 
+     *
      * If the field is not a `ChronoUnit`, then the result of this method
      * is obtained by invoking `TemporalUnit.addTo(Temporal, long)`
      * passing `this` as the argument. In this case, the unit determines
      * whether and how to perform the addition.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} amountToAdd - the amount of the unit to add to the result, may be negative
@@ -792,7 +792,7 @@ export class YearQuarter extends Temporal {
 
     /**
      * Returns a copy of this year-quarter with the specified period in years added.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} yearsToAdd - the years to add, may be negative
@@ -809,7 +809,7 @@ export class YearQuarter extends Temporal {
 
     /**
      * Returns a copy of this year-quarter with the specified period in quarters added.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} quartersToAdd - the quarters to add, may be negative
@@ -829,7 +829,7 @@ export class YearQuarter extends Temporal {
 
     /**
      * Returns a copy of this year-quarter with the specified period in years subtracted.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} yearsToSubtract - the years to subtract, may be negative
@@ -842,7 +842,7 @@ export class YearQuarter extends Temporal {
 
     /**
      * Returns a copy of this year-quarter with the specified period in quarters subtracted.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} quartersToSubtract - the quarters to subtract, may be negative
@@ -857,12 +857,12 @@ export class YearQuarter extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Queries this year-quarter using the specified query.
-     * 
+     *
      * This queries this year-quarter using the specified query strategy object.
      * The `TemporalQuery` object defines the logic to be used to
      * obtain the result. Read the documentation of the query to understand
      * what the result of this method will be.
-     * 
+     *
      * The result of this method is obtained by invoking the
      * {@link TemporalQuery.queryFrom} method on the
      * specified query passing `this` as the argument.
@@ -883,15 +883,15 @@ export class YearQuarter extends Temporal {
 
     /**
      * Adjusts the specified temporal object to have this year-quarter.
-     * 
+     *
      * This returns a temporal object of the same observable type as the input
      * with the year and quarter changed to be the same as this.
-     * 
+     *
      * The adjustment is equivalent to using {@link Temporal.plus}
      * passing the number of quarters to adjust by.
      * If the specified temporal object does not use the ISO calendar system then
      * a `DateTimeException` is thrown.
-     * 
+     *
      * In most cases, it is clearer to reverse the calling pattern by using
      * {@link Temporal.with}:
      * ```
@@ -899,7 +899,7 @@ export class YearQuarter extends Temporal {
      *   temporal = thisYearQuarter.adjustInto(temporal);
      *   temporal = temporal.with(thisYearQuarter);
      * ```
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Temporal} temporal - the target object to be adjusted, not null
@@ -919,7 +919,7 @@ export class YearQuarter extends Temporal {
 
     /**
      * Calculates the amount of time until another year-quarter in terms of the specified unit.
-     * 
+     *
      * This calculates the amount of time between two `YearQuarter`
      * objects in terms of a single `TemporalUnit`.
      * The start and end points are `this` and the specified year-quarter.
@@ -928,12 +928,12 @@ export class YearQuarter extends Temporal {
      * `YearQuarter` using {@link YearQuarter.from}.
      * For example, the period in years between two year-quarters can be calculated
      * using `startYearQuarter.until(endYearQuarter, YEARS)`.
-     * 
+     *
      * The calculation returns a whole number, representing the number of
      * complete units between the two year-quarters.
      * For example, the period in decades between 2012-Q3 and 2032-Q2
      * will only be one decade as it is one quarter short of two decades.
-     * 
+     *
      * There are two equivalent ways of using this method.
      * The first is to invoke this method.
      * The second is to use {@link TemporalUnit.between}:
@@ -943,17 +943,17 @@ export class YearQuarter extends Temporal {
      *   amount = QUARTER_YEARS.between(start, end);
      * </pre>
      * The choice should be made based on which makes the code more readable.
-     * 
+     *
      * The calculation is implemented in this method for {@link ChronoUnit}.
      * The units `QUARTER_YEARS`, `YEARS`, `DECADES`,
      * `CENTURIES`, `MILLENNIA` and `ERAS` are supported.
      * Other `ChronoUnit` values will throw an exception.
-     * 
+     *
      * If the unit is not a `ChronoUnit`, then the result of this method
      * is obtained by invoking `TemporalUnit.between(Temporal, Temporal)`
      * passing `this` as the first argument and the converted input temporal
      * as the second argument.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Temporal} endExclusive - the end date, exclusive, which is converted to a `YearQuarter`, not null
@@ -995,7 +995,7 @@ export class YearQuarter extends Temporal {
 
     /**
      * Formats this year-quarter using the specified formatter.
-     * 
+     *
      * This year-quarter will be passed to the formatter to produce a string.
      *
      * @param {DateTimeFormatter} formatter - the formatter to use, not null
@@ -1010,11 +1010,11 @@ export class YearQuarter extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Combines this year-quarter with a day-of-quarter to create a `LocalDate`.
-     * 
+     *
      * This returns a `LocalDate` formed from this year-quarter and the specified day-of-quarter.
-     * 
+     *
      * The day-of-quarter value must be valid for the year-quarter.
-     * 
+     *
      * This method can be used as part of a chain to produce a date:
      * ```
      *  LocalDate date = yearQuarter.atDay(day);
@@ -1038,11 +1038,11 @@ export class YearQuarter extends Temporal {
 
     /**
      * Returns a `LocalDate` at the end of the quarter.
-     * 
+     *
      * This returns a `LocalDate` based on this year-quarter.
      * The day-of-quarter is set to the last valid day of the quarter, taking
      * into account leap years.
-     * 
+     *
      * This method can be used as part of a chain to produce a date:
      * ```
      *  LocalDate date = year.atQuarter(quarter).atEndOfQuarter();
@@ -1058,7 +1058,7 @@ export class YearQuarter extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Compares this year-quarter to another
-     * 
+     *
      * The comparison is based first on the value of the year, then on the value of the quarter.
      * It is 'consistent with equals', as defined by {@link Comparable}.
      *
@@ -1098,7 +1098,7 @@ export class YearQuarter extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Checks if this year-quarter is equal to another year-quarter.
-     * 
+     *
      * The comparison is based on the time-line position of the year-quarters.
      *
      * @param {*} obj - the object to check, null returns false
@@ -1127,7 +1127,7 @@ export class YearQuarter extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Outputs this year-quarter as a `String`, such as `2007-Q2`.
-     * 
+     *
      * The output will be in the format `uuuu-'Q'Q`:
      *
      * @return {string} a string representation of this year-quarter, not null
