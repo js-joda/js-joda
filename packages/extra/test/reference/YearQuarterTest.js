@@ -7,6 +7,7 @@
 import {
     ChronoField,
     ChronoUnit,
+    Clock,
     DateTimeException,
     DateTimeFormatter,
     DateTimeParseException,
@@ -29,6 +30,7 @@ import { YearQuarter } from '../../src/YearQuarter';
 import { Quarter } from '../../src/Quarter';
 
 import { _ as jodaInternal } from '@js-joda/core';
+import { expect } from 'chai';
 
 const MathUtil = jodaInternal.MathUtil;
 
@@ -398,7 +400,7 @@ describe('org.threeten.extra.TestYearQuarter', () => {
             assertEquals(false, YearQuarter.of(2011, Quarter.Q2).isValidDay(93));
             assertEquals(false, YearQuarter.of(2011, Quarter.Q3).isValidDay(93));
             assertEquals(false, YearQuarter.of(2011, Quarter.Q4).isValidDay(93));
-    
+
             assertEquals(false, YearQuarter.of(2011, Quarter.Q1).isValidDay(0));
             assertEquals(false, YearQuarter.of(2011, Quarter.Q2).isValidDay(0));
             assertEquals(false, YearQuarter.of(2011, Quarter.Q3).isValidDay(0));
@@ -791,6 +793,22 @@ describe('org.threeten.extra.TestYearQuarter', () => {
 
         it('test_compareTo', () => {
             assertThrows(NullPointerException.class, () => TEST.compareTo(null));
+        });
+    });
+
+    describe('when calling now', () => {
+        it('should return instance of YearQuarter', () => {
+            const instance = YearQuarter.now();
+            expect(instance).to.be.instanceof(YearQuarter);
+        });
+
+        it('should return instance of YearQuarter for a UTC clock', () => {
+            const instance = YearQuarter.now(Clock.systemUTC());
+            expect(instance).to.be.instanceof(YearQuarter);
+        });
+        it('should return instance of YearQuarter for the system default clock', () => {
+            const instance = YearQuarter.now(Clock.systemDefaultZone());
+            expect(instance).to.be.instanceof(YearQuarter);
         });
     });
 
