@@ -116,7 +116,7 @@
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/Instant.html"><a href="manual/Instant.html" data-ice="link">Instant</a></li>
 <li data-ice="manualNav" class="indent-h3" data-link="manual/Instant.html"><a href="manual/Instant.html#create-an--code-instant--code-" data-ice="link">Create an Instant</a></li>
-<li data-ice="manualNav" class="indent-h3" data-link="manual/Instant.html"><a href="manual/Instant.html#get-values-from--code-instant--code-" data-ice="link">Get values from Instant</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/Instant.html"><a href="manual/Instant.html#parsing-and-converting-an--code-instant--code-" data-ice="link">Parsing and converting an Instant</a></li>
 <li data-ice="manualNav" class="indent-h3" data-link="manual/Instant.html"><a href="manual/Instant.html#adding-to-and-subtracting-from-an--code-instant--code-" data-ice="link">Adding to and subtracting from an Instant</a></li>
 </ul>
   </div>
@@ -1047,9 +1047,6 @@ Duration.between(dt1, dt1.plusHours(10)).toString(); // &apos;PT10H&apos;</code>
         <div data-ice="card"><h1>Instant</h1><p>An <code>Instant</code> is an instantaneous point on the time-line measured from the epoch of 1970-01-01T00:00:00Z in epoch-seconds and nanosecond-of-second.</p><h3>Create an <code>Instant</code></h3><pre><code class="lang-javascript"><code class="source-code prettyprint">// Obtain the current instant from the system clock
 Instant.now();
 
-// Obtain the current instant from the UTC clock
-Instant.now(Clock.systemUTC());
-
 // Obtain an instance of Instant using microseconds from the epoch of 1970-01-01T00:00:00Z. In this example, the Saturday, August 12, 2023 2:57:21 PM GMT
 Instant.ofEpochMicro(1691852241000000);
 
@@ -1057,14 +1054,14 @@ Instant.ofEpochMicro(1691852241000000);
 Instant.ofEpochMilli(1691852241000);
 
 // Obtain an instance of Instant using milliseconds from a JavaScript Date object
-Instant.ofEpochMilli(new Date());
+Instant.ofEpochMilli(new Date().getTime());
 
 // Obtain an instance of Instant using milliseconds from the epoch of 1970-01-01T00:00:00Z
 Instant.ofEpochSecond(1691926326);
 
 // Obtain an instance of Instant from a text string such as 2007-12-03T10:15:30.000Z.
 Instant.parse(&apos;2007-12-03T10:15:30.000Z&apos;);</code>
-</code></pre><h3>Get values from <code>Instant</code></h3><pre><code class="lang-javascript"><code class="source-code prettyprint">var ins = Instant.parse(&apos;2007-12-03T10:15:30.000Z&apos;)
+</code></pre><h3>Parsing and converting an <code>Instant</code></h3><pre><code class="lang-javascript"><code class="source-code prettyprint">var ins = Instant.parse(&apos;2007-12-03T10:15:30.000Z&apos;)
 
 ins.toString(); // &apos;2007-12-03T10:15:30Z&apos;
 ins.epochSecond();  // 1196676930
