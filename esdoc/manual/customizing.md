@@ -1,6 +1,6 @@
 # Customizing js-joda
 
-This package is extensible, allowing you to create your own custom temporal calculations. See the [temporal interface documentation](https://github.com/js-joda/js-joda/blob/main/docs/class/packages/core/src/temporal/Temporal.js~Temporal.html) for more information.
+This package is extensible, allowing you to create your own custom temporal calculations. See the [temporal interface documentation](https://js-joda.github.io/js-joda/class/packages/core/src/temporal/Temporal.js~Temporal.html) for more information.
 
 ### Custom temporal adjuster
 
@@ -18,7 +18,7 @@ LocalDate.parse("2012-12-24").with(nextOrSameEvenDay); // '2012-12-24'
 
 ### Custom temporal fields and temporal units
 
-See the source for [temporal/IsoFields](https://github.com/js-joda/js-joda/blob/main/packages/core/src/temporal/IsoFields.js) as an example how to implement custom fields and units. `IsoFields` implements fields and units for an ISO week-based year.
+See the source for [temporal/IsoFields](https://js-joda.github.io/js-joda/typedef/index.html#static-typedef-IsoFields) as an example how to implement custom fields and units. `IsoFields` implements fields and units for an ISO week-based year.
 
 ### Custom formatter and queries
 

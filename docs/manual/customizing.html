@@ -165,7 +165,7 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="customizing-js-joda">Customizing js-joda</h1><p>This package is extensible, allowing you to create your own custom temporal calculations. See the <a href="https://github.com/js-joda/js-joda/blob/main/docs/class/packages/core/src/temporal/Temporal.js~Temporal.html">temporal interface documentation</a> for more information.</p>
+<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="customizing-js-joda">Customizing js-joda</h1><p>This package is extensible, allowing you to create your own custom temporal calculations. See the <a href="https://js-joda.github.io/js-joda/class/packages/core/src/temporal/Temporal.js~Temporal.html">temporal interface documentation</a> for more information.</p>
 <h3 id="custom-temporal-adjuster">Custom temporal adjuster</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">// implement a TemporalAdjuster that the next or same even day of month
 var nextOrSameEvenDay = {
   adjustInto: function(t) {
@@ -176,7 +176,7 @@ var nextOrSameEvenDay = {
 LocalDateTime.parse(&quot;2012-12-23T12:00&quot;).with(nextOrSameEvenDay); // &apos;2012-12-24T12:00&apos;
 LocalDate.parse(&quot;2012-12-24&quot;).with(nextOrSameEvenDay); // &apos;2012-12-24&apos;</code>
 </code></pre>
-<h3 id="custom-temporal-fields-and-temporal-units">Custom temporal fields and temporal units</h3><p>See the source for <a href="https://github.com/js-joda/js-joda/blob/main/packages/core/src/temporal/IsoFields.js">temporal/IsoFields</a> as an example how to implement custom fields and units. <code>IsoFields</code> implements fields and units for an ISO week-based year.</p>
+<h3 id="custom-temporal-fields-and-temporal-units">Custom temporal fields and temporal units</h3><p>See the source for <a href="https://js-joda.github.io/js-joda/typedef/index.html#static-typedef-IsoFields">temporal/IsoFields</a> as an example how to implement custom fields and units. <code>IsoFields</code> implements fields and units for an ISO week-based year.</p>
 <h3 id="custom-formatter-and-queries">Custom formatter and queries</h3><p>The following example implements a parser for a local date with an optional local time. It returns either a <code>LocalDate</code> or a <code>LocalDateTime</code>, depending on the parsed fields.</p>
 <pre><code class="lang-javascript"><code class="source-code prettyprint">// build a custom date time formatter where the time field is optional
 var OPTIONAL_FORMATTER = DateTimeFormatter.ofPattern(
