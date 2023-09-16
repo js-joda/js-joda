@@ -1580,7 +1580,7 @@ class DefaultingParser {
      * @param {StringBuilder} buf
      * @return {boolean}
      */
-    print(context,  buf) {
+    print() {
         return true;
     }
 
