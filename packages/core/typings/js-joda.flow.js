@@ -211,6 +211,7 @@ declare module "js-joda" {
         padNext(): DateTimeFormatterBuilder;
         parseCaseInsensitive(): DateTimeFormatterBuilder;
         parseCaseSensitive(): DateTimeFormatterBuilder;
+        parseDefaulting(field: TemporalField, value: number): DateTimeFormatterBuilder;
         parseLenient(): DateTimeFormatterBuilder;
         parseStrict(): DateTimeFormatterBuilder;
         toFormatter(resolverStyle: ResolverStyle): DateTimeFormatter
