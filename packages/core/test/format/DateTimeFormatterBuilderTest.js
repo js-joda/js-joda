@@ -98,8 +98,9 @@ describe('js-joda DateTimeFormatterBuilderTest', () => {
 
         for (const field of fields) {
             const c = ChronoField[field];
+            const cMax = c.range().maximum();
 
-            it (`test_parseDefaulting(${field})`, () => { expect(builder.parseDefaulting(c, c.range().maximum()).toFormatter().parse('').get(c)).to.equal(c.range().maximum())});
+            it (`test_parseDefaulting(${field})`, () => { expect(builder.parseDefaulting(c, cMax).toFormatter().parse('').get(c)).to.equal(cMax); });
         }
 
         it('test_parseDefaulting optional DayOfMonth', () => {
