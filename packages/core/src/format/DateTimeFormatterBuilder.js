@@ -175,6 +175,39 @@ export class DateTimeFormatterBuilder {
     }
 
     /**
+     * Appends a default value for a field to the formatter for use in parsing.
+     * <p>
+     * This appends an instruction to the builder to inject a default value
+     * into the parsed result. This is especially useful in conjunction with
+     * optional parts of the formatter.
+     * <p>
+     * For example, consider a formatter that parses the year, followed by
+     * an optional month, with a further optional day-of-month. Using such a
+     * formatter would require the calling code to check whether a full date,
+     * year-month or just a year had been parsed. This method can be used to
+     * default the month and day-of-month to a sensible value, such as the
+     * first of the month, allowing the calling code to always get a date.
+     * <p>
+     * During formatting, this method has no effect.
+     * <p>
+     * During parsing, the current state of the parse is inspected.
+     * If the specified field has no associated value, because it has not been
+     * parsed successfully at that point, then the specified value is injected
+     * into the parse result. Injection is immediate, thus the field-value pair
+     * will be visible to any subsequent elements in the formatter.
+     * As such, this method is normally called at the end of the builder.
+     *
+     * @param {TemporalField} field  the field to default the value of, not null
+     * @param {number} value  the value to default the field to
+     * @return {DateTimeFormatterBuilder} this, for chaining, not null
+     */
+    parseDefaulting(field, value) {
+        requireNonNull(field);
+        this._appendInternal(new DefaultingParser(field, value));
+        return this;
+    }
+
+    /**
      * appendValue function overloading
      */
     appendValue(){
@@ -1527,6 +1560,44 @@ class InstantPrinterParser  {
     }
 }
 
+/**
+ * Used by parseDefaulting().
+ * @implements {DateTimePrinterParser}
+ * @private
+ */
+class DefaultingParser {
+    /**
+     * @param {TemporalField} field 
+     * @param {number} value 
+     */
+    constructor(field, value) {
+        this._field = field;
+        this._value = value;
+    }
+
+    /**
+     * @param {DateTimePrintContext} context
+     * @param {StringBuilder} buf
+     * @return {boolean}
+     */
+    print() {
+        return true;
+    }
+
+
+    /** 
+     * @param {DateTimeParseContext} context 
+     * @param {string} text
+     * @param {number} position 
+     * @returns {number}
+     */
+    parse(context, text, position) {
+        if (context.getParsed(this._field) == null) {
+            context.setParsedField(this._field, this._value, position, position);
+        }
+        return position;
+    }
+}
 
 export function _init() {
     ReducedPrinterParser.BASE_DATE = LocalDate.of(2000, 1, 1);
