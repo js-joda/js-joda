@@ -1,1 +1,37 @@
-[]
+[
+  {
+    "name": "DefaultingParser#print",
+    "filePath": "packages/core/src/format/DateTimeFormatterBuilder.js",
+    "lines": [
+      {
+        "lineNumber": 1577,
+        "line": "    /**"
+      },
+      {
+        "lineNumber": 1578,
+        "line": "     * @param {DateTimePrintContext} context"
+      },
+      {
+        "lineNumber": 1579,
+        "line": "     * @param {StringBuilder} buf"
+      },
+      {
+        "lineNumber": 1580,
+        "line": "     * @return {boolean}"
+      },
+      {
+        "lineNumber": 1581,
+        "line": "     */"
+      },
+      {
+        "lineNumber": 1582,
+        "line": "    print() {"
+      }
+    ],
+    "codeParams": [],
+    "docParams": [
+      "context",
+      "buf"
+    ]
+  }
+]

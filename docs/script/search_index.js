@@ -5118,6 +5118,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "packages/core/src/format/datetimeformatterbuilder.js~datetimeformatterbuilder#parsedefaulting",
+    "class/packages/core/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html#instance-method-parseDefaulting",
+    "packages/core/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder#parseDefaulting",
+    "method"
+  ],
+  [
     "packages/core/src/format/datetimeformatterbuilder.js~datetimeformatterbuilder#parselenient",
     "class/packages/core/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html#instance-method-parseLenient",
     "packages/core/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder#parseLenient",

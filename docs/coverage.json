@@ -1,7 +1,7 @@
 {
-  "coverage": "73.55%",
-  "expectCount": 2140,
-  "actualCount": 1574,
+  "coverage": "73.54%",
+  "expectCount": 2147,
+  "actualCount": 1579,
   "files": {
     "packages/core/src/Clock.js": {
       "expectCount": 39,
@@ -354,25 +354,27 @@
       ]
     },
     "packages/core/src/format/DateTimeFormatterBuilder.js": {
-      "expectCount": 54,
-      "actualCount": 38,
+      "expectCount": 61,
+      "actualCount": 43,
       "undocumentLines": [
         35,
         37,
-        815,
-        819,
-        823,
-        827,
-        833,
-        988,
-        1394,
-        1395,
-        1402,
-        1403,
-        1406,
-        1478,
-        1525,
-        1531
+        848,
+        852,
+        856,
+        860,
+        866,
+        1021,
+        1427,
+        1428,
+        1435,
+        1436,
+        1439,
+        1511,
+        1558,
+        1574,
+        1575,
+        1602
       ]
     },
     "packages/core/src/format/DateTimeParseContext.js": {
