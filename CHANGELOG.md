@@ -1,6 +1,26 @@
 Changelog
 =========
 
+## 2023-10-10
+
+### Versions
+
+- @js-joda/core@5.6.0
+- @js-joda/extra@0.11.4
+- @js-joda/locale@4.8.11
+- @js-joda/timezone@2.18.1
+
+#### :rocket: Enhancement
+* `core`
+    * [#699](https://github.com/js-joda/js-joda/pull/699) Add more built-in date-time formats to typings ([@adamschoenemann](https://github.com/adamschoenemann))
+    * [#698](https://github.com/js-joda/js-joda/pull/698) Feature DateTimeFormatterBuilder.parseDefaulting() ([@m-jung](https://github.com/m-jung))
+* Other
+    * [#697](https://github.com/js-joda/js-joda/pull/697) fix broken link ([@takashima0411](https://github.com/takashima0411))
+
+#### :house: Dependency update
+* [#694](https://github.com/js-joda/js-joda/pull/694) Bump socket.io-parser from 4.2.1 to 4.2.4 ([@dependabot[bot]](https://github.com/apps/dependabot))
+* [#687](https://github.com/js-joda/js-joda/pull/687) Bump word-wrap from 1.2.3 to 1.2.4 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
 ## 2023-04-12
 
 ### Versions
