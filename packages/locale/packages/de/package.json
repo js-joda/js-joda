@@ -1,6 +1,6 @@
 {
     "name": "@js-joda/locale_de",
-    "version": "4.8.10",
+    "version": "4.8.11",
     "description": "prebuilt js-joda locale package for locales: de.*",
     "repository": {
         "type": "git",
@@ -27,8 +27,6 @@
         "@js-joda/core": ">=3.2.0",
         "@js-joda/timezone": "^2.3.0"
     },
-    "dependencies": {},
-    "devDependencies": {},
     "publishConfig": {
         "access": "public"
     }
