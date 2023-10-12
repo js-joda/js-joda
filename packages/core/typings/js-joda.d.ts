@@ -2164,7 +2164,6 @@ export class DateTimeFormatter {
     static ISO_ZONED_DATE_TIME: DateTimeFormatter;
     static BASIC_ISO_DATE: DateTimeFormatter;
     static ISO_OFFSET_DATE: DateTimeFormatter;
-    static ISO_OFFSET_TIME: DateTimeFormatter;
     static ISO_ORDINAL_DATE: DateTimeFormatter;
     static ISO_WEEK_DATE: DateTimeFormatter;
     static ISO_DATE: DateTimeFormatter;
