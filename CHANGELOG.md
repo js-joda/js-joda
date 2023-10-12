@@ -1,6 +1,20 @@
 Changelog
 =========
 
+## 2023-10-12
+
+### Versions
+
+- @js-joda/core@5.6.1
+- @js-joda/extra@0.11.5
+- @js-joda/locale@4.8.12
+- @js-joda/timezone@2.18.2
+
+#### :bug: Bug Fix
+* `core`
+  * [#701](https://github.com/js-joda/js-joda/pull/701) Removed duplicate declaration of the static ISO_OFFSET_TIME DateTimeF… ([@AndreasBrie](https://github.com/AndreasBrie))
+
+
 ## 2023-10-10
 
 ### Versions
