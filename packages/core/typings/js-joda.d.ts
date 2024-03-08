@@ -1121,6 +1121,7 @@ export class Duration extends TemporalAmount {
     plus(amount: number, unit: TemporalUnit): Duration;
     plus(duration: Duration): Duration;
     plusDays(daysToAdd: number): Duration;
+    plusDuration(duration: Duration): Duration;
     plusHours(hoursToAdd: number): Duration;
     plusMillis(millisToAdd: number): Duration;
     plusMinutes(minutesToAdd: number): Duration;
