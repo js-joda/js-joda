@@ -2198,7 +2198,8 @@ export class DateTimeFormatterBuilder {
     appendOffset(pattern: string, noOffsetText: string): DateTimeFormatterBuilder;
     appendOffsetId(): DateTimeFormatterBuilder;
     appendPattern(pattern: string): DateTimeFormatterBuilder;
-    appendValue(field: TemporalField, width?: number): DateTimeFormatterBuilder;
+    appendValue(field: TemporalField): DateTimeFormatterBuilder;
+    appendValue(field: TemporalField, width: number): DateTimeFormatterBuilder;
     appendValue(field: TemporalField, minWidth: number, maxWidth: number, signStyle: SignStyle): DateTimeFormatterBuilder;
     appendValueReduced(field: TemporalField, width: number, maxWidth: number, base: ChronoLocalDate | number): DateTimeFormatterBuilder;
     appendZoneId(): DateTimeFormatterBuilder;
