@@ -1,6 +1,27 @@
 Changelog
 =========
 
+## 2024-03-13
+
+### Versions
+
+- @js-joda/core@5.6.2
+- @js-joda/extra@0.11.6
+- @js-joda/locale@4.8.13
+- @js-joda/timezone@2.18.3
+
+#### :bug: Bug Fix
+* `core`
+  * [#714](https://github.com/js-joda/js-joda/pull/714) [core] Fix type definitions for DateTimeFormatterBuilder#appendValue ([@florian-h05](https://github.com/florian-h05))
+  * [#713](https://github.com/js-joda/js-joda/pull/713) Add type definition for Duration#plusDuration ([@syxolk](https://github.com/syxolk))
+
+#### :house: Dependency update
+* Other
+  * [#703](https://github.com/js-joda/js-joda/pull/703) Bump @babel/traverse from 7.20.10 to 7.23.2 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#709](https://github.com/js-joda/js-joda/pull/709) Bump follow-redirects from 1.15.2 to 1.15.4 in /packages/locale ([@dependabot[bot]](https://github.com/apps/dependabot))
+* `locale`
+  * [#710](https://github.com/js-joda/js-joda/pull/710) Bump follow-redirects from 1.15.2 to 1.15.4 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
 ## 2023-10-12
 
 ### Versions
