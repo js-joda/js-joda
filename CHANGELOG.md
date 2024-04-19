@@ -1,6 +1,18 @@
 Changelog
 =========
 
+## 2024-04-19-2
+
+### Versions
+
+- @js-joda/locale@4.10.0
+- @js-joda/timezone@2.20.0
+
+#### :rocket: Enhancement
+* `locale`, `timezone`
+  * update tzdb to 2023d
+
+
 ## 2024-04-19
 
 ### Versions
