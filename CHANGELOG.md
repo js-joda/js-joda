@@ -10,7 +10,7 @@ Changelog
 
 #### :rocket: Enhancement
 * `locale`, `timezone`
-  * update tzdb to 2024q
+  * update tzdb to 2024a
 
 ## 2024-04-19-2
 
