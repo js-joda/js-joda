@@ -1,6 +1,19 @@
 Changelog
 =========
 
+## 2024-04-19
+
+### Versions
+
+- @js-joda/extra@0.12.0
+- @js-joda/locale@4.9.0
+- @js-joda/timezone@2.19.0
+
+#### :rocket: Enhancement
+* `extra`, `locale`, `timezone`
+  * [#692](https://github.com/js-joda/js-joda/pull/692) add esm modules in package.json files ([@alisabzevari](https://github.com/alisabzevari))
+
+
 ## 2024-03-13
 
 ### Versions
