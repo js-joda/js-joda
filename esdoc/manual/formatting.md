@@ -2,7 +2,7 @@
 
 ## Formatting
 
-To format a date and/or time, create a [`DateTimeFormatter`](../../class/src/format/DateTimeFormatter.js~DateTimeFormatter.html) and pass it to the `.format` method of a `LocalDate`, `LocalTime`, `LocalDateTime`, or `ZonedDateTime` instance.
+To format a date and/or time, create a [`DateTimeFormatter`](https://js-joda.github.io/js-joda/class/packages/core/src/format/DateTimeFormatter.js~DateTimeFormatter.html) and pass it to the `.format` method of a `LocalDate`, `LocalTime`, `LocalDateTime`, or `ZonedDateTime` instance.
 
 js-joda built-in DateTimeFormatter parses and formats dates and times from /to ISO 8601 as specified in RFC 3339.
 
