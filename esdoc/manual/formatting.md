@@ -168,7 +168,7 @@ console.log(z.toString()); // 2021-10-05T17:08:24+01:00[GMT]
 | ISO_WEEK_DATE         | '2012-W48-6' |
 | ISO_DATE              | '2011-12-03+01:00', '2011-12-03' |
 | ISO_TIME              | '10:15:30+01:00', '10:15:30' |
-| ISO_DATE_TIME         | '2011-12-03T10:15:30+01:00[Europe/Paris]' |
+| ISO_DATE_TIME         | '2011-12-03T10:15:30+01:00' |
 | RFC_1123_DATE_TIME    | 'Tue, 05 Oct 2021 17:08:24 GMT'<br />requires @js-joda/locale |
 
 Usage example for a built-in DateTimeFormatter
