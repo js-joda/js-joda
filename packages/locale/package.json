@@ -38,7 +38,7 @@
     "build-examples": "npx rollup -c rollup-examples.config.js",
     "build-prebuilt": "rm -rf dist/prebuilt/*; npx rollup -c rollup-prebuilt.config.js",
     "build-locale-dist": "npm run build-examples && npm run build-prebuilt && npm run create-packages",
-    "create-packages": "rm -rf ./packages/*; node utils/create_packages.js",
+    "create-packages": "rm -rf packages/*; node utils/create_packages.js",
     "lint": "npx eslint ."
   },
   "keywords": [
