@@ -1088,7 +1088,7 @@ ins.minusMicros(1); // &apos;2007-12-03T10:15:29.999999Z&apos;</code>
     </div>
 <div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
-        <div data-ice="card"><h1>Formatting / Parsing</h1><h2>Formatting</h2><p>To format a date and/or time, create a <a href="./manual/../../class/src/format/DateTimeFormatter.js~DateTimeFormatter.html"><code>DateTimeFormatter</code></a> and pass it to the <code>.format</code> method of a <code>LocalDate</code>, <code>LocalTime</code>, <code>LocalDateTime</code>, or <code>ZonedDateTime</code> instance.</p><p>js-joda built-in DateTimeFormatter parses and formats dates and times from /to ISO 8601 as specified in RFC 3339.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">const d = LocalDateTime.parse(&apos;2018-04-28T12:34&apos;)
+        <div data-ice="card"><h1>Formatting / Parsing</h1><h2>Formatting</h2><p>To format a date and/or time, create a <a href="https://js-joda.github.io/js-joda/class/packages/core/src/format/DateTimeFormatter.js~DateTimeFormatter.html"><code>DateTimeFormatter</code></a> and pass it to the <code>.format</code> method of a <code>LocalDate</code>, <code>LocalTime</code>, <code>LocalDateTime</code>, or <code>ZonedDateTime</code> instance.</p><p>js-joda built-in DateTimeFormatter parses and formats dates and times from /to ISO 8601 as specified in RFC 3339.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">const d = LocalDateTime.parse(&apos;2018-04-28T12:34&apos;)
 
 d.format(DateTimeFormatter.ofPattern(&apos;M/d/yyyy&apos;)) // 4/28/2018
 d.format(DateTimeFormatter.ofPattern(&apos;HH:mm&apos;)) // 12:34</code>
