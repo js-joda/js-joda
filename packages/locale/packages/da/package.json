@@ -7,7 +7,7 @@
         "url": "https://github.com/js-joda/js-joda.git"
     },
     "main": "dist/index.js",
-    "module":"dist/index.esm.js",    
+    "module": "dist/index.esm.js",
     "typings": "dist/js-joda-locale.d.ts",
     "keywords": [
         "date",
@@ -28,6 +28,8 @@
         "@js-joda/core": ">=3.2.0",
         "@js-joda/timezone": "^2.3.0"
     },
+    "dependencies": {},
+    "devDependencies": {},
     "publishConfig": {
         "access": "public"
     }

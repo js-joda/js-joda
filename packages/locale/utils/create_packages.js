@@ -55,6 +55,7 @@ const packageTemplate = {
         url: 'https://github.com/js-joda/js-joda.git'
     },
     main: 'dist/index.js',
+    module: 'dist/index.esm.js',
     typings: 'dist/js-joda-locale.d.ts',
     keywords: [
         'date',
