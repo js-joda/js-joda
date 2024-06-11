@@ -1,6 +1,23 @@
 Changelog
 =========
 
+## 2024-06-11
+
+### Versions
+
+- @js-joda/locale@4.12.0
+
+#### :rocket: Enhancement
+* `locale`
+  * [#722](https://github.com/js-joda/js-joda/pull/722) add module property for es builds to locale packages ([@cercatrice](https://github.com/cercatrice))
+
+#### :bug: Bug Fix
+* [#723](https://github.com/js-joda/js-joda/pull/723) Fix DateTimeFormatter ISO_DATE_TIME docs example ([@themichaellai](https://github.com/themichaellai))
+
+#### :house: Dependency update
+* [#721](https://github.com/js-joda/js-joda/pull/721) Bump ejs from 3.1.8 to 3.1.10 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+
 ## 2024-04-19-3
 
 ### Versions
