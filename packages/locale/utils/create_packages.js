@@ -113,7 +113,7 @@ Object.keys(argv.packages).forEach((packageName) => {
     fs.copyFileSync(path.resolve(__dirname, '..', 'typings', 'js-joda-locale.d.ts'),
         path.resolve(packageDir, 'dist', 'js-joda-locale.d.ts'));
 
-    for (const file of ['index.js', 'index.js.map', 'index.min.js', 'index.esm.js']) {
+    for (const file of ['index.js', 'index.js.map', 'index.min.js', 'index.esm.js', 'index.esm.js.map']) {
         fs.copyFileSync(
             path.resolve(prebuiltDir, file),
             path.resolve(packageDir, 'dist', file));

@@ -30,7 +30,8 @@ module.exports = [
     mergeDeepRight(defaultConfig, {
         output: {
             file: 'dist/js-joda-locale.esm.js',
-            format: 'es'
+            format: 'es',
+            sourcemap: true,
         },
     }),
     mergeDeepRight(defaultConfig, {
