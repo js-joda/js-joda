@@ -1418,7 +1418,6 @@ export class LocalTime extends Temporal implements TemporalAdjuster {
     toNanoOfDay(): number;
     toSecondOfDay(): number;
     toString(): string;
-    toString(): string;
     truncatedTo(unit: ChronoUnit): LocalTime;
     until(endExclusive: Temporal, unit: TemporalUnit): number;
     with(adjuster: TemporalAdjuster): LocalTime;
@@ -1600,6 +1599,7 @@ export class YearMonth extends Temporal implements TemporalAdjuster {
     withMonth(month: number): YearMonth;
     withYear(year: number): YearMonth;
     year(): number;
+    toString(): string;
 
     protected _minusUnit(amountToSubtract: number, unit: TemporalUnit): YearMonth;
     protected _minusAmount(amount: TemporalAmount): YearMonth;
