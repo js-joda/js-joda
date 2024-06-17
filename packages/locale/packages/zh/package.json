@@ -1,6 +1,6 @@
 {
     "name": "@js-joda/locale_zh",
-    "version": "4.12.0",
+    "version": "4.13.0",
     "description": "prebuilt js-joda locale package for locales: zh.*",
     "repository": {
         "type": "git",
