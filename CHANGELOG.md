@@ -1,6 +1,16 @@
 Changelog
 =========
 
+## 2024-06-17
+
+### Versions
+
+- @js-joda/locale@4.13.0
+
+#### :bug: Bug Fix
+* `locale`
+  * [#729](https://github.com/js-joda/js-joda/pull/729) Include source maps for ESM ([@joshkel](https://github.com/joshkel))
+
 ## 2024-06-11
 
 ### Versions
