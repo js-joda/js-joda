@@ -1,11 +1,24 @@
 Changelog
 =========
 
+## 2024-06-18
+
+### Versions
+
+- @js-joda/core@5.6.3
+
+#### :bug: Bug Fix
+* `core`
+  * [#727](https://github.com/js-joda/js-joda/pull/727) Added toString in YearMonth type definition ([@SaichandChowdary](https://github.com/SaichandChowdary))
+
+#### :house: Dependency update
+* [#726](https://github.com/js-joda/js-joda/pull/726) Bump braces from 3.0.2 to 3.0.3 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
 ## 2024-06-17
 
 ### Versions
 
-- @js-joda/locale@4.13.0
+- @js-joda/locale@4.14.0
 
 #### :bug: Bug Fix
 * `locale`
