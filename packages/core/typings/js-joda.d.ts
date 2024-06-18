@@ -1593,13 +1593,13 @@ export class YearMonth extends Temporal implements TemporalAdjuster {
     plusMonths(monthsToAdd: number): YearMonth;
     plusYears(yearsToAdd: number): YearMonth;
     toJSON(): string;
+    toString(): string;
     until(endExclusive: Temporal, unit: TemporalUnit): number;
     with(adjuster: TemporalAdjuster): YearMonth;
     with(field: TemporalField, newValue: number): YearMonth;
     withMonth(month: number): YearMonth;
     withYear(year: number): YearMonth;
     year(): number;
-    toString(): string;
 
     protected _minusUnit(amountToSubtract: number, unit: TemporalUnit): YearMonth;
     protected _minusAmount(amount: TemporalAmount): YearMonth;
