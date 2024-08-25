@@ -1,0 +1,34 @@
+{
+    "name": "@js-joda/locale_nn-no",
+    "version": "4.14.0",
+    "description": "prebuilt js-joda locale package for locales: no,nn-NO",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/js-joda/js-joda.git"
+    },
+    "main": "dist/index.js",
+    "module": "dist/index.esm.js",
+    "typings": "dist/js-joda-locale.d.ts",
+    "keywords": [
+        "date",
+        "time",
+        "locale"
+    ],
+    "author": "phueper",
+    "contributors": [
+        "pithu",
+        "phueper"
+    ],
+    "license": "BSD-3-Clause",
+    "bugs": {
+        "url": "https://github.com/js-joda/js-joda/issues"
+    },
+    "homepage": "https://js-joda.github.io/js-joda",
+    "peerDependencies": {
+        "@js-joda/core": ">=3.2.0",
+        "@js-joda/timezone": "^2.3.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}
