@@ -168,7 +168,7 @@ export class MathUtil {
         if (isNaN(value)) {
             throw new ArithmeticException('Invalid int value, using NaN as argument');
         }
-        if ((value % 1) !== 0) {
+        if (!Number.isInteger(value)) {
             throw new ArithmeticException(`Invalid value: '${value}' is a float`);
         }
         if (value > MAX_SAFE_INTEGER || value < MIN_SAFE_INTEGER) {
