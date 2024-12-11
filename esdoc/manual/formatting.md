@@ -77,7 +77,7 @@ jsDate.toLocaleDateString('ko-KR', options) // 2018년 4월 28일 토요일 오�
 ### Format patterns
 
 
-Date and time formats are specified by date and time pattern strings using [Java SimpleDateFormat](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html) codes.
+Date and time formats are based on the pattern strings from [Java SimpleDateFormat](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html), though js-joda uses more symbols and it interprets a few symbols differently.
 
 | Symbol | Meaning                    | Presentation | Examples                                       |
 | ------ | -------------------------- | ------------ | ---------------------------------------------- |
@@ -87,7 +87,7 @@ Date and time formats are specified by date and time pattern strings using [Java
 | D      | day-of-year                | number       | 189                                            |
 | M      | month-of-year              | number/text  | 7; 07; Jul; July; J                            |
 | d      | day-of-month               | number       | 10                                             |
-| Q      | quarter-of-year            | number/text  | 3; 03; Q3                                      |
+| Q      | quarter-of-year            | number/text  | 3; 03; Q3; 3rd quarter; 3                      |
 | Y      | week-based-year            | year         | 1996; 96                                       |
 | w      | week-of-year               | number       | 27                                             |
 | W      | week-of-month              | number       | 27                                             |
@@ -116,6 +116,37 @@ Date and time formats are specified by date and time pattern strings using [Java
 | [      | optional section start     |              |
 | ]      | optional section end       |              |
 | {}     | reserved for future use    |              |
+
+#### Differences with SimpleDateFormat
+
+- `u` is for year in js-joda, whereas SimpleDateFormat uses `u` for day number of week (1 to 7).
+- `E` and `EE` have a numeric presentation in js-joda while the have a string presentation in SimpleDateFormat.
+- Pattern `EEEEE` produces the initial for the day of the week in js-joda, while it produces the full name in SimpleDateFormat.
+- Pattern `MMMMM` produces the initial for the month of the year in js-joda, while it produces the full name in SimpleDateFormat.
+- Long patterns of presentation type _string_ throw `IllegalArgumentException` in js-joda but are supported in SimpleDateFormat. These include 6 or more `E` (for day), 6 or more `M` (for month), 3 or more `s` (for seconds), 3 or more `H` (for hour), etc.
+
+#### Examples of differences
+
+| Pattern | js-joda  | SimpleDateFormat |
+| ------- | -------- | ---------------- |
+| E       | 2        | Tue              |
+| EE      | 02       | Tue              |
+| EEE     | Tue      | Tue              |
+| EEEE    | Tuesday  | Tuesday          |
+| EEEEE   | T        | Tuesday          |
+| EEEEEE  | _throws_ | Tuesday          |
+| M       | 7        | 7                |
+| MM      | 02       | 07               |
+| MMM     | Jul      | Jul              |
+| MMMM    | July     | July             |
+| MMMMM   | J        | July             |
+| MMMMMM  | _throws_ | July             |
+| s       | 9        | 9                |
+| ss      | 09       | 09               |
+| sss     | _throws_ | 09               |
+| H       | 20       | 20               |
+| HH      | 20       | 20               |
+| HHH     | _throws_ | 20               |
 
 ## Parsing
 
