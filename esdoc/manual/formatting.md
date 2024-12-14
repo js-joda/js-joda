@@ -77,7 +77,7 @@ jsDate.toLocaleDateString('ko-KR', options) // 2018년 4월 28일 토요일 오�
 ### Format patterns
 
 
-Date and time formats are based on the pattern strings from [Java SimpleDateFormat](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html), though js-joda uses more symbols and it interprets a few symbols differently.
+Date and time formats are based on the pattern strings from [Java DateTimeFormatter](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/format/DateTimeFormatter.html).
 
 | Symbol | Meaning                    | Presentation | Examples                                       |
 | ------ | -------------------------- | ------------ | ---------------------------------------------- |
@@ -85,19 +85,19 @@ Date and time formats are based on the pattern strings from [Java SimpleDateForm
 | u      | year                       | year         | 2004; 04                                       |
 | y      | year-of-era                | year         | 2004; 04                                       |
 | D      | day-of-year                | number       | 189                                            |
-| M      | month-of-year              | number/text  | 7; 07; Jul; July; J                            |
+| M/L    | month-of-year              | number/text  | 7; 07; Jul; July; J                            |
 | d      | day-of-month               | number       | 10                                             |
-| Q      | quarter-of-year            | number/text  | 3; 03; Q3; 3rd quarter; 3                      |
+| Q/q    | quarter-of-year            | number/text  | 3; 03; Q3; 3rd quarter; 3                      |
 | Y      | week-based-year            | year         | 1996; 96                                       |
 | w      | week-of-year               | number       | 27                                             |
-| W      | week-of-month              | number       | 27                                             |
-| e      | localized day-of-week      | number       | 2; Tue; Tuesday; T                             |
-| E      | day-of-week                | number/text  | 2; Tue; Tuesday; T                             |
-| F      | week-of-month              | number       | 3                                              |
+| W      | week-of-month              | number       | 4                                              |
+| E      | day-of-week                | text         | Tue; Tuesday; T                                |
+| e/c    | localized day-of-week      | number       | 2; 02; Tue; Tuesday; T                         |
+| F      | day-of-week-in-month       | number       | 3                                              |
 | a      | am-pm-of-day               | text         | PM                                             |
 | h      | clock-hour-of-am-pm (1-12) | number       | 12                                             |
 | K      | hour-of-am-pm (0-11)       | number       | 0                                              |
-| k      | clock-hour-of-am-pm (1-24) | number       | 0                                              |
+| k      | clock-hour-of-day (1-24)   | number       | 24                                             |
 | H      | hour-of-day (0-23)         | number       | 0                                              |
 | m      | minute-of-hour             | number       | 30                                             |
 | s      | second-of-minute           | number       | 55                                             |
@@ -107,9 +107,10 @@ Date and time formats are based on the pattern strings from [Java SimpleDateForm
 | N      | nano-of-day                | number       | 1234000000                                     |
 | V      | time-zone ID               | zone-id      | America/Los_Angeles; Z; -08:30                 |
 | z      | time-zone name             | zone-name    | Pacific Standard Time; PST                     |
-| X      | zone-offset 'Z' for zero   | offset-X     | Z; -08; -0830; -08:30; -083015; -08:30:15;     |
-| x      | zone-offset                | offset-x     | +0000; -08; -0830; -08:30; -083015; -08:30:15; |
-| Z      | zone-offset                | offset-Z     | +0000; -0800; -08:00;                          |
+| O      | localized zone-offset      | offset-O     | GMT; GMT-8; GMT+6                              |
+| X      | zone-offset 'Z' for zero   | offset-X     | Z; -08; -0830; -08:30; -083015; -08:30:15      |
+| x      | zone-offset                | offset-x     | +0000; -08; -0830; -08:30; -083015; -08:30:15  |
+| Z      | zone-offset                | offset-Z     | +0000; -0800; -08:00                           |
 | p      | pad next                   | pad modifier | 1                                              |
 | '      | escape for text            | delimiter    |
 | ''     | single quote               | literal      | '                                              |
@@ -117,36 +118,7 @@ Date and time formats are based on the pattern strings from [Java SimpleDateForm
 | ]      | optional section end       |              |
 | {}     | reserved for future use    |              |
 
-#### Differences with SimpleDateFormat
-
-- `u` is for year in js-joda, whereas SimpleDateFormat uses `u` for day number of week (1 to 7).
-- `E` and `EE` have a numeric presentation in js-joda while the have a string presentation in SimpleDateFormat.
-- Pattern `EEEEE` produces the initial for the day of the week in js-joda, while it produces the full name in SimpleDateFormat.
-- Pattern `MMMMM` produces the initial for the month of the year in js-joda, while it produces the full name in SimpleDateFormat.
-- Long patterns of presentation type _string_ throw `IllegalArgumentException` in js-joda but are supported in SimpleDateFormat. These include 6 or more `E` (for day), 6 or more `M` (for month), 3 or more `s` (for seconds), 3 or more `H` (for hour), etc.
-
-#### Examples of differences
-
-| Pattern | js-joda  | SimpleDateFormat |
-| ------- | -------- | ---------------- |
-| E       | 2        | Tue              |
-| EE      | 02       | Tue              |
-| EEE     | Tue      | Tue              |
-| EEEE    | Tuesday  | Tuesday          |
-| EEEEE   | T        | Tuesday          |
-| EEEEEE  | _throws_ | Tuesday          |
-| M       | 7        | 7                |
-| MM      | 02       | 07               |
-| MMM     | Jul      | Jul              |
-| MMMM    | July     | July             |
-| MMMMM   | J        | July             |
-| MMMMMM  | _throws_ | July             |
-| s       | 9        | 9                |
-| ss      | 09       | 09               |
-| sss     | _throws_ | 09               |
-| H       | 20       | 20               |
-| HH      | 20       | 20               |
-| HHH     | _throws_ | 20               |
+The patterns `g`, `B` and `v` from Java are not available in js-joda
 
 ## Parsing
 
