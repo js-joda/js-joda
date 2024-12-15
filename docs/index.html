@@ -1132,7 +1132,7 @@ jsDate.toLocaleDateString(&apos;en-US&apos;, options) // Saturday, April 28, 201
 jsDate.toLocaleDateString(&apos;de-DE&apos;, options) // Samstag, 28. April 2018, 12:34
 jsDate.toLocaleDateString(&apos;ar-EG&apos;, options) // &#x627;&#x644;&#x633;&#x628;&#x62A;&#x60C; &#x662;&#x668; &#x623;&#x628;&#x631;&#x64A;&#x644; &#x662;&#x660;&#x661;&#x668; &#x661;&#x662;:&#x663;&#x664; &#x645;
 jsDate.toLocaleDateString(&apos;ko-KR&apos;, options) // 2018&#xB144; 4&#xC6D4; 28&#xC77C; &#xD1A0;&#xC694;&#xC77C; &#xC624;&#xD6C4; 12:34</code>
-</code></pre><h3>Format patterns</h3><p>Date and time formats are specified by date and time pattern strings using <a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html">Java SimpleDateFormat</a> codes.</p><table>
+</code></pre><h3>Format patterns</h3><p>Date and time formats are based on the pattern strings from <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/format/DateTimeFormatter.html">Java DateTimeFormatter</a>.</p><table>
 <thead>
 <tr>
 <th>Symbol</th>
@@ -1167,7 +1167,7 @@ jsDate.toLocaleDateString(&apos;ko-KR&apos;, options) // 2018&#xB144; 4&#xC6D4; 
 <td>189</td>
 </tr>
 <tr>
-<td>M</td>
+<td>M/L</td>
 <td>month-of-year</td>
 <td>number/text</td>
 <td>7; 07; Jul; July; J</td>
@@ -1179,10 +1179,10 @@ jsDate.toLocaleDateString(&apos;ko-KR&apos;, options) // 2018&#xB144; 4&#xC6D4; 
 <td>10</td>
 </tr>
 <tr>
-<td>Q</td>
+<td>Q/q</td>
 <td>quarter-of-year</td>
 <td>number/text</td>
-<td>3; 03; Q3</td>
+<td>3; 03; Q3; 3rd quarter; 3</td>
 </tr>
 <tr>
 <td>Y</td>
@@ -1200,23 +1200,23 @@ jsDate.toLocaleDateString(&apos;ko-KR&apos;, options) // 2018&#xB144; 4&#xC6D4; 
 <td>W</td>
 <td>week-of-month</td>
 <td>number</td>
-<td>27</td>
-</tr>
-<tr>
-<td>e</td>
-<td>localized day-of-week</td>
-<td>number</td>
-<td>2; Tue; Tuesday; T</td>
+<td>4</td>
 </tr>
 <tr>
 <td>E</td>
 <td>day-of-week</td>
-<td>number/text</td>
-<td>2; Tue; Tuesday; T</td>
+<td>text</td>
+<td>Tue; Tuesday; T</td>
+</tr>
+<tr>
+<td>e/c</td>
+<td>localized day-of-week</td>
+<td>number</td>
+<td>2; 02; Tue; Tuesday; T</td>
 </tr>
 <tr>
 <td>F</td>
-<td>week-of-month</td>
+<td>day-of-week-in-month</td>
 <td>number</td>
 <td>3</td>
 </tr>
@@ -1240,9 +1240,9 @@ jsDate.toLocaleDateString(&apos;ko-KR&apos;, options) // 2018&#xB144; 4&#xC6D4; 
 </tr>
 <tr>
 <td>k</td>
-<td>clock-hour-of-am-pm (1-24)</td>
+<td>clock-hour-of-day (1-24)</td>
 <td>number</td>
-<td>0</td>
+<td>24</td>
 </tr>
 <tr>
 <td>H</td>
@@ -1299,22 +1299,28 @@ jsDate.toLocaleDateString(&apos;ko-KR&apos;, options) // 2018&#xB144; 4&#xC6D4; 
 <td>Pacific Standard Time; PST</td>
 </tr>
 <tr>
+<td>O</td>
+<td>localized zone-offset</td>
+<td>offset-O</td>
+<td>GMT; GMT-8; GMT+6</td>
+</tr>
+<tr>
 <td>X</td>
 <td>zone-offset &apos;Z&apos; for zero</td>
 <td>offset-X</td>
-<td>Z; -08; -0830; -08:30; -083015; -08:30:15;</td>
+<td>Z; -08; -0830; -08:30; -083015; -08:30:15</td>
 </tr>
 <tr>
 <td>x</td>
 <td>zone-offset</td>
 <td>offset-x</td>
-<td>+0000; -08; -0830; -08:30; -083015; -08:30:15;</td>
+<td>+0000; -08; -0830; -08:30; -083015; -08:30:15</td>
 </tr>
 <tr>
 <td>Z</td>
 <td>zone-offset</td>
 <td>offset-Z</td>
-<td>+0000; -0800; -08:00;</td>
+<td>+0000; -0800; -08:00</td>
 </tr>
 <tr>
 <td>p</td>
@@ -1348,7 +1354,7 @@ jsDate.toLocaleDateString(&apos;ko-KR&apos;, options) // 2018&#xB144; 4&#xC6D4; 
 <td>reserved for future use</td>
 </tr>
 </tbody>
-</table><h2>Parsing</h2><p>Parsing is similar to formatting, the same DateTimeFormatter pattern are used as for formatting.</p><p>Customized parser can be build with the <code>DateTimeFormatter</code>.</p><h3>Simple parser example</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">import { DateTimeFormatter, LocalDate } from &apos;@js-joda/core&apos;;
+</table><p>The patterns <code>g</code>, <code>B</code> and <code>v</code> from Java are not available in js-joda</p><h2>Parsing</h2><p>Parsing is similar to formatting, the same DateTimeFormatter pattern are used as for formatting.</p><p>Customized parser can be build with the <code>DateTimeFormatter</code>.</p><h3>Simple parser example</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">import { DateTimeFormatter, LocalDate } from &apos;@js-joda/core&apos;;
 
 const formatter = DateTimeFormatter.ofPattern(&apos;M/d/yyyy&apos;);
 const date = LocalDate.parse(&apos;4/28/2018&apos;, formatter);
