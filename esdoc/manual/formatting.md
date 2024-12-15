@@ -77,7 +77,7 @@ jsDate.toLocaleDateString('ko-KR', options) // 2018년 4월 28일 토요일 오�
 ### Format patterns
 
 
-Date and time formats are specified by date and time pattern strings using [Java SimpleDateFormat](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html) codes.
+Date and time formats are based on the pattern strings from [Java DateTimeFormatter](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/format/DateTimeFormatter.html).
 
 | Symbol | Meaning                    | Presentation | Examples                                       |
 | ------ | -------------------------- | ------------ | ---------------------------------------------- |
@@ -85,19 +85,19 @@ Date and time formats are specified by date and time pattern strings using [Java
 | u      | year                       | year         | 2004; 04                                       |
 | y      | year-of-era                | year         | 2004; 04                                       |
 | D      | day-of-year                | number       | 189                                            |
-| M      | month-of-year              | number/text  | 7; 07; Jul; July; J                            |
+| M/L    | month-of-year              | number/text  | 7; 07; Jul; July; J                            |
 | d      | day-of-month               | number       | 10                                             |
-| Q      | quarter-of-year            | number/text  | 3; 03; Q3                                      |
+| Q/q    | quarter-of-year            | number/text  | 3; 03; Q3; 3rd quarter; 3                      |
 | Y      | week-based-year            | year         | 1996; 96                                       |
 | w      | week-of-year               | number       | 27                                             |
-| W      | week-of-month              | number       | 27                                             |
-| e      | localized day-of-week      | number       | 2; Tue; Tuesday; T                             |
-| E      | day-of-week                | number/text  | 2; Tue; Tuesday; T                             |
-| F      | week-of-month              | number       | 3                                              |
+| W      | week-of-month              | number       | 4                                              |
+| E      | day-of-week                | text         | Tue; Tuesday; T                                |
+| e/c    | localized day-of-week      | number       | 2; 02; Tue; Tuesday; T                         |
+| F      | day-of-week-in-month       | number       | 3                                              |
 | a      | am-pm-of-day               | text         | PM                                             |
 | h      | clock-hour-of-am-pm (1-12) | number       | 12                                             |
 | K      | hour-of-am-pm (0-11)       | number       | 0                                              |
-| k      | clock-hour-of-am-pm (1-24) | number       | 0                                              |
+| k      | clock-hour-of-day (1-24)   | number       | 24                                             |
 | H      | hour-of-day (0-23)         | number       | 0                                              |
 | m      | minute-of-hour             | number       | 30                                             |
 | s      | second-of-minute           | number       | 55                                             |
@@ -107,15 +107,18 @@ Date and time formats are specified by date and time pattern strings using [Java
 | N      | nano-of-day                | number       | 1234000000                                     |
 | V      | time-zone ID               | zone-id      | America/Los_Angeles; Z; -08:30                 |
 | z      | time-zone name             | zone-name    | Pacific Standard Time; PST                     |
-| X      | zone-offset 'Z' for zero   | offset-X     | Z; -08; -0830; -08:30; -083015; -08:30:15;     |
-| x      | zone-offset                | offset-x     | +0000; -08; -0830; -08:30; -083015; -08:30:15; |
-| Z      | zone-offset                | offset-Z     | +0000; -0800; -08:00;                          |
+| O      | localized zone-offset      | offset-O     | GMT; GMT-8; GMT+6                              |
+| X      | zone-offset 'Z' for zero   | offset-X     | Z; -08; -0830; -08:30; -083015; -08:30:15      |
+| x      | zone-offset                | offset-x     | +0000; -08; -0830; -08:30; -083015; -08:30:15  |
+| Z      | zone-offset                | offset-Z     | +0000; -0800; -08:00                           |
 | p      | pad next                   | pad modifier | 1                                              |
 | '      | escape for text            | delimiter    |
 | ''     | single quote               | literal      | '                                              |
 | [      | optional section start     |              |
 | ]      | optional section end       |              |
 | {}     | reserved for future use    |              |
+
+The patterns `g`, `B` and `v` from Java are not available in js-joda
 
 ## Parsing
 
