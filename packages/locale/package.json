@@ -31,7 +31,7 @@
     "test": "NODE_ENV=test npx mocha --timeout 5000 --require @babel/register ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js test/pluginTest_mochaOnly.js",
     "test-coverage": "NODE_ENV=test COVERAGE=1 npx nyc --report-dir=build/coverage --reporter=lcov --reporter html npx mocha --timeout 5000 --require @babel/register --reporter progress ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js",
     "test-browser": "npx karma start --reporters=dots --single-run",
-    "test-saucelabs": "npx karma start --reporters=\"dots,saucelabs\" --browsers=\"sl_chrome,sl_ie,sl_firefox\" --single-run=true",
+    "test-saucelabs": "npx karma start --reporters=\"dots,saucelabs\" --browsers=\"sl_chrome,sl_firefox\" --single-run=true",
     "test-ts-definitions": "TS_NODE_PROJECT='../../shared/ts-test-config.json' NODE_ENV=test mocha --timeout 5000 --require ts-node/register ./test/typescript_definitions/*.ts",
     "test-ci": "npm run build-dist && npm run build-locale-dist && npm run test && npm run test-browser && npm run test-ts-definitions && npm run test-coverage",
     "build-dist": "npx rollup -c rollup.config.js",
