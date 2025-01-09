@@ -1,6 +1,37 @@
 Changelog
 =========
 
+## 2025-01-09
+
+### Versions
+
+- @js-joda/core@5.6.4
+- @js-joda/extra@0.12.2
+- @js-joda/locale@4.4.15.0
+- @js-joda/timezone@2.21.2
+
+#### :rocket: Enhancement
+* `core`
+  * [#737](https://github.com/js-joda/js-joda/pull/737) Improve MathUtil.verifyInt performance ([@pithu](https://github.com/pithu))
+* `locale`
+  * [#747](https://github.com/js-joda/js-joda/pull/747) prebuilt packages for new locales: Ukrainian, Czech, Slovakian and Turkish (uk, cs, sk, tr) ([@marcinkozaczyk](https://github.com/marcinkozaczyk))
+  * [#732](https://github.com/js-joda/js-joda/pull/732) prebuilt packages for new locales: Lithuania, Norway (lt, nb-no, nn-no) ([@mstawick](https://github.com/mstawick))
+
+#### :bug: Bug Fix
+* [#744](https://github.com/js-joda/js-joda/pull/744) docs: fix formatting documentation ([@janoma](https://github.com/janoma))
+
+#### :house: Dependency update
+* `core`, `extra`, `locale`, `timezone`
+  * [#748](https://github.com/js-joda/js-joda/pull/748) upgrade github actions ([@pithu](https://github.com/pithu))
+* Other
+  * [#740](https://github.com/js-joda/js-joda/pull/740) Bump rollup from 3.8.1 to 3.29.5 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#741](https://github.com/js-joda/js-joda/pull/741) Bump cookie and socket.io ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#738](https://github.com/js-joda/js-joda/pull/738) Bump body-parser from 1.20.1 to 1.20.3 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#736](https://github.com/js-joda/js-joda/pull/736) Bump webpack from 5.76.1 to 5.94.0 ([@dependabot[bot]](https://github.com/apps/dependabot))
+  * [#730](https://github.com/js-joda/js-joda/pull/730) Bump ws, socket.io and webdriverio ([@dependabot[bot]](https://github.com/apps/dependabot))
+* `locale`
+  * [#735](https://github.com/js-joda/js-joda/pull/735) Bump requirejs from 2.3.6 to 2.3.7 in /packages/locale ([@dependabot[bot]](https://github.com/apps/dependabot))
+
 ## 2024-06-18
 
 ### Versions

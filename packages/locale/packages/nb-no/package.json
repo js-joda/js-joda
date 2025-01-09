@@ -1,7 +1,7 @@
 {
     "name": "@js-joda/locale_nb-no",
-    "version": "4.14.0",
-    "description": "prebuilt js-joda locale package for locales: no,nb-NO",
+    "version": "4.14.1",
+    "description": "prebuilt js-joda locale package for locales: nb,nb-NO",
     "repository": {
         "type": "git",
         "url": "https://github.com/js-joda/js-joda.git"
@@ -28,6 +28,8 @@
         "@js-joda/core": ">=3.2.0",
         "@js-joda/timezone": "^2.3.0"
     },
+    "dependencies": {},
+    "devDependencies": {},
     "publishConfig": {
         "access": "public"
     }
