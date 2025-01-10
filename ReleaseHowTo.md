@@ -16,5 +16,6 @@ $ git pull
 $ git add . && git reset --hard origin/main # ensure that local repo is in same state as origin
 $ lerna run --stream test-ci # verify that the current state of the main branch is green
 # Update and commit CHANGELOG'S manually, 'npx lerna-changelog' is your friend
+# make sure you are logged in to npmjs.org
 $ lerna publish --concurrency 1 [major | minor | patch] 
 ```
