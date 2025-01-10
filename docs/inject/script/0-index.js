@@ -1,4 +1,4 @@
-//! @version @js-joda/locale - 4.14.1
+//! @version @js-joda/locale - 4.15.1
 //! @copyright (c) 2015-present, Philipp Thürwächter, Pattrick Hüper & js-joda contributors
 //! @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
 //! @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
@@ -13690,6 +13690,7 @@
   * @copyright (c) 2020, Philipp Thuerwaechter & Pattrick Hueper
   * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
   */
+
   var cldrDataLoaded = new Set();
   var loadCldrData = function loadCldrData(path) {
     if (!cldrDataLoaded.has(path)) {
@@ -13725,6 +13726,7 @@
    * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
    * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
    */
+
   var CldrDateTimeTextProvider = function () {
     function CldrDateTimeTextProvider() {
       this._cache = {};
@@ -14067,6 +14069,7 @@
    * @copyright (c) 2007-present, Stephen Colebourne & Michael Nascimento Santos
    * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
    */
+
   var MathUtil$1 = core._.MathUtil;
   var LocalizedOffsetPrinterParser = function () {
     function LocalizedOffsetPrinterParser(textStyle) {
@@ -14196,6 +14199,7 @@
    * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
    * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
    */
+
   var MathUtil = core._.MathUtil,
     _jodaInternal$assert$1 = core._.assert,
     requireNonNull$2 = _jodaInternal$assert$1.requireNonNull,
@@ -14646,6 +14650,7 @@
    * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
    * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
    */
+
   var StringBuilder = core._.StringBuilder;
   var WeekFieldsPrinterParser = function () {
     function WeekFieldsPrinterParser(letter, count) {
@@ -14789,6 +14794,7 @@
    * @copyright (c) 2017, Philipp Thuerwaechter & Pattrick Hueper
    * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
    */
+
   var Locale = function () {
     Locale.getAvailableLocales = function getAvailableLocales() {
       return new CldrDateTimeTextProvider().getAvailableLocales();
@@ -14904,6 +14910,7 @@
    * @copyright (c) 2016, Philipp Thürwächter & Pattrick Hüper
    * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
    */
+
   var isInit = false;
   function init() {
     if (isInit) {
