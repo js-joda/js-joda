@@ -775,7 +775,7 @@ it('YearMonth', () => {
     ym.monthValue();
     ym.month();
     ym.isLeapYear();
-    ym.isValidDay();
+    ym.isValidDay(10);
     ym.lengthOfMonth();
     ym.lengthOfYear();
     ym.atDay(10);
