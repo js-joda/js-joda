@@ -1579,7 +1579,7 @@ export class YearMonth extends Temporal implements TemporalAdjuster {
     isBefore(other: YearMonth): boolean;
     isLeapYear(): boolean;
     isSupported(fieldOrUnit: TemporalField | TemporalUnit): boolean;
-    isValidDay(): boolean;
+    isValidDay(dayOfMonth: number): boolean;
     lengthOfMonth(): number;
     lengthOfYear(): number;
     minus(amountToSubtract: number, unit: TemporalUnit): YearMonth;

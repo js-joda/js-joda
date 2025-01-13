@@ -759,7 +759,7 @@ declare module "js-joda" {
         monthValue(): number;
         month(): Month;
         isLeapYear(): boolean;
-        isValidDay(): boolean;
+        isValidDay(dayOfMonth: number): boolean;
         lengthOfMonth(): number;
         lengthOfYear(): number;
         atDay(dayOfMonth: number): LocalDate;
