@@ -69,7 +69,7 @@
     "lerna": "^6.1.0",
     "lerna-changelog": "^2.2.0",
     "markdown-toc": "^1.2.0",
-    "mocha": "^9.2.2",
+    "mocha": "^11.1.0",
     "moment-timezone": "^0.5.40",
     "npm-check-updates": "^16.6.2",
     "nyc": "^15.1.0",
