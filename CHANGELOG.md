@@ -1,6 +1,24 @@
 Changelog
 =========
 
+
+## 2025-03-31
+
+### Versions
+
+- @js-joda/timezone@2.22.0
+
+#### :rocket: Enhancement
+* `timezone`
+  * [#755](https://github.com/js-joda/js-joda/pull/755) Update tzdb to 2025b ([@pithu](https://github.com/pithu))
+
+#### :bug: Bug Fix
+* `core`
+  * [#751](https://github.com/js-joda/js-joda/pull/751) Correct typing for YearMonth.isValidDay() ([@ianparkinson](https://github.com/ianparkinson))
+
+#### :house: Dependency update
+* [#753](https://github.com/js-joda/js-joda/pull/753) Bump serialize-javascript and mocha ([@dependabot[bot]](https://github.com/apps/dependabot))
+
 ## 2025-01-09
 
 ### Versions
