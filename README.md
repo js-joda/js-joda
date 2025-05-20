@@ -84,7 +84,7 @@ var d = LocalDate.parse('2012-12-24').atStartOfDay().plusMonths(2); // 2013-02-2
 
 ### Browser
 
-To use js-joda from a browser, download js-joda from a cdn (eg https://cdn.jsdelivr.net/npm/@js-joda/core@<version>) 
+To use js-joda from a browser, download js-joda from a cdn (eg https://cdn.jsdelivr.net/npm/@js-joda/core) 
 either `dist/js-joda.min.js` or `dist/js-joda.js` (with sourcemaps for development). 
 Then add it as a script tag to your page
 
