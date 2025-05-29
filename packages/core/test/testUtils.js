@@ -64,10 +64,3 @@ export function isCoverageTestRunner() {
 export function isBrowserTestRunner(){
     return typeof window !== 'undefined' && window.document != null;
 }
-
-export function isIE11Browser(){
-    return typeof navigator !== 'undefined' &&
-        (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.userAgent.indexOf('Trident/') !== -1);
-}
-
-
