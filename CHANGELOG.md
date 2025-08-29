@@ -6,6 +6,7 @@ Changelog
 
 ### Versions
 
+- @js-joda/core@5.6.5
 - @js-joda/timezone@2.22.0
 
 #### :rocket: Enhancement
