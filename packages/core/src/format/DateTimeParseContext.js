@@ -35,6 +35,10 @@ export class DateTimeParseContext{
         this._parsed = [new Parsed(this)];
     }
 
+    get [Symbol.toStringTag]() {
+        return 'DateTimeParseContext';
+    }
+
     _constructorParam(locale, symbols, chronology){
         this._locale = locale;
         this._symbols = symbols;
@@ -245,6 +249,10 @@ class Parsed extends Temporal {
         this.fieldValues = new EnumMap();
         this.leapSecond = false;
         this.dateTimeParseContext = dateTimeParseContext;
+    }
+
+    get [Symbol.toStringTag]() {
+        return 'Parsed';
     }
 
     copy() {

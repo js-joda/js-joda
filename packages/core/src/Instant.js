@@ -208,7 +208,7 @@ export class Instant extends Temporal {
             const nanoOfSecond = temporal.get(ChronoField.NANO_OF_SECOND);
             return Instant.ofEpochSecond(instantSecs, nanoOfSecond);
         } catch (ex) {
-            throw new DateTimeException(`Unable to obtain Instant from TemporalAccessor: ${ 
+            throw new DateTimeException(`Unable to obtain Instant from TemporalAccessor: ${
                 temporal}, type ${typeof temporal}`, ex);
         }
     }
@@ -268,6 +268,10 @@ export class Instant extends Temporal {
         Instant._validate(seconds, nanoOfSecond);
         this._seconds = MathUtil.safeToInt(seconds);
         this._nanos = MathUtil.safeToInt(nanoOfSecond);
+    }
+
+    get [Symbol.toStringTag]() {
+        return 'Instant';
     }
 
     /**

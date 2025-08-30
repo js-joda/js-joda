@@ -65,6 +65,10 @@ import { TemporalUnit } from './TemporalUnit';
  * @interface
  */
 export class Temporal extends TemporalAccessor {
+    get [Symbol.toStringTag]() {
+        return 'Temporal';
+    }
+
     /**
      * Checks if the specified unit is supported.
      * This checks if the date-time can be queried for the specified unit. If false, then calling the plus and minus methods will throw an exception.

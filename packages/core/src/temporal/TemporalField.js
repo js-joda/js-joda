@@ -24,6 +24,10 @@ import { abstractMethodFail } from '../assert';
  * @interface
  */
 export class TemporalField {
+    get [Symbol.toStringTag]() {
+        return 'TemporalField';
+    }
+
     /**
      * Checks if this field represents a component of a date.
      *
@@ -57,11 +61,11 @@ export class TemporalField {
 
     /**
      * Gets the range that the field is bound by.
-     * 
+     *
      * The range of the field is the period that the field varies within.
      * For example, in the field 'MonthOfYear', the range is 'Years'.
      * See also {@link baseUnit}.
-     * 
+     *
      * The range is never null. For example, the 'Year' field is shorthand for
      * 'YearOfForever'. It therefore has a unit of 'Years' and a range of 'Forever'.
      *
@@ -117,7 +121,7 @@ export class TemporalField {
      * @param {!TemporalAccessor} temporal the temporal object used to refine the result.
      * @return {ValueRange} the range of valid values for this field.
      * @throws {DateTimeException} if the range for the field cannot be obtained.
-     * 
+     *
      */
     // eslint-disable-next-line no-unused-vars
     rangeRefinedBy(temporal) {

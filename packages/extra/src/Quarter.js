@@ -157,6 +157,10 @@ export class Quarter extends TemporalAccessor {
         this._name = name;
     }
 
+    get [Symbol.toStringTag]() {
+        return 'Quarter';
+    }
+
     //-----------------------------------------------------------------------
     /**
      * Gets the quarter-of-year `int` value.

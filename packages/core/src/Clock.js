@@ -104,7 +104,7 @@ export class Clock {
     static fixed(fixedInstant, zoneId) {
         return new FixedClock(fixedInstant, zoneId);
     }
-    
+
     /**
      * Obtains a clock that returns instants from the specified clock with the
      * specified duration added
@@ -125,7 +125,7 @@ export class Clock {
      * @return a clock based on the base clock with the duration added, not null
      */
     static offset(baseClock, duration) {
-        return new OffsetClock(baseClock, duration);   
+        return new OffsetClock(baseClock, duration);
     }
 
     /**
@@ -162,7 +162,7 @@ export class Clock {
     zone(){
         abstractMethodFail('Clock.zone');
     }
-    
+
     /**
      * Returns a copy of this clock with a different time-zone.
      * <p>
@@ -174,6 +174,10 @@ export class Clock {
      */
     withZone(){
         abstractMethodFail('Clock.withZone');
+    }
+
+    get [Symbol.toStringTag]() {
+        return 'Clock';
     }
 }
 
@@ -192,6 +196,10 @@ class SystemClock extends Clock {
         requireNonNull(zone, 'zone');
         super();
         this._zone = zone;
+    }
+
+    get [Symbol.toStringTag]() {
+        return 'SystemClock';
     }
 
     /**
@@ -217,20 +225,20 @@ class SystemClock extends Clock {
     instant() {
         return Instant.ofEpochMilli(this.millis());
     }
-    
-    equals(obj) {    
-        if (obj instanceof SystemClock) {            
+
+    equals(obj) {
+        if (obj instanceof SystemClock) {
             return this._zone.equals(obj._zone);
         }
-        return false;    
-    }  
-      
+        return false;
+    }
+
     withZone(zone) {
         if (zone.equals(this._zone)) {  // intentional NPE
             return this;
         }
         return new SystemClock(zone);
-    }      
+    }
 
     /**
      *
@@ -254,6 +262,10 @@ class FixedClock extends Clock{
         this._zoneId = zoneId;
     }
 
+    get [Symbol.toStringTag]() {
+        return 'FixedClock';
+    }
+
     instant() {
         return this._instant;
     }
@@ -269,12 +281,12 @@ class FixedClock extends Clock{
     toString(){
         return 'FixedClock[]';
     }
-    
-    equals(obj) {    
-        if (obj instanceof FixedClock) {            
+
+    equals(obj) {
+        if (obj instanceof FixedClock) {
             return this._instant.equals(obj._instant) && this._zoneId.equals(obj._zoneId);
         }
-        return false;    
+        return false;
     }
 
     withZone(zone) {
@@ -282,8 +294,8 @@ class FixedClock extends Clock{
             return this;
         }
         return new FixedClock(this._instant, zone);
-    }      
-    
+    }
+
 }
 
 
@@ -296,33 +308,37 @@ class OffsetClock extends Clock {
         this._baseClock = baseClock;
         this._offset = offset;
     }
-   
+
+    get [Symbol.toStringTag]() {
+        return 'OffsetClock';
+    }
+
     zone() {
         return this._baseClock.zone();
     }
-        
+
     withZone(zone) {
         if (zone.equals(this._baseClock.zone())) {  // intentional NPE
             return this;
         }
         return new OffsetClock(this._baseClock.withZone(zone), this._offset);
     }
-    
+
     millis() {
         return this._baseClock.millis() + this._offset.toMillis();
     }
-    
+
     instant() {
         return this._baseClock.instant().plus(this._offset);
     }
-        
+
     equals(obj) {
-        if (obj instanceof OffsetClock) {            
+        if (obj instanceof OffsetClock) {
             return this._baseClock.equals(obj._baseClock) && this._offset.equals(obj._offset);
         }
         return false;
     }
-    
+
     toString() {
         return `OffsetClock[${this._baseClock},${this._offset}]`;
     }

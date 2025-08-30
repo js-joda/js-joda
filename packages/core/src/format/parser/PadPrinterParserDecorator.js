@@ -28,6 +28,10 @@ export class PadPrinterParserDecorator {
         this._padChar = padChar;
     }
 
+    get [Symbol.toStringTag]() {
+        return 'PadPrinterParserDecorator';
+    }
+
     print(context, buf) {
         const preLen = buf.length();
         if (this._printerParser.print(context, buf) === false) {

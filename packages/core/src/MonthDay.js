@@ -159,7 +159,7 @@ export class MonthDay extends TemporalAccessor {
         requireNonNull(month, 'month');
         ChronoField.DAY_OF_MONTH.checkValidValue(dayOfMonth);
         if (dayOfMonth > month.maxLength()) {
-            throw new DateTimeException(`Illegal value for DayOfMonth field, value ${dayOfMonth 
+            throw new DateTimeException(`Illegal value for DayOfMonth field, value ${dayOfMonth
             } is not valid for month ${month.toString()}`);
         }
         return new MonthDay(month.value(), dayOfMonth);
@@ -217,7 +217,7 @@ export class MonthDay extends TemporalAccessor {
             }*/
             return MonthDay.of(temporal.get(ChronoField.MONTH_OF_YEAR), temporal.get(ChronoField.DAY_OF_MONTH));
         } catch (ex) {
-            throw new DateTimeException(`Unable to obtain MonthDay from TemporalAccessor: ${ 
+            throw new DateTimeException(`Unable to obtain MonthDay from TemporalAccessor: ${
                 temporal}, type ${temporal && temporal.constructor != null ? temporal.constructor.name : ''}`);
         }
     }
@@ -284,6 +284,10 @@ export class MonthDay extends TemporalAccessor {
         super();
         this._month = MathUtil.safeToInt(month);
         this._day = MathUtil.safeToInt(dayOfMonth);
+    }
+
+    get [Symbol.toStringTag]() {
+        return 'MonthDay';
     }
 
     //-----------------------------------------------------------------------

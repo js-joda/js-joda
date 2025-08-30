@@ -22,56 +22,56 @@ import { TemporalUnit } from './TemporalUnit';
  * The documentation of each unit explains how it operates.
  *
  * ### Static properties:
- * 
+ *
  * - `ChronoUnit.CENTURIES`: Unit that represents the concept of a century. For the ISO calendar
  * system, it is equal to 100 years.
- * 
+ *
  * - `ChronoUnit.DAYS`: Unit that represents the concept of a day. For the ISO calendar system, it
  * is the standard day from midnight to midnight. The estimated duration of a day is 24 Hours.
- * 
+ *
  * - `ChronoUnit.DECADES`: Unit that represents the concept of a decade. For the ISO calendar system,
  * it is equal to 10 years.
- * 
+ *
  * - `ChronoUnit.ERAS`: Unit that represents the concept of an era. The ISO calendar system doesn't
  * have eras thus it is impossible to add an era to a date or date-time. The estimated duration of the
  * era is artificially defined as 1,000,000,000 Years.
- * 
+ *
  * - `ChronoUnit.FOREVER`: Artificial unit that represents the concept of forever. This is primarily
  * used with {@link TemporalField} to represent unbounded fields such as the year or era. The
  * estimated duration of the era is artificially defined as the largest duration supported by
  * {@link Duration}.
- * 
+ *
  * - `ChronoUnit.HALF_DAYS`: Unit that represents the concept of half a day, as used in AM/PM. For
  * the ISO calendar system, it is equal to 12 hours.
  *
  * - `ChronoUnit.HOURS`: Unit that represents the concept of an hour. For the ISO calendar system,
  * it is equal to 60 minutes.
- * 
+ *
  * - `ChronoUnit.MICROS`: Unit that represents the concept of a microsecond. For the ISO calendar
  * system, it is equal to the 1,000,000th part of the second unit.
- * 
+ *
  * - `ChronoUnit.MILLENNIA`: Unit that represents the concept of a millennium. For the ISO calendar
  * system, it is equal to 1,000 years.
- * 
+ *
  * - `ChronoUnit.MILLIS`: Unit that represents the concept of a millisecond. For the ISO calendar
  * system, it is equal to the 1000th part of the second unit.
- * 
+ *
  * - `ChronoUnit.MINUTES`: Unit that represents the concept of a minute. For the ISO calendar system,
  * it is equal to 60 seconds.
- * 
+ *
  * - `ChronoUnit.MONTHS`: Unit that represents the concept of a month. For the ISO calendar system,
  * the length of the month varies by month-of-year. The estimated duration of a month is one twelfth
  * of 365.2425 Days.
- * 
+ *
  * - `ChronoUnit.NANOS`: Unit that represents the concept of a nanosecond, the smallest supported unit
  * of time. For the ISO calendar system, it is equal to the 1,000,000,000th part of the second unit.
- * 
+ *
  * - `ChronoUnit.SECONDS`: Unit that represents the concept of a second. For the ISO calendar system,
  * it is equal to the second in the SI system of units, except around a leap-second.
- * 
+ *
  * - `ChronoUnit.WEEKS`: Unit that represents the concept of a week. For the ISO calendar system,
  * it is equal to 7 Days.
- * 
+ *
  * - `ChronoUnit.YEARS`: Unit that represents the concept of a year. For the ISO calendar system, it
  * is equal to 12 months. The estimated duration of a year is 365.2425 Days.
  */
@@ -87,6 +87,10 @@ export class ChronoUnit extends TemporalUnit {
         super();
         this._name = name;
         this._duration = estimatedDuration;
+    }
+
+    get [Symbol.toStringTag]() {
+        return 'ChronoUnit';
     }
 
     //-----------------------------------------------------------------------

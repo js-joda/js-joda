@@ -14,11 +14,11 @@ const MathUtil = jodaInternal.MathUtil;
 
 /**
  * A day-of-month in the ISO-8601 calendar system.
- * 
+ *
  * {@link DayOfMonth} is an immutable date-time object that represents a day-of-month.
  * It is a type-safe way of representing a day-of-month in an application.
  * Any field that can be derived from a day-of-month can be obtained.
- * 
+ *
  * This class does not store or represent a year, month, time or time-zone.
  * For example, the value '21' can be stored in a {@link DayOfMonth} and
  * would represent the 21st day of any month.
@@ -31,7 +31,7 @@ export class DayOfMonth extends TemporalAccessor {
      * - if called with an instance of {@link ZoneId}, then {@link DayOfMonth._nowZoneId} is executed;
      * - if called with an instance of {@link Clock}, then {@link DayOfMonth._nowClock} is executed;
      * - otherwise {@link IllegalArgumentException} is thrown.
-     * 
+     *
      * @param {?(ZoneId|Clock)} zoneIdOrClock
      * @return {DayOfMonth}
      */
@@ -55,11 +55,11 @@ export class DayOfMonth extends TemporalAccessor {
 
     /**
      * Obtains the current day-of-month from the system clock in the default time-zone.
-     * 
+     *
      * This will query the {@link Clock.systemDefaultZone} system clock in the default
      * time-zone to obtain the current day-of-month.
      * The zone and offset will be set based on the time-zone in the clock.
-     * 
+     *
      * Using this method will prevent the ability to use an alternate clock for testing
      * because the clock is hard-coded.
      *
@@ -72,10 +72,10 @@ export class DayOfMonth extends TemporalAccessor {
 
     /**
      * Obtains the current day-of-month from the system clock in the specified time-zone.
-     * 
+     *
      * This will query the {@link Clock#system(java.time.ZoneId) system clock} to obtain the current day-of-month.
      * Specifying the time-zone avoids dependence on the default time-zone.
-     * 
+     *
      * Using this method will prevent the ability to use an alternate clock for testing
      * because the clock is hard-coded.
      *
@@ -89,7 +89,7 @@ export class DayOfMonth extends TemporalAccessor {
 
     /**
      * Obtains the current day-of-month from the specified clock.
-     * 
+     *
      * This will query the specified clock to obtain the current day-of-month.
      * Using this method allows the use of an alternate clock for testing.
      * The alternate clock may be introduced using {@link Clock dependency injection}.
@@ -106,7 +106,7 @@ export class DayOfMonth extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Obtains an instance of {@link DayOfMonth}.
-     * 
+     *
      * A day-of-month object represents one of the 31 days of the month, from 1 to 31.
      *
      * @param {number} dayOfMonth - the day-of-month to represent, from 1 to 31
@@ -124,15 +124,15 @@ export class DayOfMonth extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Obtains an instance of {@link DayOfMonth} from a date-time object.
-     * 
+     *
      * This obtains a day-of-month based on the specified temporal.
      * A {@link TemporalAccessor} represents an arbitrary set of date and time information,
      * which this factory converts to an instance of {@link DayOfMonth}.
-     * 
+     *
      * The conversion extracts the {@link ChronoField#DAY_OF_MONTH} day-of-month field.
      * The extraction is only permitted if the temporal object has an ISO
      * chronology, or can be converted to a {@link LocalDate}.
-     * 
+     *
      * This method matches the signature of the functional interface {@link TemporalQuery}
      * allowing it to be used in queries via method reference, {@link DayOfMonth.from}.
      *
@@ -168,6 +168,10 @@ export class DayOfMonth extends TemporalAccessor {
         this._day = MathUtil.safeToInt(dayOfMonth);
     }
 
+    get [Symbol.toStringTag]() {
+        return 'DayOfMonth';
+    }
+
     //-----------------------------------------------------------------------
     /**
      * Gets the day-of-month value.
@@ -181,19 +185,19 @@ export class DayOfMonth extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Checks if the specified field is supported.
-     * 
+     *
      * This checks if this day-of-month can be queried for the specified field.
      * If false, then calling the {@link DayOfMonth.range} range,
      * {@link DayOfMonth.get} get and {@link DayOfMonth.getLong} getLong
      * methods will throw an exception.
-     * 
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The supported fields are:
      * <ul>
      * <li>{@link ChronoField.DAY_OF_MONTH}
      * </ul>
      * All other {@link ChronoField} instances will return false.
-     * 
+     *
      * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@link TemporalField.isSupportedBy}
      * passing this as the argument.
@@ -212,17 +216,17 @@ export class DayOfMonth extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Gets the range of valid values for the specified field.
-     * 
+     *
      * The range object expresses the minimum and maximum valid values for a field.
      * This day-of-month is used to enhance the accuracy of the returned range.
      * If it is not possible to return the range, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * 
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The {@link DayOfMonth.isSupported} supported fields will return
      * appropriate range instances.
      * All other {@link ChronoField} instances will throw an {@link UnsupportedTemporalTypeException}.
-     * 
+     *
      * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@link TemporalField.rangeRefinedBy}
      * passing this as the argument.
@@ -243,17 +247,17 @@ export class DayOfMonth extends TemporalAccessor {
 
     /**
      * Gets the value of the specified field from this day-of-month as an `int`.
-     * 
+     *
      * This queries this day-of-month for the value for the specified field.
      * The returned value will always be within the valid range of values for the field.
      * If it is not possible to return the value, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * 
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The {@link DayOfMonth.isSupported} supported fields will return valid
      * values based on this day-of-month.
      * All other {@link ChronoField} instances will throw an {@link UnsupportedTemporalTypeException}.
-     * 
+     *
      * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@link TemporalField.getFrom}
      * passing this as the argument. Whether the value can be obtained,
@@ -273,16 +277,16 @@ export class DayOfMonth extends TemporalAccessor {
 
     /**
      * Gets the value of the specified field from this day-of-month as a `long`.
-     * 
+     *
      * This queries this day-of-month for the value for the specified field.
      * If it is not possible to return the value, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * 
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The {@link DayOfMonth.isSupported(TemporalField) supported fields} will return valid
      * values based on this day-of-month.
      * All other {@link ChronoField} instances will throw an {@link UnsupportedTemporalTypeException}.
-     * 
+     *
      * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@link TemporalField.getFrom}
      * passing this as the argument. Whether the value can be obtained,
@@ -307,7 +311,7 @@ export class DayOfMonth extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Checks if the year-month is valid for this year.
-     * 
+     *
      * This method checks whether this day and the input year and month form
      * a valid date.
      *
@@ -321,12 +325,12 @@ export class DayOfMonth extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Queries this day-of-month using the specified query.
-     * 
+     *
      * This queries this day-of-month using the specified query strategy object.
      * The {@link TemporalQuery} object defines the logic to be used to
      * obtain the result. Read the documentation of the query to understand
      * what the result of this method will be.
-     * 
+     *
      * The result of this method is obtained by invoking the
      * {@link TemporalQuery.queryFrom} method on the
      * specified query passing this as the argument.
@@ -347,15 +351,15 @@ export class DayOfMonth extends TemporalAccessor {
 
     /**
      * Adjusts the specified temporal object to have this day-of-month.
-     * 
+     *
      * This returns a temporal object of the same observable type as the input
      * with the day-of-month changed to be the same as this.
-     * 
+     *
      * The adjustment is equivalent to using {@link Temporal.with}
      * passing {@link ChronoField.DAY_OF_MONTH} as the field.
      * If the specified temporal object does not use the ISO calendar system then
      * a {@link DateTimeException} is thrown.
-     * 
+     *
      * In most cases, it is clearer to reverse the calling pattern by using
      * {@link Temporal.with}:
      * ```
@@ -363,7 +367,7 @@ export class DayOfMonth extends TemporalAccessor {
      *   temporal = thisDay.adjustInto(temporal);
      *   temporal = temporal.with(thisDay);
      * ```
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Temporal} temporal - the target object to be adjusted, not null
@@ -383,14 +387,14 @@ export class DayOfMonth extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Combines this day-of-month with a month to create a {@link MonthDay}.
-     * 
+     *
      * This returns a {@link MonthDay} formed from this day and the specified month.
-     * 
+     *
      * This method can be used as part of a chain to produce a date:
      * ```
      *  LocalDate date = day.atMonth(month).atYear(year);
      * ```
-     * 
+     *
      * If this day-of-month is invalid for the month then it will be changed
      * to the last valid date for the month.
      *
@@ -408,9 +412,9 @@ export class DayOfMonth extends TemporalAccessor {
 
     /**
      * Combines this day-of-month with a year-month to create a {@link LocalDate}.
-     * 
+     *
      * This returns a {@link LocalDate} formed from this year and the specified year-month.
-     * 
+     *
      * If this day-of-month is invalid for the year-month then it will be changed
      * to the last valid date for the month.
      *
@@ -425,7 +429,7 @@ export class DayOfMonth extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Compares this day-of-month to another.
-     * 
+     *
      * The comparison is based on the value of the day.
      * It is 'consistent with equals', as defined by {@link Comparable}.
      *

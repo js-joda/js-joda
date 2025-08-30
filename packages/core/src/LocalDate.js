@@ -294,6 +294,10 @@ export class LocalDate extends ChronoLocalDate{
         LocalDate._validate(this._year, this._month, this._day);
     }
 
+    get [Symbol.toStringTag]() {
+        return 'LocalDate';
+    }
+
 
     /**
      *
@@ -1305,7 +1309,7 @@ export class LocalDate extends ChronoLocalDate{
         } else if (time instanceof OffsetTime) {
             return this._atTimeOffsetTime(time);
         } else {
-            throw new IllegalArgumentException(`time must be an instance of LocalTime or OffsetTime${ 
+            throw new IllegalArgumentException(`time must be an instance of LocalTime or OffsetTime${
                 time && time.constructor && time.constructor.name ? `, but is ${time.constructor.name}` : ''}`);
         }
     }

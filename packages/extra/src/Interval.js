@@ -11,14 +11,14 @@ import { requireNonNull, requireInstance } from './assert';
 
 /**
  * An immutable interval of time between two instants.
- * 
+ *
  * An interval represents the time on the time-line between two {@link Instant}s.
  * The class stores the start and end instants, with the start inclusive and the end exclusive.
  * The end instant is always greater than or equal to the start instant.
- * 
+ *
  * The {@link Duration} of an interval can be obtained, but is a separate concept.
  * An interval is connected to the time-line, whereas a duration is not.
- * 
+ *
  * Intervals are not comparable. To compare the length of two intervals, it is
  * generally recommended to compare their durations.
  *
@@ -45,7 +45,7 @@ export class Interval {
 
     /**
      * Obtains an instance of `Interval` from the start and end instant.
-     * 
+     *
      * The end instant must not be before the start instant.
      *
      * @param {Instant} startInclusive - the start instant, inclusive, MIN_DATE treated as unbounded, not null
@@ -67,7 +67,7 @@ export class Interval {
 
     /**
      * Obtains an instance of `Interval` from the start and a duration.
-     * 
+     *
      * The end instant is calculated as the start plus the duration.
      * The duration must not be negative.
      *
@@ -95,7 +95,7 @@ export class Interval {
     /**
      * Obtains an instance of `Interval` from a text string such as
      * `2007-12-03T10:15:30Z/2007-12-04T10:15:30Z`, where the end instant is exclusive.
-     * 
+     *
      * The string must consist of one of the following three formats:
      * - a representations of an {@link ZonedDateTime}, followed by a forward slash,
      *  followed by a representation of a {@link ZonedDateTime}
@@ -154,10 +154,14 @@ export class Interval {
         this._end = endExclusive;
     }
 
+    get [Symbol.toStringTag]() {
+        return 'Interval';
+    }
+
     //-----------------------------------------------------------------------
     /**
      * Gets the start of this time interval, inclusive.
-     * 
+     *
      * This will return {@link Instant#MIN} if the range is unbounded at the start.
      * In this case, the range includes all dates into the far-past.
      *
@@ -169,7 +173,7 @@ export class Interval {
 
     /**
      * Gets the end of this time interval, exclusive.
-     * 
+     *
      * This will return {@link Instant#MAX} if the range is unbounded at the end.
      * In this case, the range includes all dates into the far-future.
      *
@@ -182,7 +186,7 @@ export class Interval {
     //-----------------------------------------------------------------------
     /**
      * Checks if the range is empty.
-     * 
+     *
      * An empty range occurs when the start date equals the inclusive end date.
      *
      * @return {boolean} true if the range is empty
@@ -235,7 +239,7 @@ export class Interval {
     //-----------------------------------------------------------------------
     /**
      * Checks if this interval contains the specified instant.
-     * 
+     *
      * This checks if the specified instant is within the bounds of this interval.
      * If this range has an unbounded start then `contains(Instant.MIN)` returns true.
      * If this range has an unbounded end then `contains(Instant.MAX)` returns true.
@@ -252,7 +256,7 @@ export class Interval {
 
     /**
      * Checks if this interval encloses the specified interval.
-     * 
+     *
      * This checks if the bounds of the specified interval are within the bounds of this interval.
      * An empty interval encloses itself.
      *
@@ -267,7 +271,7 @@ export class Interval {
 
     /**
      * Checks if this interval abuts the specified interval.
-     * 
+     *
      * The result is true if the end of this interval is the start of the other, or vice versa.
      * An empty interval does not abut itself.
      *
@@ -282,10 +286,10 @@ export class Interval {
 
     /**
      * Checks if this interval is connected to the specified interval.
-     * 
+     *
      * The result is true if the two intervals have an enclosed interval in common, even if that interval is empty.
      * An empty interval is connected to itself.
-     * 
+     *
      * This is equivalent to `(overlaps(other) || abuts(other))`.
      *
      * @param {Interval} other - the other interval, not null
@@ -299,10 +303,10 @@ export class Interval {
 
     /**
      * Checks if this interval overlaps the specified interval.
-     * 
+     *
      * The result is true if the the two intervals share some part of the time-line.
      * An empty interval overlaps itself.
-     * 
+     *
      * This is equivalent to `(isConnected(other) && !abuts(other))`.
      *
      * @param {Interval} other - the time interval to compare to, null means a zero length interval now
@@ -317,7 +321,7 @@ export class Interval {
     //-----------------------------------------------------------------------
     /**
      * Calculates the interval that is the intersection of this interval and the specified interval.
-     * 
+     *
      * This finds the intersection of two intervals.
      * This throws an exception if the two intervals are not {@linkplain #isConnected(Interval) connected}.
      *
@@ -346,7 +350,7 @@ export class Interval {
 
     /**
      * Calculates the interval that is the union of this interval and the specified interval.
-     * 
+     *
      * This finds the union of two intervals.
      * This throws an exception if the two intervals are not {@linkplain #isConnected(Interval) connected}.
      *
@@ -375,7 +379,7 @@ export class Interval {
 
     /**
      * Calculates the smallest interval that encloses this interval and the specified interval.
-     * 
+     *
      * The result of this method will {@linkplain #encloses(Interval) enclose}
      * this interval and the specified interval.
      *
@@ -427,7 +431,7 @@ export class Interval {
 
     /**
      * Checks if this interval is after the specified instant.
-     * 
+     *
      * The result is true if the this instant starts after the specified instant.
      * An empty interval behaves as though it is an instant for comparison purposes.
      *
@@ -440,7 +444,7 @@ export class Interval {
 
     /**
      * Checks if this interval is before the specified instant.
-     * 
+     *
      * The result is true if the this instant ends before the specified instant.
      * Since intervals do not include their end points, this will return true if the
      * instant equals the end of the interval.
@@ -456,7 +460,7 @@ export class Interval {
     //-------------------------------------------------------------------------
     /**
      * Checks if this interval is after the specified interval.
-     * 
+     *
      * The result is true if the this instant starts after the end of the specified interval.
      * Since intervals do not include their end points, this will return true if the
      * instant equals the end of the interval.
@@ -471,7 +475,7 @@ export class Interval {
 
     /**
      * Checks if this interval is before the specified interval.
-     * 
+     *
      * The result is true if the this instant ends before the start of the specified interval.
      * Since intervals do not include their end points, this will return true if the
      * two intervals abut.
@@ -487,7 +491,7 @@ export class Interval {
     //-----------------------------------------------------------------------
     /**
      * Obtains the duration of this interval.
-     * 
+     *
      * An `Interval` is associated with two specific instants on the time-line.
      * A `Duration` is simply an amount of time, separate from the time-line.
      *
@@ -501,7 +505,7 @@ export class Interval {
     //-----------------------------------------------------------------------
     /**
      * Checks if this interval is equal to another interval.
-     * 
+     *
      * Compares this `Interval` with another ensuring that the two instants are the same.
      * Only objects of type `Interval` are compared, other types return false.
      *
@@ -531,7 +535,7 @@ export class Interval {
     //-----------------------------------------------------------------------
     /**
      * Outputs this interval as a `String`, such as `2007-12-03T10:15:30/2007-12-04T10:15:30`.
-     * 
+     *
      * The output will be the ISO-8601 format formed by combining the
      * `toString()` methods of the two instants, separated by a forward slash.
      *

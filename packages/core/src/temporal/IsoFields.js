@@ -54,7 +54,7 @@ import { ResolverStyle } from '../format/ResolverStyle';
  * * `ChronoField.DAY_OF_WEEK` - the standard field defining the
  *   day-of-week from Monday (1) to Sunday (7) (see {@link ChronoField})
  * * `WEEK_OF_WEEK_BASED_YEAR` - the week within the week-based-year
- * * `WEEK_BASED_YEAR` - the week-based-year 
+ * * `WEEK_BASED_YEAR` - the week-based-year
  *
  * The week-based-year itself is defined relative to the standard ISO proleptic year.
  * It differs from the standard year in that it always starts on a Monday.
@@ -125,7 +125,7 @@ import { ResolverStyle } from '../format/ResolverStyle';
  * @property {TemporalField} QUARTER_YEARS Unit that represents the concept of a quarter-year.
  * For the ISO calendar system, it is equal to 3 months.
  * The estimated duration of a quarter-year is one quarter of 365.2425 days.
- * 
+ *
  * @typedef {Object} IsoFields
  * @type {Object}
  */
@@ -140,6 +140,9 @@ const QUARTER_DAYS = [0, 90, 181, 273, 0, 91, 182, 274];
  * @private
  */
 class Field extends TemporalField{
+    get [Symbol.toStringTag]() {
+        return 'Field';
+    }
 
     /**
      *
@@ -731,6 +734,10 @@ class Unit extends TemporalUnit {
         super();
         this._name = name;
         this._duration = estimatedDuration;
+    }
+
+    get [Symbol.toStringTag]() {
+        return 'Unit';
     }
 
     /**

@@ -51,6 +51,10 @@ export class ZoneRegion extends ZoneId {
         this._rules = rules;
     }
 
+    get [Symbol.toStringTag]() {
+        return 'ZoneRegion';
+    }
+
     //-----------------------------------------------------------------------
     /**
      *

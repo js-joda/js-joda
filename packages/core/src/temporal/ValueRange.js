@@ -34,17 +34,21 @@ export class ValueRange {
      * @private
      */
     constructor(minSmallest, minLargest, maxSmallest, maxLargest) {
-        assert(!(minSmallest > minLargest), `Smallest minimum value '${minSmallest 
+        assert(!(minSmallest > minLargest), `Smallest minimum value '${minSmallest
         }' must be less than largest minimum value '${minLargest}'`, IllegalArgumentException);
-        assert(!(maxSmallest > maxLargest), `Smallest maximum value '${maxSmallest 
+        assert(!(maxSmallest > maxLargest), `Smallest maximum value '${maxSmallest
         }' must be less than largest maximum value '${maxLargest}'`, IllegalArgumentException);
-        assert(!(minLargest > maxLargest), `Minimum value '${minLargest 
+        assert(!(minLargest > maxLargest), `Minimum value '${minLargest
         }' must be less than maximum value '${maxLargest}'`, IllegalArgumentException);
 
         this._minSmallest = minSmallest;
         this._minLargest = minLargest;
         this._maxLargest = maxLargest;
         this._maxSmallest = maxSmallest;
+    }
+
+    get [Symbol.toStringTag]() {
+        return 'ValueRange';
     }
 
     /**

@@ -27,6 +27,10 @@ import { abstractMethodFail } from '../assert';
  * @interface
  */
 export class TemporalUnit {
+    get [Symbol.toStringTag]() {
+        return 'TemporalUnit';
+    }
+
     /**
      * Gets the duration of this unit, which may be an estimate.
      *

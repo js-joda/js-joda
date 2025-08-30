@@ -11,6 +11,10 @@ export class EnumMap {
         this._map = {};
     }
 
+    get [Symbol.toStringTag]() {
+        return 'EnumMap';
+    }
+
     putAll(otherMap){
         for(const key in otherMap._map){
             this._map[key] = otherMap._map[key];

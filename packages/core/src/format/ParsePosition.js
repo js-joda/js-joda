@@ -13,6 +13,10 @@ export class ParsePosition {
         this._errorIndex = -1;
     }
 
+    get [Symbol.toStringTag]() {
+        return 'ParsePosition';
+    }
+
     getIndex(){
         return this._index;
     }

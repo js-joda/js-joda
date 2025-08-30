@@ -11,6 +11,10 @@ export class StringBuilder {
         this._str = '';
     }
 
+    get [Symbol.toStringTag]() {
+        return 'StringBuilder';
+    }
+
     append(str){
         this._str += str;
         return this;

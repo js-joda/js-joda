@@ -147,6 +147,10 @@ export class OffsetDateTime extends Temporal {
         this._offset = offset;
     }
 
+    get [Symbol.toStringTag]() {
+        return 'OffsetDateTime';
+    }
+
     /**
      *
      * @param {Temporal} temporal

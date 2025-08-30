@@ -14,6 +14,10 @@ export class CompositePrinterParser {
         this._optional = optional;
     }
 
+    get [Symbol.toStringTag]() {
+        return 'CompositePrinterParser';
+    }
+
     /**
      * Returns a copy of this printer-parser with the optional flag changed.
      *

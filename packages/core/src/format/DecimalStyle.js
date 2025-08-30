@@ -21,6 +21,10 @@ export class DecimalStyle {
         this._decimalSeparator = decimalPointChar;
     }
 
+    get [Symbol.toStringTag]() {
+        return 'DecimalStyle';
+    }
+
     positiveSign(){
         return this._positiveSign;
     }

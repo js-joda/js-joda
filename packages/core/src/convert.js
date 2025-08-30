@@ -42,6 +42,10 @@ class ToNativeJsConverter {
         this.instant = zonedDateTime.toInstant();
     }
 
+    get [Symbol.toStringTag]() {
+        return 'ToNativeJsConverter';
+    }
+
     /**
      *
      * @returns {Date}
@@ -63,11 +67,11 @@ class ToNativeJsConverter {
  * converts a LocalDate, LocalDateTime or ZonedDateTime to a native Javascript Date.
  *
  * In a first step the temporal is converted to an Instant by adding implicit values.
- * 
- * A LocalDate is implicit set to a LocalDateTime at start of day. 
- * A LocalDateTime is implicit set to a ZonedDateTime with 
- * the passed zone or if null, with the system default time zone. 
- * A ZonedDateTime is converted to an Instant, if a zone is specified the zonedDateTime is adjusted to this 
+ *
+ * A LocalDate is implicit set to a LocalDateTime at start of day.
+ * A LocalDateTime is implicit set to a ZonedDateTime with
+ * the passed zone or if null, with the system default time zone.
+ * A ZonedDateTime is converted to an Instant, if a zone is specified the zonedDateTime is adjusted to this
  * zone, keeping the same Instant.
  *
  * In a second step the instant is converted to a native Javascript Date

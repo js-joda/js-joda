@@ -123,6 +123,10 @@ export class ZoneId {
         throw new DateTimeException(`not supported operation${temporal}`);
     }
 
+    get [Symbol.toStringTag]() {
+        return 'ZoneId';
+    }
+
     //-----------------------------------------------------------------------
     /**
      * Gets the unique time-zone ID.

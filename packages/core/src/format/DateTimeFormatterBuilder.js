@@ -74,6 +74,10 @@ export class DateTimeFormatterBuilder {
         this._valueParserIndex = -1;
     }
 
+    get [Symbol.toStringTag]() {
+        return 'DateTimeFormatterBuilder';
+    }
+
     /**
      * Private static factory, replaces private threeten constructor
      * Returns a new instance of the builder.
@@ -1436,6 +1440,10 @@ class InstantPrinterParser  {
         this.fractionalDigits = fractionalDigits;
     }
 
+    get [Symbol.toStringTag]() {
+        return 'InstantPrinterParser';
+    }
+
     print(context, buf) {
         // use INSTANT_SECONDS, thus this code is not bound by Instant.MAX
         const inSecs = context.getValue(ChronoField.INSTANT_SECONDS);
@@ -1567,12 +1575,16 @@ class InstantPrinterParser  {
  */
 class DefaultingParser {
     /**
-     * @param {TemporalField} field 
-     * @param {number} value 
+     * @param {TemporalField} field
+     * @param {number} value
      */
     constructor(field, value) {
         this._field = field;
         this._value = value;
+    }
+
+    get [Symbol.toStringTag]() {
+        return 'DefaultingParser';
     }
 
     /**
@@ -1585,10 +1597,10 @@ class DefaultingParser {
     }
 
 
-    /** 
-     * @param {DateTimeParseContext} context 
+    /**
+     * @param {DateTimeParseContext} context
      * @param {string} text
-     * @param {number} position 
+     * @param {number} position
      * @returns {number}
      */
     parse(context, text, position) {

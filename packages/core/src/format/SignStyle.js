@@ -7,6 +7,10 @@
 import { Enum } from '../Enum';
 
 export class SignStyle extends Enum{
+    get [Symbol.toStringTag]() {
+        return 'SignStyle';
+    }
+
     /**
      * Parse helper.
      *

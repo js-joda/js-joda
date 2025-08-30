@@ -55,7 +55,7 @@ export class ComputedDayOfField {
      * Returns a field to access the day of week,
      * computed based on a WeekFields.
      * <p>
-     * The WeekDefintion of the first day of the week is used with
+     * The WeekDefinition of the first day of the week is used with
      * the ISO DAY_OF_WEEK field to compute week boundaries.
      */
     static ofDayOfWeekField(weekDef) {
@@ -112,6 +112,10 @@ export class ComputedDayOfField {
         this._baseUnit = baseUnit;
         this._rangeUnit = rangeUnit;
         this._range = range;
+    }
+
+    get [Symbol.toStringTag]() {
+        return 'ComputedDayOfField';
     }
 
     getFrom(temporal) {
@@ -663,6 +667,10 @@ export class WeekFields {
         this._weekOfWeekBasedYear = ComputedDayOfField.ofWeekOfWeekBasedYearField(this);
         this._weekBasedYear = ComputedDayOfField.ofWeekBasedYearField(this);
         Cldr.load(cldrData('supplemental/likelySubtags.json'));
+    }
+
+    get [Symbol.toStringTag]() {
+        return 'WeekFields';
     }
 
     //-----------------------------------------------------------------------

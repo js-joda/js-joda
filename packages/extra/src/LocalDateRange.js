@@ -20,21 +20,21 @@ const MAXM1 = LocalDate.MAX.minusDays(1);
 
 /**
  * A range of local dates.
- * 
+ *
  * A `LocalDateRange` represents a range of dates, from a start date to an end date.
  * Instances can be constructed from either a half-open or a closed range of dates.
  * Internally, the class stores the start and end dates, with the start inclusive and the end exclusive.
  * The end date is always greater than or equal to the start date.
- * 
+ *
  * The constants `LocalDate.MIN` and `LocalDate.MAX` can be used
  * to indicate an unbounded far-past or far-future. Note that there is no difference
  * between a half-open and a closed range when the end is `LocalDate.MAX`.
  * Empty ranges are allowed.
- * 
+ *
  * No range can end at `LocalDate.MIN` or `LocalDate.MIN.plusDays(1)`.
  * No range can start at `LocalDate.MAX` or `LocalDate.MAX.minusDays(1)`.
  * No empty range can exist at `LocalDate.MIN` or `LocalDate.MAX`.
- * 
+ *
  * Date ranges are not comparable. To compare the length of two ranges, it is
  * generally recommended to compare the number of days they contain.
  *
@@ -70,14 +70,14 @@ export class LocalDateRange {
     //-----------------------------------------------------------------------
     /**
      * Obtains a half-open range of dates, including the start and excluding the end.
-     * 
+     *
      * The range includes the start date and excludes the end date, unless the end is `LocalDate.MAX`.
      * The end date must be equal to or after the start date.
      * This definition permits an empty range located at a specific date.
-     * 
+     *
      * The constants `LocalDate.MIN` and `LocalDate.MAX` can be used
      * to indicate an unbounded far-past or far-future.
-     * 
+     *
      * The start inclusive date must not be `LocalDate.MAX` or `LocalDate.MAX.minusDays(1)`.
      * The end inclusive date must not be `LocalDate.MIN` or `LocalDate.MIN.plusDays(1)`.
      * No empty range can exist at `LocalDate.MIN` or `LocalDate.MAX`.
@@ -100,12 +100,12 @@ export class LocalDateRange {
 
     /**
      * Obtains an instance of `LocalDateRange` from the start and a period.
-     * 
+     *
      * The end date is calculated as the start plus the duration.
      * The period must not be negative.
-     * 
+     *
      * The constant `LocalDate.MIN` can be used to indicate an unbounded far-past.
-     * 
+     *
      * The period must not be zero or one day when the start date is `LocalDate.MIN`.
      *
      * @param {LocalDate} startInclusive - the inclusive start date, not null
@@ -129,17 +129,17 @@ export class LocalDateRange {
 
     /**
      * Obtains a closed range of dates, including the start and end.
-     * 
+     *
      * The range includes the start date and the end date.
      * The end date must be equal to or after the start date.
-     * 
+     *
      * The constants `LocalDate.MIN` and `LocalDate.MAX` can be used
      * to indicate an unbounded far-past or far-future. In addition, an end date of
      * `LocalDate.MAX.minusDays(1)` will also create an unbounded far-future range.
-     * 
+     *
      * The start inclusive date must not be `LocalDate.MAX` or `LocalDate.MAX.minusDays(1)`.
      * The end inclusive date must not be `LocalDate.MIN`.
-     * 
+     *
      * @param {LocalDate} startInclusive - the inclusive start date, not null
      * @param {LocalDate} endInclusive - the inclusive end date, not null
      * @return {LocalDateRange} the closed range
@@ -161,7 +161,7 @@ export class LocalDateRange {
 
     /**
      * Obtains an empty date range located at the specified date.
-     * 
+     *
      * The empty range has zero length and contains no other dates or ranges.
      * An empty range cannot be located at `LocalDate.MIN`, `LocalDate.MIN.plusDays(1)`,
      * `LocalDate.MAX` or `LocalDate.MAX.minusDays(1)`.
@@ -179,7 +179,7 @@ export class LocalDateRange {
 
     /**
      * Obtains a range that is unbounded at the start and end.
-     * 
+     *
      * @return {LocalDateRange} the range, with an unbounded start and unbounded end
      */
     static ofUnbounded() {
@@ -188,10 +188,10 @@ export class LocalDateRange {
 
     /**
      * Obtains a range up to, but not including, the specified end date.
-     * 
+     *
      * The range includes all dates from the unbounded start, denoted by `LocalDate.MIN`, to the end date.
      * The end date is exclusive and cannot be `LocalDate.MIN` or `LocalDate.MIN.plusDays(1)`.
-     * 
+     *
      * @param {LocalDate} endExclusive - the exclusive end date, `LocalDate.MAX` treated as unbounded, not null
      * @return {LocalDateRange} the range, with an unbounded start
      * @throws {DateTimeException} if the end date is `LocalDate.MIN` or  `LocalDate.MIN.plusDays(1)`
@@ -204,10 +204,10 @@ export class LocalDateRange {
 
     /**
      * Obtains a range from and including the specified start date.
-     * 
+     *
      * The range includes all dates from the start date to the unbounded end, denoted by `LocalDate.MAX`.
      * The start date is inclusive and cannot be `LocalDate.MAX` or `LocalDate.MAX.minusDays(1)`.
-     * 
+     *
      * @param {LocalDate} startInclusive - the inclusive start date, `LocalDate.MIN` treated as unbounded, not null
      * @return {LocalDateRange} the range, with an unbounded end
      * @throws {DateTimeException} if the start date is `LocalDate.MAX` or `LocalDate.MAX.minusDays(1)`
@@ -220,7 +220,7 @@ export class LocalDateRange {
     /**
      * Obtains an instance of `LocalDateRange` from a text string such as
      * `2007-12-03/2007-12-04`, where the end date is exclusive.
-     * 
+     *
      * The string must consist of one of the following three formats:
      * <ul>
      * <li>a representations of an {@link LocalDate}, followed by a forward slash,
@@ -292,13 +292,17 @@ export class LocalDateRange {
         this._end = endExclusive;
     }
 
+    get [Symbol.toStringTag]() {
+        return 'LocalDateRange';
+    }
+
     //-----------------------------------------------------------------------
     /**
      * Gets the start date of this range, inclusive.
-     * 
+     *
      * This will return `LocalDate#MIN` if the range is unbounded at the start.
      * In this case, the range includes all dates into the far-past.
-     * 
+     *
      * This never returns `LocalDate.MAX` or `LocalDate.MAX.minusDays(1)`.
      *
      * @return {LocalDate} the start date
@@ -309,10 +313,10 @@ export class LocalDateRange {
 
     /**
      * Gets the end date of this range, exclusive.
-     * 
+     *
      * This will return `LocalDate.MAX` if the range is unbounded at the end.
      * In this case, the range includes all dates into the far-future.
-     * 
+     *
      * This never returns `LocalDate.MIN` or `LocalDate.MIN.plusDays(1)`.
      *
      * @return {LocalDate} the end date, exclusive
@@ -323,14 +327,14 @@ export class LocalDateRange {
 
     /**
      * Gets the end date of this range, inclusive.
-     * 
+     *
      * This will return `LocalDate.MAX` if the range is unbounded at the end.
      * In this case, the range includes all dates into the far-future.
-     * 
+     *
      * This returns the date before the end date.
-     * 
+     *
      * This never returns `LocalDate.MIN`.
-     * 
+     *
      * @return {LocalDate} the end date, inclusive
      */
     endInclusive() {
@@ -343,11 +347,11 @@ export class LocalDateRange {
     //-----------------------------------------------------------------------
     /**
      * Checks if the range is empty.
-     * 
+     *
      * An empty range occurs when the start date equals the end date.
-     * 
+     *
      * An empty range is never unbounded.
-     * 
+     *
      * @return {boolean} true if the range is empty
      */
     isEmpty() {
@@ -356,9 +360,9 @@ export class LocalDateRange {
 
     /**
      * Checks if the start of the range is unbounded.
-     * 
+     *
      * An unbounded range is never empty.
-     * 
+     *
      * @return {boolean} true if start is unbounded
      */
     isUnboundedStart() {
@@ -367,9 +371,9 @@ export class LocalDateRange {
 
     /**
      * Checks if the end of the range is unbounded.
-     * 
+     *
      * An unbounded range is never empty.
-     * 
+     *
      * @return {boolean} true if end is unbounded
      */
     isUnboundedEnd() {
@@ -379,16 +383,16 @@ export class LocalDateRange {
     //-----------------------------------------------------------------------
     /**
      * Returns a copy of this range with the start date adjusted.
-     * 
+     *
      * This returns a new instance with the start date altered.
      * Since `LocalDate` implements `TemporalAdjuster` any
      * local date can simply be passed in.
-     * 
+     *
      * For example, to adjust the start to one week earlier:
      * <pre>
      *  range = range.withStart(date -&gt; date.minus(1, ChronoUnit.WEEKS));
      * </pre>
-     * 
+     *
      * @param {TemporalAdjuster} adjuster - the adjuster to use, not null
      * @return {LocalDateRange} a copy of this range with the start date adjusted
      * @throws {DateTimeException} if the new start date is after the current end date
@@ -399,16 +403,16 @@ export class LocalDateRange {
 
     /**
      * Returns a copy of this range with the end date adjusted.
-     * 
+     *
      * This returns a new instance with the exclusive end date altered.
      * Since `LocalDate` implements `TemporalAdjuster` any
      * local date can simply be passed in.
-     * 
+     *
      * For example, to adjust the end to one week later:
      * <pre>
      *  range = range.withEnd(date -&gt; date.plus(1, ChronoUnit.WEEKS));
      * </pre>
-     * 
+     *
      * @param {TemporalAdjuster} adjuster - the adjuster to use, not null
      * @return {LocalDateRange} a copy of this range with the end date adjusted
      * @throws {DateTimeException} if the new end date is before the current start date
@@ -420,12 +424,12 @@ export class LocalDateRange {
     //-----------------------------------------------------------------------
     /**
      * Checks if this range contains the specified date.
-     * 
+     *
      * This checks if the specified date is within the bounds of this range.
      * If this range is empty then this method always returns false.
      * Else if this range has an unbounded start then `contains(LocalDate#MIN)` returns true.
      * Else if this range has an unbounded end then `contains(LocalDate#MAX)` returns true.
-     * 
+     *
      * @param {LocalDate} date - the date to check for, not null
      * @return {boolean} true if this range contains the date
      */
@@ -436,10 +440,10 @@ export class LocalDateRange {
 
     /**
      * Checks if this range encloses the specified range.
-     * 
+     *
      * This checks if the bounds of the specified range are within the bounds of this range.
      * An empty range encloses itself.
-     * 
+     *
      * @param {LocalDateRange} other - the other range to check for, not null
      * @return {boolean} true if this range contains all dates in the other range
      */
@@ -450,7 +454,7 @@ export class LocalDateRange {
 
     /**
      * Checks if this range abuts the specified range.
-     * 
+     *
      * The result is true if the end of this range is the start of the other, or vice versa.
      * An empty range does not abut itself.
      *
@@ -464,10 +468,10 @@ export class LocalDateRange {
 
     /**
      * Checks if this range is connected to the specified range.
-     * 
+     *
      * The result is true if the two ranges have an enclosed range in common, even if that range is empty.
      * An empty range is connected to itself.
-     * 
+     *
      * This is equivalent to `(overlaps(other) || abuts(other))`.
      *
      * @param {LocalDateRange} other - the other range, not null
@@ -480,10 +484,10 @@ export class LocalDateRange {
 
     /**
      * Checks if this range overlaps the specified range.
-     * 
+     *
      * The result is true if the two ranges share some part of the time-line.
      * An empty range overlaps itself.
-     * 
+     *
      * This is equivalent to `(isConnected(other) && !abuts(other))`.
      *
      * @param {LocalDateRange} other - the time range to compare to, null means a zero length range now
@@ -497,10 +501,10 @@ export class LocalDateRange {
     //-----------------------------------------------------------------------
     /**
      * Calculates the range that is the intersection of this range and the specified range.
-     * 
+     *
      * This finds the intersection of two ranges.
      * This throws an exception if the two ranges are not {@linkplain #isConnected(LocalDateRange) connected}.
-     * 
+     *
      * @param {LocalDateRange} other - the other range to check for, not null
      * @return {LocalDateRange} the range that is the intersection of the two ranges
      * @throws {DateTimeException} if the ranges do not connect
@@ -525,10 +529,10 @@ export class LocalDateRange {
 
     /**
      * Calculates the range that is the union of this range and the specified range.
-     * 
+     *
      * This finds the union of two ranges.
      * This throws an exception if the two ranges are not {@linkplain #isConnected(LocalDateRange) connected}.
-     * 
+     *
      * @param {LocalDateRange} other - the other range to check for, not null
      * @return {LocalDateRange} the range that is the union of the two ranges
      * @throws {DateTimeException} if the ranges do not connect
@@ -553,10 +557,10 @@ export class LocalDateRange {
 
     /**
      * Calculates the smallest range that encloses this range and the specified range.
-     * 
+     *
      * The result of this method will {@linkplain #encloses(LocalDateRange) enclose}
      * this range and the specified range.
-     * 
+     *
      * @param {LocalDateRange} other - the other range to check for, not null
      * @return {LocalDateRange} the range that spans the two ranges
      */
@@ -610,7 +614,7 @@ export class LocalDateRange {
     //-----------------------------------------------------------------------
     /**
      * Checks if this range is after the specified date.
-     * 
+     *
      * The result is true if every date in this range is after the specified date.
      * An empty range behaves as though it is a date for comparison purposes.
      *
@@ -624,7 +628,7 @@ export class LocalDateRange {
 
     /**
      * Checks if this range is before the specified date.
-     * 
+     *
      * The result is true if every date in this range is before the specified date.
      * An empty range behaves as though it is a date for comparison purposes.
      *
@@ -639,7 +643,7 @@ export class LocalDateRange {
     //-----------------------------------------------------------------------
     /**
      * Checks if this range is after the specified range.
-     * 
+     *
      * The result is true if every date in this range is after every date in the specified range.
      * An empty range behaves as though it is a date for comparison purposes.
      *
@@ -653,7 +657,7 @@ export class LocalDateRange {
 
     /**
      * Checks if this range is before the specified range.
-     * 
+     *
      * The result is true if every date in this range is before every date in the specified range.
      * An empty range behaves as though it is a date for comparison purposes.
      *
@@ -668,7 +672,7 @@ export class LocalDateRange {
     //-----------------------------------------------------------------------
     /**
      * Obtains the length of this range in days.
-     * 
+     *
      * This returns the number of days between the start and end dates.
      * Unbounded ranges return `Number.POSITIVE_INFINITY`.
      *
@@ -683,7 +687,7 @@ export class LocalDateRange {
 
     /**
      * Obtains the length of this range as a period.
-     * 
+     *
      * This returns the {@link Period} between the start and end dates.
      * Unbounded ranges throw {@link ArithmeticException}.
      *
@@ -701,7 +705,7 @@ export class LocalDateRange {
     //-----------------------------------------------------------------------
     /**
      * Checks if this range is equal to another range.
-     * 
+     *
      * Compares this `LocalDateRange` with another ensuring that the two dates are the same.
      * Only objects of type `LocalDateRange` are compared, other types return false.
      *
@@ -731,7 +735,7 @@ export class LocalDateRange {
     //-----------------------------------------------------------------------
     /**
      * Outputs this range as a `String`, such as `2007-12-03/2007-12-04`.
-     * 
+     *
      * The output will be the ISO-8601 format formed by combining the
      * `toString()` methods of the two dates, separated by a forward slash.
      *

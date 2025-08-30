@@ -27,6 +27,10 @@ import { Enum } from '../Enum';
  * This is immutable and thread-safe enum.
  */
 export class TextStyle extends Enum {
+    get [Symbol.toStringTag]() {
+        return 'TextStyle';
+    }
+
     /**
      * Checks if the style is stand-alone.
      *

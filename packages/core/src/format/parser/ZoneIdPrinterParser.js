@@ -30,6 +30,10 @@ export class ZoneIdPrinterParser {
         this.description = description;
     }
 
+    get [Symbol.toStringTag]() {
+        return 'ZoneIdPrinterParser';
+    }
+
     //-----------------------------------------------------------------------
     /**
      *
@@ -186,6 +190,10 @@ class ZoneIdTree {
         this.size = size;
         this.treeMap = treeMap;
     }
+
+    get [Symbol.toStringTag]() {
+        return 'ZoneIdTree';
+    }
 }
 
 class ZoneIdTreeMap {
@@ -193,6 +201,10 @@ class ZoneIdTreeMap {
         this.length = length;
         this.isLeaf = isLeaf;
         this._treeMap = {};
+    }
+
+    get [Symbol.toStringTag]() {
+        return 'ZoneIdTreeMap';
     }
 
     add(zoneId){
