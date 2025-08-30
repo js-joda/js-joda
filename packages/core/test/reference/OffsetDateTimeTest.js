@@ -60,7 +60,7 @@ describe('org.threeten.bp.TestOffsetDateTime', () => {
         [2008, 6, 30, 23, 59, 59, 999999999, OFFSET_PONE],
         [-1, 1, 1, 0, 0, 0, 0, OFFSET_PONE],
     ];
-    
+
     let TEST_2008_6_30_11_30_59_000000500;
 
     beforeEach(() => {
@@ -944,7 +944,7 @@ describe('org.threeten.bp.TestOffsetDateTime', () => {
             expect(() => {
                 const c = TEST_2008_6_30_11_30_59_000000500;
                 c.compareTo(new Object());
-            }).to.throw(IllegalArgumentException);
+            }).to.throw(IllegalArgumentException, 'other must be an instance of [object OffsetDateTime], but is [object Object]');
         });
     });
 });

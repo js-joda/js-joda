@@ -11,6 +11,10 @@ import { ChronoField } from './ChronoField';
 import { TemporalQueries } from './TemporalQueries';
 
 export class TemporalAccessor {
+    get [Symbol.toStringTag]() {
+        return 'TemporalAccessor';
+    }
+
     /**
      * Queries this date-time.
      *

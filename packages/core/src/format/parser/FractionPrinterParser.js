@@ -36,13 +36,17 @@ export class FractionPrinterParser {
             throw new IllegalArgumentException(`Maximum width must be from 1 to 9 inclusive but was ${maxWidth}`);
         }
         if (maxWidth < minWidth) {
-            throw new IllegalArgumentException(`Maximum width must exceed or equal the minimum width but ${ 
+            throw new IllegalArgumentException(`Maximum width must exceed or equal the minimum width but ${
                 maxWidth} < ${minWidth}`);
         }
         this.field = field;
         this.minWidth = minWidth;
         this.maxWidth = maxWidth;
         this.decimalPoint = decimalPoint;
+    }
+
+    get [Symbol.toStringTag]() {
+        return 'FractionPrinterParser';
     }
 
     print(context, buf) {

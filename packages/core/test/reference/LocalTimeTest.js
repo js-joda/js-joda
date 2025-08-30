@@ -1943,7 +1943,7 @@ describe('org.threeten.bp.TestLocalTime', function () {
         it('compareToNonLocalTime', () => {
             expect(() => {
                 TEST_12_30_40_987654321.compareTo({});
-            }).to.throw(IllegalArgumentException);
+            }).to.throw(IllegalArgumentException, 'other must be an instance of [object LocalTime], but is [object Object]');
         });
 
     });

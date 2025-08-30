@@ -19,6 +19,10 @@ export class CharLiteralPrinterParser {
         this._literal = literal;
     }
 
+    get [Symbol.toStringTag]() {
+        return 'CharLiteralPrinterParser';
+    }
+
     print(context, buf) {
         buf.append(this._literal);
         return true;

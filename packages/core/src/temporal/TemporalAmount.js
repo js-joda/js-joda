@@ -33,6 +33,10 @@ import { abstractMethodFail } from '../assert';
  * @interface
  */
 export class TemporalAmount {
+    get [Symbol.toStringTag]() {
+        return 'TemporalAmount';
+    }
+
     /**
      * Returns the value of the requested unit.
      * The units returned from {@link getUnits} uniquely define the
@@ -53,7 +57,7 @@ export class TemporalAmount {
     get(unit) {
         abstractMethodFail('get');
     }
-    
+
     /**
      * Returns the list of units uniquely defining the value of this TemporalAmount.
      * The list of {@link TemporalUnits} is defined by the implementation class.
@@ -72,7 +76,7 @@ export class TemporalAmount {
     units() {
         abstractMethodFail('units');
     }
-    
+
     /**
      * Adds to the specified temporal object.
      *
@@ -117,7 +121,7 @@ export class TemporalAmount {
     addTo(temporal) {
         abstractMethodFail('addTo');
     }
-    
+
     /**
      * Subtracts this object from the specified temporal object.
      *
@@ -162,7 +166,7 @@ export class TemporalAmount {
     subtractFrom(temporal) {
         abstractMethodFail('subtractFrom');
     }
-    
+
 }
 
 if (typeof Symbol !== 'undefined' && Symbol.toPrimitive) {

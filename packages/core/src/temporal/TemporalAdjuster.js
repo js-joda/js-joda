@@ -38,6 +38,9 @@ import { abstractMethodFail } from '../assert';
  * @interface
  */
 export class TemporalAdjuster {
+    get [Symbol.toStringTag]() {
+        return 'TemporalAdjuster';
+    }
 
     /**
      * Adjusts the specified temporal object.

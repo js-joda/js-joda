@@ -410,6 +410,10 @@ class DayOfWeekInMonth extends TemporalAdjuster {
         this._dowValue = dow.value();
     }
 
+    get [Symbol.toStringTag]() {
+        return 'DayOfWeekInMonth';
+    }
+
     adjustInto(temporal) {
         if (this._ordinal >= 0) {
             const temp = temporal.with(ChronoField.DAY_OF_MONTH, 1);
@@ -446,6 +450,10 @@ class RelativeDayOfWeek extends TemporalAdjuster {
         this._relative = relative;
         /** The day-of-week value, from 1 to 7. */
         this._dowValue = dayOfWeek.value();
+    }
+
+    get [Symbol.toStringTag]() {
+        return 'RelativeDayOfWeek';
     }
 
     adjustInto(temporal) {

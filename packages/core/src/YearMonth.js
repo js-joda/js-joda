@@ -198,7 +198,7 @@ export class YearMonth extends Temporal {
             }*/
             return YearMonth.of(temporal.get(ChronoField.YEAR), temporal.get(ChronoField.MONTH_OF_YEAR));
         } catch (ex) {
-            throw new DateTimeException(`Unable to obtain YearMonth from TemporalAccessor: ${ 
+            throw new DateTimeException(`Unable to obtain YearMonth from TemporalAccessor: ${
                 temporal}, type ${temporal && temporal.constructor != null ? temporal.constructor.name : ''}`);
         }
     }
@@ -264,6 +264,10 @@ export class YearMonth extends Temporal {
         super();
         this._year = MathUtil.safeToInt(year);
         this._month = MathUtil.safeToInt(month);
+    }
+
+    get [Symbol.toStringTag]() {
+        return 'YearMonth';
     }
 
     /**

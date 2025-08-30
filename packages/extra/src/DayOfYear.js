@@ -14,11 +14,11 @@ const MathUtil = jodaInternal.MathUtil;
 
 /**
  * A day-of-year in the ISO-8601 calendar system.
- * 
+ *
  * {@link DayOfYear} is an immutable date-time object that represents a day-of-year.
  * It is a type-safe way of representing a day-of-year in an application.
  * Any field that can be derived from a day-of-year can be obtained.
- * 
+ *
  * This class does not store or represent a year, month, time or time-zone.
  * For example, the value "51" can be stored in a {@link DayOfYear} and
  * would represent the 51st day of any year.
@@ -30,7 +30,7 @@ export class DayOfYear extends TemporalAccessor {
      * - if called with an instance of {@link ZoneId}, then {@link DayOfYear._nowZoneId} is executed;
      * - if called with an instance of {@link Clock}, then {@link DayOfYear._nowClock} is executed;
      * - otherwise {@link IllegalArgumentException} is thrown.
-     * 
+     *
      * @param {?(ZoneId|Clock)} zoneIdOrClock
      * @return {DayOfYear}
      */
@@ -55,11 +55,11 @@ export class DayOfYear extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Obtains the current day-of-year from the system clock in the default time-zone.
-     * 
+     *
      * This will query the {@link Clock.systemDefaultZone} system clock in the default
      * time-zone to obtain the current day-of-year.
      * The zone and offset will be set based on the time-zone in the clock.
-     * 
+     *
      * Using this method will prevent the ability to use an alternate clock for testing
      * because the clock is hard-coded.
      *
@@ -72,10 +72,10 @@ export class DayOfYear extends TemporalAccessor {
 
     /**
      * Obtains the current day-of-year from the system clock in the specified time-zone.
-     * 
+     *
      * This will query the {@link Clock.system} system clock to obtain the current day-of-year.
      * Specifying the time-zone avoids dependence on the default time-zone.
-     * 
+     *
      * Using this method will prevent the ability to use an alternate clock for testing
      * because the clock is hard-coded.
      *
@@ -89,7 +89,7 @@ export class DayOfYear extends TemporalAccessor {
 
     /**
      * Obtains the current day-of-year from the specified clock.
-     * 
+     *
      * This will query the specified clock to obtain the current day-of-year.
      * Using this method allows the use of an alternate clock for testing.
      * The alternate clock may be introduced using {@link Clock} dependency injection.
@@ -106,7 +106,7 @@ export class DayOfYear extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Obtains an instance of {@link DayOfYear}.
-     * 
+     *
      * A day-of-year object represents one of the 366 days of the year, from 1 to 366.
      *
      * @param {number} dayOfYear - the day-of-year to represent, from 1 to 366
@@ -124,15 +124,15 @@ export class DayOfYear extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Obtains an instance of {@link DayOfYear} from a date-time object.
-     * 
+     *
      * This obtains a day-of-year based on the specified temporal.
      * A {@link TemporalAccessor} represents an arbitrary set of date and time information,
      * which this factory converts to an instance of {@link DayOfYear}.
-     * 
+     *
      * The conversion extracts the {@link ChronoField.DAY_OF_YEAR} day-of-year field.
      * The extraction is only permitted if the temporal object has an ISO
      * chronology, or can be converted to a {@link LocalDate}.
-     * 
+     *
      * This method matches the signature of the functional interface {@link TemporalQuery}
      * allowing it to be used in queries via method reference, {@link DayOfYear.from}.
      *
@@ -157,7 +157,7 @@ export class DayOfYear extends TemporalAccessor {
         }
     }
 
-    
+
     //-----------------------------------------------------------------------
     /**
      * Constructor, previously validated.
@@ -168,6 +168,10 @@ export class DayOfYear extends TemporalAccessor {
     constructor(dayOfYear) {
         super();
         this._day = MathUtil.safeToInt(dayOfYear);
+    }
+
+    get [Symbol.toStringTag]() {
+        return 'DayOfYear';
     }
 
     //-----------------------------------------------------------------------
@@ -183,18 +187,18 @@ export class DayOfYear extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Checks if the specified field is supported.
-     * 
+     *
      * This checks if this day-of-year can be queried for the specified field.
      * If false, then calling the {@link DayOfYear.range} range,
      * {@link DayOfYear.get} get and {@link DayOfYear.getLong} getLong
      * methods will throw an exception.
-     * 
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The supported fields are:
      * - {@link ChronoField.DAY_OF_YEAR}
-     * 
+     *
      * All other {@link ChronoField} instances will return false.
-     * 
+     *
      * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@link TemporalField.isSupportedBy}
      * passing this as the argument.
@@ -213,17 +217,17 @@ export class DayOfYear extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Gets the range of valid values for the specified field.
-     * 
+     *
      * The range object expresses the minimum and maximum valid values for a field.
      * This day-of-year is used to enhance the accuracy of the returned range.
      * If it is not possible to return the range, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * 
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The {@link DayOfYear.isSupported} supported fields will return
      * appropriate range instances.
      * All other {@code ChronoField} instances will throw an {@link UnsupportedTemporalTypeException}.
-     * 
+     *
      * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@link TemporalField.rangeRefinedBy}
      * passing this as the argument.
@@ -244,17 +248,17 @@ export class DayOfYear extends TemporalAccessor {
 
     /**
      * Gets the value of the specified field from this day-of-year as an `int`.
-     * 
+     *
      * This queries this day-of-year for the value for the specified field.
      * The returned value will always be within the valid range of values for the field.
      * If it is not possible to return the value, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * 
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The {@link DayOfYear.isSupported} supported fields will return valid
      * values based on this day-of-year.
      * All other {@link ChronoField} instances will throw an {@link UnsupportedTemporalTypeException}.
-     * 
+     *
      * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@link TemporalField.getFrom}
      * passing this as the argument. Whether the value can be obtained,
@@ -274,16 +278,16 @@ export class DayOfYear extends TemporalAccessor {
 
     /**
      * Gets the value of the specified field from this day-of-year as a `long`.
-     * 
+     *
      * This queries this day-of-year for the value for the specified field.
      * If it is not possible to return the value, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * 
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The {@link DayOfYear.isSupported} supported fields will return valid
      * values based on this day-of-year.
      * All other {@code ChronoField} instances will throw an {@link UnsupportedTemporalTypeException}.
-     * 
+     *
      * If the field is not a {@link ChronoField}, then the result of this method
      * is obtained by invoking {@link TemporalField.getFrom}
      * passing this as the argument. Whether the value can be obtained,
@@ -308,7 +312,7 @@ export class DayOfYear extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Checks if the year is valid for this day-of-year.
-     * 
+     *
      * This method checks whether this day-of-yearand the input year form
      * a valid date. This can only return false for day-of-year 366.
      *
@@ -322,12 +326,12 @@ export class DayOfYear extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Queries this day-of-year using the specified query.
-     * 
+     *
      * This queries this day-of-year using the specified query strategy object.
      * The {@link TemporalQuery} object defines the logic to be used to
      * obtain the result. Read the documentation of the query to understand
      * what the result of this method will be.
-     * 
+     *
      * The result of this method is obtained by invoking the
      * {@link TemporalQuery.queryFrom} method on the
      * specified query passing this as the argument.
@@ -348,15 +352,15 @@ export class DayOfYear extends TemporalAccessor {
 
     /**
      * Adjusts the specified temporal object to have this day-of-year.
-     * 
+     *
      * This returns a temporal object of the same observable type as the input
      * with the day-of-year changed to be the same as this.
-     * 
+     *
      * The adjustment is equivalent to using {@link Temporal.with}
      * passing {@link ChronoField.DAY_OF_YEAR} as the field.
      * If the specified temporal object does not use the ISO calendar system then
      * a {@link DateTimeException} is thrown.
-     * 
+     *
      * In most cases, it is clearer to reverse the calling pattern by using
      * {@link Temporal.with}:
      * ```
@@ -364,7 +368,7 @@ export class DayOfYear extends TemporalAccessor {
      *   temporal = thisDay.adjustInto(temporal);
      *   temporal = temporal.with(thisDay);
      * ```
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Temporal} temporal - the target object to be adjusted, not null
@@ -384,14 +388,14 @@ export class DayOfYear extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Combines this day-of-year with a year to create a {@link LocalDate}.
-     * 
+     *
      * This returns a {@link LocalDate} formed from this day and the specified year.
-     * 
+     *
      * This method can be used as part of a chain to produce a date:
      * ```
      *  LocalDate date = day.atYear(year);
      * ```
-     * 
+     *
      * The day-of-year value 366 is only valid in a leap year.
      *
      * @param {Year|number} year - the year to use ({@link Year} or `int`), not null
@@ -410,7 +414,7 @@ export class DayOfYear extends TemporalAccessor {
     //-----------------------------------------------------------------------
     /**
      * Compares this day-of-year to another.
-     * 
+     *
      * The comparison is based on the value of the day.
      * It is "consistent with equals", as defined by {@link Comparable}.
      *

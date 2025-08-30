@@ -46,6 +46,10 @@ export class ZoneOffset extends ZoneId {
         this._id = ZoneOffset._buildId(totalSeconds);
     }
 
+    get [Symbol.toStringTag]() {
+        return 'ZoneOffset';
+    }
+
     /**
      *
      * @returns {number}
@@ -106,7 +110,7 @@ export class ZoneOffset extends ZoneId {
      */
     static _validate(hours, minutes, seconds) {
         if (hours < -18 || hours > 18) {
-            throw new DateTimeException(`Zone offset hours not in valid range: value ${hours 
+            throw new DateTimeException(`Zone offset hours not in valid range: value ${hours
             } is not in the range -18 to 18`);
         }
         if (hours > 0) {
@@ -121,11 +125,11 @@ export class ZoneOffset extends ZoneId {
             throw new DateTimeException('Zone offset minutes and seconds must have the same sign');
         }
         if (Math.abs(minutes) > 59) {
-            throw new DateTimeException(`Zone offset minutes not in valid range: abs(value) ${ 
+            throw new DateTimeException(`Zone offset minutes not in valid range: abs(value) ${
                 Math.abs(minutes)} is not in the range 0 to 59`);
         }
         if (Math.abs(seconds) > 59) {
-            throw new DateTimeException(`Zone offset seconds not in valid range: abs(value) ${ 
+            throw new DateTimeException(`Zone offset seconds not in valid range: abs(value) ${
                 Math.abs(seconds)} is not in the range 0 to 59`);
         }
         if (Math.abs(hours) === 18 && (Math.abs(minutes) > 0 || Math.abs(seconds) > 0)) {

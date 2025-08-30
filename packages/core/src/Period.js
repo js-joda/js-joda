@@ -71,7 +71,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
      */
     constructor(years, months, days){
         super();
-        
+
         const _years = MathUtil.safeToInt(years);
         const _months =  MathUtil.safeToInt(months);
         const _days = MathUtil.safeToInt(days);
@@ -85,7 +85,7 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
             }
             return Period.ZERO;
         }
-        
+
         /**
          * The number of years.
          */
@@ -98,6 +98,10 @@ export class Period extends TemporalAmount /* extends ChronoPeriod */ {
          * The number of days.
          */
         this._days = _days;
+    }
+
+    get [Symbol.toStringTag]() {
+        return 'Period';
     }
 
     //-----------------------------------------------------------------------

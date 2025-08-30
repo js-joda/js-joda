@@ -308,6 +308,10 @@ implements Temporal, TemporalAdjuster, Serializable */ {
         this._time = time;
     }
 
+    get [Symbol.toStringTag]() {
+        return 'LocalDateTime';
+    }
+
     /**
      * Returns a copy of this date-time with the new date and time, checking
      * to see if a new object is in fact required.

@@ -75,6 +75,10 @@ export class ZoneOffsetTransition {
         this._offsetAfter = offsetAfter;
     }
 
+    get [Symbol.toStringTag]() {
+        return 'ZoneOffsetTransition';
+    }
+
     //-----------------------------------------------------------------------
     /**
      * Gets the transition instant.
@@ -281,8 +285,8 @@ export class ZoneOffsetTransition {
      * @return {string} a string for debugging, not null
      */
     toString() {
-        return `Transition[${this.isGap() ? 'Gap' : 'Overlap' 
-        } at ${this._transition.toString()}${this._offsetBefore.toString() 
+        return `Transition[${this.isGap() ? 'Gap' : 'Overlap'
+        } at ${this._transition.toString()}${this._offsetBefore.toString()
         } to ${this._offsetAfter}]`;
     }
 

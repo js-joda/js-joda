@@ -51,6 +51,10 @@ export class NumberPrinterParser {
         this._subsequentWidth = subsequentWidth;
     }
 
+    get [Symbol.toStringTag]() {
+        return 'NumberPrinterParser';
+    }
+
     field(){ return this._field;}
     minWidth(){ return this._minWidth;}
     maxWidth(){ return this._maxWidth;}
@@ -81,8 +85,8 @@ export class NumberPrinterParser {
         const symbols = context.symbols();
         let str = `${Math.abs(value)}`;
         if (str.length > this._maxWidth) {
-            throw new DateTimeException(`Field ${this._field 
-            } cannot be printed as the value ${value 
+            throw new DateTimeException(`Field ${this._field
+            } cannot be printed as the value ${value
             } exceeds the maximum print width of ${this._maxWidth}`);
         }
         str = symbols.convertNumberToI18N(str);
@@ -106,8 +110,8 @@ export class NumberPrinterParser {
                     buf.append(symbols.negativeSign());
                     break;
                 case SignStyle.NOT_NEGATIVE:
-                    throw new DateTimeException(`Field ${this._field 
-                    } cannot be printed as the value ${value 
+                    throw new DateTimeException(`Field ${this._field
+                    } cannot be printed as the value ${value
                     } cannot be negative according to the SignStyle`);
             }
         }
@@ -276,6 +280,10 @@ export class ReducedPrinterParser extends NumberPrinterParser {
         }
         this._baseValue = baseValue;
         this._baseDate = baseDate;
+    }
+
+    get [Symbol.toStringTag]() {
+        return 'ReducedPrinterParser';
     }
 
     /**

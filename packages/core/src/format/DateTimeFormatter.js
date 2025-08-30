@@ -305,6 +305,10 @@ export class DateTimeFormatter {
         this._zone = zone;
     }
 
+    get [Symbol.toStringTag]() {
+        return 'DateTimeFormatter';
+    }
+
     locale() {
         return this._locale;
     }
@@ -534,10 +538,10 @@ export class DateTimeFormatter {
                 abbr = text;
             }
             if (pos.getErrorIndex() >= 0) {
-                throw new DateTimeParseException(`Text '${abbr}' could not be parsed at index ${ 
+                throw new DateTimeParseException(`Text '${abbr}' could not be parsed at index ${
                     pos.getErrorIndex()}`, text, pos.getErrorIndex());
             } else {
-                throw new DateTimeParseException(`Text '${abbr}' could not be parsed, unparsed text found at index ${ 
+                throw new DateTimeParseException(`Text '${abbr}' could not be parsed, unparsed text found at index ${
                     pos.getIndex()}`, text, pos.getIndex());
             }
         }

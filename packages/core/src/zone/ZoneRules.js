@@ -24,6 +24,10 @@ export class ZoneRules {
         return new Fixed(offset);
     }
 
+    get [Symbol.toStringTag]() {
+        return 'ZoneRules';
+    }
+
 
     //-----------------------------------------------------------------------
     /**
@@ -373,6 +377,10 @@ class Fixed extends ZoneRules{
     constructor(offset){
         super();
         this._offset = offset;
+    }
+
+    get [Symbol.toStringTag]() {
+        return 'Fixed';
     }
 
     isFixedOffset(){
