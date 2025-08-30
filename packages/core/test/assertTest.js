@@ -35,15 +35,23 @@ describe('assert.js', () => {
     });
 
     it('requireInstance', function () {
-        class Bar {}
-        class Foo {}
+        class Bar {
+            get [Symbol.toStringTag]() {
+                return 'Bar';
+            }
+        }
+        class Foo {
+            get [Symbol.toStringTag]() {
+                return 'Foo';
+            }
+        }
 
         requireInstance(new Foo(), Foo, 'foo');
 
-        expect(() => {requireInstance({}, Foo, 'nameOfObject');}).to.throw(IllegalArgumentException);
-        expect(() => {requireInstance(Foo, Foo, 'nameOfObject');}).to.throw(IllegalArgumentException);
-        expect(() => {requireInstance(new Bar(), Foo, 'nameOfObject');}).to.throw(IllegalArgumentException);
-        expect(() => {requireInstance(null, Foo, 'nameOfObject');}).to.throw(IllegalArgumentException);
-        expect(() => {requireInstance(undefined, Foo, 'nameOfObject');}).to.throw(IllegalArgumentException);
+        expect(() => {requireInstance({}, Foo, 'nameOfObject');}).to.throw(IllegalArgumentException, 'nameOfObject must be an instance of [object Foo], but is [object Object]');
+        expect(() => {requireInstance(Foo, Foo, 'nameOfObject');}).to.throw(IllegalArgumentException, 'nameOfObject must be an instance of [object Foo], but is [object Function]');
+        expect(() => {requireInstance(new Bar(), Foo, 'nameOfObject');}).to.throw(IllegalArgumentException, 'nameOfObject must be an instance of [object Foo], but is [object Bar]');
+        expect(() => {requireInstance(null, Foo, 'nameOfObject');}).to.throw(IllegalArgumentException, 'nameOfObject must be an instance of [object Foo], but is [object Null]');
+        expect(() => {requireInstance(undefined, Foo, 'nameOfObject');}).to.throw(IllegalArgumentException, 'nameOfObject must be an instance of [object Foo], but is [object Undefined]');
     });
 });

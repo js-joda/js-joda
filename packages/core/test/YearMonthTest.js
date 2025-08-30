@@ -20,17 +20,17 @@ import { YearMonth } from '../src/YearMonth';
 /* these are not covered by the threetenbp ported tests */
 describe('js-joda YearMonth', () => {
     describe('from', () => {
-        
+
         it('should return the same YearMonth it has been called with', () => {
             const yearMonth = new YearMonth(2016, 1);
             const newYearMonth = YearMonth.from(yearMonth);
             expect(newYearMonth).to.equal(yearMonth);
         });
-        
+
     });
-    
+
     describe('isSupported', () => {
-        
+
         it('should return true for supported ChronoUnits', () => {
             const yearMonth = new YearMonth(2016, 1);
             expect(yearMonth.isSupported(ChronoUnit.MONTHS)).to.be.true;
@@ -40,21 +40,21 @@ describe('js-joda YearMonth', () => {
             expect(yearMonth.isSupported(ChronoUnit.MILLENNIA)).to.be.true;
             expect(yearMonth.isSupported(ChronoUnit.ERAS)).to.be.true;
         });
-        
+
         it('should return false for unsupported ChronoUnits', () => {
             const yearMonth = new YearMonth(2016, 1);
             expect(yearMonth.isSupported(ChronoUnit.HOUR_OF_DAY)).to.be.false;
             expect(yearMonth.isSupported(ChronoUnit.DAY_OF_YEAR)).to.be.false;
             expect(yearMonth.isSupported(null)).to.be.false;
         });
-        
+
         it('should return false for unsupported ChronoFields', () => {
             const yearMonth = new YearMonth(2016, 1);
             expect(yearMonth.isSupported(ChronoField.HOUR_OF_DAY)).to.be.false;
             expect(yearMonth.isSupported(ChronoField.DAY_OF_YEAR)).to.be.false;
             expect(yearMonth.isSupported(null)).to.be.false;
         });
-        
+
         it('should return corresponding value of isSupportedBy for TemporalFields', () => {
             const yearMonth = new YearMonth(2016, 1);
             let field = new TemporalField();
@@ -68,7 +68,7 @@ describe('js-joda YearMonth', () => {
             };
             expect(yearMonth.isSupported(field)).to.be.true;
         });
-        
+
         it('should return corresponding value of isSupportedBy for TemporalUnits', () => {
             const yearMonth = new YearMonth(2016, 1);
             let unit = new TemporalUnit();
@@ -82,7 +82,7 @@ describe('js-joda YearMonth', () => {
             };
             expect(yearMonth.isSupported(unit)).to.be.true;
         });
-        
+
     });
 
     describe('with(TemporalField, value)', () => {
@@ -97,7 +97,7 @@ describe('js-joda YearMonth', () => {
             expect(test.with(ChronoField.ERA, 0)).to.eql(YearMonth.of(-2014, 12));
             expect(test.with(ChronoField.ERA, 1)).to.eql(YearMonth.of(2015, 12));
         });
-        
+
         it('should return corresponding value of adjustInto for TemporalField', () => {
             const yearMonth = new YearMonth(2016, 1);
             const field = new TemporalField();
@@ -106,30 +106,30 @@ describe('js-joda YearMonth', () => {
             };
             expect(yearMonth.with(field, 1)).to.eql('Test Value');
         });
-        
+
         it('should fail if field is null', () => {
             expect(() => {
                 const test = YearMonth.of(2016, 1);
                 test.with(null, 1);
             }).to.throw(NullPointerException);
         });
-        
+
         it('should fail for unsupported ChronoField', () => {
             expect(() => {
                 const test = YearMonth.of(2016, 1);
                 test.with(ChronoField.HOUR_OF_DAY, 1);
             }).to.throw(UnsupportedTemporalTypeException);
         });
-        
+
         it('should fail if field is not a TemporalField', () => {
             expect(() => {
                 const test = YearMonth.of(2016, 1);
                 test.with({}, 1);
-            }).to.throw(IllegalArgumentException);
+            }).to.throw(IllegalArgumentException, 'field must be an instance of [object TemporalField], but is [object Object]');
         });
-        
+
     });
-    
+
     describe('plus', () => {
         it('should add the given values', () => {
             const test = YearMonth.of(2015, 12);
@@ -142,7 +142,7 @@ describe('js-joda YearMonth', () => {
             assertEquals(test.plus(1, ChronoUnit.MILLENNIA), YearMonth.of(3015, 12));
             assertEquals(test.plus(0, ChronoUnit.ERAS), YearMonth.of(2015, 12));
         });
-        
+
         it('should return corresponding value of addTo for TemporalUnit', () => {
             const yearMonth = new YearMonth(2016, 1);
             const unit = new TemporalUnit();
@@ -151,21 +151,21 @@ describe('js-joda YearMonth', () => {
             };
             expect(yearMonth.plus(1, unit)).to.eql('Test Value');
         });
-        
+
         it('should fail if first argument is null', () => {
             expect(() => {
                 const test = YearMonth.of(2016, 1);
                 test.plus(null);
             }).to.throw(NullPointerException);
         });
-        
+
         it('should fail if second argument is null', () => {
             expect(() => {
                 const test = YearMonth.of(2016, 1);
                 test.plus(1, null);
             }).to.throw(NullPointerException);
         });
-        
+
         it('should fail for unsupported ChronoUnit', () => {
             expect(() => {
                 const test = YearMonth.of(2016, 1);
@@ -173,7 +173,7 @@ describe('js-joda YearMonth', () => {
             }).to.throw(UnsupportedTemporalTypeException);
         });
     });
-    
+
     describe('minus', () => {
         it('should subtract the given values', () => {
             const test = YearMonth.of(2015, 12);
@@ -186,14 +186,14 @@ describe('js-joda YearMonth', () => {
             assertEquals(test.minus(1, ChronoUnit.MILLENNIA), YearMonth.of(1015, 12));
             assertEquals(test.minus(1, ChronoUnit.ERAS), YearMonth.of(-2014, 12));
         });
-        
+
         it('should fail if first argument is null', () => {
             expect(() => {
                 const test = YearMonth.of(2016, 1);
                 test.minus(null);
             }).to.throw(NullPointerException);
         });
-        
+
         it('should fail if second argument is null', () => {
             expect(() => {
                 const test = YearMonth.of(2016, 1);
@@ -201,7 +201,7 @@ describe('js-joda YearMonth', () => {
             }).to.throw(NullPointerException);
         });
     });
-    
+
     describe('until', () => {
         it('should return result for the given values', () => {
             const test = YearMonth.of(2015, 12);
@@ -213,7 +213,7 @@ describe('js-joda YearMonth', () => {
             assertEquals(test.until(end, ChronoUnit.MILLENNIA), 0);
             assertEquals(test.until(end, ChronoUnit.ERAS), 0);
         });
-        
+
         it('should return corresponding value of addTo for TemporalUnit', () => {
             const test = YearMonth.of(2015, 12);
             const end = YearMonth.of(2016, 12);
@@ -223,14 +223,14 @@ describe('js-joda YearMonth', () => {
             };
             expect(test.until(end, unit)).to.eql('Test Value');
         });
-        
+
         it('should fail if first argument is null', () => {
             expect(() => {
                 const test = YearMonth.of(2015, 12);
                 test.until(null, ChronoUnit.YEARS);
             }).to.throw(NullPointerException);
         });
-        
+
         it('should fail if second argument is null', () => {
             expect(() => {
                 const test = YearMonth.of(2015, 12);
@@ -238,7 +238,7 @@ describe('js-joda YearMonth', () => {
                 test.until(end, null);
             }).to.throw(NullPointerException);
         });
-        
+
         it('should fail for unsupported ChronoUnit', () => {
             expect(() => {
                 const test = YearMonth.of(2015, 12);
@@ -247,7 +247,7 @@ describe('js-joda YearMonth', () => {
             }).to.throw(UnsupportedTemporalTypeException);
         });
     });
-    
+
     describe('atEndOfMonth', () => {
         it('should return end of month', () => {
             assertEquals(YearMonth.of(2016, 1).atEndOfMonth(), LocalDate.of(2016, 1, 31));
@@ -264,9 +264,9 @@ describe('js-joda YearMonth', () => {
             assertEquals(YearMonth.of(2016, 12).atEndOfMonth(), LocalDate.of(2016, 12, 31));
         });
     });
-    
+
     describe('query', () => {
-        
+
         it('should return corresponding value of queryFrom for TemporalQuery', () => {
             const test = YearMonth.of(2015, 12);
             const query = new TemporalQuery();
@@ -276,5 +276,5 @@ describe('js-joda YearMonth', () => {
             expect(test.query(query)).to.eql('Test Value');
         });
     });
-    
+
 });

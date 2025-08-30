@@ -36,7 +36,7 @@ class ToNativeJsConverter {
                 zonedDateTime = temporal.withZoneSameInstant(zone);
             }
         } else {
-            throw new IllegalArgumentException(`unsupported instance for convert operation:${temporal}`);
+            throw new IllegalArgumentException(`unsupported instance for convert operation:${Object.prototype.toString.call(temporal)}`);
         }
 
         this.instant = zonedDateTime.toInstant();

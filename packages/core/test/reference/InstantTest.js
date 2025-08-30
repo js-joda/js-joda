@@ -803,9 +803,9 @@ describe('org.threeten.bp.TestInstant', () => {
         it('instant to UTC zdt and back are equal', () => {
             const base = Instant.now();
             expect(base.equals(base.atZone(ZoneOffset.UTC).toInstant()));
-        });    
+        });
     });
-    
+
     describe('plusSeconds', () => {
         let dataProviderPlus;
         beforeEach(() => {
@@ -1996,7 +1996,7 @@ describe('org.threeten.bp.TestInstant', () => {
             expect(() => {
                 const c = Instant.ofEpochSecond(0);
                 c.compareTo({});
-            }).to.throw(IllegalArgumentException);
+            }).to.throw(IllegalArgumentException, 'otherInstant must be an instance of [object Instant], but is [object Object]');
         });
 
     });

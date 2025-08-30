@@ -68,7 +68,7 @@ export class OffsetDateTime extends Temporal {
                 const now = clockOrZone.instant(); // called once
                 return OffsetDateTime.ofInstant(now, clockOrZone.zone().rules().offset(now));
             } else {
-                throw new IllegalArgumentException('clockOrZone must be an instance of ZoneId or Clock');
+                throw new IllegalArgumentException(`clockOrZone must be an instance of ZoneId or Clock, but it is ${Object.prototype.toString.call(clockOrZone)}`);
             }
         }
     }

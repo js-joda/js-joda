@@ -68,7 +68,7 @@ describe('convert', () => {
     it('should fail if temporal is not an instance of LocalDate, LocalDateTime or ZonedDateTime', () => {
         expect(()=>{
             convert(new Date()).toDate();
-        }).to.throw(IllegalArgumentException);
+        }).to.throw(IllegalArgumentException, 'unsupported instance for convert operation:[object Date]');
     });
 
 });
