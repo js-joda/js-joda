@@ -4,7 +4,7 @@
  */
 
 import { expect } from 'chai';
-import { assertEquals, isIE11Browser } from './testUtils';
+import { assertEquals } from './testUtils';
 
 import './_init';
 
@@ -168,9 +168,7 @@ describe('js-joda Period', () => {
     });
 
     describe('when coercing to a primitive', () => {
-        const itNotIE11 = isIE11Browser() ? it.skip : it;
-
-        itNotIE11('should throw an exception if used numerically', () => {
+        it('should throw an exception if used numerically', () => {
             const per1 = Period.ofDays(1);
             const per2 = Period.ofMonths(1);
 
@@ -179,7 +177,7 @@ describe('js-joda Period', () => {
             expect(() => per1 < per2).to.throw(TypeError);
         });
 
-        itNotIE11('should not throw if used in string concatenation', () => {
+        it('should not throw if used in string concatenation', () => {
             const per1 = Period.ofDays(1);
             const per2 = Period.ofMonths(1);
 
