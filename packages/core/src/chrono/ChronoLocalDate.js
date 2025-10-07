@@ -181,6 +181,9 @@ import { LocalDate } from '../LocalDate';
  * Since there are no default methods in JDK 7, an abstract class is used.
  */
 export class ChronoLocalDate extends Temporal {
+    get [Symbol.toStringTag]() {
+        return 'ChronoLocalDate';
+    }
 
     isSupported(fieldOrUnit) {
         if (fieldOrUnit instanceof ChronoField) {

@@ -42,6 +42,10 @@ export class IsoChronology extends Enum{
         return ((prolepticYear & 3) === 0) && ((prolepticYear % 100) !== 0 || (prolepticYear % 400) === 0);
     }
 
+    get [Symbol.toStringTag]() {
+        return 'IsoChronology';
+    }
+
     /**
      * Updates the map of field-values during resolution.
      *

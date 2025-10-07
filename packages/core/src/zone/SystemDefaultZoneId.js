@@ -13,6 +13,10 @@ export class SystemDefaultZoneId extends ZoneId {
         this._rules = new SystemDefaultZoneRules();
     }
 
+    get [Symbol.toStringTag]() {
+        return 'SystemDefaultZoneId';
+    }
+
     rules(){
         return this._rules;
     }

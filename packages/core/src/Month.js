@@ -48,7 +48,11 @@ export class Month extends TemporalAccessor {
         super();
         this._value = MathUtil.safeToInt(value);
         this._name = name;
-    }    
+    }
+
+    get [Symbol.toStringTag]() {
+        return 'Month';
+    }
 
     /**
      *
@@ -57,7 +61,7 @@ export class Month extends TemporalAccessor {
     value() {
         return this._value;
     }
-    
+
     /**
      *
      * @returns {number}
@@ -72,7 +76,7 @@ export class Month extends TemporalAccessor {
      */
     name(){
         return this._name;
-    }  
+    }
 
     /**
      * Gets the textual representation, such as 'Jan' or 'December'.
@@ -482,7 +486,7 @@ export class Month extends TemporalAccessor {
         */
         return temporal.with(ChronoField.MONTH_OF_YEAR, this.value());
     }
-    
+
     /**
      * Compares this Month to another Month.
      *
@@ -491,18 +495,18 @@ export class Month extends TemporalAccessor {
      *
      * @param {Month} other  the other year to compare to, not null
      * @return {number} the comparator value, negative if less, positive if greater
-     */    
+     */
     compareTo(other) {
         requireNonNull(other, 'other');
         requireInstance(other, Month, 'other');
         return this._value - other._value;
-    }    
-    
+    }
+
     /**
      *
      * @returns {boolean}
      */
-    equals(other){    
+    equals(other){
         return this === other;
     }
 
@@ -520,7 +524,7 @@ export class Month extends TemporalAccessor {
         }
         return Month.of(ordinal+1);
     }
-    
+
 
     /**
      * replacement for enum values
@@ -571,7 +575,7 @@ export class Month extends TemporalAccessor {
             }*/
             return Month.of(temporal.get(ChronoField.MONTH_OF_YEAR));
         } catch (ex) {
-            throw new DateTimeException(`Unable to obtain Month from TemporalAccessor: ${ 
+            throw new DateTimeException(`Unable to obtain Month from TemporalAccessor: ${
                 temporal} of type ${temporal && temporal.constructor != null ? temporal.constructor.name : ''}`, ex);
         }
     }

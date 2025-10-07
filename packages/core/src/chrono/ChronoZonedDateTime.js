@@ -14,6 +14,10 @@ import { Temporal } from '../temporal/Temporal';
 import { TemporalQueries } from '../temporal/TemporalQueries';
 
 export class ChronoZonedDateTime extends Temporal {
+    get [Symbol.toStringTag]() {
+        return 'ChronoZonedDateTime';
+    }
+
     query(query) {
         if (query === TemporalQueries.zoneId() || query === TemporalQueries.zone()) {
             return this.zone();

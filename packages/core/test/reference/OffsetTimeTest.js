@@ -538,7 +538,7 @@ describe('org.threeten.bp.TestOffsetTime', () => {
             assertEquals(test, base);
         });
     });
-    
+
     describe('withMinute', () => {
         it('normal', function () {
             const base = OffsetTime.of(LocalTime.of(11, 30, 59), OFFSET_PONE);
@@ -819,7 +819,7 @@ describe('org.threeten.bp.TestOffsetTime', () => {
             expect(() => {
                 const c = TEST_11_30_59_500_PONE;
                 c.compareTo(new Object());
-            }).to.throw(IllegalArgumentException); // ClassCastException
+            }).to.throw(IllegalArgumentException, 'other must be an instance of [object OffsetTime], but is [object Object]'); // ClassCastException
         });
 
         function convertInstant(ot) {

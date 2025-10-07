@@ -10,6 +10,9 @@ import { Enum } from '../../Enum';
  * @private
  */
 export class SettingsParser extends Enum {
+    get [Symbol.toStringTag]() {
+        return 'SettingsParser';
+    }
 
     print(/*context, buf*/) {
         return true;  // nothing to do here

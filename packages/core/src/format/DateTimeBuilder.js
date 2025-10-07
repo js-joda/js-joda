@@ -87,6 +87,10 @@ export class DateTimeBuilder extends TemporalAccessor {
         this.excessDays = null;
     }
 
+    get [Symbol.toStringTag]() {
+        return 'DateTimeBuilder';
+    }
+
     /**
      *
      * @param {TemporalField} field

@@ -78,6 +78,10 @@ export class Year extends Temporal {
         this._year = MathUtil.safeToInt(value);
     }
 
+    get [Symbol.toStringTag]() {
+        return 'Year';
+    }
+
     /**
      *
      * @return {number} gets the value
@@ -208,7 +212,7 @@ export class Year extends Temporal {
             }*/
             return Year.of(temporal.get(ChronoField.YEAR));
         } catch (ex) {
-            throw new DateTimeException(`Unable to obtain Year from TemporalAccessor: ${ 
+            throw new DateTimeException(`Unable to obtain Year from TemporalAccessor: ${
                 temporal}, type ${temporal && temporal.constructor != null ? temporal.constructor.name : ''}`);
         }
     }

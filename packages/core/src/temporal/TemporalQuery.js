@@ -44,7 +44,11 @@ import { Enum } from '../Enum';
  *
  * @interface
  */
-export class TemporalQuery  extends Enum {
+export class TemporalQuery extends Enum {
+    get [Symbol.toStringTag]() {
+        return 'TemporalQuery';
+    }
+
     /**
      * Queries the specified temporal object.
      *

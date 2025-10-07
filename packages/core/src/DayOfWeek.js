@@ -41,6 +41,10 @@ export class DayOfWeek extends TemporalAccessor {
         this._name = name;
     }
 
+    get [Symbol.toStringTag]() {
+        return 'DayOfWeek';
+    }
+
     /**
      *
      * @returns {number}
@@ -122,7 +126,7 @@ export class DayOfWeek extends TemporalAccessor {
             return DayOfWeek.of(temporal.get(ChronoField.DAY_OF_WEEK));
         } catch (ex) {
             if(ex instanceof DateTimeException) {
-                throw new DateTimeException(`Unable to obtain DayOfWeek from TemporalAccessor: ${ 
+                throw new DateTimeException(`Unable to obtain DayOfWeek from TemporalAccessor: ${
                     temporal}, type ${temporal.constructor != null ? temporal.constructor.name : ''}`, ex);
             } else {
                 throw ex;
@@ -386,7 +390,7 @@ export class DayOfWeek extends TemporalAccessor {
      *
      * @returns {boolean}
      */
-    equals(other){ 
+    equals(other){
         return this === other;
     }
 
@@ -406,7 +410,7 @@ export class DayOfWeek extends TemporalAccessor {
      *
      * @param {DayOfWeek} other  the other year to compare to, not null
      * @return {number} the comparator value, negative if less, positive if greater
-     */    
+     */
     compareTo(other) {
         requireNonNull(other, 'other');
         requireInstance(other, DayOfWeek, 'other');

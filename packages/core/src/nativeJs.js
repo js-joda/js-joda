@@ -21,5 +21,5 @@ export function nativeJs(date, zone = ZoneId.systemDefault()) {
     } else if(typeof date.toDate === 'function' &&  date.toDate() instanceof Date) {
         return Instant.ofEpochMilli(date.toDate().getTime()).atZone(zone);
     }
-    throw new IllegalArgumentException('date must be a javascript Date or a moment instance');
+    throw new IllegalArgumentException(`date must be a javascript Date or a moment instance, but it is ${Object.prototype.toString.call(date)}`);
 }

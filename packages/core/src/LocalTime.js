@@ -297,6 +297,10 @@ export class LocalTime extends Temporal /** implements Temporal, TemporalAdjuste
         this._nano = _nanoOfSecond;
     }
 
+    get [Symbol.toStringTag]() {
+        return 'LocalTime';
+    }
+
     static _validate(hour, minute, second, nanoOfSecond){
         ChronoField.HOUR_OF_DAY.checkValidValue(hour);
         ChronoField.MINUTE_OF_HOUR.checkValidValue(minute);

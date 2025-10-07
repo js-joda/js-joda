@@ -33,6 +33,10 @@ export class OffsetIdPrinterParser  {
         this.type = this._checkPattern(pattern);
     }
 
+    get [Symbol.toStringTag]() {
+        return 'OffsetIdPrinterParser';
+    }
+
     /**
      * @param {String} pattern
      * @return {number}

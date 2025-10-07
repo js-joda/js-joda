@@ -1615,7 +1615,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
             expect(() => {
                 const t = LocalDate.of(2008, 6, 30);
                 t.atTime('string');
-            }).to.throw(IllegalArgumentException);
+            }).to.throw(IllegalArgumentException, 'time must be an instance of LocalTime or OffsetTime, but is [object String]');
         });
 
         it('test_atTime_int_int', () => {
@@ -1890,7 +1890,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
         it('compareToNonLocalDate', function () {
             expect(() => {
                 TEST_2007_07_15.compareTo({});
-            }).to.throw(IllegalArgumentException);
+            }).to.throw(IllegalArgumentException, 'other must be an instance of [object LocalDate], but is [object Object]');
         });
 
 

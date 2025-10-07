@@ -60,6 +60,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         this._nanos = MathUtil.safeToInt(nanos);
     }
 
+    get [Symbol.toStringTag]() {
+        return 'Duration';
+    }
+
     //-----------------------------------------------------------------------
     /**
      * Obtains an instance of {@link Duration} from a number of standard 24 hour days.

@@ -35,6 +35,17 @@ export function requireNonNull(value, parameterName) {
     return value;
 }
 
+// Use Object.prototype.toString to result in values such as `[object Instant]`,
+// honoring our Symbol.toStringTag, regardless of toString implementations.
+function getClassName(_class) {
+    return (_class.prototype && Object.prototype.toString.call(_class.prototype))
+        || _class.name
+        || _class;
+}
+function getValueName(value) {
+    return Object.prototype.toString.call(value);
+}
+
 /**
  * @private
  *
@@ -45,7 +56,7 @@ export function requireNonNull(value, parameterName) {
  */
 export function requireInstance(value, _class, parameterName) {
     if (!(value instanceof _class)) {
-        throw new IllegalArgumentException(`${parameterName} must be an instance of ${_class.name ? _class.name : _class}${value && value.constructor && value.constructor.name ? `, but is ${value.constructor.name}` : ''}`);
+        throw new IllegalArgumentException(`${parameterName} must be an instance of ${getClassName(_class)}, but is ${getValueName(value)}`);
     }
     return value;
 }

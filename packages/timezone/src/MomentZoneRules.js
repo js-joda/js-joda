@@ -14,6 +14,11 @@ export class MomentZoneRules extends ZoneRules{
         this._tzdbInfo = tzdbInfo;
         this._ldtUntils = new LDTUntils(this._tzdbInfo.untils, this._tzdbInfo.offsets);
     }
+
+    get [Symbol.toStringTag]() {
+        return 'MomentZoneRules';
+    }
+
     /**
      * Checks of the zone rules are fixed, such that the offset never varies.
      *
@@ -381,6 +386,10 @@ class LDTUntils {
         this._tzdbOffsets = tzdbOffsets;
         this._ldtUntils = [];
         this.size = this._tzdbUntils.length * 2;
+    }
+
+    get [Symbol.toStringTag]() {
+        return 'LDTUntils';
     }
 
 

@@ -64,6 +64,10 @@ export class LocaleStore {
         this._parsable = map;
     }
 
+    get [Symbol.toStringTag]() {
+        return 'LocaleStore';
+    }
+
     //-----------------------------------------------------------------------
     /**
      * Gets the text for the specified field value, locale and style

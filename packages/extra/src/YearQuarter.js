@@ -263,6 +263,10 @@ export class YearQuarter extends Temporal {
         this._quarter = requireInstance(quarter, Quarter, 'Quarter');
     }
 
+    get [Symbol.toStringTag]() {
+        return 'YearQuarter';
+    }
+
     /**
      * Returns a copy of this year-quarter with the new year and quarter, checking
      * to see if a new object is in fact required.

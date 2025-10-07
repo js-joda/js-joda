@@ -31,6 +31,10 @@ export class DateTimePrintContext{
         this._optional = 0;
     }
 
+    get [Symbol.toStringTag]() {
+        return 'DateTimePrintContext';
+    }
+
     /**
      *
      * @param {TemporalAccessor} temporal

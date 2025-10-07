@@ -149,6 +149,10 @@ export class OffsetTime extends Temporal {
         this._offset = offset;
     }
 
+    get [Symbol.toStringTag]() {
+        return 'OffsetTime';
+    }
+
 
     /**
      * @param {TemporalAdjuster} temporal - the target object to be adjusted, not null

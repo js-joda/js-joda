@@ -20,11 +20,11 @@ const SECONDS_PER_DAY = 86400;
 /**
  * A date with an offset from UTC/Greenwich in the ISO-8601 calendar system,
  * such as `2007-12-03+01:00`.
- * 
+ *
  * `OffsetDate` is an immutable date-time object that represents a date, often viewed
  * as year-month-day-offset. This object can also access other date fields such as
  * day-of-year, day-of-week and week-of-year.
- * 
+ *
  * This class does not store or represent a time.
  * For example, the value '2nd October 2007 +02:00' can be stored
  * in an `OffsetDate`.
@@ -54,11 +54,11 @@ export class OffsetDate extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Obtains the current date from the system clock in the default time-zone.
-     * 
+     *
      * This will query the {@link Clock.systemDefaultZone} system clock in the default
      * time-zone to obtain the current date.
      * The offset will be calculated from the time-zone in the clock.
-     * 
+     *
      * Using this method will prevent the ability to use an alternate clock for testing
      * because the clock is hard-coded.
      *
@@ -71,11 +71,11 @@ export class OffsetDate extends Temporal {
 
     /**
      * Obtains the current date from the system clock in the specified time-zone.
-     * 
+     *
      * This will query the {@link Clock.system} system clock to obtain the current date.
      * Specifying the time-zone avoids dependence on the default time-zone.
      * The offset will be calculated from the specified time-zone.
-     * 
+     *
      * Using this method will prevent the ability to use an alternate clock for testing
      * because the clock is hard-coded.
      *
@@ -89,10 +89,10 @@ export class OffsetDate extends Temporal {
 
     /**
      * Obtains the current date from the specified clock.
-     * 
+     *
      * This will query the specified clock to obtain the current date - today.
      * The offset will be calculated from the time-zone in the clock.
-     * 
+     *
      * Using this method allows the use of an alternate clock for testing.
      * The alternate clock may be introduced using {@link Clock} dependency injection.
      *
@@ -138,9 +138,9 @@ export class OffsetDate extends Temporal {
     /**
      * Obtains an instance of `OffsetDate` from a year, month, day
      * and offset.
-     * 
+     *
      * This creates an offset date with the four specified fields.
-     * 
+     *
      * This method exists primarily for writing test cases.
      * Non test-code will typically use other methods to create an offset time.
      *
@@ -161,7 +161,7 @@ export class OffsetDate extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Obtains an instance of `OffsetDate` from an `Instant` and zone ID.
-     * 
+     *
      * This creates an offset date with the same instant as midnight at the
      * start of day of the instant specified.
      * Finding the offset from UTC/Greenwich is simple as there is only one valid
@@ -185,12 +185,12 @@ export class OffsetDate extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Obtains an instance of `OffsetDate` from a temporal object.
-     * 
+     *
      * A `TemporalAccessor` represents some form of date and time information.
      * This factory converts the arbitrary temporal object to an instance of `OffsetDate`.
-     * 
+     *
      * The conversion extracts and combines `LocalDate` and `ZoneOffset`.
-     * 
+     *
      * This method matches the signature of the functional interface {@link TemporalQuery}
      * allowing it to be used in queries via method reference, `OffsetDate.FROM`.
      *
@@ -214,7 +214,7 @@ export class OffsetDate extends Temporal {
 
     /**
      * Obtains an instance of `OffsetDate` from a text string using a specific formatter.
-     * 
+     *
      * The text is parsed using the formatter, returning a date.
      *
      * @param {CharSequence} text - the text to parse, not null
@@ -239,6 +239,10 @@ export class OffsetDate extends Temporal {
         super();
         this._date = requireNonNull(date, 'date');
         this._offset = requireNonNull(offset, 'offset');
+    }
+
+    get [Symbol.toStringTag]() {
+        return 'OffsetDate';
     }
 
     /**
@@ -280,15 +284,15 @@ export class OffsetDate extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Checks if the specified field is supported.
-     * 
+     *
      * This checks if this date can be queried for the specified field.
      * If false, then calling the {@link OffsetDate.range},
      * {@link OffsetDate.get} and {@link OffsetDate.with}
      * methods will throw an exception.
-     * 
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The supported fields are:
-     * 
+     *
      * - `DAY_OF_WEEK`
      * - `ALIGNED_DAY_OF_WEEK_IN_MONTH`
      * - `ALIGNED_DAY_OF_WEEK_IN_YEAR`
@@ -303,9 +307,9 @@ export class OffsetDate extends Temporal {
      * - `YEAR`
      * - `ERA`
      * - `OFFSET_SECONDS`
-     * 
+     *
      * All other `ChronoField` instances will return false.
-     * 
+     *
      * If the field is not a `ChronoField`, then the result of this method
      * is obtained by invoking `TemporalField.isSupportedBy(TemporalAccessor)`
      * passing `this` as the argument.
@@ -324,11 +328,11 @@ export class OffsetDate extends Temporal {
 
     /**
      * Checks if the specified unit is supported.
-     * 
+     *
      * This checks if the specified unit can be added to, or subtracted from, this date.
      * If false, then calling the {@link OffsetDate.plus(long, TemporalUnit)} and
      * {@link OffsetDate.minus(long, TemporalUnit) minus} methods will throw an exception.
-     * 
+     *
      * If the unit is a {@link ChronoUnit} then the query is implemented here.
      * The supported units are:
      * <ul>
@@ -342,7 +346,7 @@ export class OffsetDate extends Temporal {
      * - `ERAS`
      * </ul>
      * All other `ChronoUnit` instances will return false.
-     * 
+     *
      * If the unit is not a `ChronoUnit`, then the result of this method
      * is obtained by invoking `TemporalUnit.isSupportedBy(Temporal)`
      * passing `this` as the argument.
@@ -362,17 +366,17 @@ export class OffsetDate extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Gets the range of valid values for the specified field.
-     * 
+     *
      * The range object expresses the minimum and maximum valid values for a field.
      * This date is used to enhance the accuracy of the returned range.
      * If it is not possible to return the range, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * 
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The {@link OffsetDate.isSupported} supported fields will return
      * appropriate range instances.
      * All other `ChronoField` instances will throw an `UnsupportedTemporalTypeException`.
-     * 
+     *
      * If the field is not a `ChronoField`, then the result of this method
      * is obtained by invoking `TemporalField.rangeRefinedBy(TemporalAccessor)`
      * passing `this` as the argument.
@@ -397,18 +401,18 @@ export class OffsetDate extends Temporal {
 
     /**
      * Gets the value of the specified field from this date as an `int`.
-     * 
+     *
      * This queries this date for the value for the specified field.
      * The returned value will always be within the valid range of values for the field.
      * If it is not possible to return the value, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * 
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The {@link OffsetDate.isSupported} supported fields will return valid
      * values based on this date, except `EPOCH_DAY` and `PROLEPTIC_MONTH`
      * which are too large to fit in an `int` and throw a `DateTimeException`.
      * All other `ChronoField` instances will throw a `DateTimeException`.
-     * 
+     *
      * If the field is not a `ChronoField`, then the result of this method
      * is obtained by invoking `TemporalField.getFrom(TemporalAccessor)`
      * passing `this` as the argument. Whether the value can be obtained,
@@ -430,16 +434,16 @@ export class OffsetDate extends Temporal {
 
     /**
      * Gets the value of the specified field from this date as a `long`.
-     * 
+     *
      * This queries this date for the value for the specified field.
      * If it is not possible to return the value, because the field is not supported
      * or for some other reason, an exception is thrown.
-     * 
+     *
      * If the field is a {@link ChronoField} then the query is implemented here.
      * The {@link OffsetDate.isSupported} supported fields will return valid
      * values based on this date.
      * All other `ChronoField` instances will throw an `UnsupportedTemporalTypeException`.
-     * 
+     *
      * If the field is not a `ChronoField`, then the result of this method
      * is obtained by invoking `TemporalField.getFrom(TemporalAccessor)`
      * passing `this` as the argument. Whether the value can be obtained,
@@ -466,7 +470,7 @@ export class OffsetDate extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Gets the zone offset, such as '+01:00'.
-     * 
+     *
      * This is the offset of the local date from UTC/Greenwich.
      *
      * @return {ZoneOffset} the zone offset, not null
@@ -478,12 +482,12 @@ export class OffsetDate extends Temporal {
     /**
      * Returns a copy of this `OffsetDate` with the specified offset ensuring
      * that the result has the same local date.
-     * 
+     *
      * This method returns an object with the same `LocalDate` and the specified `ZoneOffset`.
      * No calculation is needed or performed.
      * For example, if this time represents `2007-12-03+02:00` and the offset specified is
      * `+03:00`, then this method will return `2007-12-03+03:00`.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {ZoneOffset} offset - the zone offset to change to, not null
@@ -497,7 +501,7 @@ export class OffsetDate extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Gets the `LocalDate` part of this date.
-     * 
+     *
      * This returns a `LocalDate` with the same year, month and day
      * as this date.
      *
@@ -510,9 +514,9 @@ export class OffsetDate extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Gets the year field.
-     * 
+     *
      * This method returns the primitive `int` value for the year.
-     * 
+     *
      * The year returned by this method is proleptic as per `get(YEAR)`.
      * To obtain the year-of-era, use `get(YEAR_OF_ERA)`.
      *
@@ -524,7 +528,7 @@ export class OffsetDate extends Temporal {
 
     /**
      * Gets the month-of-year field from 1 to 12.
-     * 
+     *
      * This method returns the month as an `int` from 1 to 12.
      * Application code is frequently clearer if the enum {@link Month}
      * is used by calling {@link OffsetDate.month}.
@@ -538,7 +542,7 @@ export class OffsetDate extends Temporal {
 
     /**
      * Gets the month-of-year field using the `Month` enum.
-     * 
+     *
      * This method returns the enum {@link Month} for the month.
      * This avoids confusion as to what `int` values mean.
      * If you need access to the primitive `int` value then the enum
@@ -553,7 +557,7 @@ export class OffsetDate extends Temporal {
 
     /**
      * Gets the day-of-month field.
-     * 
+     *
      * This method returns the primitive `int` value for the day-of-month.
      *
      * @return {number} the day-of-month, from 1 to 31
@@ -564,7 +568,7 @@ export class OffsetDate extends Temporal {
 
     /**
      * Gets the day-of-year field.
-     * 
+     *
      * This method returns the primitive `int` value for the day-of-year.
      *
      * @return {number} the day-of-year, from 1 to 365, or 366 in a leap year
@@ -575,12 +579,12 @@ export class OffsetDate extends Temporal {
 
     /**
      * Gets the day-of-week field, which is an enum `DayOfWeek`.
-     * 
+     *
      * This method returns the enum {@link DayOfWeek} for the day-of-week.
      * This avoids confusion as to what `int` values mean.
      * If you need access to the primitive `int` value then the enum
      * provides the {@link DayOfWeek.value} int value.
-     * 
+     *
      * Additional information can be obtained from the `DayOfWeek`.
      * This includes textual names of the values.
      *
@@ -593,11 +597,11 @@ export class OffsetDate extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Returns an adjusted copy of this date.
-     * 
+     *
      * This returns an `OffsetDate` based on this one, with the date adjusted.
      * The adjustment takes place using the specified adjuster strategy object.
      * Read the documentation of the adjuster to understand what adjustment will be made.
-     * 
+     *
      * A simple adjuster might simply set the one of the fields, such as the year field.
      * A more complex adjuster might set the date to the last day of the month.
      * A selection of common adjustments is provided in {@link TemporalAdjusters}.
@@ -606,7 +610,7 @@ export class OffsetDate extends Temporal {
      * such as {@link Month} and {@link MonthDay}.
      * The adjuster is responsible for handling special cases, such as the varying
      * lengths of month and leap years.
-     * 
+     *
      * For example this code returns a date on the last day of July:
      * <pre>
      *  import static java.time.Month.*;
@@ -614,18 +618,18 @@ export class OffsetDate extends Temporal {
      *
      *  result = offsetDate.with(JULY).with(lastDayOfMonth());
      * </pre>
-     * 
+     *
      * The classes {@link LocalDate} and {@link ZoneOffset} implement `TemporalAdjuster`,
      * thus this method can be used to change the date or offset:
      * <pre>
      *  result = offsetDate.with(date);
      *  result = offsetDate.with(offset);
      * </pre>
-     * 
+     *
      * The result of this method is obtained by invoking the
      * {@link TemporalAdjuster.adjustInto} method on the
      * specified adjuster passing `this` as the argument.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {TemporalAdjuster} adjuster - the adjuster to use, not null
@@ -647,35 +651,35 @@ export class OffsetDate extends Temporal {
 
     /**
      * Returns a copy of this date with the specified field set to a new value.
-     * 
+     *
      * This returns an `OffsetDate` based on this one, with the value
      * for the specified field changed.
      * This can be used to change any supported field, such as the year, month or day-of-month.
      * If it is not possible to set the value, because the field is not supported or for
      * some other reason, an exception is thrown.
-     * 
+     *
      * In some cases, changing the specified field can cause the resulting date to become invalid,
      * such as changing the month from 31st January to February would make the day-of-month invalid.
      * In cases like this, the field is responsible for resolving the date. Typically it will choose
      * the previous valid date, which would be the last valid day of February in this example.
-     * 
+     *
      * If the field is a {@link ChronoField} then the adjustment is implemented here.
-     * 
+     *
      * The `OFFSET_SECONDS` field will return a date with the specified offset.
      * The local date is unaltered. If the new offset value is outside the valid range
      * then a `DateTimeException` will be thrown.
-     * 
+     *
      * The other {@link OffsetDate.isSupported} supported fields will behave as per
      * the matching method on {@link LocalDate.with} LocalDate.
      * In this case, the offset is not part of the calculation and will be unchanged.
-     * 
+     *
      * All other `ChronoField` instances will throw an `UnsupportedTemporalTypeException`.
-     * 
+     *
      * If the field is not a `ChronoField`, then the result of this method
      * is obtained by invoking `TemporalField.adjustInto(Temporal, long)`
      * passing `this` as the argument. In this case, the field determines
      * whether and how to adjust the instant.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {TemporalField} field - the field to set in the result, not null
@@ -701,10 +705,10 @@ export class OffsetDate extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Returns a copy of this `OffsetDate` with the year altered.
-     * 
+     *
      * The offset does not affect the calculation and will be the same in the result.
      * If the day-of-month is invalid for the year, it will be changed to the last valid day of the month.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {OffsetDate} year - the year to set in the result, from MIN_YEAR to MAX_YEAR
@@ -717,10 +721,10 @@ export class OffsetDate extends Temporal {
 
     /**
      * Returns a copy of this `OffsetDate` with the month-of-year altered.
-     * 
+     *
      * The offset does not affect the calculation and will be the same in the result.
      * If the day-of-month is invalid for the year, it will be changed to the last valid day of the month.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} month - the month-of-year to set in the result, from 1 (January) to 12 (December)
@@ -733,10 +737,10 @@ export class OffsetDate extends Temporal {
 
     /**
      * Returns a copy of this `OffsetDate` with the day-of-month altered.
-     * 
+     *
      * If the resulting date is invalid, an exception is thrown.
      * The offset does not affect the calculation and will be the same in the result.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} dayOfMonth - the day-of-month to set in the result, from 1 to 28-31
@@ -750,9 +754,9 @@ export class OffsetDate extends Temporal {
 
     /**
      * Returns a copy of this `OffsetDate` with the day-of-year altered.
-     * 
+     *
      * If the resulting date is invalid, an exception is thrown.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} dayOfYear - the day-of-year to set in the result, from 1 to 365-366
@@ -766,20 +770,20 @@ export class OffsetDate extends Temporal {
 
     /**
      * Returns a copy of this date with the specified amount added.
-     * 
+     *
      * This returns an `OffsetDate` based on this one, with the amount
      * in terms of the unit added. If it is not possible to add the amount, because the
      * unit is not supported or for some other reason, an exception is thrown.
-     * 
+     *
      * If the field is a {@link ChronoUnit} then the addition is implemented by
      * {@link LocalDate.plus}.
      * The offset is not part of the calculation and will be unchanged in the result.
-     * 
+     *
      * If the field is not a `ChronoUnit`, then the result of this method
      * is obtained by invoking `TemporalUnit.addTo(Temporal, long)`
      * passing `this` as the argument. In this case, the unit determines
      * whether and how to perform the addition.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} amountToAdd - the amount of the unit to add to the result, may be negative
@@ -799,10 +803,10 @@ export class OffsetDate extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Returns a copy of this `OffsetDate` with the specified number of years added.
-     * 
+     *
      * This uses {@link LocalDate.plusYears} to add the years.
      * The offset does not affect the calculation and will be the same in the result.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} years - the years to add, may be negative
@@ -815,10 +819,10 @@ export class OffsetDate extends Temporal {
 
     /**
      * Returns a copy of this `OffsetDate` with the specified number of months added.
-     * 
+     *
      * This uses {@link LocalDate.plusMonths} to add the months.
      * The offset does not affect the calculation and will be the same in the result.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} months - the months to add, may be negative
@@ -831,10 +835,10 @@ export class OffsetDate extends Temporal {
 
     /**
      * Returns a copy of this `OffsetDate` with the specified number of weeks added.
-     * 
+     *
      * This uses {@link LocalDate.plusWeeks} to add the weeks.
      * The offset does not affect the calculation and will be the same in the result.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} weeks - the weeks to add, may be negative
@@ -847,10 +851,10 @@ export class OffsetDate extends Temporal {
 
     /**
      * Returns a copy of this `OffsetDate` with the specified number of days added.
-     * 
+     *
      * This uses {@link LocalDate.plusDays)} to add the days.
      * The offset does not affect the calculation and will be the same in the result.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} days - the days to add, may be negative
@@ -864,10 +868,10 @@ export class OffsetDate extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Returns a copy of this `OffsetDate` with the specified number of years subtracted.
-     * 
+     *
      * This uses {@link LocalDate.minusYears} to subtract the years.
      * The offset does not affect the calculation and will be the same in the result.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} years - the years to subtract, may be negative
@@ -880,10 +884,10 @@ export class OffsetDate extends Temporal {
 
     /**
      * Returns a copy of this `OffsetDate` with the specified number of months subtracted.
-     * 
+     *
      * This uses {@link LocalDate.minusMonths} to subtract the months.
      * The offset does not affect the calculation and will be the same in the result.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} months - the months to subtract, may be negative
@@ -896,10 +900,10 @@ export class OffsetDate extends Temporal {
 
     /**
      * Returns a copy of this `OffsetDate` with the specified number of weeks subtracted.
-     * 
+     *
      * This uses {@link LocalDate.minusWeeks} to subtract the weeks.
      * The offset does not affect the calculation and will be the same in the result.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} weeks - the weeks to subtract, may be negative
@@ -912,10 +916,10 @@ export class OffsetDate extends Temporal {
 
     /**
      * Returns a copy of this `OffsetDate` with the specified number of days subtracted.
-     * 
+     *
      * This uses {@link LocalDate.minusDays} to subtract the days.
      * The offset does not affect the calculation and will be the same in the result.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {number} days - the days to subtract, may be negative
@@ -929,12 +933,12 @@ export class OffsetDate extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Queries this date using the specified query.
-     * 
+     *
      * This queries this date using the specified query strategy object.
      * The `TemporalQuery` object defines the logic to be used to
      * obtain the result. Read the documentation of the query to understand
      * what the result of this method will be.
-     * 
+     *
      * The result of this method is obtained by invoking the
      * {@link TemporalQuery.queryFrom} method on the
      * specified query passing `this` as the argument.
@@ -960,14 +964,14 @@ export class OffsetDate extends Temporal {
     /**
      * Adjusts the specified temporal object to have the same offset and date
      * as this object.
-     * 
+     *
      * This returns a temporal object of the same observable type as the input
      * with the offset and date changed to be the same as this.
-     * 
+     *
      * The adjustment is equivalent to using {@link Temporal.with}
      * twice, passing {@link ChronoField.OFFSET_SECONDS} and
      * {@link ChronoField.EPOCH_DAY} as the fields.
-     * 
+     *
      * In most cases, it is clearer to reverse the calling pattern by using
      * {@link Temporal.with(TemporalAdjuster)}:
      * <pre>
@@ -975,7 +979,7 @@ export class OffsetDate extends Temporal {
      *   temporal = thisOffsetDate.adjustInto(temporal);
      *   temporal = temporal.with(thisOffsetDate);
      * </pre>
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Temporal} temporal - the target object to be adjusted, not null
@@ -992,23 +996,23 @@ export class OffsetDate extends Temporal {
     /**
      * Calculates the period between this date and another date in
      * terms of the specified unit.
-     * 
+     *
      * This calculates the period between two dates in terms of a single unit.
      * The start and end points are `this` and the specified date.
      * The result will be negative if the end is before the start.
      * For example, the period in days between two dates can be calculated
      * using `startDate.until(endDate, DAYS)`.
-     * 
+     *
      * The `Temporal` passed to this method is converted to a
      * `OffsetDate` using {@link OffsetDate.from}.
      * If the offset differs between the two times, then the specified
      * end time is normalized to have the same offset as this time.
-     * 
+     *
      * The calculation returns a whole number, representing the number of
      * complete units between the two dates.
      * For example, the period in months between 2012-06-15Z and 2012-08-14Z
      * will only be one month as it is one day short of two months.
-     * 
+     *
      * There are two equivalent ways of using this method.
      * The first is to invoke this method.
      * The second is to use {@link TemporalUnit.between}:
@@ -1018,17 +1022,17 @@ export class OffsetDate extends Temporal {
      *   amount = DAYS.between(start, end);
      * </pre>
      * The choice should be made based on which makes the code more readable.
-     * 
+     *
      * The calculation is implemented in this method for {@link ChronoUnit}.
      * The units `DAYS`, `WEEKS`, `MONTHS`, `YEARS`,
      * `DECADES`, `CENTURIES`, `MILLENNIA` and `ERAS`
      * are supported. Other `ChronoUnit` values will throw an exception.
-     * 
+     *
      * If the unit is not a `ChronoUnit`, then the result of this method
      * is obtained by invoking `TemporalUnit.between(Temporal, Temporal)`
      * passing `this` as the first argument and the converted input temporal
      * as the second argument.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {Temporal} endExclusive - the end time, exclusive, which is converted to an `OffsetDate`, not null
@@ -1051,7 +1055,7 @@ export class OffsetDate extends Temporal {
 
     /**
      * Formats this date using the specified formatter.
-     * 
+     *
      * This date will be passed to the formatter to produce a string.
      *
      * @param {DateTimeFormatter} formatter - the formatter to use, not null
@@ -1066,10 +1070,10 @@ export class OffsetDate extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Returns an offset date-time formed from this date at the specified time.
-     * 
+     *
      * This combines this date with the specified time to form an `OffsetDateTime`.
      * All possible combinations of date and time are valid.
-     * 
+     *
      * This instance is immutable and unaffected by this method call.
      *
      * @param {LocalTime} time - the time to combine with, not null
@@ -1095,7 +1099,7 @@ export class OffsetDate extends Temporal {
     /**
      * Converts this `OffsetDate` to the number of seconds since the epoch
      * of 1970-01-01T00:00:00Z.
-     * 
+     *
      * This combines this offset date with the specified time
      * to calculate the epoch-second value, which is the
      * number of elapsed seconds from 1970-01-01T00:00:00Z.
@@ -1113,21 +1117,21 @@ export class OffsetDate extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Compares this `OffsetDate` to another date.
-     * 
+     *
      * The comparison is based first on the UTC equivalent instant, then on the local date.
      * It is 'consistent with equals', as defined by {@link Comparable}.
-     * 
+     *
      * For example, the following is the comparator order:
      * 1. 2008-06-29-11:00</li>
      * 2. 2008-06-29-12:00</li>
      * 3. 2008-06-30+12:00</li>
      * 4. 2008-06-29-13:00</li>
-     * 
+     *
      * Values #2 and #3 represent the same instant on the time-line.
      * When two values represent the same instant, the local date is compared
      * to distinguish them. This step is needed to make the ordering
      * consistent with `equals()`.
-     * 
+     *
      * To compare the underlying local date of two `TemporalAccessor` instances,
      * use {@link ChronoField.EPOCH_DAY} as a comparator.
      *
@@ -1151,7 +1155,7 @@ export class OffsetDate extends Temporal {
     /**
      * Checks if the instant of midnight at the start of this `OffsetDate`
      * is after midnight at the start of the specified date.
-     * 
+     *
      * This method differs from the comparison in {@link OffsetDate.compareTo} in that it
      * only compares the instant of the date. This is equivalent to using
      * `date1.toEpochSecond().isAfter(date2.toEpochSecond())`.
@@ -1168,7 +1172,7 @@ export class OffsetDate extends Temporal {
     /**
      * Checks if the instant of midnight at the start of this `OffsetDate`
      * is before midnight at the start of the specified date.
-     * 
+     *
      * This method differs from the comparison in {@link OffsetDate.compareTo} in that it
      * only compares the instant of the date. This is equivalent to using
      * `date1.toEpochSecond().isBefore(date2.toEpochSecond())`.
@@ -1185,7 +1189,7 @@ export class OffsetDate extends Temporal {
     /**
      * Checks if the instant of midnight at the start of this `OffsetDate`
      * equals midnight at the start of the specified date.
-     * 
+     *
      * This method differs from the comparison in {@link OffsetDate.compareTo} and {@link OffsetDate.equals}
      * in that it only compares the instant of the date. This is equivalent to using
      * `date1.toEpochSecond().equals(date2.toEpochSecond())`.
@@ -1202,10 +1206,10 @@ export class OffsetDate extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Checks if this date is equal to another date.
-     * 
+     *
      * The comparison is based on the local-date and the offset.
      * To compare for the same instant on the time-line, use {@link OffsetDate.isEqual}.
-     * 
+     *
      * Only objects of type `OffsetDate` are compared, other types return false.
      * To compare the underlying local date of two `TemporalAccessor` instances,
      * use {@link ChronoField.EPOCH_DAY} as a comparator.
@@ -1236,7 +1240,7 @@ export class OffsetDate extends Temporal {
     //-----------------------------------------------------------------------
     /**
      * Outputs this date as a `String`, such as `2007-12-03+01:00`.
-     * 
+     *
      * The output will be in the ISO-8601 format `yyyy-MM-ddXXXXX`.
      *
      * @return {String} a string representation of this date, not null

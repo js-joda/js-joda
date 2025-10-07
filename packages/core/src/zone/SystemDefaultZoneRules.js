@@ -8,6 +8,9 @@ import { ZoneOffset } from '../ZoneOffset';
 import { DateTimeException } from '../errors';
 
 export class SystemDefaultZoneRules extends ZoneRules {
+    get [Symbol.toStringTag]() {
+        return 'SystemDefaultZoneRules';
+    }
 
     isFixedOffset(){
         return false;

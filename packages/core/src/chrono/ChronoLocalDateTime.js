@@ -50,6 +50,10 @@ import { TemporalQueries } from '../temporal/TemporalQueries';
  * @param D the date type
  */
 export class ChronoLocalDateTime extends Temporal {
+    get [Symbol.toStringTag]() {
+        return 'ChronoLocalDateTime';
+    }
+
     /* <D extends ChronoLocalDate>
         extends DefaultInterfaceTemporal
         implements Temporal, TemporalAdjuster, Comparable<ChronoLocalDateTime<?>> */
