@@ -12,13 +12,14 @@ export class ZoneRulesProvider {
      *
      * This returns the latest available rules for the zone ID.
      *
-     * This method relies on time-zone data provider files that are configured.
+     * This method relies on `@js-joda/timezone` being imported first (for
+     * side effects).
      *
      * @param {string} zoneId
      * @return {ZoneRules}
      */
-    static getRules(zoneId){
-        throw new DateTimeException(`unsupported ZoneId:${zoneId}`);
+    static getRules(_zoneId){
+        throw new DateTimeException(`@js-joda/timezone not imported`);
     }
 
 
