@@ -18,8 +18,9 @@ export class ZoneRulesProvider {
      * @param {string} zoneId
      * @return {ZoneRules}
      */
+    // eslint-disable-next-line no-unused-vars
     static getRules(_zoneId){
-        throw new DateTimeException(`@js-joda/timezone not imported`);
+        throw new DateTimeException('@js-joda/timezone not imported');
     }
 
 
