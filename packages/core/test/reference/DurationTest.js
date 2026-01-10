@@ -2103,6 +2103,78 @@ describe('org.threeten.bp.TestDuration', () => {
 
     });
 
+    describe('toHoursPart()', ()=> {
+        it('test_toHoursPart', () => {
+            const test = Duration.ofHours(1);
+            expect(test.toHoursPart()).to.eql(1);
+        });
+
+        it('test_toHoursPart_max', () => {
+            const test = Duration.ofSeconds(MAX_SAFE_INTEGER, 0);
+            expect(test.toHoursPart()).to.eql(MathUtil.intMod(MathUtil.intDiv(MAX_SAFE_INTEGER, SECONDS_PER_HOUR), 24));
+        });
+
+        it('test_toHoursPart_min', () => {
+            const test = Duration.ofSeconds(MIN_SAFE_INTEGER, 0);
+            expect(test.toHoursPart()).to.eql(MathUtil.intMod(MathUtil.intDiv(MIN_SAFE_INTEGER, SECONDS_PER_HOUR), 24));
+        });
+
+    });
+
+    describe('toMinutesPart()', ()=> {
+        it('test_toMinutesPart', () => {
+            const test = Duration.ofMinutes(1);
+            expect(test.toMinutesPart()).to.eql(1);
+        });
+
+        it('test_toMinutesPart_max', () => {
+            const test = Duration.ofSeconds(MAX_SAFE_INTEGER, 0);
+            expect(test.toMinutesPart()).to.eql(MathUtil.intMod(MathUtil.intDiv(MAX_SAFE_INTEGER, 60), 60));
+        });
+
+        it('test_toMinutesPart_min', () => {
+            const test = Duration.ofSeconds(MIN_SAFE_INTEGER, 0);
+            expect(test.toMinutesPart()).to.eql(MathUtil.intMod(MathUtil.intDiv(MIN_SAFE_INTEGER, 60), 60));
+        });
+
+    });
+
+    describe('toSecondsPart()', ()=> {
+        it('test_toSecondsPart', () => {
+            const test = Duration.ofSeconds(1);
+            expect(test.toSecondsPart()).to.eql(1);
+        });
+
+        it('test_toSecondsPart_max', () => {
+            const test = Duration.ofSeconds(MAX_SAFE_INTEGER, 0);
+            expect(test.toSecondsPart()).to.eql(MathUtil.intMod(MAX_SAFE_INTEGER, 60));
+        });
+
+        it('test_toSecondsPart_min', () => {
+            const test = Duration.ofSeconds(MIN_SAFE_INTEGER, 0);
+            expect(test.toSecondsPart()).to.eql(MathUtil.intMod(MIN_SAFE_INTEGER, 60));
+        });
+
+    });
+
+    describe('toMillisPart()', ()=> {
+        it('test_toMillisPart', () => {
+            const test = Duration.ofSeconds(321, 123456789);
+            expect(test.toMillisPart()).to.eql(123);
+        });
+
+        it('test_toMillisPart_max', () => {
+            const test = Duration.ofSeconds(MathUtil.intDiv(MAX_SAFE_INTEGER, 1000), MathUtil.intMod(MAX_SAFE_INTEGER, 1000) * 1000000);
+            expect(test.toMillisPart()).to.eql(MathUtil.intMod(MAX_SAFE_INTEGER, 1000));
+        });
+
+        it('test_toMillisPart_min', () => {
+            const test = Duration.ofSeconds(MathUtil.intDiv(MIN_SAFE_INTEGER, 1000), MathUtil.intMod(MIN_SAFE_INTEGER, 1000) * 1000000);
+            expect(test.toMillisPart()).to.eql(MathUtil.intMod(MIN_SAFE_INTEGER, 1000) + 1000);
+        });
+
+    });
+
     describe('compareTo()', ()=> {
         const data_compareTo = [
             Duration.ofSeconds(-2, 0),

@@ -1082,6 +1082,69 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     //-----------------------------------------------------------------------
     /**
+     * Extracts the number of hours part in the duration.
+     *
+     * This returns the number of remaining hours when dividing {@link Duration.toHours}
+     * by hours in a day.
+     * This is based on the standard definition of a day as 24 hours.
+     *
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @return {number} the number of hours part in the duration, may be negative
+     */
+    toHoursPart() {
+        return MathUtil.intMod(this.toHours(), LocalTime.HOURS_PER_DAY);
+    }
+
+    /**
+     * Extracts the number of minutes part in the duration.
+     *
+     * This returns the number of remaining minutes when dividing {@link Duration.toMinutes}
+     * by minutes in an hour.
+     * This is based on the standard definition of an hour as 60 minutes.
+     *
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @return {number} the number of minutes parts in the duration, may be negative
+     */
+    toMinutesPart() {
+        return MathUtil.intMod(this.toMinutes(), LocalTime.MINUTES_PER_HOUR);
+    }
+
+    /**
+     * Extracts the number of seconds part in the duration.
+     *
+     * This returns the remaining seconds when dividing {@link Duration.toSeconds}
+     * by seconds in a minute.
+     * This is based on the standard definition of a minute as 60 seconds.
+     *
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @return {number} the number of seconds parts in the duration, may be negative
+     */
+    toSecondsPart() {
+        return MathUtil.intMod(this._seconds, LocalTime.SECONDS_PER_MINUTE);
+    }
+
+    /**
+     * Extracts the number of milliseconds part of the duration.
+     *
+     * This returns the milliseconds part by dividing the number of nanoseconds by 1,000,000.
+     * The length of the duration is stored using two fields - seconds and nanoseconds.
+     * The nanoseconds part is a value from 0 to 999,999,999 that is an adjustment to
+     * the length in seconds.
+     * The total duration is defined by calling {@link Duration.nano} and {@link Duration.seconds}.
+     *
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @return {number} the number of milliseconds part of the duration.
+     */
+    toMillisPart() {
+        return MathUtil.intDiv(this._nanos, 1000000);
+    }
+
+    //-----------------------------------------------------------------------
+    /**
      * Compares this duration to the specified {@link Duration}.
      *
      * The comparison is based on the total length of the durations.
