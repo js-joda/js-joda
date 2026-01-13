@@ -62,7 +62,8 @@ jobs:
   sauce:
     name: Saucelabs Tests (non forked pr's only)
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    # Sauce Connect needs to be updated, version 4 is not supported anymore
+    if: false # github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
     steps:
       - name: Checkout
         uses: actions/checkout@v4
