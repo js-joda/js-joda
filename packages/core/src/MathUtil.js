@@ -168,11 +168,7 @@ export class MathUtil {
         if (isNaN(value)) {
             throw new ArithmeticException('Invalid int value, using NaN as argument');
         }
-        if (Number.isInteger) {
-            if (!Number.isInteger(Number(value))) {
-                throw new ArithmeticException(`Invalid value: '${value}' is a float`);
-            }
-        } else if ((value % 1) !== 0) { // IE11 does not support Number.isInteger
+        if (!Number.isInteger(Number(value))) {
             throw new ArithmeticException(`Invalid value: '${value}' is a float`);
         }
         if (value > MAX_SAFE_INTEGER || value < MIN_SAFE_INTEGER) {
