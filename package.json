@@ -66,7 +66,7 @@
     "karma-rollup-preprocessor": "^7.0.8",
     "karma-sauce-launcher": "^4.3.6",
     "karma-sourcemap-loader": "^0.3.8",
-    "lerna": "^6.1.0",
+    "lerna": "^9.0.3",
     "lerna-changelog": "^2.2.0",
     "markdown-toc": "^1.2.0",
     "mocha": "^11.1.0",
