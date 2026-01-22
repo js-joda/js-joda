@@ -33,5 +33,25 @@
       "context",
       "buf"
     ]
+  },
+  {
+    "name": "ZoneRulesProvider.getRules",
+    "filePath": "packages/core/src/zone/ZoneRulesProvider.js",
+    "lines": [
+      {
+        "lineNumber": 20,
+        "line": "    // eslint-disable-next-line no-unused-vars"
+      },
+      {
+        "lineNumber": 21,
+        "line": "    static getRules(_zoneId){"
+      }
+    ],
+    "codeParams": [
+      "_zoneId"
+    ],
+    "docParams": [
+      "zoneId"
+    ]
   }
 ]

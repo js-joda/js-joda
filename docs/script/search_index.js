@@ -858,6 +858,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "packages/core/src/duration.js~duration#tohourspart",
+    "class/packages/core/src/Duration.js~Duration.html#instance-method-toHoursPart",
+    "packages/core/src/Duration.js~Duration#toHoursPart",
+    "method"
+  ],
+  [
     "packages/core/src/duration.js~duration#tojson",
     "class/packages/core/src/Duration.js~Duration.html#instance-method-toJSON",
     "packages/core/src/Duration.js~Duration#toJSON",
@@ -870,15 +876,33 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "packages/core/src/duration.js~duration#tomillispart",
+    "class/packages/core/src/Duration.js~Duration.html#instance-method-toMillisPart",
+    "packages/core/src/Duration.js~Duration#toMillisPart",
+    "method"
+  ],
+  [
     "packages/core/src/duration.js~duration#tominutes",
     "class/packages/core/src/Duration.js~Duration.html#instance-method-toMinutes",
     "packages/core/src/Duration.js~Duration#toMinutes",
     "method"
   ],
   [
+    "packages/core/src/duration.js~duration#tominutespart",
+    "class/packages/core/src/Duration.js~Duration.html#instance-method-toMinutesPart",
+    "packages/core/src/Duration.js~Duration#toMinutesPart",
+    "method"
+  ],
+  [
     "packages/core/src/duration.js~duration#tonanos",
     "class/packages/core/src/Duration.js~Duration.html#instance-method-toNanos",
     "packages/core/src/Duration.js~Duration#toNanos",
+    "method"
+  ],
+  [
+    "packages/core/src/duration.js~duration#tosecondspart",
+    "class/packages/core/src/Duration.js~Duration.html#instance-method-toSecondsPart",
+    "packages/core/src/Duration.js~Duration#toSecondsPart",
     "method"
   ],
   [

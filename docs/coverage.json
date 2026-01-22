@@ -1,7 +1,7 @@
 {
-  "coverage": "73.54%",
-  "expectCount": 2147,
-  "actualCount": 1579,
+  "coverage": "73.59%",
+  "expectCount": 2151,
+  "actualCount": 1583,
   "files": {
     "packages/core/src/Clock.js": {
       "expectCount": 39,
@@ -41,8 +41,8 @@
       ]
     },
     "packages/core/src/Duration.js": {
-      "expectCount": 62,
-      "actualCount": 55,
+      "expectCount": 66,
+      "actualCount": 59,
       "undocumentLines": [
         59,
         60,
@@ -50,7 +50,7 @@
         362,
         386,
         430,
-        1200
+        1263
       ]
     },
     "packages/core/src/Enum.js": {
