@@ -1,6 +1,22 @@
 Changelog
 =========
 
+## 2026-01-22
+
+### Versions
+
+- @js-joda/core@5.7.0
+- @js-joda/timezone@2.23.0
+
+#### :rocket: Enhancement
+* `core`
+  * [#777](https://github.com/js-joda/js-joda/pull/777) Add support for Duration part methods ([@nehalem501](https://github.com/nehalem501))
+* `core`, `timezone`
+  * [#768](https://github.com/js-joda/js-joda/pull/768) Make it less easy to misuse the timezone module ([@jstasiak](https://github.com/jstasiak))
+
+#### :house: Dependency update
+* [#756](https://github.com/js-joda/js-joda/pull/756) npm audit fix ([@pithu](https://github.com/pithu))
+
 
 ## 2025-03-31
 
