@@ -7,7 +7,7 @@ import {
   DayOfWeek,
   TemporalField,
 } from '@js-joda/core';
-import {Locale, WeekFields} from '../..';
+import {Locale, WeekFields, registerLocaleData} from '../..';
 
 function test_Locale() {
   const locale = new Locale('en');
@@ -40,6 +40,20 @@ function test_Locale_const() {
   expectType<Locale>(Locale.SWEDEN);
   expectType<Locale>(Locale.HINDI);
   expectType<Locale>(Locale.RUSSIAN);
+  expectType<Locale>(Locale.ARABIC);
+  expectType<Locale>(Locale.CZECH);
+  expectType<Locale>(Locale.DANISH);
+  expectType<Locale>(Locale.GREEK);
+  expectType<Locale>(Locale.SPANISH);
+  expectType<Locale>(Locale.FINNISH);
+  expectType<Locale>(Locale.LITHUANIAN);
+  expectType<Locale>(Locale.NORWEGIAN);
+  expectType<Locale>(Locale.NORWEGIAN_BOKMAL);
+  expectType<Locale>(Locale.NORWEGIAN_NYNORSK);
+  expectType<Locale>(Locale.POLISH);
+  expectType<Locale>(Locale.SLOVAK);
+  expectType<Locale>(Locale.TURKISH);
+  expectType<Locale>(Locale.UKRAINIAN);
 }
 
 function test_DateTimeFormatter() {
@@ -78,6 +92,10 @@ function test_WeekFields() {
   expectType<boolean>(WeekFields.ISO.equals("foo"));
   expectType<number>(WeekFields.ISO.hashCode());
   expectType<string>(WeekFields.ISO.toString());
+}
+
+function test_registerLocaleData() {
+  registerLocaleData('supplemental/likelySubtags.json', {});
 }
 
 /**

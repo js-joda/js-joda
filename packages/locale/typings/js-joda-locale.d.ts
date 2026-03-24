@@ -49,6 +49,20 @@ export namespace Locale {
     const SWEDEN: Locale;
     const HINDI: Locale;
     const RUSSIAN: Locale;
+    const ARABIC: Locale;
+    const CZECH: Locale;
+    const DANISH: Locale;
+    const GREEK: Locale;
+    const SPANISH: Locale;
+    const FINNISH: Locale;
+    const LITHUANIAN: Locale;
+    const NORWEGIAN: Locale;
+    const NORWEGIAN_BOKMAL: Locale;
+    const NORWEGIAN_NYNORSK: Locale;
+    const POLISH: Locale;
+    const SLOVAK: Locale;
+    const TURKISH: Locale;
+    const UKRAINIAN: Locale;
 }
 
 declare module '@js-joda/core' {
@@ -69,6 +83,8 @@ declare module '@js-joda/core' {
     }
 
 }
+
+export function registerLocaleData(path: string, data: object): void;
 
 export const __esModule: true;
 export as namespace JSJodaLocale;

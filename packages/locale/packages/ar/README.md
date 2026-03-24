@@ -1,6 +1,6 @@
-# additional date-time classes that complement those in js-joda
+# additional date-time classes that complement those in js-joda 
 
-for locale `ar.*`
+for locale `ar.*` 
 
 ## Motivation
 

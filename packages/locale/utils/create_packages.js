@@ -56,7 +56,6 @@ const packageTemplate = {
     },
     main: 'dist/index.js',
     module: 'dist/index.esm.js',
-    typings: 'dist/js-joda-locale.d.ts',
     keywords: [
         'date',
         'time',
@@ -75,6 +74,7 @@ const packageTemplate = {
     peerDependencies: {
         '@js-joda/core': mainPackageJSON.peerDependencies['@js-joda/core'],
         '@js-joda/timezone': mainPackageJSON.peerDependencies['@js-joda/timezone'],
+        '@js-joda/locale': `>=${mainPackageJSON.version}`,
     },
     dependencies: {},
     devDependencies: {},
@@ -110,8 +110,6 @@ Object.keys(argv.packages).forEach((packageName) => {
         JSON.stringify(packageTemplate, null, 4));
     fs.writeFileSync(path.resolve(packageDir, 'README.md'),
         readmeTemplate.replace(readmeLocaleRegex, argv.packages[packageName].join(',')));
-    fs.copyFileSync(path.resolve(__dirname, '..', 'typings', 'js-joda-locale.d.ts'),
-        path.resolve(packageDir, 'dist', 'js-joda-locale.d.ts'));
 
     for (const file of ['index.js', 'index.js.map', 'index.min.js', 'index.esm.js', 'index.esm.js.map']) {
         fs.copyFileSync(

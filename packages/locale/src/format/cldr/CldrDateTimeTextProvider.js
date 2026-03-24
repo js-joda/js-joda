@@ -5,8 +5,6 @@
 
 import { ChronoField, IsoFields, TextStyle } from '@js-joda/core';
 
-import cldrData from 'cldr-data';
-
 import { LocaleStore, createEntry } from '../LocaleStore';
 import { getOrCreateCldrInstance, loadCldrData } from './CldrCache';
 
@@ -26,7 +24,12 @@ export default class CldrDateTimeTextProvider {
 
     //-----------------------------------------------------------------------
     getAvailableLocales() {
-        return cldrData('availableLocales.json').availableLocales;
+        try {
+            // eslint-disable-next-line no-undef
+            return require('cldr-data')('availableLocales.json').availableLocales;
+        } catch (e) {
+            return [];
+        }
     }
 
     //-----------------------------------------------------------------------

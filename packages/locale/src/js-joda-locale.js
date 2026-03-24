@@ -6,10 +6,12 @@ import { use } from '@js-joda/core';
 import plug from './plug';
 import Locale from './Locale';
 import { WeekFields } from './temporal/WeekFields';
+import { registerLocaleData } from './format/cldr/CldrCache';
 
 use(plug);
 
 export {
     Locale,
-    WeekFields
+    WeekFields,
+    registerLocaleData
 };

@@ -2,6 +2,7 @@
 
 import { DateTimeFormatter, ZonedDateTime } from '@js-joda/core';
 import { Locale } from '@js-joda/locale';
+import '@js-joda/locale_en-us';
 
 const str = '2021-08-13T13:43:40.420375Z';
 const pattern = 'M/dd/yyyy, hh:mm a';

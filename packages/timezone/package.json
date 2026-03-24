@@ -44,7 +44,7 @@
     "phueper"
   ],
   "peerDependencies": {
-    "@js-joda/core": ">=1.11.0"
+    "@js-joda/core": ">=5.7.0"
   },
   "devDependencies": {
     "@js-joda/core": "^5.7.0"
