@@ -8,7 +8,7 @@ import './_init';
 
 import { Clock } from '../src/Clock';
 import { LocalDate } from '../src/LocalDate';
-import { isCoverageTestRunner, isIE11Browser } from './testUtils';
+import { isCoverageTestRunner } from './testUtils';
 
 /**
  * most of this tests are obsolete, because the test cases are covered by the reference tests
@@ -246,9 +246,7 @@ describe('Using a LocalDate instance', () => {
     });
 
     describe('when coercing to a primitive', () => {
-        const itNotIE11 = isIE11Browser() ? it.skip : it;
-
-        itNotIE11('should throw an exception if used numerically', () => {
+        it('should throw an exception if used numerically', () => {
             const oneDay = LocalDate.now(Clock.systemUTC());
             const otherDay = oneDay.plusDays(1);
 
@@ -257,7 +255,7 @@ describe('Using a LocalDate instance', () => {
             expect(() => oneDay < otherDay).to.throw(TypeError);
         });
 
-        itNotIE11('should not throw if used in string concatenation', () => {
+        it('should not throw if used in string concatenation', () => {
             const oneDay = LocalDate.now(Clock.systemUTC());
             const otherDay = oneDay.plusDays(1);
 
