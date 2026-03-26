@@ -462,6 +462,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "@js-joda/root/packages/locale/src/format/cldr/cldrcache.js~registerlocaledata",
+    "function/index.html#static-function-registerLocaleData",
+    "<span>registerLocaleData</span> <span class=\"search-result-import-path\">@js-joda/root/packages/locale/src/format/cldr/CldrCache.js</span>",
+    "function"
+  ],
+  [
     "packages/core/src/clock.js",
     "file/packages/core/src/Clock.js.html",
     "packages/core/src/Clock.js",

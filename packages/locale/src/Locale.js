@@ -73,4 +73,18 @@ export function _init() {
     Locale.SWEDEN = new Locale('sv', 'SE', 'sv');
     Locale.HINDI = new Locale('hi');
     Locale.RUSSIAN = new Locale('ru');
+    Locale.ARABIC = new Locale('ar');
+    Locale.CZECH = new Locale('cs');
+    Locale.DANISH = new Locale('da');
+    Locale.GREEK = new Locale('el');
+    Locale.SPANISH = new Locale('es');
+    Locale.FINNISH = new Locale('fi');
+    Locale.LITHUANIAN = new Locale('lt');
+    Locale.NORWEGIAN = new Locale('no');
+    Locale.NORWEGIAN_BOKMAL = new Locale('nb', 'NO');
+    Locale.NORWEGIAN_NYNORSK = new Locale('nn', 'NO');
+    Locale.POLISH = new Locale('pl');
+    Locale.SLOVAK = new Locale('sk');
+    Locale.TURKISH = new Locale('tr');
+    Locale.UKRAINIAN = new Locale('uk');
 }

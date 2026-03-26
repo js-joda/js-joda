@@ -12,20 +12,22 @@ function buildRollupConfig({ locales }) {
         plugins: [
             plugins.babel,
             virtual({
-                'cldr-data': cldr_data_js,
+                'cldr-entry': cldr_data_js,
             }),
             json(),
             nodeResolve(),
             commonjs(),
         ],
+        input: 'cldr-entry',
         output: {
             name: 'JSJodaLocale',
             globals: {
                 '@js-joda/core': 'JSJoda',
                 '@js-joda/timezone': 'JSJodaTimezone',
+                '@js-joda/locale': 'JSJodaLocale',
             },
         },
-        external: ['@js-joda/core', '@js-joda/timezone'],
+        external: ['@js-joda/core', '@js-joda/timezone', '@js-joda/locale'],
     });
 }
 

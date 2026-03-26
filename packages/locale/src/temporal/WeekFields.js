@@ -18,8 +18,7 @@ import {
     ValueRange,
     Year
 } from '@js-joda/core';
-import cldrData from 'cldr-data';
-import Cldr from 'cldrjs';
+import { getOrCreateCldrInstance, loadCldrData } from '../format/cldr/CldrCache';
 
 const { MathUtil, assert: { requireNonNull, requireInstance } } = jodaInternal;
 
@@ -587,8 +586,8 @@ export class WeekFields {
     static ofLocale(locale) {
         requireNonNull(locale, 'locale');
 
-        Cldr.load(cldrData('supplemental/weekData.json'));
-        const cldr = new Cldr(locale.localeString());
+        loadCldrData('supplemental/weekData.json');
+        const cldr = getOrCreateCldrInstance(locale.localeString());
         const worldRegion = '001';
         const weekData = cldr.get('supplemental/weekData');
         let dow = _weekDayMap[weekData.firstDay[locale.country()]];
@@ -662,7 +661,7 @@ export class WeekFields {
         this._weekOfYear = ComputedDayOfField.ofWeekOfYearField(this);
         this._weekOfWeekBasedYear = ComputedDayOfField.ofWeekOfWeekBasedYearField(this);
         this._weekBasedYear = ComputedDayOfField.ofWeekBasedYearField(this);
-        Cldr.load(cldrData('supplemental/likelySubtags.json'));
+        loadCldrData('supplemental/likelySubtags.json');
     }
 
     //-----------------------------------------------------------------------

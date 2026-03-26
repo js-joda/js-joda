@@ -139,9 +139,13 @@
       
     <li data-ice="manualNav" class="indent-h1" data-link="manual/Locale.html"><a href="manual/Locale.html" data-ice="link">Using locale package</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/Locale.html"><a href="manual/Locale.html#motivation" data-ice="link">Motivation</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/Locale.html"><a href="manual/Locale.html#node" data-ice="link">Node</a></li>
-<li data-ice="manualNav" class="indent-h2" data-link="manual/Locale.html"><a href="manual/Locale.html#browser" data-ice="link">Browser</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/Locale.html"><a href="manual/Locale.html#installation" data-ice="link">Installation</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/Locale.html"><a href="manual/Locale.html#option-1-&#x2014;-full-locale-support--node--server-side-" data-ice="link">Option 1 &#x2014; Full locale support (Node, server-side)</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/Locale.html"><a href="manual/Locale.html#option-2-&#x2014;-prebuilt-locale-packages--browser--size-constrained-environments-" data-ice="link">Option 2 &#x2014; Prebuilt locale packages (browser, size-constrained environments)</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/Locale.html"><a href="manual/Locale.html#usage" data-ice="link">Usage</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/Locale.html"><a href="manual/Locale.html#with-a-single-locale" data-ice="link">With a single locale</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/Locale.html"><a href="manual/Locale.html#with-multiple-locales" data-ice="link">With multiple locales</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/Locale.html"><a href="manual/Locale.html#available-prebuilt-packages" data-ice="link">Available prebuilt packages</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/Locale.html"><a href="manual/Locale.html#links" data-ice="link">Links</a></li>
 </ul>
   </div>
@@ -1447,36 +1451,228 @@ of the formatter, eg <code>DateTimeFormatter.ofPattern(&apos;eeee (d MMMM)&apos;
     </div>
 <div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
-        <div data-ice="card"><h1>Using locale package</h1><h2>Motivation</h2><p>Implementation of locale specific functionality for js-joda, providing function not implemented in js-joda core</p><p>Especially this implements patterns elements to print and parse locale specific dates.</p><h2>Node</h2><p>In a node environment, the best choice is to install <code>@js-joda/locale</code> and 
-the cldr data <code>cldr-data</code> separately. With that you have support for all locales defined in the cldr project.
-The timezone package is required as soon as timezone locales come into play.</p><pre><code class="lang-shell"><code class="source-code prettyprint">    npm install @js-joda/core
-    npm install @js-joda/timezone
-    npm install cldr-data
-    npm install cldrjs
-    npm install @js-joda/locale</code>
-</code></pre><h2>Browser</h2><p>In a browser environment, to save space, the better choice is to install one of the pre-built packages
-for a certain language. 
-The pre-built packages contain the implementation and all cldr data required for that specific locale.</p><p>For more information check the <a href="https://github.com/js-joda/js-joda/blob/main/packages/locale/README.md">README.md</a>
-in the locale package.</p><pre><code class="lang-shell"><code class="source-code prettyprint">    npm install @js-joda/locale_en
-    npm install @js-joda/timezone</code>
-</code></pre><h2>Usage</h2><pre><code class="lang-javascript"><code class="source-code prettyprint">const {
+        <div data-ice="card"><h1>Using locale package</h1><h2>Motivation</h2><p>Implementation of locale specific functionality for js-joda, providing functionality not implemented in js-joda core.</p><p>Especially this implements pattern elements to print and parse locale specific dates.</p><h2>Installation</h2><p>There are two ways to use locale support, depending on your use case.</p><h3>Option 1 &#x2014; Full locale support (Node, server-side)</h3><p>Install <code>@js-joda/locale</code> together with its peer dependency, the full <code>cldr-data</code> package. 
+This gives you support for all locales defined in the CLDR project.</p><pre><code class="lang-shell"><code class="source-code prettyprint">npm install @js-joda/core
+npm install @js-joda/timezone
+npm install @js-joda/locale
+# npm install cldr-data // @js-joda/locale installs this as a peer dependency
+# npm install cldrjs // @js-joda/locale installs this as a peer dependency</code>
+</code></pre><h3>Option 2 &#x2014; Prebuilt locale packages (browser, size-constrained environments)</h3><p>Install <code>@js-joda/locale</code> and one or more prebuilt locale packages. Each prebuilt package contains only the CLDR data for its specific locale(s), keeping bundle sizes small.</p><pre><code class="lang-shell"><code class="source-code prettyprint">npm install @js-joda/core
+npm install @js-joda/timezone
+npm install @js-joda/locale
+npm install @js-joda/locale_en
+npm install @js-joda/locale_de   # add as many as needed</code>
+</code></pre><blockquote>
+<p><strong>Important:</strong> <code>@js-joda/locale</code> is always required. Prebuilt packages only register locale data &#x2014; the implementation lives in <code>@js-joda/locale</code>. 
+Always import <code>Locale</code> and <code>WeekFields</code> from <code>@js-joda/locale</code>, not from a prebuilt package.</p>
+</blockquote><h2>Usage</h2><h3>With a single locale</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">const {
     DateTimeFormatter,
     ZonedDateTime,
     ZoneId,
 } = require(&apos;@js-joda/core&apos;);
 require(&apos;@js-joda/timezone&apos;);
 
-const {
-    Locale,
-} = require(&apos;@js-joda/locale_en-us&apos;);
+const { Locale } = require(&apos;@js-joda/locale&apos;);  // always import Locale from here
+require(&apos;@js-joda/locale_en&apos;);                  // side-effect: registers EN locale data
 
-var zdt = ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, ZoneId.of(&apos;Europe/Berlin&apos;));
-console.log(&apos;en_US formatted string:&apos;, 
+const zdt = ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, ZoneId.of(&apos;Europe/Berlin&apos;));
+console.log(&apos;en formatted string:&apos;,
     zdt.format(
         DateTimeFormatter
             .ofPattern(&apos;eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, \&apos;Week \&apos; ww, \&apos;Quarter \&apos; QQQ&apos;)
-            .withLocale(Locale.US)));</code>
-</code></pre><p>this will output <code>en_US formatted string: Friday January 01 2016 Anno Domini, 12:00:00 AM Central European Time, Week  01, Quarter  Q1</code></p><h2>Links</h2><p>For more information check the <a href="https://github.com/js-joda/js-joda/blob/main/packages/locale/README.md">README.md</a>
+            .withLocale(Locale.ENGLISH)));</code>
+</code></pre><p>Output: <code>en formatted string: Friday January 01 2016 Anno Domini, 12:00:00 AM Central European Time, Week  01, Quarter  Q1</code></p><h3>With multiple locales</h3><p>Multiple prebuilt packages can be imported in the same project. Each registers its locale data independently without affecting the others.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">const {
+    DateTimeFormatter,
+    ZonedDateTime,
+    ZoneId,
+} = require(&apos;@js-joda/core&apos;);
+require(&apos;@js-joda/timezone&apos;);
+
+const { Locale } = require(&apos;@js-joda/locale&apos;);  // single source of Locale
+require(&apos;@js-joda/locale_en&apos;);                  // side-effect: registers EN locale data
+require(&apos;@js-joda/locale_de&apos;);                  // side-effect: registers DE locale data
+
+const zdt = ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, ZoneId.of(&apos;Europe/Berlin&apos;));
+const pattern = &apos;eeee MMMM dd yyyy&apos;;
+
+console.log(&apos;en:&apos;, zdt.format(DateTimeFormatter.ofPattern(pattern).withLocale(Locale.ENGLISH)));
+console.log(&apos;de:&apos;, zdt.format(DateTimeFormatter.ofPattern(pattern).withLocale(Locale.GERMAN)));</code>
+</code></pre><h2>Available prebuilt packages</h2><p>Each prebuilt package covers one language or a specific regional variant.</p><table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Locales</th>
+<th><code>Locale</code> constant</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@js-joda/locale_ar</code></td>
+<td>all <code>ar-*</code> variants</td>
+<td><code>Locale.ARABIC</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_cs</code></td>
+<td>all <code>cs-*</code> variants</td>
+<td><code>Locale.CZECH</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_da</code></td>
+<td>all <code>da-*</code> variants</td>
+<td><code>Locale.DANISH</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_de</code></td>
+<td>all <code>de-*</code> variants</td>
+<td><code>Locale.GERMAN</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_de-de</code></td>
+<td><code>de</code>, <code>de-DE</code></td>
+<td><code>Locale.GERMANY</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_el</code></td>
+<td>all <code>el-*</code> variants</td>
+<td><code>Locale.GREEK</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_en</code></td>
+<td>all <code>en-*</code> variants</td>
+<td><code>Locale.ENGLISH</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_en-gb</code></td>
+<td><code>en</code>, <code>en-GB</code></td>
+<td><code>Locale.UK</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_en-us</code></td>
+<td><code>en</code>, <code>en-US</code></td>
+<td><code>Locale.US</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_es</code></td>
+<td>all <code>es-*</code> variants</td>
+<td><code>Locale.SPANISH</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_fi</code></td>
+<td>all <code>fi-*</code> variants</td>
+<td><code>Locale.FINNISH</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_fi-fi</code></td>
+<td><code>fi</code>, <code>fi-FI</code></td>
+<td>&#x2014;</td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_fr</code></td>
+<td>all <code>fr-*</code> variants</td>
+<td><code>Locale.FRENCH</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_fr-fr</code></td>
+<td><code>fr</code>, <code>fr-FR</code></td>
+<td><code>Locale.FRANCE</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_hi</code></td>
+<td>all <code>hi-*</code> variants</td>
+<td><code>Locale.HINDI</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_it</code></td>
+<td>all <code>it-*</code> variants</td>
+<td><code>Locale.ITALIAN</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_it-it</code></td>
+<td><code>it</code>, <code>it-IT</code></td>
+<td><code>Locale.ITALY</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_ja</code></td>
+<td>all <code>ja-*</code> variants</td>
+<td>&#x2014;</td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_ja-jp</code></td>
+<td><code>ja</code>, <code>ja-JP</code></td>
+<td><code>Locale.JAPANESE</code>, <code>Locale.JAPAN</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_ko</code></td>
+<td>all <code>ko-*</code> variants</td>
+<td><code>Locale.KOREAN</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_lt</code></td>
+<td>all <code>lt-*</code> variants</td>
+<td><code>Locale.LITHUANIAN</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_nb-no</code></td>
+<td><code>nb</code>, <code>nb-NO</code></td>
+<td><code>Locale.NORWEGIAN_BOKMAL</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_nn-no</code></td>
+<td><code>nn</code>, <code>nn-NO</code></td>
+<td><code>Locale.NORWEGIAN_NYNORSK</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_no</code></td>
+<td>all <code>no-*</code> variants</td>
+<td><code>Locale.NORWEGIAN</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_pl</code></td>
+<td>all <code>pl-*</code> variants</td>
+<td><code>Locale.POLISH</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_ro</code></td>
+<td>all <code>ro-*</code> variants</td>
+<td><code>Locale.ROMANIAN</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_ru</code></td>
+<td>all <code>ru-*</code> variants</td>
+<td><code>Locale.RUSSIAN</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_sk</code></td>
+<td>all <code>sk-*</code> variants</td>
+<td><code>Locale.SLOVAK</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_sv</code></td>
+<td>all <code>sv-*</code> variants</td>
+<td><code>Locale.SWEDISH</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_sv-se</code></td>
+<td><code>sv</code>, <code>sv-SE</code></td>
+<td><code>Locale.SWEDEN</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_tr</code></td>
+<td>all <code>tr-*</code> variants</td>
+<td><code>Locale.TURKISH</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_uk</code></td>
+<td>all <code>uk-*</code> variants</td>
+<td><code>Locale.UKRAINIAN</code></td>
+</tr>
+<tr>
+<td><code>@js-joda/locale_zh</code></td>
+<td>all <code>zh-*</code> variants</td>
+<td><code>Locale.CHINESE</code></td>
+</tr>
+</tbody>
+</table><p>For the full list see <a href="https://github.com/js-joda/js-joda/blob/main/packages/locale/prebuilt-packages.json">prebuilt-packages.json</a>.</p><h2>Links</h2><p>For more information check the <a href="https://github.com/js-joda/js-joda/blob/main/packages/locale/README.md">README.md</a>
 in the locale package.</p></div>
         <a data-ice="link" href="manual/Locale.html"></a>
       </div>

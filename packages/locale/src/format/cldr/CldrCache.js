@@ -3,19 +3,47 @@
 * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
 */
 
-import cldrData from 'cldr-data';
 import Cldr from 'cldrjs';
 
 const cldrDataLoaded = new Set();
+const registeredLocales = new Set();
+
+/**
+ * Registers CLDR JSON data into the shared cldrjs instance.
+ * The path is used as a unique key to skip already-loaded data.
+ *
+ * @param {string} path - The CLDR data path (e.g. 'supplemental/likelySubtags.json')
+ * @param {Object} data - A CLDR JSON object
+ */
+export const registerLocaleData = (path, data) => {
+    if (cldrDataLoaded.has(path)) return;
+    cldrDataLoaded.add(path);
+    const match = path.match(/^main\/([^/]+)\//);
+    if (match) {
+        registeredLocales.add(match[1]);
+    }
+    Cldr.load(data);
+};
+
+/**
+ * Returns an array of locale strings that have been registered via registerLocaleData().
+ */
+export const getRegisteredLocales = () => Array.from(registeredLocales);
+
 /**
  * @private
  *
-* Loads the Cldr data for the given path if it hasn't been loaded before.
-*/
+ * Loads a CLDR data file by path using the `cldr-data` package.
+ * Requires `cldr-data` to be installed (Option 1 — full locale support).
+ * For prebuilt locale packages (Option 2), data is pre-loaded via registerLocaleData() instead.
+ */
 export const loadCldrData = (path) => {
-    if (!cldrDataLoaded.has(path)) {
-        Cldr.load(cldrData(path));
-        cldrDataLoaded.add(path);
+    if (cldrDataLoaded.has(path)) return;
+    try {
+        const cldrData = require('cldr-data');
+        registerLocaleData(path, cldrData(path));
+    } catch (e) {
+        // cldr-data is not installed; data must be pre-loaded via registerLocaleData()
     }
 };
 

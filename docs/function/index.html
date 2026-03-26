@@ -102,6 +102,7 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format">locale/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleDateTimeFormatter.js~LocaleDateTimeFormatter.html">LocaleDateTimeFormatter</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleStore.js~LocaleStore.html">LocaleStore</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-cldr">locale/src/format/cldr</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrZoneTextPrinterParser.js~CldrZoneTextPrinterParser.html">CldrZoneTextPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-registerLocaleData">registerLocaleData</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-parser">locale/src/format/parser</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/parser/WeekFieldsPrinterParser.js~WeekFieldsPrinterParser.html">WeekFieldsPrinterParser</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-temporal">locale/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~ComputedDayOfField.html">ComputedDayOfField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
@@ -166,6 +167,35 @@
         
         
         <div data-ice="description"><p>Creates ZonedDateTime from a javascript Date or a moment instance.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-registerLocaleData">registerLocaleData</a></span></span><span class="code" data-ice="signature">(path: <span>string</span>, data: <span>Object</span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Registers CLDR JSON data into the shared cldrjs instance.</p>
 </div>
       </div>
     </td>
@@ -287,11 +317,11 @@ convert(localDate).toEpochMilli()   // returns the epochMillis</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/nativeJs.js.html#lineNumber16">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/nativeJs.js.html#lineNumber15">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {nativeJs} from &apos;<span><a href="file/packages/core/src/nativeJs.js.html#lineNumber16">@js-joda/root/packages/core/src/nativeJs.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {nativeJs} from &apos;<span><a href="file/packages/core/src/nativeJs.js.html#lineNumber15">@js-joda/root/packages/core/src/nativeJs.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Creates ZonedDateTime from a javascript Date or a moment instance.</p>
@@ -340,6 +370,75 @@ convert(localDate).toEpochMilli()   // returns the epochMillis</code></pre>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-registerLocaleData">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">registerLocaleData</span><span class="code" data-ice="signature">(path: <span>string</span>, data: <span>Object</span>)</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/locale/src/format/cldr/CldrCache.js.html#lineNumber17">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {registerLocaleData} from &apos;<span><a href="file/packages/locale/src/format/cldr/CldrCache.js.html#lineNumber17">@js-joda/root/packages/locale/src/format/cldr/CldrCache.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Registers CLDR JSON data into the shared cldrjs instance.
+The path is used as a unique key to skip already-loaded data.</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">path</td>
+      <td data-ice="type" class="code"><span>string</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The CLDR data path (e.g. &apos;supplemental/likelySubtags.json&apos;)</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">data</td>
+      <td data-ice="type" class="code"><span>Object</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>A CLDR JSON object</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  
 
   
 

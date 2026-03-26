@@ -102,6 +102,7 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format">locale/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleDateTimeFormatter.js~LocaleDateTimeFormatter.html">LocaleDateTimeFormatter</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleStore.js~LocaleStore.html">LocaleStore</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-cldr">locale/src/format/cldr</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrZoneTextPrinterParser.js~CldrZoneTextPrinterParser.html">CldrZoneTextPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-registerLocaleData">registerLocaleData</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-parser">locale/src/format/parser</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/parser/WeekFieldsPrinterParser.js~WeekFieldsPrinterParser.html">WeekFieldsPrinterParser</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-temporal">locale/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~ComputedDayOfField.html">ComputedDayOfField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
@@ -117,19 +118,37 @@
 * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
 */
 
-import cldrData from &apos;cldr-data&apos;;
 import Cldr from &apos;cldrjs&apos;;
 
 const cldrDataLoaded = new Set();
+
+/**
+ * Registers CLDR JSON data into the shared cldrjs instance.
+ * The path is used as a unique key to skip already-loaded data.
+ *
+ * @param {string} path - The CLDR data path (e.g. &apos;supplemental/likelySubtags.json&apos;)
+ * @param {Object} data - A CLDR JSON object
+ */
+export const registerLocaleData = (path, data) =&gt; {
+    if (cldrDataLoaded.has(path)) return;
+    cldrDataLoaded.add(path);
+    Cldr.load(data);
+};
+
 /**
  * @private
  *
-* Loads the Cldr data for the given path if it hasn&apos;t been loaded before.
-*/
+ * Loads a CLDR data file by path using the `cldr-data` package.
+ * Requires `cldr-data` to be installed (Option 1 &#x2014; full locale support).
+ * For prebuilt locale packages (Option 2), data is pre-loaded via registerLocaleData() instead.
+ */
 export const loadCldrData = (path) =&gt; {
-    if (!cldrDataLoaded.has(path)) {
-        Cldr.load(cldrData(path));
-        cldrDataLoaded.add(path);
+    if (cldrDataLoaded.has(path)) return;
+    try {
+        const cldrData = require(&apos;cldr-data&apos;);
+        registerLocaleData(path, cldrData(path));
+    } catch (e) {
+        // cldr-data is not installed; data must be pre-loaded via registerLocaleData()
     }
 };
 

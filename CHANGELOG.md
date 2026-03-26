@@ -1,6 +1,30 @@
 Changelog
 =========
 
+## 2026-03-27
+
+### Versions
+
+- @js-joda/core@6.0.0
+- @js-joda/locale@5.0.0
+
+#### :rocket: Enhancement
+* `locale`
+  * Enable Multi-locale import: importing multiple prebuilt locale packages (e.g. `@js-joda/locale_en` + `@js-joda/locale_de`) no longer breaks each other. 
+      * Prebuilt packages now register CLDR data via `registerLocaleData()` into the single shared `@js-joda/locale` instance.
+      * Prebuilt locale packages now declare `@js-joda/locale` as a peer dependency instead of bundling the locale implementation.
+      * Import `Locale` from `@js-joda/locale` to access the `Locale` class.
+  * [#775](https://github.com/js-joda/js-joda/pull/775) Add a prebuilt `ar` locale ([@Oussemasahbeni](https://github.com/Oussemasahbeni))
+* `core`
+  * Simplify `nativeJs` function ([@pithu](https://github.com/pithu))
+  * [#749](https://github.com/js-joda/js-joda/pull/749) remove IE11 support
+
+#### :house: Dependency update
+* Other
+    * [#779](https://github.com/js-joda/js-joda/pull/779) Bump lodash from 4.17.21 to 4.17.23 in /packages/examples ([@dependabot[bot]](https://github.com/apps/dependabot))
+* `examples`
+    * [#778](https://github.com/js-joda/js-joda/pull/778) Bump lodash from 4.17.21 to 4.17.23 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
 ## 2026-01-22
 
 ### Versions

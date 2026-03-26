@@ -1,5 +1,8 @@
 const { babel } = require('@rollup/plugin-babel');
 const { terser } = require('rollup-plugin-minification');
+const { nodeResolve } = require('@rollup/plugin-node-resolve');
+const commonjs = require('@rollup/plugin-commonjs');
+const json = require('@rollup/plugin-json');
 const { mergeDeepRight } = require('ramda');
 const { createBanner } = require('../../shared/rollup-utils');
 const packageJson = require('./package.json');
@@ -12,6 +15,9 @@ const plugins = {
 const defaultConfig = {
     input: './src/js-joda-locale.js',
     plugins: [
+        nodeResolve(),
+        commonjs(),
+        json(),
         plugins.babel,
     ],
     output: {
@@ -20,10 +26,9 @@ const defaultConfig = {
             '@js-joda/core': 'JSJoda',
             '@js-joda/timezone': 'JSJodaTimezone',
             'cldr-data': 'cldr-data',
-            'cldrjs': 'cldrjs',
         },
     },
-    external: ['@js-joda/core', '@js-joda/timezone', 'cldrjs', 'cldr-data'],
+    external: ['@js-joda/core', '@js-joda/timezone', 'cldr-data'],
 };
 
 module.exports = [
@@ -44,6 +49,9 @@ module.exports = [
     }),
     mergeDeepRight(defaultConfig, {
         plugins: [
+            nodeResolve(),
+            commonjs(),
+            json(),
             plugins.babel,
             plugins.terser,
         ],
