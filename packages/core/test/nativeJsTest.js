@@ -10,7 +10,7 @@ import './_init';
 
 import { nativeJs } from '../src/nativeJs';
 
-import {ArithmeticException, IllegalArgumentException, NullPointerException} from '../src/errors';
+import { ArithmeticException, NullPointerException } from '../src/errors';
 import { ZonedDateTime } from '../src/ZonedDateTime';
 import { ZoneOffset } from '../src/ZoneOffset';
 

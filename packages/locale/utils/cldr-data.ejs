@@ -1,15 +1,9 @@
 import { registerLocaleData } from '@js-joda/locale';
-import likelySubtags from 'cldr-data/supplemental/likelySubtags.json';
-import metaZones from 'cldr-data/supplemental/metaZones.json';
-import weekData from 'cldr-data/supplemental/weekData.json';
 <% locales.forEach(function(locale){ -%>
 import  <%- locale.replace(/-/g, '_') _%>_cg from 'cldr-data/main/<%- locale %>/ca-gregorian.json';
 import  <%- locale.replace(/-/g, '_') _%>_tzn from 'cldr-data/main/<%- locale %>/timeZoneNames.json';
 <% }); -%>
 
-registerLocaleData('supplemental/likelySubtags.json', likelySubtags);
-registerLocaleData('supplemental/metaZones.json', metaZones);
-registerLocaleData('supplemental/weekData.json', weekData);
 <% locales.forEach(function(locale){ -%>
 registerLocaleData('main/<%- locale %>/ca-gregorian.json', <%- locale.replace(/-/g, '_') %>_cg);
 registerLocaleData('main/<%- locale %>/timeZoneNames.json', <%- locale.replace(/-/g, '_') %>_tzn);

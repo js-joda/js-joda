@@ -2,6 +2,7 @@ const { babel } = require('@rollup/plugin-babel');
 const { terser } = require('rollup-plugin-minification');
 const { nodeResolve } = require('@rollup/plugin-node-resolve');
 const commonjs = require('@rollup/plugin-commonjs');
+const json = require('@rollup/plugin-json');
 const { mergeDeepRight } = require('ramda');
 const { createBanner } = require('../../shared/rollup-utils');
 const packageJson = require('./package.json');
@@ -16,6 +17,7 @@ const defaultConfig = {
     plugins: [
         nodeResolve(),
         commonjs(),
+        json(),
         plugins.babel,
     ],
     output: {
@@ -49,6 +51,7 @@ module.exports = [
         plugins: [
             nodeResolve(),
             commonjs(),
+            json(),
             plugins.babel,
             plugins.terser,
         ],
