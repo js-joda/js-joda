@@ -18,7 +18,8 @@ const {
 } = require('../dist/js-joda-locale');
 
 console.log('locale', Locale);
-console.log(`availableLocales:${JSON.stringify(Locale.getAvailableLocales(), null, 4)}`);
+const availableLocales = Locale.getAvailableLocales();
+console.log(JSON.stringify({ availableLocales }, null, 4));
 
 const zdt = ZonedDateTime.of(2016, 1, 1, 1, 2, 3, 4, ZoneId.of('Europe/Berlin'));
 const pattern = 'eeee MMMM dd yyyy GGGG, hh:mm:ss,nnnn a zzzz, \'Week \' ww, \'Quarter \' QQQ';

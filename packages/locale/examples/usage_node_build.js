@@ -28,8 +28,8 @@ function outputDateInDifferentLocales(zdt) {
 try {
     const { Locale } = require('./dist/sample');
     console.log('locale', Locale);
-
-    console.log(`availableLocales:${JSON.stringify(Locale.getAvailableLocales(), null, 4)}`);
+    const availableLocales = Locale.getAvailableLocales();
+    console.log(JSON.stringify({ availableLocales }, null, 4));
 
     var zdt = joda.ZonedDateTime.of(2017, 1, 1, 0, 0, 0, 0, joda.ZoneId.of('Europe/Berlin'));
     outputDateInDifferentLocales(zdt);

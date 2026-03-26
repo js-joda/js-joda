@@ -29,7 +29,7 @@ export default class CldrDateTimeTextProvider {
             // eslint-disable-next-line no-undef
             const fromCldrData = require('cldr-data')('availableLocales.json').availableLocales;
             if (fromCldrData && fromCldrData.length > 0) {
-                return [...new Set([...fromCldrData, ...registered])];
+                return Array.from(new Set(fromCldrData.concat(registered)));
             }
         } catch (e) {
             // cldr-data not available

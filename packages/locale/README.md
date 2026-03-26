@@ -137,7 +137,7 @@ const zdt = ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, ZoneId.of('Europe/Berlin'))
 console.log('en_US formatted string:', zdt.format(DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, \'Week \' ww, \'Quarter \' QQQ').withLocale(Locale.US)));
 ```
 
-also see the [example](examples/usage_es6.js)
+also see the [example](examples/usage_es6.mjs)
 
 ### Browser
 - using `@js-joda` umd or iife builds 
