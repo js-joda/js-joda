@@ -22,27 +22,42 @@ also see examples in  [examples folder](examples/)
 
 ### Use prebuilt locale packages
 
-Since the process described [below](#without-prebuilt-locale-packages) requires a lot of setup and internal knowledge, 
-we provide prebuilt sets of locales as separate npm packages. 
+Since the process described [below](#without-prebuilt-locale-packages) requires a lot of setup and internal knowledge,
+we provide prebuilt sets of locales as separate npm packages.
 So for ease of use you may want to install the corresponding `@js-joda/locale_<locale>` package.
 The current list of available prebuilt locales is:
+- [ar (i.e. ar-*)](https://www.npmjs.com/package/@js-joda/locale_ar)
+- [cs (i.e. cs-*)](https://www.npmjs.com/package/@js-joda/locale_cs)
+- [da (i.e. da-*)](https://www.npmjs.com/package/@js-joda/locale_da)
 - [de (i.e. de-*)](https://www.npmjs.com/package/@js-joda/locale_de)
 - [de-DE](https://www.npmjs.com/package/@js-joda/locale_de-de)
+- [el (i.e. el-*)](https://www.npmjs.com/package/@js-joda/locale_el)
 - [en (i.e. en-*)](https://www.npmjs.com/package/@js-joda/locale_en)
+- [en-GB](https://www.npmjs.com/package/@js-joda/locale_en-gb)
 - [en-US](https://www.npmjs.com/package/@js-joda/locale_en-us)
 - [es (i.e. es-*)](https://www.npmjs.com/package/@js-joda/locale_es)
+- [fi (i.e. fi-*)](https://www.npmjs.com/package/@js-joda/locale_fi)
+- [fi-FI](https://www.npmjs.com/package/@js-joda/locale_fi-fi)
 - [fr (i.e. fr-*)](https://www.npmjs.com/package/@js-joda/locale_fr)
 - [fr-FR](https://www.npmjs.com/package/@js-joda/locale_fr-fr)
 - [hi (i.e. hi-*)](https://www.npmjs.com/package/@js-joda/locale_hi)
 - [it (i.e. it-*)](https://www.npmjs.com/package/@js-joda/locale_it)
 - [it-IT](https://www.npmjs.com/package/@js-joda/locale_it-it)
-- [ja (i.e. js-*)](https://www.npmjs.com/package/@js-joda/locale_ja)
-- [ja-jp](https://www.npmjs.com/package/@js-joda/locale_ja-jp)
+- [ja (i.e. ja-*)](https://www.npmjs.com/package/@js-joda/locale_ja)
+- [ja-JP](https://www.npmjs.com/package/@js-joda/locale_ja-jp)
 - [ko (i.e. ko-*)](https://www.npmjs.com/package/@js-joda/locale_ko)
+- [lt (i.e. lt-*)](https://www.npmjs.com/package/@js-joda/locale_lt)
+- [nb-NO](https://www.npmjs.com/package/@js-joda/locale_nb-no)
+- [nn-NO](https://www.npmjs.com/package/@js-joda/locale_nn-no)
+- [no (i.e. no-*)](https://www.npmjs.com/package/@js-joda/locale_no)
+- [pl (i.e. pl-*)](https://www.npmjs.com/package/@js-joda/locale_pl)
 - [ro (i.e. ro-*)](https://www.npmjs.com/package/@js-joda/locale_ro)
 - [ru (i.e. ru-*)](https://www.npmjs.com/package/@js-joda/locale_ru)
+- [sk (i.e. sk-*)](https://www.npmjs.com/package/@js-joda/locale_sk)
 - [sv (i.e. sv-*)](https://www.npmjs.com/package/@js-joda/locale_sv)
 - [sv-SE](https://www.npmjs.com/package/@js-joda/locale_sv-se)
+- [tr (i.e. tr-*)](https://www.npmjs.com/package/@js-joda/locale_tr)
+- [uk (i.e. uk-*)](https://www.npmjs.com/package/@js-joda/locale_uk)
 - [zh (i.e. zh-*)](https://www.npmjs.com/package/@js-joda/locale_zh)
 
 this list could be extended relatively easily if needed, as long as data is available in cldr-data
@@ -59,7 +74,10 @@ Install required packages using npm
     npm install @js-joda/locale_en-us
 ```
 
-To enable @js-joda/locale you will only need to require it, requiring it automatically registers the locale extensions in the base `js-joda`
+To enable @js-joda/locale you will only need to require it, requiring it automatically registers the locale extensions in the base `js-joda`.
+Importing `@js-joda/locale` (or any prebuilt locale package) also automatically registers the required supplemental CLDR data
+(likelySubtags, metaZones, weekData) as a side effect — no manual registration is needed.
+
 Note: the `Locale` class is exported by `@js-joda/locale_<locale>` so in order to use it, you will need to extract it from there.
 
 Since `@js-joda/locale` requires `@js-joda/timezone` it will also need to be provided, as shown
@@ -68,10 +86,11 @@ in the following examples
 ```javascript
 const { DateTimeFormatter, ZonedDateTime, ZoneId } = require('@js-joda/core');
 require('@js-joda/timezone');
-const { Locale } = require('@js-joda/locale_en-us');
+const { Locale } = require('@js-joda/locale');
+require('@js-joda/locale_en-us');
 
 const zdt = ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, ZoneId.of('Europe/Berlin'));
-console.log('en_US formatted string:', 
+console.log('en_US formatted string:',
     zdt.format(DateTimeFormatter
             .ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, \'Week \' ww, \'Quarter \' QQQ')
             .withLocale(Locale.US)));
@@ -97,13 +116,16 @@ load or reduce the amount of data needed.
 
 The implementation of `@js-joda/locale` also requires `@js-joda/timezone` package e.g. to parse and output timezone names and offsets
 
+When `cldr-data` is installed alongside `@js-joda/locale`, the supplemental data (likelySubtags, metaZones, weekData) is loaded
+automatically from `cldr-data` at startup. You only need to additionally register the per-locale files you need using `registerLocaleData`.
+
 #### Example
 
 ```shell
     npm install @js-joda/core
     npm install @js-joda/timezone
-    npm install cldr-data
-    npm install cldrjs
+    npm install cldr-data # peer dependency of @js-joda/locale
+    npm install cldrjs # peer dependency of @js-joda/locale
     npm install @js-joda/locale
 ```
 
@@ -113,12 +135,16 @@ Find the full list of supported locales here [https://github.com/unicode-org/cld
 ```javascript
 const { DateTimeFormatter, ZonedDateTime, ZoneId } = require('@js-joda/core');
 require('@js-joda/timezone');
-const { Locale } = require('@js-joda/locale');
+const { Locale, registerLocaleData } = require('@js-joda/locale');
+
+// Register per-locale CLDR data for the locales you need
+registerLocaleData('main/th/ca-gregorian.json', require('cldr-data/main/th/ca-gregorian.json'));
+registerLocaleData('main/th/timeZoneNames.json', require('cldr-data/main/th/timeZoneNames.json'));
 
 const zdt = ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, ZoneId.of('Europe/Berlin'));
 const localeThai = new Locale('th', 'TH', 'th');
 
-console.log('th_TH formatted string:', 
+console.log('th_TH formatted string:',
     zdt.format(DateTimeFormatter
             .ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, \'Week \' ww, \'Quarter \' QQQ')
             .withLocale(localeThai)));
@@ -128,10 +154,11 @@ This will output `th_TH formatted string: วันศุกร์ มกรา�
 
 ### es6
 
-```ecmascript 6
+```javascript
 import { DateTimeFormatter, ZonedDateTime, ZoneId } from '@js-joda/core';
 import '@js-joda/timezone';
-import { Locale } from '.@js-joda/locale_en-us';
+const { Locale } = require('@js-joda/locale');
+require('@js-joda/locale_en-us');
 
 const zdt = ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, ZoneId.of('Europe/Berlin'));
 console.log('en_US formatted string:', zdt.format(DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, \'Week \' ww, \'Quarter \' QQQ').withLocale(Locale.US)));
@@ -140,89 +167,32 @@ console.log('en_US formatted string:', zdt.format(DateTimeFormatter.ofPattern('e
 also see the [example](examples/usage_es6.mjs)
 
 ### Browser
-- using `@js-joda` umd or iife builds 
-- or using `requirejs` to load
-- might also be possible with the bower version of cldr-data
- 
-see the [example requirejs](examples/usage_browser.html) and [example custom iife build](examples/usage_browser_build.html)
 
-### Packaging with webpack, minimizing package size
+Load `@js-joda/core`, `@js-joda/timezone`, and `@js-joda/locale` via `<script>` tags (UMD/IIFE builds).
+`@js-joda/locale` automatically registers the supplemental CLDR data (likelySubtags, metaZones, weekData) as a side effect.
+Then load the prebuilt locale packages for the locales you need — each one registers its per-locale CLDR data.
 
-> **Update:** The following documentation is partly outdated, because we changed from `webpack` to `rollup`.
-> 
-> [rollup-examples.config.js](rollup-examples.config.js) is a good starting point to see how we bundle packages and minimize package size with rollup.
- 
-Since the cldr-data files can still be quite large, it is possible to only load the files needed for your application
-
-Also possible would be to use webpack to reduce the overall size of the cldr-data (similar approaches should work with 
-different packaging tools than webpack). 
-
-So the following tips are just one way to get the general idea on how to reduce the size of needed cldr-data, we use this
-for our karma testing setup in [karma.conf.js](karma.conf.js) and to build the prebuilt locale packages
-
-In `package.json` file define which parts of cldr-data to download and install
-
-(for more information see the [cldr-data-npm docs](https://github.com/rxaviers/cldr-data-npm#locale-coverage))
+```html
+<script src="node_modules/@js-joda/core/dist/js-joda.js"></script>
+<script src="node_modules/@js-joda/timezone/dist/js-joda-timezone.js"></script>
+<script src="node_modules/@js-joda/locale/dist/js-joda-locale.min.js"></script>
+<!-- Load prebuilt locale packages for the locales you need -->
+<script src="node_modules/@js-joda/locale_en/dist/index.min.js"></script>
+<script src="node_modules/@js-joda/locale_de/dist/index.min.js"></script>
 ```
-...
-"cldr-data-coverage": "core",
-"cldr-data-urls-filter": "(cldr-core|cldr-numbers-modern|cldr-dates-modern)"
-...
-```
-(data-coverage `core` only downloads data for the most popular languages / locales, while the urls-filter defines 
-which parts of cldr-data are required for `@js-joda/locale` to work)
 
-In e.g. webpack.config.js, define which parts/locales of the cldr-data files should end up in the final package
+see the [browser example](examples/usage_browser.html) and [custom build example](examples/usage_browser_build.html)
 
-You can for example use the `null-loader` to disable loading cldr-data except for the absolutely required parts/locales
+### Bundling with rollup, minimizing package size
 
-```js
-use: [{ loader: 'null-loader' }],
-resource: {
-    // don't load everything in cldr-data
-    test: path.resolve(__dirname, 'node_modules/cldr-data'),
-    // except the actual data we need (supplemental and de, en, fr locales from main)
-    exclude: [
-        path.resolve(__dirname, 'node_modules/cldr-data/main/de'),
-        path.resolve(__dirname, 'node_modules/cldr-data/main/en'),
-        path.resolve(__dirname, 'node_modules/cldr-data/main/fr'),
-        path.resolve(__dirname, 'node_modules/cldr-data/supplemental'),
-    ],
-}
-``` 
-or (as we do for our prebuilt packages) use the CldrDataIgnorePlugin, provided in `utils/CldrDataIgnorePlugin.js`
-```json
-    "plugins": [
-        new CldrDataIgnorePlugin(modulesDir, locales)),
-    ]
-
-```
-where modulesDir is the absolute path to `node_modules` and `locales` is an array of locales to use as they can be defined 
-for the prebuilt packages. This will only load the absolutely required files for @js-joda/locale, it is what we use internally
-for the prebuilt packages and to build packages for our karma tests as well.
-
-Depending on your usecase it might also be necessary to define a  "faked" cldr-data module that loads 
-the cldr-data files, this is necessary at least if the code needs to run in the browser since the 
-cldr-data load uses modules not available in browser (e.g. `fs`)
-
-```js
-    // add cldr-data load workaround
-    resolve = {
-        alias: {
-            'cldr-data$': path.resolve(__dirname, 'test/utils/karma_cldrData.js'),
-        }
-    };
-
-``` 
-
-These should be the minimum required parts for @js-joda/locale 
-
-see the [karma.conf.js](karma.conf.js)
+[rollup-examples.config.js](rollup-examples.config.js) is a good starting point to see how we bundle packages
+and minimize package size with rollup. It shows how to build a self-contained bundle that includes only the
+locale data you need by importing specific prebuilt locale packages.
 
 ## Implementation details
 
-provides methods for the following pattern letters of the [DateTimeFormatterBuilder](https://js-joda.github.io/js-joda/esdoc/class/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html#instance-method-appendPattern~DateTimeFormatter.html#static-method-ofPattern) 
-and [DateTimeFormatter](https://js-joda.github.io/js-joda/esdoc/class/src/format/DateTimeFormatter.js~DateTimeFormatter.html#static-method-ofPattern) 
+provides methods for the following pattern letters of the [DateTimeFormatterBuilder](https://js-joda.github.io/js-joda/esdoc/class/src/format/DateTimeFormatterBuilder.js~DateTimeFormatterBuilder.html#instance-method-appendPattern~DateTimeFormatter.html#static-method-ofPattern)
+and [DateTimeFormatter](https://js-joda.github.io/js-joda/esdoc/class/src/format/DateTimeFormatter.js~DateTimeFormatter.html#static-method-ofPattern)
 classes of js-joda
 
 Localized Text
@@ -242,11 +212,10 @@ Week Information
 - `e` for localized day-of-week
 - `c` for localized day-of-week
 
-some of these are only partially localized, e.g. `Q` only if three or more `Q` are used, one or two `Q` also 
+some of these are only partially localized, e.g. `Q` only if three or more `Q` are used, one or two `Q` also
 work with plain `@js-joda/core` without using `@js-joda/locale`
 
 ## License
 
 * @js-joda/locale is released under the [BSD 3-clause license](LICENSE)
 * The author of joda time and the lead architect of the JSR-310 is Stephen Colebourne.
-

@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 /**
- * Option 1 — Full locale support using @js-joda/locale with cldr-data.
+ * Full locale support using @js-joda/locale with cldr-data.
  *
- * No prebuilt locale packages needed. Install cldr-data and cldrjs alongside
- * @js-joda/locale to get support for all CLDR locales without size constraints.
+ * No prebuilt locale packages needed. Install @js-joda/locale peer dependencies cldr-data and cldrjs
+ * to get support for all CLDR locales without size constraints.
  *
  * Dependencies:
  *   npm install @js-joda/core @js-joda/timezone @js-joda/locale cldr-data cldrjs
