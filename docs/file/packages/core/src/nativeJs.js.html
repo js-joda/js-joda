@@ -102,6 +102,7 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format">locale/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleDateTimeFormatter.js~LocaleDateTimeFormatter.html">LocaleDateTimeFormatter</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleStore.js~LocaleStore.html">LocaleStore</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-cldr">locale/src/format/cldr</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrZoneTextPrinterParser.js~CldrZoneTextPrinterParser.html">CldrZoneTextPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-registerLocaleData">registerLocaleData</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-parser">locale/src/format/parser</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/parser/WeekFieldsPrinterParser.js~WeekFieldsPrinterParser.html">WeekFieldsPrinterParser</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-temporal">locale/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~ComputedDayOfField.html">ComputedDayOfField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
@@ -118,7 +119,6 @@
  */
 
 import { requireNonNull } from &apos;./assert&apos;;
-import { IllegalArgumentException } from &apos;./errors&apos;;
 import { Instant, ZoneId } from &apos;./js-joda&apos;;
 
 /**
@@ -130,12 +130,7 @@ import { Instant, ZoneId } from &apos;./js-joda&apos;;
 export function nativeJs(date, zone = ZoneId.systemDefault()) {
     requireNonNull(date, &apos;date&apos;);
     requireNonNull(zone, &apos;zone&apos;);
-    if(date instanceof Date) {
-        return Instant.ofEpochMilli(date.getTime()).atZone(zone);
-    } else if(typeof date.toDate === &apos;function&apos; &amp;&amp;  date.toDate() instanceof Date) {
-        return Instant.ofEpochMilli(date.toDate().getTime()).atZone(zone);
-    }
-    throw new IllegalArgumentException(&apos;date must be a javascript Date or a moment instance&apos;);
+    return Instant.ofEpochMilli(date.valueOf()).atZone(zone);
 }
 </code></pre>
 

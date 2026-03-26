@@ -102,6 +102,7 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format">locale/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleDateTimeFormatter.js~LocaleDateTimeFormatter.html">LocaleDateTimeFormatter</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleStore.js~LocaleStore.html">LocaleStore</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-cldr">locale/src/format/cldr</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrZoneTextPrinterParser.js~CldrZoneTextPrinterParser.html">CldrZoneTextPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-registerLocaleData">registerLocaleData</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-parser">locale/src/format/parser</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/parser/WeekFieldsPrinterParser.js~WeekFieldsPrinterParser.html">WeekFieldsPrinterParser</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-temporal">locale/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~ComputedDayOfField.html">ComputedDayOfField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
@@ -132,8 +133,7 @@ import {
     ValueRange,
     Year
 } from &apos;@js-joda/core&apos;;
-import cldrData from &apos;cldr-data&apos;;
-import Cldr from &apos;cldrjs&apos;;
+import { getOrCreateCldrInstance, loadCldrData } from &apos;../format/cldr/CldrCache&apos;;
 
 const { MathUtil, assert: { requireNonNull, requireInstance } } = jodaInternal;
 
@@ -701,8 +701,8 @@ export class WeekFields {
     static ofLocale(locale) {
         requireNonNull(locale, &apos;locale&apos;);
 
-        Cldr.load(cldrData(&apos;supplemental/weekData.json&apos;));
-        const cldr = new Cldr(locale.localeString());
+        loadCldrData(&apos;supplemental/weekData.json&apos;);
+        const cldr = getOrCreateCldrInstance(locale.localeString());
         const worldRegion = &apos;001&apos;;
         const weekData = cldr.get(&apos;supplemental/weekData&apos;);
         let dow = _weekDayMap[weekData.firstDay[locale.country()]];
@@ -776,7 +776,7 @@ export class WeekFields {
         this._weekOfYear = ComputedDayOfField.ofWeekOfYearField(this);
         this._weekOfWeekBasedYear = ComputedDayOfField.ofWeekOfWeekBasedYearField(this);
         this._weekBasedYear = ComputedDayOfField.ofWeekBasedYearField(this);
-        Cldr.load(cldrData(&apos;supplemental/likelySubtags.json&apos;));
+        loadCldrData(&apos;supplemental/likelySubtags.json&apos;);
     }
 
     //-----------------------------------------------------------------------
