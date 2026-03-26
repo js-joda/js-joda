@@ -3,7 +3,9 @@
 const jsJoda = require('@js-joda/core');
 require('@js-joda/timezone');
 
-const { LocalDateTime, ZoneId, ZonedDateTime } = jsJoda;
+const { Instant, LocalDateTime, ZoneId, ZoneRulesProvider, ZonedDateTime } = jsJoda;
+
+// --- Zone conversion ---
 
 const d1 = LocalDateTime
     .parse('2016-06-30T11:30')
@@ -23,4 +25,13 @@ const z2 = ZonedDateTime
 console.log(d1);
 console.log(z1);
 console.log(z2);
-console.log('node-modules-04 done');
+
+// --- List all available zone IDs with their current offset ---
+
+const now = Instant.now();
+
+for (const zoneId of ZoneRulesProvider.getAvailableZoneIds()) {
+    console.log(zoneId, ZoneId.of(zoneId).rules().offset(now).toString());
+}
+
+console.log('node-timezone done');

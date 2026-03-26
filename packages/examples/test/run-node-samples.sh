@@ -4,18 +4,21 @@
 # when they are loaded via file: symlinks (local development only)
 export NODE_PATH="$(pwd)/node_modules"
 
-node ./examples/node/node-modules-01.js
-node ./examples/node/node-modules-02.js
-node ./examples/node/node-modules-03.js
-node ./examples/node/node-modules-04.js
-node ./examples/node/node-modules-05.js
-node ./examples/node/node-modules-06.js
-node ./examples/node/node-modules-07.js
-node ./examples/node/node-modules-07-ko.js
-node ./examples/node/node-modules-08.js
-node ./examples/node/node-modules-09-full-locale.js
+node ./examples/node/node-core.js
+node ./examples/node/node-extra.js
+node ./examples/node/node-extra-import-order.js
+node ./examples/node/node-timezone.js
+node ./examples/node/node-timezone-empty.js
+node ./examples/node/node-locale.js
+node ./examples/node/node-locale-cldr.js
 
-node ./examples/node/es6-index.js
+node ./examples/node/es6-core.mjs
+node ./examples/node/es6-extra.mjs
+node ./examples/node/es6-extra-import-order.mjs
+node ./examples/node/es6-timezone.mjs
+node ./examples/node/es6-timezone-empty.mjs
+node ./examples/node/es6-locale.mjs
+node ./examples/node/es6-locale-cldr.mjs
 
 npx tsc ./examples/typescript/index.ts
 node ./examples/typescript/index.js
