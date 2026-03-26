@@ -6,6 +6,7 @@
 import Cldr from 'cldrjs';
 
 const cldrDataLoaded = new Set();
+const registeredLocales = new Set();
 
 /**
  * Registers CLDR JSON data into the shared cldrjs instance.
@@ -17,8 +18,17 @@ const cldrDataLoaded = new Set();
 export const registerLocaleData = (path, data) => {
     if (cldrDataLoaded.has(path)) return;
     cldrDataLoaded.add(path);
+    const match = path.match(/^main\/([^/]+)\//);
+    if (match) {
+        registeredLocales.add(match[1]);
+    }
     Cldr.load(data);
 };
+
+/**
+ * Returns an array of locale strings that have been registered via registerLocaleData().
+ */
+export const getRegisteredLocales = () => Array.from(registeredLocales);
 
 /**
  * @private

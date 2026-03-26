@@ -3,10 +3,22 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
+const path = require('path');
 const { mergeDeepRight } = require('ramda');
 const { sauceLabsMetaData, sauceLabsLaunchers } = require('../../shared/saucelabs');
 const { buildRollupConfig } = require('./rollup-build-packages-config');
 const testGlob = require('../../shared/rollup-test-glob');
+
+// Redirect @js-joda/locale to source so locale packages and test source share the same CldrCache instance
+const localeSourceAlias = {
+    name: 'locale-source-alias',
+    resolveId(id) {
+        if (id === '@js-joda/locale') {
+            return path.resolve(__dirname, 'src/js-joda-locale.js');
+        }
+        return null;
+    },
+};
 
 const defaultRollupConfig = buildRollupConfig({
     locales: ['en', 'en-GB', 'en-CA', 'de', 'fr'],
@@ -14,7 +26,7 @@ const defaultRollupConfig = buildRollupConfig({
 
 const rollupConfig = mergeDeepRight(defaultRollupConfig, {
     // onwarn: () => {},
-    plugins: defaultRollupConfig.plugins.concat(testGlob()),
+    plugins: [localeSourceAlias].concat(defaultRollupConfig.plugins).concat(testGlob()),
     output: {
         format: 'iife',
         sourcemap: 'inline',

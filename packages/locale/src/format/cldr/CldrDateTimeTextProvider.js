@@ -6,7 +6,7 @@
 import { ChronoField, IsoFields, TextStyle } from '@js-joda/core';
 
 import { LocaleStore, createEntry } from '../LocaleStore';
-import { getOrCreateCldrInstance, loadCldrData } from './CldrCache';
+import { getOrCreateCldrInstance, getRegisteredLocales, loadCldrData } from './CldrCache';
 
 /**
  * The Service Provider Implementation to obtain date-time text for a field.
@@ -24,12 +24,17 @@ export default class CldrDateTimeTextProvider {
 
     //-----------------------------------------------------------------------
     getAvailableLocales() {
+        const registered = getRegisteredLocales();
         try {
             // eslint-disable-next-line no-undef
-            return require('cldr-data')('availableLocales.json').availableLocales;
+            const fromCldrData = require('cldr-data')('availableLocales.json').availableLocales;
+            if (fromCldrData && fromCldrData.length > 0) {
+                return [...new Set([...fromCldrData, ...registered])];
+            }
         } catch (e) {
-            return [];
+            // cldr-data not available
         }
+        return registered;
     }
 
     //-----------------------------------------------------------------------
