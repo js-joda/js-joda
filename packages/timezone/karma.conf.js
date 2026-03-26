@@ -4,7 +4,6 @@
  */
 const { nodeResolve } = require('@rollup/plugin-node-resolve');
 const testGlob = require('../../shared/rollup-test-glob');
-const { sauceLabsMetaData, sauceLabsLaunchers } = require('../../shared/saucelabs');
 const { plugins } = require('./rollup.config');
 
 module.exports = function (config) {
@@ -37,9 +36,6 @@ module.exports = function (config) {
             },
             external: ['chai'],
         },
-        sauceLabs: sauceLabsMetaData('@js-joda/timezone'),
-        concurrency: 1,
-        customLaunchers: sauceLabsLaunchers,
         browserDisconnectTimeout: 10000, // default 2000
         // browserDisconnectTolerance: 1, // default 0
         browserNoActivityTimeout: 4 * 60 * 1000, // default 10000

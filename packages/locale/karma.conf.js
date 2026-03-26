@@ -5,7 +5,6 @@
 
 const path = require('path');
 const { mergeDeepRight } = require('ramda');
-const { sauceLabsMetaData, sauceLabsLaunchers } = require('../../shared/saucelabs');
 const { buildRollupConfig } = require('./rollup-build-packages-config');
 const testGlob = require('../../shared/rollup-test-glob');
 
@@ -50,9 +49,6 @@ module.exports = function (config) {
             'test/rollup-index.js': ['rollup'],
         },
         rollupPreprocessor: rollupConfig,
-        sauceLabs: sauceLabsMetaData('@js-joda/locale'),
-        concurrency: 1,
-        customLaunchers: sauceLabsLaunchers,
         browserDisconnectTimeout: 10000, // default 2000
         // browserDisconnectTolerance: 1, // default 0
         browserNoActivityTimeout: 4 * 60 * 1000, // default 10000
