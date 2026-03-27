@@ -1,6 +1,6 @@
 {
     "name": "@js-joda/locale_ko",
-    "version": "4.15.3",
+    "version": "5.0.0",
     "description": "prebuilt js-joda locale package for locales: ko.*",
     "repository": {
         "type": "git",
@@ -25,11 +25,9 @@
     "homepage": "https://js-joda.github.io/js-joda",
     "peerDependencies": {
         "@js-joda/core": ">=5.7.0",
-        "@js-joda/timezone": "^2.23.0",
-        "@js-joda/locale": ">=4.15.3"
+        "@js-joda/locale": ">=4.15.3",
+        "@js-joda/timezone": "^2.23.0"
     },
-    "dependencies": {},
-    "devDependencies": {},
     "publishConfig": {
         "access": "public"
     }
