@@ -70,7 +70,7 @@
     "markdown-toc": "^1.2.0",
     "mocha": "^11.7.5",
     "moment-timezone": "^0.6.1",
-    "npm-check-updates": "^16.14.20",
+    "npm-check-updates": "^19.6.6",
     "nyc": "^15.1.0",
     "ramda": "^0.32.0",
     "rollup": "^3.30.0",
