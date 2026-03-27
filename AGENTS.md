@@ -81,6 +81,28 @@ cd packages/core && npm run test-ts-definitions
 
 Test files live under `packages/<name>/test/` and follow the pattern `*Test.js`.
 
+## Integration testing (examples package)
+
+`packages/examples/` (`@js-joda/examples`) is a **private** package that serves as the end-to-end integration test suite for all built distribution artifacts. It does **not** test source files — it imports from the `dist/` folders of the other packages, so all packages must be built before running it.
+
+The test script (`test/run-node-samples.sh`) covers 21 scenarios:
+- **CommonJS** — `node/*.js` samples for core, timezone, extra, locale (prebuilt + cldr-data)
+- **ES modules** — `node/*.mjs` equivalents
+- **TypeScript** — compiles and runs `typescript/index.ts` via `tsc` + `node`
+
+Run it after a full build to verify the complete pipeline:
+
+```bash
+# 1. Build all dist artifacts
+npx lerna run --stream build-dist
+npx lerna run --stream build-locale-dist   # locale + prebuilt locale packages
+
+# 2. Run integration tests
+cd packages/examples && npm test
+```
+
+This is the canonical smoke test after build-system or dependency changes.
+
 ## Key conventions
 
 - All public types are **immutable** — methods return new instances, never mutate.
