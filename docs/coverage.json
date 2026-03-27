@@ -1,7 +1,7 @@
 {
-  "coverage": "73.6%",
-  "expectCount": 2152,
-  "actualCount": 1584,
+  "coverage": "73.58%",
+  "expectCount": 2154,
+  "actualCount": 1585,
   "files": {
     "packages/core/src/Clock.js": {
       "expectCount": 39,
@@ -111,9 +111,9 @@
       "undocumentLines": [
         8,
         9,
-        211,
-        216,
-        229
+        207,
+        212,
+        225
       ]
     },
     "packages/core/src/Month.js": {
@@ -984,12 +984,13 @@
       ]
     },
     "packages/locale/src/format/cldr/CldrCache.js": {
-      "expectCount": 7,
-      "actualCount": 4,
+      "expectCount": 9,
+      "actualCount": 5,
       "undocumentLines": [
         8,
-        40,
-        55
+        9,
+        50,
+        65
       ]
     },
     "packages/locale/src/format/cldr/CldrDateTimeTextProvider.js": {
@@ -999,11 +1000,11 @@
         20,
         21,
         26,
-        36,
-        44,
-        53,
-        63,
-        219
+        41,
+        49,
+        58,
+        68,
+        224
       ]
     },
     "packages/locale/src/format/cldr/CldrZoneTextPrinterParser.js": {

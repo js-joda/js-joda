@@ -456,6 +456,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "@js-joda/root/packages/locale/src/format/cldr/cldrcache.js~getregisteredlocales",
+    "function/index.html#static-function-getRegisteredLocales",
+    "<span>getRegisteredLocales</span> <span class=\"search-result-import-path\">@js-joda/root/packages/locale/src/format/cldr/CldrCache.js</span>",
+    "function"
+  ],
+  [
     "@js-joda/root/packages/core/src/nativejs.js~nativejs",
     "function/index.html#static-function-nativeJs",
     "<span>nativeJs</span> <span class=\"search-result-import-path\">@js-joda/root/packages/core/src/nativeJs.js</span>",
@@ -8259,6 +8265,12 @@ window.esdocSearchIndex = [
     "packages/locale/src/plug.js",
     "file/packages/locale/src/plug.js.html",
     "packages/locale/src/plug.js",
+    "file"
+  ],
+  [
+    "packages/locale/src/supplemental-data.js",
+    "file/packages/locale/src/supplemental-data.js.html",
+    "packages/locale/src/supplemental-data.js",
     "file"
   ],
   [

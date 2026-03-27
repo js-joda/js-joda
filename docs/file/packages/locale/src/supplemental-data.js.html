@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../../../../">
-  <title data-ice="title">packages/core/src/format/StringBuilder.js | js-joda</title>
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">packages/locale/src/supplemental-data.js | js-joda</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -113,55 +113,29 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">packages/core/src/format/StringBuilder.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">packages/locale/src/supplemental-data.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/*
- * @copyright (c) 2016, Philipp Th&#xFC;rw&#xE4;chter &amp; Pattrick H&#xFC;per
- * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
+ * @copyright (c) 2026, Philipp Thuerwaechter &amp; Pattrick Hueper
+ * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
-/**
- * @private
- */
-export class StringBuilder {
-    constructor(){
-        this._str = &apos;&apos;;
-    }
+import { registerLocaleData, loadCldrData } from &apos;./format/cldr/CldrCache&apos;;
+import likelySubtags from &apos;cldr-data/supplemental/likelySubtags.json&apos;;
+import metaZones from &apos;cldr-data/supplemental/metaZones.json&apos;;
+import weekData from &apos;cldr-data/supplemental/weekData.json&apos;;
 
-    append(str){
-        this._str += str;
-        return this;
-    }
+// In Node.js with cldr-data installed, load from the installed package.
+// In a browser (cldr-data unavailable), these are silent no-ops.
+loadCldrData(&apos;supplemental/likelySubtags.json&apos;);
+loadCldrData(&apos;supplemental/metaZones.json&apos;);
+loadCldrData(&apos;supplemental/weekData.json&apos;);
 
-    appendChar(str){
-        this._str += str[0];
-        return this;
-    }
-
-    insert(offset, str){
-        this._str = this._str.slice(0, offset) + str + this._str.slice(offset);
-        return this;
-    }
-
-    replace(start, end, str){
-        this._str = this._str.slice(0, start) + str + this._str.slice(end);
-        return this;
-    }
-
-    length(){
-        return this._str.length;
-    }
-
-    setLength(length){
-        this._str = this._str.slice(0, length);
-        return this;
-    }
-
-
-    toString() {
-        return this._str;
-    }
-}
-</code></pre>
+// Register the bundled copies as a fallback for environments without cldr-data (e.g. browser).
+// registerLocaleData skips any path already present in cldrDataLoaded, so in Node.js
+// where loadCldrData succeeded above, these calls are no-ops.
+registerLocaleData(&apos;supplemental/likelySubtags.json&apos;, likelySubtags);
+registerLocaleData(&apos;supplemental/metaZones.json&apos;, metaZones);
+registerLocaleData(&apos;supplemental/weekData.json&apos;, weekData);</code></pre>
 
 </div>
 

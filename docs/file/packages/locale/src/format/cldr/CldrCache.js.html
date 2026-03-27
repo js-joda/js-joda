@@ -102,6 +102,7 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format">locale/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleDateTimeFormatter.js~LocaleDateTimeFormatter.html">LocaleDateTimeFormatter</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleStore.js~LocaleStore.html">LocaleStore</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-cldr">locale/src/format/cldr</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrZoneTextPrinterParser.js~CldrZoneTextPrinterParser.html">CldrZoneTextPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getRegisteredLocales">getRegisteredLocales</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-registerLocaleData">registerLocaleData</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-parser">locale/src/format/parser</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/parser/WeekFieldsPrinterParser.js~WeekFieldsPrinterParser.html">WeekFieldsPrinterParser</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-temporal">locale/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~ComputedDayOfField.html">ComputedDayOfField</a></span></span></li>
@@ -121,6 +122,7 @@
 import Cldr from &apos;cldrjs&apos;;
 
 const cldrDataLoaded = new Set();
+const registeredLocales = new Set();
 
 /**
  * Registers CLDR JSON data into the shared cldrjs instance.
@@ -132,8 +134,17 @@ const cldrDataLoaded = new Set();
 export const registerLocaleData = (path, data) =&gt; {
     if (cldrDataLoaded.has(path)) return;
     cldrDataLoaded.add(path);
+    const match = path.match(/^main\/([^/]+)\//);
+    if (match) {
+        registeredLocales.add(match[1]);
+    }
     Cldr.load(data);
 };
+
+/**
+ * Returns an array of locale strings that have been registered via registerLocaleData().
+ */
+export const getRegisteredLocales = () =&gt; Array.from(registeredLocales);
 
 /**
  * @private

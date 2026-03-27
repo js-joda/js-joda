@@ -102,6 +102,7 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format">locale/src/format</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleDateTimeFormatter.js~LocaleDateTimeFormatter.html">LocaleDateTimeFormatter</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/LocaleStore.js~LocaleStore.html">LocaleStore</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-cldr">locale/src/format/cldr</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/cldr/CldrZoneTextPrinterParser.js~CldrZoneTextPrinterParser.html">CldrZoneTextPrinterParser</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getRegisteredLocales">getRegisteredLocales</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-registerLocaleData">registerLocaleData</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-parser">locale/src/format/parser</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/parser/WeekFieldsPrinterParser.js~WeekFieldsPrinterParser.html">WeekFieldsPrinterParser</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-temporal">locale/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~ComputedDayOfField.html">ComputedDayOfField</a></span></span></li>
@@ -160,7 +161,36 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-nativeJs">nativeJs</a></span></span><span class="code" data-ice="signature">(date: <span>Date</span> | <span>moment</span>, zone: <span><a href="class/packages/core/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-getRegisteredLocales">getRegisteredLocales</a></span></span><span class="code" data-ice="signature">()</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Returns an array of locale strings that have been registered via registerLocaleData().</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-nativeJs">nativeJs</a></span></span><span class="code" data-ice="signature">(date: <span>string</span>, zone: <span><a href="class/packages/core/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
         </p>
       </div>
       <div>
@@ -306,6 +336,50 @@ convert(localDate).toEpochMilli()   // returns the epochMillis</code></pre>
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-getRegisteredLocales">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">getRegisteredLocales</span><span class="code" data-ice="signature">()</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/locale/src/format/cldr/CldrCache.js.html#lineNumber31">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {getRegisteredLocales} from &apos;<span><a href="file/packages/locale/src/format/cldr/CldrCache.js.html#lineNumber31">@js-joda/root/packages/locale/src/format/cldr/CldrCache.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Returns an array of locale strings that have been registered via registerLocaleData().</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="static-function-nativeJs">
     <span class="access" data-ice="access">public</span>
     
@@ -313,7 +387,7 @@ convert(localDate).toEpochMilli()   // returns the epochMillis</code></pre>
     
     
     
-    <span class="code" data-ice="name">nativeJs</span><span class="code" data-ice="signature">(date: <span>Date</span> | <span>moment</span>, zone: <span><a href="class/packages/core/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
+    <span class="code" data-ice="name">nativeJs</span><span class="code" data-ice="signature">(date: <span>string</span>, zone: <span><a href="class/packages/core/src/ZoneId.js~ZoneId.html">ZoneId</a></span>): <span><a href="class/packages/core/src/ZonedDateTime.js~ZonedDateTime.html">ZonedDateTime</a></span></span>
     <span class="right-info">
       
       
@@ -339,8 +413,8 @@ convert(localDate).toEpochMilli()   // returns the epochMillis</code></pre>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">date</td>
-      <td data-ice="type" class="code"><span>Date</span> | <span>moment</span></td>
-      <td data-ice="appendix"><ul><li>nullable: false</li></ul></td>
+      <td data-ice="type" class="code"><span>string</span></td>
+      <td data-ice="appendix"></td>
       <td data-ice="description"><p>a javascript Date or a moment instance</p>
 </td>
     </tr>
@@ -398,11 +472,11 @@ convert(localDate).toEpochMilli()   // returns the epochMillis</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/locale/src/format/cldr/CldrCache.js.html#lineNumber17">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/locale/src/format/cldr/CldrCache.js.html#lineNumber18">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {registerLocaleData} from &apos;<span><a href="file/packages/locale/src/format/cldr/CldrCache.js.html#lineNumber17">@js-joda/root/packages/locale/src/format/cldr/CldrCache.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {registerLocaleData} from &apos;<span><a href="file/packages/locale/src/format/cldr/CldrCache.js.html#lineNumber18">@js-joda/root/packages/locale/src/format/cldr/CldrCache.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Registers CLDR JSON data into the shared cldrjs instance.
