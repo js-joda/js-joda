@@ -33,6 +33,6 @@
     "@js-joda/locale_ko": "file:../locale/packages/ko",
     "@js-joda/timezone": "file:../locale/node_modules/@js-joda/timezone",
     "benchmark": "^2.1.4",
-    "moment": "^2.29.4"
+    "moment": "^2.30.1"
   }
 }
