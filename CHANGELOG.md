@@ -1,6 +1,16 @@
 Changelog
 =========
 
+## 2026-03-28
+
+### Versions
+
+- @js-joda/timezone@2.25.0
+
+#### :rocket: Enhancement
+* `timezone`
+    * [#788](https://github.com/js-joda/js-joda/pull/788) update tzdb to version 2026a ([@pithu](https://github.com/pithu))
+
 ## 2026-03-27
 
 ### Versions
