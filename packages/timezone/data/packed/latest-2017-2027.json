@@ -1,5 +1,5 @@
 {
-	"version": "2025b",
+	"version": "2026a",
 	"zones": [
 		"Africa/Abidjan|GMT|0|0||48e5",
 		"Africa/Nairobi|EAT|-30|0||47e5",
@@ -112,7 +112,7 @@
 		"Pacific/Gambier|-09|90|0||125",
 		"Etc/UCT|UTC|0|0||",
 		"Europe/London|GMT BST|0 -10|01010101010101010101010|1T0p0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0|10e6",
-		"Europe/Chisinau|EET EEST|-20 -30|01010101010101010101010|1T0o0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WM0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0|67e4",
+		"Europe/Chisinau|EET EEST|-20 -30|01010101010101010101010|1T0o0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1qM0 WN0 1qM0 WM0 1qM0 11A0 1o00 11A0 1o00 11A0 1o00 11A0 1qM0|67e4",
 		"Europe/Moscow|MSK|-30|0||16e6",
 		"Europe/Volgograd|MSK +04|-30 -40|010|1WQL0 5gn0|10e5",
 		"Pacific/Honolulu|HST|a0|0||37e4",
