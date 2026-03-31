@@ -23,11 +23,23 @@ Changelog
   * Enable Multi-locale import: importing multiple prebuilt locale packages (e.g. `@js-joda/locale_en` + `@js-joda/locale_de`) no longer breaks each other. 
       * Prebuilt packages now register CLDR data via `registerLocaleData()` into the single shared `@js-joda/locale` instance.
       * Prebuilt locale packages now declare `@js-joda/locale` as a peer dependency instead of bundling the locale implementation.
-      * Import `Locale` from `@js-joda/locale` to access the `Locale` class.
+      * Import `Locale` from `@js-joda/locale` to access the `Locale` class. See below for an example.
   * [#775](https://github.com/js-joda/js-joda/pull/775) Add a prebuilt `ar` locale ([@Oussemasahbeni](https://github.com/Oussemasahbeni))
 * `core`
   * Simplify `nativeJs` function ([@pithu](https://github.com/pithu))
   * [#749](https://github.com/js-joda/js-joda/pull/749) remove IE11 support
+
+```js
+// Previous versions (@js-joda/core@5.x)
+const { Locale } = require('@js-joda/locale_en');
+
+// New style (@js-joda/core@6.0.0 and @js-joda/locale@5.0.0)
+const { Locale } = require('@js-joda/locale');  // always import Locale from here
+require('@js-joda/locale_en');                  // side-effect: registers EN locale data
+
+// Then, e.g., 
+const formatter = DateTimeFormatter.ofPattern(x).withLocale(Locale.ENGLISH);
+```
 
 #### :house: Dependency update
 * Other
