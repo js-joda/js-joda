@@ -19,8 +19,8 @@ This gives you support for all locales defined in the CLDR project.
 npm install @js-joda/core
 npm install @js-joda/timezone
 npm install @js-joda/locale
-# npm install cldr-data // @js-joda/locale installs this as a peer dependency
-# npm install cldrjs // @js-joda/locale installs this as a peer dependency
+npm install cldr-data // peer dependency of @js-joda/locale
+npm install cldrjs // peer dependency of @js-joda/locale
 ```
 
 ### Option 2 — Prebuilt locale packages (browser, size-constrained environments)
@@ -84,6 +84,28 @@ const pattern = 'eeee MMMM dd yyyy';
 
 console.log('en:', zdt.format(DateTimeFormatter.ofPattern(pattern).withLocale(Locale.ENGLISH)));
 console.log('de:', zdt.format(DateTimeFormatter.ofPattern(pattern).withLocale(Locale.GERMAN)));
+```
+
+### With server-side locales
+
+On the server, with the cldrjs and cldr-data packages installed, you can load any locale supported by the [Unicode CLDR project](https://cldr.unicode.org/) as shown in the example below. Find the full list of supported locales at the [CLDR repo](https://github.com/unicode-org/cldr/tree/main/common/main).
+
+```javascript
+const { DateTimeFormatter, ZonedDateTime, ZoneId } = require('@js-joda/core');
+require('@js-joda/timezone');
+const { Locale, registerLocaleData } = require('@js-joda/locale');
+
+// Register per-locale CLDR data for the locales you need
+registerLocaleData('main/th/ca-gregorian.json', require('cldr-data/main/th/ca-gregorian.json'));
+registerLocaleData('main/th/timeZoneNames.json', require('cldr-data/main/th/timeZoneNames.json'));
+
+const zdt = ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, ZoneId.of('Europe/Berlin'));
+const localeThai = new Locale('th', 'TH', 'th');
+
+console.log('th_TH formatted string:',
+    zdt.format(DateTimeFormatter
+            .ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, \'Week \' ww, \'Quarter \' QQQ')
+            .withLocale(localeThai)));
 ```
 
 ## Available prebuilt packages
