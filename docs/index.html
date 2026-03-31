@@ -145,6 +145,7 @@
 <li data-ice="manualNav" class="indent-h2" data-link="manual/Locale.html"><a href="manual/Locale.html#usage" data-ice="link">Usage</a></li>
 <li data-ice="manualNav" class="indent-h3" data-link="manual/Locale.html"><a href="manual/Locale.html#with-a-single-locale" data-ice="link">With a single locale</a></li>
 <li data-ice="manualNav" class="indent-h3" data-link="manual/Locale.html"><a href="manual/Locale.html#with-multiple-locales" data-ice="link">With multiple locales</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/Locale.html"><a href="manual/Locale.html#with-server-side-locales" data-ice="link">With server-side locales</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/Locale.html"><a href="manual/Locale.html#available-prebuilt-packages" data-ice="link">Available prebuilt packages</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/Locale.html"><a href="manual/Locale.html#links" data-ice="link">Links</a></li>
 </ul>
@@ -1453,8 +1454,8 @@ of the formatter, eg <code>DateTimeFormatter.ofPattern(&apos;eeee (d MMMM)&apos;
 This gives you support for all locales defined in the CLDR project.</p><pre><code class="lang-shell"><code class="source-code prettyprint">npm install @js-joda/core
 npm install @js-joda/timezone
 npm install @js-joda/locale
-# npm install cldr-data // @js-joda/locale installs this as a peer dependency
-# npm install cldrjs // @js-joda/locale installs this as a peer dependency</code>
+npm install cldr-data // peer dependency of @js-joda/locale
+npm install cldrjs // peer dependency of @js-joda/locale</code>
 </code></pre><h3>Option 2 &#x2014; Prebuilt locale packages (browser, size-constrained environments)</h3><p>Install <code>@js-joda/locale</code> and one or more prebuilt locale packages. Each prebuilt package contains only the CLDR data for its specific locale(s), keeping bundle sizes small.</p><pre><code class="lang-shell"><code class="source-code prettyprint">npm install @js-joda/core
 npm install @js-joda/timezone
 npm install @js-joda/locale
@@ -1495,6 +1496,21 @@ const pattern = &apos;eeee MMMM dd yyyy&apos;;
 
 console.log(&apos;en:&apos;, zdt.format(DateTimeFormatter.ofPattern(pattern).withLocale(Locale.ENGLISH)));
 console.log(&apos;de:&apos;, zdt.format(DateTimeFormatter.ofPattern(pattern).withLocale(Locale.GERMAN)));</code>
+</code></pre><h3>With server-side locales</h3><p>On the server, with the cldrjs and cldr-data packages installed, you can load any locale supported by the <a href="https://cldr.unicode.org/">Unicode CLDR project</a> as shown in the example below. Find the full list of supported locales at the <a href="https://github.com/unicode-org/cldr/tree/main/common/main">CLDR repo</a>.</p><pre><code class="lang-javascript"><code class="source-code prettyprint">const { DateTimeFormatter, ZonedDateTime, ZoneId } = require(&apos;@js-joda/core&apos;);
+require(&apos;@js-joda/timezone&apos;);
+const { Locale, registerLocaleData } = require(&apos;@js-joda/locale&apos;);
+
+// Register per-locale CLDR data for the locales you need
+registerLocaleData(&apos;main/th/ca-gregorian.json&apos;, require(&apos;cldr-data/main/th/ca-gregorian.json&apos;));
+registerLocaleData(&apos;main/th/timeZoneNames.json&apos;, require(&apos;cldr-data/main/th/timeZoneNames.json&apos;));
+
+const zdt = ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, ZoneId.of(&apos;Europe/Berlin&apos;));
+const localeThai = new Locale(&apos;th&apos;, &apos;TH&apos;, &apos;th&apos;);
+
+console.log(&apos;th_TH formatted string:&apos;,
+    zdt.format(DateTimeFormatter
+            .ofPattern(&apos;eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, \&apos;Week \&apos; ww, \&apos;Quarter \&apos; QQQ&apos;)
+            .withLocale(localeThai)));</code>
 </code></pre><h2>Available prebuilt packages</h2><p>Each prebuilt package covers one language or a specific regional variant.</p><table>
 <thead>
 <tr>

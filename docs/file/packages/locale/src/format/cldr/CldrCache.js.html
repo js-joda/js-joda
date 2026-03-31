@@ -119,8 +119,6 @@
 * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
 */
 
-import Cldr from &apos;cldrjs&apos;;
-
 const cldrDataLoaded = new Set();
 const registeredLocales = new Set();
 
@@ -138,6 +136,7 @@ export const registerLocaleData = (path, data) =&gt; {
     if (match) {
         registeredLocales.add(match[1]);
     }
+    const Cldr = require(&apos;cldrjs&apos;);
     Cldr.load(data);
 };
 
@@ -172,6 +171,7 @@ const localeToCldrInstanceCache = {};
 */
 export const getOrCreateCldrInstance = (locale) =&gt; {
     if (localeToCldrInstanceCache[locale] == null) {
+        const Cldr = require(&apos;cldrjs&apos;);
         localeToCldrInstanceCache[locale] = new Cldr(locale);
     }
 
