@@ -3,10 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <title>js-joda</title>
-    <script src="//cdn.jsdelivr.net/npm/@js-joda/core@5.0.0/dist/js-joda.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/@js-joda/extra@0.7.0/dist/js-joda-extra.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/@js-joda/timezone@2.11.0/dist/js-joda-timezone.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/@js-joda/locale@4.5.0/dist/prebuilt/en-us/index.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/@js-joda/core@6.0.0/dist/js-joda.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/@js-joda/extra@0.13.0/dist/js-joda-extra.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/@js-joda/timezone@2.25.0/dist/js-joda-timezone.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/@js-joda/locale@5.0.1/dist/js-joda-locale.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/@js-joda/locale_en@5.0.1/dist/index.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/@js-joda/locale_de@5.0.1/dist/index.js"></script>
     <script>
         // copy all js-joda classes to the global scope
         var jsJoda = JSJoda;
@@ -16,6 +18,7 @@
         console.log("An example with @js-joda/timezone: Its '"+ LocalDateTime.now().atZone(ZoneId.systemDefault()).toString() + "' system default timezone.");
         console.log("An example with @js-joda/extra: Interval of 1 minute '"+ JSJodaExtra.Interval.of(Instant.now(), Duration.ofMinutes(1)).toString() + ".");
         console.log("An example with @js-joda/local: ZonedDateTime with locale format en-us '"+ JSJoda.ZonedDateTime.of(2017, 1, 1, 0, 0, 0, 0, JSJoda.ZoneId.of('Europe/Berlin')).format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(JSJodaLocale.Locale.US)) + ".");
+        console.log("An example with @js-joda/local: ZonedDateTime with locale format de-de '"+ JSJoda.ZonedDateTime.of(2017, 1, 1, 0, 0, 0, 0, JSJoda.ZoneId.of('Europe/Berlin')).format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(JSJodaLocale.Locale.GERMANY)) + ".");
     </script>
 </head>
 <body>
@@ -26,6 +29,7 @@
         d.innerHTML += "An example with @js-joda/timezone: Its '"+ ZonedDateTime.now().toString() + "' system default timezone.<p>"
         d.innerHTML += "An example with @js-joda/extra: Interval of 1 minute '"+ JSJodaExtra.Interval.of(Instant.now(), Duration.ofMinutes(1)).toString() + "'.<p>"
         d.innerHTML += "An example with @js-joda/locale: ZonedDateTime with locale format en-us '"+ JSJoda.ZonedDateTime.of(2017, 1, 1, 0, 0, 0, 0, JSJoda.ZoneId.of('Europe/Berlin')).format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(JSJodaLocale.Locale.US)) + "'.<p>"
+        d.innerHTML += "An example with @js-joda/locale: ZonedDateTime with locale format de-de '"+ JSJoda.ZonedDateTime.of(2017, 1, 1, 0, 0, 0, 0, JSJoda.ZoneId.of('Europe/Berlin')).format(JSJoda.DateTimeFormatter.ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, zz, OOOO \'Week: \' ww, \'Quarter: \' QQQ').withLocale(JSJodaLocale.Locale.GERMANY)) + "'.<p>"
     </script>
 </body>
 </html>
