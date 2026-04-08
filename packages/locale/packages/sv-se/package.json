@@ -1,6 +1,6 @@
 {
     "name": "@js-joda/locale_sv-se",
-    "version": "5.0.1",
+    "version": "5.1.0",
     "description": "prebuilt js-joda locale package for locales: sv,sv-SE",
     "repository": {
         "type": "git",
@@ -25,16 +25,14 @@
     "homepage": "https://js-joda.github.io/js-joda",
     "peerDependencies": {
         "@js-joda/core": ">=6.0.0",
-        "@js-joda/timezone": "^2.25.0",
-        "@js-joda/locale": ">=5.0.1"
+        "@js-joda/locale": ">=5.0.1",
+        "@js-joda/timezone": "^2.25.0"
     },
     "peerDependenciesMeta": {
         "@js-joda/timezone": {
             "optional": true
         }
     },
-    "dependencies": {},
-    "devDependencies": {},
     "publishConfig": {
         "access": "public"
     }
