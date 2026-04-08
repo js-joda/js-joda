@@ -1,6 +1,17 @@
 Changelog
 =========
 
+## Unreleased (2026-04-08)
+
+### Versions
+
+- @js-joda/locale@6.1.0
+
+#### :bug: Bug Fix
+* `locale`
+    * [#796](https://github.com/js-joda/js-joda/pull/796) Make @js-joda/locale peer dependencies to cldr-data and @js-joda/timezone optional ([@pithu](https://github.com/pithu))
+        This allows to use @js-joda/locale without @js-joda/timezone and makes it easier to bundle locale language packages without cldr-data.
+
 ## 2026-03-28
 
 ### Versions
