@@ -23,6 +23,7 @@ node ./examples/node/es6-locale-without-timezone.mjs
 node ./examples/node/es6-locale-cldr.mjs
 
 node ./examples/bundler/build.mjs
+node ./examples/bundler/dist/bundle.js
 
 npx tsc ./examples/typescript/index.ts
 node ./examples/typescript/index.js
