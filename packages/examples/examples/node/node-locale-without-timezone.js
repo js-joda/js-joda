@@ -1,15 +1,11 @@
 /* eslint-disable no-console */
 /**
- * Locale-aware formatting of LocalDate and LocalDateTime WITHOUT @js-joda/timezone.
+ * Locale-aware formatting of LocalDate and LocalDateTime without @js-joda/timezone.
  *
- * @js-joda/timezone is only needed when working with ZonedDateTime or zone text
- * formatting (the 'z'/'zz'/'zzzz' pattern). For LocalDate and LocalDateTime,
- * timezone support is not required.
+ * @js-joda/timezone is only needed for ZonedDateTime or zone-text patterns ('z', 'zzzz').
+ * For LocalDate and LocalDateTime, it is not required.
  *
- * This example demonstrates the fix for https://github.com/js-joda/js-joda/issues/791:
- * prebuilt locale packages work without cldr-data or @js-joda/timezone being installed.
- *
- * Dependencies (no @js-joda/timezone needed):
+ * Dependencies:
  *   npm install @js-joda/core @js-joda/locale @js-joda/locale_en-us
  */
 
@@ -17,7 +13,6 @@ const { DateTimeFormatter, LocalDate, LocalDateTime } = require('@js-joda/core')
 const { Locale } = require('@js-joda/locale');
 require('@js-joda/locale_en-us');
 
-// As used in issue #791 — Locale.ENGLISH from @js-joda/locale works without timezone
 const LOCALE = Locale.ENGLISH;
 
 // --- LocalDate formatting ---

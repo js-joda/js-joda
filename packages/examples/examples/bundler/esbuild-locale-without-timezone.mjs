@@ -1,29 +1,18 @@
 /* eslint-disable no-console */
 /**
- * Source input for the esbuild bundler example (issue #791).
+ * Source input for the esbuild bundler example (see build.mjs).
  *
- * This file is bundled by esbuild (mimicking an Angular build) to verify that
- * @js-joda/locale_en-us works without cldr-data or @js-joda/timezone installed.
+ * Bundled by esbuild targeting browser (mimicking an Angular build) to verify
+ * that @js-joda/locale_en-us works without cldr-data or @js-joda/timezone installed.
  *
- * The pattern below mirrors the reported Angular use case in issue #791:
- *
- *   import { Locale } from '@js-joda/locale';
- *   import '@js-joda/locale_en-us';
- *   export const LOCALE = Locale.ENGLISH;
- *
- * Previously, this caused the Angular/esbuild build to fail with errors like:
- *   - "Could not resolve 'cldr-data'"
- *   - Missing Node.js built-ins: "assert", "fs", "path"
- *
- * After marking cldr-data as an optional peerDependency, npm no longer
- * auto-installs it, so esbuild cannot find it and does not try to bundle it.
+ * Dependencies:
+ *   npm install @js-joda/core @js-joda/locale @js-joda/locale_en-us
  */
 
 import { Locale } from '@js-joda/locale';
 import '@js-joda/locale_en-us';
 import { DateTimeFormatter, LocalDate, LocalDateTime } from '@js-joda/core';
 
-// Pattern from issue #791
 const LOCALE = Locale.ENGLISH;
 
 // LocalDate formatting — no @js-joda/timezone needed
