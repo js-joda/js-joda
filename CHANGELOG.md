@@ -5,7 +5,7 @@ Changelog
 
 ### Versions
 
-- @js-joda/locale@6.1.0
+- @js-joda/locale@5.1.0
 
 #### :bug: Bug Fix
 * `locale`
