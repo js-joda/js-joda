@@ -22,6 +22,8 @@ node ./examples/node/es6-locale.mjs
 node ./examples/node/es6-locale-without-timezone.mjs
 node ./examples/node/es6-locale-cldr.mjs
 
+node ./examples/bundler/build.mjs
+
 npx tsc ./examples/typescript/index.ts
 node ./examples/typescript/index.js
 
