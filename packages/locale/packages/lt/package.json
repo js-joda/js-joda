@@ -28,6 +28,11 @@
         "@js-joda/timezone": "^2.25.0",
         "@js-joda/locale": ">=5.0.1"
     },
+    "peerDependenciesMeta": {
+        "@js-joda/timezone": {
+            "optional": true
+        }
+    },
     "dependencies": {},
     "devDependencies": {},
     "publishConfig": {
