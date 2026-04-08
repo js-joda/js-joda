@@ -76,6 +76,11 @@ const packageTemplate = {
         '@js-joda/timezone': mainPackageJSON.peerDependencies['@js-joda/timezone'],
         '@js-joda/locale': `>=${mainPackageJSON.version}`,
     },
+    peerDependenciesMeta: {
+        '@js-joda/timezone': {
+            optional: true,
+        },
+    },
     dependencies: {},
     devDependencies: {},
     publishConfig: {
