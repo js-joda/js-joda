@@ -110,7 +110,7 @@ declare module "js-joda" {
         toNanos(): number;
         toHoursPart(): number;
         toMinutesPart(): number;
-        toSecondspart(): number;
+        toSecondsPart(): number;
         toMillisPart(): number;
         toString(): string;
         units(): any;
