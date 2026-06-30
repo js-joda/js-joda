@@ -1209,9 +1209,22 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         if (this === Duration.ZERO) {
             return 'PT0S';
         }
-        const hours = MathUtil.intDiv(this._seconds, LocalTime.SECONDS_PER_HOUR);
-        const minutes = MathUtil.intDiv(MathUtil.intMod(this._seconds, LocalTime.SECONDS_PER_HOUR), LocalTime.SECONDS_PER_MINUTE);
-        const secs = MathUtil.intMod(this._seconds, LocalTime.SECONDS_PER_MINUTE);
+        // A negative duration is stored as a negative second count plus a
+        // non-negative nano offset, e.g. -0.5s is held as seconds = -1,
+        // nanos = 500000000. To render ISO-8601 components that all carry the
+        // duration's sign, recover the signed whole-second part and the
+        // magnitude of the sub-second fraction separately: when the duration is
+        // negative and has a fractional offset, one second of that offset
+        // belongs to the whole part, and the remaining fraction is its
+        // complement against a full second.
+        const negativeFraction = this._seconds < 0 && this._nanos > 0;
+        const wholeSeconds = negativeFraction ? this._seconds + 1 : this._seconds;
+        const fractionNanos = negativeFraction ? LocalTime.NANOS_PER_SECOND - this._nanos : this._nanos;
+
+        const hours = MathUtil.intDiv(wholeSeconds, LocalTime.SECONDS_PER_HOUR);
+        const minutes = MathUtil.intDiv(MathUtil.intMod(wholeSeconds, LocalTime.SECONDS_PER_HOUR), LocalTime.SECONDS_PER_MINUTE);
+        const secs = MathUtil.intMod(wholeSeconds, LocalTime.SECONDS_PER_MINUTE);
+
         let rval = 'PT';
         if (hours !== 0) {
             rval += `${hours}H`;
@@ -1219,32 +1232,28 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         if (minutes !== 0) {
             rval += `${minutes}M`;
         }
-        if (secs === 0 && this._nanos === 0 && rval.length > 2) {
+        if (secs === 0 && fractionNanos === 0 && rval.length > 2) {
             return rval;
         }
-        if (secs < 0 && this._nanos > 0) {
-            if (secs === -1) {
-                rval += '-0';
-            } else {
-                rval += secs + 1;
-            }
+        // The seconds field needs an explicit minus sign when the whole-second
+        // part is zero but the duration is a negative fraction (e.g. -0.5s
+        // prints as "-0.5S", not "0.5S").
+        if (secs === 0 && negativeFraction) {
+            rval += '-0';
         } else {
-            rval += secs;
+            rval += `${secs}`;
         }
-        if (this._nanos > 0) {
-            rval += '.';
-            let nanoString;
-            if (secs < 0) {
-                nanoString = `${2 * LocalTime.NANOS_PER_SECOND - this._nanos}`;
-            } else {
-                nanoString = `${LocalTime.NANOS_PER_SECOND + this._nanos}`;
+        if (fractionNanos > 0) {
+            // fractionNanos is a magnitude in [1, 1e9); print it as a fixed
+            // nine-digit fraction with any trailing zeros removed.
+            let fraction = `${fractionNanos}`;
+            while (fraction.length < 9) {
+                fraction = `0${fraction}`;
             }
-            // remove the leading '1'
-            nanoString = nanoString.slice(1, nanoString.length);
-            rval += nanoString;
-            while (rval.charAt(rval.length - 1) === '0') {
-                rval = rval.slice(0, rval.length - 1);
+            while (fraction.charAt(fraction.length - 1) === '0') {
+                fraction = fraction.slice(0, fraction.length - 1);
             }
+            rval += `.${fraction}`;
         }
         rval += 'S';
         return rval;

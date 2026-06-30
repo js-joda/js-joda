@@ -2323,6 +2323,18 @@ describe('org.threeten.bp.TestDuration', () => {
             [60, 0, 'PT1M'],
             [3600, 0, 'PT1H'],
             [7261, 0, 'PT2H1M1S'],
+
+            // negative seconds with non-zero nanos on a whole-minute boundary
+            [-60, 500000000, 'PT-59.5S'],
+            [-3600, 500000000, 'PT-59M-59.5S'],
+            [-86400, 500000000, 'PT-23H-59M-59.5S'],
+            [-120, 1, 'PT-1M-59.999999999S'],
+
+            // negative sub-second remainder where the seconds field is zero
+            [-1, 500000000, 'PT-0.5S'],
+            [-61, 500000000, 'PT-1M-0.5S'],
+            [-3601, 500000000, 'PT-1H-0.5S'],
+
             [MAX_SAFE_INTEGER, 0, 'PT2501999792983H36M31S'],
             [MIN_SAFE_INTEGER, 0, 'PT-2501999792983H-36M-31S']
         ];
