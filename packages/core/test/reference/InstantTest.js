@@ -226,7 +226,13 @@ describe('org.threeten.bp.TestInstant', () => {
                 ['1970-01-01T00:01:01.000000001Z', 61, 1],
                 ['1970-01-01T01:00:00.000000000Z', 3600, 0],
                 ['1970-01-01T01:01:01.000000001Z', 3661, 1],
-                ['1970-01-02T01:01:01.100000000Z', 90061, 100000000]
+                ['1970-01-02T01:01:01.100000000Z', 90061, 100000000],
+
+                // A non-UTC offset is accepted and resolved to the UTC instant (gh-731)
+                ['1970-01-01T00:00:00+00:00', 0, 0],
+                ['1970-01-01T01:00:00+01:00', 0, 0],
+                ['1970-01-01T00:30:00+00:30', 0, 0],
+                ['1970-01-01T00:00:00-01:00', 3600, 0]
             ];
         }
 
@@ -252,6 +258,13 @@ describe('org.threeten.bp.TestInstant', () => {
             assertEquals(t.epochSecond(), expectedEpochSeconds);
             assertEquals(t.nano(), expectedNanoOfSecond);
         }
+
+        it('factory_parse_offset_resolvesToUtcInstant', function () {
+            // gh-731: Instant.parse must accept an offset (like java.time) and
+            // resolve it to the equivalent UTC instant, not throw.
+            assertEquals(Instant.parse('2024-03-07T15:30:00+08:00').toString(), '2024-03-07T07:30:00Z');
+            assertEquals(Instant.parse('2024-03-07T07:30:00-00:00').toString(), '2024-03-07T07:30:00Z');
+        });
 
         // TODO: should comma be accepted?
         //    @Test(dataProvider='Parse')

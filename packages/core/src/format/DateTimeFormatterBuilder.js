@@ -1516,7 +1516,7 @@ class InstantPrinterParser  {
         const parser = new DateTimeFormatterBuilder()
             .append(DateTimeFormatter.ISO_LOCAL_DATE).appendLiteral('T')
             .appendValue(ChronoField.HOUR_OF_DAY, 2).appendLiteral(':').appendValue(ChronoField.MINUTE_OF_HOUR, 2).appendLiteral(':')
-            .appendValue(ChronoField.SECOND_OF_MINUTE, 2).appendFraction(ChronoField.NANO_OF_SECOND, minDigits, maxDigits, true).appendLiteral('Z')
+            .appendValue(ChronoField.SECOND_OF_MINUTE, 2).appendFraction(ChronoField.NANO_OF_SECOND, minDigits, maxDigits, true).appendOffsetId()
             .toFormatter()._toPrinterParser(false);
         const pos = parser.parse(newContext, text, position);
         if (pos < 0) {
@@ -1531,6 +1531,10 @@ class InstantPrinterParser  {
         const min = newContext.getParsed(ChronoField.MINUTE_OF_HOUR);
         const secVal = newContext.getParsed(ChronoField.SECOND_OF_MINUTE);
         const nanoVal = newContext.getParsed(ChronoField.NANO_OF_SECOND);
+        // The instant is parsed with an offset id (which also accepts 'Z' as
+        // zero), so resolve against the parsed offset rather than assuming UTC.
+        const offsetSecs = newContext.getParsed(ChronoField.OFFSET_SECONDS);
+        const offset = (offsetSecs != null ? offsetSecs : 0);
         let sec = (secVal != null ? secVal : 0);
         const nano = (nanoVal != null ? nanoVal : 0);
         const year = MathUtil.intMod(yearParsed, 10000);
@@ -1545,7 +1549,7 @@ class InstantPrinterParser  {
         let instantSecs;
         try {
             const ldt = LocalDateTime.of(year, month, day, hour, min, sec, 0).plusDays(days);
-            instantSecs = ldt.toEpochSecond(ZoneOffset.UTC);
+            instantSecs = ldt.toEpochSecond(ZoneOffset.ofTotalSeconds(offset));
             instantSecs += MathUtil.safeMultiply(MathUtil.intDiv(yearParsed, 10000), SECONDS_PER_10000_YEARS);
         } catch (ex) {
             return ~position;
