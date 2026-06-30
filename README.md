@@ -129,6 +129,8 @@ Note that only pull requests and issues that match the threeten backport API wil
 
 - `OpenJDK` is under GNU GPL+linking exception.
 
+- **For contributors:** because of the licensing above, contributions must be derived from the BSD-licensed ThreeTen-Backport, **not** from OpenJDK's `java.time`, which is GPL-licensed. Do not copy or translate OpenJDK source into js-joda. If you need behavior that ThreeTen-Backport does not yet implement (e.g. a bug fixed in the JDK but not in threeten-bp), write an independent implementation in js-joda's own style; you may reference the *documented behavior* or a JDK bug report as a specification, but the code itself must be your own work.
+
 - The author of `Joda-Time` and the lead architect of the JSR-310 is Stephen Colebourne.
 
 The API of this project (as far as possible with JavaScript), a lot of implementation details and documentation
