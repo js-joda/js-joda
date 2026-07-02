@@ -159,6 +159,55 @@ describe('org.threeten.bp.format.TestZoneIdParser', () => {
 
     });
 
+    describe('parse region ids sharing a prefix with a fixed id (#681)', function () {
+
+        let getAvailableZoneIdsFn = null;
+        let getRulesFn = null;
+
+        before(() => {
+            getAvailableZoneIdsFn = ZoneRulesProvider.getAvailableZoneIds;
+            getRulesFn = ZoneRulesProvider.getRules;
+            // GMT and UTC are real region ids too, so a following offset must
+            // still beat the bare region (GMT+03:30 must not truncate to GMT).
+            ZoneRulesProvider.getAvailableZoneIds =
+                () => ['GMT', 'UTC', 'GMT0', 'Zulu', 'America/New_York'];
+            ZoneRulesProvider.getRules = () => ZoneOffset.ofHours(0).rules();
+        });
+
+        after(() => {
+            ZoneRulesProvider.getAvailableZoneIds = getAvailableZoneIdsFn;
+            ZoneRulesProvider.getRules = getRulesFn;
+        });
+
+        function data_longestMatch() {
+            return [
+                ['GMT0', 4, ZoneId.of('GMT0')],  // region beats the GMT prefix
+                ['Zulu', 4, ZoneId.of('Zulu')],  // region beats Z
+                ['GMT+03:30', 9, null],  // offset beats the bare GMT region
+                ['UTC+01:30', 9, null],  // offset beats the bare UTC region
+                ['GMT', 3, null],        // bare region ties the fixed id, fixed wins
+                ['Z0', 1, null],         // no Z0 region, Z wins
+                ['UTC0', 3, null],       // no UTC0 region, UTC wins
+                ['GMTZ', 3, null],       // no GMTZ region, GMT wins
+            ];
+        }
+
+        it('picks the longest match', function () {
+            dataProviderTest(data_longestMatch, (text, expectedIndex, expectedZone) => {
+                const pos = new ParsePosition(0);
+                const parsed = new DateTimeFormatterBuilder().appendZoneId()
+                    .toFormatter().parseUnresolved(text, pos);
+                assertEquals(pos.getErrorIndex(), -1, `Incorrect error index parsing: ${text}`);
+                assertEquals(pos.getIndex(), expectedIndex, `Incorrect index parsing: ${text}`);
+                if (expectedZone != null) {
+                    assertEquals(parsed.query(TemporalQueries.zoneId()), expectedZone,
+                        `Incorrect zoneId parsing: ${text}`);
+                }
+            });
+        });
+
+    });
+
     it('javascript special id SYSTEM', function () {
         const text = 'SYSTEM';
         const parsed = builder.appendZoneId().toFormatter().parseUnresolved(text, pos);

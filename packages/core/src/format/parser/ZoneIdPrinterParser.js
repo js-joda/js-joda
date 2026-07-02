@@ -71,6 +71,11 @@ export class ZoneIdPrinterParser {
             return ~position;
         }
 
+        // A fixed ID prefix (UT, UTC, GMT, Z) can also begin a longer region id
+        // such as GMT0 or Zulu. Find the longest matching region up front so the
+        // fixed-ID branches below can defer to it when it wins.
+        const region = this._parseRegion(text, position);
+
         // handle fixed time-zone IDs
         const nextChar = text.charAt(position);
         if (nextChar === '+' || nextChar === '-') {
@@ -89,14 +94,17 @@ export class ZoneIdPrinterParser {
                 context.charEquals(nextNextChar, 'T')) {
                 if (length >= position + 3 &&
                     context.charEquals(text.charAt(position + 2), 'C')) {
-                    return this._parsePrefixedOffset(context, text, position, position + 3);
+                    return this._preferRegionIfLonger(context, region, position,
+                        this._parsePrefixedOffset(context, text, position, position + 3));
                 }
-                return this._parsePrefixedOffset(context, text, position, position + 2);
+                return this._preferRegionIfLonger(context, region, position,
+                    this._parsePrefixedOffset(context, text, position, position + 2));
             } else if (context.charEquals(nextChar, 'G') &&
                 length >= position + 3 &&
                 context.charEquals(nextNextChar, 'M') &&
                 context.charEquals(text.charAt(position + 2), 'T')) {
-                return this._parsePrefixedOffset(context, text, position, position + 3);
+                return this._preferRegionIfLonger(context, region, position,
+                    this._parsePrefixedOffset(context, text, position, position + 3));
             }
         }
         // javascript special case
@@ -108,15 +116,35 @@ export class ZoneIdPrinterParser {
         // ...
         if (context.charEquals(nextChar, 'Z')) {
             context.setParsedZone(ZoneOffset.UTC);
-            return position + 1;
+            return this._preferRegionIfLonger(context, region, position, position + 1);
         }
 
+        if (region != null) {
+            context.setParsedZone(ZoneRegion.ofId(region.parsedZoneId));
+            return position + region.parseLength;
+        }
+
+        return ~position;
+    }
+
+    /**
+     * Finds the longest available zone region id matching text at position,
+     * without touching the parse context.
+     *
+     * @param {String} text
+     * @param {number} position
+     * @return {?{parsedZoneId: string, parseLength: number}}
+     */
+    _parseRegion(text, position) {
         const availableZoneIds = ZoneRulesProvider.getAvailableZoneIds();
+        if (availableZoneIds.length === 0) {
+            return null;
+        }
         if (zoneIdTree.size !== availableZoneIds.length) {
             zoneIdTree = ZoneIdTree.createTreeMap(availableZoneIds);
         }
 
-        const maxParseLength = length - position;
+        const maxParseLength = text.length - position;
         let treeMap = zoneIdTree.treeMap;
         let parsedZoneId = null;
         let parseLength = 0;
@@ -128,12 +156,28 @@ export class ZoneIdPrinterParser {
                 parseLength = treeMap.length;
             }
         }
-        if (parsedZoneId != null) {
-            context.setParsedZone(ZoneRegion.ofId(parsedZoneId));
-            return position + parseLength;
+        if (parsedZoneId == null) {
+            return null;
         }
+        return { parsedZoneId, parseLength };
+    }
 
-        return ~position;
+    /**
+     * Prefers a region id over a fixed-ID parse when the region consumes more
+     * characters, so the longest match wins (e.g. GMT0 over GMT, Zulu over Z).
+     *
+     * @param {DateTimeParseContext} context
+     * @param {?{parsedZoneId: string, parseLength: number}} region
+     * @param {number} position
+     * @param {number} endPos  end position of the fixed-ID parse
+     * @return {number}
+     */
+    _preferRegionIfLonger(context, region, position, endPos) {
+        if (region != null && region.parseLength > endPos - position) {
+            context.setParsedZone(ZoneRegion.ofId(region.parsedZoneId));
+            return position + region.parseLength;
+        }
+        return endPos;
     }
 
     /**
