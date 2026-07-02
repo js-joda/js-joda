@@ -71,7 +71,67 @@ export class ZoneIdPrinterParser {
             return ~position;
         }
 
-        // handle fixed time-zone IDs
+        // A fixed ID (Z, UT, UTC, GMT, an offset) can also be the start of a
+        // longer region id such as GMT0 or Zulu, so parse both and keep the
+        // longest match (as the class doc above promises).
+        const region = this._parseRegion(text, position);
+        const fixedEndPos = this._parseFixedId(context, text, position);
+
+        const fixedLength = fixedEndPos >= 0 ? fixedEndPos - position : 0;
+        if (region != null && region.parseLength > fixedLength) {
+            context.setParsedZone(ZoneRegion.ofId(region.parsedZoneId));
+            return position + region.parseLength;
+        }
+        return fixedEndPos;
+    }
+
+    /**
+     * Finds the longest available zone region id matching text at position,
+     * without touching the parse context.
+     *
+     * @param {String} text
+     * @param {number} position
+     * @return {?{parsedZoneId: string, parseLength: number}}
+     */
+    _parseRegion(text, position) {
+        const availableZoneIds = ZoneRulesProvider.getAvailableZoneIds();
+        if (availableZoneIds.length === 0) {
+            return null;
+        }
+        if (zoneIdTree.size !== availableZoneIds.length) {
+            zoneIdTree = ZoneIdTree.createTreeMap(availableZoneIds);
+        }
+
+        const maxParseLength = text.length - position;
+        let treeMap = zoneIdTree.treeMap;
+        let parsedZoneId = null;
+        let parseLength = 0;
+        while(treeMap != null) {
+            const parsedSubZoneId = text.substr(position, Math.min(treeMap.length, maxParseLength));
+            treeMap = treeMap.get(parsedSubZoneId);
+            if (treeMap != null && treeMap.isLeaf) {
+                parsedZoneId = parsedSubZoneId;
+                parseLength = treeMap.length;
+            }
+        }
+        if (parsedZoneId == null) {
+            return null;
+        }
+        return { parsedZoneId, parseLength };
+    }
+
+    /**
+     * Parses a fixed zone id (an offset, a UT/UTC/GMT prefixed offset, SYSTEM
+     * or Z) and sets it on the context. Returns the end position, or ~position
+     * if no fixed id matches at position.
+     *
+     * @param {DateTimeParseContext} context
+     * @param {String} text
+     * @param {number} position
+     * @return {number}
+     */
+    _parseFixedId(context, text, position) {
+        const length = text.length;
         const nextChar = text.charAt(position);
         if (nextChar === '+' || nextChar === '-') {
             const newContext = context.copy();
@@ -80,8 +140,7 @@ export class ZoneIdPrinterParser {
                 return endPos;
             }
             const offset = newContext.getParsed(ChronoField.OFFSET_SECONDS);
-            const zone = ZoneOffset.ofTotalSeconds(offset);
-            context.setParsedZone(zone);
+            context.setParsedZone(ZoneOffset.ofTotalSeconds(offset));
             return endPos;
         } else if (length >= position + 2) {
             const nextNextChar = text.charAt(position + 1);
@@ -104,35 +163,10 @@ export class ZoneIdPrinterParser {
             context.setParsedZone(ZoneId.systemDefault());
             return position + 6;
         }
-
-        // ...
         if (context.charEquals(nextChar, 'Z')) {
             context.setParsedZone(ZoneOffset.UTC);
             return position + 1;
         }
-
-        const availableZoneIds = ZoneRulesProvider.getAvailableZoneIds();
-        if (zoneIdTree.size !== availableZoneIds.length) {
-            zoneIdTree = ZoneIdTree.createTreeMap(availableZoneIds);
-        }
-
-        const maxParseLength = length - position;
-        let treeMap = zoneIdTree.treeMap;
-        let parsedZoneId = null;
-        let parseLength = 0;
-        while(treeMap != null) {
-            const parsedSubZoneId = text.substr(position, Math.min(treeMap.length, maxParseLength));
-            treeMap = treeMap.get(parsedSubZoneId);
-            if (treeMap != null && treeMap.isLeaf) {
-                parsedZoneId = parsedSubZoneId;
-                parseLength = treeMap.length;
-            }
-        }
-        if (parsedZoneId != null) {
-            context.setParsedZone(ZoneRegion.ofId(parsedZoneId));
-            return position + parseLength;
-        }
-
         return ~position;
     }
 
