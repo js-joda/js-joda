@@ -9,6 +9,7 @@ import { assert, requireNonNull } from '../assert';
 import { DateTimeBuilder } from './DateTimeBuilder';
 import { EnumMap } from './EnumMap';
 
+import { Period } from '../Period';
 import { IsoChronology } from '../chrono/IsoChronology';
 import { Temporal } from '../temporal/Temporal';
 import { TemporalQueries } from '../temporal/TemporalQueries';
@@ -244,6 +245,7 @@ class Parsed extends Temporal {
         this.zone = null;
         this.fieldValues = new EnumMap();
         this.leapSecond = false;
+        this.excessDays = Period.ZERO;
         this.dateTimeParseContext = dateTimeParseContext;
     }
 
