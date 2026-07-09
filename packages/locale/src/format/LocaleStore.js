@@ -48,13 +48,25 @@ export class LocaleStore {
         Object.keys(valueTextMap).forEach((style) => {
             const reverse = {};
             const list = [];
+            let parsable = true;
             Object.keys(valueTextMap[style]).forEach((key) => {
-                const value = valueTextMap[style][key];
-                if (reverse[value] === undefined) {
-                    reverse[value] = createEntry(value, parseInt(key));
-                    list.push(reverse[value]);
+                if (!parsable) {
+                    return;
                 }
+                const value = valueTextMap[style][key];
+                if (reverse[value] !== undefined) {
+                    // Duplicate text: this style is not uniquely parsable, so the
+                    // whole style is skipped (mirrors threetenbp issue #198 fix,
+                    // `continue outer` in SimpleDateTimeTextProvider.LocaleStore).
+                    parsable = false;
+                    return;
+                }
+                reverse[value] = createEntry(value, parseInt(key));
+                list.push(reverse[value]);
             });
+            if (!parsable) {
+                return;
+            }
             list.sort(_comparator);
             map[style] = list;
             allList = allList.concat(list);
