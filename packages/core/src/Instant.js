@@ -520,7 +520,7 @@ export class Instant extends Temporal {
             throw new DateTimeException('Unit must divide into a standard day without remainder');
         }
         const nod = MathUtil.intMod(this._seconds, LocalTime.SECONDS_PER_DAY) * LocalTime.NANOS_PER_SECOND + this._nanos;
-        const result = MathUtil.intDiv(nod, dur) * dur;
+        const result = MathUtil.floorDiv(nod, dur) * dur;
         return this.plusNanos(result - nod);
     }
 
