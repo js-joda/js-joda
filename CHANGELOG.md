@@ -1,7 +1,33 @@
 Changelog
 =========
 
-## Unreleased (2026-04-08)
+## Unreleased (2026-07-10)
+
+### Versions
+
+#### :rocket: Enhancement
+* Other
+    * [#806](https://github.com/js-joda/js-joda/pull/806) docs: clarify contributions must derive from threeten-bp, not OpenJDK ([@pithu](https://github.com/pithu))
+
+#### :bug: Bug Fix
+* `locale`
+    * [#810](https://github.com/js-joda/js-joda/pull/810) fix(locale): exclude non-uniquely-parsable text styles from parsing ([@CedricConday](https://github.com/CedricConday))
+* `core`
+    * [#805](https://github.com/js-joda/js-joda/pull/805) fix(core): correct Duration.toString for negative seconds on minute boundary ([@spokodev](https://github.com/spokodev))
+    * [#804](https://github.com/js-joda/js-joda/pull/804) fix: Instant.parse should accept an offset and resolve to the UTC instant (#731) ([@CedricConday](https://github.com/CedricConday))
+    * [#803](https://github.com/js-joda/js-joda/pull/803) Fix toSecondsPart typo in Duration Flow type definition ([@greymoth-jp](https://github.com/greymoth-jp))
+    * [#809](https://github.com/js-joda/js-joda/pull/809) fix(core): initialize parsed excessDays to Period.ZERO ([@spokodev](https://github.com/spokodev))
+    * [#808](https://github.com/js-joda/js-joda/pull/808) fix(core): truncate Instant toward negative infinity for pre-epoch values ([@spokodev](https://github.com/spokodev))
+    * [#807](https://github.com/js-joda/js-joda/pull/807) fix: parse zone ids that share a prefix with a fixed id ([@apoorva-01](https://github.com/apoorva-01))
+    * Instant.parse() doesn't work with ISO8601 timestamp with offset ([@fluidsonic](https://github.com/fluidsonic))
+
+#### :house: Dependency update
+* `locale`
+    * [#802](https://github.com/js-joda/js-joda/pull/802) Bump form-data from 4.0.5 to 4.0.6 in /packages/locale ([@dependabot[bot]](https://github.com/apps/dependabot))
+    * [#801](https://github.com/js-joda/js-joda/pull/801) Bump axios from 1.13.6 to 1.17.0 in /packages/locale ([@dependabot[bot]](https://github.com/apps/dependabot))
+    * [#798](https://github.com/js-joda/js-joda/pull/798) Bump follow-redirects from 1.15.11 to 1.16.0 in /packages/locale ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+## 2026-04-08
 
 ### Versions
 
