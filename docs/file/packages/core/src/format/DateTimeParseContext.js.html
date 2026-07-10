@@ -125,6 +125,7 @@ import { assert, requireNonNull } from &apos;../assert&apos;;
 import { DateTimeBuilder } from &apos;./DateTimeBuilder&apos;;
 import { EnumMap } from &apos;./EnumMap&apos;;
 
+import { Period } from &apos;../Period&apos;;
 import { IsoChronology } from &apos;../chrono/IsoChronology&apos;;
 import { Temporal } from &apos;../temporal/Temporal&apos;;
 import { TemporalQueries } from &apos;../temporal/TemporalQueries&apos;;
@@ -360,6 +361,7 @@ class Parsed extends Temporal {
         this.zone = null;
         this.fieldValues = new EnumMap();
         this.leapSecond = false;
+        this.excessDays = Period.ZERO;
         this.dateTimeParseContext = dateTimeParseContext;
     }
 

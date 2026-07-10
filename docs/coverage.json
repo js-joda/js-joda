@@ -1,7 +1,7 @@
 {
-  "coverage": "73.58%",
-  "expectCount": 2154,
-  "actualCount": 1585,
+  "coverage": "73.57%",
+  "expectCount": 2157,
+  "actualCount": 1587,
   "files": {
     "packages/core/src/Clock.js": {
       "expectCount": 39,
@@ -50,7 +50,7 @@
         362,
         386,
         430,
-        1263
+        1272
       ]
     },
     "packages/core/src/Enum.js": {
@@ -371,49 +371,50 @@
         1436,
         1439,
         1511,
-        1558,
-        1574,
-        1575,
-        1602
+        1562,
+        1578,
+        1579,
+        1606
       ]
     },
     "packages/core/src/format/DateTimeParseContext.js": {
-      "expectCount": 45,
+      "expectCount": 46,
       "actualCount": 12,
       "undocumentLines": [
-        21,
-        33,
+        22,
         34,
         35,
-        38,
+        36,
         39,
         40,
         41,
-        44,
-        51,
-        55,
-        68,
-        72,
-        76,
-        80,
-        84,
-        182,
-        202,
-        206,
-        210,
-        240,
+        42,
+        45,
+        52,
+        56,
+        69,
+        73,
+        77,
+        81,
+        85,
+        183,
+        203,
+        207,
+        211,
         241,
-        243,
+        242,
         244,
         245,
         246,
         247,
-        250,
-        260,
-        264,
-        268,
-        274,
-        284
+        248,
+        249,
+        252,
+        262,
+        266,
+        270,
+        276,
+        286
       ]
     },
     "packages/core/src/format/DateTimePrintContext.js": {
@@ -621,24 +622,24 @@
       ]
     },
     "packages/core/src/format/parser/ZoneIdPrinterParser.js": {
-      "expectCount": 21,
-      "actualCount": 6,
+      "expectCount": 23,
+      "actualCount": 8,
       "undocumentLines": [
         29,
         30,
-        174,
-        176,
-        185,
-        186,
-        187,
-        191,
-        192,
-        193,
-        194,
-        195,
-        198,
-        213,
-        218
+        208,
+        210,
+        219,
+        220,
+        221,
+        225,
+        226,
+        227,
+        228,
+        229,
+        232,
+        247,
+        252
       ]
     },
     "packages/core/src/js-joda.js": {
@@ -980,7 +981,7 @@
       "undocumentLines": [
         26,
         45,
-        64
+        76
       ]
     },
     "packages/locale/src/format/cldr/CldrCache.js": {

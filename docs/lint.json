@@ -4,27 +4,27 @@
     "filePath": "packages/core/src/format/DateTimeFormatterBuilder.js",
     "lines": [
       {
-        "lineNumber": 1577,
+        "lineNumber": 1581,
         "line": "    /**"
       },
       {
-        "lineNumber": 1578,
+        "lineNumber": 1582,
         "line": "     * @param {DateTimePrintContext} context"
       },
       {
-        "lineNumber": 1579,
+        "lineNumber": 1583,
         "line": "     * @param {StringBuilder} buf"
       },
       {
-        "lineNumber": 1580,
+        "lineNumber": 1584,
         "line": "     * @return {boolean}"
       },
       {
-        "lineNumber": 1581,
+        "lineNumber": 1585,
         "line": "     */"
       },
       {
-        "lineNumber": 1582,
+        "lineNumber": 1586,
         "line": "    print() {"
       }
     ],
