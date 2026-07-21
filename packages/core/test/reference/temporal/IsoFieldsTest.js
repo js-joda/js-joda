@@ -13,6 +13,7 @@ import { ValueRange } from '../../../src/temporal/ValueRange';
 
 import { ChronoField } from '../../../src/temporal/ChronoField';
 import { IsoFields } from '../../../src/temporal/IsoFields';
+import { DateTimeFormatterBuilder } from '../../../src/format/DateTimeFormatterBuilder';
 
 describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
 
@@ -95,7 +96,6 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
 
     });
 
-    /* TODO weekday parser
     describe('parse weeks', () => {
 
         // @Test(dataProvider='week')
@@ -105,13 +105,12 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
                     .appendValue(IsoFields.WEEK_BASED_YEAR).appendLiteral('-')
                     .appendValue(IsoFields.WEEK_OF_WEEK_BASED_YEAR).appendLiteral('-')
                     .appendValue(ChronoField.DAY_OF_WEEK).toFormatter();
-                const parsed = LocalDate.parse(wby + '-' + week + '-' + dow.value(), f);
+                const parsed = LocalDate.parse(`${wby}-${week}-${dow.value()}`, f);
                 assertEquals(parsed, date);
             });
         });
 
     });
-*/
 
     const yearsToLoop = isCoverageTestRunner() || isBrowserTestRunner() ? 2 : 23; // should be at least 400
     it('test_loop', function () {
@@ -240,6 +239,17 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
                         .with(IsoFields.QUARTER_OF_YEAR, q)
                         .with(IsoFields.DAY_OF_QUARTER, doq),
                     date);
+            });
+        });
+
+        it('test_parse_quarters', function () {
+            dataProviderTest(data_quarter, (date, doq, q) => {
+                const f = new DateTimeFormatterBuilder()
+                    .appendValue(ChronoField.YEAR).appendLiteral('-')
+                    .appendValue(IsoFields.QUARTER_OF_YEAR).appendLiteral('-')
+                    .appendValue(IsoFields.DAY_OF_QUARTER).toFormatter();
+                const parsed = LocalDate.parse(`${date.year()}-${q}-${doq}`, f);
+                assertEquals(parsed, date);
             });
         });
 

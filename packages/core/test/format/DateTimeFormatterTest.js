@@ -80,6 +80,26 @@ describe('js-joda DateTimeFormatterTest', () => {
             checkFormat(DateTimeFormatter.ISO_WEEK_DATE, '2018-W17-6');
         });
 
+        it('should parse and format ISO_WEEK_DATE against ISO-8601 week dates', () => {
+            const f = DateTimeFormatter.ISO_WEEK_DATE;
+            // week 1 belongs to the week-based year and can start in the previous calendar year
+            const cases = [
+                ['2014-W01-1', '2013-12-30'],
+                ['2015-W01-1', '2014-12-29'],
+                ['2010-W01-5', '2010-01-08'],
+                ['2020-W01-2', '2019-12-31'],
+                ['2009-W01-1', '2008-12-29'],
+                ['2015-W53-7', '2016-01-03'],  // 53-week year
+                ['2020-W53-4', '2020-12-31'],  // 53-week year
+                ['2004-W53-6', '2005-01-01'],  // 53-week year
+                ['2018-W17-6', '2018-04-28'],
+            ];
+            for (const [week, iso] of cases) {
+                expect(LocalDate.parse(week, f).toString()).to.eql(iso);
+                expect(LocalDate.parse(iso).format(f)).to.eql(week);
+            }
+        });
+
         it('should properly use ISO_INSTANT format', () => {
             checkFormat(DateTimeFormatter.ISO_INSTANT, '2018-04-28T10:34:00Z');
         });
