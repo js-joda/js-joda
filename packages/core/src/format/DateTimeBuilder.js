@@ -14,6 +14,7 @@ import { ResolverStyle } from './ResolverStyle';
 import { IsoChronology } from '../chrono/IsoChronology';
 import { ChronoLocalDate } from '../chrono/ChronoLocalDate';
 import { ChronoField } from '../temporal/ChronoField';
+import { IsoFields } from '../temporal/IsoFields';
 import { TemporalAccessor } from '../temporal/TemporalAccessor';
 import { TemporalQueries } from '../temporal/TemporalQueries';
 
@@ -148,11 +149,10 @@ export class DateTimeBuilder extends TemporalAccessor {
         // this._mergeInstantFields();
         this._mergeDate(resolverStyle);
         this._mergeTime(resolverStyle);
-        //if (resolveFields(resolverStyle)) {
-        //    mergeInstantFields();
-        //    mergeDate(resolverStyle);
-        //    mergeTime(resolverStyle);
-        //}
+        if (this._resolveFields(resolverStyle)) {
+            this._mergeDate(resolverStyle);
+            this._mergeTime(resolverStyle);
+        }
         this._resolveTimeInferZeroes(resolverStyle);
         //this._crossCheck();
         if (this.excessDays != null && this.excessDays.isZero() === false && this.date != null && this.time != null) {
@@ -162,6 +162,30 @@ export class DateTimeBuilder extends TemporalAccessor {
         //resolveFractional();
         this._resolveInstant();
         return this;
+    }
+
+    /**
+     * Resolves the date fields that are not {@link ChronoField}s by delegating to their own
+     * `resolve()`, the step java.time performs generically. As parsed values are held in a
+     * name-keyed map, the ISO fields that define a `resolve()` (week-of-week-based-year and
+     * day-of-quarter) are handled here. Returns whether a date was produced.
+     *
+     * @param {ResolverStyle} resolverStyle
+     * @return {boolean}
+     * @private
+     */
+    _resolveFields(resolverStyle) {
+        let resolved = false;
+        for (const field of [IsoFields.WEEK_OF_WEEK_BASED_YEAR, IsoFields.DAY_OF_QUARTER]) {
+            if (this.fieldValues.containsKey(field)) {
+                const date = field.resolve(this.fieldValues, this, resolverStyle);
+                if (date != null) {
+                    this._checkDate(date);
+                    resolved = true;
+                }
+            }
+        }
+        return resolved;
     }
 
     /**
