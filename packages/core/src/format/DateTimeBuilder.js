@@ -147,12 +147,11 @@ export class DateTimeBuilder extends TemporalAccessor {
         }
         // handle standard fields
         // this._mergeInstantFields();
+        if (this._resolveFields(resolverStyle)) {
+            // this._mergeInstantFields();
+        }
         this._mergeDate(resolverStyle);
         this._mergeTime(resolverStyle);
-        if (this._resolveFields(resolverStyle)) {
-            this._mergeDate(resolverStyle);
-            this._mergeTime(resolverStyle);
-        }
         this._resolveTimeInferZeroes(resolverStyle);
         //this._crossCheck();
         if (this.excessDays != null && this.excessDays.isZero() === false && this.date != null && this.time != null) {
@@ -168,7 +167,8 @@ export class DateTimeBuilder extends TemporalAccessor {
      * Resolves the date fields that are not {@link ChronoField}s by delegating to their own
      * `resolve()`, the step java.time performs generically. As parsed values are held in a
      * name-keyed map, the ISO fields that define a `resolve()` (week-of-week-based-year and
-     * day-of-quarter) are handled here. Returns whether a date was produced.
+     * day-of-quarter) are handled here. They do not depend on one another, so one pass is
+     * sufficient. Returns whether a date was produced.
      *
      * @param {ResolverStyle} resolverStyle
      * @return {boolean}

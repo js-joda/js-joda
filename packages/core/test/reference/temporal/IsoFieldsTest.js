@@ -5,6 +5,7 @@
  */
 
 import '../../_init';
+import { expect } from 'chai';
 import { assertEquals, dataProviderTest, isCoverageTestRunner, isBrowserTestRunner } from '../../testUtils';
 
 import { DayOfWeek } from '../../../src/DayOfWeek';
@@ -108,6 +109,20 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
                 const parsed = LocalDate.parse(`${wby}-${week}-${dow.value()}`, f);
                 assertEquals(parsed, date);
             });
+        });
+
+        it('rejects a week-based date that conflicts with a calendar date', () => {
+            const f = new DateTimeFormatterBuilder()
+                .appendValue(ChronoField.YEAR).appendLiteral('-')
+                .appendValue(ChronoField.MONTH_OF_YEAR, 2).appendLiteral('-')
+                .appendValue(ChronoField.DAY_OF_MONTH, 2).appendLiteral(' ')
+                .appendValue(IsoFields.WEEK_BASED_YEAR).appendLiteral('-W')
+                .appendValue(IsoFields.WEEK_OF_WEEK_BASED_YEAR, 2).appendLiteral('-')
+                .appendValue(ChronoField.DAY_OF_WEEK).toFormatter();
+
+            assertEquals(LocalDate.parse('2020-06-01 2020-W23-1', f), LocalDate.of(2020, 6, 1));
+            expect(() => LocalDate.parse('2020-06-01 2020-W01-1', f))
+                .to.throw(/Conflict found/);
         });
 
     });
@@ -253,6 +268,19 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
             });
         });
 
+        it('rejects quarter fields that conflict with a calendar date', function () {
+            const f = new DateTimeFormatterBuilder()
+                .appendValue(ChronoField.YEAR).appendLiteral('-')
+                .appendValue(ChronoField.MONTH_OF_YEAR, 2).appendLiteral('-')
+                .appendValue(ChronoField.DAY_OF_MONTH, 2).appendLiteral(' ')
+                .appendValue(IsoFields.QUARTER_OF_YEAR).appendLiteral('-')
+                .appendValue(IsoFields.DAY_OF_QUARTER, 2).toFormatter();
+
+            assertEquals(LocalDate.parse('2020-06-01 2-62', f), LocalDate.of(2020, 6, 1));
+            expect(() => LocalDate.parse('2020-06-01 1-05', f))
+                .to.throw(/Conflict found/);
+        });
+
     });
 
     describe('quarters between/ plus', function () {
@@ -339,5 +367,3 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
     });
 
 });
-
-
