@@ -893,10 +893,18 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         if (divisor === 1) {
             return this;
         }
-        const secs = MathUtil.intDiv(this._seconds, divisor);
-        const secsMod = MathUtil.roundDown(((this._seconds/ divisor) - secs) * LocalTime.NANOS_PER_SECOND);
-        let nos = MathUtil.intDiv(this._nanos, divisor);
-        nos = secsMod + nos;
+        // Give both components the same sign before truncating the quotient.
+        // Otherwise the positive nano adjustment of a negative duration is
+        // truncated separately and can move the result away from zero.
+        let seconds = this._seconds;
+        let nanos = this._nanos;
+        if (seconds < 0 && nanos > 0) {
+            seconds += 1;
+            nanos -= LocalTime.NANOS_PER_SECOND;
+        }
+        const secs = MathUtil.intDiv(seconds, divisor);
+        const remainder = MathUtil.intMod(seconds, divisor);
+        const nos = MathUtil.intDiv(remainder * LocalTime.NANOS_PER_SECOND + nanos, divisor);
         return Duration.ofSeconds(secs, nos);
     }
 
