@@ -1865,11 +1865,11 @@ describe('org.threeten.bp.TestDuration', () => {
     describe('dividedBy()', () => {
         const data_dividedBy = [
             [-4, 666666667, -3,  1, 111111111],
-            [-4, 666666667, -2,  1, 666666667],
+            [-4, 666666667, -2,  1, 666666666],
             [-4, 666666667, -1,  3, 333333333],
             [-4, 666666667,  1, -4, 666666667],
             [-4, 666666666,  2, -2, 333333333],
-            [-4, 666666667,  2, -2, 333333333],
+            [-4, 666666667,  2, -2, 333333334],
             [-4, 666666667,  3, -2, 888888889],
 
             [-3, 0, -3,  1, 0],
@@ -1893,12 +1893,12 @@ describe('org.threeten.bp.TestDuration', () => {
             [-1, 0,  2, -1, 500000000],
             [-1, 0,  3, -1, 666666667],
 
-            [-1, 500000000, -3,  0, 166666667],
+            [-1, 500000000, -3,  0, 166666666],
             [-1, 500000000, -2,  0, 250000000],
             [-1, 500000000, -1,  0, 500000000],
             [-1, 500000000,  1, -1, 500000000],
             [-1, 500000000,  2, -1, 750000000],
-            [-1, 500000000,  3, -1, 833333333],
+            [-1, 500000000,  3, -1, 833333334],
 
             [0, 0, -3, 0, 0],
             [0, 0, -2, 0, 0],
@@ -1950,6 +1950,16 @@ describe('org.threeten.bp.TestDuration', () => {
                 expect(t.seconds()).to.eql(expectedSeconds);
                 expect(t.nano()).to.eql(expectedNanos);
             });
+        });
+
+        it('divides signed nanoseconds with truncation toward zero', () => {
+            for (const nanos of [-2000000001, -1999999999, -3, -1, 1, 3, 1999999999, 2000000001]) {
+                for (const divisor of [-3, -2, 2, 3]) {
+                    const actual = Duration.ofNanos(nanos).dividedBy(divisor);
+                    const expected = Duration.ofNanos(MathUtil.intDiv(nanos, divisor));
+                    expect(actual).to.eql(expected);
+                }
+            }
         });
 
         it('dividedByZero', () => {
