@@ -5,6 +5,7 @@
  */
 
 import '../../_init';
+import { expect } from 'chai';
 import { assertEquals, dataProviderTest, isCoverageTestRunner, isBrowserTestRunner } from '../../testUtils';
 
 import { DayOfWeek } from '../../../src/DayOfWeek';
@@ -13,6 +14,7 @@ import { ValueRange } from '../../../src/temporal/ValueRange';
 
 import { ChronoField } from '../../../src/temporal/ChronoField';
 import { IsoFields } from '../../../src/temporal/IsoFields';
+import { DateTimeFormatterBuilder } from '../../../src/format/DateTimeFormatterBuilder';
 
 describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
 
@@ -95,7 +97,6 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
 
     });
 
-    /* TODO weekday parser
     describe('parse weeks', () => {
 
         // @Test(dataProvider='week')
@@ -105,13 +106,26 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
                     .appendValue(IsoFields.WEEK_BASED_YEAR).appendLiteral('-')
                     .appendValue(IsoFields.WEEK_OF_WEEK_BASED_YEAR).appendLiteral('-')
                     .appendValue(ChronoField.DAY_OF_WEEK).toFormatter();
-                const parsed = LocalDate.parse(wby + '-' + week + '-' + dow.value(), f);
+                const parsed = LocalDate.parse(`${wby}-${week}-${dow.value()}`, f);
                 assertEquals(parsed, date);
             });
         });
 
+        it('rejects a week-based date that conflicts with a calendar date', () => {
+            const f = new DateTimeFormatterBuilder()
+                .appendValue(ChronoField.YEAR).appendLiteral('-')
+                .appendValue(ChronoField.MONTH_OF_YEAR, 2).appendLiteral('-')
+                .appendValue(ChronoField.DAY_OF_MONTH, 2).appendLiteral(' ')
+                .appendValue(IsoFields.WEEK_BASED_YEAR).appendLiteral('-W')
+                .appendValue(IsoFields.WEEK_OF_WEEK_BASED_YEAR, 2).appendLiteral('-')
+                .appendValue(ChronoField.DAY_OF_WEEK).toFormatter();
+
+            assertEquals(LocalDate.parse('2020-06-01 2020-W23-1', f), LocalDate.of(2020, 6, 1));
+            expect(() => LocalDate.parse('2020-06-01 2020-W01-1', f))
+                .to.throw(/Conflict found/);
+        });
+
     });
-*/
 
     const yearsToLoop = isCoverageTestRunner() || isBrowserTestRunner() ? 2 : 23; // should be at least 400
     it('test_loop', function () {
@@ -243,6 +257,30 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
             });
         });
 
+        it('test_parse_quarters', function () {
+            dataProviderTest(data_quarter, (date, doq, q) => {
+                const f = new DateTimeFormatterBuilder()
+                    .appendValue(ChronoField.YEAR).appendLiteral('-')
+                    .appendValue(IsoFields.QUARTER_OF_YEAR).appendLiteral('-')
+                    .appendValue(IsoFields.DAY_OF_QUARTER).toFormatter();
+                const parsed = LocalDate.parse(`${date.year()}-${q}-${doq}`, f);
+                assertEquals(parsed, date);
+            });
+        });
+
+        it('rejects quarter fields that conflict with a calendar date', function () {
+            const f = new DateTimeFormatterBuilder()
+                .appendValue(ChronoField.YEAR).appendLiteral('-')
+                .appendValue(ChronoField.MONTH_OF_YEAR, 2).appendLiteral('-')
+                .appendValue(ChronoField.DAY_OF_MONTH, 2).appendLiteral(' ')
+                .appendValue(IsoFields.QUARTER_OF_YEAR).appendLiteral('-')
+                .appendValue(IsoFields.DAY_OF_QUARTER, 2).toFormatter();
+
+            assertEquals(LocalDate.parse('2020-06-01 2-62', f), LocalDate.of(2020, 6, 1));
+            expect(() => LocalDate.parse('2020-06-01 1-05', f))
+                .to.throw(/Conflict found/);
+        });
+
     });
 
     describe('quarters between/ plus', function () {
@@ -329,5 +367,3 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
     });
 
 });
-
-
