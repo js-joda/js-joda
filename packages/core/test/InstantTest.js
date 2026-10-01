@@ -267,6 +267,16 @@ describe('js-joda Instant', () => {
             assertEquals(instant.until(end, ChronoUnit.MICROS), diffMillis * 1000 + 48);
         });
 
+        it('should truncate MICROS toward zero when the nano of the end is smaller', () => {
+            const start = Instant.ofEpochSecond(0, 1500);
+            const end = Instant.ofEpochSecond(1, 0);
+            assertEquals(start.until(end, ChronoUnit.MICROS), 999998);
+            assertEquals(end.until(start, ChronoUnit.MICROS), -999998);
+            assertEquals(Instant.EPOCH.until(Instant.ofEpochSecond(-1, 1), ChronoUnit.MICROS), -999999);
+            assertEquals(Instant.ofEpochSecond(-1, 1).until(Instant.EPOCH, ChronoUnit.MICROS), 999999);
+            assertEquals(Instant.ofEpochSecond(0, 1500).until(Instant.EPOCH, ChronoUnit.MICROS), -1);
+        });
+
         it('should return corresponding value of addTo for TemporalUnit', () => {
             const unit = new TemporalUnit();
             unit.between = () => {
