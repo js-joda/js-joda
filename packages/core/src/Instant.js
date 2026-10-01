@@ -823,9 +823,17 @@ export class Instant extends Temporal {
      * @private
      */
     _microsUntil(end) {
-        const secsDiff = MathUtil.safeSubtract(end.epochSecond(), this.epochSecond());
+        let secsDiff = MathUtil.safeSubtract(end.epochSecond(), this.epochSecond());
+        let nanosDiff = end.nano() - this.nano();
+        if (secsDiff > 0 && nanosDiff < 0) {
+            secsDiff--;
+            nanosDiff += LocalTime.NANOS_PER_SECOND;
+        } else if (secsDiff < 0 && nanosDiff > 0) {
+            secsDiff++;
+            nanosDiff -= LocalTime.NANOS_PER_SECOND;
+        }
         const totalMicros = MathUtil.safeMultiply(secsDiff, 1000000);
-        return MathUtil.safeAdd(totalMicros, MathUtil.intDiv(end.nano() - this.nano(), 1000));
+        return MathUtil.safeAdd(totalMicros, MathUtil.intDiv(nanosDiff, 1000));
     }
 
     /**
