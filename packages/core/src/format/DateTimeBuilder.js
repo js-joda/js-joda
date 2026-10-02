@@ -24,6 +24,15 @@ import { Period } from '../Period';
 
 import { ZoneOffset } from '../ZoneOffset';
 
+function isoFieldByName(name) {
+    for (const field of [IsoFields.DAY_OF_QUARTER, IsoFields.QUARTER_OF_YEAR, IsoFields.WEEK_OF_WEEK_BASED_YEAR, IsoFields.WEEK_BASED_YEAR]) {
+        if (field.name() === name) {
+            return field;
+        }
+    }
+    return null;
+}
+
 /**
  * Builder that can holds date and time fields and related date and time objects.
  *
@@ -153,7 +162,7 @@ export class DateTimeBuilder extends TemporalAccessor {
         this._mergeDate(resolverStyle);
         this._mergeTime(resolverStyle);
         this._resolveTimeInferZeroes(resolverStyle);
-        //this._crossCheck();
+        this._crossCheck();
         if (this.excessDays != null && this.excessDays.isZero() === false && this.date != null && this.time != null) {
             this.date = this.date.plus(this.excessDays);
             this.excessDays = Period.ZERO;
@@ -455,6 +464,51 @@ export class DateTimeBuilder extends TemporalAccessor {
         this.fieldValues.remove(ChronoField.MINUTE_OF_HOUR);
         this.fieldValues.remove(ChronoField.SECOND_OF_MINUTE);
         this.fieldValues.remove(ChronoField.NANO_OF_SECOND);
+    }
+
+    /**
+     * Checks the fields left over after resolving against the resolved date and time.
+     *
+     * @private
+     */
+    _crossCheck() {
+        if (this.date != null && this.time != null) {
+            this._crossCheckWith(this.date.atTime(this.time));
+        } else if (this.date != null) {
+            this._crossCheckWith(this.date);
+        } else if (this.time != null) {
+            this._crossCheckWith(this.time);
+        }
+    }
+
+    /**
+     *
+     * @param {TemporalAccessor} temporal
+     * @private
+     */
+    _crossCheckWith(temporal) {
+        for (const fieldName in this.fieldValues.keySet()) {
+            const field = ChronoField.byName(fieldName) || isoFieldByName(fieldName);
+            if (field == null || this.fieldValues.get(field) === undefined) {
+                continue;
+            }
+            if (temporal.isSupported(field)) {
+                let temporalValue;
+                try {
+                    temporalValue = temporal.getLong(field);
+                } catch (ex) {
+                    if (ex instanceof DateTimeException) {
+                        continue;
+                    }
+                    throw ex;
+                }
+                const value = this.fieldValues.get(field);
+                if (temporalValue !== value) {
+                    throw new DateTimeException(`Cross check failed: ${field} ${temporalValue} vs ${field} ${value}`);
+                }
+                this.fieldValues.remove(field);
+            }
+        }
     }
 
     /**

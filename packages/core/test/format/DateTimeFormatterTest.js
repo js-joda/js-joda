@@ -8,7 +8,9 @@ import '../_init';
 
 import { DateTimeFormatter } from '../../src/format/DateTimeFormatter';
 import { ResolverStyle } from '../../src/format/ResolverStyle';
-import { NullPointerException } from '../../src/errors';
+import { DateTimeParseException, NullPointerException } from '../../src/errors';
+import { DateTimeFormatterBuilder } from '../../src/format/DateTimeFormatterBuilder';
+import { ChronoField } from '../../src/temporal/ChronoField';
 import { LocalDateTime } from '../../src/LocalDateTime';
 import { ZoneOffset } from '../../src/ZoneOffset';
 import { LocalDate } from '../../src/LocalDate';
@@ -151,5 +153,23 @@ describe('js-joda DateTimeFormatterTest', () => {
         function checkFormat(formatter, expectedResult, dateTime = zonedDateTime) {
             expect(dateTime.format(formatter)).to.eql(expectedResult);
         }
+    });
+
+    describe('cross check of fields left over after resolving', () => {
+        it('should accept a quarter that matches the parsed date', () => {
+            const f = DateTimeFormatter.ofPattern('uuuu-\'Q\'Q-MM-dd');
+            expect(LocalDate.parse('2020-Q1-02-01', f).toString()).to.equal('2020-02-01');
+        });
+
+        it('should reject a quarter that conflicts with the parsed date', () => {
+            const f = DateTimeFormatter.ofPattern('uuuu-\'Q\'Q-MM-dd');
+            expect(() => LocalDate.parse('2020-Q3-02-01', f)).to.throw(DateTimeParseException);
+        });
+
+        it('should reject an am/pm value that conflicts with the parsed time', () => {
+            const f = new DateTimeFormatterBuilder().appendPattern('HH:mm ').appendValue(ChronoField.AMPM_OF_DAY).toFormatter();
+            expect(LocalTime.parse('10:00 0', f).toString()).to.equal('10:00');
+            expect(() => LocalTime.parse('10:00 1', f)).to.throw(DateTimeParseException);
+        });
     });
 });
