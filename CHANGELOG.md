@@ -26,6 +26,8 @@ Changelog
 - @js-joda/timezone@2.25.2
 
 #### :rocket: Enhancement
+* `timezone`
+    * [#817](https://github.com/js-joda/js-joda/pull/817) Generate the tzdb data in this repository with the new private package `@js-joda/tzdb-builder` instead of moment-timezone; add the `-4-year-range` and `-60-year-range` bundles; the packed data carries an isdst flag per period type (backward compatible) ([@pithu](https://github.com/pithu))
 * Other
     * [#806](https://github.com/js-joda/js-joda/pull/806) docs: clarify contributions must derive from threeten-bp, not OpenJDK ([@pithu](https://github.com/pithu))
 

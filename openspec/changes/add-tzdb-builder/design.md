@@ -145,6 +145,10 @@ The issue title is `Update tzdb to <ver>`, which also serves as the dedupe key.
   builds local-time untils pairs, and a transition with an equal offset produces an empty gap or
   overlap.] → A dedicated test runs `validOffsets` and `transition` around such a transition. The
   moment data already contains abbreviation-only splits, so the path is exercised today.
+  Verified in slice 3: equal offsets produce a zero-width local-time range, so they never resolve as
+  gap or overlap (`test/MomentZoneRulesIsdstSplitTest.js`). The follow-up change that implements
+  `transitions()` / `nextTransition()` must skip these entries, because `ZoneOffsetTransition.of`
+  rejects equal offsets.
 - [Errors in the POSIX TZ expansion would corrupt future dates.] → The Intl cross-check (D4) and the
   parity script up to 2037, plus unit tests for each rule form and for the southern hemisphere.
 - [Maintainers need a C compiler and make.] → This is documented. CI does not need them because the

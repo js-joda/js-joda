@@ -21,7 +21,10 @@ npm run generate -- 2026a --from collect      # resume from a step
 npm run generate -- 2026a --force             # download again, ignore the cache
 ```
 
-Steps: `fetch` → `compile` → `collect`. Intermediate results live in `.cache/<version>/`.
+Steps: `fetch` → `compile` → `collect` → `write-unpacked` → `pack`. Intermediate results live in
+`.cache/<version>/`, the results are written into `../timezone/data/` (`unpacked/latest.json`,
+`unpacked/<version>.json`, `packed/latest*.json`, `packed/<version>.json`).
+See [HowToUpdateTZDB.md](../timezone/HowToUpdateTZDB.md) for the complete update workflow.
 
 Compare the generated data with moment-timezone data of the same release:
 

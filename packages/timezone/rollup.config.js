@@ -74,7 +74,7 @@ const buildRollupConfigurations = (fileSuffix) => {
 };
 
 
-// find all packed data files produced by our `transform-data.js` script
+// find all packed data files produced by @js-joda/tzdb-builder (`npm run generate`)
 const dataFileRegex = /^latest(.*)\.json/;
 const dataFileSuffixes = fs.readdirSync('./data/packed')
     .filter(fileName => fileName.match(dataFileRegex))

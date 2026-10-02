@@ -11,11 +11,15 @@ import { runPipeline } from './pipeline.js';
 import { fetchStep, resolveVersion } from './fetch.js';
 import { compileStep } from './compile.js';
 import { collectStep } from './collect.js';
+import { packStep } from './ranges.js';
+import { writeUnpackedStep } from './write.js';
 
 export const STEPS = [
     { name: 'fetch', run: fetchStep },
     { name: 'compile', run: compileStep },
     { name: 'collect', run: collectStep },
+    { name: 'write-unpacked', run: writeUnpackedStep },
+    { name: 'pack', run: packStep },
 ];
 
 const USAGE = 'Usage: npm run generate -- <latest|version> [--step <name>] [--from <name>] [--force]';
