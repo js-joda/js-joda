@@ -26,5 +26,8 @@ Steps: `fetch` → `compile` → `collect`. Intermediate results live in `.cache
 Compare the generated data with moment-timezone data of the same release:
 
 ```bash
-npm run parity -- <moment-timezone>/data/unpacked/2026a.json .cache/2026a/unpacked.json [--until 2037]
+npm run parity -- <moment-timezone>/data/unpacked/2026a.json .cache/2026a/unpacked.json --until 2499
 ```
+
+`--until` defaults to 2037. The data reaches 2499: zic writes the explicit transitions up to 2037 and
+the builder expands the TZif footer rule (POSIX TZ string) after that.

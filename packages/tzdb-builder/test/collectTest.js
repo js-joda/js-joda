@@ -32,7 +32,10 @@ describe('collect', () => {
             ['CEST', -120, true, Date.UTC(2026, 9, 25, 1)]
         );
         assert.equal(zone.abbrs[0], 'LMT');
+        // the footer rule is expanded up to 2499, then the last period is open-ended
+        assert.equal(zone.untils[zone.untils.length - 2], Date.UTC(2499, 9, 25, 1));
         assert.equal(zone.untils[zone.untils.length - 1], null);
+        assert.deepEqual([zone.abbrs[zone.abbrs.length - 1], zone.isdsts[zone.isdsts.length - 1]], ['CET', false]);
     });
 
     it('collects Etc/GMT-2 as a single open-ended period', () => {

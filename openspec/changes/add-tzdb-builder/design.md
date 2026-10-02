@@ -77,13 +77,18 @@ JDK, the data then has no `Factory` zone. The JDK also drops `EST`, `HST`, `MST`
 `ROC`; js-joda keeps them, as it always has with moment's data.
 
 ### D4. Expanding to 2499
-`-b fat` emits explicit transitions only up to 2037. After the last explicit transition, `posixTz.js`
-expands the footer TZ string (`std offset dst [offset],start[/time],end[/time]` with the `Mm.w.d`,
-`Jn` and `n` forms, plus the RFC 8536 extensions of hour values over 24 and negative hours) year by
-year through 2499. Expanded periods get their abbreviation, offset and isdst from the TZ string.
-*Check:* for every zone the expanded transitions are compared with Node's `Intl` (ICU) for the years
-2038–2040 in a unit test, and the parity script compares them against moment data (which zdump
-produced up to 2499).
+`-b fat` emits explicit transitions up to 2037, and beyond that only where the source lists them
+explicitly (for example Africa/Casablanca up to 2087, Asia/Gaza up to 2086). After the last explicit
+transition, `posixTz.js` expands the footer TZ string (`std offset dst [offset],start[/time],end[/time]`
+with `<…>` names, the `Mm.w.d`, `Jn` and `n` forms, plus the RFC 8536 extensions: rule times that are
+negative or 24h and more, and DST all year, as in `XXX-2<+01>-1,0/0,J365/23`, which yields no
+transitions) year by year through 2499. Expanded periods get their abbreviation, offset and isdst from
+the TZ string.
+*Check:* unit tests per rule form, a golden-fixture test that compares the 2030–2499 periods of
+representative zones with moment-timezone data of the same release, and the parity script with
+`--until 2499` (moment's zdump data reaches 2499). Node's `Intl` is not used as an oracle: its ICU tz
+version (for example 2026c in Node 24) differs from the release under test and changes with Node
+updates, which would make CI brittle.
 
 ### D5. Collecting periods and the unpacked format
 The unpacked format is moment's format plus `isdsts`:

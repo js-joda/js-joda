@@ -7,7 +7,10 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 import { readNames } from './compile.js';
+import { expandTransitions, parsePosixTz } from './posixTz.js';
 import { parseTzif } from './tzif.js';
+
+export const LAST_YEAR = 2499;
 
 /**
  * Converts a UTC offset in seconds east into the unpacked data's convention:
@@ -18,20 +21,29 @@ export function toOffsetMinutesWest(utoff) {
 }
 
 /**
- * Turns parsed TZif data into the offset periods of a zone. Consecutive periods are merged
+ * Turns parsed TZif data into the offset periods of a zone. After the last explicit transition
+ * the footer TZ string is expanded up to the end of `lastYear`. Consecutive periods are merged
  * only when abbreviation, offset and isdst are all equal.
  *
  * @param {string} name
- * @param {{transitions: {time: number, type: number}[], types: {utoff: number, isdst: boolean, abbr: string}[]}} tzif
+ * @param {{transitions: {time: number, type: number}[], types: {utoff: number, isdst: boolean, abbr: string}[],
+ *  footer: string|null}} tzif
+ * @param {number} [lastYear]
  * @return {{name: string, abbrs: string[], untils: (number|null)[], offsets: number[], isdsts: boolean[]}}
  *  `untils` are epoch milliseconds, the last one is `null` (open-ended)
  */
-export function collectZone(name, tzif) {
-    const { transitions, types } = tzif;
+export function collectZone(name, tzif, lastYear = LAST_YEAR) {
+    const { transitions, types, footer } = tzif;
     // before the first transition the first local time type applies (RFC 8536, 3.2)
     const periods = [{ type: types[0], start: null }];
     for (const transition of transitions) {
         periods.push({ type: types[transition.type], start: transition.time * 1000 });
+    }
+    if (footer) {
+        const lastExplicit = transitions.length > 0 ? transitions[transitions.length - 1].time : -Infinity;
+        for (const transition of expandTransitions(parsePosixTz(footer), lastExplicit, lastYear)) {
+            periods.push({ type: transition.type, start: transition.time * 1000 });
+        }
     }
 
     const zone = { name, abbrs: [], untils: [], offsets: [], isdsts: [] };

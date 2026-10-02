@@ -26,18 +26,18 @@ rearguard zic + JS TZif parsing reproduces moment's offsets. It does not touch `
 - [x] 4.1 Implement `scripts/parity.js <moment-unpacked.json> <ours-unpacked.json> [--until <year>]` (offset diff at every transition instant of both sides up to `--until`, default 2037; differences in a documented list of rearguard zones are reported as expected). Verify with a unit test on two small hand-made inputs (equal, expected diff, unexpected diff → non-zero exit)
 - [x] 4.2 Run `npm run generate -- 2026a --from fetch` and then `npm run parity -- <moment-timezone>/data/unpacked/2026a.json .cache/2026a/unpacked.json`. Verify that it exits 0 and record the expected-difference report in the slice's PR. If there are unexpected differences, stop and revisit design D2/D3 before continuing
 
-## 5. Slice 2 — Transitions up to 2499 and unpacked output
+## 5. Slice 2 — Transitions up to 2499
 
-- [ ] 5.1 Implement `src/posixTz.js` (parse the TZ string, `Mm.w.d`/`Jn`/`n` rules, time offsets incl. >24h and negative, expand transitions per year up to 2499). Verify with unit tests for the northern and southern hemisphere, fixed-only strings, and the year 2499 boundary
-- [ ] 5.2 Use the expansion in `collect` after the last explicit transition. Verify with a cross-check test against Node `Intl` for 2038–2040 over a compiled fixture set, and by running the parity script with `--until 2499` against moment `2026a.json` (moment's zdump data reaches 2499)
-- [ ] 5.3 Implement the `write-unpacked` step (`packages/timezone/data/unpacked/latest.json` + `<ver>.json`, stable key order, no countries/population). Verify that a test asserts the shape and that two runs produce byte-identical output
+- [x] 5.1 Implement `src/posixTz.js` (parse the TZ string incl. `<…>` names and hh[:mm[:ss]] offsets, `Mm.w.d`/`Jn`/`n` rules with signed rule times incl. negative and ≥ 24h, all-year DST per RFC 8536 §3.3.1, expand transitions per year up to 2499). Verify with unit tests for New_York 2038/2499, Sydney (southern hemisphere), Santiago `/24`, Jerusalem `/26`, Nuuk `/-1`, Chatham `/2:45`, all-year DST and fixed-only strings (no transitions)
+- [x] 5.2 Use the expansion in `collect` after the last explicit transition (some zones have explicit transitions after 2037, e.g. Casablanca up to 2087). Verify with a golden-fixture test that compares the 2030–2499 periods of representative zones with moment-timezone 2026a data (Node `Intl` is not used: its ICU tz version differs from the tested release and changes with Node updates), and by running the parity script with `--until 2499` against moment `2026a.json` and `2025b.json` (moment's zdump data reaches 2499) with exit 0
 
-## 6. Slice 3 — Packing, links and ranges
+## 6. Slice 3 — Unpacked output, packing, links and ranges
 
-- [ ] 6.1 Port the moment-timezone-utils pack/filterYears/createLinks into `src/pack.js` with an MIT attribution header. Type key (abbr, offset, isdst), field 5 empty, field 6 isdst flags. Verify with unit tests: the Berlin field 6 is `0011`, and `packages/timezone/src/unpack.js` on the output yields the same abbrs/offsets/untils as the input
-- [ ] 6.2 Implement the link leader rule (Zone-line name first, then lexicographic) and sorted links. Verify with a test that `Europe/Kyiv|Europe/Kiev` is produced
-- [ ] 6.3 Implement `src/ranges.js` and the `pack` step (all, -4-year-range, -10-year-range, -60-year-range, -1970-2030, -2012-2022, -2017-2027 relative to the UTC year), writing `data/packed/latest*.json` + `<ver>.json`. Verify with a test that, for each variant, the offset at sampled instants inside the range equals the full data
-- [ ] 6.4 Register all steps (`fetch → compile → collect → write-unpacked → pack`) and verify that `npm run generate -- 2026a` writes all files listed in the spec, that a second run leaves `git status` clean, and that `npm run generate -- 2026a --step pack` reruns only the packing from the cached data
+- [ ] 6.1 Implement the `write-unpacked` step (`packages/timezone/data/unpacked/latest.json` + `<ver>.json`, stable key order, no countries/population). Verify that a test asserts the shape and that two runs produce byte-identical output
+- [ ] 6.2 Port the moment-timezone-utils pack/filterYears/createLinks into `src/pack.js` with an MIT attribution header. Type key (abbr, offset, isdst), field 5 empty, field 6 isdst flags. Verify with unit tests: the Berlin field 6 is `0011`, and `packages/timezone/src/unpack.js` on the output yields the same abbrs/offsets/untils as the input
+- [ ] 6.3 Implement the link leader rule (Zone-line name first, then lexicographic) and sorted links. Verify with a test that `Europe/Kyiv|Europe/Kiev` is produced
+- [ ] 6.4 Implement `src/ranges.js` and the `pack` step (all, -4-year-range, -10-year-range, -60-year-range, -1970-2030, -2012-2022, -2017-2027 relative to the UTC year), writing `data/packed/latest*.json` + `<ver>.json`. Verify with a test that, for each variant, the offset at sampled instants inside the range equals the full data
+- [ ] 6.5 Register all steps (`fetch → compile → collect → write-unpacked → pack`) and verify that `npm run generate -- 2026a` writes all files listed in the spec, that a second run leaves `git status` clean, and that `npm run generate -- 2026a --step pack` reruns only the packing from the cached data
 
 ## 7. Slice 3 — Migration of @js-joda/timezone
 
