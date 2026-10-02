@@ -1,7 +1,12 @@
 Changelog
 =========
 
-## Unreleased
+## 2026-10-02
+
+### Versions
+
+- @js-joda/locale@5.3.1
+- @js-joda/timezone@3.0.0
 
 #### :boom: Breaking Change
 * `timezone`
