@@ -194,6 +194,7 @@ require(&quot;@js-joda/timezone&quot;);
 
 var zdt = ZonedDateTime.now(ZoneId.of(&quot;Europe/Paris&quot;));</code>
 </code></pre>
+<p><code>@js-joda/timezone</code> contains the time zone data for all years. If file size matters, you can import a smaller bundle that covers only the years around the data&apos;s release: <code>-4-year-range</code>, <code>-10-year-range</code>, <code>-60-year-range</code>, <code>-300-year-range</code> or <code>-lifetime-range</code> (birth dates of living people plus 15 years, e.g. for birthdays on websites) (e.g. <code>require(&quot;@js-joda/timezone/dist/js-joda-timezone-10-year-range&quot;)</code>). Outside its range, such a bundle gives wrong offsets without an error, see <a href="//github.com/js-joda/js-joda/tree/main/packages/timezone#reducing-js-joda-timezone-file-size">Reducing js-joda-timezone file size</a>.</p>
 <h3 id="create-a-zoneddatetime">Create a ZonedDateTime</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">// get now with the default system time zone
 ZonedDateTime.now().toString(); // e.g. 2016-03-18T12:38:23.561+01:00[SYSTEM]
 
