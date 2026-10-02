@@ -114,7 +114,7 @@ Things to keep in mind when you pick a range:
 * All bundles contain the same zone IDs; zones whose rules are identical within the range are shared as links.
 
 The fixed-year bundles `js-joda-timezone-1970-2030`, `-2012-2022` and `-2017-2027` have been removed,
-use the `-lifetime-range` or `-300-year-range` bundle (both cover 1970 onwards), the `-60-year-range` bundle or the full bundle instead.
+use the `-lifetime-range` or `-300-year-range` bundle (with the 2026 data, both cover 1970 onwards; see the table above), the `-60-year-range` bundle or the full bundle instead.
 
 ## Implementation details
 
