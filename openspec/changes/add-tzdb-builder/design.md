@@ -134,10 +134,13 @@ known to differ under rearguard (Dublin, Windhoek, Casablanca, Prague 1946/47, â
 else is built (see tasks.md). It is used during migration and documented in HowToUpdateTZDB.md for later updates.
 
 ### D10. Release monitoring
-`.github/workflows/tzdb-release-check.yaml` uses `schedule` (weekly) plus `workflow_dispatch`, curls
-`https://data.iana.org/time-zones/tzdb/version`, reads the committed version with `jq`, and uses
-`gh issue list --search` / `gh issue create` with the built-in `GITHUB_TOKEN` (`issues: write`).
-The issue title is `Update tzdb to <ver>`, which also serves as the dedupe key.
+`.github/workflows/tzdb-release-check.yaml` uses `schedule` (weekly, Monday 06:00 UTC) plus
+`workflow_dispatch` with `issues: write`, and runs `.github/scripts/tzdb-release-check.sh`. The script
+reads `https://data.iana.org/time-zones/tzdb/version` with curl and the committed version with `jq`.
+It compares the versions by year, then by letters (so `2026aa` follows `2026z`), and uses
+`gh issue list` / `gh issue create` with the built-in `GITHUB_TOKEN`. The issue title
+`Update tzdb to <ver>` serves as the dedupe key against open issues. Keeping the logic in a script
+makes it testable locally with stubbed `curl` and `gh`.
 
 ## Risks / Trade-offs
 

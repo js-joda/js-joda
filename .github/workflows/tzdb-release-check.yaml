@@ -1,0 +1,22 @@
+name: 'Check for a new IANA tzdb release'
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  tzdb-release-check:
+    name: Check for a new tzdb release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Open an issue for a new tzdb release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./.github/scripts/tzdb-release-check.sh

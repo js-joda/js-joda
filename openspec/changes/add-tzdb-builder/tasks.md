@@ -49,4 +49,4 @@ rearguard zic + JS TZif parsing reproduces moment's offsets. It does not touch `
 ## 8. Slice 4 — Release monitoring and integration
 
 - [ ] 8.1 Add `.github/workflows/tzdb-release-check.yaml` (weekly schedule + `workflow_dispatch`, `issues: write`, compare IANA version vs `packages/timezone/data/packed/latest.json`, open `Update tzdb to <ver>` unless an open issue exists). Verify with `actionlint` (if available) and a manual `workflow_dispatch` run after merge
-- [ ] 8.2 Run the full pipeline (`npx lerna run --stream build-dist`, `npx lerna run --stream build-locale-dist`, `cd packages/examples && npm test`) and verify that all integration scenarios pass
+- [x] 8.2 Run the full pipeline (`npx lerna run --stream build-dist`, `npx lerna run --stream build-locale-dist`, `cd packages/examples && npm test`) and verify that all integration scenarios pass
