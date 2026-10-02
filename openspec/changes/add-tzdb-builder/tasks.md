@@ -36,7 +36,7 @@ rearguard zic + JS TZif parsing reproduces moment's offsets. It does not touch `
 - [x] 6.1 Implement the `write-unpacked` step (`packages/timezone/data/unpacked/latest.json` + `<ver>.json`, stable key order, no countries/population). Verify that a test asserts the shape and that two runs produce byte-identical output
 - [x] 6.2 Port the moment-timezone-utils pack/filterYears/createLinks into `src/pack.js` with an MIT attribution header. Type key (abbr, offset, isdst), field 5 empty, field 6 isdst flags. Verify with unit tests: the Berlin field 6 is `0011`, and `packages/timezone/src/unpack.js` on the output yields the same abbrs/offsets/untils as the input
 - [x] 6.3 Implement the link leader rule (Zone-line name first, then lexicographic) and sorted links. Verify with a test that `Europe/Kyiv|Europe/Kiev` is produced
-- [x] 6.4 Implement `src/ranges.js` and the `pack` step (all, -4-year-range, -10-year-range, -60-year-range, -1970-2030, -2012-2022, -2017-2027 relative to the UTC year), writing `data/packed/latest*.json` + `<ver>.json`. Verify with a test that, for each variant, the offset at sampled instants inside the range equals the full data
+- [x] 6.4 Implement `src/ranges.js` and the `pack` step (all, -4-year-range, -10-year-range, -60-year-range relative to the UTC year), writing `data/packed/latest*.json` + `<ver>.json`. Verify with a test that, for each variant, the offset at sampled instants inside the range equals the full data
 - [x] 6.5 Register all steps (`fetch → compile → collect → write-unpacked → pack`) and verify that `npm run generate -- 2026a` writes all files listed in the spec, that a second run leaves `git status` clean, and that `npm run generate -- 2026a --step pack` reruns only the packing from the cached data
 
 ## 7. Slice 3 — Migration of @js-joda/timezone
@@ -44,7 +44,8 @@ rearguard zic + JS TZif parsing reproduces moment's offsets. It does not touch `
 - [x] 7.1 Add a test in `packages/timezone/test` for `validOffsets`/`transition` around an isdst-only (equal offset) transition and verify that it passes against the new data
 - [x] 7.2 Delete `packages/timezone/transform-data.js` and the `transform-data` script, remove `moment-timezone` from the root devDependencies, and verify that `grep -r moment-timezone --exclude-dir=node_modules packages/*/package.json package.json` finds nothing and `npm install` succeeds
 - [x] 7.3 Rebuild the timezone bundles and verify that `cd packages/timezone && npm run test-ci` passes and that `dist/` contains the `-4-year-range` and `-60-year-range` bundle sets
-- [x] 7.4 Update `packages/timezone/README.md` (bundle list with the new ranges and the exact year spans), rewrite `packages/timezone/HowToUpdateTZDB.md` (prerequisites, `npm run generate`, parity, build, test), add a CHANGELOG entry, and verify that the documented commands run as written
+- [x] 7.4 Remove the fixed-year variants (`-1970-2030`, `-2012-2022`, `-2017-2027`) from `src/ranges.js` and delete their `data/packed/latest-*.json` files. Verify that `dist/` no longer contains these bundle sets
+- [x] 7.5 Update `packages/timezone/README.md` (bundle list with the new ranges and the exact year spans), rewrite `packages/timezone/HowToUpdateTZDB.md` (prerequisites, `npm run generate`, parity, build, test), add a CHANGELOG entry, and verify that the documented commands run as written
 
 ## 8. Slice 4 — Release monitoring and integration
 

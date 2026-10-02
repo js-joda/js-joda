@@ -22,9 +22,6 @@ export function packedVariants(currentYear) {
         '-4-year-range': [currentYear - 2, currentYear + 2],
         '-10-year-range': [currentYear - 5, currentYear + 5],
         '-60-year-range': [currentYear - 30, currentYear + 30],
-        '-1970-2030': [1970, 2030],
-        '-2012-2022': [2012, 2022],
-        '-2017-2027': [2017, 2027],
     };
 }
 

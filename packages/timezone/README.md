@@ -83,13 +83,10 @@ The relative ranges are counted from the year the data was generated (current ye
 * `js-joda-timezone-4-year-range.js` covers +- two years from the data generation year (2024 to 2028)
 * `js-joda-timezone-10-year-range.js` covers +- five years from the data generation year (2021 to 2031)
 * `js-joda-timezone-60-year-range.js` covers +- thirty years from the data generation year (1996 to 2056)
-* `js-joda-timezone-1970-2030.js` covers from 1970 to 2030
-* `js-joda-timezone-2012-2022.js` covers from 2012 to 2022 // deprecated, will be removed in future releases
-* `js-joda-timezone-2017-2027.js` covers from 2017 to 2027 
 
 To use one of these, just change your import path to the following format:
 
-    import '@js-joda/timezone/dist/js-joda-timezone-1970-2030'
+    import '@js-joda/timezone/dist/js-joda-timezone-10-year-range'
 
 ## Implementation details
 

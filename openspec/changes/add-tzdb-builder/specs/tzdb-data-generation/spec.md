@@ -108,13 +108,10 @@ generation time. A variant SHALL contain every period that overlaps its year ran
 | `-4-year-range` | current-2 … current+2 |
 | `-10-year-range` | current-5 … current+5 |
 | `-60-year-range` | current-30 … current+30 |
-| `-1970-2030` | 1970 … 2030 |
-| `-2012-2022` | 2012 … 2022 |
-| `-2017-2027` | 2017 … 2027 |
 
 #### Scenario: All variants written
 - **WHEN** data is generated in 2026
-- **THEN** `packages/timezone/data/packed/` contains `latest.json`, `latest-4-year-range.json` (2024–2028), `latest-10-year-range.json` (2021–2031), `latest-60-year-range.json` (1996–2056), `latest-1970-2030.json`, `latest-2012-2022.json` and `latest-2017-2027.json`
+- **THEN** `packages/timezone/data/packed/` contains `latest.json`, `latest-4-year-range.json` (2024–2028), `latest-10-year-range.json` (2021–2031), `latest-60-year-range.json` (1996–2056), and no fixed-year variants (`-1970-2030`, `-2012-2022`, `-2017-2027`)
 
 #### Scenario: Offset correct within range
 - **WHEN** any instant inside a variant's year range is resolved with that variant
