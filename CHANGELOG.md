@@ -3,6 +3,10 @@ Changelog
 
 ## Unreleased
 
+#### :boom: Breaking Change
+* `timezone`
+    * [#821](https://github.com/js-joda/js-joda/pull/821) Remove the fixed-year bundles `js-joda-timezone-1970-2030`, `js-joda-timezone-2012-2022` and `js-joda-timezone-2017-2027`; use the full bundle or one of the `-4-year-range`, `-10-year-range` or `-60-year-range` bundles instead ([@pithu](https://github.com/pithu))
+
 #### :rocket: Enhancement
 * `timezone`
     * [#817](https://github.com/js-joda/js-joda/pull/817) Generate the tzdb data in this repository with the new private package `@js-joda/tzdb-builder` instead of moment-timezone; add the `-4-year-range` and `-60-year-range` bundles; the packed data carries an isdst flag per period type (backward compatible) ([@pithu](https://github.com/pithu))
