@@ -12,6 +12,7 @@ import { filterLinkPack } from './pack.js';
 /**
  * Packed variants of `data/packed/latest<suffix>.json`, as file suffix → [first year, last year].
  * Relative ranges use the moment-timezone naming: `-N-year-range` is the current year ± N/2.
+ * `-lifetime-range` covers the birth dates of living people (current year - 120) plus 15 years ahead.
  *
  * @param {number} currentYear - UTC year at generation time
  * @return {Object<string, number[]>}
@@ -22,6 +23,8 @@ export function packedVariants(currentYear) {
         '-4-year-range': [currentYear - 2, currentYear + 2],
         '-10-year-range': [currentYear - 5, currentYear + 5],
         '-60-year-range': [currentYear - 30, currentYear + 30],
+        '-300-year-range': [currentYear - 150, currentYear + 150],
+        '-lifetime-range': [currentYear - 120, currentYear + 15],
     };
 }
 
