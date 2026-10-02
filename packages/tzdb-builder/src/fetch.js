@@ -68,7 +68,8 @@ async function download(url, file, version, deps) {
 
 /**
  * Pipeline step: downloads tzcode and tzdata of `ctx.version` and extracts both into `ctx.tzdbDir`.
- * An already extracted release is reused unless `ctx.force` is set.
+ * An already extracted release is reused unless `ctx.force` is set. The cache is only considered complete
+ * once both archives are extracted, so an interrupted download is fetched again on the next run.
  *
  * @param {object} ctx - see createContext
  * @param {{fetch: Function, $: Function}} [deps]
@@ -76,7 +77,7 @@ async function download(url, file, version, deps) {
  */
 export async function fetchStep(ctx, deps = defaultDeps) {
     const { version, versionDir, tzdbDir, force, log = () => {} } = ctx;
-    const marker = path.join(tzdbDir, 'version');
+    const marker = path.join(tzdbDir, '.complete');
     if (!force && await exists(marker)) {
         log(`Using cached tzdb ${version} in ${tzdbDir}`);
         return ctx;
@@ -90,8 +91,9 @@ export async function fetchStep(ctx, deps = defaultDeps) {
         await download(url, file, version, deps);
         await deps.$`tar -xzf ${file} -C ${tzdbDir}`;
     }
-    if (!await exists(marker)) {
+    if (!await exists(path.join(tzdbDir, 'version'))) {
         throw new Error(`Release ${version} has no 'version' file, extraction to ${tzdbDir} failed`);
     }
+    await fs.writeFile(marker, '');
     return ctx;
 }

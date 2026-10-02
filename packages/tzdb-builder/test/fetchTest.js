@@ -78,6 +78,7 @@ describe('fetch', () => {
             const ctx = createContext({ version: '2026a', cacheDir });
             await fs.mkdir(ctx.tzdbDir, { recursive: true });
             await fs.writeFile(path.join(ctx.tzdbDir, 'version'), '2026a\n');
+            await fs.writeFile(path.join(ctx.tzdbDir, '.complete'), '');
 
             const calls = [];
             await fetchStep(ctx, { fetch: fakeFetch(routes, calls), $: fake$([]) });
@@ -85,6 +86,17 @@ describe('fetch', () => {
 
             await fetchStep({ ...ctx, force: true }, { fetch: fakeFetch(routes, calls), $: fake$([]) });
             assert.equal(calls.length, 2);
+        });
+
+        it('does not reuse a partially extracted release', async () => {
+            const ctx = createContext({ version: '2026a', cacheDir });
+            await fs.mkdir(ctx.versionDir, { recursive: true });
+            const failingCode = { [releaseUrl('data', '2026a')]: 'data' };
+            await assert.rejects(fetchStep(ctx, { fetch: fakeFetch(failingCode), $: fake$([]) }), /returned 404/);
+
+            const calls = [];
+            await fetchStep(ctx, { fetch: fakeFetch(routes, calls), $: fake$([]) });
+            assert.deepEqual(calls, [releaseUrl('data', '2026a'), releaseUrl('code', '2026a')]);
         });
 
         it('rejects an unknown release', async () => {
