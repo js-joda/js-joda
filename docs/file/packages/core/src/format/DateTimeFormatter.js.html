@@ -137,6 +137,7 @@ import { ResolverStyle } from &apos;./ResolverStyle&apos;;
 
 import { IsoChronology } from &apos;../chrono/IsoChronology&apos;;
 import { ChronoField } from &apos;../temporal/ChronoField&apos;;
+import { IsoFields } from &apos;../temporal/IsoFields&apos;;
 import { createTemporalQuery } from &apos;../temporal/TemporalQuery&apos;;
 
 /**
@@ -812,12 +813,13 @@ export function _init() {
         .toFormatter(ResolverStyle.STRICT);
 
     DateTimeFormatter.ISO_WEEK_DATE = new DateTimeFormatterBuilder()
-        .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
+        .parseCaseInsensitive()
+        .appendValue(IsoFields.WEEK_BASED_YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
         .appendLiteral(&apos;-W&apos;)
-        .appendValue(ChronoField.ALIGNED_WEEK_OF_YEAR)
+        .appendValue(IsoFields.WEEK_OF_WEEK_BASED_YEAR, 2)
         .appendLiteral(&apos;-&apos;)
-        .appendValue(ChronoField.DAY_OF_WEEK)
-        .toFormatter(ResolverStyle.STRICT);
+        .appendValue(ChronoField.DAY_OF_WEEK, 1)
+        .toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology.INSTANCE);
 
     DateTimeFormatter.ISO_DATE = new DateTimeFormatterBuilder()
         .parseCaseInsensitive()

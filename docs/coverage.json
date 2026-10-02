@@ -1,7 +1,7 @@
 {
-  "coverage": "73.57%",
-  "expectCount": 2157,
-  "actualCount": 1587,
+  "coverage": "73.58%",
+  "expectCount": 2158,
+  "actualCount": 1588,
   "files": {
     "packages/core/src/Clock.js": {
       "expectCount": 39,
@@ -50,7 +50,7 @@
         362,
         386,
         430,
-        1272
+        1280
       ]
     },
     "packages/core/src/Enum.js": {
@@ -70,7 +70,7 @@
         24,
         269,
         270,
-        1010
+        1018
       ]
     },
     "packages/core/src/LocalDate.js": {
@@ -334,23 +334,23 @@
       ]
     },
     "packages/core/src/format/DateTimeBuilder.js": {
-      "expectCount": 24,
-      "actualCount": 22,
+      "expectCount": 25,
+      "actualCount": 23,
       "undocumentLines": [
-        57,
-        449
+        58,
+        473
       ]
     },
     "packages/core/src/format/DateTimeFormatter.js": {
       "expectCount": 30,
       "actualCount": 24,
       "undocumentLines": [
-        308,
-        312,
-        316,
-        502,
-        590,
-        625
+        309,
+        313,
+        317,
+        503,
+        591,
+        626
       ]
     },
     "packages/core/src/format/DateTimeFormatterBuilder.js": {
