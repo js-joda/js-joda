@@ -49,5 +49,6 @@ on the machine is never used.
 
 5. Commit the changed files below `packages/timezone/data/` and add a CHANGELOG entry.
 
-Note that the relative range files (`-4-year-range`, `-10-year-range`, `-60-year-range`) depend on
+Note that the relative range files (`-4-year-range`, `-10-year-range`, `-60-year-range`,
+`-300-year-range`, `-lifetime-range`) depend on
 the year of generation, so regenerate the data at least once a year.

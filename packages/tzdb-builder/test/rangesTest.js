@@ -22,15 +22,14 @@ const unpackedFixture = () => ({
 const offsetAt = (z, time) => z.offsets[z.untils.findIndex((until) => until > time)];
 
 describe('ranges', () => {
-    it('defines the moment-timezone variants plus 4 and 60 year ranges', () => {
+    it('defines the full data and the 4, 10, 60, 300 year and lifetime ranges', () => {
         assert.deepEqual(packedVariants(2026), {
             '': [0, 9999],
             '-4-year-range': [2024, 2028],
             '-10-year-range': [2021, 2031],
             '-60-year-range': [1996, 2056],
-            '-1970-2030': [1970, 2030],
-            '-2012-2022': [2012, 2022],
-            '-2017-2027': [2017, 2027],
+            '-300-year-range': [1876, 2176],
+            '-lifetime-range': [1906, 2041],
         });
     });
 
@@ -71,8 +70,8 @@ describe('ranges', () => {
             await packStep(ctx);
             const files = (await fsp.readdir(path.join(dir, 'packed'))).sort();
             assert.deepEqual(files, [
-                '2026a.json', 'latest-10-year-range.json', 'latest-1970-2030.json', 'latest-2012-2022.json',
-                'latest-2017-2027.json', 'latest-4-year-range.json', 'latest-60-year-range.json', 'latest.json',
+                '2026a.json', 'latest-10-year-range.json', 'latest-300-year-range.json', 'latest-4-year-range.json',
+                'latest-60-year-range.json', 'latest-lifetime-range.json', 'latest.json',
             ]);
             const latest = await fsp.readFile(path.join(dir, 'packed', 'latest.json'), 'utf8');
             assert.equal(await fsp.readFile(path.join(dir, 'packed', '2026a.json'), 'utf8'), latest);

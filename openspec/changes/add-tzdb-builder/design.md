@@ -121,8 +121,9 @@ current data has the reverse. The runtime resolves links symmetrically, so users
 ### D8. Ranges
 `ranges.js` holds one table (suffix → `[startYear, endYear]`), computed from
 `new Date().getUTCFullYear()` at generation time, and uses moment's `filterYears` semantics. The new
-suffixes `-4-year-range` and `-60-year-range` follow moment's "±N/2" naming, where the name counts
-the span between endpoints, not the number of calendar years. `rollup.config.js` already discovers
+suffixes `-4-year-range`, `-60-year-range` and `-300-year-range` follow moment's "±N/2" naming, where the name counts
+the span between endpoints, not the number of calendar years. `-lifetime-range` is asymmetric
+(current-120 … current+15: the oldest living people plus 15 years ahead) and therefore named by purpose. `rollup.config.js` already discovers
 `latest*.json`, so the new bundles appear without build changes.
 
 ### D9. Parity check

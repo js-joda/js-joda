@@ -24,8 +24,10 @@ tzdb updates reproducible, removes the moment-timezone dependency, and enables b
   compatible. Runtime support for `ZoneRules.isDaylightSavings` / `standardOffset` / `daylightSavings`
   is **not** part of this change.
 - New year-range bundles, using moment-timezone's naming scheme (current year ± N):
-  `-4-year-range` (±2) and `-60-year-range` (±30). The existing bundles (full, `-10-year-range`,
-  `-1970-2030`, `-2012-2022`, `-2017-2027`) are kept. This is non-breaking.
+  `-4-year-range` (±2), `-60-year-range` (±30) and `-300-year-range` (±150), plus `-lifetime-range` (current-120 … current+15) for the birth dates of
+  living people. The full and `-10-year-range` bundles are kept.
+- **BREAKING**: the fixed-year bundles `-1970-2030`, `-2012-2022` and `-2017-2027` are removed.
+  Users of these bundles switch to a relative range bundle (e.g. `-300-year-range`) or the full bundle.
 - Country and population metadata are no longer generated. Link-group leaders are chosen by a
   deterministic rule instead of population.
 - `packages/timezone/transform-data.js` and the `moment-timezone` devDependency are removed. The

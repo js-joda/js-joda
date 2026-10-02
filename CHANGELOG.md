@@ -3,8 +3,13 @@ Changelog
 
 ## Unreleased
 
+#### :boom: Breaking Change
+* `timezone`
+    * [#821](https://github.com/js-joda/js-joda/pull/821) Remove the fixed-year bundles `js-joda-timezone-1970-2030`, `js-joda-timezone-2012-2022` and `js-joda-timezone-2017-2027`; use the full bundle or one of the `-4-year-range`, `-10-year-range`, `-60-year-range`, `-300-year-range` or `-lifetime-range` bundles instead ([@pithu](https://github.com/pithu))
+
 #### :rocket: Enhancement
 * `timezone`
+    * [#821](https://github.com/js-joda/js-joda/pull/821) Add the `-300-year-range` bundle (current year ± 150, 1876 to 2176 for the 2026 data) and the `-lifetime-range` bundle for birth dates of living people (current year - 120 to + 15, 1906 to 2041), and document the size and range of all bundles ([@pithu](https://github.com/pithu))
     * [#817](https://github.com/js-joda/js-joda/pull/817) Generate the tzdb data in this repository with the new private package `@js-joda/tzdb-builder` instead of moment-timezone; add the `-4-year-range` and `-60-year-range` bundles; the packed data carries an isdst flag per period type (backward compatible) ([@pithu](https://github.com/pithu))
         The bundled zone data is unchanged. The raw data files in the repository (`data/packed/*.json`, `data/unpacked/*.json`, not part of the npm package) change their format: the `countries` key and the per-zone `population` and `countries` values are removed; packed zone strings get a 7th field with the isdst flags and an empty population field; unpacked zones get an `isdsts` array. The `transform-data` npm script is removed, use `npm run generate` in `packages/tzdb-builder` instead.
     * [#820](https://github.com/js-joda/js-joda/pull/820) update tzdb to version 2026e ([@pithu](https://github.com/pithu))
