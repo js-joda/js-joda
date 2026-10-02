@@ -1,9 +1,29 @@
 Changelog
 =========
 
-## Unreleased (2026-07-10)
+## Unreleased (2026-10-02)
 
 ### Versions
+
+#### :bug: Bug Fix
+* `core`
+    * [#815](https://github.com/js-joda/js-joda/pull/815) fix(core): truncate Instant.until MICROS toward zero ([@youdie006](https://github.com/youdie006))
+    * [#814](https://github.com/js-joda/js-joda/pull/814) fix(core): truncate signed duration division toward zero ([@agammann](https://github.com/agammann))
+    * [#812](https://github.com/js-joda/js-joda/pull/812) fix(core): correct ISO_WEEK_DATE and enable ISO week/quarter parsing ([@binggao1230](https://github.com/binggao1230))
+        `DateTimeFormatter.ISO_WEEK_DATE` now uses the ISO week-based year, e.g. `2013-12-30` formats as `2014-W01-1` and back. Before, the result was off by a week in most years. Dates with week-based-year or quarter fields (`YEAR` + `QUARTER_OF_YEAR` + `DAY_OF_QUARTER`) can now be parsed.
+
+#### :house: Dependency update
+* `locale`
+    * [#813](https://github.com/js-joda/js-joda/pull/813) Bump brace-expansion from 2.0.2 to 2.1.4 in /packages/locale ([@dependabot[bot]](https://github.com/apps/dependabot))
+    * [#811](https://github.com/js-joda/js-joda/pull/811) Bump axios from 1.17.0 to 1.18.1 in /packages/locale ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+## 2026-07-10
+
+### Versions
+
+- @js-joda/core@6.1.0
+- @js-joda/locale@5.2.0
+- @js-joda/timezone@2.25.2
 
 #### :rocket: Enhancement
 * Other
