@@ -116,10 +116,12 @@ the span between endpoints, not the number of calendar years. `rollup.config.js`
 `latest*.json`, so the new bundles appear without build changes.
 
 ### D9. Parity check
-`scripts/parity.js <moment-unpacked.json> [<ours.json>]`. For every zone in both files it resolves
-the offset at every transition instant from both sides up to 2037 and diffs them. Differences in zones
+`scripts/parity.js <moment-unpacked.json> <ours-unpacked.json> [--until <year>]`. For every zone in
+both files it resolves the offset at every transition instant from both sides up to `--until`
+(default 2037; 2499 once the POSIX expansion exists) and diffs them. Differences in zones
 known to differ under rearguard (Dublin, Windhoek, Casablanca, Prague 1946/47, …) are classified as
-"expected". It is used once during migration and documented in HowToUpdateTZDB.md for later updates.
+"expected". It runs first in slice 1, on explicit transitions only, to check the toolchain before anything
+else is built (see tasks.md). It is used during migration and documented in HowToUpdateTZDB.md for later updates.
 
 ### D10. Release monitoring
 `.github/workflows/tzdb-release-check.yaml` uses `schedule` (weekly) plus `workflow_dispatch`, curls
