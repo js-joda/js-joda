@@ -1,0 +1,4 @@
+{
+    "description": "Zones whose offsets are known to differ from moment-timezone data. Each entry needs a reason.",
+    "zones": {}
+}

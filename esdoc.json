@@ -2,7 +2,7 @@
   "source": "./packages/",
   "destination": "./docs",
   "includes": ["^.*/src/.*\\.js$"],
-  "excludes": ["/node_modules/", "/examples/"],
+  "excludes": ["/node_modules/", "/examples/", "^tzdb-builder/"],
   "plugins": [
     {
       "name": "esdoc-standard-plugin",
