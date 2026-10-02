@@ -76,12 +76,18 @@ all equal. A change in any one of the three SHALL keep a separate period.
 - **THEN** both periods are kept in the output
 
 ### Requirement: Complete zone identifiers
-The generated data SHALL make every Zone and Link identifier of the selected tzdb release available,
-including the identifiers from the `backward` file.
+The generated data SHALL make every Zone and Link identifier of the tzdb source files that
+ThreeTen-Backport compiles available (`africa`, `antarctica`, `asia`, `australasia`, `backward`,
+`etcetera`, `europe`, `northamerica`, `southamerica`). Identifiers of other files, such as `Factory`
+from `factory`, SHALL NOT be included.
 
 #### Scenario: Backward link available
 - **WHEN** data is generated
 - **THEN** both `Europe/Kyiv` and the legacy alias `Europe/Kiev` are available in every packed output
+
+#### Scenario: Factory zone excluded
+- **WHEN** data is generated
+- **THEN** no output contains the `Factory` zone
 
 ### Requirement: Deterministic link leaders
 When zones with identical data are grouped in the packed outputs, the generator SHALL pick the group

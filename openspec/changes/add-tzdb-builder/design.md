@@ -40,7 +40,7 @@ like the rest of the repo.
   `(ctx) => ctx` in its own module: `fetch → compile → collect → write-unpacked → pack`. `--step` runs
   a single step and `--from` resumes from a step (this replaces `grunt data-zic:<ver>`). `ctx` holds
   the version, the paths, and the Zone and Link names.
-- zx `$` is used only for the shell steps: `tar`, `make zic rearguard.zi`, `zic -b fat …`, and the
+- zx `$` is used only for the shell steps: `tar`, `make NDATA= zic rearguard.zi`, `zic -b fat …`, and the
   `which` checks for prerequisites. Downloads use global `fetch`. `.cache/<ver>/` is reused when it
   already exists, and `--force` downloads again.
 - The data modules (`tzif.js`, `posixTz.js`, `collect.js`, `pack.js`, `ranges.js`) do not import zx and
@@ -67,9 +67,14 @@ host-version mismatches.
 (large effort and a correctness risk: the Rule/Zone semantics are subtle).
 
 ### D3. Rearguard sources
-The builder runs `make rearguard.zi` (or the equivalent `ziguard.awk` invocation) in the tzcode+tzdata
+The builder runs `make NDATA= rearguard.zi` (or the equivalent `ziguard.awk` invocation) in the tzcode+tzdata
 tree and feeds the resulting rearguard `.zi` file to zic. This gives non-negative DST (for example
 Europe/Dublin, Africa/Windhoek, Africa/Casablanca), as Java has.
+
+`NDATA=` empties the Makefile's list of non-geographic data files (`factory`), so the compiled files
+are exactly ThreeTen-Backport's list (`$(PRIMARY_YDATA) etcetera backward`). Like ThreeTen and the
+JDK, the data then has no `Factory` zone. The JDK also drops `EST`, `HST`, `MST`, `GMT+0`, `GMT-0` and
+`ROC`; js-joda keeps them, as it always has with moment's data.
 
 ### D4. Expanding to 2499
 `-b fat` emits explicit transitions only up to 2037. After the last explicit transition, `posixTz.js`

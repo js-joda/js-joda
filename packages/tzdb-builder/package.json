@@ -1,0 +1,25 @@
+{
+  "name": "@js-joda/tzdb-builder",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Generates the IANA tzdb data files of @js-joda/timezone",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "generate": "node src/cli.js",
+    "parity": "node scripts/parity.js",
+    "test": "npx mocha --timeout 5000 'test/**/*Test.js'",
+    "lint": "npx eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/js-joda/js-joda.git"
+  },
+  "author": "pithu",
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "zx": "^8.8.5"
+  }
+}

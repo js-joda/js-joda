@@ -5,24 +5,26 @@ rearguard zic + JS TZif parsing reproduces moment's offsets. It does not touch `
 
 ## 1. Slice 1 — Scaffold and step runner
 
-- [ ] 1.1 Create `packages/tzdb-builder/` (`package.json`: private, `"type": "module"`, `engines.node >=20`, devDependency `zx`, scripts `generate` = `node src/cli.js`, `parity`, `test`, `lint`; `.gitignore` with `.cache/`; README stub) and verify that `npm install` at the root links it as a workspace and `npm test -w packages/tzdb-builder` runs (0 tests)
-- [ ] 1.2 Add the ESLint config to match the repo and verify that `npm run lint -w packages/tzdb-builder` passes
-- [ ] 1.3 Implement the step runner in `src/cli.js` (zx `argv`; positional `<latest|version>`; `--step`, `--from` and `--force`; an ordered step registry of `(ctx) => ctx` functions, empty for now; non-zero exit with a message on error). Verify with a unit test that `--step` runs only the named step, `--from` runs the remaining steps in order, and an unknown step name fails
+- [x] 1.1 Create `packages/tzdb-builder/` (`package.json`: private, `"type": "module"`, `engines.node >=20`, devDependency `zx`, scripts `generate` = `node src/cli.js`, `parity`, `test`, `lint`; `.gitignore` with `.cache/`; README stub) and verify that `npm install` and `npm test` run inside `packages/tzdb-builder` (the repo uses per-package installs, and lerna skips private packages because `lerna.json` sets `"private": false`, as for `@js-joda/examples`)
+- [x] 1.2 Add the ESLint config to match the repo and verify that `npm run lint` passes in `packages/tzdb-builder`
+- [x] 1.3 Implement the step runner in `src/cli.js` (zx `argv`; positional `<latest|version>`; `--step`, `--from` and `--force`; an ordered step registry of `(ctx) => ctx` functions, empty for now; non-zero exit with a message on error). Verify with a unit test that `--step` runs only the named step, `--from` runs the remaining steps in order, and an unknown step name fails
+
+- [x] 1.4 Add a step to `.github/workflows/tests.yaml` that runs `npm ci`, `npm run lint` and `npm test` in `packages/tzdb-builder` (lerna skips the private package). Verify that the workflow file is valid YAML and that the same commands pass locally without network access to IANA or a C compiler
 
 ## 2. Slice 1 — Fetch and compile
 
-- [ ] 2.1 Implement the `fetch` step in `src/fetch.js`: resolve `latest` via `data.iana.org/time-zones/tzdb/version`, download tzcode+tzdata with global `fetch` into `.cache/<ver>/` (reused when present unless `--force`), extract with `tar` via zx `$`, reject unknown versions with a clear error. Verify with unit tests that stub `fetch` and `$` (latest resolution, explicit version, cache reuse, 404 → error)
-- [ ] 2.2 Implement the `compile` step in `src/compile.js` using zx `$`: check up front for `make`, `cc` and `tar` with `which` (named error if one is missing), run `make zic rearguard.zi` and `zic -b fat -d <out> rearguard.zi`, and put the output dir plus the Zone and Link names parsed from `rearguard.zi` into `ctx`. Verify manually with `npm run generate -- 2026a --step compile` (after `--step fetch`) that TZif files exist for Europe/Berlin and Europe/Kiev
+- [x] 2.1 Implement the `fetch` step in `src/fetch.js`: resolve `latest` via `data.iana.org/time-zones/tzdb/version`, download tzcode+tzdata with global `fetch` into `.cache/<ver>/` (reused when present unless `--force`), extract with `tar` via zx `$`, reject unknown versions with a clear error. Verify with unit tests that stub `fetch` and `$` (latest resolution, explicit version, cache reuse, 404 → error)
+- [x] 2.2 Implement the `compile` step in `src/compile.js` using zx `$`: check up front for `make`, `cc` and `tar` with `which` (named error if one is missing), run `make NDATA= zic rearguard.zi` (ThreeTen-Backport's file list, no `factory`) and `zic -b fat -d <out> rearguard.zi`, and put the output dir plus the Zone and Link names parsed from `rearguard.zi` into `ctx`. Verify manually with `npm run generate -- 2026a --step compile` (after `--step fetch`) that TZif files exist for Europe/Berlin and Europe/Kiev
 
 ## 3. Slice 1 — TZif parsing and collection (explicit transitions up to 2037)
 
-- [ ] 3.1 Implement `src/tzif.js` (RFC 8536 v2+ 64-bit section: transitions, ttinfo utoff/isdst/abbr, footer string returned raw). Verify with unit tests on small committed TZif fixtures (Europe/Berlin, Etc/GMT-2, Europe/Dublin from rearguard)
-- [ ] 3.2 Implement the `collect` step in `src/collect.js`: TZif transitions → periods `{abbrs, untils, offsets, isdsts}` (minutes west, last until `null`), merge on (abbr, offset, isdst), one entry per Zone and Link name. In this slice it covers only the explicit transitions (up to 2037) and writes `.cache/<ver>/unpacked.json`. Verify with unit tests for the Berlin 2026 periods, Etc/GMT-2 single period, Dublin summer isdst=1, and an isdst-only change kept separate
+- [x] 3.1 Implement `src/tzif.js` (RFC 8536 v2+ 64-bit section: transitions, ttinfo utoff/isdst/abbr, footer string returned raw). Verify with unit tests on small committed TZif fixtures (Europe/Berlin, Etc/GMT-2, Europe/Dublin from rearguard)
+- [x] 3.2 Implement the `collect` step in `src/collect.js`: TZif transitions → periods `{abbrs, untils, offsets, isdsts}` (minutes west, last until `null`), merge on (abbr, offset, isdst), one entry per Zone and Link name. In this slice it covers only the explicit transitions (up to 2037) and writes `.cache/<ver>/unpacked.json`. Verify with unit tests for the Berlin 2026 periods, Etc/GMT-2 single period, Dublin summer isdst=1, and an isdst-only change kept separate
 
 ## 4. Slice 1 — Parity with moment-timezone
 
-- [ ] 4.1 Implement `scripts/parity.js <moment-unpacked.json> <ours-unpacked.json> [--until <year>]` (offset diff at every transition instant of both sides up to `--until`, default 2037; differences in a documented list of rearguard zones are reported as expected). Verify with a unit test on two small hand-made inputs (equal, expected diff, unexpected diff → non-zero exit)
-- [ ] 4.2 Run `npm run generate -- 2026a --from fetch` and then `npm run parity -- <moment-timezone>/data/unpacked/2026a.json .cache/2026a/unpacked.json`. Verify that it exits 0 and record the expected-difference report in the slice's PR. If there are unexpected differences, stop and revisit design D2/D3 before continuing
+- [x] 4.1 Implement `scripts/parity.js <moment-unpacked.json> <ours-unpacked.json> [--until <year>]` (offset diff at every transition instant of both sides up to `--until`, default 2037; differences in a documented list of rearguard zones are reported as expected). Verify with a unit test on two small hand-made inputs (equal, expected diff, unexpected diff → non-zero exit)
+- [x] 4.2 Run `npm run generate -- 2026a --from fetch` and then `npm run parity -- <moment-timezone>/data/unpacked/2026a.json .cache/2026a/unpacked.json`. Verify that it exits 0 and record the expected-difference report in the slice's PR. If there are unexpected differences, stop and revisit design D2/D3 before continuing
 
 ## 5. Slice 2 — Transitions up to 2499 and unpacked output
 
