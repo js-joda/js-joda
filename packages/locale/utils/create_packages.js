@@ -99,6 +99,8 @@ const createPackageJSON = ({ name, version, description }) => ({
 
 const packagesDir = path.resolve(argv.packagesDir);
 const packageNames = Object.keys(argv.packages);
+// yargs parses a single `--packages.de=de` as a string, repeated ones as an array
+const packageLocales = Object.fromEntries(packageNames.map((packageName) => [packageName, [].concat(argv.packages[packageName])]));
 
 // fail before touching packagesDir if a prebuilt bundle is missing
 for (const packageName of packageNames) {
@@ -156,12 +158,12 @@ packageNames.forEach((packageName) => {
     const packageJSON = createPackageJSON({
         name: `@js-joda/locale_${packageName}`,
         version: existingPackageJSONs[packageName] ? existingPackageJSONs[packageName].version : mainPackageJSON.version,
-        description: `prebuilt js-joda locale package for locales: ${argv.packages[packageName]}`,
+        description: `prebuilt js-joda locale package for locales: ${packageLocales[packageName]}`,
     });
     fs.writeFileSync(path.resolve(packageDir, 'package.json'),
         `${JSON.stringify(packageJSON, null, 4)}\n`);
     fs.writeFileSync(path.resolve(packageDir, 'README.md'),
-        readmeTemplate.replace(readmeLocaleRegex, argv.packages[packageName].join(',')));
+        readmeTemplate.replace(readmeLocaleRegex, packageLocales[packageName].join(',')));
 
     for (const file of ['index.js', 'index.js.map', 'index.min.js', 'index.esm.js', 'index.esm.js.map']) {
         fs.copyFileSync(
