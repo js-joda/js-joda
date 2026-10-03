@@ -17,15 +17,20 @@ them agree.
 - The generator of the prebuilt locale packages keeps the version that an existing package's
   `package.json` already has. Lerna owns that version. Locale's version is used only for a newly
   created package.
-- The generated peer dependencies stay as they are today: `@js-joda/core` and `@js-joda/timezone`
-  ranges come from locale's peer dependencies, and `@js-joda/locale` is `>=` locale's version. They
-  are specified so a later rewrite of the generator keeps them.
+- The `@js-joda/core` and `@js-joda/timezone` peer ranges still come from locale's peer dependencies.
+- The `@js-joda/locale` peer range becomes a fixed `>=5.0.0` instead of `>=` locale's current version.
+  5.0.0 introduced `registerLocaleData`, the only locale API the prebuilt bundles import, and it hasn't
+  changed since. Today every locale release raises the minimum, even when nothing in the API changed.
+  That causes needless `ERESOLVE` peer conflicts for users, and it makes every version bump of locale
+  rewrite all 33 prebuilt manifests, both in the working tree and in the published tarballs.
+  The range only gets wider, so no install that works today breaks.
 - The generator writes the manifests in the committed format, so `build-locale-dist`, and with it
   `test-ci`, no longer leaves changes to the 33 prebuilt `package.json` files in the working tree.
 - `ReleaseHowTo.md` explains that lerna versions the `locale_*` packages like any other package, and
   that `lerna publish from-package` is the recovery when a publish fails after the push.
-- Nothing changes for users of the published packages. The prebuilt packages' versions can differ
-  from `@js-joda/locale`'s (e.g. `locale_de` 5.3.2 next to `locale` 5.4.0).
+- For users of the published packages, the prebuilt packages' versions can differ from
+  `@js-joda/locale`'s (e.g. `locale_de` 5.3.2 next to `locale` 5.4.0), and they accept any
+  `@js-joda/locale` from 5.0.0 on.
 
 ## Capabilities
 
@@ -37,25 +42,22 @@ them agree.
 
 ## Impact
 
-- `packages/locale/utils/create_packages.js` (version handling, output format)
+- `packages/locale/utils/create_packages.js` (version handling, `@js-joda/locale` peer range, output format)
+- The 33 prebuilt `packages/locale/packages/*/package.json` (peer range, one-time reformat)
 - `ReleaseHowTo.md`
 - Release process: no more "Custom" versions in the lerna prompt for `locale_*`
 
-## Open questions
+## Decisions
 
-1. **Approach.** This proposal is written for A.
-   - **A. The generator keeps the version (this proposal).** Lerna and the generator can no longer
-     disagree. The downside is that `locale_*` versions drift from locale's.
-   - **B. Enforce the same version.** Keep "`locale_*` version equals `@js-joda/locale` version", and
-     add a root `version` lifecycle script. Lerna runs it after bumping and before commit, tag and
-     push; it fails on a mismatch. The release manager still has to pick "Custom" versions in the
-     lerna prompt, but a mistake aborts before anything is pushed. The "Prebuilt package version"
-     requirement would change to match.
-   - **C. Docs only.** Add a warning to `ReleaseHowTo.md` and drop this change.
-2. **Peer range on `@js-joda/locale`.** `>=${locale version}` makes every locale release raise the
-   minimum that `locale_*` requires. Should it become a fixed lower bound such as `>=5.0.0`, the
-   release that introduced `registerLocaleData`? This proposal keeps it unchanged.
-3. ~~**Generated format.**~~ Decided: yes. Today every `build-locale-dist`, and so every
-   `lerna run test-ci`, rewrites all 33 prebuilt manifests: it reorders the peer dependencies,
-   adds empty `dependencies` and `devDependencies`, and drops the trailing newline. The generator
-   will write the committed format so that these runs leave `git status` clean (task 1.2).
+1. **Approach: A.** The generator keeps the version of an existing prebuilt package; lerna owns it.
+   Rejected: B (enforce the same version with a `version` lifecycle check) keeps the 33 "Custom"
+   versions in the lerna prompt and only makes a mistake fail earlier. C (docs only) leaves the
+   failure in place.
+2. **Peer range on `@js-joda/locale`: fixed `>=5.0.0`.** With a range that follows locale's version,
+   every bump of locale would still change the prebuilt manifests, which defeats the clean working
+   tree of decision 3 and makes the published manifests differ from the committed ones. An upper
+   bound (`^5.0.0`) is out of scope; it belongs to the next major release of locale.
+3. **Generated format: match the committed files.** Today every `build-locale-dist`, and so every
+   `lerna run test-ci`, rewrites all 33 prebuilt manifests: it reorders the peer dependencies, adds
+   empty `dependencies` and `devDependencies`, and drops the trailing newline. The generator will
+   write the committed format so that these runs leave `git status` clean (task 1.2).
