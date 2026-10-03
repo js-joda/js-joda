@@ -28,7 +28,7 @@
   ],
   "scripts": {
     "prepublishOnly": "npm run build-dist && npm run build-locale-dist",
-    "test": "NODE_ENV=test npx mocha --timeout 5000 --require @babel/register ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js test/pluginTest_mochaOnly.js",
+    "test": "NODE_ENV=test npx mocha --timeout 5000 --require @babel/register ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js test/pluginTest_mochaOnly.js test/prebuiltPackagesTest_mochaOnly.js",
     "test-coverage": "NODE_ENV=test COVERAGE=1 npx nyc --report-dir=build/coverage --reporter=lcov --reporter html npx mocha --timeout 5000 --require @babel/register --reporter progress ./test/*Test.js ./test/**/*Test.js ./test/**/**/*Test.js",
     "test-browser": "npx karma start --reporters=dots --single-run",
     "test-ts-definitions": "TS_NODE_PROJECT='../../shared/ts-test-config.json' NODE_ENV=test mocha --timeout 5000 --require ts-node/register ./test/typescript_definitions/*.ts",
@@ -37,7 +37,7 @@
     "build-examples": "npx rollup -c rollup-examples.config.js",
     "build-prebuilt": "rm -rf dist/prebuilt/*; npx rollup -c rollup-prebuilt.config.js",
     "build-locale-dist": "npm run build-examples && npm run build-prebuilt && npm run create-packages",
-    "create-packages": "rm -rf packages/*; node utils/create_packages.js",
+    "create-packages": "node utils/create_packages.js",
     "lint": "npx eslint ."
   },
   "keywords": [

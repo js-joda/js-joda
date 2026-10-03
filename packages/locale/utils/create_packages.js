@@ -6,7 +6,7 @@
 const path = require('path');
 const fs = require('fs');
 const yargsPkg = require('yargs');
-const { packages: prebuiltPackages } = require('../prebuilt-packages.json');
+const { packages: prebuiltPackages, localePeerDependency } = require('../prebuilt-packages.json');
 
 // this file will create npm (sub-) packages, build_package is used to create a js-joda-locale bundled packages in each package dir
 
@@ -46,10 +46,21 @@ if (argv.debug) {
 }
 
 const mainPackageJSON = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'package.json')));
-const packageTemplate = {
-    name: '<will be overridden>',
-    version: '<will be overridden>',
-    description: '<will be overridden>',
+
+// The peer dependency on @js-joda/locale is a deliberate, committed decision in prebuilt-packages.json
+// (see the comment there). It must not be derived from the current @js-joda/locale version: this script
+// runs in `prepublishOnly`, after lerna has chosen which packages to bump and publish, so any change made
+// here would neither be committed nor cause a version bump.
+if (!localePeerDependency || !localePeerDependency.range) {
+    throw new Error('prebuilt-packages.json: missing localePeerDependency.range (peer dependency of the prebuilt packages on @js-joda/locale)');
+}
+
+// Key order and content match the committed packages/<locale>/package.json files, so that regenerating
+// them leaves the working tree clean.
+const createPackageJSON = ({ name, version, description }) => ({
+    name,
+    version,
+    description,
     repository: {
         type: 'git',
         url: 'https://github.com/js-joda/js-joda.git'
@@ -73,48 +84,86 @@ const packageTemplate = {
     homepage: 'https://js-joda.github.io/js-joda',
     peerDependencies: {
         '@js-joda/core': mainPackageJSON.peerDependencies['@js-joda/core'],
+        '@js-joda/locale': localePeerDependency.range,
         '@js-joda/timezone': mainPackageJSON.peerDependencies['@js-joda/timezone'],
-        '@js-joda/locale': `>=${mainPackageJSON.version}`,
     },
     peerDependenciesMeta: {
         '@js-joda/timezone': {
             optional: true,
         },
     },
-    dependencies: {},
-    devDependencies: {},
     publishConfig: {
         access: 'public'
     }
+});
+
+const packagesDir = path.resolve(argv.packagesDir);
+const packageNames = Object.keys(argv.packages);
+// yargs parses a single `--packages.de=de` as a string, repeated ones as an array
+const packageLocales = Object.fromEntries(packageNames.map((packageName) => [packageName, [].concat(argv.packages[packageName])]));
+
+// fail before touching packagesDir if a prebuilt bundle is missing
+for (const packageName of packageNames) {
+    if (!fs.existsSync(path.resolve(argv.prebuiltDir, packageName))) {
+        throw new Error(`prebuilt bundle not found for package ${packageName}.\nDid you forget to run "npm run build-prebuilt" ?`);
+    }
+}
+
+// Prebuilt package directories in packagesDir: every listed package, plus any directory that holds a
+// generated @js-joda/locale_* package (e.g. a locale removed from the prebuilt package list).
+const readPrebuiltPackageJSONs = () => {
+    const packageJSONs = {};
+    if (!fs.existsSync(packagesDir)) {
+        return packageJSONs;
+    }
+    for (const entry of fs.readdirSync(packagesDir, { withFileTypes: true })) {
+        const packageJSONPath = path.resolve(packagesDir, entry.name, 'package.json');
+        if (entry.isDirectory() && fs.existsSync(packageJSONPath)) {
+            const packageJSON = JSON.parse(fs.readFileSync(packageJSONPath, 'utf8'));
+            if (packageJSON.name === `@js-joda/locale_${entry.name}`) {
+                packageJSONs[entry.name] = packageJSON;
+            }
+        }
+    }
+    return packageJSONs;
 };
+
+// The version of an existing prebuilt package is owned by the release tooling (lerna), which bumps it
+// before `prepublishOnly` runs this script. Read it before the package directories are cleaned, so it
+// is kept. Only a newly created package gets the @js-joda/locale version.
+const existingPackageJSONs = readPrebuiltPackageJSONs();
+
+// start from clean package directories, this drops stale files. Packages removed from the list are only
+// dropped when the full prebuilt package list is created, so that creating a subset (e.g. `--packages.de=de`)
+// leaves the other packages untouched.
+const isFullPackageList = packageNames.length === Object.keys(prebuiltPackages).length
+    && packageNames.every((packageName) => Object.prototype.hasOwnProperty.call(prebuiltPackages, packageName));
+const packagesToClean = isFullPackageList ? [...Object.keys(existingPackageJSONs), ...packageNames] : packageNames;
+for (const packageName of new Set(packagesToClean)) {
+    fs.rmSync(path.resolve(packagesDir, packageName), { recursive: true, force: true });
+}
 
 const readmeTemplate = fs.readFileSync(path.resolve(__dirname, 'README_package.template.md'),
     'utf8');
 const readmeLocaleRegex = /{{locale}}/g;
 
-Object.keys(argv.packages).forEach((packageName) => {
+packageNames.forEach((packageName) => {
     // eslint-disable-next-line no-console
     console.info('creating', packageName);
-    const packageDir = path.resolve(argv.packagesDir, packageName);
-    if (!fs.existsSync(packageDir)) {
-        fs.mkdirSync(packageDir);
-    }
-    const distDir = path.resolve(argv.packagesDir, packageName, 'dist');
-    if (!fs.existsSync(distDir)) {
-        fs.mkdirSync(distDir);
-    }
+    const packageDir = path.resolve(packagesDir, packageName);
+    const distDir = path.resolve(packageDir, 'dist');
+    fs.mkdirSync(distDir, { recursive: true });
     const prebuiltDir = path.resolve(argv.prebuiltDir, packageName);
-    if (!fs.existsSync(prebuiltDir)) {
-        throw new Error(`prebuilt bundle not found for package ${packageName}.\nDid you forget to run "npm run build-prebuilt" ?`);
-    }
     // create package.json
-    packageTemplate.version = mainPackageJSON.version;
-    packageTemplate.name = `@js-joda/locale_${packageName}`;
-    packageTemplate.description = `prebuilt js-joda locale package for locales: ${argv.packages[packageName]}`;
+    const packageJSON = createPackageJSON({
+        name: `@js-joda/locale_${packageName}`,
+        version: existingPackageJSONs[packageName] ? existingPackageJSONs[packageName].version : mainPackageJSON.version,
+        description: `prebuilt js-joda locale package for locales: ${packageLocales[packageName]}`,
+    });
     fs.writeFileSync(path.resolve(packageDir, 'package.json'),
-        JSON.stringify(packageTemplate, null, 4));
+        `${JSON.stringify(packageJSON, null, 4)}\n`);
     fs.writeFileSync(path.resolve(packageDir, 'README.md'),
-        readmeTemplate.replace(readmeLocaleRegex, argv.packages[packageName].join(',')));
+        readmeTemplate.replace(readmeLocaleRegex, packageLocales[packageName].join(',')));
 
     for (const file of ['index.js', 'index.js.map', 'index.min.js', 'index.esm.js', 'index.esm.js.map']) {
         fs.copyFileSync(

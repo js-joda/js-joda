@@ -20,24 +20,27 @@ $ lerna run --stream test-ci # verify that the current state of the main branch 
 $ lerna publish --concurrency 1 [major | minor | patch] 
 ```
 
-## Troubleshooting: publish fails after versions/tags were already pushed
+## Prebuilt locale packages (`@js-joda/locale_*`)
 
-`lerna publish` first bumps versions, commits ("Publish") and pushes the git tags, and
-*then* publishes to npm. If the npm step fails, the versions and tags are already on
-`origin/main` but nothing reached npm. Do **not** re-run `lerna publish minor/patch` — that
-double-bumps the versions. Instead publish the already-tagged versions:
+- In `lerna publish`, accept the versions lerna proposes for `locale_*`; don't enter "Custom"
+  versions.
+- When `npm test` in `packages/locale` fails with "check localePeerDependency in
+  prebuilt-packages.json", update `localePeerDependency` (`imports` and `range`) there.
+- After adding or removing a locale package, or changing `localePeerDependency`, in
+  `packages/locale/prebuilt-packages.json`: run `npm run build-locale-dist` in `packages/locale` and
+  commit `packages/locale/packages/` before the release.
+
+## Troubleshooting
+
+### Publish fails after versions/tags were already pushed
+
+Don't re-run `lerna publish minor/patch`. Publish the versions in the `package.json` files:
 
 ```shell
-$ npx lerna publish from-git --concurrency 1
+$ npx lerna publish from-package --concurrency 1
 ```
 
-`from-git` reads the tags at HEAD and publishes exactly those versions (no new commit, no
-re-bump). It is safe to re-run — it skips packages already on npm and publishes the rest.
+### Publish fails with `E404 Not found` or `EOTP` (npm 2FA)
 
-Common failure with 2FA enabled on npm:
-- `lerna ERR! E404 Not found` (misleading, from lerna's old bundled npm client) or
-  `lerna ERR! EOTP You must provide a one-time pass` both mean npm wants a 2FA one-time code.
-- Re-run `npx lerna publish from-git --concurrency 1` and enter the OTP when prompted. The
-  code can expire before all packages are published; if so, just run it again with a fresh
-  code — `from-git` resumes where it left off. (An npm automation token avoids OTP entirely
-  since it bypasses 2FA.)
+Run `npx lerna publish from-package --concurrency 1` and enter the one-time code when prompted.
+If the code expires before all packages are published, run it again with a new code.
