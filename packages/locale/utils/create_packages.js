@@ -131,8 +131,13 @@ const readPrebuiltPackageJSONs = () => {
 // is kept. Only a newly created package gets the @js-joda/locale version.
 const existingPackageJSONs = readPrebuiltPackageJSONs();
 
-// start from clean package directories, this drops stale files and packages removed from the list
-for (const packageName of new Set([...Object.keys(existingPackageJSONs), ...packageNames])) {
+// start from clean package directories, this drops stale files. Packages removed from the list are only
+// dropped when the full prebuilt package list is created, so that creating a subset (e.g. `--packages.de=de`)
+// leaves the other packages untouched.
+const isFullPackageList = packageNames.length === Object.keys(prebuiltPackages).length
+    && packageNames.every((packageName) => Object.prototype.hasOwnProperty.call(prebuiltPackages, packageName));
+const packagesToClean = isFullPackageList ? [...Object.keys(existingPackageJSONs), ...packageNames] : packageNames;
+for (const packageName of new Set(packagesToClean)) {
     fs.rmSync(path.resolve(packagesDir, packageName), { recursive: true, force: true });
 }
 
