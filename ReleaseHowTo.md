@@ -29,8 +29,14 @@ match `@js-joda/locale`. Their versions may differ from `@js-joda/locale`'s (e.g
 
 `@js-joda/locale`'s `prepublishOnly` regenerates these packages (`build-locale-dist`). The generator
 (`packages/locale/utils/create_packages.js`) keeps the version lerna wrote and only fills in the
-bundles, README and peer dependencies. The `@js-joda/locale` peer range is a fixed `>=5.0.0`; raise
-it in the generator only when the prebuilt bundles start to need a newer `@js-joda/locale` API.
+bundles, README and peer dependencies.
+
+Their peer dependency on `@js-joda/locale` is maintained by hand in
+`packages/locale/prebuilt-packages.json` (`localePeerDependency`), next to the list of
+`@js-joda/locale` exports the prebuilt bundles import. When the bundles start to import more,
+`npm test` in `packages/locale` fails until you raise the range there. Then run
+`npm run create-packages` in `packages/locale` and commit the prebuilt manifests **before** the
+release, so lerna sees the change and bumps the `locale_*` packages.
 
 ## Troubleshooting: publish fails after versions/tags were already pushed
 

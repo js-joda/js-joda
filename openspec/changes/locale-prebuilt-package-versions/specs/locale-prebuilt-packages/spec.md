@@ -27,18 +27,32 @@ for the first time SHALL get the version of `@js-joda/locale`.
 ### Requirement: Generated peer dependencies
 Each prebuilt package SHALL declare as peer dependencies: `@js-joda/core` and `@js-joda/timezone` with
 the same ranges as the `@js-joda/locale` peer dependencies, `@js-joda/timezone` as optional, and
-`@js-joda/locale` as `>=5.0.0`. 5.0.0 is the first `@js-joda/locale` release with `registerLocaleData`,
-the only `@js-joda/locale` API the prebuilt bundles use. The `@js-joda/locale` range SHALL NOT depend on
-the current `@js-joda/locale` version; it changes only when the prebuilt bundles start to need a newer
-`@js-joda/locale` API.
+`@js-joda/locale` with the lower bound (`>=x.y.z`) configured next to the list of prebuilt packages,
+currently `>=5.0.0`, the first `@js-joda/locale` release with `registerLocaleData`. The configuration
+SHALL also list every export the prebuilt bundles import from `@js-joda/locale`. The `@js-joda/locale`
+range SHALL NOT be derived from the current `@js-joda/locale` version, because the packages are generated
+after the release tooling has chosen which packages to bump. The test suite SHALL fail when the
+configuration is out of date.
 
 #### Scenario: Peer ranges follow @js-joda/locale
 - **WHEN** `@js-joda/locale` declares the peer dependency `@js-joda/timezone` as `^2.25.0 || ^3.0.0`, and the prebuilt packages are generated
 - **THEN** every prebuilt package declares `@js-joda/timezone` as `^2.25.0 || ^3.0.0` (optional)
 
-#### Scenario: Fixed lower bound on @js-joda/locale
-- **WHEN** `@js-joda/locale` is 5.4.0 and the prebuilt packages are generated
+#### Scenario: Configured lower bound on @js-joda/locale
+- **WHEN** the configured range is `>=5.0.0`, `@js-joda/locale` is 5.4.0, and the prebuilt packages are generated
 - **THEN** every prebuilt package declares `@js-joda/locale` as `>=5.0.0`
+
+#### Scenario: Prebuilt bundles start to use another @js-joda/locale export
+- **WHEN** the prebuilt bundle template imports an export from `@js-joda/locale` that the configuration doesn't list
+- **THEN** the locale test suite fails and asks to check the configured range
+
+#### Scenario: Range excludes the current version
+- **WHEN** the configured range is not satisfied by the current `@js-joda/locale` version, or isn't of the form `>=x.y.z`
+- **THEN** the locale test suite fails
+
+#### Scenario: Range changed without regenerating
+- **WHEN** the configured range was changed but the committed prebuilt manifests still declare the old one
+- **THEN** the locale test suite fails and asks to run `npm run create-packages` and commit the manifests
 
 ### Requirement: Stable generated files
 Generating the prebuilt packages SHALL leave the committed prebuilt package manifests unchanged, unless

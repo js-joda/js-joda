@@ -6,7 +6,7 @@
 const path = require('path');
 const fs = require('fs');
 const yargsPkg = require('yargs');
-const { packages: prebuiltPackages } = require('../prebuilt-packages.json');
+const { packages: prebuiltPackages, localePeerDependency } = require('../prebuilt-packages.json');
 
 // this file will create npm (sub-) packages, build_package is used to create a js-joda-locale bundled packages in each package dir
 
@@ -47,11 +47,13 @@ if (argv.debug) {
 
 const mainPackageJSON = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'package.json')));
 
-// The prebuilt bundles only import `registerLocaleData` from @js-joda/locale, which was introduced in
-// 5.0.0. Keep this range fixed: deriving it from the current @js-joda/locale version would raise the
-// minimum with every release and rewrite all prebuilt manifests on every version bump.
-// Raise it only when the prebuilt bundles start to use a newer @js-joda/locale API.
-const LOCALE_PEER_RANGE = '>=5.0.0';
+// The peer dependency on @js-joda/locale is a deliberate, committed decision in prebuilt-packages.json
+// (see the comment there). It must not be derived from the current @js-joda/locale version: this script
+// runs in `prepublishOnly`, after lerna has chosen which packages to bump and publish, so any change made
+// here would neither be committed nor cause a version bump.
+if (!localePeerDependency || !localePeerDependency.range) {
+    throw new Error('prebuilt-packages.json: missing localePeerDependency.range (peer dependency of the prebuilt packages on @js-joda/locale)');
+}
 
 // Key order and content match the committed packages/<locale>/package.json files, so that regenerating
 // them leaves the working tree clean.
@@ -82,7 +84,7 @@ const createPackageJSON = ({ name, version, description }) => ({
     homepage: 'https://js-joda.github.io/js-joda',
     peerDependencies: {
         '@js-joda/core': mainPackageJSON.peerDependencies['@js-joda/core'],
-        '@js-joda/locale': LOCALE_PEER_RANGE,
+        '@js-joda/locale': localePeerDependency.range,
         '@js-joda/timezone': mainPackageJSON.peerDependencies['@js-joda/timezone'],
     },
     peerDependenciesMeta: {
