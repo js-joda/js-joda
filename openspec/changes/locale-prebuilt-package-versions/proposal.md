@@ -45,7 +45,7 @@ them agree.
 
 - `packages/locale/utils/create_packages.js` (version handling, `@js-joda/locale` peer range, output format)
 - `packages/locale/prebuilt-packages.json` (`localePeerDependency`)
-- `packages/locale/test/prebuiltPackagesTest.js` (new)
+- `packages/locale/test/prebuiltPackagesTest_mochaOnly.js` (new)
 - The 33 prebuilt `packages/locale/packages/*/package.json` (peer range, one-time reformat)
 - `ReleaseHowTo.md`
 - Release process: no more "Custom" versions in the lerna prompt for `locale_*`
@@ -63,7 +63,7 @@ them agree.
    and on a major release unchanged `locale_*` packages wouldn't be republished with the new range.
    The range must be a committed decision. It lives in `prebuilt-packages.json`
    (`localePeerDependency`), not as a constant in the generator, together with the list of exports
-   the prebuilt bundles import from `@js-joda/locale`. `test/prebuiltPackagesTest.js` fails when the
+   the prebuilt bundles import from `@js-joda/locale`. `test/prebuiltPackagesTest_mochaOnly.js` fails when the
    bundle template imports something not listed, when the range isn't `>=x.y.z` or excludes the
    current version, or when the committed manifests don't use it. An upper bound (`^5.0.0`) is out of
    scope; it belongs to the next major release of locale.

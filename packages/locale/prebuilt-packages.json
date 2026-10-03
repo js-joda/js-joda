@@ -111,7 +111,7 @@
    ]
   },
   "localePeerDependency": {
-    "comment": "Peer dependency of every prebuilt package on @js-joda/locale. 'imports' lists everything the prebuilt bundles import from @js-joda/locale (utils/cldr-data.ejs). 'range' is a lower bound '>=x.y.z': the first @js-joda/locale release that provides all of them. Update both together, run 'npm run create-packages' and commit the prebuilt manifests before the release. test/prebuiltPackagesTest.js checks this.",
+    "comment": "Peer dependency of every prebuilt package on @js-joda/locale. 'imports' lists everything the prebuilt bundles import from @js-joda/locale (utils/cldr-data.ejs). 'range' is a lower bound '>=x.y.z': the first @js-joda/locale release that provides all of them. Update both together, run 'npm run create-packages' and commit the prebuilt manifests before the release. test/prebuiltPackagesTest_mochaOnly.js checks this.",
     "range": ">=5.0.0",
     "imports": [
       "registerLocaleData"
