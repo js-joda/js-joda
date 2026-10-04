@@ -119,7 +119,7 @@ use the `-lifetime-range` or `-300-year-range` bundle (with the 2026 data, both 
 ## Implementation details
 
 * This ZoneRulesProvider implemantion supplies all functionality that is required by the js-joda package. 
-* Additional [ZoneRules](https://js-joda.github.io/js-joda/esdoc/class/src/zone/ZoneRules.js~ZoneRules.html) functionality like [transitions(), etc.](https://github.com/js-joda/js-joda-timezone/blob/5288c41433133c248f66c271be59878356db9ea8/test/MomentZoneRulesTest.js#L310-L322) is not implemented.
+* Additional [ZoneRules](https://js-joda.github.io/js-joda/esdoc/class/src/zone/ZoneRules.js~ZoneRules.html) functionality like [transitions(), etc.](test/TzdbZoneRulesTest.js) is not implemented.
 
 ## License
 

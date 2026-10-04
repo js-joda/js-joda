@@ -8,7 +8,7 @@ import {
     LocalDateTime, Instant, ZoneOffset, ZoneOffsetTransition, ZoneRules
 } from '@js-joda/core';
 
-export class MomentZoneRules extends ZoneRules{
+export class TzdbZoneRules extends ZoneRules{
     constructor(tzdbInfo){
         super();
         this._tzdbInfo = tzdbInfo;
@@ -360,7 +360,7 @@ export class MomentZoneRules extends ZoneRules{
         if (this === other) {
             return true;
         }
-        if (other instanceof MomentZoneRules) {
+        if (other instanceof TzdbZoneRules) {
             return this._tzdbInfo === other._tzdbInfo;
         }
         return false;

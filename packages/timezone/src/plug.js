@@ -3,17 +3,17 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import { MomentZoneRulesProvider } from './MomentZoneRulesProvider';
+import { TzdbZoneRulesProvider } from './TzdbZoneRulesProvider';
 import extendSystemDefaultZoneId from './system-default-zone';
 
 /**
  * @private
  */
 export default function (jsJoda) {
-    jsJoda.ZoneRulesProvider.getRules = MomentZoneRulesProvider.getRules;
-    jsJoda.ZoneRulesProvider.getAvailableZoneIds = MomentZoneRulesProvider.getAvailableZoneIds;
-    jsJoda.ZoneRulesProvider.getTzdbData = MomentZoneRulesProvider.getTzdbData;
-    jsJoda.ZoneRulesProvider.loadTzdbData = MomentZoneRulesProvider.loadTzdbData;
+    jsJoda.ZoneRulesProvider.getRules = TzdbZoneRulesProvider.getRules;
+    jsJoda.ZoneRulesProvider.getAvailableZoneIds = TzdbZoneRulesProvider.getAvailableZoneIds;
+    jsJoda.ZoneRulesProvider.getTzdbData = TzdbZoneRulesProvider.getTzdbData;
+    jsJoda.ZoneRulesProvider.loadTzdbData = TzdbZoneRulesProvider.loadTzdbData;
 
     extendSystemDefaultZoneId(jsJoda.ZoneId);
     return jsJoda;
