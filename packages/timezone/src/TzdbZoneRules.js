@@ -5,7 +5,7 @@
  */
 
 import {
-    LocalDateTime, Instant, ZoneOffset, ZoneOffsetTransition, ZoneRules
+    Duration, LocalDateTime, Instant, ZoneOffset, ZoneOffsetTransition, ZoneRules
 } from '@js-joda/core';
 
 export class TzdbZoneRules extends ZoneRules{
@@ -220,14 +220,25 @@ export class TzdbZoneRules extends ZoneRules{
      * has changed over time.
      * The standard offset is the offset before any daylight saving time is applied.
      * This is typically the offset applicable during winter.
+     * <p>
+     * Needs tz data with standard offsets (field 7 of the packed format); throws for older data.
      *
      * @param {Instant} instant - the instant to find the offset information for, not null, but null
      *  may be ignored if the rules have a single offset for all instants
      * @return {ZoneOffset} the standard offset, not null
+     * @throws {Error} if the tz data of the zone has no standard offsets
      */
-    // eslint-disable-next-line no-unused-vars
     standardOffset(instant){
-        notSupported('ZoneRules.standardOffset');
+        return ZoneOffset.ofTotalSeconds(this._standardOffsetInSeconds(instant.toEpochMilli()));
+    }
+
+    _standardOffsetInSeconds(epochMilli){
+        const stdOffsets = this._tzdbInfo.stdOffsets;
+        if (stdOffsets == null) {
+            throw new Error(`The tz data of zone ${this._tzdbInfo.name} has no standard offsets, ` +
+                'load tz data with standard offsets (packed field 7) for standardOffset, daylightSavings and isDaylightSavings');
+        }
+        return -offsetInSeconds(stdOffsets[binarySearch(this._tzdbInfo.untils, epochMilli)]);
     }
 
     /**
@@ -242,10 +253,12 @@ export class TzdbZoneRules extends ZoneRules{
      * @param {Instant} instant - the instant to find the daylight savings for, not null, but null
      *  may be ignored if the rules have a single offset for all instants
      * @return {Duration} the difference between the standard and actual offset, not null
+     * @throws {Error} if the tz data of the zone has no standard offsets
      */
-    // eslint-disable-next-line no-unused-vars
     daylightSavings(instant){
-        notSupported('ZoneRules.daylightSavings');
+        const epochMilli = instant.toEpochMilli();
+        const index = binarySearch(this._tzdbInfo.untils, epochMilli);
+        return Duration.ofSeconds(this._offsetByIndexInSeconds(index) - this._standardOffsetInSeconds(epochMilli));
     }
 
     /**
@@ -255,11 +268,11 @@ export class TzdbZoneRules extends ZoneRules{
      *
      * @param {Instant} instant - the instant to find the offset information for, not null, but null
      *  may be ignored if the rules have a single offset for all instants
-     * @return {boolean} the standard offset, not null
+     * @return {boolean} true if the standard offset differs from the actual offset
+     * @throws {Error} if the tz data of the zone has no standard offsets
      */
-    // eslint-disable-next-line no-unused-vars
     isDaylightSavings(instant) {
-        notSupported('ZoneRules.isDaylightSavings');
+        return !this.daylightSavings(instant).isZero();
     }
 
     /**

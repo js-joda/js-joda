@@ -22,16 +22,16 @@ ported tests plus own additions, with the java.time check run by hand for data u
 
 ## 3. Unpacking
 
-- [ ] 3.1 Extend `packages/timezone/src/unpack.js` to map field 7 to a per-period `stdOffsets` array, and to omit it when field 7 is missing or empty (design D1). Verify with a test that Europe/Berlin unpacks a standard offset of `-60` for its CET and CEST periods, and that zone strings without field 7 (with and without field 6) unpack without `stdOffsets`
+- [x] 3.1 Extend `packages/timezone/src/unpack.js` to map field 7 to a per-period `stdOffsets` array, and to omit it when field 7 is missing or empty (design D1). Verify with a test that Europe/Berlin unpacks a standard offset of `-60` for its CET and CEST periods, and that zone strings without field 7 (with and without field 6) unpack without `stdOffsets`
 
 ## 4. Zone rules
 
-- [ ] 4.1 Implement `standardOffset`, `daylightSavings` and `isDaylightSavings` in `packages/timezone/src/TzdbZoneRules.js` from `stdOffsets` (design D2), throwing an error that names the zone and the missing standard offsets when `stdOffsets` is absent. Verify with tests for the "Standard offset", "Daylight saving amount" and "Data without standard offsets" requirement scenarios
+- [x] 4.1 Implement `standardOffset`, `daylightSavings` and `isDaylightSavings` in `packages/timezone/src/TzdbZoneRules.js` from `stdOffsets` (design D2), throwing an error that names the zone and the missing standard offsets when `stdOffsets` is absent. Verify with tests for the "Standard offset", "Daylight saving amount" and "Data without standard offsets" requirement scenarios
 - [x] 4.2 Implement the lazy transition index and `nextTransition` / `previousTransition`, skipping equal-offset boundaries and the `Infinity` sentinel (design D3, D4). Verify with tests for the "Next and previous transition" and "Offset transitions only" scenarios, including the instant exactly at a transition and Africa/Algiers 1977
 - [x] 4.3 Keep `transitions()` and `transitionRules()` throwing `not supported`, and update their JSDoc in `TzdbZoneRules.js` with the reason and a pointer to `nextTransition` / `previousTransition` (design D5). Verify with tests for the "Transition list and transition rules not supported" scenarios, including iterating Berlin 2026 with `nextTransition`
 - [ ] 4.4 Check a reduced bundle: build a `TzdbZoneRules` directly from `unpack` of the Europe/Berlin entry in `data/packed/latest-10-year-range.json`. (`test/useTzdbZoneRules.js` loads the full data into the global provider, so it can't be used here.) Verify with a test that the Berlin 2026 scenario results equal the full data's results
 
-- [ ] 4.5 Port ThreeTen-Backport's `TestStandardZoneRules` to `packages/timezone/test/reference/TzdbZoneRulesTest.js` as listed in design D6. Generate the expected transition lists for Europe/London and Asia/Kathmandu once with `jshell` from `getTransitions()`, and record the ThreeTen-Backport version and commit in the header. Check every expectation that fails against both global-tz and IANA data, and comment it in the test. Verify with tests for the "Conformance with ThreeTen-Backport's zone rules tests" scenarios and that the whole ported suite passes
+- [x] 4.5 Port ThreeTen-Backport's `TestStandardZoneRules` to `packages/timezone/test/reference/TzdbZoneRulesTest.js` as listed in design D6. Generate the expected transition lists for Europe/London and Asia/Kathmandu once with `jshell` from `getTransitions()`, and record the ThreeTen-Backport version and commit in the header. Check every expectation that fails against both global-tz and IANA data, and comment it in the test. Verify with tests for the "Conformance with ThreeTen-Backport's zone rules tests" scenarios and that the whole ported suite passes
 
 ## 5. Documentation
 

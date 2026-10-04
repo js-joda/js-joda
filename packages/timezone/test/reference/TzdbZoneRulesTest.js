@@ -9,13 +9,12 @@
  * commit 01754f00b5edd3f8a9fe2c7c71477a91ec223852 (1.7.6-SNAPSHOT, tzdb 2026egtz),
  * run against the IANA tzdb data of @js-joda/timezone.
  * Design D6 of the openspec change add-daylight-saving-zone-rules lists which tests are
- * ported as is, adapted, replaced or dropped. The tests for standardOffset, daylightSavings
- * and isDaylightSavings are added with these methods.
+ * ported as is, adapted, replaced or dropped.
  */
 import { expect } from 'chai';
 
 import {
-    DayOfWeek, Instant, LocalDate, LocalDateTime, LocalTime, TemporalAdjusters, ZoneId, ZoneOffset,
+    DayOfWeek, Duration, Instant, LocalDate, LocalDateTime, LocalTime, Month, TemporalAdjusters, ZoneId, ZoneOffset,
     ZoneOffsetTransition, ZonedDateTime
 } from '@js-joda/core';
 
@@ -113,6 +112,9 @@ describe('org.threeten.bp.zone.TestStandardZoneRules', () => {
             const offset = ZoneOffset.ofHoursMinutesSeconds(0, -1, -15);
             assertEquals(test.offset(instant), offset);
             checkOffset(test, old.toLocalDateTime(), offset, 1);
+            assertEquals(test.standardOffset(instant), offset);
+            assertEquals(test.daylightSavings(instant), Duration.ZERO);
+            assertEquals(test.isDaylightSavings(instant), false);
         });
 
         it('test_London_getOffset', () => {
@@ -256,6 +258,22 @@ describe('org.threeten.bp.zone.TestStandardZoneRules', () => {
             const otherTrans = test.transition(dateTime);
             expect(trans.equals(otherTrans)).to.be.true;
             assertEquals(trans.hashCode(), otherTrans.hashCode());
+        });
+
+        it('test_London_getStandardOffset', () => {
+            const test = europeLondon();
+            let zdt = createZDT(1840, 1, 1, ZoneOffset.UTC);
+            while (zdt.year() < 2010) {
+                const instant = zdt.toInstant();
+                if (zdt.year() < 1848) {
+                    assertEquals(test.standardOffset(instant), ZoneOffset.ofHoursMinutesSeconds(0, -1, -15));
+                } else if (zdt.year() >= 1969 && zdt.year() < 1972) {
+                    assertEquals(test.standardOffset(instant), OFFSET_PONE);
+                } else {
+                    assertEquals(test.standardOffset(instant), OFFSET_ZERO);
+                }
+                zdt = zdt.plusMonths(6);
+            }
         });
 
         // adapted: the expected list comes from javaTimeTransitions.js instead of getTransitions()
@@ -488,6 +506,41 @@ describe('org.threeten.bp.zone.TestStandardZoneRules', () => {
             assertEquals(trans.isValidOffset(OFFSET_PTWO), false);
             assertEquals(trans.toString(), 'Transition[Overlap at 2008-10-26T02:00+01:00 to Z]');
         });
+
+        it('test_Dublin_getStandardOffset', () => {
+            const test = europeDublin();
+            let zdt = createZDT(1840, 1, 1, ZoneOffset.UTC);
+            while (zdt.year() < 2010) {
+                const instant = zdt.toInstant();
+                if (zdt.year() < 1917) {
+                    // skip
+                } else if (zdt.year() >= 1917 && zdt.year() < 1969) {
+                    assertEquals(test.standardOffset(instant), OFFSET_ZERO, zdt.toString());
+                } else if (zdt.year() >= 1969 && zdt.year() < 1972) {
+                    // from 1968-02-18 to 1971-10-31, permanent UTC+1
+                    assertEquals(test.standardOffset(instant), OFFSET_PONE);
+                    assertEquals(test.offset(instant), OFFSET_PONE, zdt.toString());
+                } else {
+                    assertEquals(test.standardOffset(instant), OFFSET_ZERO, zdt.toString());
+                    assertEquals(test.offset(instant), zdt.month() === Month.JANUARY ? OFFSET_ZERO : OFFSET_PONE, zdt.toString());
+                }
+                zdt = zdt.plusMonths(6);
+            }
+        });
+
+        // the zone text formatter assertions of the original test are not ported, they belong to @js-joda/locale
+        it('test_Dublin_dst', () => {
+            const test = europeDublin();
+            assertEquals(test.isDaylightSavings(createZDT(1960, 1, 1, ZoneOffset.UTC).toInstant()), false);
+            assertEquals(test.daylightSavings(createZDT(1960, 1, 1, ZoneOffset.UTC).toInstant()), Duration.ofHours(0));
+            assertEquals(test.isDaylightSavings(createZDT(1960, 7, 1, ZoneOffset.UTC).toInstant()), true);
+            assertEquals(test.daylightSavings(createZDT(1960, 7, 1, ZoneOffset.UTC).toInstant()), Duration.ofHours(1));
+            // check negative DST is correctly handled
+            assertEquals(test.isDaylightSavings(createZDT(2016, 1, 1, ZoneOffset.UTC).toInstant()), false);
+            assertEquals(test.daylightSavings(createZDT(2016, 1, 1, ZoneOffset.UTC).toInstant()), Duration.ofHours(0));
+            assertEquals(test.isDaylightSavings(createZDT(2016, 7, 1, ZoneOffset.UTC).toInstant()), true);
+            assertEquals(test.daylightSavings(createZDT(2016, 7, 1, ZoneOffset.UTC).toInstant()), Duration.ofHours(1));
+        });
     });
 
     describe('Europe/Paris', () => {
@@ -504,6 +557,9 @@ describe('org.threeten.bp.zone.TestStandardZoneRules', () => {
             const offset = ZoneOffset.ofHoursMinutesSeconds(0, 9, 21);
             assertEquals(test.offset(instant), offset);
             checkOffset(test, old.toLocalDateTime(), offset, 1);
+            assertEquals(test.standardOffset(instant), offset);
+            assertEquals(test.daylightSavings(instant), Duration.ZERO);
+            assertEquals(test.isDaylightSavings(instant), false);
         });
 
         it('test_Paris_getOffset', () => {
@@ -644,6 +700,26 @@ describe('org.threeten.bp.zone.TestStandardZoneRules', () => {
             expect(trans.equals(otherTrans)).to.be.true;
             assertEquals(trans.hashCode(), otherTrans.hashCode());
         });
+
+        it('test_Paris_getStandardOffset', () => {
+            const test = europeParis();
+            let zdt = createZDT(1840, 1, 1, ZoneOffset.UTC);
+            while (zdt.year() < 2010) {
+                const instant = zdt.toInstant();
+                if (zdt.toLocalDate().isBefore(LocalDate.of(1911, 3, 11))) {
+                    assertEquals(test.standardOffset(instant), ZoneOffset.ofHoursMinutesSeconds(0, 9, 21));
+                } else if (zdt.toLocalDate().isBefore(LocalDate.of(1940, 6, 14))) {
+                    assertEquals(test.standardOffset(instant), OFFSET_ZERO);
+                } else if (zdt.toLocalDate().isBefore(LocalDate.of(1944, 8, 25))) {
+                    assertEquals(test.standardOffset(instant), OFFSET_PONE);
+                } else if (zdt.toLocalDate().isBefore(LocalDate.of(1945, 9, 16))) {
+                    assertEquals(test.standardOffset(instant), OFFSET_ZERO);
+                } else {
+                    assertEquals(test.standardOffset(instant), OFFSET_PONE);
+                }
+                zdt = zdt.plusMonths(6);
+            }
+        });
     });
 
     describe('America/New_York', () => {
@@ -660,6 +736,9 @@ describe('org.threeten.bp.zone.TestStandardZoneRules', () => {
             const offset = ZoneOffset.of('-04:56:02');
             assertEquals(test.offset(instant), offset);
             checkOffset(test, old.toLocalDateTime(), offset, 1);
+            assertEquals(test.standardOffset(instant), offset);
+            assertEquals(test.daylightSavings(instant), Duration.ZERO);
+            assertEquals(test.isDaylightSavings(instant), false);
         });
 
         it('test_NewYork_getOffset', () => {
@@ -822,6 +901,20 @@ describe('org.threeten.bp.zone.TestStandardZoneRules', () => {
             const otherTrans = test.transition(dateTime);
             expect(trans.equals(otherTrans)).to.be.true;
             assertEquals(trans.hashCode(), otherTrans.hashCode());
+        });
+
+        it('test_NewYork_getStandardOffset', () => {
+            const test = americaNewYork();
+            let dateTime = createZDT(1860, 1, 1, ZoneOffset.UTC);
+            while (dateTime.year() < 2010) {
+                const instant = dateTime.toInstant();
+                if (dateTime.toLocalDate().isBefore(LocalDate.of(1883, 11, 18))) {
+                    assertEquals(test.standardOffset(instant), ZoneOffset.of('-04:56:02'));
+                } else {
+                    assertEquals(test.standardOffset(instant), ZoneOffset.ofHours(-5));
+                }
+                dateTime = dateTime.plusMonths(6);
+            }
         });
     });
 

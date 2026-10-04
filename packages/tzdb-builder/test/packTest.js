@@ -55,6 +55,7 @@ describe('pack', () => {
             assert.equal(unpacked.name, name);
             assert.deepEqual(unpacked.abbrs, source.abbrs, name);
             assert.deepEqual(unpacked.offsets, source.offsets.map((o) => Math.round(o * 60) / 60), name);
+            assert.deepEqual(unpacked.stdOffsets, source.stdOffsets.map((o) => Math.round(o * 60) / 60), name);
             assert.deepEqual(unpacked.untils.slice(0, -1), source.untils.slice(0, -1), name);
             assert.equal(unpacked.untils[unpacked.untils.length - 1], Infinity);
         }

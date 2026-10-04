@@ -84,14 +84,19 @@ function mapIndices (source, indices) {
 /**
  * @private
  *
+ * Changes: field 7, the standard offset per period type (encoded like the offsets), is unpacked
+ * into `stdOffsets` when present.
+ *
  * @param string
- * @returns {{offsets: *[], abbrs: *[], name, untils: *, population: number}}
+ * @returns {{offsets: *[], abbrs: *[], name, untils: *, population: number, stdOffsets: (number[]|undefined)}}
  */
 export function unpack (string) {
     var data = string.split('|'),
         offsets = data[2].split(' '),
         indices = data[3].split(''),
-        untils  = data[4].split(' ');
+        untils  = data[4].split(' '),
+        stdOffsets = data[7] ? data[7].split(' ') : null,
+        result;
 
     arrayToInt(offsets);
     arrayToInt(indices);
@@ -99,12 +104,19 @@ export function unpack (string) {
 
     intToUntil(untils, indices.length);
 
-    return {
+    result = {
         name       : data[0],
         abbrs      : mapIndices(data[1].split(' '), indices),
         offsets    : mapIndices(offsets, indices),
         untils     : untils,
         population : data[5] | 0
     };
+
+    if (stdOffsets) {
+        arrayToInt(stdOffsets);
+        result.stdOffsets = mapIndices(stdOffsets, indices);
+    }
+
+    return result;
 }
 

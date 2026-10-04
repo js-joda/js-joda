@@ -321,9 +321,6 @@ describe('TzdbZoneRules', () => {
         it('should throw an error for not supported ZoneRule functionality', () => {
             const rules = TzdbZoneRulesProvider.getRules('Europe/London');
 
-            expect(() => rules.standardOffset()).to.throw(Error);
-            expect(() => rules.daylightSavings()).to.throw(Error);
-            expect(() => rules.isDaylightSavings()).to.throw(Error);
             expect(() => rules.transitions()).to.throw(Error);
             expect(() => rules.transitionRules()).to.throw(Error);
         });
