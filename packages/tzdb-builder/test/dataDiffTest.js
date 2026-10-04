@@ -24,6 +24,13 @@ describe('data-diff', () => {
             .map((c) => c.key), ['isdsts', 'isdsts']);
     });
 
+    it('finds changed standard offsets, and skips them when one side has none', () => {
+        const withStd = (stdOffsets) => ({ ...zone('A', [-60, -120, -60]), stdOffsets });
+        assert.deepEqual(compareZone(withStd([-60, -60, -60]), withStd([-60, 0, -60]))
+            .map((c) => [c.time, c.key, c.previous, c.next]), [[T1, 'stdOffsets', -60, 0], [T2 - 1, 'stdOffsets', -60, 0]]);
+        assert.deepEqual(compareZone(zone('A', [-60, -120, -60]), withStd([-60, 0, -60])), []);
+    });
+
     it('reports changed, added and removed zones', () => {
         const result = compareData(
             { version: '2026d', zones: [zone('A', [-60]), zone('B', [-60]), zone('C', [0])] },

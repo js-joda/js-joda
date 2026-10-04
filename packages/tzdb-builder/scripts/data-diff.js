@@ -5,11 +5,12 @@
  */
 
 /**
- * Lists the zones whose offsets, abbreviations or isdst flags differ between two unpacked data files,
- * for example the committed data before an update and the newly generated data. Compare the list with
- * the NEWS of the IANA releases in between. The values are compared at every period boundary of either
- * side (and the millisecond before it) and at the epoch, so a different split into periods alone is not
- * a change.
+ * Lists the zones whose offsets, abbreviations, isdst flags or standard offsets differ between two
+ * unpacked data files, for example the committed data before an update and the newly generated data.
+ * Compare the list with the NEWS of the IANA releases in between. The values are compared at every
+ * period boundary of either side (and the millisecond before it) and at the epoch, so a different split
+ * into periods alone is not a change. Standard offsets are only compared when both files have them
+ * (data before field 7 has none).
  *
  * Usage: npm run data-diff -- <previous-unpacked.json> <new-unpacked.json>
  */
@@ -18,7 +19,7 @@ import fs from 'node:fs';
 import { pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
 
-const KEYS = ['offsets', 'abbrs', 'isdsts'];
+const KEYS = ['offsets', 'abbrs', 'isdsts', 'stdOffsets'];
 
 function periodAt(zone, time) {
     const index = zone.untils.findIndex((until) => until == null || until > time);
@@ -39,11 +40,12 @@ export function compareZone(previous, next) {
             }
         }
     }
+    const keys = KEYS.filter((key) => previous[key] != null && next[key] != null);
     const changes = [];
     for (const time of [...times].sort((a, b) => a - b)) {
         const p = periodAt(previous, time);
         const n = periodAt(next, time);
-        for (const key of KEYS) {
+        for (const key of keys) {
             if (previous[key][p] !== next[key][n]) {
                 changes.push({ time, key, previous: previous[key][p], next: next[key][n] });
             }
