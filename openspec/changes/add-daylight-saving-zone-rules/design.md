@@ -28,8 +28,10 @@
 - `@js-joda/core` already has `ZoneOffsetTransition` and declares all of the methods on `ZoneRules`
   and in `typings/js-joda.d.ts`. `ZoneOffsetTransitionRule` exists only as a TypeScript interface.
 - The data comes from the rearguard tzdb format (spec `tzdb-data-generation`, "Rearguard
-  daylight-saving semantics"), so daylight saving amounts are never negative. This matches the data
-  that java.time ships.
+  daylight-saving semantics"), so daylight saving amounts are never negative. ThreeTen-Backport uses
+  rearguard data too. The JDK converts the vanguard negative daylight saving itself, which gives other
+  standard offsets for Europe/Dublin 1968–1971 and Africa/Windhoek since 1990 (found by the check in
+  D7 step 5); everywhere else the standard offsets of tzdb 2026b agree with java.time 21.
 - The full data has explicit transitions through 2499. The range bundles cover only their year range.
 - Consecutive periods can have equal offsets: there are 458 such boundaries in 2026e, for example
   Africa/Algiers 1977 from WEST to CET, both at `+01:00`. `ZoneOffsetTransition.of` rejects equal
@@ -159,7 +161,11 @@ The builder follows ThreeTen-Backport, but keeps TZif as the source of offsets a
    link. The unpacked JSON gains `stdOffsets` per zone.
 5. A script, like `scripts/parity.js`, runs a small Java program that compares
    `ZoneRules.getStandardOffset` at the start of every period with the generated data and prints both
-   tzdb versions. It is run by hand, because CI has no JDK with a matching tzdb.
+   tzdb versions. It is run by hand, because CI has no JDK with a matching tzdb. Known differences are
+   listed with their reason in `scripts/standard-offsets-expected.json` (Africa/Windhoek, Europe/Dublin
+   and its link Eire, see Context), as `scripts/parity-expected.json` does for the parity check. Zones
+   the JDK doesn't know (EST, HST, MST, GMT+0, GMT-0, ROC) are only listed. With 2026b data and a JDK
+   with tzdb 2026b, all other 223,609 periods agree.
 *Alternative:* compile `rearguard.zi` a second time with every SAVE set to 0 and read the standard
 offsets from that TZif. Rejected: window ends in wall time then move by the saving amount, which is
 exactly where the cases above happen.

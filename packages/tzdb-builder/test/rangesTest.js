@@ -1,23 +1,16 @@
 import assert from 'node:assert/strict';
-import fs from 'node:fs';
 import fsp from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 
-import { collectZone } from '../src/collect.js';
 import { createContext } from '../src/context.js';
 import { filterLinkPack } from '../src/pack.js';
 import { packedVariants, packStep } from '../src/ranges.js';
-import { parseTzif } from '../src/tzif.js';
+import { collectFixture } from './fixtureZones.js';
 import { unpack } from './unpackHelper.js';
 
-const fixtureDir = path.join(path.dirname(fileURLToPath(import.meta.url)), 'fixtures', 'zoneinfo');
 const FIXTURE_ZONES = ['America/New_York', 'Australia/Sydney', 'Europe/Berlin', 'Europe/Dublin', 'Etc/GMT-2'];
-const unpackedFixture = () => ({
-    version: '2026a',
-    zones: FIXTURE_ZONES.map((name) => collectZone(name, parseTzif(fs.readFileSync(path.join(fixtureDir, name))))),
-});
+const unpackedFixture = () => ({ version: '2026a', zones: FIXTURE_ZONES.map(collectFixture) });
 
 const offsetAt = (z, time) => z.offsets[z.untils.findIndex((until) => until > time)];
 

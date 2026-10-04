@@ -34,3 +34,14 @@ npm run parity -- <moment-timezone>/data/unpacked/2026a.json .cache/2026a/unpack
 
 `--until` defaults to 2037. The data reaches 2499: zic writes the explicit transitions up to 2037 and
 the builder expands the TZif footer rule (POSIX TZ string) after that.
+
+The standard offset of each period comes from the STDOFF column of the Zone lines in `rearguard.zi`,
+because TZif files don't contain it. Compare the standard offsets with java.time (needs `java` 11 or
+later on the PATH; use a JDK with the same tzdb version, both versions are printed):
+
+```bash
+npm run standard-offsets -- .cache/2026a/unpacked.json --until 2499
+```
+
+`--until` defaults to 2499. Known differences are listed with their reason in
+`scripts/standard-offsets-expected.json`.

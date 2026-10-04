@@ -1,0 +1,8 @@
+{
+    "description": "Zones whose standard offsets are known to differ from java.time. Each entry needs a reason.",
+    "zones": {
+        "Africa/Windhoek": "The JDK converts the vanguard negative DST of Namibia itself (standard offset +01:00 since 1990); rearguard.zi has 2:00 until 1994 and from 2017 on",
+        "Eire": "Link to Europe/Dublin, see there",
+        "Europe/Dublin": "The JDK converts the vanguard negative DST of Eire itself (standard offset Z in 1968-1971); rearguard.zi has 1:00, as ThreeTen-Backport's test_Dublin_getStandardOffset expects"
+    }
+}

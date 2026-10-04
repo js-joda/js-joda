@@ -10,6 +10,7 @@
   "scripts": {
     "generate": "node src/cli.js",
     "parity": "node scripts/parity.js",
+    "standard-offsets": "node scripts/standard-offsets.js",
     "test": "npx mocha --timeout 5000 'test/**/*Test.js'",
     "lint": "npx eslint ."
   },

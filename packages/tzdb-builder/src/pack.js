@@ -8,8 +8,9 @@
  * Copyright (c) JS Foundation and other contributors
  * license: MIT, github.com/moment/moment-timezone
  *
- * Changes: period types are keyed by (abbr, offset, isdst) and the isdst flags are written as
- * field 6; population and countries are not written; links are grouped by a deterministic leader rule.
+ * Changes: period types are keyed by (abbr, offset, isdst, standard offset), the isdst flags are
+ * written as field 6 and the standard offsets as field 7; population and countries are not written;
+ * links are grouped by a deterministic leader rule.
  */
 
 const BASE60 = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX';
@@ -65,44 +66,58 @@ function packUntils(untils) {
     return out.join(' ');
 }
 
+// offsets in minutes west are rounded to whole seconds before packing
+const packOffset = (offset) => packBase60(Math.round(offset * 60) / 60, 1);
+
 function packTypes(zone) {
     const abbrs = [];
     const offsets = [];
     const isdsts = [];
+    const stdOffsets = [];
     const indices = [];
     const map = new Map();
     for (let i = 0; i < zone.abbrs.length; i++) {
-        const key = `${zone.abbrs[i]}|${zone.offsets[i]}|${zone.isdsts[i]}`;
+        const key = `${zone.abbrs[i]}|${zone.offsets[i]}|${zone.isdsts[i]}|${zone.stdOffsets[i]}`;
         if (!map.has(key)) {
             map.set(key, abbrs.length);
             abbrs.push(zone.abbrs[i]);
-            offsets.push(packBase60(Math.round(zone.offsets[i] * 60) / 60, 1));
+            offsets.push(packOffset(zone.offsets[i]));
             isdsts.push(zone.isdsts[i] ? '1' : '0');
+            stdOffsets.push(packOffset(zone.stdOffsets[i]));
         }
         indices.push(packBase60(map.get(key), 0));
     }
-    return { abbrs: abbrs.join(' '), offsets: offsets.join(' '), indices: indices.join(''), isdsts: isdsts.join('') };
+    return {
+        abbrs: abbrs.join(' '),
+        offsets: offsets.join(' '),
+        indices: indices.join(''),
+        isdsts: isdsts.join(''),
+        stdOffsets: stdOffsets.join(' '),
+    };
 }
 
+const ZONE_ARRAYS = ['abbrs', 'untils', 'offsets', 'isdsts', 'stdOffsets'];
+
 function validate(zone) {
-    for (const key of ['name', 'abbrs', 'untils', 'offsets', 'isdsts']) {
+    for (const key of ['name', ...ZONE_ARRAYS]) {
         if (zone[key] == null) {
             throw new Error(`Missing ${key} in zone ${zone.name}`);
         }
     }
-    const length = zone.abbrs.length;
-    if (zone.untils.length !== length || zone.offsets.length !== length || zone.isdsts.length !== length) {
+    if (ZONE_ARRAYS.some((key) => zone[key].length !== zone.abbrs.length)) {
         throw new Error(`Mismatched array lengths in zone ${zone.name}`);
     }
 }
 
 /**
- * Packs a zone into `name|abbrs|offsets|indices|untils|population|isdsts`. Population is always empty.
+ * Packs a zone into `name|abbrs|offsets|indices|untils|population|isdsts|stdOffsets`.
+ * Population is always empty.
  */
 export function pack(zone) {
     validate(zone);
     const types = packTypes(zone);
-    return [zone.name, types.abbrs, types.offsets, types.indices, packUntils(zone.untils), '', types.isdsts].join('|');
+    return [zone.name, types.abbrs, types.offsets, types.indices, packUntils(zone.untils), '', types.isdsts,
+        types.stdOffsets].join('|');
 }
 
 function findStartAndEndIndex(untils, start, end) {
@@ -136,6 +151,7 @@ export function filterYears(zone, start, end) {
         untils,
         offsets: zone.offsets.slice(startI, endI),
         isdsts: zone.isdsts.slice(startI, endI),
+        stdOffsets: zone.stdOffsets.slice(startI, endI),
     };
 }
 
@@ -150,7 +166,7 @@ export function filterYears(zone, start, end) {
 export function createLinks(zones, zoneNames) {
     const groups = new Map();
     for (const zone of zones) {
-        const key = JSON.stringify([zone.abbrs, zone.untils, zone.offsets, zone.isdsts]);
+        const key = JSON.stringify([zone.abbrs, zone.untils, zone.offsets, zone.isdsts, zone.stdOffsets]);
         if (!groups.has(key)) {
             groups.set(key, []);
         }

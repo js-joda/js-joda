@@ -65,7 +65,13 @@ data. The comparison SHALL list every zone whose offsets, abbreviations or isdst
 The project SHALL provide a check that compares the standard offset of every generated zone with
 java.time's `ZoneRules.getStandardOffset` at the start of every period up to 2499. It SHALL report each
 differing zone and instant, and SHALL report the JDK's tzdb version next to the generated version.
+Differences of zones in a list of known differences, each with a reason, SHALL be reported separately
+as expected. Zones that java.time doesn't know SHALL be listed without failing the check.
 
 #### Scenario: Standard offset check
 - **WHEN** the check runs with a JDK whose tzdb version equals the generated data's version
-- **THEN** it exits with status 0 if no standard offset differs, and otherwise lists each differing zone and instant and exits non-zero
+- **THEN** it exits with status 0 if no standard offset differs outside the known differences, and otherwise lists each differing zone and instant and exits non-zero
+
+#### Scenario: Known difference of the JDK
+- **WHEN** the check runs for Europe/Dublin, whose standard offset in 1968–1971 is `+01:00` in the rearguard data and `Z` in the JDK
+- **THEN** the difference is reported as expected, with its reason, and does not fail the check
