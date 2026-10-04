@@ -11,6 +11,7 @@
     "generate": "node src/cli.js",
     "parity": "node scripts/parity.js",
     "standard-offsets": "node scripts/standard-offsets.js",
+    "data-diff": "node scripts/data-diff.js",
     "test": "npx mocha --timeout 5000 'test/**/*Test.js'",
     "lint": "npx eslint ."
   },

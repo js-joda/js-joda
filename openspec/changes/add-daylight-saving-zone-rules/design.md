@@ -203,8 +203,9 @@ the same behavior, for example for `transitionRules()`.
 - [Older versioned data files have no field 7, so `loadTzdbData` with them makes the three methods
   throw.] → This is the documented behavior for data without standard offsets. The README says which
   data has them.
-- [Field 7 makes the packed files bigger.] → It is about as big as field 2: about 6 KB of 720 KB in
-  `latest.json` and less than 1 KB in the 10-year range.
+- [Field 7 makes the packed files bigger.] → It is about as big as field 2: 6 KB more in `latest.json`
+  (720,566 → 726,808 bytes). Measured on the minified bundles, including the new code: the full
+  bundle grows from 708 to 715 KB (gzip 35 → 37 KB), the 10-year range from 30 to 32 KB (gzip 8 → 9 KB).
 - [Reduced bundles give wrong transitions and standard offsets outside their range without an
   error.] → This is the same documented limitation as for offsets. The README states that it also
   applies to the new methods.

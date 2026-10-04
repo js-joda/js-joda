@@ -12,6 +12,7 @@ import { expect } from 'chai';
 
 import { Duration, Instant, ZoneId, ZoneOffset } from '@js-joda/core';
 
+import rangeData from '../data/packed/latest-10-year-range.json';
 import latest from '../src/tzdbData';
 import { TzdbZoneRules } from '../src/TzdbZoneRules';
 import { unpack } from '../src/unpack';
@@ -182,6 +183,27 @@ describe('TzdbZoneRules daylight saving and transitions', () => {
         it('Data in the moment-timezone packed format', () => {
             expect(() => momentFormat.isDaylightSavings(summer)).to.throw(Error, message);
             expectTransition(momentFormat.nextTransition(summer), '2026-10-25T01:00:00Z', '+02:00', '+01:00');
+        });
+    });
+
+    describe('Reduced bundle', () => {
+        // a TzdbZoneRules from the 10-year range data (2021-2031), in which Europe/Berlin is a link
+        // to Africa/Ceuta; test/useTzdbZoneRules.js loads the full data into the global provider
+        const link = rangeData.links.find((l) => l.endsWith('|Europe/Berlin'));
+        const leader = link != null ? link.split('|')[0] : 'Europe/Berlin';
+        const reduced = new TzdbZoneRules(unpack(rangeData.zones.find((zone) => zone.startsWith(`${leader}|`))));
+        const full = rules('Europe/Berlin');
+
+        it('answers like the full data inside its range', () => {
+            for (const text of ['2026-01-01T00:00:00Z', '2026-01-15T00:00:00Z', '2026-03-29T01:00:00Z',
+                '2026-07-01T00:00:00Z', '2026-10-25T00:59:59Z', '2026-12-31T23:59:59Z']) {
+                const instant = Instant.parse(text);
+                expect(reduced.standardOffset(instant).equals(full.standardOffset(instant)), text).to.be.true;
+                expect(reduced.daylightSavings(instant).equals(full.daylightSavings(instant)), text).to.be.true;
+                expect(reduced.isDaylightSavings(instant), text).to.equal(full.isDaylightSavings(instant));
+                expect(reduced.nextTransition(instant).equals(full.nextTransition(instant)), text).to.be.true;
+                expect(reduced.previousTransition(instant).equals(full.previousTransition(instant)), text).to.be.true;
+            }
         });
     });
 });

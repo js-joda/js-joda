@@ -32,13 +32,34 @@ on the machine is never used.
    Single steps can be repeated with `--step <name>` or `--from <name>`
    (`fetch → compile → collect → write-unpacked → pack`), `--force` downloads the release again.
 
-3. Optional: compare the result with moment-timezone data of the same release, if available:
+3. Check the result:
 
-   ```bash
-   npm run parity -- <moment-timezone>/data/unpacked/<version>.json .cache/<version>/unpacked.json --until 2499
-   ```
+   - List the zones that changed against the committed data, and compare the list with the `NEWS`
+     of the releases in between. Only zones mentioned there should change:
 
-   It must report `Unexpected differences: 0`.
+     ```bash
+     git show HEAD:packages/timezone/data/unpacked/latest.json > .cache/previous-unpacked.json
+     npm run data-diff -- .cache/previous-unpacked.json .cache/<version>/unpacked.json
+     ```
+
+   - Compare the standard offsets with java.time (needs `java` 11 or later; use a JDK whose tzdb
+     version is the same or close, both versions are printed):
+
+     ```bash
+     npm run standard-offsets -- .cache/<version>/unpacked.json
+     ```
+
+     It must report `Unexpected differences: 0`, except for zones that changed between the JDK's
+     tzdb version and `<version>`. Known differences of the JDK are listed with their reason in
+     `scripts/standard-offsets-expected.json`.
+
+   - Compare the offsets with moment-timezone data of the same release, if available:
+
+     ```bash
+     npm run parity -- <moment-timezone>/data/unpacked/<version>.json .cache/<version>/unpacked.json --until 2499
+     ```
+
+     It must report `Unexpected differences: 0`.
 
 4. Build and test the timezone package:
 
