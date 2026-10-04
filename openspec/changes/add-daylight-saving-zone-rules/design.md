@@ -75,10 +75,8 @@ silently differ from java.time.
 ### D3. Transitions are lazily computed offset changes
 A transition exists at `untils[i]` when `offsets[i] !== offsets[i + 1]`. On first use, the rules
 compute and cache a sorted array of transition indices for the zone. `ZoneOffsetTransition` objects
-are created on demand. `nextTransition` and `previousTransition` binary search `untils` (the existing
-`binarySearch` helper) and then walk to the nearest index in the transition set. Because there are
-few equal-offset boundaries, a linear step is enough. The `Infinity` sentinel never counts as a
-transition.
+are created on demand. `nextTransition` and `previousTransition` binary search this index array,
+comparing `untils[index]` with the query. The `Infinity` sentinel never counts as a transition.
 *Alternative:* prebuild all `ZoneOffsetTransition` objects at load time. Rejected because of the
 load-time cost: about 600 zones, many with more than 1,000 transitions through 2499.
 

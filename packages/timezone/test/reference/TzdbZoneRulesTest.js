@@ -9,15 +9,19 @@
  * commit 01754f00b5edd3f8a9fe2c7c71477a91ec223852 (1.7.6-SNAPSHOT, tzdb 2026egtz),
  * run against the IANA tzdb data of @js-joda/timezone.
  * Design D6 of the openspec change add-daylight-saving-zone-rules lists which tests are
- * ported as is, adapted, replaced or dropped. The tests for standardOffset, daylightSavings,
- * isDaylightSavings, nextTransition and previousTransition are added with these methods.
+ * ported as is, adapted, replaced or dropped. The tests for standardOffset, daylightSavings
+ * and isDaylightSavings are added with these methods.
  */
 import { expect } from 'chai';
 
-import { LocalDateTime, ZoneId, ZoneOffset } from '@js-joda/core';
+import {
+    DayOfWeek, Instant, LocalDate, LocalDateTime, LocalTime, TemporalAdjusters, ZoneId, ZoneOffset,
+    ZoneOffsetTransition, ZonedDateTime
+} from '@js-joda/core';
 
 import { assertEquals, assertNotNull } from '../testUtils';
 import '../useTzdbZoneRules';
+import { ASIA_KATHMANDU_TRANSITIONS, EUROPE_LONDON_TRANSITIONS } from './javaTimeTransitions';
 
 describe('org.threeten.bp.zone.TestStandardZoneRules', () => {
 
@@ -31,6 +35,27 @@ describe('org.threeten.bp.zone.TestStandardZoneRules', () => {
     const europeDublin = () => ZoneId.of('Europe/Dublin').rules();
     const europeParis = () => ZoneId.of('Europe/Paris').rules();
     const americaNewYork = () => ZoneId.of('America/New_York').rules();
+    const asiaKathmandu = () => ZoneId.of('Asia/Kathmandu').rules();
+    const etcGmt = () => ZoneId.of('Etc/GMT').rules();
+
+    // replaces test.getTransitions(), see javaTimeTransitions.js
+    function javaTransitions(list) {
+        return list.map(([instant, before, after]) => {
+            const offsetBefore = ZoneOffset.of(before);
+            return ZoneOffsetTransition.of(
+                LocalDateTime.ofInstant(Instant.parse(instant), offsetBefore), offsetBefore, ZoneOffset.of(after));
+        });
+    }
+
+    // replaces test.getTransitionRules().get(0 / 1).createTransition(year) for Europe/London:
+    // last Sunday in March (rule 0) or October (rule 1), at 01:00 UTC
+    function londonRuleTransition(rule, year) {
+        const offsetBefore = rule === 0 ? OFFSET_ZERO : OFFSET_PONE;
+        const offsetAfter = rule === 0 ? OFFSET_PONE : OFFSET_ZERO;
+        const date = LocalDate.of(year, rule === 0 ? 3 : 10, 1).with(TemporalAdjusters.lastInMonth(DayOfWeek.SUNDAY));
+        const instant = LocalDateTime.of(date, LocalTime.of(1, 0)).toInstant(ZoneOffset.UTC);
+        return ZoneOffsetTransition.of(LocalDateTime.ofInstant(instant, offsetBefore), offsetBefore, offsetAfter);
+    }
 
     function createInstant(year, month, day, ...rest) {
         const offset = rest.pop();
@@ -62,6 +87,17 @@ describe('org.threeten.bp.zone.TestStandardZoneRules', () => {
             return zot;
         }
     }
+
+    describe('Etc/GMT', () => {
+
+        it('test_EtcGmt_nextTransition', () => {
+            assertEquals(etcGmt().nextTransition(Instant.EPOCH), null);
+        });
+
+        it('test_EtcGmt_previousTransition', () => {
+            assertEquals(etcGmt().previousTransition(Instant.EPOCH), null);
+        });
+    });
 
     describe('Europe/London', () => {
 
@@ -220,6 +256,102 @@ describe('org.threeten.bp.zone.TestStandardZoneRules', () => {
             const otherTrans = test.transition(dateTime);
             expect(trans.equals(otherTrans)).to.be.true;
             assertEquals(trans.hashCode(), otherTrans.hashCode());
+        });
+
+        // adapted: the expected list comes from javaTimeTransitions.js instead of getTransitions()
+        it('test_London_nextTransition_historic', () => {
+            const test = europeLondon();
+            const trans = javaTransitions(EUROPE_LONDON_TRANSITIONS);
+
+            const first = trans[0];
+            assertEquals(test.nextTransition(first.instant().minusNanos(1)), first);
+
+            for (let i = 0; i < trans.length - 1; i++) {
+                const cur = trans[i];
+                const next = trans[i + 1];
+
+                assertEquals(test.nextTransition(cur.instant()), next);
+                assertEquals(test.nextTransition(next.instant().minusNanos(1)), next);
+            }
+        });
+
+        // adapted: londonRuleTransition() instead of getTransitionRules()
+        it('test_London_nextTransition_rulesBased', () => {
+            const test = europeLondon();
+            const trans = javaTransitions(EUROPE_LONDON_TRANSITIONS);
+
+            const last = trans[trans.length - 1];
+            assertEquals(test.nextTransition(last.instant()), londonRuleTransition(0, 1998));
+
+            for (let year = 1998; year < 2010; year++) {
+                const a = londonRuleTransition(0, year);
+                const b = londonRuleTransition(1, year);
+                const c = londonRuleTransition(0, year + 1);
+
+                assertEquals(test.nextTransition(a.instant()), b);
+                assertEquals(test.nextTransition(b.instant().minusNanos(1)), b);
+
+                assertEquals(test.nextTransition(b.instant()), c);
+                assertEquals(test.nextTransition(c.instant().minusNanos(1)), c);
+            }
+        });
+
+        // replaced: java.time continues to Year.MAX_VALUE, the data of @js-joda/timezone ends in 2499
+        it('test_London_nextTransition_lastYear', () => {
+            const test = europeLondon();
+            const zot = londonRuleTransition(1, 2499);
+            assertEquals(test.previousTransition(Instant.parse('2500-01-01T00:00:00Z')), zot);
+            assertEquals(test.nextTransition(zot.instant()), null);
+        });
+
+        // adapted: the expected list comes from javaTimeTransitions.js instead of getTransitions()
+        it('test_London_previousTransition_historic', () => {
+            const test = europeLondon();
+            const trans = javaTransitions(EUROPE_LONDON_TRANSITIONS);
+
+            const first = trans[0];
+            assertEquals(test.previousTransition(first.instant()), null);
+            assertEquals(test.previousTransition(first.instant().minusNanos(1)), null);
+
+            for (let i = 0; i < trans.length - 1; i++) {
+                const prev = trans[i];
+                const cur = trans[i + 1];
+
+                assertEquals(test.previousTransition(cur.instant()), prev);
+                assertEquals(test.previousTransition(prev.instant().plusSeconds(1)), prev);
+                assertEquals(test.previousTransition(prev.instant().plusNanos(1)), prev);
+            }
+        });
+
+        // adapted: javaTimeTransitions.js and londonRuleTransition() instead of getTransitions()
+        // and getTransitionRules()
+        it('test_London_previousTransition_rulesBased', () => {
+            const test = europeLondon();
+            const trans = javaTransitions(EUROPE_LONDON_TRANSITIONS);
+
+            const last = trans[trans.length - 1];
+            assertEquals(test.previousTransition(last.instant().plusSeconds(1)), last);
+            assertEquals(test.previousTransition(last.instant().plusNanos(1)), last);
+
+            // Jan 1st of year between transitions and rules
+            let odt = ZonedDateTime.ofInstant(last.instant(), last.offsetAfter());
+            odt = odt.withDayOfYear(1).plusYears(1).with(LocalTime.MIDNIGHT);
+            assertEquals(test.previousTransition(odt.toInstant()), last);
+
+            // later years
+            for (let year = 1998; year < 2010; year++) {
+                const a = londonRuleTransition(0, year);
+                const b = londonRuleTransition(1, year);
+                const c = londonRuleTransition(0, year + 1);
+
+                assertEquals(test.previousTransition(c.instant()), b);
+                assertEquals(test.previousTransition(b.instant().plusSeconds(1)), b);
+                assertEquals(test.previousTransition(b.instant().plusNanos(1)), b);
+
+                assertEquals(test.previousTransition(b.instant()), a);
+                assertEquals(test.previousTransition(a.instant().plusSeconds(1)), a);
+                assertEquals(test.previousTransition(a.instant().plusNanos(1)), a);
+            }
         });
     });
 
@@ -690,6 +822,47 @@ describe('org.threeten.bp.zone.TestStandardZoneRules', () => {
             const otherTrans = test.transition(dateTime);
             expect(trans.equals(otherTrans)).to.be.true;
             assertEquals(trans.hashCode(), otherTrans.hashCode());
+        });
+    });
+
+    describe('Asia/Kathmandu', () => {
+
+        // adapted: the expected list comes from javaTimeTransitions.js instead of getTransitions()
+        it('test_Kathmandu_nextTransition_historic', () => {
+            const test = asiaKathmandu();
+            const trans = javaTransitions(ASIA_KATHMANDU_TRANSITIONS);
+
+            const first = trans[0];
+            assertEquals(test.nextTransition(first.instant().minusNanos(1)), first);
+
+            for (let i = 0; i < trans.length - 1; i++) {
+                const cur = trans[i];
+                const next = trans[i + 1];
+
+                assertEquals(test.nextTransition(cur.instant()), next);
+                assertEquals(test.nextTransition(next.instant().minusNanos(1)), next);
+            }
+        });
+
+        // adapted: the last transition comes from previousTransition() instead of getTransitions()
+        it('test_Kathmandu_nextTransition_noRules', () => {
+            const test = asiaKathmandu();
+            const last = test.previousTransition(Instant.parse('2500-01-01T00:00:00Z'));
+            assertEquals(last, javaTransitions(ASIA_KATHMANDU_TRANSITIONS)[1]);
+            assertEquals(test.nextTransition(last.instant()), null);
+        });
+    });
+
+    describe('transitions() / transitionRules()', () => {
+
+        // replaced: test_getTransitions_immutable and test_getTransitionRules_immutable,
+        // because @js-joda/timezone doesn't support these methods
+        it('test_getTransitions_notSupported', () => {
+            expect(() => europeParis().transitions()).to.throw(Error, 'not supported: ZoneRules.transitions');
+        });
+
+        it('test_getTransitionRules_notSupported', () => {
+            expect(() => europeParis().transitionRules()).to.throw(Error, 'not supported: ZoneRules.transitionRules');
         });
     });
 

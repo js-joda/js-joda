@@ -289,9 +289,13 @@ export class TzdbZoneRules extends ZoneRules{
      *  may be ignored if the rules have a single offset for all instants
      * @return {ZoneOffsetTransition} the next transition after the specified instant, null if this is after the last transition
      */
-    // eslint-disable-next-line no-unused-vars
     nextTransition(instant){
-        notSupported('ZoneRules.nextTransition');
+        const indices = this._transitionIndices();
+        const untils = this._tzdbInfo.untils;
+        // transitions are at whole milliseconds, so "after the instant" equals "after its truncated milli"
+        const epochMilli = instant.toEpochMilli();
+        const k = firstIndexWhere(indices, (i) => untils[i] > epochMilli);
+        return k < indices.length ? this._createTransition(indices[k]) : null;
     }
 
     /**
@@ -305,47 +309,74 @@ export class TzdbZoneRules extends ZoneRules{
      *  may be ignored if the rules have a single offset for all instants
      * @return {ZoneOffsetTransition} the previous transition after the specified instant, null if this is before the first transition
      */
-    // eslint-disable-next-line no-unused-vars
     previousTransition(instant){
-        notSupported('ZoneRules.previousTransition');
+        const indices = this._transitionIndices();
+        const untils = this._tzdbInfo.untils;
+        // round up to the next milli if the instant has a fraction of a milli,
+        // so that a transition at the truncated milli counts as before the instant
+        const epochMilli = instant.toEpochMilli() + (instant.nano() % 1000000 > 0 ? 1 : 0);
+        const k = firstIndexWhere(indices, (i) => untils[i] >= epochMilli);
+        return k > 0 ? this._createTransition(indices[k - 1]) : null;
     }
 
     /**
-     * Gets the complete list of fully defined transitions.
-     * <p>
-     * The complete set of transitions for this rules instance is defined by this method
-     * and {@link #getTransitionRules()}. This method returns those transitions that have
-     * been fully defined. These are typically historical, but may be in the future.
-     * <p>
-     * The list will be empty for fixed offset rules and for any time-zone where there has
-     * only ever been a single offset. The list will also be empty if the transition rules are unknown.
+     * The indices i of the periods whose end, untils[i], is an offset transition, in ascending
+     * order. Period boundaries where the offset doesn't change (only the abbreviation or the
+     * isdst flag) and the last open-ended period are not transitions. Computed on first use.
      *
-     * @return {ZoneOffsetTransition[]} an immutable list of fully defined transitions, not null
+     * @return {number[]}
+     * @private
+     */
+    _transitionIndices(){
+        if (this._transitionIndicesCache == null) {
+            const indices = [];
+            const offsets = this._tzdbInfo.offsets;
+            for (let i = 0; i < offsets.length - 1; i++) {
+                if (this._offsetByIndexInSeconds(i) !== this._offsetByIndexInSeconds(i + 1)) {
+                    indices.push(i);
+                }
+            }
+            this._transitionIndicesCache = indices;
+        }
+        return this._transitionIndicesCache;
+    }
+
+    /**
+     * @param {number} index - the index of the period that ends with the transition
+     * @return {ZoneOffsetTransition}
+     * @private
+     */
+    _createTransition(index){
+        const offsetBefore = ZoneOffset.ofTotalSeconds(this._offsetByIndexInSeconds(index));
+        const offsetAfter = ZoneOffset.ofTotalSeconds(this._offsetByIndexInSeconds(index + 1));
+        const instant = Instant.ofEpochMilli(this._tzdbInfo.untils[index]);
+        return ZoneOffsetTransition.of(LocalDateTime.ofInstant(instant, offsetBefore), offsetBefore, offsetAfter);
+    }
+
+    /**
+     * Not supported, always throws.
+     * <p>
+     * In java.time, the complete set of transitions is this list of the historic transitions
+     * together with {@link #transitionRules()} for the later years. The tzdb data of this
+     * package contains only explicit transitions through the year 2499 and doesn't say where
+     * the historic part ends, so it can't return what java.time returns.
+     * Use {@link #nextTransition} or {@link #previousTransition} to iterate over the transitions.
+     *
+     * @throws {Error} always
      */
     transitions(){
         notSupported('ZoneRules.transitions');
     }
 
     /**
-     * Gets the list of transition rules for years beyond those defined in the transition list.
+     * Not supported, always throws.
      * <p>
-     * The complete set of transitions for this rules instance is defined by this method
-     * and {@link #getTransitions()}. This method returns instances of {@link ZoneOffsetTransitionRule}
-     * that define an algorithm for when transitions will occur.
-     * <p>
-     * For any given {@code ZoneRules}, this list contains the transition rules for years
-     * beyond those years that have been fully defined. These rules typically refer to future
-     * daylight saving time rule changes.
-     * <p>
-     * If the zone defines daylight savings into the future, then the list will normally
-     * be of size two and hold information about entering and exiting daylight savings.
-     * If the zone does not have daylight savings, or information about future changes
-     * is uncertain, then the list will be empty.
-     * <p>
-     * The list will be empty for fixed offset rules and for any time-zone where there is no
-     * daylight saving time. The list will also be empty if the transition rules are unknown.
+     * In java.time, this returns the recurring rules (such as "last Sunday in March") for the
+     * years after the list of {@link #transitions()}. The tzdb data of this package is expanded
+     * into explicit transitions through the year 2499 and has no such rules.
+     * Use {@link #nextTransition} or {@link #previousTransition} to iterate over the transitions.
      *
-     * @return {ZoneOffsetTransitionRule[]} an immutable list of transition rules, not null
+     * @throws {Error} always
      */
     transitionRules(){
         notSupported('ZoneRules.transitionRules');
@@ -458,6 +489,21 @@ function binarySearch(array, value) {
         }
     }
     return hi;
+}
+
+// the first index k of a sorted array for which predicate(array[k]) is true, assuming the
+// predicate is false for a prefix and true for the rest; array.length if it is never true
+function firstIndexWhere(array, predicate) {
+    let lo = 0, hi = array.length;
+    while (lo < hi) {
+        const mid = (lo + hi) >> 1;
+        if (predicate(array[mid])) {
+            hi = mid;
+        } else {
+            lo = mid + 1;
+        }
+    }
+    return lo;
 }
 
 function notSupported(msg){

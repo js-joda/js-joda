@@ -324,8 +324,6 @@ describe('TzdbZoneRules', () => {
             expect(() => rules.standardOffset()).to.throw(Error);
             expect(() => rules.daylightSavings()).to.throw(Error);
             expect(() => rules.isDaylightSavings()).to.throw(Error);
-            expect(() => rules.nextTransition()).to.throw(Error);
-            expect(() => rules.previousTransition()).to.throw(Error);
             expect(() => rules.transitions()).to.throw(Error);
             expect(() => rules.transitionRules()).to.throw(Error);
         });
