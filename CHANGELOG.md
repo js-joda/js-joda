@@ -15,6 +15,9 @@ Changelog
     * [#826](https://github.com/js-joda/js-joda/pull/826) Fix `Instant.toEpochMilli()` overflowing for epoch millis close to `Number.MIN_SAFE_INTEGER`, port of [ThreeTen/threetenbp#51](https://github.com/ThreeTen/threetenbp/pull/51) ([@pithu](https://github.com/pithu))
     * [#828](https://github.com/js-joda/js-joda/pull/828) Parse an instant-seconds field (`ChronoField.INSTANT_SECONDS`) together with an offset or zone, e.g. `86402 9000`, into a `ZonedDateTime`, `LocalDateTime` or `Instant`; port the missing resolve steps of ThreeTen-Backport's `DateTimeBuilder` (merge instant fields, cross check, fractional seconds) and its `TestDateTimeParsing`, which includes the tests of [ThreeTen/threetenbp#98](https://github.com/ThreeTen/threetenbp/pull/98) ([@pithu](https://github.com/pithu))
         Parsed fields that contradict the resolved date-time, such as a second-of-day that differs from the parsed hour, minute and second, now throw a `DateTimeException`, as in java.time.
+    * [#829](https://github.com/js-joda/js-joda/pull/829) Add missing TypeScript declarations: `OffsetDateTime.toZonedDateTime()`, `Year.format()`, `ZoneOffset.query()`, `Duration.minusDuration()`, `IsoChronology.INSTANCE` and `IsoChronology.date()`, `DecimalStyle.STANDARD` and `DecimalStyle.withZeroDigit()`, `withPositiveSign()`, `withNegativeSign()`, `withDecimalSeparator()` ([@pithu](https://github.com/pithu))
+* `extra`
+    * [#829](https://github.com/js-joda/js-joda/pull/829) Add missing TypeScript declarations: `Interval.ALL`, `OffsetDate.MIN`, `OffsetDate.MAX`, `OffsetDate.FROM`, `Quarter.FROM`, `Quarter.hashCode()`, `YearQuarter.FROM` and `YearWeek.FROM` ([@pithu](https://github.com/pithu))
 
 ## 2026-10-02
 

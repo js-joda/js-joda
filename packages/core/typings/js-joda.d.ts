@@ -1110,6 +1110,7 @@ export class Duration extends TemporalAmount {
     minus(amount: number, unit: TemporalUnit): Duration;
     minus(duration: Duration): Duration;
     minusDays(daysToSubtract: number): Duration;
+    minusDuration(duration: Duration): Duration;
     minusHours(hoursToSubtract: number): Duration;
     minusMillis(millisToSubtract: number): Duration;
     minusMinutes(minutesToSubtract: number): Duration;
@@ -1536,6 +1537,7 @@ export class Year extends Temporal implements TemporalAdjuster {
     atMonthDay(monthDay: MonthDay): LocalDate;
     compareTo(other: Year): number;
     equals(other: any): boolean;
+    format(formatter: DateTimeFormatter): string;
     getLong(field: TemporalField): number;
     isAfter(other: Year): boolean;
     isBefore(other: Year): boolean;
@@ -1702,6 +1704,7 @@ export class OffsetDateTime extends Temporal implements TemporalAdjuster {
     toLocalTime(): LocalTime;
     toOffsetTime(): OffsetTime;
     toString(): string;
+    toZonedDateTime(): ZonedDateTime;
     truncatedTo(unit: TemporalUnit): OffsetDateTime;
     until(endExclusive: Temporal, unit: TemporalUnit): number;
     with(adjuster: TemporalAdjuster): OffsetDateTime;
@@ -2071,6 +2074,7 @@ export class ZoneOffset extends ZoneId implements TemporalAdjuster {
     getLong(field: TemporalField): number;
     hashCode(): number;
     id(): string;
+    query<R>(query: TemporalQuery<R>): R | null;
     rules(): ZoneRules;
     toString(): string;
     totalSeconds(): number;
@@ -2221,6 +2225,8 @@ export class DateTimeFormatterBuilder {
 }
 
 export class DecimalStyle {
+    static STANDARD: DecimalStyle;
+
     private constructor();
 
     decimalSeparator(): string;
@@ -2229,6 +2235,10 @@ export class DecimalStyle {
     negativeSign(): string;
     positiveSign(): string;
     toString(): string;
+    withDecimalSeparator(decimalSeparator: string): DecimalStyle;
+    withNegativeSign(negativeSign: string): DecimalStyle;
+    withPositiveSign(positiveSign: string): DecimalStyle;
+    withZeroDigit(zeroDigit: string): DecimalStyle;
     zeroDigit(): string;
 }
 
@@ -2458,10 +2468,13 @@ export class ZoneRulesProvider {
 export type Chronology = IsoChronology;
 
 export abstract class IsoChronology {
+    static INSTANCE: IsoChronology;
+
     static isLeapYear(prolepticYear: number): boolean;
 
     private constructor();
 
+    date(temporal: TemporalAccessor): LocalDate;
     equals(other: any): boolean;
     resolveDate(fieldValues: any, resolverStyle: any): any;
     toString(): string;

@@ -7,8 +7,10 @@ import {
     DateTimeFormatter,
     DateTimeFormatterBuilder,
     DayOfWeek,
+    DecimalStyle,
     Duration,
     Instant,
+    IsoChronology,
     IsoFields,
     LocalDate,
     LocalDateTime,
@@ -104,6 +106,7 @@ it('ZonedDateTime', () => {
 
 it('OffsetDateTime', () => {
     OffsetDateTime.now().toString();
+    expectType<ZonedDateTime>(OffsetDateTime.now().toZonedDateTime());
 
     OffsetDateTime.now().atZoneSameInstant(ZoneId.of('UTC-05:00')).toString();
     OffsetDateTime.now().atZoneSimilarLocal(ZoneId.of('UTC-05:00')).toString();
@@ -695,6 +698,7 @@ it('Year', () => {
     expectType<Year>(year.with(Year.now()));
     expectType<Year>(year.with(ChronoField.YEAR_OF_ERA, 10));
     expectType<number>(year.until(Year.now(), ChronoUnit.YEARS));
+    expectType<string>(year.format(DateTimeFormatter.ofPattern('yyyy')));
 
     expectType<string>(year.toString());
     expectType<string>(year.toJSON());
@@ -903,6 +907,7 @@ it('Duration', () => {
     expectType<Duration>(dur.minus(1, ChronoUnit.NANOS));
     expectType<Duration>(dur.plus(Duration.ofNanos(1)));
     expectType<Duration>(dur.plus(1, ChronoUnit.NANOS));
+    expectType<Duration>(dur.minusDuration(Duration.ofNanos(1)));
 
     expectType<number>(dur.toDaysPart());
     expectType<number>(dur.toHoursPart());
@@ -916,6 +921,26 @@ it('Duration', () => {
     if (!dur.equals(temp)) {
         expectType<boolean>(temp.equals(dur));
     }
+});
+
+it('ZoneOffset', () => {
+    const offset = ZoneOffset.ofHours(2);
+    expectType<ZoneOffset | null>(offset.query(TemporalQueries.offset()));
+    expectType<LocalDate | null>(offset.query(TemporalQueries.localDate()));
+});
+
+it('IsoChronology', () => {
+    expectType<IsoChronology>(IsoChronology.INSTANCE);
+    expectType<LocalDate>(IsoChronology.INSTANCE.date(LocalDateTime.now()));
+});
+
+it('DecimalStyle', () => {
+    const decimalStyle = DecimalStyle.STANDARD;
+    expectType<DecimalStyle>(decimalStyle.withZeroDigit('0'));
+    expectType<DecimalStyle>(decimalStyle.withPositiveSign('+'));
+    expectType<DecimalStyle>(decimalStyle.withNegativeSign('-'));
+    expectType<DecimalStyle>(decimalStyle.withDecimalSeparator(','));
+    expectType<string>(decimalStyle.withDecimalSeparator(',').decimalSeparator());
 });
 
 it('DateTimeFormatter', () => {
