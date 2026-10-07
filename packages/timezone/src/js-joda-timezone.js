@@ -5,9 +5,9 @@
 
 import latest from './tzdbData';
 
-import { MomentZoneRulesProvider } from './MomentZoneRulesProvider';
+import { TzdbZoneRulesProvider } from './TzdbZoneRulesProvider';
 import autoPlug from './auto-plug';
 
-MomentZoneRulesProvider.loadTzdbData(latest);
+TzdbZoneRulesProvider.loadTzdbData(latest);
 
 autoPlug();

@@ -9,7 +9,7 @@ import {
     ZoneRulesProvider,
 } from '@js-joda/core';
 
-import { MomentZoneRules } from './MomentZoneRules';
+import { TzdbZoneRules } from './TzdbZoneRules';
 
 import { unpack } from './unpack';
 
@@ -20,7 +20,7 @@ const AVAILABLE_ZONE_IDS = [];
 const zones = {};
 const links = {};
 
-export class MomentZoneRulesProvider extends ZoneRulesProvider {
+export class TzdbZoneRulesProvider extends ZoneRulesProvider {
     /**
      * Gets the rules for the zone ID.
      * <p>
@@ -36,7 +36,7 @@ export class MomentZoneRulesProvider extends ZoneRulesProvider {
         if(tzdbZoneInfo == null){
             throw new DateTimeException(`Unknown time-zone ID: ${zoneId}`);
         }
-        return new MomentZoneRules(tzdbZoneInfo);
+        return new TzdbZoneRules(tzdbZoneInfo);
     }
 
 

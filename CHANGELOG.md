@@ -1,6 +1,13 @@
 Changelog
 =========
 
+## Unreleased
+
+#### :rocket: Enhancement
+* `timezone`
+    * [#825](https://github.com/js-joda/js-joda/pull/825) Implement `ZoneRules.standardOffset()`, `daylightSavings()`, `isDaylightSavings()`, `nextTransition()` and `previousTransition()` with the same results as java.time; `transitions()` and `transitionRules()` remain unsupported ([@pithu](https://github.com/pithu))
+        The packed data carries the standard offset per period type as a new 8th field (backward compatible: the offsets are unchanged and older readers ignore the field), taken from the STDOFF column of the tzdb Zone lines; unpacked zones get a `stdOffsets` array. With tz data without standard offsets, for example the versioned files `data/packed/2026d.json` and older, the three daylight saving methods throw. The internal classes `MomentZoneRules` and `MomentZoneRulesProvider` are renamed to `TzdbZoneRules` and `TzdbZoneRulesProvider`; they are not exported.
+
 ## 2026-10-02
 
 ### Versions

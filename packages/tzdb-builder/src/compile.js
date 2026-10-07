@@ -7,7 +7,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { $ as zx$, which as zxWhich } from 'zx';
 
-import { parseZiNames } from './zi.js';
+import { parseZiNames, parseZiZones } from './zi.js';
 
 export const REQUIRED_TOOLS = ['make', 'cc', 'tar'];
 export const REARGUARD_SOURCE = 'rearguard.zi';
@@ -46,6 +46,16 @@ export async function checkBuildTools(deps = defaultDeps) {
  */
 export async function readNames(ctx) {
     return parseZiNames(await fs.readFile(path.join(ctx.tzdbDir, REARGUARD_SOURCE), 'utf8'));
+}
+
+/**
+ * Reads the windows (STDOFF and UNTIL) of every Zone of the compiled release.
+ *
+ * @param {object} ctx - see createContext
+ * @return {Promise<Object<string, object[]>>} see parseZiZones
+ */
+export async function readZoneWindows(ctx) {
+    return parseZiZones(await fs.readFile(path.join(ctx.tzdbDir, REARGUARD_SOURCE), 'utf8'));
 }
 
 /**

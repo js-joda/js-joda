@@ -3,8 +3,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { collectZone, toOffsetMinutesWest } from '../src/collect.js';
+import { assignStandardOffsets, collectZone, toOffsetMinutesWest } from '../src/collect.js';
 import { parseTzif } from '../src/tzif.js';
+import { parseZiZones } from '../src/zi.js';
+import { collectFixture as collectFixtureWithStdOffsets } from './fixtureZones.js';
 
 const fixtureDir = path.join(path.dirname(fileURLToPath(import.meta.url)), 'fixtures', 'zoneinfo');
 const collectFixture = (name) => collectZone(name, parseTzif(fs.readFileSync(path.join(fixtureDir, name))));
@@ -63,6 +65,108 @@ describe('collect', () => {
         });
         assert.deepEqual(zone, {
             name: 'Test/Zone', abbrs: ['XST', 'XST'], untils: [200000, null], offsets: [-60, -60], isdsts: [false, true],
+        });
+    });
+
+    describe('assignStandardOffsets', () => {
+        const H = 3600000;
+        const T = Date.UTC(2000, 6, 1); // 2000-07-01T00:00:00Z
+
+        // windows of a synthetic zone from its continuation lines (STDOFF RULES FORMAT [UNTIL])
+        const windows = (...lines) => parseZiZones(`Zone Test/Zone ${lines.join('\n\t\t\t')}\n`)['Test/Zone'];
+        // a collected zone from [abbr, offset in minutes west, isdst, until] periods
+        const zone = (...periods) => ({
+            name: 'Test/Zone',
+            abbrs: periods.map((p) => p[0]),
+            offsets: periods.map((p) => p[1]),
+            isdsts: periods.map((p) => p[2]),
+            untils: periods.map((p) => p[3]),
+        });
+        const periodsOf = (z) => z.abbrs.map((abbr, i) => [abbr, z.offsets[i], z.isdsts[i], z.untils[i], z.stdOffsets[i]]);
+
+        it('takes the standard offset of Europe/Moscow 1991 from the Zone lines', () => {
+            const moscow = collectFixtureWithStdOffsets('Europe/Moscow');
+            const i = periodAt(moscow, Date.UTC(1991, 5, 1));
+            assert.deepEqual([moscow.offsets[i], moscow.isdsts[i], moscow.stdOffsets[i]], [-180, true, -120]);
+        });
+
+        it('takes the standard offset of Europe/Paris during double summer time 1944', () => {
+            const paris = collectFixtureWithStdOffsets('Europe/Paris');
+            const i = periodAt(paris, Date.UTC(1944, 8, 1));
+            assert.deepEqual([paris.offsets[i], paris.isdsts[i], paris.stdOffsets[i]], [-120, true, 0]);
+        });
+
+        it('gives Europe/Berlin and Etc/GMT-2 their standard offsets', () => {
+            const berlin = collectFixtureWithStdOffsets('Europe/Berlin');
+            const summer = periodAt(berlin, Date.UTC(2026, 6, 1));
+            assert.deepEqual([berlin.stdOffsets[summer - 1], berlin.stdOffsets[summer]], [-60, -60]);
+            assert.deepEqual(collectFixtureWithStdOffsets('Etc/GMT-2').stdOffsets, [-120]);
+        });
+
+        it('changes the standard offset at a period boundary (wall clock window end)', () => {
+            // like ThreeTen-Backport's test_combined_windowChangeDuringDST: the window ends at 02:00 wall
+            // clock time, exactly when DST starts at 01:00Z (the offset before the end, +01:00, applies)
+            const z = zone(['A', -60, false, T + H], ['B', -120, true, T + 5 * H], ['C', -60, false, null]);
+            const result = assignStandardOffsets(z, windows('1:00 - A 2000 Jul 1 2:00', '0:00 - B'));
+            assert.deepEqual(periodsOf(result), [
+                ['A', -60, false, T + H, -60], ['B', -120, true, T + 5 * H, 0], ['C', -60, false, null, 0],
+            ]);
+        });
+
+        it('splits a period where only the standard offset changes', () => {
+            // like Europe/Paris on 1944-08-25: +02:00 stays, but the standard offset changes from +01:00 to Z
+            const z = zone(['A', -60, false, T], ['S', -120, true, T + 10 * H], ['C', -60, false, null]);
+            const result = assignStandardOffsets(z, windows('1:00 - A 2000 Jul 1 5:00', '0:00 - S'));
+            assert.deepEqual(periodsOf(result), [
+                ['A', -60, false, T, -60],
+                ['S', -120, true, T + 3 * H, -60],
+                ['S', -120, true, T + 10 * H, 0],
+                ['C', -60, false, null, 0],
+            ]);
+        });
+
+        it('does not split a period at a window end without a standard offset change', () => {
+            // like test_combined_windowChangeWithinDST: the window ends during DST, STDOFF stays the same
+            const z = zone(['A', -60, false, T], ['S', -120, true, T + 10 * H], ['C', -60, false, null]);
+            const result = assignStandardOffsets(z, windows('1:00 - A 2000 Jul 1 5:00', '1:00 - S'));
+            assert.deepEqual(result.stdOffsets, [-60, -60, -60]);
+            assert.deepEqual(result.untils, z.untils);
+        });
+
+        it('converts window ends in standard time and UTC', () => {
+            const z = zone(['A', -60, false, T], ['S', -120, true, T + 10 * H], ['C', -60, false, null]);
+            // 05:00 standard time (+01:00) is 04:00Z, 05:00 UTC is 05:00Z
+            assert.equal(assignStandardOffsets(z, windows('1:00 - A 2000 Jul 1 5:00s', '0:00 - S')).untils[1], T + 4 * H);
+            assert.equal(assignStandardOffsets(z, windows('1:00 - A 2000 Jul 1 5:00u', '0:00 - S')).untils[1], T + 5 * H);
+        });
+
+        it('like test_combined_endsInSavings: the last window keeps the standard offset of its Zone line', () => {
+            const z = zone(['A', 0, false, T], ['S', -120, true, null]);
+            const result = assignStandardOffsets(z, windows('0:00 - A 2000 Jul 1', '1:00 1:00 S'));
+            assert.deepEqual(periodsOf(result), [['A', 0, false, T, 0], ['S', -120, true, null, -60]]);
+        });
+
+        it('fails when a wall clock window end falls into a gap', () => {
+            const z = zone(['A', -60, false, T + H], ['B', -120, true, null]);
+            // 02:30 wall clock time doesn't exist: clocks go from 02:00 to 03:00 at 01:00Z
+            assert.throws(() => assignStandardOffsets(z, windows('1:00 - A 2000 Jul 1 2:30', '0:00 - B')),
+                /Standard offsets of Test\/Zone: window 0: no period contains the wall clock time 2000-07-01T02:30:00.000Z/);
+        });
+
+        it('fails without Zone lines, and for windows out of order', () => {
+            const z = zone(['A', -60, false, null]);
+            assert.throws(() => assignStandardOffsets(z, undefined), /Standard offsets of Test\/Zone: no Zone lines/);
+            assert.throws(() => assignStandardOffsets(z, windows('1:00 - A 2001', '1:00 - A 2000', '1:00 - A')),
+                /window 1 ends at or before window 0/);
+        });
+
+        it('checks the standard offset of the footer, unless it has DST all year', () => {
+            const z = zone(['A', -60, false, null]);
+            assert.equal(assignStandardOffsets(z, windows('1:00 - A'), 'CET-1CEST,M3.5.0,M10.5.0/3').stdOffsets[0], -60);
+            assert.throws(() => assignStandardOffsets(z, windows('1:00 - A'), 'EET-2EEST,M3.5.0,M10.5.0/3'),
+                /the footer 'EET-2EEST,M3.5.0,M10.5.0\/3' has the standard offset 7200s, the last Zone line 3600s/);
+            // Africa/Casablanca in 2026b: +01 all year, written as DST all year with a placeholder standard offset
+            assert.equal(assignStandardOffsets(z, windows('0:00 - A'), 'XXX-2<+01>-1,0/0,J365/23').stdOffsets[0], 0);
         });
     });
 });

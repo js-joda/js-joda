@@ -83,12 +83,12 @@ The years below are for the data generated in 2026; the sizes are of the minifie
 
 | Bundle | Covers | Years (2026 data) | Size (min / gzip) |
 |---|---|---|---|
-| `js-joda-timezone` | all years | all | 708 KB / 35 KB |
-| `js-joda-timezone-300-year-range` | ± 150 years | 1876 to 2176 | 331 KB / 29 KB |
-| `js-joda-timezone-lifetime-range` | - 120 / + 15 years | 1906 to 2041 | 170 KB / 24 KB |
-| `js-joda-timezone-60-year-range` | ± 30 years | 1996 to 2056 | 83 KB / 12 KB |
-| `js-joda-timezone-10-year-range` | ± 5 years | 2021 to 2031 | 30 KB / 8 KB |
-| `js-joda-timezone-4-year-range` | ± 2 years | 2024 to 2028 | 27 KB / 8 KB |
+| `js-joda-timezone` | all years | all | 715 KB / 37 KB |
+| `js-joda-timezone-300-year-range` | ± 150 years | 1876 to 2176 | 339 KB / 31 KB |
+| `js-joda-timezone-lifetime-range` | - 120 / + 15 years | 1906 to 2041 | 177 KB / 25 KB |
+| `js-joda-timezone-60-year-range` | ± 30 years | 1996 to 2056 | 87 KB / 13 KB |
+| `js-joda-timezone-10-year-range` | ± 5 years | 2021 to 2031 | 32 KB / 9 KB |
+| `js-joda-timezone-4-year-range` | ± 2 years | 2024 to 2028 | 29 KB / 8 KB |
 
 The `-lifetime-range` bundle covers the birth dates of all living people plus 15 years ahead, e.g. for websites that
 handle birth dates. Note that a birth date stored as a `LocalDate` needs no time zone data at all; the bundle is only
@@ -118,8 +118,26 @@ use the `-lifetime-range` or `-300-year-range` bundle (with the 2026 data, both 
 
 ## Implementation details
 
-* This ZoneRulesProvider implemantion supplies all functionality that is required by the js-joda package. 
-* Additional [ZoneRules](https://js-joda.github.io/js-joda/esdoc/class/src/zone/ZoneRules.js~ZoneRules.html) functionality like [transitions(), etc.](https://github.com/js-joda/js-joda-timezone/blob/5288c41433133c248f66c271be59878356db9ea8/test/MomentZoneRulesTest.js#L310-L322) is not implemented.
+* This ZoneRulesProvider implementation supplies all functionality that is required by the js-joda package.
+* The [ZoneRules](https://js-joda.github.io/js-joda/esdoc/class/src/zone/ZoneRules.js~ZoneRules.html) of a zone also
+  answer `standardOffset()`, `daylightSavings()`, `isDaylightSavings()`, `nextTransition()` and
+  `previousTransition()` with the same results as java.time. The data uses the rearguard tzdb format, as
+  ThreeTen-Backport does, so daylight saving is never negative:
+
+      const rules = ZoneId.of('Europe/Berlin').rules();
+      const summer = Instant.parse('2026-07-01T00:00:00Z');
+      rules.standardOffset(summer).toString();   // '+01:00'
+      rules.daylightSavings(summer).toString();  // 'PT1H'
+      rules.isDaylightSavings(summer);           // true
+      rules.nextTransition(summer).toString();   // 'Transition[Overlap at 2026-10-25T03:00+02:00 to +01:00]'
+
+* `transitions()` and `transitionRules()` are not implemented and throw. In java.time they return the historic
+  transitions and the recurring rules for the later years; the data of this package has explicit transitions
+  through 2499 instead. Iterate with `nextTransition()` or `previousTransition()`.
+* A reduced bundle answers these methods correctly only inside its range, like the offsets.
+* `standardOffset()`, `daylightSavings()` and `isDaylightSavings()` need tz data with standard offsets, which the
+  bundled data has. With older or custom data loaded with `ZoneRulesProvider.loadTzdbData()`, for example the
+  versioned files `data/packed/2026d.json` and older, they throw; offsets and transitions still work.
 
 ## License
 

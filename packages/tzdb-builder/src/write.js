@@ -13,7 +13,8 @@ import path from 'node:path';
 export function serializeUnpacked({ version, zones }) {
     const ordered = {
         version,
-        zones: zones.map(({ name, abbrs, untils, offsets, isdsts }) => ({ name, abbrs, untils, offsets, isdsts })),
+        zones: zones.map(({ name, abbrs, untils, offsets, isdsts, stdOffsets }) =>
+            ({ name, abbrs, untils, offsets, isdsts, stdOffsets })),
         links: [],
     };
     return JSON.stringify(ordered, null, 2);

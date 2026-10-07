@@ -11,11 +11,11 @@ import {
 } from '@js-joda/core';
 
 import { assertEquals, dataProviderTest } from './testUtils';
-import './useMomentZoneRules';
+import './useTzdbZoneRules';
 
-import { MomentZoneRulesProvider } from '../src/MomentZoneRulesProvider';
+import { TzdbZoneRulesProvider } from '../src/TzdbZoneRulesProvider';
 
-describe('MomentZoneRules', () => {
+describe('TzdbZoneRules', () => {
     const OFFSET_MFIVE = ZoneOffset.ofHours(-5);
     const OFFSET_MFOUR = ZoneOffset.ofHours(-4);
     // const OFFSET_LMT_LONDON = ZoneOffset.ofHoursMinutesSeconds(0,-1, -15);
@@ -54,8 +54,8 @@ describe('MomentZoneRules', () => {
     });
 
     context('getOffset of Instant', () => {
-        const europeLondon = MomentZoneRulesProvider.getRules('Europe/London');
-        const europeParis = MomentZoneRulesProvider.getRules('Europe/Paris');
+        const europeLondon = TzdbZoneRulesProvider.getRules('Europe/London');
+        const europeParis = TzdbZoneRulesProvider.getRules('Europe/Paris');
 
         it('Europe/Paris', () => {
             assertEquals(
@@ -81,8 +81,8 @@ describe('MomentZoneRules', () => {
     });
 
     context('getOffset of LocalDateTime', () => {
-        const europeLondon = MomentZoneRulesProvider.getRules('Europe/London');
-        const europeParis = MomentZoneRulesProvider.getRules('Europe/Paris');
+        const europeLondon = TzdbZoneRulesProvider.getRules('Europe/London');
+        const europeParis = TzdbZoneRulesProvider.getRules('Europe/Paris');
 
         it('Europe/Paris', () => {
             assertEquals(europeParis.offset(createLocalDateTime(1800, 1, 1, 0, 0)),
@@ -319,13 +319,8 @@ describe('MomentZoneRules', () => {
 
     describe('not supported', () => {
         it('should throw an error for not supported ZoneRule functionality', () => {
-            const rules = MomentZoneRulesProvider.getRules('Europe/London');
+            const rules = TzdbZoneRulesProvider.getRules('Europe/London');
 
-            expect(() => rules.standardOffset()).to.throw(Error);
-            expect(() => rules.daylightSavings()).to.throw(Error);
-            expect(() => rules.isDaylightSavings()).to.throw(Error);
-            expect(() => rules.nextTransition()).to.throw(Error);
-            expect(() => rules.previousTransition()).to.throw(Error);
             expect(() => rules.transitions()).to.throw(Error);
             expect(() => rules.transitionRules()).to.throw(Error);
         });

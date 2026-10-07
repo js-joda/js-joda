@@ -6,36 +6,36 @@
 import { expect } from 'chai';
 
 import { ZoneRules, DateTimeException } from '@js-joda/core';
-import { MomentZoneRules } from '../src/MomentZoneRules';
-import { MomentZoneRulesProvider } from '../src/MomentZoneRulesProvider';
+import { TzdbZoneRules } from '../src/TzdbZoneRules';
+import { TzdbZoneRulesProvider } from '../src/TzdbZoneRulesProvider';
 
-import './useMomentZoneRules';
+import './useTzdbZoneRules';
 
-describe('MomentZoneRulesProvider', () => {
+describe('TzdbZoneRulesProvider', () => {
     context('getRules', () => {
-        it('should return an instance of MomentZoneRules', () => {
-            const zoneRules = MomentZoneRulesProvider.getRules('Europe/Berlin');
+        it('should return an instance of TzdbZoneRules', () => {
+            const zoneRules = TzdbZoneRulesProvider.getRules('Europe/Berlin');
             expect(zoneRules).to.be.instanceOf(ZoneRules);
-            expect(zoneRules).to.be.instanceOf(MomentZoneRules);
+            expect(zoneRules).to.be.instanceOf(TzdbZoneRules);
         });
 
         it('should return fixed offset and ZoneRegions rules', () => {
-            let zoneRules = MomentZoneRulesProvider.getRules('Europe/Berlin');
+            let zoneRules = TzdbZoneRulesProvider.getRules('Europe/Berlin');
             expect(zoneRules.isFixedOffset()).to.be.false;
 
-            zoneRules = MomentZoneRulesProvider.getRules('Etc/GMT+1');
+            zoneRules = TzdbZoneRulesProvider.getRules('Etc/GMT+1');
             expect(zoneRules.isFixedOffset()).to.be.true;
         });
 
         it('should throw an DateTimeException for an unknown zone region', () => {
-            expect(() => MomentZoneRulesProvider.getRules('Atlantis'))
+            expect(() => TzdbZoneRulesProvider.getRules('Atlantis'))
                 .to.throw(DateTimeException);
         });
     });
 
     context('getAvailableZoneIds', () => {
         it('should list some common zone id\'s', () => {
-            const availableZoneIds = MomentZoneRulesProvider.getAvailableZoneIds();
+            const availableZoneIds = TzdbZoneRulesProvider.getAvailableZoneIds();
 
             expect(availableZoneIds).contain('Australia/Darwin');
             expect(availableZoneIds).contain('America/Argentina/Buenos_Aires');
@@ -51,7 +51,7 @@ describe('MomentZoneRulesProvider', () => {
 
     context('getVersion', () => {
         it('should return a string', () => {
-            const version = MomentZoneRulesProvider.getVersion();
+            const version = TzdbZoneRulesProvider.getVersion();
 
             expect(version).to.be.a('string');
         });

@@ -14,7 +14,7 @@ import {
 } from '@js-joda/core';
 
 import { assertEquals, dataProviderTest } from '../testUtils';
-import '../useMomentZoneRules';
+import '../useTzdbZoneRules';
 
 
 describe('org.threeten.bp.TestZonedDateTime', () => {

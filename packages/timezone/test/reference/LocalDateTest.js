@@ -10,7 +10,7 @@ import {
 } from '@js-joda/core';
 
 import { assertEquals } from '../testUtils';
-import '../useMomentZoneRules';
+import '../useTzdbZoneRules';
 
 describe('org.threeten.bp.TestLocalDate', () => {
     const ZONE_GAZA = ZoneId.of('Asia/Gaza');

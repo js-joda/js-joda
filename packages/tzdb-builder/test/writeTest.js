@@ -8,7 +8,9 @@ import { serializeUnpacked, writeUnpackedStep } from '../src/write.js';
 
 const unpacked = {
     version: '2026a',
-    zones: [{ isdsts: [false], offsets: [-120], untils: [null], abbrs: ['+02'], name: 'Etc/GMT-2', population: 1 }],
+    zones: [{
+        stdOffsets: [-120], isdsts: [false], offsets: [-120], untils: [null], abbrs: ['+02'], name: 'Etc/GMT-2', population: 1,
+    }],
     links: [],
     countries: [],
 };
@@ -27,7 +29,7 @@ describe('write-unpacked', () => {
     it('serializes with fixed key order and without countries or population', () => {
         const json = JSON.parse(serializeUnpacked(unpacked));
         assert.deepEqual(Object.keys(json), ['version', 'zones', 'links']);
-        assert.deepEqual(Object.keys(json.zones[0]), ['name', 'abbrs', 'untils', 'offsets', 'isdsts']);
+        assert.deepEqual(Object.keys(json.zones[0]), ['name', 'abbrs', 'untils', 'offsets', 'isdsts', 'stdOffsets']);
     });
 
     it('writes latest.json and <version>.json byte-identically on every run', async () => {
