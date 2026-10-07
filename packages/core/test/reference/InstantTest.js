@@ -153,11 +153,10 @@ describe('org.threeten.bp.TestInstant', () => {
                 [-999, -1, 1000000],
                 [-1000, -1, 0],
                 [-1001, -2, 999000000],
-                // TODO Fix see https://github.com/ThreeTen/threetenbp/pull/54
-                // [MathUtil.MAX_SAFE_INTEGER, MathUtil.intDiv(MathUtil.MAX_SAFE_INTEGER, 1000), MathUtil.intMod(MathUtil.MAX_SAFE_INTEGER, 1000) * 1000000],
-                // [MathUtil.MAX_SAFE_INTEGER - 1, MathUtil.intDiv((MathUtil.MAX_SAFE_INTEGER - 1), 1000), MathUtil.intMod((MathUtil.MAX_SAFE_INTEGER - 1), 1000) * 1000000],
-                // [MathUtil.MIN_SAFE_INTEGER, MathUtil.intDiv(MathUtil.MIN_SAFE_INTEGER, 1000) - 1, MathUtil.intMod(MathUtil.MIN_SAFE_INTEGER, 1000) * 1000000 + 1000000000],
-                // [MathUtil.MIN_SAFE_INTEGER + 1, MathUtil.intDiv((MathUtil.MIN_SAFE_INTEGER + 1), 1000) - 1, MathUtil.intMod((MathUtil.MIN_SAFE_INTEGER + 1), 1000) * 1000000 + 1000000000]
+                [MathUtil.MAX_SAFE_INTEGER, MathUtil.intDiv(MathUtil.MAX_SAFE_INTEGER, 1000), MathUtil.intMod(MathUtil.MAX_SAFE_INTEGER, 1000) * 1000000],
+                [MathUtil.MAX_SAFE_INTEGER - 1, MathUtil.intDiv((MathUtil.MAX_SAFE_INTEGER - 1), 1000), MathUtil.intMod((MathUtil.MAX_SAFE_INTEGER - 1), 1000) * 1000000],
+                [MathUtil.MIN_SAFE_INTEGER, MathUtil.intDiv(MathUtil.MIN_SAFE_INTEGER, 1000) - 1, MathUtil.intMod(MathUtil.MIN_SAFE_INTEGER, 1000) * 1000000 + 1000000000],
+                [MathUtil.MIN_SAFE_INTEGER + 1, MathUtil.intDiv((MathUtil.MIN_SAFE_INTEGER + 1), 1000) - 1, MathUtil.intMod((MathUtil.MIN_SAFE_INTEGER + 1), 1000) * 1000000 + 1000000000]
             ];
         }
 
@@ -1935,6 +1934,31 @@ describe('org.threeten.bp.TestInstant', () => {
                 Instant.ofEpochSecond(MathUtil.intDiv(MathUtil.MIN_SAFE_INTEGER, 1000) - 1).toEpochMilli();
             }).to.throw(ArithmeticException);
         });
+
+        // see https://github.com/ThreeTen/threetenbp/pull/51
+        // @DataProvider(name="sampleEpochMillis")
+        function provider_sampleEpochMillis() {
+            return [
+                ['MAX_SAFE_INTEGER', MathUtil.MAX_SAFE_INTEGER],
+                ['MAX_SAFE_INTEGER-1', MathUtil.MAX_SAFE_INTEGER - 1],
+                ['1', 1],
+                ['0', 0],
+                ['-1', -1],
+                ['MIN_SAFE_INTEGER+1', MathUtil.MIN_SAFE_INTEGER + 1],
+                ['MIN_SAFE_INTEGER', MathUtil.MIN_SAFE_INTEGER],
+            ];
+        }
+
+        it('test_epochMillis', function () {
+            dataProviderTest(provider_sampleEpochMillis, test_epochMillis);
+        });
+
+        // @Test(dataProvider="sampleEpochMillis")
+        function test_epochMillis(name, millis) {
+            const t1 = Instant.ofEpochMilli(millis);
+            const m = t1.toEpochMilli();
+            assertEquals(m, millis, name);
+        }
 
     });
 
