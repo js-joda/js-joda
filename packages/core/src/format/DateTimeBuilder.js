@@ -18,10 +18,12 @@ import { IsoFields } from '../temporal/IsoFields';
 import { TemporalAccessor } from '../temporal/TemporalAccessor';
 import { TemporalQueries } from '../temporal/TemporalQueries';
 
+import { Instant } from '../Instant';
 import { LocalTime } from '../LocalTime';
 import { LocalDate } from '../LocalDate';
 import { Period } from '../Period';
 
+import { ZonedDateTime } from '../ZonedDateTime';
 import { ZoneOffset } from '../ZoneOffset';
 
 /**
@@ -146,19 +148,17 @@ export class DateTimeBuilder extends TemporalAccessor {
             this.fieldValues.retainAll(resolverFields);
         }
         // handle standard fields
-        // this._mergeInstantFields();
-        if (this._resolveFields(resolverStyle)) {
-            // this._mergeInstantFields();
-        }
+        this._mergeInstantFields();
+        this._resolveFields(resolverStyle);
         this._mergeDate(resolverStyle);
         this._mergeTime(resolverStyle);
         this._resolveTimeInferZeroes(resolverStyle);
-        //this._crossCheck();
+        this._crossCheck();
         if (this.excessDays != null && this.excessDays.isZero() === false && this.date != null && this.time != null) {
             this.date = this.date.plus(this.excessDays);
             this.excessDays = Period.ZERO;
         }
-        //resolveFractional();
+        this._resolveFractional();
         this._resolveInstant();
         return this;
     }
@@ -467,6 +467,122 @@ export class DateTimeBuilder extends TemporalAccessor {
             this.date = dateOrTime;
         } else if (dateOrTime instanceof LocalTime){
             this.time = dateOrTime;
+        }
+    }
+
+    /**
+     * Converts a parsed instant-seconds into a date and a second-of-day, using the parsed zone
+     * or, if there is none, the parsed offset. Without a zone or offset, the instant-seconds
+     * are left unchanged.
+     *
+     * @private
+     */
+    _mergeInstantFields() {
+        if (this.fieldValues.containsKey(ChronoField.INSTANT_SECONDS)) {
+            if (this.zone != null) {
+                this._mergeInstantFields0(this.zone);
+            } else {
+                const offsetSecs = this.fieldValues.get(ChronoField.OFFSET_SECONDS);
+                if (offsetSecs != null) {
+                    this._mergeInstantFields0(ZoneOffset.ofTotalSeconds(offsetSecs));
+                }
+            }
+        }
+    }
+
+    /**
+     * @param {ZoneId} selectedZone
+     * @private
+     */
+    _mergeInstantFields0(selectedZone) {
+        const instant = Instant.ofEpochSecond(this.fieldValues.remove(ChronoField.INSTANT_SECONDS));
+        const zdt = ZonedDateTime.ofInstant(instant, selectedZone);
+        if (this.date == null) {
+            this._addObject(zdt.toLocalDate());
+        } else {
+            this._resolveMakeChanges(ChronoField.INSTANT_SECONDS, zdt.toLocalDate());
+        }
+        this._addFieldValue(ChronoField.SECOND_OF_DAY, zdt.toLocalTime().toSecondOfDay());
+    }
+
+    /**
+     * @param {TemporalField} targetField
+     * @param {LocalDate} date
+     * @private
+     */
+    _resolveMakeChanges(targetField, date) {
+        const epochDay = date.toEpochDay();
+        const old = this.fieldValues.get(ChronoField.EPOCH_DAY);
+        this.fieldValues.put(ChronoField.EPOCH_DAY, epochDay);
+        if (old != null && old !== epochDay) {
+            throw new DateTimeException(`Conflict found: ${LocalDate.ofEpochDay(old)} differs from ${LocalDate.ofEpochDay(epochDay)} while resolving  ${targetField}`);
+        }
+    }
+
+    /**
+     * Checks the remaining field values against the resolved date and time, and removes the
+     * ones that match.
+     *
+     * @private
+     */
+    _crossCheck() {
+        if (this.date != null && this.time != null) {
+            this._crossCheck0(this.date.atTime(this.time));
+        } else if (this.date != null) {
+            this._crossCheck0(this.date);
+        } else if (this.time != null) {
+            this._crossCheck0(this.time);
+        }
+    }
+
+    /**
+     * @param {TemporalAccessor} temporal
+     * @private
+     */
+    _crossCheck0(temporal) {
+        for (const fieldName in this.fieldValues.keySet()) {
+            const field = ChronoField.byName(fieldName);
+            if (field && this.fieldValues.get(field) !== undefined) { // undefined if "removed" in EnumMap
+                if (temporal.isSupported(field)) {
+                    let temporalValue;
+                    try {
+                        temporalValue = temporal.getLong(field);
+                    } catch (ex) {
+                        if (ex instanceof DateTimeException) {
+                            continue;
+                        }
+                        throw ex;
+                    }
+                    const value = this.fieldValues.get(field);
+                    if (temporalValue !== value) {
+                        throw new DateTimeException(`Cross check failed: ${field} ${temporalValue} vs ${field} ${value}`);
+                    }
+                    this.fieldValues.remove(field);
+                }
+            }
+        }
+    }
+
+    /**
+     * Without a time, adds the fraction-of-second fields to a parsed instant-seconds,
+     * second-of-day or second-of-minute, with zero if no nano-of-second was parsed.
+     *
+     * @private
+     */
+    _resolveFractional() {
+        if (this.time == null &&
+                (this.fieldValues.containsKey(ChronoField.INSTANT_SECONDS) ||
+                    this.fieldValues.containsKey(ChronoField.SECOND_OF_DAY) ||
+                    this.fieldValues.containsKey(ChronoField.SECOND_OF_MINUTE))) {
+            if (this.fieldValues.containsKey(ChronoField.NANO_OF_SECOND)) {
+                const nos = this.fieldValues.get(ChronoField.NANO_OF_SECOND);
+                this.fieldValues.put(ChronoField.MICRO_OF_SECOND, MathUtil.intDiv(nos, 1000));
+                this.fieldValues.put(ChronoField.MILLI_OF_SECOND, MathUtil.intDiv(nos, 1000000));
+            } else {
+                this.fieldValues.put(ChronoField.NANO_OF_SECOND, 0);
+                this.fieldValues.put(ChronoField.MICRO_OF_SECOND, 0);
+                this.fieldValues.put(ChronoField.MILLI_OF_SECOND, 0);
+            }
         }
     }
 
