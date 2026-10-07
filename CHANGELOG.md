@@ -10,7 +10,7 @@ Changelog
 
 #### :bug: Bug Fix
 * `core`
-    * Fix `Instant.toEpochMilli()` overflowing for epoch millis close to `Number.MIN_SAFE_INTEGER`, port of [ThreeTen/threetenbp#51](https://github.com/ThreeTen/threetenbp/pull/51) ([@pithu](https://github.com/pithu))
+    * [#826](https://github.com/js-joda/js-joda/pull/826) Fix `Instant.toEpochMilli()` overflowing for epoch millis close to `Number.MIN_SAFE_INTEGER`, port of [ThreeTen/threetenbp#51](https://github.com/ThreeTen/threetenbp/pull/51) ([@pithu](https://github.com/pithu))
 
 ## 2026-10-02
 
