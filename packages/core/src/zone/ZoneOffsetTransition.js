@@ -17,7 +17,7 @@ import { LocalDateTime } from '../LocalDateTime';
  * The discontinuity is normally a gap in spring and an overlap in autumn.
  * {@link ZoneOffsetTransition} models the transition between the two offsets.
  *
- * Gaps occur where there are local date-times that simply do not not exist.
+ * Gaps occur where there are local date-times that simply do not exist.
  * An example would be when the offset changes from `+03:00` to `+04:00`.
  * This might be described as 'the clocks will move forward one hour tonight at 1am'.
  *
@@ -178,7 +178,7 @@ export class ZoneOffsetTransition {
     /**
      * Does this transition represent a gap in the local time-line.
      *
-     * Gaps occur where there are local date-times that simply do not not exist.
+     * Gaps occur where there are local date-times that simply do not exist.
      * An example would be when the offset changes from `+01:00` to `+02:00`.
      * This might be described as 'the clocks will move forward one hour tonight at 1am'.
      *

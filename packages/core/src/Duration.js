@@ -1090,6 +1090,21 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 
     //-----------------------------------------------------------------------
     /**
+     * Extracts the number of days in the duration.
+     *
+     * This returns the total number of days in the duration by dividing the
+     * number of seconds by 86400.
+     * This is based on the standard definition of a day as 24 hours.
+     *
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @return {number} the number of days in the duration, may be negative
+     */
+    toDaysPart() {
+        return MathUtil.intDiv(this._seconds, LocalTime.SECONDS_PER_DAY);
+    }
+
+    /**
      * Extracts the number of hours part in the duration.
      *
      * This returns the number of remaining hours when dividing {@link Duration.toHours}
@@ -1149,6 +1164,22 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      */
     toMillisPart() {
         return MathUtil.intDiv(this._nanos, 1000000);
+    }
+
+    /**
+     * Get the nanoseconds part within seconds of the duration.
+     *
+     * The length of the duration is stored using two fields - seconds and nanoseconds.
+     * The nanoseconds part is a value from 0 to 999,999,999 that is an adjustment to
+     * the length in seconds.
+     * The total duration is defined by calling {@link Duration.nano} and {@link Duration.seconds}.
+     *
+     * This instance is immutable and unaffected by this method call.
+     *
+     * @return {number} the nanoseconds within the second part of the length of the duration, from 0 to 999,999,999
+     */
+    toNanosPart() {
+        return this._nanos;
     }
 
     //-----------------------------------------------------------------------

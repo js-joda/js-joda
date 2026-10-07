@@ -300,7 +300,7 @@ export class Interval {
     /**
      * Checks if this interval overlaps the specified interval.
      * 
-     * The result is true if the the two intervals share some part of the time-line.
+     * The result is true if the two intervals share some part of the time-line.
      * An empty interval overlaps itself.
      * 
      * This is equivalent to `(isConnected(other) && !abuts(other))`.

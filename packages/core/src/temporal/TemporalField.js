@@ -199,7 +199,7 @@ export class TemporalField {
      * Checks if this field is supported by the temporal object.
      *
      * This determines whether the temporal accessor supports this field.
-     * If this returns false, the the temporal cannot be queried for this field.
+     * If this returns false, the temporal cannot be queried for this field.
      *
      * There are two equivalent ways of using this method.
      * The first is to invoke this method directly.
