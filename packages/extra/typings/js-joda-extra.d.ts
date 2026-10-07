@@ -46,6 +46,8 @@ export class DayOfYear extends TemporalAccessor {
 }
 
 export class Interval {
+    static ALL: Interval;
+
     static of(startInclusive: Instant, endExclusiveInstantOrDuration: Instant | Duration): Interval;
     static parse(text: string): Interval;
 
@@ -116,6 +118,10 @@ export class LocalDateRange {
 }
 
 export class OffsetDate extends Temporal implements TemporalAdjuster {
+    static MIN: OffsetDate;
+    static MAX: OffsetDate;
+    static FROM: TemporalQuery<OffsetDate>;
+
     static from(temporal: TemporalAccessor): OffsetDate;
     static now(zoneIdOrClock?: ZoneId | Clock): OffsetDate;
     static of(year: number, month: number, dayOfMonth: number, offset: ZoneOffset): OffsetDate;
@@ -183,6 +189,7 @@ export class Quarter extends TemporalAccessor implements TemporalAdjuster {
     static Q2: Quarter;
     static Q3: Quarter;
     static Q4: Quarter;
+    static FROM: TemporalQuery<Quarter>;
 
     static from(temporal: TemporalAccessor): Quarter;
     static of(quarterOfYear: number): Quarter;
@@ -198,6 +205,7 @@ export class Quarter extends TemporalAccessor implements TemporalAdjuster {
     firstMonth(): Month;
     get(field: TemporalField): number;
     getLong(field: TemporalField): number;
+    hashCode(): number;
     isSupported(field: TemporalField): boolean;
     length(leapYear: boolean): number;
     minus(months: number): Quarter;
@@ -222,6 +230,8 @@ export class Temporals {
 }
 
 export class YearQuarter extends Temporal {
+    static FROM: TemporalQuery<YearQuarter>;
+
     static from(temporal: TemporalAccessor): YearQuarter;
     static now(zoneIdOrClock?: ZoneId | Clock): YearQuarter;
     static of(year: Year | number, quarter: Quarter | number): YearQuarter;
@@ -274,6 +284,8 @@ export class YearQuarter extends Temporal {
 }
 
 export class YearWeek extends Temporal {
+    static FROM: TemporalQuery<YearWeek>;
+
     static from(temporal: TemporalAccessor): YearWeek;
     static now(zoneIdOrClock?: ZoneId | Clock): YearWeek;
     static of(year: Year | number, week: number): YearWeek;

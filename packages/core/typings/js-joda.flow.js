@@ -739,6 +739,7 @@ declare module "js-joda" {
         now(zoneIdOrClock?: ZoneId | Clock): Year; of(isoYear: number): Year;
         parse(text: string, formatter?: DateTimeFormatter): Year;
         atMonth(monthOrNumber: Month | number): Year;
+        format(formatter: DateTimeFormatter): string;
         plus(amountOrNumber: TemporalAmount | number, unit?: TemporalUnit): Year;
         minus(amountOrNumber: TemporalAmount | number, unit?: TemporalUnit): Year
     }
@@ -940,7 +941,9 @@ declare module "js-joda" {
     }
 
     declare class IsoChronology {
+        INSTANCE: IsoChronology;
         isLeapYear(prolepticYear: number): boolean;
+        date(temporal: TemporalAccessor): LocalDate;
         resolveDate(fieldValues: any, resolverStyle: any): any;
         equals(other: any): boolean;
         toString(): string

@@ -90,6 +90,7 @@ function test_DayOfYear() {
 
 function test_Interval() {
     Interval.parse("2019-08-09T20:38:43.298Z/2019-08-09T20:38:43.298Z");
+    expectType<Interval>(Interval.ALL);
 
     const instant = Instant.now();
     const duration = Duration.ofHours(1);
@@ -179,6 +180,9 @@ function test_OffsetDate() {
     const offsetDateTime = OffsetDateTime.ofInstant(instant, ZoneId.systemDefault());
 
     expectType<OffsetDate>(OffsetDate.from(localDate));
+    expectType<OffsetDate>(OffsetDate.MIN);
+    expectType<OffsetDate>(OffsetDate.MAX);
+    expectType<OffsetDate | null>(OffsetDateTime.now().query(OffsetDate.FROM));
     expectType<OffsetDate>(OffsetDate.now());
     expectType<OffsetDate>(OffsetDate.now(ZoneId.UTC));
     expectType<OffsetDate>(OffsetDate.now(Clock.systemUTC()));
@@ -241,6 +245,8 @@ function test_Quarter() {
     const localDate = LocalDate.now();
 
     expectType<Quarter>(Quarter.from(localDate));
+    expectType<Quarter | null>(localDate.query(Quarter.FROM));
+    expectType<number>(Quarter.Q1.hashCode());
     expectType<Quarter>(Quarter.of(1));
     expectType<Quarter>(Quarter.ofMonth(1));
     expectType<Quarter>(Quarter.valueOf('Q1'));
@@ -279,6 +285,7 @@ function test_YearQuarter() {
     const localDate = LocalDate.now();
 
     expectType<YearQuarter>(YearQuarter.from(localDate));
+    expectType<YearQuarter | null>(localDate.query(YearQuarter.FROM));
     expectType<YearQuarter>(YearQuarter.now());
     expectType<YearQuarter>(YearQuarter.of(Year.of(2001), 1));
     expectType<YearQuarter>(YearQuarter.of(2001, 1));
@@ -330,6 +337,7 @@ function test_YearWeek() {
     const localDate = LocalDate.now();
 
     expectType<YearWeek>(YearWeek.from(localDate));
+    expectType<YearWeek | null>(localDate.query(YearWeek.FROM));
     expectType<YearWeek>(YearWeek.now());
     expectType<YearWeek>(YearWeek.of(Year.of(2001), 1));
     expectType<YearWeek>(YearWeek.of(2001, 1));
