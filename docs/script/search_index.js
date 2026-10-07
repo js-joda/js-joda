@@ -204,18 +204,6 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "@js-joda/root/packages/timezone/src/momentzonerules.js~momentzonerules",
-    "class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html",
-    "<span>MomentZoneRules</span> <span class=\"search-result-import-path\">@js-joda/root/packages/timezone/src/MomentZoneRules.js</span>",
-    "class"
-  ],
-  [
-    "@js-joda/root/packages/timezone/src/momentzonerulesprovider.js~momentzonerulesprovider",
-    "class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html",
-    "<span>MomentZoneRulesProvider</span> <span class=\"search-result-import-path\">@js-joda/root/packages/timezone/src/MomentZoneRulesProvider.js</span>",
-    "class"
-  ],
-  [
     "@js-joda/root/packages/core/src/month.js~month",
     "class/packages/core/src/Month.js~Month.html",
     "<span>Month</span> <span class=\"search-result-import-path\">@js-joda/root/packages/core/src/Month.js</span>",
@@ -351,6 +339,18 @@ window.esdocSearchIndex = [
     "@js-joda/root/packages/core/src/format/textstyle.js~textstyle",
     "class/packages/core/src/format/TextStyle.js~TextStyle.html",
     "<span>TextStyle</span> <span class=\"search-result-import-path\">@js-joda/root/packages/core/src/format/TextStyle.js</span>",
+    "class"
+  ],
+  [
+    "@js-joda/root/packages/timezone/src/tzdbzonerules.js~tzdbzonerules",
+    "class/packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules.html",
+    "<span>TzdbZoneRules</span> <span class=\"search-result-import-path\">@js-joda/root/packages/timezone/src/TzdbZoneRules.js</span>",
+    "class"
+  ],
+  [
+    "@js-joda/root/packages/timezone/src/tzdbzonerulesprovider.js~tzdbzonerulesprovider",
+    "class/packages/timezone/src/TzdbZoneRulesProvider.js~TzdbZoneRulesProvider.html",
+    "<span>TzdbZoneRulesProvider</span> <span class=\"search-result-import-path\">@js-joda/root/packages/timezone/src/TzdbZoneRulesProvider.js</span>",
     "class"
   ],
   [
@@ -864,6 +864,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "packages/core/src/duration.js~duration#todayspart",
+    "class/packages/core/src/Duration.js~Duration.html#instance-method-toDaysPart",
+    "packages/core/src/Duration.js~Duration#toDaysPart",
+    "method"
+  ],
+  [
     "packages/core/src/duration.js~duration#tohours",
     "class/packages/core/src/Duration.js~Duration.html#instance-method-toHours",
     "packages/core/src/Duration.js~Duration#toHours",
@@ -909,6 +915,12 @@ window.esdocSearchIndex = [
     "packages/core/src/duration.js~duration#tonanos",
     "class/packages/core/src/Duration.js~Duration.html#instance-method-toNanos",
     "packages/core/src/Duration.js~Duration#toNanos",
+    "method"
+  ],
+  [
+    "packages/core/src/duration.js~duration#tonanospart",
+    "class/packages/core/src/Duration.js~Duration.html#instance-method-toNanosPart",
+    "packages/core/src/Duration.js~Duration#toNanosPart",
     "method"
   ],
   [
@@ -8466,147 +8478,147 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "packages/timezone/src/momentzonerules.js",
-    "file/packages/timezone/src/MomentZoneRules.js.html",
-    "packages/timezone/src/MomentZoneRules.js",
+    "packages/timezone/src/tzdbzonerules.js",
+    "file/packages/timezone/src/TzdbZoneRules.js.html",
+    "packages/timezone/src/TzdbZoneRules.js",
     "file"
   ],
   [
-    "packages/timezone/src/momentzonerules.js~momentzonerules#constructor",
-    "class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html#instance-constructor-constructor",
-    "packages/timezone/src/MomentZoneRules.js~MomentZoneRules#constructor",
+    "packages/timezone/src/tzdbzonerules.js~tzdbzonerules#constructor",
+    "class/packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules.html#instance-constructor-constructor",
+    "packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules#constructor",
     "method"
   ],
   [
-    "packages/timezone/src/momentzonerules.js~momentzonerules#daylightsavings",
-    "class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html#instance-method-daylightSavings",
-    "packages/timezone/src/MomentZoneRules.js~MomentZoneRules#daylightSavings",
+    "packages/timezone/src/tzdbzonerules.js~tzdbzonerules#daylightsavings",
+    "class/packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules.html#instance-method-daylightSavings",
+    "packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules#daylightSavings",
     "method"
   ],
   [
-    "packages/timezone/src/momentzonerules.js~momentzonerules#equals",
-    "class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html#instance-method-equals",
-    "packages/timezone/src/MomentZoneRules.js~MomentZoneRules#equals",
+    "packages/timezone/src/tzdbzonerules.js~tzdbzonerules#equals",
+    "class/packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules.html#instance-method-equals",
+    "packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules#equals",
     "method"
   ],
   [
-    "packages/timezone/src/momentzonerules.js~momentzonerules#isdaylightsavings",
-    "class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html#instance-method-isDaylightSavings",
-    "packages/timezone/src/MomentZoneRules.js~MomentZoneRules#isDaylightSavings",
+    "packages/timezone/src/tzdbzonerules.js~tzdbzonerules#isdaylightsavings",
+    "class/packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules.html#instance-method-isDaylightSavings",
+    "packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules#isDaylightSavings",
     "method"
   ],
   [
-    "packages/timezone/src/momentzonerules.js~momentzonerules#isfixedoffset",
-    "class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html#instance-method-isFixedOffset",
-    "packages/timezone/src/MomentZoneRules.js~MomentZoneRules#isFixedOffset",
+    "packages/timezone/src/tzdbzonerules.js~tzdbzonerules#isfixedoffset",
+    "class/packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules.html#instance-method-isFixedOffset",
+    "packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules#isFixedOffset",
     "method"
   ],
   [
-    "packages/timezone/src/momentzonerules.js~momentzonerules#isvalidoffset",
-    "class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html#instance-method-isValidOffset",
-    "packages/timezone/src/MomentZoneRules.js~MomentZoneRules#isValidOffset",
+    "packages/timezone/src/tzdbzonerules.js~tzdbzonerules#isvalidoffset",
+    "class/packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules.html#instance-method-isValidOffset",
+    "packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules#isValidOffset",
     "method"
   ],
   [
-    "packages/timezone/src/momentzonerules.js~momentzonerules#nexttransition",
-    "class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html#instance-method-nextTransition",
-    "packages/timezone/src/MomentZoneRules.js~MomentZoneRules#nextTransition",
+    "packages/timezone/src/tzdbzonerules.js~tzdbzonerules#nexttransition",
+    "class/packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules.html#instance-method-nextTransition",
+    "packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules#nextTransition",
     "method"
   ],
   [
-    "packages/timezone/src/momentzonerules.js~momentzonerules#offsetofepochmilli",
-    "class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html#instance-method-offsetOfEpochMilli",
-    "packages/timezone/src/MomentZoneRules.js~MomentZoneRules#offsetOfEpochMilli",
+    "packages/timezone/src/tzdbzonerules.js~tzdbzonerules#offsetofepochmilli",
+    "class/packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules.html#instance-method-offsetOfEpochMilli",
+    "packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules#offsetOfEpochMilli",
     "method"
   ],
   [
-    "packages/timezone/src/momentzonerules.js~momentzonerules#offsetofinstant",
-    "class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html#instance-method-offsetOfInstant",
-    "packages/timezone/src/MomentZoneRules.js~MomentZoneRules#offsetOfInstant",
+    "packages/timezone/src/tzdbzonerules.js~tzdbzonerules#offsetofinstant",
+    "class/packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules.html#instance-method-offsetOfInstant",
+    "packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules#offsetOfInstant",
     "method"
   ],
   [
-    "packages/timezone/src/momentzonerules.js~momentzonerules#offsetoflocaldatetime",
-    "class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html#instance-method-offsetOfLocalDateTime",
-    "packages/timezone/src/MomentZoneRules.js~MomentZoneRules#offsetOfLocalDateTime",
+    "packages/timezone/src/tzdbzonerules.js~tzdbzonerules#offsetoflocaldatetime",
+    "class/packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules.html#instance-method-offsetOfLocalDateTime",
+    "packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules#offsetOfLocalDateTime",
     "method"
   ],
   [
-    "packages/timezone/src/momentzonerules.js~momentzonerules#previoustransition",
-    "class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html#instance-method-previousTransition",
-    "packages/timezone/src/MomentZoneRules.js~MomentZoneRules#previousTransition",
+    "packages/timezone/src/tzdbzonerules.js~tzdbzonerules#previoustransition",
+    "class/packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules.html#instance-method-previousTransition",
+    "packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules#previousTransition",
     "method"
   ],
   [
-    "packages/timezone/src/momentzonerules.js~momentzonerules#standardoffset",
-    "class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html#instance-method-standardOffset",
-    "packages/timezone/src/MomentZoneRules.js~MomentZoneRules#standardOffset",
+    "packages/timezone/src/tzdbzonerules.js~tzdbzonerules#standardoffset",
+    "class/packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules.html#instance-method-standardOffset",
+    "packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules#standardOffset",
     "method"
   ],
   [
-    "packages/timezone/src/momentzonerules.js~momentzonerules#tostring",
-    "class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html#instance-method-toString",
-    "packages/timezone/src/MomentZoneRules.js~MomentZoneRules#toString",
+    "packages/timezone/src/tzdbzonerules.js~tzdbzonerules#tostring",
+    "class/packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules.html#instance-method-toString",
+    "packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules#toString",
     "method"
   ],
   [
-    "packages/timezone/src/momentzonerules.js~momentzonerules#transition",
-    "class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html#instance-method-transition",
-    "packages/timezone/src/MomentZoneRules.js~MomentZoneRules#transition",
+    "packages/timezone/src/tzdbzonerules.js~tzdbzonerules#transition",
+    "class/packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules.html#instance-method-transition",
+    "packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules#transition",
     "method"
   ],
   [
-    "packages/timezone/src/momentzonerules.js~momentzonerules#transitionrules",
-    "class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html#instance-method-transitionRules",
-    "packages/timezone/src/MomentZoneRules.js~MomentZoneRules#transitionRules",
+    "packages/timezone/src/tzdbzonerules.js~tzdbzonerules#transitionrules",
+    "class/packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules.html#instance-method-transitionRules",
+    "packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules#transitionRules",
     "method"
   ],
   [
-    "packages/timezone/src/momentzonerules.js~momentzonerules#transitions",
-    "class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html#instance-method-transitions",
-    "packages/timezone/src/MomentZoneRules.js~MomentZoneRules#transitions",
+    "packages/timezone/src/tzdbzonerules.js~tzdbzonerules#transitions",
+    "class/packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules.html#instance-method-transitions",
+    "packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules#transitions",
     "method"
   ],
   [
-    "packages/timezone/src/momentzonerules.js~momentzonerules#validoffsets",
-    "class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html#instance-method-validOffsets",
-    "packages/timezone/src/MomentZoneRules.js~MomentZoneRules#validOffsets",
+    "packages/timezone/src/tzdbzonerules.js~tzdbzonerules#validoffsets",
+    "class/packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules.html#instance-method-validOffsets",
+    "packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules#validOffsets",
     "method"
   ],
   [
-    "packages/timezone/src/momentzonerulesprovider.js",
-    "file/packages/timezone/src/MomentZoneRulesProvider.js.html",
-    "packages/timezone/src/MomentZoneRulesProvider.js",
+    "packages/timezone/src/tzdbzonerulesprovider.js",
+    "file/packages/timezone/src/TzdbZoneRulesProvider.js.html",
+    "packages/timezone/src/TzdbZoneRulesProvider.js",
     "file"
   ],
   [
-    "packages/timezone/src/momentzonerulesprovider.js~momentzonerulesprovider.getavailablezoneids",
-    "class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html#static-method-getAvailableZoneIds",
-    "packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.getAvailableZoneIds",
+    "packages/timezone/src/tzdbzonerulesprovider.js~tzdbzonerulesprovider.getavailablezoneids",
+    "class/packages/timezone/src/TzdbZoneRulesProvider.js~TzdbZoneRulesProvider.html#static-method-getAvailableZoneIds",
+    "packages/timezone/src/TzdbZoneRulesProvider.js~TzdbZoneRulesProvider.getAvailableZoneIds",
     "method"
   ],
   [
-    "packages/timezone/src/momentzonerulesprovider.js~momentzonerulesprovider.getrules",
-    "class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html#static-method-getRules",
-    "packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.getRules",
+    "packages/timezone/src/tzdbzonerulesprovider.js~tzdbzonerulesprovider.getrules",
+    "class/packages/timezone/src/TzdbZoneRulesProvider.js~TzdbZoneRulesProvider.html#static-method-getRules",
+    "packages/timezone/src/TzdbZoneRulesProvider.js~TzdbZoneRulesProvider.getRules",
     "method"
   ],
   [
-    "packages/timezone/src/momentzonerulesprovider.js~momentzonerulesprovider.gettzdbdata",
-    "class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html#static-method-getTzdbData",
-    "packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.getTzdbData",
+    "packages/timezone/src/tzdbzonerulesprovider.js~tzdbzonerulesprovider.gettzdbdata",
+    "class/packages/timezone/src/TzdbZoneRulesProvider.js~TzdbZoneRulesProvider.html#static-method-getTzdbData",
+    "packages/timezone/src/TzdbZoneRulesProvider.js~TzdbZoneRulesProvider.getTzdbData",
     "method"
   ],
   [
-    "packages/timezone/src/momentzonerulesprovider.js~momentzonerulesprovider.getversion",
-    "class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html#static-method-getVersion",
-    "packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.getVersion",
+    "packages/timezone/src/tzdbzonerulesprovider.js~tzdbzonerulesprovider.getversion",
+    "class/packages/timezone/src/TzdbZoneRulesProvider.js~TzdbZoneRulesProvider.html#static-method-getVersion",
+    "packages/timezone/src/TzdbZoneRulesProvider.js~TzdbZoneRulesProvider.getVersion",
     "method"
   ],
   [
-    "packages/timezone/src/momentzonerulesprovider.js~momentzonerulesprovider.loadtzdbdata",
-    "class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html#static-method-loadTzdbData",
-    "packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.loadTzdbData",
+    "packages/timezone/src/tzdbzonerulesprovider.js~tzdbzonerulesprovider.loadtzdbdata",
+    "class/packages/timezone/src/TzdbZoneRulesProvider.js~TzdbZoneRulesProvider.html#static-method-loadTzdbData",
+    "packages/timezone/src/TzdbZoneRulesProvider.js~TzdbZoneRulesProvider.loadTzdbData",
     "method"
   ],
   [

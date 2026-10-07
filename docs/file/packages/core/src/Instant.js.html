@@ -107,8 +107,8 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-parser">locale/src/format/parser</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/parser/WeekFieldsPrinterParser.js~WeekFieldsPrinterParser.html">WeekFieldsPrinterParser</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-temporal">locale/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~ComputedDayOfField.html">ComputedDayOfField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules.html">TzdbZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/TzdbZoneRulesProvider.js~TzdbZoneRulesProvider.html">TzdbZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -1032,6 +1032,12 @@ export class Instant extends Temporal {
      * @throws ArithmeticException if numeric overflow occurs
      */
     toEpochMilli() {
+        if (this._seconds &lt; 0 &amp;&amp; this._nanos &gt; 0) {
+            // avoid an overflow of seconds * 1000 for instants close to the minimum epoch milli
+            const millis = MathUtil.safeMultiply(this._seconds + 1, 1000);
+            const adjustment = MathUtil.intDiv(this._nanos, NANOS_PER_MILLI) - 1000;
+            return MathUtil.safeAdd(millis, adjustment);
+        }
         const millis = MathUtil.safeMultiply(this._seconds, 1000);
         return millis + MathUtil.intDiv(this._nanos, NANOS_PER_MILLI);
     }

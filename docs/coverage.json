@@ -1,7 +1,7 @@
 {
-  "coverage": "73.58%",
-  "expectCount": 2158,
-  "actualCount": 1588,
+  "coverage": "73.64%",
+  "expectCount": 2170,
+  "actualCount": 1598,
   "files": {
     "packages/core/src/Clock.js": {
       "expectCount": 39,
@@ -41,8 +41,8 @@
       ]
     },
     "packages/core/src/Duration.js": {
-      "expectCount": 66,
-      "actualCount": 59,
+      "expectCount": 68,
+      "actualCount": 61,
       "undocumentLines": [
         59,
         60,
@@ -50,7 +50,7 @@
         362,
         386,
         430,
-        1280
+        1311
       ]
     },
     "packages/core/src/Enum.js": {
@@ -70,7 +70,7 @@
         24,
         269,
         270,
-        1018
+        1024
       ]
     },
     "packages/core/src/LocalDate.js": {
@@ -334,11 +334,11 @@
       ]
     },
     "packages/core/src/format/DateTimeBuilder.js": {
-      "expectCount": 25,
-      "actualCount": 23,
+      "expectCount": 31,
+      "actualCount": 29,
       "undocumentLines": [
-        58,
-        473
+        60,
+        589
       ]
     },
     "packages/core/src/format/DateTimeFormatter.js": {
@@ -1117,9 +1117,9 @@
         953
       ]
     },
-    "packages/timezone/src/MomentZoneRules.js": {
-      "expectCount": 36,
-      "actualCount": 16,
+    "packages/timezone/src/TzdbZoneRules.js": {
+      "expectCount": 40,
+      "actualCount": 18,
       "undocumentLines": [
         11,
         12,
@@ -1127,23 +1127,25 @@
         15,
         95,
         118,
-        378,
-        379,
-        380,
-        381,
-        382,
-        383,
-        387,
-        410,
-        417,
+        235,
+        423,
+        424,
         425,
-        437,
-        441,
-        451,
-        463
+        426,
+        427,
+        428,
+        432,
+        455,
+        462,
+        470,
+        482,
+        486,
+        496,
+        510,
+        523
       ]
     },
-    "packages/timezone/src/MomentZoneRulesProvider.js": {
+    "packages/timezone/src/TzdbZoneRulesProvider.js": {
       "expectCount": 9,
       "actualCount": 5,
       "undocumentLines": [

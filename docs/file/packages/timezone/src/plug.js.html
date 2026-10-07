@@ -107,8 +107,8 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-parser">locale/src/format/parser</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/parser/WeekFieldsPrinterParser.js~WeekFieldsPrinterParser.html">WeekFieldsPrinterParser</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-temporal">locale/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~ComputedDayOfField.html">ComputedDayOfField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules.html">TzdbZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/TzdbZoneRulesProvider.js~TzdbZoneRulesProvider.html">TzdbZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -119,17 +119,17 @@
  * @license BSD-3-Clause (see LICENSE in the root directory of this source tree)
  */
 
-import { MomentZoneRulesProvider } from &apos;./MomentZoneRulesProvider&apos;;
+import { TzdbZoneRulesProvider } from &apos;./TzdbZoneRulesProvider&apos;;
 import extendSystemDefaultZoneId from &apos;./system-default-zone&apos;;
 
 /**
  * @private
  */
 export default function (jsJoda) {
-    jsJoda.ZoneRulesProvider.getRules = MomentZoneRulesProvider.getRules;
-    jsJoda.ZoneRulesProvider.getAvailableZoneIds = MomentZoneRulesProvider.getAvailableZoneIds;
-    jsJoda.ZoneRulesProvider.getTzdbData = MomentZoneRulesProvider.getTzdbData;
-    jsJoda.ZoneRulesProvider.loadTzdbData = MomentZoneRulesProvider.loadTzdbData;
+    jsJoda.ZoneRulesProvider.getRules = TzdbZoneRulesProvider.getRules;
+    jsJoda.ZoneRulesProvider.getAvailableZoneIds = TzdbZoneRulesProvider.getAvailableZoneIds;
+    jsJoda.ZoneRulesProvider.getTzdbData = TzdbZoneRulesProvider.getTzdbData;
+    jsJoda.ZoneRulesProvider.loadTzdbData = TzdbZoneRulesProvider.loadTzdbData;
 
     extendSystemDefaultZoneId(jsJoda.ZoneId);
     return jsJoda;

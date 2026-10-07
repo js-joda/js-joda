@@ -107,8 +107,8 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-parser">locale/src/format/parser</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/parser/WeekFieldsPrinterParser.js~WeekFieldsPrinterParser.html">WeekFieldsPrinterParser</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-temporal">locale/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~ComputedDayOfField.html">ComputedDayOfField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules.html">TzdbZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/TzdbZoneRulesProvider.js~TzdbZoneRulesProvider.html">TzdbZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -416,7 +416,7 @@ export class Interval {
     /**
      * Checks if this interval overlaps the specified interval.
      * 
-     * The result is true if the the two intervals share some part of the time-line.
+     * The result is true if the two intervals share some part of the time-line.
      * An empty interval overlaps itself.
      * 
      * This is equivalent to `(isConnected(other) &amp;&amp; !abuts(other))`.

@@ -1,7 +1,7 @@
 {
   "type": "File",
   "start": 0,
-  "end": 356,
+  "end": 350,
   "loc": {
     "start": {
       "line": 1,
@@ -15,7 +15,7 @@
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 356,
+    "end": 350,
     "loc": {
       "start": {
         "line": 1,
@@ -120,7 +120,7 @@
       {
         "type": "ImportDeclaration",
         "start": 191,
-        "end": 259,
+        "end": 255,
         "loc": {
           "start": {
             "line": 8,
@@ -128,14 +128,14 @@
           },
           "end": {
             "line": 8,
-            "column": 68
+            "column": 64
           }
         },
         "specifiers": [
           {
             "type": "ImportSpecifier",
             "start": 200,
-            "end": 223,
+            "end": 221,
             "loc": {
               "start": {
                 "line": 8,
@@ -143,13 +143,13 @@
               },
               "end": {
                 "line": 8,
-                "column": 32
+                "column": 30
               }
             },
             "imported": {
               "type": "Identifier",
               "start": 200,
-              "end": 223,
+              "end": 221,
               "loc": {
                 "start": {
                   "line": 8,
@@ -157,16 +157,16 @@
                 },
                 "end": {
                   "line": 8,
-                  "column": 32
+                  "column": 30
                 },
-                "identifierName": "MomentZoneRulesProvider"
+                "identifierName": "TzdbZoneRulesProvider"
               },
-              "name": "MomentZoneRulesProvider"
+              "name": "TzdbZoneRulesProvider"
             },
             "local": {
               "type": "Identifier",
               "start": 200,
-              "end": 223,
+              "end": 221,
               "loc": {
                 "start": {
                   "line": 8,
@@ -174,39 +174,39 @@
                 },
                 "end": {
                   "line": 8,
-                  "column": 32
+                  "column": 30
                 },
-                "identifierName": "MomentZoneRulesProvider"
+                "identifierName": "TzdbZoneRulesProvider"
               },
-              "name": "MomentZoneRulesProvider"
+              "name": "TzdbZoneRulesProvider"
             }
           }
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 231,
-          "end": 258,
+          "start": 229,
+          "end": 254,
           "loc": {
             "start": {
               "line": 8,
-              "column": 40
+              "column": 38
             },
             "end": {
               "line": 8,
-              "column": 67
+              "column": 63
             }
           },
           "extra": {
-            "rawValue": "./MomentZoneRulesProvider",
-            "raw": "'./MomentZoneRulesProvider'"
+            "rawValue": "./TzdbZoneRulesProvider",
+            "raw": "'./TzdbZoneRulesProvider'"
           },
-          "value": "./MomentZoneRulesProvider"
+          "value": "./TzdbZoneRulesProvider"
         }
       },
       {
         "type": "ImportDeclaration",
-        "start": 260,
-        "end": 295,
+        "start": 256,
+        "end": 291,
         "loc": {
           "start": {
             "line": 9,
@@ -220,8 +220,8 @@
         "specifiers": [
           {
             "type": "ImportDefaultSpecifier",
-            "start": 267,
-            "end": 275,
+            "start": 263,
+            "end": 271,
             "loc": {
               "start": {
                 "line": 9,
@@ -234,8 +234,8 @@
             },
             "local": {
               "type": "Identifier",
-              "start": 267,
-              "end": 275,
+              "start": 263,
+              "end": 271,
               "loc": {
                 "start": {
                   "line": 9,
@@ -253,8 +253,8 @@
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 281,
-          "end": 294,
+          "start": 277,
+          "end": 290,
           "loc": {
             "start": {
               "line": 9,
@@ -274,8 +274,8 @@
       },
       {
         "type": "ExpressionStatement",
-        "start": 297,
-        "end": 342,
+        "start": 293,
+        "end": 336,
         "loc": {
           "start": {
             "line": 11,
@@ -283,13 +283,13 @@
           },
           "end": {
             "line": 11,
-            "column": 45
+            "column": 43
           }
         },
         "expression": {
           "type": "CallExpression",
-          "start": 297,
-          "end": 341,
+          "start": 293,
+          "end": 335,
           "loc": {
             "start": {
               "line": 11,
@@ -297,13 +297,13 @@
             },
             "end": {
               "line": 11,
-              "column": 44
+              "column": 42
             }
           },
           "callee": {
             "type": "MemberExpression",
-            "start": 297,
-            "end": 333,
+            "start": 293,
+            "end": 327,
             "loc": {
               "start": {
                 "line": 11,
@@ -311,13 +311,13 @@
               },
               "end": {
                 "line": 11,
-                "column": 36
+                "column": 34
               }
             },
             "object": {
               "type": "Identifier",
-              "start": 297,
-              "end": 320,
+              "start": 293,
+              "end": 314,
               "loc": {
                 "start": {
                   "line": 11,
@@ -325,24 +325,24 @@
                 },
                 "end": {
                   "line": 11,
-                  "column": 23
+                  "column": 21
                 },
-                "identifierName": "MomentZoneRulesProvider"
+                "identifierName": "TzdbZoneRulesProvider"
               },
-              "name": "MomentZoneRulesProvider"
+              "name": "TzdbZoneRulesProvider"
             },
             "property": {
               "type": "Identifier",
-              "start": 321,
-              "end": 333,
+              "start": 315,
+              "end": 327,
               "loc": {
                 "start": {
                   "line": 11,
-                  "column": 24
+                  "column": 22
                 },
                 "end": {
                   "line": 11,
-                  "column": 36
+                  "column": 34
                 },
                 "identifierName": "loadTzdbData"
               },
@@ -353,16 +353,16 @@
           "arguments": [
             {
               "type": "Identifier",
-              "start": 334,
-              "end": 340,
+              "start": 328,
+              "end": 334,
               "loc": {
                 "start": {
                   "line": 11,
-                  "column": 37
+                  "column": 35
                 },
                 "end": {
                   "line": 11,
-                  "column": 43
+                  "column": 41
                 },
                 "identifierName": "latest"
               },
@@ -373,8 +373,8 @@
       },
       {
         "type": "ExpressionStatement",
-        "start": 344,
-        "end": 355,
+        "start": 338,
+        "end": 349,
         "loc": {
           "start": {
             "line": 13,
@@ -387,8 +387,8 @@
         },
         "expression": {
           "type": "CallExpression",
-          "start": 344,
-          "end": 354,
+          "start": 338,
+          "end": 348,
           "loc": {
             "start": {
               "line": 13,
@@ -401,8 +401,8 @@
           },
           "callee": {
             "type": "Identifier",
-            "start": 344,
-            "end": 352,
+            "start": 338,
+            "end": 346,
             "loc": {
               "start": {
                 "line": 13,
@@ -655,9 +655,9 @@
         "postfix": false,
         "binop": null
       },
-      "value": "MomentZoneRulesProvider",
+      "value": "TzdbZoneRulesProvider",
       "start": 200,
-      "end": 223,
+      "end": 221,
       "loc": {
         "start": {
           "line": 8,
@@ -665,7 +665,7 @@
         },
         "end": {
           "line": 8,
-          "column": 32
+          "column": 30
         }
       }
     },
@@ -681,16 +681,16 @@
         "postfix": false,
         "binop": null
       },
-      "start": 224,
-      "end": 225,
+      "start": 222,
+      "end": 223,
       "loc": {
         "start": {
           "line": 8,
-          "column": 33
+          "column": 31
         },
         "end": {
           "line": 8,
-          "column": 34
+          "column": 32
         }
       }
     },
@@ -707,16 +707,16 @@
         "binop": null
       },
       "value": "from",
-      "start": 226,
-      "end": 230,
+      "start": 224,
+      "end": 228,
       "loc": {
         "start": {
           "line": 8,
-          "column": 35
+          "column": 33
         },
         "end": {
           "line": 8,
-          "column": 39
+          "column": 37
         }
       }
     },
@@ -733,17 +733,17 @@
         "binop": null,
         "updateContext": null
       },
-      "value": "./MomentZoneRulesProvider",
-      "start": 231,
-      "end": 258,
+      "value": "./TzdbZoneRulesProvider",
+      "start": 229,
+      "end": 254,
       "loc": {
         "start": {
           "line": 8,
-          "column": 40
+          "column": 38
         },
         "end": {
           "line": 8,
-          "column": 67
+          "column": 63
         }
       }
     },
@@ -760,16 +760,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 258,
-      "end": 259,
+      "start": 254,
+      "end": 255,
       "loc": {
         "start": {
           "line": 8,
-          "column": 67
+          "column": 63
         },
         "end": {
           "line": 8,
-          "column": 68
+          "column": 64
         }
       }
     },
@@ -788,8 +788,8 @@
         "updateContext": null
       },
       "value": "import",
-      "start": 260,
-      "end": 266,
+      "start": 256,
+      "end": 262,
       "loc": {
         "start": {
           "line": 9,
@@ -814,8 +814,8 @@
         "binop": null
       },
       "value": "autoPlug",
-      "start": 267,
-      "end": 275,
+      "start": 263,
+      "end": 271,
       "loc": {
         "start": {
           "line": 9,
@@ -840,8 +840,8 @@
         "binop": null
       },
       "value": "from",
-      "start": 276,
-      "end": 280,
+      "start": 272,
+      "end": 276,
       "loc": {
         "start": {
           "line": 9,
@@ -867,8 +867,8 @@
         "updateContext": null
       },
       "value": "./auto-plug",
-      "start": 281,
-      "end": 294,
+      "start": 277,
+      "end": 290,
       "loc": {
         "start": {
           "line": 9,
@@ -893,8 +893,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 294,
-      "end": 295,
+      "start": 290,
+      "end": 291,
       "loc": {
         "start": {
           "line": 9,
@@ -918,9 +918,9 @@
         "postfix": false,
         "binop": null
       },
-      "value": "MomentZoneRulesProvider",
-      "start": 297,
-      "end": 320,
+      "value": "TzdbZoneRulesProvider",
+      "start": 293,
+      "end": 314,
       "loc": {
         "start": {
           "line": 11,
@@ -928,7 +928,7 @@
         },
         "end": {
           "line": 11,
-          "column": 23
+          "column": 21
         }
       }
     },
@@ -945,16 +945,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 320,
-      "end": 321,
+      "start": 314,
+      "end": 315,
       "loc": {
         "start": {
           "line": 11,
-          "column": 23
+          "column": 21
         },
         "end": {
           "line": 11,
-          "column": 24
+          "column": 22
         }
       }
     },
@@ -971,16 +971,16 @@
         "binop": null
       },
       "value": "loadTzdbData",
-      "start": 321,
-      "end": 333,
+      "start": 315,
+      "end": 327,
       "loc": {
         "start": {
           "line": 11,
-          "column": 24
+          "column": 22
         },
         "end": {
           "line": 11,
-          "column": 36
+          "column": 34
         }
       }
     },
@@ -996,16 +996,16 @@
         "postfix": false,
         "binop": null
       },
-      "start": 333,
-      "end": 334,
+      "start": 327,
+      "end": 328,
       "loc": {
         "start": {
           "line": 11,
-          "column": 36
+          "column": 34
         },
         "end": {
           "line": 11,
-          "column": 37
+          "column": 35
         }
       }
     },
@@ -1022,16 +1022,16 @@
         "binop": null
       },
       "value": "latest",
-      "start": 334,
-      "end": 340,
+      "start": 328,
+      "end": 334,
       "loc": {
         "start": {
           "line": 11,
-          "column": 37
+          "column": 35
         },
         "end": {
           "line": 11,
-          "column": 43
+          "column": 41
         }
       }
     },
@@ -1047,16 +1047,16 @@
         "postfix": false,
         "binop": null
       },
-      "start": 340,
-      "end": 341,
+      "start": 334,
+      "end": 335,
       "loc": {
         "start": {
           "line": 11,
-          "column": 43
+          "column": 41
         },
         "end": {
           "line": 11,
-          "column": 44
+          "column": 42
         }
       }
     },
@@ -1073,16 +1073,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 341,
-      "end": 342,
+      "start": 335,
+      "end": 336,
       "loc": {
         "start": {
           "line": 11,
-          "column": 44
+          "column": 42
         },
         "end": {
           "line": 11,
-          "column": 45
+          "column": 43
         }
       }
     },
@@ -1099,8 +1099,8 @@
         "binop": null
       },
       "value": "autoPlug",
-      "start": 344,
-      "end": 352,
+      "start": 338,
+      "end": 346,
       "loc": {
         "start": {
           "line": 13,
@@ -1124,8 +1124,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 352,
-      "end": 353,
+      "start": 346,
+      "end": 347,
       "loc": {
         "start": {
           "line": 13,
@@ -1149,8 +1149,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 353,
-      "end": 354,
+      "start": 347,
+      "end": 348,
       "loc": {
         "start": {
           "line": 13,
@@ -1175,8 +1175,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 354,
-      "end": 355,
+      "start": 348,
+      "end": 349,
       "loc": {
         "start": {
           "line": 13,
@@ -1201,8 +1201,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 356,
-      "end": 356,
+      "start": 350,
+      "end": 350,
       "loc": {
         "start": {
           "line": 14,

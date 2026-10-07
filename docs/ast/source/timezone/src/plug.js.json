@@ -1,7 +1,7 @@
 {
   "type": "File",
   "start": 0,
-  "end": 745,
+  "end": 733,
   "loc": {
     "start": {
       "line": 1,
@@ -15,7 +15,7 @@
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 745,
+    "end": 733,
     "loc": {
       "start": {
         "line": 1,
@@ -31,7 +31,7 @@
       {
         "type": "ImportDeclaration",
         "start": 157,
-        "end": 225,
+        "end": 221,
         "loc": {
           "start": {
             "line": 6,
@@ -39,14 +39,14 @@
           },
           "end": {
             "line": 6,
-            "column": 68
+            "column": 64
           }
         },
         "specifiers": [
           {
             "type": "ImportSpecifier",
             "start": 166,
-            "end": 189,
+            "end": 187,
             "loc": {
               "start": {
                 "line": 6,
@@ -54,13 +54,13 @@
               },
               "end": {
                 "line": 6,
-                "column": 32
+                "column": 30
               }
             },
             "imported": {
               "type": "Identifier",
               "start": 166,
-              "end": 189,
+              "end": 187,
               "loc": {
                 "start": {
                   "line": 6,
@@ -68,17 +68,17 @@
                 },
                 "end": {
                   "line": 6,
-                  "column": 32
+                  "column": 30
                 },
-                "identifierName": "MomentZoneRulesProvider"
+                "identifierName": "TzdbZoneRulesProvider"
               },
-              "name": "MomentZoneRulesProvider",
+              "name": "TzdbZoneRulesProvider",
               "leadingComments": null
             },
             "local": {
               "type": "Identifier",
               "start": 166,
-              "end": 189,
+              "end": 187,
               "loc": {
                 "start": {
                   "line": 6,
@@ -86,34 +86,34 @@
                 },
                 "end": {
                   "line": 6,
-                  "column": 32
+                  "column": 30
                 },
-                "identifierName": "MomentZoneRulesProvider"
+                "identifierName": "TzdbZoneRulesProvider"
               },
-              "name": "MomentZoneRulesProvider"
+              "name": "TzdbZoneRulesProvider"
             },
             "leadingComments": null
           }
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 197,
-          "end": 224,
+          "start": 195,
+          "end": 220,
           "loc": {
             "start": {
               "line": 6,
-              "column": 40
+              "column": 38
             },
             "end": {
               "line": 6,
-              "column": 67
+              "column": 63
             }
           },
           "extra": {
-            "rawValue": "./MomentZoneRulesProvider",
-            "raw": "'./MomentZoneRulesProvider'"
+            "rawValue": "./TzdbZoneRulesProvider",
+            "raw": "'./TzdbZoneRulesProvider'"
           },
-          "value": "./MomentZoneRulesProvider"
+          "value": "./TzdbZoneRulesProvider"
         },
         "leadingComments": [
           {
@@ -136,8 +136,8 @@
       },
       {
         "type": "ImportDeclaration",
-        "start": 226,
-        "end": 288,
+        "start": 222,
+        "end": 284,
         "loc": {
           "start": {
             "line": 7,
@@ -151,8 +151,8 @@
         "specifiers": [
           {
             "type": "ImportDefaultSpecifier",
-            "start": 233,
-            "end": 258,
+            "start": 229,
+            "end": 254,
             "loc": {
               "start": {
                 "line": 7,
@@ -165,8 +165,8 @@
             },
             "local": {
               "type": "Identifier",
-              "start": 233,
-              "end": 258,
+              "start": 229,
+              "end": 254,
               "loc": {
                 "start": {
                   "line": 7,
@@ -184,8 +184,8 @@
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 264,
-          "end": 287,
+          "start": 260,
+          "end": 283,
           "loc": {
             "start": {
               "line": 7,
@@ -206,8 +206,8 @@
           {
             "type": "CommentBlock",
             "value": "*\n * @private\n ",
-            "start": 290,
-            "end": 309,
+            "start": 286,
+            "end": 305,
             "loc": {
               "start": {
                 "line": 9,
@@ -223,8 +223,8 @@
       },
       {
         "type": "ExportDefaultDeclaration",
-        "start": 310,
-        "end": 744,
+        "start": 306,
+        "end": 732,
         "loc": {
           "start": {
             "line": 12,
@@ -237,8 +237,8 @@
         },
         "declaration": {
           "type": "FunctionDeclaration",
-          "start": 325,
-          "end": 744,
+          "start": 321,
+          "end": 732,
           "loc": {
             "start": {
               "line": 12,
@@ -256,8 +256,8 @@
           "params": [
             {
               "type": "Identifier",
-              "start": 335,
-              "end": 341,
+              "start": 331,
+              "end": 337,
               "loc": {
                 "start": {
                   "line": 12,
@@ -275,8 +275,8 @@
           ],
           "body": {
             "type": "BlockStatement",
-            "start": 343,
-            "end": 744,
+            "start": 339,
+            "end": 732,
             "loc": {
               "start": {
                 "line": 12,
@@ -290,8 +290,8 @@
             "body": [
               {
                 "type": "ExpressionStatement",
-                "start": 349,
-                "end": 418,
+                "start": 345,
+                "end": 412,
                 "loc": {
                   "start": {
                     "line": 13,
@@ -299,13 +299,13 @@
                   },
                   "end": {
                     "line": 13,
-                    "column": 73
+                    "column": 71
                   }
                 },
                 "expression": {
                   "type": "AssignmentExpression",
-                  "start": 349,
-                  "end": 417,
+                  "start": 345,
+                  "end": 411,
                   "loc": {
                     "start": {
                       "line": 13,
@@ -313,14 +313,14 @@
                     },
                     "end": {
                       "line": 13,
-                      "column": 72
+                      "column": 70
                     }
                   },
                   "operator": "=",
                   "left": {
                     "type": "MemberExpression",
-                    "start": 349,
-                    "end": 382,
+                    "start": 345,
+                    "end": 378,
                     "loc": {
                       "start": {
                         "line": 13,
@@ -333,8 +333,8 @@
                     },
                     "object": {
                       "type": "MemberExpression",
-                      "start": 349,
-                      "end": 373,
+                      "start": 345,
+                      "end": 369,
                       "loc": {
                         "start": {
                           "line": 13,
@@ -347,8 +347,8 @@
                       },
                       "object": {
                         "type": "Identifier",
-                        "start": 349,
-                        "end": 355,
+                        "start": 345,
+                        "end": 351,
                         "loc": {
                           "start": {
                             "line": 13,
@@ -364,8 +364,8 @@
                       },
                       "property": {
                         "type": "Identifier",
-                        "start": 356,
-                        "end": 373,
+                        "start": 352,
+                        "end": 369,
                         "loc": {
                           "start": {
                             "line": 13,
@@ -383,8 +383,8 @@
                     },
                     "property": {
                       "type": "Identifier",
-                      "start": 374,
-                      "end": 382,
+                      "start": 370,
+                      "end": 378,
                       "loc": {
                         "start": {
                           "line": 13,
@@ -402,8 +402,8 @@
                   },
                   "right": {
                     "type": "MemberExpression",
-                    "start": 385,
-                    "end": 417,
+                    "start": 381,
+                    "end": 411,
                     "loc": {
                       "start": {
                         "line": 13,
@@ -411,13 +411,13 @@
                       },
                       "end": {
                         "line": 13,
-                        "column": 72
+                        "column": 70
                       }
                     },
                     "object": {
                       "type": "Identifier",
-                      "start": 385,
-                      "end": 408,
+                      "start": 381,
+                      "end": 402,
                       "loc": {
                         "start": {
                           "line": 13,
@@ -425,24 +425,24 @@
                         },
                         "end": {
                           "line": 13,
-                          "column": 63
+                          "column": 61
                         },
-                        "identifierName": "MomentZoneRulesProvider"
+                        "identifierName": "TzdbZoneRulesProvider"
                       },
-                      "name": "MomentZoneRulesProvider"
+                      "name": "TzdbZoneRulesProvider"
                     },
                     "property": {
                       "type": "Identifier",
-                      "start": 409,
-                      "end": 417,
+                      "start": 403,
+                      "end": 411,
                       "loc": {
                         "start": {
                           "line": 13,
-                          "column": 64
+                          "column": 62
                         },
                         "end": {
                           "line": 13,
-                          "column": 72
+                          "column": 70
                         },
                         "identifierName": "getRules"
                       },
@@ -454,8 +454,8 @@
               },
               {
                 "type": "ExpressionStatement",
-                "start": 423,
-                "end": 514,
+                "start": 417,
+                "end": 506,
                 "loc": {
                   "start": {
                     "line": 14,
@@ -463,13 +463,13 @@
                   },
                   "end": {
                     "line": 14,
-                    "column": 95
+                    "column": 93
                   }
                 },
                 "expression": {
                   "type": "AssignmentExpression",
-                  "start": 423,
-                  "end": 513,
+                  "start": 417,
+                  "end": 505,
                   "loc": {
                     "start": {
                       "line": 14,
@@ -477,14 +477,14 @@
                     },
                     "end": {
                       "line": 14,
-                      "column": 94
+                      "column": 92
                     }
                   },
                   "operator": "=",
                   "left": {
                     "type": "MemberExpression",
-                    "start": 423,
-                    "end": 467,
+                    "start": 417,
+                    "end": 461,
                     "loc": {
                       "start": {
                         "line": 14,
@@ -497,8 +497,8 @@
                     },
                     "object": {
                       "type": "MemberExpression",
-                      "start": 423,
-                      "end": 447,
+                      "start": 417,
+                      "end": 441,
                       "loc": {
                         "start": {
                           "line": 14,
@@ -511,8 +511,8 @@
                       },
                       "object": {
                         "type": "Identifier",
-                        "start": 423,
-                        "end": 429,
+                        "start": 417,
+                        "end": 423,
                         "loc": {
                           "start": {
                             "line": 14,
@@ -528,8 +528,8 @@
                       },
                       "property": {
                         "type": "Identifier",
-                        "start": 430,
-                        "end": 447,
+                        "start": 424,
+                        "end": 441,
                         "loc": {
                           "start": {
                             "line": 14,
@@ -547,8 +547,8 @@
                     },
                     "property": {
                       "type": "Identifier",
-                      "start": 448,
-                      "end": 467,
+                      "start": 442,
+                      "end": 461,
                       "loc": {
                         "start": {
                           "line": 14,
@@ -566,8 +566,8 @@
                   },
                   "right": {
                     "type": "MemberExpression",
-                    "start": 470,
-                    "end": 513,
+                    "start": 464,
+                    "end": 505,
                     "loc": {
                       "start": {
                         "line": 14,
@@ -575,13 +575,13 @@
                       },
                       "end": {
                         "line": 14,
-                        "column": 94
+                        "column": 92
                       }
                     },
                     "object": {
                       "type": "Identifier",
-                      "start": 470,
-                      "end": 493,
+                      "start": 464,
+                      "end": 485,
                       "loc": {
                         "start": {
                           "line": 14,
@@ -589,24 +589,24 @@
                         },
                         "end": {
                           "line": 14,
-                          "column": 74
+                          "column": 72
                         },
-                        "identifierName": "MomentZoneRulesProvider"
+                        "identifierName": "TzdbZoneRulesProvider"
                       },
-                      "name": "MomentZoneRulesProvider"
+                      "name": "TzdbZoneRulesProvider"
                     },
                     "property": {
                       "type": "Identifier",
-                      "start": 494,
-                      "end": 513,
+                      "start": 486,
+                      "end": 505,
                       "loc": {
                         "start": {
                           "line": 14,
-                          "column": 75
+                          "column": 73
                         },
                         "end": {
                           "line": 14,
-                          "column": 94
+                          "column": 92
                         },
                         "identifierName": "getAvailableZoneIds"
                       },
@@ -618,8 +618,8 @@
               },
               {
                 "type": "ExpressionStatement",
-                "start": 519,
-                "end": 594,
+                "start": 511,
+                "end": 584,
                 "loc": {
                   "start": {
                     "line": 15,
@@ -627,13 +627,13 @@
                   },
                   "end": {
                     "line": 15,
-                    "column": 79
+                    "column": 77
                   }
                 },
                 "expression": {
                   "type": "AssignmentExpression",
-                  "start": 519,
-                  "end": 593,
+                  "start": 511,
+                  "end": 583,
                   "loc": {
                     "start": {
                       "line": 15,
@@ -641,14 +641,14 @@
                     },
                     "end": {
                       "line": 15,
-                      "column": 78
+                      "column": 76
                     }
                   },
                   "operator": "=",
                   "left": {
                     "type": "MemberExpression",
-                    "start": 519,
-                    "end": 555,
+                    "start": 511,
+                    "end": 547,
                     "loc": {
                       "start": {
                         "line": 15,
@@ -661,8 +661,8 @@
                     },
                     "object": {
                       "type": "MemberExpression",
-                      "start": 519,
-                      "end": 543,
+                      "start": 511,
+                      "end": 535,
                       "loc": {
                         "start": {
                           "line": 15,
@@ -675,8 +675,8 @@
                       },
                       "object": {
                         "type": "Identifier",
-                        "start": 519,
-                        "end": 525,
+                        "start": 511,
+                        "end": 517,
                         "loc": {
                           "start": {
                             "line": 15,
@@ -692,8 +692,8 @@
                       },
                       "property": {
                         "type": "Identifier",
-                        "start": 526,
-                        "end": 543,
+                        "start": 518,
+                        "end": 535,
                         "loc": {
                           "start": {
                             "line": 15,
@@ -711,8 +711,8 @@
                     },
                     "property": {
                       "type": "Identifier",
-                      "start": 544,
-                      "end": 555,
+                      "start": 536,
+                      "end": 547,
                       "loc": {
                         "start": {
                           "line": 15,
@@ -730,8 +730,8 @@
                   },
                   "right": {
                     "type": "MemberExpression",
-                    "start": 558,
-                    "end": 593,
+                    "start": 550,
+                    "end": 583,
                     "loc": {
                       "start": {
                         "line": 15,
@@ -739,13 +739,13 @@
                       },
                       "end": {
                         "line": 15,
-                        "column": 78
+                        "column": 76
                       }
                     },
                     "object": {
                       "type": "Identifier",
-                      "start": 558,
-                      "end": 581,
+                      "start": 550,
+                      "end": 571,
                       "loc": {
                         "start": {
                           "line": 15,
@@ -753,24 +753,24 @@
                         },
                         "end": {
                           "line": 15,
-                          "column": 66
+                          "column": 64
                         },
-                        "identifierName": "MomentZoneRulesProvider"
+                        "identifierName": "TzdbZoneRulesProvider"
                       },
-                      "name": "MomentZoneRulesProvider"
+                      "name": "TzdbZoneRulesProvider"
                     },
                     "property": {
                       "type": "Identifier",
-                      "start": 582,
-                      "end": 593,
+                      "start": 572,
+                      "end": 583,
                       "loc": {
                         "start": {
                           "line": 15,
-                          "column": 67
+                          "column": 65
                         },
                         "end": {
                           "line": 15,
-                          "column": 78
+                          "column": 76
                         },
                         "identifierName": "getTzdbData"
                       },
@@ -782,8 +782,8 @@
               },
               {
                 "type": "ExpressionStatement",
-                "start": 599,
-                "end": 676,
+                "start": 589,
+                "end": 664,
                 "loc": {
                   "start": {
                     "line": 16,
@@ -791,13 +791,13 @@
                   },
                   "end": {
                     "line": 16,
-                    "column": 81
+                    "column": 79
                   }
                 },
                 "expression": {
                   "type": "AssignmentExpression",
-                  "start": 599,
-                  "end": 675,
+                  "start": 589,
+                  "end": 663,
                   "loc": {
                     "start": {
                       "line": 16,
@@ -805,14 +805,14 @@
                     },
                     "end": {
                       "line": 16,
-                      "column": 80
+                      "column": 78
                     }
                   },
                   "operator": "=",
                   "left": {
                     "type": "MemberExpression",
-                    "start": 599,
-                    "end": 636,
+                    "start": 589,
+                    "end": 626,
                     "loc": {
                       "start": {
                         "line": 16,
@@ -825,8 +825,8 @@
                     },
                     "object": {
                       "type": "MemberExpression",
-                      "start": 599,
-                      "end": 623,
+                      "start": 589,
+                      "end": 613,
                       "loc": {
                         "start": {
                           "line": 16,
@@ -839,8 +839,8 @@
                       },
                       "object": {
                         "type": "Identifier",
-                        "start": 599,
-                        "end": 605,
+                        "start": 589,
+                        "end": 595,
                         "loc": {
                           "start": {
                             "line": 16,
@@ -856,8 +856,8 @@
                       },
                       "property": {
                         "type": "Identifier",
-                        "start": 606,
-                        "end": 623,
+                        "start": 596,
+                        "end": 613,
                         "loc": {
                           "start": {
                             "line": 16,
@@ -875,8 +875,8 @@
                     },
                     "property": {
                       "type": "Identifier",
-                      "start": 624,
-                      "end": 636,
+                      "start": 614,
+                      "end": 626,
                       "loc": {
                         "start": {
                           "line": 16,
@@ -894,8 +894,8 @@
                   },
                   "right": {
                     "type": "MemberExpression",
-                    "start": 639,
-                    "end": 675,
+                    "start": 629,
+                    "end": 663,
                     "loc": {
                       "start": {
                         "line": 16,
@@ -903,13 +903,13 @@
                       },
                       "end": {
                         "line": 16,
-                        "column": 80
+                        "column": 78
                       }
                     },
                     "object": {
                       "type": "Identifier",
-                      "start": 639,
-                      "end": 662,
+                      "start": 629,
+                      "end": 650,
                       "loc": {
                         "start": {
                           "line": 16,
@@ -917,24 +917,24 @@
                         },
                         "end": {
                           "line": 16,
-                          "column": 67
+                          "column": 65
                         },
-                        "identifierName": "MomentZoneRulesProvider"
+                        "identifierName": "TzdbZoneRulesProvider"
                       },
-                      "name": "MomentZoneRulesProvider"
+                      "name": "TzdbZoneRulesProvider"
                     },
                     "property": {
                       "type": "Identifier",
-                      "start": 663,
-                      "end": 675,
+                      "start": 651,
+                      "end": 663,
                       "loc": {
                         "start": {
                           "line": 16,
-                          "column": 68
+                          "column": 66
                         },
                         "end": {
                           "line": 16,
-                          "column": 80
+                          "column": 78
                         },
                         "identifierName": "loadTzdbData"
                       },
@@ -946,8 +946,8 @@
               },
               {
                 "type": "ExpressionStatement",
-                "start": 682,
-                "end": 723,
+                "start": 670,
+                "end": 711,
                 "loc": {
                   "start": {
                     "line": 18,
@@ -960,8 +960,8 @@
                 },
                 "expression": {
                   "type": "CallExpression",
-                  "start": 682,
-                  "end": 722,
+                  "start": 670,
+                  "end": 710,
                   "loc": {
                     "start": {
                       "line": 18,
@@ -974,8 +974,8 @@
                   },
                   "callee": {
                     "type": "Identifier",
-                    "start": 682,
-                    "end": 707,
+                    "start": 670,
+                    "end": 695,
                     "loc": {
                       "start": {
                         "line": 18,
@@ -992,8 +992,8 @@
                   "arguments": [
                     {
                       "type": "MemberExpression",
-                      "start": 708,
-                      "end": 721,
+                      "start": 696,
+                      "end": 709,
                       "loc": {
                         "start": {
                           "line": 18,
@@ -1006,8 +1006,8 @@
                       },
                       "object": {
                         "type": "Identifier",
-                        "start": 708,
-                        "end": 714,
+                        "start": 696,
+                        "end": 702,
                         "loc": {
                           "start": {
                             "line": 18,
@@ -1023,8 +1023,8 @@
                       },
                       "property": {
                         "type": "Identifier",
-                        "start": 715,
-                        "end": 721,
+                        "start": 703,
+                        "end": 709,
                         "loc": {
                           "start": {
                             "line": 18,
@@ -1045,8 +1045,8 @@
               },
               {
                 "type": "ReturnStatement",
-                "start": 728,
-                "end": 742,
+                "start": 716,
+                "end": 730,
                 "loc": {
                   "start": {
                     "line": 19,
@@ -1059,8 +1059,8 @@
                 },
                 "argument": {
                   "type": "Identifier",
-                  "start": 735,
-                  "end": 741,
+                  "start": 723,
+                  "end": 729,
                   "loc": {
                     "start": {
                       "line": 19,
@@ -1082,8 +1082,8 @@
             {
               "type": "CommentBlock",
               "value": "*\n * @private\n ",
-              "start": 290,
-              "end": 309,
+              "start": 286,
+              "end": 305,
               "loc": {
                 "start": {
                   "line": 9,
@@ -1102,8 +1102,8 @@
           {
             "type": "CommentBlock",
             "value": "*\n * @private\n ",
-            "start": 290,
-            "end": 309,
+            "start": 286,
+            "end": 305,
             "loc": {
               "start": {
                 "line": 9,
@@ -1140,8 +1140,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n * @private\n ",
-      "start": 290,
-      "end": 309,
+      "start": 286,
+      "end": 305,
       "loc": {
         "start": {
           "line": 9,
@@ -1236,9 +1236,9 @@
         "postfix": false,
         "binop": null
       },
-      "value": "MomentZoneRulesProvider",
+      "value": "TzdbZoneRulesProvider",
       "start": 166,
-      "end": 189,
+      "end": 187,
       "loc": {
         "start": {
           "line": 6,
@@ -1246,7 +1246,7 @@
         },
         "end": {
           "line": 6,
-          "column": 32
+          "column": 30
         }
       }
     },
@@ -1262,16 +1262,16 @@
         "postfix": false,
         "binop": null
       },
-      "start": 190,
-      "end": 191,
+      "start": 188,
+      "end": 189,
       "loc": {
         "start": {
           "line": 6,
-          "column": 33
+          "column": 31
         },
         "end": {
           "line": 6,
-          "column": 34
+          "column": 32
         }
       }
     },
@@ -1288,16 +1288,16 @@
         "binop": null
       },
       "value": "from",
-      "start": 192,
-      "end": 196,
+      "start": 190,
+      "end": 194,
       "loc": {
         "start": {
           "line": 6,
-          "column": 35
+          "column": 33
         },
         "end": {
           "line": 6,
-          "column": 39
+          "column": 37
         }
       }
     },
@@ -1314,17 +1314,17 @@
         "binop": null,
         "updateContext": null
       },
-      "value": "./MomentZoneRulesProvider",
-      "start": 197,
-      "end": 224,
+      "value": "./TzdbZoneRulesProvider",
+      "start": 195,
+      "end": 220,
       "loc": {
         "start": {
           "line": 6,
-          "column": 40
+          "column": 38
         },
         "end": {
           "line": 6,
-          "column": 67
+          "column": 63
         }
       }
     },
@@ -1341,16 +1341,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 224,
-      "end": 225,
+      "start": 220,
+      "end": 221,
       "loc": {
         "start": {
           "line": 6,
-          "column": 67
+          "column": 63
         },
         "end": {
           "line": 6,
-          "column": 68
+          "column": 64
         }
       }
     },
@@ -1369,8 +1369,8 @@
         "updateContext": null
       },
       "value": "import",
-      "start": 226,
-      "end": 232,
+      "start": 222,
+      "end": 228,
       "loc": {
         "start": {
           "line": 7,
@@ -1395,8 +1395,8 @@
         "binop": null
       },
       "value": "extendSystemDefaultZoneId",
-      "start": 233,
-      "end": 258,
+      "start": 229,
+      "end": 254,
       "loc": {
         "start": {
           "line": 7,
@@ -1421,8 +1421,8 @@
         "binop": null
       },
       "value": "from",
-      "start": 259,
-      "end": 263,
+      "start": 255,
+      "end": 259,
       "loc": {
         "start": {
           "line": 7,
@@ -1448,8 +1448,8 @@
         "updateContext": null
       },
       "value": "./system-default-zone",
-      "start": 264,
-      "end": 287,
+      "start": 260,
+      "end": 283,
       "loc": {
         "start": {
           "line": 7,
@@ -1474,8 +1474,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 287,
-      "end": 288,
+      "start": 283,
+      "end": 284,
       "loc": {
         "start": {
           "line": 7,
@@ -1490,8 +1490,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n * @private\n ",
-      "start": 290,
-      "end": 309,
+      "start": 286,
+      "end": 305,
       "loc": {
         "start": {
           "line": 9,
@@ -1518,8 +1518,8 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 310,
-      "end": 316,
+      "start": 306,
+      "end": 312,
       "loc": {
         "start": {
           "line": 12,
@@ -1546,8 +1546,8 @@
         "updateContext": null
       },
       "value": "default",
-      "start": 317,
-      "end": 324,
+      "start": 313,
+      "end": 320,
       "loc": {
         "start": {
           "line": 12,
@@ -1573,8 +1573,8 @@
         "binop": null
       },
       "value": "function",
-      "start": 325,
-      "end": 333,
+      "start": 321,
+      "end": 329,
       "loc": {
         "start": {
           "line": 12,
@@ -1598,8 +1598,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 334,
-      "end": 335,
+      "start": 330,
+      "end": 331,
       "loc": {
         "start": {
           "line": 12,
@@ -1624,8 +1624,8 @@
         "binop": null
       },
       "value": "jsJoda",
-      "start": 335,
-      "end": 341,
+      "start": 331,
+      "end": 337,
       "loc": {
         "start": {
           "line": 12,
@@ -1649,8 +1649,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 341,
-      "end": 342,
+      "start": 337,
+      "end": 338,
       "loc": {
         "start": {
           "line": 12,
@@ -1674,8 +1674,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 343,
-      "end": 344,
+      "start": 339,
+      "end": 340,
       "loc": {
         "start": {
           "line": 12,
@@ -1700,8 +1700,8 @@
         "binop": null
       },
       "value": "jsJoda",
-      "start": 349,
-      "end": 355,
+      "start": 345,
+      "end": 351,
       "loc": {
         "start": {
           "line": 13,
@@ -1726,8 +1726,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 355,
-      "end": 356,
+      "start": 351,
+      "end": 352,
       "loc": {
         "start": {
           "line": 13,
@@ -1752,8 +1752,8 @@
         "binop": null
       },
       "value": "ZoneRulesProvider",
-      "start": 356,
-      "end": 373,
+      "start": 352,
+      "end": 369,
       "loc": {
         "start": {
           "line": 13,
@@ -1778,8 +1778,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 373,
-      "end": 374,
+      "start": 369,
+      "end": 370,
       "loc": {
         "start": {
           "line": 13,
@@ -1804,8 +1804,8 @@
         "binop": null
       },
       "value": "getRules",
-      "start": 374,
-      "end": 382,
+      "start": 370,
+      "end": 378,
       "loc": {
         "start": {
           "line": 13,
@@ -1831,8 +1831,8 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 383,
-      "end": 384,
+      "start": 379,
+      "end": 380,
       "loc": {
         "start": {
           "line": 13,
@@ -1856,9 +1856,9 @@
         "postfix": false,
         "binop": null
       },
-      "value": "MomentZoneRulesProvider",
-      "start": 385,
-      "end": 408,
+      "value": "TzdbZoneRulesProvider",
+      "start": 381,
+      "end": 402,
       "loc": {
         "start": {
           "line": 13,
@@ -1866,7 +1866,7 @@
         },
         "end": {
           "line": 13,
-          "column": 63
+          "column": 61
         }
       }
     },
@@ -1883,16 +1883,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 408,
-      "end": 409,
+      "start": 402,
+      "end": 403,
       "loc": {
         "start": {
           "line": 13,
-          "column": 63
+          "column": 61
         },
         "end": {
           "line": 13,
-          "column": 64
+          "column": 62
         }
       }
     },
@@ -1909,16 +1909,16 @@
         "binop": null
       },
       "value": "getRules",
-      "start": 409,
-      "end": 417,
+      "start": 403,
+      "end": 411,
       "loc": {
         "start": {
           "line": 13,
-          "column": 64
+          "column": 62
         },
         "end": {
           "line": 13,
-          "column": 72
+          "column": 70
         }
       }
     },
@@ -1935,16 +1935,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 417,
-      "end": 418,
+      "start": 411,
+      "end": 412,
       "loc": {
         "start": {
           "line": 13,
-          "column": 72
+          "column": 70
         },
         "end": {
           "line": 13,
-          "column": 73
+          "column": 71
         }
       }
     },
@@ -1961,8 +1961,8 @@
         "binop": null
       },
       "value": "jsJoda",
-      "start": 423,
-      "end": 429,
+      "start": 417,
+      "end": 423,
       "loc": {
         "start": {
           "line": 14,
@@ -1987,8 +1987,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 429,
-      "end": 430,
+      "start": 423,
+      "end": 424,
       "loc": {
         "start": {
           "line": 14,
@@ -2013,8 +2013,8 @@
         "binop": null
       },
       "value": "ZoneRulesProvider",
-      "start": 430,
-      "end": 447,
+      "start": 424,
+      "end": 441,
       "loc": {
         "start": {
           "line": 14,
@@ -2039,8 +2039,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 447,
-      "end": 448,
+      "start": 441,
+      "end": 442,
       "loc": {
         "start": {
           "line": 14,
@@ -2065,8 +2065,8 @@
         "binop": null
       },
       "value": "getAvailableZoneIds",
-      "start": 448,
-      "end": 467,
+      "start": 442,
+      "end": 461,
       "loc": {
         "start": {
           "line": 14,
@@ -2092,8 +2092,8 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 468,
-      "end": 469,
+      "start": 462,
+      "end": 463,
       "loc": {
         "start": {
           "line": 14,
@@ -2117,9 +2117,9 @@
         "postfix": false,
         "binop": null
       },
-      "value": "MomentZoneRulesProvider",
-      "start": 470,
-      "end": 493,
+      "value": "TzdbZoneRulesProvider",
+      "start": 464,
+      "end": 485,
       "loc": {
         "start": {
           "line": 14,
@@ -2127,7 +2127,7 @@
         },
         "end": {
           "line": 14,
-          "column": 74
+          "column": 72
         }
       }
     },
@@ -2144,16 +2144,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 493,
-      "end": 494,
+      "start": 485,
+      "end": 486,
       "loc": {
         "start": {
           "line": 14,
-          "column": 74
+          "column": 72
         },
         "end": {
           "line": 14,
-          "column": 75
+          "column": 73
         }
       }
     },
@@ -2170,16 +2170,16 @@
         "binop": null
       },
       "value": "getAvailableZoneIds",
-      "start": 494,
-      "end": 513,
+      "start": 486,
+      "end": 505,
       "loc": {
         "start": {
           "line": 14,
-          "column": 75
+          "column": 73
         },
         "end": {
           "line": 14,
-          "column": 94
+          "column": 92
         }
       }
     },
@@ -2196,16 +2196,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 513,
-      "end": 514,
+      "start": 505,
+      "end": 506,
       "loc": {
         "start": {
           "line": 14,
-          "column": 94
+          "column": 92
         },
         "end": {
           "line": 14,
-          "column": 95
+          "column": 93
         }
       }
     },
@@ -2222,8 +2222,8 @@
         "binop": null
       },
       "value": "jsJoda",
-      "start": 519,
-      "end": 525,
+      "start": 511,
+      "end": 517,
       "loc": {
         "start": {
           "line": 15,
@@ -2248,8 +2248,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 525,
-      "end": 526,
+      "start": 517,
+      "end": 518,
       "loc": {
         "start": {
           "line": 15,
@@ -2274,8 +2274,8 @@
         "binop": null
       },
       "value": "ZoneRulesProvider",
-      "start": 526,
-      "end": 543,
+      "start": 518,
+      "end": 535,
       "loc": {
         "start": {
           "line": 15,
@@ -2300,8 +2300,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 543,
-      "end": 544,
+      "start": 535,
+      "end": 536,
       "loc": {
         "start": {
           "line": 15,
@@ -2326,8 +2326,8 @@
         "binop": null
       },
       "value": "getTzdbData",
-      "start": 544,
-      "end": 555,
+      "start": 536,
+      "end": 547,
       "loc": {
         "start": {
           "line": 15,
@@ -2353,8 +2353,8 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 556,
-      "end": 557,
+      "start": 548,
+      "end": 549,
       "loc": {
         "start": {
           "line": 15,
@@ -2378,9 +2378,9 @@
         "postfix": false,
         "binop": null
       },
-      "value": "MomentZoneRulesProvider",
-      "start": 558,
-      "end": 581,
+      "value": "TzdbZoneRulesProvider",
+      "start": 550,
+      "end": 571,
       "loc": {
         "start": {
           "line": 15,
@@ -2388,7 +2388,7 @@
         },
         "end": {
           "line": 15,
-          "column": 66
+          "column": 64
         }
       }
     },
@@ -2405,16 +2405,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 581,
-      "end": 582,
+      "start": 571,
+      "end": 572,
       "loc": {
         "start": {
           "line": 15,
-          "column": 66
+          "column": 64
         },
         "end": {
           "line": 15,
-          "column": 67
+          "column": 65
         }
       }
     },
@@ -2431,16 +2431,16 @@
         "binop": null
       },
       "value": "getTzdbData",
-      "start": 582,
-      "end": 593,
+      "start": 572,
+      "end": 583,
       "loc": {
         "start": {
           "line": 15,
-          "column": 67
+          "column": 65
         },
         "end": {
           "line": 15,
-          "column": 78
+          "column": 76
         }
       }
     },
@@ -2457,16 +2457,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 593,
-      "end": 594,
+      "start": 583,
+      "end": 584,
       "loc": {
         "start": {
           "line": 15,
-          "column": 78
+          "column": 76
         },
         "end": {
           "line": 15,
-          "column": 79
+          "column": 77
         }
       }
     },
@@ -2483,8 +2483,8 @@
         "binop": null
       },
       "value": "jsJoda",
-      "start": 599,
-      "end": 605,
+      "start": 589,
+      "end": 595,
       "loc": {
         "start": {
           "line": 16,
@@ -2509,8 +2509,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 605,
-      "end": 606,
+      "start": 595,
+      "end": 596,
       "loc": {
         "start": {
           "line": 16,
@@ -2535,8 +2535,8 @@
         "binop": null
       },
       "value": "ZoneRulesProvider",
-      "start": 606,
-      "end": 623,
+      "start": 596,
+      "end": 613,
       "loc": {
         "start": {
           "line": 16,
@@ -2561,8 +2561,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 623,
-      "end": 624,
+      "start": 613,
+      "end": 614,
       "loc": {
         "start": {
           "line": 16,
@@ -2587,8 +2587,8 @@
         "binop": null
       },
       "value": "loadTzdbData",
-      "start": 624,
-      "end": 636,
+      "start": 614,
+      "end": 626,
       "loc": {
         "start": {
           "line": 16,
@@ -2614,8 +2614,8 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 637,
-      "end": 638,
+      "start": 627,
+      "end": 628,
       "loc": {
         "start": {
           "line": 16,
@@ -2639,9 +2639,9 @@
         "postfix": false,
         "binop": null
       },
-      "value": "MomentZoneRulesProvider",
-      "start": 639,
-      "end": 662,
+      "value": "TzdbZoneRulesProvider",
+      "start": 629,
+      "end": 650,
       "loc": {
         "start": {
           "line": 16,
@@ -2649,7 +2649,7 @@
         },
         "end": {
           "line": 16,
-          "column": 67
+          "column": 65
         }
       }
     },
@@ -2666,16 +2666,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 662,
-      "end": 663,
+      "start": 650,
+      "end": 651,
       "loc": {
         "start": {
           "line": 16,
-          "column": 67
+          "column": 65
         },
         "end": {
           "line": 16,
-          "column": 68
+          "column": 66
         }
       }
     },
@@ -2692,16 +2692,16 @@
         "binop": null
       },
       "value": "loadTzdbData",
-      "start": 663,
-      "end": 675,
+      "start": 651,
+      "end": 663,
       "loc": {
         "start": {
           "line": 16,
-          "column": 68
+          "column": 66
         },
         "end": {
           "line": 16,
-          "column": 80
+          "column": 78
         }
       }
     },
@@ -2718,16 +2718,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 675,
-      "end": 676,
+      "start": 663,
+      "end": 664,
       "loc": {
         "start": {
           "line": 16,
-          "column": 80
+          "column": 78
         },
         "end": {
           "line": 16,
-          "column": 81
+          "column": 79
         }
       }
     },
@@ -2744,8 +2744,8 @@
         "binop": null
       },
       "value": "extendSystemDefaultZoneId",
-      "start": 682,
-      "end": 707,
+      "start": 670,
+      "end": 695,
       "loc": {
         "start": {
           "line": 18,
@@ -2769,8 +2769,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 707,
-      "end": 708,
+      "start": 695,
+      "end": 696,
       "loc": {
         "start": {
           "line": 18,
@@ -2795,8 +2795,8 @@
         "binop": null
       },
       "value": "jsJoda",
-      "start": 708,
-      "end": 714,
+      "start": 696,
+      "end": 702,
       "loc": {
         "start": {
           "line": 18,
@@ -2821,8 +2821,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 714,
-      "end": 715,
+      "start": 702,
+      "end": 703,
       "loc": {
         "start": {
           "line": 18,
@@ -2847,8 +2847,8 @@
         "binop": null
       },
       "value": "ZoneId",
-      "start": 715,
-      "end": 721,
+      "start": 703,
+      "end": 709,
       "loc": {
         "start": {
           "line": 18,
@@ -2872,8 +2872,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 721,
-      "end": 722,
+      "start": 709,
+      "end": 710,
       "loc": {
         "start": {
           "line": 18,
@@ -2898,8 +2898,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 722,
-      "end": 723,
+      "start": 710,
+      "end": 711,
       "loc": {
         "start": {
           "line": 18,
@@ -2926,8 +2926,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 728,
-      "end": 734,
+      "start": 716,
+      "end": 722,
       "loc": {
         "start": {
           "line": 19,
@@ -2952,8 +2952,8 @@
         "binop": null
       },
       "value": "jsJoda",
-      "start": 735,
-      "end": 741,
+      "start": 723,
+      "end": 729,
       "loc": {
         "start": {
           "line": 19,
@@ -2978,8 +2978,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 741,
-      "end": 742,
+      "start": 729,
+      "end": 730,
       "loc": {
         "start": {
           "line": 19,
@@ -3003,8 +3003,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 743,
-      "end": 744,
+      "start": 731,
+      "end": 732,
       "loc": {
         "start": {
           "line": 20,
@@ -3029,8 +3029,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 745,
-      "end": 745,
+      "start": 733,
+      "end": 733,
       "loc": {
         "start": {
           "line": 21,

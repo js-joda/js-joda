@@ -107,8 +107,8 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-parser">locale/src/format/parser</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/parser/WeekFieldsPrinterParser.js~WeekFieldsPrinterParser.html">WeekFieldsPrinterParser</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-temporal">locale/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~ComputedDayOfField.html">ComputedDayOfField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules.html">TzdbZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/TzdbZoneRulesProvider.js~TzdbZoneRulesProvider.html">TzdbZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -1448,6 +1448,35 @@ and an adjustment in nanoseconds.</p>
           
           
           
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/Duration.js~Duration.html#instance-method-toDaysPart">toDaysPart</a></span></span><span class="code" data-ice="signature">(): <span>number</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Extracts the number of days in the duration.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
           <span class="code" data-ice="name"><span><a href="class/packages/core/src/Duration.js~Duration.html#instance-method-toHours">toHours</a></span></span><span class="code" data-ice="signature">(): <span>number</span></span>
         </p>
       </div>
@@ -1657,6 +1686,35 @@ and an adjustment in nanoseconds.</p>
         
         
         <div data-ice="description"><p>Converts this duration to the total length in nanoseconds expressed as a <code>long</code>.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/packages/core/src/Duration.js~Duration.html#instance-method-toNanosPart">toNanosPart</a></span></span><span class="code" data-ice="signature">(): <span>number</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Get the nanoseconds part within seconds of the duration.</p>
 </div>
       </div>
     </td>
@@ -3076,7 +3134,7 @@ Only non-zero amounts will be added.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1163">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1194">source</a></span></span>
     </span>
   </h3>
 
@@ -3239,7 +3297,7 @@ fixed point arithmetic. Expect floating point rounding errors for <span><a href=
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1182">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1213">source</a></span></span>
     </span>
   </h3>
 
@@ -5645,6 +5703,67 @@ This is based on the standard definition of a day as 24 hours.</p>
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-toDaysPart">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">toDaysPart</span><span class="code" data-ice="signature">(): <span>number</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1103">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Extracts the number of days in the duration.</p>
+<p>This returns the total number of days in the duration by dividing the
+number of seconds by 86400.
+This is based on the standard definition of a day as 24 hours.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>number</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the number of days in the duration, may be negative</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-toHours">
     <span class="access" data-ice="access">public</span>
     
@@ -5716,7 +5835,7 @@ number of seconds by 3600.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1103">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1118">source</a></span></span>
     </span>
   </h3>
 
@@ -5777,7 +5896,7 @@ This is based on the standard definition of a day as 24 hours.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1274">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1305">source</a></span></span>
     </span>
   </h3>
 
@@ -5907,7 +6026,7 @@ was subject to integer division by one million.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1150">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1165">source</a></span></span>
     </span>
   </h3>
 
@@ -6030,7 +6149,7 @@ number of seconds by 60.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1118">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1133">source</a></span></span>
     </span>
   </h3>
 
@@ -6151,6 +6270,68 @@ exception is thrown.</p>
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-toNanosPart">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">toNanosPart</span><span class="code" data-ice="signature">(): <span>number</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1181">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Get the nanoseconds part within seconds of the duration.</p>
+<p>The length of the duration is stored using two fields - seconds and nanoseconds.
+The nanoseconds part is a value from 0 to 999,999,999 that is an adjustment to
+the length in seconds.
+The total duration is defined by calling <span><a href="class/packages/core/src/Duration.js~Duration.html#instance-method-nano">Duration.nano</a></span> and <span><a href="class/packages/core/src/Duration.js~Duration.html#instance-method-seconds">Duration.seconds</a></span>.</p>
+<p>This instance is immutable and unaffected by this method call.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>number</span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>the nanoseconds within the second part of the length of the duration, from 0 to 999,999,999</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-toSecondsPart">
     <span class="access" data-ice="access">public</span>
     
@@ -6162,7 +6343,7 @@ exception is thrown.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1133">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1148">source</a></span></span>
     </span>
   </h3>
 
@@ -6223,7 +6404,7 @@ This is based on the standard definition of a minute as 60 seconds.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1216">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1247">source</a></span></span>
     </span>
   </h3>
 

@@ -107,8 +107,8 @@
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-format-parser">locale/src/format/parser</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/format/parser/WeekFieldsPrinterParser.js~WeekFieldsPrinterParser.html">WeekFieldsPrinterParser</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#locale-src-temporal">locale/src/temporal</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~ComputedDayOfField.html">ComputedDayOfField</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/locale/src/temporal/WeekFields.js~WeekFields.html">WeekFields</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRules.js~MomentZoneRules.html">MomentZoneRules</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/MomentZoneRulesProvider.js~MomentZoneRulesProvider.html">MomentZoneRulesProvider</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#timezone-src">timezone/src</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/TzdbZoneRules.js~TzdbZoneRules.html">TzdbZoneRules</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/packages/timezone/src/TzdbZoneRulesProvider.js~TzdbZoneRulesProvider.html">TzdbZoneRulesProvider</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -200,14 +200,19 @@ function mapIndices (source, indices) {
 /**
  * @private
  *
+ * Changes: field 7, the standard offset per period type (encoded like the offsets), is unpacked
+ * into `stdOffsets` when present.
+ *
  * @param string
- * @returns {{offsets: *[], abbrs: *[], name, untils: *, population: number}}
+ * @returns {{offsets: *[], abbrs: *[], name, untils: *, population: number, stdOffsets: (number[]|undefined)}}
  */
 export function unpack (string) {
     var data = string.split(&apos;|&apos;),
         offsets = data[2].split(&apos; &apos;),
         indices = data[3].split(&apos;&apos;),
-        untils  = data[4].split(&apos; &apos;);
+        untils  = data[4].split(&apos; &apos;),
+        stdOffsets = data[7] ? data[7].split(&apos; &apos;) : null,
+        result;
 
     arrayToInt(offsets);
     arrayToInt(indices);
@@ -215,13 +220,20 @@ export function unpack (string) {
 
     intToUntil(untils, indices.length);
 
-    return {
+    result = {
         name       : data[0],
         abbrs      : mapIndices(data[1].split(&apos; &apos;), indices),
         offsets    : mapIndices(offsets, indices),
         untils     : untils,
         population : data[5] | 0
     };
+
+    if (stdOffsets) {
+        arrayToInt(stdOffsets);
+        result.stdOffsets = mapIndices(stdOffsets, indices);
+    }
+
+    return result;
 }
 
 </code></pre>

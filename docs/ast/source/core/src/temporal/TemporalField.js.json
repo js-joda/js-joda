@@ -1,7 +1,7 @@
 {
   "type": "File",
   "start": 0,
-  "end": 9898,
+  "end": 9894,
   "loc": {
     "start": {
       "line": 1,
@@ -15,7 +15,7 @@
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 9898,
+    "end": 9894,
     "loc": {
       "start": {
         "line": 1,
@@ -151,7 +151,7 @@
       {
         "type": "ExportNamedDeclaration",
         "start": 1100,
-        "end": 9897,
+        "end": 9893,
         "loc": {
           "start": {
             "line": 26,
@@ -167,7 +167,7 @@
         "declaration": {
           "type": "ClassDeclaration",
           "start": 1107,
-          "end": 9897,
+          "end": 9893,
           "loc": {
             "start": {
               "line": 26,
@@ -200,7 +200,7 @@
           "body": {
             "type": "ClassBody",
             "start": 1127,
-            "end": 9897,
+            "end": 9893,
             "loc": {
               "start": {
                 "line": 26,
@@ -1683,9 +1683,9 @@
                 "trailingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\n     * Checks if this field is supported by the temporal object.\n     *\n     * This determines whether the temporal accessor supports this field.\n     * If this returns false, the the temporal cannot be queried for this field.\n     *\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link TemporalAccessor#isSupported}:\n     * <pre>\n     *   // these two lines are equivalent, but the second approach is recommended\n     *   temporal = thisField.isSupportedBy(temporal);\n     *   temporal = temporal.isSupported(thisField);\n     * </pre>\n     * It is recommended to use the second approach, `isSupported(temporal)`,\n     * as it is a lot clearer to read in code.\n     *\n     * Implementations should determine whether they are supported using the fields\n     * available in {@link ChronoField}.\n     *\n     * @param {!TemporalAccesor} temporal the temporal object to query.\n     * @return {boolean} `true` if the date-time can be queried for this field, `false` if not.\n     ",
+                    "value": "*\n     * Checks if this field is supported by the temporal object.\n     *\n     * This determines whether the temporal accessor supports this field.\n     * If this returns false, the temporal cannot be queried for this field.\n     *\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link TemporalAccessor#isSupported}:\n     * <pre>\n     *   // these two lines are equivalent, but the second approach is recommended\n     *   temporal = thisField.isSupportedBy(temporal);\n     *   temporal = temporal.isSupported(thisField);\n     * </pre>\n     * It is recommended to use the second approach, `isSupported(temporal)`,\n     * as it is a lot clearer to read in code.\n     *\n     * Implementations should determine whether they are supported using the fields\n     * available in {@link ChronoField}.\n     *\n     * @param {!TemporalAccesor} temporal the temporal object to query.\n     * @return {boolean} `true` if the date-time can be queried for this field, `false` if not.\n     ",
                     "start": 8295,
-                    "end": 9367,
+                    "end": 9363,
                     "loc": {
                       "start": {
                         "line": 198,
@@ -1700,8 +1700,8 @@
                   {
                     "type": "CommentLine",
                     "value": " eslint-disable-next-line no-unused-vars",
-                    "start": 9372,
-                    "end": 9414,
+                    "start": 9368,
+                    "end": 9410,
                     "loc": {
                       "start": {
                         "line": 221,
@@ -1717,8 +1717,8 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 9419,
-                "end": 9495,
+                "start": 9415,
+                "end": 9491,
                 "loc": {
                   "start": {
                     "line": 222,
@@ -1733,8 +1733,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 9419,
-                  "end": 9432,
+                  "start": 9415,
+                  "end": 9428,
                   "loc": {
                     "start": {
                       "line": 222,
@@ -1757,8 +1757,8 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 9433,
-                    "end": 9441,
+                    "start": 9429,
+                    "end": 9437,
                     "loc": {
                       "start": {
                         "line": 222,
@@ -1775,8 +1775,8 @@
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 9443,
-                  "end": 9495,
+                  "start": 9439,
+                  "end": 9491,
                   "loc": {
                     "start": {
                       "line": 222,
@@ -1790,8 +1790,8 @@
                   "body": [
                     {
                       "type": "ExpressionStatement",
-                      "start": 9453,
-                      "end": 9489,
+                      "start": 9449,
+                      "end": 9485,
                       "loc": {
                         "start": {
                           "line": 223,
@@ -1804,8 +1804,8 @@
                       },
                       "expression": {
                         "type": "CallExpression",
-                        "start": 9453,
-                        "end": 9488,
+                        "start": 9449,
+                        "end": 9484,
                         "loc": {
                           "start": {
                             "line": 223,
@@ -1818,8 +1818,8 @@
                         },
                         "callee": {
                           "type": "Identifier",
-                          "start": 9453,
-                          "end": 9471,
+                          "start": 9449,
+                          "end": 9467,
                           "loc": {
                             "start": {
                               "line": 223,
@@ -1836,8 +1836,8 @@
                         "arguments": [
                           {
                             "type": "StringLiteral",
-                            "start": 9472,
-                            "end": 9487,
+                            "start": 9468,
+                            "end": 9483,
                             "loc": {
                               "start": {
                                 "line": 223,
@@ -1864,9 +1864,9 @@
                 "leadingComments": [
                   {
                     "type": "CommentBlock",
-                    "value": "*\n     * Checks if this field is supported by the temporal object.\n     *\n     * This determines whether the temporal accessor supports this field.\n     * If this returns false, the the temporal cannot be queried for this field.\n     *\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link TemporalAccessor#isSupported}:\n     * <pre>\n     *   // these two lines are equivalent, but the second approach is recommended\n     *   temporal = thisField.isSupportedBy(temporal);\n     *   temporal = temporal.isSupported(thisField);\n     * </pre>\n     * It is recommended to use the second approach, `isSupported(temporal)`,\n     * as it is a lot clearer to read in code.\n     *\n     * Implementations should determine whether they are supported using the fields\n     * available in {@link ChronoField}.\n     *\n     * @param {!TemporalAccesor} temporal the temporal object to query.\n     * @return {boolean} `true` if the date-time can be queried for this field, `false` if not.\n     ",
+                    "value": "*\n     * Checks if this field is supported by the temporal object.\n     *\n     * This determines whether the temporal accessor supports this field.\n     * If this returns false, the temporal cannot be queried for this field.\n     *\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link TemporalAccessor#isSupported}:\n     * <pre>\n     *   // these two lines are equivalent, but the second approach is recommended\n     *   temporal = thisField.isSupportedBy(temporal);\n     *   temporal = temporal.isSupported(thisField);\n     * </pre>\n     * It is recommended to use the second approach, `isSupported(temporal)`,\n     * as it is a lot clearer to read in code.\n     *\n     * Implementations should determine whether they are supported using the fields\n     * available in {@link ChronoField}.\n     *\n     * @param {!TemporalAccesor} temporal the temporal object to query.\n     * @return {boolean} `true` if the date-time can be queried for this field, `false` if not.\n     ",
                     "start": 8295,
-                    "end": 9367,
+                    "end": 9363,
                     "loc": {
                       "start": {
                         "line": 198,
@@ -1881,8 +1881,8 @@
                   {
                     "type": "CommentLine",
                     "value": " eslint-disable-next-line no-unused-vars",
-                    "start": 9372,
-                    "end": 9414,
+                    "start": 9368,
+                    "end": 9410,
                     "loc": {
                       "start": {
                         "line": 221,
@@ -1899,8 +1899,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\n     * @return {string}\n     ",
-                    "start": 9501,
-                    "end": 9536,
+                    "start": 9497,
+                    "end": 9532,
                     "loc": {
                       "start": {
                         "line": 226,
@@ -1916,8 +1916,8 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 9541,
-                "end": 9623,
+                "start": 9537,
+                "end": 9619,
                 "loc": {
                   "start": {
                     "line": 229,
@@ -1932,8 +1932,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 9541,
-                  "end": 9552,
+                  "start": 9537,
+                  "end": 9548,
                   "loc": {
                     "start": {
                       "line": 229,
@@ -1956,8 +1956,8 @@
                 "params": [],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 9573,
-                  "end": 9623,
+                  "start": 9569,
+                  "end": 9619,
                   "loc": {
                     "start": {
                       "line": 229,
@@ -1971,8 +1971,8 @@
                   "body": [
                     {
                       "type": "ExpressionStatement",
-                      "start": 9583,
-                      "end": 9617,
+                      "start": 9579,
+                      "end": 9613,
                       "loc": {
                         "start": {
                           "line": 230,
@@ -1985,8 +1985,8 @@
                       },
                       "expression": {
                         "type": "CallExpression",
-                        "start": 9583,
-                        "end": 9616,
+                        "start": 9579,
+                        "end": 9612,
                         "loc": {
                           "start": {
                             "line": 230,
@@ -1999,8 +1999,8 @@
                         },
                         "callee": {
                           "type": "Identifier",
-                          "start": 9583,
-                          "end": 9601,
+                          "start": 9579,
+                          "end": 9597,
                           "loc": {
                             "start": {
                               "line": 230,
@@ -2018,8 +2018,8 @@
                         "arguments": [
                           {
                             "type": "StringLiteral",
-                            "start": 9602,
-                            "end": 9615,
+                            "start": 9598,
+                            "end": 9611,
                             "loc": {
                               "start": {
                                 "line": 230,
@@ -2047,8 +2047,8 @@
                     {
                       "type": "CommentBlock",
                       "value": " TODO: locale ",
-                      "start": 9553,
-                      "end": 9571,
+                      "start": 9549,
+                      "end": 9567,
                       "loc": {
                         "start": {
                           "line": 229,
@@ -2067,8 +2067,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\n     * @return {string}\n     ",
-                    "start": 9501,
-                    "end": 9536,
+                    "start": 9497,
+                    "end": 9532,
                     "loc": {
                       "start": {
                         "line": 226,
@@ -2085,8 +2085,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\n    * @param {*} other\n    * @returns {boolean}\n    ",
-                    "start": 9629,
-                    "end": 9687,
+                    "start": 9625,
+                    "end": 9683,
                     "loc": {
                       "start": {
                         "line": 233,
@@ -2101,8 +2101,8 @@
                   {
                     "type": "CommentLine",
                     "value": " eslint-disable-next-line no-unused-vars",
-                    "start": 9692,
-                    "end": 9734,
+                    "start": 9688,
+                    "end": 9730,
                     "loc": {
                       "start": {
                         "line": 237,
@@ -2118,8 +2118,8 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 9739,
-                "end": 9798,
+                "start": 9735,
+                "end": 9794,
                 "loc": {
                   "start": {
                     "line": 238,
@@ -2134,8 +2134,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 9739,
-                  "end": 9745,
+                  "start": 9735,
+                  "end": 9741,
                   "loc": {
                     "start": {
                       "line": 238,
@@ -2158,8 +2158,8 @@
                 "params": [
                   {
                     "type": "Identifier",
-                    "start": 9746,
-                    "end": 9751,
+                    "start": 9742,
+                    "end": 9747,
                     "loc": {
                       "start": {
                         "line": 238,
@@ -2176,8 +2176,8 @@
                 ],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 9753,
-                  "end": 9798,
+                  "start": 9749,
+                  "end": 9794,
                   "loc": {
                     "start": {
                       "line": 238,
@@ -2191,8 +2191,8 @@
                   "body": [
                     {
                       "type": "ExpressionStatement",
-                      "start": 9763,
-                      "end": 9792,
+                      "start": 9759,
+                      "end": 9788,
                       "loc": {
                         "start": {
                           "line": 239,
@@ -2205,8 +2205,8 @@
                       },
                       "expression": {
                         "type": "CallExpression",
-                        "start": 9763,
-                        "end": 9791,
+                        "start": 9759,
+                        "end": 9787,
                         "loc": {
                           "start": {
                             "line": 239,
@@ -2219,8 +2219,8 @@
                         },
                         "callee": {
                           "type": "Identifier",
-                          "start": 9763,
-                          "end": 9781,
+                          "start": 9759,
+                          "end": 9777,
                           "loc": {
                             "start": {
                               "line": 239,
@@ -2237,8 +2237,8 @@
                         "arguments": [
                           {
                             "type": "StringLiteral",
-                            "start": 9782,
-                            "end": 9790,
+                            "start": 9778,
+                            "end": 9786,
                             "loc": {
                               "start": {
                                 "line": 239,
@@ -2266,8 +2266,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\n    * @param {*} other\n    * @returns {boolean}\n    ",
-                    "start": 9629,
-                    "end": 9687,
+                    "start": 9625,
+                    "end": 9683,
                     "loc": {
                       "start": {
                         "line": 233,
@@ -2282,8 +2282,8 @@
                   {
                     "type": "CommentLine",
                     "value": " eslint-disable-next-line no-unused-vars",
-                    "start": 9692,
-                    "end": 9734,
+                    "start": 9688,
+                    "end": 9730,
                     "loc": {
                       "start": {
                         "line": 237,
@@ -2300,8 +2300,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\n     * @returns {string}\n     ",
-                    "start": 9804,
-                    "end": 9840,
+                    "start": 9800,
+                    "end": 9836,
                     "loc": {
                       "start": {
                         "line": 242,
@@ -2317,8 +2317,8 @@
               },
               {
                 "type": "ClassMethod",
-                "start": 9845,
-                "end": 9895,
+                "start": 9841,
+                "end": 9891,
                 "loc": {
                   "start": {
                     "line": 245,
@@ -2333,8 +2333,8 @@
                 "computed": false,
                 "key": {
                   "type": "Identifier",
-                  "start": 9845,
-                  "end": 9849,
+                  "start": 9841,
+                  "end": 9845,
                   "loc": {
                     "start": {
                       "line": 245,
@@ -2357,8 +2357,8 @@
                 "params": [],
                 "body": {
                   "type": "BlockStatement",
-                  "start": 9852,
-                  "end": 9895,
+                  "start": 9848,
+                  "end": 9891,
                   "loc": {
                     "start": {
                       "line": 245,
@@ -2372,8 +2372,8 @@
                   "body": [
                     {
                       "type": "ExpressionStatement",
-                      "start": 9862,
-                      "end": 9889,
+                      "start": 9858,
+                      "end": 9885,
                       "loc": {
                         "start": {
                           "line": 246,
@@ -2386,8 +2386,8 @@
                       },
                       "expression": {
                         "type": "CallExpression",
-                        "start": 9862,
-                        "end": 9888,
+                        "start": 9858,
+                        "end": 9884,
                         "loc": {
                           "start": {
                             "line": 246,
@@ -2400,8 +2400,8 @@
                         },
                         "callee": {
                           "type": "Identifier",
-                          "start": 9862,
-                          "end": 9880,
+                          "start": 9858,
+                          "end": 9876,
                           "loc": {
                             "start": {
                               "line": 246,
@@ -2418,8 +2418,8 @@
                         "arguments": [
                           {
                             "type": "StringLiteral",
-                            "start": 9881,
-                            "end": 9887,
+                            "start": 9877,
+                            "end": 9883,
                             "loc": {
                               "start": {
                                 "line": 246,
@@ -2446,8 +2446,8 @@
                   {
                     "type": "CommentBlock",
                     "value": "*\n     * @returns {string}\n     ",
-                    "start": 9804,
-                    "end": 9840,
+                    "start": 9800,
+                    "end": 9836,
                     "loc": {
                       "start": {
                         "line": 242,
@@ -2748,9 +2748,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n     * Checks if this field is supported by the temporal object.\n     *\n     * This determines whether the temporal accessor supports this field.\n     * If this returns false, the the temporal cannot be queried for this field.\n     *\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link TemporalAccessor#isSupported}:\n     * <pre>\n     *   // these two lines are equivalent, but the second approach is recommended\n     *   temporal = thisField.isSupportedBy(temporal);\n     *   temporal = temporal.isSupported(thisField);\n     * </pre>\n     * It is recommended to use the second approach, `isSupported(temporal)`,\n     * as it is a lot clearer to read in code.\n     *\n     * Implementations should determine whether they are supported using the fields\n     * available in {@link ChronoField}.\n     *\n     * @param {!TemporalAccesor} temporal the temporal object to query.\n     * @return {boolean} `true` if the date-time can be queried for this field, `false` if not.\n     ",
+      "value": "*\n     * Checks if this field is supported by the temporal object.\n     *\n     * This determines whether the temporal accessor supports this field.\n     * If this returns false, the temporal cannot be queried for this field.\n     *\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link TemporalAccessor#isSupported}:\n     * <pre>\n     *   // these two lines are equivalent, but the second approach is recommended\n     *   temporal = thisField.isSupportedBy(temporal);\n     *   temporal = temporal.isSupported(thisField);\n     * </pre>\n     * It is recommended to use the second approach, `isSupported(temporal)`,\n     * as it is a lot clearer to read in code.\n     *\n     * Implementations should determine whether they are supported using the fields\n     * available in {@link ChronoField}.\n     *\n     * @param {!TemporalAccesor} temporal the temporal object to query.\n     * @return {boolean} `true` if the date-time can be queried for this field, `false` if not.\n     ",
       "start": 8295,
-      "end": 9367,
+      "end": 9363,
       "loc": {
         "start": {
           "line": 198,
@@ -2765,8 +2765,8 @@
     {
       "type": "CommentLine",
       "value": " eslint-disable-next-line no-unused-vars",
-      "start": 9372,
-      "end": 9414,
+      "start": 9368,
+      "end": 9410,
       "loc": {
         "start": {
           "line": 221,
@@ -2781,8 +2781,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n     * @return {string}\n     ",
-      "start": 9501,
-      "end": 9536,
+      "start": 9497,
+      "end": 9532,
       "loc": {
         "start": {
           "line": 226,
@@ -2797,8 +2797,8 @@
     {
       "type": "CommentBlock",
       "value": " TODO: locale ",
-      "start": 9553,
-      "end": 9571,
+      "start": 9549,
+      "end": 9567,
       "loc": {
         "start": {
           "line": 229,
@@ -2813,8 +2813,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n    * @param {*} other\n    * @returns {boolean}\n    ",
-      "start": 9629,
-      "end": 9687,
+      "start": 9625,
+      "end": 9683,
       "loc": {
         "start": {
           "line": 233,
@@ -2829,8 +2829,8 @@
     {
       "type": "CommentLine",
       "value": " eslint-disable-next-line no-unused-vars",
-      "start": 9692,
-      "end": 9734,
+      "start": 9688,
+      "end": 9730,
       "loc": {
         "start": {
           "line": 237,
@@ -2845,8 +2845,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n     * @returns {string}\n     ",
-      "start": 9804,
-      "end": 9840,
+      "start": 9800,
+      "end": 9836,
       "loc": {
         "start": {
           "line": 242,
@@ -5530,9 +5530,9 @@
     },
     {
       "type": "CommentBlock",
-      "value": "*\n     * Checks if this field is supported by the temporal object.\n     *\n     * This determines whether the temporal accessor supports this field.\n     * If this returns false, the the temporal cannot be queried for this field.\n     *\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link TemporalAccessor#isSupported}:\n     * <pre>\n     *   // these two lines are equivalent, but the second approach is recommended\n     *   temporal = thisField.isSupportedBy(temporal);\n     *   temporal = temporal.isSupported(thisField);\n     * </pre>\n     * It is recommended to use the second approach, `isSupported(temporal)`,\n     * as it is a lot clearer to read in code.\n     *\n     * Implementations should determine whether they are supported using the fields\n     * available in {@link ChronoField}.\n     *\n     * @param {!TemporalAccesor} temporal the temporal object to query.\n     * @return {boolean} `true` if the date-time can be queried for this field, `false` if not.\n     ",
+      "value": "*\n     * Checks if this field is supported by the temporal object.\n     *\n     * This determines whether the temporal accessor supports this field.\n     * If this returns false, the temporal cannot be queried for this field.\n     *\n     * There are two equivalent ways of using this method.\n     * The first is to invoke this method directly.\n     * The second is to use {@link TemporalAccessor#isSupported}:\n     * <pre>\n     *   // these two lines are equivalent, but the second approach is recommended\n     *   temporal = thisField.isSupportedBy(temporal);\n     *   temporal = temporal.isSupported(thisField);\n     * </pre>\n     * It is recommended to use the second approach, `isSupported(temporal)`,\n     * as it is a lot clearer to read in code.\n     *\n     * Implementations should determine whether they are supported using the fields\n     * available in {@link ChronoField}.\n     *\n     * @param {!TemporalAccesor} temporal the temporal object to query.\n     * @return {boolean} `true` if the date-time can be queried for this field, `false` if not.\n     ",
       "start": 8295,
-      "end": 9367,
+      "end": 9363,
       "loc": {
         "start": {
           "line": 198,
@@ -5547,8 +5547,8 @@
     {
       "type": "CommentLine",
       "value": " eslint-disable-next-line no-unused-vars",
-      "start": 9372,
-      "end": 9414,
+      "start": 9368,
+      "end": 9410,
       "loc": {
         "start": {
           "line": 221,
@@ -5573,8 +5573,8 @@
         "binop": null
       },
       "value": "isSupportedBy",
-      "start": 9419,
-      "end": 9432,
+      "start": 9415,
+      "end": 9428,
       "loc": {
         "start": {
           "line": 222,
@@ -5598,8 +5598,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 9432,
-      "end": 9433,
+      "start": 9428,
+      "end": 9429,
       "loc": {
         "start": {
           "line": 222,
@@ -5624,8 +5624,8 @@
         "binop": null
       },
       "value": "temporal",
-      "start": 9433,
-      "end": 9441,
+      "start": 9429,
+      "end": 9437,
       "loc": {
         "start": {
           "line": 222,
@@ -5649,8 +5649,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 9441,
-      "end": 9442,
+      "start": 9437,
+      "end": 9438,
       "loc": {
         "start": {
           "line": 222,
@@ -5674,8 +5674,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 9443,
-      "end": 9444,
+      "start": 9439,
+      "end": 9440,
       "loc": {
         "start": {
           "line": 222,
@@ -5700,8 +5700,8 @@
         "binop": null
       },
       "value": "abstractMethodFail",
-      "start": 9453,
-      "end": 9471,
+      "start": 9449,
+      "end": 9467,
       "loc": {
         "start": {
           "line": 223,
@@ -5725,8 +5725,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 9471,
-      "end": 9472,
+      "start": 9467,
+      "end": 9468,
       "loc": {
         "start": {
           "line": 223,
@@ -5752,8 +5752,8 @@
         "updateContext": null
       },
       "value": "isSupportedBy",
-      "start": 9472,
-      "end": 9487,
+      "start": 9468,
+      "end": 9483,
       "loc": {
         "start": {
           "line": 223,
@@ -5777,8 +5777,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 9487,
-      "end": 9488,
+      "start": 9483,
+      "end": 9484,
       "loc": {
         "start": {
           "line": 223,
@@ -5803,8 +5803,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 9488,
-      "end": 9489,
+      "start": 9484,
+      "end": 9485,
       "loc": {
         "start": {
           "line": 223,
@@ -5828,8 +5828,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 9494,
-      "end": 9495,
+      "start": 9490,
+      "end": 9491,
       "loc": {
         "start": {
           "line": 224,
@@ -5844,8 +5844,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n     * @return {string}\n     ",
-      "start": 9501,
-      "end": 9536,
+      "start": 9497,
+      "end": 9532,
       "loc": {
         "start": {
           "line": 226,
@@ -5870,8 +5870,8 @@
         "binop": null
       },
       "value": "displayName",
-      "start": 9541,
-      "end": 9552,
+      "start": 9537,
+      "end": 9548,
       "loc": {
         "start": {
           "line": 229,
@@ -5895,8 +5895,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 9552,
-      "end": 9553,
+      "start": 9548,
+      "end": 9549,
       "loc": {
         "start": {
           "line": 229,
@@ -5911,8 +5911,8 @@
     {
       "type": "CommentBlock",
       "value": " TODO: locale ",
-      "start": 9553,
-      "end": 9571,
+      "start": 9549,
+      "end": 9567,
       "loc": {
         "start": {
           "line": 229,
@@ -5936,8 +5936,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 9571,
-      "end": 9572,
+      "start": 9567,
+      "end": 9568,
       "loc": {
         "start": {
           "line": 229,
@@ -5961,8 +5961,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 9573,
-      "end": 9574,
+      "start": 9569,
+      "end": 9570,
       "loc": {
         "start": {
           "line": 229,
@@ -5987,8 +5987,8 @@
         "binop": null
       },
       "value": "abstractMethodFail",
-      "start": 9583,
-      "end": 9601,
+      "start": 9579,
+      "end": 9597,
       "loc": {
         "start": {
           "line": 230,
@@ -6012,8 +6012,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 9601,
-      "end": 9602,
+      "start": 9597,
+      "end": 9598,
       "loc": {
         "start": {
           "line": 230,
@@ -6039,8 +6039,8 @@
         "updateContext": null
       },
       "value": "displayName",
-      "start": 9602,
-      "end": 9615,
+      "start": 9598,
+      "end": 9611,
       "loc": {
         "start": {
           "line": 230,
@@ -6064,8 +6064,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 9615,
-      "end": 9616,
+      "start": 9611,
+      "end": 9612,
       "loc": {
         "start": {
           "line": 230,
@@ -6090,8 +6090,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 9616,
-      "end": 9617,
+      "start": 9612,
+      "end": 9613,
       "loc": {
         "start": {
           "line": 230,
@@ -6115,8 +6115,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 9622,
-      "end": 9623,
+      "start": 9618,
+      "end": 9619,
       "loc": {
         "start": {
           "line": 231,
@@ -6131,8 +6131,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n    * @param {*} other\n    * @returns {boolean}\n    ",
-      "start": 9629,
-      "end": 9687,
+      "start": 9625,
+      "end": 9683,
       "loc": {
         "start": {
           "line": 233,
@@ -6147,8 +6147,8 @@
     {
       "type": "CommentLine",
       "value": " eslint-disable-next-line no-unused-vars",
-      "start": 9692,
-      "end": 9734,
+      "start": 9688,
+      "end": 9730,
       "loc": {
         "start": {
           "line": 237,
@@ -6173,8 +6173,8 @@
         "binop": null
       },
       "value": "equals",
-      "start": 9739,
-      "end": 9745,
+      "start": 9735,
+      "end": 9741,
       "loc": {
         "start": {
           "line": 238,
@@ -6198,8 +6198,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 9745,
-      "end": 9746,
+      "start": 9741,
+      "end": 9742,
       "loc": {
         "start": {
           "line": 238,
@@ -6224,8 +6224,8 @@
         "binop": null
       },
       "value": "other",
-      "start": 9746,
-      "end": 9751,
+      "start": 9742,
+      "end": 9747,
       "loc": {
         "start": {
           "line": 238,
@@ -6249,8 +6249,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 9751,
-      "end": 9752,
+      "start": 9747,
+      "end": 9748,
       "loc": {
         "start": {
           "line": 238,
@@ -6274,8 +6274,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 9753,
-      "end": 9754,
+      "start": 9749,
+      "end": 9750,
       "loc": {
         "start": {
           "line": 238,
@@ -6300,8 +6300,8 @@
         "binop": null
       },
       "value": "abstractMethodFail",
-      "start": 9763,
-      "end": 9781,
+      "start": 9759,
+      "end": 9777,
       "loc": {
         "start": {
           "line": 239,
@@ -6325,8 +6325,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 9781,
-      "end": 9782,
+      "start": 9777,
+      "end": 9778,
       "loc": {
         "start": {
           "line": 239,
@@ -6352,8 +6352,8 @@
         "updateContext": null
       },
       "value": "equals",
-      "start": 9782,
-      "end": 9790,
+      "start": 9778,
+      "end": 9786,
       "loc": {
         "start": {
           "line": 239,
@@ -6377,8 +6377,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 9790,
-      "end": 9791,
+      "start": 9786,
+      "end": 9787,
       "loc": {
         "start": {
           "line": 239,
@@ -6403,8 +6403,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 9791,
-      "end": 9792,
+      "start": 9787,
+      "end": 9788,
       "loc": {
         "start": {
           "line": 239,
@@ -6428,8 +6428,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 9797,
-      "end": 9798,
+      "start": 9793,
+      "end": 9794,
       "loc": {
         "start": {
           "line": 240,
@@ -6444,8 +6444,8 @@
     {
       "type": "CommentBlock",
       "value": "*\n     * @returns {string}\n     ",
-      "start": 9804,
-      "end": 9840,
+      "start": 9800,
+      "end": 9836,
       "loc": {
         "start": {
           "line": 242,
@@ -6470,8 +6470,8 @@
         "binop": null
       },
       "value": "name",
-      "start": 9845,
-      "end": 9849,
+      "start": 9841,
+      "end": 9845,
       "loc": {
         "start": {
           "line": 245,
@@ -6495,8 +6495,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 9849,
-      "end": 9850,
+      "start": 9845,
+      "end": 9846,
       "loc": {
         "start": {
           "line": 245,
@@ -6520,8 +6520,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 9850,
-      "end": 9851,
+      "start": 9846,
+      "end": 9847,
       "loc": {
         "start": {
           "line": 245,
@@ -6545,8 +6545,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 9852,
-      "end": 9853,
+      "start": 9848,
+      "end": 9849,
       "loc": {
         "start": {
           "line": 245,
@@ -6571,8 +6571,8 @@
         "binop": null
       },
       "value": "abstractMethodFail",
-      "start": 9862,
-      "end": 9880,
+      "start": 9858,
+      "end": 9876,
       "loc": {
         "start": {
           "line": 246,
@@ -6596,8 +6596,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 9880,
-      "end": 9881,
+      "start": 9876,
+      "end": 9877,
       "loc": {
         "start": {
           "line": 246,
@@ -6623,8 +6623,8 @@
         "updateContext": null
       },
       "value": "name",
-      "start": 9881,
-      "end": 9887,
+      "start": 9877,
+      "end": 9883,
       "loc": {
         "start": {
           "line": 246,
@@ -6648,8 +6648,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 9887,
-      "end": 9888,
+      "start": 9883,
+      "end": 9884,
       "loc": {
         "start": {
           "line": 246,
@@ -6674,8 +6674,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 9888,
-      "end": 9889,
+      "start": 9884,
+      "end": 9885,
       "loc": {
         "start": {
           "line": 246,
@@ -6699,8 +6699,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 9894,
-      "end": 9895,
+      "start": 9890,
+      "end": 9891,
       "loc": {
         "start": {
           "line": 247,
@@ -6724,8 +6724,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 9896,
-      "end": 9897,
+      "start": 9892,
+      "end": 9893,
       "loc": {
         "start": {
           "line": 248,
@@ -6750,8 +6750,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 9898,
-      "end": 9898,
+      "start": 9894,
+      "end": 9894,
       "loc": {
         "start": {
           "line": 249,
