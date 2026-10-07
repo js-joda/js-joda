@@ -1136,10 +1136,12 @@ export class Duration extends TemporalAmount {
     toMillis(): number;
     toMinutes(): number;
     toNanos(): number;
+    toDaysPart(): number;
     toHoursPart(): number;
     toMinutesPart(): number;
     toSecondsPart(): number;
     toMillisPart(): number;
+    toNanosPart(): number;
     toString(): string;
     units(): TemporalUnit[];
     withNanos(nanoOfSecond: number): Duration;

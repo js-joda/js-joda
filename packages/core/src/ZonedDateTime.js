@@ -319,7 +319,7 @@ export class ZonedDateTime extends ChronoZonedDateTime {
      *
      * Converting an instant to a zoned date-time is simple as there is only one valid
      * offset for each instant. If the valid offset is different to the offset specified,
-     * the the date-time and offset of the zoned date-time will differ from those specified.
+     * the date-time and offset of the zoned date-time will differ from those specified.
      *
      * If the {@link ZoneId} to be used is a {@link ZoneOffset}, this method is equivalent
      * to {@link of}.

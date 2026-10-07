@@ -2113,6 +2113,37 @@ describe('org.threeten.bp.TestDuration', () => {
 
     });
 
+    describe('toPartXxx()', ()=> {
+        // @DataProvider(name="ToPart")
+        function provider_toPart() {
+            return [
+                ['PT0S', 0, 0, 0, 0, 0, 0],
+                ['P1DT1H1M1.123456789S', 1, 1, 1, 1, 123, 123456789],
+                ['-P1DT1H1M1.123456789S', -1, -1, -1, -2, 876, 876543211],
+                ['PT9999999.9S', 115, 17, 46, 39, 900, 900000000],
+                ['-PT9999999.9S', -115, -17, -46, -40, 100, 100000000],
+                ['-PT2S', 0, 0, 0, -2, 0, 0],
+                ['-PT1.999999999S', 0, 0, 0, -2, 0, 1],
+            ];
+        }
+
+        it('test_toPart', () => {
+            dataProviderTest(provider_toPart, test_toPart);
+        });
+
+        // @Test(dataProvider = "ToPart")
+        function test_toPart(text, daysPart, hoursPart, minutesPart, secondsPart, millisPart, nanosPart) {
+            const test = Duration.parse(text);
+            expect(test.toDaysPart()).to.eql(daysPart);
+            expect(test.toHoursPart()).to.eql(hoursPart);
+            expect(test.toMinutesPart()).to.eql(minutesPart);
+            expect(test.toSecondsPart()).to.eql(secondsPart);
+            expect(test.toMillisPart()).to.eql(millisPart);
+            expect(test.toNanosPart()).to.eql(nanosPart);
+        }
+
+    });
+
     describe('toHoursPart()', ()=> {
         it('test_toHoursPart', () => {
             const test = Duration.ofHours(1);

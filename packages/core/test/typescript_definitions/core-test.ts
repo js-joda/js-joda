@@ -904,6 +904,13 @@ it('Duration', () => {
     expectType<Duration>(dur.plus(Duration.ofNanos(1)));
     expectType<Duration>(dur.plus(1, ChronoUnit.NANOS));
 
+    expectType<number>(dur.toDaysPart());
+    expectType<number>(dur.toHoursPart());
+    expectType<number>(dur.toMinutesPart());
+    expectType<number>(dur.toSecondsPart());
+    expectType<number>(dur.toMillisPart());
+    expectType<number>(dur.toNanosPart());
+
     // .equals is not a type predicate
     const temp = Duration.ZERO;
     if (!dur.equals(temp)) {
