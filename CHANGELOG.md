@@ -1,7 +1,15 @@
 Changelog
 =========
 
-## Unreleased
+## 2026-10-07
+
+### Versions
+
+- @js-joda/core@6.3.0
+- @js-joda/timezone@3.1.0
+- @js-joda/extra@0.13.2
+- @js-joda/locale@5.3.2
+- @js-joda/locale_* prebuilt locale packages (@5.3.2)
 
 #### :rocket: Enhancement
 * `core`
