@@ -335,23 +335,24 @@ export class TzdbZoneRules extends ZoneRules{
     /**
      * The indices i of the periods whose end, untils[i], is an offset transition, in ascending
      * order. Period boundaries where the offset doesn't change (only the abbreviation or the
-     * isdst flag) and the last open-ended period are not transitions. Computed on first use.
+     * isdst flag) and the last open-ended period are not transitions. Computed on first use and
+     * cached on the zone's tz data, which all rules instances of the zone share.
      *
      * @return {number[]}
      * @private
      */
     _transitionIndices(){
-        if (this._transitionIndicesCache == null) {
+        const tzdbInfo = this._tzdbInfo;
+        if (tzdbInfo._transitionIndices == null) {
             const indices = [];
-            const offsets = this._tzdbInfo.offsets;
-            for (let i = 0; i < offsets.length - 1; i++) {
+            for (let i = 0; i < tzdbInfo.offsets.length - 1; i++) {
                 if (this._offsetByIndexInSeconds(i) !== this._offsetByIndexInSeconds(i + 1)) {
                     indices.push(i);
                 }
             }
-            this._transitionIndicesCache = indices;
+            tzdbInfo._transitionIndices = indices;
         }
-        return this._transitionIndicesCache;
+        return tzdbInfo._transitionIndices;
     }
 
     /**
