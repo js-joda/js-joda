@@ -916,6 +916,12 @@ export class Instant extends Temporal {
      * @throws ArithmeticException if numeric overflow occurs
      */
     toEpochMilli() {
+        if (this._seconds < 0 && this._nanos > 0) {
+            // avoid an overflow of seconds * 1000 for instants close to the minimum epoch milli
+            const millis = MathUtil.safeMultiply(this._seconds + 1, 1000);
+            const adjustment = MathUtil.intDiv(this._nanos, NANOS_PER_MILLI) - 1000;
+            return MathUtil.safeAdd(millis, adjustment);
+        }
         const millis = MathUtil.safeMultiply(this._seconds, 1000);
         return millis + MathUtil.intDiv(this._nanos, NANOS_PER_MILLI);
     }

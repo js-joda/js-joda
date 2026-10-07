@@ -317,7 +317,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
         //-----------------------------------------------------------------------
         it('factory_ofYearDay_ints_nonLeap', () => {
             let date = LocalDate.of(2007, 1, 1);
-            for (let i = 1; i < 365; i++) {
+            for (let i = 1; i <= 365; i++) {
                 expect(LocalDate.ofYearDay(2007, i)).to.eql(date);
                 date = next(date);
             }
@@ -325,7 +325,7 @@ describe('org.threeten.bp.TestLocalDate', () => {
 
         it('factory_ofYearDay_ints_leap', () => {
             let date = LocalDate.of(2008, 1, 1);
-            for (let i = 1; i < 366; i++) {
+            for (let i = 1; i <= 366; i++) {
                 expect(LocalDate.ofYearDay(2008, i)).to.eql(date);
                 date = next(date);
             }
