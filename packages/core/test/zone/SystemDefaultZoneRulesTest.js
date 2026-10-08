@@ -43,6 +43,22 @@ describe('zone/SystemDefaultZoneRulesTest.js', () => {
         expect(offset.id()).to.be.a('string');
     });
 
+    it('should return the offset at the end of the Date range beyond it', function () {
+        // a Date covers epoch millis -8.64e15 to 8.64e15, toEpochMilli() overflows for Instant.MIN and MAX
+        const rules = ZoneId.systemDefault().rules();
+        const first = rules.offsetOfEpochMilli(-8640000000000000);
+        const last = rules.offsetOfEpochMilli(8640000000000000);
+
+        assertEquals(rules.offset(Instant.MIN), first);
+        assertEquals(rules.offset(Instant.MAX), last);
+        assertEquals(rules.standardOffset(Instant.MAX), last);
+        assertEquals(rules.offset(Instant.ofEpochMilli(-8640000000000001)), first);
+        assertEquals(rules.offset(Instant.ofEpochMilli(8640000000000001)), last);
+        assertEquals(rules.offsetOfEpochMilli(8640000000000001), last);
+        expect(rules.offset(LocalDateTime.MIN)).to.be.instanceOf(ZoneOffset);
+        expect(rules.offset(LocalDateTime.MAX)).to.be.instanceOf(ZoneOffset);
+    });
+
     it('should return an offset for a LocalDateTime', function () {
         const zone = ZoneId.systemDefault();
         const ldt = LocalDateTime.parse('2016-10-30T00:00:00');

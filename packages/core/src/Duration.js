@@ -880,8 +880,10 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
      * Returns a copy of this duration divided by the specified value.
      *
      * The result is truncated toward zero to the nanosecond, as in threeten.
-     * For an integer divisor the division is exact. A divisor with a fraction is not supported by
-     * threeten; it is divided by floating point arithmetic, expect floating point rounding errors.
+     * For an integer divisor up to `MAX_SAFE_INTEGER` (positive or negative) the division is exact.
+     * Other divisors, with a fraction or beyond `MAX_SAFE_INTEGER`, are not exactly representable
+     * or not supported by threeten; they are divided by floating point arithmetic, expect floating
+     * point rounding errors.
      *
      * @param {Number} divisor - the value to divide the duration by, positive or negative, not zero
      * @return {Duration} based on this duration divided by the specified divisor, not null
@@ -903,7 +905,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
             seconds += 1;
             nanos -= LocalTime.NANOS_PER_SECOND;
         }
-        if (!Number.isInteger(divisor)) {
+        if (!Number.isInteger(divisor) || Math.abs(divisor) > MAX_SAFE_INTEGER) {
             const secs = MathUtil.intDiv(seconds, divisor);
             const remainder = MathUtil.intMod(seconds, divisor);
             const nos = MathUtil.intDiv(remainder * LocalTime.NANOS_PER_SECOND + nanos, divisor);
@@ -912,10 +914,21 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         // the remainder operator is exact for integers, so are secs and the remainder
         const remainder = seconds % divisor;
         const secs = MathUtil.safeZero((seconds - remainder) / divisor);
-        // remainder * NANOS_PER_SECOND may exceed MAX_SAFE_INTEGER, divide it without computing it
         const sign = ((seconds < 0 || nanos < 0) ? -1 : 1) * (divisor < 0 ? -1 : 1);
-        const nos = sign * divideScaledByNanos(Math.abs(remainder), Math.abs(nanos), Math.abs(divisor));
-        return Duration.ofSeconds(secs, MathUtil.safeZero(nos));
+        const absRemainder = Math.abs(remainder);
+        const absNanos = Math.abs(nanos);
+        const absDivisor = Math.abs(divisor);
+        // the largest remainder for which remainder * NANOS_PER_SECOND + nanos + divisor <= MAX_SAFE_INTEGER
+        const headroom = MAX_SAFE_INTEGER - absDivisor - absNanos;
+        let quotientNanos;
+        if (headroom >= 0 && absRemainder <= MathUtil.intDiv(headroom, LocalTime.NANOS_PER_SECOND)) {
+            // the usual case, e.g. dividedBy(60): remainder * NANOS_PER_SECOND + nanos is exact
+            quotientNanos = exactFloorDiv(absRemainder * LocalTime.NANOS_PER_SECOND + absNanos, absDivisor);
+        } else {
+            // remainder * NANOS_PER_SECOND exceeds MAX_SAFE_INTEGER, divide it without computing it
+            quotientNanos = divideScaledByNanos(absRemainder, absNanos, absDivisor);
+        }
+        return Duration.ofSeconds(secs, MathUtil.safeZero(sign * quotientNanos));
     }
 
     //-----------------------------------------------------------------------
@@ -1319,8 +1332,30 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
 }
 
 /**
+ * `floor(value / divisor)` by floating point division, exact if `value + divisor <= MAX_SAFE_INTEGER`:
+ * with `value = q * divisor + r` and `0 <= r < divisor`, the quotient `value / divisor` is at least
+ * `1 / divisor` below `q + 1`. Rounding it up to `q + 1` would need that distance to be at most half
+ * an ulp of `q + 1`, at most `(q + 1) / 2^53`, so `divisor * (q + 1) >= 2^53`; but
+ * `divisor * (q + 1) <= value + divisor < 2^53`.
+ *
+ * @param {number} value - integer, `0 <= value`
+ * @param {number} divisor - positive integer, `value + divisor <= MAX_SAFE_INTEGER`
+ * @return {number}
+ * @private
+ */
+function exactFloorDiv(value, divisor) {
+    return Math.floor(value / divisor);
+}
+
+/**
  * Computes `floor((remainder * NANOS_PER_SECOND + nanos) / divisor)` exactly, by long division over
  * the nine decimal digits of `nanos`, without the intermediate values exceeding `MAX_SAFE_INTEGER`.
+ * Each step divides `rem * 10 + digit`, with `rem < divisor`, by `divisor`:
+ *
+ * * up to `MAX_SAFE_INTEGER / 11`, `rem * 10 + digit + divisor < 11 * divisor` is small enough
+ *   for {@link exactFloorDiv}
+ * * above, `rem * 10` itself may exceed `MAX_SAFE_INTEGER`; it is computed as ten additions of `rem`
+ *   modulo `divisor`, counting the wrap-arounds, so that all values stay below `divisor`
  *
  * @param {number} remainder - integer, `0 <= remainder < divisor`
  * @param {number} nanos - integer, `0 <= nanos < NANOS_PER_SECOND`
@@ -1329,8 +1364,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
  * @private
  */
 function divideScaledByNanos(remainder, nanos, divisor) {
-    // below this divisor, rem * 10 + 9 is exact for any rem < divisor
-    const directLimit = MathUtil.intDiv(MAX_SAFE_INTEGER - 9, 10);
+    const directLimit = MathUtil.intDiv(MAX_SAFE_INTEGER, 11);
     let rem = remainder;
     let quotient = 0;
     for (let scale = 100000000; scale >= 1; scale /= 10) {
@@ -1338,19 +1372,10 @@ function divideScaledByNanos(remainder, nanos, divisor) {
         let digitQuotient;
         if (divisor <= directLimit) {
             const value = rem * 10 + digit;
-            digitQuotient = Math.floor(value / divisor);
+            digitQuotient = exactFloorDiv(value, divisor);
             rem = value - digitQuotient * divisor;
-            // correct a rounding error of the floating point division
-            if (rem < 0) {
-                digitQuotient--;
-                rem += divisor;
-            } else if (rem >= divisor) {
-                digitQuotient++;
-                rem -= divisor;
-            }
         } else {
-            // rem * 10 + digit as ten additions of rem and one of digit, modulo divisor,
-            // counting the wrap-arounds; all values stay below divisor (digit < 10 < divisor)
+            // digit < 10 < divisor, so divisor - digit and divisor - rem are positive and exact
             let acc = 0;
             digitQuotient = 0;
             for (let i = 0; i < 10; i++) {
