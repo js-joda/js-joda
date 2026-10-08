@@ -7,12 +7,16 @@ import { expect } from 'chai';
 
 import {
     _ as jodaInternal,
+    DateTimeFormatter,
     DecimalStyle,
     IsoChronology,
+    LocalDate,
     LocalDateTime,
+    TemporalQueries,
     TextStyle,
     ZoneId,
     ZoneRulesProvider,
+    use,
 } from '@js-joda/core';
 
 import '@js-joda/timezone';
@@ -23,6 +27,9 @@ import '../_init';
 
 import CldrZoneTextPrinterParser from '../../src/format/cldr/CldrZoneTextPrinterParser';
 import Locale from '../../src/Locale';
+import jodaLocale from '../../src/plug';
+
+use(jodaLocale);
 
 const {
     DateTimeParseContext,
@@ -36,7 +43,8 @@ describe('@js-joda/locale CldrZoneTextPrinterParser', () => {
     describe('print / parse zones', () => {
 
         // test some zones and their representations in different locales
-        // TODO: test DST when ZoneRules.isDailylightSavings() is available
+        // the @js-joda/timezone version used by these tests doesn't support
+        // ZoneRules.isDaylightSavings(), so the generic names are printed
         const data = [
 
             [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'UTC', Locale.ENGLISH, TextStyle.FULL, 'UTC'],
@@ -90,6 +98,136 @@ describe('@js-joda/locale CldrZoneTextPrinterParser', () => {
                 assertEquals(zone.rules().offsetOfInstant(zdt.toInstant()), parsedZone.rules().offsetOfInstant(zdt.toInstant()));
             });
         }).timeout(20000); // longer timeout, 2 seconds are not enough :/
+
+        describe('daylight savings', () => {
+            // wraps a ZonedDateTime, replacing the rules of its zone by rules
+            // that answer isDaylightSavings() with the given value
+            const withDaylightSavings = (zdt, daylight) => {
+                const zone = Object.create(zdt.zone());
+                const rules = Object.create(zdt.zone().rules());
+                rules.isDaylightSavings = () => daylight;
+                zone.rules = () => rules;
+                return {
+                    query: (query) => query === TemporalQueries.zoneId() ? zone : zdt.query(query),
+                    isSupported: (field) => zdt.isSupported(field),
+                    getLong: (field) => zdt.getLong(field),
+                };
+            };
+
+            const data = [
+                ['Europe/Berlin', false, Locale.ENGLISH, TextStyle.FULL, 'Central European Standard Time'],
+                ['Europe/Berlin', true, Locale.ENGLISH, TextStyle.FULL, 'Central European Summer Time'],
+                ['Europe/Berlin', false, Locale.GERMAN, TextStyle.SHORT, 'MEZ'],
+                ['Europe/Berlin', true, Locale.GERMAN, TextStyle.SHORT, 'MESZ'],
+                ['Europe/London', false, Locale.ENGLISH, TextStyle.FULL, 'Greenwich Mean Time'],
+                ['Europe/London', true, Locale.ENGLISH, TextStyle.FULL, 'British Summer Time'],
+                ['America/New_York', false, Locale.ENGLISH, TextStyle.FULL, 'Eastern Standard Time'],
+                ['America/New_York', true, Locale.ENGLISH, TextStyle.FULL, 'Eastern Daylight Time'],
+                ['America/New_York', false, Locale.ENGLISH, TextStyle.SHORT, 'EST'],
+                ['America/New_York', true, Locale.ENGLISH, TextStyle.SHORT, 'EDT'],
+            ];
+
+            it('test_print_daylight_standard', () => {
+                dataProviderTest(data, (zoneStr, daylight, locale, style, expectedString) => {
+                    const zdt = LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0).atZone(ZoneId.of(zoneStr));
+                    const buf = new StringBuilder();
+                    const printContext = new DateTimePrintContext(withDaylightSavings(zdt, daylight), locale, DecimalStyle.STANDARD);
+                    new CldrZoneTextPrinterParser(style).print(printContext, buf);
+                    assertEquals(buf.toString(), expectedString);
+                });
+            });
+
+            it('test_print_generic_without_instant', () => {
+                // a temporal without INSTANT_SECONDS prints the generic name
+                const zdt = LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0).atZone(ZoneId.of('Europe/Berlin'));
+                const temporal = withDaylightSavings(zdt, true);
+                temporal.isSupported = () => false;
+                const buf = new StringBuilder();
+                const printContext = new DateTimePrintContext(temporal, Locale.ENGLISH, DecimalStyle.STANDARD);
+                new CldrZoneTextPrinterParser(TextStyle.FULL).print(printContext, buf);
+                assertEquals(buf.toString(), 'Central European Time');
+            });
+
+            it('test_print_generic_if_rules_throw', () => {
+                const zdt = LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0).atZone(ZoneId.of('Europe/Berlin'));
+                const temporal = withDaylightSavings(zdt, true);
+                temporal.query(TemporalQueries.zoneId()).rules().isDaylightSavings = () => {
+                    throw new Error('no standard offsets');
+                };
+                const buf = new StringBuilder();
+                const printContext = new DateTimePrintContext(temporal, Locale.ENGLISH, DecimalStyle.STANDARD);
+                new CldrZoneTextPrinterParser(TextStyle.FULL).print(printContext, buf);
+                assertEquals(buf.toString(), 'Central European Time');
+            });
+        });
+
+        describe('fixed zones', () => {
+            const fixedZones = [
+                ['+01:00', '+01:00'],
+                ['-01:00', '-01:00'],
+                ['+12:34:56', '+12:34:56'],
+                ['Z', 'Z'],
+                ['GMT', 'GMT'],
+                ['GMT+01:00', 'GMT+01:00'],
+                ['UTC', 'UTC'],
+                ['UTC-01:00', 'UTC-01:00'],
+                ['UT', 'UT'],
+                ['UT+01:00', 'UT+01:00'],
+            ];
+
+            it('test_parse_fixed', () => {
+                dataProviderTest(fixedZones, (input, expectedZone) => {
+                    const ztpp = new CldrZoneTextPrinterParser(TextStyle.FULL);
+                    const parseContext = new DateTimeParseContext(Locale.US, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
+                    const result = ztpp.parse(parseContext, input, 0);
+                    assertEquals(result, input.length);
+                    assertEquals(parseContext.currentParsed().zone, ZoneId.of(expectedZone));
+                });
+            });
+
+            it('test_parse_fixed_byFormatterWithPrefix', () => {
+                dataProviderTest(fixedZones, (input, expectedZone) => {
+                    const f = DateTimeFormatter.ofPattern('MMzzz').withLocale(Locale.US);
+                    const parsed = f.parse(`12${input}`);
+                    assertEquals(parsed.query(TemporalQueries.zoneId()), ZoneId.of(expectedZone));
+                });
+            });
+
+            it('test_parse_fixed_byFormatterWithSuffixZ', () => {
+                dataProviderTest(fixedZones, (input, expectedZone) => {
+                    const f = DateTimeFormatter.ofPattern('MMzzz\'Z\'').withLocale(Locale.US);
+                    const parsed = f.parse(`12${input}Z`);
+                    assertEquals(parsed.query(TemporalQueries.zoneId()), ZoneId.of(expectedZone));
+                });
+            });
+
+            it('test_parse_fixed_byFormatterWithSuffix0', () => {
+                dataProviderTest(fixedZones, (input, expectedZone) => {
+                    const f = DateTimeFormatter.ofPattern('MMzzz\'0\'').withLocale(Locale.US);
+                    const parsed = f.parse(`12${input}0`);
+                    assertEquals(parsed.query(TemporalQueries.zoneId()), ZoneId.of(expectedZone));
+                });
+            });
+
+            it('test_parse_localDate_with_fixed_zone', () => {
+                const f = DateTimeFormatter.ofPattern('yyyy-MM-dd z').withLocale(Locale.US);
+                const parsed = LocalDate.parse('2015-07-21 GMT+02:00', f);
+                assertEquals(parsed, LocalDate.of(2015, 7, 21));
+            });
+
+            it('test_parse_incomplete_offset', () => {
+                const ztpp = new CldrZoneTextPrinterParser(TextStyle.FULL);
+                const parseContext = new DateTimeParseContext(Locale.US, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
+                expect(ztpp.parse(parseContext, '+01', 0)).to.eql(~0);
+                expect(ztpp.parse(parseContext, '', 0)).to.eql(~0);
+            });
+
+            it('test_parse_invalid_offset', () => {
+                const ztpp = new CldrZoneTextPrinterParser(TextStyle.FULL);
+                const parseContext = new DateTimeParseContext(Locale.US, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
+                expect(ztpp.parse(parseContext, 'GMT+19:00', 0)).to.eql(~0);
+            });
+        });
 
         it('test_parse_non_zone', () => {
             const ztpp = new CldrZoneTextPrinterParser(TextStyle.FULL);

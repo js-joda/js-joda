@@ -5,6 +5,10 @@
 
 import {
     _ as jodaInternal,
+    ChronoField,
+    DateTimeException,
+    DateTimeFormatterBuilder,
+    Instant,
     TextStyle,
     TemporalQueries,
     ZoneId,
@@ -35,6 +39,12 @@ const LENGTH_COMPARATOR = (str1, str2) => {
  * Obj { type: resolvedZoneIdText}
  */
 const resolveZoneIdTextCache = {};
+
+/**
+ * Parses the offset after a UT/UTC/GMT prefix, or a plain offset.
+ * Uses '0' as no offset text, so that a trailing 'Z' is not consumed.
+ */
+const OFFSET_ID_PARSER = new DateTimeFormatterBuilder.OffsetIdPrinterParser('0', '+HH:MM:ss');
 
 /**
  * Prints or parses a zone ID.
@@ -130,15 +140,19 @@ export default class CldrZoneTextPrinterParser {
             buf.append(zone.id());
             return true;
         }
-        const daylight = false;
-        const hasDaylightSupport = false;
-        /* TODO: currently js-joda-timezone does not support ZoneRules.isDaylightSavings() ... uncomment if it does
-         const temporal = context.temporal();
-         if (temporal.isSupported(ChronoField.INSTANT_SECONDS)) {
-            hasDaylightSupport = true;
-            const instant = Instant.ofEpochSecond(temporal.getLong(ChronoField.INSTANT_SECONDS));
-            daylight = zone.rules().isDaylightSavings(instant);
-        }*/
+        let daylight = false;
+        let hasDaylightSupport = false;
+        const temporal = context.temporal();
+        if (temporal.isSupported(ChronoField.INSTANT_SECONDS)) {
+            try {
+                const instant = Instant.ofEpochSecond(temporal.getLong(ChronoField.INSTANT_SECONDS));
+                daylight = zone.rules().isDaylightSavings(instant);
+                hasDaylightSupport = true;
+            } catch (ex) {
+                // the rules have no daylight savings information (e.g. tz data without
+                // standard offsets), fall back to the generic name
+            }
+        }
         const tzType = hasDaylightSupport ? (daylight ? 'daylight' : 'standard') : 'generic';
         const tzstyle = (this._textStyle.asNormal() === TextStyle.FULL ? 'long' : 'short');
         loadCldrData(`main/${context.locale().localeString()}/timeZoneNames.json`);
@@ -186,14 +200,26 @@ export default class CldrZoneTextPrinterParser {
         return this._zoneIdsLocales[localString];
     }
 
-    // That's a very poor implementation, there are missing bug fixes and functionality from threeten and jdk
     parse(context, text, position) {
-        for (const name of ['UTC', 'GMT']) {
-            if (context.subSequenceEquals(text, position, name, 0, name.length)) {
-                context.setParsedZone(ZoneId.of(name));
-                return position + name.length;
+        // handle fixed offsets
+        const length = text.length;
+        if (position >= length) {
+            return ~position;
+        }
+        const first = text.charAt(position);
+        if (first === '+' || first === '-') {
+            if (position + 6 > length) {
+                return ~position;
+            }
+            return this._parseOffset(context, text, position, '');
+        }
+        for (const prefix of ['GMT', 'UTC', 'UT']) {
+            if (context.subSequenceEquals(text, position, prefix, 0, prefix.length)) {
+                return this._parseOffset(context, text, position, prefix);
             }
         }
+
+        // this is a poor implementation that handles some but not all of the spec
         const { ids, sortedKeys } = this._resolveZoneIds(context.locale().localeString());
         for (const name of sortedKeys) {
             if (context.subSequenceEquals(text, position, name, 0, name.length)) {
@@ -201,7 +227,49 @@ export default class CldrZoneTextPrinterParser {
                 return position + name.length;
             }
         }
+        if (context.charEquals(first, 'Z')) {
+            context.setParsedZone(ZoneOffset.UTC);
+            return position + 1;
+        }
         return ~position;
+    }
+
+    /**
+     * Parses an optional offset after a UT/UTC/GMT prefix, or a plain offset if the prefix is empty.
+     *
+     * @param {DateTimeParseContext} context
+     * @param {String} text
+     * @param {number} position
+     * @param {String} prefix
+     * @return {number}
+     */
+    _parseOffset(context, text, position, prefix) {
+        const searchPos = position + prefix.length;
+        if (searchPos >= text.length) {
+            context.setParsedZone(ZoneId.of(prefix));
+            return searchPos;
+        }
+        const first = text.charAt(searchPos);
+        if (first !== '+' && first !== '-') {
+            context.setParsedZone(ZoneId.of(prefix));
+            return searchPos;
+        }
+        const contextCopy = context.copy();
+        try {
+            const endPos = OFFSET_ID_PARSER.parse(contextCopy, text, searchPos);
+            if (endPos < 0) {
+                context.setParsedZone(ZoneId.of(prefix));
+                return searchPos;
+            }
+            const offset = ZoneOffset.ofTotalSeconds(contextCopy.getParsed(ChronoField.OFFSET_SECONDS));
+            context.setParsedZone(prefix.length === 0 ? offset : ZoneId.ofOffset(prefix, offset));
+            return endPos;
+        } catch (ex) {
+            if (ex instanceof DateTimeException) {
+                return ~position;
+            }
+            throw ex;
+        }
     }
 
     toString() {

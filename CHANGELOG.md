@@ -1,6 +1,21 @@
 Changelog
 =========
 
+## Unreleased
+
+#### :rocket: Enhancement
+* `locale`
+    * Print the standard or daylight saving name of a time-zone with the `z` and `zzzz` patterns, e.g. `Central European Summer Time` instead of `Central European Time`, as in java.time; port of [ThreeTen/threetenbp@456f648](https://github.com/ThreeTen/threetenbp/commit/456f648b4) ([@pithu](https://github.com/pithu))
+        This needs `@js-joda/timezone` 3.1.0 or later with tz data that has standard offsets (the default). If the value has no instant, or the zone rules don't support `isDaylightSavings()`, the generic name is printed as before.
+
+#### :bug: Bug Fix
+* `locale`
+    * Parse fixed offsets with the `z` and `zzzz` patterns, e.g. `+01:00`, `Z`, `UT`, `UTC-01:00` or `GMT+02:00`, as in java.time; port of [ThreeTen/threetenbp@f0f09a6](https://github.com/ThreeTen/threetenbp/commit/f0f09a6fb) ([@pithu](https://github.com/pithu))
+* `core`
+    * `LocalDate.ofEpochDay()` checks the epoch day against `ChronoField.EPOCH_DAY` and throws a `DateTimeException` naming that field, instead of a misleading year error or an int overflow; port of [ThreeTen/threetenbp@006216f](https://github.com/ThreeTen/threetenbp/commit/006216f27) ([@pithu](https://github.com/pithu))
+* `timezone`
+    * Add a test that parses `ZonedDateTime.toString()` back for every available zone; port of [ThreeTen/threetenbp@5e9389c](https://github.com/ThreeTen/threetenbp/commit/5e9389cc8) ([@pithu](https://github.com/pithu))
+
 ## 2026-10-07
 
 ### Versions
