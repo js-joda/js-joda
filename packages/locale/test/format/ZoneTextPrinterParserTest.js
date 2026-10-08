@@ -167,16 +167,59 @@ describe('@js-joda/locale CldrZoneTextPrinterParser', () => {
                 assertEquals(buf.toString(), 'Central European Time');
             });
 
-            it('test_print_generic_if_rules_throw', () => {
+            // prints with rules whose isDaylightSavings() throws the error
+            const printWithThrowingRules = (error) => {
                 const zdt = LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0).atZone(ZoneId.of('Europe/Berlin'));
                 const temporal = withDaylightSavings(zdt, true);
                 temporal.query(TemporalQueries.zoneId()).rules().isDaylightSavings = () => {
-                    throw new Error('no standard offsets');
+                    throw error;
                 };
                 const buf = new StringBuilder();
                 const printContext = new DateTimePrintContext(temporal, Locale.ENGLISH, DecimalStyle.STANDARD);
                 new CldrZoneTextPrinterParser(TextStyle.FULL).print(printContext, buf);
-                assertEquals(buf.toString(), 'Central European Time');
+                return buf.toString();
+            };
+
+            it('test_print_generic_if_rules_dont_support_daylight_savings', () => {
+                const errors = [
+                    // tz data without standard offsets, @js-joda/timezone 3.1 or later
+                    new Error('The tz data of zone Europe/Berlin has no standard offsets, load tz data with standard offsets'),
+                    // @js-joda/timezone before 3.1
+                    new Error('not supported: ZoneRules.isDaylightSavings'),
+                    // ZoneRules that don't implement it
+                    new TypeError('abstract method "ZoneRules.isDaylightSavings" is not implemented'),
+                ];
+                for (const error of errors) {
+                    assertEquals(printWithThrowingRules(error), 'Central European Time');
+                }
+            });
+
+            it('test_print_rethrows_other_errors', () => {
+                expect(() => printWithThrowingRules(new TypeError('x is undefined'))).to.throw(TypeError, 'x is undefined');
+            });
+        });
+
+        describe('historic metazones', () => {
+            // the metazone in use at the instant names the offset of that time
+            const data = [
+                // America/Indiana/Knox used America_Eastern from 1991-10-27 to 2006-04-02
+                [LocalDateTime.of(2000, 1, 15, 12, 0), 'America/Indiana/Knox', TextStyle.FULL, 'Eastern Standard Time'],
+                [LocalDateTime.of(2011, 1, 15, 12, 0), 'America/Indiana/Knox', TextStyle.FULL, 'Central Standard Time'],
+                [LocalDateTime.of(1980, 1, 15, 12, 0), 'America/Indiana/Knox', TextStyle.FULL, 'Central Standard Time'],
+                // Europe/Minsk used Europe_Eastern from 1991-03-30 to 2011-03-27, then Further-eastern and Moscow
+                [LocalDateTime.of(2010, 7, 15, 12, 0), 'Europe/Minsk', TextStyle.FULL, 'Eastern European Summer Time'],
+                [LocalDateTime.of(2012, 7, 15, 12, 0), 'Europe/Minsk', TextStyle.FULL, 'Further-eastern European Time'],
+                [LocalDateTime.of(2020, 1, 15, 12, 0), 'Europe/Minsk', TextStyle.FULL, 'Moscow Standard Time'],
+            ];
+
+            it('test_print_historic_metazone', () => {
+                dataProviderTest(data, (ldt, zoneStr, style, expectedString) => {
+                    const zdt = ldt.atZone(ZoneId.of(zoneStr));
+                    const buf = new StringBuilder();
+                    const printContext = new DateTimePrintContext(zdt, Locale.ENGLISH, DecimalStyle.STANDARD);
+                    new CldrZoneTextPrinterParser(style).print(printContext, buf);
+                    assertEquals(buf.toString(), expectedString);
+                });
             });
         });
 
@@ -245,6 +288,9 @@ describe('@js-joda/locale CldrZoneTextPrinterParser', () => {
                 const ztpp = new CldrZoneTextPrinterParser(TextStyle.FULL);
                 const parseContext = new DateTimeParseContext(Locale.US, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
                 expect(ztpp.parse(parseContext, 'GMT+19:00', 0)).to.eql(~0);
+                // a plain offset that doesn't parse fails, there is no prefix to fall back to
+                expect(ztpp.parse(parseContext, '+ab:cd', 0)).to.eql(~0);
+                expect(ztpp.parse(parseContext, '+0100 x', 0)).to.eql(~0);
             });
         });
 

@@ -36,7 +36,10 @@ const LENGTH_COMPARATOR = (str1, str2) => {
  * Obj { locale: zoneId }
  * Obj { zoneId: style}
  * Obj { style: type}
- * Obj { type: resolvedZoneIdText}
+ * Obj { type: metazone}
+ * Obj { metazone: resolvedZoneIdText}
+ *
+ * A resolved text may be undefined, if there is no text for the zone.
  */
 const resolveZoneIdTextCache = {};
 
@@ -45,6 +48,35 @@ const resolveZoneIdTextCache = {};
  * Uses '0' as no offset text, so that a trailing 'Z' is not consumed.
  */
 const OFFSET_ID_PARSER = new DateTimeFormatterBuilder.OffsetIdPrinterParser('0', '+HH:MM:ss');
+
+/**
+ * Parses a metazone date of the cldr supplemental data, e.g. '1991-10-27 07:00', as UTC.
+ *
+ * @param {String} text
+ * @return {number} the epoch milli
+ */
+const parseMetazoneDate = (text) => {
+    const [date, time] = text.split(' ');
+    const [year, month, day] = date.split('-').map(Number);
+    const [hour, minute] = time.split(':').map(Number);
+    return Date.UTC(year, month - 1, day, hour, minute);
+};
+
+/**
+ * Checks if the error tells that the zone rules don't support `isDaylightSavings()`:
+ * - `ZoneRules` that don't implement it (TypeError: abstract method ... is not implemented)
+ * - `@js-joda/timezone` before 3.1 (Error: not supported: ...)
+ * - `@js-joda/timezone` 3.1 or later with tz data without standard offsets
+ *
+ * @param {*} ex
+ * @return {boolean}
+ */
+const isDaylightSavingsUnsupported = (ex) => {
+    const message = ex != null && typeof ex.message === 'string' ? ex.message : '';
+    return message.indexOf('abstract method') >= 0 ||
+        message.indexOf('not supported') >= 0 ||
+        message.indexOf('has no standard offsets') >= 0;
+};
 
 /**
  * Prints or parses a zone ID.
@@ -61,7 +93,15 @@ export default class CldrZoneTextPrinterParser {
         loadCldrData('supplemental/metaZones.json');
     }
 
-    _cachedResolveZoneIdText(cldr, zoneId, style, type) {
+    /**
+     * @param {Cldr} cldr
+     * @param {String} zoneId
+     * @param {String} style - 'long' or 'short'
+     * @param {String} type - 'generic', 'standard' or 'daylight'
+     * @param {String} [metazone] - the metazone of the zone, defaults to its current metazone
+     * @return {String|undefined} the zone text
+     */
+    _cachedResolveZoneIdText(cldr, zoneId, style, type, metazone) {
         if (resolveZoneIdTextCache[cldr.locale] == null) {
             resolveZoneIdTextCache[cldr.locale] = {};
         }
@@ -76,24 +116,56 @@ export default class CldrZoneTextPrinterParser {
             styleToType[style] = {};
         }
 
-        const typeToResolvedZoneIdText = styleToType[style];
-        if (typeToResolvedZoneIdText[type] == null) {
-            typeToResolvedZoneIdText[type] = this._resolveZoneIdText(cldr, zoneId, style, type);
+        const typeToMetazone = styleToType[style];
+        if (typeToMetazone[type] == null) {
+            typeToMetazone[type] = {};
         }
 
-        return typeToResolvedZoneIdText[type];
+        const metazoneToResolvedZoneIdText = typeToMetazone[type];
+        const metazoneKey = metazone == null ? '' : metazone;
+        // a resolved text may be undefined, so check the key, to cache misses as well
+        if (!Object.prototype.hasOwnProperty.call(metazoneToResolvedZoneIdText, metazoneKey)) {
+            metazoneToResolvedZoneIdText[metazoneKey] = this._resolveZoneIdText(cldr, zoneId, style, type, metazone);
+        }
+
+        return metazoneToResolvedZoneIdText[metazoneKey];
     }
 
-    _resolveZoneIdText(cldr, zoneId, style, type) {
+    /**
+     * Gets the metazone that the zone uses at the instant.
+     *
+     * @param {Cldr} cldr
+     * @param {String} zoneId
+     * @param {number} [epochMilli] - the instant, defaults to the current metazone
+     * @return {String|undefined} the metazone, undefined if the zone has none at the instant
+     */
+    _metazone(cldr, zoneId, epochMilli) {
+        const metazoneInfo = cldr.get(`supplemental/metaZones/metazoneInfo/timezone/${zoneId}`);
+        if (!metazoneInfo) {
+            return undefined;
+        }
+        if (epochMilli == null) {
+            return metazoneInfo[metazoneInfo.length - 1]['usesMetazone']['_mzone'];
+        }
+        for (const info of metazoneInfo) {
+            const { _mzone, _from, _to } = info['usesMetazone'];
+            if ((_from == null || parseMetazoneDate(_from) <= epochMilli) &&
+                (_to == null || epochMilli < parseMetazoneDate(_to))) {
+                return _mzone;
+            }
+        }
+        return undefined;
+    }
+
+    _resolveZoneIdText(cldr, zoneId, style, type, metazone) {
         const zoneData = cldr.main(`dates/timeZoneNames/zone/${zoneId}/${style}/${type}`);
         if (zoneData) {
             return zoneData;
         } else {
-            const metazoneInfo = cldr.get(`supplemental/metaZones/metazoneInfo/timezone/${zoneId}`);
-            if (metazoneInfo) {
-                // const zoneData = cldr.main(`dates/timeZoneNames/metazone/Acre`);
-                // TODO: determine metaZone for current temporal, for now, we use the last one :/
-                const metazone = metazoneInfo[metazoneInfo.length - 1]['usesMetazone']['_mzone'];
+            if (metazone == null) {
+                metazone = this._metazone(cldr, zoneId);
+            }
+            if (metazone) {
                 let metaZoneData = cldr.main(`dates/timeZoneNames/metazone/${metazone}/${style}/${type}`);
                 if (metaZoneData) {
                     return metaZoneData;
@@ -112,13 +184,13 @@ export default class CldrZoneTextPrinterParser {
                         const preferredZone = mapZones[metazone][cldr.attributes.territory];
                         if (preferredZone) {
                             if (preferredZone !== zoneId) {
-                                return this._cachedResolveZoneIdText(cldr, preferredZone, style, type);
+                                return this._cachedResolveZoneIdText(cldr, preferredZone, style, type, metazone);
                             }
                         } else {
                             // find golden Zone and resolve again
                             const goldenZone = mapZones[metazone]['001'];
                             if (goldenZone !== zoneId) {
-                                return this._cachedResolveZoneIdText(cldr, goldenZone, style, type);
+                                return this._cachedResolveZoneIdText(cldr, goldenZone, style, type, metazone);
                             }
                         }
                     }
@@ -141,17 +213,20 @@ export default class CldrZoneTextPrinterParser {
             buf.append(zone.id());
             return true;
         }
+        let instant = null;
         let daylight = false;
         let hasDaylightSupport = false;
         const temporal = context.temporal();
         if (temporal.isSupported(ChronoField.INSTANT_SECONDS)) {
+            instant = Instant.ofEpochSecond(temporal.getLong(ChronoField.INSTANT_SECONDS));
             try {
-                const instant = Instant.ofEpochSecond(temporal.getLong(ChronoField.INSTANT_SECONDS));
                 daylight = zone.rules().isDaylightSavings(instant);
                 hasDaylightSupport = true;
             } catch (ex) {
-                // the rules have no daylight savings information (e.g. tz data without
-                // standard offsets), fall back to the generic name
+                if (!isDaylightSavingsUnsupported(ex)) {
+                    throw ex;
+                }
+                // the rules have no daylight savings information, fall back to the generic name
             }
         }
         const tzType = hasDaylightSupport ? (daylight ? 'daylight' : 'standard') : 'generic';
@@ -159,7 +234,9 @@ export default class CldrZoneTextPrinterParser {
         loadCldrData(`main/${context.locale().localeString()}/timeZoneNames.json`);
         const cldr = getOrCreateCldrInstance(context.locale().localeString());
 
-        const text = this._cachedResolveZoneIdText(cldr, zone.id(), tzstyle, tzType);
+        // the metazone at the instant, so that a historic date gets the name of the offset in use then
+        const metazone = instant == null ? undefined : this._metazone(cldr, zone.id(), instant.toEpochMilli());
+        const text = this._cachedResolveZoneIdText(cldr, zone.id(), tzstyle, tzType, metazone);
         if (text) {
             buf.append(text);
         } else {
@@ -259,6 +336,9 @@ export default class CldrZoneTextPrinterParser {
         try {
             const endPos = OFFSET_ID_PARSER.parse(contextCopy, text, searchPos);
             if (endPos < 0) {
+                if (prefix.length === 0) {
+                    return ~position;
+                }
                 context.setParsedZone(ZoneId.of(prefix));
                 return searchPos;
             }

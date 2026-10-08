@@ -93,7 +93,7 @@ console.log('en_US formatted string:',
             .ofPattern('eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz, \'Week \' ww, \'Quarter \' QQQ')
             .withLocale(Locale.US)));
 ```
-this will output `en_US formatted string: Friday January 01 2016 Anno Domini, 12:00:00 AM Central European Time, Week  01, Quarter  Q1`
+this will output `en_US formatted string: Friday January 01 2016 Anno Domini, 12:00:00 AM Central European Standard Time, Week  01, Quarter  Q1`
 
 also see [examples/usage_node.js](examples/usage_node.js) or [examples/usage_node_build.js](examples/usage_node_build.js)
 

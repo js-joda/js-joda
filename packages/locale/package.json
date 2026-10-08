@@ -54,7 +54,7 @@
   },
   "peerDependencies": {
     "@js-joda/core": ">=6.0.0",
-    "@js-joda/timezone": "^2.25.0 || ^3.0.0",
+    "@js-joda/timezone": "^3.1.0",
     "cldr-data": "*",
     "cldrjs": "^0.5.5"
   },
