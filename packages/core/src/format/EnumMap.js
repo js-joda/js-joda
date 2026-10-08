@@ -19,11 +19,21 @@ export class EnumMap {
 
     /**
      * @param {TemporalField} key
+     * @return {?Array<{key: TemporalField, value: *}>} the entries with the name of key, or undefined
+     * @private
+     */
+    _bucket(key){
+        const name = key.name();
+        return Object.prototype.hasOwnProperty.call(this._map, name) ? this._map[name] : undefined;
+    }
+
+    /**
+     * @param {TemporalField} key
      * @return {?{key: TemporalField, value: *}} the entry of key, or undefined
      * @private
      */
     _entry(key){
-        const bucket = this._map[key.name()];
+        const bucket = this._bucket(key);
         if (bucket != null) {
             for (let i = 0; i < bucket.length; i++) {
                 if (bucket[i].key === key) {
@@ -83,12 +93,15 @@ export class EnumMap {
     }
 
     remove(key){
-        const bucket = this._map[key.name()];
+        const bucket = this._bucket(key);
         if (bucket != null) {
             for (let i = 0; i < bucket.length; i++) {
                 if (bucket[i].key === key) {
                     const val = bucket[i].value;
                     bucket.splice(i, 1);
+                    if (bucket.length === 0) {
+                        delete this._map[key.name()];
+                    }
                     return val;
                 }
             }

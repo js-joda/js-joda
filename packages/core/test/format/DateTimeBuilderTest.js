@@ -519,6 +519,36 @@ describe('js-joda DateTimeBuilderTest', () => {
                 'Conflict found: 1970-01-01 differs from 1970-01-02 while resolving B[stub]');
         });
 
+        it('should resolve fields that need fields produced by merging', () => {
+            // like the week-of-month of @js-joda/locale WeekFields, which needs YEAR, but the
+            // pattern 'yyyy' parses YEAR_OF_ERA
+            const builder = new DateTimeBuilder();
+            const dayOfYear = field('DayOfYear', (fieldValues) => {
+                if (fieldValues.containsKey(ChronoField.YEAR) === false) {
+                    return null;
+                }
+                return LocalDate.ofYearDay(fieldValues.remove(ChronoField.YEAR), fieldValues.remove(dayOfYear));
+            });
+            builder._addFieldValue(ChronoField.YEAR_OF_ERA, 2020);
+            builder._addFieldValue(dayOfYear, 60);
+            builder.resolve(ResolverStyle.SMART);
+            assertEquals(builder.date, LocalDate.of(2020, 2, 29));
+        });
+
+        it('should throw if a field resolves to a date other than the instant', () => {
+            const resolveTo = (date) => {
+                const builder = new DateTimeBuilder();
+                const epochDay = field('EpochDay', (fieldValues) => LocalDate.ofEpochDay(fieldValues.remove(epochDay)));
+                builder._addFieldValue(ChronoField.INSTANT_SECONDS, 86400);
+                builder._addFieldValue(ChronoField.OFFSET_SECONDS, 0);
+                builder._addFieldValue(epochDay, date.toEpochDay());
+                return builder.resolve(ResolverStyle.SMART);
+            };
+            assertEquals(resolveTo(LocalDate.of(1970, 1, 2)).date, LocalDate.of(1970, 1, 2));
+            expect(() => resolveTo(LocalDate.of(1970, 1, 3))).to.throw(DateTimeException,
+                'Conflict found: Fields resolved to two different dates: 1970-01-02 1970-01-03');
+        });
+
         it('should throw for an unknown resolved type', () => {
             const builder = new DateTimeBuilder();
             builder._addFieldValue(field('Unknown', () => 'foo'), 0);

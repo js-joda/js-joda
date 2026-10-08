@@ -123,6 +123,9 @@ describe('@js-joda/locale WeekFieldsPrinterParser', () => {
             'YYYY-\'W\'ww-EEE',
             'yyyy-MM-dd \'W\'ww e',
             'yyyy-MM-dd YYYY-\'W\'ww-e',
+            'yyyy-MM-W-e',
+            'uuuu-MM-W-e',
+            'yyyy-MM-W-EEE',
         ];
         const dates = [LocalDate.of(2020, 1, 5), LocalDate.of(2020, 12, 27), LocalDate.of(2021, 1, 1), LocalDate.of(2021, 1, 3)];
 
@@ -144,12 +147,21 @@ describe('@js-joda/locale WeekFieldsPrinterParser', () => {
             assertEquals(LocalDate.parse('2021-W01-6', f), LocalDate.of(2021, 1, 1));
         });
 
+        it('should parse US week-of-month dates with year-of-era', () => {
+            // the week-of-month field needs YEAR, which is merged from YEAR_OF_ERA
+            const f = DateTimeFormatter.ofPattern('yyyy-MM-W-e').withLocale(Locale.US);
+            assertEquals(LocalDate.parse('2020-01-2-1', f), LocalDate.of(2020, 1, 5));
+            assertEquals(LocalDate.parse('2021-01-1-6', f), LocalDate.of(2021, 1, 1));
+        });
+
         it('should reject week fields that conflict with the parsed date', () => {
             const data = [
                 ['yyyy-MM-dd e', '2020-01-05 2'],
                 ['yyyy-MM-dd \'W\'ww', '2020-01-05 W01'],
                 ['YYYY yyyy-MM-dd', '2020 2020-12-27'],
                 ['yyyy-MM-dd YYYY-\'W\'ww-e', '2020-01-05 2020-W03-1'],
+                ['yyyy-MM-dd EEE e', '2020-01-05 Mon 1'],
+                ['e EEE YYYY-\'W\'ww', '1 Mon 2020-W02'],
             ];
             dataProviderTest(data, (pattern, text) => {
                 const f = DateTimeFormatter.ofPattern(pattern).withLocale(Locale.US);

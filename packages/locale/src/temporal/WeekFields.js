@@ -262,6 +262,10 @@ export class ComputedDayOfField {
             const value = fieldValues.remove(this);
             const localDow = this._range.checkValidIntValue(value, this);
             const isoDow = MathUtil.floorMod((sow - 1) + (localDow - 1), 7) + 1;
+            const parsedDow = fieldValues.get(ChronoField.DAY_OF_WEEK);
+            if (parsedDow != null && parsedDow !== isoDow) {
+                throw new DateTimeException(`Conflict found: ${ChronoField.DAY_OF_WEEK} ${parsedDow} differs from ${ChronoField.DAY_OF_WEEK} ${isoDow} derived from ${this} ${localDow}`);
+            }
             fieldValues.put(ChronoField.DAY_OF_WEEK, isoDow);
             return null;
         }

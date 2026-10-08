@@ -97,6 +97,27 @@ describe('js-joda EnumMap', () => {
         expect(map.keys()).to.eql([]);
     });
 
+    it('should handle fields named like Object.prototype members', () => {
+        const constructorField = { name: () => 'constructor', toString: () => 'constructor[field]' };
+        const map = new EnumMap();
+        expect(map.containsKey(constructorField)).to.equal(false);
+        expect(map.get(constructorField)).to.equal(undefined);
+        expect(map.remove(constructorField)).to.equal(undefined);
+        map.put(constructorField, 1);
+        expect(map.get(constructorField)).to.equal(1);
+        expect(map.keys()).to.eql([constructorField]);
+    });
+
+    it('should drop the name of a removed field', () => {
+        const map = new EnumMap();
+        map.put(ChronoField.DAY_OF_WEEK, 7);
+        map.put(otherDayOfWeek, 1);
+        map.remove(ChronoField.DAY_OF_WEEK);
+        expect(Object.keys(map._map)).to.eql(['DayOfWeek']);
+        map.remove(otherDayOfWeek);
+        expect(Object.keys(map._map)).to.eql([]);
+    });
+
     it('should print its entries', () => {
         const map = new EnumMap();
         map.put(ChronoField.YEAR, 2020);

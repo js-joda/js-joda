@@ -278,7 +278,7 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
 
             assertEquals(LocalDate.parse('2020-06-01 2-62', f), LocalDate.of(2020, 6, 1));
             expect(() => LocalDate.parse('2020-06-01 1-05', f))
-                .to.throw(/Conflict found/);
+                .to.throw(/Cross check failed: QuarterOfYear 2 vs QuarterOfYear 1/);
         });
 
     });

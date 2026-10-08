@@ -149,9 +149,14 @@ export class DateTimeBuilder extends TemporalAccessor {
         }
         // handle standard fields
         this._mergeInstantFields();
-        this._resolveFields(resolverStyle);
         this._mergeDate(resolverStyle);
         this._mergeTime(resolverStyle);
+        // the other fields may need fields produced by merging, e.g. YEAR from YEAR_OF_ERA
+        if (this._resolveFields(resolverStyle)) {
+            this._mergeInstantFields();
+            this._mergeDate(resolverStyle);
+            this._mergeTime(resolverStyle);
+        }
         this._resolveTimeInferZeroes(resolverStyle);
         this._crossCheck();
         if (this.excessDays != null && this.excessDays.isZero() === false && this.date != null && this.time != null) {
@@ -254,6 +259,9 @@ export class DateTimeBuilder extends TemporalAccessor {
      */
     _checkDate(date) {
         if (date != null) {
+            if (this.date != null && this.date.equals(date) === false) {
+                throw new DateTimeException(`Conflict found: Fields resolved to two different dates: ${this.date} ${date}`);
+            }
             this._addObject(date);
             for (const field of this.fieldValues.keys()) {
                 if (field instanceof ChronoField && field.isDateBased()) {
