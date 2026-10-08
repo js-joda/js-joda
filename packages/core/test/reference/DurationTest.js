@@ -1977,6 +1977,47 @@ describe('org.threeten.bp.TestDuration', () => {
             expect(test).to.eql(Duration.ofSeconds(1));
         });
 
+        it('divides exactly by large divisors', () => {
+            // seconds, nanos, divisor, expected seconds, expected nanos;
+            // exact values, computed with arbitrary-precision arithmetic
+            dataProviderTest([
+                [763622282629, 560982485, 792426085705, 0, 963651117],
+                [127203182818, 421025640, 137145942746, 0, 927502340],
+                [-763622282629, 560982485, 792426085705, -1, 36348884],
+                [763622282629, 560982485, -792426085705, -1, 36348883],
+                [9007199254740990, 999999999, 9007199254740991, 0, 999999999],
+                [9007199254740990, 123456789, 4503599627370496, 1, 999999999],
+                [-9007199254740990, 1, 9007199254740991, -1, 1],
+                [1234567890123456, 987654321, 1000000000000001, 1, 234567890],
+                [5, 999999999, 9007199254740991, 0, 0],
+                // divisors at the limit (MAX_SAFE_INTEGER / 11) between the two kinds of long division steps
+                [818836295885544, 999999999, 818836295885545, 0, 999999999],
+                [818836295885544, 999999999, 818836295885544, 1, 0],
+                [818836295885545, 123456789, 818836295885546, 0, 999999999],
+                // usual divisors
+                [3601, 1, 60, 60, 16666666],
+                [-3601, 1, 60, -61, 983333334],
+                [86400, 0, 7, 12342, 857142857],
+            ], (seconds, nanos, divisor, expectedSeconds, expectedNanos) => {
+                const t = Duration.ofSeconds(seconds, nanos).dividedBy(divisor);
+                expect(t.seconds()).to.eql(expectedSeconds);
+                expect(t.nano()).to.eql(expectedNanos);
+            });
+        });
+
+        it('divides by a divisor beyond MAX_SAFE_INTEGER by floating point arithmetic', () => {
+            // the exact result is 7812499ns, such a divisor is not exactly representable in general
+            const t = Duration.ofSeconds(MAX_SAFE_INTEGER, 999999999).dividedBy(2 ** 60);
+            expect(t.seconds()).to.eql(0);
+            expect(Math.abs(t.nano() - 7812499)).to.be.at.most(1);
+            expect(Duration.ofSeconds(1).dividedBy(-(2 ** 60))).to.eql(Duration.ZERO);
+        });
+
+        it('divides by a divisor with a fraction', () => {
+            expect(Duration.ofSeconds(5).dividedBy(2.5)).to.eql(Duration.ofSeconds(2));
+            expect(Duration.ofSeconds(3).dividedBy(0.5)).to.eql(Duration.ofSeconds(6));
+        });
+
     });
 
     describe('negated()', ()=> {

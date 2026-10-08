@@ -7,6 +7,29 @@ import { ZoneRules } from './ZoneRules';
 import { ZoneOffset } from '../ZoneOffset';
 import { DateTimeException } from '../errors';
 
+// the range of a Date in epoch millis (ECMA-262), a Date outside of it is invalid
+const MAX_DATE_EPOCH_MILLI = 8640000000000000;
+
+// the timezone offset of a Date in minutes, as Date.getTimezoneOffset(); an epoch milli outside
+// the range of a Date is clamped to it, so that far instants get the offset at the end of the range
+function timezoneOffsetInMinutes(epochMilli) {
+    const clamped = Math.max(-MAX_DATE_EPOCH_MILLI, Math.min(MAX_DATE_EPOCH_MILLI, epochMilli));
+    return new Date(clamped).getTimezoneOffset();
+}
+
+// the epoch milli of the instant, clamped to the range of a Date; Instant.toEpochMilli() would
+// overflow for instants like Instant.MAX
+function clampedEpochMilli(instant) {
+    const epochSecond = instant.epochSecond();
+    if (epochSecond > MAX_DATE_EPOCH_MILLI / 1000) {
+        return MAX_DATE_EPOCH_MILLI;
+    }
+    if (epochSecond < -MAX_DATE_EPOCH_MILLI / 1000) {
+        return -MAX_DATE_EPOCH_MILLI;
+    }
+    return instant.toEpochMilli();
+}
+
 export class SystemDefaultZoneRules extends ZoneRules {
 
     isFixedOffset(){
@@ -19,7 +42,7 @@ export class SystemDefaultZoneRules extends ZoneRules {
      * @returns {ZoneOffset}
      */
     offsetOfInstant(instant){
-        const offsetInMinutes = new Date(instant.toEpochMilli()).getTimezoneOffset();
+        const offsetInMinutes = timezoneOffsetInMinutes(clampedEpochMilli(instant));
         return ZoneOffset.ofTotalMinutes(offsetInMinutes * -1);
     }
 
@@ -29,7 +52,7 @@ export class SystemDefaultZoneRules extends ZoneRules {
      * @returns {ZoneOffset}
      */
     offsetOfEpochMilli(epochMilli){
-        const offsetInMinutes = new Date(epochMilli).getTimezoneOffset();
+        const offsetInMinutes = timezoneOffsetInMinutes(epochMilli);
         return ZoneOffset.ofTotalMinutes(offsetInMinutes * -1);
     }
 
@@ -48,9 +71,9 @@ export class SystemDefaultZoneRules extends ZoneRules {
      */
     offsetOfLocalDateTime(localDateTime){
         const epochMilli = localDateTime.toEpochSecond(ZoneOffset.UTC) * 1000;
-        const offsetInMinutesBeforePossibleTransition = new Date(epochMilli).getTimezoneOffset();
+        const offsetInMinutesBeforePossibleTransition = timezoneOffsetInMinutes(epochMilli);
         const epochMilliSystemZone = epochMilli + offsetInMinutesBeforePossibleTransition * 60000;
-        const offsetInMinutesAfterPossibleTransition = new Date(epochMilliSystemZone).getTimezoneOffset();
+        const offsetInMinutesAfterPossibleTransition = timezoneOffsetInMinutes(epochMilliSystemZone);
         return ZoneOffset.ofTotalMinutes(offsetInMinutesAfterPossibleTransition * -1);
     }
 
