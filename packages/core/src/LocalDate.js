@@ -178,9 +178,10 @@ export class LocalDate extends ChronoLocalDate{
      *
      * @param {number} [epochDay=0] - the Epoch Day to convert, based on the epoch 1970-01-01
      * @return {LocalDate} the local date, not null
-     * @throws {AssertionError} if the epoch days exceeds the supported date range
+     * @throws {DateTimeException} if the epoch days exceeds the supported date range
      */
     static ofEpochDay(epochDay=0) {
+        ChronoField.EPOCH_DAY.checkValidValue(epochDay);
         let adjust, adjustCycles, doyEst, yearEst, zeroDay;
         zeroDay = epochDay + DAYS_0000_TO_1970;
         zeroDay -= 60;

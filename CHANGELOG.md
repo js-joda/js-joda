@@ -3,11 +3,23 @@ Changelog
 
 ## Unreleased
 
+#### :boom: Breaking Change
+* `locale`
+    * [#830](https://github.com/js-joda/js-joda/pull/830) Print the standard or daylight saving name of a time-zone with the `z` and `zzzz` patterns, as in java.time; port of [ThreeTen/threetenbp@456f648](https://github.com/ThreeTen/threetenbp/commit/456f648b4) ([@pithu](https://github.com/pithu))
+        This changes the output of existing patterns, e.g. `Europe/Berlin` in January prints `Central European Standard Time` instead of `Central European Time`, and `America/New_York` prints `EST` instead of `ET`.
+        The name is taken from the metazone in use at the printed instant, so a historic date names the offset of that time, e.g. `America/Indiana/Knox` in January 2000 prints `Eastern Standard Time`.
+        The `@js-joda/timezone` peer dependency is raised to `^3.1.0`, which provides `isDaylightSavings()`. If the value has no instant, or the zone rules don't support `isDaylightSavings()` (e.g. tz data without standard offsets), the generic name is printed as before. A daylight saving name no longer falls back to the standard name of the metazone, which denotes a different offset (e.g. `GMT` for `Europe/London` in summer with `Locale.ENGLISH` and `z`); the zone id is printed instead.
+
 #### :bug: Bug Fix
+* `locale`
+    * [#830](https://github.com/js-joda/js-joda/pull/830) Parse fixed offsets with the `z` and `zzzz` patterns, e.g. `+01:00`, `Z`, `UT`, `UTC-01:00` or `GMT+02:00`, as in java.time; port of [ThreeTen/threetenbp@f0f09a6](https://github.com/ThreeTen/threetenbp/commit/f0f09a6fb) ([@pithu](https://github.com/pithu))
 * `core`
+    * [#830](https://github.com/js-joda/js-joda/pull/830) `LocalDate.ofEpochDay()` checks the epoch day against `ChronoField.EPOCH_DAY` and throws a `DateTimeException` naming that field for an epoch day out of range, instead of a misleading year error or an int overflow. `NaN` now throws a `DateTimeException` as well, instead of an `ArithmeticException`; port of [ThreeTen/threetenbp@006216f](https://github.com/ThreeTen/threetenbp/commit/006216f27) ([@pithu](https://github.com/pithu))
     * [#831](https://github.com/js-joda/js-joda/pull/831) Parsed fields are stored by field instead of by field name, so the week fields of `@js-joda/locale` are no longer mistaken for `ChronoField.DAY_OF_WEEK` and the `IsoFields` with the same names ([@pithu](https://github.com/pithu), [@youdie006](https://github.com/youdie006))
         With locales whose weeks differ from ISO weeks, such as `Locale.US`: `YYYY-'W'ww-e` parsed to a wrong date without error since 6.2.0, e.g. `2020-W02-1` to `2020-01-06` instead of `2020-01-05`; and `e`/`c` together with a date threw a `DateTimeParseException`. Fields that are not `ChronoField`s are now resolved by their own `resolve()`, as in java.time, which also resolves the week fields of `@js-joda/locale`.
         Fields left over after resolving are cross checked against the result, including the `IsoFields` and the locale week fields, so text with a conflicting value now throws, e.g. `2020-Q3-02-01` with `uuuu-'Q'Q-MM-dd`, as in java.time. Supersedes [#816](https://github.com/js-joda/js-joda/pull/816).
+* `timezone`
+    * [#830](https://github.com/js-joda/js-joda/pull/830) Add a test that parses `ZonedDateTime.toString()` back for every available zone; port of [ThreeTen/threetenbp@5e9389c](https://github.com/ThreeTen/threetenbp/commit/5e9389cc8) ([@pithu](https://github.com/pithu))
 
 ## 2026-10-07
 

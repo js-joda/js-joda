@@ -377,6 +377,15 @@ describe('org.threeten.bp.TestLocalDate', () => {
                 LocalDate.ofEpochDay(MIN_VALID_EPOCHDAYS - 1);
             }).to.throw(DateTimeException);
         });
+
+        it('factory_ofEpochDay_farOutOfRange', () => {
+            expect(() => {
+                LocalDate.ofEpochDay(1e20);
+            }).to.throw(DateTimeException, /EpochDay/);
+            expect(() => {
+                LocalDate.ofEpochDay(-1e20);
+            }).to.throw(DateTimeException, /EpochDay/);
+        });
     });
 
     describe('from', () => {
