@@ -1,6 +1,14 @@
 Changelog
 =========
 
+## Unreleased
+
+#### :bug: Bug Fix
+* `core`
+    * Parsed fields are stored by field instead of by field name, so the week fields of `@js-joda/locale` are no longer mistaken for `ChronoField.DAY_OF_WEEK` and the `IsoFields` with the same names ([@pithu](https://github.com/pithu), [@youdie006](https://github.com/youdie006))
+        With locales whose weeks differ from ISO weeks, such as `Locale.US`: `YYYY-'W'ww-e` parsed to a wrong date without error since 6.2.0, e.g. `2020-W02-1` to `2020-01-06` instead of `2020-01-05`; and `e`/`c` together with a date threw a `DateTimeParseException`. Fields that are not `ChronoField`s are now resolved by their own `resolve()`, as in java.time, which also resolves the week fields of `@js-joda/locale`.
+        Fields left over after resolving are cross checked against the result, including the `IsoFields` and the locale week fields, so text with a conflicting value now throws, e.g. `2020-Q3-02-01` with `uuuu-'Q'Q-MM-dd`, as in java.time. Supersedes [#816](https://github.com/js-joda/js-joda/pull/816).
+
 ## 2026-10-07
 
 ### Versions

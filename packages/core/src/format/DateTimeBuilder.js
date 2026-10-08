@@ -13,8 +13,8 @@ import { ResolverStyle } from './ResolverStyle';
 
 import { IsoChronology } from '../chrono/IsoChronology';
 import { ChronoLocalDate } from '../chrono/ChronoLocalDate';
+import { ChronoLocalDateTime } from '../chrono/ChronoLocalDateTime';
 import { ChronoField } from '../temporal/ChronoField';
-import { IsoFields } from '../temporal/IsoFields';
 import { TemporalAccessor } from '../temporal/TemporalAccessor';
 import { TemporalQueries } from '../temporal/TemporalQueries';
 
@@ -164,28 +164,71 @@ export class DateTimeBuilder extends TemporalAccessor {
     }
 
     /**
-     * Resolves the date fields that are not {@link ChronoField}s by delegating to their own
-     * `resolve()`, the step java.time performs generically. As parsed values are held in a
-     * name-keyed map, the ISO fields that define a `resolve()` (week-of-week-based-year and
-     * day-of-quarter) are handled here. They do not depend on one another, so one pass is
-     * sufficient. Returns whether a date was produced.
+     * Resolves the fields that are not {@link ChronoField}s, such as {@link IsoFields} or the
+     * fields of `@js-joda/locale` WeekFields, by delegating to their own `resolve()`, as
+     * java.time does. A field may resolve to a date, a time or a date-time, or replace itself
+     * by other fields (for example a localized day-of-week by {@link ChronoField.DAY_OF_WEEK}),
+     * so the fields are visited again after each change. Returns whether anything changed.
      *
      * @param {ResolverStyle} resolverStyle
      * @return {boolean}
      * @private
      */
     _resolveFields(resolverStyle) {
-        let resolved = false;
-        for (const field of [IsoFields.WEEK_OF_WEEK_BASED_YEAR, IsoFields.DAY_OF_QUARTER]) {
-            if (this.fieldValues.containsKey(field)) {
-                const date = field.resolve(this.fieldValues, this, resolverStyle);
-                if (date != null) {
-                    this._checkDate(date);
-                    resolved = true;
+        let changes = 0;
+        let changed = true;
+        while (changed && changes < 100) {
+            changed = false;
+            const fields = this.fieldValues.keys();
+            for (let i = 0; i < fields.length; i++) {
+                const field = fields[i];
+                if (field instanceof ChronoField || typeof field.resolve !== 'function') {
+                    continue;
+                }
+                const resolved = field.resolve(this.fieldValues, this, resolverStyle);
+                if (resolved != null) {
+                    if (resolved instanceof ChronoLocalDateTime) {
+                        this._resolveMakeChanges(field, resolved.toLocalDate());
+                        this._resolveMakeChanges(field, resolved.toLocalTime());
+                    } else if (resolved instanceof ChronoLocalDate || resolved instanceof LocalTime) {
+                        this._resolveMakeChanges(field, resolved);
+                    } else {
+                        throw new DateTimeException(`Unknown type: ${resolved}`);
+                    }
+                    changed = true;
+                } else if (this.fieldValues.containsKey(field) === false) {
+                    changed = true;
+                }
+                if (changed) {
+                    changes++;
+                    break; // start again, the fields have changed
                 }
             }
         }
-        return resolved;
+        if (changes === 100) {
+            throw new DateTimeException('Badly written field');
+        }
+        return changes > 0;
+    }
+
+    /**
+     * Adds a date or time resolved by a field as {@link ChronoField.EPOCH_DAY} or
+     * {@link ChronoField.NANO_OF_DAY}, to be merged with the other fields.
+     *
+     * @param {TemporalField} targetField
+     * @param {ChronoLocalDate|LocalTime} dateOrTime
+     * @private
+     */
+    _resolveMakeChanges(targetField, dateOrTime) {
+        const isDate = dateOrTime instanceof ChronoLocalDate;
+        const field = isDate ? ChronoField.EPOCH_DAY : ChronoField.NANO_OF_DAY;
+        const value = isDate ? dateOrTime.toEpochDay() : dateOrTime.toNanoOfDay();
+        const old = this.fieldValues.get(field);
+        if (old != null && old !== value) {
+            const oldDateOrTime = isDate ? LocalDate.ofEpochDay(old) : LocalTime.ofNanoOfDay(old);
+            throw new DateTimeException(`Conflict found: ${oldDateOrTime} differs from ${dateOrTime} while resolving ${targetField}`);
+        }
+        this.fieldValues.put(field, value);
     }
 
     /**
@@ -212,26 +255,21 @@ export class DateTimeBuilder extends TemporalAccessor {
     _checkDate(date) {
         if (date != null) {
             this._addObject(date);
-            for (const fieldName in this.fieldValues.keySet()) {
-                const field = ChronoField.byName(fieldName);
-                if (field) {
-                    if (this.fieldValues.get(field) !== undefined) { // undefined if "removed" in EnumMap
-                        if (field.isDateBased()) {
-                            let val1;
-                            try {
-                                val1 = date.getLong(field);
-                            } catch (ex) {
-                                if (ex instanceof DateTimeException) {
-                                    continue;
-                                } else {
-                                    throw ex;
-                                }
-                            }
-                            const val2 = this.fieldValues.get(field);
-                            if (val1 !== val2) {
-                                throw new DateTimeException(`Conflict found: Field ${field} ${val1} differs from ${field} ${val2} derived from ${date}`);
-                            }
+            for (const field of this.fieldValues.keys()) {
+                if (field instanceof ChronoField && field.isDateBased()) {
+                    let val1;
+                    try {
+                        val1 = date.getLong(field);
+                    } catch (ex) {
+                        if (ex instanceof DateTimeException) {
+                            continue;
+                        } else {
+                            throw ex;
                         }
+                    }
+                    const val2 = this.fieldValues.get(field);
+                    if (val1 !== val2) {
+                        throw new DateTimeException(`Conflict found: Field ${field} ${val1} differs from ${field} ${val2} derived from ${date}`);
                     }
                 }
             }
@@ -506,20 +544,6 @@ export class DateTimeBuilder extends TemporalAccessor {
     }
 
     /**
-     * @param {TemporalField} targetField
-     * @param {LocalDate} date
-     * @private
-     */
-    _resolveMakeChanges(targetField, date) {
-        const epochDay = date.toEpochDay();
-        const old = this.fieldValues.get(ChronoField.EPOCH_DAY);
-        this.fieldValues.put(ChronoField.EPOCH_DAY, epochDay);
-        if (old != null && old !== epochDay) {
-            throw new DateTimeException(`Conflict found: ${LocalDate.ofEpochDay(old)} differs from ${LocalDate.ofEpochDay(epochDay)} while resolving  ${targetField}`);
-        }
-    }
-
-    /**
      * Checks the remaining field values against the resolved date and time, and removes the
      * ones that match.
      *
@@ -540,25 +564,22 @@ export class DateTimeBuilder extends TemporalAccessor {
      * @private
      */
     _crossCheck0(temporal) {
-        for (const fieldName in this.fieldValues.keySet()) {
-            const field = ChronoField.byName(fieldName);
-            if (field && this.fieldValues.get(field) !== undefined) { // undefined if "removed" in EnumMap
-                if (temporal.isSupported(field)) {
-                    let temporalValue;
-                    try {
-                        temporalValue = temporal.getLong(field);
-                    } catch (ex) {
-                        if (ex instanceof DateTimeException) {
-                            continue;
-                        }
-                        throw ex;
+        for (const field of this.fieldValues.keys()) {
+            if (temporal.isSupported(field)) {
+                let temporalValue;
+                try {
+                    temporalValue = temporal.getLong(field);
+                } catch (ex) {
+                    if (ex instanceof DateTimeException) {
+                        continue;
                     }
-                    const value = this.fieldValues.get(field);
-                    if (temporalValue !== value) {
-                        throw new DateTimeException(`Cross check failed: ${field} ${temporalValue} vs ${field} ${value}`);
-                    }
-                    this.fieldValues.remove(field);
+                    throw ex;
                 }
+                const value = this.fieldValues.get(field);
+                if (temporalValue !== value) {
+                    throw new DateTimeException(`Cross check failed: ${field} ${temporalValue} vs ${field} ${value}`);
+                }
+                this.fieldValues.remove(field);
             }
         }
     }

@@ -3,11 +3,16 @@
  * @license BSD-3-Clause (see LICENSE.md in the root directory of this source tree)
  */
 
+import { expect } from 'chai';
+
 import {
     _ as jodaInternal,
+    DateTimeFormatter,
+    DateTimeParseException,
     DecimalStyle,
     IsoChronology,
     LocalDate,
+    use,
 } from '@js-joda/core';
 
 import '@js-joda/timezone';
@@ -18,7 +23,8 @@ import '../_init';
 
 import WeekFieldsPrinterParser from '../../src/format/parser/WeekFieldsPrinterParser';
 import Locale from '../../src/Locale';
-import { ComputedDayOfField } from '../../src/temporal/WeekFields';
+import jodaLocale from '../../src/plug';
+import { WeekFields } from '../../src/temporal/WeekFields';
 
 const {
     DateTimeParseContext,
@@ -27,14 +33,17 @@ const {
 } = jodaInternal;
 
 /* these tests are not copied from threetenbp, but js-joda tests to increase coverage */
+use(jodaLocale);
+
 describe('@js-joda/locale WeekFieldsPrinterParser', () => {
 
     describe('print / parse week fields', () => {
 
-        const dayOfWeekField = ComputedDayOfField.ofDayOfWeekField();
-        const weekOfWeekBasedYearField = ComputedDayOfField.ofWeekOfWeekBasedYearField();
-        const weekOfMonthField = ComputedDayOfField.ofWeekOfMonthField();
-        const weekYearField = ComputedDayOfField.ofWeekBasedYearField();
+        // the parsed values are stored by field, query them with the fields of the locale
+        const dayOfWeekField = (locale) => WeekFields.of(locale).dayOfWeek();
+        const weekOfWeekBasedYearField = (locale) => WeekFields.of(locale).weekOfWeekBasedYear();
+        const weekOfMonthField = (locale) => WeekFields.of(locale).weekOfMonth();
+        const weekYearField = (locale) => WeekFields.of(locale).weekBasedYear();
 
         const data = [
 
@@ -95,8 +104,57 @@ describe('@js-joda/locale WeekFieldsPrinterParser', () => {
                 assertEquals(buf.toString(), expectedString);
                 const parseContext = new DateTimeParseContext(locale, DecimalStyle.STANDARD, IsoChronology.INSTANCE);
                 wfpp.parse(parseContext, buf.toString(), 0);
-                assertEquals(parseContext.getParsed(field), expectedParsedValue);
+                assertEquals(parseContext.getParsed(field(locale)), expectedParsedValue);
             }, false);
+        });
+    });
+
+    describe('parse dates with week fields', () => {
+        // the week fields of a locale have the names of ChronoField.DAY_OF_WEEK and the
+        // IsoFields, but in the US the week starts on Sunday and the first week is the
+        // week of January 1st, so their values differ from the ISO ones
+        const patterns = [
+            'yyyy-MM-dd \'W\'ww',
+            'YYYY yyyy-MM-dd',
+            'yyyy-MM-dd e',
+            'yyyy-MM-dd c',
+            'YYYY-\'W\'ww-e',
+            'YYYY-\'W\'ww-c',
+            'YYYY-\'W\'ww-EEE',
+            'yyyy-MM-dd \'W\'ww e',
+            'yyyy-MM-dd YYYY-\'W\'ww-e',
+        ];
+        const dates = [LocalDate.of(2020, 1, 5), LocalDate.of(2020, 12, 27), LocalDate.of(2021, 1, 1), LocalDate.of(2021, 1, 3)];
+
+        it('should parse what it formats', () => {
+            for (const locale of [Locale.US, Locale.GERMANY, Locale.UK]) {
+                for (const pattern of patterns) {
+                    const f = DateTimeFormatter.ofPattern(pattern).withLocale(locale);
+                    for (const date of dates) {
+                        assertEquals(LocalDate.parse(date.format(f), f), date, `${locale} ${pattern} ${date}`);
+                    }
+                }
+            }
+        });
+
+        it('should parse US week-based dates', () => {
+            const f = DateTimeFormatter.ofPattern('YYYY-\'W\'ww-e').withLocale(Locale.US);
+            assertEquals(LocalDate.parse('2020-W02-1', f), LocalDate.of(2020, 1, 5));
+            assertEquals(LocalDate.parse('2021-W01-1', f), LocalDate.of(2020, 12, 27));
+            assertEquals(LocalDate.parse('2021-W01-6', f), LocalDate.of(2021, 1, 1));
+        });
+
+        it('should reject week fields that conflict with the parsed date', () => {
+            const data = [
+                ['yyyy-MM-dd e', '2020-01-05 2'],
+                ['yyyy-MM-dd \'W\'ww', '2020-01-05 W01'],
+                ['YYYY yyyy-MM-dd', '2020 2020-12-27'],
+                ['yyyy-MM-dd YYYY-\'W\'ww-e', '2020-01-05 2020-W03-1'],
+            ];
+            dataProviderTest(data, (pattern, text) => {
+                const f = DateTimeFormatter.ofPattern(pattern).withLocale(Locale.US);
+                expect(() => LocalDate.parse(text, f), `${pattern} ${text}`).to.throw(DateTimeParseException);
+            });
         });
     });
 });

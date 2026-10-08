@@ -186,7 +186,8 @@ describe('@js-joda/locale WeekFields', () => {
             const data = [
                 [WeekFields.ISO.weekOfYear(), emptyBuilder().fieldValues, LocalDate.of(2017, 1, 1), ResolverStyle.STRICT, null],
                 [WeekFields.ISO.weekBasedYear(), dayOfWeekBuilder().fieldValues, LocalDate.of(2017, 1, 1), ResolverStyle.STRICT, null],
-                [WeekFields.ISO.dayOfWeek(), builder().fieldValues, LocalDate.of(2017, 1, 1), ResolverStyle.STRICT, 1],
+                // the localized day-of-week is replaced by ChronoField.DAY_OF_WEEK
+                [WeekFields.ISO.dayOfWeek(), builder().fieldValues, LocalDate.of(2017, 1, 1), ResolverStyle.STRICT, null],
                 [WeekFields.ISO.weekOfMonth(), builder().fieldValues, LocalDate.of(2017, 1, 1), ResolverStyle.STRICT, null],
                 [WeekFields.ISO.weekOfMonth(), builder().fieldValues, LocalDate.of(2017, 1, 1), ResolverStyle.LENIENT, null],
                 [WeekFields.ISO.weekOfYear(), builder().fieldValues, LocalDate.of(2017, 1, 1), ResolverStyle.STRICT, null],
@@ -203,6 +204,17 @@ describe('@js-joda/locale WeekFields', () => {
                 dataProviderTest(data, (field, fieldValues, temporal, resolverStyle, expectedValue) => {
                     field.resolve(fieldValues, temporal, resolverStyle);
                     assertEquals(fieldValues.get(field), expectedValue);
+                }, false);
+            });
+
+            it('resolve replaces the localized day-of-week by the ISO day-of-week', () => {
+                // Sunday is the first day of the week in the US
+                dataProviderTest([[WeekFields.ISO, 1, 1], [WeekFields.of(Locale.US), 1, 7], [WeekFields.of(Locale.US), 2, 1]], (weekFields, localDow, isoDow) => {
+                    const fieldValues = emptyBuilder().fieldValues;
+                    fieldValues.put(weekFields.dayOfWeek(), localDow);
+                    expect(weekFields.dayOfWeek().resolve(fieldValues, null, ResolverStyle.STRICT)).to.equal(null);
+                    expect(fieldValues.containsKey(weekFields.dayOfWeek())).to.equal(false);
+                    expect(fieldValues.get(ChronoField.DAY_OF_WEEK)).to.equal(isoDow);
                 }, false);
             });
 

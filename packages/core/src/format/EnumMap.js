@@ -4,6 +4,12 @@
  */
 
 /**
+ * A map from {@link TemporalField} to value.
+ *
+ * Fields are matched by identity, like the `HashMap` used by java.time. Entries are bucketed
+ * by `field.name()`, but fields with the same name are distinct keys: for example the
+ * `WeekBasedYear` field of `@js-joda/locale` WeekFields is not `IsoFields.WEEK_BASED_YEAR`.
+ *
  * @private
  */
 export class EnumMap {
@@ -11,20 +17,39 @@ export class EnumMap {
         this._map = {};
     }
 
+    /**
+     * @param {TemporalField} key
+     * @return {?{key: TemporalField, value: *}} the entry of key, or undefined
+     * @private
+     */
+    _entry(key){
+        const bucket = this._map[key.name()];
+        if (bucket != null) {
+            for (let i = 0; i < bucket.length; i++) {
+                if (bucket[i].key === key) {
+                    return bucket[i];
+                }
+            }
+        }
+        return undefined;
+    }
+
     putAll(otherMap){
-        for(const key in otherMap._map){
-            this._map[key] = otherMap._map[key];
+        const keys = otherMap.keys();
+        for (let i = 0; i < keys.length; i++) {
+            this.set(keys[i], otherMap.get(keys[i]));
         }
         return this;
     }
 
     containsKey(key){
-        // eslint-disable-next-line no-prototype-builtins
-        return (this._map.hasOwnProperty(key.name())) && (this.get(key) !== undefined);
+        const entry = this._entry(key);
+        return entry != null && entry.value !== undefined;
     }
 
     get(key) {
-        return this._map[key.name()];
+        const entry = this._entry(key);
+        return entry != null ? entry.value : undefined;
     }
 
     put(key, val) {
@@ -32,39 +57,71 @@ export class EnumMap {
     }
 
     set(key, val) {
-        this._map[key.name()] = val;
+        const entry = this._entry(key);
+        if (entry != null) {
+            entry.value = val;
+        } else {
+            const name = key.name();
+            // eslint-disable-next-line no-prototype-builtins
+            if (this._map.hasOwnProperty(name) === false) {
+                this._map[name] = [];
+            }
+            this._map[name].push({ key, value: val });
+        }
         return this;
     }
 
     retainAll(keyList){
-        const map = {};
-        for(let i=0; i<keyList.length; i++){
-            const key = keyList[i].name();
-            map[key] = this._map[key];
+        const retained = new EnumMap();
+        for (let i = 0; i < keyList.length; i++) {
+            if (this.containsKey(keyList[i])) {
+                retained.set(keyList[i], this.get(keyList[i]));
+            }
         }
-        this._map = map;
+        this._map = retained._map;
         return this;
     }
 
-    /**
-     * due to the bad performance of delete we just set the key entry to undefined.
-     *
-     * this might lead to issues with "null" entries. Calling clear in the end might solve the issue
-     * @param key
-     * @returns {*}
-     */
     remove(key){
-        const keyName = key.name();
-        const val = this._map[keyName];
-        this._map[keyName] = undefined;
-        return val;
+        const bucket = this._map[key.name()];
+        if (bucket != null) {
+            for (let i = 0; i < bucket.length; i++) {
+                if (bucket[i].key === key) {
+                    const val = bucket[i].value;
+                    bucket.splice(i, 1);
+                    return val;
+                }
+            }
+        }
+        return undefined;
     }
 
-    keySet(){
-        return this._map;
+    /**
+     * Returns the fields that have a value, a snapshot that is not changed by later updates.
+     *
+     * @return {TemporalField[]}
+     */
+    keys(){
+        const keys = [];
+        for (const name in this._map) {
+            // eslint-disable-next-line no-prototype-builtins
+            if (this._map.hasOwnProperty(name)) {
+                const bucket = this._map[name];
+                for (let i = 0; i < bucket.length; i++) {
+                    if (bucket[i].value !== undefined) {
+                        keys.push(bucket[i].key);
+                    }
+                }
+            }
+        }
+        return keys;
     }
 
     clear(){
         this._map = {};
+    }
+
+    toString(){
+        return `{${this.keys().map((key) => `${key}=${this.get(key)}`).join(', ')}}`;
     }
 }
