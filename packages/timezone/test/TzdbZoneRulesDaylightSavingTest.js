@@ -206,4 +206,59 @@ describe('TzdbZoneRules daylight saving and transitions', () => {
             }
         });
     });
+
+    describe('Offsets with seconds', () => {
+        // local mean time offsets whose seconds, stored as a base 60 fraction of minutes, don't
+        // multiply back to whole seconds in floating point (e.g. 65.35 * 60 = 3920.9999...)
+        [
+            ['Europe/Vienna', '1850-01-01T00:00:00Z', '+01:05:21', '1893-03-31T22:54:39Z', '+01:00'],
+            ['America/Noronha', '1900-01-01T00:00:00Z', '-02:09:40', '1914-01-01T02:09:40Z', '-02:00'],
+            ['Atlantic/Madeira', '1900-01-01T00:00:00Z', '-01:07:36', '1912-01-01T01:00:00Z', '-01:00'],
+            ['Pacific/Palau', '1880-01-01T00:00:00Z', '+08:57:56', '1900-12-31T15:02:04Z', '+09:00'],
+            ['America/Juneau', '1880-01-01T00:00:00Z', '-08:57:41', '1900-08-20T20:57:41Z', '-08:00'],
+            ['America/Argentina/La_Rioja', '1880-01-01T00:00:00Z', '-04:27:24', '1894-10-31T04:27:24Z', '-04:16:48'],
+            ['America/Argentina/San_Luis', '1880-01-01T00:00:00Z', '-04:25:24', '1894-10-31T04:25:24Z', '-04:16:48'],
+            ['America/Metlakatla', '1880-01-01T00:00:00Z', '-08:46:18', '1900-08-20T20:46:18Z', '-08:00'],
+            ['Pacific/Gambier', '1900-01-01T00:00:00Z', '-08:59:48', '1912-10-01T08:59:48Z', '-09:00'],
+        ].forEach(([zone, instant, offset, nextInstant, nextOffset]) => {
+            it(`${zone} at ${instant}`, () => {
+                expect(rules(zone).offset(Instant.parse(instant)).toString()).to.equal(offset);
+                expectStandardOffset(zone, instant, offset);
+                expectTransition(rules(zone).nextTransition(Instant.parse(instant)), nextInstant, offset, nextOffset);
+            });
+        });
+    });
+
+    describe('Instant.MIN and Instant.MAX', () => {
+        const berlin = rules('Europe/Berlin');
+
+        it('Instant.MAX is after the last transition', () => {
+            expect(berlin.offset(Instant.MAX).toString()).to.equal('+01:00');
+            expect(berlin.standardOffset(Instant.MAX).toString()).to.equal('+01:00');
+            expect(berlin.daylightSavings(Instant.MAX).equals(Duration.ZERO)).to.be.true;
+            expect(berlin.isDaylightSavings(Instant.MAX)).to.equal(false);
+            expect(berlin.nextTransition(Instant.MAX)).to.equal(null);
+            // java.time continues the transition rules up to the year 999999999,
+            // the tz data ends with the last transition of 2499
+            expectTransition(berlin.previousTransition(Instant.MAX), '2499-10-25T01:00:00Z', '+02:00', '+01:00');
+        });
+
+        it('Instant.MIN is before the first transition', () => {
+            expect(berlin.offset(Instant.MIN).toString()).to.equal('+00:53:28');
+            expect(berlin.standardOffset(Instant.MIN).toString()).to.equal('+00:53:28');
+            expect(berlin.isDaylightSavings(Instant.MIN)).to.equal(false);
+            expectTransition(berlin.nextTransition(Instant.MIN), '1893-03-31T23:06:32Z', '+00:53:28', '+01:00');
+            expect(berlin.previousTransition(Instant.MIN)).to.equal(null);
+        });
+
+        it('a fixed offset zone', () => {
+            const fixed = rules('Etc/GMT-2');
+            for (const instant of [Instant.MIN, Instant.MAX]) {
+                expect(fixed.offset(instant).toString()).to.equal('+02:00');
+                expect(fixed.standardOffset(instant).toString()).to.equal('+02:00');
+                expect(fixed.nextTransition(instant)).to.equal(null);
+                expect(fixed.previousTransition(instant)).to.equal(null);
+            }
+        });
+    });
 });

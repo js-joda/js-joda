@@ -37,7 +37,7 @@ export class TzdbZoneRules extends ZoneRules{
      * @return {ZoneOffset} the offset, not null
      */
     offsetOfInstant(instant){
-        const epochMilli = instant.toEpochMilli();
+        const epochMilli = epochMilliOf(instant);
         return this.offsetOfEpochMilli(epochMilli);
     }
 
@@ -229,7 +229,7 @@ export class TzdbZoneRules extends ZoneRules{
      * @throws {Error} if the tz data of the zone has no standard offsets
      */
     standardOffset(instant){
-        return ZoneOffset.ofTotalSeconds(this._standardOffsetInSeconds(instant.toEpochMilli()));
+        return ZoneOffset.ofTotalSeconds(this._standardOffsetInSeconds(epochMilliOf(instant)));
     }
 
     _standardOffsetInSeconds(epochMilli){
@@ -256,7 +256,7 @@ export class TzdbZoneRules extends ZoneRules{
      * @throws {Error} if the tz data of the zone has no standard offsets
      */
     daylightSavings(instant){
-        const epochMilli = instant.toEpochMilli();
+        const epochMilli = epochMilliOf(instant);
         const index = binarySearch(this._tzdbInfo.untils, epochMilli);
         return Duration.ofSeconds(this._offsetByIndexInSeconds(index) - this._standardOffsetInSeconds(epochMilli));
     }
@@ -306,7 +306,7 @@ export class TzdbZoneRules extends ZoneRules{
         const indices = this._transitionIndices();
         const untils = this._tzdbInfo.untils;
         // transitions are at whole milliseconds, so "after the instant" equals "after its truncated milli"
-        const epochMilli = instant.toEpochMilli();
+        const epochMilli = epochMilliOf(instant);
         const k = firstIndexWhere(indices, (i) => untils[i] > epochMilli);
         return k < indices.length ? this._createTransition(indices[k]) : null;
     }
@@ -327,7 +327,7 @@ export class TzdbZoneRules extends ZoneRules{
         const untils = this._tzdbInfo.untils;
         // round up to the next milli if the instant has a fraction of a milli,
         // so that a transition at the truncated milli counts as before the instant
-        const epochMilli = instant.toEpochMilli() + (instant.nano() % 1000000 > 0 ? 1 : 0);
+        const epochMilli = epochMilliOf(instant) + (instant.nano() % 1000000 > 0 ? 1 : 0);
         const k = firstIndexWhere(indices, (i) => untils[i] >= epochMilli);
         return k > 0 ? this._createTransition(indices[k - 1]) : null;
     }
@@ -479,16 +479,26 @@ function ldtBinarySearch(array, value) {
     return hi;
 }
 
+// the offset is stored in minutes, with seconds as a base 60 fraction; multiplying it back can
+// give a value just below the whole second (e.g. 65.35 * 60 = 3920.9999...), so round it
 function offsetInSeconds(tzdbOffset){
-    return roundDown(+tzdbOffset*60);
+    return Math.round(+tzdbOffset*60);
 }
 
-function roundDown(r){
-    if (r < 0) {
-        return Math.ceil(r);
-    } else {
-        return Math.floor(r);
+// beyond this epoch second, Instant.toEpochMilli() overflows; far outside the tz data
+const MAX_EPOCH_SECOND_FOR_MILLIS = Math.floor(Number.MAX_SAFE_INTEGER / 1000) - 1;
+
+// the epoch milli of the instant, or +/-Infinity for an instant too far out for an epoch milli
+// (e.g. Instant.MAX); infinities compare with the untils of the tz data like any far instant
+function epochMilliOf(instant) {
+    const epochSecond = instant.epochSecond();
+    if (epochSecond > MAX_EPOCH_SECOND_FOR_MILLIS) {
+        return Infinity;
     }
+    if (epochSecond < -MAX_EPOCH_SECOND_FOR_MILLIS) {
+        return -Infinity;
+    }
+    return instant.toEpochMilli();
 }
 
 // modified bin-search, to always find existing indices for non-empty arrays
