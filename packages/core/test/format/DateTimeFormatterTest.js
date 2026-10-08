@@ -8,7 +8,10 @@ import '../_init';
 
 import { DateTimeFormatter } from '../../src/format/DateTimeFormatter';
 import { ResolverStyle } from '../../src/format/ResolverStyle';
-import { NullPointerException } from '../../src/errors';
+import { DateTimeParseException, NullPointerException } from '../../src/errors';
+import { DateTimeFormatterBuilder } from '../../src/format/DateTimeFormatterBuilder';
+import { ChronoField } from '../../src/temporal/ChronoField';
+import { IsoFields } from '../../src/temporal/IsoFields';
 import { LocalDateTime } from '../../src/LocalDateTime';
 import { ZoneOffset } from '../../src/ZoneOffset';
 import { LocalDate } from '../../src/LocalDate';
@@ -151,5 +154,32 @@ describe('js-joda DateTimeFormatterTest', () => {
         function checkFormat(formatter, expectedResult, dateTime = zonedDateTime) {
             expect(dateTime.format(formatter)).to.eql(expectedResult);
         }
+    });
+
+    // the cases of https://github.com/js-joda/js-joda/pull/816 by @youdie006
+    describe('cross check of fields left over after resolving', () => {
+        it('should accept a quarter that matches the parsed date', () => {
+            const f = DateTimeFormatter.ofPattern('uuuu-\'Q\'Q-MM-dd');
+            expect(LocalDate.parse('2020-Q1-02-01', f).toString()).to.equal('2020-02-01');
+        });
+
+        it('should reject a quarter that conflicts with the parsed date', () => {
+            const f = DateTimeFormatter.ofPattern('uuuu-\'Q\'Q-MM-dd');
+            expect(() => LocalDate.parse('2020-Q3-02-01', f)).to.throw(DateTimeParseException, /Cross check failed: QuarterOfYear 1 vs QuarterOfYear 3/);
+        });
+
+        it('should reject an am/pm value that conflicts with the parsed time', () => {
+            const f = new DateTimeFormatterBuilder().appendPattern('HH:mm ').appendValue(ChronoField.AMPM_OF_DAY).toFormatter();
+            expect(LocalTime.parse('10:00 0', f).toString()).to.equal('10:00');
+            expect(() => LocalTime.parse('10:00 1', f)).to.throw(DateTimeParseException, /Cross check failed: AmPmOfDay 0 vs AmPmOfDay 1/);
+        });
+
+        it('should reject an ISO week date that conflicts with the parsed date', () => {
+            const f = new DateTimeFormatterBuilder().appendPattern('uuuu-MM-dd ')
+                .appendValue(IsoFields.WEEK_BASED_YEAR, 4).appendLiteral('-W')
+                .appendValue(IsoFields.WEEK_OF_WEEK_BASED_YEAR, 2).toFormatter();
+            expect(LocalDate.parse('2020-12-31 2020-W53', f).toString()).to.equal('2020-12-31');
+            expect(() => LocalDate.parse('2020-12-31 2021-W53', f)).to.throw(DateTimeParseException, /Cross check failed: WeekBasedYear 2020 vs WeekBasedYear 2021/);
+        });
     });
 });

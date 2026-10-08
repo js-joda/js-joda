@@ -445,4 +445,128 @@ describe('js-joda DateTimeBuilderTest', () => {
         });
         
     });
+
+    describe('_resolveFields', () => {
+        // a field that is not a ChronoField, like those of IsoFields or @js-joda/locale WeekFields
+        const field = (name, resolve) => ({ name: () => name, toString: () => `${name}[stub]`, resolve });
+
+        it('should not resolve fields with an ISO field name as the ISO fields', () => {
+            // like the US week fields of @js-joda/locale, which have the names of the IsoFields
+            const builder = new DateTimeBuilder();
+            builder._addFieldValue(field('WeekBasedYear'), 2020);
+            builder._addFieldValue(field('WeekOfWeekBasedYear'), 2);
+            builder._addFieldValue(ChronoField.DAY_OF_WEEK, 1);
+            builder.resolve(ResolverStyle.SMART);
+            expect(builder.date).to.equal(null);
+        });
+
+        it('should resolve a field to a date', () => {
+            const builder = new DateTimeBuilder();
+            builder._addFieldValue(field('Date', (fieldValues, partial, style) => {
+                expect(partial).to.equal(builder);
+                expect(style).to.equal(ResolverStyle.STRICT);
+                return LocalDate.ofEpochDay(fieldValues.remove(partial.fieldValues.keys()[0]));
+            }), 10);
+            builder.resolve(ResolverStyle.STRICT);
+            assertEquals(builder.date, LocalDate.of(1970, 1, 11));
+        });
+
+        it('should resolve a field to a time', () => {
+            const builder = new DateTimeBuilder();
+            const minuteOfDay = field('MinuteOfDay', (fieldValues) => LocalTime.ofSecondOfDay(fieldValues.remove(minuteOfDay) * 60));
+            builder._addFieldValue(minuteOfDay, 90);
+            builder.resolve(ResolverStyle.SMART);
+            assertEquals(builder.time, LocalTime.of(1, 30));
+        });
+
+        it('should resolve a field to a date-time', () => {
+            const builder = new DateTimeBuilder();
+            const dateTime = field('DateTime', (fieldValues) => LocalDate.ofEpochDay(fieldValues.remove(dateTime)).atTime(12, 0));
+            builder._addFieldValue(dateTime, 0);
+            builder.resolve(ResolverStyle.SMART);
+            assertEquals(builder.date, LocalDate.of(1970, 1, 1));
+            assertEquals(builder.time, LocalTime.of(12, 0));
+        });
+
+        it('should resolve fields that replace themselves by other fields', () => {
+            // like a localized day-of-week, which is replaced by ChronoField.DAY_OF_WEEK, which
+            // in turn is used by the week-based fields
+            const builder = new DateTimeBuilder();
+            const localDayOfWeek = field('DayOfWeek', (fieldValues) => {
+                fieldValues.put(ChronoField.DAY_OF_WEEK, fieldValues.remove(localDayOfWeek) + 1);
+                return null;
+            });
+            const weekOfYear = field('WeekOfYear', (fieldValues) => {
+                if (fieldValues.containsKey(ChronoField.DAY_OF_WEEK) === false) {
+                    return null;
+                }
+                const date = LocalDate.of(2020, 1, 6).plusWeeks(fieldValues.remove(weekOfYear) - 1);
+                return date.plusDays(fieldValues.remove(ChronoField.DAY_OF_WEEK) - 1);
+            });
+            builder._addFieldValue(weekOfYear, 2);
+            builder._addFieldValue(localDayOfWeek, 2);
+            builder.resolve(ResolverStyle.SMART);
+            assertEquals(builder.date, LocalDate.of(2020, 1, 15));
+        });
+
+        it('should throw if fields resolve to different dates', () => {
+            const builder = new DateTimeBuilder();
+            const a = field('A', (fieldValues) => LocalDate.ofEpochDay(fieldValues.remove(a)));
+            const b = field('B', (fieldValues) => LocalDate.ofEpochDay(fieldValues.remove(b)));
+            builder._addFieldValue(a, 0);
+            builder._addFieldValue(b, 1);
+            expect(() => builder.resolve(ResolverStyle.SMART)).to.throw(DateTimeException,
+                'Conflict found: 1970-01-01 differs from 1970-01-02 while resolving B[stub]');
+        });
+
+        it('should resolve fields that need fields produced by merging', () => {
+            // like the week-of-month of @js-joda/locale WeekFields, which needs YEAR, but the
+            // pattern 'yyyy' parses YEAR_OF_ERA
+            const builder = new DateTimeBuilder();
+            const dayOfYear = field('DayOfYear', (fieldValues) => {
+                if (fieldValues.containsKey(ChronoField.YEAR) === false) {
+                    return null;
+                }
+                return LocalDate.ofYearDay(fieldValues.remove(ChronoField.YEAR), fieldValues.remove(dayOfYear));
+            });
+            builder._addFieldValue(ChronoField.YEAR_OF_ERA, 2020);
+            builder._addFieldValue(dayOfYear, 60);
+            builder.resolve(ResolverStyle.SMART);
+            assertEquals(builder.date, LocalDate.of(2020, 2, 29));
+        });
+
+        it('should throw if a field resolves to a date other than the instant', () => {
+            const resolveTo = (date) => {
+                const builder = new DateTimeBuilder();
+                const epochDay = field('EpochDay', (fieldValues) => LocalDate.ofEpochDay(fieldValues.remove(epochDay)));
+                builder._addFieldValue(ChronoField.INSTANT_SECONDS, 86400);
+                builder._addFieldValue(ChronoField.OFFSET_SECONDS, 0);
+                builder._addFieldValue(epochDay, date.toEpochDay());
+                return builder.resolve(ResolverStyle.SMART);
+            };
+            assertEquals(resolveTo(LocalDate.of(1970, 1, 2)).date, LocalDate.of(1970, 1, 2));
+            expect(() => resolveTo(LocalDate.of(1970, 1, 3))).to.throw(DateTimeException,
+                'Conflict found: Fields resolved to two different dates: 1970-01-02 1970-01-03');
+        });
+
+        it('should throw for an unknown resolved type', () => {
+            const builder = new DateTimeBuilder();
+            builder._addFieldValue(field('Unknown', () => 'foo'), 0);
+            expect(() => builder.resolve(ResolverStyle.SMART)).to.throw(DateTimeException, 'Unknown type: foo');
+        });
+
+        it('should throw for fields that never finish resolving', () => {
+            const builder = new DateTimeBuilder();
+            const ping = field('Ping', (fieldValues) => {
+                fieldValues.put(pong, fieldValues.remove(ping));
+                return null;
+            });
+            const pong = field('Pong', (fieldValues) => {
+                fieldValues.put(ping, fieldValues.remove(pong));
+                return null;
+            });
+            builder._addFieldValue(ping, 0);
+            expect(() => builder.resolve(ResolverStyle.SMART)).to.throw(DateTimeException, 'Badly written field');
+        });
+    });
 });
