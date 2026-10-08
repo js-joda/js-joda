@@ -10,7 +10,8 @@ import { $ as zx$ } from 'zx';
 export const IANA_BASE_URL = 'https://data.iana.org/time-zones';
 export const LATEST_VERSION_URL = `${IANA_BASE_URL}/tzdb/version`;
 
-const VERSION_PATTERN = /^\d{4}[a-z]$/;
+// after `z` IANA continues with `za`, `zb`, ... (see .github/scripts/tzdb-release-check.sh)
+const VERSION_PATTERN = /^\d{4}[a-z]+$/;
 
 const defaultDeps = {
     fetch: (...args) => globalThis.fetch(...args),

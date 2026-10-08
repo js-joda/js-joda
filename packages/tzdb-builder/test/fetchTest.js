@@ -51,6 +51,12 @@ describe('fetch', () => {
             assert.deepEqual(calls, []);
         });
 
+        it('accepts a version with more than one letter', async () => {
+            assert.equal(await resolveVersion('2026za', { fetch: fakeFetch({}) }), '2026za');
+            const version = await resolveVersion('latest', { fetch: fakeFetch({ [LATEST_VERSION_URL]: '2026za\n' }) });
+            assert.equal(version, '2026za');
+        });
+
         it('rejects a malformed version', async () => {
             await assert.rejects(resolveVersion('2026', { fetch: fakeFetch({}) }), /Invalid tzdb version '2026'/);
         });

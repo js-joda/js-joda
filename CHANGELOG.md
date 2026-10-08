@@ -14,11 +14,14 @@ Changelog
 * `locale`
     * [#830](https://github.com/js-joda/js-joda/pull/830) Parse fixed offsets with the `z` and `zzzz` patterns, e.g. `+01:00`, `Z`, `UT`, `UTC-01:00` or `GMT+02:00`, as in java.time; port of [ThreeTen/threetenbp@f0f09a6](https://github.com/ThreeTen/threetenbp/commit/f0f09a6fb) ([@pithu](https://github.com/pithu))
 * `core`
+    * `Duration.dividedBy()` divides exactly by any integer divisor. Before, the nanoseconds of the result could be one too small for divisors above about 10 million, e.g. `Duration.ofSeconds(763622282629, 560982485).dividedBy(792426085705)` ([@pithu](https://github.com/pithu))
     * [#830](https://github.com/js-joda/js-joda/pull/830) `LocalDate.ofEpochDay()` checks the epoch day against `ChronoField.EPOCH_DAY` and throws a `DateTimeException` naming that field for an epoch day out of range, instead of a misleading year error or an int overflow. `NaN` now throws a `DateTimeException` as well, instead of an `ArithmeticException`; port of [ThreeTen/threetenbp@006216f](https://github.com/ThreeTen/threetenbp/commit/006216f27) ([@pithu](https://github.com/pithu))
     * [#831](https://github.com/js-joda/js-joda/pull/831) Parsed fields are stored by field instead of by field name, so the week fields of `@js-joda/locale` are no longer mistaken for `ChronoField.DAY_OF_WEEK` and the `IsoFields` with the same names ([@pithu](https://github.com/pithu), [@youdie006](https://github.com/youdie006))
         With locales whose weeks differ from ISO weeks, such as `Locale.US`: `YYYY-'W'ww-e` parsed to a wrong date without error since 6.2.0, e.g. `2020-W02-1` to `2020-01-06` instead of `2020-01-05`; and `e`/`c` together with a date threw a `DateTimeParseException`. Fields that are not `ChronoField`s are now resolved by their own `resolve()`, as in java.time, which also resolves the week fields of `@js-joda/locale`.
         Fields left over after resolving are cross checked against the result, including the `IsoFields` and the locale week fields, so text with a conflicting value now throws, e.g. `2020-Q3-02-01` with `uuuu-'Q'Q-MM-dd`, as in java.time. Supersedes [#816](https://github.com/js-joda/js-joda/pull/816).
 * `timezone`
+    * Offsets with seconds were one second off in some zones, e.g. the local mean time of `Europe/Vienna` before 1893 was `+01:05:20` instead of `+01:05:21`; affected are the offsets before 1915 of 9 zones ([@pithu](https://github.com/pithu))
+    * `ZoneRules` `offset()`, `standardOffset()`, `daylightSavings()`, `isDaylightSavings()`, `nextTransition()` and `previousTransition()` threw an `ArithmeticException` for instants beyond about ±285,000 years such as `Instant.MIN` and `Instant.MAX`; they now return the offsets before the first and after the last transition, `nextTransition(Instant.MAX)` and `previousTransition(Instant.MIN)` return `null`, as in java.time ([@pithu](https://github.com/pithu))
     * [#830](https://github.com/js-joda/js-joda/pull/830) Add a test that parses `ZonedDateTime.toString()` back for every available zone; port of [ThreeTen/threetenbp@5e9389c](https://github.com/ThreeTen/threetenbp/commit/5e9389cc8) ([@pithu](https://github.com/pithu))
 
 ## 2026-10-07
@@ -47,7 +50,7 @@ Changelog
 * `extra`
     * [#829](https://github.com/js-joda/js-joda/pull/829) Add missing TypeScript declarations: `Interval.ALL`, `OffsetDate.MIN`, `OffsetDate.MAX`, `OffsetDate.FROM`, `Quarter.FROM`, `Quarter.hashCode()`, `YearQuarter.FROM` and `YearWeek.FROM` ([@pithu](https://github.com/pithu))
 
-## 2026-10-02
+## 2026-10-02 (@js-joda/timezone 3.0.0)
 
 ### Versions
 
@@ -68,7 +71,7 @@ Changelog
         The bundled zone data is unchanged. The raw data files in the repository (`data/packed/*.json`, `data/unpacked/*.json`, not part of the npm package) change their format: the `countries` key and the per-zone `population` and `countries` values are removed; packed zone strings get a 7th field with the isdst flags and an empty population field; unpacked zones get an `isdsts` array. The `transform-data` npm script is removed, use `npm run generate` in `packages/tzdb-builder` instead.
     * [#820](https://github.com/js-joda/js-joda/pull/820) update tzdb to version 2026e ([@pithu](https://github.com/pithu))
 
-## 2026-10-02
+## 2026-10-02 (@js-joda/core 6.2.0)
 
 ### Versions
 

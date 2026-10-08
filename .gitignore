@@ -16,3 +16,5 @@ tmp
 *.iml
 
 *~
+
+.claude/settings.local.json
