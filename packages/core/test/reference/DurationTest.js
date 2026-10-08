@@ -1977,6 +1977,30 @@ describe('org.threeten.bp.TestDuration', () => {
             expect(test).to.eql(Duration.ofSeconds(1));
         });
 
+        it('divides exactly by large divisors', () => {
+            // seconds, nanos, divisor, expected seconds, expected nanos (computed with BigInt)
+            dataProviderTest([
+                [763622282629, 560982485, 792426085705, 0, 963651117],
+                [127203182818, 421025640, 137145942746, 0, 927502340],
+                [-763622282629, 560982485, 792426085705, -1, 36348884],
+                [763622282629, 560982485, -792426085705, -1, 36348883],
+                [9007199254740990, 999999999, 9007199254740991, 0, 999999999],
+                [9007199254740990, 123456789, 4503599627370496, 1, 999999999],
+                [-9007199254740990, 1, 9007199254740991, -1, 1],
+                [1234567890123456, 987654321, 1000000000000001, 1, 234567890],
+                [5, 999999999, 9007199254740991, 0, 0],
+            ], (seconds, nanos, divisor, expectedSeconds, expectedNanos) => {
+                const t = Duration.ofSeconds(seconds, nanos).dividedBy(divisor);
+                expect(t.seconds()).to.eql(expectedSeconds);
+                expect(t.nano()).to.eql(expectedNanos);
+            });
+        });
+
+        it('divides by a divisor with a fraction', () => {
+            expect(Duration.ofSeconds(5).dividedBy(2.5)).to.eql(Duration.ofSeconds(2));
+            expect(Duration.ofSeconds(3).dividedBy(0.5)).to.eql(Duration.ofSeconds(6));
+        });
+
     });
 
     describe('negated()', ()=> {
