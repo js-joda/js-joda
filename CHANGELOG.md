@@ -6,7 +6,7 @@ Changelog
 #### :rocket: Enhancement
 * `locale`
     * [#830](https://github.com/js-joda/js-joda/pull/830) Print the standard or daylight saving name of a time-zone with the `z` and `zzzz` patterns, e.g. `Central European Summer Time` instead of `Central European Time`, as in java.time; port of [ThreeTen/threetenbp@456f648](https://github.com/ThreeTen/threetenbp/commit/456f648b4) ([@pithu](https://github.com/pithu))
-        This needs `@js-joda/timezone` 3.1.0 or later with tz data that has standard offsets (the default). If the value has no instant, or the zone rules don't support `isDaylightSavings()`, the generic name is printed as before.
+        This needs `@js-joda/timezone` 3.1.0 or later with tz data that has standard offsets (the default). If the value has no instant, or the zone rules don't support `isDaylightSavings()`, the generic name is printed as before. A daylight saving name no longer falls back to the standard name of the metazone, which denotes a different offset (e.g. `GMT` for `Europe/London` in summer with `Locale.ENGLISH` and `z`); the zone id is printed instead.
 
 #### :bug: Bug Fix
 * `locale`

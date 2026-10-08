@@ -42,40 +42,59 @@ describe('@js-joda/locale CldrZoneTextPrinterParser', () => {
 
     describe('print / parse zones', () => {
 
-        // test some zones and their representations in different locales
-        // the @js-joda/timezone version used by these tests doesn't support
-        // ZoneRules.isDaylightSavings(), so the generic names are printed
+        // test some zones and their representations in different locales, in winter and in summer
         const data = [
 
             [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'UTC', Locale.ENGLISH, TextStyle.FULL, 'UTC'],
+            [LocalDateTime.of(2011, 7, 30, 12, 30, 40, 0), 'UTC', Locale.ENGLISH, TextStyle.FULL, 'UTC'],
             [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'UTC', Locale.ENGLISH, TextStyle.SHORT, 'UTC'],
+            [LocalDateTime.of(2011, 7, 30, 12, 30, 40, 0), 'UTC', Locale.ENGLISH, TextStyle.SHORT, 'UTC'],
 
             [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'Europe/London', Locale.ENGLISH, TextStyle.FULL, 'Greenwich Mean Time'],
+            [LocalDateTime.of(2011, 7, 30, 12, 30, 40, 0), 'Europe/London', Locale.ENGLISH, TextStyle.FULL, 'British Summer Time'],
             [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'Europe/London', Locale.ENGLISH, TextStyle.SHORT, 'GMT'],
+            // English has no short daylight name for London, and doesn't fall back to 'GMT'
+            [LocalDateTime.of(2011, 7, 30, 12, 30, 40, 0), 'Europe/London', Locale.ENGLISH, TextStyle.SHORT, 'Europe/London'],
 
-            [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'Europe/Berlin', Locale.ENGLISH, TextStyle.FULL, 'Central European Time'],
+            [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'Europe/Berlin', Locale.ENGLISH, TextStyle.FULL, 'Central European Standard Time'],
+            [LocalDateTime.of(2011, 7, 30, 12, 30, 40, 0), 'Europe/Berlin', Locale.ENGLISH, TextStyle.FULL, 'Central European Summer Time'],
             [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'Europe/Berlin', Locale.ENGLISH, TextStyle.SHORT, 'Europe/Berlin'],
+            [LocalDateTime.of(2011, 7, 30, 12, 30, 40, 0), 'Europe/Berlin', Locale.ENGLISH, TextStyle.SHORT, 'Europe/Berlin'],
 
-            [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'America/New_York', Locale.ENGLISH, TextStyle.FULL, 'Eastern Time'],
-            [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'America/New_York', Locale.ENGLISH, TextStyle.SHORT, 'ET'],
+            [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'America/New_York', Locale.ENGLISH, TextStyle.FULL, 'Eastern Standard Time'],
+            [LocalDateTime.of(2011, 7, 30, 12, 30, 40, 0), 'America/New_York', Locale.ENGLISH, TextStyle.FULL, 'Eastern Daylight Time'],
+            [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'America/New_York', Locale.ENGLISH, TextStyle.SHORT, 'EST'],
+            [LocalDateTime.of(2011, 7, 30, 12, 30, 40, 0), 'America/New_York', Locale.ENGLISH, TextStyle.SHORT, 'EDT'],
 
-            [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'America/Los_Angeles', Locale.ENGLISH, TextStyle.FULL, 'Pacific Time'],
-            [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'America/Los_Angeles', Locale.ENGLISH, TextStyle.SHORT, 'PT'],
+            [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'America/Los_Angeles', Locale.ENGLISH, TextStyle.FULL, 'Pacific Standard Time'],
+            [LocalDateTime.of(2011, 7, 30, 12, 30, 40, 0), 'America/Los_Angeles', Locale.ENGLISH, TextStyle.FULL, 'Pacific Daylight Time'],
+            [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'America/Los_Angeles', Locale.ENGLISH, TextStyle.SHORT, 'PST'],
+            [LocalDateTime.of(2011, 7, 30, 12, 30, 40, 0), 'America/Los_Angeles', Locale.ENGLISH, TextStyle.SHORT, 'PDT'],
 
             [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'UTC', Locale.GERMAN, TextStyle.FULL, 'UTC'],
+            [LocalDateTime.of(2011, 7, 30, 12, 30, 40, 0), 'UTC', Locale.GERMAN, TextStyle.FULL, 'UTC'],
             [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'UTC', Locale.GERMAN, TextStyle.SHORT, 'UTC'],
+            [LocalDateTime.of(2011, 7, 30, 12, 30, 40, 0), 'UTC', Locale.GERMAN, TextStyle.SHORT, 'UTC'],
 
             [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'Europe/London', Locale.GERMAN, TextStyle.FULL, 'Mittlere Greenwich-Zeit'],
+            [LocalDateTime.of(2011, 7, 30, 12, 30, 40, 0), 'Europe/London', Locale.GERMAN, TextStyle.FULL, 'Britische Sommerzeit'],
             [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'Europe/London', Locale.GERMAN, TextStyle.SHORT, 'Europe/London'],
+            [LocalDateTime.of(2011, 7, 30, 12, 30, 40, 0), 'Europe/London', Locale.GERMAN, TextStyle.SHORT, 'Europe/London'],
 
-            [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'Europe/Berlin', Locale.GERMAN, TextStyle.FULL, 'Mitteleuropäische Zeit'],
+            [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'Europe/Berlin', Locale.GERMAN, TextStyle.FULL, 'Mitteleuropäische Normalzeit'],
+            [LocalDateTime.of(2011, 7, 30, 12, 30, 40, 0), 'Europe/Berlin', Locale.GERMAN, TextStyle.FULL, 'Mitteleuropäische Sommerzeit'],
             [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'Europe/Berlin', Locale.GERMAN, TextStyle.SHORT, 'MEZ'],
+            [LocalDateTime.of(2011, 7, 30, 12, 30, 40, 0), 'Europe/Berlin', Locale.GERMAN, TextStyle.SHORT, 'MESZ'],
 
-            [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'America/New_York', Locale.GERMAN, TextStyle.FULL, 'Nordamerikanische Ostküstenzeit'],
+            [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'America/New_York', Locale.GERMAN, TextStyle.FULL, 'Nordamerikanische Ostküsten-Normalzeit'],
+            [LocalDateTime.of(2011, 7, 30, 12, 30, 40, 0), 'America/New_York', Locale.GERMAN, TextStyle.FULL, 'Nordamerikanische Ostküsten-Sommerzeit'],
             [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'America/New_York', Locale.GERMAN, TextStyle.SHORT, 'America/New_York'],
+            [LocalDateTime.of(2011, 7, 30, 12, 30, 40, 0), 'America/New_York', Locale.GERMAN, TextStyle.SHORT, 'America/New_York'],
 
-            [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'America/Los_Angeles', Locale.GERMAN, TextStyle.FULL, 'Nordamerikanische Westküstenzeit'],
+            [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'America/Los_Angeles', Locale.GERMAN, TextStyle.FULL, 'Nordamerikanische Westküsten-Normalzeit'],
+            [LocalDateTime.of(2011, 7, 30, 12, 30, 40, 0), 'America/Los_Angeles', Locale.GERMAN, TextStyle.FULL, 'Nordamerikanische Westküsten-Sommerzeit'],
             [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'America/Los_Angeles', Locale.GERMAN, TextStyle.SHORT, 'America/Los_Angeles'],
+            [LocalDateTime.of(2011, 7, 30, 12, 30, 40, 0), 'America/Los_Angeles', Locale.GERMAN, TextStyle.SHORT, 'America/Los_Angeles'],
 
             // [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'Asia/Seoul', Locale.KOREAN, TextStyle.FULL, '대한민국 시간'],
             // [LocalDateTime.of(2011, 1, 30, 12, 30, 40, 0), 'Asia/Seoul', Locale.KOREAN, TextStyle.SHORT, 'Asia/Seoul'],
@@ -100,8 +119,8 @@ describe('@js-joda/locale CldrZoneTextPrinterParser', () => {
         }).timeout(20000); // longer timeout, 2 seconds are not enough :/
 
         describe('daylight savings', () => {
-            // wraps a ZonedDateTime, replacing the rules of its zone by rules
-            // that answer isDaylightSavings() with the given value
+            // wraps a ZonedDateTime, replacing the rules of its zone by rules that answer
+            // isDaylightSavings() with the given value, to test the fallback to the generic name
             const withDaylightSavings = (zdt, daylight) => {
                 const zone = Object.create(zdt.zone());
                 const rules = Object.create(zdt.zone().rules());

@@ -98,9 +98,10 @@ export default class CldrZoneTextPrinterParser {
                 if (metaZoneData) {
                     return metaZoneData;
                 } else {
-                    // type fallback, first generic, then standard
+                    // type fallback, first generic, then standard; a daylight name never falls
+                    // back to the standard name, which would denote a different offset
                     metaZoneData = cldr.main(`dates/timeZoneNames/metazone/${metazone}/${style}/generic`);
-                    if (!metaZoneData) {
+                    if (!metaZoneData && type !== 'daylight') {
                         metaZoneData = cldr.main(`dates/timeZoneNames/metazone/${metazone}/${style}/standard`);
                     }
                     if (metaZoneData) {
