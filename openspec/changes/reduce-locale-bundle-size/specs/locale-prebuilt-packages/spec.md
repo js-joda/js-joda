@@ -2,19 +2,31 @@
 
 ## ADDED Requirements
 
-### Requirement: CLDR data of a prebuilt package
-The default entry of a prebuilt package SHALL register everything its locales need for formatting
-and parsing without `cldr-data`: `ca-gregorian` and `timeZoneNames` of each locale,
-`supplemental/metaZones.json`, and the `likelySubtags` entries of its languages. It SHALL NOT contain
-`likelySubtags` entries of other languages.
+### Requirement: Default entry of a prebuilt package
+The default entry of a prebuilt package (e.g. `@js-joda/locale_en-us`) SHALL register the same data
+as before this change and import only `registerLocaleData` from `@js-joda/locale`, so that it works
+with every `@js-joda/locale` from 5.0.0 on.
 
-#### Scenario: Default import without cldr-data
-- **WHEN** an application without `cldr-data` imports `@js-joda/core`, `@js-joda/timezone` and `@js-joda/locale_en-us`, and formats `2016-01-01T00:00+01:00[Europe/Berlin]` with `eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz` and `Locale.US`
+#### Scenario: New prebuilt package with older @js-joda/locale
+- **WHEN** `@js-joda/locale` 5.3.2 and the new `@js-joda/locale_en-us` are installed, without `cldr-data`
+- **THEN** formatting with `eeee MMMM zzzz` and `Locale.US` gives the same output as with `@js-joda/locale_en-us` 5.3.2
+
+### Requirement: Slim entries of a prebuilt package
+Every prebuilt package SHALL provide a `/slim` entry (e.g. `@js-joda/locale_en-us/slim`) that, for
+use with `@js-joda/locale/slim`, registers the `likelySubtags` entries of its languages, imports
+`@js-joda/locale/meta-zones`, and registers `ca-gregorian` and `timeZoneNames` of each locale. It
+SHALL NOT contain `likelySubtags` entries of other languages, nor its own copy of `metaZones`. Every
+prebuilt package SHALL also provide a `/slim-no-zone-names` entry with the same data without
+`metaZones` and `timeZoneNames`. Both SHALL be usable with bundlers and as a minified `<script>`. In
+Node.js, `require` of a slim entry SHALL load the default entry.
+
+#### Scenario: Slim import
+- **WHEN** an application without `cldr-data` bundles `@js-joda/core`, `@js-joda/timezone`, `@js-joda/locale/slim` and `@js-joda/locale_en-us/slim`, and formats `2016-01-01T00:00+01:00[Europe/Berlin]` with `eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz` and `Locale.US`
 - **THEN** the output is `Friday January 01 2016 Anno Domini, 12:00:00 AM Central European Standard Time`
 
 #### Scenario: likelySubtags subset
-- **WHEN** the bundle of `@js-joda/locale_de` is inspected
-- **THEN** it contains the `likelySubtags` entries of `de`, and no entry of another language such as `en` or `zh`
+- **WHEN** the slim bundle of `@js-joda/locale_de` is inspected
+- **THEN** it contains the `likelySubtags` entries of `de`, no entry of another language such as `en` or `zh`, and no `metaZones` entries
 
 #### Scenario: Subset gives the same result as the full data
 - **WHEN** a locale of a prebuilt package is resolved with the `likelySubtags` subset of that package and with the complete `likelySubtags`
@@ -24,44 +36,42 @@ and parsing without `cldr-data`: `ca-gregorian` and `timeZoneNames` of each loca
 - **WHEN** a prebuilt package's patterns expand to no locale of `cldr-data`
 - **THEN** the subset test fails, unless the package is on the explicit list of known-empty packages (`no`, `nn-no`)
 
-#### Scenario: Smaller default import
-- **WHEN** `@js-joda/locale` and the minified `@js-joda/locale_en-us` are measured gzip compressed
-- **THEN** together they are at least 10 KB smaller than with `@js-joda/locale` 5.3.2 and `@js-joda/locale_en-us` 5.3.2
+#### Scenario: metaZones once with several packages
+- **WHEN** `@js-joda/locale/slim`, `@js-joda/locale_en-us/slim` and `@js-joda/locale_de/slim` are bundled together with esbuild
+- **THEN** the bundle contains the `metaZones` data once
 
-#### Scenario: Mixed with an older prebuilt package
-- **WHEN** an application without `cldr-data` imports the new `@js-joda/locale_en-us` and `@js-joda/locale_de` 5.3.2
-- **THEN** formatting with `Locale.US` works, and formatting with `Locale.GERMANY` throws the missing likelySubtags error naming `de`
+#### Scenario: Smaller slim import
+- **WHEN** an esbuild bundle of `@js-joda/locale/slim` and `@js-joda/locale_en-us/slim` is measured gzip compressed, minified, without `@js-joda/core`
+- **THEN** it is at least 10 KB smaller than the same bundle of `@js-joda/locale` and `@js-joda/locale_en-us`
 
-### Requirement: no-zone-names entry
-Every prebuilt package SHALL provide a `no-zone-names` entry (e.g. `@js-joda/locale_en-us/no-zone-names`)
-that registers the same data as the default entry without `metaZones` and `timeZoneNames`. It SHALL be
-usable with `require`, `import`, bundlers and as a minified `<script>`. The existing entries and files
-SHALL stay available under their current paths.
+#### Scenario: Smaller slim import without zone names
+- **WHEN** the same is measured with `@js-joda/locale_en-us/slim-no-zone-names`
+- **THEN** it is at least 25 KB smaller than the same bundle of `@js-joda/locale` and `@js-joda/locale_en-us`
 
-#### Scenario: CommonJS and ES module import
-- **WHEN** Node.js loads `@js-joda/locale_en-us` and `@js-joda/locale_en-us/no-zone-names` with `require` and with `import`
-- **THEN** all four register the English locale data, formatting with `MMMM` and `Locale.US` works, and `import` loads an ES module without a module type warning
+#### Scenario: Slim entry in Node.js
+- **WHEN** Node.js runs `require('@js-joda/locale_en-us/slim')` and formats with `zzzz` and `Locale.US`
+- **THEN** the output is the same as with `require('@js-joda/locale_en-us')`
 
-#### Scenario: Browser script
-- **WHEN** a page loads `@js-joda/locale/dist/js-joda-locale.min.js` and `@js-joda/locale_en-us/dist/no-zone-names.min.js` with `<script>` tags
-- **THEN** formatting with `MMMM` and `Locale.US` works
+#### Scenario: Slim entry with an older @js-joda/locale
+- **WHEN** an application with `@js-joda/locale` 5.3.2 bundles `@js-joda/locale_en-us/slim`
+- **THEN** the bundler fails with an error that `@js-joda/locale/slim` can't be resolved
 
-#### Scenario: Smaller bundle
-- **WHEN** `@js-joda/locale` and the minified `no-zone-names` entry of `@js-joda/locale_en-us` are measured gzip compressed
-- **THEN** together they are at least 25 KB smaller than with `@js-joda/locale` 5.3.2 and `@js-joda/locale_en-us` 5.3.2
+## MODIFIED Requirements
 
-#### Scenario: Existing deep imports
-- **WHEN** an application imports `@js-joda/locale_en-us/dist/index.js` or `@js-joda/locale_en-us/dist/index.esm.js`
-- **THEN** the import resolves as before this change
+### Requirement: Stable generated files
+Generating the prebuilt packages SHALL leave the committed prebuilt package manifests and the
+committed `package.json` files of their entry directories (`slim/`, `slim-no-zone-names/`) unchanged,
+unless the peer dependencies of `@js-joda/locale` or the list of entries changed. A version bump of
+`@js-joda/locale` alone SHALL NOT change them.
 
-#### Scenario: Mixed with a full entry
-- **WHEN** an application imports `@js-joda/locale_en-us/no-zone-names` and `@js-joda/locale_de`
-- **THEN** `zzzz` works with `Locale.GERMANY`, and throws the missing time-zone names error with `Locale.US`
+#### Scenario: Regeneration without changes
+- **WHEN** the prebuilt packages are generated twice without changes to `@js-joda/locale` in between
+- **THEN** the second run produces no differences in the prebuilt package manifests and entry directories
 
-### Requirement: Compatibility with older @js-joda/locale
-A prebuilt package SHALL work with every `@js-joda/locale` in its peer range (`>=5.0.0`). With an
-`@js-joda/locale` from before this change, the default entry SHALL format and parse as before.
+#### Scenario: Version bump of @js-joda/locale
+- **WHEN** the release tooling bumps `@js-joda/locale` from 5.3.1 to 5.4.0 and the prebuilt packages are generated
+- **THEN** the prebuilt package manifests and entry directories are unchanged apart from the versions the release tooling set
 
-#### Scenario: New prebuilt package with older @js-joda/locale
-- **WHEN** `@js-joda/locale` 5.3.2 and the new `@js-joda/locale_en-us` are installed, without `cldr-data`
-- **THEN** formatting with `eeee MMMM zzzz` and `Locale.US` gives the same output as with `@js-joda/locale_en-us` 5.3.2
+#### Scenario: Test run leaves the working tree clean
+- **WHEN** the full locale test suite, which builds the prebuilt packages, runs on a clean checkout
+- **THEN** no committed prebuilt package manifest or entry directory file is modified

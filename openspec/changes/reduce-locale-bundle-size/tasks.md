@@ -1,62 +1,51 @@
 # Tasks
 
-Decisions (see `design.md`): base bundles only `weekData`, `registerLocaleData` merges only
-`likelySubtags` and never changes data from `cldr-data`, `main/*` data waits for its `likelySubtags`,
-prebuilt packages ship a `likelySubtags` subset and `metaZones`, `no-zone-names` entry via an
-`exports` map with `.mjs` targets, peer range stays `>=5.0.0`. All paths below are relative to
-`packages/locale` unless noted.
-
-Tests "without `cldr-data`" run in a child process in a temporary directory that has copies (not
-symlinks: Node.js resolves from the real path, which would find `cldr-data` in the monorepo) of
-`@js-joda/core`, `@js-joda/timezone`, `cldrjs`, the built `@js-joda/locale` (`package.json` + `dist`)
-and the needed built prebuilt packages, and no `cldr-data`. Call this the "isolated setup".
+Decisions (see `design.md`): the default entries stay unchanged; new opt-in entries
+`@js-joda/locale/slim` and `@js-joda/locale/meta-zones`, and per prebuilt package `/slim` and
+`/slim-no-zone-names`; entry directories with `package.json` instead of `exports` maps; in Node.js the
+slim entries resolve to the full builds; `registerLocaleData` merges `likelySubtags` parts until the
+full file is registered; clear errors only in slim mode. Minor release. All paths below are relative
+to `packages/locale` unless noted.
 
 ## 1. Baseline
 
-- [ ] 1.1 Record the current gzip sizes of `dist/js-joda-locale.min.js` and `packages/en-us/dist/index.min.js` (after `npm run build-dist && npm run build-locale-dist` on this branch before any change) in a comment on the PR draft; they are the reference for the size scenarios. Verify the numbers match roughly the ~44 KB total from #421
+- [ ] 1.1 Record the gzip sizes of `dist/js-joda-locale.min.js`, `packages/en-us/dist/index.min.js`, and of an esbuild browser bundle (minified, `@js-joda/core` external) of `@js-joda/locale` + `@js-joda/locale_en-us`, after `npm run build-dist && npm run build-locale-dist` before any change, in a comment on the PR. Verify the numbers match roughly the ~44 KB total from #421
 
-## 2. Registering data in CldrCache
+## 2. Entries of @js-joda/locale
 
-- [ ] 2.1 In `src/format/cldr/CldrCache.js`, keep the `Set` of registered paths and add a `Set` of paths loaded by `loadCldrData` (design decision 2): skip any path loaded from `cldr-data`; pass `supplemental/likelySubtags.json` registered again to `Cldr.load` (merge); keep first-wins for every other path; keep `loadCldrData` skipping every registered path. Verify with new tests in `test/format/cldr/CldrCacheTest.js`: two partial `likelySubtags` objects are both resolvable, the same object twice has no effect, a second `metaZones` or `main/*` registration is skipped, a registration after a `cldr-data` load of the same path changes nothing, and a registered path is not reloaded from `cldr-data`
-- [ ] 2.2 In `CldrCache`, keep `main/<bundle>/…` data pending while `<bundle>` can't be resolved with the registered `likelySubtags` keys (tracked by `CldrCache`, design decision 6), and load every pending bundle that became resolvable when `likelySubtags` is registered or loaded. Verify with tests: `main/th` registered before and after `likelySubtags` both work; and a test that compares the resolution of `CldrCache` with `cldrjs` for every locale in `cldr-data/availableLocales.json`, with the full `likelySubtags` and with each prebuilt subset
-- [ ] 2.3 Update the doc comment of `registerLocaleData` in `src/format/cldr/CldrCache.js` and `typings/js-joda-locale.d.ts` to describe merging of `likelySubtags`, first-wins for other paths, that `cldr-data` data is never changed, and that `main/*` data waits for its `likelySubtags`. Verify `npm run test-ts-definitions` passes
+- [ ] 2.1 Add `src/slim.js` (plugin, exports, `weekData`, the three `loadCldrData` calls), make `src/js-joda-locale.js` re-export it and register the bundled `likelySubtags` and `metaZones`, and add `src/meta-zones.js` (design decision 1). Verify `npm test` passes unchanged
+- [ ] 2.2 In `rollup.config.js`, build the ES modules from the three inputs with a shared chunk under `dist/chunks/`, keep `dist/js-joda-locale.js` (UMD) and `dist/js-joda-locale.min.js` as they are, and add IIFE builds `dist/slim.min.js` and `dist/meta-zones.min.js` (design decision 2). Verify `npm run build-dist` produces these files and that `dist/js-joda-locale.js` is unchanged apart from the banner
+- [ ] 2.3 Add `slim/package.json` and `meta-zones/package.json` (design decision 3) and add both directories to `files` in `package.json`. Verify with `npm pack --dry-run` that they are included, and with a test that `require('@js-joda/locale/slim')` returns the same module as `require('@js-joda/locale')`
+- [ ] 2.4 Check that `typings/js-joda-locale.d.ts` serves `@js-joda/locale/slim` through `types`. Verify with a test in `test/typescript_definitions` that imports `Locale` from `@js-joda/locale/slim`
 
-## 3. Missing-data errors
+## 3. Registering data in CldrCache
 
-- [ ] 3.1 Add the check used by `CldrDateTimeTextProvider` and `CldrZoneTextPrinterParser` to get their `Cldr` (design decision 6): throw an `IllegalStateException` when the requested language has pending data (naming the pending bundles, the requested locale, `registerLocaleData('supplemental/likelySubtags.json', …)` and updating all prebuilt packages), or when the instance fell back to `und` for another language; cache nothing on error. Verify with tests covering the spec scenarios of "Missing likelySubtags data" (including recovery in the same process and that `Locale.US` still works next to pending `th`) and "Locale without registered data" (`Locale.KOREAN` with only the `en` subset throws and prints no English)
-- [ ] 3.2 Make `WeekFields.ofLocale` read `supplemental/weekData` without that check. Verify with a test that `WeekFields.ofLocale(Locale.GERMANY)` works with only the base data and with pending `main/th` data (spec "WeekFields without locale data")
-- [ ] 3.3 In `CldrZoneTextPrinterParser.print`, throw an `IllegalStateException` after the `ZoneOffset` branch when `supplemental/metaZones` or `dates/timeZoneNames` of the locale is missing. Leave `parse` returning `~position`. In `_resolveZoneIds`, return a shared ID-only map without caching it per locale while names are missing; cache the per-locale map only once names are present. Verify with tests in `test/format/ZoneTextPrinterParserTest.js` for `z`, `zzzz`, `v` in print; that parsing a zone name without names throws a `DateTimeParseException`; that `yyyy-MM-dd[ zzzz]` with `parseUnresolved` on `2016-01-01 foo` behaves as before; that registering names later makes name parsing work with the same formatter; that a fixed-offset zone still prints and `UTC`, `+01:00`, a zone ID and `Z` still parse without names; and that a zone without a CLDR name still prints its ID
+- [ ] 3.1 In `src/format/cldr/CldrCache.js`, add the internal registration of the full `likelySubtags` (used by the default entry and `loadCldrData`), merge parts of `supplemental/likelySubtags.json` until the full file is registered and ignore them afterwards, keep first-wins for every other path, and clear the cached `Cldr` instances on every `Cldr.load` (design decision 6). Verify with tests in `test/format/cldr/CldrCacheTest.js`: two parts are both resolvable, the same object twice has no effect, a part after the full file changes no value, a second `metaZones` or `main/*` registration is skipped, and data registered after `WeekFields.ofLocale(Locale.KOREA)` is used for `Locale.KOREAN`
+- [ ] 3.2 Update the doc comment of `registerLocaleData` in `src/format/cldr/CldrCache.js` and `typings/js-joda-locale.d.ts` (merging of `likelySubtags` parts, first-wins for other paths). Verify `npm run test-ts-definitions` passes
 
-## 4. Base package without likelySubtags and metaZones
+## 4. Errors in slim mode
 
-- [ ] 4.1 In `src/supplemental-data.js`, keep the three `loadCldrData` calls and bundle/register only `weekData`. Verify with `npm run build-dist` that `dist/js-joda-locale.min.js` contains no `likelySubtags` / `metazoneInfo` keys (`grep -c`) and that `npm test` passes (Node.js with `cldr-data`)
-- [ ] 4.2 Add a test in the isolated setup that loads the built `dist/js-joda-locale.js`, registers only `main/th/ca-gregorian.json`, checks that `WeekFields.ofLocale(Locale.GERMANY)` works and that `MMMM` with Thai throws the likelySubtags error; then, in the same process, registers `supplemental/likelySubtags.json` and expects the Thai month name. Verify it passes
-- [ ] 4.3 Add a test with `cldr-data` installed that imports the built `@js-joda/locale_en-us` and formats `zzzz` with `Locale.US` and Thai, and compares with the output of the base alone (spec "Node.js with cldr-data and prebuilt packages"). Verify it passes
+- [ ] 4.1 In `CldrDateTimeTextProvider` and `CldrZoneTextPrinterParser`, when the full `likelySubtags` isn't registered, throw an `IllegalStateException` for a requested language without a `likelySubtags` entry; in `getOrCreateCldrInstance`, turn `Could not find likelySubtags for <bundle>` into an `IllegalStateException` (design decision 7). Verify with tests on the slim source entry, without `cldr-data` (stub `loadCldrData`), for the scenarios of "Locale without data in slim mode", and that the default entry behaves as before for `new Locale('xx')`
+- [ ] 4.2 In `CldrZoneTextPrinterParser.print`, throw an `IllegalStateException` for a region zone when `supplemental/metaZones` is missing; keep `parse` returning `~position`; in `_resolveZoneIds`, don't cache the ID-only map while `metaZones` is missing. Verify with tests in `test/format/ZoneTextPrinterParserTest.js` for the scenarios of "Missing time-zone names in slim mode", including `yyyy-MM-dd[ zzzz]` with `parseUnresolved`, and that with `metaZones` but without `timeZoneNames` the zone ID is printed as before
 
 ## 5. Prebuilt bundles
 
-- [ ] 5.1 In `utils/clrdr-data-render.js`, compute the `likelySubtags` subset of the expanded locales with the rule from design decision 3 and render it, plus a `zoneNames` flag, through `utils/cldr-data.ejs` (subset first, then `metaZones` and `timeZoneNames` only when `zoneNames` is set). Verify the rendered entry for `en-us` with and without `zoneNames` by a unit test of `renderCldrDataLoader`
-- [ ] 5.2 Add a test that, for every package in `prebuilt-packages.json` and every expanded locale, resolves the locale with `cldrjs` against the subset and the full `likelySubtags` (maximized and minimized language id, and the bundle of each `main/*` file) and expects equal results. Also require every package to expand to at least one locale, except the known-empty `no` and `nn-no` (design decision 3). Verify it passes; widen the rule if it doesn't
-- [ ] 5.3 In `rollup-build-packages-config.js`, build `index` and `no-zone-names` each as `.js` (UMD), `.esm.js`, `.mjs` (same ES module output) and `.min.js` (IIFE). Verify `npm run build-prebuilt` produces eight bundles per package in `dist/prebuilt/<pkg>/`
-- [ ] 5.4 Check that `rollup-examples.config.js` and `test/cldr-browser-setup.js` still register everything they need (the examples bundle aliases `@js-joda/locale` to source, so it now needs the subset and `metaZones` from the rendered entry). Verify `npm run build-examples` and `npm run test-browser` pass
-- [ ] 5.5 Keep `test/prebuiltPackagesTest_mochaOnly.js` passing: the template still imports only `registerLocaleData`. Verify `npm test`
+- [ ] 5.1 In `utils/clrdr-data-render.js`, compute the `likelySubtags` subset with the rule from design decision 5 and render the three variants through `utils/cldr-data.ejs` (design decision 4); the default variant must render exactly as today. Verify with a unit test of `renderCldrDataLoader` for `en-us`, including that the default variant equals today's output
+- [ ] 5.2 Add a test that, for every package in `prebuilt-packages.json` and every expanded locale, resolves the locale with `cldrjs` against the subset and the full `likelySubtags` (maximized and minimized language id, and the bundle of each `main/*` file) and expects equal results. Also require every package to expand to at least one locale, except the known-empty `no` and `nn-no`. Verify it passes; widen the rule if it doesn't
+- [ ] 5.3 In `rollup-build-packages-config.js`, build `slim` and `slim-no-zone-names` as `.js` (UMD), `.esm.js` and `.min.js` (IIFE, `@js-joda/locale/slim` → global `JSJodaLocale`) next to the default outputs. Verify `npm run build-prebuilt` produces nine bundles per package and that `index.*` are unchanged apart from the banner
+- [ ] 5.4 In `utils/create_packages.js`, copy the new bundles plus maps and write `slim/package.json` and `slim-no-zone-names/package.json` (`main` → `../dist/index.js`, `module` → the slim ES module); leave the manifests unchanged. Regenerate with `npm run create-packages` and commit the 66 entry directories. Verify a second run leaves `git status` clean (spec "Stable generated files")
+- [ ] 5.5 Extend `test/prebuiltPackagesTest_mochaOnly.js`: every package has both entry directories, every file they point to is produced by the build config, and the slim templates import only `registerLocaleData` from `@js-joda/locale/slim` and `@js-joda/locale/meta-zones`. Verify the test fails when one entry directory is removed
+- [ ] 5.6 Check that `rollup-examples.config.js` and `test/cldr-browser-setup.js` still work, and add a browser test with the slim IIFE builds (spec "Script tags"). Verify `npm run build-examples` and `npm run test-browser` pass
+- [ ] 5.7 Update `utils/README_package.template.md` with the slim imports and `<script>` paths. Verify the regenerated `packages/en-us/README.md` shows them
 
-## 6. Prebuilt package manifests
+## 6. Documentation
 
-- [ ] 6.1 In `utils/create_packages.js`, copy the eight bundles plus maps and add the `exports` map from design decision 5 to the generated manifest (keep `main` and `module`, no `"type"`). Regenerate with `npm run create-packages` and commit the 33 manifests. Verify a second run leaves `git status` clean (spec "Stable generated files")
-- [ ] 6.2 Extend `test/prebuiltPackagesTest_mochaOnly.js`: every committed manifest has the `exports` map, every `import` target ends in `.mjs`, and every file it points to is produced by the build config. Verify the test fails when an entry is removed from one manifest
-- [ ] 6.3 Update `utils/README_package.template.md` with the default and `no-zone-names` imports and the `<script>` paths. Verify the regenerated `packages/en-us/README.md` shows them
+- [ ] 6.1 Update `packages/locale/README.md`: slim mode with the imports for one and several locales, `/slim-no-zone-names`, sizes, the errors, that slim entries need `@js-joda/locale` 5.4.0 or later and a bundler (Node.js uses the full builds, Node.js ESM can't import the slim directories), and that mixing slim and default imports works but bundles the full data. Verify the code samples bundle and run
+- [ ] 6.2 Add a `locale` entry to the root `CHANGELOG.md` with the new entries and the size numbers from task 7.2. Verify it follows the format of the existing entries
 
-## 7. Documentation
+## 7. Integration
 
-- [ ] 7.1 Update `packages/locale/README.md`: which supplemental data the base registers, the `no-zone-names` entry with sizes, the zone-names error, the extra `registerLocaleData` calls for hand registration without `cldr-data`, that `@js-joda/locale` and the prebuilt packages should be updated together, and the `metaZones` duplication when importing several full prebuilt packages. Verify the code samples run (`node` with the built packages)
-- [ ] 7.2 Add a `locale` entry to the root `CHANGELOG.md` with the size numbers from task 8.2, the new entry point, a **BREAKING** note for hand registration without `cldr-data`, and the new error for a locale without registered data. Verify it follows the format of the existing entries
-
-## 8. Integration
-
-- [ ] 8.1 In `packages/examples`, add `examples/node/node-locale-no-zone-names.js` and `examples/node/es6-locale-no-zone-names.mjs`. Both check that formatting with `MMMM` works and do not check `zzzz`: in the monorepo `cldr-data` resolves from the real path of `@js-joda/locale`, and `import '@js-joda/locale'` resolves to its CJS `main`, so both can load zone names from `cldr-data`. The zone-names error without `cldr-data` is covered by task 8.5. Wire both into `test/run-node-samples.sh`, and run the ESM samples with `--no-experimental-detect-module` where the Node.js version supports it, so a `.js` ES module fails the run. Verify after `npx lerna run --stream build-dist && npx lerna run --stream build-locale-dist` that `cd packages/examples && npm test` passes and prints no `MODULE_TYPELESS_PACKAGE_JSON` warning
-- [ ] 8.2 Measure gzip sizes of `@js-joda/locale` + `locale_en-us` default and `no-zone-names` (min builds) and compare with task 1.1. Verify the savings meet the spec scenarios (≥10 KB and ≥25 KB)
-- [ ] 8.3 Check compatibility with the released base: install `@js-joda/locale@5.3.2` into a scratch project without `cldr-data`, load the new `packages/en-us` bundle, and format with `eeee MMMM zzzz` and `Locale.US`. Verify the output equals the one with `@js-joda/locale_en-us@5.3.2`
-- [ ] 8.4 Check mixing with an old prebuilt package: in the isolated setup, load the new `packages/en-us` and `@js-joda/locale_de@5.3.2`. Verify `Locale.US` formats and `Locale.GERMANY` throws the error naming `de`
-- [ ] 8.5 In the isolated setup, `require` and `import` `@js-joda/locale_en-us/no-zone-names`. Verify `MMMM` works, `zzzz` with `Europe/Berlin` throws the zone-names error, and parsing `Central European Standard Time` with `zzzz` throws a `DateTimeParseException`
-- [ ] 8.6 Run `cd packages/locale && npm run test-ci` and verify it passes and leaves `git status` clean
+- [ ] 7.1 In `packages/examples/examples/bundler`, add esbuild samples for `@js-joda/locale/slim` with `@js-joda/locale_en-us/slim` and `@js-joda/locale_de/slim`, and with `@js-joda/locale_en-us/slim-no-zone-names`; check the formatted output, that `zzzz` throws in the no-zone-names sample, and that the bundles contain no full `likelySubtags` and `metaZones` once (search for data-only markers, e.g. the `"und-Arab"` key and a `metazoneInfo` zone entry, not for code identifiers). Wire them into `test/run-node-samples.sh`. Verify after `npx lerna run --stream build-dist && npx lerna run --stream build-locale-dist` that `cd packages/examples && npm test` passes
+- [ ] 7.2 Measure the gzip sizes of the esbuild bundles (default, `/slim`, `/slim-no-zone-names` with `en-us`) and compare with task 1.1. Verify the savings meet the spec scenarios (≥10 KB and ≥25 KB)
+- [ ] 7.3 Check compatibility: with `@js-joda/locale@5.3.2` the new default `packages/en-us` gives the same output as `@js-joda/locale_en-us@5.3.2` (`eeee MMMM zzzz`, `Locale.US`), and the new `@js-joda/locale` with `@js-joda/locale_en-us@5.3.2` gives the same output as today. Verify both
+- [ ] 7.4 Run `cd packages/locale && npm run test-ci` and verify it passes and leaves `git status` clean
