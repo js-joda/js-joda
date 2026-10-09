@@ -156,8 +156,8 @@ Contents of each entry (✓ = contained in the entry's bundle):
 | `likelySubtags`, full | ✓ | – | – | – | – | – |
 | `likelySubtags`, `en` subset | – | – | – | – | ✓ | ✓ |
 | `metaZones` | ✓ | – | ✓ | – | imports `meta-zones` | – |
-| `ca-gregorian` `en`, `en-US` | – | – | – | ✓ | ✓ | ✓ |
-| `timeZoneNames` `en`, `en-US` | – | – | – | ✓ | ✓ | – |
+| `ca-gregorian` `en` (`en-US` uses `en`) | – | – | – | ✓ | ✓ | ✓ |
+| `timeZoneNames` `en` | – | – | – | ✓ | ✓ | – |
 
 So today `@js-joda/locale` + `locale_en-us` contain every row. `/slim` + `locale_en-us/slim` contain the
 same except the full `likelySubtags` (replaced by the `en` subset). `/slim` +
