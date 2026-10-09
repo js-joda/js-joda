@@ -28,8 +28,17 @@ the wrong ones harder to spot.
   zone.
 - Conversion to a string is unchanged: `String(x)`, template literals, `+` with a string and `==`
   still use `toString()`.
-- The error message names the methods to use instead: `.compareTo()`, `.isBefore()`, `.isAfter()`,
-  `.equals()`, and `.value()` for the enum-like classes.
+- The error message names the methods to use instead, depending on the base class:
+  - `TemporalAccessor`: `.equals()`, `.compareTo()`, `.isBefore()`, `.isAfter()`, and `.value()` for
+    the enum-like classes
+  - `ZoneId`: `.equals()`, and for `ZoneOffset` `.compareTo()` or `.totalSeconds()`
+  - `TemporalAmount`: unchanged
+- **BREAKING** The message for `Temporal` types names `TemporalAccessor` instead of `Temporal`
+  (`A conversion from TemporalAccessor to a number is not allowed. ...`).
+- **BREAKING** `of()` factories that range-check their argument with `<`/`<=` (`Month.of`,
+  `DayOfWeek.of`, and `DayOfMonth.of`, `DayOfYear.of` in `@js-joda/extra`) throw the guard's
+  `TypeError` instead of a `DateTimeException` when passed an instance by mistake, e.g.
+  `Month.of(Month.MARCH)`.
 - Code that runs without error today now throws, so this ships in a major release of `@js-joda/core`.
 
 Out of scope: `Interval` and `LocalDateRange` in `@js-joda/extra` extend no core base class and are
@@ -51,4 +60,7 @@ not changed here.
 - `CHANGELOG.md`: breaking change entry for `core` (and a note for `extra`)
 - `@js-joda/extra` gets the guard only together with the new `@js-joda/core` major; its peer range is
   not raised by this change.
-- TypeScript typings are unaffected: TypeScript already rejects `<` between these object types.
+- TypeScript typings are unchanged, and TypeScript offers no protection: `tsc --strict` accepts `<`,
+  `>`, `<=`, `>=` between any object types (e.g. `Month.DECEMBER < Month.FEBRUARY`), and typings can't
+  forbid it, since TypeScript doesn't consult `Symbol.toPrimitive` for operators. TypeScript users hit
+  the new `TypeError` only at runtime, like JavaScript users.

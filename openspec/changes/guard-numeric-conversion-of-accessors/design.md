@@ -41,21 +41,30 @@ Alternative: add the guard to each affected class. Rejected: it misses future cl
 **Add a separate guard on `ZoneId.prototype`.** `ZoneId` doesn't extend `TemporalAccessor`, and
 shouldn't for this.
 
-**Share one helper for the three guards.** A small module-level function (e.g.
-`installNumericConversionGuard(prototype, typeName)`) in a module without imports of its own, so it can
-be used from `TemporalAccessor.js`, `TemporalAmount.js` and `ZoneId.js` without adding import cycles.
-It keeps the `Symbol.toPrimitive` feature check in one place. Alternative: copy the function three
-times, as today for two. Either is fine; the helper is preferred to keep the message consistent.
+**Share one helper for the three guards.** A small module-level function
+`installNumericConversionGuard(prototype, typeName, hint)` in a module without imports of its own, so
+it can be used from `TemporalAccessor.js`, `TemporalAmount.js` and `ZoneId.js` without adding import
+cycles. It keeps the `Symbol.toPrimitive` feature check and the common message prefix in one place;
+the `hint` names the methods that the classes under that base actually have. Alternative: copy the
+function three times, as today for two. Rejected: the messages would drift.
 
 **Error message.** Keep the existing wording, with the type named by its base class as a reader would
-know it, and add `.value()`:
+know it, and a hint per base class. A single shared hint was rejected: it would point `ZoneId` users
+to `.isBefore()`/`.value()` and `Duration` users to `.value()`, which those classes don't have.
 
-> A conversion from TemporalAccessor to a number is not allowed. To compare use the methods
-> .equals(), .compareTo(), .isBefore() or one that is more suitable to your use case; enum-like
-> types such as Month offer .value().
+- `TemporalAccessor`:
+  > A conversion from TemporalAccessor to a number is not allowed. To compare use the methods
+  > .equals(), .compareTo(), .isBefore(), .isAfter() or one that is more suitable to your use case;
+  > enum-like types such as Month offer .value().
+- `ZoneId`:
+  > A conversion from ZoneId to a number is not allowed. To compare use the method .equals(); a
+  > ZoneOffset can be ordered with .compareTo() or .totalSeconds().
+- `TemporalAmount`: the existing message, unchanged.
 
-The exact text is not part of the spec beyond the method names (see spec). Using the subclass name
-(`this.constructor.name`) was rejected: the minified UMD build mangles class names.
+Not every `TemporalAccessor` has every method listed (`Month` has no `.isBefore()`), so its hint stays
+phrased as a list of options. The exact text is not part of the spec beyond the method names (see
+spec). Using the subclass name (`this.constructor.name`) was rejected: the minified UMD build mangles
+class names.
 
 **Keep `TemporalAmount` as it is**, apart from using the shared helper.
 
@@ -65,9 +74,21 @@ The exact text is not part of the spec beyond the method names (see spec). Using
   right, or `Math.max(...months)`] → Release in a new major of `@js-joda/core`, with a
   `:boom: Breaking Change` entry in `CHANGELOG.md` listing the newly guarded classes and the
   replacement methods.
+- [The message of every `Temporal` type changes from `A conversion from Temporal ...` to
+  `A conversion from TemporalAccessor ...`; code or tests matching the text break] → No test in this
+  repo matches the text. List it in the breaking change entry.
+- [`Month.of`, `DayOfWeek.of`, `DayOfMonth.of` and `DayOfYear.of` compare their argument with
+  `<`/`<=`. Passed an instance by mistake (`Month.of(Month.MARCH)`), they throw the guard's
+  `TypeError` instead of a `DateTimeException`] → Accepted: it is still an error at the same call, and
+  the argument is documented as a number. Adding `typeof` checks to the factories is out of scope. Pin
+  the behavior with tests and list it in the breaking change entry.
+- [TypeScript doesn't flag `<` between objects, so TypeScript users get no compile-time warning] →
+  Nothing to do in the typings; TypeScript ignores `Symbol.toPrimitive` for operators. Say so in the
+  breaking change entry.
 - [`@js-joda/extra` users get the new behavior only with the new core major, and with an older core
-  the extra classes stay unguarded] → Acceptable; no extra code changes. Note it in the CHANGELOG
-  entry. Extra's peer range stays as is because extra doesn't depend on the guard to work.
+  the extra classes stay unguarded] → Acceptable; no extra code changes. The spec makes the plugin
+  behavior conditional on the core version. Note it in the CHANGELOG entry. Extra's peer range stays
+  as is because extra doesn't depend on the guard to work.
 - [`DateTimeBuilder` has no `toString()`, so the string hint returns `[object Object]`] → Same as
   today; it's internal.
 
