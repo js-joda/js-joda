@@ -20,6 +20,119 @@ prebuilt package SHALL also provide a `/slim-no-zone-names` entry with the same 
 `metaZones` and `timeZoneNames`. Both SHALL be usable with bundlers and as a minified `<script>`. In
 Node.js, `require` of a slim entry SHALL load the default entry.
 
+Usage compared to today (informative):
+
+The format and parse code is the same in every variant; only the imports differ. In the examples:
+
+```js
+import { DateTimeFormatter, LocalDate, ZonedDateTime, ZoneId } from '@js-joda/core';
+const zdt = ZonedDateTime.of(2016, 1, 1, 0, 0, 0, 0, ZoneId.of('Europe/Berlin'));
+const full = DateTimeFormatter.ofPattern('eeee MMMM dd yyyy, hh:mm a zzzz');
+```
+
+**One locale, with zone names**
+
+```js
+// today (unchanged, keeps working)
+import '@js-joda/timezone';
+import { Locale } from '@js-joda/locale';
+import '@js-joda/locale_en-us';
+
+// slim
+import '@js-joda/timezone';
+import { Locale } from '@js-joda/locale/slim';
+import '@js-joda/locale_en-us/slim';
+
+zdt.format(full.withLocale(Locale.US));
+// 'Friday January 01 2016, 12:00 AM Central European Standard Time'
+```
+
+**One locale, without zone names**
+
+```js
+// slim, no zone names
+import '@js-joda/timezone';   // only needed here for ZoneId.of('Europe/Berlin')
+import { Locale } from '@js-joda/locale/slim';
+import '@js-joda/locale_en-us/slim-no-zone-names';
+
+LocalDate.of(2016, 1, 1).format(DateTimeFormatter.ofPattern('eeee MMMM dd yyyy').withLocale(Locale.US));
+// 'Friday January 01 2016'
+zdt.format(full.withLocale(Locale.US));
+// throws IllegalStateException: zone names (zzzz) for en-US are missing,
+// import '@js-joda/locale_en-us/slim' instead of '/slim-no-zone-names'
+```
+
+**Several locales**
+
+```js
+// today
+import '@js-joda/timezone';
+import { Locale } from '@js-joda/locale';
+import '@js-joda/locale_en-us';
+import '@js-joda/locale_de-de';
+
+// slim: metaZones is bundled once, each package adds only its own likelySubtags entries
+import '@js-joda/timezone';
+import { Locale } from '@js-joda/locale/slim';
+import '@js-joda/locale_en-us/slim';
+import '@js-joda/locale_de-de/slim';
+
+// slim, zone names only for one of them
+import '@js-joda/timezone';
+import { Locale } from '@js-joda/locale/slim';
+import '@js-joda/locale_en-us/slim';
+import '@js-joda/locale_de-de/slim-no-zone-names';
+
+zdt.format(DateTimeFormatter.ofPattern('MMMM zzzz').withLocale(Locale.GERMANY));
+// 'Januar Europe/Berlin' (no German zone names: the zone ID is printed, as today)
+```
+
+**A locale that wasn't imported**
+
+```js
+import { Locale } from '@js-joda/locale/slim';
+import '@js-joda/locale_en-us/slim';
+
+LocalDate.of(2016, 1, 1).format(DateTimeFormatter.ofPattern('MMMM').withLocale(Locale.KOREAN));
+// throws IllegalStateException: no locale data for ko, import '@js-joda/locale_ko/slim'
+// (instead of silently printing English)
+```
+
+**Mixing slim and default imports**
+
+```js
+import { Locale } from '@js-joda/locale/slim';
+import '@js-joda/locale_en-us/slim';
+import '@js-joda/locale_de';   // default entry, imports '@js-joda/locale'
+// works, code and data exist once, but the bundle contains the full data again (no saving)
+```
+
+**Script tags**
+
+```html
+<!-- today (unchanged) -->
+<script src="node_modules/@js-joda/core/dist/js-joda.min.js"></script>
+<script src="node_modules/@js-joda/timezone/dist/js-joda-timezone.min.js"></script>
+<script src="node_modules/@js-joda/locale/dist/js-joda-locale.min.js"></script>
+<script src="node_modules/@js-joda/locale_en-us/dist/index.min.js"></script>
+
+<!-- slim -->
+<script src="node_modules/@js-joda/core/dist/js-joda.min.js"></script>
+<script src="node_modules/@js-joda/timezone/dist/js-joda-timezone.min.js"></script>
+<script src="node_modules/@js-joda/locale/dist/slim.min.js"></script>
+<script src="node_modules/@js-joda/locale/dist/meta-zones.min.js"></script> <!-- omit without zone names -->
+<script src="node_modules/@js-joda/locale_en-us/dist/slim.min.js"></script> <!-- or slim-no-zone-names.min.js -->
+```
+
+**Node.js**
+
+```js
+// unchanged; slim entries resolve to the full builds, size doesn't matter here
+const { Locale } = require('@js-joda/locale');
+require('@js-joda/locale_en-us');
+// require('@js-joda/locale/slim') and require('@js-joda/locale_en-us/slim') give the same result
+```
+
 Sizes of the minified builds, gzip compressed (KB = 1000 bytes; today's builds of 5.3.2, the new
 variants from prototype builds; without `@js-joda/core` and `@js-joda/timezone`). The default entries
 stay as they are today.
