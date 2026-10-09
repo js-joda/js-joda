@@ -28,6 +28,10 @@ and parsing without `cldr-data`: `ca-gregorian` and `timeZoneNames` of each loca
 - **WHEN** `@js-joda/locale` and the minified `@js-joda/locale_en-us` are measured gzip compressed
 - **THEN** together they are at least 10 KB smaller than with `@js-joda/locale` 5.3.2 and `@js-joda/locale_en-us` 5.3.2
 
+#### Scenario: Mixed with an older prebuilt package
+- **WHEN** an application without `cldr-data` imports the new `@js-joda/locale_en-us` and `@js-joda/locale_de` 5.3.2
+- **THEN** formatting with `Locale.US` works, and formatting with `Locale.GERMANY` throws the missing likelySubtags error naming `de`
+
 ### Requirement: no-zone-names entry
 Every prebuilt package SHALL provide a `no-zone-names` entry (e.g. `@js-joda/locale_en-us/no-zone-names`)
 that registers the same data as the default entry without `metaZones` and `timeZoneNames`. It SHALL be
@@ -35,8 +39,8 @@ usable with `require`, `import`, bundlers and as a minified `<script>`. The exis
 SHALL stay available under their current paths.
 
 #### Scenario: CommonJS and ES module import
-- **WHEN** Node.js loads `@js-joda/locale_en-us/no-zone-names` with `require` and with `import`
-- **THEN** both register the English locale data and formatting with `MMMM` and `Locale.US` works
+- **WHEN** Node.js loads `@js-joda/locale_en-us` and `@js-joda/locale_en-us/no-zone-names` with `require` and with `import`
+- **THEN** all four register the English locale data, formatting with `MMMM` and `Locale.US` works, and `import` loads an ES module without a module type warning
 
 #### Scenario: Browser script
 - **WHEN** a page loads `@js-joda/locale/dist/js-joda-locale.min.js` and `@js-joda/locale_en-us/dist/no-zone-names.min.js` with `<script>` tags

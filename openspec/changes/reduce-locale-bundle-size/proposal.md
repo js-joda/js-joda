@@ -24,19 +24,24 @@ We announced the plan on #421 on 2026-10-08.
   languages, and, in its default entry, `metaZones` together with its `timeZoneNames`. The default
   import `import '@js-joda/locale_en-us'` keeps working without code changes and gets smaller
   (~32 KB instead of ~44 KB together with `@js-joda/locale`).
-- `registerLocaleData` merges data registered again for a path that is already registered, instead of
-  ignoring it. This lets several prebuilt packages each add their part of `likelySubtags`. Registering
-  the same data object twice stays a no-op.
+- `registerLocaleData` merges `supplemental/likelySubtags.json` registered again, instead of ignoring
+  it, so that several prebuilt packages each add their part. Every other path keeps the rule that the
+  first registration wins, and data loaded from `cldr-data` is never changed by a registration.
+  `main/*` data waits until `likelySubtags` can resolve its locale, so the registration order doesn't
+  matter and a locale without entries can't break other locales.
 - New opt-in entry point in every prebuilt package, e.g. `@js-joda/locale_en-us/no-zone-names`. It
   registers the same data as the default entry, without `metaZones` and `timeZoneNames` (~15 KB
-  together with `@js-joda/locale`). It works with `require`, `import`, bundlers and a `<script>` tag.
-- Formatting a region-based zone, or parsing a zone name, with `z`, `zzzz` or `v` throws a clear error
-  when the time-zone names for the locale aren't available, naming the full import (or the
-  `registerLocaleData` calls) as the fix, instead of silently printing the zone ID. Fixed offsets,
-  zone IDs and `Z` keep working without names.
-- Registered locale data whose `likelySubtags` entries are missing fails with a clear error naming
-  that locale and `registerLocaleData('supplemental/likelySubtags.json', …)`; registering them
-  afterwards recovers in the same process.
+  together with `@js-joda/locale`). It works with `require`, `import` (an `.mjs` file), bundlers and a
+  `<script>` tag.
+- Formatting a region-based zone with `z`, `zzzz` or `v` throws a clear error when the time-zone names
+  for the locale aren't available, naming the full import (or the `registerLocaleData` calls) as the
+  fix, instead of silently printing the zone ID. Parsing a zone name then fails like any unknown text,
+  so optional sections keep working. Fixed offsets, zone IDs and `Z` keep working without names.
+- Registered locale data whose `likelySubtags` entries are missing fails, for that locale only, with a
+  clear error naming that locale and `registerLocaleData('supplemental/likelySubtags.json', …)`;
+  registering them afterwards recovers in the same process. A locale whose language has no data at all
+  (e.g. `Locale.KOREAN` with only `locale_en-us`) throws a clear error instead of falling back to
+  English. `WeekFields` keeps working without any locale data.
 - **BREAKING** for applications that use `@js-joda/locale` without `cldr-data` and without prebuilt
   packages, registering `main/*` data by hand (e.g. in a browser bundle): they now also have to
   register `supplemental/likelySubtags.json`, and for `z`/`zzzz`/`v` also
@@ -61,11 +66,12 @@ its CLDR version, parse/format round-trips would break, and Node.js and browsers
 ## Impact
 
 - `packages/locale/src/supplemental-data.js`, `src/format/cldr/CldrCache.js`,
-  `src/format/cldr/CldrZoneTextPrinterParser.js`, `src/format/cldr/CldrDateTimeTextProvider.js`
+  `src/format/cldr/CldrZoneTextPrinterParser.js`, `src/format/cldr/CldrDateTimeTextProvider.js`,
+  `src/temporal/WeekFields.js`
 - `packages/locale/utils/cldr-data.ejs`, `utils/clrdr-data-render.js`,
   `rollup-build-packages-config.js`, `utils/create_packages.js`, `utils/README_package.template.md`
 - The 33 prebuilt `packages/locale/packages/*/package.json` (new `exports` map with the
-  `./no-zone-names` subpath) and their `dist/` contents
+  `./no-zone-names` subpath and `.mjs` targets for `import`) and their `dist/` contents
 - Tests: `test/cldr-setup.cjs`, `test/cldr-browser-setup.js`, new tests for merging, the subset and
   the errors; `packages/examples` gets CJS and ESM samples for the `no-zone-names` entry
 - Docs: `packages/locale/README.md`, root `CHANGELOG.md`, `typings/js-joda-locale.d.ts` (doc comment

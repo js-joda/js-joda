@@ -17,17 +17,25 @@ registration.
 - **WHEN** an application imports `@js-joda/locale` with `cldr-data` installed and formats a date with `zzzz` for `new Locale('th', 'TH', 'th')`
 - **THEN** the output is the same as before this change
 
+#### Scenario: Node.js with cldr-data and prebuilt packages
+- **WHEN** an application with `cldr-data` installed imports `@js-joda/locale_en-us` and formats with `zzzz` for `Locale.US` and for `new Locale('th', 'TH', 'th')`
+- **THEN** both outputs are the same as before this change
+
 #### Scenario: Bundle without cldr-data
 - **WHEN** the browser build of `@js-joda/locale` is inspected
 - **THEN** it contains the `weekData` entries and no `likelySubtags` or `metaZones` entries
 
-### Requirement: Merging registered data
-`registerLocaleData(path, data)` SHALL merge `data` into the data already registered for `path`:
-objects are merged key by key, arrays and other values replace the registered ones. Several callers
-can each register a part of a file as long as the parts differ in object keys. Registering the same
-data object for the same path again SHALL have no effect. `registerLocaleData` SHALL NOT keep
-registered data objects alive beyond what the CLDR data tree holds. Registered data SHALL take
-precedence over loading the same path from `cldr-data`.
+#### Scenario: WeekFields without locale data
+- **WHEN** an application without `cldr-data` imports only `@js-joda/locale` and calls `WeekFields.ofLocale(Locale.GERMANY)`
+- **THEN** it returns the German week definition (Monday, 4 days) as before this change
+
+### Requirement: Registering data
+`registerLocaleData(path, data)` SHALL merge `data` into the registered
+`supplemental/likelySubtags.json` key by key, so that several callers can each register a part of it.
+For every other path, the first registration SHALL win, as before this change. Data loaded from
+`cldr-data` SHALL NOT be changed by a later `registerLocaleData`. Registering the same data object
+again SHALL have no visible effect. Data registered for a path SHALL take precedence over loading
+that path from `cldr-data` later.
 
 #### Scenario: Two prebuilt packages add likelySubtags
 - **WHEN** `@js-joda/locale_en-us` and `@js-joda/locale_de` are both imported, without `cldr-data`
@@ -42,12 +50,12 @@ precedence over loading the same path from `cldr-data`.
 - **THEN** formatting with an English locale uses the registered data and does not load the file from `cldr-data` again
 
 ### Requirement: Missing likelySubtags data
-When registered `main/*` data belongs to a locale whose `likelySubtags` entries are neither
-registered nor available from `cldr-data`, locale-specific formatting or parsing SHALL throw an error
-that names that data's locale (which may differ from the requested locale) and explains how to
-register `supplemental/likelySubtags.json` or to update all prebuilt packages to the release of
+`main/*` data registered for a locale whose `likelySubtags` entries are neither registered nor
+available from `cldr-data` SHALL NOT affect other locales. Formatting or parsing with text for that
+locale's language SHALL throw an error that names that data's locale and explains how to register
+`supplemental/likelySubtags.json` or to update all prebuilt packages to the release of
 `@js-joda/locale`. Registering the missing `likelySubtags` afterwards SHALL make that locale work in
-the same process.
+the same process. `likelySubtags` and `main/*` data SHALL work in either registration order.
 
 #### Scenario: Hand-registered locale without likelySubtags
 - **WHEN** an application without `cldr-data` registers only `main/th/ca-gregorian.json` and formats with `MMMM` and `new Locale('th', 'TH', 'th')`
@@ -57,26 +65,44 @@ the same process.
 - **WHEN** the application then registers `supplemental/likelySubtags.json` from `cldr-data` and formats again, in the same process
 - **THEN** the date formats with the Thai month name
 
-#### Scenario: Error names the locale whose data lacks entries
-- **WHEN** an application without `cldr-data` imports `@js-joda/locale_en-us`, registers `main/th/ca-gregorian.json` without `likelySubtags` for `th`, and formats with `MMMM` and `Locale.US`
-- **THEN** the error names `th`, not only `en-US`
+#### Scenario: Data without entries does not break other locales
+- **WHEN** an application without `cldr-data` imports `@js-joda/locale_en-us`, registers `main/th/ca-gregorian.json` without `likelySubtags` for `th`, and formats with `MMMM`
+- **THEN** formatting with `Locale.US` works as before, and formatting with `new Locale('th', 'TH', 'th')` throws the error naming `th`
+
+### Requirement: Locale without registered data
+Formatting or parsing with text for a locale whose language has no registered data and no
+`likelySubtags` entry SHALL throw an error naming that locale. It SHALL NOT use the data of another
+language.
+
+#### Scenario: Language of no imported prebuilt package
+- **WHEN** an application without `cldr-data` imports only `@js-joda/locale_en-us` and formats with `MMMM` and `Locale.KOREAN`
+- **THEN** an error is thrown that names `ko`, and no English month name is printed
 
 ### Requirement: Missing time-zone names
 When `metaZones` or the time-zone names of the locale are neither registered nor available from
-`cldr-data`, the zone text pattern letters `z`, `zzzz` and `v` SHALL throw an error where a CLDR name
-is needed: when formatting a region-based zone, and when parsing text that is neither a fixed offset
-(`+hh:mm`, `GMT…`, `UTC…`, `UT…`), nor a zone ID, nor `Z`. Fixed-offset zones and these parse inputs
-SHALL work as before this change. The message SHALL name the pattern letters, the locale and the
-fix: the default import of a prebuilt package instead of its `no-zone-names` entry, or registering
-`supplemental/metaZones.json` and `main/<locale>/timeZoneNames.json`.
+`cldr-data`, formatting a region-based zone with the zone text pattern letters `z`, `zzzz` and `v`
+SHALL throw an error. The message SHALL name the pattern letters, the locale and the fix: the default
+import of a prebuilt package instead of its `no-zone-names` entry, or registering
+`supplemental/metaZones.json` and `main/<locale>/timeZoneNames.json`. Parsing SHALL NOT throw: text
+that is neither a fixed offset (`+hh:mm`, `GMT…`, `UTC…`, `UT…`), nor a zone ID, nor `Z` SHALL fail
+to parse as unknown text does today. Fixed-offset zones and these parse inputs SHALL work as before
+this change. Registering the names later SHALL make name parsing work in the same process.
 
 #### Scenario: Format with z without zone names
 - **WHEN** only `@js-joda/locale_en-us/no-zone-names` is imported, without `cldr-data`, and `2016-01-01T00:00+01:00[Europe/Berlin]` is formatted with `zzzz` and `Locale.US`
 - **THEN** an error is thrown that mentions `zzzz`, `en-US` and `no-zone-names`
 
-#### Scenario: Parse with z without zone names
+#### Scenario: Parse a zone name without zone names
 - **WHEN** only `@js-joda/locale_en-us/no-zone-names` is imported, without `cldr-data`, and `Central European Standard Time` is parsed with `zzzz` and `Locale.US`
-- **THEN** the same error is thrown
+- **THEN** a `DateTimeParseException` is thrown, as for any text that is not a zone
+
+#### Scenario: Optional zone name without zone names
+- **WHEN** only `@js-joda/locale_en-us/no-zone-names` is imported and `2016-01-01 foo` is parsed with `yyyy-MM-dd[ zzzz]` and `parseUnresolved`
+- **THEN** the optional section is skipped as before this change and the parse stops at the position of ` foo`
+
+#### Scenario: Registering zone names after parsing
+- **WHEN** after the parse above, in the same process and with the same formatter, `@js-joda/locale_en-us` is imported and `Central European Standard Time` is parsed with `zzzz` and `Locale.US`
+- **THEN** it parses to the same zone as with `@js-joda/locale_en-us` imported from the start
 
 #### Scenario: Fixed offsets and zone IDs without zone names
 - **WHEN** only `@js-joda/locale_en-us/no-zone-names` is imported, without `cldr-data`, a `ZonedDateTime` in `ZoneOffset.UTC` is formatted with `zzzz`, and `UTC`, `+01:00`, `Europe/Berlin` and `Z` are parsed with `z`, all with `Locale.US`
