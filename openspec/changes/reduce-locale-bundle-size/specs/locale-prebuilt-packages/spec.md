@@ -20,6 +20,26 @@ prebuilt package SHALL also provide a `/slim-no-zone-names` entry with the same 
 `metaZones` and `timeZoneNames`. Both SHALL be usable with bundlers and as a minified `<script>`. In
 Node.js, `require` of a slim entry SHALL load the default entry.
 
+Sizes of the minified builds, gzip compressed (KB = 1000 bytes; today's builds of 5.3.2, the new
+variants from prototype builds; without `@js-joda/core` and `@js-joda/timezone`). The default entries
+stay as they are today.
+
+| Package / entry | Today (default) | `/slim` | `/slim-no-zone-names` |
+|---|---|---|---|
+| `@js-joda/locale` | 36.2 | 13.1 | 13.1 |
+| `@js-joda/locale/meta-zones` | – | 10.1 (once per bundle) | – |
+| `@js-joda/locale_en-us` | 8.5 | 8.5 | 1.9 |
+| `@js-joda/locale_de-de` | 8.9 | 8.9 | 1.9 |
+| `@js-joda/locale_de` (all `de` locales) | 58.9 | 58.8 | 2.5 |
+| `@js-joda/locale_en` (all `en` locales) | 832.0 | 831.9 | 11.5 |
+
+Totals per application (sum of the files above):
+
+| Application imports | Today | `/slim` | `/slim-no-zone-names` |
+|---|---|---|---|
+| `en-us` | 44.7 | 31.7 | 15.0 |
+| `en-us` + `de-de` | 53.6 | 40.6 | 16.9 |
+
 #### Scenario: Slim import
 - **WHEN** an application without `cldr-data` bundles `@js-joda/core`, `@js-joda/timezone`, `@js-joda/locale/slim` and `@js-joda/locale_en-us/slim`, and formats `2016-01-01T00:00+01:00[Europe/Berlin]` with `eeee MMMM dd yyyy GGGG, hh:mm:ss a zzzz` and `Locale.US`
 - **THEN** the output is `Friday January 01 2016 Anno Domini, 12:00:00 AM Central European Standard Time`
