@@ -133,6 +133,36 @@ require('@js-joda/locale_en-us');
 // require('@js-joda/locale/slim') and require('@js-joda/locale_en-us/slim') give the same result
 ```
 
+Which entry contains which data (informative):
+
+Example values from `cldr-data`:
+
+| Data | Example values |
+|---|---|
+| code: `Locale`, formatter support, `cldrjs` | – |
+| `weekData` (all territories) | `firstDay: { DE: "mon", US: "sun" }`, `minDays: { DE: "4" }` |
+| `likelySubtags`, full (~1850 entries, all languages) | `"en": "en-Latn-US"`, `"de": "de-Latn-DE"`, `"zh-TW": "zh-Hant-TW"`, `"und": "en-Latn-US"`, … |
+| `likelySubtags`, subset of one package (e.g. `en`: ~19 entries) | `"en": "en-Latn-US"`, `"en-Shaw": "en-Shaw-GB"`, `"und": "en-Latn-US"`, `"und-009": "en-Latn-AU"`, … |
+| `metaZones` (all zones, all languages) | `Europe/Berlin` → `Europe_Central`, `Europe/Paris` → `Europe_Central`; golden zone of `Europe_Central`: `Europe/Paris` |
+| `ca-gregorian` (per locale) | `en`: `January`, `Friday`; `de`: `Januar`, `Freitag` |
+| `timeZoneNames` (per locale) | `en`: `Europe_Central` → `Central European Standard Time`; `de`: `Europe_Central` → `Mitteleuropäische Normalzeit` |
+
+Contents of each entry (✓ = contained in the entry's bundle):
+
+| Data | `@js-joda/locale` | `@js-joda/locale/slim` | `@js-joda/locale/meta-zones` | `locale_en-us` | `locale_en-us/slim` | `locale_en-us/slim-no-zone-names` |
+|---|---|---|---|---|---|---|
+| code, `cldrjs` | ✓ | ✓ (shared) | – | – | – | – |
+| `weekData` | ✓ | ✓ | – | – | – | – |
+| `likelySubtags`, full | ✓ | – | – | – | – | – |
+| `likelySubtags`, `en` subset | – | – | – | – | ✓ | ✓ |
+| `metaZones` | ✓ | – | ✓ | – | imports `meta-zones` | – |
+| `ca-gregorian` `en`, `en-US` | – | – | – | ✓ | ✓ | ✓ |
+| `timeZoneNames` `en`, `en-US` | – | – | – | ✓ | ✓ | – |
+
+So today `@js-joda/locale` + `locale_en-us` contain every row. `/slim` + `locale_en-us/slim` contain the
+same except the full `likelySubtags` (replaced by the `en` subset). `/slim` +
+`locale_en-us/slim-no-zone-names` contain only code, `weekData`, the `en` subset and `ca-gregorian`.
+
 Sizes of the minified builds, gzip compressed (KB = 1000 bytes; today's builds of 5.3.2, the new
 variants from prototype builds; without `@js-joda/core` and `@js-joda/timezone`). The default entries
 stay as they are today.
