@@ -20,6 +20,10 @@ and parsing without `cldr-data`: `ca-gregorian` and `timeZoneNames` of each loca
 - **WHEN** a locale of a prebuilt package is resolved with the `likelySubtags` subset of that package and with the complete `likelySubtags`
 - **THEN** both give the same result, for every locale of every prebuilt package
 
+#### Scenario: Packages without locales are noticed
+- **WHEN** a prebuilt package's patterns expand to no locale of `cldr-data`
+- **THEN** the subset test fails, unless the package is on the explicit list of known-empty packages (`no`, `nn-no`)
+
 #### Scenario: Smaller default import
 - **WHEN** `@js-joda/locale` and the minified `@js-joda/locale_en-us` are measured gzip compressed
 - **THEN** together they are at least 10 KB smaller than with `@js-joda/locale` 5.3.2 and `@js-joda/locale_en-us` 5.3.2

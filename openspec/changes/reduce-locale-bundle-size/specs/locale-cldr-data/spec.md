@@ -22,10 +22,12 @@ registration.
 - **THEN** it contains the `weekData` entries and no `likelySubtags` or `metaZones` entries
 
 ### Requirement: Merging registered data
-`registerLocaleData(path, data)` SHALL merge `data` into the data already registered for `path`, so
-that several callers can each register a part of a file. Registering the same data object for the
-same path again SHALL have no effect. Registered data SHALL take precedence over loading the same path
-from `cldr-data`.
+`registerLocaleData(path, data)` SHALL merge `data` into the data already registered for `path`:
+objects are merged key by key, arrays and other values replace the registered ones. Several callers
+can each register a part of a file as long as the parts differ in object keys. Registering the same
+data object for the same path again SHALL have no effect. `registerLocaleData` SHALL NOT keep
+registered data objects alive beyond what the CLDR data tree holds. Registered data SHALL take
+precedence over loading the same path from `cldr-data`.
 
 #### Scenario: Two prebuilt packages add likelySubtags
 - **WHEN** `@js-joda/locale_en-us` and `@js-joda/locale_de` are both imported, without `cldr-data`
@@ -40,33 +42,45 @@ from `cldr-data`.
 - **THEN** formatting with an English locale uses the registered data and does not load the file from `cldr-data` again
 
 ### Requirement: Missing likelySubtags data
-When the `likelySubtags` entries for a locale are neither registered nor available from `cldr-data`,
-using that locale for locale-specific formatting or parsing SHALL throw an error that names the
-locale and explains how to register `supplemental/likelySubtags.json` or which prebuilt package to
-import.
+When registered `main/*` data belongs to a locale whose `likelySubtags` entries are neither
+registered nor available from `cldr-data`, locale-specific formatting or parsing SHALL throw an error
+that names that data's locale (which may differ from the requested locale) and explains how to
+register `supplemental/likelySubtags.json` or to update all prebuilt packages to the release of
+`@js-joda/locale`. Registering the missing `likelySubtags` afterwards SHALL make that locale work in
+the same process.
 
 #### Scenario: Hand-registered locale without likelySubtags
 - **WHEN** an application without `cldr-data` registers only `main/th/ca-gregorian.json` and formats with `MMMM` and `new Locale('th', 'TH', 'th')`
 - **THEN** an error is thrown that names `th` and `supplemental/likelySubtags.json`
 
-#### Scenario: Hand-registered locale with likelySubtags
-- **WHEN** the application additionally registers `supplemental/likelySubtags.json` from `cldr-data`
+#### Scenario: Registering likelySubtags after the error
+- **WHEN** the application then registers `supplemental/likelySubtags.json` from `cldr-data` and formats again, in the same process
 - **THEN** the date formats with the Thai month name
 
+#### Scenario: Error names the locale whose data lacks entries
+- **WHEN** an application without `cldr-data` imports `@js-joda/locale_en-us`, registers `main/th/ca-gregorian.json` without `likelySubtags` for `th`, and formats with `MMMM` and `Locale.US`
+- **THEN** the error names `th`, not only `en-US`
+
 ### Requirement: Missing time-zone names
-Formatting or parsing with the zone text pattern letters `z`, `zzzz` or `v` SHALL throw an error when
-`metaZones` or the time-zone names of the locale are neither registered nor available from
-`cldr-data`. The message SHALL name the pattern letters and the fix: the full prebuilt package import
-instead of its `no-zone-names` entry, or registering `supplemental/metaZones.json` and
-`main/<locale>/timeZoneNames.json`.
+When `metaZones` or the time-zone names of the locale are neither registered nor available from
+`cldr-data`, the zone text pattern letters `z`, `zzzz` and `v` SHALL throw an error where a CLDR name
+is needed: when formatting a region-based zone, and when parsing text that is neither a fixed offset
+(`+hh:mm`, `GMT…`, `UTC…`, `UT…`), nor a zone ID, nor `Z`. Fixed-offset zones and these parse inputs
+SHALL work as before this change. The message SHALL name the pattern letters, the locale and the
+fix: the default import of a prebuilt package instead of its `no-zone-names` entry, or registering
+`supplemental/metaZones.json` and `main/<locale>/timeZoneNames.json`.
 
 #### Scenario: Format with z without zone names
-- **WHEN** only `@js-joda/locale_en-us/no-zone-names` is imported, without `cldr-data`, and a `ZonedDateTime` is formatted with `zzzz` and `Locale.US`
-- **THEN** an error is thrown that mentions `zzzz`, `@js-joda/locale_en-us` and `no-zone-names`
+- **WHEN** only `@js-joda/locale_en-us/no-zone-names` is imported, without `cldr-data`, and `2016-01-01T00:00+01:00[Europe/Berlin]` is formatted with `zzzz` and `Locale.US`
+- **THEN** an error is thrown that mentions `zzzz`, `en-US` and `no-zone-names`
 
 #### Scenario: Parse with z without zone names
-- **WHEN** only `@js-joda/locale_en-us/no-zone-names` is imported, without `cldr-data`, and text is parsed with a pattern containing `z` and `Locale.US`
+- **WHEN** only `@js-joda/locale_en-us/no-zone-names` is imported, without `cldr-data`, and `Central European Standard Time` is parsed with `zzzz` and `Locale.US`
 - **THEN** the same error is thrown
+
+#### Scenario: Fixed offsets and zone IDs without zone names
+- **WHEN** only `@js-joda/locale_en-us/no-zone-names` is imported, without `cldr-data`, a `ZonedDateTime` in `ZoneOffset.UTC` is formatted with `zzzz`, and `UTC`, `+01:00`, `Europe/Berlin` and `Z` are parsed with `z`, all with `Locale.US`
+- **THEN** the results are the same as before this change and no error is thrown
 
 #### Scenario: Patterns without zone text
 - **WHEN** only `@js-joda/locale_en-us/no-zone-names` is imported and a `ZonedDateTime` is formatted and parsed with `eeee MMMM dd yyyy GGGG, hh:mm:ss a VV xxx, 'Week' ww, QQQ` and `Locale.US`

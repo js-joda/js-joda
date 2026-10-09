@@ -30,11 +30,13 @@ We announced the plan on #421 on 2026-10-08.
 - New opt-in entry point in every prebuilt package, e.g. `@js-joda/locale_en-us/no-zone-names`. It
   registers the same data as the default entry, without `metaZones` and `timeZoneNames` (~15 KB
   together with `@js-joda/locale`). It works with `require`, `import`, bundlers and a `<script>` tag.
-- Formatting or parsing with `z`, `zzzz` or `v` throws a clear error when the time-zone names for the
-  locale aren't available, naming the full import (or the `registerLocaleData` calls) as the fix,
-  instead of silently printing the zone ID.
-- A locale whose `likelySubtags` entries aren't registered fails with a clear error naming
-  `registerLocaleData('supplemental/likelySubtags.json', …)`.
+- Formatting a region-based zone, or parsing a zone name, with `z`, `zzzz` or `v` throws a clear error
+  when the time-zone names for the locale aren't available, naming the full import (or the
+  `registerLocaleData` calls) as the fix, instead of silently printing the zone ID. Fixed offsets,
+  zone IDs and `Z` keep working without names.
+- Registered locale data whose `likelySubtags` entries are missing fails with a clear error naming
+  that locale and `registerLocaleData('supplemental/likelySubtags.json', …)`; registering them
+  afterwards recovers in the same process.
 - **BREAKING** for applications that use `@js-joda/locale` without `cldr-data` and without prebuilt
   packages, registering `main/*` data by hand (e.g. in a browser bundle): they now also have to
   register `supplemental/likelySubtags.json`, and for `z`/`zzzz`/`v` also
