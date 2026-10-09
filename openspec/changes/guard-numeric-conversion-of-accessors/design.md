@@ -50,7 +50,9 @@ function three times, as today for two. Rejected: the messages would drift.
 
 **Error message.** Keep the existing wording, with the type named by its base class as a reader would
 know it, and a hint per base class. A single shared hint was rejected: it would point `ZoneId` users
-to `.isBefore()`/`.value()` and `Duration` users to `.value()`, which those classes don't have.
+to `.isBefore()`/`.value()` and `Duration` users to `.value()`, which those classes don't have. For
+the same reason the `TemporalAmount` hint is corrected: today it suggests `.isBefore()`, which neither
+`Duration` nor `Period` has, and `.compareTo()`, which `Period` lacks.
 
 - `TemporalAccessor`:
   > A conversion from TemporalAccessor to a number is not allowed. To compare use the methods
@@ -59,14 +61,17 @@ to `.isBefore()`/`.value()` and `Duration` users to `.value()`, which those clas
 - `ZoneId`:
   > A conversion from ZoneId to a number is not allowed. To compare use the method .equals(); a
   > ZoneOffset can be ordered with .compareTo() or .totalSeconds().
-- `TemporalAmount`: the existing message, unchanged.
+- `TemporalAmount`:
+  > A conversion from TemporalAmount to a number is not allowed. To compare use the method .equals();
+  > a Duration can be ordered with .compareTo().
 
 Not every `TemporalAccessor` has every method listed (`Month` has no `.isBefore()`), so its hint stays
 phrased as a list of options. The exact text is not part of the spec beyond the method names (see
 spec). Using the subclass name (`this.constructor.name`) was rejected: the minified UMD build mangles
 class names.
 
-**Keep `TemporalAmount` as it is**, apart from using the shared helper.
+**`TemporalAmount` keeps its guard**, now installed through the shared helper and with the corrected
+hint.
 
 ## Risks / Trade-offs
 
@@ -77,14 +82,21 @@ class names.
 - [The message of every `Temporal` type changes from `A conversion from Temporal ...` to
   `A conversion from TemporalAccessor ...`; code or tests matching the text break] → No test in this
   repo matches the text. List it in the breaking change entry.
-- [`Month.of`, `DayOfWeek.of`, `DayOfMonth.of` and `DayOfYear.of` compare their argument with
-  `<`/`<=`. Passed an instance by mistake (`Month.of(Month.MARCH)`), they throw the guard's
-  `TypeError` instead of a `DateTimeException`] → Accepted: it is still an error at the same call, and
-  the argument is documented as a number. Adding `typeof` checks to the factories is out of scope. Pin
-  the behavior with tests and list it in the breaking change entry.
-- [TypeScript doesn't flag `<` between objects, so TypeScript users get no compile-time warning] →
-  Nothing to do in the typings; TypeScript ignores `Symbol.toPrimitive` for operators. Say so in the
-  breaking change entry.
+- [Every API that converts a numeric argument changes its exception type when passed a newly guarded
+  instance by mistake: the `<`/`<=` range checks in `Month.of`, `DayOfWeek.of`, `DayOfMonth.of` and
+  `DayOfYear.of` (today `DateTimeException`), and `MathUtil.verifyInt`/`safeToInt`,
+  `ValueRange.isValidValue` and `ChronoField.checkValidValue` behind `LocalDate.of`, `LocalTime.of`,
+  `with*()`, `plus*()` and others (today mostly `ArithmeticException`). All become the guard's
+  `TypeError`; `Quarter.of` keeps its `DateTimeException` because it uses a `switch`] → Accepted: it is
+  still an error at the same call, and the arguments are documented as numbers. The spec requires only
+  that an error is thrown, not its type, so a later fix that adds argument type checks (throwing
+  `DateTimeException`, as java.time does) doesn't violate it; those checks are out of scope here. Tests
+  assert that these calls throw, without pinning the class, and the breaking change entry describes
+  the general rule rather than a list of factories.
+- [TypeScript doesn't flag `<`/`>` between two values of the same class, so TypeScript users get no
+  compile-time warning for those] → Nothing to do in the typings; TypeScript ignores
+  `Symbol.toPrimitive` for operators. Arithmetic and comparisons with numbers or unrelated types are
+  already compile errors. Say so in the breaking change entry.
 - [`@js-joda/extra` users get the new behavior only with the new core major, and with an older core
   the extra classes stay unguarded] → Acceptable; no extra code changes. The spec makes the plugin
   behavior conditional on the core version. Note it in the CHANGELOG entry. Extra's peer range stays

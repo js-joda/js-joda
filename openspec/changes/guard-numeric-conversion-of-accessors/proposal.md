@@ -32,13 +32,21 @@ the wrong ones harder to spot.
   - `TemporalAccessor`: `.equals()`, `.compareTo()`, `.isBefore()`, `.isAfter()`, and `.value()` for
     the enum-like classes
   - `ZoneId`: `.equals()`, and for `ZoneOffset` `.compareTo()` or `.totalSeconds()`
-  - `TemporalAmount`: unchanged
+  - `TemporalAmount`: `.equals()`, and for `Duration` `.compareTo()`. The current message also
+    suggests `.isBefore()`, which neither `Duration` nor `Period` has, and `.compareTo()`, which
+    `Period` lacks; it is corrected.
 - **BREAKING** The message for `Temporal` types names `TemporalAccessor` instead of `Temporal`
   (`A conversion from TemporalAccessor to a number is not allowed. ...`).
-- **BREAKING** `of()` factories that range-check their argument with `<`/`<=` (`Month.of`,
-  `DayOfWeek.of`, and `DayOfMonth.of`, `DayOfYear.of` in `@js-joda/extra`) throw the guard's
-  `TypeError` instead of a `DateTimeException` when passed an instance by mistake, e.g.
-  `Month.of(Month.MARCH)`.
+- **BREAKING** Any API that takes a number and is passed one of the newly guarded instances by
+  mistake throws the guard's `TypeError` instead of the exception it throws today. This covers every
+  path that converts its argument to a number: the `<`/`<=` range checks in `Month.of`,
+  `DayOfWeek.of` and, in `@js-joda/extra`, `DayOfMonth.of`, `DayOfYear.of` (today a
+  `DateTimeException`), and `MathUtil.verifyInt`/`safeToInt` and `ValueRange.isValidValue` behind
+  `LocalDate.of`, `LocalTime.of`, `with*()`, `plus*()` and others (today mostly an
+  `ArithmeticException`). Examples: `Month.of(Month.MARCH)`, `LocalDate.of(2020, 1, DayOfMonth.of(5))`,
+  `date.plusDays(DayOfMonth.of(3))`. `Quarter.of(Quarter.Q1)` keeps throwing a `DateTimeException`,
+  since it checks its argument with a `switch`. The exception type in these cases is not part of the
+  spec; adding argument type checks is out of scope.
 - Code that runs without error today now throws, so this ships in a major release of `@js-joda/core`.
 
 Out of scope: `Interval` and `LocalDateRange` in `@js-joda/extra` extend no core base class and are
@@ -60,7 +68,9 @@ not changed here.
 - `CHANGELOG.md`: breaking change entry for `core` (and a note for `extra`)
 - `@js-joda/extra` gets the guard only together with the new `@js-joda/core` major; its peer range is
   not raised by this change.
-- TypeScript typings are unchanged, and TypeScript offers no protection: `tsc --strict` accepts `<`,
-  `>`, `<=`, `>=` between any object types (e.g. `Month.DECEMBER < Month.FEBRUARY`), and typings can't
-  forbid it, since TypeScript doesn't consult `Symbol.toPrimitive` for operators. TypeScript users hit
-  the new `TypeError` only at runtime, like JavaScript users.
+- TypeScript typings are unchanged. `tsc --strict` already rejects arithmetic on these objects
+  (`Month.MARCH - Month.JANUARY`) and `<`, `>`, `<=`, `>=` between unrelated types or with a number
+  (`Month.DECEMBER < ZoneOffset.UTC`, `Month.DECEMBER < 3`). It accepts the relational operators
+  between comparable object types, e.g. two `Month`s or two `ZoneOffset`s, and typings can't forbid
+  that, since TypeScript doesn't consult `Symbol.toPrimitive` for operators. TypeScript users hit the
+  new `TypeError` for those comparisons only at runtime, like JavaScript users.

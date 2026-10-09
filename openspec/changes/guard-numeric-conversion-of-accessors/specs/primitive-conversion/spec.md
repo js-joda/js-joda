@@ -26,9 +26,9 @@ change; with an older core they keep the old behavior.
 - **WHEN** `Number(x)` is evaluated for `x` being a `DayOfWeek`, a `MonthDay`, or a `Quarter`, `DayOfMonth` or `DayOfYear` from `@js-joda/extra`
 - **THEN** a `TypeError` is thrown
 
-#### Scenario: Enum instance passed to a factory
-- **WHEN** `Month.of(Month.MARCH)` is evaluated
-- **THEN** a `TypeError` is thrown
+#### Scenario: Instance passed where a number is expected
+- **WHEN** `Month.of(Month.MARCH)` or `LocalDate.of(2020, 1, DayOfMonth.of(5))` is evaluated
+- **THEN** an error is thrown; its type is not specified
 
 #### Scenario: Temporal types keep throwing
 - **WHEN** `LocalDate.of(2020, 1, 1) < LocalDate.of(2021, 1, 1)` is evaluated
@@ -63,6 +63,7 @@ use instead, chosen per base class so that it doesn't suggest methods the classe
 - for a `TemporalAccessor`: `.equals()`, `.compareTo()`, `.isBefore()`, `.isAfter()`, and `.value()`
   for the enum-like classes
 - for a `ZoneId`: `.equals()`, and `.compareTo()` for ordering offsets
+- for a `TemporalAmount`: `.equals()`, and `.compareTo()` for ordering durations
 
 #### Scenario: Message of a rejected date-time comparison
 - **WHEN** `Month.DECEMBER < Month.FEBRUARY` throws
@@ -70,6 +71,10 @@ use instead, chosen per base class so that it doesn't suggest methods the classe
 
 #### Scenario: Message of a rejected zone comparison
 - **WHEN** `ZoneOffset.ofHours(2) < ZoneOffset.ofHours(1)` throws
+- **THEN** the message mentions `.equals()` and `.compareTo()`, and not `.isBefore()` or `.value()`
+
+#### Scenario: Message of a rejected amount comparison
+- **WHEN** `Duration.ofHours(1) < Duration.ofHours(2)` throws
 - **THEN** the message mentions `.equals()` and `.compareTo()`, and not `.isBefore()` or `.value()`
 
 ### Requirement: String conversion is unchanged
