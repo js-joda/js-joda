@@ -160,6 +160,9 @@ See proposal.md for the motivation. Relevant current state in `packages/locale`:
 - [TypeScript resolves `@js-joda/locale/slim` through `slim/package.json` `types` with `node10` and
   `bundler` resolution; `node16`/`nodenext` ESM resolution does not resolve directories] → Matches
   the Node.js ESM limitation; documented.
+- [Three variants per prebuilt package triple the number of bundles the release build produces] →
+  `build-prebuilt` builds groups of packages in parallel processes instead of one sequential rollup
+  run, so the build doesn't take about three times as long.
 - [The subset rule misses an entry `cldrjs` needs] → The equality test over all prebuilt locales.
 
 ## Migration Plan
