@@ -234,3 +234,19 @@ export class ZoneId {
         return this.toString();
     }
 }
+
+if (typeof Symbol !== 'undefined' && Symbol.toPrimitive) {
+    ZoneId.prototype[Symbol.toPrimitive] = function (hint) {
+        // hint could be 'number', 'string' or 'default'. Only 'number'
+        // should throw and 'default' is treated as 'string'.
+        if (hint !== 'number') {
+            return this.toString();
+        }
+
+        throw new TypeError(
+            'A conversion from ZoneId to a number is not allowed. ' +
+            'To compare use the methods .equals(), .compareTo() ' +
+            'or one that is more suitable to your use case.'
+        );
+    };
+}
