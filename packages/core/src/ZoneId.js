@@ -6,6 +6,7 @@
 
 import { abstractMethodFail } from './assert';
 import { DateTimeException } from './errors';
+import { installNumericConversionGuard } from './numericConversionGuard';
 
 import { StringUtil } from './StringUtil';
 
@@ -235,18 +236,5 @@ export class ZoneId {
     }
 }
 
-if (typeof Symbol !== 'undefined' && Symbol.toPrimitive) {
-    ZoneId.prototype[Symbol.toPrimitive] = function (hint) {
-        // hint could be 'number', 'string' or 'default'. Only 'number'
-        // should throw and 'default' is treated as 'string'.
-        if (hint !== 'number') {
-            return this.toString();
-        }
-
-        throw new TypeError(
-            'A conversion from ZoneId to a number is not allowed. ' +
-            'To compare use the methods .equals(), .compareTo() ' +
-            'or one that is more suitable to your use case.'
-        );
-    };
-}
+installNumericConversionGuard(ZoneId.prototype, 'ZoneId',
+    'To compare use the method .equals(); a ZoneOffset can be ordered with .compareTo() or .totalSeconds().');

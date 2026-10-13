@@ -6,6 +6,7 @@
 
 import { UnsupportedTemporalTypeException } from '../errors';
 import { abstractMethodFail } from '../assert';
+import { installNumericConversionGuard } from '../numericConversionGuard';
 
 import { ChronoField } from './ChronoField';
 import { TemporalQueries } from './TemporalQueries';
@@ -134,18 +135,6 @@ export class TemporalAccessor {
     }
 }
 
-if (typeof Symbol !== 'undefined' && Symbol.toPrimitive) {
-    TemporalAccessor.prototype[Symbol.toPrimitive] = function (hint) {
-        // hint could be 'number', 'string' or 'default'. Only 'number'
-        // should throw and 'default' is treated as 'string'.
-        if (hint !== 'number') {
-            return this.toString();
-        }
-
-        throw new TypeError(
-            'A conversion from TemporalAccessor to a number is not allowed. ' +
-            'To compare use the methods .equals(), .compareTo(), .isBefore() ' +
-            'or one that is more suitable to your use case.'
-        );
-    };
-}
+installNumericConversionGuard(TemporalAccessor.prototype, 'TemporalAccessor',
+    'To compare use the methods .equals(), .compareTo(), .isBefore(), .isAfter() ' +
+    'or one that is more suitable to your use case; enum-like types such as Month offer .value().');
