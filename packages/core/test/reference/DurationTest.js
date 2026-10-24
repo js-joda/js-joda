@@ -452,7 +452,15 @@ describe('org.threeten.bp.TestDuration', () => {
             'PT2.-3',
             'PT-2.-3',
             'PT2.+3',
-            'PT-2.+3'
+            'PT-2.+3',
+
+            'PT1H30',
+            'PT1S1',
+            'PT1Sxyz',
+            'PT1S PT2S',
+            'xPT1H',
+            ' PT1S',
+            'PT1S '
         ];
 
         it('factory_parseFailures', () => {

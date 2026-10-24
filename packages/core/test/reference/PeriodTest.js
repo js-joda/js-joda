@@ -9,7 +9,7 @@ import { assertSame, assertEquals } from '../testUtils';
 
 import '../_init';
 
-import { NullPointerException, ArithmeticException } from '../../src/errors';
+import { NullPointerException, ArithmeticException, DateTimeParseException } from '../../src/errors';
 import { MathUtil } from '../../src/MathUtil';
 
 import { LocalDate } from '../../src/LocalDate';
@@ -257,9 +257,36 @@ describe('org.threeten.bp.TestPeriod', () => {
                 [`P${Integer.MAX_VALUE}Y`, Period.ofYears(Integer.MAX_VALUE)],
                 [`P${Integer.MIN_VALUE}Y`, Period.ofYears(Integer.MIN_VALUE)],
 
-                ['P1Y2M3W4D', Period.of(1, 2, 3 * 7 + 4)]
+                ['P1Y2M3W4D', Period.of(1, 2, 3 * 7 + 4)],
+
+                ['p1y2m3w4d', Period.of(1, 2, 3 * 7 + 4)],
+                ['-p2w', Period.ofDays(-14)]
             ];
         }
+
+        function data_parseFailures() {
+            return [
+                '',
+                'P',
+                'P1',
+                'P1Y2',
+                'P1D1',
+                'P1Dxyz',
+                'P1D P2D',
+                'xP1D',
+                '1P2D',
+                ' P1D',
+                'P1D '
+            ];
+        }
+
+        it('test_parse_failures', () => {
+            data_parseFailures().forEach((text) => {
+                expect(() => {
+                    Period.parse(text);
+                }, text).to.throw(DateTimeParseException);
+            });
+        });
 
         it('test_parse', function () {
             data_parse().forEach((data) => {
