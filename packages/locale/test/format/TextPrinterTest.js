@@ -103,6 +103,25 @@ describe('@js-joda/locale TextPrinterTest', () => {
             }, false);
         });
 
+        it('test_print standalone EN', () => {
+            const provider_data = [
+                [ChronoField.MONTH_OF_YEAR, TextStyle.FULL_STANDALONE, 8, 'August'],
+                [ChronoField.MONTH_OF_YEAR, TextStyle.SHORT_STANDALONE, 8, 'Aug'],
+                [ChronoField.MONTH_OF_YEAR, TextStyle.NARROW_STANDALONE, 8, 'A'],
+                [ChronoField.DAY_OF_WEEK, TextStyle.NARROW_STANDALONE, 7, 'S'],
+                [ChronoField.ERA, TextStyle.NARROW_STANDALONE, 1, 'A'],
+            ];
+
+            dataProviderTest(provider_data, (field, style, value, expected) => {
+                buf = new StringBuilder();
+                printContext.setLocale(Locale.ENGLISH);
+                printContext.setDateTime(new MockFieldValue(field, value));
+                const pp = new TextPrinterParser(field, style, PROVIDER);
+                pp.print(printContext, buf);
+                assertEquals(buf.toString(), expected);
+            }, false);
+        });
+
         it('test_print DE', () => {
             const provider_data = [
 
