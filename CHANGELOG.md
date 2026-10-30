@@ -1,7 +1,7 @@
 Changelog
 =========
 
-## Unreleased
+## 2026-10-30 (@js-joda/timezone@3.2.0)
 
 ### Versions
 
