@@ -3,6 +3,13 @@ Changelog
 
 ## Unreleased
 
+### Versions
+
+- @js-joda/core@6.3.1
+- @js-joda/timezone@3.1.1
+- @js-joda/locale@6.0.0
+- @js-joda/locale_* prebuilt locale packages (@6.0.0)
+
 #### :boom: Breaking Change
 * `locale`
     * [#830](https://github.com/js-joda/js-joda/pull/830) Print the standard or daylight saving name of a time-zone with the `z` and `zzzz` patterns, as in java.time; port of [ThreeTen/threetenbp@456f648](https://github.com/ThreeTen/threetenbp/commit/456f648b4) ([@pithu](https://github.com/pithu))
@@ -18,8 +25,8 @@ Changelog
     * [#832](https://github.com/js-joda/js-joda/pull/832) The zone rules of `ZoneId.systemDefault()` threw an `ArithmeticException` for `Instant.MIN` and `Instant.MAX`, and returned an invalid offset for instants outside the range of a JavaScript `Date` (±8.64e15 ms); they now return the offset at the end of that range ([@pithu](https://github.com/pithu))
     * [#830](https://github.com/js-joda/js-joda/pull/830) `LocalDate.ofEpochDay()` checks the epoch day against `ChronoField.EPOCH_DAY` and throws a `DateTimeException` naming that field for an epoch day out of range, instead of a misleading year error or an int overflow. `NaN` now throws a `DateTimeException` as well, instead of an `ArithmeticException`; port of [ThreeTen/threetenbp@006216f](https://github.com/ThreeTen/threetenbp/commit/006216f27) ([@pithu](https://github.com/pithu))
     * [#831](https://github.com/js-joda/js-joda/pull/831) Parsed fields are stored by field instead of by field name, so the week fields of `@js-joda/locale` are no longer mistaken for `ChronoField.DAY_OF_WEEK` and the `IsoFields` with the same names ([@pithu](https://github.com/pithu), [@youdie006](https://github.com/youdie006))
-        With locales whose weeks differ from ISO weeks, such as `Locale.US`: `YYYY-'W'ww-e` parsed to a wrong date without error since 6.2.0, e.g. `2020-W02-1` to `2020-01-06` instead of `2020-01-05`; and `e`/`c` together with a date threw a `DateTimeParseException`. Fields that are not `ChronoField`s are now resolved by their own `resolve()`, as in java.time, which also resolves the week fields of `@js-joda/locale`.
-        Fields left over after resolving are cross checked against the result, including the `IsoFields` and the locale week fields, so text with a conflicting value now throws, e.g. `2020-Q3-02-01` with `uuuu-'Q'Q-MM-dd`, as in java.time. Supersedes [#816](https://github.com/js-joda/js-joda/pull/816).
+        With locales whose weeks differ from ISO weeks, such as `Locale.US`: `YYYY-'W'ww-e` parsed to a wrong date without error since 6.2.0, e.g. `2020-W02-1` to `2020-01-06` instead of `2020-01-05`; and `e`/`c` together with a date threw a `DateTimeParseException`. Fields that are not `ChronoField`s are now resolved by their own `resolve()`, as in java.time, which also resolves the week fields of `@js-joda/locale`. The date and time are merged again after these fields are resolved, so `yyyy-MM-W-e` with `Locale.US` now parses instead of failing.
+        Fields left over after resolving are cross checked against the result, including the `IsoFields` and the locale week fields, so text with a conflicting value now throws, e.g. `2020-Q3-02-01` with `uuuu-'Q'Q-MM-dd`, as in java.time. Likewise, a parsed date that differs from the date of the parsed instant-seconds, and a locale day-of-week (`e`/`c`) that differs from a parsed `E`, now throw instead of silently replacing the other value. Supersedes [#816](https://github.com/js-joda/js-joda/pull/816).
 * `timezone`
     * [#832](https://github.com/js-joda/js-joda/pull/832) Offsets with seconds were one second off in some zones, e.g. the local mean time of `Europe/Vienna` before 1893 was `+01:05:20` instead of `+01:05:21`; affected are the offsets before 1915 of 9 zones ([@pithu](https://github.com/pithu))
     * [#832](https://github.com/js-joda/js-joda/pull/832) `ZoneRules` `offset()`, `standardOffset()`, `daylightSavings()`, `isDaylightSavings()`, `nextTransition()` and `previousTransition()` threw an `ArithmeticException` for instants beyond about ±285,000 years such as `Instant.MIN` and `Instant.MAX`; they now return the offsets before the first and after the last transition, `nextTransition(Instant.MAX)` and `previousTransition(Instant.MIN)` return `null`, as in java.time ([@pithu](https://github.com/pithu))
