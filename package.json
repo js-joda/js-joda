@@ -80,5 +80,8 @@
   },
   "resolutions": {
     "webdriverio": "^7.19.5"
+  },
+  "overrides": {
+    "@nrwl/devkit": "15.9.7"
   }
 }
