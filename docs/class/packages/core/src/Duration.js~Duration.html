@@ -2957,7 +2957,7 @@ not part of the ISO-8601 standard.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber938">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber961">source</a></span></span>
     </span>
   </h3>
 
@@ -3029,7 +3029,7 @@ For example, <span>PT-1.3S</span> will be returned as <span>PT1.3S</span>.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber967">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber990">source</a></span></span>
     </span>
   </h3>
 
@@ -3134,7 +3134,7 @@ Only non-zero amounts will be added.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1194">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1217">source</a></span></span>
     </span>
   </h3>
 
@@ -3209,7 +3209,7 @@ Only non-zero amounts will be added.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber889">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber892">source</a></span></span>
     </span>
   </h3>
 
@@ -3217,8 +3217,11 @@ Only non-zero amounts will be added.</p>
   
   
   <div data-ice="description"><p>Returns a copy of this duration divided by the specified value.</p>
-<p>In opposite to the threeten implementation the division is realized by floating point not by
-fixed point arithmetic. Expect floating point rounding errors for <span><a href="class/packages/core/src/Duration.js~Duration.html#instance-method-dividedBy">Duration.dividedBy</a></span>.</p>
+<p>The result is truncated toward zero to the nanosecond, as in threeten.
+For an integer divisor up to <code>MAX_SAFE_INTEGER</code> (positive or negative) the division is exact.
+Other divisors, with a fraction or beyond <code>MAX_SAFE_INTEGER</code>, are not exactly representable
+or not supported by threeten; they are divided by floating point arithmetic, expect floating
+point rounding errors.</p>
 </div>
 
   
@@ -3297,7 +3300,7 @@ fixed point arithmetic. Expect floating point rounding errors for <span><a href=
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1213">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1236">source</a></span></span>
     </span>
   </h3>
 
@@ -4525,7 +4528,7 @@ A duration of -1 nanosecond is stored as -1 seconds plus 999,999,999 nanoseconds
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber923">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber946">source</a></span></span>
     </span>
   </h3>
 
@@ -5548,7 +5551,7 @@ A duration of -1 nanosecond is stored as -1 seconds plus 999,999,999 nanoseconds
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1002">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1025">source</a></span></span>
     </span>
   </h3>
 
@@ -5653,7 +5656,7 @@ Only non-zero amounts will be added.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1025">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1048">source</a></span></span>
     </span>
   </h3>
 
@@ -5714,7 +5717,7 @@ This is based on the standard definition of a day as 24 hours.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1103">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1126">source</a></span></span>
     </span>
   </h3>
 
@@ -5775,7 +5778,7 @@ This is based on the standard definition of a day as 24 hours.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1039">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1062">source</a></span></span>
     </span>
   </h3>
 
@@ -5835,7 +5838,7 @@ number of seconds by 3600.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1118">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1141">source</a></span></span>
     </span>
   </h3>
 
@@ -5896,7 +5899,7 @@ This is based on the standard definition of a day as 24 hours.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1305">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1328">source</a></span></span>
     </span>
   </h3>
 
@@ -5952,7 +5955,7 @@ This is based on the standard definition of a day as 24 hours.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1070">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1093">source</a></span></span>
     </span>
   </h3>
 
@@ -6026,7 +6029,7 @@ was subject to integer division by one million.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1165">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1188">source</a></span></span>
     </span>
   </h3>
 
@@ -6089,7 +6092,7 @@ The total duration is defined by calling <span><a href="class/packages/core/src/
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1053">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1076">source</a></span></span>
     </span>
   </h3>
 
@@ -6149,7 +6152,7 @@ number of seconds by 60.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1133">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1156">source</a></span></span>
     </span>
   </h3>
 
@@ -6210,7 +6213,7 @@ This is based on the standard definition of an hour as 60 minutes.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1085">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1108">source</a></span></span>
     </span>
   </h3>
 
@@ -6281,7 +6284,7 @@ exception is thrown.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1181">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1204">source</a></span></span>
     </span>
   </h3>
 
@@ -6343,7 +6346,7 @@ The total duration is defined by calling <span><a href="class/packages/core/src/
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1148">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1171">source</a></span></span>
     </span>
   </h3>
 
@@ -6404,7 +6407,7 @@ This is based on the standard definition of a minute as 60 seconds.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1247">source</a></span></span>
+      <span data-ice="source"><span><a href="file/packages/core/src/Duration.js.html#lineNumber1270">source</a></span></span>
     </span>
   </h3>
 

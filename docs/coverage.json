@@ -1,7 +1,7 @@
 {
-  "coverage": "73.64%",
-  "expectCount": 2170,
-  "actualCount": 1598,
+  "coverage": "73.62%",
+  "expectCount": 2184,
+  "actualCount": 1608,
   "files": {
     "packages/core/src/Clock.js": {
       "expectCount": 39,
@@ -41,8 +41,8 @@
       ]
     },
     "packages/core/src/Duration.js": {
-      "expectCount": 68,
-      "actualCount": 61,
+      "expectCount": 70,
+      "actualCount": 63,
       "undocumentLines": [
         59,
         60,
@@ -50,7 +50,7 @@
         362,
         386,
         430,
-        1311
+        1402
       ]
     },
     "packages/core/src/Enum.js": {
@@ -77,11 +77,11 @@
       "expectCount": 73,
       "actualCount": 68,
       "undocumentLines": [
-        291,
         292,
         293,
-        1069,
-        1662
+        294,
+        1070,
+        1663
       ]
     },
     "packages/core/src/LocalDateTime.js": {
@@ -338,7 +338,7 @@
       "actualCount": 29,
       "undocumentLines": [
         60,
-        589
+        618
       ]
     },
     "packages/core/src/format/DateTimeFormatter.js": {
@@ -456,19 +456,20 @@
       ]
     },
     "packages/core/src/format/EnumMap.js": {
-      "expectCount": 12,
-      "actualCount": 2,
+      "expectCount": 15,
+      "actualCount": 4,
       "undocumentLines": [
-        10,
-        11,
-        14,
-        21,
-        26,
-        30,
-        34,
-        39,
-        63,
-        67
+        16,
+        17,
+        47,
+        55,
+        60,
+        65,
+        69,
+        84,
+        95,
+        133,
+        137
       ]
     },
     "packages/core/src/format/ParsePosition.js": {
@@ -787,11 +788,14 @@
       ]
     },
     "packages/core/src/zone/SystemDefaultZoneRules.js": {
-      "expectCount": 18,
+      "expectCount": 21,
       "actualCount": 16,
       "undocumentLines": [
-        10,
-        12
+        11,
+        15,
+        22,
+        33,
+        35
       ]
     },
     "packages/core/src/zone/ZoneOffsetTransition.js": {
@@ -1009,19 +1013,18 @@
       ]
     },
     "packages/locale/src/format/cldr/CldrZoneTextPrinterParser.js": {
-      "expectCount": 13,
-      "actualCount": 3,
+      "expectCount": 18,
+      "actualCount": 9,
       "undocumentLines": [
-        17,
-        20,
-        48,
-        49,
-        54,
-        77,
-        120,
-        157,
-        190,
-        207
+        21,
+        24,
+        90,
+        91,
+        160,
+        203,
+        249,
+        281,
+        356
       ]
     },
     "packages/locale/src/format/parser/LocalizedOffsetPrinterParser.js": {
@@ -1096,29 +1099,29 @@
         173,
         223,
         259,
-        379,
         383,
         387,
         391,
-        396,
+        395,
         400,
         404,
-        421,
-        450,
-        472,
-        481,
-        657,
-        658,
-        659,
-        660,
+        408,
+        425,
+        454,
+        476,
+        485,
         661,
         662,
         663,
-        953
+        664,
+        665,
+        666,
+        667,
+        957
       ]
     },
     "packages/timezone/src/TzdbZoneRules.js": {
-      "expectCount": 40,
+      "expectCount": 41,
       "actualCount": 18,
       "undocumentLines": [
         11,
@@ -1138,11 +1141,12 @@
         455,
         462,
         470,
-        482,
-        486,
-        496,
-        510,
-        523
+        484,
+        489,
+        493,
+        506,
+        520,
+        533
       ]
     },
     "packages/timezone/src/TzdbZoneRulesProvider.js": {
