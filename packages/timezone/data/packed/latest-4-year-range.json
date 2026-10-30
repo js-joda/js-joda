@@ -1,5 +1,5 @@
 {
-	"version": "2026e",
+	"version": "2026f",
 	"zones": [
 		"Africa/Abidjan|GMT|0|0|||0|0",
 		"Africa/Algiers|CET|-10|0|||0|-10",
@@ -27,7 +27,7 @@
 		"America/Detroit|EST EDT|50 40|01010101010|2bUT0 1zb0 Op0 1zb0 Op0 1zb0 Rd0 1zb0 Op0 1zb0||01|50 50",
 		"America/Edmonton|MST MDT CST|70 60 60|0101012|2bUV0 1zb0 Op0 1zb0 Op0 1zb0||010|70 70 60",
 		"America/Glace_Bay|AST ADT|40 30|01010101010|2bUS0 1zb0 Op0 1zb0 Op0 1zb0 Rd0 1zb0 Op0 1zb0||01|40 40",
-		"America/Havana|CST CDT|50 40|01010101010|2bUR0 1zc0 Oo0 1zc0 Oo0 1zc0 Rc0 1zc0 Oo0 1zc0||01|50 50",
+		"America/Havana|CST CDT|50 40|010101010|2bUR0 1zc0 Oo0 1zc0 Oo0 43A0 Oo0 1zc0||01|50 50",
 		"America/Los_Angeles|PST PDT|80 70|01010101010|2bUW0 1zb0 Op0 1zb0 Op0 1zb0 Rd0 1zb0 Op0 1zb0||01|80 80",
 		"America/Miquelon|-03 -02|30 20|01010101010|2bUR0 1zb0 Op0 1zb0 Op0 1zb0 Rd0 1zb0 Op0 1zb0||01|30 30",
 		"America/Noronha|-02|20|0|||0|20",
