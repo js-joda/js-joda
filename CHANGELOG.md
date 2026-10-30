@@ -3,6 +3,12 @@ Changelog
 
 ## Unreleased
 
+#### :rocket: Enhancement
+* `timezone`
+    * [#842](https://github.com/js-joda/js-joda/pull/842) update tzdb to version 2026f ([@pithu](https://github.com/pithu))
+
+## 2026-10-30
+
 ### Versions
 
 - @js-joda/core@6.3.1
