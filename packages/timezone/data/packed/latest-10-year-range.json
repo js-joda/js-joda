@@ -1,5 +1,5 @@
 {
-	"version": "2026e",
+	"version": "2026f",
 	"zones": [
 		"Africa/Abidjan|GMT|0|0|||0|0",
 		"Africa/Algiers|CET|-10|0|||0|-10",
@@ -31,7 +31,7 @@
 		"America/Detroit|EST EDT|50 40|01010101010101010101010|24E70 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Rd0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0||01|50 50",
 		"America/Edmonton|MST MDT CST|70 60 60|0101010101012|24E90 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0||010|70 70 60",
 		"America/Glace_Bay|AST ADT|40 30|01010101010101010101010|24E60 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Rd0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0||01|40 40",
-		"America/Havana|CST CDT|50 40|01010101010101010101010|24E50 1zc0 Oo0 1zc0 Oo0 1zc0 Oo0 1zc0 Oo0 1zc0 Oo0 1zc0 Rc0 1zc0 Oo0 1zc0 Oo0 1zc0 Oo0 1zc0 Oo0 1zc0||01|50 50",
+		"America/Havana|CST CDT|50 40|010101010101010101010|24E50 1zc0 Oo0 1zc0 Oo0 1zc0 Oo0 1zc0 Oo0 1zc0 Oo0 43A0 Oo0 1zc0 Oo0 1zc0 Oo0 1zc0 Oo0 1zc0||01|50 50",
 		"America/Los_Angeles|PST PDT|80 70|01010101010101010101010|24Ea0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Rd0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0||01|80 80",
 		"America/Mazatlan|MST MDT|70 60|01010|24Mx0 1nX0 11B0 1nX0||01|70 70",
 		"America/Miquelon|-03 -02|30 20|01010101010101010101010|24E50 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Rd0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0 Op0 1zb0||01|30 30",
