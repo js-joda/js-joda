@@ -33,13 +33,8 @@ jobs:
           key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.OS }}-node-
       - name: Install
-        # lerna 10 removed clean/link/bootstrap; npm workspaces + per-package
-        # installs cover the file:../locale/node_modules/... devDeps
-        run: |
-          npm ci;
-          (cd packages/locale && npm install);
-          (cd packages/timezone && npm install);
-          (cd packages/extra && npm install);
+        # native npm workspaces: a single root install links all packages
+        run: npm ci
       - name: Build
         run: |
           set -e;

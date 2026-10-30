@@ -12,6 +12,10 @@
   ],
   "homepage": "https://js-joda.github.io/js-joda",
   "license": "BSD-3-Clause",
+  "workspaces": [
+    "packages/*",
+    "packages/locale/packages/*"
+  ],
   "bugs": {
     "url": "https://github.com/js-joda/js-joda/issues"
   },

@@ -25,13 +25,13 @@
     "@js-joda/core": ">=5.7.0"
   },
   "devDependencies": {
-    "@js-joda/core": "file:../locale/node_modules/@js-joda/core",
-    "@js-joda/extra": "file:../extra",
-    "@js-joda/locale": "file:../locale",
-    "@js-joda/locale_en-us": "file:../locale/packages/en-us",
-    "@js-joda/locale_de": "file:../locale/packages/de",
-    "@js-joda/locale_ko": "file:../locale/packages/ko",
-    "@js-joda/timezone": "file:../locale/node_modules/@js-joda/timezone",
+    "@js-joda/core": "*",
+    "@js-joda/extra": "*",
+    "@js-joda/locale": "*",
+    "@js-joda/locale_en-us": "*",
+    "@js-joda/locale_de": "*",
+    "@js-joda/locale_ko": "*",
+    "@js-joda/timezone": "*",
     "benchmark": "^2.1.4",
     "esbuild": "^0.28.0",
     "moment": "^2.30.1"

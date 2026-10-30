@@ -49,6 +49,6 @@
     "@js-joda/core": ">=5.7.0"
   },
   "devDependencies": {
-    "@js-joda/core": "file:../locale/node_modules/@js-joda/core"
+    "@js-joda/core": "*"
   }
 }
