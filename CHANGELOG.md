@@ -8,6 +8,10 @@ Changelog
     * Migrate from Lerna to native npm workspaces: workspaces are declared in the root `package.json`, `npm ci` now links all packages, and the per-package install steps and stale sub-package lockfiles are dropped
     * CI: replace the removed lerna `clean`/`link`/`bootstrap` commands with npm installs, include lint in `test-ci` for all packages, simplify the tzdb-builder step (deps come from the root workspace install), run the examples package dist-integration tests in CI, and check for new tzdb releases every day
 
+#### :bug: Bug Fix
+* `locale`
+    * [#840](https://github.com/js-joda/js-joda/pull/840) Print the narrow stand-alone text styles `LLLLL` and `ccccc` (e.g. `A` for August, `S` for Sunday) instead of the numeric value, as in ThreeTen-Backport and java.time ([@wleeaf](https://github.com/wleeaf))
+
 #### :house: Dependency update
 * Other
     * Upgrade dev dependencies: mocha to v12, nyc to v18, lerna to v10; apply `npm audit` fixes
