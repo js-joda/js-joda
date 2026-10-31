@@ -31,7 +31,7 @@
   },
   "scripts": {
     "postpublish": "npm run build-esdoc && ./shared/git-push-docs-on-change.sh",
-    "build-esdoc": "./node_modules/.bin/esdoc -c esdoc.json",
+    "build-esdoc": "npx -y -p esdoc@1.1.0 -p esdoc-standard-plugin@1.0.0 -p esdoc-inject-script-plugin@1.0.0 esdoc -c esdoc.json",
     "build-test-coverage-report": "./shared/build-test-coverage-report.sh"
   },
   "devDependencies": {
@@ -56,9 +56,6 @@
     "cldrjs": "^0.5.5",
     "coveralls": "^3.1.1",
     "ejs": "^3.1.10",
-    "esdoc": "^1.1.0",
-    "esdoc-inject-script-plugin": "^1.0.0",
-    "esdoc-standard-plugin": "^1.0.0",
     "eslint": "^8.30.0",
     "json-loader": "^0.5.7",
     "karma": "^6.4.4",
