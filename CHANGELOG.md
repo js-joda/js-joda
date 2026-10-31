@@ -3,6 +3,15 @@ Changelog
 
 ## Unreleased
 
+## 2026-10-31
+
+### Versions
+
+- @js-joda/core@6.3.2
+- @js-joda/extra@0.13.3
+- @js-joda/locale@6.0.2
+- @js-joda/timezone@3.2.1
+
 #### :rocket: Enhancement
 * Other
     * Migrate from Lerna to native npm workspaces: workspaces are declared in the root `package.json`, `npm ci` now links all packages, and the per-package install steps and stale sub-package lockfiles are dropped
