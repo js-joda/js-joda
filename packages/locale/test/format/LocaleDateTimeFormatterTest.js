@@ -4,12 +4,35 @@
  */
 
 import { expect } from 'chai';
-import { DateTimeFormatter, ZonedDateTime } from '@js-joda/core';
+import { DateTimeFormatter, LocalDate, ZonedDateTime } from '@js-joda/core';
 import '@js-joda/timezone';
 
 import { Locale } from '../../src/js-joda-locale';
 
 describe('LocaleDateTimeFormatter', () => {
+    describe('stand-alone text styles', () => {
+
+        it('formats LLLLL as narrow stand-alone month (#840)', () => {
+            const f = DateTimeFormatter.ofPattern('LLLLL').withLocale(Locale.ENGLISH);
+            expect(LocalDate.of(2026, 8, 30).format(f)).to.equal('A');
+        });
+
+        it('formats ccccc as narrow stand-alone day of week (#840)', () => {
+            const f = DateTimeFormatter.ofPattern('ccccc').withLocale(Locale.ENGLISH);
+            expect(LocalDate.of(2026, 8, 30).format(f)).to.equal('S');
+        });
+
+        it('formats LLLL as full stand-alone month', () => {
+            const f = DateTimeFormatter.ofPattern('LLLL').withLocale(Locale.ENGLISH);
+            expect(LocalDate.of(2026, 8, 30).format(f)).to.equal('August');
+        });
+
+        it('formats LLL as short stand-alone month', () => {
+            const f = DateTimeFormatter.ofPattern('LLL').withLocale(Locale.ENGLISH);
+            expect(LocalDate.of(2026, 8, 30).format(f)).to.equal('Aug');
+        });
+    });
+
     describe('withLocale', () => {
 
         it('creates a new DateTimeFormatter with the given locale', () => {
