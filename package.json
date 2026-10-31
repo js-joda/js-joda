@@ -79,5 +79,11 @@
   },
   "resolutions": {
     "webdriverio": "^7.19.5"
+  },
+  "allowScripts": {
+    "cldr-data@36.0.5": true,
+    "esbuild@0.28.2": true,
+    "nx@23.3.1": true,
+    "core-js": false
   }
 }
