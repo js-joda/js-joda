@@ -22,6 +22,7 @@
   "author": "pithu",
   "license": "BSD-3-Clause",
   "devDependencies": {
+    "eslint": "^8.30.0",
     "zx": "^8.8.5"
   }
 }
