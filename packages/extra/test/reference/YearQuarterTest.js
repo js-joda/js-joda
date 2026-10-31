@@ -515,6 +515,16 @@ describe('org.threeten.extra.TestYearQuarter', () => {
             assertEquals(YearQuarter.of(2007, Quarter.Q2), YearQuarter.of(2007, Quarter.Q2).plusQuarters(0));
             assertEquals(YearQuarter.of(2006, Quarter.Q1), YearQuarter.of(2007, Quarter.Q2).plusQuarters(-5));
         });
+
+        it('test_plusQuarters_negativeYears', () => {
+            assertEquals(YearQuarter.of(-13, Quarter.Q4), YearQuarter.of(-13, Quarter.Q3).plusQuarters(1));
+            assertEquals(YearQuarter.of(-14, Quarter.Q2), YearQuarter.of(-13, Quarter.Q3).plusQuarters(-5));
+            assertEquals(YearQuarter.of(-1, Quarter.Q4), YearQuarter.of(0, Quarter.Q1).plusQuarters(-1));
+            assertEquals(YearQuarter.of(0, Quarter.Q1), YearQuarter.of(-1, Quarter.Q4).plusQuarters(1));
+            assertEquals(YearQuarter.of(-2, Quarter.Q4), YearQuarter.of(-1, Quarter.Q4).plusQuarters(-4));
+            assertEquals(YearQuarter.of(-1, Quarter.Q4), YearQuarter.of(0, Quarter.Q1).minusQuarters(1));
+            assertEquals(YearQuarter.of(-1, Quarter.Q4), YearQuarter.of(0, Quarter.Q1).minus(1, IsoFields.QUARTER_YEARS));
+        });
     });
 
     //-----------------------------------------------------------------------
