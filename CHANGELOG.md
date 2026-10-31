@@ -9,6 +9,10 @@ Changelog
     * CI: replace the removed lerna `clean`/`link`/`bootstrap` commands with npm installs, include lint in `test-ci` for all packages, simplify the tzdb-builder step (deps come from the root workspace install), run the examples package dist-integration tests in CI, and check for new tzdb releases every day
 
 #### :bug: Bug Fix
+* `core`
+    * [#838](https://github.com/js-joda/js-joda/pull/838) `Period.parse()` and `Duration.parse()` now require the whole text to match, as in java.time and ThreeTen-Backport; surrounding text is no longer silently ignored, e.g. `Duration.parse('PT1S PT2S')` returned `PT1S` and `Period.parse('xP1D')` returned `P1D`. `Period.parse()` is now case-insensitive, so `Period.parse('p1y2m')` works ([@wleeaf](https://github.com/wleeaf))
+* `extra`
+    * [#839](https://github.com/js-joda/js-joda/pull/839) `YearQuarter.plusQuarters()` floors the year for negative years, e.g. `YearQuarter.of(-1, Q1).plusQuarters(-1)` returned year `-1` instead of `-2` ([@wleeaf](https://github.com/wleeaf))
 * `locale`
     * [#840](https://github.com/js-joda/js-joda/pull/840) Print the narrow stand-alone text styles `LLLLL` and `ccccc` (e.g. `A` for August, `S` for Sunday) instead of the numeric value, as in ThreeTen-Backport and java.time ([@wleeaf](https://github.com/wleeaf))
 

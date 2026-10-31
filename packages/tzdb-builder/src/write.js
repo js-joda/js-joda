@@ -39,3 +39,29 @@ export async function writeUnpackedStep(ctx) {
     log(`Wrote ${unpacked.zones.length} zones to ${unpackedDir}/{latest,${version}}.json`);
     return { ...ctx, unpacked };
 }
+
+const README_VERSION_PATTERN = /<!-- tzdb-version -->.*/;
+
+/**
+ * Pipeline step: updates the tzdb version line at the top of the @js-joda/timezone
+ * README (`<!-- tzdb-version -->...`), so it always matches the generated data.
+ *
+ * @param {object} ctx - see createContext
+ * @return {Promise<object>}
+ */
+export async function updateReadmeStep(ctx) {
+    const { version, timezoneDataDir, log = () => {} } = ctx;
+    const readmeFile = path.join(timezoneDataDir, '..', 'README.md');
+    const readme = await fs.readFile(readmeFile, 'utf8');
+    const line = `<!-- tzdb-version -->IANA tzdb data version: **${version}**`;
+    if (!README_VERSION_PATTERN.test(readme)) {
+        throw new Error(`No <!-- tzdb-version --> marker found in ${readmeFile}`);
+    }
+    if (README_VERSION_PATTERN.test(readme) && readme.includes(line)) {
+        log(`README already up to date (tzdb ${version})`);
+    } else {
+        await fs.writeFile(readmeFile, readme.replace(README_VERSION_PATTERN, line));
+        log(`Updated tzdb version in README to ${version}`);
+    }
+    return ctx;
+}

@@ -12,7 +12,7 @@ import { fetchStep, resolveVersion } from './fetch.js';
 import { compileStep } from './compile.js';
 import { collectStep } from './collect.js';
 import { packStep } from './ranges.js';
-import { writeUnpackedStep } from './write.js';
+import { updateReadmeStep, writeUnpackedStep } from './write.js';
 
 export const STEPS = [
     { name: 'fetch', run: fetchStep },
@@ -20,6 +20,7 @@ export const STEPS = [
     { name: 'collect', run: collectStep },
     { name: 'write-unpacked', run: writeUnpackedStep },
     { name: 'pack', run: packStep },
+    { name: 'update-readme', run: updateReadmeStep },
 ];
 
 const USAGE = 'Usage: npm run generate -- <latest|version> [--step <name>] [--from <name>] [--force]';

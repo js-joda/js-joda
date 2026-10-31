@@ -47,6 +47,12 @@
 <div data-ice="manual">
     <ul class="manual-toc">
       
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/packages.html"><a href="manual/packages.html" data-ice="link">Packages</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
     <li data-ice="manualNav" class="indent-h1" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html" data-ice="link">LocalDate</a></li>
 <li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#create-a--code-localdate--code-" data-ice="link">Create a LocalDate</a></li>
 <li data-ice="manualNav" class="indent-h3" data-link="manual/LocalDate.html"><a href="manual/LocalDate.html#get-values-from--code-localdate--code-" data-ice="link">Get values from LocalDate</a></li>
@@ -400,6 +406,54 @@ but don&apos;t forget to update the cdnjs resources to the desired versions. </p
 </tbody>
 </table><p>Note that getter methods for instance properties omit the get keyword: <code>d.year()</code>, not <del><code>d.getYear()</code></del>.</p></div>
         <a data-ice="link" href="manual/usage.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>Packages</h1><p>js-joda is a monorepo of several npm packages. The public packages:</p><table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/js-joda/js-joda/blob/main/packages/core/README.md"><code>@js-joda/core</code></a></td>
+<td>The core date and time library: immutable classes like <code>LocalDate</code>, <code>LocalDateTime</code>, <code>ZonedDateTime</code>, <code>Instant</code>, <code>Duration</code>, <code>Period</code>, plus ISO-8601 formatting and parsing.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/js-joda/js-joda/blob/main/packages/timezone/README.md"><code>@js-joda/timezone</code></a></td>
+<td>Plugin with bindings to the IANA tz database, enabling zone names like <code>Europe/Berlin</code>. Import it for side effects.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/js-joda/js-joda/blob/main/packages/locale/README.md"><code>@js-joda/locale</code></a></td>
+<td>Plugin for locale-aware formatting and parsing (day and month names), as a full build or as per-locale prebuilt packages.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/js-joda/js-joda/blob/main/packages/extra/README.md"><code>@js-joda/extra</code></a></td>
+<td>Additional date-time types that complement the core, e.g. <code>Interval</code>, <code>YearQuarter</code>, <code>YearWeek</code>.</td>
+</tr>
+</tbody>
+</table><p>And the private packages, not published to npm:</p><table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/js-joda/js-joda/blob/main/packages/examples/README.md"><code>@js-joda/examples</code></a></td>
+<td>End-to-end integration tests that run code samples against the built <code>dist</code> artifacts of the other packages.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/js-joda/js-joda/blob/main/packages/tzdb-builder/README.md"><code>@js-joda/tzdb-builder</code></a></td>
+<td>Build tool that generates the IANA tzdb data files shipped in <code>@js-joda/timezone</code>.</td>
+</tr>
+</tbody>
+</table></div>
+        <a data-ice="link" href="manual/packages.html"></a>
       </div>
     </div>
 <div class="manual-card-wrap" data-ice="cards">
