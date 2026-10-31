@@ -12,6 +12,10 @@
   ],
   "homepage": "https://js-joda.github.io/js-joda",
   "license": "BSD-3-Clause",
+  "workspaces": [
+    "packages/*",
+    "packages/locale/packages/*"
+  ],
   "bugs": {
     "url": "https://github.com/js-joda/js-joda/issues"
   },
@@ -27,7 +31,7 @@
   },
   "scripts": {
     "postpublish": "npm run build-esdoc && ./shared/git-push-docs-on-change.sh",
-    "build-esdoc": "./node_modules/.bin/esdoc -c esdoc.json",
+    "build-esdoc": "npx -y -p esdoc@1.1.0 -p esdoc-standard-plugin@1.0.0 -p esdoc-inject-script-plugin@1.0.0 esdoc -c esdoc.json",
     "build-test-coverage-report": "./shared/build-test-coverage-report.sh"
   },
   "devDependencies": {
@@ -50,13 +54,8 @@
     "chai": "^4.5.0",
     "cldr-data": "^36.0.5",
     "cldrjs": "^0.5.5",
-    "coveralls": "^3.1.1",
     "ejs": "^3.1.10",
-    "esdoc": "^1.1.0",
-    "esdoc-inject-script-plugin": "^1.0.0",
-    "esdoc-standard-plugin": "^1.0.0",
     "eslint": "^8.30.0",
-    "eslint-config-js-joda": "^1.1.0",
     "json-loader": "^0.5.7",
     "karma": "^6.4.4",
     "karma-chai-plugins": "^0.9.0",
@@ -65,12 +64,12 @@
     "karma-mocha": "^2.0.1",
     "karma-rollup-preprocessor": "^7.0.8",
     "karma-sourcemap-loader": "^0.4.0",
-    "lerna": "^6.6.2",
+    "lerna": "^10.1.1",
     "lerna-changelog": "^2.2.0",
     "markdown-toc": "^1.2.0",
-    "mocha": "^11.7.5",
+    "mocha": "^12.0.3",
     "npm-check-updates": "^19.6.6",
-    "nyc": "^15.1.0",
+    "nyc": "^18.0.0",
     "ramda": "^0.32.0",
     "rollup": "^3.30.0",
     "rollup-plugin-minification": "^0.2.0",
@@ -80,5 +79,11 @@
   },
   "resolutions": {
     "webdriverio": "^7.19.5"
+  },
+  "allowScripts": {
+    "cldr-data@36.0.5": true,
+    "esbuild@0.28.2": true,
+    "nx@23.3.1": true,
+    "core-js": false
   }
 }

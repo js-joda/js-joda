@@ -23,21 +23,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-      - name: Setup node 20
+      - name: Setup node 24
         uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: '24'
       - uses: actions/cache@v5
         with:
           path: ~/.npm
           key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.OS }}-node-
-      - name: Install and bootstrap
-        run: |
-          npm install;
-          npx lerna clean -y;
-          npx lerna link;
-          npx lerna bootstrap --no-ci;
+      - name: Install
+        # native npm workspaces: a single root install links all packages
+        run: npm ci
       - name: Build
         run: |
           set -e;
@@ -52,14 +49,15 @@ jobs:
           npx lerna run --stream test-coverage;
           npx lerna run --concurrency 1 --stream test-browser -- -- --browserNoActivityTimeout 20000;
           npm run build-test-coverage-report;
+      - name: Test examples (dist integration)
+        # private package, excluded from `lerna run`; needs the built dist artifacts
+        run: npm test -w packages/examples;
       - name: Lint and test tzdb-builder
-        # private package, not covered by `lerna run`
-        working-directory: packages/tzdb-builder
+        # private package, excluded from `lerna run`; deps come from the root workspace install
         run: |
           set -e;
-          npm ci;
-          npm run lint;
-          npm test;
+          npm run lint -w packages/tzdb-builder;
+          npm test -w packages/tzdb-builder;
       - name: Push coverage data to coveralls
         if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
         uses: coverallsapp/github-action@v2
