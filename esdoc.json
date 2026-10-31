@@ -22,6 +22,7 @@
           "files": [
             "./esdoc/manual/getting-started.md",
             "./esdoc/manual/usage.md",
+            "./esdoc/manual/packages.md",
             "./esdoc/manual/LocalDate.md",
             "./esdoc/manual/LocalTime.md",
             "./esdoc/manual/LocalDateTime.md",
