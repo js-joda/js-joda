@@ -5,7 +5,7 @@
 [![Coverage Status](https://coveralls.io/repos/js-joda/js-joda/badge.svg?branch=main&service=github)](https://coveralls.io/github/js-joda/js-joda?branch=main)
 [![Downloads/Month](https://img.shields.io/npm/dm/%40js-joda%2Ftimezone.svg)](https://img.shields.io/npm/dm/%40js-joda%2Ftimezone.svg)
 
-<!-- tzdb-version -->IANA tzdb data version: **2026f**
+<!-- tzdb-version -->IANA tzdb data version: <strong>2026f</strong>
 
 ## Motivation
 

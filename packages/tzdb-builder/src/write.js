@@ -53,7 +53,7 @@ export async function updateReadmeStep(ctx) {
     const { version, timezoneDataDir, log = () => {} } = ctx;
     const readmeFile = path.join(timezoneDataDir, '..', 'README.md');
     const readme = await fs.readFile(readmeFile, 'utf8');
-    const line = `<!-- tzdb-version -->IANA tzdb data version: **${version}**`;
+    const line = `<!-- tzdb-version -->IANA tzdb data version: <strong>${version}</strong>`;
     if (!README_VERSION_PATTERN.test(readme)) {
         throw new Error(`No <!-- tzdb-version --> marker found in ${readmeFile}`);
     }
