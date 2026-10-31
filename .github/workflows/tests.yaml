@@ -49,6 +49,9 @@ jobs:
           npx lerna run --stream test-coverage;
           npx lerna run --concurrency 1 --stream test-browser -- -- --browserNoActivityTimeout 20000;
           npm run build-test-coverage-report;
+      - name: Test examples (dist integration)
+        # private package, excluded from `lerna run`; needs the built dist artifacts
+        run: npm test -w packages/examples;
       - name: Lint and test tzdb-builder
         # private package, excluded from `lerna run`; deps come from the root workspace install
         run: |
