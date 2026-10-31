@@ -4,5 +4,6 @@
     "packages/locale/packages/*"
   ],
   "version": "independent",
-  "private": false
+  "private": false,
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json"
 }
