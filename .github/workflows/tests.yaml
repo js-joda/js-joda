@@ -50,13 +50,11 @@ jobs:
           npx lerna run --concurrency 1 --stream test-browser -- -- --browserNoActivityTimeout 20000;
           npm run build-test-coverage-report;
       - name: Lint and test tzdb-builder
-        # private package, not covered by `lerna run`
-        working-directory: packages/tzdb-builder
+        # private package, excluded from `lerna run`; deps come from the root workspace install
         run: |
           set -e;
-          npm ci;
-          npm run lint;
-          npm test;
+          npm run lint -w packages/tzdb-builder;
+          npm test -w packages/tzdb-builder;
       - name: Push coverage data to coveralls
         if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
         uses: coverallsapp/github-action@v2
