@@ -12,7 +12,8 @@ stay compatible.
 ### Requirement: Register entry
 `@js-joda/locale/register` SHALL export the same API as `@js-joda/locale` (`Locale`, `WeekFields`,
 `registerLocaleData`), plug into `@js-joda/core` as `@js-joda/locale` does, and bundle the same
-supplemental CLDR data. Neither its CommonJS nor its ES module build SHALL reference `cldr-data`.
+supplemental CLDR data. The build that bundlers resolve SHALL NOT reference `cldr-data`. In Node.js,
+`@js-joda/locale/register` SHALL resolve to the same module as `@js-joda/locale`.
 
 #### Scenario: Browser bundle without cldr-data
 - **WHEN** an application that imports `@js-joda/locale/register` and `@js-joda/locale_en/data` is bundled with esbuild and webpack for the browser, with `cldr-data` installed and without bundler configuration for it
@@ -61,7 +62,8 @@ data comes from a different module copy.
 `@js-joda/locale/cldr-data` SHALL export `cldrDataSource`. After `registerLocaleData(cldrDataSource)`,
 the data of every locale in the installed `cldr-data` package SHALL be loaded on first use, and
 `Locale.getAvailableLocales()` SHALL include the locales of `cldr-data`. The entry SHALL be the only
-explicit-mode entry that references `cldr-data`.
+explicit-mode entry that references `cldr-data` in the builds that bundlers resolve. Registering the
+source again, or after the default entry registered its own `cldr-data` source, SHALL have no effect.
 
 #### Scenario: All locales from cldr-data
 - **WHEN** a Node.js application with `cldr-data` installed runs
@@ -78,13 +80,16 @@ explicit-mode entry that references `cldr-data`.
 - **THEN** an error is thrown that says `cldr-data` must be installed
 
 ### Requirement: Locale without data in explicit mode
-With `@js-joda/locale/register` and no `cldr-data` source registered, formatting or parsing text for a
+With the bundler build of `@js-joda/locale/register`, no `cldr-data` source registered, and no code in
+the application that loaded the default entry `@js-joda/locale`, formatting or parsing text for a
 locale with no registered data for the locale or its parent locales SHALL throw a `DateTimeException`
 that names the locale, the registered locales and the `/data` entry of a prebuilt package. Registering
-the data afterwards SHALL make the locale work.
+the data afterwards SHALL make the locale work. Once any code loads the default entry, the check SHALL be
+off for the whole application, and formatting SHALL behave as with the default entry. In Node.js the
+check is off, because `/register` resolves to the default entry.
 
 #### Scenario: Locale not registered
-- **WHEN** only the `en` data object is registered and a date is formatted with `MMMM` and `Locale.GERMAN`
+- **WHEN** a bundled application registers only the `en` data object and formats a date with `MMMM` and `Locale.GERMAN`
 - **THEN** a `DateTimeException` is thrown that names `de`, lists `en`, and mentions `@js-joda/locale_de/data`
 
 #### Scenario: Parent locale registered
@@ -95,11 +100,16 @@ the data afterwards SHALL make the locale work.
 - **WHEN** formatting with `Locale.GERMAN` threw because no `de` data was registered, and the `de` data object is registered afterwards
 - **THEN** formatting with `Locale.GERMAN` prints the German month name
 
+#### Scenario: A library loads the default entry
+- **WHEN** a bundled application registers only the `en` data object through `@js-joda/locale/register`, a library it uses imports `@js-joda/locale`, and the application formats with `MMMM` and `Locale.GERMAN`
+- **THEN** no missing-locale `DateTimeException` is thrown, and the output is the same as with the default entry alone
+
 ### Requirement: Compatible default entries
 `@js-joda/locale` and the default entries of the prebuilt packages SHALL behave as before this change,
-including loading from `cldr-data` in Node.js. When an application uses both `@js-joda/locale` and
-`@js-joda/locale/register`, they SHALL share one copy of the code and one data store, in Node.js and
-when bundled.
+including loading from `cldr-data` in Node.js, and `dist/js-joda-locale.js` SHALL stay a UMD build.
+Existing deep imports of published files SHALL keep resolving after the `exports` map is added. When
+an application uses both `@js-joda/locale` and `@js-joda/locale/register`, they SHALL share one copy of
+the code and one data store, in Node.js (with `require` and `import`) and when bundled.
 
 #### Scenario: Existing imports
 - **WHEN** an application imports `{ Locale }` from `@js-joda/locale` and then `@js-joda/locale_en-us`, as before this change
@@ -110,13 +120,20 @@ when bundled.
 - **THEN** the library formats with `Locale.GERMAN`, and the locale code is contained once in the bundle
 
 #### Scenario: Node.js resolves one module
-- **WHEN** Node.js runs `require('@js-joda/locale/register')` and `require('@js-joda/locale')`
-- **THEN** data registered through one is visible through the other
+- **WHEN** Node.js runs `require('@js-joda/locale/register')`, `require('@js-joda/locale')` and `import('@js-joda/locale/register')`
+- **THEN** data registered through one is visible through the others
 
 ### Requirement: Entry resolution and types
 The register, `cldr-data` and prebuilt `/data` entries SHALL resolve with `require` and `import` in
-Node.js and in bundlers, without an `exports` map, and SHALL have TypeScript declarations. The register
-and prebuilt `/data` entries SHALL also ship minified builds for `<script>` tags.
+Node.js and in bundlers, through an `exports` map and through entry directories for tools that ignore
+`exports`, and SHALL have TypeScript declarations. Bundlers SHALL get the ES module builds. The register
+and prebuilt `/data` entries SHALL also ship minified builds for `<script>` tags (globals
+`JSJodaLocale.registerLocaleData` and `JSJodaLocaleData_<locale>.localeData`, e.g.
+`JSJodaLocaleData_en_us`).
+
+#### Scenario: Node.js ES module
+- **WHEN** a Node.js ES module imports `{ registerLocaleData }` from `@js-joda/locale/register` and `{ localeData }` from `@js-joda/locale_de/data`, and registers it
+- **THEN** both resolve, and formatting with `MMMM` and `Locale.GERMAN` works
 
 #### Scenario: TypeScript
 - **WHEN** a TypeScript file imports `registerLocaleData` from `@js-joda/locale/register` and `localeData` from `@js-joda/locale_de/data`, and calls `registerLocaleData(localeData)`
