@@ -938,7 +938,7 @@ export class YearQuarter extends Temporal {
         }
         const quarterCount = this._year * 4 + (this._quarter.value() - 1);
         const calcQuarters = quarterCount + quartersToAdd;  // safe overflow
-        const newYear = ChronoField.YEAR.checkValidIntValue(MathUtil.intDiv(calcQuarters, 4));
+        const newYear = ChronoField.YEAR.checkValidIntValue(MathUtil.floorDiv(calcQuarters, 4));
         const newQuarter = MathUtil.floorMod(calcQuarters, 4) + 1;
         return this._with(newYear, Quarter.of(newQuarter));
     }
