@@ -315,7 +315,7 @@ export class Duration extends TemporalAmount /*implements TemporalAmount, Compar
         /**
          * The pattern for parsing.
          */
-        const PATTERN = new RegExp('([-+]?)P(?:([-+]?[0-9]+)D)?(T(?:([-+]?[0-9]+)H)?(?:([-+]?[0-9]+)M)?(?:([-+]?[0-9]+)(?:[.,]([0-9]{0,9}))?S)?)?', 'i');
+        const PATTERN = new RegExp('^([-+]?)P(?:([-+]?[0-9]+)D)?(T(?:([-+]?[0-9]+)H)?(?:([-+]?[0-9]+)M)?(?:([-+]?[0-9]+)(?:[.,]([0-9]{0,9}))?S)?)?$', 'i');
         const matches = PATTERN.exec(text);
         if (matches !== null) {
             // check for letter T but no time sections

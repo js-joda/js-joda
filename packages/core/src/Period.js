@@ -18,7 +18,7 @@ import { LocalDate } from './LocalDate';
 /**
  * The pattern for parsing.
  */
-const PATTERN = /([-+]?)P(?:([-+]?[0-9]+)Y)?(?:([-+]?[0-9]+)M)?(?:([-+]?[0-9]+)W)?(?:([-+]?[0-9]+)D)?/;
+const PATTERN = /^([-+]?)P(?:([-+]?[0-9]+)Y)?(?:([-+]?[0-9]+)M)?(?:([-+]?[0-9]+)W)?(?:([-+]?[0-9]+)D)?$/i;
 
 /**
  * A date-based amount of time, such as '2 years, 3 months and 4 days'.
