@@ -224,9 +224,8 @@ export default class CldrDateTimeTextProvider {
     _createLocaleStore(valueTextMap) {
         valueTextMap[TextStyle.FULL_STANDALONE] = valueTextMap[TextStyle.FULL];
         valueTextMap[TextStyle.SHORT_STANDALONE] = valueTextMap[TextStyle.SHORT];
-        /* istanbul ignore if */ // this doesn't seem to happen?
-        if (Object.keys(valueTextMap).indexOf(TextStyle.NARROW) > -1
-                && Object.keys(valueTextMap).indexOf(TextStyle.NARROW_STANDALONE) === -1) {
+        if (valueTextMap[TextStyle.NARROW] !== undefined
+                && valueTextMap[TextStyle.NARROW_STANDALONE] === undefined) {
             valueTextMap[TextStyle.NARROW_STANDALONE] = valueTextMap[TextStyle.NARROW];
         }
         return new LocaleStore(valueTextMap);
