@@ -30,9 +30,13 @@ and parse as before this change, with prebuilt packages of any release from 5.0.
 `@js-joda/locale/slim` SHALL export the same API as `@js-joda/locale` and SHALL bundle only
 `supplemental/weekData.json` of the supplemental data. `@js-joda/locale/meta-zones` SHALL register
 `supplemental/metaZones.json`. When an application bundles any of `@js-joda/locale`,
-`@js-joda/locale/slim` and `@js-joda/locale/meta-zones` together, they SHALL share one copy of the
-code and one data store. In Node.js, `require` of `@js-joda/locale/slim` SHALL give the same module
-as `require('@js-joda/locale')`.
+`@js-joda/locale/register`, `@js-joda/locale/slim` and `@js-joda/locale/meta-zones` together, they
+SHALL share one copy of the
+code and one data store. `/slim` and `/meta-zones` SHALL be explicit entries of the `exports` map
+(conditions `types`, `react-native`, `module`, `default`, next to `/register`), with entry directories
+as fallback for tools that ignore `exports`. In Node.js, `require` and ES module `import` of
+`@js-joda/locale/slim` SHALL both give the same module as `require('@js-joda/locale')` (via the
+`default` condition).
 
 #### Scenario: Slim bundle contents
 - **WHEN** an application that imports only `@js-joda/locale/slim` is bundled with esbuild for the browser
@@ -45,6 +49,10 @@ as `require('@js-joda/locale')`.
 #### Scenario: Slim in Node.js
 - **WHEN** Node.js runs `require('@js-joda/locale/slim')`
 - **THEN** it returns the same module object as `require('@js-joda/locale')`
+
+#### Scenario: Slim in Node.js ES module
+- **WHEN** a Node.js ES module runs `import('@js-joda/locale/slim')`
+- **THEN** it resolves via the `default` condition of the `exports` map to the same module object as `require('@js-joda/locale')`
 
 #### Scenario: Script tags
 - **WHEN** a page loads the minified `@js-joda/core` and `@js-joda/timezone`, then `@js-joda/locale/dist/slim.min.js`, `@js-joda/locale/dist/meta-zones.min.js` and `@js-joda/locale_en-us/dist/slim.min.js` with `<script>` tags
@@ -80,7 +88,10 @@ parsing with text for a locale whose language has no registered `likelySubtags` 
 error that names the locale and the `/slim` import of a prebuilt package. It SHALL NOT use the data
 of another language. `WeekFields` SHALL keep working for every locale. When registered `main/*` data
 has no `likelySubtags` entry, the error SHALL name that data's locale and
-`supplemental/likelySubtags.json`.
+`supplemental/likelySubtags.json`. These slim-mode errors SHALL be active only while neither the
+default entry nor `@js-joda/locale/register` is loaded (precedence rule of design decision 7; the
+missing-locale check of `explicit-plugin-data-registration` names the `/data` entry instead and is
+off once the default entry is loaded anywhere).
 
 #### Scenario: Language of no imported prebuilt package
 - **WHEN** an application bundles `@js-joda/locale/slim` and `@js-joda/locale_en-us/slim` only, and formats with `MMMM` and `Locale.KOREAN`

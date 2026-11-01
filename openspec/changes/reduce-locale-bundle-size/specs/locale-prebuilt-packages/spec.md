@@ -17,8 +17,12 @@ use with `@js-joda/locale/slim`, registers the `likelySubtags` entries of its la
 `@js-joda/locale/meta-zones`, and registers `ca-gregorian` and `timeZoneNames` of each locale. It
 SHALL NOT contain `likelySubtags` entries of other languages, nor its own copy of `metaZones`. Every
 prebuilt package SHALL also provide a `/slim-no-zone-names` entry with the same data without
-`metaZones` and `timeZoneNames`. Both SHALL be usable with bundlers and as a minified `<script>`. In
-Node.js, `require` of a slim entry SHALL load the default entry.
+`metaZones` and `timeZoneNames`. Both SHALL be usable with bundlers and as a minified `<script>`. Both
+SHALL be explicit entries of the package's `exports` map (conditions `types`, `react-native`, `module`,
+`default`; `module`/`react-native` point at the slim ES module build, `default` at the default
+CommonJS/UMD build), next to the `./data` entry of `explicit-plugin-data-registration`, with entry
+directories as fallback for tools that ignore `exports`. In Node.js, `require` and ES module `import`
+of a slim entry SHALL both load the default entry (via the `default` condition).
 
 Usage compared to today (informative):
 
@@ -215,15 +219,25 @@ Totals per application (sum of the files above):
 - **WHEN** Node.js runs `require('@js-joda/locale_en-us/slim')` and formats with `zzzz` and `Locale.US`
 - **THEN** the output is the same as with `require('@js-joda/locale_en-us')`
 
+#### Scenario: Slim entry in Node.js ES module
+- **WHEN** a Node.js ES module imports `@js-joda/locale_en-us/slim` and formats with `zzzz` and `Locale.US`
+- **THEN** the import resolves via the `default` condition of the `exports` map to the same full module as `require('@js-joda/locale_en-us')`, and the output is the same
+
 #### Scenario: Slim entry with an older @js-joda/locale
 - **WHEN** an application with `@js-joda/locale` 5.3.2 bundles `@js-joda/locale_en-us/slim`
 - **THEN** the bundler fails with an error that `@js-joda/locale/slim` can't be resolved
 
+#### Scenario: React Native resolves the slim entries to the ES module builds
+- **WHEN** a React Native bundle (Metro >= 0.82, package exports enabled with default conditions, which assert `react-native` but not `module`) imports `@js-joda/locale/slim` and `@js-joda/locale_en-us/slim`
+- **THEN** both resolve via the `react-native` condition to the slim ES module builds, and the bundle contains no full `likelySubtags` or `metaZones`
+
 ## MODIFIED Requirements
 
 ### Requirement: Stable generated files
-Generating the prebuilt packages SHALL leave the committed prebuilt package manifests and the
-committed `package.json` files of their entry directories (`slim/`, `slim-no-zone-names/`) unchanged,
+Generating the prebuilt packages SHALL leave the committed prebuilt package manifests (including the
+`exports` entries of `./data`, `./slim` and `./slim-no-zone-names`) and the
+committed `package.json` files of their entry directories (`data/`, `slim/`, `slim-no-zone-names/`)
+unchanged,
 unless the peer dependencies of `@js-joda/locale` or the list of entries changed. A version bump of
 `@js-joda/locale` alone SHALL NOT change them.
 
@@ -232,7 +246,7 @@ unless the peer dependencies of `@js-joda/locale` or the list of entries changed
 - **THEN** the second run produces no differences in the prebuilt package manifests and entry directories
 
 #### Scenario: Version bump of @js-joda/locale
-- **WHEN** the release tooling bumps `@js-joda/locale` from 5.3.1 to 5.4.0 and the prebuilt packages are generated
+- **WHEN** the release tooling bumps `@js-joda/locale` from 6.0.2 to 6.1.0 and the prebuilt packages are generated
 - **THEN** the prebuilt package manifests and entry directories are unchanged apart from the versions the release tooling set
 
 #### Scenario: Test run leaves the working tree clean

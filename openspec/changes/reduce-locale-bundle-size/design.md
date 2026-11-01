@@ -47,7 +47,8 @@ See proposal.md for the motivation. Relevant current state in `packages/locale`:
 
 **Non-Goals:**
 - Making the default imports smaller.
-- Slim mode in Node.js (size doesn't matter there) or with Node.js ESM resolution.
+- Slim mode in Node.js (size doesn't matter there; the slim entries resolve to the full builds for
+  `require` and ES module `import` alike, via the `default` condition of the `exports` map).
 - Removing `weekData` (~1 KB gzip, needed by `WeekFields` for every locale).
 - Trimming `ca-gregorian` or `timeZoneNames` content, or splitting the `.*` packages.
 - Fixing the empty `no` and `nn-no` prebuilt packages (wrong patterns in `prebuilt-packages.json`).
@@ -56,37 +57,44 @@ See proposal.md for the motivation. Relevant current state in `packages/locale`:
 ## Decisions
 
 1. **Entries of `@js-joda/locale`.**
-   - `src/slim.js`: `use(plug)`, the exports of today's entry, and `weekData` (bundled copy plus
-     `loadCldrData` for all three supplemental files, so Node.js with `cldr-data` gets everything).
+   - `src/slim.js`: built on `src/register.js` of `explicit-plugin-data-registration` (plug, exports,
+     data store) plus `weekData` (bundled copy plus `loadCldrData` for all three supplemental files,
+     so Node.js with `cldr-data` gets everything); it bundles no `likelySubtags` and no `metaZones`.
    - `src/js-joda-locale.js`: re-exports `src/slim.js` and registers the bundled `likelySubtags`
      and `metaZones`, as today.
    - `src/meta-zones.js`: registers the bundled `metaZones` through `registerLocaleData`.
    The default entry is therefore the slim entry plus data, and behaves exactly as today.
 
-2. **One shared module instance.** The ES module build uses one rollup run with three inputs
-   (`js-joda-locale`, `slim`, `meta-zones`): `dist/js-joda-locale.esm.js`, `dist/slim.esm.js`,
+2. **One shared module instance.** The ES module build uses one rollup run with the inputs of
+   `explicit-plugin-data-registration` plus `slim` and `meta-zones` (`register`, `js-joda-locale`,
+   `slim`, `meta-zones`): `dist/register.esm.js`, `dist/js-joda-locale.esm.js`, `dist/slim.esm.js`,
    `dist/meta-zones.esm.js`, and a shared chunk under `dist/chunks/` with the code, `cldrjs` and
-   `CldrCache`. A bundler that sees `@js-joda/locale`, `@js-joda/locale/slim` and
-   `@js-joda/locale/meta-zones` in one application includes the code once, installs the plugin once
-   and registers into one data store. The UMD `dist/js-joda-locale.js` and IIFE
+   `CldrCache`. `/slim` is the `register` input without the bundled supplemental data (only
+   `weekData`). A bundler that sees any of `@js-joda/locale`, `@js-joda/locale/register`,
+   `@js-joda/locale/slim` and `@js-joda/locale/meta-zones` in one application includes the code once,
+   installs the plugin once and registers into one data store. The UMD `dist/js-joda-locale.js` and IIFE
    `dist/js-joda-locale.min.js` stay as they are; new IIFE builds `dist/slim.min.js` (global
    `JSJodaLocale`, like the full build) and `dist/meta-zones.min.js` (registers through the global
    `JSJodaLocale`) serve `<script>` tags.
 
-3. **Entry directories instead of `exports` maps.** `@js-joda/locale/slim/package.json`:
+3. **Explicit `exports` entries plus entry directories.** `explicit-plugin-data-registration` adds a
+   permissive `exports` map (including `"./*": "./*"`) to the manifest, so the new entries are listed
+   explicitly with the same condition shape as the `/register` entries — key order `types`,
+   `react-native`, `module`, `default`:
    ```json
-   { "main": "../dist/js-joda-locale.js", "module": "../dist/slim.esm.js",
-     "types": "../typings/js-joda-locale.d.ts" }
+   "./slim":       { "types": "../typings/js-joda-locale.d.ts", "react-native": "../dist/slim.esm.js",
+                     "module": "../dist/slim.esm.js", "default": "../dist/js-joda-locale.js" },
+   "./meta-zones": { "types": "../typings/js-joda-locale.d.ts", "react-native": "../dist/meta-zones.esm.js",
+                     "module": "../dist/meta-zones.esm.js", "default": "../dist/js-joda-locale.js" }
    ```
-   and `@js-joda/locale/meta-zones/package.json` the same with `"module": "../dist/meta-zones.esm.js"`.
-   Bundlers (webpack, Vite, esbuild, rollup) resolve `module`; Node.js `require` resolves `main`, the
-   full UMD build, so in Node.js the slim entries are the full one: same instance, same behaviour as
-   today. Both directories are added to `files`. The manifest of `@js-joda/locale` gets no `exports`
-   map, so every existing deep import keeps resolving.
-   Alternative: `exports` maps. Rejected: they block deep imports not listed (e.g. extensionless
-   ones), which is a risk for a minor release; Node.js ESM support of slim is a non-goal.
-   Limitation: Node.js ESM does not resolve directory imports, so `import '@js-joda/locale/slim'` in
-   an `.mjs` file run by Node.js fails; documented, and the default import is the one to use there.
+   Bundlers (webpack, Vite, esbuild, rollup) resolve `module` and Metro resolves `react-native`, so
+   they get the slim ES module builds; Node.js resolves `default` for `require` and `import` alike —
+   the full UMD build, so in Node.js the slim entries are the full one: same instance, same behaviour
+   as today, and Node.js ES modules can import `@js-joda/locale/slim`. The entry directories
+   (`slim/package.json` with `main`, `module`, `types`, and `meta-zones/package.json` likewise) stay
+   for tools that ignore `exports` (webpack 4, TypeScript `moduleResolution: node`, Metro with package
+   exports disabled, CDNs); both are added to `files`. The `"./*": "./*"` pattern keeps every
+   existing deep import resolving.
 
 4. **Prebuilt package entries.** `cldr-data.ejs` renders three variants per package:
    - default (`index.*`): unchanged, imports `registerLocaleData` from `@js-joda/locale`, registers
@@ -98,11 +106,16 @@ See proposal.md for the motivation. Relevant current state in `packages/locale`:
    the global `JSJodaLocale`, the `meta-zones` import is left to a `<script>` tag of
    `@js-joda/locale/dist/meta-zones.min.js`). `utils/create_packages.js` writes `slim/package.json`
    and `slim-no-zone-names/package.json` into every package, with `main` pointing to `../dist/index.js`
-   (Node.js uses the full default entry, as in decision 3) and `module` to the slim ES module. The
-   package manifests stay unchanged; the entry directories are generated and committed like them.
-   The slim entries need `@js-joda/locale` 5.4.0 or later; with an older base the bundler fails to
-   resolve `@js-joda/locale/slim`, a clear build error. The peer range stays `>=5.0.0` for the default
-   entry; the README states the requirement of the slim entries.
+   (Node.js uses the full default entry, as in decision 3) and `module` to the slim ES module, and adds
+   `"./slim"` and `"./slim-no-zone-names"` to the `exports` map of each manifest with the same
+   condition shape as decision 3 (`react-native`/`module` → slim ES module build, `default` →
+   `../dist/index.js`). The entry directories are generated and committed like the manifests.
+   The slim entries need `@js-joda/locale` 6.1.0 or later (the version that lands
+   `explicit-plugin-data-registration`); with an older base the bundler fails to resolve
+   `@js-joda/locale/slim`, a clear build error. The peer range stays `>=5.0.0` for the default
+   entry; the README states the requirement of the slim entries. Combining explicit registration
+   (`@js-joda/locale/register` + `/data` entries) with slim data-only entries is not part of this
+   change: slim stays a side-effect mode on `/slim`, explicit mode uses the full `/data` entries.
 
 5. **likelySubtags subset rule.** For a prebuilt package with languages `L` (the language subtags of
    its expanded locales, e.g. `en` for `en`, `en-US`; `zh` for `zh`, `zh-Hant-TW`), keep the entries
@@ -146,20 +159,30 @@ See proposal.md for the motivation. Relevant current state in `packages/locale`:
    next to a `/slim` entry of another package), the zone ID is printed, as today when names are
    missing.
 
+   Precedence against the missing-data checks of `explicit-plugin-data-registration` (its decision 6):
+   the slim errors above are active only while neither the default entry nor
+   `@js-joda/locale/register` is loaded (`/register` registers the full supplemental data, which
+   turns them off); the explicit-mode missing-locale check names the `/data` entry of a prebuilt
+   package and is active only while the default entry is loaded nowhere; loading the default entry
+   anywhere turns both regimes off for the whole application.
+
 ## Risks / Trade-offs
 
 - [The default imports don't get smaller] → Intended for a minor release. README and CHANGELOG show
   the slim imports and the sizes; the follow-up on #421 explains it.
-- [Slim mode needs a bundler that reads `module`] → webpack, Vite, esbuild, rollup and Parcel do.
-  `<script>` users get the IIFE builds; Node.js uses the full builds.
+- [Slim mode needs a bundler that reads `module` or `react-native`] → webpack, Vite, esbuild, rollup
+  and Parcel read `module`, Metro reads `react-native` (decision 3), and the entry directories cover
+  older tools. `<script>` users get the IIFE builds; Node.js uses the full builds for `require` and
+  ES module `import` alike.
 - [Mixing slim and default imports, e.g. `@js-joda/locale/slim` with an old `@js-joda/locale_de`
   whose default entry imports `@js-joda/locale`] → Works, through the shared chunk, but bundles the
   full data. Documented.
 - [The ES module build of `@js-joda/locale` is now split into entry files and a chunk] → Bundlers
   handle relative imports; the examples package bundles the default and slim imports with esbuild.
-- [TypeScript resolves `@js-joda/locale/slim` through `slim/package.json` `types` with `node10` and
-  `bundler` resolution; `node16`/`nodenext` ESM resolution does not resolve directories] → Matches
-  the Node.js ESM limitation; documented.
+- [TypeScript with `node10` resolution resolves `@js-joda/locale/slim` through `slim/package.json`
+  `types`; `node16`/`nodenext`/`bundler` resolve it through the `types` condition of the `exports`
+  map] → Both work; Node.js ES module imports of `/slim` resolve to the full build via `default`
+  (decision 3), and the resolution matrix of `explicit-plugin-data-registration` documents the floors.
 - [Three variants per prebuilt package triple the number of bundles the release build produces] →
   `build-prebuilt` builds groups of packages in parallel processes instead of one sequential rollup
   run, so the build doesn't take about three times as long.

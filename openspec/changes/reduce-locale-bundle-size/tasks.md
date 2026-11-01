@@ -2,8 +2,10 @@
 
 Decisions (see `design.md`): the default entries stay unchanged; new opt-in entries
 `@js-joda/locale/slim` and `@js-joda/locale/meta-zones`, and per prebuilt package `/slim` and
-`/slim-no-zone-names`; entry directories with `package.json` instead of `exports` maps; in Node.js the
-slim entries resolve to the full builds; `registerLocaleData` merges `likelySubtags` parts until the
+`/slim-no-zone-names`; explicit `exports` entries (conditions `types`/`react-native`/`module`/`default`,
+as in `explicit-plugin-data-registration`, which lands first) plus entry directories with `package.json`
+for tools that ignore `exports`; in Node.js the slim entries resolve to the full builds for `require`
+and ES module `import` alike; `registerLocaleData` merges `likelySubtags` parts until the
 full file is registered; clear errors only in slim mode. Minor release. All paths below are relative
 to `packages/locale` unless noted.
 
@@ -14,8 +16,8 @@ to `packages/locale` unless noted.
 ## 2. Entries of @js-joda/locale
 
 - [ ] 2.1 Add `src/slim.js` (plugin, exports, `weekData`, the three `loadCldrData` calls), make `src/js-joda-locale.js` re-export it and register the bundled `likelySubtags` and `metaZones`, and add `src/meta-zones.js` (design decision 1). Verify `npm test` passes unchanged
-- [ ] 2.2 In `rollup.config.js`, build the ES modules from the three inputs with a shared chunk under `dist/chunks/`, keep `dist/js-joda-locale.js` (UMD) and `dist/js-joda-locale.min.js` as they are, and add IIFE builds `dist/slim.min.js` and `dist/meta-zones.min.js` (design decision 2). Verify `npm run build-dist` produces these files and that `dist/js-joda-locale.js` is unchanged apart from the banner
-- [ ] 2.3 Add `slim/package.json` and `meta-zones/package.json` (design decision 3) and add both directories to `files` in `package.json`. Verify with `npm pack --dry-run` that they are included, and with a test that `require('@js-joda/locale/slim')` returns the same module as `require('@js-joda/locale')`
+- [ ] 2.2 In `rollup.config.js`, build the ES modules from the four inputs (`register`, `js-joda-locale`, `slim`, `meta-zones` — the setup of `explicit-plugin-data-registration` plus `slim` and `meta-zones`) with a shared chunk under `dist/chunks/`, keep `dist/js-joda-locale.js` (UMD) and `dist/js-joda-locale.min.js` as they are, and add IIFE builds `dist/slim.min.js` and `dist/meta-zones.min.js` (design decision 2). Verify `npm run build-dist` produces these files, that `dist/slim.esm.js` contains no `likelySubtags` or `metaZones`, and that `dist/js-joda-locale.js` is unchanged apart from the banner
+- [ ] 2.3 Add `slim/package.json` and `meta-zones/package.json`, the `"./slim"` and `"./meta-zones"` entries in the `exports` map (conditions `types`/`react-native`/`module`/`default`, design decision 3), and add both directories to `files` in `package.json`. Verify with `npm pack --dry-run` that they are included; with a test that `require('@js-joda/locale/slim')` and `import('@js-joda/locale/slim')` in Node.js both return the same module as `require('@js-joda/locale')`; and that Metro with default conditions (React Native >= 0.79, package exports enabled) resolves `./slim` to `dist/slim.esm.js`
 - [ ] 2.4 Check that `typings/js-joda-locale.d.ts` serves `@js-joda/locale/slim` through `types`. Verify with a test in `test/typescript_definitions` that imports `Locale` from `@js-joda/locale/slim`
 
 ## 3. Registering data in CldrCache
@@ -34,14 +36,14 @@ to `packages/locale` unless noted.
 - [ ] 5.2 Add a test that, for every package in `prebuilt-packages.json` and every expanded locale, resolves the locale with `cldrjs` against the subset and the full `likelySubtags` (maximized and minimized language id, and the bundle of each `main/*` file) and expects equal results. Also require every package to expand to at least one locale, except the known-empty `no` and `nn-no`. Verify it passes; widen the rule if it doesn't
 - [ ] 5.3 In `rollup-build-packages-config.js`, build `slim` and `slim-no-zone-names` as `.js` (UMD), `.esm.js` and `.min.js` (IIFE, `@js-joda/locale/slim` → global `JSJodaLocale`) next to the default outputs. Verify `npm run build-prebuilt` produces nine bundles per package and that `index.*` are unchanged apart from the banner
 - [ ] 5.4 Run the prebuilt build in parallel: split the rollup configs of `rollup-prebuilt.config.js` into groups of packages and build the groups in parallel processes (one per available CPU, at most the number of packages), failing the script when any group fails. The three variants triple the number of bundles; this keeps `npm run build-prebuilt` from taking about three times as long. Verify the output in `dist/prebuilt/` is the same as with the sequential build, that a broken package makes the script fail, and compare the duration before and after in the PR
-- [ ] 5.5 In `utils/create_packages.js`, copy the new bundles plus maps and write `slim/package.json` and `slim-no-zone-names/package.json` (`main` → `../dist/index.js`, `module` → the slim ES module); leave the manifests unchanged. Regenerate with `npm run create-packages` and commit the 66 entry directories. Verify a second run leaves `git status` clean (spec "Stable generated files")
+- [ ] 5.5 In `utils/create_packages.js`, copy the new bundles plus maps and write `slim/package.json` and `slim-no-zone-names/package.json` (`main` → `../dist/index.js`, `module` → the slim ES module) and add `"./slim"` / `"./slim-no-zone-names"` to each manifest's `exports` map (condition shape of design decision 3; the `./data` entries of `explicit-plugin-data-registration` are already in it). Regenerate with `npm run create-packages` and commit the entry directories (`data/`, `slim/`, `slim-no-zone-names/`). Verify a second run leaves `git status` clean (spec "Stable generated files")
 - [ ] 5.6 Extend `test/prebuiltPackagesTest_mochaOnly.js`: every package has both entry directories, every file they point to is produced by the build config, and the slim templates import only `registerLocaleData` from `@js-joda/locale/slim` and `@js-joda/locale/meta-zones`. Verify the test fails when one entry directory is removed
 - [ ] 5.7 Check that `rollup-examples.config.js` and `test/cldr-browser-setup.js` still work, and add a browser test with the slim IIFE builds (spec "Script tags"). Verify `npm run build-examples` and `npm run test-browser` pass
 - [ ] 5.8 Update `utils/README_package.template.md` with the slim imports and `<script>` paths. Verify the regenerated `packages/en-us/README.md` shows them
 
 ## 6. Documentation
 
-- [ ] 6.1 Update `packages/locale/README.md`: slim mode with the imports for one and several locales, `/slim-no-zone-names`, sizes, the errors, that slim entries need `@js-joda/locale` 5.4.0 or later and a bundler (Node.js uses the full builds, Node.js ESM can't import the slim directories), and that mixing slim and default imports works but bundles the full data. Verify the code samples bundle and run
+- [ ] 6.1 Update `packages/locale/README.md`: slim mode with the imports for one and several locales, `/slim-no-zone-names`, sizes, the errors, that slim entries need `@js-joda/locale` 6.1.0 or later and a bundler that reads `module` or `react-native` (Node.js `require` and ES module `import` alike resolve the slim entries to the full builds via the `default` condition of the `exports` map), and that mixing slim and default imports works but bundles the full data. Reference the resolution matrix documented for `explicit-plugin-data-registration`. Verify the code samples bundle and run
 - [ ] 6.2 Add a `locale` entry to the root `CHANGELOG.md` with the new entries and the size numbers from task 7.2. Verify it follows the format of the existing entries
 
 ## 7. Integration

@@ -16,6 +16,14 @@ half of that is CLDR data most applications never use:
 The change must be a minor release: every existing import and every combination of old and new
 packages keeps working unchanged.
 
+## Depends on / Ordering
+
+This change depends on `explicit-plugin-data-registration` and SHALL be implemented after it has
+landed (`@js-joda/locale` 6.1.0): it reuses that change's build setup (ES module inputs with a shared
+chunk), adds its `/slim` and `/meta-zones` entries to the `exports` maps with the same conditions
+(including `react-native`), and builds `/slim` on the `register` input without the bundled
+supplemental data. The slim entries of the prebuilt packages need `@js-joda/locale` 6.1.0 or later.
+
 ## What Changes
 
 - New opt-in **slim** mode for bundlers. Nothing changes for existing imports:
@@ -40,10 +48,14 @@ packages keeps working unchanged.
   parts are ignored. Every other path keeps the rule that the first registration wins.
 - Clear errors, in slim mode only: `z`/`zzzz`/`v` without `metaZones` names the `/slim` entry as the
   fix; a locale whose language has no registered data throws instead of falling back to English.
-- In Node.js, the slim entries resolve to the full builds (size doesn't matter there), so Node.js
+- In Node.js, the slim entries resolve to the full builds (size doesn't matter there; `require` and
+  ES module `import` alike, both via the `default` condition of the `exports` map), so Node.js
   behaviour does not change.
-- No `exports` maps: the new entries are small directories with a `package.json` (`main`, `module`,
-  `types`), so existing deep imports keep resolving exactly as today.
+- The new entries are explicit entries of the `exports` map that `explicit-plugin-data-registration`
+  adds (conditions `types`, `react-native`, `module`, `default` — `module`/`react-native` point at
+  the slim ES module builds, `default` at the full UMD build), plus small entry directories with a
+  `package.json` (`main`, `module`, `types`) for tools that ignore `exports`. Every existing deep
+  import keeps resolving via `"./*": "./*"`.
 
 Rejected: moving `likelySubtags` and `metaZones` out of the default `@js-joda/locale` entry (breaks
 older prebuilt packages, would need a major release), and taking the locale data from the browser's
@@ -74,4 +86,5 @@ older prebuilt packages, would need a major release), and taking the locale data
   esbuild sample for slim mode
 - Docs: `packages/locale/README.md`, root `CHANGELOG.md`, `typings/js-joda-locale.d.ts`
 - Release: minor version of `@js-joda/locale` and the prebuilt packages; the slim entries of the
-  prebuilt packages need `@js-joda/locale` 5.4.0 or later
+  prebuilt packages need `@js-joda/locale` 6.1.0 or later (the version that lands
+  `explicit-plugin-data-registration`)
