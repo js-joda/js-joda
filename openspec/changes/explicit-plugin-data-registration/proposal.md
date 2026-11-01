@@ -41,9 +41,13 @@ entry (so that importing it never registers anything).
 - Script tags: new minified register and data builds with the globals `JSJodaTimezone.registerTimeZoneData`,
   `JSJodaTimezoneData.tzdbData`, `JSJodaLocale.registerLocaleData` and `JSJodaLocaleData_<locale>.localeData`.
 - `@js-joda/timezone`, `@js-joda/locale` and the prebuilt packages get a permissive `exports` map
-  (`module` condition for bundlers, `default` for Node.js, plus `"./*"`), because Node.js ES modules
+  (`module` condition for bundlers, `react-native` for Metro/React Native, which asserts
+  `react-native` but not `module`, `default` for Node.js, plus `"./*"`), because Node.js ES modules
   can't import subpath directories without one. Existing deep imports keep resolving. In Node.js, the
   `/register` entries resolve to the existing UMD builds, so `require` and `import` share one module.
+  No `engines` field is set; the READMEs document the resolution matrix (Node.js >= 12.7 for subpath
+  `import`, >= 12.20 for the `"./*"` deep-import pattern, `require` via entry directories on older
+  Node.js).
 - Registration is idempotent by content key, not by object or function reference: tz data by its
   version and range, locale data by its CLDR path. Explicitly registered tz data replaces data that a
   side-effect entry loaded; a second, conflicting explicit registration throws a `DateTimeException`

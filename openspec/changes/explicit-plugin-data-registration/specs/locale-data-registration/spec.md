@@ -125,7 +125,8 @@ the code and one data store, in Node.js (with `require` and `import`) and when b
 
 ### Requirement: Entry resolution and types
 The register, `cldr-data` and prebuilt `/data` entries SHALL resolve with `require` and `import` in
-Node.js and in bundlers, through an `exports` map and through entry directories for tools that ignore
+Node.js and in bundlers, through an `exports` map (conditions `types`, `react-native`, `module`,
+`default`; deliberately no `import` condition) and through entry directories for tools that ignore
 `exports`, and SHALL have TypeScript declarations. Bundlers SHALL get the ES module builds. The register
 and prebuilt `/data` entries SHALL also ship minified builds for `<script>` tags (globals
 `JSJodaLocale.registerLocaleData` and `JSJodaLocaleData_<locale>.localeData`, e.g.
@@ -142,3 +143,7 @@ and prebuilt `/data` entries SHALL also ship minified builds for `<script>` tags
 #### Scenario: Script tags
 - **WHEN** a page loads the minified `@js-joda/core`, the minified register entry of `@js-joda/locale` and the minified `/data` entry of `@js-joda/locale_de`, and registers the data with the exposed register function
 - **THEN** formatting with `MMMM` and `Locale.GERMAN` works
+
+#### Scenario: React Native
+- **WHEN** a React Native bundle (Metro >= 0.82, package exports enabled with default conditions, which assert `react-native` but not `module`) imports `@js-joda/locale/register` and `@js-joda/locale_de/data`, with `cldr-data` installed and without bundler configuration for it
+- **THEN** both resolve to the ES module builds via the `react-native` condition, the bundle builds without errors or warnings about `cldr-data` or `fs` and contains no `cldr-data` module, and registering the data makes formatting with `MMMM` and `Locale.GERMAN` work

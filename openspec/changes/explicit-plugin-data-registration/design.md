@@ -161,7 +161,7 @@ package gets one of this shape:
 ```json
 "exports": {
   ".":          { "types": "./typings/js-joda-locale.d.ts", "module": "./dist/js-joda-locale.esm.js", "default": "./dist/js-joda-locale.js" },
-  "./register": { "types": "./typings/register.d.ts",       "module": "./dist/register.esm.js",       "default": "./dist/js-joda-locale.js" },
+  "./register": { "types": "./typings/register.d.ts", "react-native": "./dist/register.esm.js", "module": "./dist/register.esm.js", "default": "./dist/js-joda-locale.js" },
   "./package.json": "./package.json",
   "./*": "./*"
 }
@@ -170,21 +170,38 @@ package gets one of this shape:
 - The `module` condition (webpack, esbuild, rollup, Vite) gives bundlers the ES module builds. Node.js
   doesn't know `module` and takes `default`, the UMD build, for `require` and `import`. There is
   deliberately no `import` condition, which would give Node.js an ES module copy next to the CJS one.
+- The `react-native` condition points at the same ES module build as `module`. Metro (React Native
+  >= 0.79 enables package exports by default) asserts `react-native` but not `module`, so without
+  this condition it falls through to `default` and bundles the UMD build — for `@js-joda/locale/register`
+  that puts the default build's `require('cldr-data')` back into the bundle (#789). No other resolver
+  asserts `react-native`, so Node.js and the bundlers are unaffected. Key order is `types`,
+  `react-native`, `module`, `default` (most specific first).
 - `"./*": "./*"` keeps every existing deep import (`dist/js-joda-timezone-10-year-range`, `dist/*.min.js`,
   …) working.
 - The entry directories (`register/package.json` etc. with `main`, `module`, `types`) stay for tools
-  that ignore `exports` (webpack 4, TypeScript `moduleResolution: node`).
+  that ignore `exports` (webpack 4, TypeScript `moduleResolution: node`, Metro with package exports
+  disabled, CDNs).
 - `@js-joda/timezone`: `./register`, `./data`, `./data/<range>`. `data/` already holds `data/packed/`
   for tzdb-builder, so `files` lists the entry manifests explicitly (`data/package.json`,
   `data/*-range/package.json`) and keeps publishing no packed files. `./data*` entries have no
-  shared state, so `default` points at their CommonJS builds.
-- `@js-joda/locale`: `./register` and `./cldr-data` (only `default`, Node.js only).
-- prebuilt packages: `.` and `./data`, with `dist/data.{js,esm.js,min.js}`. The generated `/data`
+  shared state, so `default` points at their CommonJS builds (`react-native`/`module` at the ES
+  module builds).
+- `@js-joda/locale`: `./register` (with `react-native`/`module` pointing at the ES module build) and
+  `./cldr-data` (only `default`, Node.js only).
+- prebuilt packages: `.` and `./data`, with `dist/data.{js,esm.js,min.js}` (`react-native`/`module`
+  point at the ES module build). The generated `/data`
   module exports `localeData` and has no imports. The default prebuilt entry keeps calling
   `registerLocaleData(path, data)`, so it works with `@js-joda/locale` from 5.0.0 on.
 - Script-tag globals: `JSJodaTimezone.registerTimeZoneData`, `JSJodaTimezoneData.tzdbData`,
   `JSJodaLocale.registerLocaleData` and `JSJodaLocaleData_<locale>.localeData` (e.g.
   `JSJodaLocaleData_en_us`), so that several locales can be loaded on one page.
+- Resolution summary, documented in the READMEs (no `engines` field is set): Node.js >= 12.7 resolves
+  the named entries for `require` and `import`, both to `default`; the `"./*"` pattern needs Node.js
+  >= 12.20 (patterns landed in 12.20/14.13), below that deep imports throw
+  `ERR_PACKAGE_PATH_NOT_EXPORTED` (EOL versions, documented as unsupported). Node.js < 12.7 ignores
+  `exports`: `require` of a subpath works through the entry directories, `import` of a subpath
+  directory fails with `ERR_UNSUPPORTED_DIR_IMPORT`. Bundlers resolve via `module`, Metro via
+  `react-native`, Node.js via `default`, script tags via the minified builds and globals.
 
 ## Risks / Trade-offs
 
@@ -192,8 +209,13 @@ package gets one of this shape:
   and `"./package.json"` cover every published file. Verify the existing samples and deep imports in
   `packages/examples` resolve unchanged.
 - [Bundlers that don't know the `module` condition get the UMD build: it works, but `/register` then
-  brings back `cldr-data` and the full tz data] → The common bundlers support it; the entry directories
-  also give older tools the ES module build through `module`.
+  brings back `cldr-data` and the full tz data] → The common bundlers support `module`; the
+  `react-native` condition covers Metro (which asserts `react-native`, not `module`); the entry
+  directories also give older tools the ES module build through `module`.
+- [Node.js 12.7–12.19 does not support the `"./*"` pattern, so deep imports of published files throw
+  `ERR_PACKAGE_PATH_NOT_EXPORTED` there; Node.js < 12.7 ESM can't import subpath directories at all]
+  → Both are EOL; documented in the READMEs' resolution matrix. `require` keeps working on old Node.js
+  through the entry directories. No `engines` field is set, so nothing fails at install time.
 - [A library that imports the default `@js-joda/locale` brings `require('cldr-data')` back into a
   browser bundle, and turns off the missing-locale check for the whole app] → Document it. Libraries
   should import `/register` and leave registration to the app.

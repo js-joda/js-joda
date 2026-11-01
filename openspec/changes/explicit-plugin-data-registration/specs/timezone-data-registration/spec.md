@@ -135,7 +135,8 @@ Existing deep imports of published files SHALL keep resolving after the `exports
 
 ### Requirement: Entry resolution and types
 The register and data entries SHALL resolve with `require` and `import` in Node.js and in bundlers,
-through an `exports` map and through entry directories for tools that ignore `exports`, and SHALL have
+through an `exports` map (conditions `types`, `react-native`, `module`, `default`; deliberately no
+`import` condition) and through entry directories for tools that ignore `exports`, and SHALL have
 TypeScript declarations for `registerTimeZoneData` and `tzdbData`. Bundlers SHALL get the ES module
 builds; Node.js SHALL get one module for `require` and `import`. Each entry SHALL also ship a minified
 build for `<script>` tags (globals `JSJodaTimezone.registerTimeZoneData` and `JSJodaTimezoneData.tzdbData`).
@@ -155,3 +156,7 @@ build for `<script>` tags (globals `JSJodaTimezone.registerTimeZoneData` and `JS
 #### Scenario: Script tags
 - **WHEN** a page loads the minified `@js-joda/core`, then the minified register and data entries of `@js-joda/timezone`, and calls the register function exposed by the register script with the data exposed by the data script
 - **THEN** `ZoneId.of('Europe/Berlin')` works
+
+#### Scenario: React Native
+- **WHEN** a React Native bundle (Metro >= 0.82, package exports enabled with default conditions, which assert `react-native` but not `module`) imports `@js-joda/timezone/register` and `@js-joda/timezone/data`
+- **THEN** both resolve to the ES module builds via the `react-native` condition, the register entry contains no packed tz data, and `registerTimeZoneData(tzdbData)` makes `ZoneId.of('Europe/Berlin')` work

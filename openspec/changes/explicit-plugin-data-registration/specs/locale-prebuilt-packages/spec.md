@@ -35,9 +35,9 @@ so that it works with every `@js-joda/locale` release in its peer range (`>=5.0.
 
 ### Requirement: Exports map
 Each prebuilt package manifest SHALL have an `exports` map with the entries `.` and `./data`, each with
-a `types`, a `module` (ES module build) and a `default` (CommonJS/UMD build) condition, plus
-`"./package.json"` and `"./*": "./*"`, so that the entries resolve with `import` in Node.js and every
-published file stays importable.
+a `types`, a `react-native` and a `module` (ES module build) and a `default` (CommonJS/UMD build)
+condition, plus `"./package.json"` and `"./*": "./*"`, so that the entries resolve with `import` in
+Node.js and every published file stays importable.
 
 #### Scenario: Node.js ES module import of the data entry
 - **WHEN** a Node.js ES module runs `import { localeData } from '@js-joda/locale_de/data'`
@@ -46,6 +46,10 @@ published file stays importable.
 #### Scenario: Deep imports keep working
 - **WHEN** an application imports `@js-joda/locale_de/dist/index.min.js` or `@js-joda/locale_de/package.json`
 - **THEN** the import resolves as before this change
+
+#### Scenario: React Native resolves the data entry to the ES module build
+- **WHEN** a React Native bundle (Metro >= 0.82, package exports enabled with default conditions, which assert `react-native` but not `module`) imports `@js-joda/locale_de/data`
+- **THEN** it resolves to `dist/data.esm.js` via the `react-native` condition, and the module contains no `import` or `require` of another package
 
 ## MODIFIED Requirements
 
