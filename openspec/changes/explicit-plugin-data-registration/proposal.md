@@ -16,63 +16,71 @@ nothing to check either. Since core 6.0 / locale 5.0 this has caused the problem
   both data sets.
 
 In #791 we agreed to make loading explicit: data packages export values, and the app registers them.
-This change follows that proposal with three deviations: `registerTimeZoneData` lives in
-`@js-joda/timezone/register` instead of `@js-joda/core` (design decision 1), the tz data value is
-called `tzdbData` instead of `fullTimezoneDb` (one name for the full data and every range), and the
-locale data value is exported from a `/data` subpath of each prebuilt package instead of its default
-entry (so that importing it never registers anything).
+This change implements that as the **only** mode, in a **major release** (decided 2026-11-01): the
+side-effect entries are removed, `ZoneRulesProvider.loadTzdbData()` is removed, and the root entries
+of `@js-joda/timezone` and `@js-joda/locale` load no data and no longer use `cldr-data`
+automatically.
 
 ## What Changes
 
-- New opt-in **explicit mode**. Existing imports keep working, so the change can be a minor release.
-  The one behaviour change of an existing API is `ZoneRulesProvider.loadTzdbData()`, see below.
-- `@js-joda/timezone/register`: plugs the tzdb zone rules into core like today, and exports
-  `registerTimeZoneData(data)`. In bundles it contains no tz data.
+- **Major release, explicit mode only.** The root of `@js-joda/timezone` and `@js-joda/locale` loads
+  no data; `@js-joda/timezone/register`, the side-effect `dist` builds of `@js-joda/timezone`
+  (including the `-range` and `-empty` builds) and the `/data` subpath of the prebuilt packages are
+  removed.
+- `@js-joda/timezone` (root): plugs the tzdb zone rules into `@js-joda/core` as today and exports
+  `registerTimeZoneData(data)`. Its builds contain no tz data.
 - `@js-joda/timezone/data` and `@js-joda/timezone/data/<range>` (`4-year-range`, `10-year-range`,
-  `60-year-range`, `300-year-range`, `lifetime-range`): export `tzdbData` as a plain value and have no
-  side effects.
-- `@js-joda/locale/register`: the same API as `@js-joda/locale` (`Locale`, `WeekFields`,
-  `registerLocaleData`). Its bundler build has no reference to `cldr-data`.
-- `registerLocaleData()` also accepts locale data objects (CLDR path → JSON), several at once. The
-  existing `registerLocaleData(path, data)` stays.
+  `60-year-range`, `300-year-range`, `lifetime-range`): export `tzdbData` as a plain value and have
+  no side effects.
+- `@js-joda/locale` (root): exports `Locale`, `WeekFields` and `registerLocaleData` and plugs into
+  core as today. Its builds have no reference to `cldr-data` and register nothing on import. Which
+  supplemental data the root still bundles is specified by `reduce-locale-bundle-size` (only
+  `weekData` stays), released in the same major.
+- `registerLocaleData()` accepts locale data objects (CLDR path → JSON), zone data values (the
+  `zoneNames` of a prebuilt package, `metaZones` of `@js-joda/locale/meta-zones`) and sources, several
+  at once. The existing `registerLocaleData(path, data)` stays.
 - `@js-joda/locale/cldr-data` (Node.js only): exports `cldrDataSource`, which an app registers to
   load all locales from the installed `cldr-data` package on first use.
-- Each prebuilt package gets a `/data` entry that exports `localeData` and imports nothing.
-- Script tags: new minified register and data builds with the globals `JSJodaTimezone.registerTimeZoneData`,
-  `JSJodaTimezoneData.tzdbData`, `JSJodaLocale.registerLocaleData` and `JSJodaLocaleData_<locale>.localeData`.
-- `@js-joda/timezone`, `@js-joda/locale` and the prebuilt packages get a permissive `exports` map
-  (`module` condition for bundlers, `react-native` for Metro/React Native, which asserts
-  `react-native` but not `module`, `default` for Node.js, plus `"./*"`), because Node.js ES modules
-  can't import subpath directories without one. Existing deep imports keep resolving. In Node.js, the
-  `/register` entries resolve to the existing UMD builds, so `require` and `import` share one module.
-  No `engines` field is set; the READMEs document the resolution matrix (Node.js >= 12.7 for subpath
-  `import`, >= 12.20 for the `"./*"` deep-import pattern, `require` via entry directories on older
-  Node.js).
+- `@js-joda/locale/meta-zones`: exports `metaZones` as a plain value that the app registers together
+  with the zone names of a prebuilt package (only needed for `z`, `zzzz`, `v`).
+- Each prebuilt package root exports `localeData` and `zoneNames` and imports nothing, so importing
+  it never registers anything. If the tree-shaking test with esbuild and webpack shows that
+  `zoneNames` is not dropped when unused, `zoneNames` moves to a `/zone-names` subpath instead.
+- `ZoneRulesProvider.loadTzdbData()` is removed; `registerTimeZoneData` is the only way to register
+  tz data. `packages/core` never referenced `loadTzdbData` (the plugin added it in `plug.js`), so
+  core is unchanged.
+- Script tags use the same explicit model: the data scripts only set a global, and an inline script
+  calls the register functions (`JSJodaTimezone.registerTimeZoneData(JSJodaTimezoneData.tzdbData)`,
+  `JSJodaLocale.registerLocaleData(JSJodaLocaleData_de.localeData, …)`). Each prebuilt IIFE build
+  gets a unique global (e.g. `JSJodaLocaleData_en_us`).
 - Registration is idempotent by content key, not by object or function reference: tz data by its
-  version and range, locale data by its CLDR path. Explicitly registered tz data replaces data that a
-  side-effect entry loaded; a second, conflicting explicit registration throws a `DateTimeException`
-  that names both data sets.
-- **Behaviour change:** `ZoneRulesProvider.loadTzdbData(data)` registers explicitly. It no longer
-  appends: loading the same data twice is a no-op, data loaded after `@js-joda/timezone` replaces the
-  bundled data instead of being merged into it, and loading two different data sets throws.
-- Missing data in explicit mode throws errors that name what to register (in bundles; in Node.js the
-  `/register` entries behave like the default entries).
-- The existing side-effect entries (`@js-joda/timezone`, its `dist/*-range` files, `@js-joda/locale`,
-  `@js-joda/locale_<locale>`) keep their behaviour. Internally they become small adapters over the
-  same registration.
-- Docs: importing `@js-joda/timezone` (either mode) is needed to print or parse localized time zone
-  names with `@js-joda/locale` (#791).
+  version and range, locale data by its CLDR path. A second registration with the same key is a
+  no-op; a second registration with a different key throws a `DateTimeException` that names both
+  data sets, and the first data stays in use.
+- Missing data throws errors that name exactly what to register, for `import` and for `<script>`
+  tags alike.
+- Packages get an `exports` map (conditions `types`, `react-native`, `module`, `default` on every
+  entry including `.`, deliberately no `import` condition, plus `"./package.json"` and
+  `"./*": "./*"`), because Node.js ES modules can't import subpath directories without one. Node.js
+  gets one module for `require` and `import` alike; bundlers and Metro get the ES module builds, so
+  there is one copy of the code and one data store even under React Native. No `engines` field is
+  set; the READMEs document the resolution matrix (named entries from Node.js >= 12.16 for
+  `require` and >= 12.17 for `import`, the `"./*"` pattern from >= 12.20).
+- **Hoisting:** ES modules evaluate imports before the importing module's body, so an app registers
+  in a setup module that is imported first. Resolving a region-based zone at module evaluation time
+  before registration throws the missing-data error. The docs show the setup-module pattern; there
+  is no `/auto` convenience entry.
+- Docs, examples and tests: every doc, sample and example in the repo uses the new API,
+  `packages/examples` passes against it, and a migration guide with before/after snippets (ESM,
+  CommonJS, script tags, Node.js with `cldr-data`, React Native) is added. See the spec delta
+  `repo-documentation-and-migration`.
 
 ### Usage
 
 ```js
-// Time zones: today
+// Time zones
 import { ZoneId } from '@js-joda/core';
-import '@js-joda/timezone';                         // side effect: loads data, patches core
-
-// Time zones: explicit
-import { ZoneId } from '@js-joda/core';
-import { registerTimeZoneData } from '@js-joda/timezone/register';
+import { registerTimeZoneData } from '@js-joda/timezone';
 import { tzdbData } from '@js-joda/timezone/data';  // or '@js-joda/timezone/data/10-year-range'
 
 registerTimeZoneData(tzdbData);
@@ -80,65 +88,81 @@ ZoneId.of('Europe/Berlin');
 ```
 
 ```js
-// Locales in a browser: today (import order matters, the copies must match)
-import { Locale } from '@js-joda/locale';
-import '@js-joda/locale_en';
-import '@js-joda/locale_de';
+// Locales in a browser, bundler or Node.js
+import { Locale, registerLocaleData } from '@js-joda/locale';
+import { localeData as en, zoneNames as enZones } from '@js-joda/locale_en-us';
+import { metaZones } from '@js-joda/locale/meta-zones';
 
-// Locales in a browser: explicit
-import { Locale, registerLocaleData } from '@js-joda/locale/register';
-import { localeData as en } from '@js-joda/locale_en/data';
-import { localeData as de } from '@js-joda/locale_de/data';
-
-registerLocaleData(en, de);                         // order doesn't matter, duplicates are ignored
+registerLocaleData(en);                    // order doesn't matter, duplicates are ignored
+registerLocaleData(enZones, metaZones);    // only needed for z, zzzz, v
 ```
 
 ```js
-// Node.js with all locales from cldr-data: explicit
-import { registerLocaleData } from '@js-joda/locale/register';
+// Node.js with all locales from cldr-data
+import { registerLocaleData } from '@js-joda/locale';
 import { cldrDataSource } from '@js-joda/locale/cldr-data';
 
 registerLocaleData(cldrDataSource);
+```
+
+Script tags: load core, then the plugin code, then the data scripts in any order, then an inline
+script that calls the register functions:
+
+```html
+<script src="js-joda.min.js"></script>
+<script src="js-joda-timezone.min.js"></script>       <!-- code only, no data -->
+<script src="js-joda-timezone-data.min.js"></script>  <!-- sets JSJodaTimezoneData only -->
+<script>
+  JSJodaTimezone.registerTimeZoneData(JSJodaTimezoneData.tzdbData);
+</script>
 ```
 
 ## Capabilities
 
 ### New Capabilities
 - `timezone-data-registration`: how tz data reaches `@js-joda/timezone` — the data entries, the
-  register entry, idempotency and conflicts, the error when no data is registered, and the
-  compatibility of the side-effect entries.
-- `locale-data-registration`: how CLDR data reaches `@js-joda/locale` — the register entry, data
-  objects and the `cldr-data` source, idempotency, the error for a locale without data, and the
-  compatibility of the default entry.
+  `registerTimeZoneData` export of the root entry, idempotency and conflicts, the error when no
+  data is registered, and the hoisting/setup-module rule.
+- `locale-data-registration`: how CLDR data reaches `@js-joda/locale` — the `registerLocaleData`
+  export of the root entry, data objects, zone data values and the `cldr-data` source, idempotency,
+  and the error for a locale without data.
+- `repo-documentation-and-migration`: every doc, sample, example and test in the repo uses the new
+  API, `packages/examples` passes against it, and a migration guide exists.
 
 ### Modified Capabilities
-- `locale-prebuilt-packages`: every prebuilt package gets a side-effect free `/data` entry and an
-  `exports` map, and the "Stable generated files" requirement covers the generated `data/` entry
-  directory. The default entry keeps registering through `registerLocaleData(path, data)`, so the peer
-  range on `@js-joda/locale` stays `>=5.0.0`.
+- `locale-prebuilt-packages`: each prebuilt package root exports `localeData` and `zoneNames` with
+  no imports and no registration, and gets an `exports` map. The peer range on `@js-joda/locale`
+  becomes `>=7.0.0`.
 
 ## Impact
 
-- `packages/timezone`: new `src/register.js` and data entry modules, `TzdbZoneRulesProvider`
-  (registration by key instead of appending), `rollup.config.js`, new `register/` and `data/`
-  entry directories, the `exports` map and `files` list, and `typings/js-joda-timezone.d.ts` (which
-  exports nothing today).
-- `packages/locale`: new `src/register.js` and `src/cldr-data.js`. `format/cldr/CldrCache.js` gains a
-  data source seam, so `require('cldr-data')` only exists behind the Node-only entry and the default
-  entry. Also `CldrDateTimeTextProvider.js` (`getAvailableLocales`), `rollup.config.js`, the typings, and
-  `utils/cldr-data.ejs` plus `utils/create_packages.js` for the prebuilt `/data` entries, and the
-  `exports` map. The 33 prebuilt packages get a `data/` directory and an `exports` map.
-- `packages/examples`: samples for explicit mode (CJS, ESM, TypeScript, and a browser bundle that
-  checks no `cldr-data` is included).
-- Docs: the timezone and locale READMEs, `esdoc/manual`, root `CHANGELOG.md`.
-- Release: minor versions of `@js-joda/timezone`, `@js-joda/locale` and the prebuilt packages; core
-  is unchanged.
-- Ordering / dependency: this change lands first. The pending change `reduce-locale-bundle-size`
-  depends on it and is implemented after it: it reuses this change's build setup (ES module inputs
-  with a shared chunk, UMD kept), adds its `/slim` and `/meta-zones` entries to these `exports` maps
-  with the same conditions (including `react-native`), and builds `/slim` on the `register` input
-  without the bundled supplemental data; see design.md decision 7 and task 6.3 for how the two fit
-  together.
+- `packages/timezone`: `src/js-joda-timezone.js` becomes the side-effect free root (plug plus the
+  `registerTimeZoneData` export); `TzdbZoneRulesProvider` registers by key instead of appending and
+  `loadTzdbData` is removed; the side-effect `dist` builds (the data-carrying `js-joda-timezone.js`,
+  the `-range` and `-empty` builds) are removed; new data entry modules export `tzdbData`;
+  `rollup.config.js`, the `exports` map and `files` list, and the typings.
+- `packages/locale`: the root entry has no `cldr-data` reference and registers nothing on import;
+  new `src/cldr-data.js` and `src/meta-zones.js`; `format/cldr/CldrCache.js` gains the data source
+  seam; `CldrDateTimeTextProvider.js` (`getAvailableLocales`); `rollup.config.js`, the typings,
+  `utils/cldr-data.ejs` plus `utils/create_packages.js` for the prebuilt root exports, and the
+  `exports` map.
+- `packages/examples`: all existing samples are updated to the new API, plus new samples for
+  explicit registration (CommonJS, ES module, TypeScript, an esbuild browser bundle that must not
+  contain `cldr-data`, and script tags).
+- Docs: every doc that shows plugin imports — root `README.md`, `packages/core/README.md`,
+  `packages/core/CheatSheet.md`, `packages/timezone/README.md`, `packages/locale/README.md`,
+  `esdoc/manual` (`ZonedDateTime.md`, `formatting.md`, `packages.md`, `Locale`), the
+  `utils/README_package.template.md` and the regenerated prebuilt READMEs — plus a migration
+  guide; root `CHANGELOG.md`.
+- Build and tooling: `packages/locale/karma.conf.js`, `packages/timezone/bower.json`, the `esdoc`
+  configs, `packages/tzdb-builder`, `packages/timezone/HowToUpdateTZDB.md`,
+  `.github/scripts/tzdb-release-check.sh`, `ReleaseHowTo.md`, `AGENTS.md`.
+- Tests in each package that relied on side-effect imports register fixtures explicitly (a second
+  call with the same data is a no-op).
+- Release: major versions of `@js-joda/timezone` (4.0.0), `@js-joda/locale` (7.0.0) and the prebuilt
+  packages; core is unchanged (6.x). `reduce-locale-bundle-size` ships in the same major release.
+- Peer ranges: `@js-joda/locale` and the prebuilt packages move to the new major (`>=7.0.0`);
+  two majors installed side by side mean two copies again.
 
 ## References
 

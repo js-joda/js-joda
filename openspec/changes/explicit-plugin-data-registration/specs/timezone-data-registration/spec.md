@@ -2,55 +2,54 @@
 
 ## Purpose
 
-Defines how IANA tz data reaches `@js-joda/timezone`: the side-effect free data entries, explicit
-registration with `registerTimeZoneData`, how repeated and conflicting registrations behave, and how
-the existing side-effect entries stay compatible.
+Defines how IANA tz data reaches `@js-joda/timezone` in the major release: the side-effect free
+data entries, explicit registration with `registerTimeZoneData` from the root entry, how repeated
+and conflicting registrations behave, the error when no data is registered, and the
+hoisting/setup-module rule.
 
 ## ADDED Requirements
 
 ### Requirement: Side-effect free tz data entries
 `@js-joda/timezone/data` SHALL export the latest tz data as `tzdbData`. `@js-joda/timezone/data/<range>`
-SHALL export the reduced data of that range as `tzdbData`, for every range the package ships today
+SHALL export the reduced data of that range as `tzdbData`, for every range the package ships
 (`4-year-range`, `10-year-range`, `60-year-range`, `300-year-range`, `lifetime-range`). Importing a data
 entry SHALL NOT register data, patch `@js-joda/core`, or import any other package.
 
 #### Scenario: Importing data alone changes nothing
 - **WHEN** an application imports `@js-joda/core` and `{ tzdbData }` from `@js-joda/timezone/data`, and calls `ZoneId.of('Europe/Berlin')`
-- **THEN** the call fails as it does without `@js-joda/timezone`, and `tzdbData.version` is the tzdb version of the release, e.g. `2026f`
+- **THEN** the call throws the missing-data error of the "Missing tz data" requirement below, and `tzdbData.version` is the tzdb version of the release, e.g. `2026f`
 
 #### Scenario: Range data entry
 - **WHEN** an application imports `{ tzdbData }` from `@js-joda/timezone/data/10-year-range`
-- **THEN** it gets the same data as the `dist/js-joda-timezone-10-year-range` build contains
+- **THEN** it gets the same data the former `dist/js-joda-timezone-10-year-range` build contained
 
 #### Scenario: Usage example
 - **WHEN** an application runs
   ```js
   import { ZoneId } from '@js-joda/core';
-  import { registerTimeZoneData } from '@js-joda/timezone/register';
+  import { registerTimeZoneData } from '@js-joda/timezone';
   import { tzdbData } from '@js-joda/timezone/data';
   registerTimeZoneData(tzdbData);
   ZoneId.of('Europe/Berlin');
   ```
 - **THEN** `ZoneId.of('Europe/Berlin')` returns the zone with the rules of the registered data
 
-### Requirement: Register entry
-`@js-joda/timezone/register` SHALL plug the tzdb zone rules into `@js-joda/core` as `@js-joda/timezone`
-does and SHALL export `registerTimeZoneData(data)`. `data` SHALL be tz data in the packed format, either
-from a data entry or a packed JSON file of the release. The build that bundlers resolve SHALL contain no
-tz data. In Node.js, `@js-joda/timezone/register` SHALL resolve to the same module as
-`@js-joda/timezone`, which also exports `registerTimeZoneData`.
+### Requirement: Root entry plugs core and exports registerTimeZoneData
+`@js-joda/timezone` SHALL plug the tzdb zone rules into `@js-joda/core` and SHALL export
+`registerTimeZoneData(data)`. `data` SHALL be tz data in the packed format, either from a data entry
+or a packed JSON file. The builds SHALL contain no tz data.
 
-#### Scenario: Register entry bundles no data
-- **WHEN** an application that imports only `@js-joda/timezone/register` from `@js-joda/timezone` is bundled with esbuild for the browser
+#### Scenario: Root bundles no data
+- **WHEN** an application that imports only `@js-joda/timezone` is bundled with esbuild for the browser
 - **THEN** the bundle contains no zone entries of the packed tz data
 
 #### Scenario: Register a packed JSON file
-- **WHEN** an application calls `registerTimeZoneData(require('./tz/2026e.json'))` with a packed data file of the release
+- **WHEN** an application calls `registerTimeZoneData(require('./tz/2026e.json'))` with a packed data file of a release
 - **THEN** `ZoneId.of('Europe/Berlin')` uses the rules of `2026e`, and `ZoneId.getAvailableZoneIds()` lists the zones of that file
 
 #### Scenario: System default zone after registration
-- **WHEN** the process time zone is `Europe/Berlin`, an application imports `@js-joda/timezone/register`, and registers `tzdbData` afterwards
-- **THEN** `ZoneId.systemDefault()` returns `Europe/Berlin`, as with `@js-joda/timezone`
+- **WHEN** the process time zone is `Europe/Berlin`, an application imports `@js-joda/timezone`, and registers `tzdbData` afterwards
+- **THEN** `ZoneId.systemDefault()` returns `Europe/Berlin`
 
 ### Requirement: Registration is idempotent by content key
 A registration SHALL be identified by the tzdb version and the range of the data, not by object
@@ -70,25 +69,9 @@ throw, even if the data object comes from a different module copy. No zone ID SH
 - **WHEN** a packed JSON file with the version `2026e` and no range is registered twice from two separate parses
 - **THEN** the second registration has no effect
 
-### Requirement: Explicit data replaces side-effect data
-When the registered data was loaded by a side-effect entry (`@js-joda/timezone` or a
-`dist/js-joda-timezone*` build), explicitly registering data with a different key SHALL replace it
-without throwing: afterwards `ZoneId.getAvailableZoneIds()` SHALL list exactly the zones of the new data,
-zones resolved from then on SHALL use the new data, and `ZoneId.systemDefault()` SHALL be resolved
-again. Objects that already resolved a zone keep the rules they resolved.
-
-#### Scenario: Range registered after the default entry
-- **WHEN** a library imports `@js-joda/timezone` before the application calls `registerTimeZoneData` with the `10-year-range` data
-- **THEN** the call doesn't throw, zones resolved afterwards use the `10-year-range` data, and every zone ID is listed once
-
-#### Scenario: loadTzdbData after the default entry
-- **WHEN** an application imports `@js-joda/timezone` and then calls `ZoneRulesProvider.loadTzdbData()` with the packed file of `2026e`
-- **THEN** the call doesn't throw, and `ZoneId.of('Europe/Berlin')` uses the rules of `2026e`
-
-### Requirement: Conflicting registration
-Explicitly registering data whose key differs from explicitly registered data SHALL throw a
-`DateTimeException` that names both versions and ranges, and the registered data SHALL stay in use.
-`ZoneRulesProvider.loadTzdbData(data)` registers explicitly; it SHALL NOT merge two data sets.
+### Requirement: Conflicting registration throws and keeps the first data
+Registering data whose key differs from the registered data SHALL throw a `DateTimeException` that
+names both versions and ranges; the registered data SHALL stay in use.
 
 #### Scenario: Two ranges registered
 - **WHEN** an application registers `tzdbData` of `@js-joda/timezone/data`, then `tzdbData` of `@js-joda/timezone/data/10-year-range`
@@ -98,65 +81,73 @@ Explicitly registering data whose key differs from explicitly registered data SH
 - **WHEN** an application registers the packed files of `2026e` and then `2026f`
 - **THEN** the second call throws, and the rules of `2026e` stay in use
 
-#### Scenario: Two versions loaded with loadTzdbData
-- **WHEN** an application imports the empty build and calls `ZoneRulesProvider.loadTzdbData()` with the packed files of `2026e` and then `2026f`
-- **THEN** the second call throws, and the rules of `2026e` stay in use
-
 ### Requirement: Missing tz data
-Using a region-based zone ID while only the bundler build of `@js-joda/timezone/register` is loaded and no
-data is registered SHALL throw a `DateTimeException` that says no tz data is registered and names
-`registerTimeZoneData`.
+Using a region-based zone ID while no data is registered SHALL throw a `DateTimeException` that says
+no tz data is registered and names `registerTimeZoneData` — for `<script>` tags the global call
+`JSJodaTimezone.registerTimeZoneData(JSJodaTimezoneData.tzdbData)`.
 
-#### Scenario: Register entry without data
-- **WHEN** a bundled application imports `@js-joda/timezone/register` without registering data and calls `ZoneId.of('Europe/Berlin')`
+#### Scenario: Root entry without data
+- **WHEN** an application imports `@js-joda/timezone` without registering data and calls `ZoneId.of('Europe/Berlin')`
 - **THEN** a `DateTimeException` is thrown whose message mentions `registerTimeZoneData`
 
-### Requirement: Compatible side-effect entries
-`@js-joda/timezone` and its `dist/js-joda-timezone*` builds SHALL behave as before this change when they
-are the only tz data source. When data is already registered, their side effect SHALL be skipped
-without throwing. `ZoneRulesProvider.loadTzdbData(data)` SHALL register like `registerTimeZoneData`.
-Existing deep imports of published files SHALL keep resolving after the `exports` map is added.
+### Requirement: Register in a setup module (hoisting)
+ESM evaluates imports before the importing module's body. An application SHALL register data in a
+setup module that is imported before any module that resolves region-based zones at evaluation time.
 
-#### Scenario: Existing import
-- **WHEN** an application imports `@js-joda/core` and `@js-joda/timezone`, as before this change
-- **THEN** `ZoneId.of('Europe/Berlin')` and `ZoneId.systemDefault()` behave as before this change
+#### Scenario: Zone resolved at module evaluation time before registration
+- **WHEN** a module that is imported before the setup module runs `export const BERLIN = ZoneId.of('Europe/Berlin')`
+- **THEN** the call throws the missing-data error of the "Missing tz data" requirement
 
-#### Scenario: Library imports the default entry after explicit registration
-- **WHEN** an application registers the `10-year-range` data explicitly, and then a library it uses imports `@js-joda/timezone`
-- **THEN** no error is thrown and the `10-year-range` data stays in use
-
-#### Scenario: Deep import of a range build
-- **WHEN** an application imports `@js-joda/timezone/dist/js-joda-timezone-10-year-range` with `require` and with `import`
-- **THEN** both resolve, and `ZoneId.of('Europe/Berlin')` works as before this change
-
-#### Scenario: Empty build with loadTzdbData
-- **WHEN** an application imports `dist/js-joda-timezone-empty` and calls `ZoneRulesProvider.loadTzdbData(data)` twice with the same data
-- **THEN** the zones of the data are available and every zone ID is listed once
+#### Scenario: Setup module imported first
+- **WHEN** an application imports a setup module first that calls `registerTimeZoneData(tzdbData)`, and another imported module then runs `export const BERLIN = ZoneId.of('Europe/Berlin')`
+- **THEN** `BERLIN` is `Europe/Berlin` with the rules of the registered data
 
 ### Requirement: Entry resolution and types
-The register and data entries SHALL resolve with `require` and `import` in Node.js and in bundlers,
-through an `exports` map (conditions `types`, `react-native`, `module`, `default`; deliberately no
-`import` condition) and through entry directories for tools that ignore `exports`, and SHALL have
-TypeScript declarations for `registerTimeZoneData` and `tzdbData`. Bundlers SHALL get the ES module
-builds; Node.js SHALL get one module for `require` and `import`. Each entry SHALL also ship a minified
-build for `<script>` tags (globals `JSJodaTimezone.registerTimeZoneData` and `JSJodaTimezoneData.tzdbData`).
+The root and data entries SHALL resolve with `require` and `import` in Node.js and in bundlers through
+an `exports` map (conditions `types`, `react-native`, `module`, `default` on every entry including
+`"."`; deliberately no `import` condition; plus `"./package.json"` and `"./*": "./*"`), and SHALL have
+TypeScript declarations for `registerTimeZoneData` and `tzdbData`. Node.js SHALL get one module for
+`require` and `import`. Bundlers and Metro SHALL get the ES module builds, so a React Native bundle
+contains one copy of the code and one data store. Each entry SHALL also ship a minified build for
+`<script>` tags; the data scripts SHALL only set a global (`JSJodaTimezoneData.tzdbData`), and an
+inline script SHALL call `JSJodaTimezone.registerTimeZoneData(...)`.
 
 #### Scenario: CommonJS and ES module
-- **WHEN** Node.js runs `require('@js-joda/timezone/register')` and `import('@js-joda/timezone/data/10-year-range')`
+- **WHEN** Node.js runs `require('@js-joda/timezone')` and `import('@js-joda/timezone/data/10-year-range')`
 - **THEN** both resolve, and registering the data makes `ZoneId.of('Europe/Berlin')` work
 
 #### Scenario: require and import share one store in Node.js
-- **WHEN** a Node.js application registers the `10-year-range` data through `require('@js-joda/timezone/register')` and then imports `@js-joda/timezone/register` with `import`
+- **WHEN** a Node.js application registers the `10-year-range` data through `require('@js-joda/timezone')` and then imports `@js-joda/timezone` with `import`
 - **THEN** both see the `10-year-range` data
 
+#### Scenario: Node.js floors
+- **WHEN** the resolution matrix of the README is checked against the Node.js documentation
+- **THEN** named entries resolve from Node.js >= 12.16 for `require` and >= 12.17 for `import`, and the `"./*"` pattern from >= 12.20
+
 #### Scenario: TypeScript
-- **WHEN** a TypeScript file imports `registerTimeZoneData` and `tzdbData` from the new entries and calls `registerTimeZoneData(tzdbData)`
+- **WHEN** a TypeScript file imports `registerTimeZoneData` from `@js-joda/timezone` and `tzdbData` from `@js-joda/timezone/data` and calls `registerTimeZoneData(tzdbData)`
 - **THEN** it compiles without errors under `strict`
 
 #### Scenario: Script tags
-- **WHEN** a page loads the minified `@js-joda/core`, then the minified register and data entries of `@js-joda/timezone`, and calls the register function exposed by the register script with the data exposed by the data script
+- **WHEN** a page loads the minified `@js-joda/core`, then the minified `@js-joda/timezone`, then the minified data script, and then an inline script calling `JSJodaTimezone.registerTimeZoneData(JSJodaTimezoneData.tzdbData)`
 - **THEN** `ZoneId.of('Europe/Berlin')` works
 
 #### Scenario: React Native
-- **WHEN** a React Native bundle (Metro >= 0.82, package exports enabled with default conditions, which assert `react-native` but not `module`) imports `@js-joda/timezone/register` and `@js-joda/timezone/data`
-- **THEN** both resolve to the ES module builds via the `react-native` condition, the register entry contains no packed tz data, and `registerTimeZoneData(tzdbData)` makes `ZoneId.of('Europe/Berlin')` work
+- **WHEN** a React Native bundle (Metro >= 0.79, package exports enabled with default conditions, which assert `react-native` but not `module`) imports `@js-joda/timezone` and `@js-joda/timezone/data`
+- **THEN** both resolve to the ES module builds via the `react-native` condition (the root included), the bundle contains one copy of the code, the root contains no packed tz data, and `registerTimeZoneData(tzdbData)` makes `ZoneId.of('Europe/Berlin')` work
+
+## REMOVED Requirements
+
+### Requirement: ZoneRulesProvider.loadTzdbData
+`ZoneRulesProvider.loadTzdbData(data)` SHALL NOT exist anymore; `registerTimeZoneData` SHALL be the
+only way to register tz data. (`packages/core` never referenced `loadTzdbData`; the plugin added it
+in `plug.js`.)
+
+#### Scenario: loadTzdbData is gone
+- **WHEN** an application imports `@js-joda/timezone` and calls `ZoneRulesProvider.loadTzdbData(data)`
+- **THEN** the call fails with a `TypeError` (the method does not exist)
+
+### Requirement: Side-effect entries
+The side-effect entries — the data-carrying `dist/js-joda-timezone*` builds (including `-range` and
+`-empty`), `@js-joda/timezone/register`, and deep imports of those builds without file extension —
+SHALL NOT exist anymore.
