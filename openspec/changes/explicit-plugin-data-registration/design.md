@@ -144,10 +144,10 @@ registered `main/*` data has no `likelySubtags` entry for its language, the erro
 and `supplemental/likelySubtags.json` with `@js-joda/locale/likely-subtags` as the fix — so a language
 without registered data never silently falls back to English.
 - All caches that rest on registered data SHALL be invalidated on registration: the cached `Cldr`
-  instances (reduce-locale-bundle-size decision 3), the module-level `resolveZoneIdTextCache` (it caches
-  misses), and the per-instance `_zoneIdsLocales` and `localeToMapZonesCache` of
-  `CldrZoneTextPrinterParser` and `_cache` of `CldrDateTimeTextProvider`. Instance caches can't be
-  reached from a registration, so they compare a generation counter that every registration increments,
+  instances (reduce-locale-bundle-size decision 3), the module-level `resolveZoneIdTextCache` of
+  `CldrZoneTextPrinterParser` (it caches misses) and `localeToMapZonesCache` of `CldrCache`, and the
+  per-instance `_zoneIdsLocales` of `CldrZoneTextPrinterParser` and `_cache` of
+  `CldrDateTimeTextProvider`. Instance caches can't be reached from a registration, so they compare a generation counter that every registration increments,
   and drop their contents when it has changed. `registerLocaleData` increments it for any data, and
   `registerTimeZoneData` through a core-level notification hook (the provider plug installs it). So a
   parse or print that ran before the data was registered doesn't stay failed or keep a stale fallback,
