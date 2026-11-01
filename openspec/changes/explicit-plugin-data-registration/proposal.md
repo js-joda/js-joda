@@ -133,8 +133,12 @@ registerLocaleData(cldrDataSource);
 - Docs: the timezone and locale READMEs, `esdoc/manual`, root `CHANGELOG.md`.
 - Release: minor versions of `@js-joda/timezone`, `@js-joda/locale` and the prebuilt packages; core
   is unchanged.
-- Related: the pending change `reduce-locale-bundle-size` stays separate. It adds `/slim` entries
-  next to the ones added here; see design.md for how the two fit together.
+- Ordering / dependency: this change lands first. The pending change `reduce-locale-bundle-size`
+  depends on it and is implemented after it: it reuses this change's build setup (ES module inputs
+  with a shared chunk, UMD kept), adds its `/slim` and `/meta-zones` entries to these `exports` maps
+  with the same conditions (including `react-native`), and builds `/slim` on the `register` input
+  without the bundled supplemental data; see design.md decision 7 and task 6.3 for how the two fit
+  together.
 
 ## References
 
