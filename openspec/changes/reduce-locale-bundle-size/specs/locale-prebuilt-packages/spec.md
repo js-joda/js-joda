@@ -28,8 +28,8 @@ SHALL enable the zone text pattern letters `z`, `zzzz` and `v`. Importing the ro
 register anything (see `explicit-plugin-data-registration`).
 
 #### Scenario: Zone names with several packages register metaZones once
-- **WHEN** an application registers `localeData` + `zoneNames` of `@js-joda/locale_en-us` and `localeData` of `@js-joda/locale_de`, plus one `registerLocaleData(metaZones)`
-- **THEN** `zzzz` formats for both `Locale.US` and `Locale.GERMANY`, and the `metaZones` data is registered once
+- **WHEN** an application registers `localeData` + `zoneNames` of `@js-joda/locale_en-us` and `localeData` + `zoneNames` of `@js-joda/locale_de`, plus one `registerLocaleData(metaZones)`
+- **THEN** `zzzz` formats for both `Locale.US` and `Locale.GERMANY`, and the `metaZones` data is registered once (registering `localeData` alone is not enough for `zzzz`: the locale's `timeZoneNames` — here `zoneNames` of `@js-joda/locale_de` — must be registered too, per the "Missing time-zone names" requirement of `locale-cldr-data`)
 
 ### Requirement: Smaller bundles
 The minified esbuild browser bundles of the new entries SHALL be smaller than the bundles of the

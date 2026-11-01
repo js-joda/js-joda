@@ -16,8 +16,12 @@ SHALL export the reduced data of that range as `tzdbData`, for every range the p
 entry SHALL NOT register data, patch `@js-joda/core`, or import any other package.
 
 #### Scenario: Importing data alone changes nothing
-- **WHEN** an application imports `@js-joda/core` and `{ tzdbData }` from `@js-joda/timezone/data`, and calls `ZoneId.of('Europe/Berlin')`
+- **WHEN** an application imports `@js-joda/core`, the root `@js-joda/timezone` (which plugs the provider, but no data is registered) and `{ tzdbData }` from `@js-joda/timezone/data`, and calls `ZoneId.of('Europe/Berlin')`
 - **THEN** the call throws the missing-data error of the "Missing tz data" requirement below, and `tzdbData.version` is the tzdb version of the release, e.g. `2026f`
+
+#### Scenario: Core without the timezone root
+- **WHEN** an application imports only `@js-joda/core` and `{ tzdbData }` from `@js-joda/timezone/data`, and calls `ZoneId.of('Europe/Berlin')`
+- **THEN** the call throws the `DateTimeException` of core's stub `ZoneRulesProvider` with the message `@js-joda/timezone not imported` — the missing-data error naming `registerTimeZoneData` only exists once the root entry has plugged the provider
 
 #### Scenario: Range data entry
 - **WHEN** an application imports `{ tzdbData }` from `@js-joda/timezone/data/10-year-range`
@@ -96,7 +100,7 @@ setup module that is imported before any module that resolves region-based zones
 
 #### Scenario: Zone resolved at module evaluation time before registration
 - **WHEN** a module that is imported before the setup module runs `export const BERLIN = ZoneId.of('Europe/Berlin')`
-- **THEN** the call throws the missing-data error of the "Missing tz data" requirement
+- **THEN** the call throws a `DateTimeException`: the missing-data error of the "Missing tz data" requirement (naming `registerTimeZoneData`) when the root `@js-joda/timezone` has been imported but no data is registered yet, or core's stub error `@js-joda/timezone not imported` when the root was never imported
 
 #### Scenario: Setup module imported first
 - **WHEN** an application imports a setup module first that calls `registerTimeZoneData(tzdbData)`, and another imported module then runs `export const BERLIN = ZoneId.of('Europe/Berlin')`
@@ -122,7 +126,7 @@ inline script SHALL call `JSJodaTimezone.registerTimeZoneData(...)`.
 
 #### Scenario: Node.js floors
 - **WHEN** the resolution matrix of the README is checked against the Node.js documentation
-- **THEN** named entries resolve from Node.js >= 12.16 for `require` and >= 12.17 for `import`, and the `"./*"` pattern from >= 12.20
+- **THEN** named entries resolve from Node.js >= 12.16 for `require` and >= 12.17 for `import`, and the subpath patterns `"./*"` and `"./data/*"` from >= 12.20 — so `@js-joda/timezone/data/<range>` resolves from 12.20 for both `require` and `import`
 
 #### Scenario: TypeScript
 - **WHEN** a TypeScript file imports `registerTimeZoneData` from `@js-joda/timezone` and `tzdbData` from `@js-joda/timezone/data` and calls `registerTimeZoneData(tzdbData)`

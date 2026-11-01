@@ -46,8 +46,12 @@ zone data values — the `zoneNames` of a prebuilt package and `metaZones` of `@
 - **THEN** dates format with `Locale.ENGLISH`, `Locale.US` and `Locale.GERMANY`
 
 #### Scenario: Path and data
-- **WHEN** an application calls `registerLocaleData('main/th/ca-gregorian.json', thData)`
+- **WHEN** an application calls `registerLocaleData('supplemental/likelySubtags.json', thLikelySubtagsPart)` and `registerLocaleData('main/th/ca-gregorian.json', thData)`
 - **THEN** month names format with `new Locale('th')`
+
+#### Scenario: Custom path without likelySubtags throws
+- **WHEN** an application calls only `registerLocaleData('main/th/ca-gregorian.json', thData)` and formats with `MMMM` and `new Locale('th', 'TH', 'th')`
+- **THEN** a `DateTimeException` is thrown that names `th` and `supplemental/likelySubtags.json`, with `@js-joda/locale/likely-subtags` as the fix — the "Hand-registered locale without likelySubtags" scenario of `reduce-locale-bundle-size` (`locale-cldr-data`); registering `main/*` data alone never makes a locale work without a `likelySubtags` entry
 
 #### Scenario: Zone names and meta zones
 - **WHEN** an application registers the `en` data, and calls `registerLocaleData(enZones, metaZones)` with the `zoneNames` of `@js-joda/locale_en-us` and `metaZones` of `@js-joda/locale/meta-zones`
@@ -96,8 +100,13 @@ With no `cldr-data` source registered and no registered data for the locale or i
 formatting or parsing text for that locale SHALL throw a `DateTimeException` that names the locale,
 the registered locales and the root of a prebuilt package to register (for `<script>` tags: the
 corresponding global, e.g. `JSJodaLocaleData_de.localeData`). The check SHALL NOT be cached, so
-registering the data afterwards SHALL make the locale work. The check SHALL be active always — nothing
-turns it off.
+registering the data afterwards SHALL make the locale work — even if a previous format or parse for
+any locale already threw (see the cldrjs bundle-queue guard in `reduce-locale-bundle-size`, design
+decision 3). The check SHALL be active always — nothing turns it off. The variant of this error for
+registered `main/*` data whose language has no `likelySubtags` entry (names the locale and
+`supplemental/likelySubtags.json`, fix `@js-joda/locale/likely-subtags`) is also a `DateTimeException`
+and is specified by `reduce-locale-bundle-size` (`locale-cldr-data`, "Locale without data") — both
+changes use the same exception type and message shape for "Locale without data".
 
 #### Scenario: Locale not registered
 - **WHEN** an application registers only the `en` data object and formats a date with `MMMM` and `Locale.GERMAN`
@@ -131,7 +140,7 @@ SHALL call the register function.
 
 #### Scenario: Node.js floors
 - **WHEN** the resolution matrix of the README is checked against the Node.js documentation
-- **THEN** named entries resolve from Node.js >= 12.16 for `require` and >= 12.17 for `import`, and the `"./*"` pattern from >= 12.20
+- **THEN** named entries resolve from Node.js >= 12.16 for `require` and >= 12.17 for `import`, and the `"./*"` subpath pattern from >= 12.20
 
 #### Scenario: TypeScript
 - **WHEN** a TypeScript file imports `registerLocaleData` from `@js-joda/locale` and `localeData` from `@js-joda/locale_de` and calls `registerLocaleData(localeData)`

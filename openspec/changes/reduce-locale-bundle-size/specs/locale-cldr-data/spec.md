@@ -51,7 +51,10 @@ have no visible effect. Registering data SHALL take effect for `Cldr` instances 
 Formatting or parsing with text for a locale whose language has no registered `likelySubtags` entry
 SHALL throw an error that names the locale and the root of a prebuilt package to register (for
 `<script>` tags: the corresponding global). It SHALL NOT use the data of another language — there
-SHALL be no silent fallback to English. Registering the data afterwards SHALL make the locale work.
+SHALL be no silent fallback to English. Registering the data afterwards SHALL make the locale work —
+even if a previous format or parse for any locale already threw: cldrjs drops a queued `main/*`
+bundle when a bundle lookup throws, so the implementation SHALL guard the cldrjs bundle queue (see
+design decision 3) and the throw of one locale SHALL NOT break registering or resolving another.
 `WeekFields` SHALL keep working for every locale (it only reads `weekData`). When registered `main/*`
 data has no `likelySubtags` entry, the error SHALL name that data's locale and
 `supplemental/likelySubtags.json`, with `@js-joda/locale/likely-subtags` as the fix. The checks SHALL
@@ -64,6 +67,10 @@ rest on registered data, never on root contents, and SHALL be active always.
 #### Scenario: Data registered after the error
 - **WHEN** formatting with `Locale.KOREAN` threw because no `ko` data was registered, and the `ko` data is registered afterwards
 - **THEN** formatting with `Locale.KOREAN` prints the Korean month name
+
+#### Scenario: Error in one locale does not break registering another
+- **WHEN** `main/th/ca-gregorian.json` was registered without any `likelySubtags` and formatting with `new Locale('th', 'TH', 'th')` threw, then the full `likelySubtags` is registered via `@js-joda/locale/likely-subtags` and the `th` `localeData` of `@js-joda/locale_th`, and a date is formatted with `MMMM` and `Locale.THAI` as well as with `MMMM` and `Locale.US` after registering the `en-us` `localeData`
+- **THEN** both format correctly (the earlier throw did not poison the cldrjs bundle queue)
 
 #### Scenario: WeekFields without locale data
 - **WHEN** an application registers no locale data at all and calls `WeekFields.ofLocale(Locale.GERMANY)`
@@ -79,7 +86,13 @@ with the zone text pattern letters `z`, `zzzz` and `v` SHALL throw an error that
 letters, the locale and the fix (`registerLocaleData(zoneNames, metaZones)` with the `zoneNames` of
 a prebuilt package and `metaZones` of `@js-joda/locale/meta-zones`). Parsing SHALL NOT throw: text
 that is neither a fixed offset, nor a zone ID, nor `Z` SHALL fail to parse as unknown text does today.
-Fixed-offset zones, zone IDs and patterns without zone text SHALL work as before this change.
+Fixed-offset zones, zone IDs and patterns without zone text SHALL work as before this change. The
+zone-ID parse cache SHALL be invalidated when zone names, `metaZones` or tz data are registered, so a
+parse that ran before the registration does not stay failed afterwards.
+
+#### Scenario: Parse a zone name before and after registration
+- **WHEN** an application registered only the `en-us` `localeData`, parses `Central European Standard Time` with `zzzz` and `Locale.US` (fails with `DateTimeParseException` as unknown text), then registers the `en-us` `zoneNames` plus `metaZones` and the tz data, and parses the same text again
+- **THEN** the second parse resolves `Europe/Berlin`
 
 #### Scenario: Format with z without zone names
 - **WHEN** an application registered only the `en-us` `localeData`, and `2016-01-01T00:00+01:00[Europe/Berlin]` is formatted with `zzzz` and `Locale.US`

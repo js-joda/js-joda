@@ -92,26 +92,42 @@ See proposal.md for the motivation. Relevant current state in `packages/locale`:
    - Every other path keeps the rule that the first registration wins.
    - Every registration that reaches `Cldr.load` clears the cached `Cldr` instances, because an
      instance keeps the bundle it resolved when it was created. Instances are cheap to create.
+   - **cldrjs bundle-queue guard (recovery after an error).** cldrjs drops a `main/*` bundle from its
+     internal available-bundle queue when a bundle lookup throws (`Could not find likelySubtags for
+     <bundle>`), and the throw surfaces on the next `new Cldr` for *any* locale. So that a thrown
+     error never poisons later lookups — and "registering the data afterwards makes the locale work"
+     keeps holding — the registration/instance path SHALL re-feed every registered `main/*` bundle
+     into the cldrjs queue (or reset the queue and reload) before creating a `Cldr` instance, and
+     SHALL NOT rely on first-wins-by-path to skip a `Cldr.load` whose queue entry was dropped. This
+     guard applies to every `new Cldr`, including the one `WeekFields.ofLocale` creates, so
+     `WeekFields` keeps working for every locale even when a `main/*` bundle without a
+     `likelySubtags` entry is registered.
 
 4. **Errors, always on.** There is no mode flag anymore — the root loads no data, so the checks
-   cannot be silently disabled:
+   cannot be silently disabled. All errors of this decision are `DateTimeException`s — the same type
+   and message shape as the "Locale without data" requirement of `explicit-plugin-data-registration`
+   (design decision 6), so both changes' "Locale without data" land in the main specs identically:
    - **Locale without data.** `CldrDateTimeTextProvider` and `CldrZoneTextPrinterParser` check that
      the requested language has a registered `likelySubtags` entry; otherwise they throw an
-     `IllegalStateException` naming the locale and the prebuilt root to register (e.g.
-     `@js-joda/locale_ko`). This replaces the silent fallback to `und` (English). The check rests
+     `DateTimeException` naming the locale, the registered locales and the prebuilt root to register (e.g.
+     `@js-joda/locale_ko`; script-tag variant names the global). This replaces the silent fallback to
+      `und` (English). The check rests
      on registered data, never on root contents, so a language without data never silently falls
      back to English. `WeekFields` does not check; it only reads `weekData` (in the root) — verified
      by a test for `WeekFields.ofLocale` without any locale data registered.
    - **Data without likelySubtags.** `getOrCreateCldrInstance` turns the `cldrjs` error
-     `Could not find likelySubtags for <bundle>` into an `IllegalStateException` naming `<bundle>`
-     and the fix (register the full file via `@js-joda/locale/likely-subtags` before `main/*`
-     data).
+     `Could not find likelySubtags for <bundle>` into a `DateTimeException` naming `<bundle>`
+     and the fix (register the full file via `@js-joda/locale/likely-subtags` together with the `main/*` data — registering `main/*` data alone never makes a locale work).
    - **Zone names.** `CldrZoneTextPrinterParser.print`, for a region zone, throws an
-     `IllegalStateException` when `metaZones` or the locale's `timeZoneNames` is missing, naming the
+     `DateTimeException` when `metaZones` or the locale's `timeZoneNames` is missing, naming the
      pattern letters, the locale and the fix (`registerLocaleData(zoneNames, metaZones)`).
      `parse` does not throw; it returns `~position` as today, so optional sections keep working.
-     While `metaZones` is missing, `_resolveZoneIds` returns a map of zone IDs only and does not
-     cache it. Fixed-offset zones and zone IDs work without any zone names, as today.
+     While `metaZones` is missing or no tz data is registered (`getAvailableZoneIds()` empty),
+     `_resolveZoneIds` returns a map of zone IDs only and does not cache it; registration of zone
+     names/`metaZones` (`registerLocaleData`) and of tz data (`registerTimeZoneData`, via the
+     core-level notification hook of `explicit-plugin-data-registration` task 1.5) SHALL invalidate
+     the `_zoneIdsLocales` cache, so a parse that ran before registration does not stay failed
+     afterwards. Fixed-offset zones and zone IDs work without any zone names, as today.
 
 5. **Sizes.** `@js-joda/locale` root + `en-us` (gzip, minified bundle without `@js-joda/core` and
    `@js-joda/timezone`, re-measured during implementation): today ~44.7 KB; the major ~15 KB without

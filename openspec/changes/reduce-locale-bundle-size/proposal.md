@@ -39,10 +39,17 @@ dropped with the major.
 - `registerLocaleData` merges `supplemental/likelySubtags.json` parts registered by several prebuilt
   packages. Once the full file is registered (via `@js-joda/locale/likely-subtags` or from
   `cldr-data`), parts are ignored. Every other path keeps the rule that the first registration wins.
-  Every registration that reaches `Cldr.load` clears the cached `Cldr` instances.
-- Clear errors, always on: a locale whose language has no registered `likelySubtags` entry throws
-  instead of silently falling back to English; `z`/`zzzz`/`v` without registered zone names throws and
-  names the fix; both errors rest on registered data, never on root contents.
+  Every registration that reaches `Cldr.load` clears the cached `Cldr` instances, and the cldrjs
+  bundle queue is guarded (design decision 3), so an error thrown for one locale never prevents
+  registering and resolving data afterwards — "order doesn't matter" holds even after an error.
+  Registering `main/*` data without a `likelySubtags` entry never makes a locale work.
+- Clear errors, always on, all `DateTimeException`s (same type and message shape as
+  `explicit-plugin-data-registration`): a locale whose language has no registered `likelySubtags`
+  entry throws instead of silently falling back to English; registered `main/*` data without a
+  `likelySubtags` entry throws naming `supplemental/likelySubtags.json` and
+  `@js-joda/locale/likely-subtags`; `z`/`zzzz`/`v` without registered zone names throws and names the
+  fix; all errors rest on registered data, never on root contents. The zone-ID parse cache is
+  invalidated on registration, so a parse before registering does not stay failed.
 - Sizes, `@js-joda/locale` root with `en-us` (gzip, to be re-measured during implementation): ~15 KB
   without zone names, ~32 KB with `zoneNames` + `metaZones`, instead of ~44 KB today.
 - Script tags follow the explicit model: `@js-joda/locale/dist/meta-zones.min.js` and the prebuilt
@@ -68,7 +75,11 @@ dropped with the major.
   `WeekFields.ofLocale` test without locale data (the `und` entry), and the repo-wide docs/examples
   tasks of `explicit-plugin-data-registration` (spec `repo-documentation-and-migration`)
 - Release: major version of `@js-joda/locale` (7.0.0) and the prebuilt packages, together with
-  `explicit-plugin-data-registration`
+  `explicit-plugin-data-registration`; the version bumps (`@js-joda/timezone` 4.0.0, `@js-joda/locale`
+  7.0.0, prebuilts 7.0.0, peer ranges `>=7.0.0` on `@js-joda/locale` and `^4.0.0` on
+  `@js-joda/timezone`) land in the same PR, in that order (task 0.1 there), because the committed
+  prebuilt-package test requires the configured peer range to be satisfied by the current
+  `@js-joda/locale` version and npm enforces installed optional peers
 
 ## References
 

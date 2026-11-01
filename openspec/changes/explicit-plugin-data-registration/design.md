@@ -122,8 +122,17 @@ register (the root of a prebuilt package, e.g. `@js-joda/locale_de`; for `<scrip
 corresponding global, e.g. `JSJodaLocaleData_de.localeData`). The check is not cached, so registering
 the data later works. There is no flag that turns the check off: the root entry no longer loads any
 data, so nothing can silently disable it. The missing-`likelySubtags` errors of
-`reduce-locale-bundle-size` rest on registered data the same way, so a language without registered
-data never silently falls back to English.
+`reduce-locale-bundle-size` rest on registered data the same way and are `DateTimeException`s too
+(same type and message shape, so both main-spec "Locale without data" requirements agree): when
+registered `main/*` data has no `likelySubtags` entry for its language, the error names that locale
+and `supplemental/likelySubtags.json` with `@js-joda/locale/likely-subtags` as the fix — so a language
+without registered data never silently falls back to English.
+- All caches that rest on registered data SHALL be invalidated on registration: the cached `Cldr`
+  instances (reduce-locale-bundle-size decision 3) and the zone-ID parse cache `_zoneIdsLocales` of
+  `CldrZoneTextPrinterParser`. The latter is cleared by `registerLocaleData` for zone names/`metaZones`
+  and by `registerTimeZoneData` through a core-level notification hook (the provider plug installs it),
+  so a parse that ran before the data was registered does not stay failed afterwards (the cache would
+  otherwise keep an IDs-only or empty map).
 
 ### 7. One store in Node.js, in bundles and under React Native
 - **Single code entry per package.** The root entry is the only code entry (`/register` is removed),
@@ -153,7 +162,7 @@ package gets one of this shape:
 "exports": {
   ".":          { "types": "./typings/js-joda-timezone.d.ts", "react-native": "./dist/js-joda-timezone.esm.js", "module": "./dist/js-joda-timezone.esm.js", "default": "./dist/js-joda-timezone.js" },
   "./data":     { "types": "./typings/data.d.ts", "react-native": "./dist/data.esm.js", "module": "./dist/data.esm.js", "default": "./dist/data.js" },
-  "./data/*":   { "types": "./typings/data.d.ts", "react-native": "./dist/data-$1.esm.js", "module": "./dist/data-$1.esm.js", "default": "./dist/data-$1.js" },
+  "./data/*":   { "types": "./typings/data.d.ts", "react-native": "./dist/data-*.esm.js", "module": "./dist/data-*.esm.js", "default": "./dist/data-*.js" },
   "./package.json": "./package.json",
   "./*": "./*"
 }
@@ -172,14 +181,21 @@ package gets one of this shape:
   happens, so deep imports must name the file with its extension; the side-effect range builds they
   used to refer to are removed in this major anyway.
 - `@js-joda/locale`: `.`, `./cldr-data` (only `default`, Node.js only) and `./meta-zones`.
-- prebuilt packages: `.` only (plus `./package.json` and `./*`); the root exports `localeData` and
-  `zoneNames`.
+- prebuilt packages: `.` only (plus `./package.json` and `./*`) with a `types` condition pointing to
+  a generated `dist/index.d.ts`; the root exports `localeData` and `zoneNames`.
+- Subpath patterns substitute `*` only — there is no `$1` — so `"./data/*"` maps to
+  `"./dist/data-*.js"` etc. (`@js-joda/timezone/data/10-year-range` → `dist/data-10-year-range.js`).
 - Resolution summary, documented in the READMEs (no `engines` field is set): conditional exports
-  need Node.js >= 12.16 and unflagged ESM >= 12.17, so named entries resolve for `require` from
-  12.16 and for `import` from 12.17; the `"./*"` pattern needs Node.js >= 12.20 (patterns landed in
-  12.20/14.13). Below that, deep imports throw `ERR_PACKAGE_PATH_NOT_EXPORTED` (EOL versions,
-  documented as unsupported). Bundlers resolve via `module`, Metro via `react-native`, Node.js via
-  `default`, script tags via the minified builds and globals.
+  need Node.js >= 12.16 and unflagged ESM >= 12.17, so named entries (`.`, `./data`, `./meta-zones`,
+  …) resolve for `require` from 12.16 and for `import` from 12.17; subpath **patterns** (`"./*"`,
+  `"./data/*"`) need Node.js >= 12.20 (patterns landed in 12.20/14.13), so
+  `@js-joda/timezone/data/<range>` resolves from 12.20 for both `require` and `import`. Below that,
+  those entries throw `ERR_PACKAGE_PATH_NOT_EXPORTED` (EOL versions, documented as unsupported).
+  Bundlers resolve via `module`, Metro via `react-native`, Node.js via `default`, script tags via
+  the minified builds and globals.
+- TypeScript only honors `exports` with `moduleResolution` `node16`/`nodenext`/`bundler`; the repo's
+  own `shared/ts-test-config.json` SHALL set one of these (task 2.3), and every entry SHALL ship
+  declarations (the `types` condition) so subpath imports compile under `strict`.
 
 ### 9. Hoisting: register in a setup module
 ESM evaluates imports before the importing module's body, so
@@ -222,9 +238,10 @@ export const BERLIN = ZoneId.of('Europe/Berlin');
 - [Bundlers that don't know the `module` condition get the UMD build] → The common bundlers support
   `module`; the `react-native` condition covers Metro — now on every entry including `.`, so there is
   no UMD/ESM mix in React Native anymore.
-- [Node.js 12.16–12.19 does not support the `"./*"` pattern, so deep imports of published files throw
-  `ERR_PACKAGE_PATH_NOT_EXPORTED` there] → EOL; documented in the READMEs' resolution matrix
-  (12.16 / 12.17 / 12.20 floors). No `engines` field is set, so nothing fails at install time.
+- [Node.js 12.16–12.19 does not support subpath patterns, so `"./*"` deep imports and
+  `@js-joda/timezone/data/<range>` throw `ERR_PACKAGE_PATH_NOT_EXPORTED` there] → EOL; documented in
+  the READMEs' resolution matrix (12.16 / 12.17 / 12.20 floors; patterns from 12.20). No `engines`
+  field is set, so nothing fails at install time.
 - [Explicit tz data is registered after `ZoneId`s were already resolved, e.g. a library that resolves
   a zone at import time] → Those objects keep the rules they resolved; zones resolved later use the
   new data. Decision 9: register at startup in a setup module. Documented in the migration guide.

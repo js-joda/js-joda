@@ -65,7 +65,9 @@ automatically.
   gets one module for `require` and `import` alike; bundlers and Metro get the ES module builds, so
   there is one copy of the code and one data store even under React Native. No `engines` field is
   set; the READMEs document the resolution matrix (named entries from Node.js >= 12.16 for
-  `require` and >= 12.17 for `import`, the `"./*"` pattern from >= 12.20).
+  `require` and >= 12.17 for `import`, subpath patterns such as `"./*"` and `"./data/*"` from
+  >= 12.20 — so `@js-joda/timezone/data/<range>` resolves from 12.20 for both `require` and
+  `import`).
 - **Hoisting:** ES modules evaluate imports before the importing module's body, so an app registers
   in a setup module that is imported first. Resolving a region-based zone at module evaluation time
   before registration throws the missing-data error. The docs show the setup-module pattern; there
@@ -161,8 +163,16 @@ script that calls the register functions:
   call with the same data is a no-op).
 - Release: major versions of `@js-joda/timezone` (4.0.0), `@js-joda/locale` (7.0.0) and the prebuilt
   packages; core is unchanged (6.x). `reduce-locale-bundle-size` ships in the same major release.
+  The version bumps land in this same PR, before the peer-range and prebuilt-manifest tasks run
+  (task 0.1): the committed test `prebuiltPackagesTest_mochaOnly.js` requires the configured
+  `>=7.0.0` range to be satisfied by the current `@js-joda/locale` version, so the range may only be
+  raised together with the 7.0.0 bump.
 - Peer ranges: `@js-joda/locale` and the prebuilt packages move to the new major (`>=7.0.0`);
-  two majors installed side by side mean two copies again.
+  two majors installed side by side mean two copies again. `@js-joda/locale`'s peer range on
+  `@js-joda/timezone` becomes `^4.0.0` in the same PR and is copied into the prebuilt manifests — an
+  installed optional peer is still enforced, so leaving `^3.1.0` would fail installs that have
+  timezone 4.x (npm `ERESOLVE`), and would also permit timezone 3.x, whose side-effect model this
+  major removes.
 
 ## References
 

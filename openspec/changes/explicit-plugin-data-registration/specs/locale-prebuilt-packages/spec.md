@@ -30,12 +30,16 @@ together with the other generated files of the prebuilt packages.
 - **WHEN** an application imports only `localeData` from `@js-joda/locale_en-us` and is bundled with esbuild and with webpack
 - **THEN** both bundles drop the `zoneNames` data (if this fails, `zoneNames` SHALL move to a `/zone-names` subpath instead)
 
-### Requirement: Exports map
+### Requirement: Exports map and TypeScript declarations
 Each prebuilt package manifest SHALL have an `exports` map with the entry `.` (conditions `types`,
 `react-native`, `module` → ES module build, `default` → CommonJS/UMD build) plus `"./package.json"`
 and `"./*": "./*"`, so that the root resolves with `import` in Node.js and every published file stays
-importable. The IIFE minified build SHALL use the unique global `JSJodaLocaleData_<locale>` (e.g.
-`JSJodaLocaleData_en_us`) exposing `localeData` and `zoneNames`.
+importable. The `types` condition SHALL point to a generated `dist/index.d.ts` declaring `localeData`
+and `zoneNames`, so `import { localeData } from '@js-joda/locale_de'` compiles under `strict` (the
+repo's `shared/ts-test-config.json` SHALL use a `moduleResolution` that honors `exports`, i.e.
+`node16`/`nodenext`/`bundler`, not the node10 default). The IIFE minified build SHALL use the unique
+global `JSJodaLocaleData_<locale>` (e.g. `JSJodaLocaleData_en_us`) exposing `localeData` and
+`zoneNames`.
 
 #### Scenario: Node.js ES module import of the root
 - **WHEN** a Node.js ES module runs `import { localeData } from '@js-joda/locale_de'`
@@ -80,10 +84,16 @@ Each prebuilt package SHALL declare as peer dependencies: `@js-joda/core` and `@
 the same ranges as the `@js-joda/locale` peer dependencies, `@js-joda/timezone` as optional, and
 `@js-joda/locale` with the lower bound (`>=x.y.z`) configured next to the list of prebuilt packages,
 now `>=7.0.0`, the new major, because the old default entry that registered via
-`registerLocaleData(path, data)` is gone. The configuration SHALL also list every export the
+`registerLocaleData(path, data)` is gone. In the major, `@js-joda/locale`'s peer range on
+`@js-joda/timezone` is `^4.0.0`, so the prebuilt packages declare `^4.0.0` (optional) — an installed
+optional peer is still enforced by npm, so `^3.1.0` would fail installs that have timezone 4.x with
+`ERESOLVE`. The configuration SHALL also list every export the
 prebuilt bundles import from `@js-joda/locale`. The `@js-joda/locale` range SHALL NOT be derived from
 the current `@js-joda/locale` version, because the packages are generated after the release tooling
-has chosen which packages to bump. The test suite SHALL fail when the configuration is out of date.
+has chosen which packages to bump. The range SHALL be raised to `>=7.0.0` in the same PR that bumps
+`@js-joda/locale` to 7.0.0 (task 0.1), never before: the test suite requires the configured range to
+be satisfied by the current `@js-joda/locale` version. The test suite SHALL fail when the
+configuration is out of date.
 
 #### Scenario: Peer ranges follow @js-joda/locale
 - **WHEN** `@js-joda/locale` declares the peer dependency `@js-joda/timezone` as `^2.25.0 || ^3.0.0`, and the prebuilt packages are generated
