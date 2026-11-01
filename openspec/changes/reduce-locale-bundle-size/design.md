@@ -53,7 +53,9 @@ See proposal.md for the motivation. Relevant current state in `packages/locale`:
   and `import` alike (see `explicit-plugin-data-registration`, decision 7).
 - Removing `weekData` (~1 KB gzip, needed by `WeekFields` for every locale). It stays in the root.
 - Trimming `ca-gregorian` or `timeZoneNames` content, or splitting the `.*` packages.
-- Fixing the empty `no` and `nn-no` prebuilt packages (wrong patterns in `prebuilt-packages.json`).
+- Moving to CLDR 39 or later, or replacing `cldr-data` with the `cldr-*` packages. `cldr-data` stays on
+  CLDR 36, its latest release. The move would change formatted output for all locales and how
+  `cldrDataSource` loads files, so it is out of scope and a todo for a later change.
 - Any use of the `Intl` API.
 
 ## Decisions
@@ -79,7 +81,7 @@ See proposal.md for the motivation. Relevant current state in `packages/locale`:
    at build time and puts it into the prebuilt `localeData`. A test resolves every locale of every
    prebuilt package with `cldrjs` against the subset and against the full file and requires equal
    results; if it finds a gap, the rule is widened, not special-cased. The test also requires every
-   package to expand to at least one locale, except the known-empty `no` and `nn-no`.
+   package to expand to at least one locale, without exceptions (decision 7).
 
 3. **`registerLocaleData` merges `likelySubtags` parts.** `CldrCache` tracks whether the full
    `likelySubtags` is registered: the `@js-joda/locale/likely-subtags` entry and the `cldr-data`
@@ -139,6 +141,21 @@ See proposal.md for the motivation. Relevant current state in `packages/locale`:
    floors 12.16/12.17/12.20). No slim entries, no extra build variants, no shared chunk beyond what
    that change needs. The prebuilt builds stay one variant per package (`index.{js,esm.js,min.js}`)
    plus the data-carrying root.
+
+7. **Norwegian prebuilt packages.** Today `no` and `nn-no` ship without data, for two different
+   reasons; their patterns are correct. `nn` is in CLDR 36, but the installed `cldr-data` has only the
+   modern set. `no` is in no CLDR 36 set (it appears in CLDR 39).
+   - `nn-no` gets real data: set `"cldr-data-coverage": "full"` in the root `package.json`.
+     `cldr-data`'s `install.js` reads `../../package.json`, which is the root when `cldr-data` is
+     hoisted, so `cldr-data-coverage` and `cldr-data-urls-filter` in `packages/locale/package.json` have
+     no effect today and are removed.
+   - Full coverage adds locales that the loose patterns `ro.*`, `ko.*` and `da.*` would match (locale
+     counts 3→4, 2→3, 2→3), so they become `ro(-.*)?`, `ko(-.*)?` and `da(-.*)?`. No other package
+     expands differently.
+   - `no` is removed from `prebuilt-packages.json`, and `@js-joda/locale_no` is deprecated on npm in
+     favour of `@js-joda/locale_nb-no`. Its users receive no data today, so nothing that works is lost.
+   - The at-least-one-locale test of decision 2 also checks that the coverage setting applied, because
+     `nn-no` expands to nothing under the modern set, including with a stale cached `node_modules`.
 
 ## Risks / Trade-offs
 

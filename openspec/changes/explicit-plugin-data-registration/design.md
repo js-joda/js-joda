@@ -54,6 +54,8 @@ See proposal.md for the motivation and the references. Relevant current state:
   major.
 - Dual CJS/ESM builds in Node.js. Node.js keeps getting one build for `require` and `import` alike
   (decision 7).
+- Moving to a newer CLDR or replacing `cldr-data`. Out of scope and a todo for later (see
+  `reduce-locale-bundle-size`, Non-Goals).
 
 ## Decisions
 
@@ -118,8 +120,11 @@ still see the `require`.
 ### 6. Missing-locale check is always on
 In `CldrDateTimeTextProvider` and `CldrZoneTextPrinterParser`, when no data for the locale or its
 parents is found, throw a `DateTimeException` that names the locale, the registered locales and what to
-register (the root of a prebuilt package, e.g. `@js-joda/locale_de`; for `<script>` tags the
-corresponding global, e.g. `JSJodaLocaleData_de.localeData`). The check is not cached, so registering
+register. If the locale's language has a prebuilt package, that is its root, e.g. `@js-joda/locale_de`
+(for `<script>` tags the corresponding global, e.g. `JSJodaLocaleData_de.localeData`). Otherwise it is
+registering the CLDR files by path, or in Node.js `cldrDataSource` if `cldr-data` has that locale. The
+language-to-package list is generated at build time from `prebuilt-packages.json`, so the error never
+names a package that doesn't exist. The check is not cached, so registering
 the data later works. There is no flag that turns the check off: the root entry no longer loads any
 data, so nothing can silently disable it. The missing-`likelySubtags` errors of
 `reduce-locale-bundle-size` rest on registered data the same way and are `DateTimeException`s too

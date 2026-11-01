@@ -98,8 +98,11 @@ entry that references `cldr-data`. Registering the source again SHALL have no ef
 ### Requirement: Locale without data
 With no `cldr-data` source registered and no registered data for the locale or its parent locales,
 formatting or parsing text for that locale SHALL throw a `DateTimeException` that names the locale,
-the registered locales and the root of a prebuilt package to register (for `<script>` tags: the
-corresponding global, e.g. `JSJodaLocaleData_de.localeData`). The check SHALL NOT be cached, so
+the registered locales and what to register. If `prebuilt-packages.json` has a package for the locale's
+language, that SHALL be the root of the package (for `<script>` tags: the corresponding global, e.g.
+`JSJodaLocaleData_de.localeData`). Otherwise the error SHALL NOT name a package; it SHALL say to
+register the CLDR files by path, or in Node.js to use `cldrDataSource` if `cldr-data` has that locale.
+The check SHALL NOT be cached, so
 registering the data afterwards SHALL make the locale work — even if a previous format or parse for
 any locale already threw (see the cldrjs bundle-queue guard in `reduce-locale-bundle-size`, design
 decision 3). The check SHALL be active always — nothing turns it off. The variant of this error for
@@ -111,6 +114,14 @@ changes use the same exception type and message shape for "Locale without data".
 #### Scenario: Locale not registered
 - **WHEN** an application registers only the `en` data object and formats a date with `MMMM` and `Locale.GERMAN`
 - **THEN** a `DateTimeException` is thrown that names `de`, lists `en`, and mentions `@js-joda/locale_de`
+
+#### Scenario: Locale without a prebuilt package
+- **WHEN** no `th` data is registered and a date is formatted with `MMMM` and `new Locale('th', 'TH')`
+- **THEN** a `DateTimeException` is thrown that names `th` and path registration, and doesn't mention `@js-joda/locale_th`
+
+#### Scenario: Norwegian locales
+- **WHEN** no Norwegian data is registered and a date is formatted with `MMMM` and `Locale.NORWEGIAN`, then with `Locale.NORWEGIAN_NYNORSK`
+- **THEN** the first error names path registration and no package, and the second names `@js-joda/locale_nn-no`
 
 #### Scenario: Parent locale registered
 - **WHEN** only the `en` data object is registered and a date is formatted with `MMMM` and `Locale.US`

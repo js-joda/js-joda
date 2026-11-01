@@ -44,11 +44,18 @@ least: `@js-joda/timezone` side-effect import → `registerTimeZoneData(tzdbData
 `ZoneRulesProvider.loadTzdbData` → `registerTimeZoneData`; `@js-joda/locale` + prebuilt side-effect
 imports → root `localeData` + `registerLocaleData`; prebuilt `/data` → root; range deep import →
 `@js-joda/timezone/data/<range>`; the note that `js-joda-timezone.min.js` keeps its file name but
-contains no data (unpinned CDN URLs break); and the peer-range bump.
+contains no data (unpinned CDN URLs break); the peer-range bump; `@js-joda/locale_no` removed and
+deprecated in favour of `@js-joda/locale_nb-no`; `@js-joda/locale_nn-no` now containing data; and the
+full `cldr-data` coverage (`cldr-data-coverage` or `CLDR_COVERAGE`) that `cldrDataSource` users need for
+`nn`.
 
 #### Scenario: Migration guide exists and is linked
 - **WHEN** the root README and the root CHANGELOG are inspected
 - **THEN** both link to the migration guide, and the guide contains before/after snippets for all five setups
+
+#### Scenario: Norwegian changes are covered
+- **WHEN** the migration guide, the root CHANGELOG and the docs are inspected
+- **THEN** the guide and the CHANGELOG cover the `@js-joda/locale_no` removal and `@js-joda/locale_nn-no`, and no doc tells users to install `@js-joda/locale_no`
 
 ### Requirement: Build and tooling files are checked
 Files that reference plugin imports or removed builds — `packages/locale/karma.conf.js`,

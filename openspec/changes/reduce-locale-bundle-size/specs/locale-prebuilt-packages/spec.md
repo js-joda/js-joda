@@ -19,7 +19,25 @@ languages, nor `metaZones`.
 
 #### Scenario: Packages without locales are noticed
 - **WHEN** a prebuilt package's patterns expand to no locale of `cldr-data`
-- **THEN** the subset test fails, unless the package is on the explicit list of known-empty packages (`no`, `nn-no`)
+- **THEN** the subset test fails; there is no list of exceptions
+
+### Requirement: Norwegian prebuilt packages
+The build SHALL install `cldr-data` with full coverage, configured where `cldr-data`'s install script
+reads it (the root `package.json`). `@js-joda/locale_nn-no` SHALL contain `nn` data. There SHALL be no
+`no` entry in `prebuilt-packages.json`. The patterns of `ro`, `ko` and `da` SHALL match only their own
+language and its regional locales.
+
+#### Scenario: nn-no contains data
+- **WHEN** `localeData` of `@js-joda/locale_nn-no` is registered and a date is formatted with `MMMM` and `Locale.NORWEGIAN_NYNORSK`
+- **THEN** the Nynorsk month name is printed
+
+#### Scenario: Patterns don't match other languages
+- **WHEN** the patterns of `ro`, `ko` and `da` are expanded against the full coverage locale list
+- **THEN** every expanded locale has the language `ro`, `ko` or `da` respectively
+
+#### Scenario: no is not a prebuilt package
+- **WHEN** `prebuilt-packages.json` and `packages/locale/packages` are inspected
+- **THEN** neither contains `no`, and `nb-no` is still present
 
 ### Requirement: zoneNames as a separate value
 Each prebuilt package root SHALL export `zoneNames` (the `main/<locale>/timeZoneNames.json` data of

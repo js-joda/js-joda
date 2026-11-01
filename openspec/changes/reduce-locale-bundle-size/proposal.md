@@ -54,6 +54,9 @@ dropped with the major.
   without zone names, ~32 KB with `zoneNames` + `metaZones`, instead of ~44 KB today.
 - Script tags follow the explicit model: `@js-joda/locale/dist/meta-zones.min.js` and the prebuilt
   data scripts only set their globals; an inline script calls `JSJodaLocale.registerLocaleData(...)`.
+- The empty Norwegian prebuilt packages are resolved: the build installs `cldr-data` with full coverage
+  so `@js-joda/locale_nn-no` ships real data, and `@js-joda/locale_no` is removed and deprecated in
+  favour of `@js-joda/locale_nb-no`. Moving to a newer CLDR is out of scope and a todo for later.
 
 ## Capabilities
 
