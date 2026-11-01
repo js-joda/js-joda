@@ -105,10 +105,19 @@ the locales of the sources. `registerLocaleData` dispatches on its arguments:
 - `(string, object)` → path and data, as today;
 - objects with a `load` function → sources;
 - objects mapping CLDR paths to JSON → locale data objects; every entry is registered by path;
-- `zoneNames`/`metaZones` values → registered like locale data objects.
+- `zoneNames`/`metaZones` values → registered like locale data objects;
+- objects with `full: true` → the tagged full `likelySubtags` of `@js-joda/locale/likely-subtags`
+  (`reduce-locale-bundle-size` decisions 1 and 3).
 
 Sources carry an `id` (`'cldr-data'` for `cldrDataSource`); registering a source whose `id` is already
 registered is a no-op.
+
+Registering a source loads `supplemental/likelySubtags.json` from it at once and marks it as full, and
+loads `supplemental/metaZones.json`, replacing any parts registered before. These paths are otherwise
+requested only in the constructors of `CldrDateTimeTextProvider` and `CldrZoneTextPrinterParser`, and
+`loadCldrData` skips paths already registered, so waiting for first use would lose order independence:
+an `en` subset registered first would hide the full file, and a formatter built before the source would
+never ask for it. `main/*` files stay loaded on first use.
 
 `src/cldr-data.js` (entry `@js-joda/locale/cldr-data`) is the only module that `require`s `cldr-data`.
 It throws a clear error at import time when `cldr-data` is missing. The root entry does **not**
@@ -119,12 +128,14 @@ still see the `require`.
 
 ### 6. Missing-locale check is always on
 In `CldrDateTimeTextProvider` and `CldrZoneTextPrinterParser`, when no data for the locale or its
-parents is found, throw a `DateTimeException` that names the locale, the registered locales and what to
+parents is found in the registered data or a registered source, throw a `DateTimeException` that names the locale, the registered locales and what to
 register. If the locale's language has a prebuilt package, that is its root, e.g. `@js-joda/locale_de`
 (for `<script>` tags the corresponding global, e.g. `JSJodaLocaleData_de.localeData`). Otherwise it is
 registering the CLDR files by path, or in Node.js `cldrDataSource` if `cldr-data` has that locale. The
 language-to-package list is generated at build time from `prebuilt-packages.json`, so the error never
-names a package that doesn't exist. The check is not cached, so registering
+names a package that doesn't exist. With a source registered, the check runs after the source was
+asked, and the error also says that the installed `cldr-data` lacks the locale (`no`, for example, is
+not in CLDR 36). The check is not cached, so registering
 the data later works. There is no flag that turns the check off: the root entry no longer loads any
 data, so nothing can silently disable it. The missing-`likelySubtags` errors of
 `reduce-locale-bundle-size` rest on registered data the same way and are `DateTimeException`s too
@@ -133,11 +144,14 @@ registered `main/*` data has no `likelySubtags` entry for its language, the erro
 and `supplemental/likelySubtags.json` with `@js-joda/locale/likely-subtags` as the fix — so a language
 without registered data never silently falls back to English.
 - All caches that rest on registered data SHALL be invalidated on registration: the cached `Cldr`
-  instances (reduce-locale-bundle-size decision 3) and the zone-ID parse cache `_zoneIdsLocales` of
-  `CldrZoneTextPrinterParser`. The latter is cleared by `registerLocaleData` for zone names/`metaZones`
-  and by `registerTimeZoneData` through a core-level notification hook (the provider plug installs it),
-  so a parse that ran before the data was registered does not stay failed afterwards (the cache would
-  otherwise keep an IDs-only or empty map).
+  instances (reduce-locale-bundle-size decision 3), the module-level `resolveZoneIdTextCache` (it caches
+  misses), and the per-instance `_zoneIdsLocales` and `localeToMapZonesCache` of
+  `CldrZoneTextPrinterParser` and `_cache` of `CldrDateTimeTextProvider`. Instance caches can't be
+  reached from a registration, so they compare a generation counter that every registration increments,
+  and drop their contents when it has changed. `registerLocaleData` increments it for any data, and
+  `registerTimeZoneData` through a core-level notification hook (the provider plug installs it). So a
+  parse or print that ran before the data was registered doesn't stay failed or keep a stale fallback,
+  and an existing formatter sees data registered later.
 
 ### 7. One store in Node.js, in bundles and under React Native
 - **Single code entry per package.** The root entry is the only code entry (`/register` is removed),
@@ -185,7 +199,8 @@ package gets one of this shape:
 - `"./*": "./*"` keeps direct file imports of published files working. Note: no extension probing
   happens, so deep imports must name the file with its extension; the side-effect range builds they
   used to refer to are removed in this major anyway.
-- `@js-joda/locale`: `.`, `./cldr-data` (only `default`, Node.js only) and `./meta-zones`.
+- `@js-joda/locale`: `.`, `./cldr-data` (`types` and `default`, no `module` or `react-native`, Node.js
+  only) and `./meta-zones`.
 - prebuilt packages: `.` only (plus `./package.json` and `./*`) with a `types` condition pointing to
   a generated `dist/index.d.ts`; the root exports `localeData` and `zoneNames`.
 - Subpath patterns substitute `*` only — there is no `$1` — so `"./data/*"` maps to
@@ -199,8 +214,15 @@ package gets one of this shape:
   Bundlers resolve via `module`, Metro via `react-native`, Node.js via `default`, script tags via
   the minified builds and globals.
 - TypeScript only honors `exports` with `moduleResolution` `node16`/`nodenext`/`bundler`; the repo's
-  own `shared/ts-test-config.json` SHALL set one of these (task 2.3), and every entry SHALL ship
-  declarations (the `types` condition) so subpath imports compile under `strict`.
+  own `shared/ts-test-config.json` SHALL set `module` and `moduleResolution` to `node16` (task 2.3).
+  This works on the repo's TypeScript 4.9.5, and moving to TypeScript 5 for `bundler` is out of scope.
+  Every entry SHALL ship declarations (the `types` condition) so subpath imports compile under
+  `strict`.
+- Consumers whose resolver ignores `exports` — TypeScript with `node10` resolution (the default for
+  `module: CommonJS`), webpack 4, Metro below 0.79 or with package exports disabled — can't resolve the
+  subpath entries and are **unsupported** in this major. There are no `typesVersions` or stub directories,
+  because they would add a second resolution path to test. The README matrices and the migration guide
+  say so and name the fix (`moduleResolution` `node16`/`bundler`, webpack 5, Metro >= 0.79).
 
 ### 9. Hoisting: register in a setup module
 ESM evaluates imports before the importing module's body, so

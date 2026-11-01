@@ -47,11 +47,16 @@ imports → root `localeData` + `registerLocaleData`; prebuilt `/data` → root;
 contains no data (unpinned CDN URLs break); the peer-range bump; `@js-joda/locale_no` removed and
 deprecated in favour of `@js-joda/locale_nb-no`; `@js-joda/locale_nn-no` now containing data; and the
 full `cldr-data` coverage (`cldr-data-coverage` or `CLDR_COVERAGE`) that `cldrDataSource` users need for
-`nn`.
+`nn`; and that consumers whose resolver ignores `exports` (TypeScript `node10` resolution, webpack 4,
+Metro below 0.79 or with package exports disabled) are unsupported, with the fix for each.
 
 #### Scenario: Migration guide exists and is linked
 - **WHEN** the root README and the root CHANGELOG are inspected
 - **THEN** both link to the migration guide, and the guide contains before/after snippets for all five setups
+
+#### Scenario: Unsupported resolvers are documented
+- **WHEN** the migration guide and the resolution matrices of the `@js-joda/timezone` and `@js-joda/locale` READMEs are inspected
+- **THEN** they list TypeScript `node10` resolution, webpack 4 and Metro below 0.79 or with package exports disabled as unsupported, each with its fix
 
 #### Scenario: Norwegian changes are covered
 - **WHEN** the migration guide, the root CHANGELOG and the docs are inspected

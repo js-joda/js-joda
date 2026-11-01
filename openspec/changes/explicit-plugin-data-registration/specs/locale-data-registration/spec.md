@@ -39,7 +39,7 @@ behave, and the error for a locale without data.
 `registerLocaleData` SHALL accept one or more locale data objects, each mapping CLDR paths (e.g.
 `main/de/ca-gregorian.json`) to CLDR JSON, and register every path they contain. It SHALL also accept
 zone data values — the `zoneNames` of a prebuilt package and `metaZones` of `@js-joda/locale/meta-zones`
-— several at once. The call with a path and data, `registerLocaleData(path, data)`, SHALL keep working.
+and the tagged `likelySubtags` value of `@js-joda/locale/likely-subtags` — several at once. The call with a path and data, `registerLocaleData(path, data)`, SHALL keep working.
 
 #### Scenario: Several data objects in one call
 - **WHEN** an application calls `registerLocaleData(en, de)` with the `localeData` of `@js-joda/locale_en` and `@js-joda/locale_de`
@@ -75,7 +75,9 @@ data comes from a different module copy.
 `@js-joda/locale/cldr-data` SHALL export `cldrDataSource`. After `registerLocaleData(cldrDataSource)`,
 the data of every locale in the installed `cldr-data` package SHALL be loaded on first use, and
 `Locale.getAvailableLocales()` SHALL include the locales of `cldr-data`. The entry SHALL be the only
-entry that references `cldr-data`. Registering the source again SHALL have no effect.
+entry that references `cldr-data`. Registering the source SHALL load the full `likelySubtags` and
+`metaZones` from it at once, replacing any parts registered before. Registering the source again SHALL
+have no effect.
 
 #### Scenario: All locales from cldr-data
 - **WHEN** a Node.js application with `cldr-data` installed runs
@@ -87,6 +89,10 @@ entry that references `cldr-data`. Registering the source again SHALL have no ef
   and formats a date with `zzzz` and `new Locale('th', 'TH', 'th')`
 - **THEN** the output is the same as with the old default entry of the previous major
 
+#### Scenario: Source registered after other data or after a formatter was built
+- **WHEN** an application registers the `en` data object and builds a formatter with `new Locale('th', 'TH', 'th')`, then registers `cldrDataSource`, and formats with `MMMM`
+- **THEN** the Thai month name is printed
+
 #### Scenario: cldr-data not installed
 - **WHEN** a Node.js application without `cldr-data` requires `@js-joda/locale/cldr-data`
 - **THEN** an error is thrown that says `cldr-data` must be installed
@@ -96,7 +102,7 @@ entry that references `cldr-data`. Registering the source again SHALL have no ef
 - **THEN** the missing-locale error is thrown (the root no longer loads `cldr-data` automatically)
 
 ### Requirement: Locale without data
-With no `cldr-data` source registered and no registered data for the locale or its parent locales,
+When neither the registered data nor a registered source has data for the locale or its parent locales,
 formatting or parsing text for that locale SHALL throw a `DateTimeException` that names the locale,
 the registered locales and what to register. If `prebuilt-packages.json` has a package for the locale's
 language, that SHALL be the root of the package (for `<script>` tags: the corresponding global, e.g.
@@ -123,6 +129,10 @@ changes use the same exception type and message shape for "Locale without data".
 - **WHEN** no Norwegian data is registered and a date is formatted with `MMMM` and `Locale.NORWEGIAN`, then with `Locale.NORWEGIAN_NYNORSK`
 - **THEN** the first error names path registration and no package, and the second names `@js-joda/locale_nn-no`
 
+#### Scenario: Locale missing from cldr-data
+- **WHEN** an application registers `cldrDataSource`, the installed `cldr-data` has no `no` data, and a date is formatted with `MMMM` and `Locale.NORWEGIAN`
+- **THEN** a `DateTimeException` is thrown that names `no`, says the installed `cldr-data` lacks it, and names path registration; no fallback text is printed
+
 #### Scenario: Parent locale registered
 - **WHEN** only the `en` data object is registered and a date is formatted with `MMMM` and `Locale.US`
 - **THEN** the English month name is printed
@@ -134,7 +144,8 @@ changes use the same exception type and message shape for "Locale without data".
 ### Requirement: Entry resolution and types
 The root, `cldr-data`, `meta-zones` and prebuilt root entries SHALL resolve with `require` and `import`
 in Node.js and in bundlers through an `exports` map (conditions `types`, `react-native`, `module`,
-`default` on every entry including `"."`; deliberately no `import` condition; plus
+`default` on every entry including `"."`, except that `cldr-data` is Node.js only and has just `types`
+and `default`; deliberately no `import` condition; plus
 `"./package.json"` and `"./*": "./*"`), and SHALL have TypeScript declarations. Node.js SHALL get one
 module for `require` and `import` of the root. The minified builds for `<script>` tags SHALL set the
 globals `JSJodaLocale.registerLocaleData` and `JSJodaLocaleData_<locale>` (e.g. `JSJodaLocaleData_en_us`)
@@ -156,6 +167,10 @@ SHALL call the register function.
 #### Scenario: TypeScript
 - **WHEN** a TypeScript file imports `registerLocaleData` from `@js-joda/locale` and `localeData` from `@js-joda/locale_de` and calls `registerLocaleData(localeData)`
 - **THEN** it compiles without errors under `strict`
+
+#### Scenario: TypeScript with the cldr-data entry
+- **WHEN** a strict TypeScript file with `node16` resolution imports `cldrDataSource` from `@js-joda/locale/cldr-data`
+- **THEN** it compiles without errors
 
 #### Scenario: Script tags
 - **WHEN** a page loads the minified `@js-joda/core`, then the minified `@js-joda/locale`, then the minified prebuilt data scripts, and then an inline script calling `JSJodaLocale.registerLocaleData(JSJodaLocaleData_de.localeData)`

@@ -63,8 +63,9 @@ See proposal.md for the motivation. Relevant current state in `packages/locale`:
 1. **Data layout in the major.**
    - `src/js-joda-locale.js` (root) bundles only `weekData` of the supplemental data; the full
      `likelySubtags` and `metaZones` imports are removed from the root.
-   - `src/likely-subtags.js` (entry `@js-joda/locale/likely-subtags`): exports the full
-     `supplemental/likelySubtags.json` as a plain value, for apps that register custom CLDR paths.
+   - `src/likely-subtags.js` (entry `@js-joda/locale/likely-subtags`): exports `likelySubtags`, the full
+     `supplemental/likelySubtags.json` as a tagged plain value `{ full: true, path, data }` with no
+     imports, for apps that register custom CLDR paths.
    - `src/meta-zones.js` (entry `@js-joda/locale/meta-zones`): exports `metaZones` as a plain value;
      the app registers it with the zone names: `registerLocaleData(enZones, metaZones)`.
    - Prebuilt package roots export `localeData` (with the subset of decision 2 computed into it) and
@@ -84,8 +85,10 @@ See proposal.md for the motivation. Relevant current state in `packages/locale`:
    package to expand to at least one locale, without exceptions (decision 7).
 
 3. **`registerLocaleData` merges `likelySubtags` parts.** `CldrCache` tracks whether the full
-   `likelySubtags` is registered: the `@js-joda/locale/likely-subtags` entry and the `cldr-data`
-   source register it through an internal function that marks it as full. Then:
+   `likelySubtags` is registered. `registerLocaleData` recognises the tagged value of
+   `@js-joda/locale/likely-subtags` by `full: true`, and the `cldr-data` source marks the file it loads
+   as full (explicit-plugin-data-registration decision 5). A `likelySubtags` passed in any other form,
+   including `registerLocaleData(path, data)`, is a part. Then:
    - `supplemental/likelySubtags.json` registered through `registerLocaleData` before the full file
      is passed to `Cldr.load`, which merges it key by key; the parts of several prebuilt packages
      add up. Registering the same object again merges identical values and has no visible effect.
@@ -98,9 +101,12 @@ See proposal.md for the motivation. Relevant current state in `packages/locale`:
      internal available-bundle queue when a bundle lookup throws (`Could not find likelySubtags for
      <bundle>`), and the throw surfaces on the next `new Cldr` for *any* locale. So that a thrown
      error never poisons later lookups — and "registering the data afterwards makes the locale work"
-     keeps holding — the registration/instance path SHALL re-feed every registered `main/*` bundle
-     into the cldrjs queue (or reset the queue and reload) before creating a `Cldr` instance, and
-     SHALL NOT rely on first-wins-by-path to skip a `Cldr.load` whose queue entry was dropped. This
+     keeps holding — the registration/instance path SHALL re-feed the registered `main/*` bundles whose
+     language has a `likelySubtags` entry into the cldrjs queue (or reset the queue and reload) before
+     creating a `Cldr` instance, and SHALL NOT rely on first-wins-by-path to skip a `Cldr.load` whose
+     queue entry was dropped. A bundle whose language has no entry SHALL stay out of the queue until
+     the entry is registered: cldrjs drains the whole queue on any `new Cldr`, so feeding it would make
+     the throw permanent and hit every locale. This
      guard applies to every `new Cldr`, including the one `WeekFields.ofLocale` creates, so
      `WeekFields` keeps working for every locale even when a `main/*` bundle without a
      `likelySubtags` entry is registered.
@@ -111,14 +117,16 @@ See proposal.md for the motivation. Relevant current state in `packages/locale`:
    (design decision 6), so both changes' "Locale without data" land in the main specs identically:
    - **Locale without data.** `CldrDateTimeTextProvider` and `CldrZoneTextPrinterParser` check that
      the requested language has a registered `likelySubtags` entry; otherwise they throw an
-     `DateTimeException` naming the locale, the registered locales and the prebuilt root to register (e.g.
-     `@js-joda/locale_ko`; script-tag variant names the global). This replaces the silent fallback to
+     `DateTimeException` naming the locale, the registered locales and what to register (a prebuilt
+     root only if one exists, e.g. `@js-joda/locale_ko`; script-tag variant names the global;
+     otherwise path registration, see `explicit-plugin-data-registration` decision 6). This replaces the silent fallback to
       `und` (English). The check rests
      on registered data, never on root contents, so a language without data never silently falls
      back to English. `WeekFields` does not check; it only reads `weekData` (in the root) — verified
      by a test for `WeekFields.ofLocale` without any locale data registered.
-   - **Data without likelySubtags.** `getOrCreateCldrInstance` turns the `cldrjs` error
-     `Could not find likelySubtags for <bundle>` into a `DateTimeException` naming `<bundle>`
+   - **Data without likelySubtags.** Because the guard keeps such bundles out of the queue, cldrjs no
+     longer raises this case. The check of the requested locale finds `main/*` data registered for a
+     language without a `likelySubtags` entry, and throws a `DateTimeException` naming that locale
      and the fix (register the full file via `@js-joda/locale/likely-subtags` together with the `main/*` data — registering `main/*` data alone never makes a locale work).
    - **Zone names.** `CldrZoneTextPrinterParser.print`, for a region zone, throws an
      `DateTimeException` when `metaZones` or the locale's `timeZoneNames` is missing, naming the
@@ -128,7 +136,7 @@ See proposal.md for the motivation. Relevant current state in `packages/locale`:
      `_resolveZoneIds` returns a map of zone IDs only and does not cache it; registration of zone
      names/`metaZones` (`registerLocaleData`) and of tz data (`registerTimeZoneData`, via the
      core-level notification hook of `explicit-plugin-data-registration` task 1.5) SHALL invalidate
-     the `_zoneIdsLocales` cache, so a parse that ran before registration does not stay failed
+     the caches listed in `explicit-plugin-data-registration` decision 6, so a parse that ran before registration does not stay failed
      afterwards. Fixed-offset zones and zone IDs work without any zone names, as today.
 
 5. **Sizes.** `@js-joda/locale` root + `en-us` (gzip, minified bundle without `@js-joda/core` and

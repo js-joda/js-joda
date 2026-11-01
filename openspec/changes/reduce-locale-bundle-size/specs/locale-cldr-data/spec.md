@@ -11,7 +11,8 @@ of `likelySubtags` parts), and how missing data is reported.
 ### Requirement: Root entry bundles only weekData
 The root entry `@js-joda/locale` SHALL bundle and register only `supplemental/weekData.json` of the
 supplemental data. It SHALL NOT bundle or register the full `likelySubtags` or `metaZones`. The full
-`likelySubtags` SHALL be available as a plain value from `@js-joda/locale/likely-subtags`, and
+`likelySubtags` SHALL be available from `@js-joda/locale/likely-subtags` as a plain value tagged
+`{ full: true, path, data }`, with no imports and no registration on import, and
 `metaZones` from `@js-joda/locale/meta-zones`.
 
 #### Scenario: Root bundle contents
@@ -43,14 +44,18 @@ have no visible effect. Registering data SHALL take effect for `Cldr` instances 
 - **WHEN** an application registers the full file via `@js-joda/locale/likely-subtags` and then the `localeData` of `@js-joda/locale_en-us`
 - **THEN** every `likelySubtags` value is the one of the full file
 
+#### Scenario: Part after the full file, full file after a part
+- **WHEN** `registerLocaleData(likelySubtags)` with the tagged value of `@js-joda/locale/likely-subtags` is combined with `registerLocaleData('supplemental/likelySubtags.json', part)`, in either order
+- **THEN** every `likelySubtags` value is the one of the full file
+
 #### Scenario: Locale data registered after a Cldr instance was created
-- **WHEN** `WeekFields.ofLocale(Locale.KOREA)` is called, then the `ko` data is registered, and a date is formatted with `MMMM` and `Locale.KOREAN`
+- **WHEN** `WeekFields.ofLocale(new Locale('ko', 'KR'))` is called, then the `ko` data is registered, and a date is formatted with `MMMM` and `Locale.KOREAN`
 - **THEN** the Korean month name is printed
 
 ### Requirement: Locale without data
 Formatting or parsing with text for a locale whose language has no registered `likelySubtags` entry
-SHALL throw an error that names the locale and the root of a prebuilt package to register (for
-`<script>` tags: the corresponding global). It SHALL NOT use the data of another language — there
+SHALL throw an error that names the locale and what to register, as in the "Locale without data"
+requirement of `explicit-plugin-data-registration` (a prebuilt package root only if one exists). It SHALL NOT use the data of another language — there
 SHALL be no silent fallback to English. Registering the data afterwards SHALL make the locale work —
 even if a previous format or parse for any locale already threw: cldrjs drops a queued `main/*`
 bundle when a bundle lookup throws, so the implementation SHALL guard the cldrjs bundle queue (see
@@ -69,8 +74,12 @@ rest on registered data, never on root contents, and SHALL be active always.
 - **THEN** formatting with `Locale.KOREAN` prints the Korean month name
 
 #### Scenario: Error in one locale does not break registering another
-- **WHEN** `main/th/ca-gregorian.json` was registered without any `likelySubtags` and formatting with `new Locale('th', 'TH', 'th')` threw, then the full `likelySubtags` is registered via `@js-joda/locale/likely-subtags` and the `th` `localeData` of `@js-joda/locale_th`, and a date is formatted with `MMMM` and `Locale.THAI` as well as with `MMMM` and `Locale.US` after registering the `en-us` `localeData`
+- **WHEN** `main/th/ca-gregorian.json` was registered without any `likelySubtags` and formatting with `new Locale('th', 'TH', 'th')` threw, then the full `likelySubtags` is registered via `@js-joda/locale/likely-subtags`, and a date is formatted with `MMMM` and `new Locale('th', 'TH', 'th')` as well as with `MMMM` and `Locale.US` after registering the `en-us` `localeData`
 - **THEN** both format correctly (the earlier throw did not poison the cldrjs bundle queue)
+
+#### Scenario: Data without likelySubtags does not affect other locales
+- **WHEN** an application registers `main/th/ca-gregorian.json` without a `th` `likelySubtags` entry and the `en-us` `localeData`
+- **THEN** formatting with `MMMM` and `Locale.US` works, `WeekFields.ofLocale(new Locale('ko', 'KR'))` works, and only formatting with `new Locale('th', 'TH', 'th')` throws
 
 #### Scenario: WeekFields without locale data
 - **WHEN** an application registers no locale data at all and calls `WeekFields.ofLocale(Locale.GERMANY)`
@@ -86,13 +95,22 @@ with the zone text pattern letters `z`, `zzzz` and `v` SHALL throw an error that
 letters, the locale and the fix (`registerLocaleData(zoneNames, metaZones)` with the `zoneNames` of
 a prebuilt package and `metaZones` of `@js-joda/locale/meta-zones`). Parsing SHALL NOT throw: text
 that is neither a fixed offset, nor a zone ID, nor `Z` SHALL fail to parse as unknown text does today.
-Fixed-offset zones, zone IDs and patterns without zone text SHALL work as before this change. The
-zone-ID parse cache SHALL be invalidated when zone names, `metaZones` or tz data are registered, so a
-parse that ran before the registration does not stay failed afterwards.
+Fixed-offset zones, zone IDs and patterns without zone text SHALL work as before this change. Every
+cache that rests on registered data SHALL be invalidated when locale data, zone names, `metaZones` or
+tz data are registered, including caches of misses and of existing formatter instances, so a print or
+parse that ran before the registration does not stay failed or keep a stale result afterwards.
 
 #### Scenario: Parse a zone name before and after registration
 - **WHEN** an application registered only the `en-us` `localeData`, parses `Central European Standard Time` with `zzzz` and `Locale.US` (fails with `DateTimeParseException` as unknown text), then registers the `en-us` `zoneNames` plus `metaZones` and the tz data, and parses the same text again
 - **THEN** the second parse resolves `Europe/Berlin`
+
+#### Scenario: Cached miss after late zone names
+- **WHEN** `en` zone names, `metaZones`, tz data and the `de` `localeData` are registered, a text with `zzzz` and `Locale.GERMAN` fails to parse, and then the `de` `zoneNames` are registered
+- **THEN** printing with `zzzz` and `Locale.GERMAN` gives the German zone name, not `Europe/Berlin`, and the German name parses
+
+#### Scenario: Existing formatter sees data registered later
+- **WHEN** a formatter for `en-AU` has resolved through `en`, and more specific data is registered afterwards
+- **THEN** the same formatter uses the new data
 
 #### Scenario: Format with z without zone names
 - **WHEN** an application registered only the `en-us` `localeData`, and `2016-01-01T00:00+01:00[Europe/Berlin]` is formatted with `zzzz` and `Locale.US`

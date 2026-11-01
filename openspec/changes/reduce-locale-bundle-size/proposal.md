@@ -33,8 +33,8 @@ dropped with the major.
 - `@js-joda/locale/meta-zones` exports `metaZones` as a plain value; the app registers it together
   with the zone names of a prebuilt package — `registerLocaleData(enZones, metaZones)` — only needed
   for `z`, `zzzz`, `v`.
-- `@js-joda/locale/likely-subtags` exports the full `supplemental/likelySubtags.json` as a plain
-  value, for apps that register custom CLDR paths (e.g.
+- `@js-joda/locale/likely-subtags` exports the full `supplemental/likelySubtags.json` as a tagged plain
+  value (`{ full: true, path, data }`), for apps that register custom CLDR paths (e.g.
   `registerLocaleData('main/th/ca-gregorian.json', data)`).
 - `registerLocaleData` merges `supplemental/likelySubtags.json` parts registered by several prebuilt
   packages. Once the full file is registered (via `@js-joda/locale/likely-subtags` or from
