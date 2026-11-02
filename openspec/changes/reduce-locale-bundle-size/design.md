@@ -32,7 +32,7 @@ See proposal.md for the motivation. Relevant current state in `packages/locale`:
   `@js-joda/locale` and registers `ca-gregorian` and `timeZoneNames` per locale;
   `rollup-build-packages-config.js` builds `index.js` (UMD), `index.esm.js`, `index.min.js` (IIFE);
   `utils/create_packages.js` copies them to `packages/<pkg>/dist/` and writes the committed
-  `package.json` (`main`, `module`, no `exports`, no `files`) and `README.md`.
+  `package.json` and `README.md`.
 - `packages/examples/examples/bundler/build.mjs` bundles a sample with esbuild for the browser.
 - Measured gzip sizes: full `likelySubtags` 12.3 KB (1846 entries); subset for `en` 0.16 KB (19
   entries), `zh` 0.23 KB, `de` 0.1 KB; `metaZones` 10.5 KB; `en/timeZoneNames` 6.7 KB.
@@ -40,138 +40,169 @@ See proposal.md for the motivation. Relevant current state in `packages/locale`:
 ## Goals / Non-Goals
 
 **Goals:**
-- A minor release: every existing import, and every mix of old and new packages, works as today.
-- An opt-in slim mode for bundlers that drops the unused data, without duplicating shared data when
-  several prebuilt packages are used.
-- In slim mode, report missing data with a clear error instead of wrong output.
+- Ship in the same major as `explicit-plugin-data-registration` (decision of 2026-11-01: no second
+  stage). The size reduction is not an opt-in mode: the root bundles only `weekData`, and the prebuilt
+  data values carry what an application needs.
+- Report missing data with a clear error instead of wrong output — always on, based on registered
+  data, never on root contents.
+- No silent fallback to English for a language without registered data.
 
 **Non-Goals:**
-- Making the default imports smaller.
-- Slim mode in Node.js (size doesn't matter there) or with Node.js ESM resolution.
-- Removing `weekData` (~1 KB gzip, needed by `WeekFields` for every locale).
+- An opt-in slim mode (`/slim`, `/slim-no-zone-names`) — dropped with the major.
+- Node.js-specific size handling — size doesn't matter there; the root is one module for `require`
+  and `import` alike (see `explicit-plugin-data-registration`, decision 7).
+- Removing `weekData` (~1 KB gzip, needed by `WeekFields` for every locale). It stays in the root.
 - Trimming `ca-gregorian` or `timeZoneNames` content, or splitting the `.*` packages.
-- Fixing the empty `no` and `nn-no` prebuilt packages (wrong patterns in `prebuilt-packages.json`).
+- Moving to CLDR 39 or later, or replacing `cldr-data` with the `cldr-*` packages. `cldr-data` stays on
+  CLDR 36, its latest release. The move would change formatted output for all locales and how
+  `cldrDataSource` loads files, so it is out of scope and a todo for a later change.
 - Any use of the `Intl` API.
 
 ## Decisions
 
-1. **Entries of `@js-joda/locale`.**
-   - `src/slim.js`: `use(plug)`, the exports of today's entry, and `weekData` (bundled copy plus
-     `loadCldrData` for all three supplemental files, so Node.js with `cldr-data` gets everything).
-   - `src/js-joda-locale.js`: re-exports `src/slim.js` and registers the bundled `likelySubtags`
-     and `metaZones`, as today.
-   - `src/meta-zones.js`: registers the bundled `metaZones` through `registerLocaleData`.
-   The default entry is therefore the slim entry plus data, and behaves exactly as today.
+1. **Data layout in the major.**
+   - `src/js-joda-locale.js` (root) bundles only `weekData` of the supplemental data; the full
+     `likelySubtags` and `metaZones` imports are removed from the root.
+   - `src/likely-subtags.js` (entry `@js-joda/locale/likely-subtags`): exports `likelySubtags`, the full
+     `supplemental/likelySubtags.json` as a tagged plain value `{ full: true, path, data }` with no
+     imports, for apps that register custom CLDR paths.
+   - `src/meta-zones.js` (entry `@js-joda/locale/meta-zones`): exports `metaZones` as a plain value;
+     the app registers it with the zone names: `registerLocaleData(enZones, metaZones)`.
+   - Prebuilt package roots export `localeData` (with the subset of decision 2 computed into it) and
+     `zoneNames` as a separate value; entry shape per `explicit-plugin-data-registration` decision 10,
+     including the tree-shaking test (fallback: `/zone-names` subpath).
+   - Script tags: `dist/meta-zones.min.js` and the prebuilt data scripts only set their globals
+     (`JSJodaLocaleData_<locale>`, …); an inline script calls `JSJodaLocale.registerLocaleData(...)`.
 
-2. **One shared module instance.** The ES module build uses one rollup run with three inputs
-   (`js-joda-locale`, `slim`, `meta-zones`): `dist/js-joda-locale.esm.js`, `dist/slim.esm.js`,
-   `dist/meta-zones.esm.js`, and a shared chunk under `dist/chunks/` with the code, `cldrjs` and
-   `CldrCache`. A bundler that sees `@js-joda/locale`, `@js-joda/locale/slim` and
-   `@js-joda/locale/meta-zones` in one application includes the code once, installs the plugin once
-   and registers into one data store. The UMD `dist/js-joda-locale.js` and IIFE
-   `dist/js-joda-locale.min.js` stay as they are; new IIFE builds `dist/slim.min.js` (global
-   `JSJodaLocale`, like the full build) and `dist/meta-zones.min.js` (registers through the global
-   `JSJodaLocale`) serve `<script>` tags.
-
-3. **Entry directories instead of `exports` maps.** `@js-joda/locale/slim/package.json`:
-   ```json
-   { "main": "../dist/js-joda-locale.js", "module": "../dist/slim.esm.js",
-     "types": "../typings/js-joda-locale.d.ts" }
-   ```
-   and `@js-joda/locale/meta-zones/package.json` the same with `"module": "../dist/meta-zones.esm.js"`.
-   Bundlers (webpack, Vite, esbuild, rollup) resolve `module`; Node.js `require` resolves `main`, the
-   full UMD build, so in Node.js the slim entries are the full one: same instance, same behaviour as
-   today. Both directories are added to `files`. The manifest of `@js-joda/locale` gets no `exports`
-   map, so every existing deep import keeps resolving.
-   Alternative: `exports` maps. Rejected: they block deep imports not listed (e.g. extensionless
-   ones), which is a risk for a minor release; Node.js ESM support of slim is a non-goal.
-   Limitation: Node.js ESM does not resolve directory imports, so `import '@js-joda/locale/slim'` in
-   an `.mjs` file run by Node.js fails; documented, and the default import is the one to use there.
-
-4. **Prebuilt package entries.** `cldr-data.ejs` renders three variants per package:
-   - default (`index.*`): unchanged, imports `registerLocaleData` from `@js-joda/locale`, registers
-     `ca-gregorian` and `timeZoneNames` per locale. Works with every `@js-joda/locale` from 5.0.0.
-   - `slim.*`: imports `registerLocaleData` from `@js-joda/locale/slim`, registers the `likelySubtags`
-     subset first, imports `@js-joda/locale/meta-zones`, then `ca-gregorian` and `timeZoneNames`.
-   - `slim-no-zone-names.*`: like `slim.*`, without `meta-zones` and `timeZoneNames`.
-   Each variant is built as `.js` (UMD), `.esm.js` and `.min.js` (IIFE; `@js-joda/locale/slim` maps to
-   the global `JSJodaLocale`, the `meta-zones` import is left to a `<script>` tag of
-   `@js-joda/locale/dist/meta-zones.min.js`). `utils/create_packages.js` writes `slim/package.json`
-   and `slim-no-zone-names/package.json` into every package, with `main` pointing to `../dist/index.js`
-   (Node.js uses the full default entry, as in decision 3) and `module` to the slim ES module. The
-   package manifests stay unchanged; the entry directories are generated and committed like them.
-   The slim entries need `@js-joda/locale` 5.4.0 or later; with an older base the bundler fails to
-   resolve `@js-joda/locale/slim`, a clear build error. The peer range stays `>=5.0.0` for the default
-   entry; the README states the requirement of the slim entries.
-
-5. **likelySubtags subset rule.** For a prebuilt package with languages `L` (the language subtags of
+2. **likelySubtags subset rule.** For a prebuilt package with languages `L` (the language subtags of
    its expanded locales, e.g. `en` for `en`, `en-US`; `zh` for `zh`, `zh-Hant-TW`), keep the entries
    whose key has a language subtag in `L`, the `und` entry, and `und-*` entries whose value has a
    language in `L`. The `und` entry is needed: `cldrjs` reads it when a requested language has no
-   entry, and would throw a `TypeError` without it (the fallback itself is caught by decision 7).
-   `utils/clrdr-data-render.js` computes the subset at build time. A test resolves every locale of
-   every prebuilt package with `cldrjs` against the subset and against the full file and requires
-   equal results; if it finds a gap, the rule is widened, not special-cased. The test also requires
-   every package to expand to at least one locale, except the known-empty `no` and `nn-no`.
+   entry, and would throw a `TypeError` without it. `utils/clrdr-data-render.js` computes the subset
+   at build time and puts it into the prebuilt `localeData`. A test resolves every locale of every
+   prebuilt package with `cldrjs` against the subset and against the full file and requires equal
+   results; if it finds a gap, the rule is widened, not special-cased. The test also requires every
+   package to expand to at least one locale, without exceptions (decision 7).
 
-6. **`registerLocaleData` merges `likelySubtags` parts.** `CldrCache` tracks whether the full
-   `likelySubtags` is registered: the default entry and `loadCldrData` register it through an internal
-   function that marks it as full. Then:
+3. **`registerLocaleData` merges `likelySubtags` parts.** `CldrCache` tracks whether the full
+   `likelySubtags` is registered. `registerLocaleData` recognises the tagged value of
+   `@js-joda/locale/likely-subtags` by `full: true`, and the `cldr-data` source marks the file it loads
+   as full (explicit-plugin-data-registration decision 5). A `likelySubtags` passed in any other form,
+   including `registerLocaleData(path, data)`, is a part. Then:
    - `supplemental/likelySubtags.json` registered through `registerLocaleData` before the full file
-     is passed to `Cldr.load`, which merges it key by key; the parts of several slim entries add up.
-     Registering the same object again merges identical values and has no visible effect.
-   - Once the full file is registered, parts are ignored, so data from the default entry or from
-     `cldr-data` is never changed by a part from a prebuilt package of another CLDR version.
-   - Every other path keeps today's rule: the first registration wins.
+     is passed to `Cldr.load`, which merges it key by key; the parts of several prebuilt packages
+     add up. Registering the same object again merges identical values and has no visible effect.
+   - Once the full file is registered, parts are ignored, so data from `cldr-data` is never changed
+     by a part from a prebuilt package of another CLDR version.
+   - Every other path keeps the rule that the first registration wins.
    - Every registration that reaches `Cldr.load` clears the cached `Cldr` instances, because an
      instance keeps the bundle it resolved when it was created. Instances are cheap to create.
+   - **cldrjs bundle-queue guard (recovery after an error).** cldrjs drops a `main/*` bundle from its
+     internal available-bundle queue when a bundle lookup throws (`Could not find likelySubtags for
+     <bundle>`), and the throw surfaces on the next `new Cldr` for *any* locale. So that a thrown
+     error never poisons later lookups — and "registering the data afterwards makes the locale work"
+     keeps holding — the registration/instance path SHALL re-feed the registered `main/*` bundles whose
+     language has a `likelySubtags` entry into the cldrjs queue (or reset the queue and reload) before
+     creating a `Cldr` instance, and SHALL NOT rely on first-wins-by-path to skip a `Cldr.load` whose
+     queue entry was dropped. A bundle whose language has no entry SHALL stay out of the queue until
+     the entry is registered: cldrjs drains the whole queue on any `new Cldr`, so feeding it would make
+     the throw permanent and hit every locale. This
+     guard applies to every `new Cldr`, including the one `WeekFields.ofLocale` creates, so
+     `WeekFields` keeps working for every locale even when a `main/*` bundle without a
+     `likelySubtags` entry is registered.
 
-7. **Errors in slim mode.** All three can only happen when the full `likelySubtags` or `metaZones`
-   isn't registered, i.e. in slim mode without `cldr-data`; with the default entry nothing changes.
-   - **Locale without data.** `CldrDateTimeTextProvider` and `CldrZoneTextPrinterParser` check, when
-     the full `likelySubtags` isn't registered, that the requested language has a `likelySubtags`
-     entry; otherwise they throw an `IllegalStateException` naming the locale and the `/slim` import of
-     a prebuilt package. This replaces the silent fallback to `und` (English). `WeekFields` does not
-     check; it only reads `weekData`.
-   - **Data without likelySubtags.** `getOrCreateCldrInstance` turns the `cldrjs` error
-     `Could not find likelySubtags for <bundle>` into an `IllegalStateException` naming `<bundle>` and
-     the fix (register `supplemental/likelySubtags.json` before `main/*` data). There is no recovery
-     in the same process; the slim prebuilt entries always register the subset first.
+4. **Errors, always on.** There is no mode flag anymore — the root loads no data, so the checks
+   cannot be silently disabled. All errors of this decision are `DateTimeException`s — the same type
+   and message shape as the "Locale without data" requirement of `explicit-plugin-data-registration`
+   (design decision 6), so both changes' "Locale without data" land in the main specs identically:
+   - **Locale without data.** `CldrDateTimeTextProvider` and `CldrZoneTextPrinterParser` check that
+     the requested language has a registered `likelySubtags` entry; otherwise they throw an
+     `DateTimeException` naming the locale, the registered locales and what to register (a prebuilt
+     root only if one exists, e.g. `@js-joda/locale_ko`; script-tag variant names the global;
+     otherwise path registration, see `explicit-plugin-data-registration` decision 6). This replaces the silent fallback to
+      `und` (English). The check rests
+     on registered data, never on root contents, so a language without data never silently falls
+     back to English. `WeekFields` does not check; it only reads `weekData` (in the root) — verified
+     by a test for `WeekFields.ofLocale` without any locale data registered.
+   - **Data without likelySubtags.** Because the guard keeps such bundles out of the queue, cldrjs no
+     longer raises this case. The check of the requested locale finds `main/*` data registered for a
+     language without a `likelySubtags` entry, and throws a `DateTimeException` naming that locale
+     and the fix (register the full file via `@js-joda/locale/likely-subtags` together with the `main/*` data — registering `main/*` data alone never makes a locale work).
    - **Zone names.** `CldrZoneTextPrinterParser.print`, for a region zone, throws an
-     `IllegalStateException` when `supplemental/metaZones` is missing, naming the pattern letters, the
-     locale and the `/slim` entry (instead of `/slim-no-zone-names`) as the fix. `parse` does not
-     throw; it returns `~position` as today, so optional sections keep working. While `metaZones` is
-     missing, `_resolveZoneIds` returns a map of zone IDs only and does not cache it.
-   When `metaZones` is registered but a locale's `timeZoneNames` isn't (a `/slim-no-zone-names` entry
-   next to a `/slim` entry of another package), the zone ID is printed, as today when names are
-   missing.
+     `DateTimeException` when `metaZones` or the locale's `timeZoneNames` is missing, naming the
+     pattern letters, the locale and the fix (`registerLocaleData(zoneNames, metaZones)`).
+     `parse` does not throw; it returns `~position` as today, so optional sections keep working.
+     While `metaZones` is missing or no tz data is registered (`getAvailableZoneIds()` empty),
+     `_resolveZoneIds` returns a map of zone IDs only and does not cache it; registration of zone
+     names/`metaZones` (`registerLocaleData`) and of tz data (`registerTimeZoneData`, via the
+     core-level notification hook of `explicit-plugin-data-registration` task 1.5) SHALL invalidate
+     the caches listed in `explicit-plugin-data-registration` decision 6, so a parse that ran before registration does not stay failed
+     afterwards. Fixed-offset zones and zone IDs work without any zone names, as today.
+
+5. **Sizes.** `@js-joda/locale` root + `en-us` (gzip, minified bundle without `@js-joda/core` and
+   `@js-joda/timezone`, re-measured during implementation): today ~44.7 KB; the major ~15 KB without
+   zone names (root `weekData` + code + `en` subset + `ca-gregorian`), ~32 KB with `zoneNames` +
+   `metaZones`.
+
+6. **Resolution.** Entries resolve per the `exports` maps of `explicit-plugin-data-registration`
+   (conditions `types`/`react-native`/`module`/`default` on every entry including `.`, Node.js
+   floors 12.16/12.17/12.20). No slim entries, no extra build variants, no shared chunk beyond what
+   that change needs. The prebuilt builds stay one variant per package (`index.{js,esm.js,min.js}`)
+   plus the data-carrying root.
+
+7. **Norwegian prebuilt packages.** Today `no` and `nn-no` ship without data, for two different
+   reasons; their patterns are correct. `nn` is in CLDR 36, but the installed `cldr-data` has only the
+   modern set. `no` is in no CLDR 36 set (it appears in CLDR 39).
+   - `nn-no` gets real data: set `"cldr-data-coverage": "full"` in the root `package.json`.
+     `cldr-data`'s `install.js` reads `../../package.json`, which is the root when `cldr-data` is
+     hoisted, so `cldr-data-coverage` and `cldr-data-urls-filter` in `packages/locale/package.json` have
+     no effect today and are removed.
+   - Full coverage adds locales that the loose patterns `ro.*`, `ko.*` and `da.*` would match (locale
+     counts 3→4, 2→3, 2→3), so they become `ro(-.*)?`, `ko(-.*)?` and `da(-.*)?`. No other package
+     expands differently.
+   - `no` is removed from `prebuilt-packages.json`, and `@js-joda/locale_no` is deprecated on npm in
+     favour of `@js-joda/locale_nb-no`. Its users receive no data today, so nothing that works is lost.
+   - The at-least-one-locale test of decision 2 also checks that the coverage setting applied, because
+     `nn-no` expands to nothing under the modern set, including with a stale cached `node_modules`.
 
 ## Risks / Trade-offs
 
-- [The default imports don't get smaller] → Intended for a minor release. README and CHANGELOG show
-  the slim imports and the sizes; the follow-up on #421 explains it.
-- [Slim mode needs a bundler that reads `module`] → webpack, Vite, esbuild, rollup and Parcel do.
-  `<script>` users get the IIFE builds; Node.js uses the full builds.
-- [Mixing slim and default imports, e.g. `@js-joda/locale/slim` with an old `@js-joda/locale_de`
-  whose default entry imports `@js-joda/locale`] → Works, through the shared chunk, but bundles the
-  full data. Documented.
-- [The ES module build of `@js-joda/locale` is now split into entry files and a chunk] → Bundlers
-  handle relative imports; the examples package bundles the default and slim imports with esbuild.
-- [TypeScript resolves `@js-joda/locale/slim` through `slim/package.json` `types` with `node10` and
-  `bundler` resolution; `node16`/`nodenext` ESM resolution does not resolve directories] → Matches
-  the Node.js ESM limitation; documented.
-- [Three variants per prebuilt package triple the number of bundles the release build produces] →
-  `build-prebuilt` builds groups of packages in parallel processes instead of one sequential rollup
-  run, so the build doesn't take about three times as long.
-- [The subset rule misses an entry `cldrjs` needs] → The equality test over all prebuilt locales.
+- [Removing the full `likelySubtags`/`metaZones` from the root breaks apps that registered custom
+  CLDR paths] → `@js-joda/locale/likely-subtags` exports the full file for exactly that case; the
+  missing-data errors name it.
+- [The subset rule misses an entry `cldrjs` needs] → The equality test over all prebuilt locales
+  against the full file.
+- [Zone names now require an explicit registration] → `z`/`zzzz`/`v` throw a clear error naming the
+  fix; fixed offsets, zone IDs and `parse` are unaffected.
+- [Two majors installed side by side] → Peer ranges move to the new major; documented in the
+  changelog.
+- [Sizes are estimates from prototype builds] → Re-measure with esbuild bundles in the integration
+  tasks and put the real numbers in the README and CHANGELOG.
 
 ## Migration Plan
 
-1. Implement and release `@js-joda/locale` and all prebuilt packages in one lerna release, as a minor
-   version of `@js-joda/locale`.
-2. Rollback: revert and release again. The default entries never changed; applications that switched
-   to slim imports switch back to the default imports.
+Part of the migration guide of the major (spec `repo-documentation-and-migration` of
+`explicit-plugin-data-registration`), with a size table: before ~44.7 KB gzip (`en-us`), after ~15 KB
+without zone names / ~32 KB with, and the new imports:
+
+```js
+// before
+import '@js-joda/timezone';
+import { Locale } from '@js-joda/locale';
+import '@js-joda/locale_en-us';
+
+// after
+import { registerTimeZoneData } from '@js-joda/timezone';
+import { tzdbData } from '@js-joda/timezone/data';
+import { Locale, registerLocaleData } from '@js-joda/locale';
+import { localeData as en, zoneNames as enZones } from '@js-joda/locale_en-us';
+import { metaZones } from '@js-joda/locale/meta-zones';
+registerTimeZoneData(tzdbData);
+registerLocaleData(en);
+registerLocaleData(enZones, metaZones);   // only for z, zzzz, v
+```
 
 ## Open Questions
 
-- Exact wording of the error messages; to be settled in code review.
+- Exact wording of the error messages; to be settled in code review. They must cover `<script>` tags
+  as well as `import`.
