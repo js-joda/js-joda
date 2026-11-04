@@ -364,6 +364,30 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
 
         });
 
+        function data_quartersPlusLarge() {
+            return [
+                [LocalDate.of(1992, 7, 1), 1000, LocalDate.of(2242, 7, 1)],
+                [LocalDate.of(2000, 1, 1), 256, LocalDate.of(2064, 1, 1)],
+                [LocalDate.of(2000, 1, 1), 257, LocalDate.of(2064, 4, 1)],
+                [LocalDate.of(2000, 1, 1), -256, LocalDate.of(1936, 1, 1)],
+                [LocalDate.of(2000, 1, 1), -257, LocalDate.of(1935, 10, 1)],
+                [LocalDate.of(2000, 1, 1), -1000, LocalDate.of(1750, 1, 1)]
+            ];
+        }
+
+        // four quarters are one year, also where the quarters and the months of the
+        // year no longer happen to line up as they do for an amount below 256
+        it('test_quarters_plus_large', function () {
+
+            dataProviderTest(data_quartersPlusLarge, (date, quartersToAdd, expected) => {
+                assertEquals(date.plus(quartersToAdd, IsoFields.QUARTER_YEARS), expected);
+                assertEquals(IsoFields.QUARTER_YEARS.addTo(date, quartersToAdd), expected);
+                assertEquals(expected.minus(quartersToAdd, IsoFields.QUARTER_YEARS), date);
+                assertEquals(date.until(expected, IsoFields.QUARTER_YEARS), quartersToAdd);
+            });
+
+        });
+
     });
 
 });
