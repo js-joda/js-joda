@@ -364,6 +364,37 @@ describe('org.threeten.bp.temporal.TestIsoFields', ()=>{
 
         });
 
+        function data_quartersPlusLarge() {
+            return [
+                [LocalDate.of(1992, 7, 1), 1000, LocalDate.of(2242, 7, 1)],
+                [LocalDate.of(2000, 1, 1), 256, LocalDate.of(2064, 1, 1)],
+                [LocalDate.of(2000, 1, 1), 257, LocalDate.of(2064, 4, 1)],
+                [LocalDate.of(2000, 1, 1), -256, LocalDate.of(1936, 1, 1)],
+                [LocalDate.of(2000, 1, 1), -257, LocalDate.of(1935, 10, 1)],
+                [LocalDate.of(2000, 1, 1), -1000, LocalDate.of(1750, 1, 1)],
+
+                [LocalDate.of(2000, 2, 29), 5, LocalDate.of(2001, 5, 29)],
+                [LocalDate.of(2000, 2, 29), 7, LocalDate.of(2001, 11, 29)],
+                [LocalDate.of(2000, 2, 29), -5, LocalDate.of(1998, 11, 29)],
+                [LocalDate.of(2000, 2, 29), 256, LocalDate.of(2064, 2, 29)],
+                [LocalDate.of(2000, 2, 29), 257, LocalDate.of(2064, 5, 29)],
+                [LocalDate.of(2000, 2, 29), -257, LocalDate.of(1935, 11, 29)]
+            ];
+        }
+
+        // four quarters are one year, including month-end dates and amounts that
+        // are not whole years
+        it('test_quarters_plus_large', function () {
+
+            dataProviderTest(data_quartersPlusLarge, (date, quartersToAdd, expected) => {
+                assertEquals(date.plus(quartersToAdd, IsoFields.QUARTER_YEARS), expected);
+                assertEquals(IsoFields.QUARTER_YEARS.addTo(date, quartersToAdd), expected);
+                assertEquals(expected.minus(quartersToAdd, IsoFields.QUARTER_YEARS), date);
+                assertEquals(date.until(expected, IsoFields.QUARTER_YEARS), quartersToAdd);
+            });
+
+        });
+
     });
 
 });
