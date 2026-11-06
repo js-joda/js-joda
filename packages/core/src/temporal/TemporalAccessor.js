@@ -6,6 +6,7 @@
 
 import { UnsupportedTemporalTypeException } from '../errors';
 import { abstractMethodFail } from '../assert';
+import { installNumericConversionGuard } from '../numericConversionGuard';
 
 import { ChronoField } from './ChronoField';
 import { TemporalQueries } from './TemporalQueries';
@@ -133,3 +134,7 @@ export class TemporalAccessor {
         abstractMethodFail('isSupported');
     }
 }
+
+installNumericConversionGuard(TemporalAccessor.prototype, 'TemporalAccessor',
+    'To compare use the methods .equals(), .compareTo(), .isBefore(), .isAfter() ' +
+    'or one that is more suitable to your use case; enum-like types such as Month offer .value().');
