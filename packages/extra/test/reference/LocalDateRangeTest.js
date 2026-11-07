@@ -897,6 +897,12 @@ describe('org.threeten.extra.TestLocalDateRange', () => {
         assertEquals(true, test.isBefore(DATE_2012_07_30));
     });
 
+    it('test_isBefore_date_unboundedEnd', () => {
+        const test = LocalDateRange.ofUnboundedEnd(DATE_2012_07_29);
+        assertEquals(true, test.contains(LocalDate.MAX));
+        assertEquals(false, test.isBefore(LocalDate.MAX));
+    });
+
     //-----------------------------------------------------------------------
     const data_isAfter = [
         // before start
