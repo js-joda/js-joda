@@ -633,7 +633,7 @@ export class LocalDateRange {
      * @protected
      */
     _isBeforeLocalDate(date) {
-        return this._end.compareTo(date) <= 0 && this._start.compareTo(date) < 0;
+        return this._end.compareTo(date) <= 0 && !this.isUnboundedEnd() && this._start.compareTo(date) < 0;
     }
 
     //-----------------------------------------------------------------------
