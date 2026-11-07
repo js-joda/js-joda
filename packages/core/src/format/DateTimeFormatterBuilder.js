@@ -998,7 +998,7 @@ export class DateTimeFormatterBuilder {
                 if (str.length === 0) {
                     this.appendLiteral('\'');
                 } else {
-                    this.appendLiteral(str.replace('\'\'', '\''));
+                    this.appendLiteral(str.replace(/''/g, '\''));
                 }
 
             } else if (cur === '[') {
