@@ -168,7 +168,7 @@ export class OffsetIdPrinterParser  {
 
 
     toString() {
-        const converted = this.noOffsetText.replace('\'', '\'\'');
+        const converted = this.noOffsetText.replace(/'/g, '\'\'');
         return `Offset(${PATTERNS[this.type]},'${converted}')`;
     }
 }
