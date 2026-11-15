@@ -787,8 +787,8 @@ class Unit extends TemporalUnit {
                 return temporal.with(WEEK_BASED_YEAR, added);
             }
             case QUARTER_YEARS:
-                // no overflow (256 is multiple of 4)
-                return temporal.plus(MathUtil.intDiv(periodToAdd, 256), ChronoUnit.YEARS).plus(MathUtil.intMod(periodToAdd, 256) * 3, ChronoUnit.MONTHS);
+                // no overflow (4 is a divisor of the year)
+                return temporal.plus(MathUtil.intDiv(periodToAdd, 4), ChronoUnit.YEARS).plus(MathUtil.intMod(periodToAdd, 4) * 3, ChronoUnit.MONTHS);
             default:
                 throw new IllegalStateException('Unreachable');
         }
