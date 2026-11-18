@@ -153,6 +153,9 @@ export class NumberPrinterParser {
         let total = 0;
         let pos = position;
         for (let pass = 0; pass < 2; pass++) {
+            // with subsequent values, the first pass only counts the digits,
+            // so it may run past MAX_WIDTH: the value is read in the second pass
+            const countOnly = pass === 0 && this._subsequentWidth > 0;
             const maxEndPos = Math.min(pos + effMaxWidth, length);
             while (pos < maxEndPos) {
                 const ch = text.charAt(pos++);
@@ -163,6 +166,9 @@ export class NumberPrinterParser {
                         return ~position;  // need at least min width digits
                     }
                     break;
+                }
+                if (countOnly) {
+                    continue;
                 }
                 if ((pos - position) > MAX_WIDTH) {
                     throw new ArithmeticException('number text exceeds length');

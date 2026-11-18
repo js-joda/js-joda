@@ -13,6 +13,7 @@ import { IllegalArgumentException } from '../../src/errors';
 import { LocalDate } from '../../src/LocalDate';
 import { LocalDateTime } from '../../src/LocalDateTime';
 import { ResolverStyle } from '../../src/format/ResolverStyle';
+import { SignStyle } from '../../src/format/SignStyle';
 
 /* these tests are not copied from threetenbp, but js-joda tests to increase coverage */
 
@@ -147,6 +148,72 @@ describe('js-joda DateTimeFormatterBuilderTest', () => {
                 .toFormatter(ResolverStyle.STRICT); // ResolverStyle.STRICT expects an Era for 'yyyy' otherwise i would fail to validate.
 
             expect(() => { LocalDate.parse('01.01.1970', f); }).not.to.throw();
+        });
+    });
+
+    describe('adjacent value parsing with a fixed width fraction', () => {
+        it('should parse a date-time with milliseconds and no separators', () => {
+            const f = builder.appendPattern('uuuuMMddHHmmssSSS').toFormatter();
+            expect(LocalDateTime.parse('20150101120000123', f).toString()).to.equal('2015-01-01T12:00:00.123');
+            expect(LocalDateTime.parse('20240229235959999', f).toString()).to.equal('2024-02-29T23:59:59.999');
+        });
+
+        it('should parse a year-of-era pattern with milliseconds', () => {
+            const f = builder.appendPattern('yyyyMMddHHmmssSSS').toFormatter();
+            expect(LocalDateTime.parse('20150101120000123', f).toString()).to.equal('2015-01-01T12:00:00.123');
+        });
+
+        it('should parse a fraction of one, six and nine digits', () => {
+            expect(LocalDateTime.parse('202401021304055', new DateTimeFormatterBuilder().appendPattern('uuuuMMddHHmmssS').toFormatter()).toString())
+                .to.equal('2024-01-02T13:04:05.500');
+            expect(LocalDateTime.parse('20240102130405123456', new DateTimeFormatterBuilder().appendPattern('uuuuMMddHHmmssSSSSSS').toFormatter()).toString())
+                .to.equal('2024-01-02T13:04:05.123456');
+            expect(LocalDateTime.parse('20240102130405123456789', new DateTimeFormatterBuilder().appendPattern('uuuuMMddHHmmssSSSSSSSSS').toFormatter()).toString())
+                .to.equal('2024-01-02T13:04:05.123456789');
+        });
+
+        it('should parse a year with more than four digits', () => {
+            const f = builder.appendPattern('uuuuMMddHHmmssSSS').toFormatter();
+            expect(LocalDateTime.parse('+120240102130405678', f).toString()).to.equal('+12024-01-02T13:04:05.678');
+        });
+
+        it('should parse a fraction followed by other fixed width values', () => {
+            const f = builder.appendPattern('uuuuSSSMMdd').toFormatter(ResolverStyle.LENIENT);
+            const parsed = f.parse('2024123' + '0315');
+            expect(parsed.getLong(ChronoField.YEAR)).to.equal(2024);
+            expect(parsed.getLong(ChronoField.NANO_OF_SECOND)).to.equal(123000000);
+            expect(parsed.getLong(ChronoField.MONTH_OF_YEAR)).to.equal(3);
+            expect(parsed.getLong(ChronoField.DAY_OF_MONTH)).to.equal(15);
+        });
+
+        it('should keep the fraction width when parsing leniently', () => {
+            const f = builder.parseLenient().appendPattern('uuuuMMddHHmmssSSS').toFormatter();
+            expect(LocalDateTime.parse('20150101120000123', f).toString()).to.equal('2015-01-01T12:00:00.123');
+            const g = new DateTimeFormatterBuilder().parseLenient().appendPattern('uuuuSSSMMdd').toFormatter(ResolverStyle.LENIENT);
+            const parsed = g.parse('2024123' + '0315');
+            expect(parsed.getLong(ChronoField.NANO_OF_SECOND)).to.equal(123000000);
+            expect(parsed.getLong(ChronoField.MONTH_OF_YEAR)).to.equal(3);
+            expect(parsed.getLong(ChronoField.DAY_OF_MONTH)).to.equal(15);
+        });
+
+        it('should round trip a formatted value', () => {
+            const f = builder.appendPattern('uuuuMMddHHmmssSSS').toFormatter();
+            const ldt = LocalDateTime.of(1999, 12, 31, 23, 59, 58, 7000000);
+            expect(f.format(ldt)).to.equal('19991231235958007');
+            expect(LocalDateTime.parse(f.format(ldt), f).equals(ldt)).to.equal(true);
+        });
+
+        it('should still reject a fraction with too few digits', () => {
+            const f = builder.appendPattern('uuuuMMddHHmmssSSS').toFormatter();
+            expect(() => LocalDateTime.parse('2015010112000012', f)).to.throw();
+        });
+
+        it('should not reserve digits for a fraction with a decimal point', () => {
+            const f = builder.appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
+                .appendFraction(ChronoField.NANO_OF_SECOND, 3, 3, true).toFormatter();
+            const parsed = f.parse('2024.123');
+            expect(parsed.getLong(ChronoField.YEAR)).to.equal(2024);
+            expect(parsed.getLong(ChronoField.NANO_OF_SECOND)).to.equal(123000000);
         });
     });
 })
