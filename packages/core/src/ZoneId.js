@@ -6,6 +6,7 @@
 
 import { abstractMethodFail } from './assert';
 import { DateTimeException } from './errors';
+import { installNumericConversionGuard } from './numericConversionGuard';
 
 import { StringUtil } from './StringUtil';
 
@@ -234,3 +235,6 @@ export class ZoneId {
         return this.toString();
     }
 }
+
+installNumericConversionGuard(ZoneId.prototype, 'ZoneId',
+    'To compare use the method .equals(); a ZoneOffset can be ordered with .compareTo() or .totalSeconds().');
