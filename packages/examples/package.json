@@ -33,7 +33,7 @@
     "@js-joda/locale_ko": "*",
     "@js-joda/timezone": "*",
     "benchmark": "^2.1.4",
-    "esbuild": "^0.28.0",
+    "esbuild": "^0.28.1",
     "moment": "^2.30.1"
   }
 }
