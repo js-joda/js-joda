@@ -450,7 +450,7 @@ export class Interval {
      * @return {boolean} true if the start of this interval is before the specified instant
      */
     isBeforeInstant(instant) {
-        return this._end.compareTo(instant) <= 0 && this._start.compareTo(instant) < 0;
+        return this._end.compareTo(instant) <= 0 && !this.isUnboundedEnd() && this._start.compareTo(instant) < 0;
     }
 
     //-------------------------------------------------------------------------

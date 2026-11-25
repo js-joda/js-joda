@@ -580,6 +580,13 @@ describe('org.threeten.extra.TestInterval', () => {
             assertEquals(test.isBefore(NOW1), false);
             assertEquals(test.isBefore(NOW1.plusSeconds(1)), true);
         });
+
+        it('test_isBefore_Instant_unboundedEnd', () => {
+            const test = Interval.of(NOW1, Instant.MAX);
+            assertEquals(test.contains(Instant.MAX), true);
+            assertEquals(test.isBefore(Instant.MAX), false);
+            assertEquals(Interval.ALL.isBefore(Instant.MAX), false);
+        });
     });
 
     //-----------------------------------------------------------------------
