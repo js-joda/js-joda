@@ -18,7 +18,4 @@ addSuite(
         .add('js-joda ZonedDateTime ', function() {
             JSJoda.ZonedDateTime.now();
         })
-        .add('moment', function() {
-            moment();
-        })
 );

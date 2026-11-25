@@ -12,23 +12,14 @@ if(typeof require === 'function') { require('../node-init'); }
             .add(`native Date ${instantDateStr}`, function () {
                 const d = new Date(instantDateStr);
             })
-            .add(`moment ${instantDateStr}`, function () {
-                const m = moment(instantDateStr);
-            })
             .add(`js-joda ${instantDateStr}`, function () {
                 const i = JSJoda.Instant.parse(instantDateStr);
             })
             .add(`native Date ${dateStr}`, function () {
                 const d = new Date(dateStr);
             })
-            .add(`moment ${dateStr}`, function () {
-                const m = moment(dateStr);
-            })
             .add(`js-joda ${dateStr}`, function () {
                 const i = JSJoda.LocalDate.parse(dateStr);
-            })
-            .add(`moment ${zonedDateTimeStr}`, function () {
-                const m = moment(zonedDateTimeStr);
             })
             .add(`js-joda ${zonedDateTimeStr}`, function () {
                 const i = JSJoda.ZonedDateTime.parse(zonedDateTimeStr);
