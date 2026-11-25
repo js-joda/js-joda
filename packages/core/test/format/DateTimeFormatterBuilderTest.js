@@ -12,6 +12,7 @@ import { DateTimeFormatterBuilder } from '../../src/format/DateTimeFormatterBuil
 import { IllegalArgumentException } from '../../src/errors';
 import { LocalDate } from '../../src/LocalDate';
 import { LocalDateTime } from '../../src/LocalDateTime';
+import { LocalTime } from '../../src/LocalTime';
 import { ResolverStyle } from '../../src/format/ResolverStyle';
 import { SignStyle } from '../../src/format/SignStyle';
 
@@ -186,14 +187,28 @@ describe('js-joda DateTimeFormatterBuilderTest', () => {
             expect(parsed.getLong(ChronoField.DAY_OF_MONTH)).to.equal(15);
         });
 
-        it('should keep the fraction width when parsing leniently', () => {
+        it('should parse any number of fraction digits when parsing leniently', () => {
+            const f = builder.parseLenient().appendPattern('HHmmssSSS').toFormatter();
+            expect(LocalTime.parse('1200001', f).toString()).to.equal('12:00:00.100');
+            expect(LocalTime.parse('120000', f).toString()).to.equal('12:00');
+            expect(LocalTime.parse('120000123456', f).toString()).to.equal('12:00:00.123456');
+        });
+
+        it('should leave room for the fraction when parsing leniently', () => {
             const f = builder.parseLenient().appendPattern('uuuuMMddHHmmssSSS').toFormatter();
             expect(LocalDateTime.parse('20150101120000123', f).toString()).to.equal('2015-01-01T12:00:00.123');
-            const g = new DateTimeFormatterBuilder().parseLenient().appendPattern('uuuuSSSMMdd').toFormatter(ResolverStyle.LENIENT);
-            const parsed = g.parse('2024123' + '0315');
-            expect(parsed.getLong(ChronoField.NANO_OF_SECOND)).to.equal(123000000);
-            expect(parsed.getLong(ChronoField.MONTH_OF_YEAR)).to.equal(3);
-            expect(parsed.getLong(ChronoField.DAY_OF_MONTH)).to.equal(15);
+        });
+
+        // same as java.time: only the fixed width values next to the year in the same section reserve digits
+        it('should not reserve digits for a fraction in an optional section', () => {
+            const f = builder.appendPattern('uuuuMMddHHmmss[SSS]').toFormatter();
+            expect(LocalDateTime.parse('20150101120000', f).toString()).to.equal('2015-01-01T12:00');
+            expect(() => LocalDateTime.parse('20150101120000123', f)).to.throw();
+        });
+
+        it('should not reserve digits for a fraction followed by a variable width value', () => {
+            const f = builder.appendPattern('uuuuSSSd').toFormatter(ResolverStyle.LENIENT);
+            expect(() => f.parse('20241235')).to.throw();
         });
 
         it('should round trip a formatted value', () => {

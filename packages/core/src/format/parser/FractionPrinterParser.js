@@ -23,10 +23,8 @@ export class FractionPrinterParser {
      * @param {Number} minWidth  the minimum width to output, from 0 to 9
      * @param {Number} maxWidth  the maximum width to output, from 0 to 9
      * @param {boolean} decimalPoint  whether to output the localized decimal point symbol
-     * @param {boolean} [adjacent=false]  whether the fraction is part of adjacent value parsing,
-     *  then it is always parsed with its fixed width
      */
-    constructor(field, minWidth, maxWidth, decimalPoint, adjacent = false) {
+    constructor(field, minWidth, maxWidth, decimalPoint) {
         requireNonNull(field, 'field');
         if (field.range().isFixed() === false) {
             throw new IllegalArgumentException(`Field must have a fixed set of values: ${field}`);
@@ -45,7 +43,6 @@ export class FractionPrinterParser {
         this.minWidth = minWidth;
         this.maxWidth = maxWidth;
         this.decimalPoint = decimalPoint;
-        this.adjacent = adjacent;
     }
 
     print(context, buf) {
@@ -83,9 +80,8 @@ export class FractionPrinterParser {
     }
 
     parse(context, text, position) {
-        const fixedWidth = context.isStrict() || this.adjacent;
-        const effectiveMin = (fixedWidth ? this.minWidth : 0);
-        const effectiveMax = (fixedWidth ? this.maxWidth : 9);
+        const effectiveMin = (context.isStrict() ? this.minWidth : 0);
+        const effectiveMax = (context.isStrict() ? this.maxWidth : 9);
         const length = text.length;
         if (position === length) {
             // valid if whole field is optional, invalid if minimum width

@@ -542,12 +542,11 @@ export class DateTimeFormatterBuilder {
         // A fixed width fraction without decimal point (`SSS` in `uuuuMMddHHmmssSSS`)
         // has no separator, so it takes part in adjacent value parsing:
         // the active value parser leaves room for its digits.
-        if (minWidth === maxWidth && decimalPoint === false && this._active._padNextWidth === 0 &&
-                activeValueParser >= 0 &&
+        if (minWidth === maxWidth && decimalPoint === false && activeValueParser >= 0 &&
                 this._active._printerParsers[activeValueParser] instanceof NumberPrinterParser) {
             const basePP = this._active._printerParsers[activeValueParser];
             this._active._printerParsers[activeValueParser] = basePP.withSubsequentWidth(maxWidth);
-            this._appendInternal(new FractionPrinterParser(field, minWidth, maxWidth, decimalPoint, true));
+            this._appendInternal(new FractionPrinterParser(field, minWidth, maxWidth, decimalPoint));
             this._active._valueParserIndex = activeValueParser;
         } else {
             this._appendInternal(new FractionPrinterParser(field, minWidth, maxWidth, decimalPoint));
