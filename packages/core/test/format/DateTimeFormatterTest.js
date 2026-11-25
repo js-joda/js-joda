@@ -182,4 +182,20 @@ describe('js-joda DateTimeFormatterTest', () => {
             expect(() => LocalDate.parse('2020-12-31 2021-W53', f)).to.throw(DateTimeParseException, /Cross check failed: WeekBasedYear 2020 vs WeekBasedYear 2021/);
         });
     });
+
+    describe('quotes in quoted pattern text', () => {
+        it('should unescape every doubled quote', () => {
+            const f = DateTimeFormatter.ofPattern("'it''s o''clock' HH");
+            expect(LocalTime.of(5, 0).format(f)).to.equal("it's o'clock 05");
+            expect(LocalTime.parse("it's o'clock 05", f).toString()).to.equal('05:00');
+        });
+
+        it('should escape every quote in toString', () => {
+            const f = new DateTimeFormatterBuilder()
+                .appendLiteral("it's o'clock")
+                .appendOffset('+HH:MM', "it's o'clock")
+                .toFormatter();
+            expect(f.toString()).to.equal("'it''s o''clock'Offset(+HH:MM,'it''s o''clock')");
+        });
+    });
 });
