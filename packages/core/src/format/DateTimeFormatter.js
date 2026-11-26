@@ -693,7 +693,7 @@ export function _init() {
     DateTimeFormatter.ISO_ORDINAL_DATE = new DateTimeFormatterBuilder()
         .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD)
         .appendLiteral('-')
-        .appendValue(ChronoField.DAY_OF_YEAR)
+        .appendValue(ChronoField.DAY_OF_YEAR, 3)
         .toFormatter(ResolverStyle.STRICT);
 
     DateTimeFormatter.ISO_WEEK_DATE = new DateTimeFormatterBuilder()

@@ -76,7 +76,10 @@ describe('js-joda DateTimeFormatterTest', () => {
 
         it('should properly use ISO_ORDINAL_DATE format', () => {
             checkFormat(DateTimeFormatter.ISO_ORDINAL_DATE, '2018-118');
-            expect(LocalDateTime.parse('2018-01-01T00:00').format(DateTimeFormatter.ISO_ORDINAL_DATE)).to.eql('2018-1');
+            expect(LocalDateTime.parse('2018-01-01T00:00').format(DateTimeFormatter.ISO_ORDINAL_DATE)).to.eql('2018-001');
+            expect(LocalDate.of(2018, 2, 9).format(DateTimeFormatter.ISO_ORDINAL_DATE)).to.eql('2018-040');
+            expect(LocalDate.parse('2018-001', DateTimeFormatter.ISO_ORDINAL_DATE)).to.eql(LocalDate.of(2018, 1, 1));
+            expect(() => LocalDate.parse('2018-1', DateTimeFormatter.ISO_ORDINAL_DATE)).to.throw(DateTimeParseException);
         });
 
         it('should properly use ISO_WEEK_DATE format', () => {
